@@ -80,8 +80,9 @@
     <string name="AttachmentKeyboard_file">Fichier</string>
     <string name="AttachmentKeyboard_contact">Contact</string>
     <string name="AttachmentKeyboard_location">Position</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal a besoin d’une autorisation pour afficher vos photos et vidéos.</string>
-    <string name="AttachmentKeyboard_give_access">Accorder l’accès</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">Allow Access</string>
     <string name="AttachmentKeyboard_payment">Paiement</string>
 
     <!-- AttachmentManager -->
@@ -91,13 +92,19 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Pour joindre une position géographique, Signal doit accéder à l’application Position mais vous lui en avez interdit l’accès. Ouvrez l’application « Paramètres » de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations &gt; Position et activer l’autorisation appropriée.</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Allow access to your location</string>
+    <string name="AttachmentManager_signal_allow_access_location">Autoriser l’accès à votre position</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
-    <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
+    <string name="AttachmentManager_signal_to_send_location">Pour partager votre position :</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">Autorisez Signal à accéder à votre position.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
+    <string name="AttachmentManager_signal_needs_location_access">Pour partager votre position, autorisez Signal à accéder aux services de localisation de votre téléphone.</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s n’a pas activé les paiements </string>
@@ -397,13 +404,13 @@
     <string name="ConversationActivity_cancel_request">Annuler la demande</string>
 
     <!-- Dialog title asking users for microphone permission -->
-    <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
+    <string name="ConversationActivity_allow_access_microphone">Autoriser l’accès au microphone</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">Pour envoyer des messages vocaux :</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
-    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Pour envoyer des messages vocaux, autorisez Signal à accéder au microphone.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Pour enregistrer un message vocal, autorisez Signal à accéder au microphone de votre téléphone.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Pour envoyer des messages audio, Signal doit être autorisé à accéder à l’application Microphone, mais vous lui en avez interdit l’accès. Pour l’autoriser à y accéder, ouvrez l’application « Paramètres » de votre appareil, appuyez sur « Applications », puis sélectionnez « Autorisations » et activez « Microphone ».</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal a besoin des autorisations Microphone et Appareil photo pour appeler %1$s, mais elles ont été refusées définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Microphone et Appareil photo.</string>
@@ -431,11 +438,11 @@
     <string name="ConversationActivity_delete_and_leave">Supprimer et quitter</string>
 
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
-    <string name="ConversationActivity__to_start_call">To start a call:</string>
+    <string name="ConversationActivity__to_start_call">Pour passer un appel :</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Pour passer un appel, autorisez Signal à accéder à votre microphone.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Pour passer un appel, autorisez Signal à accéder au microphone de votre téléphone.</string>
 
 
     <string name="ConversationActivity_join">Me joindre</string>
@@ -1322,11 +1329,11 @@
     <string name="Megaphones_verify_your_signal_pin">Confirmer votre code PIN Signal</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Nous vous demanderons occasionnellement de confirmer votre code PIN pour vous aider à le mémoriser.</string>
     <string name="Megaphones_verify_pin">Confirmer le PIN</string>
-    <string name="Megaphones_get_started">Commençons</string>
+    <string name="Megaphones_get_started">C’est parti !</string>
     <string name="Megaphones_new_group">Nouveau groupe</string>
-    <string name="Megaphones_invite_friends">Inviter des amis</string>
-    <string name="Megaphones_chat_colors">Thème de la conversation</string>
-    <string name="Megaphones_add_a_profile_photo">Ajouter une photo de profil</string>
+    <string name="Megaphones_invite_friends">Inviter</string>
+    <string name="Megaphones_chat_colors">Couleur</string>
+    <string name="Megaphones_add_a_profile_photo">Photo de profil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Réponses</string>
@@ -1387,9 +1394,9 @@
     <string name="MessageRecord_s_joined_signal">%1$s est sur Signal.</string>
     <string name="MessageRecord_you_disabled_disappearing_messages">Vous avez désactivé les messages éphémères.</string>
     <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a désactivé les messages éphémères.</string>
-    <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez défini l’expiration des messages éphémères à %1$s.</string>
-    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini l’expiration des messages éphémères à %2$s.</string>
-    <string name="MessageRecord_disappearing_message_time_set_to_s">L’expiration des messages éphémères a été définie à %1$s.</string>
+    <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez défini le délai avant disparition des messages éphémères sur %1$s.</string>
+    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini le délai avant disparition des messages éphémères sur %2$s.</string>
+    <string name="MessageRecord_disappearing_message_time_set_to_s">Délai avant disparition des messages éphémères défini sur %1$s.</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ce groupe a été converti en Nouveau groupe.</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Vous n’avez pas pu être ajouté au Nouveau groupe et avez été invité à vous y joindre</string>
     <string name="MessageRecord_chat_session_refreshed">La session de dialogue en ligne a été actualisée</string>
@@ -2259,10 +2266,10 @@
     <string name="SupportEmailUtil_filter">Filtre :</string>
     <string name="SupportEmailUtil_device_info">Info sur l’appareil :</string>
     <string name="SupportEmailUtil_android_version">Version d’Android :</string>
-    <string name="SupportEmailUtil_signal_version">Version de Signal :</string>
-    <string name="SupportEmailUtil_signal_package">Package Signal :</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Blocage d’inscription :</string>
-    <string name="SupportEmailUtil_locale">Paramètres régionaux :</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Le groupe a été mis à jour</string>
@@ -2717,8 +2724,8 @@
     </plurals>
     <!-- Displays number of viewers for a story -->
     <plurals name="contact_selection_list_item__number_of_viewers">
-        <item quantity="one">%1$d personne</item>
-        <item quantity="other">%1$d personnes</item>
+        <item quantity="one">%1$d spectateur</item>
+        <item quantity="other">%1$d spectateurs</item>
     </plurals>
 
     <!-- conversation_activity -->
@@ -2769,7 +2776,7 @@
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Aucun groupe en commun. Examinez les demandes avec attention.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Aucun contact dans ce groupe. Examinez les demandes avec attention.</string>
     <string name="ConversationUpdateItem_view">Afficher</string>
-    <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">La minuterie des messages éphémères sera définie sur %1$s quand vous échangez des messages avec cette personne.</string>
+    <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Lorsque vous enverrez des messages à ce contact, le délai avant disparition des messages éphémères sera défini sur %1$s.</string>
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Faire un don</string>
     <!-- Update item button text to send payment -->
@@ -3069,7 +3076,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Info d’assistance</string>
     <string name="HelpFragment__signal_android_support_request">Demande d’assistance – Signal pour Android</string>
-    <string name="HelpFragment__debug_log">Journal de débogage :</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Impossible d’importer les journaux.</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Veuillez nous donner autant de détails que possible, afin de nous aider à comprendre la situation.</string>
     <string-array name="HelpFragment__categories_5">
@@ -3276,7 +3283,8 @@
     <string name="preferences_storage__audio">Audio</string>
     <string name="preferences_storage__review_storage">État de l\'espace de stockage</string>
     <string name="preferences_storage__delete_older_messages">Supprimer les anciens messages ?</string>
-    <string name="preferences_storage__clear_message_history">Effacer l’historique des messages ?</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Delete message history?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">L’historique et les contenus multimédias des messages de plus de %1$s seront irrémédiablement supprimés de votre appareil.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -3460,11 +3468,11 @@
 
     <!-- PermissionDeniedBottomSheet -->
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Appuyez sur « Paramètres » ci-dessous</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Accordez l’autorisation</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Settings</string>
+    <string name="PermissionDeniedBottomSheet__settings">Paramètres</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3689,7 +3697,7 @@
     <string name="conversation_unmuted__mute_notifications">Notifications en sourdine</string>
 
     <!-- conversation -->
-    <string name="conversation__menu_group_settings">Paramètres de groupe</string>
+    <string name="conversation__menu_group_settings">Paramètres du groupe</string>
     <string name="conversation__menu_leave_group">Quitter le groupe</string>
     <string name="conversation__menu_view_all_media">Tous les médias</string>
     <string name="conversation__menu_conversation_settings">Paramètres de la conversation</string>
@@ -3722,11 +3730,11 @@
 
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Double tap to edit</string>
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Touchez deux fois pour modifier</string>
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
-    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Quickly tap twice on your messages to edit them. You can edit your messages up to 24hrs after they’ve been sent.</string>
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Pour modifier vos messages, touchez-les rapidement deux fois. Une fois envoyés, vous pouvez les modifier pendant 24 heures.</string>
     <!-- Button label to dismiss sheet -->
-    <string name="DoubleTapEditEducationSheet__got_it">Got it</string>
+    <string name="DoubleTapEditEducationSheet__got_it">J’ai compris</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">Nouveau groupe</string>
@@ -4226,13 +4234,13 @@
     <string name="ReviewCardDialogFragment__review_request">Examiner la demande</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d group member have the same name, review the member below and choose to take action.</item>
-        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+        <item quantity="one">%1$d membre du groupe porte le même nom qu’un autre membre. Examinez-le ci-dessous et choisissez l’action appropriée.</item>
+        <item quantity="other">%1$d membres du groupe portent le même nom. Examinez la liste ci-dessous et choisissez l’action appropriée.</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="one">If you\'re not sure who the request is from, review the contact below and take action.</item>
-        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+        <item quantity="one">Si vous ne reconnaissez pas l’utilisateur à l’origine de la demande, examinez le contact ci-dessous et choisissez l’action appropriée.</item>
+        <item quantity="other">Si vous ne reconnaissez pas l’utilisateur à l’origine de la demande, examinez les contacts ci-dessous et choisissez l’action appropriée.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Aucun autre groupe en commun.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Aucun groupe en commun.</string>
@@ -4266,8 +4274,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s et %3$s se sont joints</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="one">%1$s, %2$s and %3$d other joined</item>
-        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+        <item quantity="one">%1$s, %2$s, et %3$d autre personne ont rejoint cet appel</item>
+        <item quantity="other">%1$s, %2$s, et %3$d autres personnes ont rejoint cet appel</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s a quitté l’appel</string>
@@ -4275,8 +4283,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s et %3$s ont quitté l’appel</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
-        <item quantity="one">%1$s, %2$s and %3$d other left</item>
-        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+        <item quantity="one">%1$s, %2$s, et %3$d autre personne ont quitté cet appel</item>
+        <item quantity="other">%1$s, %2$s, et %3$d autres personnes ont quitté cet appel</item>
     </plurals>
 
     <string name="CallParticipant__you">Vous</string>
@@ -4649,8 +4657,8 @@
     <string name="PrivacySettingsFragment__blocked">Bloqué</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d contact</item>
-        <item quantity="other">%1$d contacts</item>
+        <item quantity="one">%1$d contact</item>
+        <item quantity="other">%1$d contacts</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Messagerie</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Messages éphémères</string>
@@ -4658,8 +4666,8 @@
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquer les captures d’écran dans la liste des récents et dans l’appli</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Messages et appels Signal, toujours relayer les appels et expéditeur scellé</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Minuterie par défaut pour les nouvelles conversations</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Définissez une minuterie par défaut pour les messages éphémères pour toutes les nouvelles conversations que vous démarrez.</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Délai avant disparition</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Définissez le délai après lequel les messages éphémères disparaissent des nouvelles conversations que vous avez initiées.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Exiger le verrouillage d’écran Android ou l’empreinte digitale pour effectuer des paiements</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -6810,18 +6818,27 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Carte de crédit ou de débit</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
+    <string name="BackupsTypeSettingsFragment__bank_transfer">Virement bancaire</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
+    <string name="BackupsTypeSettingsFragment__unknown">Inconnu</string>
 
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
 
     <!-- EOF -->
 </resources>

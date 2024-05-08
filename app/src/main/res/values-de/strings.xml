@@ -80,8 +80,9 @@
     <string name="AttachmentKeyboard_file">Datei</string>
     <string name="AttachmentKeyboard_contact">Kontakt</string>
     <string name="AttachmentKeyboard_location">Standort</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal benötigt die Berechtigung, um deine Fotos und Videos anzuzeigen.</string>
-    <string name="AttachmentKeyboard_give_access">Zugriff gewähren</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">Allow Access</string>
     <string name="AttachmentKeyboard_payment">Zahlung</string>
 
     <!-- AttachmentManager -->
@@ -91,13 +92,19 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal benötigt die Berechtigung »Standort« für das Anhängen von Standorten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Standort«.</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Allow access to your location</string>
+    <string name="AttachmentManager_signal_allow_access_location">Zugriff auf Standort erlauben</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
-    <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
+    <string name="AttachmentManager_signal_to_send_location">So sendest du deinen Standort:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">Erlaube Signal, deinen Standort zu senden.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
+    <string name="AttachmentManager_signal_needs_location_access">Signal benötigt Zugriff auf deine Standortdaten, um deinen Standort senden zu können.</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s hat Zahlungen nicht aktiviert </string>
@@ -397,13 +404,13 @@
     <string name="ConversationActivity_cancel_request">Anfrage abbrechen</string>
 
     <!-- Dialog title asking users for microphone permission -->
-    <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
+    <string name="ConversationActivity_allow_access_microphone">Zugriff auf dein Mikrofon erlauben</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">So versendest du Sprachnachrichten:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
-    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Erlaube Signal Zugriff auf dein Mikrofon, um Sprachnachrichten zu versenden.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal benötigt Zugriff auf das Mikrofon, um eine Sprachnachricht aufzunehmen.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal benötigt die Berechtigung »Mikrofon« für das Senden von Sprachnachrichten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon«.</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal benötigt die Berechtigungen »Mikrofon« und »Kamera«, um %1$s anzurufen, diese wurden jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon« und »Kamera«.</string>
@@ -431,11 +438,11 @@
     <string name="ConversationActivity_delete_and_leave">Löschen und verlassen</string>
 
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
-    <string name="ConversationActivity__to_start_call">To start a call:</string>
+    <string name="ConversationActivity__to_start_call">So startest du einen Anruf:</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Signal benötigt Zugriff auf dein Mikrofon, um einen Anruf zu starten.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal benötigt Zugriff auf das Mikrofon, um einen Anruf zu starten.</string>
 
 
     <string name="ConversationActivity_join">Beitreten</string>
@@ -1324,9 +1331,9 @@
     <string name="Megaphones_verify_pin">PIN überprüfen</string>
     <string name="Megaphones_get_started">Leg los</string>
     <string name="Megaphones_new_group">Neue Gruppe</string>
-    <string name="Megaphones_invite_friends">Freunde einladen</string>
+    <string name="Megaphones_invite_friends">Einladen</string>
     <string name="Megaphones_chat_colors">Chat-Farben</string>
-    <string name="Megaphones_add_a_profile_photo">Füge ein Profilbild hinzu</string>
+    <string name="Megaphones_add_a_profile_photo">Profilbild</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Antworten</string>
@@ -2067,8 +2074,8 @@
 
     <!-- ProxyBottomSheetFragment -->
     <string name="ProxyBottomSheetFragment_proxy_server">Proxyserver</string>
-    <string name="ProxyBottomSheetFragment_proxy_address">Proxyadresse</string>
-    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Möchtest du diese Proxyadresse verwenden?</string>
+    <string name="ProxyBottomSheetFragment_proxy_address">Proxy-Adresse</string>
+    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Möchtest du diese Proxy-Adresse verwenden?</string>
     <string name="ProxyBottomSheetFragment_use_proxy">Proxy verwenden</string>
     <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Erfolgreich mit Proxy verbunden.</string>
 
@@ -2259,10 +2266,10 @@
     <string name="SupportEmailUtil_filter">Filter:</string>
     <string name="SupportEmailUtil_device_info">Geräteinformationen:</string>
     <string name="SupportEmailUtil_android_version">Android-Version:</string>
-    <string name="SupportEmailUtil_signal_version">Signal-Version:</string>
-    <string name="SupportEmailUtil_signal_package">Signal-Paket:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Registrierungssperre:</string>
-    <string name="SupportEmailUtil_locale">Region:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Gruppe aktualisiert</string>
@@ -3069,7 +3076,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Support-Informationen</string>
     <string name="HelpFragment__signal_android_support_request">Support-Anfrage für Signal Android</string>
-    <string name="HelpFragment__debug_log">Diagnoseprotokoll:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
     <string-array name="HelpFragment__categories_5">
@@ -3260,7 +3267,7 @@
     <string name="preferences__read_receipts">Lesebestätigungen</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen kannst du auch die Lesebestätigungen anderer nicht sehen</string>
     <string name="preferences__typing_indicators">Tipp-Indikatoren</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Bei deaktivierten Tipp-Indikatoren kannst du auch die Tipp-Indikatoren anderer nicht sehen</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Bei deaktivierten Tipp-Indikatoren kannst du nicht sehen, wenn andere gerade eine Nachricht eintippen.</string>
     <string name="preferences__request_keyboard_to_disable">Tastatur auffordern, personalisiertes Lernen auszuschalten</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Diese Einstellung ist keine Garantie und wird womöglich von deiner Tastatur ignoriert.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
@@ -3274,9 +3281,10 @@
     <string name="preferences_storage__videos">Videos</string>
     <string name="preferences_storage__files">Dateien</string>
     <string name="preferences_storage__audio">Audio</string>
-    <string name="preferences_storage__review_storage">Speicherinhalte überprüfen</string>
+    <string name="preferences_storage__review_storage">Speicherinhalte ansehen</string>
     <string name="preferences_storage__delete_older_messages">Ältere Nachrichten löschen?</string>
-    <string name="preferences_storage__clear_message_history">Nachrichtenverlauf leeren?</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Delete message history?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dies wird alle Nachrichtenverläufe und Medieninhalte, die älter sind als %1$s, unwiderruflich von deinem Gerät löschen.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -3333,23 +3341,23 @@
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Die Zensurumgehung kann nur aktiviert werden, wenn eine Verbindung zum Internet besteht.</string>
     <string name="preferences_communication__category_sealed_sender">Vertraulicher Absender</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Von jedem erlauben</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">»Vertraulicher Absender« zulassen für eingehende Nachrichten von Nichtkontakten sowie Kontakten, mit denen du dein Profil nicht geteilt hast</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">»Vertraulicher Absender« aktivieren für eingehende Nachrichten von Nichtkontakten sowie Menschen, mit denen du dein Profil nicht geteilt hast</string>
     <string name="preferences_proxy">Proxy</string>
     <string name="preferences_use_proxy">Proxy verwenden</string>
     <string name="preferences_off">Aus</string>
     <string name="preferences_on">Ein</string>
-    <string name="preferences_proxy_address">Proxyadresse</string>
+    <string name="preferences_proxy_address">Proxy-Adresse</string>
     <string name="preferences_only_use_a_proxy_if">Verwende einen Proxy nur, falls die App sich trotz bestehender Internetverbindung nicht mit dem Signal-Server verbinden kann.</string>
     <string name="preferences_share">Teilen</string>
     <string name="preferences_save">Speichern</string>
     <string name="preferences_connecting_to_proxy">Verbindung mit Proxy wird hergestellt …</string>
     <string name="preferences_connected_to_proxy">Mit Proxy verbunden</string>
-    <string name="preferences_connection_failed">Verbindung konnte nicht hergestellt werden</string>
-    <string name="preferences_couldnt_connect_to_the_proxy">Es konnte keine Verbindung zum Proxy hergestellt werden. Bitte überprüfe die Proxyadresse und versuche es erneut.</string>
+    <string name="preferences_connection_failed">Verbindung fehlgeschlagen</string>
+    <string name="preferences_couldnt_connect_to_the_proxy">Es konnte keine Verbindung zum Proxy hergestellt werden. Bitte überprüfe die Proxy-Adresse und versuche es erneut.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Signal ist mit dem Proxy verbunden. In »Einstellungen« kannst du ihn jederzeit ausschalten.</string>
     <string name="preferences_success">Erfolgreich</string>
-    <string name="preferences_failed_to_connect">Verbindung konnte nicht hergestellt werden</string>
-    <string name="preferences_enter_proxy_address">Proxyadresse eingeben</string>
+    <string name="preferences_failed_to_connect">Verbindung fehlgeschlagen</string>
+    <string name="preferences_enter_proxy_address">Proxy-Adresse eingeben</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
     <string name="preferences_navigation_bar_size">Größe Navigationsleiste</string>
     <!-- Preference summary for normal navigation bar size -->
@@ -3405,7 +3413,7 @@
     <string name="PaymentsHomeFragment__continue">Fortfahren</string>
     <string name="PaymentsHomeFragment__balance_is_not_currently_available">Kontostand ist aktuell nicht verfügbar.</string>
     <string name="PaymentsHomeFragment__payments_deactivated">Zahlungen deaktiviert.</string>
-    <string name="PaymentsHomeFragment__payment_failed">Zahlung gescheitert</string>
+    <string name="PaymentsHomeFragment__payment_failed">Zahlung fehlgeschlagen</string>
     <string name="PaymentsHomeFragment__details">Details</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
@@ -3460,11 +3468,11 @@
 
     <!-- PermissionDeniedBottomSheet -->
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tippe unten auf »Einstellungen«</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Berechtigung erlauben</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Settings</string>
+    <string name="PermissionDeniedBottomSheet__settings">Einstellungen</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3722,11 +3730,11 @@
 
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Double tap to edit</string>
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Zum Bearbeiten zweimal antippen</string>
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
-    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Quickly tap twice on your messages to edit them. You can edit your messages up to 24hrs after they’ve been sent.</string>
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Tippe zweimal schnell auf deine Nachrichten, um sie zu bearbeiten. Du kannst deine Nachrichten bis zu 24 Stunden nach dem Senden bearbeiten.</string>
     <!-- Button label to dismiss sheet -->
-    <string name="DoubleTapEditEducationSheet__got_it">Got it</string>
+    <string name="DoubleTapEditEducationSheet__got_it">Verstanden</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">Neue Gruppe</string>
@@ -4226,13 +4234,13 @@
     <string name="ReviewCardDialogFragment__review_request">Anfrage prüfen</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d group member have the same name, review the member below and choose to take action.</item>
-        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+        <item quantity="one">%1$d Gruppenmitglied hat denselben Namen. Prüfe das folgende Mitglied und handle gegebenenfalls.</item>
+        <item quantity="other">%1$d Gruppenmitglieder haben denselben Namen. Prüfe folgende Mitglieder und handle gegebenenfalls.</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="one">If you\'re not sure who the request is from, review the contact below and take action.</item>
-        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+        <item quantity="one">Falls du dir über die Herkunft der Anfrage unsicher bist, prüfe folgenden Kontakt und handle entsprechend.</item>
+        <item quantity="other">Falls du dir über die Herkunft der Anfrage unsicher bist, prüfe folgende Kontakte und handle entsprechend.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Keine anderen gemeinsamen Gruppen.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Keine gemeinsamen Gruppen.</string>
@@ -4266,8 +4274,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s und %3$s sind beigetreten</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="one">%1$s, %2$s and %3$d other joined</item>
-        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+        <item quantity="one">%1$s, %2$s und %3$d weitere Person sind dem Anruf beigetreten</item>
+        <item quantity="other">%1$s, %2$s und %3$d weitere Personen sind dem Anruf beigetreten</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s ist ausgetreten</string>
@@ -4275,8 +4283,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s und %3$s sind ausgetreten</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
-        <item quantity="one">%1$s, %2$s and %3$d other left</item>
-        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+        <item quantity="one">%1$s, %2$s und %3$d weitere Person haben den Anruf verlassen</item>
+        <item quantity="other">%1$s, %2$s und %3$d weitere Personen haben den Anruf verlassen</item>
     </plurals>
 
     <string name="CallParticipant__you">Du</string>
@@ -4649,8 +4657,8 @@
     <string name="PrivacySettingsFragment__blocked">Blockiert</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d contact</item>
-        <item quantity="other">%1$d contacts</item>
+        <item quantity="one">%1$d Kontakt</item>
+        <item quantity="other">%1$d Kontakte</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Nachrichtenübermittlung</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Verschwindende Nachrichten</string>
@@ -6810,18 +6818,27 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Kredit- oder Debitkarte</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
+    <string name="BackupsTypeSettingsFragment__bank_transfer">Überweisung</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
+    <string name="BackupsTypeSettingsFragment__unknown">Unbekannt</string>
 
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
 
     <!-- EOF -->
 </resources>

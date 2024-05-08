@@ -80,8 +80,9 @@
     <string name="AttachmentKeyboard_file">檔案</string>
     <string name="AttachmentKeyboard_contact">聯絡人</string>
     <string name="AttachmentKeyboard_location">位置</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal 要攞權限去顯示您啲相同埋片。</string>
-    <string name="AttachmentKeyboard_give_access">畀權限</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">Allow Access</string>
     <string name="AttachmentKeyboard_payment">付款</string>
 
     <!-- AttachmentManager -->
@@ -91,13 +92,19 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 要攞「位置」權限，先可以加入位置，但權限已被永久拒絕。請到呢個 app 嘅設定功能表，揀選「權限」，然後啟用「位置」。</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Allow access to your location</string>
+    <string name="AttachmentManager_signal_allow_access_location">允許存取你嘅位置</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
-    <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
+    <string name="AttachmentManager_signal_to_send_location">要傳送你嘅位置：</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">如果想傳送位置，請允許 Signal 存取你嘅位置。</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
+    <string name="AttachmentManager_signal_needs_location_access">Signal 需要位置存取權，先可以傳送你嘅位置。</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s 未啟動付款 </string>
@@ -394,13 +401,13 @@
     <string name="ConversationActivity_cancel_request">取消請求</string>
 
     <!-- Dialog title asking users for microphone permission -->
-    <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
+    <string name="ConversationActivity_allow_access_microphone">允許存取咪高風</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">要傳送語音訊息：</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
-    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">如果想傳送語音訊息，請允許 Signal 存取你個咪。</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal 需要咪高風存取權，先可以錄語音訊息。</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal 要攞「麥克風」權限，先可以傳送語音訊息，但權限已被永久拒絕。請到呢個 app 嘅應用程式設定，揀選「權限」，然後啟用「麥克風」。</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal 要攞「麥克風」同「相機」權限，先可以同 %1$s 通話，但權限已被永久拒絕。請到呢個 app 嘅應用程式設定，揀選「權限」，然後啟用「麥克風」同「相機」。</string>
@@ -428,11 +435,11 @@
     <string name="ConversationActivity_delete_and_leave">刪除，然後退出</string>
 
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
-    <string name="ConversationActivity__to_start_call">To start a call:</string>
+    <string name="ConversationActivity__to_start_call">要開始通話：</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">如果想開始通話，請允許 Signal 存取你個咪。</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal 需要咪高風存取權，先可以開始通話。</string>
 
 
     <string name="ConversationActivity_join">摻埋我</string>
@@ -1277,9 +1284,9 @@
     <string name="Megaphones_verify_your_signal_pin">驗證您嘅 Signal PIN 碼</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">我哋間唔中會問下您個 PIN 碼，等您唔使唔記得。</string>
     <string name="Megaphones_verify_pin">驗證 PIN 碼</string>
-    <string name="Megaphones_get_started">開波</string>
-    <string name="Megaphones_new_group">全新嘅谷</string>
-    <string name="Megaphones_invite_friends">誠邀好友</string>
+    <string name="Megaphones_get_started">開始使用</string>
+    <string name="Megaphones_new_group">新群組</string>
+    <string name="Megaphones_invite_friends">邀請好友</string>
     <string name="Megaphones_chat_colors">聊天顏色</string>
     <string name="Megaphones_add_a_profile_photo">加入個人檔案相片</string>
 
@@ -2179,10 +2186,10 @@
     <string name="SupportEmailUtil_filter">篩選：</string>
     <string name="SupportEmailUtil_device_info">部機嘅資訊：</string>
     <string name="SupportEmailUtil_android_version">Android 版本：</string>
-    <string name="SupportEmailUtil_signal_version">Signal 版本：</string>
-    <string name="SupportEmailUtil_signal_package">Signal 套件：</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">註冊鎖：</string>
-    <string name="SupportEmailUtil_locale">語系：</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">個谷已更新</string>
@@ -2975,7 +2982,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">支援資訊</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android 支援請求</string>
-    <string name="HelpFragment__debug_log">除錯記錄檔：</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">上載唔到記錄檔</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">請您儘可能具體說明，幫我哋了解個問題。</string>
     <string-array name="HelpFragment__categories_5">
@@ -3181,7 +3188,8 @@
     <string name="preferences_storage__audio">聲音</string>
     <string name="preferences_storage__review_storage">覆閱儲存空間</string>
     <string name="preferences_storage__delete_older_messages">係咪要刪除較舊嘅訊息？</string>
-    <string name="preferences_storage__clear_message_history">係咪要清除訊息紀錄？</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Delete message history?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">咁做嘅話，%1$s之前嘅所有訊息紀錄同埋媒體就會喺你部機度永久刪除㗎喇。</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -3363,11 +3371,11 @@
 
     <!-- PermissionDeniedBottomSheet -->
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. 喺下面㩒一下「設定」</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s 允許權限</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Settings</string>
+    <string name="PermissionDeniedBottomSheet__settings">設定</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3623,11 +3631,11 @@
 
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Double tap to edit</string>
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">㩒兩下就可以編輯</string>
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
-    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Quickly tap twice on your messages to edit them. You can edit your messages up to 24hrs after they’ve been sent.</string>
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">快㩒訊息兩下就可以編輯。你可以喺訊息送出之後 24 個鐘之內編輯。</string>
     <!-- Button label to dismiss sheet -->
-    <string name="DoubleTapEditEducationSheet__got_it">Got it</string>
+    <string name="DoubleTapEditEducationSheet__got_it">明白</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">開個新谷</string>
@@ -4120,11 +4128,11 @@
     <string name="ReviewCardDialogFragment__review_request">審查請求</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
-        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+        <item quantity="other">有 %1$d 個群組成員個名好似，你可以檢查以下成員，然後採取相應行動。</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+        <item quantity="other">如果你唔肯定係邊個提出請求，可以檢查以下聯絡人，然後採取相應行動。</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">無其他有緣相遇嘅谷。</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">無有緣相遇嘅谷。</string>
@@ -4156,7 +4164,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s、%2$s 同 %3$s 已加入</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+        <item quantity="other">%1$s、%2$s同埋另外 %3$d 個人加入咗</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s 已退出</string>
@@ -4164,7 +4172,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s、%2$s 同 %3$s 已退出</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
-        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+        <item quantity="other">%1$s、%2$s同埋另外 %3$d 個人離開咗</item>
     </plurals>
 
     <string name="CallParticipant__you">您</string>
@@ -4535,7 +4543,7 @@
     <string name="PrivacySettingsFragment__blocked">封鎖咗</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="other">%1$d contacts</item>
+        <item quantity="other">%1$d 個聯絡人</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">發訊息</string>
     <string name="PrivacySettingsFragment__disappearing_messages">過眼雲煙訊息</string>
@@ -6659,18 +6667,27 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">信用卡或扣帳卡</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
+    <string name="BackupsTypeSettingsFragment__bank_transfer">銀行轉賬</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
+    <string name="BackupsTypeSettingsFragment__unknown">未知</string>
 
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
 
     <!-- EOF -->
 </resources>

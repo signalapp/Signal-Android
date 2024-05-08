@@ -43,10 +43,10 @@
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hindi ka pa nagset ng passphrase!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">I-disable ang passphrase?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Permanente nitong ia-unlock ang Signal at ang message notifications.</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Permanente nitong i-u-unlock ang Signal at ang message notifications.</string>
     <string name="ApplicationPreferencesActivity_disable">I-disable</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Nagka-error sa pagkonekta sa server!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kinailangan ang mga PIN para sa registration lock. Para mag-disable ng PIN, paki disable muna ang registration lock.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Required ang PIN para sa registration lock. Para mag-disable ng PIN, paki disable muna ang registration lock.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Nalikha na ang PIN.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">Naka-disable ang PIN.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">I-record ang payments recovery phrase</string>
@@ -80,24 +80,31 @@
     <string name="AttachmentKeyboard_file">File</string>
     <string name="AttachmentKeyboard_contact">Kontakin</string>
     <string name="AttachmentKeyboard_location">Lokasyon</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Kailangan ng Signal ng pahintulot upang maipakita ang iyong mga larawan at video.</string>
-    <string name="AttachmentKeyboard_give_access">Bigyan ng Access</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">Allow Access</string>
     <string name="AttachmentKeyboard_payment">Payment</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Walang mahanap na app para makapili ng media.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Kailangan ng Signal ng pahintulot sa Storage upang makapag-attach ng photos, videos, o audio, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Permissions\", at i-enable ang \"Storage\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Kailangan ng Signal ng pahintulot sa Contacts upang makapag-attach ng contact information, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Permissions\", at i-enable ang \"Contacts\".</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Kailangan ng Signal ng pahintulot sa Lokasyon upang makapag-attach ng lokasyon, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Permissions\", at i-enable ang \"Location\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Kailangan ng Signal ng access sa Storage para makapag-attach ng photos, videos, o audio, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Permissions\", at i-enable ang \"Storage\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Kailangan ng Signal ng access sa Contacts upang makapag-attach ng contact information, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Permissions\", at i-enable ang \"Contacts\".</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Kailangan ng Signal ng access sa Lokasyon upang makapag-attach ng lokasyon, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Permissions\", at i-enable ang \"Location\".</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Allow access to your location</string>
+    <string name="AttachmentManager_signal_allow_access_location">Payagang ma-access ang lokasyon mo</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
-    <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
+    <string name="AttachmentManager_signal_to_send_location">Para i-send ang lokasyon mo:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">Payagan ang Signal na i-send ang lokasyon mo.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
+    <string name="AttachmentManager_signal_needs_location_access">Kailangan ng Signal ng location access para ma-send ang iyong lokasyon.</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">Hindi pa na-activate ni %1$s ang Payments </string>
@@ -106,11 +113,11 @@
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Mag-send ng request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Kanselahin</string>
+    <string name="AttachmentManager__cancel">I-cancel</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Nag-a-upload ng media…</string>
-    <string name="AttachmentUploadJob_compressing_video_start">Kino-compressa ng video…</string>
+    <string name="AttachmentUploadJob_compressing_video_start">Kino-compress ang video…</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Chine-check ang messages…</string>
@@ -171,7 +178,7 @@
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">I-block at umalis sa %1$s?</string>
     <string name="BlockUnblockDialog_block_s">I-block ang %1$s?</string>
-    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Hindi ka na makatatanggap ng messages o updates mula sa group, at hindi ka na rin pwedeng i-add ng members ulit sa group na ito.</string>
+    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Hindi ka na makatatanggap ng messages o updates mula sa group, at hindi ka na rin ulit pwedeng i-add ng members sa group na ito.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Hindi ka na maaaring i-add ulit ng members sa groupong ito.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Maaari ka ulit isali sa grupong ito ng members ng grupong ito.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
@@ -194,11 +201,11 @@
     <!-- Dialog button to report as spam only -->
     <string name="BlockUnblockDialog_report_spam">I-report  bilang spam</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Ino-notify ang Signal na maaaring nagpapadala ng spam ang taong ito. Hindi nababasa ng Signal ang nilalaman ng anumang chats.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Ino-notify ang Signal na maaaring nagpapadala ng spam ang taong ito. Hindi nababasa ng Signal ang nilalaman ng anumang chat.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Ang Signal ay aabisuhan na si %1$s, na siyang nag-imbita sa iyo sa grupong ito, ay maaaring nagpapadala ng spam. Hindi nababasa ng Signal ang nilalaman ng anumang chat.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Aabisuhan ang Signal na si %1$s, na siyang nag-imbita sa iyo sa grupong ito, ay maaaring nagpapadala ng spam. Hindi nababasa ng Signal ang nilalaman ng anumang chat.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Ang Signal ay aabisuhan na ang taong nag-imbita sa iyo sa grupong ito ay maaaring nagpapadala ng spam. Hindi nababasa ng Signal ang nilalaman ng anumang chat.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Aabisuhan ang Signal na ang taong nag-imbita sa iyo sa grupong ito ay maaaring nagpapadala ng spam. Hindi nababasa ng Signal ang nilalaman ng anumang chat.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Ngayong araw</string>
@@ -247,7 +254,7 @@
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">I-update ang Signal</string>
-    <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Ang version ng app na ito ay hindi na suportado. Para magpatuloy sa pag-send at pag-receive ng messages, mag-update sa latest version.</string>
+    <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Hindi na suportado ang version ng app na ito. Para magpatuloy sa pag-send at pag-receive ng messages, mag-update sa latest version.</string>
     <string name="ClientDeprecatedActivity_update">I-update</string>
     <string name="ClientDeprecatedActivity_dont_update">Huwag I-update</string>
     <string name="ClientDeprecatedActivity_warning">Babala</string>
@@ -258,11 +265,11 @@
     <string name="CommunicationActions_send_email">Mag-send ng email</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">May isinasagawa nang cellular na tawag.</string>
     <string name="CommunicationActions_start_voice_call">Simulan ang voice na tawag?</string>
-    <string name="CommunicationActions_cancel">Kanselahin</string>
+    <string name="CommunicationActions_cancel">I-cancel</string>
     <string name="CommunicationActions_call">Tawagan</string>
     <string name="CommunicationActions_insecure_call">Hindi secure na tawag</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Maaari kang singilin ng network mo sa tawag na ito. Hindi naka-register sa Signal ang number na tinatawagan mo. Dadaan ang tawag sa network mo at hindi sa internet.</string>
-    <string name="CommunicationActions_cant_join_call">Hindi maka-join sa call</string>
+    <string name="CommunicationActions_cant_join_call">Hindi makasali sa call</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Hindi na valid ang call link na ito.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_invalid_link">Invalid Link</string>
@@ -312,7 +319,7 @@
     <string name="ContactShareEditActivity__avatar">Avatar</string>
 
     <!-- ConversationItem -->
-    <string name="ConversationItem_error_not_sent_tap_for_details">Not sent, i-tap para sa karagdagang detalye</string>
+    <string name="ConversationItem_error_not_sent_tap_for_details">Hindi na-send, i-tap para sa karagdagang detalye</string>
     <string name="ConversationItem_error_partially_not_delivered">Partially sent, i-tap para sa karagdagang detalye</string>
     <string name="ConversationItem_error_network_not_delivered">Failed ang pag-send</string>
     <string name="ConversationItem_group_action_left">Umalis si %1$s sa grupo.</string>
@@ -326,7 +333,7 @@
     <string name="ConversationItem_to_s">para kay %1$s</string>
     <string name="ConversationItem_read_more">  Magbasa pa</string>
     <string name="ConversationItem_download_more">  Mag-download pa</string>
-    <string name="ConversationItem_pending">  Nakabinbin</string>
+    <string name="ConversationItem_pending">  Pending</string>
     <string name="ConversationItem_this_message_was_deleted">Nabura na ang message na ito.</string>
     <string name="ConversationItem_you_deleted_this_message">Binura mo ang message na ito.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -397,13 +404,13 @@
     <string name="ConversationActivity_cancel_request">I-cancel ang Request</string>
 
     <!-- Dialog title asking users for microphone permission -->
-    <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
+    <string name="ConversationActivity_allow_access_microphone">Payagang ma-access ang microphone mo</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">Para makapag-send ng audio messages:.</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
-    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Para makapag-send ng voice messages, bigyan ang Signal ng access sa microphone mo.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Kailangan ng Signal ng access sa microphone para makapag-record ng voice message.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Kailangan ng Signal ang pahintulot sa Mikropono upang makapagpadala ng mensaheng audio, ngunit permanente itong ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Mikropono\".</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Kailangan ng Signal ang pahintulot sa Mikropono at Camera upang matawagan si %1$s, ngunit ito ay permaneteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Pahintulot\", at i-enable ang \"Mikropono\" at \"Camera\".</string>
@@ -431,11 +438,11 @@
     <string name="ConversationActivity_delete_and_leave">Burahin at umalis</string>
 
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
-    <string name="ConversationActivity__to_start_call">To start a call:</string>
+    <string name="ConversationActivity__to_start_call">Para magsimula ng call:</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Para magsimula ng call, bigyan ang Signal ng access sa microphone mo.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Kailangan ng Signal ng microphone access para magsimula ng call.</string>
 
 
     <string name="ConversationActivity_join">Mag-join</string>
@@ -1322,11 +1329,11 @@
     <string name="Megaphones_verify_your_signal_pin">Beripikahin ang PIN ng iyong Signal</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Paminsan-minsa\'y hihingin namin sa iyong beripikahin ang iyong PIN upang matandaan mo ito.</string>
     <string name="Megaphones_verify_pin">Beripikahin ang PIN</string>
-    <string name="Megaphones_get_started">Get started</string>
+    <string name="Megaphones_get_started">Magsimula</string>
     <string name="Megaphones_new_group">Bagong grupo</string>
-    <string name="Megaphones_invite_friends">Imbitahan ang mga kaibigan</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">Mag-add ng profile photo</string>
+    <string name="Megaphones_invite_friends">Invite friends</string>
+    <string name="Megaphones_chat_colors">Colors ng chat</string>
+    <string name="Megaphones_add_a_profile_photo">Profile photo</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Replies</string>
@@ -2259,10 +2266,10 @@
     <string name="SupportEmailUtil_filter">Filter:</string>
     <string name="SupportEmailUtil_device_info">Impormasyon ng device:</string>
     <string name="SupportEmailUtil_android_version">Bersyon ng Android:</string>
-    <string name="SupportEmailUtil_signal_version">Bersyon ng Signal:</string>
-    <string name="SupportEmailUtil_signal_package">Signal package:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Registration lock:</string>
-    <string name="SupportEmailUtil_locale">Locale:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Updated na ang grupo</string>
@@ -3069,7 +3076,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Pangsuportang impormasyon</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android na pangsuportang hiling</string>
-    <string name="HelpFragment__debug_log">Debug Log:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Hindi mai-upload ang mga log</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Pakiusap na hangga\'t maaari ay ipaliwanag ng mabuti upang matulungan kaming maunawaan ang isyu.</string>
     <string-array name="HelpFragment__categories_5">
@@ -3276,7 +3283,8 @@
     <string name="preferences_storage__audio">Audio</string>
     <string name="preferences_storage__review_storage">Suriin ang storage</string>
     <string name="preferences_storage__delete_older_messages">Gusto mo bang burahin ang mga lumang message?</string>
-    <string name="preferences_storage__clear_message_history">Gusto mo bang i-clear ang message history?</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Delete message history?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Permanente nitong buburahin ang lahat ng message history at media na humigit %1$s mula sa device mo.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -3460,9 +3468,9 @@
 
     <!-- PermissionDeniedBottomSheet -->
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. I-tap ang “Settings” sa baba</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Magbigay ng pahintulot</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">Settings</string>
 
@@ -3722,11 +3730,11 @@
 
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Double tap to edit</string>
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Mag-double tap para mag-edit</string>
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
-    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Quickly tap twice on your messages to edit them. You can edit your messages up to 24hrs after they’ve been sent.</string>
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Mabilisang i-tap nang dalawang beses ang message para ma-edit ito. Maaari mong i-edit ang messages sa loob ng 24 oras pagkatapos mo silang i-send.</string>
     <!-- Button label to dismiss sheet -->
-    <string name="DoubleTapEditEducationSheet__got_it">Got it</string>
+    <string name="DoubleTapEditEducationSheet__got_it">OK</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">Bagong Grupo</string>
@@ -4226,13 +4234,13 @@
     <string name="ReviewCardDialogFragment__review_request">I-review ang Request</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d group member have the same name, review the member below and choose to take action.</item>
-        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+        <item quantity="one">%1$d group member ang may magkaparehong pangalan, i-review ang member sa ibaba at pumili ng aksyon.</item>
+        <item quantity="other">%1$d group members ang may magkaparehong pangalan, i-review ang members sa ibaba at pumili ng aksyon.</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="one">If you\'re not sure who the request is from, review the contact below and take action.</item>
-        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+        <item quantity="one">Kapag hindi ka sigurado kung kanino galing ang request, i-review ang contact sa ibaba at gumawa ng aksyon.</item>
+        <item quantity="other">Kapag hindi ka sigurado kung kanino galing ang request, i-review ang contacts sa ibaba at gumawa ng aksyon.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Walang other groups in common.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Walang groups in common.</string>
@@ -4266,8 +4274,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s, and %3$s joined</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="one">%1$s, %2$s and %3$d other joined</item>
-        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+        <item quantity="one">Sumali sila %1$s, %2$s, at %3$d pa</item>
+        <item quantity="other">Sumali sila %1$s, %2$s, at %3$d pa</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s left</string>
@@ -4275,8 +4283,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s, and %3$s left</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
-        <item quantity="one">%1$s, %2$s and %3$d other left</item>
-        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+        <item quantity="one">Umalis sila %1$s, %2$s, at %3$d pa</item>
+        <item quantity="other">Umalis sila %1$s, %2$s, at %3$d pa</item>
     </plurals>
 
     <string name="CallParticipant__you">Ikaw</string>
@@ -6810,7 +6818,7 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit o debit card</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -6820,8 +6828,17 @@
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
+    <string name="BackupsTypeSettingsFragment__unknown">Hindi tukoy</string>
 
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
 
     <!-- EOF -->
 </resources>

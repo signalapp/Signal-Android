@@ -80,8 +80,9 @@
     <string name="AttachmentKeyboard_file">கோப்பு</string>
     <string name="AttachmentKeyboard_contact">தொடர்பு</string>
     <string name="AttachmentKeyboard_location">இடம்</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">புகைப்படங்கள் மற்றும் காணொளிகளை காட்ட Signal-க்கு அனுமதி தேவை.</string>
-    <string name="AttachmentKeyboard_give_access">அணுகல் கொடுங்கள்</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">Allow Access</string>
     <string name="AttachmentKeyboard_payment">கட்டணம்</string>
 
     <!-- AttachmentManager -->
@@ -91,13 +92,19 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">இருப்பிடத்தை இணைக்கவும், Signal க்கு இருப்பிட அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"இருப்பிடம்\" ஐ இயக்கவும்.</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Allow access to your location</string>
+    <string name="AttachmentManager_signal_allow_access_location">உங்கள் இருப்பிடத்திற்கான அணுகலை அனுமதிக்கவும்</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
-    <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
+    <string name="AttachmentManager_signal_to_send_location">உங்கள் இருப்பிடத்தை அனுப்ப:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">உங்கள் இருப்பிடத்தை அனுப்புவதற்கான அணுகலை சிக்னலுக்கு வழங்கவும்.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
+    <string name="AttachmentManager_signal_needs_location_access">உங்கள் இருப்பிடத்தை அனுப்ப, சிக்னலுக்கு இருப்பிட அணுகல் தேவை.</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s கட்டணங்களைச் செயல்படுத்தவில்லை </string>
@@ -397,13 +404,13 @@
     <string name="ConversationActivity_cancel_request">கோரிக்கையை ரத்துசெய்</string>
 
     <!-- Dialog title asking users for microphone permission -->
-    <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
+    <string name="ConversationActivity_allow_access_microphone">உங்கள் மைக்ரோஃபோனை அணுக அனுமதிக்கவும்</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">ஆடியோ மெசேஜ்களை அனுப்ப:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
-    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">வாய்ஸ் மெசேஜ்களை அனுப்ப, உங்கள் மைக்ரோஃபோனை அணுக சிக்னலை அனுமதிக்கவும்.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">வாய்ஸ் மெசேஜைப் பதிவு செய்ய சிக்னலுக்கு மைக்ரோஃபோன் அணுகல் தேவை.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ஆடியோ செய்திகளை அனுப்ப Signal க்கு மைக்ரோஃபோன் அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"மைக்ரோஃபோனை\" இயக்கவும்.</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal லை அழைக்க மைக்ரோஃபோன் மற்றும் கேமரா அனுமதிகள் தேவை%1$s, ஆனால் அவை நிரந்தரமாக மறுக்கப்பட்டுள்ளன. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதி\" என்பதைத் தேர்ந்தெடுத்து, \"மைக்ரோஃபோன்\" மற்றும் \"கேமரா\" ஐ இயக்கவும்.</string>
@@ -431,11 +438,11 @@
     <string name="ConversationActivity_delete_and_leave">நீக்கி வெளியேறுக</string>
 
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
-    <string name="ConversationActivity__to_start_call">To start a call:</string>
+    <string name="ConversationActivity__to_start_call">அழைப்பைத் தொடங்க:</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">அழைப்பைத் தொடங்க, உங்கள் மைக்ரோஃபோனை அணுக சிக்னலை அனுமதிக்கவும்.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">அழைப்பைத் தொடங்க, சிக்னலுக்கு மைக்ரோஃபோன் அணுகல் தேவை.</string>
 
 
     <string name="ConversationActivity_join">சேரவும்</string>
@@ -1322,11 +1329,11 @@
     <string name="Megaphones_verify_your_signal_pin">உங்கள் Signal PIN-ஐ சரிபார்க்கவும்</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">உங்கள் PIN-ஐ நினைவில் வைத்துக் கொள்ளும்படி நாங்கள் எப்போதாவது உங்களிடம் கேட்போம்.</string>
     <string name="Megaphones_verify_pin">பின் சரிபார்க்கவும்</string>
-    <string name="Megaphones_get_started">தொடங்குகள்</string>
+    <string name="Megaphones_get_started">தொடங்கவும்</string>
     <string name="Megaphones_new_group">புதிய குழு</string>
     <string name="Megaphones_invite_friends">நண்பர்களை அழை</string>
-    <string name="Megaphones_chat_colors">சாட் கலர்ஸ்</string>
-    <string name="Megaphones_add_a_profile_photo">சுயவிவரப் புகைப்படத்தைச் சேர்க்கவும்</string>
+    <string name="Megaphones_chat_colors">சாட்டுக்கான கலர்</string>
+    <string name="Megaphones_add_a_profile_photo">படத்தைச் சேர்</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">பதிலகள்</string>
@@ -2259,10 +2266,10 @@
     <string name="SupportEmailUtil_filter">வடிகட்டி:</string>
     <string name="SupportEmailUtil_device_info">Device info: சாதனத் தகவல்:</string>
     <string name="SupportEmailUtil_android_version">Android version: Android பதிப்பு:</string>
-    <string name="SupportEmailUtil_signal_version">Signal version: Signal பதிப்பு:</string>
-    <string name="SupportEmailUtil_signal_package">Signal package: சிக்னல் தொகுப்பு:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">பதிவு பூட்டு:</string>
-    <string name="SupportEmailUtil_locale">Locale: இடம்:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">குழு புதுப்பிக்கப்பட்டது</string>
@@ -3069,7 +3076,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">ஆதரவு தகவல்</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android ஆதரவு கோரிக்கை</string>
-    <string name="HelpFragment__debug_log">பிழைத்திருத்த பதிவு:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">பதிவுகளை பதிவேற்ற முடியவில்லை</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">சிக்கலைப் புரிந்துகொள்ள எங்களுக்கு உதவ முடிந்தவரை விளக்கமாகச் சொல்லுங்கள்.</string>
     <string-array name="HelpFragment__categories_5">
@@ -3276,7 +3283,8 @@
     <string name="preferences_storage__audio">ஒலி</string>
     <string name="preferences_storage__review_storage">விமர்சனம் சேமிப்பு</string>
     <string name="preferences_storage__delete_older_messages">பழைய மெசேஜ்களை நீக்க வேண்டுமா?</string>
-    <string name="preferences_storage__clear_message_history">செய்தி வரலாற்றை அழிப்பதா?</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Delete message history?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">இது உங்கள் டிவைஸில் இருந்து %1$s ஐ விட பழையதாக உள்ள அனைத்து மெசேஜ் வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -3460,11 +3468,11 @@
 
     <!-- PermissionDeniedBottomSheet -->
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. கீழே உள்ள \"அமைப்புகள்\" என்பதை அழுத்தவும்</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s அனுமதி வழங்கு</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Settings</string>
+    <string name="PermissionDeniedBottomSheet__settings">அமைப்புகள்</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3722,11 +3730,11 @@
 
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Double tap to edit</string>
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">திருத்துவதற்கு இருமுறை அழுத்தவும்</string>
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
-    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Quickly tap twice on your messages to edit them. You can edit your messages up to 24hrs after they’ve been sent.</string>
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">உங்கள் மெசேஜ்களைத் திருத்த, அவற்றை இரண்டு முறை அழுத்தவும். உங்கள் மெசேஜ்களை அனுப்பிய 24 மணிநேரம் வரை திருத்தலாம்.</string>
     <!-- Button label to dismiss sheet -->
-    <string name="DoubleTapEditEducationSheet__got_it">Got it</string>
+    <string name="DoubleTapEditEducationSheet__got_it">அறிந்துகொண்டேன்</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">புதிய குழு</string>
@@ -4226,13 +4234,13 @@
     <string name="ReviewCardDialogFragment__review_request">மதிப்பாய்வு கோரிக்கை</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d group member have the same name, review the member below and choose to take action.</item>
-        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+        <item quantity="one">%1$d குழு உறுப்பினர் அதே பெயரைக் கொண்டுள்ளார், கீழே உள்ள உறுப்பினரை மதிப்பாய்வு செய்து நடவடிக்கை எடுக்கத் தேர்வு செய்யவும்.</item>
+        <item quantity="other">%1$d குழு உறுப்பினர்கள் அதே பெயரைக் கொண்டுள்ளார், கீழே உள்ள உறுப்பினரை மதிப்பாய்வு செய்து நடவடிக்கை எடுக்கத் தேர்வு செய்யவும்.</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="one">If you\'re not sure who the request is from, review the contact below and take action.</item>
-        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+        <item quantity="one">உங்களுக்கு யார் கோரிக்கையை அனுப்பினார்கள் என்பது உங்களுக்குத் தெரியாவிட்டால், கீழே உள்ள தொடர்பை மதிப்பாய்வு செய்து நடவடிக்கை எடுக்கவும்.</item>
+        <item quantity="other">உங்களுக்கு யார் கோரிக்கையை அனுப்பினார்கள் என்பது உங்களுக்குத் தெரியாவிட்டால், கீழே உள்ள தொடர்புகளை மதிப்பாய்வு செய்து நடவடிக்கை எடுக்கவும்.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">பொதுவான குழுக்கள் இல்லை</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">பொதுவான குழுக்கள் இல்லை</string>
@@ -4266,8 +4274,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s மற்றும் %3$s சேர்ந்தார்</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="one">%1$s, %2$s and %3$d other joined</item>
-        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+        <item quantity="one">%1$s, %2$s மற்றும் %3$d நபர் சேர்ந்துள்ளனர்</item>
+        <item quantity="other">%1$s, %2$s மற்றும் %3$d நபர்கள் சேர்ந்துள்ளனர்</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s வெளியேறினர்</string>
@@ -4275,8 +4283,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s மற்றும் %3$sவெளியேறினர்</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
-        <item quantity="one">%1$s, %2$s and %3$d other left</item>
-        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+        <item quantity="one">%1$s, %2$s மற்றும் %3$d நபர் வெளியேறினர்</item>
+        <item quantity="other">%1$s, %2$s மற்றும் %3$d நபர்கள் வெளியேறினர்</item>
     </plurals>
 
     <string name="CallParticipant__you">நீங்கள்</string>
@@ -4649,8 +4657,8 @@
     <string name="PrivacySettingsFragment__blocked">தடைசெய்யப்பட்டார்</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d contact</item>
-        <item quantity="other">%1$d contacts</item>
+        <item quantity="one">%1$d தொடர்பு</item>
+        <item quantity="other">%1$d தொடர்புகள்</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">செய்தி அனுப்புதல்</string>
     <string name="PrivacySettingsFragment__disappearing_messages">காணாமல் போகும் செய்திகள்</string>
@@ -6810,18 +6818,27 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">கிரெடிட் அல்லது டெபிட் கார்டு</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
+    <string name="BackupsTypeSettingsFragment__bank_transfer">வங்கி பணப் பரிமாற்றம்</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
+    <string name="BackupsTypeSettingsFragment__unknown">முன் தெரிந்திராத</string>
 
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
 
     <!-- EOF -->
 </resources>

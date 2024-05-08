@@ -103,7 +103,7 @@
     <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
-    <!-- Toast text explaining Signal's need for storage access -->
+    <!-- Toast text explaining Signal\'s need for storage access -->
     <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
@@ -6838,9 +6838,9 @@
     <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
     <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user's selection (time is a range like 30 days or 1 year etc) -->
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
     <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user's selection (limit is a number like 500 or 5,000) -->
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
 
     <!-- EOF -->

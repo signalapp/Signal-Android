@@ -80,8 +80,9 @@
     <string name="AttachmentKeyboard_file">Fayl</string>
     <string name="AttachmentKeyboard_contact">Əlaqə</string>
     <string name="AttachmentKeyboard_location">Yerləşmə</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal-ın, foto və videolarınızı göstərmək üçün icazəyə ehtiyacı var.</string>
-    <string name="AttachmentKeyboard_give_access">İcazə ver</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">Allow Access</string>
     <string name="AttachmentKeyboard_payment">Ödəniş</string>
 
     <!-- AttachmentManager -->
@@ -91,13 +92,19 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal, yerləşmə məlumatlarını əlavə etmək üçün Yerləşməyə müraciət icazəsi tələb edir, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələr menyusunda \"İcazələr\"i seçib \"Yerləşmə\"ni fəallaşdırın.</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Allow access to your location</string>
+    <string name="AttachmentManager_signal_allow_access_location">Məkan parametrlərinə giriş icazəsi verin</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
-    <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
+    <string name="AttachmentManager_signal_to_send_location">Məkan məlumatınızı göndərmək üçün:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">Signal-ın məkan parametrlərinə daxil olmasına icazə verin.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
+    <string name="AttachmentManager_signal_needs_location_access">Məkan məlumatlarınızı göndərmək üçün Signal məkan parametrlərinə giriş icazəsi tələb edir.</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s aktiv Ödənişlərə malik deyil </string>
@@ -397,13 +404,13 @@
     <string name="ConversationActivity_cancel_request">Tələbdən imtina</string>
 
     <!-- Dialog title asking users for microphone permission -->
-    <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
+    <string name="ConversationActivity_allow_access_microphone">Mikrofona giriş icazəsi verin</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">Səsli mesajlar göndərmək üçün:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
-    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Səsli mesajlar göndərmək üçün Signal-ın mikrofon parametrlərinə daxil olmasına icazə verin.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Səsli mesajı yazmaq üçün Signal mikrofon parametrlərinə giriş icazəsi tələb edir.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal, səsli mesaj göndərmək üçün Mikrofon icazəsini tələb edir, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\"u fəallaşdırın.</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal-ın, %1$s əlaqəsinə zəng etmək üçün Mikrofon və Kamera icazələrinə ehtiyacı var, ancaq bu icazələr birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\" və \"Kamera\"nı fəallaşdırın.</string>
@@ -431,11 +438,11 @@
     <string name="ConversationActivity_delete_and_leave">Sil və tərk et</string>
 
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
-    <string name="ConversationActivity__to_start_call">To start a call:</string>
+    <string name="ConversationActivity__to_start_call">Bir zəngə başlamaq üçün:</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Bir zəngə başlamaq üçün Signal-ın mikrofon parametrlərinə daxil olmasına icazə verin.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Zəng başlatmaq üçün Signal mikrofon parametrlərinə giriş icazəsi tələb edir.</string>
 
 
     <string name="ConversationActivity_join">Qoşul</string>
@@ -1322,11 +1329,11 @@
     <string name="Megaphones_verify_your_signal_pin">Signal PIN-inizi təsdiqləyin</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">PIN-i xatırlamağınız üçün vaxtaşırı təsdiqləməyinizi istəyəcəyik.</string>
     <string name="Megaphones_verify_pin">PIN-i təsdiqlə</string>
-    <string name="Megaphones_get_started">İstifadə etməyə başla</string>
+    <string name="Megaphones_get_started">Başla</string>
     <string name="Megaphones_new_group">Yeni qrup</string>
-    <string name="Megaphones_invite_friends">Dostları dəvət et</string>
-    <string name="Megaphones_chat_colors">Çat ekranının rəngləri</string>
-    <string name="Megaphones_add_a_profile_photo">Bir profil fotosu əlavə et</string>
+    <string name="Megaphones_invite_friends">Dost dəvət et</string>
+    <string name="Megaphones_chat_colors">Çat rəngləri</string>
+    <string name="Megaphones_add_a_profile_photo">Profil şəkli qoy</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Cavablar</string>
@@ -2259,10 +2266,10 @@
     <string name="SupportEmailUtil_filter">Filtr:</string>
     <string name="SupportEmailUtil_device_info">Cihaz məlumatı:</string>
     <string name="SupportEmailUtil_android_version">Android versiyası:</string>
-    <string name="SupportEmailUtil_signal_version">Signal versiyası:</string>
-    <string name="SupportEmailUtil_signal_package">Signal paketi:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Qeydiyyat kilidi:</string>
-    <string name="SupportEmailUtil_locale">Dil:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Qrup yeniləndi</string>
@@ -3069,7 +3076,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Dəstək məlumatı</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android Dəstək Tələbi</string>
-    <string name="HelpFragment__debug_log">Sazlama jurnalı:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Jurnal yüklənilə bilmədi</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Zəhmət olmasa anlamağımıza kömək etmək üçün problemi daha aydın təsvir edin.</string>
     <string-array name="HelpFragment__categories_5">
@@ -3276,7 +3283,8 @@
     <string name="preferences_storage__audio">Səs</string>
     <string name="preferences_storage__review_storage">Anbarı nəzərdən keçir</string>
     <string name="preferences_storage__delete_older_messages">Köhnə mesajlar silinsin?</string>
-    <string name="preferences_storage__clear_message_history">Mesaj tarixçəsi təmizlənsin?</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Delete message history?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Bu, %1$s və daha köhnə olan bütün mesaj tarixçəsini və medianı cihazınızdan birdəfəlik siləcək.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -3460,11 +3468,11 @@
 
     <!-- PermissionDeniedBottomSheet -->
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Aşağıda “Parametrlər”ə toxunun</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s İcazə verin</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Settings</string>
+    <string name="PermissionDeniedBottomSheet__settings">Parametrlər</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3722,11 +3730,11 @@
 
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Double tap to edit</string>
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Dəyişmək üçün iki dəfə klikləyin</string>
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
-    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Quickly tap twice on your messages to edit them. You can edit your messages up to 24hrs after they’ve been sent.</string>
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Mesajlarınıza iki dəfə klikləyərək onları dəyişə bilərsiniz. Mesajlarınızı göndərdikdən sonra 24 saat ərzində dəyişə bilərsiniz.</string>
     <!-- Button label to dismiss sheet -->
-    <string name="DoubleTapEditEducationSheet__got_it">Got it</string>
+    <string name="DoubleTapEditEducationSheet__got_it">Anladım</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">Yeni qrup</string>
@@ -4226,13 +4234,13 @@
     <string name="ReviewCardDialogFragment__review_request">Tələbi nəzərdən keçir</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d group member have the same name, review the member below and choose to take action.</item>
-        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+        <item quantity="one">%1$d qrup üzvü oxşar ada sahibdir. Üzvləri aşağıda nəzərdən keçirin və tədbir görməyi seçin.</item>
+        <item quantity="other">%1$d qrup üzvü oxşar ada sahibdir. Üzvləri aşağıda nəzərdən keçirin və tədbir görməyi seçin.</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="one">If you\'re not sure who the request is from, review the contact below and take action.</item>
-        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+        <item quantity="one">Sorğunun kimdən gəldiyinə əmin deyilsinizsə, aşağıdakı əlaqələri nəzərdən keçirin və seçim edin.</item>
+        <item quantity="other">Sorğunun kimdən gəldiyindən əmin deyilsinizsə, aşağıdakı əlaqələri nəzərdən keçirin və seçim edin.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Başqa ortaq qrup yoxdur.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Heç bir ortaq qrup yoxdur.</string>
@@ -4266,8 +4274,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s və %3$s qoşuldu</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="one">%1$s, %2$s and %3$d other joined</item>
-        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+        <item quantity="one">%1$s, %2$s və daha %3$d nəfər zəngə qoşuldu</item>
+        <item quantity="other">%1$s, %2$s və daha %3$d nəfər zəngə qoşuldu</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s nəfər qaldı</string>
@@ -4275,8 +4283,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s və %3$s nəfər qaldı</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
-        <item quantity="one">%1$s, %2$s and %3$d other left</item>
-        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+        <item quantity="one">%1$s, %2$s və daha %3$d nəfər zəngi tərk etdi</item>
+        <item quantity="other">%1$s, %2$s və daha %3$d nəfər zəngi tərk etdi</item>
     </plurals>
 
     <string name="CallParticipant__you">Siz</string>
@@ -4649,8 +4657,8 @@
     <string name="PrivacySettingsFragment__blocked">Bloklandı</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d contact</item>
-        <item quantity="other">%1$d contacts</item>
+        <item quantity="one">1 kontakt</item>
+        <item quantity="other">%1$d kontakt</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Mesajlaşma</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Yox olan mesajlar</string>
@@ -6810,18 +6818,27 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Kredit və ya debet kartı</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
+    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank köçürməsi</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
+    <string name="BackupsTypeSettingsFragment__unknown">Bilinmir</string>
 
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
 
     <!-- EOF -->
 </resources>

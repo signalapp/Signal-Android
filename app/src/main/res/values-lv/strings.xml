@@ -80,8 +80,9 @@
     <string name="AttachmentKeyboard_file">Fails</string>
     <string name="AttachmentKeyboard_contact">Kontakts</string>
     <string name="AttachmentKeyboard_location">Atrašanās vieta</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal ir nepieciešama atļauja rādīt jūsu fotoattēlus un videoklipus.</string>
-    <string name="AttachmentKeyboard_give_access">Piešķirt piekļuvi</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">Allow Access</string>
     <string name="AttachmentKeyboard_payment">Maksājums</string>
 
     <!-- AttachmentManager -->
@@ -91,13 +92,19 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal nepieciešama atļauja pieejai pie atrašanās vietas pakalpojumiem, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Atrašanās vieta\".</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Allow access to your location</string>
+    <string name="AttachmentManager_signal_allow_access_location">Atļaujiet piekļuvi atrašanās vietai</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
-    <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
+    <string name="AttachmentManager_signal_to_send_location">Lai nosūtītu atrašanās vietu:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">Atļaujiet Signal piekļuvi jūsu atrašanās vietai, lai to nosūtītu citiem.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
+    <string name="AttachmentManager_signal_needs_location_access">Signal ir nepieciešama piekļuve jūsu atrašanās vietai, lai to būtu iespējams nosūtīt citiem.</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">Lietotājs %1$s nav aktivizējis maksājumus </string>
@@ -400,13 +407,13 @@
     <string name="ConversationActivity_cancel_request">Atcelt pieprasījumu</string>
 
     <!-- Dialog title asking users for microphone permission -->
-    <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
+    <string name="ConversationActivity_allow_access_microphone">Atļaujiet piekļuvi mikrofonam</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">Lai nosūtītu audio ziņas:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
-    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Lai nosūtītu balss ziņas, atļaujiet Signal piekļūt jūsu mikrofonam.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Lai ierakstītu balss ziņu, Signal ir nepieciešama piekļuve mikrofonam.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Lai nosūtītu audio ziņas, Signal nepieciešama atļauja pieejai mikrofonam, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Mikrofons\".</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Lai zvanītu %1$s, Signal nepieciešama atļauja piekļuvei mikrofonam un kamerai, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Mikrofons\" un \"Kamera\".</string>
@@ -434,11 +441,11 @@
     <string name="ConversationActivity_delete_and_leave">Dzēst un pamest</string>
 
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
-    <string name="ConversationActivity__to_start_call">To start a call:</string>
+    <string name="ConversationActivity__to_start_call">Lai uzsāktu zvanu:</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Lai uzsāktu zvanu, atļaujiet Signal piekļūt jūsu mikrofonam.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Lai uzsāktu zvanu, Signal ir nepieciešama piekļuve mikrofonam.</string>
 
 
     <string name="ConversationActivity_join">Pievienoties</string>
@@ -1367,11 +1374,11 @@
     <string name="Megaphones_verify_your_signal_pin">Signal PIN pārbaude</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Dažreiz mēs Jums pieprasīsim pārbaudīt jūsu PIN, lai jūs to atcerētos.</string>
     <string name="Megaphones_verify_pin">Pārbaudīt PIN</string>
-    <string name="Megaphones_get_started">Sākt</string>
+    <string name="Megaphones_get_started">Darba uzsākšana</string>
     <string name="Megaphones_new_group">Jauna grupa</string>
-    <string name="Megaphones_invite_friends">Uzaicināt draugus</string>
+    <string name="Megaphones_invite_friends">Uzaiciniet citus</string>
     <string name="Megaphones_chat_colors">Sarunas krāsas</string>
-    <string name="Megaphones_add_a_profile_photo">Pievienojiet profila attēlu</string>
+    <string name="Megaphones_add_a_profile_photo">Profila attēls</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Atbildes</string>
@@ -2339,10 +2346,10 @@
     <string name="SupportEmailUtil_filter">Filtrs:</string>
     <string name="SupportEmailUtil_device_info">Iekārtas informācija:</string>
     <string name="SupportEmailUtil_android_version">Androīda versija:</string>
-    <string name="SupportEmailUtil_signal_version">Signal versija:</string>
-    <string name="SupportEmailUtil_signal_package">Signal pakete:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Reģistrācijas bloķēšana:</string>
-    <string name="SupportEmailUtil_locale">Lokāle (valoda):</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Grupa aktualizēta</string>
@@ -3163,7 +3170,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Atbalsta info</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android atbalsta pieprasījums</string>
-    <string name="HelpFragment__debug_log">Atkļūdošanas žurnāls:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Nebija iespējams augšuplādēt žurnālus</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Lūdzu, esiet pēc iespējas aprakstošāks, lai palīdzētu mums izprast problēmu.</string>
     <string-array name="HelpFragment__categories_5">
@@ -3371,7 +3378,8 @@
     <string name="preferences_storage__audio">Audio</string>
     <string name="preferences_storage__review_storage">Apskatīt krātuvi</string>
     <string name="preferences_storage__delete_older_messages">Dzēst vecākas ziņas?</string>
-    <string name="preferences_storage__clear_message_history">Dzēst ziņu vēsturi?</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Delete message history?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tādējādi no jūsu ierīces tiks neatgriezeniski dzēsta visa ziņu vēsture un multivides saturs, kas ir vecāks par %1$s.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -3557,11 +3565,11 @@
 
     <!-- PermissionDeniedBottomSheet -->
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Zemāk nospiediet uz \"Iestatījumi\"</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Atļaujiet piekļuvi.</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Settings</string>
+    <string name="PermissionDeniedBottomSheet__settings">Iestatījumi</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3821,11 +3829,11 @@
 
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Double tap to edit</string>
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Lai rediģētu, divreiz pieskarieties</string>
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
-    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Quickly tap twice on your messages to edit them. You can edit your messages up to 24hrs after they’ve been sent.</string>
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Divreiz ātri pieskarieties ziņām, lai tās rediģētu. Ziņas var rediģēt 24 stundu laikā pēc to nosūtīšanas.</string>
     <!-- Button label to dismiss sheet -->
-    <string name="DoubleTapEditEducationSheet__got_it">Got it</string>
+    <string name="DoubleTapEditEducationSheet__got_it">Skaidrs</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">Jauna grupa</string>
@@ -4332,15 +4340,15 @@
     <string name="ReviewCardDialogFragment__review_request">Pārskatīt pieprasījumu</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
-        <item quantity="zero">%1$d group members have the same name, review the members below and choose to take action.</item>
-        <item quantity="one">%1$d group member have the same name, review the member below and choose to take action.</item>
-        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+        <item quantity="zero">%1$d grupas dalībniekiem ir vienādi vārdi. Pārskatiet tālāk norādītos dalībniekus un veiciet nepieciešamās darbības.</item>
+        <item quantity="one">%1$d grupas dalībniekam ir vienādi vārdi. Pārskatiet tālāk norādīto dalībnieku un veiciet nepieciešamās darbības.</item>
+        <item quantity="other">%1$d grupas dalībniekiem ir vienādi vārdi. Pārskatiet tālāk norādītos dalībniekus un veiciet nepieciešamās darbības.</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="zero">If you\'re not sure who the request is from, review the contacts below and take action.</item>
-        <item quantity="one">If you\'re not sure who the request is from, review the contact below and take action.</item>
-        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+        <item quantity="zero">Ja neesat pārliecināti, kurš ir pieprasījuma sūtītājs, pārskatiet tālāk norādītās kontaktpersonas un veiciet nepieciešamās darbības.</item>
+        <item quantity="one">Ja neesat pārliecināti, kurš ir pieprasījuma sūtītājs, pārskatiet tālāk norādīto kontaktpersonu un veiciet nepieciešamās darbības.</item>
+        <item quantity="other">Ja neesat pārliecināti, kurš ir pieprasījuma sūtītājs, pārskatiet tālāk norādītās kontaktpersonas un veiciet nepieciešamās darbības.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nav citu kopīgu grupu.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Nav kopīgu grupu.</string>
@@ -4376,9 +4384,9 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s un %3$s pievienojās</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="zero">%1$s, %2$s and %3$d others joined</item>
-        <item quantity="one">%1$s, %2$s and %3$d other joined</item>
-        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+        <item quantity="zero">%1$s, %2$s un vēl %3$d pievienojās</item>
+        <item quantity="one">%1$s, %2$s un vēl %3$d pievienojās</item>
+        <item quantity="other">%1$s, %2$s un vēl %3$d pievienojās</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s izstājās</string>
@@ -4386,9 +4394,9 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s un %3$s izstājās</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
-        <item quantity="zero">%1$s, %2$s and %3$d others left</item>
-        <item quantity="one">%1$s, %2$s and %3$d other left</item>
-        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+        <item quantity="zero">%1$s, %2$s un vēl %3$d pameta sarunu</item>
+        <item quantity="one">%1$s, %2$s un vēl %3$d pameta sarunu</item>
+        <item quantity="other">%1$s, %2$s un vēl %3$d pameta sarunu</item>
     </plurals>
 
     <string name="CallParticipant__you">Jūs</string>
@@ -4763,9 +4771,9 @@
     <string name="PrivacySettingsFragment__blocked">Bloķēti</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="zero">%1$d contacts</item>
-        <item quantity="one">%1$d contact</item>
-        <item quantity="other">%1$d contacts</item>
+        <item quantity="zero">%1$d kontakti</item>
+        <item quantity="one">%1$d kontakts</item>
+        <item quantity="other">%1$d kontakti</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Ziņapmaiņa</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Gaistošās ziņas</string>
@@ -6961,18 +6969,27 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Kredītkarte vai debetkarte</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
+    <string name="BackupsTypeSettingsFragment__bank_transfer">Bankas pārskaitījums</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
+    <string name="BackupsTypeSettingsFragment__unknown">Nezināms</string>
 
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
 
     <!-- EOF -->
 </resources>

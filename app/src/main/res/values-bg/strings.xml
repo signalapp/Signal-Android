@@ -80,8 +80,9 @@
     <string name="AttachmentKeyboard_file">Файл</string>
     <string name="AttachmentKeyboard_contact">Контакт</string>
     <string name="AttachmentKeyboard_location">Местоположение</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal се нуждае от разрешение, за да показва снимките и видеотата ти.</string>
-    <string name="AttachmentKeyboard_give_access">Разрешаване на достъпа</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">Allow Access</string>
     <string name="AttachmentKeyboard_payment">Плащане</string>
 
     <!-- AttachmentManager -->
@@ -91,13 +92,19 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal се нуждае от достъп до местоположението Ви, за да може да го прикачва, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Местоположение\".</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Allow access to your location</string>
+    <string name="AttachmentManager_signal_allow_access_location">Разрешете достъп до вашето местоположение</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
-    <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
+    <string name="AttachmentManager_signal_to_send_location">За да изпратите местоположението си:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">Позволете достъп на Signal, за да изпрати вашето местоположение.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
+    <string name="AttachmentManager_signal_needs_location_access">Signal се нуждае от достъп до местоположението, за да изпрати вашето местоположение.</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s няма активирани Плащания </string>
@@ -397,13 +404,13 @@
     <string name="ConversationActivity_cancel_request">Отказване на заявката</string>
 
     <!-- Dialog title asking users for microphone permission -->
-    <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
+    <string name="ConversationActivity_allow_access_microphone">Разрешете достъп до вашия микрофон</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">За да изпращате аудио съобщения:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
-    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">За да изпращате гласови съобщения, разрешете на Signal достъп до вашия микрофон.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal се нуждае от достъп до микрофона за запис на гласово съобщение.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal се нуждае от достъп до микрофона Ви, за да може да изпраща аудио съобщения, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Микрофон\".</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal се нуждае от достъп до микрофона и камерта Ви, за да може да се обади на %1$s, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\", \"Микрофон\" и \"Камера\".</string>
@@ -431,11 +438,11 @@
     <string name="ConversationActivity_delete_and_leave">Изтриване и напускане</string>
 
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
-    <string name="ConversationActivity__to_start_call">To start a call:</string>
+    <string name="ConversationActivity__to_start_call">За да започнете разговор:</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">За да започнете разговор, разрешете на Signal достъп до вашия микрофон.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal се нуждае от достъп до микрофона, за да започнете разговор.</string>
 
 
     <string name="ConversationActivity_join">Присъедини се</string>
@@ -1326,7 +1333,7 @@
     <string name="Megaphones_new_group">Нова група</string>
     <string name="Megaphones_invite_friends">Покани приятели</string>
     <string name="Megaphones_chat_colors">Цветове на чата</string>
-    <string name="Megaphones_add_a_profile_photo">Добавяне на профилна снимка</string>
+    <string name="Megaphones_add_a_profile_photo">Профилна снимка</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Отговори</string>
@@ -2259,10 +2266,10 @@
     <string name="SupportEmailUtil_filter">Филтър:</string>
     <string name="SupportEmailUtil_device_info">Информация за устройството:</string>
     <string name="SupportEmailUtil_android_version">Версия на Android:</string>
-    <string name="SupportEmailUtil_signal_version">Версия на Signal:</string>
-    <string name="SupportEmailUtil_signal_package">Пакет на Signal:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Регистрационно заключване:</string>
-    <string name="SupportEmailUtil_locale">Език:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Групата е обновена</string>
@@ -3069,7 +3076,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Информация за поддръжка</string>
     <string name="HelpFragment__signal_android_support_request">Заявка за поддръжка на Signal за Android</string>
-    <string name="HelpFragment__debug_log">Дневник за отстраняване на грешки:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Дневниците не можаха да се качат</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Моля, бъдете възможно най-описателни, за да ни помогнете да разберем проблема.</string>
     <string-array name="HelpFragment__categories_5">
@@ -3276,7 +3283,8 @@
     <string name="preferences_storage__audio">Аудио</string>
     <string name="preferences_storage__review_storage">Преглед на хранилището</string>
     <string name="preferences_storage__delete_older_messages">Да се изтрият ли по-старите съобщения?</string>
-    <string name="preferences_storage__clear_message_history">Изчистване на историята на съобщенията?</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Delete message history?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Това ще изтрие завинаги цялата история на съобщенията и медиите от вашето устройство, които са по-стари от %1$s.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -3460,11 +3468,11 @@
 
     <!-- PermissionDeniedBottomSheet -->
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Докоснете „Настройки“ по-долу</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Дайте разрешението</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Settings</string>
+    <string name="PermissionDeniedBottomSheet__settings">Настройки</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3722,11 +3730,11 @@
 
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Double tap to edit</string>
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Докоснете два пъти за редактиране</string>
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
-    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Quickly tap twice on your messages to edit them. You can edit your messages up to 24hrs after they’ve been sent.</string>
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Докоснете бързо два пъти съобщенията си, за да ги редактирате. Можете да редактирате съобщенията си до 24 часа, след като са изпратени.</string>
     <!-- Button label to dismiss sheet -->
-    <string name="DoubleTapEditEducationSheet__got_it">Got it</string>
+    <string name="DoubleTapEditEducationSheet__got_it">Ясно</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">Нова група</string>
@@ -4226,13 +4234,13 @@
     <string name="ReviewCardDialogFragment__review_request">Преглед на заявката</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d group member have the same name, review the member below and choose to take action.</item>
-        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+        <item quantity="one">%1$d член на групата има същото име, прегледайте го по-долу и изберете действие.</item>
+        <item quantity="other">%1$d членове на групата имат същото име, прегледайте ги по-долу и изберете действие.</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="one">If you\'re not sure who the request is from, review the contact below and take action.</item>
-        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+        <item quantity="one">Ако не сте сигурни от кого е искането, прегледайте контакта по-долу и предприемете действие.</item>
+        <item quantity="other">Ако не сте сигурни от кого е искането, прегледайте контактите по-долу и предприемете действие.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Няма други общи групи.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Няма общи групи.</string>
@@ -4266,8 +4274,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s и %3$s се присъединиха</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="one">%1$s, %2$s and %3$d other joined</item>
-        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+        <item quantity="one">%1$s, %2$s и още %3$d човек се присъединиха</item>
+        <item quantity="other">%1$s, %2$s и още %3$d души се присъединиха</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s напусна</string>
@@ -4275,8 +4283,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s и %3$s напуснаха</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
-        <item quantity="one">%1$s, %2$s and %3$d other left</item>
-        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+        <item quantity="one">%1$s, %2$s и още %3$d човек напуснаха</item>
+        <item quantity="other">%1$s, %2$s и още %3$d души напуснаха</item>
     </plurals>
 
     <string name="CallParticipant__you">Вие</string>
@@ -4649,8 +4657,8 @@
     <string name="PrivacySettingsFragment__blocked">Блокиран</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d contact</item>
-        <item quantity="other">%1$d contacts</item>
+        <item quantity="one">%1$d контакт</item>
+        <item quantity="other">%1$d контакта</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Съобщения</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Изчезващи съобщения</string>
@@ -6810,18 +6818,27 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Кредитна или дебитна карта</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
+    <string name="BackupsTypeSettingsFragment__bank_transfer">Банков превод</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
+    <string name="BackupsTypeSettingsFragment__unknown">Непознат</string>
 
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
 
     <!-- EOF -->
 </resources>

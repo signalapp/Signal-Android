@@ -80,8 +80,9 @@
     <string name="AttachmentKeyboard_file">Bestand</string>
     <string name="AttachmentKeyboard_contact">Contact</string>
     <string name="AttachmentKeyboard_location">Locatie</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal heeft toegang tot de externe opslagruimte nodig om afbeeldingen en video\'s weer te kunnen geven.</string>
-    <string name="AttachmentKeyboard_give_access">Toestemming geven</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">Allow Access</string>
     <string name="AttachmentKeyboard_payment">Betaling</string>
 
     <!-- AttachmentManager -->
@@ -91,13 +92,19 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal heeft toegang tot de locatie nodig om locaties te kunnen verzenden aan je gesprekspartners, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, tik op ‘Toestemmingen’ en schakel ‘Locatie’ in.</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Allow access to your location</string>
+    <string name="AttachmentManager_signal_allow_access_location">Toegang tot je locatie toestaan</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
-    <string name="AttachmentManager_signal_to_send_location">To send your location:</string>
+    <string name="AttachmentManager_signal_to_send_location">Om je locatie te delen:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Allow Signal access to send your location.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">Geef Signal toegang om je locatie te delen.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal needs location access to send your location.</string>
+    <string name="AttachmentManager_signal_needs_location_access">Signal heeft toegang tot je locatie nodig om je locatie te delen.</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s heeft Betalingen niet geactiveerd </string>
@@ -181,7 +188,7 @@
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen je niet bellen of je berichten sturen.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Geblokkeerde personen kunnen je niet bellen en geen berichten sturen.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Updates en nieuws over Signal blokkeren.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Nieuws over Signal blokkeren.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Voortaan weer nieuws over Signal ontvangen.</string>
     <string name="BlockUnblockDialog_unblock_s">%1$s deblokkeren?</string>
@@ -397,13 +404,13 @@
     <string name="ConversationActivity_cancel_request">Verzoek annuleren</string>
 
     <!-- Dialog title asking users for microphone permission -->
-    <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
+    <string name="ConversationActivity_allow_access_microphone">Toegang tot je microfoon toestaan</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">Om spraakberichten te sturen:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
-    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Om spraakberichten te sturen, moet je Signal toegang geven tot je microfoon.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal needs microphone access to record a voice message.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal heeft toegang tot de microfoon nodig om een spraakbericht te kunnen opnemen.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal heeft toegang tot de microfoon nodig om spraakberichten te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ in.</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal heeft toegang tot de microfoon en de camera nodig om %1$s te kunnen bellen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
@@ -431,11 +438,11 @@
     <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
 
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
-    <string name="ConversationActivity__to_start_call">To start a call:</string>
+    <string name="ConversationActivity__to_start_call">Om een oproep te starten:</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">To start a call, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Om een oproep te starten, moet je Signal toegang geven tot je microfoon.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal needs microphone access to start a call.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal heeft toegang tot de microfoon nodig om een oproep te starten.</string>
 
 
     <string name="ConversationActivity_join">Deelnemen</string>
@@ -497,8 +504,8 @@
     </plurals>
     <string name="ConversationFragment_pending">In afwachting…</string>
     <string name="ConversationFragment_push">Internet (versleuteld met Signal-protocol)</string>
-    <string name="ConversationFragment_mms">Mms (niet versleuteld)</string>
-    <string name="ConversationFragment_sms">Sms (niet versleuteld)</string>
+    <string name="ConversationFragment_mms">Mms</string>
+    <string name="ConversationFragment_sms">Sms</string>
     <string name="ConversationFragment_deleting">Aan het verwijderen</string>
     <string name="ConversationFragment_deleting_messages">Berichten aan het verwijderen…</string>
     <string name="ConversationFragment_delete_for_me">Verwijderen voor mezelf</string>
@@ -629,7 +636,7 @@
         <item quantity="one">Ongelezen</item>
         <item quantity="other">Ongelezen</item>
     </plurals>
-    <string name="ConversationListFragment_pin">Vastprikken</string>
+    <string name="ConversationListFragment_pin">Vastzetten</string>
     <string name="ConversationListFragment_unpin">Losmaken</string>
     <string name="ConversationListFragment_mute">Dempen</string>
     <string name="ConversationListFragment_unmute">Niet dempen</string>
@@ -829,10 +836,10 @@
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
-    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
+    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om batterijoptimalisaties uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
 
     <!-- ExpiredBuildReminder -->
-    <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Deze versie van Signal is verlopen. Werk Signal bij om weer berichten te kunnen verzenden en ontvangen.</string>
+    <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Deze versie van Signal is verlopen. Werk Signal nu bij om berichten te kunnen verzenden en ontvangen.</string>
     <string name="ExpiredBuildReminder_update_now">Nu bijwerken</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
@@ -1149,7 +1156,7 @@
     <string name="CustomNotificationsDialogFragment__customize">Aanpassen</string>
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Geluid en trillen aanpassen</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Oproepinstellingen</string>
-    <string name="CustomNotificationsDialogFragment__ringtone">Oproepgeluid</string>
+    <string name="CustomNotificationsDialogFragment__ringtone">Beltoon</string>
     <string name="CustomNotificationsDialogFragment__default">Systeemstandaard</string>
     <string name="CustomNotificationsDialogFragment__unknown">Onbekend</string>
 
@@ -1176,7 +1183,7 @@
     <!-- GroupJoinBottomSheetDialogFragment -->
     <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Je bent al lid van deze groep</string>
     <string name="GroupJoinBottomSheetDialogFragment_join">Lid worden</string>
-    <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Verzoek om lid te worden</string>
+    <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Verzoeken om lid te worden</string>
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Kan geen lid worden van de groep, probeer het later nog eens</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepslink is niet actief</string>
@@ -1191,7 +1198,7 @@
     <!-- Message shown when you try to get information for a group via link but an unknown issue occurred -->
     <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Lid worden via deze link is mislukt. Probeer het later opnieuw.</string>
 
-    <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wil je lid worden van deze groep en je naam en foto met de andere leden delen?</string>
+    <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wil je lid worden van deze groep en je naam en profielfoto met de andere leden delen?</string>
     <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet eerst je verzoek om lid te worden goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je profielnaam, -foto en -omschrijving direct zichtbaar zijn voor de groepsleden.</string>
     <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
         <item quantity="one">Groep · %1$d lid</item>
@@ -1322,11 +1329,11 @@
     <string name="Megaphones_verify_your_signal_pin">Weet je je Signal-pincode nog?</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">We vragen je af en toe om je pincode te bevestigen, zodat je je pincode goed onthoudt.</string>
     <string name="Megaphones_verify_pin">Pincode bevestigen</string>
-    <string name="Megaphones_get_started">Maak een begin</string>
+    <string name="Megaphones_get_started">Aan de slag</string>
     <string name="Megaphones_new_group">Nieuwe groep</string>
-    <string name="Megaphones_invite_friends">Vrienden uitnodigen</string>
+    <string name="Megaphones_invite_friends">Uitnodigen</string>
     <string name="Megaphones_chat_colors">Chatkleur</string>
-    <string name="Megaphones_add_a_profile_photo">Voeg een profielfoto toe</string>
+    <string name="Megaphones_add_a_profile_photo">Profielfoto</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Reacties</string>
@@ -1668,7 +1675,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor deze groep zichtbaar maken om je chat met de groep voort te kunnen zetten?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Dit is een verouderde groep en deze kan niet meer gebruikt worden. Maak een nieuwe groep om nieuwe functies zoals @vermeldingen en beheerders te activeren.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat die te veel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Doorgaan met deze chat met %1$s en je naam en foto met hen delen?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Doorgaan met deze chat met %1$s en je naam en profielfoto met hen delen?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Leden van de groep weten niet dat je hun berichten hebt gezien totdat je het gespreksverzoek hebt geaccepteerd.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je kunt hun berichten nog niet zien totdat je de uitnodiging hebt geaccepteerd.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep? Leden van de groep weten niet dat je hun berichten hebt gezien totdat je het gespreksverzoek hebt geaccepteerd.</string>
@@ -1912,7 +1919,7 @@
     <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
     <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">Iedereen die via de link aan deze oproep deelneemt, ziet je naam, foto en telefoonnummer.</string>
     <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
-    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Iedereen die via de link aan deze oproep deelneemt, ziet je naam en foto.</string>
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Iedereen die via de link aan deze oproep deelneemt, ziet je naam en profielfoto.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">Aan het wachten op toelating…</string>
 
@@ -2251,7 +2258,7 @@
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Uploaden van foutopsporingslogs is mislukt</string>
     <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze URL en voeg die toe aan je foutrapport of aan een e-mail naar ondersteuning:\n\n<b>%1$s</b></string>
-    <string name="SubmitDebugLogActivity_share">Delen via andere app</string>
+    <string name="SubmitDebugLogActivity_share">Delen</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dit log bevat geen persoonlijke details zoals telefoonnummers. Als je op uploaden tikt dan wordt dit log 30 dagen lang online beschikbaar gesteld op een unieke nergens onthulde URL. Die URL kun je zelf naar de ontwikkelaars sturen.</string>
 
     <!-- SupportEmailUtil -->
@@ -2259,10 +2266,10 @@
     <string name="SupportEmailUtil_filter">Filter:</string>
     <string name="SupportEmailUtil_device_info">Apparaatinformatie:</string>
     <string name="SupportEmailUtil_android_version">Android-versie:</string>
-    <string name="SupportEmailUtil_signal_version">Signal-versie:</string>
-    <string name="SupportEmailUtil_signal_package">Signal-pakket:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Registratievergrendeling:</string>
-    <string name="SupportEmailUtil_locale">Taalgebied:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Groep aangepast</string>
@@ -2978,7 +2985,7 @@
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
     <string name="EditProfileFragment_deprecated_dialog_title">Signal bijwerken</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">Deze versie van Signal is verlopen. Update nu om Signal te blijven gebruiken.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">Deze versie van Signal is verlopen. Werk nu bij om Signal te blijven gebruiken.</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
     <string name="EditProfileFragment_deprecated_dialog_update_button">Bijwerken</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
@@ -3069,7 +3076,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Ondersteuningsinformatie</string>
     <string name="HelpFragment__signal_android_support_request">Signal-Android ondersteuningsverzoek</string>
-    <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
     <string-array name="HelpFragment__categories_5">
@@ -3258,9 +3265,9 @@
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Schakel dit in als je gebruik wilt maken van sms/mms over wifi (schakel dit alleen in als ook ‘Bellen via wifi’ is ingeschakeld op je apparaat)</string>
     <string name="preferences__incognito_keyboard">Incognito-toetsenbord</string>
     <string name="preferences__read_receipts">Leesbevestigingen</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als leesbevestigingen zijn uitgeschakeld, kun je ook geen leesbevestigingen van anderen zien.</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als leesbevestigingen zijn uitgeschakeld, kun je ook niet zien of anderen jouw berichten hebben gelezen.</string>
     <string name="preferences__typing_indicators">Typindicatoren</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Als typindicatoren zijn uitgeschakeld, kun je ook geen typindicatoren van anderen zien.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Als typindicatoren zijn uitgeschakeld, kun je ook niet zien wanneer anderen aan het typen zijn.</string>
     <string name="preferences__request_keyboard_to_disable">Probeer gepersonaliseerd leren door het toetsenbord te voorkomen</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Let op: Signal kan niet garanderen dat gepersonaliseerd leren door het toetsenbord ook daadwerkelijk wordt voorkomen, omdat dit alleen werkt als je toetsenbord-app daaraan meewerkt.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
@@ -3276,7 +3283,8 @@
     <string name="preferences_storage__audio">Audio</string>
     <string name="preferences_storage__review_storage">Alle bestanden weergeven</string>
     <string name="preferences_storage__delete_older_messages">Oude berichten verwijderen?</string>
-    <string name="preferences_storage__clear_message_history">Berichtengeschiedenis wissen?</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Delete message history?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal alle gespreksgeschiedenis en media ouder dan %1$s permanent van dit apparaat wissen.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -3313,7 +3321,7 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Door minder data te gebruiken kan de kwaliteit van oproepen op slechte netwerken verbeteren</string>
     <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend chat</string>
     <string name="preferences_notifications__show">Laat zien</string>
-    <string name="preferences_notifications__ringtone">Oproepgeluid</string>
+    <string name="preferences_notifications__ringtone">Beltoon</string>
     <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
     <string name="preferences_notifications__priority">Dringendheid instellen</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -3340,7 +3348,7 @@
     <string name="preferences_on">Aan</string>
     <string name="preferences_proxy_address">Proxyadres</string>
     <string name="preferences_only_use_a_proxy_if">Gebruik alleen een proxy als je geen verbinding kunt maken met Signal via mobiele data of wifi.</string>
-    <string name="preferences_share">Proxyadres delen via andere app</string>
+    <string name="preferences_share">Proxyadres delen</string>
     <string name="preferences_save">Opslaan</string>
     <string name="preferences_connecting_to_proxy">Aan het verbinden met de proxy…</string>
     <string name="preferences_connected_to_proxy">Verbonden met de proxy</string>
@@ -3460,11 +3468,11 @@
 
     <!-- PermissionDeniedBottomSheet -->
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tik op ‘Instellingen’ hieronder</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Allow the permission</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Geef toestemming</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Settings</string>
+    <string name="PermissionDeniedBottomSheet__settings">Instellingen</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3664,10 +3672,10 @@
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Snelkoppeling naar instellingen</string>
     <string name="conversation_list_search_description">Zoeken</string>
-    <string name="conversation_list__pinned">Vastgeprikt</string>
+    <string name="conversation_list__pinned">Vastgezet</string>
     <string name="conversation_list__chats">Chats</string>
     <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
-    <string name="conversation_list__you_can_only_pin_up_to_d_chats">Je kunt niet meer dan %1$d chats vastprikken</string>
+    <string name="conversation_list__you_can_only_pin_up_to_d_chats">Je kunt niet meer dan %1$d chats vastzetten</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Afbeelding van contactpersoon</string>
@@ -3722,11 +3730,11 @@
 
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Double tap to edit</string>
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Dubbeltik om te bewerken</string>
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
-    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Quickly tap twice on your messages to edit them. You can edit your messages up to 24hrs after they’ve been sent.</string>
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Tik snel twee keer op je berichten om ze te bewerken. Je kunt je berichten tot 24 uur nadat ze zijn verzonden bewerken.</string>
     <!-- Button label to dismiss sheet -->
-    <string name="DoubleTapEditEducationSheet__got_it">Got it</string>
+    <string name="DoubleTapEditEducationSheet__got_it">Begrepen</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">Nieuwe groep</string>
@@ -3787,7 +3795,7 @@
         <item quantity="other">Je pincode moet uit ten minste %1$d cijfers bestaan</item>
     </plurals>
     <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
-    <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Je kunt je pincode nu nog wijzigen omdat je telefoonnummer nog voor dit apparaat geregistreerd staat. Wanneer je telefoonnummer niet meer geregistreerd staat voor dit apparaat, dan kun je de pincode niet langer wijzigen en ook niet teruglezen. Het is daarom belangrijk dat je je pincode onthoudt.</string>
+    <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Zolang je telefoonnummer voor dit apparaat geregistreerd staat kun je je pincode nog wijzigen.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
     <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Pincodes kunnen je helpen je account te herstellen en je informatie versleuteld te houden op Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Verzin een sterkere pincode</string>
@@ -3874,7 +3882,7 @@
 
     <!-- KBS Megaphone -->
     <string name="KbsMegaphone__create_a_pin">Een pincode aanmaken</string>
-    <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Met een pincode wordt informatie versleuteld voor die wordt opgeslagen op Signals servers. Zelfs Signals ontwikkelaars kunnen je informatie niet inzien.</string>
+    <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Pincodes helpen je informatie versleuteld te houden op Signal.</string>
     <string name="KbsMegaphone__create_pin">Pincode aanmaken</string>
 
     <!-- CallNotificationBuilder -->
@@ -4060,7 +4068,7 @@
     <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Om je oude Android-apparaat te kunnen detecteren en om er verbinding mee te maken, heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
     <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Om je oude Android-apparaat te kunnen detecteren en om er verbinding mee te maken, is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
     <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je oude Android-apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, het lijkt er op dat dit apparaat geen ondersteuning biedt voor wifi-direct. Signal heeft wifi-direct nodig om je oude Android-apparaat te detecteren en om er verbinding mee te maken. Je kunt nog wel je gegevens overzetten door op je oude Android-apparaat in Signal een back-up te maken en vervolgens die back-up te herstellen op je nieuwe Android-apparaat.</string>
+    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, het lijkt er op dat dit apparaat geen ondersteuning biedt voor Wi-Fi Direct. Signal heeft Wi-Fi Direct nodig om je oude Android-apparaat te detecteren en om er verbinding mee te maken. Je kunt nog wel je gegevens overzetten door op je oude Android-apparaat in Signal een back-up te maken en vervolgens die back-up te herstellen op je nieuwe Android-apparaat.</string>
     <string name="NewDeviceTransferSetup__restore_a_backup">Back-upgegevens terugzetten</string>
     <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Er is een onverwachte fout opgetreden bij het proberen verbinding te maken met je oude Android-apparaat.</string>
 
@@ -4069,7 +4077,7 @@
     <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Om je nieuwe Android-apparaat te kunnen detecteren en om er verbinding mee te maken, heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Om je nieuwe Android-apparaat te kunnen detecteren en om er verbinding mee te maken, is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je nieuwe Android-apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
-    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, het lijkt er op dat dit apparaat geen ondersteuning biedt voor wifi-direct. Signal heeft wifi-direct nodig om je nieuwe Android-apparaat te detecteren en om er verbinding mee te maken. Je kunt nog wel je gegevens overzetten door op je oude Android-apparaat in Signal een back-up te maken en vervolgens die back-up te herstellen op je nieuwe Android-apparaat.</string>
+    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, het lijkt er op dat dit apparaat geen ondersteuning biedt voor Wi-Fi Direct. Signal heeft Wi-Fi Direct nodig om je nieuwe Android-apparaat te detecteren en om er verbinding mee te maken. Je kunt nog wel je gegevens overzetten door op je oude Android-apparaat in Signal een back-up te maken en vervolgens die back-up te herstellen op je nieuwe Android-apparaat.</string>
     <string name="OldDeviceTransferSetup__create_a_backup">Een back-up maken</string>
     <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Er is een onverwachte fout opgetreden bij het proberen verbinding te maken met je nieuwe Android-apparaat.</string>
 
@@ -4110,7 +4118,7 @@
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Gegevens aan het overzetten</string>
-    <string name="DeviceTransfer__keep_both_devices_near_each_other">Houd de apparaten bij elkaar in de buurt. Schakel ze niet uit, en houd de Signal-app open. Het overzetten is goed beveiligd, want dit gebeurt altijd over een eind-tot-eind-versleutelde verbinding.</string>
+    <string name="DeviceTransfer__keep_both_devices_near_each_other">Houd de apparaten bij elkaar in de buurt. Schakel ze niet uit, en houd de Signal-app open. Het overzetten is goed beveiligd, want dit gebeurt altijd over een end-to-end-versleutelde verbinding.</string>
     <string name="DeviceTransfer__d_messages_so_far">%1$d berichten tot nu toe…</string>
     <!-- Filled in with total percentage of messages transferred -->
     <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% van de berichten tot nu toe…</string>
@@ -4226,13 +4234,13 @@
     <string name="ReviewCardDialogFragment__review_request">Personen vergelijken</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d group member have the same name, review the member below and choose to take action.</item>
-        <item quantity="other">%1$d group members have the same name, review the members below and choose to take action.</item>
+        <item quantity="one">%1$d groepslid heeft dezelfde naam. Vergelijk de groepsleden hieronder en onderneem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</item>
+        <item quantity="other">%1$d groepsleden hebben dezelfde naam. Vergelijk de groepsleden hieronder en onderneem actie indien je denkt dat een van hen zich probeert voor te doen als iemand anders.</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="one">If you\'re not sure who the request is from, review the contact below and take action.</item>
-        <item quantity="other">If you\'re not sure who the request is from, review the contacts below and take action.</item>
+        <item quantity="one">Vergelijk, als je niet zeker bent van wie het gespreksverzoek afkomstig is, met de persoon hieronder en onderneem actie indien je denkt dat iemand zich probeert voor te doen als de ander.</item>
+        <item quantity="other">Vergelijk, als je niet zeker bent van wie het gespreksverzoek afkomstig is, de personen hieronder en onderneem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Geen andere gemeenschappelijke groepen</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Geen gemeenschappelijke groepen</string>
@@ -4266,8 +4274,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s en %3$s nemen nu deel</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="one">%1$s, %2$s and %3$d other joined</item>
-        <item quantity="other">%1$s, %2$s and %3$d others joined</item>
+        <item quantity="one">%1$s, %2$s en %3$d ander nemen deel aan de oproep</item>
+        <item quantity="other">%1$s, %2$s en %3$d anderen nemen deel aan de oproep</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s heeft de oproep verlaten</string>
@@ -4275,8 +4283,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s en %3$s hebben de oproep verlaten</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
-        <item quantity="one">%1$s, %2$s and %3$d other left</item>
-        <item quantity="other">%1$s, %2$s and %3$d others left</item>
+        <item quantity="one">%1$s, %2$s en %3$d ander hebben de oproep verlaten</item>
+        <item quantity="other">%1$s, %2$s en %3$d anderen hebben de oproep verlaten</item>
     </plurals>
 
     <string name="CallParticipant__you">Jij</string>
@@ -4650,7 +4658,7 @@
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
         <item quantity="one">%1$d contact</item>
-        <item quantity="other">%1$d contacts</item>
+        <item quantity="other">%1$d contacten</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Berichten</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Verdwijnende berichten</string>
@@ -4796,7 +4804,7 @@
     <string name="StickerSearchDialogFragment_search_stickers">Stickers zoeken</string>
     <string name="StickerSearchDialogFragment_no_results_found">Geen sticker gevonden</string>
     <string name="EmojiSearchFragment__no_results_found">Geen emoji gevonden</string>
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Onbekend geluid</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Onbekende beltoon</string>
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
@@ -5161,7 +5169,7 @@
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Signal bijwerken</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">Deze versie van Signal is verlopen. Update nu om Signal te blijven gebruiken.</string>
+    <string name="UpdateSignalExpiredDialog__message">Deze versie van Signal is verlopen. Werk nu bij om Signal te blijven gebruiken.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
     <string name="UpdateSignalExpiredDialog__update_action">Bijwerken</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
@@ -5177,12 +5185,12 @@
     <string name="ReregisterSignalDialog__cancel_action">Annuleren</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Je Boost-badge is verlopen</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Je ‘Boost’-badge is verlopen</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Maandelijkse donatie stopgezet</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Je Boost-badge is verlopen en is daarom niet langer zichtbaar op je profiel</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Je kunt je Boost-badge opnieuw voor 30 dagen activeren met een nieuwe eenmalige donatie.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Je ‘Boost’-badge is verlopen en is daarom niet langer zichtbaar op je profiel</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Je kunt je ‘Boost’-badge opnieuw voor 30 dagen activeren met een nieuwe eenmalige donatie.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Je kunt Signal blijven gebruiken, maar als je Signal wilt blijven steunen overweeg dan om een maandelijkse donateur te worden.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Help Signal mogelijk maken</string>
@@ -5462,7 +5470,7 @@
     <string name="NotificationProfileSelection__on_until_s">Ingeschakeld tot %1$s</string>
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Het openen van het belgeluid-keuzemenu is mislukt.</string>
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Openen van beltoonkiezer is mislukt.</string>
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">Om meldingen in te schakelen, heeft Signal toestemming nodig om deze weer te geven.</string>
     <!-- Banner action when notification permission is disabled -->
@@ -6810,18 +6818,27 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit or debit card</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Creditcard of betaalkaart</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
+    <string name="BackupsTypeSettingsFragment__bank_transfer">Bankoverschrijving</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Unknown</string>
+    <string name="BackupsTypeSettingsFragment__unknown">Onbekend</string>
 
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
 
     <!-- EOF -->
 </resources>
