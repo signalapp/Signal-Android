@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.keyboard.sticker
 
 import androidx.annotation.WorkerThread
+import org.signal.core.util.SqlUtil.buildCaseInsensitiveGlobPattern
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.database.EmojiSearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase

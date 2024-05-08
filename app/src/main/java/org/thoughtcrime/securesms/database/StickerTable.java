@@ -167,8 +167,9 @@ public class StickerTable extends DatabaseTable {
   }
 
   public @Nullable Cursor getStickerPacksByTitle(@NonNull String title) {
-    String   query = PACK_TITLE + " LIKE ? AND " + COVER + " = ?";
-    String[] args  = new String[] { "%"+title+"%", "1" };
+    String   textQuery = SqlUtil.buildCaseInsensitiveGlobPattern(title);
+    String   query     = PACK_TITLE + " GLOB ? AND " + COVER + " = ?";
+    String[] args      = new String[] { textQuery, "1" };
 
     return databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, args, null, null, PACK_ORDER + " ASC");
   }
