@@ -10,6 +10,9 @@ import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehaviorHack
@@ -17,6 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.getParcelableCompat
@@ -190,31 +194,33 @@ class StoryGroupReplyFragment :
 
     var firstSubmit = true
 
-    lifecycleDisposable += viewModel.state
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy { state ->
-        if (markReadHelper == null && state.threadId > 0L) {
-          if (isResumed) {
-            ApplicationDependencies.getMessageNotifier().setVisibleThread(ConversationId(state.threadId, storyId))
+    lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        viewModel.state.collect { state ->
+          if (markReadHelper == null && state.threadId > 0L) {
+            if (isResumed) {
+              ApplicationDependencies.getMessageNotifier().setVisibleThread(ConversationId(state.threadId, storyId))
+            }
+
+            markReadHelper = MarkReadHelper(ConversationId(state.threadId, storyId), requireContext(), viewLifecycleOwner)
+
+            if (isFromNotification) {
+              markReadHelper?.onViewsRevealed(System.currentTimeMillis())
+            }
           }
 
-          markReadHelper = MarkReadHelper(ConversationId(state.threadId, storyId), requireContext(), viewLifecycleOwner)
+          emptyNotice.visible = state.noReplies && state.loadState == StoryGroupReplyState.LoadState.READY
+          colorizer.onNameColorsChanged(state.nameColors)
 
-          if (isFromNotification) {
-            markReadHelper?.onViewsRevealed(System.currentTimeMillis())
-          }
-        }
-
-        emptyNotice.visible = state.noReplies && state.loadState == StoryGroupReplyState.LoadState.READY
-        colorizer.onNameColorsChanged(state.nameColors)
-
-        adapter.submitList(getConfiguration(state.replies).toMappingModelList()) {
-          if (firstSubmit && (groupReplyStartPosition >= 0 && adapter.hasItem(groupReplyStartPosition))) {
-            firstSubmit = false
-            recyclerView.post { recyclerView.scrollToPosition(groupReplyStartPosition) }
+          adapter.submitList(getConfiguration(state.replies).toMappingModelList()) {
+            if (firstSubmit && (groupReplyStartPosition >= 0 && adapter.hasItem(groupReplyStartPosition))) {
+              firstSubmit = false
+              recyclerView.post { recyclerView.scrollToPosition(groupReplyStartPosition) }
+            }
           }
         }
       }
+    }
 
     dataObserver = GroupDataObserver()
     adapter.registerAdapterDataObserver(dataObserver)

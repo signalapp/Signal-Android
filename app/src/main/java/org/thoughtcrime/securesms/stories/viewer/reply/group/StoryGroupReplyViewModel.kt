@@ -3,21 +3,22 @@ package org.thoughtcrime.securesms.stories.viewer.reply.group
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.database.model.MessageId
-import org.thoughtcrime.securesms.util.rx.RxStore
 
 class StoryGroupReplyViewModel(storyId: Long, repository: StoryGroupReplyRepository) : ViewModel() {
 
-  private val store = RxStore(StoryGroupReplyState())
+  private val store = MutableStateFlow(StoryGroupReplyState())
   private val disposables = CompositeDisposable()
 
-  val stateSnapshot: StoryGroupReplyState = store.state
-  val state: Flowable<StoryGroupReplyState> = store.stateFlowable
+  val stateSnapshot: StoryGroupReplyState get() = store.value
+  val state: Flow<StoryGroupReplyState> = store
 
   val pagingController: ProxyPagingController<MessageId> = ProxyPagingController()
 
@@ -49,7 +50,6 @@ class StoryGroupReplyViewModel(storyId: Long, repository: StoryGroupReplyReposit
 
   override fun onCleared() {
     disposables.clear()
-    store.dispose()
   }
 
   class Factory(private val storyId: Long, private val repository: StoryGroupReplyRepository) : ViewModelProvider.Factory {
