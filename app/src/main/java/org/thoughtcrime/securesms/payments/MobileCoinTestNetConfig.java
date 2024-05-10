@@ -59,22 +59,23 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
     try {
       Set<X509Certificate> trustRoots = getTrustRoots(R.raw.signal_mobilecoin_authority);
       ClientConfig         config     = new ClientConfig();
-      VerifierFactory verifierFactory = new VerifierFactory(// ~January 27, 2023
-                                                            new ServiceConfig(
-                                                                "4f3879bfffb7b9f86a33086202b6120a32da0ca159615fbbd6fbac6aa37bbf02",
-                                                                "16d73984c2d2712156135ab69987ca78aca67a2cf4f0f2287ea584556f9d223a",
-                                                                "23ececb2482e3b1d9e284502e2beb65ae76492f2791f3bfef50852ee64b883c3",
-                                                                "f52b3dc018195eae42f543e64e976c818c06672b5489746e2bf74438d488181b",
-                                                                new String[] { "INTEL-SA-00334", "INTEL-SA-00615", "INTEL-SA-00657" }
-                                                            ),
-                                                            // ~May 30, 2023
+      VerifierFactory verifierFactory = new VerifierFactory(// ~May 30, 2023
                                                             new ServiceConfig(
                                                                 "5341c6702a3312243c0f049f87259352ff32aa80f0f6426351c3dd063d817d7a",
                                                                 "248356aa0d3431abc45da1773cfd6191a4f2989a4a99da31f450bd7c461e312b",
                                                                 "b61188a6c946557f32e612eff5615908abd1b72ec11d8b7070595a92d4abbbf1",
                                                                 "ac292a1ad27c0338a5159d5fab2bed3917ea144536cb13b5c1226d09a2fbc648",
                                                                 new String[] { "INTEL-SA-00334", "INTEL-SA-00615", "INTEL-SA-00657" }
-                                                            ));
+                                                            ),
+                                                            // ~May 9, 2024
+                                                            new ServiceConfig(
+                                                                "ae7930646f37e026806087d2a3725d3f6d75a8e989fb320e6ecb258eb829057a",
+                                                                "4a5daa23db5efa4b18071291cfa24a808f58fb0cedce7da5de804b011e87cfde",
+                                                                "065b1e17e95f2c356d4d071d434cea7eb6b95bc797f94954146736efd47057a7",
+                                                                "44de03c2ba34c303e6417480644f9796161eacbe5af4f2092e413b4ebf5ccf6a",
+                                                                new String[] { "INTEL-SA-00334", "INTEL-SA-00615", "INTEL-SA-00657" }
+                                                            )
+                                                            );
 
       config.logAdapter = new MobileCoinLogAdapter();
       config.fogView    = new ClientConfig.Service().withTrustRoots(trustRoots)
