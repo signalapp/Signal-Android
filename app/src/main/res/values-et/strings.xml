@@ -82,7 +82,7 @@
     <string name="AttachmentKeyboard_location">Asukoht</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
-    <string name="AttachmentKeyboard_allow_access">Allow Access</string>
+    <string name="AttachmentKeyboard_allow_access">Luba ligipääs</string>
     <string name="AttachmentKeyboard_payment">Makse</string>
 
     <!-- AttachmentManager -->
@@ -92,7 +92,7 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal vajab asukoha manustamiseks ligipääsu seadme asukohale, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Asukoht\".</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Anna ligipääs oma mikrofonile</string>
+    <string name="AttachmentManager_signal_allow_access_location">Anna ligipääs oma asukohale</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
     <string name="AttachmentManager_signal_to_send_location">Oma asukoha saatmiseks toimi järgmiselt.</string>
     <!-- Alert dialog description asking for location permission -->
@@ -438,7 +438,7 @@
     <string name="ConversationActivity_delete_and_leave">Kustuta ja lahku</string>
 
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
-    <string name="ConversationActivity__to_start_call">Kõne alustamiseks:</string>
+    <string name="ConversationActivity__to_start_call">Kõne alustamiseks toimi järgmiselt.</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
     <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Kõne alustamiseks anna Signalile juurdepääs mikrofonile.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
@@ -4274,8 +4274,8 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s ja %3$s liitusid</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="one">%1$s, %2$s ja %3$d liitusid kõnega</item>
-        <item quantity="other">%1$s, %2$s ja %3$d teist liitusid kõnega</item>
+        <item quantity="one">%1$s, %2$s ja %3$d veel liitus kõnega</item>
+        <item quantity="other">%1$s, %2$s ja %3$d veel liitusid kõnega</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s lahkus</string>

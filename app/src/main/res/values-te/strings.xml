@@ -82,7 +82,7 @@
     <string name="AttachmentKeyboard_location">స్థానం</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
-    <string name="AttachmentKeyboard_allow_access">Allow Access</string>
+    <string name="AttachmentKeyboard_allow_access">ప్రాప్యతను అనుమతించు</string>
     <string name="AttachmentKeyboard_payment">చెల్లింపులు</string>
 
     <!-- AttachmentManager -->
