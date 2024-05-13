@@ -323,7 +323,7 @@ public class IndividualSendJob extends PushSendJob {
         SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), false);
         return syncAccess.isPresent();
       } else {
-        SignalLocalMetrics.IndividualMessageSend.onDeliveryStarted(messageId);
+        SignalLocalMetrics.IndividualMessageSend.onDeliveryStarted(messageId, message.getSentTimeMillis());
         SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, new MetricEventListener(messageId), message.isUrgent(), messageRecipient.getNeedsPniSignature());
 
         SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), message.isUrgent());

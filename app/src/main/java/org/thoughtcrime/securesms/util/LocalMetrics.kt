@@ -56,7 +56,7 @@ object LocalMetrics {
         eventId = id,
         eventName = name,
         splits = mutableListOf(),
-        timeunit = timeunit
+        timeUnit = timeunit
       )
       lastSplitTimeById[id] = time
     }
@@ -76,8 +76,17 @@ object LocalMetrics {
       val splitDoesNotExist: Boolean = eventsById[id]?.splits?.none { it.name == split } ?: true
       if (lastTime != null && splitDoesNotExist) {
         val event = eventsById[id]
-        event?.splits?.add(LocalMetricsSplit(split, time - lastTime, event.timeunit))
+        event?.splits?.add(LocalMetricsSplit(split, time - lastTime, event.timeUnit))
         lastSplitTimeById[id] = time
+      }
+    }
+  }
+
+  fun setLabel(id: String, label: String) {
+    executor.execute {
+      val event = eventsById[id]
+      if (event != null) {
+        eventsById[id] = event.copy(extraLabel = label)
       }
     }
   }

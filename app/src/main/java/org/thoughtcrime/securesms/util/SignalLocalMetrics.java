@@ -154,8 +154,13 @@ public final class SignalLocalMetrics {
       split(messageId, SPLIT_JOB_ENQUEUE);
     }
 
-    public static void onDeliveryStarted(long messageId) {
+    public static void onDeliveryStarted(long messageId, long sentTimestamp) {
       split(messageId, SPLIT_JOB_PRE_NETWORK);
+
+      String splitId = ID_MAP.get(messageId);
+      if (splitId != null) {
+        LocalMetrics.getInstance().setLabel(splitId, String.valueOf(sentTimestamp));
+      }
     }
 
     public static void onMessageEncrypted(long messageId) {
@@ -335,6 +340,13 @@ public final class SignalLocalMetrics {
 
     public static void onJobStarted(long messageId) {
       split(messageId, SPLIT_JOB_ENQUEUE);
+    }
+
+    public static void setSentTimestamp(long messageId, long sentTimestamp) {
+      String splitId = ID_MAP.get(messageId);
+      if (splitId != null) {
+        LocalMetrics.getInstance().setLabel(splitId, String.valueOf(sentTimestamp));
+      }
     }
 
     public static void onSenderKeyStarted(long messageId) {
