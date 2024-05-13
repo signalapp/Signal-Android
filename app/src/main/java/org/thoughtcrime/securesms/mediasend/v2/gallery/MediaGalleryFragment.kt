@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediasend.v2.gallery
 
+import android.Manifest
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.databinding.V2MediaGalleryFragmentBinding
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaRepository
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
 import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
@@ -94,7 +96,18 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     if (callbacks.isCameraEnabled()) {
       binding.mediaGalleryToolbar.setOnMenuItemClickListener { item ->
         if (item.itemId == R.id.action_camera) {
-          callbacks.onNavigateToCamera()
+          if (CameraXUtil.isSupported()) {
+            callbacks.onNavigateToCamera()
+          } else {
+            Permissions.with(this)
+              .request(Manifest.permission.CAMERA)
+              .ifNecessary()
+              .onAllGranted { callbacks.onNavigateToCamera() }
+              .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.ic_camera_24)
+              .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos_videos, getParentFragmentManager())
+              .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
+              .execute()
+          }
           true
         } else {
           false

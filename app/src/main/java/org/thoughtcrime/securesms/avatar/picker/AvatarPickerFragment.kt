@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity
 import org.thoughtcrime.securesms.mediasend.Media
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
 import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -222,18 +223,22 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
 
   @Suppress("DEPRECATION")
   private fun openCameraCapture() {
-    Permissions.with(this)
-      .request(Manifest.permission.CAMERA)
-      .ifNecessary()
-      .onAllGranted {
-        val intent = AvatarSelectionActivity.getIntentForCameraCapture(requireContext())
-        startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
-      }
-      .onAnyDenied {
-        Toast.makeText(requireContext(), R.string.AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission, Toast.LENGTH_SHORT)
-          .show()
-      }
-      .execute()
+    if (CameraXUtil.isSupported()) {
+      val intent = AvatarSelectionActivity.getIntentForCameraCapture(requireContext())
+      startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
+    } else {
+      Permissions.with(this)
+        .request(Manifest.permission.CAMERA)
+        .ifNecessary()
+        .onAllGranted {
+          val intent = AvatarSelectionActivity.getIntentForCameraCapture(requireContext())
+          startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
+        }
+        .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_allow_camera), R.drawable.symbol_camera_24)
+        .withPermanentDenialDialog(getString(R.string.AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos, getParentFragmentManager())
+        .onAnyDenied { Toast.makeText(requireContext(), R.string.AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission, Toast.LENGTH_SHORT).show() }
+        .execute()
+    }
   }
 
   @Suppress("DEPRECATION")

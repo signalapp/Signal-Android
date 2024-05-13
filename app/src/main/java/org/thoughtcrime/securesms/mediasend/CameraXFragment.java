@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
@@ -24,6 +24,8 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +39,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import org.signal.core.util.Stopwatch;
@@ -57,6 +60,8 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -65,12 +70,15 @@ import org.thoughtcrime.securesms.video.VideoUtil;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 import kotlin.Unit;
+
+import static org.thoughtcrime.securesms.permissions.PermissionDeniedBottomSheet.showPermissionFragment;
 
 /**
  * Camera captured implemented using the CameraX SDK, which uses Camera2 under the hood. Should be
@@ -98,6 +106,9 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private CameraXModePolicy                cameraXModePolicy;
   private CameraScreenBrightnessController cameraScreenBrightnessController;
   private boolean                          isMediaSelected;
+  private View                             missingPermissionsContainer;
+  private TextView                         missingPermissionsText;
+  private MaterialButton                   allowAccessButton;
 
   private final Executor    qrAnalysisExecutor = Executors.newSingleThreadExecutor();
   private final QrProcessor qrProcessor        = new QrProcessor();
@@ -149,13 +160,18 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   @SuppressLint("MissingPermission")
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    this.cameraParent = view.findViewById(R.id.camerax_camera_parent);
+    this.cameraParent                = view.findViewById(R.id.camerax_camera_parent);
 
-    this.previewView       = view.findViewById(R.id.camerax_camera);
-    this.controlsContainer = view.findViewById(R.id.camerax_controls_container);
-    this.cameraXModePolicy = CameraXModePolicy.acquire(requireContext(),
-                                                       controller.getMediaConstraints(),
-                                                       requireArguments().getBoolean(IS_VIDEO_ENABLED, true));
+    this.previewView                 = view.findViewById(R.id.camerax_camera);
+    this.controlsContainer           = view.findViewById(R.id.camerax_controls_container);
+    this.cameraXModePolicy           = CameraXModePolicy.acquire(requireContext(),
+                                                        controller.getMediaConstraints(),
+                                                        requireArguments().getBoolean(IS_VIDEO_ENABLED, true));
+    this.missingPermissionsContainer = view.findViewById(R.id.missing_permissions_container);
+    this.missingPermissionsText      = view.findViewById(R.id.missing_permissions_text);
+    this.allowAccessButton           = view.findViewById(R.id.allow_access_button);
+
+    checkPermissions(requireArguments().getBoolean(IS_VIDEO_ENABLED, true));
 
     Log.d(TAG, "Starting CameraX with mode policy " + cameraXModePolicy.getClass().getSimpleName());
 
@@ -218,6 +234,9 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
     cameraController.bindToLifecycle(getViewLifecycleOwner(), () -> Log.d(TAG, "Camera init complete from onResume"));
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    if (hasCameraPermission()) {
+      missingPermissionsContainer.setVisibility(View.GONE);
+    }
   }
 
   @Override
@@ -257,6 +276,61 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
                          controlsContainer.setEnabled(true);
                        }
                      });
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+  }
+
+  private void checkPermissions(boolean includeAudio) {
+    if (hasCameraPermission()) {
+      missingPermissionsContainer.setVisibility(View.GONE);
+    } else {
+      boolean hasAudioPermission = Permissions.hasAll(requireContext(), Manifest.permission.RECORD_AUDIO);
+      missingPermissionsContainer.setVisibility(View.VISIBLE);
+      int textResId = (!includeAudio || hasAudioPermission) ? R.string.CameraXFragment_to_capture_photos_and_video_allow_camera : R.string.CameraXFragment_to_capture_photos_and_video_allow_camera_microphone;
+      missingPermissionsText.setText(textResId);
+      allowAccessButton.setOnClickListener(v -> requestPermissions(includeAudio));
+    }
+  }
+
+  private void requestPermissions(boolean includeAudio) {
+    if (includeAudio) {
+      Permissions.with(this)
+                 .request(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
+                 .ifNecessary()
+                 .onSomeGranted(permissions -> {
+                   if (permissions.contains(Manifest.permission.CAMERA)) {
+                     missingPermissionsContainer.setVisibility(View.GONE);
+                   }
+                 })
+                 .onSomePermanentlyDenied(deniedPermissions -> {
+                   if (deniedPermissions.containsAll(List.of(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO))) {
+                     showPermissionFragment(R.string.CameraXFragment_allow_access_camera_microphone, R.string.CameraXFragment_to_capture_photos_videos).show(getParentFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+                   } else if (deniedPermissions.contains(Manifest.permission.CAMERA)) {
+                     showPermissionFragment(R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos_videos).show(getParentFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+                   }
+                 })
+                 .onSomeDenied(deniedPermissions -> {
+                   if (deniedPermissions.contains(Manifest.permission.CAMERA)) {
+                     Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show();
+                   }
+                 })
+                 .execute();
+    } else {
+      Permissions.with(this)
+                 .request(Manifest.permission.CAMERA)
+                 .ifNecessary()
+                 .onAllGranted (() -> missingPermissionsContainer.setVisibility(View.GONE))
+                 .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show())
+                 .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos, getParentFragmentManager())
+                 .execute();
+    }
+  }
+
+  private boolean hasCameraPermission() {
+    return Permissions.hasAll(requireContext(), Manifest.permission.CAMERA);
   }
 
   private void onOrientationChanged() {
@@ -356,7 +430,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     selfieFlash = requireView().findViewById(R.id.camera_selfie_flash);
 
     captureButton.setOnClickListener(v -> {
-      if (cameraController.isInitialized()) {
+      if (hasCameraPermission() && cameraController.isInitialized()) {
         captureButton.setEnabled(false);
         flipButton.setEnabled(false);
         flashButton.setEnabled(false);

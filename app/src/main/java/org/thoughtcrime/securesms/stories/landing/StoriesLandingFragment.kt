@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.SearchBinder
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
@@ -224,16 +225,18 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     })
 
     cameraFab.setOnClickListener {
-      Permissions.with(this)
-        .request(Manifest.permission.CAMERA)
-        .ifNecessary()
-        .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.symbol_camera_24)
-        .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
-        .onAllGranted {
-          startActivityIfAble(MediaSelectionActivity.camera(requireContext(), isStory = true))
-        }
-        .onAnyDenied { Toast.makeText(requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show() }
-        .execute()
+      if (CameraXUtil.isSupported()) {
+        startActivityIfAble(MediaSelectionActivity.camera(requireContext(), isStory = true))
+      } else {
+        Permissions.with(this)
+          .request(Manifest.permission.CAMERA)
+          .ifNecessary()
+          .onAllGranted { startActivityIfAble(MediaSelectionActivity.camera(requireContext(), isStory = true)) }
+          .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.symbol_camera_24)
+          .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos_videos, getParentFragmentManager())
+          .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
+          .execute()
+      }
     }
 
     viewModel.state.observe(viewLifecycleOwner) {

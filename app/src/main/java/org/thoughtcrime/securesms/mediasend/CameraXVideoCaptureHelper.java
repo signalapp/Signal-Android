@@ -118,11 +118,15 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   public void onVideoCaptureStarted() {
     Log.d(TAG, "onVideoCaptureStarted");
 
-    if (canRecordAudio()) {
+    if (canUseCamera() && canRecordAudio()) {
       beginCameraRecording();
-    } else {
+    } else if (!canRecordAudio()) {
       displayAudioRecordingPermissionsDialog();
     }
+  }
+
+  private boolean canUseCamera() {
+    return Permissions.hasAll(fragment.requireContext(), Manifest.permission.CAMERA);
   }
 
   private boolean canRecordAudio() {
@@ -133,9 +137,9 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     Permissions.with(fragment)
                .request(Manifest.permission.RECORD_AUDIO)
                .ifNecessary()
-               .withRationaleDialog(fragment.getString(R.string.ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound), R.drawable.ic_mic_solid_24)
-               .withPermanentDenialDialog(fragment.getString(R.string.ConversationActivity_signal_needs_the_recording_permissions_to_capture_video))
-               .onAnyDenied(() -> Toast.makeText(fragment.requireContext(), R.string.ConversationActivity_signal_needs_recording_permissions_to_capture_video, Toast.LENGTH_LONG).show())
+               .withRationaleDialog(fragment.getString(R.string.CameraXFragment_allow_access_microphone), fragment.getString(R.string.CameraXFragment_to_capture_videos_with_sound), R.drawable.ic_mic_24)
+               .withPermanentDenialDialog(fragment.getString(R.string.ConversationActivity_signal_needs_the_recording_permissions_to_capture_video), null, R.string.CameraXFragment_allow_access_microphone, R.string.CameraXFragment_to_capture_videos, fragment.getParentFragmentManager())
+               .onAnyDenied(() -> Toast.makeText(fragment.requireContext(), R.string.CameraXFragment_signal_needs_microphone_access_video, Toast.LENGTH_LONG).show())
                .execute();
   }
 
