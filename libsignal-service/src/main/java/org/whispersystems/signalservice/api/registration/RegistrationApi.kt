@@ -31,6 +31,15 @@ class RegistrationApi(
   }
 
   /**
+   * Retrieve current status of a registration session.
+   */
+  fun getRegistrationSessionStatus(sessionId: String): NetworkResult<RegistrationSessionMetadataResponse> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.getSessionStatus(sessionId)
+    }
+  }
+
+  /**
    * Submit an FCM token to the service as proof that this is an honest user attempting to register.
    */
   fun submitPushChallengeToken(sessionId: String?, pushChallengeToken: String?): NetworkResult<RegistrationSessionMetadataResponse> {

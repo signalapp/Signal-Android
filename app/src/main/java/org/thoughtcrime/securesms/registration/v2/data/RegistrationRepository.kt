@@ -42,6 +42,9 @@ import org.thoughtcrime.securesms.registration.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
 import org.thoughtcrime.securesms.registration.v2.data.network.BackupAuthCheckResult
+import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionCheckResult
+import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionCreationResult
+import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionResult
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener
@@ -254,13 +257,19 @@ object RegistrationRepository {
     }
 
   /**
-   * Asks the service to send a verification code through one of our supported channels (SMS, phone call).
-   * This requires two or more network calls:
-   * 1. Create (or reuse) a session.
-   * 2. (Optional) If the session has any proof requirements ("challenges"), the user must solve them and submit the proof.
-   * 3. Once the service responds we are allowed to, we request the verification code.
+   * Validates a session ID.
    */
-  suspend fun requestSmsCode(context: Context, e164: String, password: String, mcc: String?, mnc: String?, mode: Mode = Mode.SMS_WITHOUT_LISTENER): VerificationCodeRequestResult =
+  suspend fun validateSession(context: Context, sessionId: String, e164: String, password: String): RegistrationSessionCheckResult =
+    withContext(Dispatchers.IO) {
+      val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
+      val registrationSessionResult = api.getRegistrationSessionStatus(sessionId)
+      return@withContext RegistrationSessionCheckResult.from(registrationSessionResult)
+    }
+
+  /**
+   * Initiates a new registration session on the service.
+   */
+  suspend fun createSession(context: Context, e164: String, password: String, mcc: String?, mnc: String?): RegistrationSessionCreationResult =
     withContext(Dispatchers.IO) {
       val fcmToken: String? = FcmUtil.getToken(context).orElse(null)
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
@@ -270,17 +279,46 @@ object RegistrationRepository {
       } else {
         createSessionAndBlockForPushChallenge(api, fcmToken, mcc, mnc)
       }
-      val session = registrationSessionResult.successOrThrow()
-      val sessionId = session.body.id
-      SignalStore.registrationValues().sessionId = sessionId
-      SignalStore.registrationValues().sessionE164 = e164
-      if (!session.body.allowedToRequestCode) {
-        val challenges = session.body.requestedInformation.joinToString()
-        Log.w(TAG, "Not allowed to request code! Remaining challenges: $challenges")
-        return@withContext VerificationCodeRequestResult.from(registrationSessionResult)
+      val result = RegistrationSessionCreationResult.from(registrationSessionResult)
+      if (result is RegistrationSessionCreationResult.Success) {
+        SignalStore.registrationValues().sessionId = result.getMetadata().body.id
+        SignalStore.registrationValues().sessionE164 = e164
       }
+
+      return@withContext result
+    }
+
+  /**
+   * Validates an existing session, if its ID is provided. If the session is expired/invalid, or none is provided, it will attempt to initiate a new session.
+   */
+  suspend fun createOrValidateSession(context: Context, sessionId: String?, e164: String, password: String, mcc: String?, mnc: String?): RegistrationSessionResult {
+    if (sessionId != null) {
+      val sessionValidationResult = validateSession(context, sessionId, e164, password)
+      when (sessionValidationResult) {
+        is RegistrationSessionCheckResult.Success -> return sessionValidationResult
+        is RegistrationSessionCheckResult.UnknownError -> {
+          Log.w(TAG, "Encountered error when validating existing session.", sessionValidationResult.getCause())
+          return sessionValidationResult
+        }
+
+        is RegistrationSessionCheckResult.SessionNotFound -> {
+          Log.i(TAG, "Current session is invalid or has expired. Must create new one.")
+          // fall through to creation
+        }
+      }
+    }
+    return createSession(context, e164, password, mcc, mnc)
+  }
+
+  /**
+   * Asks the service to send a verification code through one of our supported channels (SMS, phone call).
+   */
+  suspend fun requestSmsCode(context: Context, sessionId: String, e164: String, password: String, mode: Mode = Mode.SMS_WITHOUT_LISTENER): VerificationCodeRequestResult =
+    withContext(Dispatchers.IO) {
+      val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
+
       // TODO [regv2]: support other verification code [Mode] options
-      if (mode == Mode.PHONE_CALL) {
+      val codeRequestResult = if (mode == Mode.PHONE_CALL) {
         // TODO [regv2]
         val notImplementedError = NotImplementedError()
         Log.w(TAG, "Not yet implemented!", notImplementedError)
@@ -289,7 +327,7 @@ object RegistrationRepository {
         api.requestSmsVerificationCode(sessionId, Locale.getDefault(), mode.isSmsRetrieverSupported)
       }
 
-      return@withContext VerificationCodeRequestResult.from(registrationSessionResult)
+      return@withContext VerificationCodeRequestResult.from(codeRequestResult)
     }
 
   /**
@@ -362,7 +400,7 @@ object RegistrationRepository {
         }
     }
 
-  private suspend fun createSessionAndBlockForPushChallenge(accountManager: RegistrationApi, fcmToken: String, mcc: String?, mnc: String?): NetworkResult<RegistrationSessionMetadataResponse> =
+  suspend fun createSessionAndBlockForPushChallenge(accountManager: RegistrationApi, fcmToken: String, mcc: String?, mnc: String?): NetworkResult<RegistrationSessionMetadataResponse> =
     withContext(Dispatchers.IO) {
       // TODO [regv2]: do not use event bus nor latch
       val subscriber = PushTokenChallengeSubscriber()

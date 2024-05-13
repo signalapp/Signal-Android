@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
@@ -29,6 +30,9 @@ import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.v2.data.network.BackupAuthCheckResult
+import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionCheckResult
+import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionCreationResult
+import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionResult
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.AttemptsExhausted
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.ChallengeRequired
@@ -49,6 +53,7 @@ import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.internal.push.LockedException
+import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import java.io.IOException
 
 /**
@@ -173,10 +178,61 @@ class RegistrationV2ViewModel : ViewModel() {
         is BackupAuthCheckResult.SuccessWithoutCredentials -> Log.d(TAG, "No local SVR auth credentials could be found and/or validated.")
       }
 
-      val codeRequestResponse = RegistrationRepository.requestSmsCode(context, e164, password, mccMncProducer.mcc, mccMncProducer.mnc)
+      val validSession = getOrCreateValidSession(context) ?: return@launch
+
+      if (!validSession.body.allowedToRequestCode) {
+        val challenges = validSession.body.requestedInformation.joinToString()
+        Log.i(TAG, "Not allowed to request code! Remaining challenges: $challenges")
+        handleSessionStateResult(context, ChallengeRequired(validSession.body.requestedInformation))
+        return@launch
+      }
+
+      val codeRequestResponse = RegistrationRepository.requestSmsCode(context, validSession.body.id, e164, password)
 
       handleSessionStateResult(context, codeRequestResponse)
     }
+  }
+
+  private suspend fun getOrCreateValidSession(context: Context): RegistrationSessionMetadataResponse? {
+    val e164 = getCurrentE164() ?: throw IllegalStateException("E164 required to create session!")
+    val mccMncProducer = MccMncProducer(context)
+
+    val existingSessionId = store.value.sessionId
+    val sessionResult: RegistrationSessionResult = RegistrationRepository.createOrValidateSession(context, existingSessionId, e164, password, mccMncProducer.mcc, mccMncProducer.mnc)
+    when (sessionResult) {
+      is RegistrationSessionCheckResult.Success -> {
+        val metadata = sessionResult.getMetadata()
+        val newSessionId = metadata.body.id
+        if (newSessionId.isNotNullOrBlank() && newSessionId != existingSessionId) {
+          store.update {
+            it.copy(
+              sessionId = newSessionId
+            )
+          }
+        }
+        return metadata
+      }
+      is RegistrationSessionCreationResult.Success -> {
+        val metadata = sessionResult.getMetadata()
+        val newSessionId = metadata.body.id
+        if (newSessionId.isNotNullOrBlank() && newSessionId != existingSessionId) {
+          store.update {
+            it.copy(
+              sessionId = newSessionId
+            )
+          }
+        }
+        return metadata
+      }
+      is RegistrationSessionCheckResult.SessionNotFound -> Log.w(TAG, "This should be impossible to reach at this stage; it should have been handled in RegistrationRepository.", sessionResult.getCause())
+      is RegistrationSessionCheckResult.UnknownError -> Log.i(TAG, "Unknown error occurred while checking registration session.", sessionResult.getCause())
+      is RegistrationSessionCreationResult.MalformedRequest -> Log.i(TAG, "Malformed request error occurred while creating registration session.", sessionResult.getCause())
+      is RegistrationSessionCreationResult.RateLimited -> Log.i(TAG, "Rate limit occurred while creating registration session.", sessionResult.getCause())
+      is RegistrationSessionCreationResult.ServerUnableToParse -> Log.i(TAG, "Server unable to parse request for creating registration session.", sessionResult.getCause())
+      is RegistrationSessionCreationResult.UnknownError -> Log.i(TAG, "Unknown error occurred while checking registration session.", sessionResult.getCause())
+    }
+    setInProgress(false)
+    return null
   }
 
   fun submitCaptchaToken(context: Context) {
@@ -216,6 +272,7 @@ class RegistrationV2ViewModel : ViewModel() {
 
       is AttemptsExhausted -> Log.w(TAG, "TODO")
       is ChallengeRequired -> store.update {
+        // TODO [regv2] handle push challenge required
         it.copy(
           registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_RECEIVED
         )
