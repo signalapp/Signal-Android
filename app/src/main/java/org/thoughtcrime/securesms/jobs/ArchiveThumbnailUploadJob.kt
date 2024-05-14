@@ -45,7 +45,7 @@ class ArchiveThumbnailUploadJob private constructor(
     private val TAG = Log.tag(ArchiveThumbnailUploadJob::class.java)
 
     fun enqueueIfNecessary(attachmentId: AttachmentId) {
-      if (SignalStore.backup().canReadWriteToArchiveCdn) {
+      if (SignalStore.backup().backsUpMedia) {
         ApplicationDependencies.getJobManager().add(ArchiveThumbnailUploadJob(attachmentId))
       }
     }

@@ -58,7 +58,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
   override fun onFailure() = Unit
 
   private fun archiveAttachments(): Boolean {
-    if (!SignalStore.backup().canReadWriteToArchiveCdn) return false
+    if (!SignalStore.backup().backsUpMedia) return false
 
     val batchSize = 100
     var needToBackfill = 0

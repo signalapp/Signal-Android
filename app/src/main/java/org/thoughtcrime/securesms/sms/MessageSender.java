@@ -394,7 +394,7 @@ public class MessageSender {
       Recipient recipient = messages.get(i).getThreadRecipient();
 
       if (isLocalSelfSend(context, recipient, SendType.SIGNAL)) {
-        sendLocalMediaSelf(context, messageId);
+        sendLocalMediaSelf(messageId);
       } else if (recipient.isPushGroup()) {
         jobManager.add(new PushGroupSendJob(messageId, recipient.getId(), Collections.emptySet(), true, false), messageDependsOnIds, recipient.getId().toQueueKey());
       } else if (recipient.isDistributionList()) {
@@ -526,8 +526,8 @@ public class MessageSender {
                                           @NonNull Collection<String> uploadJobIds,
                                           boolean isScheduledSend)
   {
-    if (isLocalSelfSend(context, recipient, sendType) && !isScheduledSend) {
-      sendLocalMediaSelf(context, messageId);
+    if (isLocalSelfSend(context, recipient, sendType) && !isScheduledSend && !SignalStore.backup().backsUpMedia()) {
+      sendLocalMediaSelf(messageId);
     } else if (recipient.isPushGroup()) {
       sendGroupPush(context, recipient, messageId, Collections.emptySet(), uploadJobIds);
     } else if (recipient.isDistributionList()) {
@@ -608,13 +608,13 @@ public class MessageSender {
            !TextSecurePreferences.isMultiDevice(context);
   }
 
-  private static void sendLocalMediaSelf(Context context, long messageId) {
+  private static void sendLocalMediaSelf(long messageId) {
     try {
       ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
       MessageTable           mmsDatabase    = SignalDatabase.messages();
       OutgoingMessage        message        = mmsDatabase.getOutgoingMessage(messageId);
       SyncMessageId          syncId         = new SyncMessageId(Recipient.self().getId(), message.getSentTimeMillis());
-      List<Attachment>       attachments        = new LinkedList<>();
+      List<Attachment>       attachments    = new LinkedList<>();
 
 
       attachments.addAll(message.getAttachments());

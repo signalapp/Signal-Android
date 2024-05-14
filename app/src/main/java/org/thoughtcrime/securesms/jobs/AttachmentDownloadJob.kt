@@ -178,7 +178,7 @@ class AttachmentDownloadJob private constructor(
 
     if ((attachment.cdn == Cdn.CDN_2 || attachment.cdn == Cdn.CDN_3) &&
       attachment.archiveMediaId == null &&
-      SignalStore.backup().canReadWriteToArchiveCdn
+      SignalStore.backup().backsUpMedia
     ) {
       ApplicationDependencies.getJobManager().add(ArchiveAttachmentJob(attachmentId))
     }
@@ -212,7 +212,7 @@ class AttachmentDownloadJob private constructor(
         throw MmsException("Attachment too large, failing download")
       }
 
-      useArchiveCdn = if (SignalStore.backup().canReadWriteToArchiveCdn && (forceArchiveDownload || attachment.remoteLocation == null)) {
+      useArchiveCdn = if (SignalStore.backup().backsUpMedia && (forceArchiveDownload || attachment.remoteLocation == null)) {
         if (attachment.archiveMediaName.isNullOrEmpty()) {
           throw InvalidPartException("Invalid attachment configuration")
         }
@@ -272,7 +272,7 @@ class AttachmentDownloadJob private constructor(
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     } catch (e: NonSuccessfulResponseCodeException) {
-      if (SignalStore.backup().canReadWriteToArchiveCdn) {
+      if (SignalStore.backup().backsUpMedia) {
         if (e.code == 404 && !useArchiveCdn && attachment.archiveMediaName?.isNotEmpty() == true) {
           Log.i(TAG, "Retrying download from archive CDN")
           forceArchiveDownload = true

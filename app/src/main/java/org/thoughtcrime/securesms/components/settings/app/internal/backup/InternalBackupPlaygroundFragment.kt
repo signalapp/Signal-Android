@@ -170,7 +170,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
       },
       mediaContent = { snackbarHostState ->
         MediaList(
-          enabled = SignalStore.backup().canReadWriteToArchiveCdn,
+          enabled = SignalStore.backup().backsUpMedia,
           state = mediaState,
           snackbarHostState = snackbarHostState,
           archiveAttachmentMedia = { viewModel.archiveAttachmentMedia(it) },
@@ -215,7 +215,7 @@ fun Tabs(
             }
           },
           actions = {
-            if (tabIndex == 1 && SignalStore.backup().canReadWriteToArchiveCdn) {
+            if (tabIndex == 1 && SignalStore.backup().backsUpMedia) {
               TextButton(onClick = onDeleteAllArchivedMedia) {
                 Text(text = "Delete All")
               }

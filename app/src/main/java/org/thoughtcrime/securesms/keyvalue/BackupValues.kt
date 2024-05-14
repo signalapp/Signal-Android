@@ -53,7 +53,6 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   override fun onFirstEverAppLaunch() = Unit
   override fun getKeysToIncludeInBackup(): List<String> = emptyList()
 
-  var canReadWriteToArchiveCdn: Boolean by booleanValue(KEY_CDN_CAN_READ_WRITE, false)
   var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
   var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false)
   var backupWithCellular: Boolean by booleanValue(KEY_BACKUP_OVER_CELLULAR, false)
@@ -63,6 +62,11 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
 
   val totalBackupSize: Long get() = lastBackupProtoSize + usedBackupMediaSpace
+
+  /** True if the user backs up media, otherwise false. */
+  val backsUpMedia: Boolean
+    @JvmName("backsUpMedia")
+    get() = backupTier == MessageBackupTier.PAID
 
   var areBackupsEnabled: Boolean
     get() {
@@ -78,7 +82,7 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     }
 
   val backupTier: MessageBackupTier? = if (areBackupsEnabled) {
-    if (canReadWriteToArchiveCdn) {
+    if (backsUpMedia) {
       MessageBackupTier.PAID
     } else {
       MessageBackupTier.FREE
