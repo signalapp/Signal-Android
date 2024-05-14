@@ -19,12 +19,13 @@ import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
+import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3
 
 class InternalSvrPlaygroundViewModel : ViewModel() {
 
   private val _state: MutableState<InternalSvrPlaygroundState> = mutableStateOf(
     InternalSvrPlaygroundState(
-      options = persistentListOf(SvrImplementation.SVR2)
+      options = persistentListOf(SvrImplementation.SVR2, SvrImplementation.SVR3)
     )
   )
   val state: State<InternalSvrPlaygroundState> = _state
@@ -104,6 +105,22 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
   private fun SvrImplementation.toImplementation(): SecureValueRecovery {
     return when (this) {
       SvrImplementation.SVR2 -> ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
+      SvrImplementation.SVR3 -> ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV3(ApplicationDependencies.getLibsignalNetwork().network, TestShareSetStorage())
+    }
+  }
+
+  /**
+   * Temporary implementation of share set storage. Only useful for testing.
+   */
+  private class TestShareSetStorage : SecureValueRecoveryV3.ShareSetStorage {
+    private var shareSet: ByteArray? = null
+
+    override fun write(data: ByteArray) {
+      shareSet = data
+    }
+
+    override fun read(): ByteArray? {
+      return shareSet
     }
   }
 }

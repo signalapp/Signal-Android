@@ -21,7 +21,7 @@ import java.util.function.Consumer
 /**
  * Makes Network API more ergonomic to use with Android client types
  */
-class LibSignalNetwork(private val inner: Network, config: SignalServiceConfiguration) {
+class LibSignalNetwork(val network: Network, config: SignalServiceConfiguration) {
   init {
     resetSettings(config)
   }
@@ -31,7 +31,7 @@ class LibSignalNetwork(private val inner: Network, config: SignalServiceConfigur
   ): ChatService {
     val username = credentialsProvider?.username ?: ""
     val password = credentialsProvider?.password ?: ""
-    return inner.createChatService(username, password)
+    return network.createChatService(username, password)
   }
 
   fun resetSettings(config: SignalServiceConfiguration) {
@@ -40,9 +40,9 @@ class LibSignalNetwork(private val inner: Network, config: SignalServiceConfigur
 
   private fun resetProxy(proxy: SignalProxy?) {
     if (proxy == null) {
-      inner.clearProxy()
+      network.clearProxy()
     } else {
-      inner.setProxy(proxy.host, proxy.port)
+      network.setProxy(proxy.host, proxy.port)
     }
   }
 
@@ -54,6 +54,6 @@ class LibSignalNetwork(private val inner: Network, config: SignalServiceConfigur
     request: CdsiLookupRequest?,
     tokenConsumer: Consumer<ByteArray?>
   ): CompletableFuture<CdsiLookupResponse?>? {
-    return inner.cdsiLookup(username, password, request, tokenConsumer)
+    return network.cdsiLookup(username, password, request, tokenConsumer)
   }
 }

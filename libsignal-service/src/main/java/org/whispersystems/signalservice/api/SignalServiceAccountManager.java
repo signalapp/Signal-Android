@@ -56,6 +56,7 @@ import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.api.storage.StorageManifestKey;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2;
+import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -181,6 +182,10 @@ public class SignalServiceAccountManager {
 
   public SecureValueRecoveryV2 getSecureValueRecoveryV2(String mrEnclave) {
     return new SecureValueRecoveryV2(configuration, mrEnclave, pushServiceSocket);
+  }
+
+  public SecureValueRecoveryV3 getSecureValueRecoveryV3(Network network, SecureValueRecoveryV3.ShareSetStorage storage) {
+    return new SecureValueRecoveryV3(network, pushServiceSocket, storage);
   }
 
   public WhoAmIResponse getWhoAmI() throws IOException {

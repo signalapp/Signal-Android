@@ -61,15 +61,21 @@ object PinHashUtil {
    * Takes a user-input PIN string and normalizes it to a standard character set.
    */
   @JvmStatic
-  fun normalize(pin: String): ByteArray {
+  fun normalizeToString(pin: String): String {
     var normalizedPin = pin.trim()
 
     if (PinString.allNumeric(normalizedPin)) {
       normalizedPin = PinString.toArabic(normalizedPin)
     }
 
-    normalizedPin = Normalizer.normalize(normalizedPin, Normalizer.Form.NFKD)
+    return Normalizer.normalize(normalizedPin, Normalizer.Form.NFKD)
+  }
 
-    return normalizedPin.toByteArray(StandardCharsets.UTF_8)
+  /**
+   * Takes a user-input PIN string and normalizes it to a standard character set.
+   */
+  @JvmStatic
+  fun normalize(pin: String): ByteArray {
+    return normalizeToString(pin).toByteArray(StandardCharsets.UTF_8)
   }
 }

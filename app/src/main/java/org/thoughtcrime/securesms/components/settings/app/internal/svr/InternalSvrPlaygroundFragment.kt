@@ -138,7 +138,7 @@ fun SvrPlaygroundScreenDarkTheme() {
     Surface {
       SvrPlaygroundScreen(
         state = InternalSvrPlaygroundState(
-          options = persistentListOf(SvrImplementation.SVR2)
+          options = persistentListOf(SvrImplementation.SVR2, SvrImplementation.SVR3)
         )
       )
     }

@@ -90,7 +90,7 @@ class SecureValueRecoveryV2(
 
   @Throws(IOException::class)
   override fun authorization(): AuthCredentials {
-    return pushServiceSocket.svr2Authorization
+    return pushServiceSocket.svrAuthorization
   }
 
   override fun toString(): String {
