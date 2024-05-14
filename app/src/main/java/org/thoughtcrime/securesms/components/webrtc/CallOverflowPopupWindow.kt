@@ -16,7 +16,6 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.PopupWindowCompat
 import androidx.fragment.app.FragmentActivity
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.util.FeatureFlags
@@ -44,19 +43,8 @@ class CallOverflowPopupWindow(private val activity: FragmentActivity, parentView
       val raiseHand = root.findViewById<ConstraintLayout>(R.id.raise_hand_layout_parent)
       raiseHand.visible = true
       raiseHand.setOnClickListener {
-        if (raisedHandDelegate.isSelfHandRaised()) {
-          MaterialAlertDialogBuilder(activity)
-            .setTitle(R.string.CallOverflowPopupWindow__lower_your_hand)
-            .setPositiveButton(R.string.CallOverflowPopupWindow__lower_hand) { _, _ ->
-              ApplicationDependencies.getSignalCallManager().raiseHand(false)
-              this@CallOverflowPopupWindow.dismiss()
-            }
-            .setNegativeButton(R.string.CallOverflowPopupWindow__cancel, null)
-            .show()
-        } else {
-          ApplicationDependencies.getSignalCallManager().raiseHand(true)
-          dismiss()
-        }
+        ApplicationDependencies.getSignalCallManager().raiseHand(!raisedHandDelegate.isSelfHandRaised())
+        dismiss()
       }
     }
   }
