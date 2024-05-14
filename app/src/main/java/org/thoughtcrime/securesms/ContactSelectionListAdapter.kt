@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms
 import android.content.Context
 import android.view.View
 import android.widget.TextView
+import com.google.android.material.button.MaterialButton
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchData
@@ -24,6 +25,8 @@ class ContactSelectionListAdapter(
   init {
     registerFactory(NewGroupModel::class.java, LayoutFactory({ NewGroupViewHolder(it, onClickCallbacks::onNewGroupClicked) }, R.layout.contact_selection_new_group_item))
     registerFactory(InviteToSignalModel::class.java, LayoutFactory({ InviteToSignalViewHolder(it, onClickCallbacks::onInviteToSignalClicked) }, R.layout.contact_selection_invite_action_item))
+    registerFactory(FindContactsModel::class.java, LayoutFactory({ FindContactsViewHolder(it, onClickCallbacks::onFindContactsClicked) }, R.layout.contact_selection_find_contacts_item))
+    registerFactory(FindContactsBannerModel::class.java, LayoutFactory({ FindContactsBannerViewHolder(it, onClickCallbacks::onDismissFindContactsBannerClicked, onClickCallbacks::onFindContactsClicked) }, R.layout.contact_selection_find_contacts_banner_item))
     registerFactory(RefreshContactsModel::class.java, LayoutFactory({ RefreshContactsViewHolder(it, onClickCallbacks::onRefreshContactsClicked) }, R.layout.contact_selection_refresh_action_item))
     registerFactory(MoreHeaderModel::class.java, LayoutFactory({ MoreHeaderViewHolder(it) }, R.layout.contact_search_section_header))
     registerFactory(EmptyModel::class.java, LayoutFactory({ EmptyViewHolder(it) }, R.layout.contact_selection_empty_state))
@@ -44,6 +47,16 @@ class ContactSelectionListAdapter(
   class RefreshContactsModel : MappingModel<RefreshContactsModel> {
     override fun areItemsTheSame(newItem: RefreshContactsModel): Boolean = true
     override fun areContentsTheSame(newItem: RefreshContactsModel): Boolean = true
+  }
+
+  class FindContactsModel : MappingModel<FindContactsModel> {
+    override fun areItemsTheSame(newItem: FindContactsModel): Boolean = true
+    override fun areContentsTheSame(newItem: FindContactsModel): Boolean = true
+  }
+
+  class FindContactsBannerModel : MappingModel<FindContactsBannerModel> {
+    override fun areItemsTheSame(newItem: FindContactsBannerModel): Boolean = true
+    override fun areContentsTheSame(newItem: FindContactsBannerModel): Boolean = true
   }
 
   class FindByUsernameModel : MappingModel<FindByUsernameModel> {
@@ -84,6 +97,23 @@ class ContactSelectionListAdapter(
     }
 
     override fun bind(model: RefreshContactsModel) = Unit
+  }
+
+  private class FindContactsViewHolder(itemView: View, onClickListener: () -> Unit) : MappingViewHolder<FindContactsModel>(itemView) {
+    init {
+      itemView.setOnClickListener { onClickListener() }
+    }
+
+    override fun bind(model: FindContactsModel) = Unit
+  }
+
+  private class FindContactsBannerViewHolder(itemView: View, onDismissListener: () -> Unit, onClickListener: () -> Unit) : MappingViewHolder<FindContactsBannerModel>(itemView) {
+    init {
+      itemView.findViewById<MaterialButton>(R.id.no_thanks_button).setOnClickListener { onDismissListener() }
+      itemView.findViewById<MaterialButton>(R.id.allow_contacts_button).setOnClickListener { onClickListener() }
+    }
+
+    override fun bind(model: FindContactsBannerModel) = Unit
   }
 
   private class MoreHeaderViewHolder(itemView: View) : MappingViewHolder<MoreHeaderModel>(itemView) {
@@ -129,6 +159,8 @@ class ContactSelectionListAdapter(
       INVITE_TO_SIGNAL("invite-to-signal"),
       MORE_HEADING("more-heading"),
       REFRESH_CONTACTS("refresh-contacts"),
+      FIND_CONTACTS("find-contacts"),
+      FIND_CONTACTS_BANNER("find-contacts-banner"),
       FIND_BY_USERNAME("find-by-username"),
       FIND_BY_PHONE_NUMBER("find-by-phone-number");
 
@@ -152,6 +184,8 @@ class ContactSelectionListAdapter(
         ArbitraryRow.INVITE_TO_SIGNAL -> InviteToSignalModel()
         ArbitraryRow.MORE_HEADING -> MoreHeaderModel()
         ArbitraryRow.REFRESH_CONTACTS -> RefreshContactsModel()
+        ArbitraryRow.FIND_CONTACTS -> FindContactsModel()
+        ArbitraryRow.FIND_CONTACTS_BANNER -> FindContactsBannerModel()
         ArbitraryRow.FIND_BY_PHONE_NUMBER -> FindByPhoneNumberModel()
         ArbitraryRow.FIND_BY_USERNAME -> FindByUsernameModel()
       }
@@ -162,6 +196,8 @@ class ContactSelectionListAdapter(
     fun onNewGroupClicked()
     fun onInviteToSignalClicked()
     fun onRefreshContactsClicked()
+    fun onFindContactsClicked()
+    fun onDismissFindContactsBannerClicked()
     fun onFindByPhoneNumberClicked()
     fun onFindByUsernameClicked()
   }

@@ -70,13 +70,13 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchState;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameAciFetchResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -125,10 +125,6 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   private TextView                        emptyText;
   private OnContactSelectedListener       onContactSelectedListener;
   private SwipeRefreshLayout              swipeRefresh;
-  private View                            showContactsLayout;
-  private Button                          showContactsButton;
-  private TextView                        showContactsDescription;
-  private ProgressWheel                   showContactsProgress;
   private String                          cursorFilter;
   private RecyclerView                    recyclerView;
   private RecyclerViewFastScroller        fastScroller;
@@ -223,43 +219,25 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   public void onStart() {
     super.onStart();
 
-    Permissions.with(this)
-               .request(Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS)
-               .ifNecessary()
-               .onAllGranted(() -> {
-                 if (!TextSecurePreferences.hasSuccessfullyRetrievedDirectory(getActivity())) {
-                   handleContactPermissionGranted();
-                 } else {
-                   contactSearchMediator.refresh();
-                 }
-               })
-               .onAnyDenied(() -> {
-                 requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
-                 if (safeArguments().getBoolean(RECENTS, requireActivity().getIntent().getBooleanExtra(RECENTS, false))) {
-                   contactSearchMediator.refresh();
-                 } else {
-                   initializeNoContactsPermission();
-                 }
-               })
-               .execute();
+    if (hasContactsPermissions(requireContext()) && !TextSecurePreferences.hasSuccessfullyRetrievedDirectory(getActivity())) {
+        handleContactPermissionGranted();
+    } else {
+      requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+      contactSearchMediator.refresh();
+    }
   }
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.contact_selection_list_fragment, container, false);
 
-    emptyText               = view.findViewById(android.R.id.empty);
-    recyclerView            = view.findViewById(R.id.recycler_view);
-    swipeRefresh            = view.findViewById(R.id.swipe_refresh);
-    fastScroller            = view.findViewById(R.id.fast_scroller);
-    showContactsLayout      = view.findViewById(R.id.show_contacts_container);
-    showContactsButton      = view.findViewById(R.id.show_contacts_button);
-    showContactsDescription = view.findViewById(R.id.show_contacts_description);
-    showContactsProgress    = view.findViewById(R.id.progress);
-    chipRecycler            = view.findViewById(R.id.chipRecycler);
-    constraintLayout        = view.findViewById(R.id.container);
-    headerActionView        = view.findViewById(R.id.header_action);
+    emptyText                = view.findViewById(android.R.id.empty);
+    recyclerView             = view.findViewById(R.id.recycler_view);
+    swipeRefresh             = view.findViewById(R.id.swipe_refresh);
+    fastScroller             = view.findViewById(R.id.fast_scroller);
+    chipRecycler             = view.findViewById(R.id.chipRecycler);
+    constraintLayout         = view.findViewById(R.id.container);
+    headerActionView         = view.findViewById(R.id.header_action);
 
     final LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
 
@@ -268,6 +246,11 @@ public final class ContactSelectionListFragment extends LoggingFragment {
       @Override
       public boolean canReuseUpdatedViewHolder(@NonNull RecyclerView.ViewHolder viewHolder) {
         return true;
+      }
+
+      @Override
+      public void onAnimationFinished(@NonNull RecyclerView.ViewHolder viewHolder) {
+        recyclerView.setAlpha(1f);
       }
     });
 
@@ -372,6 +355,19 @@ public final class ContactSelectionListFragment extends LoggingFragment {
             fixedContacts,
             displayOptions,
             new ContactSelectionListAdapter.OnContactSelectionClick() {
+              @Override
+              public void onDismissFindContactsBannerClicked() {
+                SignalStore.uiHints().markDismissedContactsPermissionBanner();
+                if (onRefreshListener != null) {
+                  onRefreshListener.onRefresh();
+                }
+              }
+
+              @Override
+              public void onFindContactsClicked() {
+                requestContactPermissions();
+              }
+
               @Override
               public void onRefreshContactsClicked() {
                 if (onRefreshListener != null) {
@@ -498,6 +494,27 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     return isMulti;
   }
 
+  private void requestContactPermissions() {
+    Permissions.with(this)
+               .request(Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS)
+               .ifNecessary()
+               .onAllGranted(() -> {
+                 recyclerView.setAlpha(0.5f);
+                 if (!TextSecurePreferences.hasSuccessfullyRetrievedDirectory(getActivity())) {
+                   handleContactPermissionGranted();
+                 } else {
+                   contactSearchMediator.refresh();
+                   if (onRefreshListener != null) {
+                     swipeRefresh.setRefreshing(true);
+                     onRefreshListener.onRefresh();
+                   }
+                 }
+               })
+               .onAnyDenied(() -> contactSearchMediator.refresh())
+               .withPermanentDenialDialog(getString(R.string.ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts), null, R.string.ContactSelectionListFragment_allow_access_contacts, R.string.ContactSelectionListFragment_to_find_people, getParentFragmentManager())
+               .execute();
+  }
+
   private void initializeCursor() {
     recyclerView.addItemDecoration(new LetterHeaderDecoration(requireContext(), this::hideLetterHeaders));
     recyclerView.setAdapter(contactSearchMediator.getAdapter());
@@ -519,28 +536,6 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
   private boolean hideLetterHeaders() {
     return hasQueryFilter() || shouldDisplayRecents();
-  }
-
-  private void initializeNoContactsPermission() {
-    swipeRefresh.setVisibility(View.GONE);
-
-    showContactsLayout.setVisibility(View.VISIBLE);
-    showContactsProgress.setVisibility(View.INVISIBLE);
-    showContactsDescription.setText(R.string.contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them);
-    showContactsButton.setVisibility(View.VISIBLE);
-
-    showContactsButton.setOnClickListener(v -> {
-      Permissions.with(this)
-                 .request(Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS)
-                 .ifNecessary()
-                 .withPermanentDenialDialog(getString(R.string.ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts))
-                 .onSomeGranted(permissions -> {
-                   if (permissions.contains(Manifest.permission.WRITE_CONTACTS)) {
-                     handleContactPermissionGranted();
-                   }
-                 })
-                 .execute();
-    });
   }
 
   public void setQueryFilter(String filter) {
@@ -583,7 +578,6 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     }
 
     swipeRefresh.setVisibility(View.VISIBLE);
-    showContactsLayout.setVisibility(View.GONE);
 
     emptyText.setText(R.string.contact_selection_group_activity__no_contacts);
     boolean useFastScroller = count > 20;
@@ -614,12 +608,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     new AsyncTask<Void, Void, Boolean>() {
       @Override
       protected void onPreExecute() {
-        swipeRefresh.setVisibility(View.GONE);
-        showContactsLayout.setVisibility(View.VISIBLE);
-        showContactsButton.setVisibility(View.INVISIBLE);
-        showContactsDescription.setText(R.string.ConversationListFragment_loading);
-        showContactsProgress.setVisibility(View.VISIBLE);
-        showContactsProgress.spin();
+        if (onRefreshListener != null) {
+          setRefreshing(true);
+          onRefreshListener.onRefresh();
+        }
       }
 
       @Override
@@ -636,14 +628,11 @@ public final class ContactSelectionListFragment extends LoggingFragment {
       @Override
       protected void onPostExecute(Boolean result) {
         if (result) {
-          showContactsLayout.setVisibility(View.GONE);
-          swipeRefresh.setVisibility(View.VISIBLE);
           reset();
         } else {
           Context context = getContext();
           if (context != null) {
             Toast.makeText(getContext(), R.string.ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection, Toast.LENGTH_LONG).show();
-            initializeNoContactsPermission();
           }
         }
       }
@@ -890,6 +879,13 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     return ContactSearchConfiguration.build(builder -> {
       builder.setQuery(contactSearchState.getQuery());
 
+      if (newConversationCallback != null                               &&
+          !hasContactsPermissions(requireContext())                     &&
+          !SignalStore.uiHints().getDismissedContactsPermissionBanner() &&
+          !hasQuery) {
+        builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.FIND_CONTACTS_BANNER.getCode());
+      }
+
       if (newConversationCallback != null && !hasQuery) {
         builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.NEW_GROUP.getCode());
       }
@@ -946,7 +942,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
         builder.username(newRowMode);
       }
 
-      if ((newCallCallback != null || newConversationCallback != null) && !hasQuery) {
+      if ((newCallCallback != null || newConversationCallback != null)) {
         addMoreSection(builder);
         builder.withEmptyState(emptyBuilder -> {
           emptyBuilder.addSection(ContactSearchConfiguration.Section.Empty.INSTANCE);
@@ -959,9 +955,17 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     });
   }
 
+  private boolean hasContactsPermissions(@NonNull Context context) {
+    return Permissions.hasAll(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS);
+  }
+
   private void addMoreSection(@NonNull ContactSearchConfiguration.Builder builder) {
     builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.MORE_HEADING.getCode());
-    builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.REFRESH_CONTACTS.getCode());
+    if (hasContactsPermissions(requireContext())) {
+      builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.REFRESH_CONTACTS.getCode());
+    } else if (SignalStore.uiHints().getDismissedContactsPermissionBanner()) {
+      builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.FIND_CONTACTS.getCode());
+    }
     builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.INVITE_TO_SIGNAL.getCode());
   }
 
