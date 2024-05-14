@@ -152,6 +152,10 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     putString(KEY_CREDENTIALS, JsonUtil.toJson(SerializedCredentials(updated)))
   }
 
+  fun clearAllCredentials() {
+    putString(KEY_CREDENTIALS, null)
+  }
+
   class SerializedCredentials(
     @JsonProperty
     val credentialsByDay: Map<Long, ArchiveServiceCredential>

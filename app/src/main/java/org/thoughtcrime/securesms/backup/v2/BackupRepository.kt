@@ -65,9 +65,15 @@ object BackupRepository {
   private const val VERSION = 1L
 
   private val resetInitializedStateErrorAction: StatusCodeErrorAction = { error ->
-    if (error.code == 401) {
-      Log.i(TAG, "Resetting initialized state due to 401.")
-      SignalStore.backup().backupsInitialized = false
+    when (error.code) {
+      401 -> {
+        Log.i(TAG, "Resetting initialized state due to 401.")
+        SignalStore.backup().backupsInitialized = false
+      }
+      403 -> {
+        Log.i(TAG, "Bad auth credential. Clearing stored credentials.")
+        SignalStore.backup().clearAllCredentials()
+      }
     }
   }
 
