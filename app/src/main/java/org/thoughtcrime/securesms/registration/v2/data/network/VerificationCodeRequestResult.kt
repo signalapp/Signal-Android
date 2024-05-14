@@ -42,8 +42,8 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
             Success(
               sessionId = networkResult.result.body.id,
               allowedToRequestCode = networkResult.result.body.allowedToRequestCode,
-              nextSms = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextSms),
-              nextCall = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextCall)
+              nextSmsTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextSms),
+              nextCallTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextCall)
             )
           }
         }
@@ -92,7 +92,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
     }
   }
 
-  class Success(val sessionId: String, val allowedToRequestCode: Boolean, val nextSms: Long, val nextCall: Long) : VerificationCodeRequestResult(null)
+  class Success(val sessionId: String, val allowedToRequestCode: Boolean, val nextSmsTimestamp: Long, val nextCallTimestamp: Long) : VerificationCodeRequestResult(null)
 
   class ChallengeRequired(val challenges: List<String>) : VerificationCodeRequestResult(null)
 

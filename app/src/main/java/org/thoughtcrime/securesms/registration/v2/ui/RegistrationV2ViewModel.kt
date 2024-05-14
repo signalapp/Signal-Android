@@ -262,8 +262,8 @@ class RegistrationV2ViewModel : ViewModel() {
         store.update {
           it.copy(
             sessionId = sessionResult.sessionId,
-            nextSms = sessionResult.nextSms,
-            nextCall = sessionResult.nextCall,
+            nextSms = sessionResult.nextSmsTimestamp,
+            nextCall = sessionResult.nextCallTimestamp,
             registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED
           )
         }
