@@ -80,7 +80,7 @@
     <string name="AttachmentKeyboard_file">Bestand</string>
     <string name="AttachmentKeyboard_contact">Contact</string>
     <string name="AttachmentKeyboard_location">Locatie</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal heeft toestemming nodig om je afbeeldingen en video\'s te kunnen weergeven</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Toegang geven</string>
     <string name="AttachmentKeyboard_payment">Betaling</string>
@@ -100,11 +100,11 @@
     <!-- Toast text explaining Signal\'s need for location access -->
     <string name="AttachmentManager_signal_needs_location_access">Signal heeft toegang tot je locatie nodig om je locatie te delen.</string>
     <!-- Dialog title asking users for gallery storage permission -->
-    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <string name="AttachmentManager_signal_allow_storage">Toegang tot opslag toestaan</string>
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
-    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <string name="AttachmentManager_signal_to_show_photos">Om afbeeldingen en video\'s weer te geven:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Signal heeft toegang tot je opslag nodig om afbeeldingen en video\'s te kunnen weergeven.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s heeft Betalingen niet geactiveerd </string>
@@ -1184,7 +1184,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Je bent al lid van deze groep</string>
     <string name="GroupJoinBottomSheetDialogFragment_join">Lid worden</string>
     <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Verzoeken om lid te worden</string>
-    <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Kan geen lid worden van de groep, probeer het later nog eens</string>
+    <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Kan niet lid worden van de groep, probeer het later nog eens</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepslink is niet actief</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1465,25 +1465,25 @@
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">Je hebt een uitnodiging om lid te worden van de groep ingetrokken.</item>
-        <item quantity="other">Je hebt %1$d uitnodigingen om lid te worden van de groep ingetrokken.</item>
+        <item quantity="one">Je hebt een groepsuitnodiging ingetrokken.</item>
+        <item quantity="other">Je hebt %1$d groepsuitnodigingen ingetrokken.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s heeft een uitnodiging om lid te worden van de groep ingetrokken.</item>
-        <item quantity="other">%1$s heeft %2$d uitnodigingen om lid te worden van de groep ingetrokken.</item>
+        <item quantity="one">%1$s heeft een groepsuitnodiging ingetrokken.</item>
+        <item quantity="other">%1$s heeft %2$d groepsuitnodigingen ingetrokken.</item>
     </plurals>
-    <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Iemand heeft een uitnodiging om lid te worden van de groep verworpen.</string>
-    <string name="MessageRecord_you_declined_the_invitation_to_the_group">Je hebt de uitnodiging om lid te worden van de groep verworpen.</string>
-    <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s heeft je uitnodiging om lid te worden van de groep ingetrokken.</string>
-    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Een beheerder heeft je uitnodiging om lid te worden van de groep ingetrokken.</string>
+    <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Iemand heeft de groepsuitnodiging afgewezen.</string>
+    <string name="MessageRecord_you_declined_the_invitation_to_the_group">Je hebt de groepsuitnodiging afgewezen.</string>
+    <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s heeft je groepsuitnodiging ingetrokken.</string>
+    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Een beheerder heeft je groepsuitnodiging ingetrokken.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">Een uitnodiging om lid te worden van de groep is ingetrokken.</item>
-        <item quantity="other">%1$d uitnodigingen om lid te worden van de groep zijn ingetrokken.</item>
+        <item quantity="one">Een groepsuitnodiging is ingetrokken.</item>
+        <item quantity="other">%1$d groepsuitnodigingen zijn ingetrokken.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
-    <string name="MessageRecord_you_accepted_invite">Je hebt een uitnodiging om lid te worden van de groep geaccepteerd.</string>
-    <string name="MessageRecord_s_accepted_invite">%1$s heeft een uitnodiging om lid te worden van de groep geaccepteerd.</string>
+    <string name="MessageRecord_you_accepted_invite">Je hebt de groepsuitnodiging geaccepteerd.</string>
+    <string name="MessageRecord_s_accepted_invite">%1$s heeft de groepsuitnodiging geaccepteerd.</string>
     <string name="MessageRecord_you_added_invited_member_s">Je hebt de uitgenodigde %1$s toegevoegd.</string>
     <string name="MessageRecord_s_added_invited_member_s">%1$s heeft voorheen uitgenodigde %2$s toegevoegd.</string>
 
@@ -3284,7 +3284,7 @@
     <string name="preferences_storage__review_storage">Alle bestanden weergeven</string>
     <string name="preferences_storage__delete_older_messages">Oude berichten verwijderen?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Delete message history?</string>
+    <string name="preferences_storage__delete_message_history">Berichtengeschiedenis wissen?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal alle gespreksgeschiedenis en media ouder dan %1$s permanent van dit apparaat wissen.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -6832,13 +6832,13 @@
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">Chatlimieten</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <string name="ManageStorageSettingsFragment_delete_message_history">Berichtengeschiedenis wissen</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Berichten die ouder zijn dan de geselecteerde bewaartermijn worden permanent verwijderd.</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Berichten die het geselecteerde maximale aantal berichten per chat overschrijden, worden permanent verwijderd.</string>
 
     <!-- EOF -->
 </resources>

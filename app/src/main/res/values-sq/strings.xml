@@ -80,7 +80,7 @@
     <string name="AttachmentKeyboard_file">Kartelë</string>
     <string name="AttachmentKeyboard_contact">Kontakt</string>
     <string name="AttachmentKeyboard_location">Vendndodhje</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal ka nevojë për leje për të shfaqur fotot dhe videot</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Lejoje Përdorimin</string>
     <string name="AttachmentKeyboard_payment">Pagesë</string>
@@ -100,11 +100,11 @@
     <!-- Toast text explaining Signal\'s need for location access -->
     <string name="AttachmentManager_signal_needs_location_access">Signal-it i duhet të ketë akses tek vendndodhja në mënyrë që ta dërgojë atë.</string>
     <!-- Dialog title asking users for gallery storage permission -->
-    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <string name="AttachmentManager_signal_allow_storage">Lejo aksesin në hapësirën ruajtëse</string>
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
-    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <string name="AttachmentManager_signal_to_show_photos">Për të shfaqur foto dhe video:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Signal ka nevojë për akses në hapësirën ruajtëse për të shfaqur fotot dhe videot.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s nuk ka aktivizuar Pagesat </string>
@@ -3284,7 +3284,7 @@
     <string name="preferences_storage__review_storage">Shqyrtoni hapësirën</string>
     <string name="preferences_storage__delete_older_messages">Të fshihen mesazhet e vjetra?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Delete message history?</string>
+    <string name="preferences_storage__delete_message_history">Të fshihet historiku i mesazheve?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Kjo do të fshijë përgjithmonë të gjithë historikun e mesazheve dhe mediat nga pajisja jote, që janë më të vjetra se %1$s.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -6832,13 +6832,13 @@
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">Kufijtë e bisedës</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <string name="ManageStorageSettingsFragment_delete_message_history">Fshi historikun e mesazheve</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Mesazhet më të vjetra se koha e zgjedhur do të fshihen përgjithmonë.</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Mesazhet që tejkalojnë gjatësinë e zgjedhur do të fshihen përgjithmonë.</string>
 
     <!-- EOF -->
 </resources>

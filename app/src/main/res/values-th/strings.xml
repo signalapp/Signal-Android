@@ -80,7 +80,7 @@
     <string name="AttachmentKeyboard_file">แฟ้ม</string>
     <string name="AttachmentKeyboard_contact">ผู้ติดต่อ</string>
     <string name="AttachmentKeyboard_location">ตำแหน่งที่ตั้ง</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal จำเป็นต้องได้รับสิทธิ์เข้าถึงเพื่อแสดงรูปและวิดีโอของคุณ</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">อนุญาตให้เข้าถึง</string>
     <string name="AttachmentKeyboard_payment">การจ่ายเงิน</string>
@@ -100,11 +100,11 @@
     <!-- Toast text explaining Signal\'s need for location access -->
     <string name="AttachmentManager_signal_needs_location_access">Signal จำเป็นต้องได้รับสิทธิ์การเข้าถึงตำแหน่งที่ตั้งเพื่อส่งพิกัดของคุณ</string>
     <!-- Dialog title asking users for gallery storage permission -->
-    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <string name="AttachmentManager_signal_allow_storage">อนุญาตให้เข้าถึงพื้นที่จัดเก็บ</string>
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
-    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <string name="AttachmentManager_signal_to_show_photos">ในการแสดงรูปและวิดีโอ:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Signal จำเป็นต้องได้รับสิทธิ์เข้าถึงพื้นที่จัดเก็บเพื่อแสดงรูปและวิดีโอของคุณ</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s ยังไม่ได้เปิดใช้การชำระเงิน </string>
@@ -3189,7 +3189,7 @@
     <string name="preferences_storage__review_storage">ดูพื้นที่จัดเก็บ</string>
     <string name="preferences_storage__delete_older_messages">ลบข้อความเก่าหรือไม่</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Delete message history?</string>
+    <string name="preferences_storage__delete_message_history">ลบประวัติการส่งข้อความใช่หรือไม่</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">การดำเนินการนี้จะทำให้ประวัติการส่งข้อความและสื่อในอุปกรณ์ของคุณซึ่งเก่ากว่า %1$s ถูกลบอย่างถาวร</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -6681,13 +6681,13 @@
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">จำกัดข้อความในแชทสูงสุด</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <string name="ManageStorageSettingsFragment_delete_message_history">ลบประวัติการส่งข้อความ</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">ข้อความที่เก่ากว่าช่วงเวลาที่เลือกจะถูกลบอย่างถาวร</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">ข้อความที่เกินจากจำนวนที่เลือกจะถูกลบอย่างถาวร</string>
 
     <!-- EOF -->
 </resources>

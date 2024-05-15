@@ -21,7 +21,7 @@
     <string name="yes">Sì</string>
     <string name="no">No</string>
     <string name="delete">Elimina</string>
-    <string name="please_wait">Attendere prego…</string>
+    <string name="please_wait">Attendi…</string>
     <string name="save">Salva</string>
     <string name="note_to_self">Note personali</string>
 
@@ -43,7 +43,7 @@
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Non hai ancora impostato una password!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Disabilitare la password?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Saranno sbloccati definitivamente Signal e le relative notifiche</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Saranno sbloccati definitivamente Signal e le relative notifiche.</string>
     <string name="ApplicationPreferencesActivity_disable">Disabilita</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">I PIN sono richiesti per il blocco registrazione. Per disabilitare i PIN, disabilita prima il blocco registrazione.</string>
@@ -80,16 +80,16 @@
     <string name="AttachmentKeyboard_file">File</string>
     <string name="AttachmentKeyboard_contact">Contatto</string>
     <string name="AttachmentKeyboard_location">Posizione</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal ha bisogno della tua autorizzazione per mostrare le tue foto e video</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Consenti accesso</string>
     <string name="AttachmentKeyboard_payment">Pagamento</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal richiede l\'autorizzazione all\'accesso della memoria per allegare foto, video o audio, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Archiviazione\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal richiede l\'autorizzazione alla lettura dei contatti per allegare le informazioni di contatto, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal richiede l\'autorizzazione alla geolocalizzazione per allegare una posizione, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Posizione\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal richiede l\'autorizzazione per accedere alla galleria e quindi allegare foto, video o audio, ma è stata negata in modo definitivo. Apri il menu delle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Archiviazione\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal richiede l\'autorizzazione per accedere ai contatti e quindi allegare le informazioni di contatto, ma è stata negata in modo definitivo. Apri il menu delle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Contatti\".</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal richiede l\'autorizzazione per accedere alla geolocalizzazione e quindi allegare la posizione, ma è stata negata in modo definitivo. Apri il menu delle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Posizione\".</string>
 
     <!-- Dialog title asking users for location permission -->
     <string name="AttachmentManager_signal_allow_access_location">Consenti l\'accesso alla tua posizione</string>
@@ -100,11 +100,11 @@
     <!-- Toast text explaining Signal\'s need for location access -->
     <string name="AttachmentManager_signal_needs_location_access">Signal deve accedere alla tua posizione per poterla inviare.</string>
     <!-- Dialog title asking users for gallery storage permission -->
-    <string name="AttachmentManager_signal_allow_storage">Allow access to storage</string>
+    <string name="AttachmentManager_signal_allow_storage">Consenti l\'accesso alla galleria</string>
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
-    <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
+    <string name="AttachmentManager_signal_to_show_photos">Per mostrare foto e video:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Signal ha bisogno dell\'autorizzazione per accedere alla tua galleria e mostrare foto e video.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s non ha attivato la funzione per i pagamenti </string>
@@ -116,8 +116,8 @@
     <string name="AttachmentManager__cancel">Annulla</string>
 
     <!-- AttachmentUploadJob -->
-    <string name="AttachmentUploadJob_uploading_media">Caricamento media…</string>
-    <string name="AttachmentUploadJob_compressing_video_start">Compressione video…</string>
+    <string name="AttachmentUploadJob_uploading_media">Caricamento media in corso…</string>
+    <string name="AttachmentUploadJob_compressing_video_start">Compressione video in corso…</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Controllo messaggi in corso…</string>
@@ -129,10 +129,10 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Utenti bloccati</string>
     <string name="BlockedUsersActivity__add_blocked_user">Aggiungi utente bloccato</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Gli utenti bloccati non potranno chiamarti o inviarti messaggi.</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Gli utenti bloccati non potranno chiamarti né inviarti messaggi.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Nessun utente bloccato</string>
     <string name="BlockedUsersActivity__block_user">Vuoi bloccare l\'utente?</string>
-    <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" non potrà chiamarti o inviarti messaggi.</string>
+    <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" non potrà chiamarti né inviarti messaggi.</string>
     <string name="BlockedUsersActivity__block">Blocca</string>
 
     <!-- CreditCardFragment -->
@@ -178,19 +178,19 @@
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Vuoi bloccare e abbandonare %1$s?</string>
     <string name="BlockUnblockDialog_block_s">Vuoi bloccare %1$s?</string>
-    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Non riceverai più messaggi o aggiornamenti da questo gruppo e i membri non potranno aggiungerti di nuovo a questo gruppo.</string>
+    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Non riceverai più messaggi o aggiornamenti da questo gruppo e i membri non potranno aggiungerti di nuovo.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">I membri del gruppo non potranno aggiungerti di nuovo a questo gruppo.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">I membri del gruppo potranno aggiungerti di nuovo a questo gruppo.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Sarete in grado di scambiarvi messaggi e chiamarvi e il tuo nome e la tua foto saranno condivisi con loro.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Sarete in grado di scambiarvi messaggi e chiamarvi. Inoltre, il tuo nome e la tua foto saranno condivisi con l\'altra persona.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Sarete in grado di scambiarvi messaggi.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Le persone bloccate non potranno chiamarti o inviarti messaggi.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Potrete scambiarvi messaggi.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Le persone bloccate non potranno chiamarti né inviarti messaggi.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Le persone bloccate non potranno inviarti messaggi.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blocca gli aggiornamenti e le notizie di Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Riprendi gli aggiornamenti e le notizie di Signal.</string>
+    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Riattiva gli aggiornamenti e le notizie di Signal.</string>
     <string name="BlockUnblockDialog_unblock_s">Vuoi sbloccare %1$s?</string>
     <string name="BlockUnblockDialog_block">Blocca</string>
     <string name="BlockUnblockDialog_block_and_leave">Blocca e abbandona</string>
@@ -3284,7 +3284,7 @@
     <string name="preferences_storage__review_storage">Esamina memoria</string>
     <string name="preferences_storage__delete_older_messages">Eliminare i messaggi più vecchi?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Delete message history?</string>
+    <string name="preferences_storage__delete_message_history">Vuoi eliminare la cronologia messaggi?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Questo eliminerà definitivamente tutta la cronologia dei messaggi e i contenuti multimediali più vecchi di %1$s dal tuo dispositivo.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -6832,13 +6832,13 @@
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">Limiti chat</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <string name="ManageStorageSettingsFragment_delete_message_history">Elimina cronologia messaggi</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">I messaggi precedenti al periodo di tempo selezionato verranno eliminati definitivamente.</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">I messaggi che superano la lunghezza selezionata verranno eliminati definitivamente.</string>
 
     <!-- EOF -->
 </resources>
