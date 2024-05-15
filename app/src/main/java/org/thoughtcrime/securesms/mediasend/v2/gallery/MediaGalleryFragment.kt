@@ -185,8 +185,13 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     viewModel.refreshMediaGallery()
   }
 
+  @Deprecated("Deprecated in Java")
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
+
   private fun requestRequiredPermissions() {
-    Permissions.with(requireParentFragment())
+    Permissions.with(this)
       .request(*PermissionCompat.forImagesAndVideos())
       .ifNecessary()
       .onAllGranted { refreshMediaGallery() }
