@@ -50,8 +50,17 @@ public abstract class Slide {
   }
 
   @Nullable
+  public Uri getThumbnailUri() {
+    return attachment.getThumbnailUri();
+  }
+
+  @Nullable
   public Uri getUri() {
-    return attachment.getUri();
+    Uri attachmentUri = attachment.getUri();
+    if (attachmentUri != null) {
+      return attachmentUri;
+    }
+    return attachment.getThumbnailUri();
   }
 
   public @Nullable Uri getPublicUri() {

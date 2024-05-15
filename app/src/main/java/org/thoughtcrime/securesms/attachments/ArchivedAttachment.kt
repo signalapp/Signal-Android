@@ -22,6 +22,9 @@ class ArchivedAttachment : Attachment {
   @JvmField
   val archiveMediaId: String
 
+  @JvmField
+  val archiveThumbnailMediaId: String
+
   constructor(
     contentType: String?,
     size: Long,
@@ -31,6 +34,7 @@ class ArchivedAttachment : Attachment {
     archiveCdn: Int?,
     archiveMediaName: String,
     archiveMediaId: String,
+    archiveThumbnailMediaId: String,
     digest: ByteArray,
     incrementalMac: ByteArray?,
     incrementalMacChunkSize: Int?,
@@ -70,12 +74,14 @@ class ArchivedAttachment : Attachment {
     this.archiveCdn = archiveCdn ?: Cdn.CDN_3.cdnNumber
     this.archiveMediaName = archiveMediaName
     this.archiveMediaId = archiveMediaId
+    this.archiveThumbnailMediaId = archiveThumbnailMediaId
   }
 
   constructor(parcel: Parcel) : super(parcel) {
     archiveCdn = parcel.readInt()
     archiveMediaName = parcel.readString()!!
     archiveMediaId = parcel.readString()!!
+    archiveThumbnailMediaId = parcel.readString()!!
   }
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -83,8 +89,10 @@ class ArchivedAttachment : Attachment {
     dest.writeInt(archiveCdn)
     dest.writeString(archiveMediaName)
     dest.writeString(archiveMediaId)
+    dest.writeString(archiveThumbnailMediaId)
   }
 
   override val uri: Uri? = null
   override val publicUri: Uri? = null
+  override val thumbnailUri: Uri? = null
 }

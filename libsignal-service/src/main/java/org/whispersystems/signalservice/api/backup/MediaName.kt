@@ -16,6 +16,7 @@ value class MediaName(val name: String) {
   companion object {
     fun fromDigest(digest: ByteArray) = MediaName(Base64.encodeWithoutPadding(digest))
     fun fromDigestForThumbnail(digest: ByteArray) = MediaName("${Base64.encodeWithoutPadding(digest)}_thumbnail")
+    fun forThumbnailFromMediaName(mediaName: String) = MediaName("${mediaName}_thumbnail")
   }
 
   fun toByteArray(): ByteArray {

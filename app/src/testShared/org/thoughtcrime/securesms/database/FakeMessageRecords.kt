@@ -32,6 +32,7 @@ object FakeMessageRecords {
     mmsId: Long = 1,
     hasData: Boolean = true,
     hasThumbnail: Boolean = true,
+    hasArchiveThumbnail: Boolean = false,
     contentType: String = MediaUtil.IMAGE_JPEG,
     transferProgress: Int = AttachmentTable.TRANSFER_PROGRESS_DONE,
     size: Long = 0L,
@@ -59,14 +60,17 @@ object FakeMessageRecords {
     uploadTimestamp: Long = 200,
     dataHash: String? = null,
     archiveCdn: Int = 0,
+    archiveThumbnailCdn: Int = 0,
     archiveMediaName: String? = null,
-    archiveMediaId: String? = null
+    archiveMediaId: String? = null,
+    archiveThumbnailId: String? = null
   ): DatabaseAttachment {
     return DatabaseAttachment(
       attachmentId,
       mmsId,
       hasData,
       hasThumbnail,
+      hasArchiveThumbnail,
       contentType,
       transferProgress,
       size,
@@ -93,6 +97,7 @@ object FakeMessageRecords {
       uploadTimestamp,
       dataHash,
       archiveCdn,
+      archiveThumbnailCdn,
       archiveMediaId,
       archiveMediaName
     )

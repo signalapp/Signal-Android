@@ -125,6 +125,8 @@ class AttachmentTable(
     const val DATA_RANDOM = "data_random"
     const val DATA_HASH_START = "data_hash_start"
     const val DATA_HASH_END = "data_hash_end"
+    const val THUMBNAIL_FILE = "thumbnail_file"
+    const val THUMBNAIL_RANDOM = "thumbnail_random"
     const val FILE_NAME = "file_name"
     const val FAST_PREFLIGHT_ID = "fast_preflight_id"
     const val VOICE_NOTE = "voice_note"
@@ -145,6 +147,8 @@ class AttachmentTable(
     const val ARCHIVE_CDN = "archive_cdn"
     const val ARCHIVE_MEDIA_NAME = "archive_media_name"
     const val ARCHIVE_MEDIA_ID = "archive_media_id"
+    const val ARCHIVE_THUMBNAIL_MEDIA_ID = "archive_thumbnail_media_id"
+    const val ARCHIVE_THUMBNAIL_CDN = "archive_thumbnail_cdn"
     const val ARCHIVE_TRANSFER_FILE = "archive_transfer_file"
     const val ARCHIVE_TRANSFER_STATE = "archive_transfer_state"
 
@@ -159,6 +163,7 @@ class AttachmentTable(
     const val TRANSFER_PROGRESS_PERMANENT_FAILURE = 4
     const val TRANSFER_NEEDS_RESTORE = 5
     const val TRANSFER_RESTORE_IN_PROGRESS = 6
+    const val TRANSFER_RESTORE_OFFLOADED = 7
     const val PREUPLOAD_MESSAGE_ID: Long = -8675309
 
     private val PROJECTION = arrayOf(
@@ -196,9 +201,11 @@ class AttachmentTable(
       DATA_HASH_START,
       DATA_HASH_END,
       ARCHIVE_CDN,
+      ARCHIVE_THUMBNAIL_CDN,
       ARCHIVE_MEDIA_NAME,
       ARCHIVE_MEDIA_ID,
-      ARCHIVE_TRANSFER_FILE
+      ARCHIVE_TRANSFER_FILE,
+      THUMBNAIL_FILE
     )
 
     @JvmField
@@ -240,8 +247,12 @@ class AttachmentTable(
         $ARCHIVE_CDN INTEGER DEFAULT 0,
         $ARCHIVE_MEDIA_NAME TEXT DEFAULT NULL,
         $ARCHIVE_MEDIA_ID TEXT DEFAULT NULL,
+        $ARCHIVE_THUMBNAIL_MEDIA_ID TEXT DEFAULT NULL,
+        $ARCHIVE_THUMBNAIL_CDN INTEGER DEFAULT 0,
         $ARCHIVE_TRANSFER_FILE TEXT DEFAULT NULL,
-        $ARCHIVE_TRANSFER_STATE INTEGER DEFAULT ${ArchiveTransferState.NONE.value}
+        $ARCHIVE_TRANSFER_STATE INTEGER DEFAULT ${ArchiveTransferState.NONE.value},
+        $THUMBNAIL_FILE TEXT DEFAULT NULL,
+        $THUMBNAIL_RANDOM BLOB DEFAULT NULL
       )
       """
 
@@ -268,6 +279,15 @@ class AttachmentTable(
   fun getAttachmentStream(attachmentId: AttachmentId, offset: Long): InputStream {
     return try {
       getDataStream(attachmentId, offset)
+    } catch (e: FileNotFoundException) {
+      throw IOException("No stream for: $attachmentId", e)
+    } ?: throw IOException("No stream for: $attachmentId")
+  }
+
+  @Throws(IOException::class)
+  fun getAttachmentThumbnailStream(attachmentId: AttachmentId, offset: Long): InputStream {
+    return try {
+      getThumbnailStream(attachmentId, offset)
     } catch (e: FileNotFoundException) {
       throw IOException("No stream for: $attachmentId", e)
     } ?: throw IOException("No stream for: $attachmentId")
@@ -826,6 +846,36 @@ class AttachmentTable(
     }
   }
 
+  @Throws(IOException::class)
+  fun finalizeAttachmentThumbnailAfterDownload(attachmentId: AttachmentId, archiveMediaId: String, inputStream: InputStream, transferFile: File) {
+    Log.i(TAG, "[finalizeAttachmentThumbnailAfterDownload] Finalizing downloaded data for $attachmentId.")
+    val fileWriteResult: DataFileWriteResult = writeToDataFile(newDataFile(context), inputStream, TransformProperties.empty())
+
+    writableDatabase.withinTransaction { db ->
+      val values = contentValuesOf(
+        THUMBNAIL_FILE to fileWriteResult.file.absolutePath,
+        THUMBNAIL_RANDOM to fileWriteResult.random
+      )
+
+      db.update(TABLE_NAME)
+        .values(values)
+        .where("$ARCHIVE_MEDIA_ID = ?", archiveMediaId)
+        .run()
+
+      db.update(TABLE_NAME)
+        .values(TRANSFER_STATE to TRANSFER_RESTORE_OFFLOADED)
+        .where("$ID = ?", attachmentId.id)
+        .run()
+    }
+
+    notifyConversationListListeners()
+    notifyAttachmentListeners()
+
+    if (!transferFile.delete()) {
+      Log.w(TAG, "Unable to delete transfer file.")
+    }
+  }
+
   /**
    * Needs to be called after an attachment is successfully uploaded. Writes metadata around it's final remote location, as well as calculates
    * it's ending hash, which is critical for backups.
@@ -1158,6 +1208,10 @@ class AttachmentTable(
     return transferFile
   }
 
+  fun createArchiveThumbnailTransferFile(): File {
+    return newTransferFile()
+  }
+
   fun getDataFileInfo(attachmentId: AttachmentId): DataFileInfo? {
     return readableDatabase
       .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP)
@@ -1169,6 +1223,21 @@ class AttachmentTable(
           null
         } else {
           cursor.readDataFileInfo()
+        }
+      }
+  }
+
+  fun getThumbnailFileInfo(attachmentId: AttachmentId): ThumbnailFileInfo? {
+    return readableDatabase
+      .select(ID, THUMBNAIL_FILE, THUMBNAIL_RANDOM)
+      .from(TABLE_NAME)
+      .where("$ID = ?", attachmentId.id)
+      .run()
+      .readToSingleObject { cursor ->
+        if (cursor.isNull(THUMBNAIL_FILE)) {
+          null
+        } else {
+          cursor.readThumbnailFileInfo()
         }
       }
   }
@@ -1320,8 +1389,10 @@ class AttachmentTable(
               uploadTimestamp = jsonObject.getLong(UPLOAD_TIMESTAMP),
               dataHash = jsonObject.getString(DATA_HASH_END),
               archiveCdn = jsonObject.getInt(ARCHIVE_CDN),
+              archiveThumbnailCdn = jsonObject.getInt(ARCHIVE_THUMBNAIL_CDN),
               archiveMediaName = jsonObject.getString(ARCHIVE_MEDIA_NAME),
-              archiveMediaId = jsonObject.getString(ARCHIVE_MEDIA_ID)
+              archiveMediaId = jsonObject.getString(ARCHIVE_MEDIA_ID),
+              hasArchiveThumbnail = !TextUtils.isEmpty(jsonObject.getString(THUMBNAIL_FILE))
             )
           }
         }
@@ -1361,13 +1432,14 @@ class AttachmentTable(
     return readableDatabase.rawQuery(query, null)
   }
 
-  fun setArchiveData(attachmentId: AttachmentId, archiveCdn: Int, archiveMediaName: String, archiveMediaId: String) {
+  fun setArchiveData(attachmentId: AttachmentId, archiveCdn: Int, archiveMediaName: String, archiveMediaId: String, archiveThumbnailMediaId: String) {
     writableDatabase
       .update(TABLE_NAME)
       .values(
         ARCHIVE_CDN to archiveCdn,
         ARCHIVE_MEDIA_ID to archiveMediaId,
         ARCHIVE_MEDIA_NAME to archiveMediaName,
+        ARCHIVE_THUMBNAIL_MEDIA_ID to archiveThumbnailMediaId,
         ARCHIVE_TRANSFER_STATE to ArchiveTransferState.FINISHED.value
       )
       .where("$ID = ?", attachmentId.id)
@@ -1375,13 +1447,14 @@ class AttachmentTable(
   }
 
   fun updateArchiveCdnByMediaId(archiveMediaId: String, archiveCdn: Int): Int {
-    return writableDatabase
-      .update(TABLE_NAME)
-      .values(
-        ARCHIVE_CDN to archiveCdn
-      )
-      .where("$ARCHIVE_MEDIA_ID = ?", archiveMediaId)
-      .run()
+    return writableDatabase.rawQuery(
+      "UPDATE $TABLE_NAME SET " +
+        "$ARCHIVE_THUMBNAIL_CDN = CASE WHEN $ARCHIVE_THUMBNAIL_MEDIA_ID = ? THEN ? ELSE $ARCHIVE_THUMBNAIL_CDN END," +
+        "$ARCHIVE_CDN = CASE WHEN $ARCHIVE_MEDIA_ID = ? THEN ? ELSE $ARCHIVE_CDN END " +
+        "WHERE $ARCHIVE_MEDIA_ID = ? OR $ARCHIVE_THUMBNAIL_MEDIA_ID = ? " +
+        "RETURNING $ARCHIVE_CDN, $ARCHIVE_THUMBNAIL_CDN",
+      SqlUtil.buildArgs(archiveMediaId, archiveCdn, archiveMediaId, archiveCdn, archiveMediaId, archiveMediaId)
+    ).count
   }
 
   fun clearArchiveData(attachmentIds: List<AttachmentId>) {
@@ -1476,6 +1549,21 @@ class AttachmentTable(
         }
         stream
       }
+    } catch (e: FileNotFoundException) {
+      Log.w(TAG, e)
+      throw e
+    } catch (e: IOException) {
+      Log.w(TAG, e)
+      null
+    }
+  }
+
+  @Throws(FileNotFoundException::class)
+  private fun getThumbnailStream(attachmentId: AttachmentId, offset: Long): InputStream? {
+    val thumbnailInfo = getThumbnailFileInfo(attachmentId) ?: return null
+
+    return try {
+      ModernDecryptingPartInputStream.createFor(attachmentSecret, thumbnailInfo.random, thumbnailInfo.file, offset)
     } catch (e: FileNotFoundException) {
       Log.w(TAG, e)
       throw e
@@ -1664,6 +1752,7 @@ class AttachmentTable(
         put(ARCHIVE_CDN, attachment.archiveCdn)
         put(ARCHIVE_MEDIA_NAME, attachment.archiveMediaName)
         put(ARCHIVE_MEDIA_ID, attachment.archiveMediaId)
+        put(ARCHIVE_THUMBNAIL_MEDIA_ID, attachment.archiveThumbnailMediaId)
 
         attachment.stickerLocator?.let { sticker ->
           put(STICKER_PACK_ID, sticker.packId)
@@ -1874,8 +1963,10 @@ class AttachmentTable(
       uploadTimestamp = cursor.requireLong(UPLOAD_TIMESTAMP),
       dataHash = cursor.requireString(DATA_HASH_END),
       archiveCdn = cursor.requireInt(ARCHIVE_CDN),
+      archiveThumbnailCdn = cursor.requireInt(ARCHIVE_THUMBNAIL_CDN),
       archiveMediaName = cursor.requireString(ARCHIVE_MEDIA_NAME),
-      archiveMediaId = cursor.requireString(ARCHIVE_MEDIA_ID)
+      archiveMediaId = cursor.requireString(ARCHIVE_MEDIA_ID),
+      hasArchiveThumbnail = !cursor.isNull(THUMBNAIL_FILE)
     )
   }
 
@@ -1897,6 +1988,14 @@ class AttachmentTable(
       hashEnd = this.requireString(DATA_HASH_END),
       transformProperties = TransformProperties.parse(this.requireString(TRANSFORM_PROPERTIES)),
       uploadTimestamp = this.requireLong(UPLOAD_TIMESTAMP)
+    )
+  }
+
+  private fun Cursor.readThumbnailFileInfo(): ThumbnailFileInfo {
+    return ThumbnailFileInfo(
+      id = AttachmentId(this.requireLong(ID)),
+      file = File(this.requireNonNullString(THUMBNAIL_FILE)),
+      random = this.requireNonNullBlob(THUMBNAIL_RANDOM)
     )
   }
 
@@ -1952,6 +2051,13 @@ class AttachmentTable(
     val hashEnd: String?,
     val transformProperties: TransformProperties,
     val uploadTimestamp: Long
+  )
+
+  @VisibleForTesting
+  class ThumbnailFileInfo(
+    val id: AttachmentId,
+    val file: File,
+    val random: ByteArray
   )
 
   @Parcelize

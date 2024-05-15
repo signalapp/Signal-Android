@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.BackupRepository.getThumbnailMediaName
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -86,8 +87,9 @@ class ArchiveThumbnailUploadJob private constructor(
       Log.w(TAG, "Unable to generate a thumbnail result for $attachmentId")
       return Result.success()
     }
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
-    val resumableUpload = when (val result = BackupRepository.getMediaUploadSpec()) {
+    val resumableUpload = when (val result = BackupRepository.getMediaUploadSpec(secretKey = backupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName()))) {
       is NetworkResult.Success -> {
         Log.d(TAG, "Got an upload spec!")
         result.result.toProto()
@@ -116,9 +118,13 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.retry(defaultBackoff())
     }
 
+    val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
+    val mediaSecrets = backupKey.deriveMediaSecrets(attachment.getThumbnailMediaName())
+
     return when (val result = BackupRepository.archiveThumbnail(attachmentPointer, attachment)) {
       is NetworkResult.Success -> {
-        Log.d(TAG, "Successfully archived thumbnail for $attachmentId")
+        Log.i(RestoreAttachmentJob.TAG, "Restore: Thumbnail mediaId=${mediaSecrets.id.encode()} backupDir=${backupDirectories.backupDir} mediaDir=${backupDirectories.mediaDir}")
+        Log.d(TAG, "Successfully archived thumbnail for $attachmentId mediaName=${attachment.getThumbnailMediaName()}")
         Result.success()
       }
       is NetworkResult.NetworkError -> {

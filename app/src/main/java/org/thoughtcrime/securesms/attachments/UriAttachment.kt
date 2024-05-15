@@ -98,6 +98,7 @@ class UriAttachment : Attachment {
 
   override val uri: Uri
   override val publicUri: Uri? = null
+  override val thumbnailUri: Uri? = null
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
     super.writeToParcel(dest, flags)

@@ -42,6 +42,10 @@ class BackupKey(val value: ByteArray) {
     return deriveMediaSecrets(deriveMediaId(mediaName))
   }
 
+  fun deriveThumbnailTransitKey(thumbnailMediaName: MediaName): ByteArray {
+    return HKDF.deriveSecrets(value, deriveMediaId(thumbnailMediaName).value, "20240513_Signal_Backups_EncryptThumbnail".toByteArray(), 64)
+  }
+
   private fun deriveMediaSecrets(mediaId: MediaId): MediaKeyMaterial {
     val extendedKey = HKDF.deriveSecrets(this.value, mediaId.value, "20231003_Signal_Backups_EncryptMedia".toByteArray(), 80)
 

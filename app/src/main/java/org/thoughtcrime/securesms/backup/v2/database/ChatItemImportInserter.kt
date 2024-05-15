@@ -658,6 +658,7 @@ class ChatItemImportInserter(
         archiveCdn = pointer.backupLocator.cdnNumber,
         archiveMediaName = pointer.backupLocator.mediaName,
         archiveMediaId = backupState.backupKey.deriveMediaId(MediaName(pointer.backupLocator.mediaName)).encode(),
+        archiveThumbnailMediaId = backupState.backupKey.deriveMediaId(MediaName.forThumbnailFromMediaName(pointer.backupLocator.mediaName)).encode(),
         digest = pointer.backupLocator.digest.toByteArray(),
         incrementalMac = pointer.incrementalMac?.toByteArray(),
         incrementalMacChunkSize = pointer.incrementalMacChunkSize,

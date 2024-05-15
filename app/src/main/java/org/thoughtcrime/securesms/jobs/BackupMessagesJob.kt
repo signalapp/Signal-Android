@@ -72,10 +72,14 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
         when (val archiveResult = BackupRepository.archiveMedia(attachments)) {
           is NetworkResult.Success -> {
             Log.i(TAG, "Archive call successful")
-            for (success in archiveResult.result.sourceNotFoundResponses) {
-              val attachmentId = archiveResult.result.mediaIdToAttachmentId(success.mediaId)
+            for (notFound in archiveResult.result.sourceNotFoundResponses) {
+              val attachmentId = archiveResult.result.mediaIdToAttachmentId(notFound.mediaId)
               Log.i(TAG, "Attachment $attachmentId not found on cdn, will need to re-upload")
               needToBackfill++
+            }
+            for (success in archiveResult.result.successfulResponses) {
+              val attachmentId = archiveResult.result.mediaIdToAttachmentId(success.mediaId)
+              ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
             }
             progress += attachments.size
           }

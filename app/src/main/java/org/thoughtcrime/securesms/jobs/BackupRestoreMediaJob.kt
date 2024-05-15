@@ -62,7 +62,11 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
           attachmentId = attachment.attachmentId,
           manual = false,
           forceArchiveDownload = true,
-          fullSize = shouldRestoreFullSize(message, restoreTime, optimizeStorage = SignalStore.backup().optimizeStorage)
+          restoreMode = if (shouldRestoreFullSize(message, restoreTime, optimizeStorage = SignalStore.backup().optimizeStorage)) {
+            RestoreAttachmentJob.RestoreMode.ORIGINAL
+          } else {
+            RestoreAttachmentJob.RestoreMode.THUMBNAIL
+          }
         )
       }
       jobManager.addAll(restoreJobBatch)
@@ -70,7 +74,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
   }
 
   private fun shouldRestoreFullSize(message: MmsMessageRecord, restoreTime: Long, optimizeStorage: Boolean): Boolean {
-    return ((restoreTime - message.dateSent) < 30.days.inWholeMilliseconds) || !optimizeStorage
+    return !optimizeStorage || ((restoreTime - message.dateSent) < 30.days.inWholeMilliseconds)
   }
 
   override fun onShouldRetry(e: Exception): Boolean = false

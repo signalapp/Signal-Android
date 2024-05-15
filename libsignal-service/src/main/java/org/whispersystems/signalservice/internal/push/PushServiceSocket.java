@@ -1586,6 +1586,16 @@ public class PushServiceSocket {
                                    uploadForm.headers);
   }
 
+  public ResumableUploadSpec getResumableUploadSpecWithKey(AttachmentUploadForm uploadForm, byte[] secretKey) throws IOException {
+    return new ResumableUploadSpec(secretKey,
+                                   Util.getSecretBytes(16),
+                                   uploadForm.key,
+                                   uploadForm.cdn,
+                                   getResumableUploadUrl(uploadForm),
+                                   System.currentTimeMillis() + CDN2_RESUMABLE_LINK_LIFETIME_MILLIS,
+                                   uploadForm.headers);
+  }
+
   public AttachmentDigest uploadAttachment(PushAttachmentData attachment) throws IOException {
 
     if (attachment.getResumableUploadSpec() == null || attachment.getResumableUploadSpec().getExpirationTimestamp() < System.currentTimeMillis()) {

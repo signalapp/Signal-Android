@@ -29,11 +29,15 @@ class DatabaseAttachment : Attachment {
   val archiveCdn: Int
 
   @JvmField
+  val archiveThumbnailCdn: Int
+
+  @JvmField
   val archiveMediaName: String?
 
   @JvmField
   val archiveMediaId: String?
 
+  private val hasArchiveThumbnail: Boolean
   private val hasThumbnail: Boolean
   val displayOrder: Int
 
@@ -42,6 +46,7 @@ class DatabaseAttachment : Attachment {
     mmsId: Long,
     hasData: Boolean,
     hasThumbnail: Boolean,
+    hasArchiveThumbnail: Boolean,
     contentType: String?,
     transferProgress: Int,
     size: Long,
@@ -68,6 +73,7 @@ class DatabaseAttachment : Attachment {
     uploadTimestamp: Long,
     dataHash: String?,
     archiveCdn: Int,
+    archiveThumbnailCdn: Int,
     archiveMediaName: String?,
     archiveMediaId: String?
   ) : super(
@@ -99,8 +105,10 @@ class DatabaseAttachment : Attachment {
     this.hasData = hasData
     this.dataHash = dataHash
     this.hasThumbnail = hasThumbnail
+    this.hasArchiveThumbnail = hasArchiveThumbnail
     this.displayOrder = displayOrder
     this.archiveCdn = archiveCdn
+    this.archiveThumbnailCdn = archiveThumbnailCdn
     this.archiveMediaName = archiveMediaName
     this.archiveMediaId = archiveMediaId
   }
@@ -113,8 +121,10 @@ class DatabaseAttachment : Attachment {
     mmsId = parcel.readLong()
     displayOrder = parcel.readInt()
     archiveCdn = parcel.readInt()
+    archiveThumbnailCdn = parcel.readInt()
     archiveMediaName = parcel.readString()
     archiveMediaId = parcel.readString()
+    hasArchiveThumbnail = ParcelUtil.readBoolean(parcel)
   }
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -126,8 +136,10 @@ class DatabaseAttachment : Attachment {
     dest.writeLong(mmsId)
     dest.writeInt(displayOrder)
     dest.writeInt(archiveCdn)
+    dest.writeInt(archiveThumbnailCdn)
     dest.writeString(archiveMediaName)
     dest.writeString(archiveMediaId)
+    ParcelUtil.writeBoolean(dest, hasArchiveThumbnail)
   }
 
   override val uri: Uri?
@@ -140,6 +152,13 @@ class DatabaseAttachment : Attachment {
   override val publicUri: Uri?
     get() = if (hasData) {
       PartAuthority.getAttachmentPublicUri(uri)
+    } else {
+      null
+    }
+
+  override val thumbnailUri: Uri?
+    get() = if (hasArchiveThumbnail) {
+      PartAuthority.getAttachmentThumbnailUri(attachmentId)
     } else {
       null
     }

@@ -66,6 +66,7 @@ class PointerAttachment : Attachment {
 
   override val uri: Uri? = null
   override val publicUri: Uri? = null
+  override val thumbnailUri: Uri? = null
 
   companion object {
     @JvmStatic

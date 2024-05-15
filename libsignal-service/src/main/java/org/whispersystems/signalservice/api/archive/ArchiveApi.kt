@@ -156,9 +156,13 @@ class ArchiveApi(
     }
   }
 
-  fun getResumableUploadSpec(uploadForm: AttachmentUploadForm): NetworkResult<ResumableUploadSpec> {
+  fun getResumableUploadSpec(uploadForm: AttachmentUploadForm, secretKey: ByteArray?): NetworkResult<ResumableUploadSpec> {
     return NetworkResult.fromFetch {
-      pushServiceSocket.getResumableUploadSpec(uploadForm)
+      if (secretKey == null) {
+        pushServiceSocket.getResumableUploadSpec(uploadForm)
+      } else {
+        pushServiceSocket.getResumableUploadSpecWithKey(uploadForm, secretKey)
+      }
     }
   }
 

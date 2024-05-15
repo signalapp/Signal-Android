@@ -15,6 +15,7 @@ import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.BackupRepository.getThumbnailMediaName
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -52,18 +53,18 @@ class RestoreAttachmentJob private constructor(
   attachmentId: AttachmentId,
   private val manual: Boolean,
   private var forceArchiveDownload: Boolean,
-  private val fullSize: Boolean
+  private val restoreMode: RestoreMode
 ) : BaseJob(parameters) {
 
   companion object {
     const val KEY = "RestoreAttachmentJob"
-    private val TAG = Log.tag(AttachmentDownloadJob::class.java)
+    val TAG = Log.tag(AttachmentDownloadJob::class.java)
 
     private const val KEY_MESSAGE_ID = "message_id"
     private const val KEY_ATTACHMENT_ID = "part_row_id"
     private const val KEY_MANUAL = "part_manual"
     private const val KEY_FORCE_ARCHIVE = "force_archive"
-    private const val KEY_FULL_SIZE = "full_size"
+    private const val KEY_RESTORE_MODE = "restore_mode"
 
     @JvmStatic
     fun constructQueueString(attachmentId: AttachmentId): String {
@@ -71,13 +72,19 @@ class RestoreAttachmentJob private constructor(
       return "RestoreAttachmentJob"
     }
 
-    fun jobSpecMatchesAnyAttachmentId(jobSpec: JobSpec, ids: Set<AttachmentId>): Boolean {
+    private fun getJsonJobData(jobSpec: JobSpec): JsonJobData? {
       if (KEY != jobSpec.factoryKey) {
-        return false
+        return null
       }
 
-      val serializedData = jobSpec.serializedData ?: return false
-      val data = JsonJobData.deserialize(serializedData)
+      val serializedData = jobSpec.serializedData ?: return null
+      return JsonJobData.deserialize(serializedData)
+    }
+
+    fun jobSpecMatchesAnyAttachmentId(data: JsonJobData?, ids: Set<AttachmentId>): Boolean {
+      if (data == null) {
+        return false
+      }
       val parsed = AttachmentId(data.getLong(KEY_ATTACHMENT_ID))
       return ids.contains(parsed)
     }
@@ -85,8 +92,15 @@ class RestoreAttachmentJob private constructor(
     fun modifyPriorities(ids: Set<AttachmentId>, priority: Int) {
       val jobManager = ApplicationDependencies.getJobManager()
       jobManager.update { spec ->
-        if (jobSpecMatchesAnyAttachmentId(spec, ids) && spec.priority != priority) {
-          spec.copy(priority = priority)
+        val jobData = getJsonJobData(spec)
+        if (jobSpecMatchesAnyAttachmentId(jobData, ids) && spec.priority != priority) {
+          val restoreMode = RestoreMode.deserialize(jobData!!.getIntOrDefault(KEY_RESTORE_MODE, RestoreMode.ORIGINAL.value))
+          val modifiedJobData = if (restoreMode == RestoreMode.ORIGINAL) {
+            jobData.buildUpon().putInt(KEY_RESTORE_MODE, RestoreMode.BOTH.value).build()
+          } else {
+            jobData
+          }
+          spec.copy(priority = priority, serializedData = modifiedJobData.serialize())
         } else {
           spec
         }
@@ -96,7 +110,7 @@ class RestoreAttachmentJob private constructor(
 
   private val attachmentId: Long
 
-  constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, forceArchiveDownload: Boolean = false, fullSize: Boolean = true) : this(
+  constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, forceArchiveDownload: Boolean = false, restoreMode: RestoreMode = RestoreMode.ORIGINAL) : this(
     Parameters.Builder()
       .setQueue(constructQueueString(attachmentId))
       .addConstraint(NetworkConstraint.KEY)
@@ -107,7 +121,7 @@ class RestoreAttachmentJob private constructor(
     attachmentId,
     manual,
     forceArchiveDownload,
-    fullSize
+    restoreMode
   )
 
   init {
@@ -120,7 +134,7 @@ class RestoreAttachmentJob private constructor(
       .putLong(KEY_ATTACHMENT_ID, attachmentId)
       .putBoolean(KEY_MANUAL, manual)
       .putBoolean(KEY_FORCE_ARCHIVE, forceArchiveDownload)
-      .putBoolean(KEY_FULL_SIZE, fullSize)
+      .putInt(KEY_RESTORE_MODE, restoreMode.value)
       .serialize()
   }
 
@@ -166,12 +180,19 @@ class RestoreAttachmentJob private constructor(
       return
     }
 
-    if (attachment.transferState != AttachmentTable.TRANSFER_NEEDS_RESTORE && attachment.transferState != AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS) {
+    if (attachment.transferState != AttachmentTable.TRANSFER_NEEDS_RESTORE &&
+      attachment.transferState != AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS &&
+      (attachment.transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED || restoreMode == RestoreMode.THUMBNAIL)
+    ) {
       Log.w(TAG, "Attachment does not need to be restored.")
       return
     }
-
-    retrieveAttachment(messageId, attachmentId, attachment)
+    if (attachment.thumbnailUri == null && (restoreMode == RestoreMode.THUMBNAIL || restoreMode == RestoreMode.BOTH)) {
+      downloadThumbnail(attachmentId, attachment)
+    }
+    if (restoreMode == RestoreMode.ORIGINAL || restoreMode == RestoreMode.BOTH) {
+      retrieveAttachment(messageId, attachmentId, attachment)
+    }
   }
 
   override fun onFailure() {
@@ -360,6 +381,102 @@ class RestoreAttachmentJob private constructor(
     }
   }
 
+  @Throws(InvalidPartException::class)
+  private fun createThumbnailPointer(attachment: DatabaseAttachment): SignalServiceAttachmentPointer {
+    if (TextUtils.isEmpty(attachment.remoteKey)) {
+      throw InvalidPartException("empty encrypted key")
+    }
+
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+    val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
+    return try {
+      val key = backupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName())
+
+      if (attachment.remoteDigest != null) {
+        Log.i(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.remoteDigest))
+      } else {
+        Log.i(TAG, "Downloading attachment with no digest...")
+      }
+
+      val mediaId = backupKey.deriveMediaId(attachment.getThumbnailMediaName()).encode()
+      Log.i(TAG, "Restore: Thumbnail mediaId=$mediaId backupDir=${backupDirectories.backupDir} mediaDir=${backupDirectories.mediaDir}")
+
+      SignalServiceAttachmentPointer(
+        attachment.archiveThumbnailCdn,
+        SignalServiceAttachmentRemoteId.Backup(
+          backupDir = backupDirectories.backupDir,
+          mediaDir = backupDirectories.mediaDir,
+          mediaId = mediaId
+        ),
+        null,
+        key,
+        Optional.empty(),
+        Optional.empty(),
+        0,
+        0,
+        Optional.ofNullable(attachment.remoteDigest),
+        Optional.empty(),
+        attachment.incrementalMacChunkSize,
+        Optional.empty(),
+        attachment.voiceNote,
+        attachment.borderless,
+        attachment.videoGif,
+        Optional.empty(),
+        Optional.ofNullable(attachment.blurHash).map { it.hash },
+        attachment.uploadTimestamp
+      )
+    } catch (e: IOException) {
+      Log.w(TAG, e)
+      throw InvalidPartException(e)
+    } catch (e: ArithmeticException) {
+      Log.w(TAG, e)
+      throw InvalidPartException(e)
+    }
+  }
+
+  private fun downloadThumbnail(attachmentId: AttachmentId, attachment: DatabaseAttachment) {
+    if (attachment.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
+      Log.w(TAG, "$attachmentId already has thumbnail downloaded")
+      return
+    }
+    if (attachment.archiveMediaName == null) {
+      Log.w(TAG, "$attachmentId was never archived! Cannot proceed.")
+      return
+    }
+
+    val maxThumbnailSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes()
+    val thumbnailTransferFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
+    val thumbnailFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
+
+    val progressListener = object : SignalServiceAttachment.ProgressListener {
+      override fun onAttachmentProgress(total: Long, progress: Long) {
+        EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress))
+      }
+
+      override fun shouldCancel(): Boolean {
+        return this@RestoreAttachmentJob.isCanceled
+      }
+    }
+
+    val cdnCredentials = BackupRepository.getCdnReadCredentials(attachment.archiveCdn).successOrThrow().headers
+    val messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver()
+    val pointer = createThumbnailPointer(attachment)
+
+    Log.w(TAG, "Downloading thumbnail for $attachmentId mediaName=${attachment.getThumbnailMediaName()}")
+    val stream = messageReceiver
+      .retrieveArchivedAttachment(
+        SignalStore.svr().getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(attachment.getThumbnailMediaName()),
+        cdnCredentials,
+        thumbnailTransferFile,
+        pointer,
+        thumbnailFile,
+        maxThumbnailSize,
+        progressListener
+      )
+
+    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.archiveMediaId!!, stream, thumbnailTransferFile)
+  }
+
   private fun markFailed(messageId: Long, attachmentId: AttachmentId) {
     try {
       SignalDatabase.attachments.setTransferProgressFailed(attachmentId, messageId)
@@ -382,6 +499,18 @@ class RestoreAttachmentJob private constructor(
     constructor(e: Exception?) : super(e)
   }
 
+  enum class RestoreMode(val value: Int) {
+    THUMBNAIL(0),
+    ORIGINAL(1),
+    BOTH(2);
+
+    companion object {
+      fun deserialize(value: Int): RestoreMode {
+        return values().firstOrNull { it.value == value } ?: ORIGINAL
+      }
+    }
+  }
+
   private data class RemoteData(val remoteId: SignalServiceAttachmentRemoteId, val cdnNumber: Int)
 
   class Factory : Job.Factory<RestoreAttachmentJob?> {
@@ -393,7 +522,7 @@ class RestoreAttachmentJob private constructor(
         attachmentId = AttachmentId(data.getLong(KEY_ATTACHMENT_ID)),
         manual = data.getBoolean(KEY_MANUAL),
         forceArchiveDownload = data.getBooleanOrDefault(KEY_FORCE_ARCHIVE, false),
-        fullSize = data.getBooleanOrDefault(KEY_FULL_SIZE, true)
+        restoreMode = RestoreMode.deserialize(data.getIntOrDefault(KEY_RESTORE_MODE, RestoreMode.ORIGINAL.value))
       )
     }
   }

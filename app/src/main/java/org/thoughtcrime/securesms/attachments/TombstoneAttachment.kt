@@ -80,4 +80,5 @@ class TombstoneAttachment : Attachment {
 
   override val uri: Uri? = null
   override val publicUri: Uri? = null
+  override val thumbnailUri: Uri? = null
 }

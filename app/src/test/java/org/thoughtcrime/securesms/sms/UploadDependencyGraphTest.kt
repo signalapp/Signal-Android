@@ -232,6 +232,7 @@ class UploadDependencyGraphTest {
       mmsId = AttachmentTable.PREUPLOAD_MESSAGE_ID,
       hasData = false,
       hasThumbnail = false,
+      hasArchiveThumbnail = false,
       contentType = attachment.contentType,
       transferProgress = AttachmentTable.TRANSFER_PROGRESS_PENDING,
       size = attachment.size,
@@ -259,7 +260,8 @@ class UploadDependencyGraphTest {
       dataHash = null,
       archiveMediaId = null,
       archiveMediaName = null,
-      archiveCdn = 0
+      archiveCdn = 0,
+      archiveThumbnailCdn = 0
     )
   }
 
