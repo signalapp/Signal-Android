@@ -16,6 +16,8 @@ import org.signal.core.util.concurrent.SimpleTask;
 public class VoiceCallShare extends Activity {
   
   private static final String TAG = Log.tag(VoiceCallShare.class);
+
+  private static final String VIDEO_CALL_MIME_TYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.videocall";
   
   @Override
   public void onCreate(Bundle icicle) {
@@ -32,7 +34,11 @@ public class VoiceCallShare extends Activity {
 
           SimpleTask.run(() -> Recipient.external(this, destination), recipient -> {
             if (!TextUtils.isEmpty(destination)) {
-              ApplicationDependencies.getSignalCallManager().startOutgoingAudioCall(recipient);
+              if (VIDEO_CALL_MIME_TYPE.equals(getIntent().getType())) {
+                ApplicationDependencies.getSignalCallManager().startOutgoingVideoCall(recipient);
+              } else {
+                ApplicationDependencies.getSignalCallManager().startOutgoingAudioCall(recipient);
+              }
 
               Intent activityIntent = new Intent(this, WebRtcCallActivity.class);
               activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
