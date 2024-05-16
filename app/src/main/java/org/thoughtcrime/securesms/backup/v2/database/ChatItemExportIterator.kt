@@ -466,7 +466,15 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     return MessageAttachment(
       pointer = builder.build(),
       wasDownloaded = this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE,
-      flag = if (voiceNote) MessageAttachment.Flag.VOICE_MESSAGE else if (videoGif) MessageAttachment.Flag.GIF else if (borderless) MessageAttachment.Flag.BORDERLESS else MessageAttachment.Flag.NONE
+      flag = if (voiceNote) {
+        MessageAttachment.Flag.VOICE_MESSAGE
+      } else if (videoGif) {
+        MessageAttachment.Flag.GIF
+      } else if (borderless) {
+        MessageAttachment.Flag.BORDERLESS
+      } else {
+        MessageAttachment.Flag.NONE
+      }
     )
   }
 

@@ -4884,7 +4884,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   )
 
   enum class MessageStatus {
-    PENDING, SENT, DELIVERED, READ, VIEWED, FAILED
+    PENDING,
+    SENT,
+    DELIVERED,
+    READ,
+    VIEWED,
+    FAILED
   }
 
   data class SyncMessageId(

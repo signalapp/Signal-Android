@@ -4587,7 +4587,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class VibrateState(val id: Int) {
-    DEFAULT(0), ENABLED(1), DISABLED(2);
+    DEFAULT(0),
+    ENABLED(1),
+    DISABLED(2);
 
     companion object {
       fun fromId(id: Int): VibrateState {
@@ -4601,7 +4603,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class RegisteredState(val id: Int) {
-    UNKNOWN(0), REGISTERED(1), NOT_REGISTERED(2);
+    UNKNOWN(0),
+    REGISTERED(1),
+    NOT_REGISTERED(2);
 
     companion object {
       fun fromId(id: Int): RegisteredState {
@@ -4611,7 +4615,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class UnidentifiedAccessMode(val mode: Int) {
-    UNKNOWN(0), DISABLED(1), ENABLED(2), UNRESTRICTED(3);
+    UNKNOWN(0),
+    DISABLED(1),
+    ENABLED(2),
+    UNRESTRICTED(3);
 
     companion object {
       fun fromMode(mode: Int): UnidentifiedAccessMode {
@@ -4621,7 +4628,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class InsightsBannerTier(val id: Int) {
-    NO_TIER(0), TIER_ONE(1), TIER_TWO(2);
+    NO_TIER(0),
+    TIER_ONE(1),
+    TIER_TWO(2);
 
     fun seen(tier: InsightsBannerTier): Boolean {
       return tier.id <= id
@@ -4635,7 +4644,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class RecipientType(val id: Int) {
-    INDIVIDUAL(0), MMS(1), GV1(2), GV2(3), DISTRIBUTION_LIST(4), CALL_LINK(5);
+    INDIVIDUAL(0),
+    MMS(1),
+    GV1(2),
+    GV2(3),
+    DISTRIBUTION_LIST(4),
+    CALL_LINK(5);
 
     companion object {
       fun fromId(id: Int): RecipientType {
@@ -4645,7 +4659,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class MentionSetting(val id: Int) {
-    ALWAYS_NOTIFY(0), DO_NOT_NOTIFY(1);
+    ALWAYS_NOTIFY(0),
+    DO_NOT_NOTIFY(1);
 
     companion object {
       fun fromId(id: Int): MentionSetting {
@@ -4655,7 +4670,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class PhoneNumberSharingState(val id: Int) {
-    UNKNOWN(0), ENABLED(1), DISABLED(2);
+    UNKNOWN(0),
+    ENABLED(1),
+    DISABLED(2);
 
     val enabled
       get() = this == ENABLED || this == UNKNOWN
@@ -4668,7 +4685,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class PhoneNumberDiscoverableState(val id: Int) {
-    UNKNOWN(0), DISCOVERABLE(1), NOT_DISCOVERABLE(2);
+    UNKNOWN(0),
+    DISCOVERABLE(1),
+    NOT_DISCOVERABLE(2);
 
     companion object {
       fun fromId(id: Int): PhoneNumberDiscoverableState {

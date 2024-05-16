@@ -244,7 +244,9 @@ class IdentityTable internal constructor(context: Context?, databaseHelper: Sign
   }
 
   enum class VerifiedStatus {
-    DEFAULT, VERIFIED, UNVERIFIED;
+    DEFAULT,
+    VERIFIED,
+    UNVERIFIED;
 
     fun toInt(): Int {
       return when (this) {

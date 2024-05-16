@@ -103,11 +103,17 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   }
 
   enum class AudioDevice {
-    SPEAKER_PHONE, WIRED_HEADSET, EARPIECE, BLUETOOTH, NONE
+    SPEAKER_PHONE,
+    WIRED_HEADSET,
+    EARPIECE,
+    BLUETOOTH,
+    NONE
   }
 
   enum class State {
-    UNINITIALIZED, PREINITIALIZED, RUNNING
+    UNINITIALIZED,
+    PREINITIALIZED,
+    RUNNING
   }
 
   /**

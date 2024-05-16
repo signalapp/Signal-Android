@@ -355,11 +355,18 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   )
 
   enum class BackupState(val inProgress: Boolean = false) {
-    NONE, EXPORT_IN_PROGRESS(true), EXPORT_DONE, BACKUP_JOB_DONE, IMPORT_IN_PROGRESS(true)
+    NONE,
+    EXPORT_IN_PROGRESS(true),
+    EXPORT_DONE,
+    BACKUP_JOB_DONE,
+    IMPORT_IN_PROGRESS(true)
   }
 
   enum class BackupUploadState(val inProgress: Boolean = false) {
-    NONE, UPLOAD_IN_PROGRESS(true), UPLOAD_DONE, UPLOAD_FAILED
+    NONE,
+    UPLOAD_IN_PROGRESS(true),
+    UPLOAD_DONE,
+    UPLOAD_FAILED
   }
 
   sealed class RemoteBackupState {

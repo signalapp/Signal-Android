@@ -57,7 +57,8 @@ sealed class MessageSendType(
   )
 
   enum class TransportType {
-    SIGNAL, SMS
+    SIGNAL,
+    SMS
   }
 
   companion object {

@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.backup.v2
 
 class BackupV2Event(val type: Type, val count: Long, val estimatedTotalCount: Long) {
   enum class Type {
-    PROGRESS_MESSAGES, PROGRESS_ATTACHMENTS, FINISHED
+    PROGRESS_MESSAGES,
+    PROGRESS_ATTACHMENTS,
+    FINISHED
   }
 }

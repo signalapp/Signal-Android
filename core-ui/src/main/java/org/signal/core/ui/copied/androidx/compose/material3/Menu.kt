@@ -52,14 +52,14 @@ internal fun DropdownMenuContent(
       if (false isTransitioningTo true) {
         // Dismissed to expanded
         tween(
-          durationMillis = InTransitionDuration,
+          durationMillis = IN_TRANSITION_DURATION,
           easing = LinearOutSlowInEasing
         )
       } else {
         // Expanded to dismissed.
         tween(
           durationMillis = 1,
-          delayMillis = OutTransitionDuration - 1
+          delayMillis = OUT_TRANSITION_DURATION - 1
         )
       }
     }
@@ -80,7 +80,7 @@ internal fun DropdownMenuContent(
         tween(durationMillis = 30)
       } else {
         // Expanded to dismissed.
-        tween(durationMillis = OutTransitionDuration)
+        tween(durationMillis = OUT_TRANSITION_DURATION)
       }
     }
   ) {
@@ -211,5 +211,5 @@ internal data class DropdownMenuPositionProvider(
 internal val MenuVerticalMargin = 48.dp
 
 // Menu open/close animation.
-internal const val InTransitionDuration = 120
-internal const val OutTransitionDuration = 75
+internal const val IN_TRANSITION_DURATION = 120
+internal const val OUT_TRANSITION_DURATION = 75

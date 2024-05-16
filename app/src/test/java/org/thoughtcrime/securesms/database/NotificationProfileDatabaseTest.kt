@@ -32,8 +32,14 @@ class NotificationProfileDatabaseTest {
   @Before
   fun setup() {
     val sqlCipher = TestDatabaseUtil.inMemoryDatabase {
-      NotificationProfileDatabase.CREATE_TABLE.forEach { println(it); this.execSQL(it) }
-      NotificationProfileDatabase.CREATE_INDEXES.forEach { println(it); this.execSQL(it) }
+      NotificationProfileDatabase.CREATE_TABLE.forEach {
+        println(it)
+        this.execSQL(it)
+      }
+      NotificationProfileDatabase.CREATE_INDEXES.forEach {
+        println(it)
+        this.execSQL(it)
+      }
     }
 
     if (!ApplicationDependencies.isInitialized()) {

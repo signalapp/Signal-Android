@@ -817,7 +817,13 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           else -> R.string.ConversationSettingsFragment__block
         }
 
-        val titleTint = if (isBlocked) null else if (state.isDeprecatedOrUnregistered) alertDisabledTint else alertTint
+        val titleTint = if (isBlocked) {
+          null
+        } else if (state.isDeprecatedOrUnregistered) {
+          alertDisabledTint
+        } else {
+          alertTint
+        }
 
         clickPref(
           title = if (titleTint != null) DSLSettingsText.from(title, titleTint) else DSLSettingsText.from(title),

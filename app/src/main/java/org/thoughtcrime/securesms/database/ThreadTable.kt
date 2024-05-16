@@ -2109,7 +2109,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   internal enum class ReadStatus(private val value: Int) {
-    READ(1), UNREAD(0), FORCED_UNREAD(2);
+    READ(1),
+    UNREAD(0),
+    FORCED_UNREAD(2);
 
     fun serialize(): Int {
       return value

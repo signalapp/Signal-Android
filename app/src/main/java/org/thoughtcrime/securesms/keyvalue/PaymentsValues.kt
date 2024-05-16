@@ -358,7 +358,9 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
   }
 
   enum class WalletRestoreResult {
-    ENTROPY_CHANGED, ENTROPY_UNCHANGED, MNEMONIC_ERROR
+    ENTROPY_CHANGED,
+    ENTROPY_UNCHANGED,
+    MNEMONIC_ERROR
   }
 
   private fun userHasLargeBalance(): Boolean {

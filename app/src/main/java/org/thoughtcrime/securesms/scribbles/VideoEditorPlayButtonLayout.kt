@@ -32,7 +32,9 @@ class VideoEditorPlayButtonLayout @JvmOverloads constructor(context: Context, at
   fun fadePlayButton() {
     playOverlay.animate()
       .setListener(object : Animator.AnimatorListener {
-        override fun onAnimationEnd(animation: Animator) { playOverlay.visibility = GONE }
+        override fun onAnimationEnd(animation: Animator) {
+          playOverlay.visibility = GONE
+        }
         override fun onAnimationStart(animation: Animator) = Unit
         override fun onAnimationCancel(animation: Animator) = Unit
         override fun onAnimationRepeat(animation: Animator) = Unit

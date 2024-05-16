@@ -375,6 +375,7 @@ data class CallParticipantsState(
   }
 
   enum class SelectedPage {
-    GRID, FOCUSED
+    GRID,
+    FOCUSED
   }
 }

@@ -136,12 +136,16 @@ data class SafetyNumberFingerprint(
     if (localStableIdentifier != null) {
       if (other.localStableIdentifier == null) return false
       if (!localStableIdentifier.contentEquals(other.localStableIdentifier)) return false
-    } else if (other.localStableIdentifier != null) return false
+    } else if (other.localStableIdentifier != null) {
+      return false
+    }
     if (localIdentityKey != other.localIdentityKey) return false
     if (remoteStableIdentifier != null) {
       if (other.remoteStableIdentifier == null) return false
       if (!remoteStableIdentifier.contentEquals(other.remoteStableIdentifier)) return false
-    } else if (other.remoteStableIdentifier != null) return false
+    } else if (other.remoteStableIdentifier != null) {
+      return false
+    }
     if (remoteIdentityKey != other.remoteIdentityKey) return false
     if (fingerprint != other.fingerprint) return false
 

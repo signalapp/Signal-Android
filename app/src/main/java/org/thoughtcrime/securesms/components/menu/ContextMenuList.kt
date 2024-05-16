@@ -60,7 +60,10 @@ class ContextMenuList(recyclerView: RecyclerView, onItemClick: () -> Unit) {
   }
 
   private enum class DisplayType {
-    TOP, BOTTOM, MIDDLE, ONLY
+    TOP,
+    BOTTOM,
+    MIDDLE,
+    ONLY
   }
 
   private class ItemViewHolder(

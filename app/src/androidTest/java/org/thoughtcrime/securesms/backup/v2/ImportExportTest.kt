@@ -216,7 +216,7 @@ class ImportExportTest {
 
   @Test
   fun largeNumberOfMessagesAndChats() {
-    val NUM_INDIVIDUAL_RECIPIENTS = 1000
+    val numIndividualRecipients = 1000
     val numIndividualMessages = 500
     val numGroupMessagesPerPerson = 200
 
@@ -225,7 +225,7 @@ class ImportExportTest {
     val recipients = ArrayList<Recipient>(1010)
     val chats = ArrayList<Chat>(1010)
     var id = 3L
-    for (i in 0 until NUM_INDIVIDUAL_RECIPIENTS) {
+    for (i in 0 until numIndividualRecipients) {
       val recipientId = id++
       recipients.add(
         Recipient(

@@ -139,7 +139,9 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     override fun isTrustedIdentity(address: SignalProtocolAddress?, identityKey: IdentityKey?, direction: IdentityKeyStore.Direction?): Boolean = true
     override fun loadSession(address: SignalProtocolAddress?): SessionRecord = aliceSessionRecord ?: SessionRecord()
     override fun saveIdentity(address: SignalProtocolAddress?, identityKey: IdentityKey?): Boolean = false
-    override fun storeSession(address: SignalProtocolAddress?, record: SessionRecord?) { aliceSessionRecord = record }
+    override fun storeSession(address: SignalProtocolAddress?, record: SessionRecord?) {
+      aliceSessionRecord = record
+    }
     override fun getSubDeviceSessions(name: String?): List<Int> = emptyList()
     override fun containsSession(address: SignalProtocolAddress?): Boolean = aliceSessionRecord != null
     override fun getIdentity(address: SignalProtocolAddress?): IdentityKey = SignalStore.account().aciIdentityKey.publicKey

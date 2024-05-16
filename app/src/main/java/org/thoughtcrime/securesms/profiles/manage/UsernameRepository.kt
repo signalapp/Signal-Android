@@ -509,15 +509,23 @@ object UsernameRepository {
   }
 
   enum class UsernameSetResult {
-    SUCCESS, USERNAME_UNAVAILABLE, USERNAME_INVALID, NETWORK_ERROR, CANDIDATE_GENERATION_ERROR, RATE_LIMIT_ERROR
+    SUCCESS,
+    USERNAME_UNAVAILABLE,
+    USERNAME_INVALID,
+    NETWORK_ERROR,
+    CANDIDATE_GENERATION_ERROR,
+    RATE_LIMIT_ERROR
   }
 
   enum class UsernameReclaimResult {
-    SUCCESS, PERMANENT_ERROR, NETWORK_ERROR
+    SUCCESS,
+    PERMANENT_ERROR,
+    NETWORK_ERROR
   }
 
   enum class UsernameDeleteResult {
-    SUCCESS, NETWORK_ERROR
+    SUCCESS,
+    NETWORK_ERROR
   }
 
   internal interface Callback<E> {

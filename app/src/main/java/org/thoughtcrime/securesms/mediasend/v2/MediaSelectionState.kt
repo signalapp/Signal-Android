@@ -45,7 +45,8 @@ data class MediaSelectionState(
   }
 
   enum class ViewOnceToggleState(val code: Int) {
-    INFINITE(0), ONCE(1);
+    INFINITE(0),
+    ONCE(1);
 
     fun next(): ViewOnceToggleState {
       return when (this) {

@@ -145,7 +145,8 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
 
   enum class Purpose(val serialized: Int) {
 
-    NOTIFICATIONS(1), CRASH(2);
+    NOTIFICATIONS(1),
+    CRASH(2);
 
     companion object {
       fun deserialize(serialized: Int): Purpose {

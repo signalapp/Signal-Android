@@ -732,7 +732,13 @@ open class ContactSearchAdapter(
       val isLeftSelf = lhs?.isSelf == true
       val isRightSelf = rhs?.isSelf == true
 
-      return if (isLeftSelf == isRightSelf) 0 else if (isLeftSelf) 1 else -1
+      return if (isLeftSelf == isRightSelf) {
+        0
+      } else if (isLeftSelf) {
+        1
+      } else {
+        -1
+      }
     }
   }
 

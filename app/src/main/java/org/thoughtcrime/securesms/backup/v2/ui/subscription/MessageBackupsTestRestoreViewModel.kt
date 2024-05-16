@@ -76,6 +76,8 @@ class MessageBackupsTestRestoreViewModel : ViewModel() {
   )
 
   enum class ImportState(val inProgress: Boolean = false) {
-    NONE, IN_PROGRESS(true), RESTORED
+    NONE,
+    IN_PROGRESS(true),
+    RESTORED
   }
 }

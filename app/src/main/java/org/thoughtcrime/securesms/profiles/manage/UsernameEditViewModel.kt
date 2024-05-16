@@ -386,11 +386,23 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
   }
 
   enum class ButtonState {
-    SUBMIT, SUBMIT_DISABLED, SUBMIT_LOADING, DELETE, DELETE_LOADING, DELETE_DISABLED
+    SUBMIT,
+    SUBMIT_DISABLED,
+    SUBMIT_LOADING,
+    DELETE,
+    DELETE_LOADING,
+    DELETE_DISABLED
   }
 
   enum class Event {
-    NETWORK_FAILURE, SUBMIT_SUCCESS, DELETE_SUCCESS, SUBMIT_FAIL_INVALID, SUBMIT_FAIL_TAKEN, SKIPPED, NEEDS_CONFIRM_RESET, RATE_LIMIT_EXCEEDED
+    NETWORK_FAILURE,
+    SUBMIT_SUCCESS,
+    DELETE_SUCCESS,
+    SUBMIT_FAIL_INVALID,
+    SUBMIT_FAIL_TAKEN,
+    SKIPPED,
+    NEEDS_CONFIRM_RESET,
+    RATE_LIMIT_EXCEEDED
   }
 
   class Factory(private val mode: UsernameEditMode) : ViewModelProvider.Factory {

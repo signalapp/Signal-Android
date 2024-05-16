@@ -233,7 +233,9 @@ class ApkUpdateJob private constructor(parameters: Parameters) : BaseJob(paramet
 
   private class DownloadStatus(val status: Status, val downloadId: Long) {
     enum class Status {
-      PENDING, COMPLETE, MISSING
+      PENDING,
+      COMPLETE,
+      MISSING
     }
   }
 

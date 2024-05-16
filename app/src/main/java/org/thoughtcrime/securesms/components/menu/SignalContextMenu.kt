@@ -114,11 +114,13 @@ class SignalContextMenu private constructor(
   }
 
   enum class HorizontalPosition {
-    START, END
+    START,
+    END
   }
 
   enum class VerticalPosition {
-    ABOVE, BELOW
+    ABOVE,
+    BELOW
   }
 
   /**
