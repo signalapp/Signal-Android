@@ -3,7 +3,7 @@ import org.gradle.kotlin.dsl.extra
 plugins {
   `kotlin-dsl`
   id("groovy-gradle-plugin")
-  id("org.jlleitschuh.gradle.ktlint") version "11.4.2"
+  id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
 }
 
 val signalJavaVersion: JavaVersion by rootProject.extra

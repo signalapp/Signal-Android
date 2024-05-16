@@ -45,7 +45,7 @@ dependencyResolutionManagement {
       library("kotlin-stdlib-jdk8", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8").versionRef("kotlin")
       library("kotlin-reflect", "org.jetbrains.kotlin", "kotlin-reflect").versionRef("kotlin")
       library("kotlin-gradle-plugin", "org.jetbrains.kotlin", "kotlin-gradle-plugin").versionRef("kotlin")
-      library("ktlint", "org.jlleitschuh.gradle:ktlint-gradle:11.4.2")
+      library("ktlint", "org.jlleitschuh.gradle:ktlint-gradle:12.1.1")
       library("kotlinx-coroutines-play-services", "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
 
       // Android X
