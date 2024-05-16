@@ -28,6 +28,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_SIZE}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.FILE_NAME}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_FILE}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.THUMBNAIL_FILE}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CDN_NUMBER},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_LOCATION},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_KEY},
