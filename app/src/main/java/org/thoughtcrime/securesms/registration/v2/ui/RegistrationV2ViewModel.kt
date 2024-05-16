@@ -55,6 +55,7 @@ import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.internal.push.LockedException
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import java.io.IOException
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * ViewModel shared across all of registration.
@@ -124,10 +125,12 @@ class RegistrationV2ViewModel : ViewModel() {
   }
 
   private suspend fun updateFcmToken(context: Context): String? {
+    Log.d(TAG, "Fetching FCM token…")
     val fcmToken = RegistrationRepository.getFcmToken(context)
     store.update {
       it.copy(fcmToken = fcmToken)
     }
+    Log.d(TAG, "FCM token fetched.")
     return fcmToken
   }
 
@@ -147,8 +150,6 @@ class RegistrationV2ViewModel : ViewModel() {
       return
     }
 
-    // TODO [regv2]: initialize Play Services sms retriever
-    val mccMncProducer = MccMncProducer(context)
     val e164 = state.phoneNumber.toE164()
     if (hasRecoveryPassword() && matchesSavedE164(e164)) {
       // Re-registration when the local database is intact.
@@ -187,14 +188,81 @@ class RegistrationV2ViewModel : ViewModel() {
         return@launch
       }
 
-      val codeRequestResponse = RegistrationRepository.requestSmsCode(context, validSession.body.id, e164, password)
+      requestSmsCodeInternal(context, validSession.body.id, e164)
+    }
+  }
+
+  fun requestSmsCode(context: Context) {
+    val e164 = getCurrentE164()
+
+    if (e164 == null) {
+      Log.w(TAG, "Phone number was null after confirmation.")
+      onErrorOccurred()
+      return
+    }
+
+    viewModelScope.launch {
+      val validSession = getOrCreateValidSession(context) ?: return@launch
+      requestSmsCodeInternal(context, validSession.body.id, e164)
+    }
+  }
+
+  fun requestVerificationCall(context: Context) {
+    val e164 = getCurrentE164()
+
+    if (e164 == null) {
+      Log.w(TAG, "Phone number was null after confirmation.")
+      onErrorOccurred()
+      return
+    }
+
+    viewModelScope.launch {
+      val validSession = getOrCreateValidSession(context) ?: return@launch
+      Log.d(TAG, "Requesting voice call code…")
+      val codeRequestResponse = RegistrationRepository.requestSmsCode(
+        context = context,
+        sessionId = validSession.body.id,
+        e164 = e164,
+        password = password,
+        mode = RegistrationRepository.Mode.PHONE_CALL
+      )
+      Log.d(TAG, "Voice call code request submitted.")
 
       handleSessionStateResult(context, codeRequestResponse)
     }
   }
 
+  private suspend fun requestSmsCodeInternal(context: Context, sessionId: String, e164: String) {
+    var smsListenerReady = false
+    Log.d(TAG, "Captcha token submitted.")
+    if (store.value.smsListenerTimeout < System.currentTimeMillis()) {
+      smsListenerReady = store.value.isFcmSupported && RegistrationRepository.registerSmsListener(context)
+
+      if (smsListenerReady) {
+        val smsRetrieverTimeout = System.currentTimeMillis() + 5.minutes.inWholeMilliseconds
+        Log.d(TAG, "Successfully started verification code SMS retriever, which will last until $smsRetrieverTimeout.")
+        store.update { it.copy(smsListenerTimeout = smsRetrieverTimeout) }
+      } else {
+        Log.d(TAG, "Could not start verification code SMS retriever.")
+      }
+    }
+
+    Log.d(TAG, "Requesting SMS code…")
+    val codeRequestResponse = RegistrationRepository.requestSmsCode(
+      context = context,
+      sessionId = sessionId,
+      e164 = e164,
+      password = password,
+      mode = if (smsListenerReady) RegistrationRepository.Mode.SMS_WITH_LISTENER else RegistrationRepository.Mode.SMS_WITHOUT_LISTENER
+    )
+    Log.d(TAG, "SMS code request submitted.")
+
+    handleSessionStateResult(context, codeRequestResponse)
+  }
+
   private suspend fun getOrCreateValidSession(context: Context): RegistrationSessionMetadataResponse? {
     val e164 = getCurrentE164() ?: throw IllegalStateException("E164 required to create session!")
+    Log.d(TAG, "Validating/creating a registration session.")
     val mccMncProducer = MccMncProducer(context)
 
     val existingSessionId = store.value.sessionId
@@ -210,6 +278,7 @@ class RegistrationV2ViewModel : ViewModel() {
             )
           }
         }
+        Log.d(TAG, "Registration session validated.")
         return metadata
       }
       is RegistrationSessionCreationResult.Success -> {
@@ -222,27 +291,46 @@ class RegistrationV2ViewModel : ViewModel() {
             )
           }
         }
+        Log.d(TAG, "Registration session created.")
         return metadata
       }
-      is RegistrationSessionCheckResult.SessionNotFound -> Log.w(TAG, "This should be impossible to reach at this stage; it should have been handled in RegistrationRepository.", sessionResult.getCause())
-      is RegistrationSessionCheckResult.UnknownError -> Log.i(TAG, "Unknown error occurred while checking registration session.", sessionResult.getCause())
-      is RegistrationSessionCreationResult.MalformedRequest -> Log.i(TAG, "Malformed request error occurred while creating registration session.", sessionResult.getCause())
-      is RegistrationSessionCreationResult.RateLimited -> Log.i(TAG, "Rate limit occurred while creating registration session.", sessionResult.getCause())
-      is RegistrationSessionCreationResult.ServerUnableToParse -> Log.i(TAG, "Server unable to parse request for creating registration session.", sessionResult.getCause())
-      is RegistrationSessionCreationResult.UnknownError -> Log.i(TAG, "Unknown error occurred while checking registration session.", sessionResult.getCause())
+      is RegistrationSessionCheckResult.SessionNotFound -> {
+        Log.w(TAG, "This should be impossible to reach at this stage; it should have been handled in RegistrationRepository.", sessionResult.getCause())
+        handleGenericError(sessionResult.getCause())
+      }
+      is RegistrationSessionCheckResult.UnknownError -> {
+        Log.i(TAG, "Unknown error occurred while checking registration session.", sessionResult.getCause())
+        handleGenericError(sessionResult.getCause())
+      }
+      is RegistrationSessionCreationResult.MalformedRequest -> {
+        Log.i(TAG, "Malformed request error occurred while creating registration session.", sessionResult.getCause())
+        handleGenericError(sessionResult.getCause())
+      }
+      is RegistrationSessionCreationResult.RateLimited -> {
+        Log.i(TAG, "Rate limit occurred while creating registration session.", sessionResult.getCause())
+        handleGenericError(sessionResult.getCause())
+      }
+      is RegistrationSessionCreationResult.ServerUnableToParse -> {
+        Log.i(TAG, "Server unable to parse request for creating registration session.", sessionResult.getCause())
+        handleGenericError(sessionResult.getCause())
+      }
+      is RegistrationSessionCreationResult.UnknownError -> {
+        Log.i(TAG, "Unknown error occurred while checking registration session.", sessionResult.getCause())
+        handleGenericError(sessionResult.getCause())
+      }
     }
-    setInProgress(false)
     return null
   }
 
   fun submitCaptchaToken(context: Context) {
     val e164 = getCurrentE164() ?: throw IllegalStateException("TODO")
-    val sessionId = store.value.sessionId ?: throw IllegalStateException("TODO")
     val captchaToken = store.value.captchaToken ?: throw IllegalStateException("TODO")
 
     viewModelScope.launch {
-      val captchaSubmissionResult = RegistrationRepository.submitCaptchaToken(context, e164, password, sessionId, captchaToken)
-
+      val session = getOrCreateValidSession(context) ?: return@launch
+      Log.d(TAG, "Submitting captcha token…")
+      val captchaSubmissionResult = RegistrationRepository.submitCaptchaToken(context, e164, password, session.body.id, captchaToken)
+      Log.d(TAG, "Captcha token submitted.")
       handleSessionStateResult(context, captchaSubmissionResult)
     }
   }
@@ -258,6 +346,7 @@ class RegistrationV2ViewModel : ViewModel() {
       }
 
       is Success -> {
+        Log.d(TAG, "New registration session status received.")
         updateFcmToken(context)
         store.update {
           it.copy(
@@ -273,10 +362,12 @@ class RegistrationV2ViewModel : ViewModel() {
       is AttemptsExhausted -> Log.w(TAG, "TODO")
       is ChallengeRequired -> store.update {
         // TODO [regv2] handle push challenge required
+        Log.d(TAG, "[${sessionResult.challenges.joinToString()}] registration challenges received.")
         it.copy(
           registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_RECEIVED
         )
       }
+
       is ImpossibleNumber -> Log.w(TAG, "TODO")
       is NonNormalizedNumber -> Log.w(TAG, "TODO")
       is RateLimited -> Log.w(TAG, "TODO")
@@ -445,6 +536,12 @@ class RegistrationV2ViewModel : ViewModel() {
   fun completeRegistration() {
     ApplicationDependencies.getJobManager().startChain(ProfileUploadJob()).then(listOf(MultiDeviceProfileKeyUpdateJob(), MultiDeviceProfileContentUpdateJob())).enqueue()
     RegistrationUtil.maybeMarkRegistrationComplete()
+  }
+
+  fun clearNetworkError() {
+    store.update {
+      it.copy(networkError = null)
+    }
   }
 
   private fun matchesSavedE164(e164: String?): Boolean {

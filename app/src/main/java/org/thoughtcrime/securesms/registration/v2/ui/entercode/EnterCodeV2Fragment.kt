@@ -58,6 +58,20 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
       sharedViewModel.verifyCodeWithoutRegistrationLock(requireContext(), it)
     }
 
+    binding.callMeCountDown.apply {
+      setTextResources(R.string.RegistrationActivity_call, R.string.RegistrationActivity_call_me_instead_available_in)
+      setOnClickListener {
+        sharedViewModel.requestVerificationCall(requireContext())
+      }
+    }
+
+    binding.resendSmsCountDown.apply {
+      setTextResources(R.string.RegistrationActivity_resend_code, R.string.RegistrationActivity_resend_sms_available_in)
+      setOnClickListener {
+        sharedViewModel.requestSmsCode(requireContext())
+      }
+    }
+
     binding.keyboard.setOnKeyPressListener { key ->
       if (!autopilotCodeEntryActive) {
         if (key >= 0) {
@@ -66,6 +80,11 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
           binding.code.delete()
         }
       }
+    }
+
+    sharedViewModel.uiState.observe(viewLifecycleOwner) {
+      binding.resendSmsCountDown.startCountDownTo(it.nextSms)
+      binding.callMeCountDown.startCountDownTo(it.nextCall)
     }
   }
 

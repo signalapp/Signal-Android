@@ -46,6 +46,7 @@ dependencyResolutionManagement {
       library("kotlin-reflect", "org.jetbrains.kotlin", "kotlin-reflect").versionRef("kotlin")
       library("kotlin-gradle-plugin", "org.jetbrains.kotlin", "kotlin-gradle-plugin").versionRef("kotlin")
       library("ktlint", "org.jlleitschuh.gradle:ktlint-gradle:11.4.2")
+      library("kotlinx-coroutines-play-services", "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
 
       // Android X
       library("androidx-activity-ktx", "androidx.activity", "activity-ktx").versionRef("androidx-activity")

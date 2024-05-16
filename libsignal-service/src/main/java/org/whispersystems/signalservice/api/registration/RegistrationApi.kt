@@ -54,9 +54,9 @@ class RegistrationApi(
    *
    * @param androidSmsRetrieverSupported whether the system framework will automatically parse the incoming verification message.
    */
-  fun requestSmsVerificationCode(sessionId: String?, locale: Locale?, androidSmsRetrieverSupported: Boolean): NetworkResult<RegistrationSessionMetadataResponse> {
+  fun requestSmsVerificationCode(sessionId: String?, locale: Locale?, androidSmsRetrieverSupported: Boolean, transport: PushServiceSocket.VerificationCodeTransport): NetworkResult<RegistrationSessionMetadataResponse> {
     return NetworkResult.fromFetch {
-      pushServiceSocket.requestVerificationCode(sessionId, locale, androidSmsRetrieverSupported, PushServiceSocket.VerificationCodeTransport.SMS)
+      pushServiceSocket.requestVerificationCode(sessionId, locale, androidSmsRetrieverSupported, transport)
     }
   }
 

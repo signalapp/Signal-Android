@@ -551,6 +551,7 @@ dependencies {
   implementation(libs.accompanist.permissions)
   implementation(libs.kotlin.stdlib.jdk8)
   implementation(libs.kotlin.reflect)
+  implementation(libs.kotlinx.coroutines.play.services)
   implementation(libs.jackson.module.kotlin)
   implementation(libs.rxjava3.rxandroid)
   implementation(libs.rxjava3.rxkotlin)

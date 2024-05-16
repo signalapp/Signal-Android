@@ -28,6 +28,7 @@ data class RegistrationV2State(
   val captchaToken: String? = null,
   val nextSms: Long = 0L,
   val nextCall: Long = 0L,
+  val smsListenerTimeout: Long = 0L,
   val registrationCheckpoint: RegistrationCheckpoint = RegistrationCheckpoint.INITIALIZATION,
   val networkError: Throwable? = null
 )
