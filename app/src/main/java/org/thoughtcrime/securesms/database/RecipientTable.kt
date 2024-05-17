@@ -3197,7 +3197,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return readableDatabase
       .select(E164)
       .from(TABLE_NAME)
-      .where("$REGISTERED = ? and $HIDDEN = ? AND $E164 NOT NULL AND $PHONE_NUMBER_DISCOVERABLE != ?", RegisteredState.REGISTERED.id, Recipient.HiddenState.NOT_HIDDEN.serialize(), PhoneNumberDiscoverableState.NOT_DISCOVERABLE)
+      .where("$REGISTERED = ? AND $HIDDEN = ? AND $E164 NOT NULL AND $PHONE_NUMBER_DISCOVERABLE != ?", RegisteredState.REGISTERED.id, Recipient.HiddenState.NOT_HIDDEN.serialize(), PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id)
       .run()
       .readToSet { cursor ->
         cursor.requireNonNullString(E164)
