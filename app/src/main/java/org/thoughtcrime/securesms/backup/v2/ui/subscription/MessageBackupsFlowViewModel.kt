@@ -73,6 +73,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
 
   private fun validateTypeAndUpdateState(): MessageBackupsScreen {
     SignalStore.backup().areBackupsEnabled = true
+    SignalStore.backup().backupTier = state.value.selectedMessageBackupTier!!
     return MessageBackupsScreen.COMPLETED
     // return MessageBackupsScreen.CHECKOUT_SHEET TODO [message-backups] Switch back to payment flow
   }

@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2
 
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
+import org.signal.core.util.LongSerializer
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.messagebackup.MessageBackup
@@ -689,7 +690,17 @@ class BackupMetadata(
   val mediaCount: Long
 )
 
-enum class MessageBackupTier {
-  FREE,
-  PAID
+enum class MessageBackupTier(val value: Int) {
+  FREE(0),
+  PAID(1);
+
+  companion object Serializer : LongSerializer<MessageBackupTier> {
+    override fun serialize(data: MessageBackupTier): Long {
+      return data.value.toLong()
+    }
+
+    override fun deserialize(data: Long): MessageBackupTier {
+      return values().firstOrNull { it.value == data.toInt() } ?: FREE
+    }
+  }
 }

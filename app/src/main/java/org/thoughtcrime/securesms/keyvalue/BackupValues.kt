@@ -17,12 +17,12 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {
     val TAG = Log.tag(BackupValues::class.java)
     private const val KEY_CREDENTIALS = "backup.credentials"
-    private const val KEY_CDN_CAN_READ_WRITE = "backup.cdn.canReadWrite"
     private const val KEY_CDN_READ_CREDENTIALS = "backup.cdn.readCredentials"
     private const val KEY_CDN_READ_CREDENTIALS_TIMESTAMP = "backup.cdn.readCredentials.timestamp"
     private const val KEY_RESTORE_STATE = "backup.restoreState"
     private const val KEY_BACKUP_USED_MEDIA_SPACE = "backup.usedMediaSpace"
     private const val KEY_BACKUP_LAST_PROTO_SIZE = "backup.lastProtoSize"
+    private const val KEY_BACKUP_TIER = "backup.backupTier"
 
     private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
@@ -60,6 +60,7 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var nextBackupTime: Long by longValue(KEY_NEXT_BACKUP_TIME, -1)
   var lastBackupTime: Long by longValue(KEY_LAST_BACKUP_TIME, -1)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
+  var backupTier: MessageBackupTier by enumValue(KEY_BACKUP_TIER, MessageBackupTier.FREE, MessageBackupTier.Serializer)
 
   val totalBackupSize: Long get() = lastBackupProtoSize + usedBackupMediaSpace
 
@@ -80,16 +81,6 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         .putBoolean(KEY_BACKUPS_INITIALIZED, false)
         .apply()
     }
-
-  val backupTier: MessageBackupTier? = if (areBackupsEnabled) {
-    if (backsUpMedia) {
-      MessageBackupTier.PAID
-    } else {
-      MessageBackupTier.FREE
-    }
-  } else {
-    null
-  }
 
   var backupsInitialized: Boolean by booleanValue(KEY_BACKUPS_INITIALIZED, false)
 
