@@ -3497,7 +3497,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     //language=sql
     val subquery = """
       SELECT ${SEARCH_PROJECTION.joinToString(", ")} FROM $TABLE_NAME
-      WHERE $BLOCKED = ? AND $HIDDEN = ? AND NOT EXISTS (SELECT 1 FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1 AND ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$ID LIMIT 1) 
+      WHERE $BLOCKED = ? AND $HIDDEN = ? AND $REGISTERED != ? AND NOT EXISTS (SELECT 1 FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1 AND ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$ID LIMIT 1)
       AND (
           $SORT_NAME GLOB ? OR 
           $USERNAME GLOB ? OR 
@@ -3506,7 +3506,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
     """
 
-    return readableDatabase.query(subquery, SqlUtil.buildArgs(0, 0, query, query, query, query))
+    return readableDatabase.query(subquery, SqlUtil.buildArgs(0, 0, RegisteredState.NOT_REGISTERED.id, query, query, query, query))
   }
 
   @JvmOverloads
