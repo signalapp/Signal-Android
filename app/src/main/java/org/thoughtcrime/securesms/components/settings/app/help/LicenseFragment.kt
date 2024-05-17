@@ -26,6 +26,7 @@ import org.signal.core.ui.Scaffolds
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import java.io.InputStream
 
 class LicenseFragment : ComposeFragment() {
   private val TAG = Log.tag(LicenseFragment::class.java)
@@ -34,9 +35,9 @@ class LicenseFragment : ComposeFragment() {
   override fun FragmentContent() {
     val textState: State<List<String>> = Single
       .fromCallable {
-        requireContext().resources.openRawResource(R.raw.third_party_licenses).bufferedReader().use {
-          it.readText().split("\n")
-        }
+        requireContext().resources.openRawResource(R.raw.third_party_licenses).readToLines() +
+          requireContext().assets.open("acknowledgments/libsignal.md").readToLines() +
+          requireContext().assets.open("acknowledgments/ringrtc.md").readToLines()
       }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
@@ -73,4 +74,8 @@ fun LicenseScreen(licenseTextLines: List<String>, modifier: Modifier = Modifier)
 @Composable
 fun LicenseFragmentPreview() {
   LicenseScreen(listOf("Lorem ipsum", "Delor"))
+}
+
+private fun InputStream.readToLines(): List<String> {
+  return this.bufferedReader().use { it.readText().split("\n") }
 }
