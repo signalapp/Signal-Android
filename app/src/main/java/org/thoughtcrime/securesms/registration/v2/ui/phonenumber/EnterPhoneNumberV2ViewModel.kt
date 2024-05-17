@@ -32,7 +32,7 @@ class EnterPhoneNumberV2ViewModel : ViewModel() {
 
   val supportedCountryPrefixes: List<CountryPrefix> = PhoneNumberUtil.getInstance().supportedCallingCodes
     .map { CountryPrefix(it, PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(it)) }
-    .sortedBy { it.digits.toString() }
+    .sortedBy { it.digits }
 
   fun countryPrefix(): CountryPrefix {
     return supportedCountryPrefixes[store.value.countryPrefixIndex]
