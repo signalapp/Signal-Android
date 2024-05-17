@@ -60,6 +60,16 @@ public class AttachmentCipherInputStream extends FilterInputStream {
    * Passing in a null incrementalDigest and/or 0 for the chunk size at the call site disables incremental mac validation.
    */
   public static InputStream createForAttachment(File file, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest, int incrementalMacChunkSize)
+      throws InvalidMessageException, IOException {
+    return createForAttachment(file, plaintextLength, combinedKeyMaterial, digest, incrementalDigest, incrementalMacChunkSize, false);
+  }
+
+  /**
+   * Passing in a null incrementalDigest and/or 0 for the chunk size at the call site disables incremental mac validation.
+   *
+   * Passing in true for ignoreDigest DOES NOT VERIFY THE DIGEST
+   */
+  public static InputStream createForAttachment(File file, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest, int incrementalMacChunkSize, boolean ignoreDigest)
       throws InvalidMessageException, IOException
   {
     byte[][] parts = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
@@ -69,7 +79,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
       throw new InvalidMessageException("Message shorter than crypto overhead!");
     }
 
-    if (digest == null) {
+    if (!ignoreDigest && digest == null) {
       throw new InvalidMessageException("Missing digest!");
     }
 

@@ -190,10 +190,11 @@ public class SignalServiceMessageReceiver {
                                                 @Nonnull SignalServiceAttachmentPointer pointer,
                                                 @Nonnull File attachmentDestination,
                                                 long maxSizeBytes,
+                                                boolean ignoreDigest,
                                                 @Nullable ProgressListener listener)
       throws IOException, InvalidMessageException, MissingConfigurationException
   {
-    if (pointer.getDigest().isEmpty()) {
+    if (!ignoreDigest && pointer.getDigest().isEmpty()) {
       throw new InvalidMessageException("No attachment digest!");
     }
 
@@ -213,9 +214,10 @@ public class SignalServiceMessageReceiver {
     return AttachmentCipherInputStream.createForAttachment(attachmentDestination,
                                                            pointer.getSize().orElse(0),
                                                            pointer.getKey(),
-                                                           pointer.getDigest().get(),
+                                                           ignoreDigest ? null : pointer.getDigest().get(),
                                                            null,
-                                                           0);
+                                                           0,
+                                                           ignoreDigest);
   }
 
   public void retrieveBackup(int cdnNumber, Map<String, String> headers, String cdnPath, File destination, ProgressListener listener) throws MissingConfigurationException, IOException {

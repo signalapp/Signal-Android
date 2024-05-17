@@ -257,6 +257,7 @@ class RestoreAttachmentJob private constructor(
             pointer,
             attachmentFile,
             maxReceiveSize,
+            false,
             progressListener
           )
       } else {
@@ -391,16 +392,7 @@ class RestoreAttachmentJob private constructor(
     val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
     return try {
       val key = backupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName())
-
-      if (attachment.remoteDigest != null) {
-        Log.i(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.remoteDigest))
-      } else {
-        Log.i(TAG, "Downloading attachment with no digest...")
-      }
-
       val mediaId = backupKey.deriveMediaId(attachment.getThumbnailMediaName()).encode()
-      Log.i(TAG, "Restore: Thumbnail mediaId=$mediaId backupDir=${backupDirectories.backupDir} mediaDir=${backupDirectories.mediaDir}")
-
       SignalServiceAttachmentPointer(
         attachment.archiveThumbnailCdn,
         SignalServiceAttachmentRemoteId.Backup(
@@ -414,7 +406,7 @@ class RestoreAttachmentJob private constructor(
         Optional.empty(),
         0,
         0,
-        Optional.ofNullable(attachment.remoteDigest),
+        Optional.empty(),
         Optional.empty(),
         attachment.incrementalMacChunkSize,
         Optional.empty(),
@@ -471,6 +463,7 @@ class RestoreAttachmentJob private constructor(
         pointer,
         thumbnailFile,
         maxThumbnailSize,
+        true,
         progressListener
       )
 

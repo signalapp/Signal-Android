@@ -246,6 +246,7 @@ class AttachmentDownloadJob private constructor(
             pointer,
             attachmentFile,
             maxReceiveSize,
+            false,
             progressListener
           )
       } else {
