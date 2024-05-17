@@ -81,7 +81,6 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameQrScannerActivity
 import org.thoughtcrime.securesms.invites.InviteActions
-import org.thoughtcrime.securesms.permissions.compose.Permissions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberVisualTransformation
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
@@ -142,13 +141,6 @@ class FindByActivity : PassphraseRequiredActivity() {
             ) {
               val context = LocalContext.current
 
-              val cameraPermissionController = Permissions.cameraPermissionHandler(
-                rationale = stringResource(id = R.string.PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera),
-                onPermissionGranted = {
-                  qrScanLauncher.launch(Unit)
-                }
-              )
-
               Content(
                 paddingValues = it,
                 state = state,
@@ -171,7 +163,7 @@ class FindByActivity : PassphraseRequiredActivity() {
                   navController.navigate("select-country-prefix")
                 },
                 onQrCodeScanClicked = {
-                  cameraPermissionController.request()
+                  qrScanLauncher.launch(Unit)
                 }
               )
             }

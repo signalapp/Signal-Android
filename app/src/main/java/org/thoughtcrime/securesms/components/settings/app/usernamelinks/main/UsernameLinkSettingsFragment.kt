@@ -2,6 +2,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
@@ -77,6 +78,7 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.Username
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.permissions.PermissionCompat
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.CommunicationActions
 import java.io.ByteArrayOutputStream
@@ -140,6 +142,7 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
       onShareBadge = { shareQrBadge(requireActivity(), viewModel.generateQrCodeImage(helpText)) },
       onQrCodeScanned = { data -> viewModel.onQrCodeScanned(data) },
       onQrResultHandled = { viewModel.onQrResultHandled() },
+      onOpenCameraClicked = { askCameraPermissions() },
       onOpenGalleryClicked = {
         if (galleryPermissionState.allPermissionsGranted) {
           galleryLauncher.launch(Unit)
@@ -153,6 +156,10 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
     )
   }
 
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     disposables.bindTo(viewLifecycleOwner)
   }
@@ -160,6 +167,15 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
   override fun onResume() {
     super.onResume()
     viewModel.onResume()
+  }
+
+  private fun askCameraPermissions() {
+    Permissions.with(this)
+      .request(Manifest.permission.CAMERA)
+      .ifNecessary()
+      .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_scan_qr_code), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_scan_qr_codes, parentFragmentManager)
+      .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_scan_qr_code, Toast.LENGTH_LONG).show() }
+      .execute()
   }
 }
 
@@ -177,6 +193,7 @@ private fun MainScreen(
   onShareBadge: () -> Unit = {},
   onQrCodeScanned: (String) -> Unit = {},
   onQrResultHandled: () -> Unit = {},
+  onOpenCameraClicked: () -> Unit = {},
   onOpenGalleryClicked: () -> Unit = {},
   onLinkReset: () -> Unit = {},
   onBackNavigationPressed: () -> Unit = {},
@@ -244,7 +261,9 @@ private fun MainScreen(
         qrScanResult = state.qrScanResult,
         onQrCodeScanned = onQrCodeScanned,
         onQrResultHandled = onQrResultHandled,
+        onOpenCameraClicked = onOpenCameraClicked,
         onOpenGalleryClicked = onOpenGalleryClicked,
+        hasCameraPermission = cameraPermissionState.status.isGranted,
         modifier = Modifier.padding(contentPadding),
         onRecipientFound = { recipient ->
           val taskStack = TaskStackBuilder
@@ -296,13 +315,7 @@ private fun TopAppBarContent(
         TabButton(
           label = stringResource(R.string.UsernameLinkSettings_scan_tab_name),
           active = activeTab == ActiveTab.Scan,
-          onClick = {
-            if (cameraPermissionState.status.isGranted) {
-              onScanTabSelected()
-            } else {
-              cameraPermissionState.launchPermissionRequest()
-            }
-          },
+          onClick = { onScanTabSelected() },
           modifier = Modifier.padding(end = 8.dp)
         )
       }

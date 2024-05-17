@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,11 +27,13 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.LifecycleOwner
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.qr.QrScannerView
@@ -49,8 +52,10 @@ fun UsernameQrScanScreen(
   qrScanResult: QrScanResult?,
   onQrCodeScanned: (String) -> Unit,
   onQrResultHandled: () -> Unit,
+  onOpenCameraClicked: () -> Unit,
   onOpenGalleryClicked: () -> Unit,
   onRecipientFound: (Recipient) -> Unit,
+  hasCameraPermission: Boolean,
   modifier: Modifier = Modifier
 ) {
   val path = remember { Path() }
@@ -113,9 +118,34 @@ fun UsernameQrScanScreen(
           .fillMaxHeight()
           .drawWithContent {
             drawContent()
-            drawQrCrosshair(path)
+            if (hasCameraPermission) {
+              drawQrCrosshair(path)
+            }
           }
       )
+      if (!hasCameraPermission) {
+        Column(
+          verticalArrangement = Arrangement.Center,
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier
+            .align(Alignment.Center)
+            .padding(50.dp)
+        ) {
+          Text(
+            text = stringResource(R.string.CameraXFragment_to_scan_qr_code_allow_camera),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color.White,
+            modifier = Modifier.padding(10.dp)
+          )
+          Buttons.MediumTonal(
+            colors = ButtonDefaults.filledTonalButtonColors(),
+            onClick = onOpenCameraClicked
+          ) {
+            Text(stringResource(R.string.CameraXFragment_allow_access))
+          }
+        }
+      }
 
       FloatingActionButton(
         shape = CircleShape,
