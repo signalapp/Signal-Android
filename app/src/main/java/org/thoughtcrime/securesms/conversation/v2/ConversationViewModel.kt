@@ -521,9 +521,9 @@ class ConversationViewModel(
     _jumpToDateValidator
   }
 
-  fun getEarliestMessageDate(): Single<Long> {
+  fun getEarliestMessageSentDate(): Single<Long> {
     return repository
-      .getEarliestMessageDate(threadId)
+      .getEarliestMessageSentDate(threadId)
       .observeOn(AndroidSchedulers.mainThread())
   }
 }

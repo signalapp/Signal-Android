@@ -3954,17 +3954,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return dayStarts.associateWith { startOfDay ->
       readableDatabase
         .exists(TABLE_NAME)
-        .where("$THREAD_ID = $threadId AND $DATE_RECEIVED >= $startOfDay AND $DATE_RECEIVED < $startOfDay + 86400000 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0")
+        .where("$THREAD_ID = $threadId AND $DATE_SENT >= $startOfDay AND $DATE_SENT < $startOfDay + 86400000 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0")
         .run()
     }
   }
 
-  fun getEarliestMessageDate(threadId: Long): Long {
+  fun getEarliestMessageSentDate(threadId: Long): Long {
     return readableDatabase
-      .select(DATE_RECEIVED)
+      .select(DATE_SENT)
       .from(TABLE_NAME)
       .where("$THREAD_ID = $threadId AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0")
-      .orderBy("$DATE_RECEIVED ASC")
+      .orderBy("$DATE_SENT ASC")
       .limit(1)
       .run()
       .readToSingleLong(0)

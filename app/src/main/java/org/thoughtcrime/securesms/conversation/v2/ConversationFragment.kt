@@ -4200,7 +4200,7 @@ class ConversationFragment :
     }
 
     override fun onDatePickerSelected() {
-      disposables += viewModel.getEarliestMessageDate().subscribe { earliestDate ->
+      disposables += viewModel.getEarliestMessageSentDate().subscribe { earliestDate ->
         val local = LocalDateTime.now()
           .atMidnight()
           .atUTC()

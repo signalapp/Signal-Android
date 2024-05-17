@@ -585,9 +585,9 @@ class ConversationRepository(
     }
   }
 
-  fun getEarliestMessageDate(threadId: Long): Single<Long> {
+  fun getEarliestMessageSentDate(threadId: Long): Single<Long> {
     return Single
-      .fromCallable { SignalDatabase.messages.getEarliestMessageDate(threadId) }
+      .fromCallable { SignalDatabase.messages.getEarliestMessageSentDate(threadId) }
       .subscribeOn(Schedulers.io())
   }
 
