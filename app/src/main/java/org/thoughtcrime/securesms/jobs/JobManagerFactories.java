@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.migrations.BackupNotificationMigrationJob;
 import org.thoughtcrime.securesms.migrations.BlobStorageLocationMigrationJob;
 import org.thoughtcrime.securesms.migrations.CachedAttachmentsMigrationJob;
 import org.thoughtcrime.securesms.migrations.ClearGlideCacheMigrationJob;
+import org.thoughtcrime.securesms.migrations.ContactLinkRebuildMigrationJob;
 import org.thoughtcrime.securesms.migrations.CopyUsernameToSignalStoreMigrationJob;
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
 import org.thoughtcrime.securesms.migrations.DeleteDeprecatedLogsMigrationJob;
@@ -124,6 +125,7 @@ public final class JobManagerFactories {
       put(CallSyncEventJob.KEY,                      new CallSyncEventJob.Factory());
       put(CheckServiceReachabilityJob.KEY,           new CheckServiceReachabilityJob.Factory());
       put(CleanPreKeysJob.KEY,                       new CleanPreKeysJob.Factory());
+      put(ContactLinkRebuildMigrationJob.KEY,        new ContactLinkRebuildMigrationJob.Factory());
       put(ConversationShortcutRankingUpdateJob.KEY,  new ConversationShortcutRankingUpdateJob.Factory());
       put(ConversationShortcutUpdateJob.KEY,         new ConversationShortcutUpdateJob.Factory());
       put(CreateReleaseChannelJob.KEY,               new CreateReleaseChannelJob.Factory());
