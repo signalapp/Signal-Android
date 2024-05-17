@@ -104,19 +104,19 @@ class ScrubberTest(private val input: String, private val expected: String) {
         ),
         arrayOf(
           "__textsecure_group__!000102030405060708090a0b0c0d0e0f",
-          "__...group...0f"
+          "GV1::***e0f"
         ),
         arrayOf(
           "A group id __textsecure_group__!000102030405060708090a0b0c0d0e1a surrounded with text",
-          "A group id __...group...1a surrounded with text"
+          "A group id GV1::***e1a surrounded with text"
         ),
         arrayOf(
           "__signal_group__v2__!0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
-          "__...group_v2...ef"
+          "GV2::***def"
         ),
         arrayOf(
           "A group v2 id __signal_group__v2__!23456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef01 surrounded with text",
-          "A group v2 id __...group_v2...01 surrounded with text"
+          "A group v2 id GV2::***f01 surrounded with text"
         ),
         arrayOf(
           "a37cb654-c9e0-4c1e-93df-3d11ca3c97f4",
@@ -140,7 +140,7 @@ class ScrubberTest(private val input: String, private val expected: String) {
         ),
         arrayOf(
           "All patterns in a row __textsecure_group__!abcdefg1234567890 +123456789012345 abc@def.com a37cb654-c9e0-4c1e-93df-3d11ca3c97f4 nl.motorsport.com 192.168.1.1 with text after",
-          "All patterns in a row __...group...90 E164:<78d5b> a...@... ********-****-****-****-*********7f4 ***.com ...ipv4... with text after"
+          "All patterns in a row GV1::***890 E164:<78d5b> a...@... ********-****-****-****-*********7f4 ***.com ...ipv4... with text after"
         ),
         arrayOf(
           "java.net.UnknownServiceException: CLEARTEXT communication to nl.motorsport.com not permitted by network security policy",

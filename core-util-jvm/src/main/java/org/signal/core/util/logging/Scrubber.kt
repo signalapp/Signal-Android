@@ -30,12 +30,10 @@ object Scrubber {
   private const val EMAIL_CENSOR = "...@..."
 
   /** The middle group will be censored. */
-  private val GROUP_ID_V1_PATTERN = Pattern.compile("(__)(textsecure_group__![^\\s]+)([^\\s]{2})")
-  private const val GROUP_ID_V1_CENSOR = "...group..."
+  private val GROUP_ID_V1_PATTERN = Pattern.compile("(__textsecure_group__!)([^\\s]+)([^\\s]{3})")
 
   /** The middle group will be censored. */
-  private val GROUP_ID_V2_PATTERN = Pattern.compile("(__)(signal_group__v2__![^\\s]+)([^\\s]{2})")
-  private const val GROUP_ID_V2_CENSOR = "...group_v2..."
+  private val GROUP_ID_V2_PATTERN = Pattern.compile("(__signal_group__v2__!)([^\\s]+)([^\\s]{3})")
 
   /** The middle group will be censored. */
   private val UUID_PATTERN = Pattern.compile("(JOB::)?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{9})([0-9a-f]{3})", Pattern.CASE_INSENSITIVE)
@@ -128,8 +126,7 @@ object Scrubber {
   private fun CharSequence.scrubGroupsV1(): CharSequence {
     return scrub(this, GROUP_ID_V1_PATTERN) { matcher, output ->
       output
-        .append(matcher.group(1))
-        .append(GROUP_ID_V1_CENSOR)
+        .append("GV1::***")
         .append(matcher.group(3))
     }
   }
@@ -137,8 +134,7 @@ object Scrubber {
   private fun CharSequence.scrubGroupsV2(): CharSequence {
     return scrub(this, GROUP_ID_V2_PATTERN) { matcher, output ->
       output
-        .append(matcher.group(1))
-        .append(GROUP_ID_V2_CENSOR)
+        .append("GV2::***")
         .append(matcher.group(3))
     }
   }
