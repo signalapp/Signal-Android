@@ -14,7 +14,7 @@ data class EnterPhoneNumberV2State(val countryPrefixIndex: Int, val phoneNumber:
 
   companion object {
     @JvmStatic
-    val INIT = EnterPhoneNumberV2State(0, "")
+    val INIT = EnterPhoneNumberV2State(1, "")
   }
 
   enum class Error {

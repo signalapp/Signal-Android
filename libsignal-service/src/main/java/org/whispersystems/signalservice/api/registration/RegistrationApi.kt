@@ -23,6 +23,8 @@ class RegistrationApi(
 
   /**
    * Request that the service initialize a new registration session.
+   *
+   * `POST /v1/verification/session`
    */
   fun createRegistrationSession(fcmToken: String?, mcc: String?, mnc: String?): NetworkResult<RegistrationSessionMetadataResponse> {
     return NetworkResult.fromFetch {
@@ -32,6 +34,8 @@ class RegistrationApi(
 
   /**
    * Retrieve current status of a registration session.
+   *
+   * `GET /v1/verification/session/{session-id}`
    */
   fun getRegistrationSessionStatus(sessionId: String): NetworkResult<RegistrationSessionMetadataResponse> {
     return NetworkResult.fromFetch {
@@ -41,6 +45,8 @@ class RegistrationApi(
 
   /**
    * Submit an FCM token to the service as proof that this is an honest user attempting to register.
+   *
+   * `PATCH /v1/verification/session/{session-id}`
    */
   fun submitPushChallengeToken(sessionId: String?, pushChallengeToken: String?): NetworkResult<RegistrationSessionMetadataResponse> {
     return NetworkResult.fromFetch {
@@ -52,6 +58,8 @@ class RegistrationApi(
    * Request an SMS verification code.  On success, the server will send
    * an SMS verification code to this Signal user.
    *
+   * `POST /v1/verification/session/{session-id}/code`
+   *
    * @param androidSmsRetrieverSupported whether the system framework will automatically parse the incoming verification message.
    */
   fun requestSmsVerificationCode(sessionId: String?, locale: Locale?, androidSmsRetrieverSupported: Boolean, transport: PushServiceSocket.VerificationCodeTransport): NetworkResult<RegistrationSessionMetadataResponse> {
@@ -62,6 +70,8 @@ class RegistrationApi(
 
   /**
    * Submit a verification code sent by the service via one of the supported channels (SMS, phone call) to prove the registrant's control of the phone number.
+   *
+   * `PUT /v1/verification/session/{session-id}/code`
    */
   fun verifyAccount(sessionId: String, verificationCode: String): NetworkResult<RegistrationSessionMetadataResponse> {
     return NetworkResult.fromFetch {
@@ -71,6 +81,8 @@ class RegistrationApi(
 
   /**
    * Submits the solved captcha token to the service.
+   *
+   * `PATCH /v1/verification/session/{session-id}`
    */
   fun submitCaptchaToken(sessionId: String, captchaToken: String): NetworkResult<RegistrationSessionMetadataResponse> {
     return NetworkResult.fromFetch {
@@ -80,6 +92,8 @@ class RegistrationApi(
 
   /**
    * Submit the cryptographic assets required for an account to use the service.
+   *
+   * `POST /v1/registration`
    */
   fun registerAccount(sessionId: String?, recoveryPassword: String?, attributes: AccountAttributes?, aciPreKeys: PreKeyCollection?, pniPreKeys: PreKeyCollection?, fcmToken: String?, skipDeviceTransfer: Boolean): NetworkResult<VerifyAccountResponse> {
     return NetworkResult.fromFetch {
@@ -87,6 +101,11 @@ class RegistrationApi(
     }
   }
 
+  /**
+   * Retrieves an SVR auth credential that corresponds with the supplied username and password.
+   *
+   * `POST /v2/backup/auth/check`
+   */
   fun getSvrAuthCredential(e164: String, usernamePasswords: List<String>): NetworkResult<BackupAuthCheckResponse> {
     return NetworkResult.fromFetch {
       pushServiceSocket.checkBackupAuthCredentials(e164, usernamePasswords)

@@ -19,6 +19,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushChallengeRequire
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
 import org.whispersystems.signalservice.api.push.exceptions.RegistrationRetryException
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException
+import org.whispersystems.signalservice.internal.push.LockedException
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataJson
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import org.whispersystems.signalservice.internal.util.JsonUtil
@@ -56,12 +57,13 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
             is CaptchaRequiredException -> createChallengeRequiredProcessor(networkResult)
             is RateLimitException -> createRateLimitProcessor(cause)
             is ImpossiblePhoneNumberException -> ImpossibleNumber(cause)
-            is NonNormalizedPhoneNumberException -> NonNormalizedNumber(cause)
+            is NonNormalizedPhoneNumberException -> NonNormalizedNumber(cause = cause, originalNumber = cause.originalNumber, normalizedNumber = cause.normalizedNumber)
             is TokenNotAcceptedException -> TokenNotAccepted(cause)
             is ExternalServiceFailureException -> ExternalServiceFailure(cause)
             is InvalidTransportModeException -> InvalidTransportModeFailure(cause)
             is MalformedRequestException -> MalformedRequest(cause)
             is RegistrationRetryException -> MustRetry(cause)
+            is LockedException -> RegistrationLocked(cause = cause, timeRemaining = cause.timeRemaining)
             else -> UnknownError(cause)
           }
         }
@@ -102,7 +104,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
 
   class ImpossibleNumber(cause: Throwable) : VerificationCodeRequestResult(cause)
 
-  class NonNormalizedNumber(cause: Throwable) : VerificationCodeRequestResult(cause)
+  class NonNormalizedNumber(cause: Throwable, val originalNumber: String, val normalizedNumber: String) : VerificationCodeRequestResult(cause)
 
   class TokenNotAccepted(cause: Throwable) : VerificationCodeRequestResult(cause)
 
@@ -113,6 +115,8 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
   class MalformedRequest(cause: Throwable) : VerificationCodeRequestResult(cause)
 
   class MustRetry(cause: Throwable) : VerificationCodeRequestResult(cause)
+
+  class RegistrationLocked(cause: Throwable, val timeRemaining: Long) : VerificationCodeRequestResult(cause)
 
   class UnknownError(cause: Throwable) : VerificationCodeRequestResult(cause)
 }

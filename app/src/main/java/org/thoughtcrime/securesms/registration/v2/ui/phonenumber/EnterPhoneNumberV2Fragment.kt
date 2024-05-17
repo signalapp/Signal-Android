@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.registration.v2.ui.phonenumber
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.TextWatcher
@@ -30,6 +31,7 @@ import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
+import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
 import org.signal.core.util.logging.Log
@@ -40,16 +42,22 @@ import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterPhoneNumb
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
+import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2State
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
 import org.thoughtcrime.securesms.registration.v2.ui.toE164
+import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.PlayServicesUtil
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.livedata.LiveDataObserverCallback
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Screen in registration where the user enters their phone number.
@@ -60,6 +68,8 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
   private val sharedViewModel by activityViewModels<RegistrationV2ViewModel>()
   private val fragmentViewModel by viewModels<EnterPhoneNumberV2ViewModel>()
   private val binding: FragmentRegistrationEnterPhoneNumberV2Binding by ViewBinderDelegate(FragmentRegistrationEnterPhoneNumberV2Binding::bind)
+
+  private val skipToNextScreen: DialogInterface.OnClickListener = DialogInterface.OnClickListener { _: DialogInterface?, _: Int -> moveToVerificationEntryScreen() }
 
   private lateinit var spinnerAdapter: ArrayAdapter<CountryPrefix>
   private lateinit var phoneNumberInputLayout: TextInputEditText
@@ -106,9 +116,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
         moveToVerificationEntryScreen()
       } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.CHALLENGE_COMPLETED) {
-        sharedViewModel.submitCaptchaToken(requireContext())
-      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.CHALLENGE_RECEIVED) {
-        findNavController().safeNavigate(EnterPhoneNumberV2FragmentDirections.actionRequestCaptcha())
+        sharedViewModel.submitCaptchaToken(requireContext(), ::handleErrorResponse)
       }
     }
 
@@ -133,7 +141,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       }
 
       if (fragmentState.error != EnterPhoneNumberV2State.Error.NONE) {
-        presentError(fragmentState)
+        presentLocalError(fragmentState)
       }
     }
 
@@ -145,9 +153,9 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       fragmentViewModel.phoneNumber()?.let {
         phoneNumberInputLayout.setText(it.nationalNumber.toString())
       }
-    } else if (spinnerView.editableText.isBlank()) {
-      spinnerView.setText(fragmentViewModel.countryPrefix().toString())
     }
+
+    spinnerView.setText(fragmentViewModel.countryPrefix().toString())
 
     ViewUtil.focusAndShowKeyboard(phoneNumberInputLayout)
   }
@@ -195,15 +203,17 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
   }
 
   private fun presentRegisterButton(sharedState: RegistrationV2State) {
-    binding.registerButton.isEnabled = sharedState.phoneNumber != null && PhoneNumberUtil.getInstance().isValidNumber(sharedState.phoneNumber) && !sharedState.inProgress
-    // TODO [regv2]: always enable the button but display error dialogs if the entered phone number is invalid
+    binding.registerButton.isEnabled = sharedState.phoneNumber != null && PhoneNumberUtil.getInstance().isValidNumber(sharedState.phoneNumber)
+    if (sharedState.inProgress) {
+      binding.registerButton.setSpinning()
+    } else {
+      binding.registerButton.cancelSpinning()
+    }
   }
 
-  private fun presentError(state: EnterPhoneNumberV2State) {
+  private fun presentLocalError(state: EnterPhoneNumberV2State) {
     when (state.error) {
-      EnterPhoneNumberV2State.Error.NONE -> {
-        Unit
-      }
+      EnterPhoneNumberV2State.Error.NONE -> Unit
 
       EnterPhoneNumberV2State.Error.INVALID_PHONE_NUMBER -> {
         MaterialAlertDialogBuilder(requireContext()).apply {
@@ -222,7 +232,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       }
 
       EnterPhoneNumberV2State.Error.PLAY_SERVICES_MISSING -> {
-        Log.w(TAG, "Not yet implemented!", NotImplementedError()) // TODO [regv2]
+        handlePromptForNoPlayServices()
       }
 
       EnterPhoneNumberV2State.Error.PLAY_SERVICES_NEEDS_UPDATE -> {
@@ -250,6 +260,85 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       setOnCancelListener { sharedViewModel.clearNetworkError() }
       setOnDismissListener { sharedViewModel.clearNetworkError() }
       show()
+    }
+  }
+
+  private fun handleErrorResponse(result: VerificationCodeRequestResult, mode: RegistrationRepository.Mode) {
+    when (result) {
+      is VerificationCodeRequestResult.Success -> Unit
+      is VerificationCodeRequestResult.AttemptsExhausted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_service))
+      is VerificationCodeRequestResult.ChallengeRequired -> findNavController().safeNavigate(EnterPhoneNumberV2FragmentDirections.actionRequestCaptcha())
+      is VerificationCodeRequestResult.ExternalServiceFailure -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
+      is VerificationCodeRequestResult.ImpossibleNumber -> {
+        MaterialAlertDialogBuilder(requireContext()).apply {
+          setMessage(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid, fragmentViewModel.phoneNumber()?.toE164()))
+          setPositiveButton(android.R.string.ok, null)
+          show()
+        }
+      }
+      is VerificationCodeRequestResult.InvalidTransportModeFailure -> {
+        MaterialAlertDialogBuilder(requireContext()).apply {
+          setMessage(R.string.RegistrationActivity_we_couldnt_send_you_a_verification_code)
+          setPositiveButton(R.string.RegistrationActivity_voice_call) { _, _ ->
+            sharedViewModel.requestVerificationCall(requireContext(), ::handleErrorResponse)
+          }
+          setNegativeButton(R.string.RegistrationActivity_cancel, null)
+          show()
+        }
+      }
+      is VerificationCodeRequestResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
+      is VerificationCodeRequestResult.MustRetry -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
+      is VerificationCodeRequestResult.NonNormalizedNumber -> handleNonNormalizedNumberError(result.originalNumber, result.normalizedNumber, mode)
+      is VerificationCodeRequestResult.RateLimited -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
+      is VerificationCodeRequestResult.TokenNotAccepted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human))
+      else -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
+    }
+  }
+
+  private fun presentRemoteErrorDialog(message: String, positiveButtonListener: DialogInterface.OnClickListener? = null) {
+    MaterialAlertDialogBuilder(requireContext()).apply {
+      setMessage(message)
+      setPositiveButton(android.R.string.ok, positiveButtonListener)
+      show()
+    }
+  }
+
+  private fun handleNonNormalizedNumberError(originalNumber: String, normalizedNumber: String, mode: RegistrationRepository.Mode) {
+    try {
+      val phoneNumber = PhoneNumberUtil.getInstance().parse(normalizedNumber, null)
+
+      MaterialAlertDialogBuilder(requireContext()).apply {
+        setTitle(R.string.RegistrationActivity_non_standard_number_format)
+        setMessage(getString(R.string.RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard, originalNumber, normalizedNumber))
+        setNegativeButton(android.R.string.no) { d: DialogInterface, i: Int -> d.dismiss() }
+        setNeutralButton(R.string.RegistrationActivity_contact_signal_support) { dialogInterface, _ ->
+          val subject = getString(R.string.RegistrationActivity_signal_android_phone_number_format)
+          val body = SupportEmailUtil.generateSupportEmailBody(requireContext(), R.string.RegistrationActivity_signal_android_phone_number_format, null, null)
+
+          CommunicationActions.openEmail(requireContext(), SupportEmailUtil.getSupportEmailAddress(requireContext()), subject, body)
+          dialogInterface.dismiss()
+        }
+        setPositiveButton(R.string.yes) { dialogInterface, _ ->
+          spinnerView.setText(phoneNumber.countryCode.toString())
+          phoneNumberInputLayout.setText(phoneNumber.nationalNumber.toString())
+          when (mode) {
+            RegistrationRepository.Mode.SMS_WITH_LISTENER,
+            RegistrationRepository.Mode.SMS_WITHOUT_LISTENER -> sharedViewModel.requestSmsCode(requireContext(), ::handleErrorResponse)
+            RegistrationRepository.Mode.PHONE_CALL -> sharedViewModel.requestVerificationCall(requireContext(), ::handleErrorResponse)
+            RegistrationRepository.Mode.NONE -> Log.w(TAG, "Somehow got a non normalized number exception even though we didn't request a code.")
+          }
+          dialogInterface.dismiss()
+        }
+        show()
+      }
+    } catch (e: NumberParseException) {
+      Log.w(TAG, "Failed to parse number!", e)
+
+      Dialogs.showAlertDialog(
+        requireContext(),
+        getString(R.string.RegistrationActivity_invalid_number),
+        getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid, fragmentViewModel.phoneNumber()?.toE164())
+      )
     }
   }
 
@@ -352,7 +441,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
         if (missingFcmConsentRequired) {
           handlePromptForNoPlayServices()
         } else {
-          sharedViewModel.onUserConfirmedPhoneNumber(requireContext())
+          sharedViewModel.onUserConfirmedPhoneNumber(requireContext(), ::handleErrorResponse)
         }
       }
       setNegativeButton(R.string.RegistrationActivity_edit_number) { _, _ -> onConfirmNumberDialogCanceled() }
@@ -367,7 +456,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       setMessage(R.string.RegistrationActivity_this_device_is_missing_google_play_services)
       setPositiveButton(R.string.RegistrationActivity_i_understand) { _, _ ->
         Log.d(TAG, "User confirmed number.")
-        sharedViewModel.onUserConfirmedPhoneNumber(requireContext())
+        sharedViewModel.onUserConfirmedPhoneNumber(requireContext(), ::handleErrorResponse)
       }
       setNegativeButton(android.R.string.cancel, null)
       setOnCancelListener { fragmentViewModel.clearError() }

@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeR
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.MustRetry
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.NonNormalizedNumber
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.RateLimited
+import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.RegistrationLocked
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.Success
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.TokenNotAccepted
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.UnknownError
@@ -68,7 +69,10 @@ class RegistrationV2ViewModel : ViewModel() {
   private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
     Log.w(TAG, "CoroutineExceptionHandler invoked.", exception)
     store.update {
-      it.copy(networkError = exception)
+      it.copy(
+        networkError = exception,
+        inProgress = false
+      )
     }
   }
 
@@ -141,7 +145,7 @@ class RegistrationV2ViewModel : ViewModel() {
     }
   }
 
-  fun onUserConfirmedPhoneNumber(context: Context) {
+  fun onUserConfirmedPhoneNumber(context: Context, errorHandler: (VerificationCodeRequestResult, RegistrationRepository.Mode) -> Unit) {
     setRegistrationCheckpoint(RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED)
     val state = store.value
     if (state.phoneNumber == null) {
@@ -153,8 +157,12 @@ class RegistrationV2ViewModel : ViewModel() {
     val e164 = state.phoneNumber.toE164()
     if (hasRecoveryPassword() && matchesSavedE164(e164)) {
       // Re-registration when the local database is intact.
+      Log.d(TAG, "Has recovery password, and therefore can skip SMS verification.")
       store.update {
-        it.copy(canSkipSms = true)
+        it.copy(
+          canSkipSms = true,
+          inProgress = false
+        )
       }
       return
     }
@@ -171,7 +179,7 @@ class RegistrationV2ViewModel : ViewModel() {
         is BackupAuthCheckResult.SuccessWithCredentials -> {
           Log.d(TAG, "Found local valid SVR auth credentials.")
           store.update {
-            it.copy(canSkipSms = true, svrAuthCredentials = svrCredentialsResult.authCredentials)
+            it.copy(canSkipSms = true, svrAuthCredentials = svrCredentialsResult.authCredentials, inProgress = false)
           }
           return@launch
         }
@@ -184,15 +192,15 @@ class RegistrationV2ViewModel : ViewModel() {
       if (!validSession.body.allowedToRequestCode) {
         val challenges = validSession.body.requestedInformation.joinToString()
         Log.i(TAG, "Not allowed to request code! Remaining challenges: $challenges")
-        handleSessionStateResult(context, ChallengeRequired(validSession.body.requestedInformation))
+        handleSessionStateResult(context, ChallengeRequired(validSession.body.requestedInformation), RegistrationRepository.Mode.NONE, errorHandler)
         return@launch
       }
 
-      requestSmsCodeInternal(context, validSession.body.id, e164)
+      requestSmsCodeInternal(context, validSession.body.id, e164, errorHandler)
     }
   }
 
-  fun requestSmsCode(context: Context) {
+  fun requestSmsCode(context: Context, errorHandler: (VerificationCodeRequestResult, RegistrationRepository.Mode) -> Unit) {
     val e164 = getCurrentE164()
 
     if (e164 == null) {
@@ -203,11 +211,11 @@ class RegistrationV2ViewModel : ViewModel() {
 
     viewModelScope.launch {
       val validSession = getOrCreateValidSession(context) ?: return@launch
-      requestSmsCodeInternal(context, validSession.body.id, e164)
+      requestSmsCodeInternal(context, validSession.body.id, e164, errorHandler)
     }
   }
 
-  fun requestVerificationCall(context: Context) {
+  fun requestVerificationCall(context: Context, errorHandler: (VerificationCodeRequestResult, RegistrationRepository.Mode) -> Unit) {
     val e164 = getCurrentE164()
 
     if (e164 == null) {
@@ -228,11 +236,11 @@ class RegistrationV2ViewModel : ViewModel() {
       )
       Log.d(TAG, "Voice call code request submitted.")
 
-      handleSessionStateResult(context, codeRequestResponse)
+      handleSessionStateResult(context, codeRequestResponse, RegistrationRepository.Mode.PHONE_CALL, errorHandler)
     }
   }
 
-  private suspend fun requestSmsCodeInternal(context: Context, sessionId: String, e164: String) {
+  private suspend fun requestSmsCodeInternal(context: Context, sessionId: String, e164: String, errorHandler: (VerificationCodeRequestResult, RegistrationRepository.Mode) -> Unit) {
     var smsListenerReady = false
     Log.d(TAG, "Captcha token submitted.")
     if (store.value.smsListenerTimeout < System.currentTimeMillis()) {
@@ -248,16 +256,17 @@ class RegistrationV2ViewModel : ViewModel() {
     }
 
     Log.d(TAG, "Requesting SMS code…")
+    val transportMode = if (smsListenerReady) RegistrationRepository.Mode.SMS_WITH_LISTENER else RegistrationRepository.Mode.SMS_WITHOUT_LISTENER
     val codeRequestResponse = RegistrationRepository.requestSmsCode(
       context = context,
       sessionId = sessionId,
       e164 = e164,
       password = password,
-      mode = if (smsListenerReady) RegistrationRepository.Mode.SMS_WITH_LISTENER else RegistrationRepository.Mode.SMS_WITHOUT_LISTENER
+      mode = transportMode
     )
     Log.d(TAG, "SMS code request submitted.")
 
-    handleSessionStateResult(context, codeRequestResponse)
+    handleSessionStateResult(context, codeRequestResponse, transportMode, errorHandler)
   }
 
   private suspend fun getOrCreateValidSession(context: Context): RegistrationSessionMetadataResponse? {
@@ -281,6 +290,7 @@ class RegistrationV2ViewModel : ViewModel() {
         Log.d(TAG, "Registration session validated.")
         return metadata
       }
+
       is RegistrationSessionCreationResult.Success -> {
         val metadata = sessionResult.getMetadata()
         val newSessionId = metadata.body.id
@@ -294,26 +304,32 @@ class RegistrationV2ViewModel : ViewModel() {
         Log.d(TAG, "Registration session created.")
         return metadata
       }
+
       is RegistrationSessionCheckResult.SessionNotFound -> {
         Log.w(TAG, "This should be impossible to reach at this stage; it should have been handled in RegistrationRepository.", sessionResult.getCause())
         handleGenericError(sessionResult.getCause())
       }
+
       is RegistrationSessionCheckResult.UnknownError -> {
         Log.i(TAG, "Unknown error occurred while checking registration session.", sessionResult.getCause())
         handleGenericError(sessionResult.getCause())
       }
+
       is RegistrationSessionCreationResult.MalformedRequest -> {
         Log.i(TAG, "Malformed request error occurred while creating registration session.", sessionResult.getCause())
         handleGenericError(sessionResult.getCause())
       }
+
       is RegistrationSessionCreationResult.RateLimited -> {
         Log.i(TAG, "Rate limit occurred while creating registration session.", sessionResult.getCause())
         handleGenericError(sessionResult.getCause())
       }
+
       is RegistrationSessionCreationResult.ServerUnableToParse -> {
         Log.i(TAG, "Server unable to parse request for creating registration session.", sessionResult.getCause())
         handleGenericError(sessionResult.getCause())
       }
+
       is RegistrationSessionCreationResult.UnknownError -> {
         Log.i(TAG, "Unknown error occurred while checking registration session.", sessionResult.getCause())
         handleGenericError(sessionResult.getCause())
@@ -322,23 +338,23 @@ class RegistrationV2ViewModel : ViewModel() {
     return null
   }
 
-  fun submitCaptchaToken(context: Context) {
-    val e164 = getCurrentE164() ?: throw IllegalStateException("TODO")
-    val captchaToken = store.value.captchaToken ?: throw IllegalStateException("TODO")
+  fun submitCaptchaToken(context: Context, errorHandler: (VerificationCodeRequestResult, RegistrationRepository.Mode) -> Unit) {
+    val e164 = getCurrentE164() ?: throw IllegalStateException("Can't submit captcha token if no phone number is set!")
+    val captchaToken = store.value.captchaToken ?: throw IllegalStateException("Can't submit captcha token if no captcha token is set!")
 
     viewModelScope.launch {
       val session = getOrCreateValidSession(context) ?: return@launch
       Log.d(TAG, "Submitting captcha token…")
       val captchaSubmissionResult = RegistrationRepository.submitCaptchaToken(context, e164, password, session.body.id, captchaToken)
       Log.d(TAG, "Captcha token submitted.")
-      handleSessionStateResult(context, captchaSubmissionResult)
+      handleSessionStateResult(context, captchaSubmissionResult, RegistrationRepository.Mode.NONE, errorHandler)
     }
   }
 
   /**
    * @return whether the request was successful and execution should continue
    */
-  private suspend fun handleSessionStateResult(context: Context, sessionResult: VerificationCodeRequestResult): Boolean {
+  private suspend fun handleSessionStateResult(context: Context, sessionResult: VerificationCodeRequestResult, requestedTransport: RegistrationRepository.Mode, errorHandler: (VerificationCodeRequestResult, RegistrationRepository.Mode) -> Unit): Boolean {
     when (sessionResult) {
       is UnknownError -> {
         handleGenericError(sessionResult.getCause())
@@ -353,30 +369,46 @@ class RegistrationV2ViewModel : ViewModel() {
             sessionId = sessionResult.sessionId,
             nextSms = sessionResult.nextSmsTimestamp,
             nextCall = sessionResult.nextCallTimestamp,
-            registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED
+            registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED,
+            inProgress = false
           )
         }
         return true
       }
 
-      is AttemptsExhausted -> Log.w(TAG, "TODO")
-      is ChallengeRequired -> store.update {
-        // TODO [regv2] handle push challenge required
+      is ChallengeRequired -> {
         Log.d(TAG, "[${sessionResult.challenges.joinToString()}] registration challenges received.")
-        it.copy(
-          registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_RECEIVED
-        )
+        store.update {
+          it.copy(
+            registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_RECEIVED,
+            inProgress = false
+          )
+        }
+        return false
       }
 
-      is ImpossibleNumber -> Log.w(TAG, "TODO")
-      is NonNormalizedNumber -> Log.w(TAG, "TODO")
-      is RateLimited -> Log.w(TAG, "TODO")
-      is ExternalServiceFailure -> Log.w(TAG, "TODO")
-      is InvalidTransportModeFailure -> Log.w(TAG, "TODO")
-      is MalformedRequest -> Log.w(TAG, "TODO")
-      is MustRetry -> Log.w(TAG, "TODO")
-      is TokenNotAccepted -> Log.w(TAG, "TODO")
+      is AttemptsExhausted -> Log.i(TAG, "Received AttemptsExhausted.", sessionResult.getCause())
+
+      is ImpossibleNumber -> Log.i(TAG, "Received ImpossibleNumber.", sessionResult.getCause())
+
+      is NonNormalizedNumber -> Log.i(TAG, "Received NonNormalizedNumber.", sessionResult.getCause())
+
+      is RateLimited -> Log.i(TAG, "Received RateLimited.", sessionResult.getCause())
+
+      is ExternalServiceFailure -> Log.i(TAG, "Received ExternalServiceFailure.", sessionResult.getCause())
+
+      is InvalidTransportModeFailure -> Log.i(TAG, "Received InvalidTransportModeFailure.", sessionResult.getCause())
+
+      is MalformedRequest -> Log.i(TAG, "Received MalformedRequest.", sessionResult.getCause())
+
+      is MustRetry -> Log.i(TAG, "Received MustRetry.", sessionResult.getCause())
+
+      is TokenNotAccepted -> Log.i(TAG, "Received TokenNotAccepted.", sessionResult.getCause())
+
+      is RegistrationLocked -> Log.i(TAG, "Received RegistrationLocked.", sessionResult.getCause())
     }
+    setInProgress(false)
+    errorHandler(sessionResult, requestedTransport)
     return false
   }
 
@@ -515,6 +547,7 @@ class RegistrationV2ViewModel : ViewModel() {
       setRegistrationCheckpoint(RegistrationCheckpoint.VERIFICATION_CODE_VALIDATED)
 
       val registrationResponse = RegistrationRepository.registerAccount(context, sessionId, registrationData).successOrThrow()
+      // TODO [regv2]: error handling
       onSuccessfulRegistration(context, registrationData, registrationResponse, false)
     }
   }
@@ -525,7 +558,10 @@ class RegistrationV2ViewModel : ViewModel() {
     refreshFeatureFlags()
 
     store.update {
-      it.copy(registrationCheckpoint = RegistrationCheckpoint.SERVICE_REGISTRATION_COMPLETED)
+      it.copy(
+        registrationCheckpoint = RegistrationCheckpoint.SERVICE_REGISTRATION_COMPLETED,
+        inProgress = false
+      )
     }
   }
 

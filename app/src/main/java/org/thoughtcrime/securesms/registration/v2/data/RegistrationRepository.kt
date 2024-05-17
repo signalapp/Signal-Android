@@ -525,7 +525,8 @@ object RegistrationRepository {
   enum class Mode(val isSmsRetrieverSupported: Boolean, val transport: PushServiceSocket.VerificationCodeTransport) {
     SMS_WITH_LISTENER(true, PushServiceSocket.VerificationCodeTransport.SMS),
     SMS_WITHOUT_LISTENER(false, PushServiceSocket.VerificationCodeTransport.SMS),
-    PHONE_CALL(false, PushServiceSocket.VerificationCodeTransport.VOICE)
+    PHONE_CALL(false, PushServiceSocket.VerificationCodeTransport.VOICE),
+    NONE(false, PushServiceSocket.VerificationCodeTransport.SMS)
   }
 
   private class PushTokenChallengeSubscriber {
