@@ -1,7 +1,7 @@
 import org.gradle.kotlin.dsl.extra
 
 buildscript {
-    val kotlinVersion by extra("1.8.10")
+    val kotlinVersion by extra("1.9.20")
 
     repositories {
         google()

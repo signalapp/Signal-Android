@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util.views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -45,6 +46,7 @@ public class SlideUpWithSnackbarBehavior extends CoordinatorLayout.Behavior<View
     child.setTranslationY(0);
   }
 
+  @SuppressLint("RestrictedApi")
   @Override
   public boolean layoutDependsOn(@NonNull CoordinatorLayout parent,
                                  @NonNull View child,

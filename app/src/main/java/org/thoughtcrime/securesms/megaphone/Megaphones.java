@@ -398,6 +398,7 @@ public final class Megaphones {
         .build();
   }
 
+  @SuppressLint("NewApi")
   public static @NonNull Megaphone buildGrantFullScreenIntentPermission(@NonNull Context context) {
     return new Megaphone.Builder(Event.GRANT_FULL_SCREEN_INTENT, Megaphone.Style.BASIC)
         .setTitle(R.string.GrantFullScreenIntentPermission_megaphone_title)

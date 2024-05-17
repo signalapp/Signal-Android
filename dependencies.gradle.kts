@@ -14,10 +14,10 @@ dependencyResolutionManagement {
       version("androidx-window", "1.2.0")
       version("exoplayer", "2.19.0")
       version("glide", "4.15.1")
-      version("kotlin", "1.8.10")
+      version("kotlin", "1.9.20")
       version("libsignal-client", "0.46.0")
       version("mp4parser", "1.9.39")
-      version("android-gradle-plugin", "8.0.2")
+      version("android-gradle-plugin", "8.4.0")
       version("accompanist", "0.28.0")
       version("nanohttpd", "2.3.1")
 
@@ -26,7 +26,7 @@ dependencyResolutionManagement {
       library("android-application", "com.android.application", "com.android.application.gradle.plugin").versionRef("android-gradle-plugin")
 
       // Compose
-      library("androidx-compose-bom", "androidx.compose:compose-bom:2023.09.01")
+      library("androidx-compose-bom", "androidx.compose:compose-bom:2023.10.01")
       library("androidx-compose-material3", "androidx.compose.material3", "material3").withoutVersion()
       library("androidx-compose-ui-tooling-preview", "androidx.compose.ui", "ui-tooling-preview").withoutVersion()
       library("androidx-compose-ui-tooling-core", "androidx.compose.ui", "ui-tooling").withoutVersion()
@@ -39,7 +39,7 @@ dependencyResolutionManagement {
       library("accompanist-permissions", "com.google.accompanist", "accompanist-permissions").versionRef("accompanist")
 
       // Desugaring
-      library("android-tools-desugar", "com.android.tools:desugar_jdk_libs:1.1.5")
+      library("android-tools-desugar", "com.android.tools:desugar_jdk_libs:1.1.6")
 
       // Kotlin
       library("kotlin-stdlib-jdk8", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8").versionRef("kotlin")
