@@ -29,13 +29,14 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Rational;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.PictureInPictureModeChangedInfo;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
 import androidx.lifecycle.LiveDataReactiveStreams;
@@ -116,6 +117,7 @@ import io.reactivex.rxjava3.core.BackpressureStrategy;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.thoughtcrime.securesms.components.sensors.Orientation.PORTRAIT_BOTTOM_EDGE;
+import static org.thoughtcrime.securesms.permissions.PermissionDeniedBottomSheet.showPermissionFragment;
 
 public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChangeDialog.Callback, ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
 
@@ -165,7 +167,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private boolean                          enterPipOnResume;
   private long                             lastProcessedIntentTimestamp;
   private WebRtcViewModel                  previousEvent = null;
-
+  private boolean                          isAskingForPermission;
   private Disposable ephemeralStateDisposable = Disposable.empty();
 
   @Override
@@ -237,6 +239,12 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     initializePendingParticipantFragmentListener();
 
     WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_dark_colorSurface));
+
+    if (!hasCameraPermission() & !hasAudioPermission()) {
+      askCameraAudioPermissions(() -> handleSetMuteVideo(false));
+    } else if (!hasAudioPermission()) {
+      askAudioPermissions(() -> {});
+    }
   }
 
   private void registerSystemPipChangeListeners() {
@@ -299,7 +307,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     Log.i(TAG, "onPause");
     super.onPause();
 
-    if (!viewModel.isCallStarting()) {
+    if (!isAskingForPermission && !viewModel.isCallStarting()) {
       CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
       if (state != null && state.getCallState().isPreJoinOrNetworkUnavailable()) {
         finish();
@@ -666,15 +674,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     Recipient recipient = viewModel.getRecipient().get();
 
     if (!recipient.equals(Recipient.UNKNOWN)) {
-      String recipientDisplayName = recipient.getDisplayName(this);
-
-      Permissions.with(this)
-                 .request(Manifest.permission.CAMERA)
-                 .ifNecessary()
-                 .withRationaleDialog(getString(R.string.WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera, recipientDisplayName), R.drawable.ic_video_solid_24_tinted)
-                 .withPermanentDenialDialog(getString(R.string.WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera, recipientDisplayName))
-                 .onAllGranted(() -> ApplicationDependencies.getSignalCallManager().setEnableVideo(!muted))
-                 .execute();
+      Runnable onGranted = () -> ApplicationDependencies.getSignalCallManager().setEnableVideo(!muted);
+      askCameraPermissions(onGranted);
     }
   }
 
@@ -683,36 +684,26 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private void handleAnswerWithAudio() {
-    Permissions.with(this)
-               .request(Manifest.permission.RECORD_AUDIO)
-               .ifNecessary()
-               .withRationaleDialog(getString(R.string.WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone),
-                                    R.drawable.ic_mic_solid_24)
-               .withPermanentDenialDialog(getString(R.string.WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls))
-               .onAllGranted(() -> {
-                 callScreen.setStatus(getString(R.string.RedPhone_answering));
-
-                 ApplicationDependencies.getSignalCallManager().acceptCall(false);
-               })
-               .onAnyDenied(this::handleDenyCall)
-               .execute();
+    Runnable onGranted = () -> {
+      callScreen.setStatus(getString(R.string.RedPhone_answering));
+      ApplicationDependencies.getSignalCallManager().acceptCall(false);
+    };
+    askAudioPermissions(onGranted);
   }
 
   private void handleAnswerWithVideo() {
-    Permissions.with(this)
-               .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
-               .ifNecessary()
-               .withRationaleDialog(getString(R.string.WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera), R.drawable.ic_mic_solid_24, R.drawable.ic_video_solid_24_tinted)
-               .withPermanentDenialDialog(getString(R.string.WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls))
-               .onAllGranted(() -> {
-                 callScreen.setStatus(getString(R.string.RedPhone_answering));
-
-                 ApplicationDependencies.getSignalCallManager().acceptCall(true);
-
-                 handleSetMuteVideo(false);
-               })
-               .onAnyDenied(this::handleDenyCall)
-               .execute();
+    Runnable onGranted = () -> {
+      callScreen.setStatus(getString(R.string.RedPhone_answering));
+      ApplicationDependencies.getSignalCallManager().acceptCall(true);
+      handleSetMuteVideo(false);
+    };
+    if (!hasCameraPermission() &!hasAudioPermission()) {
+      askCameraAudioPermissions(onGranted);
+    } else if (!hasAudioPermission()) {
+      askAudioPermissions(onGranted);
+    } else {
+      askCameraPermissions(onGranted);
+    }
   }
 
   private void handleDenyCall() {
@@ -996,6 +987,85 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
   }
 
+  private boolean hasCameraPermission() {
+    return Permissions.hasAll(this, Manifest.permission.CAMERA);
+  }
+
+  private boolean hasAudioPermission() {
+    return Permissions.hasAll(this, Manifest.permission.RECORD_AUDIO);
+  }
+
+  private void askCameraPermissions(@NonNull Runnable onGranted) {
+    if (!isAskingForPermission) {
+      isAskingForPermission = true;
+      Permissions.with(this)
+                 .request(Manifest.permission.CAMERA)
+                 .ifNecessary()
+                 .withRationaleDialog(getString(R.string.WebRtcCallActivity__allow_access_camera), getString(R.string.WebRtcCallActivity__to_enable_video_allow_camera), false, R.drawable.symbol_video_24)
+                 .onAnyResult(() -> isAskingForPermission = false)
+                 .onAllGranted(() -> {
+                   onGranted.run();
+                   findViewById(R.id.missing_permissions_container).setVisibility(View.GONE);
+                 })
+                 .onAnyDenied(() -> Toast.makeText(this, R.string.WebRtcCallActivity__signal_needs_camera_access_enable_video, Toast.LENGTH_LONG).show())
+                 .onAnyPermanentlyDenied(() -> showPermissionFragment(R.string.WebRtcCallActivity__allow_access_camera, R.string.WebRtcCallActivity__to_enable_video).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG))
+                 .execute();
+    }
+  }
+
+  private void askAudioPermissions(@NonNull Runnable onGranted) {
+    if (!isAskingForPermission) {
+      isAskingForPermission = true;
+      Permissions.with(this)
+                 .request(Manifest.permission.RECORD_AUDIO)
+                 .ifNecessary()
+                 .withRationaleDialog(getString(R.string.WebRtcCallActivity__allow_access_microphone), getString(R.string.WebRtcCallActivity__to_start_call_microphone), false, R.drawable.ic_mic_24)
+                 .onAnyResult(() -> isAskingForPermission = false)
+                 .onAllGranted(onGranted)
+                 .onAnyDenied(() -> {
+                   Toast.makeText(this, R.string.WebRtcCallActivity__signal_needs_microphone_start_call, Toast.LENGTH_LONG).show();
+                   handleDenyCall();
+                 })
+                 .onAnyPermanentlyDenied(() -> showPermissionFragment(R.string.WebRtcCallActivity__allow_access_microphone, R.string.WebRtcCallActivity__to_start_call).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG))
+                 .execute();
+    }
+  }
+
+  public void askCameraAudioPermissions(@NonNull Runnable onGranted) {
+    if (!isAskingForPermission) {
+      isAskingForPermission = true;
+      Permissions.with(this)
+                 .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
+                 .ifNecessary()
+                 .withRationaleDialog(getString(R.string.WebRtcCallActivity__allow_access_camera_microphone), getString(R.string.WebRtcCallActivity__to_start_call_camera_microphone), false, R.drawable.ic_mic_24, R.drawable.symbol_video_24)
+                 .onAnyResult(() -> isAskingForPermission = false)
+                 .onSomePermanentlyDenied(deniedPermissions -> {
+                   if (deniedPermissions.containsAll(List.of(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO))) {
+                     showPermissionFragment(R.string.WebRtcCallActivity__allow_access_camera_microphone, R.string.WebRtcCallActivity__to_start_call).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+                   } else if (deniedPermissions.contains(Manifest.permission.CAMERA)) {
+                     showPermissionFragment(R.string.WebRtcCallActivity__allow_access_camera, R.string.WebRtcCallActivity__to_enable_video).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+                   } else {
+                     showPermissionFragment(R.string.WebRtcCallActivity__allow_access_microphone, R.string.WebRtcCallActivity__to_start_call).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+                   }
+                 })
+                 .onAllGranted(onGranted)
+                 .onSomeGranted(permissions -> {
+                   if (permissions.contains(Manifest.permission.CAMERA)) {
+                     findViewById(R.id.missing_permissions_container).setVisibility(View.GONE);
+                   }
+                 })
+                 .onSomeDenied(deniedPermissions -> {
+                   if (deniedPermissions.contains(Manifest.permission.RECORD_AUDIO)) {
+                     Toast.makeText(this, R.string.WebRtcCallActivity__signal_needs_microphone_start_call, Toast.LENGTH_LONG).show();
+                     handleDenyCall();
+                   } else {
+                     Toast.makeText(this, R.string.WebRtcCallActivity__signal_needs_camera_access_enable_video, Toast.LENGTH_LONG).show();
+                   }
+                 })
+                 .execute();
+    }
+  }
+
   private void startCall(boolean isVideoCall) {
     enableVideoIfAvailable = isVideoCall;
 
@@ -1038,6 +1108,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
 
     @Override
+    public void onAudioPermissionsRequested(Runnable onGranted) {
+      askAudioPermissions(onGranted);
+    }
+
+    @Override
     public void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput) {
       maybeDisplaySpeakerphonePopup(audioOutput);
       switch (audioOutput) {
@@ -1072,9 +1147,12 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     @Override
     public void onMicChanged(boolean isMicEnabled) {
-      callStateUpdatePopupWindow.onCallStateUpdate(isMicEnabled ? CallStateUpdatePopupWindow.CallStateUpdate.MIC_ON
-                                                                : CallStateUpdatePopupWindow.CallStateUpdate.MIC_OFF);
-      handleSetMuteAudio(!isMicEnabled);
+      Runnable onGranted = () -> {
+        callStateUpdatePopupWindow.onCallStateUpdate(isMicEnabled ? CallStateUpdatePopupWindow.CallStateUpdate.MIC_ON
+                                                                  : CallStateUpdatePopupWindow.CallStateUpdate.MIC_OFF);
+        handleSetMuteAudio(!isMicEnabled);
+      };
+      askAudioPermissions(onGranted);
     }
 
     @Override

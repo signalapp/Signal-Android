@@ -113,6 +113,10 @@ public class Permissions {
       return withRationaleDialog(null, title, details, true, headers);
     }
 
+    public PermissionsBuilder withRationaleDialog(@NonNull String title, @NonNull String details, boolean cancelable, @NonNull @DrawableRes int... headers) {
+      return withRationaleDialog(null, title, details, cancelable, headers);
+    }
+
     public PermissionsBuilder withRationaleDialog(@Nullable String message, @Nullable String title, @Nullable String details, boolean cancelable, @NonNull @DrawableRes int... headers) {
       this.rationalDialogHeader      = headers;
       this.rationaleDialogMessage    = message;

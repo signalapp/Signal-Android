@@ -64,10 +64,39 @@
         android:gravity="center_horizontal"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/core_white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/call_screen_recipient_name"
         tools:text="Signal Calling..." />
+
+    <LinearLayout
+        android:id="@+id/missing_permissions_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/call_screen_status"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/missing_permissions_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            style="@style/Signal.Text.Body"
+            android:text="@string/WebRtcCallActivity__to_enable_video_allow_camera" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/allow_access_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            style="@style/Signal.Widget.Button.Large.Tonal"
+            android:text="@string/CameraXFragment_allow_access" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

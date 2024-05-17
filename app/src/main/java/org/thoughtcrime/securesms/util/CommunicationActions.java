@@ -406,25 +406,15 @@ public class CommunicationActions {
   }
 
   private static void startVideoCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean fromCallLink) {
-    callContext.getPermissionsBuilder()
-               .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
-               .ifNecessary()
-               .withRationaleDialog(callContext.getContext().getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(callContext.getContext())),
-                                    R.drawable.ic_mic_solid_24,
-                                    R.drawable.ic_video_solid_24_tinted)
-               .withPermanentDenialDialog(callContext.getContext().getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(callContext.getContext())))
-               .onAllGranted(() -> {
-                 ApplicationDependencies.getSignalCallManager().startPreJoinCall(recipient);
+    ApplicationDependencies.getSignalCallManager().startPreJoinCall(recipient);
 
-                 Intent activityIntent = new Intent(callContext.getContext(), WebRtcCallActivity.class);
+    Intent activityIntent = new Intent(callContext.getContext(), WebRtcCallActivity.class);
 
-                 activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                     .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true)
-                     .putExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_CALL_LINK, fromCallLink);
+    activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                  .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true)
+                  .putExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_CALL_LINK, fromCallLink);
 
-                 callContext.startActivity(activityIntent);
-               })
-               .execute();
+    callContext.startActivity(activityIntent);
   }
 
   private static void handleE164Link(Activity activity, String e164) {

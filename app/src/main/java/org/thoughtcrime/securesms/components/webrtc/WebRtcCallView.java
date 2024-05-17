@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc;
 
+import android.Manifest;
 import android.content.Context;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -54,6 +55,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
@@ -127,6 +129,8 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private MultiReactionBurstLayout      reactionViews;
   private ComposeView                   raiseHandSnackbar;
   private Barrier                       pipBottomBoundaryBarrier;
+  private View                          missingPermissionContainer;
+  private MaterialButton                allowAccessButton;
 
 
 
@@ -207,6 +211,8 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     reactionViews                 = findViewById(R.id.call_screen_reactions_container);
     raiseHandSnackbar             = findViewById(R.id.call_screen_raise_hand_view);
     pipBottomBoundaryBarrier      = findViewById(R.id.pip_bottom_boundary_barrier);
+    missingPermissionContainer    = findViewById(R.id.missing_permissions_container);
+    allowAccessButton             = findViewById(R.id.allow_access_button);
 
     View decline      = findViewById(R.id.call_screen_decline_call);
     View answerLabel  = findViewById(R.id.call_screen_answer_call_label);
@@ -262,10 +268,16 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     });
 
     videoToggle.setOnCheckedChangeListener((v, isOn) -> {
+      if (!hasCameraPermission()) {
+        videoToggle.setChecked(false);
+      }
       runIfNonNull(controlsListener, listener -> listener.onVideoChanged(isOn));
     });
 
     micToggle.setOnCheckedChangeListener((v, isOn) -> {
+      if (!hasAudioPermission()) {
+        micToggle.setChecked(false);
+      }
       runIfNonNull(controlsListener, listener -> listener.onMicChanged(isOn));
     });
 
@@ -301,10 +313,13 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     ViewUtil.setBottomMargin(smallLocalAudioIndicator, audioIndicatorMargin);
 
     startCall.setOnClickListener(v -> {
-      if (controlsListener != null) {
-        startCall.setEnabled(false);
-        controlsListener.onStartCall(videoToggle.isChecked());
-      }
+      Runnable onGranted = () -> {
+        if (controlsListener != null) {
+          startCall.setEnabled(false);
+          controlsListener.onStartCall(videoToggle.isChecked());
+        }
+      };
+      runIfNonNull(controlsListener, listener -> listener.onAudioPermissionsRequested(onGranted));
     });
 
     ColorMatrix greyScaleMatrix = new ColorMatrix();
@@ -365,6 +380,12 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
         onBarrierBottomChanged(bottom);
       }
     });
+
+    missingPermissionContainer.setVisibility(hasCameraPermission() ? View.GONE : View.VISIBLE);
+
+    allowAccessButton.setOnClickListener(v -> {
+      runIfNonNull(controlsListener, listener -> listener.onVideoChanged(videoToggle.isEnabled()));
+    });
   }
 
   @Override
@@ -405,7 +426,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   public void setMicEnabled(boolean isMicEnabled) {
-    micToggle.setChecked(isMicEnabled, false);
+    micToggle.setChecked(hasAudioPermission() && isMicEnabled, false);
   }
 
   public void setPendingParticipantsViewListener(@Nullable PendingParticipantsView.Listener listener) {
@@ -422,6 +443,14 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       pendingParticipantsViewStub.get().setListener(pendingParticipantsViewListener);
       pendingParticipantsViewStub.get().applyState(pendingParticipantCollection);
     }
+  }
+
+  private boolean hasCameraPermission() {
+    return Permissions.hasAll(getContext(), Manifest.permission.CAMERA);
+  }
+
+  private boolean hasAudioPermission() {
+    return Permissions.hasAll(getContext(), Manifest.permission.RECORD_AUDIO);
   }
 
   public void updateCallParticipants(@NonNull CallParticipantsViewState callParticipantsViewState) {
@@ -503,7 +532,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     });
 
 
-    videoToggle.setChecked(localCallParticipant.isVideoEnabled(), false);
+    videoToggle.setChecked(hasCameraPermission() && localCallParticipant.isVideoEnabled(), false);
     smallLocalRender.setRenderInPip(true);
     smallLocalRender.setCallParticipant(localCallParticipant);
     smallLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
@@ -984,5 +1013,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     void onCallInfoClicked();
     void onNavigateUpClicked();
     void toggleControls();
+    void onAudioPermissionsRequested(Runnable onGranted);
   }
 }
