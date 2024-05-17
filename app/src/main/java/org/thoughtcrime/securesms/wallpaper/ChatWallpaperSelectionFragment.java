@@ -1,13 +1,11 @@
 package org.thoughtcrime.securesms.wallpaper;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +16,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.permissions.PermissionCompat;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.wallpaper.crop.WallpaperImageSelectionActivity;
 
 public class ChatWallpaperSelectionFragment extends Fragment {
@@ -40,7 +36,7 @@ public class ChatWallpaperSelectionFragment extends Fragment {
     RecyclerView         recyclerView         = view.findViewById(R.id.chat_wallpaper_recycler);
 
     chooseFromPhotos.setOnClickListener(unused -> {
-      askForPermissionIfNeededAndLaunchPhotoSelection();
+      startActivityForResult(WallpaperImageSelectionActivity.getIntent(requireContext(), viewModel.getRecipientId()), CHOOSE_WALLPAPER);
     });
 
     toolbar.setTitle(R.string.preferences__chat_color_and_wallpaper);
@@ -73,17 +69,5 @@ public class ChatWallpaperSelectionFragment extends Fragment {
     } else {
       super.onActivityResult(requestCode, resultCode, data);
     }
-  }
-
-  private void askForPermissionIfNeededAndLaunchPhotoSelection() {
-    Permissions.with(this)
-               .request(PermissionCompat.forImages())
-               .ifNecessary()
-               .onAllGranted(() -> {
-                 startActivityForResult(WallpaperImageSelectionActivity.getIntent(requireContext(), viewModel.getRecipientId()), CHOOSE_WALLPAPER);
-               })
-               .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission, Toast.LENGTH_SHORT)
-                                       .show())
-               .execute();
   }
 }

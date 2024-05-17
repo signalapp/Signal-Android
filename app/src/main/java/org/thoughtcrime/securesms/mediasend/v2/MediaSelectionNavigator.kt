@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
-import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -46,18 +45,6 @@ class MediaSelectionNavigator(
           .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
           .execute()
       }
-    }
-
-    fun Fragment.requestPermissionsForGallery(
-      onGranted: () -> Unit
-    ) {
-      Permissions.with(this)
-        .request(*PermissionCompat.forImagesAndVideos())
-        .ifNecessary()
-        .withPermanentDenialDialog(getString(R.string.AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos))
-        .onAllGranted(onGranted)
-        .onAnyDenied { Toast.makeText(this.requireContext(), R.string.AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos, Toast.LENGTH_LONG).show() }
-        .execute()
     }
   }
 }

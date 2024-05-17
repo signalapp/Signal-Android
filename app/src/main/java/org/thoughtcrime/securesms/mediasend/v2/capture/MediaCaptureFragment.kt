@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.mediasend.CameraFragment
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator.Companion.requestPermissionsForGallery
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -160,10 +159,8 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
 
   override fun onGalleryClicked() {
     val controller = findNavController()
-    requestPermissionsForGallery {
-      captureChildFragment.fadeOutControls {
-        navigator.goToGallery(controller)
-      }
+    captureChildFragment.fadeOutControls {
+      navigator.goToGallery(controller)
     }
   }
 
