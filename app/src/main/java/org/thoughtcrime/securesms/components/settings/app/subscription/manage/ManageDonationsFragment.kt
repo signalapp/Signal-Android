@@ -275,6 +275,11 @@ class ManageDonationsFragment :
           },
           activeSubscription = activeSubscription,
           subscriberRequiresCancel = state.subscriberRequiresCancel,
+          onRowClick = {
+            if (it != ManageDonationsState.RedemptionState.IN_PROGRESS) {
+              findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentTable.Type.RECURRING_DONATION))
+            }
+          },
           onPendingClick = {
             displayPendingDialog(it)
           }
@@ -297,7 +302,8 @@ class ManageDonationsFragment :
           onContactSupport = {},
           activeSubscription = null,
           subscriberRequiresCancel = state.subscriberRequiresCancel,
-          onPendingClick = {}
+          onPendingClick = {},
+          onRowClick = {}
         )
       )
     }
@@ -314,15 +320,6 @@ class ManageDonationsFragment :
     subscriptionBlock()
 
     presentPendingOrProcessingOneTimeDonationState(state)
-
-    clickPref(
-      title = DSLSettingsText.from(R.string.ManageDonationsFragment__manage_subscription),
-      icon = DSLSettingsIcon.from(R.drawable.symbol_person_24),
-      isEnabled = state.getMonthlyDonorRedemptionState() != ManageDonationsState.RedemptionState.IN_PROGRESS,
-      onClick = {
-        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentTable.Type.RECURRING_DONATION))
-      }
-    )
 
     presentBadges()
 
