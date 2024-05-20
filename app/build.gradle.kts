@@ -713,7 +713,8 @@ fun Project.languageList(): List<String> {
     .map { valuesFolderName -> valuesFolderName.replace("values-", "") }
     .filter { valuesFolderName -> valuesFolderName != "values" }
     .map { languageCode -> languageCode.replace("-r", "_") }
-    .distinct() + "en"
+    .distinct()
+    .sorted() + "en"
 }
 
 fun String.capitalize(): String {
