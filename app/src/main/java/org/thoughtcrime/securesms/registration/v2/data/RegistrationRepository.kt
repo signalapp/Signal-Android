@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.registration.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
 import org.thoughtcrime.securesms.registration.v2.data.network.BackupAuthCheckResult
+import org.thoughtcrime.securesms.registration.v2.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionCheckResult
 import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionCreationResult
 import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionResult
@@ -337,10 +338,11 @@ object RegistrationRepository {
   /**
    * Submits the user-entered verification code to the service.
    */
-  suspend fun submitVerificationCode(context: Context, e164: String, password: String, sessionId: String, registrationData: RegistrationData): NetworkResult<RegistrationSessionMetadataResponse> =
+  suspend fun submitVerificationCode(context: Context, e164: String, password: String, sessionId: String, registrationData: RegistrationData): VerificationCodeRequestResult =
     withContext(Dispatchers.IO) {
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
-      api.verifyAccount(sessionId = sessionId, verificationCode = registrationData.code)
+      val result = api.verifyAccount(sessionId = sessionId, verificationCode = registrationData.code)
+      return@withContext VerificationCodeRequestResult.from(result)
     }
 
   /**
@@ -356,7 +358,7 @@ object RegistrationRepository {
   /**
    * Submit the necessary assets as a verified account so that the user can actually use the service.
    */
-  suspend fun registerAccount(context: Context, sessionId: String?, registrationData: RegistrationData, pin: String? = null, masterKeyProducer: VerifyAccountRepository.MasterKeyProducer? = null): NetworkResult<AccountRegistrationResult> =
+  suspend fun registerAccount(context: Context, sessionId: String?, registrationData: RegistrationData, pin: String? = null, masterKeyProducer: VerifyAccountRepository.MasterKeyProducer? = null): RegisterAccountResult =
     withContext(Dispatchers.IO) {
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, registrationData.e164, SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.password).registrationApi
 
@@ -389,7 +391,7 @@ object RegistrationRepository {
       val aciPreKeyCollection = org.thoughtcrime.securesms.registration.RegistrationRepository.generateSignedAndLastResortPreKeys(aciIdentity, SignalStore.account().aciPreKeys)
       val pniPreKeyCollection = org.thoughtcrime.securesms.registration.RegistrationRepository.generateSignedAndLastResortPreKeys(pniIdentity, SignalStore.account().pniPreKeys)
 
-      api.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, aciPreKeyCollection, pniPreKeyCollection, registrationData.fcmToken, true)
+      val result: NetworkResult<AccountRegistrationResult> = api.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, aciPreKeyCollection, pniPreKeyCollection, registrationData.fcmToken, true)
         .map { accountRegistrationResponse ->
           AccountRegistrationResult(
             uuid = accountRegistrationResponse.uuid,
@@ -402,6 +404,8 @@ object RegistrationRepository {
             pniPreKeyCollection = pniPreKeyCollection
           )
         }
+
+      return@withContext RegisterAccountResult.from(result)
     }
 
   suspend fun createSessionAndBlockForPushChallenge(accountManager: RegistrationApi, fcmToken: String, mcc: String?, mnc: String?): NetworkResult<RegistrationSessionMetadataResponse> =

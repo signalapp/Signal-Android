@@ -317,10 +317,6 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public @Nonnull VerifyAccountResponse registerAccountV2(@Nullable String sessionId, @Nullable String recoveryPassword, AccountAttributes attributes, PreKeyCollection aciPreKeys, PreKeyCollection pniPreKeys, String fcmToken, boolean skipDeviceTransfer) throws IOException {
-    return pushServiceSocket.submitRegistrationRequest(sessionId, recoveryPassword, attributes, aciPreKeys, pniPreKeys, fcmToken, skipDeviceTransfer);
-  }
-
   public @Nonnull ServiceResponse<VerifyAccountResponse> changeNumber(@Nonnull ChangePhoneNumberRequest changePhoneNumberRequest) {
     try {
       VerifyAccountResponse response = this.pushServiceSocket.changeNumber(changePhoneNumberRequest);

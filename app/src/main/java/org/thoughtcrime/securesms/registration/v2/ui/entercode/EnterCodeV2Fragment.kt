@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.registration.fragments.ContactSupportBottomShe
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.fragments.SignalStrengthPhoneStateListener
 import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
+import org.thoughtcrime.securesms.registration.v2.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
@@ -69,7 +70,7 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
     }
 
     binding.code.setOnCompleteListener {
-      sharedViewModel.verifyCodeWithoutRegistrationLock(requireContext(), it)
+      sharedViewModel.verifyCodeWithoutRegistrationLock(requireContext(), it, ::handleSessionErrorResponse, ::handleRegistrationErrorResponse)
     }
 
     binding.havingTroubleButton.setOnClickListener {
@@ -79,14 +80,14 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
     binding.callMeCountDown.apply {
       setTextResources(R.string.RegistrationActivity_call, R.string.RegistrationActivity_call_me_instead_available_in)
       setOnClickListener {
-        sharedViewModel.requestVerificationCall(requireContext(), ::handleErrorResponse)
+        sharedViewModel.requestVerificationCall(requireContext(), ::handleSessionErrorResponse)
       }
     }
 
     binding.resendSmsCountDown.apply {
       setTextResources(R.string.RegistrationActivity_resend_code, R.string.RegistrationActivity_resend_sms_available_in)
       setOnClickListener {
-        sharedViewModel.requestSmsCode(requireContext(), ::handleErrorResponse)
+        sharedViewModel.requestSmsCode(requireContext(), ::handleSessionErrorResponse)
       }
     }
 
@@ -111,7 +112,7 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
     }
   }
 
-  private fun handleErrorResponse(requestResult: VerificationCodeRequestResult, mode: RegistrationRepository.Mode) {
+  private fun handleSessionErrorResponse(requestResult: VerificationCodeRequestResult, mode: RegistrationRepository.Mode) {
     when (requestResult) {
       is VerificationCodeRequestResult.Success -> binding.keyboard.displaySuccess()
       is VerificationCodeRequestResult.RateLimited -> {
@@ -147,6 +148,49 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
         )
       }
     }
+  }
+
+  private fun handleRegistrationErrorResponse(result: RegisterAccountResult) {
+    when (result) {
+      is RegisterAccountResult.Success -> Log.d(TAG, "Register account was successful.")
+      is RegisterAccountResult.AuthorizationFailed -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_error_connecting_to_service))
+      is RegisterAccountResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_error_connecting_to_service))
+      is RegisterAccountResult.RegistrationLocked -> {
+        Log.w(TAG, "Account is registration locked, cannot register.")
+        findNavController().safeNavigate(EnterCodeV2FragmentDirections.actionRequireKbsLockPin(result.timeRemaining))
+      }
+      is RegisterAccountResult.UnknownError -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_error_connecting_to_service))
+      is RegisterAccountResult.ValidationError -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_error_connecting_to_service))
+      is RegisterAccountResult.IncorrectRecoveryPassword -> {
+        Log.w(TAG, "User somehow got recovery password error while entering code. This is very suspicious!")
+        sharedViewModel.setUserSkippedReRegisterFlow(true)
+        popBackStack()
+      }
+
+      is RegisterAccountResult.AttemptsExhausted,
+      is RegisterAccountResult.RateLimited -> presentRateLimitedDialog()
+    }
+  }
+
+  private fun presentRateLimitedDialog() {
+    binding.keyboard.displayFailure().addListener(
+      object : AssertedSuccessListener<Boolean?>() {
+        override fun onSuccess(result: Boolean?) {
+          MaterialAlertDialogBuilder(requireContext()).apply {
+            setTitle(R.string.RegistrationActivity_too_many_attempts)
+            setMessage(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later)
+            setPositiveButton(android.R.string.ok) { _: DialogInterface?, _: Int ->
+              binding.callMeCountDown.visibility = View.VISIBLE
+              binding.resendSmsCountDown.visibility = View.VISIBLE
+              binding.wrongNumber.visibility = View.VISIBLE
+              binding.code.clear()
+              binding.keyboard.displayKeyboard()
+            }
+            show()
+          }
+        }
+      }
+    )
   }
 
   private fun presentRemoteErrorDialog(message: String, title: String? = null, positiveButtonListener: DialogInterface.OnClickListener? = null) {

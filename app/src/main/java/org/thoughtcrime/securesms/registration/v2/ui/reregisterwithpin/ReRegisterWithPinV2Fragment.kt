@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.registration.fragments.BaseRegistrationLockFragment
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
+import org.thoughtcrime.securesms.registration.v2.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2State
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
@@ -125,9 +126,14 @@ class ReRegisterWithPinV2Fragment : LoggingFragment(R.layout.fragment_registrati
 
     registrationViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PIN_CONFIRMED)
 
-    registrationViewModel.verifyReRegisterWithPin(requireContext(), pin) {
-      reRegisterViewModel.markIncorrectGuess()
-    }
+    registrationViewModel.verifyReRegisterWithPin(
+      context = requireContext(),
+      pin = pin,
+      wrongPinHandler = {
+        reRegisterViewModel.markIncorrectGuess()
+      },
+      registrationErrorHandler = ::registrationErrorHandler
+    )
 
     // TODO [regv2]: check for registration lock + wrong pin and decrement SVR tries remaining
   }
@@ -233,11 +239,42 @@ class ReRegisterWithPinV2Fragment : LoggingFragment(R.layout.fragment_registrati
     registrationViewModel.setUserSkippedReRegisterFlow(true)
   }
 
+  private fun presentRateLimitedDialog() {
+    MaterialAlertDialogBuilder(requireContext()).apply {
+      setTitle(R.string.RegistrationActivity_too_many_attempts)
+      setMessage(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later)
+      setPositiveButton(android.R.string.ok, null)
+      show()
+    }
+  }
+
   private fun genericErrorDialog() {
     MaterialAlertDialogBuilder(requireContext())
       .setMessage(R.string.RegistrationActivity_error_connecting_to_service)
       .setPositiveButton(android.R.string.ok, null)
       .create()
       .show()
+  }
+
+  private fun registrationErrorHandler(result: RegisterAccountResult) {
+    when (result) {
+      is RegisterAccountResult.Success -> Log.d(TAG, "Register account was successful.")
+      is RegisterAccountResult.AuthorizationFailed,
+      is RegisterAccountResult.MalformedRequest,
+      is RegisterAccountResult.UnknownError,
+      is RegisterAccountResult.ValidationError,
+      is RegisterAccountResult.RegistrationLocked -> {
+        Log.i(TAG, "Registration failed.", result.getCause())
+        genericErrorDialog()
+      }
+
+      is RegisterAccountResult.IncorrectRecoveryPassword -> {
+        registrationViewModel.setUserSkippedReRegisterFlow(true)
+        findNavController().safeNavigate(ReRegisterWithPinV2FragmentDirections.actionReRegisterWithPinFragmentToEnterPhoneNumberV2Fragment())
+      }
+
+      is RegisterAccountResult.AttemptsExhausted,
+      is RegisterAccountResult.RateLimited -> presentRateLimitedDialog()
+    }
   }
 }

@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.v2.data.network.BackupAuthCheckResult
+import org.thoughtcrime.securesms.registration.v2.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionCheckResult
 import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionCreationResult
 import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionResult
@@ -50,10 +51,8 @@ import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeR
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
-import org.whispersystems.signalservice.internal.push.LockedException
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import java.io.IOException
 import kotlin.time.Duration.Companion.minutes
@@ -64,7 +63,7 @@ import kotlin.time.Duration.Companion.minutes
 class RegistrationV2ViewModel : ViewModel() {
 
   private val store = MutableStateFlow(RegistrationV2State())
-  private val password = Util.getSecret(18) // TODO [regv2]: persist this
+  private val password = Util.getSecret(18)
 
   private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
     Log.w(TAG, "CoroutineExceptionHandler invoked.", exception)
@@ -168,7 +167,7 @@ class RegistrationV2ViewModel : ViewModel() {
     }
 
     viewModelScope.launch {
-      val svrCredentialsResult = RegistrationRepository.hasValidSvrAuthCredentials(context, e164, password)
+      val svrCredentialsResult: BackupAuthCheckResult = RegistrationRepository.hasValidSvrAuthCredentials(context, e164, password)
 
       when (svrCredentialsResult) {
         is BackupAuthCheckResult.UnknownError -> {
@@ -184,7 +183,9 @@ class RegistrationV2ViewModel : ViewModel() {
           return@launch
         }
 
-        is BackupAuthCheckResult.SuccessWithoutCredentials -> Log.d(TAG, "No local SVR auth credentials could be found and/or validated.")
+        is BackupAuthCheckResult.SuccessWithoutCredentials -> {
+          Log.d(TAG, "No local SVR auth credentials could be found and/or validated.")
+        }
       }
 
       val validSession = getOrCreateValidSession(context) ?: return@launch
@@ -412,6 +413,34 @@ class RegistrationV2ViewModel : ViewModel() {
     return false
   }
 
+  /**
+   * @return whether the request was successful and execution should continue
+   */
+  private suspend fun handleRegistrationResult(context: Context, registrationData: RegistrationData, registrationResult: RegisterAccountResult, reglockEnabled: Boolean, errorHandler: (RegisterAccountResult) -> Unit): Boolean {
+    when (registrationResult) {
+      is RegisterAccountResult.Success -> {
+        onSuccessfulRegistration(context, registrationData, registrationResult.accountRegistrationResult, reglockEnabled)
+        return true
+      }
+      is RegisterAccountResult.IncorrectRecoveryPassword -> {
+        Log.i(TAG, "Registration recovery password was incorrect, falling back to SMS verification.", registrationResult.getCause())
+        setUserSkippedReRegisterFlow(true)
+      }
+      is RegisterAccountResult.RegistrationLocked -> {
+        Log.i(TAG, "Account is registration locked!", registrationResult.getCause())
+      }
+      is RegisterAccountResult.AttemptsExhausted,
+      is RegisterAccountResult.RateLimited,
+      is RegisterAccountResult.AuthorizationFailed,
+      is RegisterAccountResult.MalformedRequest,
+      is RegisterAccountResult.ValidationError,
+      is RegisterAccountResult.UnknownError -> Log.i(TAG, "Received error when trying to register!", registrationResult.getCause())
+    }
+    setInProgress(false)
+    errorHandler(registrationResult)
+    return false
+  }
+
   private fun handleGenericError(cause: Throwable) {
     Log.w(TAG, "Encountered unknown error!", cause)
     store.update {
@@ -437,7 +466,7 @@ class RegistrationV2ViewModel : ViewModel() {
     }
   }
 
-  fun verifyReRegisterWithPin(context: Context, pin: String, wrongPinHandler: () -> Unit) {
+  fun verifyReRegisterWithPin(context: Context, pin: String, wrongPinHandler: () -> Unit, registrationErrorHandler: (RegisterAccountResult) -> Unit) {
     setInProgress(true)
 
     // Local recovery password
@@ -445,7 +474,7 @@ class RegistrationV2ViewModel : ViewModel() {
       if (RegistrationRepository.doesPinMatchLocalHash(pin)) {
         Log.d(TAG, "Found recovery password, attempting to re-register.")
         viewModelScope.launch(context = coroutineExceptionHandler) {
-          verifyReRegisterInternal(context, pin, SignalStore.svr().getOrCreateMasterKey())
+          verifyReRegisterInternal(context, pin, SignalStore.svr().getOrCreateMasterKey(), registrationErrorHandler)
           setInProgress(false)
         }
       } else {
@@ -465,7 +494,7 @@ class RegistrationV2ViewModel : ViewModel() {
           val masterKey = RegistrationRepository.fetchMasterKeyFromSvrRemote(pin, authCredentials)
           setRecoveryPassword(masterKey.deriveRegistrationRecoveryPassword())
           updateSvrTriesRemaining(10)
-          verifyReRegisterInternal(context, pin, masterKey)
+          verifyReRegisterInternal(context, pin, masterKey, registrationErrorHandler)
         } catch (rejectedPin: SvrWrongPinException) {
           Log.w(TAG, "Submitted PIN was rejected by SVR.", rejectedPin)
           updateSvrTriesRemaining(rejectedPin.triesRemaining)
@@ -486,7 +515,7 @@ class RegistrationV2ViewModel : ViewModel() {
     }
   }
 
-  private suspend fun verifyReRegisterInternal(context: Context, pin: String, masterKey: MasterKey) {
+  private suspend fun verifyReRegisterInternal(context: Context, pin: String, masterKey: MasterKey, registrationErrorHandler: (RegisterAccountResult) -> Unit) {
     updateFcmToken(context)
 
     val registrationData = getRegistrationData("")
@@ -495,34 +524,31 @@ class RegistrationV2ViewModel : ViewModel() {
     val result = resultAndRegLockStatus.first
     val reglockEnabled = resultAndRegLockStatus.second
 
-    if (result !is NetworkResult.Success) {
-      Log.w(TAG, "Error during registration!", result.getCause())
-      return
-    }
-
-    onSuccessfulRegistration(context, registrationData, result.result, reglockEnabled)
+    handleRegistrationResult(context, registrationData, result, reglockEnabled, registrationErrorHandler)
   }
 
-  private suspend fun registerAccountInternal(context: Context, sessionId: String?, registrationData: RegistrationData, pin: String?, masterKey: MasterKey): Pair<NetworkResult<RegistrationRepository.AccountRegistrationResult>, Boolean> {
-    val registrationResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, pin = pin) { masterKey }
+  /**
+   * @return a [Pair] containing the server response and a boolean signifying whether the current account is registration locked.
+   */
+  private suspend fun registerAccountInternal(context: Context, sessionId: String?, registrationData: RegistrationData, pin: String?, masterKey: MasterKey): Pair<RegisterAccountResult, Boolean> {
+    val registrationResult: RegisterAccountResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, pin = pin) { masterKey }
 
     // TODO: check for wrong recovery password
 
     // Check if reg lock is enabled
-    if (registrationResult !is NetworkResult.StatusCodeError || registrationResult.exception !is LockedException) {
+    if (registrationResult !is RegisterAccountResult.RegistrationLocked) {
       return Pair(registrationResult, false)
     }
 
     Log.i(TAG, "Received a registration lock response when trying to register an account. Retrying with master key.")
-    val lockedException = registrationResult.exception as LockedException
     store.update {
-      it.copy(svrAuthCredentials = lockedException.svr2Credentials)
+      it.copy(svrAuthCredentials = registrationResult.svr2Credentials)
     }
 
     return Pair(RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, pin = pin) { masterKey }, true)
   }
 
-  fun verifyCodeWithoutRegistrationLock(context: Context, code: String) {
+  fun verifyCodeWithoutRegistrationLock(context: Context, code: String, submissionErrorHandler: (VerificationCodeRequestResult, RegistrationRepository.Mode) -> Unit, registrationErrorHandler: (RegisterAccountResult) -> Unit) {
     store.update {
       it.copy(inProgress = true, registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_ENTERED)
     }
@@ -532,23 +558,23 @@ class RegistrationV2ViewModel : ViewModel() {
       Log.w(TAG, "Session ID was null. TODO: handle this better in the UI.")
       return
     }
+
     val e164: String = getCurrentE164() ?: throw IllegalStateException()
 
     viewModelScope.launch(context = coroutineExceptionHandler) {
       val registrationData = getRegistrationData(code)
-      val verificationResponse = RegistrationRepository.submitVerificationCode(context, e164, password, sessionId, registrationData).successOrThrow()
+      val verificationResponse = RegistrationRepository.submitVerificationCode(context, e164, password, sessionId, registrationData)
 
-      if (!verificationResponse.body.verified) {
+      if (!verificationResponse.isSuccess()) {
         Log.w(TAG, "Could not verify code!")
-        // TODO [regv2]: error handling
+        handleSessionStateResult(context, verificationResponse, RegistrationRepository.Mode.NONE, submissionErrorHandler)
         return@launch
       }
 
       setRegistrationCheckpoint(RegistrationCheckpoint.VERIFICATION_CODE_VALIDATED)
 
-      val registrationResponse = RegistrationRepository.registerAccount(context, sessionId, registrationData).successOrThrow()
-      // TODO [regv2]: error handling
-      onSuccessfulRegistration(context, registrationData, registrationResponse, false)
+      val registrationResponse: RegisterAccountResult = RegistrationRepository.registerAccount(context, sessionId, registrationData)
+      handleRegistrationResult(context, registrationData, registrationResponse, false, registrationErrorHandler)
     }
   }
 
