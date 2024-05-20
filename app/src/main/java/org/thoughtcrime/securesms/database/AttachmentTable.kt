@@ -777,7 +777,7 @@ class AttachmentTable(
       // We don't look at hash_start here because that could result in us matching on a file that got compressed down to something smaller, effectively lowering
       // the quality of the attachment we received.
       val hashMatch: DataFileInfo? = readableDatabase
-        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP)
+        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_MEDIA_NAME, ARCHIVE_MEDIA_ID)
         .from(TABLE_NAME)
         .where("$DATA_HASH_END = ? AND $DATA_HASH_END NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND $DATA_FILE NOT NULL", fileWriteResult.hash)
         .run()
@@ -793,6 +793,9 @@ class AttachmentTable(
         values.put(DATA_RANDOM, hashMatch.random)
         values.put(DATA_HASH_START, hashMatch.hashEnd)
         values.put(DATA_HASH_END, hashMatch.hashEnd)
+        values.put(ARCHIVE_CDN, hashMatch.archiveCdn)
+        values.put(ARCHIVE_MEDIA_NAME, hashMatch.archiveMediaName)
+        values.put(ARCHIVE_MEDIA_ID, hashMatch.archiveMediaId)
       } else {
         values.put(DATA_FILE, fileWriteResult.file.absolutePath)
         values.put(DATA_SIZE, fileWriteResult.length)
@@ -1214,7 +1217,7 @@ class AttachmentTable(
 
   fun getDataFileInfo(attachmentId: AttachmentId): DataFileInfo? {
     return readableDatabase
-      .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP)
+      .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_MEDIA_NAME, ARCHIVE_MEDIA_ID)
       .from(TABLE_NAME)
       .where("$ID = ?", attachmentId.id)
       .run()
@@ -1432,18 +1435,34 @@ class AttachmentTable(
     return readableDatabase.rawQuery(query, null)
   }
 
+  /**
+   * Sets the archive data for the specific attachment, as well as for any attachments that use the same underlying file.
+   */
   fun setArchiveData(attachmentId: AttachmentId, archiveCdn: Int, archiveMediaName: String, archiveMediaId: String, archiveThumbnailMediaId: String) {
-    writableDatabase
-      .update(TABLE_NAME)
-      .values(
-        ARCHIVE_CDN to archiveCdn,
-        ARCHIVE_MEDIA_ID to archiveMediaId,
-        ARCHIVE_MEDIA_NAME to archiveMediaName,
-        ARCHIVE_THUMBNAIL_MEDIA_ID to archiveThumbnailMediaId,
-        ARCHIVE_TRANSFER_STATE to ArchiveTransferState.FINISHED.value
-      )
-      .where("$ID = ?", attachmentId.id)
-      .run()
+    writableDatabase.withinTransaction { db ->
+      val dataFile = db
+        .select(DATA_FILE)
+        .from(TABLE_NAME)
+        .where("$ID = ?", attachmentId.id)
+        .run()
+        .readToSingleObject { it.requireString(DATA_FILE) }
+
+      if (dataFile == null) {
+        Log.w(TAG, "No data file found for attachment $attachmentId. Can't set archive data.")
+        return@withinTransaction
+      }
+
+      db.update(TABLE_NAME)
+        .values(
+          ARCHIVE_CDN to archiveCdn,
+          ARCHIVE_MEDIA_ID to archiveMediaId,
+          ARCHIVE_MEDIA_NAME to archiveMediaName,
+          ARCHIVE_THUMBNAIL_MEDIA_ID to archiveThumbnailMediaId,
+          ARCHIVE_TRANSFER_STATE to ArchiveTransferState.FINISHED.value
+        )
+        .where("$DATA_FILE = ?", dataFile)
+        .run()
+    }
   }
 
   fun updateArchiveCdnByMediaId(archiveMediaId: String, archiveCdn: Int): Int {
@@ -1796,7 +1815,7 @@ class AttachmentTable(
       // First we'll check if our file hash matches the starting or ending hash of any other attachments and has compatible transform properties.
       // We'll prefer the match with the most recent upload timestamp.
       val hashMatch: DataFileInfo? = readableDatabase
-        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP)
+        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_MEDIA_NAME, ARCHIVE_MEDIA_ID)
         .from(TABLE_NAME)
         .where("$DATA_FILE NOT NULL AND ($DATA_HASH_START = ? OR $DATA_HASH_END = ?)", fileWriteResult.hash, fileWriteResult.hash)
         .run()
@@ -1826,6 +1845,9 @@ class AttachmentTable(
         contentValues.put(DATA_RANDOM, hashMatch.random)
         contentValues.put(DATA_HASH_START, fileWriteResult.hash)
         contentValues.put(DATA_HASH_END, hashMatch.hashEnd)
+        contentValues.put(ARCHIVE_CDN, hashMatch.archiveCdn)
+        contentValues.put(ARCHIVE_MEDIA_NAME, hashMatch.archiveMediaName)
+        contentValues.put(ARCHIVE_MEDIA_ID, hashMatch.archiveMediaId)
 
         if (hashMatch.transformProperties.skipTransform) {
           Log.i(TAG, "[insertAttachmentWithData] The hash match has a DATA_HASH_END and skipTransform=true, so skipping transform of the new file as well. (MessageId: $messageId, ${attachment.uri})")
@@ -1987,7 +2009,10 @@ class AttachmentTable(
       hashStart = this.requireString(DATA_HASH_START),
       hashEnd = this.requireString(DATA_HASH_END),
       transformProperties = TransformProperties.parse(this.requireString(TRANSFORM_PROPERTIES)),
-      uploadTimestamp = this.requireLong(UPLOAD_TIMESTAMP)
+      uploadTimestamp = this.requireLong(UPLOAD_TIMESTAMP),
+      archiveCdn = this.requireInt(ARCHIVE_CDN),
+      archiveMediaName = this.requireString(ARCHIVE_MEDIA_NAME),
+      archiveMediaId = this.requireString(ARCHIVE_MEDIA_ID)
     )
   }
 
@@ -2050,7 +2075,10 @@ class AttachmentTable(
     val hashStart: String?,
     val hashEnd: String?,
     val transformProperties: TransformProperties,
-    val uploadTimestamp: Long
+    val uploadTimestamp: Long,
+    val archiveCdn: Int,
+    val archiveMediaName: String?,
+    val archiveMediaId: String?
   )
 
   @VisibleForTesting

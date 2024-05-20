@@ -16,6 +16,7 @@ import org.signal.core.util.update
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
+import org.thoughtcrime.securesms.backup.v2.BackupRepository.getMediaName
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MediaStream
@@ -25,6 +26,8 @@ import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.backup.MediaId
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.File
 import java.util.UUID
@@ -195,6 +198,8 @@ class AttachmentTableTest_deduping {
       assertDataHashEndMatches(id1, id2)
       assertSkipTransform(id1, true)
       assertSkipTransform(id2, true)
+      assertRemoteFieldsMatch(id1, id2)
+      assertArchiveFieldsMatch(id1, id2)
     }
 
     // Mimics sending two files at once. Ensures all fields are kept in sync as we compress and upload.
@@ -220,6 +225,7 @@ class AttachmentTableTest_deduping {
       assertDataHashStartMatches(id1, id2)
       assertDataHashEndMatches(id1, id2)
       assertRemoteFieldsMatch(id1, id2)
+      assertArchiveFieldsMatch(id1, id2)
     }
 
     // Re-use the upload when uploaded recently
@@ -234,6 +240,7 @@ class AttachmentTableTest_deduping {
       assertDataHashStartMatches(id1, id2)
       assertDataHashEndMatches(id1, id2)
       assertRemoteFieldsMatch(id1, id2)
+      assertArchiveFieldsMatch(id1, id2)
       assertSkipTransform(id1, true)
       assertSkipTransform(id2, true)
     }
@@ -253,6 +260,7 @@ class AttachmentTableTest_deduping {
       assertSkipTransform(id2, true)
 
       assertDoesNotHaveRemoteFields(id2)
+      assertArchiveFieldsMatch(id1, id2)
     }
 
     // This isn't so much "desirable behavior" as it is documenting how things work.
@@ -282,6 +290,7 @@ class AttachmentTableTest_deduping {
       assertSkipTransform(id1, true)
       assertSkipTransform(id1, true)
       assertRemoteFieldsMatch(id1, id2)
+      assertArchiveFieldsMatch(id1, id2)
     }
 
     // This represents what would happen if you edited a video, sent it, then forwarded it. We should match, skip transform, and skip upload.
@@ -297,6 +306,7 @@ class AttachmentTableTest_deduping {
       assertSkipTransform(id1, true)
       assertSkipTransform(id1, true)
       assertRemoteFieldsMatch(id1, id2)
+      assertArchiveFieldsMatch(id1, id2)
     }
 
     // This represents what would happen if you edited a video, sent it, then forwarded it, but *edited the forwarded video*. We should not dedupe.
@@ -327,6 +337,7 @@ class AttachmentTableTest_deduping {
       assertSkipTransform(id1, true)
       assertSkipTransform(id1, true)
       assertRemoteFieldsMatch(id1, id2)
+      assertArchiveFieldsMatch(id1, id2)
     }
 
     // This represents what would happen if you sent an image using high quality, then forwarded it using standard quality.
@@ -343,6 +354,7 @@ class AttachmentTableTest_deduping {
       assertSkipTransform(id1, true)
       assertSkipTransform(id1, true)
       assertRemoteFieldsMatch(id1, id2)
+      assertArchiveFieldsMatch(id1, id2)
     }
 
     // Make sure that files marked as unhashable are all updated together
@@ -457,6 +469,7 @@ class AttachmentTableTest_deduping {
       assertDataHashStartMatches(id1, id2)
       assertDataHashEndMatches(id1, id2)
       assertRemoteFieldsMatch(id1, id2)
+      assertArchiveFieldsMatch(id1, id2)
     }
 
     // Making sure things work for quotes of videos, which have trickier transform properties
@@ -470,6 +483,7 @@ class AttachmentTableTest_deduping {
       assertDataFilesAreTheSame(id1, id2)
       assertDataHashEndMatches(id1, id2)
       assertRemoteFieldsMatch(id1, id2)
+      assertArchiveFieldsMatch(id1, id2)
     }
   }
 
@@ -648,6 +662,15 @@ class AttachmentTableTest_deduping {
 
     fun upload(attachmentId: AttachmentId, uploadTimestamp: Long = System.currentTimeMillis()) {
       SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachmentId, createPointerAttachment(attachmentId, uploadTimestamp), uploadTimestamp)
+
+      val attachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
+      SignalDatabase.attachments.setArchiveData(
+        attachmentId = attachmentId,
+        archiveCdn = Cdn.CDN_3.cdnNumber,
+        archiveMediaName = attachment.getMediaName().name,
+        archiveThumbnailMediaId = MediaId(Util.getSecretBytes(15)).encode(),
+        archiveMediaId = MediaId(Util.getSecretBytes(15)).encode()
+      )
     }
 
     fun delete(attachmentId: AttachmentId) {
@@ -744,6 +767,15 @@ class AttachmentTableTest_deduping {
       assertArrayEquals(lhsAttachment.incrementalDigest, rhsAttachment.incrementalDigest)
       assertEquals(lhsAttachment.incrementalMacChunkSize, rhsAttachment.incrementalMacChunkSize)
       assertEquals(lhsAttachment.cdn.cdnNumber, rhsAttachment.cdn.cdnNumber)
+    }
+
+    fun assertArchiveFieldsMatch(lhs: AttachmentId, rhs: AttachmentId) {
+      val lhsAttachment = SignalDatabase.attachments.getAttachment(lhs)!!
+      val rhsAttachment = SignalDatabase.attachments.getAttachment(rhs)!!
+
+      assertEquals(lhsAttachment.archiveCdn, rhsAttachment.archiveCdn)
+      assertEquals(lhsAttachment.archiveMediaName, rhsAttachment.archiveMediaName)
+      assertEquals(lhsAttachment.archiveMediaId, rhsAttachment.archiveMediaId)
     }
 
     fun assertDoesNotHaveRemoteFields(attachmentId: AttachmentId) {
