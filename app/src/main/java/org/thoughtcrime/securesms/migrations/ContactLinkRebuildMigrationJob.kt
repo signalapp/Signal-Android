@@ -5,6 +5,9 @@
 
 package org.thoughtcrime.securesms.migrations
 
+import android.Manifest
+import android.content.pm.PackageManager
+import androidx.core.content.ContextCompat
 import org.signal.contacts.SystemContactsRepository
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
@@ -35,6 +38,11 @@ internal class ContactLinkRebuildMigrationJob(parameters: Parameters = Parameter
     val account = SystemContactsRepository.getOrCreateSystemAccount(context, BuildConfig.APPLICATION_ID, context.getString(R.string.app_name))
     if (account == null) {
       Log.w(TAG, "Failed to create an account!")
+      return
+    }
+
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "We don't have the right permissions to perform this migration!")
       return
     }
 
