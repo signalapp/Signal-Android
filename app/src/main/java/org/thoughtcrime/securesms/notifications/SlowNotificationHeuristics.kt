@@ -79,9 +79,12 @@ object SlowNotificationHeuristics {
     if (Build.VERSION.SDK_INT < 23) {
       return false
     }
-    if (!LocaleFeatureFlags.isBatterySaverPromptEnabled() || SignalStore.uiHints().hasDismissedBatterySaverPrompt()) {
+
+    val remoteEnabled = LocaleFeatureFlags.isBatterySaverPromptEnabled() || LocaleFeatureFlags.isDelayedNotificationPromptEnabled()
+    if (!remoteEnabled || SignalStore.uiHints().hasDismissedBatterySaverPrompt()) {
       return false
     }
+
     if (System.currentTimeMillis() - SignalStore.uiHints().lastBatterySaverPrompt < TimeUnit.DAYS.toMillis(7)) {
       return false
     }

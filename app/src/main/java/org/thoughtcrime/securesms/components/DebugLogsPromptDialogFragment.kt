@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,9 +21,12 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.PromptLogsBottomSheetBinding
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.NetworkUtil
+import org.thoughtcrime.securesms.util.PowerManagerCompat
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 
 class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
@@ -124,9 +128,12 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
 
     if (debugLog != null) {
       suffix.append("\n")
-      suffix.append(getString(R.string.HelpFragment__debug_log))
-      suffix.append(" ")
-      suffix.append(debugLog)
+      suffix.append(getString(R.string.HelpFragment__debug_log)).append(" ").append(debugLog).append("\n\n")
+      suffix.append("-- Highlights").append("\n")
+      suffix.append("Slow notifications detected: ").append(SlowNotificationHeuristics.isHavingDelayedNotifications()).append("\n")
+      suffix.append("Ignoring battery optimizations: ").append(batteryOptimizationsString()).append("\n")
+      suffix.append("Background restricted: ").append(backgroundRestrictedString()).append("\n")
+      suffix.append("Data saver: ").append(dataSaverString()).append("\n")
     }
 
     val category = when (purpose) {
@@ -141,6 +148,30 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
       "\n\n",
       suffix.toString()
     )
+  }
+
+  private fun batteryOptimizationsString(): String {
+    return if (Build.VERSION.SDK_INT < 23) {
+      "N/A (API < 23)"
+    } else {
+      PowerManagerCompat.isIgnoringBatteryOptimizations(requireContext()).toString()
+    }
+  }
+
+  private fun backgroundRestrictedString(): String {
+    return if (Build.VERSION.SDK_INT < 28) {
+      "N/A (API < 28)"
+    } else {
+      DeviceProperties.isBackgroundRestricted(requireContext()).toString()
+    }
+  }
+
+  private fun dataSaverString(): String {
+    return if (Build.VERSION.SDK_INT < 24) {
+      "N/A (API < 24)"
+    } else {
+      DeviceProperties.getDataSaverState(requireContext()).toString()
+    }
   }
 
   enum class Purpose(val serialized: Int) {
