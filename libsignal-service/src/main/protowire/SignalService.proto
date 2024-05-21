@@ -653,6 +653,43 @@ message SyncMessage {
     optional uint64 callId        = 4;
   }
 
+  message DeleteForMe {
+    message ConversationIdentifier {
+      oneof identifier {
+        string threadAci = 1;
+        bytes threadGroupId = 2;
+        string threadE164 = 3;
+      }
+    }
+
+    message AddressableMessage {
+      oneof author {
+        string authorAci = 1;
+        string authorE164 = 2;
+      }
+      optional uint64 sentTimestamp = 3;
+    }
+
+    message MessageDeletes {
+      optional ConversationIdentifier conversation = 1;
+      repeated AddressableMessage messages = 2;
+    }
+
+    message ConversationDelete {
+      optional ConversationIdentifier conversation = 1;
+      repeated AddressableMessage mostRecentMessages = 2;
+      optional bool isFullDelete = 3;
+    }
+
+    message LocalOnlyConversationDelete {
+      optional ConversationIdentifier conversation = 1;
+    }
+
+    repeated MessageDeletes messageDeletes = 1;
+    repeated ConversationDelete conversationDeletes = 2;
+    repeated LocalOnlyConversationDelete localOnlyConversationDeletes = 3;
+  }
+
   optional Sent                   sent                   = 1;
   optional Contacts               contacts               = 2;
   reserved                      /*groups*/                 3;
@@ -674,6 +711,7 @@ message SyncMessage {
   optional CallEvent              callEvent              = 19;
   optional CallLinkUpdate         callLinkUpdate         = 20;
   optional CallLogEvent           callLogEvent           = 21;
+  optional DeleteForMe            deleteForMe            = 22;
 }
 
 message AttachmentPointer {

@@ -158,6 +158,7 @@ object SyncMessageProcessor {
       syncMessage.callEvent != null -> handleSynchronizeCallEvent(syncMessage.callEvent!!, envelope.timestamp!!)
       syncMessage.callLinkUpdate != null -> handleSynchronizeCallLink(syncMessage.callLinkUpdate!!, envelope.timestamp!!)
       syncMessage.callLogEvent != null -> handleSynchronizeCallLogEvent(syncMessage.callLogEvent!!, envelope.timestamp!!)
+      syncMessage.deleteForMe != null -> handleSynchronizeDeleteForMe(context, syncMessage.deleteForMe!!, envelope.timestamp!!, earlyMessageCacheEntry)
       else -> warn(envelope.timestamp!!, "Contains no known sync types...")
     }
   }
@@ -1449,6 +1450,148 @@ object SyncMessageProcessor {
         }
         else -> warn("Unsupported event type $event. Ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId call: null")
       }
+    }
+  }
+
+  private fun handleSynchronizeDeleteForMe(context: Context, deleteForMe: SyncMessage.DeleteForMe, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
+    if (!FeatureFlags.deleteSyncEnabled()) {
+      warn(envelopeTimestamp, "Delete for me sync message dropped as support not enabled")
+      return
+    }
+
+    log(envelopeTimestamp, "Synchronize delete message messageDeletes=${deleteForMe.messageDeletes.size} conversationDeletes=${deleteForMe.conversationDeletes.size} localOnlyConversationDeletes=${deleteForMe.localOnlyConversationDeletes.size}")
+
+    if (deleteForMe.messageDeletes.isNotEmpty()) {
+      handleSynchronizeMessageDeletes(deleteForMe.messageDeletes, envelopeTimestamp, earlyMessageCacheEntry)
+    }
+
+    if (deleteForMe.conversationDeletes.isNotEmpty()) {
+      handleSynchronizeConversationDeletes(deleteForMe.conversationDeletes, envelopeTimestamp)
+    }
+
+    if (deleteForMe.localOnlyConversationDeletes.isNotEmpty()) {
+      handleSynchronizeLocalOnlyConversationDeletes(deleteForMe.localOnlyConversationDeletes, envelopeTimestamp)
+    }
+
+    ApplicationDependencies.getMessageNotifier().updateNotification(context)
+  }
+
+  private fun handleSynchronizeMessageDeletes(messageDeletes: List<SyncMessage.DeleteForMe.MessageDeletes>, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
+    val messagesToDelete: List<MessageTable.SyncMessageId> = messageDeletes
+      .asSequence()
+      .map { it.messages }
+      .flatten()
+      .mapNotNull { it.toSyncMessageId(envelopeTimestamp) }
+      .toList()
+
+    val unhandled: List<MessageTable.SyncMessageId> = SignalDatabase.messages.deleteMessages(messagesToDelete)
+
+    for (syncMessage in unhandled) {
+      warn(envelopeTimestamp, "[handleSynchronizeDeleteForMe] Could not find matching message! timestamp: ${syncMessage.timetamp}  author: ${syncMessage.recipientId}")
+      if (earlyMessageCacheEntry != null) {
+        ApplicationDependencies.getEarlyMessageCache().store(syncMessage.recipientId, syncMessage.timetamp, earlyMessageCacheEntry)
+      }
+    }
+
+    if (unhandled.isNotEmpty() && earlyMessageCacheEntry != null) {
+      PushProcessEarlyMessagesJob.enqueue()
+    }
+  }
+
+  private fun handleSynchronizeConversationDeletes(conversationDeletes: List<SyncMessage.DeleteForMe.ConversationDelete>, envelopeTimestamp: Long) {
+    for (delete in conversationDeletes) {
+      val threadRecipientId: RecipientId? = delete.conversation?.toRecipientId()
+
+      if (threadRecipientId == null) {
+        warn(envelopeTimestamp, "[handleSynchronizeDeleteForMe] Could not find matching conversation recipient")
+        continue
+      }
+
+      val threadId = SignalDatabase.threads.getThreadIdFor(threadRecipientId)
+      if (threadId == null) {
+        log(envelopeTimestamp, "[handleSynchronizeDeleteForMe] No thread for matching conversation for recipient: $threadRecipientId")
+        continue
+      }
+
+      val mostRecentMessagesToDelete: List<MessageTable.SyncMessageId> = delete.mostRecentMessages.mapNotNull { it.toSyncMessageId(envelopeTimestamp) }
+      val latestReceivedAt = SignalDatabase.messages.getLatestReceivedAt(threadId, mostRecentMessagesToDelete)
+
+      if (latestReceivedAt != null) {
+        SignalDatabase.threads.trimThread(threadId = threadId, syncThreadTrimDeletes = false, trimBeforeDate = latestReceivedAt, inclusive = true)
+
+        if (delete.isFullDelete == true) {
+          val deleted = SignalDatabase.threads.deleteConversationIfContainsOnlyLocal(threadId)
+
+          if (deleted) {
+            log(envelopeTimestamp, "[handleSynchronizeDeleteForMe] Deleted thread with only local remaining")
+          }
+        }
+      } else {
+        warn(envelopeTimestamp, "[handleSynchronizeDeleteForMe] Unable to find most recent received at timestamp for recipient: $threadRecipientId thread: $threadId")
+      }
+    }
+  }
+
+  private fun handleSynchronizeLocalOnlyConversationDeletes(conversationDeletes: List<SyncMessage.DeleteForMe.LocalOnlyConversationDelete>, envelopeTimestamp: Long) {
+    for (delete in conversationDeletes) {
+      val threadRecipientId: RecipientId? = delete.conversation?.toRecipientId()
+
+      if (threadRecipientId == null) {
+        warn(envelopeTimestamp, "[handleSynchronizeDeleteForMe] Could not find matching conversation recipient")
+        continue
+      }
+
+      val threadId = SignalDatabase.threads.getThreadIdFor(threadRecipientId)
+      if (threadId == null) {
+        log(envelopeTimestamp, "[handleSynchronizeDeleteForMe] No thread for matching conversation for recipient: $threadRecipientId")
+        continue
+      }
+
+      val deleted = SignalDatabase.threads.deleteConversationIfContainsOnlyLocal(threadId)
+      if (!deleted) {
+        log(envelopeTimestamp, "[handleSynchronizeDeleteForMe] Thread is not local only or already empty recipient: $threadRecipientId thread: $threadId")
+      }
+    }
+  }
+
+  private fun SyncMessage.DeleteForMe.ConversationIdentifier.toRecipientId(): RecipientId? {
+    return when {
+      threadGroupId != null -> {
+        try {
+          val groupId: GroupId = GroupId.push(threadGroupId!!)
+          Recipient.externalPossiblyMigratedGroup(groupId).id
+        } catch (e: BadGroupIdException) {
+          null
+        }
+      }
+
+      threadAci != null -> {
+        ServiceId.parseOrNull(threadAci)?.let {
+          SignalDatabase.recipients.getOrInsertFromServiceId(it)
+        }
+      }
+
+      threadE164 != null -> {
+        SignalDatabase.recipients.getOrInsertFromE164(threadE164!!)
+      }
+
+      else -> null
+    }
+  }
+
+  private fun SyncMessage.DeleteForMe.AddressableMessage.toSyncMessageId(envelopeTimestamp: Long): MessageTable.SyncMessageId? {
+    return if (this.sentTimestamp != null && (this.authorAci != null || this.authorE164 != null)) {
+      val serviceId = ServiceId.parseOrNull(this.authorAci)
+      val id = if (serviceId != null) {
+        SignalDatabase.recipients.getOrInsertFromServiceId(serviceId)
+      } else {
+        SignalDatabase.recipients.getOrInsertFromE164(this.authorE164!!)
+      }
+
+      MessageTable.SyncMessageId(id, this.sentTimestamp!!)
+    } else {
+      warn(envelopeTimestamp, "[handleSynchronizeDeleteForMe] Invalid delete sync missing timestamp or author")
+      null
     }
   }
 }

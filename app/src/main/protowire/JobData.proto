@@ -71,3 +71,21 @@ message InAppPaymentRedemptionJobData {
 
   bool makePrimary = 3;
 }
+
+message DeleteSyncJobData {
+  message AddressableMessage {
+    uint64 threadRecipientId = 1;
+    uint64 sentTimestamp = 2;
+    uint64 authorRecipientId = 3;
+  }
+
+  message ThreadDelete {
+    uint64 threadRecipientId = 1;
+    repeated AddressableMessage messages = 2;
+    bool isFullDelete = 3;
+  }
+
+  repeated AddressableMessage messageDeletes = 1;
+  repeated ThreadDelete threadDeletes = 2;
+  repeated ThreadDelete localOnlyThreadDeletes = 3;
+}

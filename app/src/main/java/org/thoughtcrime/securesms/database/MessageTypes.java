@@ -90,6 +90,7 @@ public interface MessageTypes {
   long PUSH_MESSAGE_BIT   = 0x200000;
 
   // Group Message Information
+  long GROUP_MASK                  = 0xF0000;
   long GROUP_UPDATE_BIT            = 0x10000;
   // Note: Leave bit was previous QUIT bit for GV1, now also general member leave for GV2
   long GROUP_LEAVE_BIT             = 0x20000;

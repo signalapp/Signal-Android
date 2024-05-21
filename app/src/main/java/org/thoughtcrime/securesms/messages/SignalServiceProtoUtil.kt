@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.messages
 import ProtoUtil.isNotEmpty
 import com.squareup.wire.Message
 import okio.ByteString
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -25,8 +26,10 @@ import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.DataMessage.Payment
 import org.whispersystems.signalservice.internal.push.GroupContextV2
 import org.whispersystems.signalservice.internal.push.StoryMessage
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage.Sent
 import org.whispersystems.signalservice.internal.push.TypingMessage
+import org.whispersystems.signalservice.internal.util.Util
 import java.util.Optional
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -184,6 +187,11 @@ object SignalServiceProtoUtil {
 
   fun Long.toMobileCoinMoney(): Money {
     return Money.picoMobileCoin(this)
+  }
+
+  fun SyncMessage.Builder.pad(length: Int = 512): SyncMessage.Builder {
+    padding(Util.getRandomLengthSecretBytes(length).toByteString())
+    return this
   }
 
   @Suppress("UNCHECKED_CAST")

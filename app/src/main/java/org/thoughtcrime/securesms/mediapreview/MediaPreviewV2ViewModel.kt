@@ -93,7 +93,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
   }
 
   fun localDelete(context: Context, attachment: DatabaseAttachment): Completable {
-    return repository.localDelete(context, attachment).subscribeOn(Schedulers.io())
+    return repository.localDelete(attachment).subscribeOn(Schedulers.io())
   }
 
   fun jumpToFragment(context: Context, messageId: Long): Single<Intent> {

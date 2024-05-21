@@ -25,6 +25,7 @@ public class UiHints extends SignalStoreValues {
   private static final String HAS_COMPLETED_USERNAME_ONBOARDING        = "uihints.has_completed_username_onboarding";
   private static final String HAS_SEEN_DOUBLE_TAP_EDIT_EDUCATION_SHEET = "uihints.has_seen_double_tap_edit_education_sheet";
   private static final String DISMISSED_CONTACTS_PERMISSION_BANNER     = "uihints.dismissed_contacts_permission_banner";
+  private static final String HAS_SEEN_DELETE_SYNC_EDUCATION_SHEET     = "uihints.has_seen_delete_sync_education_sheet";
 
   UiHints(@NonNull KeyValueStore store) {
     super(store);
@@ -175,5 +176,13 @@ public class UiHints extends SignalStoreValues {
 
   public boolean getDismissedContactsPermissionBanner() {
     return getBoolean(DISMISSED_CONTACTS_PERMISSION_BANNER, false);
+  }
+
+  public void setHasSeenDeleteSyncEducationSheet(boolean seen) {
+    putBoolean(HAS_SEEN_DELETE_SYNC_EDUCATION_SHEET, seen);
+  }
+
+  public boolean getHasSeenDeleteSyncEducationSheet() {
+    return getBoolean(HAS_SEEN_DELETE_SYNC_EDUCATION_SHEET, false);
   }
 }

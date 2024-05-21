@@ -31,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.integerArrayResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -65,6 +66,8 @@ import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.preferences.widgets.StorageGraphView
+import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.viewModel
 import java.text.NumberFormat
@@ -98,6 +101,7 @@ class ManageStorageSettingsFragment : ComposeFragment() {
             onReviewStorage = { startActivity(MediaOverviewActivity.forAll(requireContext())) },
             onSetKeepMessages = { navController.navigate("set-keep-messages") },
             onSetChatLengthLimit = { navController.navigate("set-chat-length-limit") },
+            onSyncTrimThreadDeletes = { viewModel.setSyncTrimDeletes(it) },
             onDeleteChatHistory = { navController.navigate("confirm-delete-chat-history") }
           )
         }
@@ -134,7 +138,11 @@ class ManageStorageSettingsFragment : ComposeFragment() {
         dialog("confirm-delete-chat-history") {
           Dialogs.SimpleAlertDialog(
             title = stringResource(id = R.string.preferences_storage__delete_message_history),
-            body = stringResource(id = R.string.preferences_storage__this_will_delete_all_message_history_and_media_from_your_device),
+            body = if (TextSecurePreferences.isMultiDevice(LocalContext.current) && FeatureFlags.deleteSyncEnabled()) {
+              stringResource(id = R.string.preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device)
+            } else {
+              stringResource(id = R.string.preferences_storage__this_will_delete_all_message_history_and_media_from_your_device)
+            },
             confirm = stringResource(id = R.string.delete),
             confirmColor = MaterialTheme.colorScheme.error,
             dismiss = stringResource(id = android.R.string.cancel),
@@ -146,7 +154,11 @@ class ManageStorageSettingsFragment : ComposeFragment() {
         dialog("double-confirm-delete-chat-history", dialogProperties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)) {
           Dialogs.SimpleAlertDialog(
             title = stringResource(id = R.string.preferences_storage__are_you_sure_you_want_to_delete_all_message_history),
-            body = stringResource(id = R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone),
+            body = if (TextSecurePreferences.isMultiDevice(LocalContext.current) && FeatureFlags.deleteSyncEnabled()) {
+              stringResource(id = R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device)
+            } else {
+              stringResource(id = R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone)
+            },
             confirm = stringResource(id = R.string.preferences_storage__delete_all_now),
             confirmColor = MaterialTheme.colorScheme.error,
             dismiss = stringResource(id = android.R.string.cancel),
@@ -223,6 +235,7 @@ private fun ManageStorageSettingsScreen(
   onReviewStorage: () -> Unit = {},
   onSetKeepMessages: () -> Unit = {},
   onSetChatLengthLimit: () -> Unit = {},
+  onSyncTrimThreadDeletes: (Boolean) -> Unit = {},
   onDeleteChatHistory: () -> Unit = {}
 ) {
   Scaffolds.Settings(
@@ -261,6 +274,13 @@ private fun ManageStorageSettingsScreen(
           stringResource(id = R.string.preferences_storage__none)
         },
         onClick = onSetChatLengthLimit
+      )
+
+      Rows.ToggleRow(
+        text = stringResource(id = R.string.ManageStorageSettingsFragment_apply_limits_title),
+        label = stringResource(id = R.string.ManageStorageSettingsFragment_apply_limits_description),
+        checked = state.syncTrimDeletes,
+        onCheckChanged = onSyncTrimThreadDeletes
       )
 
       Dividers.Default()

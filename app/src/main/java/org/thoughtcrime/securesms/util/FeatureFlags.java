@@ -131,6 +131,7 @@ public final class FeatureFlags {
   private static final String LIBSIGNAL_WEB_SOCKET_ENABLED      = "android.libsignalWebSocketEnabled";
   private static final String RESTORE_POST_REGISTRATION         = "android.registration.restorePostRegistration";
   private static final String LIBSIGNAL_WEB_SOCKET_SHADOW_PCT   = "android.libsignalWebSocketShadowingPercentage";
+  private static final String DELETE_SYNC_SEND_RECEIVE          = "android.deleteSyncSendReceive";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -211,7 +212,8 @@ public final class FeatureFlags {
       LINKED_DEVICE_LIFESPAN_SECONDS,
       CAMERAX_CUSTOM_CONTROLLER,
       LIBSIGNAL_WEB_SOCKET_ENABLED,
-      LIBSIGNAL_WEB_SOCKET_SHADOW_PCT
+      LIBSIGNAL_WEB_SOCKET_SHADOW_PCT,
+      DELETE_SYNC_SEND_RECEIVE
   );
 
   @VisibleForTesting
@@ -287,7 +289,8 @@ public final class FeatureFlags {
       CDSI_LIBSIGNAL_NET,
       RX_MESSAGE_SEND,
       LINKED_DEVICE_LIFESPAN_SECONDS,
-      CAMERAX_CUSTOM_CONTROLLER
+      CAMERAX_CUSTOM_CONTROLLER,
+      DELETE_SYNC_SEND_RECEIVE
   );
 
   /**
@@ -764,6 +767,11 @@ public final class FeatureFlags {
   public static  int libSignalWebSocketShadowingPercentage() {
     int value = getInteger(LIBSIGNAL_WEB_SOCKET_SHADOW_PCT, 0);
     return Math.max(0, Math.min(value, 100));
+  }
+
+  /** Whether or not to delete syncing is enabled. */
+  public static boolean deleteSyncEnabled() {
+    return getBoolean(DELETE_SYNC_SEND_RECEIVE, false);
   }
 
   /** Only for rendering debug info. */

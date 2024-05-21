@@ -135,7 +135,6 @@ import org.whispersystems.util.ByteArrayUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -766,8 +765,15 @@ public class SignalServiceMessageSender {
       throw new IOException("Unsupported sync message!");
     }
 
-    long timestamp = message.getSent().isPresent() ? message.getSent().get().getTimestamp()
-                                                   : System.currentTimeMillis();
+    Optional<Long> timestamp = message.getSent().map(SentTranscriptMessage::getTimestamp);
+
+    return sendSyncMessage(content, urgent, timestamp);
+  }
+
+  public @Nonnull SendMessageResult sendSyncMessage(Content content, boolean urgent, Optional<Long> sent)
+      throws IOException, UntrustedIdentityException
+  {
+    long timestamp = sent.orElseGet(System::currentTimeMillis);
 
     EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.empty());
 
@@ -908,7 +914,7 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException
   {
     byte[] nullMessageBody = new DataMessage.Builder()
-                                            .body(Base64.encodeWithPadding(Util.getRandomLengthBytes(140)))
+                                            .body(Base64.encodeWithPadding(Util.getRandomLengthSecretBytes(140)))
                                             .build()
                                             .encode();
 
@@ -938,7 +944,7 @@ public class SignalServiceMessageSender {
       throws UntrustedIdentityException, IOException
   {
     byte[] nullMessageBody = new DataMessage.Builder()
-                                            .body(Base64.encodeWithPadding(Util.getRandomLengthBytes(140)))
+                                            .body(Base64.encodeWithPadding(Util.getRandomLengthSecretBytes(140)))
                                             .build()
                                             .encode();
 
@@ -1763,9 +1769,7 @@ public class SignalServiceMessageSender {
   }
 
   private SyncMessage.Builder createSyncMessageBuilder() {
-    SecureRandom random  = new SecureRandom();
-    byte[]       padding = Util.getRandomLengthBytes(512);
-    random.nextBytes(padding);
+    byte[]       padding = Util.getRandomLengthSecretBytes(512);
 
     SyncMessage.Builder builder = new SyncMessage.Builder();
     builder.padding(ByteString.of(padding));

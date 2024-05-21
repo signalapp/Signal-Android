@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.testing
 
 import android.database.Cursor
 import android.util.Base64
+import org.hamcrest.Matcher
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.hasSize
 import org.hamcrest.Matchers.`is`
@@ -54,6 +55,10 @@ infix fun <T : Any> T.assertIsNot(expected: T) {
 
 infix fun <E, T : Collection<E>> T.assertIsSize(expected: Int) {
   assertThat(this, hasSize(expected))
+}
+
+infix fun <T : Any> T.assert(matcher: Matcher<T>) {
+  assertThat(this, matcher)
 }
 
 fun CountDownLatch.awaitFor(duration: Duration) {

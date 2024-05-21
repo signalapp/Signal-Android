@@ -8,6 +8,7 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSendSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask
@@ -100,13 +101,19 @@ object DeleteDialog {
     R.string.ConversationFragment_deleting_messages
   ) {
     override fun doInBackground(vararg params: Void?): Boolean {
-      return messageRecords.map { record ->
-        if (record.isMms) {
-          SignalDatabase.messages.deleteMessage(record.id)
-        } else {
-          SignalDatabase.messages.deleteMessage(record.id)
+      var threadDeleted = false
+
+      messageRecords.forEach { record ->
+        if (SignalDatabase.messages.deleteMessage(record.id)) {
+          threadDeleted = true
         }
-      }.any { it }
+      }
+
+      if (FeatureFlags.deleteSyncEnabled()) {
+        MultiDeviceDeleteSendSyncJob.enqueueMessageDeletes(messageRecords)
+      }
+
+      return threadDeleted
     }
 
     override fun onPostExecute(result: Boolean?) {

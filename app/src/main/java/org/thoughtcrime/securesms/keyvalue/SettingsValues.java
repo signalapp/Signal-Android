@@ -70,6 +70,7 @@ public final class SettingsValues extends SignalStoreValues {
   private static final String CENSORSHIP_CIRCUMVENTION_ENABLED        = "settings.censorshipCircumventionEnabled";
   private static final String KEEP_MUTED_CHATS_ARCHIVED               = "settings.keepMutedChatsArchived";
   private static final String USE_COMPACT_NAVIGATION_BAR              = "settings.useCompactNavigationBar";
+  private static final String THREAD_TRIM_SYNC_TO_LINKED_DEVICES      = "settings.storage.syncThreadTrimDeletes";
 
   public static final int BACKUP_DEFAULT_HOUR   = 2;
   public static final int BACKUP_DEFAULT_MINUTE = 0;
@@ -123,7 +124,8 @@ public final class SettingsValues extends SignalStoreValues {
                          UNIVERSAL_EXPIRE_TIMER,
                          SENT_MEDIA_QUALITY,
                          KEEP_MUTED_CHATS_ARCHIVED,
-                         USE_COMPACT_NAVIGATION_BAR);
+                         USE_COMPACT_NAVIGATION_BAR,
+                         THREAD_TRIM_SYNC_TO_LINKED_DEVICES);
   }
 
   public @NonNull LiveData<String> getOnConfigurationSettingChanged() {
@@ -160,6 +162,18 @@ public final class SettingsValues extends SignalStoreValues {
 
   public void setThreadTrimLength(int length) {
     putInteger(THREAD_TRIM_LENGTH, length);
+  }
+
+  public boolean shouldSyncThreadTrimDeletes() {
+    if (!getStore().containsKey(THREAD_TRIM_SYNC_TO_LINKED_DEVICES)) {
+      setSyncThreadTrimDeletes(!isTrimByLengthEnabled() && getKeepMessagesDuration() == KeepMessagesDuration.FOREVER);
+    }
+
+    return getBoolean(THREAD_TRIM_SYNC_TO_LINKED_DEVICES, true);
+  }
+
+  public void setSyncThreadTrimDeletes(boolean syncDeletes) {
+    putBoolean(THREAD_TRIM_SYNC_TO_LINKED_DEVICES, syncDeletes);
   }
 
   public void setSignalBackupDirectory(@NonNull Uri uri) {

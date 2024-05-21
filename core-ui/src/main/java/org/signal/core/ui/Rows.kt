@@ -100,6 +100,7 @@ object Rows {
     Row(
       modifier = modifier
         .fillMaxWidth()
+        .clickable(enabled = enabled) { onCheckChanged(!checked) }
         .padding(defaultPadding()),
       verticalAlignment = CenterVertically
     ) {

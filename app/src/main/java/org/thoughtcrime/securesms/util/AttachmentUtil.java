@@ -69,22 +69,26 @@ public class AttachmentUtil {
   /**
    * Deletes the specified attachment. If its the only attachment for its linked message, the entire
    * message is deleted.
+   *
+   * @return message record of deleted message if a message is deleted
    */
   @WorkerThread
-  public static void deleteAttachment(@NonNull Context context,
-                                      @NonNull DatabaseAttachment attachment)
-  {
+  public static @Nullable MessageRecord deleteAttachment(@NonNull DatabaseAttachment attachment) {
     AttachmentId attachmentId    = attachment.attachmentId;
     long         mmsId           = attachment.mmsId;
     int          attachmentCount = SignalDatabase.attachments()
                                                  .getAttachmentsForMessage(mmsId)
                                                  .size();
 
+    MessageRecord deletedMessageRecord = null;
     if (attachmentCount <= 1) {
+      deletedMessageRecord = SignalDatabase.messages().getMessageRecordOrNull(mmsId);
       SignalDatabase.messages().deleteMessage(mmsId);
     } else {
       SignalDatabase.attachments().deleteAttachment(attachmentId);
     }
+
+    return deletedMessageRecord;
   }
 
   private static boolean isNonDocumentType(String contentType) {
