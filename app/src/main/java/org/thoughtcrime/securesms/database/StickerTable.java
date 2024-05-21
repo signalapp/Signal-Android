@@ -149,8 +149,8 @@ public class StickerTable extends DatabaseTable {
   }
 
   public @Nullable Cursor getStickersByEmoji(@NonNull String emoji) {
-    String   selection = EMOJI + " LIKE ? AND " + COVER + " = ?";
-    String[] args      = new String[] { "%"+emoji+"%", "0" };
+    String   selection = EMOJI + " = ? AND " + COVER + " = ?";
+    String[] args      = new String[] { emoji, "0" };
 
     return databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, null);
   }
