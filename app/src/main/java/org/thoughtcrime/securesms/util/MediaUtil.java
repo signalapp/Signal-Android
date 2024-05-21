@@ -473,9 +473,6 @@ public class MediaUtil {
   }
 
   public static boolean isInstantVideoSupported(Slide slide) {
-    if (!FeatureFlags.instantVideoPlayback()) {
-      return false;
-    }
     final Attachment attachment                        = slide.asAttachment();
     final boolean    isIncremental                     = attachment.getIncrementalDigest() != null;
     final boolean    hasIncrementalMacChunkSizeDefined = attachment.incrementalMacChunkSize > 0;

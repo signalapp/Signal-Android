@@ -107,7 +107,6 @@ public final class FeatureFlags {
   public static final  String PROMPT_FOR_NOTIFICATION_LOGS      = "android.logs.promptNotifications";
   private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
   public static final  String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
-  public static final  String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback.1";
   public static final  String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
   private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations.5";
   private static final String IDEAL_DONATIONS                   = "android.ideal.donations.5";
@@ -192,7 +191,6 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
-      INSTANT_VIDEO_PLAYBACK,
       CRASH_PROMPT_CONFIG,
       SEPA_DEBIT_DONATIONS,
       IDEAL_DONATIONS,
@@ -634,14 +632,6 @@ public final class FeatureFlags {
   /** Maximum attachment ciphertext size when sending in bytes */
   public static long maxAttachmentSizeBytes() {
     return getLong(MAX_ATTACHMENT_SIZE_BYTES, ByteUnit.MEGABYTES.toBytes(100));
-  }
-
-  /**
-   * Allow the video players to read from the temporary download files for attachments.
-   * @return whether this functionality is enabled.
-   */
-  public static boolean instantVideoPlayback() {
-    return getBoolean(INSTANT_VIDEO_PLAYBACK, false);
   }
 
   public static String promptForDelayedNotificationLogs() {

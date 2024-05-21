@@ -9,7 +9,6 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MediaUtil.SlideType
 
@@ -153,11 +152,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   @JvmOverloads
   fun getGalleryMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0): Cursor {
-    var query = if (FeatureFlags.instantVideoPlayback()) {
-      sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS))
-    } else {
-      sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY))
-    }
+    var query = sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS))
     val args = arrayOf(threadId.toString() + "")
 
     if (limit > 0) {

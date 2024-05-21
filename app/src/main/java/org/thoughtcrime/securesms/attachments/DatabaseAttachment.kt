@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.stickers.StickerLocator
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ParcelUtil
 
 class DatabaseAttachment : Attachment {
@@ -143,7 +142,7 @@ class DatabaseAttachment : Attachment {
   }
 
   override val uri: Uri?
-    get() = if (hasData || FeatureFlags.instantVideoPlayback() && getIncrementalDigest() != null) {
+    get() = if (hasData || getIncrementalDigest() != null) {
       PartAuthority.getAttachmentDataUri(attachmentId)
     } else {
       null
