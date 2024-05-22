@@ -159,7 +159,7 @@ class KyberPreKeyTableTest {
     val count = SignalDatabase.rawDatabase
       .update(KyberPreKeyTable.TABLE_NAME)
       .values(KyberPreKeyTable.STALE_TIMESTAMP to staleTime)
-      .where("${KyberPreKeyTable.ACCOUNT_ID} = ? AND ${KyberPreKeyTable.KEY_ID} = $id", account)
+      .where("${KyberPreKeyTable.ACCOUNT_ID} = ? AND ${KyberPreKeyTable.KEY_ID} = $id", account.toAccountId())
       .run()
 
     assertEquals(1, count)
@@ -169,8 +169,15 @@ class KyberPreKeyTableTest {
     return SignalDatabase.rawDatabase
       .select(KyberPreKeyTable.STALE_TIMESTAMP)
       .from(KyberPreKeyTable.TABLE_NAME)
-      .where("${KyberPreKeyTable.ACCOUNT_ID} = ? AND ${KyberPreKeyTable.KEY_ID} = $id", account)
+      .where("${KyberPreKeyTable.ACCOUNT_ID} = ? AND ${KyberPreKeyTable.KEY_ID} = $id", account.toAccountId())
       .run()
       .readToSingleObject { it.requireLongOrNull(KyberPreKeyTable.STALE_TIMESTAMP) }
+  }
+
+  private fun ServiceId.toAccountId(): String {
+    return when (this) {
+      is ACI -> this.toString()
+      is PNI -> KyberPreKeyTable.PNI_ACCOUNT_ID
+    }
   }
 }
