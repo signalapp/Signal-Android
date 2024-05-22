@@ -2137,13 +2137,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     updateExtras(id) { it.lastStoryView(System.currentTimeMillis()) }
   }
 
-  fun clearUsernameIfExists(username: String) {
-    val existingUsername = getByUsername(username)
-    if (existingUsername.isPresent) {
-      setUsername(existingUsername.get(), null)
-    }
-  }
-
   fun getAllE164s(): Set<String> {
     val results: MutableSet<String> = HashSet()
     readableDatabase.query(TABLE_NAME, arrayOf(E164), null, null, null, null, null).use { cursor ->
