@@ -57,13 +57,13 @@ class SecureValueRecoveryV3(
 
     return try {
       val result = network.svr3().restore(normalizedPin, shareSet, enclaveAuth).get()
-      val masterKey = MasterKey(result)
+      val masterKey = MasterKey(result.value)
       RestoreResponse.Success(masterKey, authorization)
     } catch (e: ExecutionException) {
       when (val cause = e.cause) {
-        is NetworkException -> RestoreResponse.NetworkError(IOException(cause)) // TODO [svr3] Update when we get to IOException
+        is NetworkException -> RestoreResponse.NetworkError(cause)
         is DataMissingException -> RestoreResponse.Missing
-        is RestoreFailedException -> RestoreResponse.PinMismatch(1) // TODO [svr3] Get proper API for this
+        is RestoreFailedException -> RestoreResponse.PinMismatch(cause.triesRemaining)
         is AttestationFailedException -> RestoreResponse.ApplicationError(cause)
         is SgxCommunicationFailureException -> RestoreResponse.ApplicationError(cause)
         is IOException -> RestoreResponse.NetworkError(cause)
@@ -126,7 +126,7 @@ class SecureValueRecoveryV3(
         BackupResponse.Success(masterKey, rawAuth)
       } catch (e: ExecutionException) {
         when (val cause = e.cause) {
-          is NetworkException -> BackupResponse.NetworkError(IOException(cause)) // TODO [svr] Update when we move to IOException
+          is NetworkException -> BackupResponse.NetworkError(cause)
           is AttestationFailedException -> BackupResponse.ApplicationError(cause)
           is SgxCommunicationFailureException -> BackupResponse.ApplicationError(cause)
           is IOException -> BackupResponse.NetworkError(cause)
