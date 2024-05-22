@@ -16,9 +16,14 @@ import org.signal.libsignal.protocol.InvalidMessageException;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.signal.core.util.Base64;
+import org.whispersystems.signalservice.api.backup.BackupKey;
+import org.whispersystems.signalservice.api.backup.MediaId;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 
 import java.io.EOFException;
 import java.io.File;
@@ -62,20 +67,30 @@ class PartDataSource implements DataSource {
 
     if (inProgress && !hasData && hasIncrementalDigest && attachmentKey != null) {
       final byte[] decode       = Base64.decode(attachmentKey);
-      final File   transferFile = attachmentDatabase.getOrCreateTransferFile(attachment.attachmentId);
-      try {
-        this.inputStream = AttachmentCipherInputStream.createForAttachment(transferFile, attachment.size, decode, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
+      if (attachment.transferState == AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS && attachment.archiveMediaId != null) {
+        final File archiveFile = attachmentDatabase.getOrCreateArchiveTransferFile(attachment.attachmentId);
+        try {
+          BackupKey.MediaKeyMaterial mediaKeyMaterial = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey().deriveMediaSecretsFromMediaId(attachment.archiveMediaId);
+          long originalCipherLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size));
 
-        long skipped = 0;
-        while (skipped < dataSpec.position) {
-          skipped += this.inputStream.read();
+          this.inputStream = AttachmentCipherInputStream.createStreamingForArchivedAttachment(mediaKeyMaterial, archiveFile, originalCipherLength, attachment.size, attachment.remoteDigest, decode, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
+        } catch (InvalidMessageException e) {
+          throw new IOException("Error decrypting attachment stream!", e);
         }
-
-        Log.d(TAG, "Successfully loaded partial attachment file.");
-
-      } catch (InvalidMessageException e) {
-        throw new IOException("Error decrypting attachment stream!", e);
+      } else {
+        final File transferFile = attachmentDatabase.getOrCreateTransferFile(attachment.attachmentId);
+        try {
+          this.inputStream = AttachmentCipherInputStream.createForAttachment(transferFile, attachment.size, decode, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
+        } catch (InvalidMessageException e) {
+          throw new IOException("Error decrypting attachment stream!", e);
+        }
       }
+      long skipped = 0;
+      while (skipped < dataSpec.position) {
+        skipped += this.inputStream.read();
+      }
+
+      Log.d(TAG, "Successfully loaded partial attachment file.");
     } else if (!inProgress || hasData) {
       this.inputStream = attachmentDatabase.getAttachmentStream(partUri.getPartId(), dataSpec.position);
 

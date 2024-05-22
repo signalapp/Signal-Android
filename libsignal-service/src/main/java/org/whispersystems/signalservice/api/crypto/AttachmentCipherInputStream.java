@@ -138,6 +138,43 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     return inputStream;
   }
 
+  public static InputStream createStreamingForArchivedAttachment(BackupKey.MediaKeyMaterial archivedMediaKeyMaterial, File file, long originalCipherTextLength, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest, int incrementalMacChunkSize)
+      throws InvalidMessageException, IOException
+  {
+    final InputStream archiveStream = createForArchivedMedia(archivedMediaKeyMaterial, file, originalCipherTextLength);
+
+    byte[][] parts = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
+    Mac      mac   = initMac(parts[1]);
+
+    if (originalCipherTextLength <= BLOCK_SIZE + mac.getMacLength()) {
+      throw new InvalidMessageException("Message shorter than crypto overhead!");
+    }
+
+    if (digest == null) {
+      throw new InvalidMessageException("Missing digest!");
+    }
+
+    final InputStream wrappedStream;
+      wrappedStream = new IncrementalMacInputStream(
+          new IncrementalMacAdditionalValidationsInputStream(
+              archiveStream,
+              file.length(),
+              mac,
+              digest
+          ),
+          parts[1],
+          ChunkSizeChoice.everyNthByte(incrementalMacChunkSize),
+          incrementalDigest);
+
+    InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
+
+    if (plaintextLength != 0) {
+      inputStream = new ContentLengthInputStream(inputStream, plaintextLength);
+    }
+
+    return inputStream;
+  }
+
   public static InputStream createForStickerData(byte[] data, byte[] packKey)
       throws InvalidMessageException, IOException
   {

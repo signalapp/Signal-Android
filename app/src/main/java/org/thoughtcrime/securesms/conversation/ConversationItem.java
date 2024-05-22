@@ -116,6 +116,7 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
+import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
@@ -2489,7 +2490,22 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
       if (MediaUtil.isInstantVideoSupported(slide)) {
         final DatabaseAttachment databaseAttachment = (DatabaseAttachment) slide.asAttachment();
-        if (databaseAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_STARTED) {
+        if (databaseAttachment.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
+          final AttachmentId attachmentId = databaseAttachment.attachmentId;
+          final JobManager   jobManager   = ApplicationDependencies.getJobManager();
+          final String       queue        = RestoreAttachmentJob.constructQueueString(attachmentId);
+          setup(v, slide);
+          jobManager.add(new RestoreAttachmentJob(messageRecord.getId(),
+                                                  attachmentId,
+                                                  true,
+                                                  false,
+                                                  RestoreAttachmentJob.RestoreMode.ORIGINAL));
+          jobManager.addListener(queue, (job, jobState) -> {
+            if (jobState.isComplete()) {
+              cleanup();
+            }
+          });
+        } else if (databaseAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_STARTED) {
           final AttachmentId attachmentId = databaseAttachment.attachmentId;
           final JobManager   jobManager   = ApplicationDependencies.getJobManager();
           final String       queue        = AttachmentDownloadJob.constructQueueString(attachmentId);
