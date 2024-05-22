@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.subjects.Subject
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import org.signal.core.util.resettableLazy
+import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization
@@ -35,7 +36,6 @@ import org.whispersystems.signalservice.api.util.Tls12SocketFactory
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager
 import org.whispersystems.signalservice.internal.util.Util
-import org.whispersystems.signalservice.internal.websocket.LibSignalNetwork
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
 import javax.net.ssl.SSLContext
@@ -75,7 +75,7 @@ class NetworkDependenciesModule(
     provider.provideSignalServiceAccountManager(signalServiceNetworkAccess.getConfiguration(), groupsV2Operations)
   }
 
-  val libsignalNetwork: LibSignalNetwork by lazy {
+  val libsignalNetwork: Network by lazy {
     provider.provideLibsignalNetwork(signalServiceNetworkAccess.getConfiguration())
   }
 

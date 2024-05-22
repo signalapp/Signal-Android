@@ -19,13 +19,11 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
-import org.whispersystems.signalservice.internal.websocket.LibSignalNetwork;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.lang.IllegalArgumentException;
 import java.nio.ByteBuffer;
-import java.time.Duration;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -57,7 +55,7 @@ public final class CdsiV2Service {
 
   private final CdsiRequestHandler cdsiRequestHandler;
 
-  public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave, @Nullable LibSignalNetwork network) {
+  public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave, @Nullable Network network) {
 
     if (network != null) {
       this.cdsiRequestHandler = (username, password, request, tokenSaver) -> {

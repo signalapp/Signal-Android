@@ -88,7 +88,6 @@ import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
 import org.signal.core.util.Base64;
-import org.whispersystems.signalservice.internal.websocket.LibSignalNetwork;
 
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -371,7 +370,7 @@ public class SignalServiceAccountManager {
                                                            Optional<byte[]> token,
                                                            String mrEnclave,
                                                            Long timeoutMs,
-                                                           @Nullable LibSignalNetwork libsignalNetwork,
+                                                           @Nullable Network libsignalNetwork,
                                                            Consumer<byte[]> tokenSaver)
       throws IOException
   {

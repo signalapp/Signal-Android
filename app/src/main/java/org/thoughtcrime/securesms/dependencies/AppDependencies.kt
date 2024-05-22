@@ -9,6 +9,7 @@ import io.reactivex.rxjava3.subjects.Subject
 import okhttp3.OkHttpClient
 import org.signal.core.util.concurrent.DeadlockDetector
 import org.signal.core.util.resettableLazy
+import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.thoughtcrime.securesms.components.TypingStatusRepository
@@ -50,7 +51,6 @@ import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
-import org.whispersystems.signalservice.internal.websocket.LibSignalNetwork
 import java.util.function.Supplier
 
 /**
@@ -249,7 +249,7 @@ object AppDependencies {
     get() = networkModule.incomingMessageObserver
 
   @JvmStatic
-  val libsignalNetwork: LibSignalNetwork
+  val libsignalNetwork: Network
     get() = networkModule.libsignalNetwork
 
   @JvmStatic
@@ -330,7 +330,7 @@ object AppDependencies {
     fun provideSignalCallManager(): SignalCallManager
     fun providePendingRetryReceiptManager(): PendingRetryReceiptManager
     fun providePendingRetryReceiptCache(): PendingRetryReceiptCache
-    fun provideSignalWebSocket(signalServiceConfigurationSupplier: Supplier<SignalServiceConfiguration>, libSignalNetworkSupplier: Supplier<LibSignalNetwork?>): SignalWebSocket
+    fun provideSignalWebSocket(signalServiceConfigurationSupplier: Supplier<SignalServiceConfiguration>, libSignalNetworkSupplier: Supplier<Network>): SignalWebSocket
     fun provideProtocolStore(): SignalServiceDataStoreImpl
     fun provideGiphyMp4Cache(): GiphyMp4Cache
     fun provideExoPlayerPool(): SimpleExoPlayerPool
@@ -341,6 +341,6 @@ object AppDependencies {
     fun provideDeadlockDetector(): DeadlockDetector
     fun provideClientZkReceiptOperations(signalServiceConfiguration: SignalServiceConfiguration): ClientZkReceiptOperations
     fun provideScheduledMessageManager(): ScheduledMessageManager
-    fun provideLibsignalNetwork(config: SignalServiceConfiguration): LibSignalNetwork
+    fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network
   }
 }

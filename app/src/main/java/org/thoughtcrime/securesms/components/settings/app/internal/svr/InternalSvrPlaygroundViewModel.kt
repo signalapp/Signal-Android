@@ -105,7 +105,7 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
   private fun SvrImplementation.toImplementation(): SecureValueRecovery {
     return when (this) {
       SvrImplementation.SVR2 -> AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
-      SvrImplementation.SVR3 -> AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork.network, TestShareSetStorage())
+      SvrImplementation.SVR3 -> AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork, TestShareSetStorage())
     }
   }
 

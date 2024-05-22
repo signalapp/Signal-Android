@@ -92,7 +92,7 @@ import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
-import org.whispersystems.signalservice.internal.websocket.LibSignalNetwork;
+import org.whispersystems.signalservice.internal.websocket.LibSignalNetworkExtensions;
 import org.whispersystems.signalservice.internal.websocket.ShadowingWebSocketConnection;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnection;
@@ -237,8 +237,10 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull LibSignalNetwork provideLibsignalNetwork(@NonNull SignalServiceConfiguration config) {
-    return new LibSignalNetwork(new Network(BuildConfig.LIBSIGNAL_NET_ENV, StandardUserAgentInterceptor.USER_AGENT), config);
+  public @NonNull Network provideLibsignalNetwork(@NonNull SignalServiceConfiguration config) {
+    Network network = new Network(BuildConfig.LIBSIGNAL_NET_ENV, StandardUserAgentInterceptor.USER_AGENT);
+    LibSignalNetworkExtensions.applyConfiguration(network, config);
+    return network;
   }
 
   @Override
@@ -294,7 +296,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<LibSignalNetwork> libSignalNetworkSupplier) {
+  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier) {
     SleepTimer                   sleepTimer      = !SignalStore.account().isFcmEnabled() || SignalStore.internalValues().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer() ;
     SignalWebSocketHealthMonitor healthMonitor   = new SignalWebSocketHealthMonitor(context, sleepTimer);
     WebSocketShadowingBridge     bridge          = new DefaultWebSocketShadowingBridge(context);
@@ -407,7 +409,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @NonNull WebSocketFactory provideWebSocketFactory(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier,
                                                     @NonNull SignalWebSocketHealthMonitor healthMonitor,
-                                                    @NonNull Supplier<LibSignalNetwork> libSignalNetworkSupplier,
+                                                    @NonNull Supplier<Network> libSignalNetworkSupplier,
                                                     @NonNull WebSocketShadowingBridge bridge)
   {
     return new WebSocketFactory() {
@@ -432,16 +434,16 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
               BuildConfig.SIGNAL_AGENT,
               healthMonitor,
               Stories.isFeatureEnabled(),
-              libSignalNetworkSupplier.get().createChatService(null),
+              LibSignalNetworkExtensions.createChatService(libSignalNetworkSupplier.get(), null),
               shadowPercentage,
               bridge
           );
         }
         if (FeatureFlags.libSignalWebSocketEnabled()) {
-          LibSignalNetwork network = libSignalNetworkSupplier.get();
+          Network network = libSignalNetworkSupplier.get();
           return new LibSignalChatConnection(
               "libsignal-unauth",
-              network.createChatService(null),
+              LibSignalNetworkExtensions.createChatService(network, null),
               healthMonitor,
               false);
         } else {
