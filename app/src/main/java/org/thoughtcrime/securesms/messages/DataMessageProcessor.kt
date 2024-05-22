@@ -1072,7 +1072,12 @@ object DataMessageProcessor {
       return null
     }
 
-    val authorId = Recipient.externalPush(ServiceId.parseOrThrow(quote.authorAci!!)).id
+    val authorAci = ServiceId.parseOrThrow(quote.authorAci!!)
+    if (authorAci.isUnknown) {
+      warn(timestamp, "Received quote with an unknown author UUID! Ignoring...")
+      return null
+    }
+    val authorId = Recipient.externalPush(authorAci).id
     var quotedMessage = SignalDatabase.messages.getMessageFor(quote.id!!, authorId) as? MmsMessageRecord
 
     if (quotedMessage != null && !quotedMessage.isRemoteDelete) {
