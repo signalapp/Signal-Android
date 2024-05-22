@@ -63,7 +63,8 @@ object FakeMessageRecords {
     archiveThumbnailCdn: Int = 0,
     archiveMediaName: String? = null,
     archiveMediaId: String? = null,
-    archiveThumbnailId: String? = null
+    archiveThumbnailId: String? = null,
+    thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.NONE
   ): DatabaseAttachment {
     return DatabaseAttachment(
       attachmentId,
@@ -99,7 +100,8 @@ object FakeMessageRecords {
       archiveCdn,
       archiveThumbnailCdn,
       archiveMediaId,
-      archiveMediaName
+      archiveMediaName,
+      thumbnailRestoreState
     )
   }
 

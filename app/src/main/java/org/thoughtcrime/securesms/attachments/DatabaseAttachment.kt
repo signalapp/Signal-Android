@@ -5,6 +5,7 @@ import android.os.Parcel
 import androidx.core.os.ParcelCompat
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.blurhash.BlurHash
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.stickers.StickerLocator
@@ -35,6 +36,9 @@ class DatabaseAttachment : Attachment {
 
   @JvmField
   val archiveMediaId: String?
+
+  @JvmField
+  val thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState
 
   private val hasArchiveThumbnail: Boolean
   private val hasThumbnail: Boolean
@@ -74,7 +78,8 @@ class DatabaseAttachment : Attachment {
     archiveCdn: Int,
     archiveThumbnailCdn: Int,
     archiveMediaName: String?,
-    archiveMediaId: String?
+    archiveMediaId: String?,
+    thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState
   ) : super(
     contentType = contentType!!,
     transferState = transferProgress,
@@ -110,6 +115,7 @@ class DatabaseAttachment : Attachment {
     this.archiveThumbnailCdn = archiveThumbnailCdn
     this.archiveMediaName = archiveMediaName
     this.archiveMediaId = archiveMediaId
+    this.thumbnailRestoreState = thumbnailRestoreState
   }
 
   constructor(parcel: Parcel) : super(parcel) {
@@ -124,6 +130,7 @@ class DatabaseAttachment : Attachment {
     archiveMediaName = parcel.readString()
     archiveMediaId = parcel.readString()
     hasArchiveThumbnail = ParcelUtil.readBoolean(parcel)
+    thumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.deserialize(parcel.readInt())
   }
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -139,6 +146,7 @@ class DatabaseAttachment : Attachment {
     dest.writeString(archiveMediaName)
     dest.writeString(archiveMediaId)
     ParcelUtil.writeBoolean(dest, hasArchiveThumbnail)
+    dest.writeInt(thumbnailRestoreState.value)
   }
 
   override val uri: Uri?

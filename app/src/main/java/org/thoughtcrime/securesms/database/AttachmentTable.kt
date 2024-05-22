@@ -151,6 +151,7 @@ class AttachmentTable(
     const val ARCHIVE_THUMBNAIL_CDN = "archive_thumbnail_cdn"
     const val ARCHIVE_TRANSFER_FILE = "archive_transfer_file"
     const val ARCHIVE_TRANSFER_STATE = "archive_transfer_state"
+    const val THUMBNAIL_RESTORE_STATE = "thumbnail_restore_state"
 
     const val ATTACHMENT_JSON_ALIAS = "attachment_json"
 
@@ -205,7 +206,8 @@ class AttachmentTable(
       ARCHIVE_MEDIA_NAME,
       ARCHIVE_MEDIA_ID,
       ARCHIVE_TRANSFER_FILE,
-      THUMBNAIL_FILE
+      THUMBNAIL_FILE,
+      THUMBNAIL_RESTORE_STATE
     )
 
     @JvmField
@@ -252,7 +254,8 @@ class AttachmentTable(
         $ARCHIVE_THUMBNAIL_CDN INTEGER DEFAULT 0,
         $ARCHIVE_THUMBNAIL_MEDIA_ID TEXT DEFAULT NULL,
         $THUMBNAIL_FILE TEXT DEFAULT NULL,
-        $THUMBNAIL_RANDOM BLOB DEFAULT NULL
+        $THUMBNAIL_RANDOM BLOB DEFAULT NULL,
+        $THUMBNAIL_RESTORE_STATE INTEGER DEFAULT ${ThumbnailRestoreState.NONE.value} 
       )
       """
 
@@ -1395,7 +1398,8 @@ class AttachmentTable(
               archiveThumbnailCdn = jsonObject.getInt(ARCHIVE_THUMBNAIL_CDN),
               archiveMediaName = jsonObject.getString(ARCHIVE_MEDIA_NAME),
               archiveMediaId = jsonObject.getString(ARCHIVE_MEDIA_ID),
-              hasArchiveThumbnail = !TextUtils.isEmpty(jsonObject.getString(THUMBNAIL_FILE))
+              hasArchiveThumbnail = !TextUtils.isEmpty(jsonObject.getString(THUMBNAIL_FILE)),
+              thumbnailRestoreState = ThumbnailRestoreState.deserialize(jsonObject.getInt(THUMBNAIL_RESTORE_STATE))
             )
           }
         }
@@ -1988,7 +1992,8 @@ class AttachmentTable(
       archiveThumbnailCdn = cursor.requireInt(ARCHIVE_THUMBNAIL_CDN),
       archiveMediaName = cursor.requireString(ARCHIVE_MEDIA_NAME),
       archiveMediaId = cursor.requireString(ARCHIVE_MEDIA_ID),
-      hasArchiveThumbnail = !cursor.isNull(THUMBNAIL_FILE)
+      hasArchiveThumbnail = !cursor.isNull(THUMBNAIL_FILE),
+      thumbnailRestoreState = ThumbnailRestoreState.deserialize(cursor.requireInt(THUMBNAIL_RESTORE_STATE))
     )
   }
 
@@ -2196,6 +2201,29 @@ class AttachmentTable(
             empty()
           }
         }
+      }
+    }
+  }
+
+  enum class ThumbnailRestoreState(val value: Int) {
+    /** No thumbnail downloaded. */
+    NONE(0),
+
+    /** The thumbnail needs to be restored still. */
+    NEEDS_RESTORE(1),
+
+    /** The restore of the thumbnail is in progress */
+    IN_PROGRESS(2),
+
+    /** Completely restored the thumbnail. */
+    FINISHED(3),
+
+    /** It is impossible to restore the thumbnail. */
+    PERMANENT_FAILURE(4);
+
+    companion object {
+      fun deserialize(value: Int): ThumbnailRestoreState {
+        return values().firstOrNull { it.value == value } ?: NONE
       }
     }
   }
