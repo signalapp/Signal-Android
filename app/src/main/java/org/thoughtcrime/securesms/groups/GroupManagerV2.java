@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
+import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSilentUpdateSendJob;
@@ -603,15 +604,15 @@ final class GroupManagerV2 {
     private GroupChange.Actions.Builder resolveConflict(@NonNull ServiceId authServiceId, @NonNull GroupChange.Actions.Builder change)
           throws IOException, GroupNotAMemberException, GroupChangeFailedException
     {
-      GroupsV2StateProcessor.GroupUpdateResult groupUpdateResult = GroupsV2StateProcessor.forGroup(serviceIds, groupMasterKey)
-                                                                                         .updateLocalGroupToRevision(GroupsV2StateProcessor.LATEST, System.currentTimeMillis(), null);
+      GroupUpdateResult groupUpdateResult = GroupsV2StateProcessor.forGroup(serviceIds, groupMasterKey)
+                                                                  .updateLocalGroupToRevision(GroupsV2StateProcessor.LATEST, System.currentTimeMillis());
 
       if (groupUpdateResult.getLatestServer() == null) {
         Log.w(TAG, "Latest server state null.");
         throw new GroupChangeFailedException();
       }
 
-      if (groupUpdateResult.getGroupState() != GroupsV2StateProcessor.GroupState.GROUP_UPDATED) {
+      if (groupUpdateResult.getUpdateStatus() != GroupUpdateResult.UpdateStatus.GROUP_UPDATED) {
         int serverRevision = groupUpdateResult.getLatestServer().revision;
         int localRevision  = groupDatabase.requireGroup(groupId).requireV2GroupProperties().getGroupRevision();
         int revisionDelta  = serverRevision - localRevision;
@@ -722,20 +723,20 @@ final class GroupManagerV2 {
         throws IOException, GroupNotAMemberException
     {
       GroupsV2StateProcessor.forGroup(serviceIds, groupMasterKey)
-                            .updateLocalGroupToRevision(revision, timestamp, null);
+                            .updateLocalGroupToRevision(revision, timestamp);
     }
 
     @WorkerThread
-    GroupsV2StateProcessor.GroupUpdateResult updateLocalToServerRevision(int revision,
-                                                                         long timestamp,
-                                                                         @NonNull Optional<GroupRecord> localRecord,
-                                                                         @Nullable GroupSecretParams groupSecretParams,
-                                                                         @Nullable byte[] signedGroupChange,
-                                                                         @Nullable String serverGuid)
+    GroupUpdateResult updateLocalToServerRevision(int revision,
+                                                  long timestamp,
+                                                  @NonNull Optional<GroupRecord> localRecord,
+                                                  @Nullable GroupSecretParams groupSecretParams,
+                                                  @Nullable byte[] signedGroupChange,
+                                                  @Nullable String serverGuid)
         throws IOException, GroupNotAMemberException
     {
       return GroupsV2StateProcessor.forGroup(serviceIds, groupMasterKey, groupSecretParams)
-                                   .updateLocalGroupToRevision(revision, timestamp, localRecord, getDecryptedGroupChange(signedGroupChange), serverGuid);
+                                   .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange), localRecord, serverGuid);
     }
 
     @WorkerThread

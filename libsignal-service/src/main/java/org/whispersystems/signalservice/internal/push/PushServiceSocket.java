@@ -42,6 +42,7 @@ import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.GroupChanges;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.GroupJoinInfo;
+import org.signal.storageservice.protos.groups.Member;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
 import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest;
@@ -274,6 +275,7 @@ public class PushServiceSocket {
   private static final String GROUPSV2_AVATAR_REQUEST   = "/v1/groups/avatar/form";
   private static final String GROUPSV2_GROUP_JOIN       = "/v1/groups/join/%s";
   private static final String GROUPSV2_TOKEN            = "/v1/groups/token";
+  private static final String GROUPSV2_JOINED_AT        = "/v1/groups/joined_at_version";
 
   private static final String PAYMENTS_CONVERSIONS      = "/v1/payments/conversions";
 
@@ -2841,6 +2843,19 @@ public class PushServiceSocket {
       }
 
       return new GroupHistory(groupChanges, Optional.empty());
+    }
+  }
+
+  public int getGroupJoinedAtRevision(GroupsV2AuthorizationString authorization)
+      throws IOException
+  {
+    try (Response response = makeStorageRequest(authorization.toString(),
+                                                GROUPSV2_JOINED_AT,
+                                                "GET",
+                                                null,
+                                                NO_HANDLER))
+    {
+      return Member.ADAPTER.decode(readBodyBytes(response)).joinedAtRevision;
     }
   }
 

@@ -341,15 +341,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from("Ignore server changes"),
-        summary = DSLSettingsText.from("Changes in server's response will be ignored, causing passive voice update messages if P2P is also ignored."),
-        isChecked = state.gv2ignoreServerChanges,
-        onClick = {
-          viewModel.setGv2IgnoreServerChanges(!state.gv2ignoreServerChanges)
-        }
-      )
-
-      switchPref(
         title = DSLSettingsText.from("Ignore P2P changes"),
         summary = DSLSettingsText.from("Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice."),
         isChecked = state.gv2ignoreP2PChanges,

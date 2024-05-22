@@ -12,6 +12,10 @@ public final class InvalidGroupStateException extends Exception {
     super(e);
   }
 
+  InvalidGroupStateException(String message) {
+    super(message);
+  }
+
   InvalidGroupStateException() {
   }
 }

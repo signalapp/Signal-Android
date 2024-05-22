@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
-import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
+import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
@@ -146,14 +146,14 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static GroupsV2StateProcessor.GroupUpdateResult updateGroupFromServer(@NonNull Context context,
-                                                                               @NonNull GroupMasterKey groupMasterKey,
-                                                                               @NonNull Optional<GroupRecord> groupRecord,
-                                                                               @Nullable GroupSecretParams groupSecretParams,
-                                                                               int revision,
-                                                                               long timestamp,
-                                                                               @Nullable byte[] signedGroupChange,
-                                                                               @Nullable String serverGuid)
+  public static GroupUpdateResult updateGroupFromServer(@NonNull Context context,
+                                                        @NonNull GroupMasterKey groupMasterKey,
+                                                        @NonNull Optional<GroupRecord> groupRecord,
+                                                        @Nullable GroupSecretParams groupSecretParams,
+                                                        int revision,
+                                                        long timestamp,
+                                                        @Nullable byte[] signedGroupChange,
+                                                        @Nullable String serverGuid)
       throws GroupChangeBusyException, IOException, GroupNotAMemberException
   {
     try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {

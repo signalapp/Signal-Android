@@ -425,35 +425,6 @@ public final class GroupsV2Operations {
       return new PendingMember.Builder().member(member);
     }
 
-    public PartialDecryptedGroup partialDecryptGroup(Group group)
-        throws VerificationFailedException, InvalidGroupStateException
-    {
-      List<Member>                 membersList             = group.members;
-      List<PendingMember>          pendingMembersList      = group.pendingMembers;
-      List<DecryptedMember>        decryptedMembers        = new ArrayList<>(membersList.size());
-      List<DecryptedPendingMember> decryptedPendingMembers = new ArrayList<>(pendingMembersList.size());
-
-      for (Member member : membersList) {
-        ACI memberAci = decryptAci(member.userId);
-        decryptedMembers.add(new DecryptedMember.Builder().aciBytes(memberAci.toByteString())
-                                                          .joinedAtRevision(member.joinedAtRevision)
-                                                          .build());
-      }
-
-      for (PendingMember member : pendingMembersList) {
-        ServiceId pendingMemberServiceId = decryptServiceIdOrUnknown(member.member.userId);
-        decryptedPendingMembers.add(new DecryptedPendingMember.Builder().serviceIdBytes(pendingMemberServiceId.toByteString()).build());
-      }
-
-      DecryptedGroup decryptedGroup = new DecryptedGroup.Builder()
-                                                        .revision(group.revision)
-                                                        .members(decryptedMembers)
-                                                        .pendingMembers(decryptedPendingMembers)
-                                                        .build();
-
-      return new PartialDecryptedGroup(group, decryptedGroup, GroupsV2Operations.this, groupSecretParams);
-    }
-
     public DecryptedGroup decryptGroup(Group group)
         throws VerificationFailedException, InvalidGroupStateException
     {

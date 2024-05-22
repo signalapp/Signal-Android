@@ -16,7 +16,7 @@ import org.signal.storageservice.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry
+import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupChangeLog
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.push.DistributionId
@@ -67,7 +67,7 @@ class ChangeSet {
   }
 
   fun toApiResponse(): GroupHistoryPage {
-    return GroupHistoryPage(changeSet.map { DecryptedGroupHistoryEntry(Optional.ofNullable(it.groupSnapshot), Optional.ofNullable(it.groupChange)) }, GroupHistoryPage.PagingData.NONE)
+    return GroupHistoryPage(changeSet.map { DecryptedGroupChangeLog(it.groupSnapshot, it.groupChange) }, GroupHistoryPage.PagingData.NONE)
   }
 }
 
@@ -106,6 +106,9 @@ class GroupStateTestData(private val masterKey: GroupMasterKey, private val grou
   var groupChange: GroupChange? = null
   var includeFirst: Boolean = false
   var requestedRevision: Int = 0
+  var expectTableCreate: Boolean = false
+  var expectTableUpdate: Boolean = false
+  var joinedAtRevision: Int? = null
 
   fun localState(
     active: Boolean = true,

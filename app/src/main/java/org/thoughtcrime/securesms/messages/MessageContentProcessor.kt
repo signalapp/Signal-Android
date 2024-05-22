@@ -20,7 +20,8 @@ import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException
-import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
+import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult
+import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult.UpdateStatus
 import org.thoughtcrime.securesms.jobs.AutomaticSessionResetJob
 import org.thoughtcrime.securesms.jobs.NullMessageSendJob
 import org.thoughtcrime.securesms.jobs.ResendMessageJob
@@ -238,7 +239,7 @@ open class MessageContentProcessor(private val context: Context) {
         return Gv2PreProcessResult.IGNORE
       }
 
-      val groupRecord = if (groupUpdateResult.groupState == GroupsV2StateProcessor.GroupState.GROUP_CONSISTENT_OR_AHEAD) {
+      val groupRecord = if (groupUpdateResult.updateStatus == UpdateStatus.GROUP_CONSISTENT_OR_AHEAD) {
         preUpdateGroupRecord
       } else {
         SignalDatabase.groups.getGroup(groupId)
@@ -261,9 +262,9 @@ open class MessageContentProcessor(private val context: Context) {
         }
       }
 
-      return when (groupUpdateResult.groupState) {
-        GroupsV2StateProcessor.GroupState.GROUP_UPDATED -> Gv2PreProcessResult.GROUP_UPDATE
-        GroupsV2StateProcessor.GroupState.GROUP_CONSISTENT_OR_AHEAD -> Gv2PreProcessResult.GROUP_UP_TO_DATE
+      return when (groupUpdateResult.updateStatus) {
+        UpdateStatus.GROUP_UPDATED -> Gv2PreProcessResult.GROUP_UPDATE
+        UpdateStatus.GROUP_CONSISTENT_OR_AHEAD -> Gv2PreProcessResult.GROUP_UP_TO_DATE
       }
     }
 
@@ -275,7 +276,7 @@ open class MessageContentProcessor(private val context: Context) {
       localRecord: Optional<GroupRecord>,
       groupSecretParams: GroupSecretParams? = null,
       serverGuid: String? = null
-    ): GroupsV2StateProcessor.GroupUpdateResult? {
+    ): GroupUpdateResult? {
       return try {
         val signedGroupChange: ByteArray? = if (groupV2.hasSignedGroupChange) groupV2.signedGroupChange else null
         val updatedTimestamp = if (signedGroupChange != null) timestamp else timestamp - 1

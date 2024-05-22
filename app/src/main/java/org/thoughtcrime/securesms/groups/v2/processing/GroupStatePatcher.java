@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
+import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupChangeLog;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeUtil;
@@ -17,47 +18,47 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-final class GroupStateMapper {
+final class GroupStatePatcher {
 
-  private static final String TAG = Log.tag(GroupStateMapper.class);
+  private static final String TAG = Log.tag(GroupStatePatcher.class);
 
   static final int LATEST                       = Integer.MAX_VALUE;
   static final int PLACEHOLDER_REVISION         = -1;
   static final int RESTORE_PLACEHOLDER_REVISION = -2;
 
-  private static final Comparator<ServerGroupLogEntry> BY_REVISION = (o1, o2) -> Integer.compare(o1.getRevision(), o2.getRevision());
+  private static final Comparator<DecryptedGroupChangeLog> BY_REVISION = (o1, o2) -> Integer.compare(o1.getRevision(), o2.getRevision());
 
-  private GroupStateMapper() {
+  private GroupStatePatcher() {
   }
 
   /**
-   * Given an input {@link GlobalGroupState} and a {@param maximumRevisionToApply}, returns a result
+   * Given an input {@link GroupStateDiff} and a {@param maximumRevisionToApply}, returns a result
    * containing what the new local group state should be, and any remaining revision history to apply.
    * <p>
    * Function is pure.
    * @param maximumRevisionToApply Use {@link #LATEST} to apply the very latest.
    */
-  static @NonNull AdvanceGroupStateResult partiallyAdvanceGroupState(@NonNull GlobalGroupState inputState,
-                                                                     int maximumRevisionToApply)
+  static @NonNull AdvanceGroupStateResult applyGroupStateDiff(@NonNull GroupStateDiff inputState,
+                                                              int maximumRevisionToApply)
   {
     AdvanceGroupStateResult groupStateResult = processChanges(inputState, maximumRevisionToApply);
 
-    return cleanDuplicatedChanges(groupStateResult, inputState.getLocalState());
+    return cleanDuplicatedChanges(groupStateResult, inputState.getPreviousGroupState());
   }
 
-  private static @NonNull AdvanceGroupStateResult processChanges(@NonNull GlobalGroupState inputState,
+  private static @NonNull AdvanceGroupStateResult processChanges(@NonNull GroupStateDiff inputState,
                                                                  int maximumRevisionToApply)
   {
-    HashMap<Integer, ServerGroupLogEntry>            statesToApplyNow   = new HashMap<>(inputState.getServerHistory().size());
-    ArrayList<ServerGroupLogEntry>                   statesToApplyLater = new ArrayList<>(inputState.getServerHistory().size());
-    DecryptedGroup                                   current            = inputState.getLocalState();
+    HashMap<Integer, DecryptedGroupChangeLog>        statesToApplyNow   = new HashMap<>(inputState.getServerHistory().size());
+    ArrayList<DecryptedGroupChangeLog>               statesToApplyLater = new ArrayList<>(inputState.getServerHistory().size());
+    DecryptedGroup                                   current            = inputState.getPreviousGroupState();
     StateChain<DecryptedGroup, DecryptedGroupChange> stateChain         = createNewMapper();
 
     if (inputState.getServerHistory().isEmpty()) {
-      return new AdvanceGroupStateResult(Collections.emptyList(), new GlobalGroupState(current, Collections.emptyList()));
+      return new AdvanceGroupStateResult(current);
     }
 
-    for (ServerGroupLogEntry entry : inputState.getServerHistory()) {
+    for (DecryptedGroupChangeLog entry : inputState.getServerHistory()) {
       if (entry.getRevision() > maximumRevisionToApply) {
         statesToApplyLater.add(entry);
       } else {
@@ -77,7 +78,7 @@ final class GroupStateMapper {
     }
 
     for (int revision = from; revision >= 0 && revision <= to; revision++) {
-      ServerGroupLogEntry entry = statesToApplyNow.get(revision);
+      DecryptedGroupChangeLog entry = statesToApplyNow.get(revision);
       if (entry == null) {
         Log.w(TAG, "Could not find group log on server V" + revision);
         continue;
@@ -96,15 +97,15 @@ final class GroupStateMapper {
     }
 
     List<StateChain.Pair<DecryptedGroup, DecryptedGroupChange>> mapperList     = stateChain.getList();
-    List<LocalGroupLogEntry>                                    appliedChanges = new ArrayList<>(mapperList.size());
+    List<AppliedGroupChangeLog>                                 appliedChanges = new ArrayList<>(mapperList.size());
 
     for (StateChain.Pair<DecryptedGroup, DecryptedGroupChange> entry : mapperList) {
       if (current == null || entry.getDelta() != null) {
-        appliedChanges.add(new LocalGroupLogEntry(entry.getState(), entry.getDelta()));
+        appliedChanges.add(new AppliedGroupChangeLog(entry.getState(), entry.getDelta()));
       }
     }
 
-    return new AdvanceGroupStateResult(appliedChanges, new GlobalGroupState(stateChain.getLatestState(), statesToApplyLater));
+    return new AdvanceGroupStateResult(stateChain.getLatestState(), appliedChanges, statesToApplyLater);
   }
 
   private static AdvanceGroupStateResult cleanDuplicatedChanges(@NonNull AdvanceGroupStateResult groupStateResult,
@@ -112,21 +113,21 @@ final class GroupStateMapper {
   {
     if (previousGroupState == null) return groupStateResult;
 
-    ArrayList<LocalGroupLogEntry> appliedChanges = new ArrayList<>(groupStateResult.getProcessedLogEntries().size());
+    ArrayList<AppliedGroupChangeLog> appliedChanges = new ArrayList<>(groupStateResult.getProcessedLogEntries().size());
 
-    for (LocalGroupLogEntry entry : groupStateResult.getProcessedLogEntries()) {
+    for (AppliedGroupChangeLog entry : groupStateResult.getProcessedLogEntries()) {
       DecryptedGroupChange change = entry.getChange();
 
       if (change != null) {
         change = GroupChangeUtil.resolveConflict(previousGroupState, change).build();
       }
 
-      appliedChanges.add(new LocalGroupLogEntry(entry.getGroup(), change));
+      appliedChanges.add(new AppliedGroupChangeLog(entry.getGroup(), change));
 
       previousGroupState = entry.getGroup();
     }
 
-    return new AdvanceGroupStateResult(appliedChanges, groupStateResult.getNewGlobalGroupState());
+    return new AdvanceGroupStateResult(groupStateResult.getUpdatedGroupState(), appliedChanges, groupStateResult.getRemainingRemoteGroupChanges());
   }
 
   private static StateChain<DecryptedGroup, DecryptedGroupChange> createNewMapper() {

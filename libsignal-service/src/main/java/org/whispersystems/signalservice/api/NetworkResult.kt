@@ -30,13 +30,14 @@ sealed class NetworkResult<T>(
   companion object {
     /**
      * A convenience method to capture the common case of making a request.
-     * Perform the network action in the [fetch] lambda, returning your result.
+     * Perform the network action in the [fetcher], returning your result.
      * Common exceptions will be caught and translated to errors.
      */
-    fun <T> fromFetch(fetch: () -> T): NetworkResult<T> = try {
-      Success(fetch())
+    @JvmStatic
+    fun <T> fromFetch(fetcher: Fetcher<T>): NetworkResult<T> = try {
+      Success(fetcher.fetch())
     } catch (e: NonSuccessfulResponseCodeException) {
-      StatusCodeError(e.code, e.body, e)
+      StatusCodeError(e)
     } catch (e: IOException) {
       NetworkError(e)
     } catch (e: Throwable) {
@@ -51,7 +52,9 @@ sealed class NetworkResult<T>(
   data class NetworkError<T>(val exception: IOException) : NetworkResult<T>()
 
   /** Indicates we got a response, but it was a non-2xx response. */
-  data class StatusCodeError<T>(val code: Int, val body: String?, val exception: NonSuccessfulResponseCodeException) : NetworkResult<T>()
+  data class StatusCodeError<T>(val code: Int, val body: String?, val exception: NonSuccessfulResponseCodeException) : NetworkResult<T>() {
+    constructor(e: NonSuccessfulResponseCodeException) : this(e.code, e.body, e)
+  }
 
   /** Indicates that the application somehow failed in a way unrelated to network activity. Usually a runtime crash. */
   data class ApplicationError<T>(val throwable: Throwable) : NetworkResult<T>()
@@ -174,5 +177,10 @@ sealed class NetworkResult<T>(
     }
 
     return this
+  }
+
+  fun interface Fetcher<T> {
+    @Throws(Exception::class)
+    fun fetch(): T
   }
 }
