@@ -26,10 +26,10 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.compose.ui.platform.ComposeView;
-import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.constraintlayout.widget.Guideline;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.util.Consumer;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -72,6 +72,7 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class WebRtcCallView extends InsetAwareConstraintLayout {
@@ -128,11 +129,8 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private RecyclerView                  groupReactionsFeed;
   private MultiReactionBurstLayout      reactionViews;
   private ComposeView                   raiseHandSnackbar;
-  private Barrier                       pipBottomBoundaryBarrier;
   private View                          missingPermissionContainer;
   private MaterialButton                allowAccessButton;
-
-
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
   private WebRtcCallParticipantsRecyclerAdapter recyclerAdapter;
@@ -210,7 +208,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     groupReactionsFeed            = findViewById(R.id.call_screen_reactions_feed);
     reactionViews                 = findViewById(R.id.call_screen_reactions_container);
     raiseHandSnackbar             = findViewById(R.id.call_screen_raise_hand_view);
-    pipBottomBoundaryBarrier      = findViewById(R.id.pip_bottom_boundary_barrier);
     missingPermissionContainer    = findViewById(R.id.missing_permissions_container);
     allowAccessButton             = findViewById(R.id.allow_access_button);
 
@@ -375,16 +372,16 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     rotatableControls.add(smallLocalAudioIndicator);
     rotatableControls.add(ringToggle);
 
-    pipBottomBoundaryBarrier.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-      if (bottom != oldBottom) {
-        onBarrierBottomChanged(bottom);
-      }
-    });
-
     missingPermissionContainer.setVisibility(hasCameraPermission() ? View.GONE : View.VISIBLE);
 
     allowAccessButton.setOnClickListener(v -> {
       runIfNonNull(controlsListener, listener -> listener.onVideoChanged(videoToggle.isEnabled()));
+    });
+
+    ConstraintLayout aboveControls = findViewById(R.id.call_controls_floating_parent);
+    SlideUpWithCallControlsBehavior behavior = (SlideUpWithCallControlsBehavior) ((CoordinatorLayout.LayoutParams) aboveControls.getLayoutParams()).getBehavior();
+    Objects.requireNonNull(behavior).setOnTopOfControlsChangedListener(topOfControls -> {
+      pictureInPictureGestureHelper.setBottomVerticalBoundary(topOfControls);
     });
   }
 
@@ -986,11 +983,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   public void onControlTopChanged() {
-    onBarrierBottomChanged(pipBottomBoundaryBarrier.getBottom());
-  }
-
-  private void onBarrierBottomChanged(int barrierBottom) {
-    pictureInPictureGestureHelper.setBottomVerticalBoundary(barrierBottom);
   }
 
   public interface ControlsListener {

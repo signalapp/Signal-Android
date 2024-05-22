@@ -94,6 +94,8 @@ class ControlsAndInfoController(
   private val aboveControlsGuideline: Guideline
   private val bottomSheetVisibilityListeners = mutableSetOf<BottomSheetVisibilityListener>()
   private val scheduleHideControlsRunnable: Runnable = Runnable { onScheduledHide() }
+  private val toggleCameraDirectionView: View
+
   private val handler: Handler?
     get() = webRtcCallView.handler
 
@@ -110,6 +112,7 @@ class ControlsAndInfoController(
     callControls = webRtcCallView.findViewById(R.id.call_controls_constraint_layout)
     raiseHandComposeView = webRtcCallView.findViewById(R.id.call_screen_raise_hand_view)
     aboveControlsGuideline = webRtcCallView.findViewById(R.id.call_screen_above_controls_guideline)
+    toggleCameraDirectionView = webRtcCallView.findViewById(R.id.call_screen_camera_direction_toggle)
 
     callInfoComposeView.apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
@@ -321,7 +324,6 @@ class ControlsAndInfoController(
       val margin = if (controlState.displaySmallCallButtons()) 4.dp else 8.dp
 
       setControlConstraints(R.id.call_screen_speaker_toggle, controlState.displayAudioToggle(), margin)
-      setControlConstraints(R.id.call_screen_camera_direction_toggle, controlState.displayCameraToggle(), margin)
       setControlConstraints(R.id.call_screen_video_toggle, controlState.displayVideoToggle(), margin)
       setControlConstraints(R.id.call_screen_audio_mic_toggle, controlState.displayMuteAudio(), margin)
       setControlConstraints(R.id.call_screen_audio_ring_toggle, controlState.displayRingToggle(), margin)
@@ -330,6 +332,8 @@ class ControlsAndInfoController(
     }
 
     constraints.applyTo(callControls)
+
+    toggleCameraDirectionView.visible = controlState.displayCameraToggle()
   }
 
   private fun onScheduledHide() {
