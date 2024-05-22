@@ -16,7 +16,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.signal.core.util.FontUtil;
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
@@ -75,7 +75,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("RecipientId       : ").append(SignalStore.registrationValues().isRegistrationComplete() ? Recipient.self().getId() : "N/A").append("\n");
     builder.append("ACI               : ").append(getCensoredAci(context)).append("\n");
     builder.append("Device ID         : ").append(SignalStore.account().getDeviceId()).append("\n");
-    builder.append("Censored          : ").append(ApplicationDependencies.getSignalServiceNetworkAccess().isCensored()).append("\n");
+    builder.append("Censored          : ").append(AppDependencies.getSignalServiceNetworkAccess().isCensored()).append("\n");
     builder.append("Network Status    : ").append(NetworkUtil.getNetworkStatus(context)).append("\n");
     builder.append("Play Services     : ").append(getPlayServicesString(context)).append("\n");
     builder.append("FCM               : ").append(SignalStore.account().isFcmEnabled()).append("\n");

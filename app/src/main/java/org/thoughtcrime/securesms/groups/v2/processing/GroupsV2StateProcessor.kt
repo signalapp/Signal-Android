@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter.translateDecryptedChange
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMutation
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException
@@ -95,10 +95,10 @@ class GroupsV2StateProcessor private constructor(
     }
   }
 
-  private val groupsApi = ApplicationDependencies.getSignalServiceAccountManager().getGroupsV2Api()
-  private val groupsV2Authorization = ApplicationDependencies.getGroupsV2Authorization()
+  private val groupsApi = AppDependencies.signalServiceAccountManager.groupsV2Api
+  private val groupsV2Authorization = AppDependencies.groupsV2Authorization
   private val groupId = GroupId.v2(groupSecretParams.getPublicParams().getGroupIdentifier())
-  private val profileAndMessageHelper = ProfileAndMessageHelper.create(serviceIds.getAci(), groupMasterKey, groupId)
+  private val profileAndMessageHelper = ProfileAndMessageHelper.create(serviceIds.aci, groupMasterKey, groupId)
 
   private val logPrefix = "[$groupId]"
 
@@ -327,12 +327,12 @@ class GroupsV2StateProcessor private constructor(
     profileAndMessageHelper.persistLearnedProfileKeys(profileKeys)
 
     if (performCdsLookup) {
-      ApplicationDependencies.getJobManager().add(DirectoryRefreshJob(false))
+      AppDependencies.jobManager.add(DirectoryRefreshJob(false))
     }
 
     if (hasRemainingRemoteChanges) {
       Log.i(TAG, "$logPrefix There are more revisions on the server for this group, scheduling for later")
-      ApplicationDependencies.getJobManager().add(RequestGroupV2InfoJob(groupId))
+      AppDependencies.jobManager.add(RequestGroupV2InfoJob(groupId))
     }
 
     return InternalUpdateResult.Updated(currentLocalState!!)
@@ -447,7 +447,7 @@ class GroupsV2StateProcessor private constructor(
       .any { it.promotePendingPniAciMembers.isNotEmpty() }
 
     if (performCdsLookup) {
-      ApplicationDependencies.getJobManager().add(DirectoryRefreshJob(false))
+      AppDependencies.jobManager.add(DirectoryRefreshJob(false))
     }
 
     return InternalUpdateResult.Updated(updatedGroupState)
@@ -472,7 +472,7 @@ class GroupsV2StateProcessor private constructor(
     }
 
     if (needsAvatarFetch) {
-      ApplicationDependencies.getJobManager().add(AvatarGroupsV2DownloadJob(groupId, updatedGroupState.avatar))
+      AppDependencies.jobManager.add(AvatarGroupsV2DownloadJob(groupId, updatedGroupState.avatar))
     }
 
     profileAndMessageHelper.setProfileSharing(groupStateDiff, updatedGroupState)
@@ -507,7 +507,7 @@ class GroupsV2StateProcessor private constructor(
 
           if (addedBy.isBlocked && (previousGroupState == null || !DecryptedGroupUtil.isRequesting(previousGroupState, aci))) {
             Log.i(TAG, "Added by a blocked user. Leaving group.")
-            ApplicationDependencies.getJobManager().add(LeaveGroupV2Job(groupId))
+            AppDependencies.jobManager.add(LeaveGroupV2Job(groupId))
             return
           } else if ((addedBy.isSystemContact || addedBy.isProfileSharing) && !addedBy.isHidden) {
             Log.i(TAG, "Group 'adder' is trusted. contact: " + addedBy.isSystemContact + ", profileSharing: " + addedBy.isProfileSharing)
@@ -524,7 +524,7 @@ class GroupsV2StateProcessor private constructor(
 
         if (addedBy?.isBlocked == true) {
           Log.i(TAG, "Added to group $groupId by a blocked user ${addedBy.id}. Leaving group.")
-          ApplicationDependencies.getJobManager().add(LeaveGroupV2Job(groupId))
+          AppDependencies.jobManager.add(LeaveGroupV2Job(groupId))
           return
         } else {
           Log.i(TAG, "Added to $groupId, but not enabling profile sharing as we are a pending member.")
@@ -623,7 +623,7 @@ class GroupsV2StateProcessor private constructor(
         Log.i(TAG, "Learned ${updated.size} new profile keys, fetching profiles")
 
         for (job in RetrieveProfileJob.forRecipients(updated)) {
-          ApplicationDependencies.getJobManager().runSynchronously(job, 5000)
+          AppDependencies.jobManager.runSynchronously(job, 5000)
         }
       }
     }

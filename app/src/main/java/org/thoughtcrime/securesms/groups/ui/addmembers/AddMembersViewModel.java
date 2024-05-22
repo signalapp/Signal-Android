@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -54,7 +54,7 @@ public final class AddMembersViewModel extends ViewModel {
   }
 
   private static @NonNull String titleOrDefault(@Nullable String title) {
-    return TextUtils.isEmpty(title) ? ApplicationDependencies.getApplication().getString(R.string.Recipient_unknown)
+    return TextUtils.isEmpty(title) ? AppDependencies.getApplication().getString(R.string.Recipient_unknown)
                                     : Objects.requireNonNull(title);
   }
 

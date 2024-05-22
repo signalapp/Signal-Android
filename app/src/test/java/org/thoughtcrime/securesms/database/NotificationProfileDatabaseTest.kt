@@ -15,7 +15,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -42,8 +42,8 @@ class NotificationProfileDatabaseTest {
       }
     }
 
-    if (!ApplicationDependencies.isInitialized()) {
-      ApplicationDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
+    if (!AppDependencies.isInitialized) {
+      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
     }
 
     db = sqlCipher.writableDatabase

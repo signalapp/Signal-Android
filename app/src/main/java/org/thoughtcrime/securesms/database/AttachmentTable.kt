@@ -73,7 +73,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.stickers
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.jobs.GenerateAudioWaveFormJob
@@ -529,7 +529,7 @@ class AttachmentTable(
         .forEach { cursor ->
           val attachmentId = AttachmentId(cursor.requireLong(ID))
 
-          ApplicationDependencies.getJobManager().cancelAllInQueue(AttachmentDownloadJob.constructQueueString(attachmentId))
+          AppDependencies.jobManager.cancelAllInQueue(AttachmentDownloadJob.constructQueueString(attachmentId))
 
           deleteDataFileIfPossible(
             filePath = cursor.requireString(DATA_FILE),

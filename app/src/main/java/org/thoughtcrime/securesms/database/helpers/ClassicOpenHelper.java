@@ -39,7 +39,7 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.ThreadTable;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -431,7 +431,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
     db.endTransaction();
 
 //    DecryptingQueue.schedulePendingDecrypts(context, masterSecret);
-    ApplicationDependencies.getMessageNotifier().updateNotification(context);
+    AppDependencies.getMessageNotifier().updateNotification(context);
   }
 
   @Override

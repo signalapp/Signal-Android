@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.StoryType;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -100,7 +100,7 @@ public class SendViewedReceiptJob extends BaseJob {
    * maximum size.
    */
   public static void enqueue(long threadId, @NonNull RecipientId recipientId, List<MarkedMessageInfo> markedMessageInfos) {
-    JobManager                    jobManager      = ApplicationDependencies.getJobManager();
+    JobManager                    jobManager      = AppDependencies.getJobManager();
     List<List<MarkedMessageInfo>> messageIdChunks = ListUtil.chunk(markedMessageInfos, MAX_TIMESTAMPS);
 
     if (messageIdChunks.size() > 1) {
@@ -201,7 +201,7 @@ public class SendViewedReceiptJob extends BaseJob {
       return;
     }
 
-    SignalServiceMessageSender  messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
+    SignalServiceMessageSender  messageSender  = AppDependencies.getSignalServiceMessageSender();
     SignalServiceAddress        remoteAddress  = RecipientUtil.toSignalServiceAddress(context, recipient);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.VIEWED,
                                                                                  messageSentTimestamps,

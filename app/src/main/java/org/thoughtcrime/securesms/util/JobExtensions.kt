@@ -5,11 +5,11 @@
 
 package org.thoughtcrime.securesms.util
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager
 
 /** Starts a new chain with this job. */
 fun Job.asChain(): JobManager.Chain {
-  return ApplicationDependencies.getJobManager().startChain(this)
+  return AppDependencies.jobManager.startChain(this)
 }

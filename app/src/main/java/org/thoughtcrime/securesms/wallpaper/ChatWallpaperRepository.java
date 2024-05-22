@@ -9,7 +9,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -50,7 +50,7 @@ class ChatWallpaperRepository {
     EXECUTOR.execute(() -> {
       List<ChatWallpaper> wallpapers = new ArrayList<>(ChatWallpaper.BuiltIns.INSTANCE.getAllBuiltIns());
 
-      wallpapers.addAll(WallpaperStorage.getAll(ApplicationDependencies.getApplication()));
+      wallpapers.addAll(WallpaperStorage.getAll(AppDependencies.getApplication()));
       consumer.accept(wallpapers);
     });
   }
@@ -63,13 +63,13 @@ class ChatWallpaperRepository {
         onWallpaperSaved.run();
       });
     } else {
-      SignalStore.wallpaper().setWallpaper(ApplicationDependencies.getApplication(), chatWallpaper);
+      SignalStore.wallpaper().setWallpaper(AppDependencies.getApplication(), chatWallpaper);
       onWallpaperSaved.run();
     }
   }
 
   void resetAllWallpaper(@NonNull Runnable onWallpaperReset) {
-    SignalStore.wallpaper().setWallpaper(ApplicationDependencies.getApplication(), null);
+    SignalStore.wallpaper().setWallpaper(AppDependencies.getApplication(), null);
     EXECUTOR.execute(() -> {
       SignalDatabase.recipients().resetAllWallpaper();
       onWallpaperReset.run();

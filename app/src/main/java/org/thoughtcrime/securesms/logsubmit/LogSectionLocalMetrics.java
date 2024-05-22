@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase;
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase.EventMetrics;
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase.SplitMetrics;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ final class LogSectionLocalMetrics implements LogSection {
 
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
-    List<EventMetrics> metrics = LocalMetricsDatabase.getInstance(ApplicationDependencies.getApplication()).getMetrics();
+    List<EventMetrics> metrics = LocalMetricsDatabase.getInstance(AppDependencies.getApplication()).getMetrics();
 
     StringBuilder builder = new StringBuilder();
 

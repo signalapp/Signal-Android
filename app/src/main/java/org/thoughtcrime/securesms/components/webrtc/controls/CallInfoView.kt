@@ -53,7 +53,7 @@ import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
@@ -492,7 +492,7 @@ private fun showLowerHandDialog(context: Context) {
     .setTitle(R.string.CallOverflowPopupWindow__lower_your_hand)
     .setPositiveButton(
       R.string.CallOverflowPopupWindow__lower_hand
-    ) { _, _ -> ApplicationDependencies.getSignalCallManager().raiseHand(false) }
+    ) { _, _ -> AppDependencies.signalCallManager.raiseHand(false) }
     .setNegativeButton(R.string.CallOverflowPopupWindow__cancel, null)
     .show()
 }

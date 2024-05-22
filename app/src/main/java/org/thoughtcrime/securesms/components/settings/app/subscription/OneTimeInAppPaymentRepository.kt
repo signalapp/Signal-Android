@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentOneTimeContextJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -75,7 +75,7 @@ class OneTimeInAppPaymentRepository(private val donationsService: DonationsServi
   fun getBoostBadge(): Single<Badge> {
     return Single
       .fromCallable {
-        ApplicationDependencies.getDonationsService()
+        AppDependencies.donationsService
           .getDonationsConfiguration(Locale.getDefault())
       }
       .subscribeOn(Schedulers.io())

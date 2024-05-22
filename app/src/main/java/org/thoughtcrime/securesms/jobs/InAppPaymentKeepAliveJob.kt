@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.FiatValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -81,8 +81,8 @@ class InAppPaymentKeepAliveJob private constructor(
 
     @JvmStatic
     fun enqueueAndTrackTime(now: Duration) {
-      ApplicationDependencies.getJobManager().add(create(InAppPaymentSubscriberRecord.Type.DONATION))
-      ApplicationDependencies.getJobManager().add(create(InAppPaymentSubscriberRecord.Type.BACKUP))
+      AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.DONATION))
+      AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.BACKUP))
       SignalStore.donationsValues().setLastKeepAliveLaunchTime(now.inWholeMilliseconds)
     }
   }
@@ -100,12 +100,12 @@ class InAppPaymentKeepAliveJob private constructor(
       return
     }
 
-    val response: ServiceResponse<EmptyResponse> = ApplicationDependencies.getDonationsService().putSubscription(subscriber.subscriberId)
+    val response: ServiceResponse<EmptyResponse> = AppDependencies.donationsService.putSubscription(subscriber.subscriberId)
 
     verifyResponse(response)
     info(type, "Successful call to putSubscription")
 
-    val activeSubscriptionResponse: ServiceResponse<ActiveSubscription> = ApplicationDependencies.getDonationsService().getSubscription(subscriber.subscriberId)
+    val activeSubscriptionResponse: ServiceResponse<ActiveSubscription> = AppDependencies.donationsService.getSubscription(subscriber.subscriberId)
 
     verifyResponse(activeSubscriptionResponse)
     info(type, "Successful call to GET active subscription")
@@ -220,7 +220,7 @@ class InAppPaymentKeepAliveJob private constructor(
 
       val (badge, label) = if (oldInAppPayment == null) {
         info(type, "Old payment not found in database. Loading badge / label information from donations configuration.")
-        val configuration = ApplicationDependencies.getDonationsService().getDonationsConfiguration(Locale.getDefault())
+        val configuration = AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault())
         if (configuration.result.isPresent) {
           val subscriptionConfig = configuration.result.get().levels[subscription.level]
           if (subscriptionConfig == null) {

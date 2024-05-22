@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
@@ -98,10 +98,10 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     RefreshOwnProfileJob               refreshOwnProfileJob               = new RefreshOwnProfileJob();
     MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
 
-    return ApplicationDependencies.getJobManager()
-                                  .startChain(redemptionJob)
-                                  .then(refreshOwnProfileJob)
-                                  .then(multiDeviceProfileContentUpdateJob);
+    return AppDependencies.getJobManager()
+                          .startChain(redemptionJob)
+                          .then(refreshOwnProfileJob)
+                          .then(multiDeviceProfileContentUpdateJob);
   }
 
   private DonationReceiptRedemptionJob(long giftMessageId, boolean primary, @NonNull DonationErrorSource errorSource, long uiSessionKey, @NonNull Job.Parameters parameters) {
@@ -192,8 +192,8 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     }
 
     Log.d(TAG, "Attempting to redeem token... isForSubscription: " + isForSubscription(), true);
-    ServiceResponse<EmptyResponse> response = ApplicationDependencies.getDonationsService()
-                                                                     .redeemReceipt(presentation,
+    ServiceResponse<EmptyResponse> response = AppDependencies.getDonationsService()
+                                                             .redeemReceipt(presentation,
                                                                                     SignalStore.donationsValues().getDisplayBadgesOnProfile(),
                                                                                     makePrimary);
 

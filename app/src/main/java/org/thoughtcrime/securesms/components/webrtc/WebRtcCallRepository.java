@@ -10,7 +10,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.Collections;
@@ -35,7 +35,7 @@ class WebRtcCallRepository {
         recipients = Collections.singletonList(recipient);
       }
 
-      consumer.accept(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients));
+      consumer.accept(AppDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients));
     });
   }
 }

@@ -11,7 +11,7 @@ import androidx.media3.exoplayer.mediacodec.MediaCodecUtil
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.exoplayer.source.MediaSource
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.net.ContentProxySelector
 import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.DeviceProperties
@@ -23,12 +23,12 @@ import kotlin.time.Duration.Companion.seconds
 @OptIn(markerClass = [UnstableApi::class])
 class SimpleExoPlayerPool(context: Context) : ExoPlayerPool<ExoPlayer>(MAXIMUM_RESERVED_PLAYERS) {
   private val context: Context = context.applicationContext
-  private val okHttpClient = ApplicationDependencies.getOkHttpClient().newBuilder().proxySelector(ContentProxySelector()).build()
-  private val dataSourceFactory: DataSource.Factory = SignalDataSource.Factory(ApplicationDependencies.getApplication(), okHttpClient, null)
+  private val okHttpClient = AppDependencies.okHttpClient.newBuilder().proxySelector(ContentProxySelector()).build()
+  private val dataSourceFactory: DataSource.Factory = SignalDataSource.Factory(AppDependencies.application, okHttpClient, null)
   private val mediaSourceFactory: MediaSource.Factory = DefaultMediaSourceFactory(dataSourceFactory)
 
   init {
-    ApplicationDependencies.getAppForegroundObserver().addListener(this)
+    AppDependencies.appForegroundObserver.addListener(this)
   }
 
   /**
@@ -51,7 +51,7 @@ class SimpleExoPlayerPool(context: Context) : ExoPlayerPool<ExoPlayer>(MAXIMUM_R
       return maxInstances
     }
 
-    return if (DeviceProperties.isLowMemoryDevice(ApplicationDependencies.getApplication())) {
+    return if (DeviceProperties.isLowMemoryDevice(AppDependencies.application)) {
       MAXIMUM_SUPPORTED_PLAYBACK_PRE_23_LOW_MEM
     } else {
       MAXIMUM_SUPPORTED_PLAYBACK_PRE_23

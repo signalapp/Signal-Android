@@ -6,13 +6,13 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.getBoostB
 import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBadges
 import org.thoughtcrime.securesms.components.settings.app.subscription.getSubscriptionLevels
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import java.util.Locale
 
 class DonationReceiptListRepository {
   fun getBadges(): Single<List<DonationReceiptBadge>> {
     return Single.fromCallable {
-      ApplicationDependencies.getDonationsService()
+      AppDependencies.donationsService
         .getDonationsConfiguration(Locale.getDefault())
     }.map { response ->
       if (response.result.isPresent) {

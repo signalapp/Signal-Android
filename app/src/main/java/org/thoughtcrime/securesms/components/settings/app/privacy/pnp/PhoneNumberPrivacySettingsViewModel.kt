@@ -4,7 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
@@ -46,14 +46,14 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
     SignalStore.phoneNumberPrivacy().phoneNumberSharingMode = if (phoneNumberSharingEnabled) PhoneNumberSharingMode.EVERYBODY else PhoneNumberSharingMode.NOBODY
     SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
     StorageSyncHelper.scheduleSyncForDataChange()
-    ApplicationDependencies.getJobManager().add(ProfileUploadJob())
+    AppDependencies.jobManager.add(ProfileUploadJob())
     refresh()
   }
 
   private fun setDiscoverableByPhoneNumber(discoverable: Boolean) {
     SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = if (discoverable) PhoneNumberDiscoverabilityMode.DISCOVERABLE else PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
     StorageSyncHelper.scheduleSyncForDataChange()
-    ApplicationDependencies.getJobManager().startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
+    AppDependencies.jobManager.startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
     refresh()
   }
 

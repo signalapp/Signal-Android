@@ -10,7 +10,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -76,7 +76,7 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
       override fun shouldCancel() = isCanceled
     }
 
-    val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(ApplicationDependencies.getApplication())
+    val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
     if (!BackupRepository.downloadBackupFile(tempBackupFile, progressListener)) {
       Log.e(TAG, "Failed to download backup file")
       throw IOException()

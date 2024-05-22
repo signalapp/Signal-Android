@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -27,7 +27,7 @@ class RefreshSvrCredentialsJob private constructor(parameters: Parameters) : Bas
       if (SignalStore.svr().hasPin() && SignalStore.account().isRegistered) {
         val lastTimestamp = SignalStore.svr().lastRefreshAuthTimestamp
         if (lastTimestamp + FREQUENCY.inWholeMilliseconds < System.currentTimeMillis() || lastTimestamp > System.currentTimeMillis()) {
-          ApplicationDependencies.getJobManager().add(RefreshSvrCredentialsJob())
+          AppDependencies.jobManager.add(RefreshSvrCredentialsJob())
         } else {
           Log.d(TAG, "Do not need to refresh credentials. Last refresh: $lastTimestamp")
         }

@@ -20,7 +20,7 @@ import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.fonts.TextToScript
 import org.thoughtcrime.securesms.fonts.TypefaceCache
@@ -49,7 +49,7 @@ class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRe
     disposables += Observable.combineLatest(textFontSubject, scriptGuess, ::Pair)
       .observeOn(Schedulers.io())
       .distinctUntilChanged()
-      .switchMapSingle { (textFont, script) -> TypefaceCache.get(ApplicationDependencies.getApplication(), textFont, script) }
+      .switchMapSingle { (textFont, script) -> TypefaceCache.get(AppDependencies.application, textFont, script) }
       .subscribeOn(Schedulers.io())
       .subscribe {
         internalTypeface.onNext(it)

@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.migrations
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -22,7 +22,7 @@ internal class SyncKeysMigrationJob(
 
   override fun performMigration() {
     if (TextSecurePreferences.isMultiDevice(context)) {
-      ApplicationDependencies.getJobManager().add(MultiDeviceKeysUpdateJob())
+      AppDependencies.jobManager.add(MultiDeviceKeysUpdateJob())
     }
   }
 

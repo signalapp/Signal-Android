@@ -14,7 +14,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.ConfigurationUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
@@ -47,7 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity {
   @Override
   protected void onStart() {
     logEvent("onStart()");
-    ApplicationDependencies.getShakeToReport().registerActivity(this);
+    AppDependencies.getShakeToReport().registerActivity(this);
     super.onStart();
   }
 

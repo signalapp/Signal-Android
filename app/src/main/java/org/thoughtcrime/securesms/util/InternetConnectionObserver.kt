@@ -9,7 +9,7 @@ import android.net.Network
 import android.os.Build
 import androidx.annotation.RequiresApi
 import io.reactivex.rxjava3.core.Observable
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 
 object InternetConnectionObserver {
@@ -27,7 +27,7 @@ object InternetConnectionObserver {
   @RequiresApi(24)
   private fun observeApi24(): Observable<Boolean> {
     return Observable.create {
-      val application = ApplicationDependencies.getApplication()
+      val application = AppDependencies.application
       val connectivityManager = ServiceUtil.getConnectivityManager(application)
 
       val callback = object : ConnectivityManager.NetworkCallback() {
@@ -51,7 +51,7 @@ object InternetConnectionObserver {
   @Suppress("DEPRECATION")
   private fun observeApi19(): Observable<Boolean> {
     return Observable.create {
-      val application = ApplicationDependencies.getApplication()
+      val application = AppDependencies.application
 
       val observer = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {

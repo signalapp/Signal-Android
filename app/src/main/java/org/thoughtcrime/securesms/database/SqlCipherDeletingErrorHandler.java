@@ -8,7 +8,7 @@ import net.zetetic.database.DatabaseErrorHandler;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.signal.core.util.CursorUtil;
 
 /**
@@ -50,7 +50,7 @@ public final class SqlCipherDeletingErrorHandler implements DatabaseErrorHandler
       }
     } finally {
       Log.w(TAG, "Deleting database " + databaseName);
-      ApplicationDependencies.getApplication().deleteDatabase(databaseName);
+      AppDependencies.getApplication().deleteDatabase(databaseName);
     }
   }
 }

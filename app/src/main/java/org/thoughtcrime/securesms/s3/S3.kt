@@ -8,7 +8,7 @@ import okio.HashingSink
 import okio.sink
 import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.EncryptedStreamUtils
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
@@ -31,7 +31,7 @@ import java.util.regex.Pattern
 object S3 {
   private val TAG = Log.tag(S3::class.java)
 
-  private val okHttpClient = ApplicationDependencies.getSignalOkHttpClient()
+  private val okHttpClient = AppDependencies.signalOkHttpClient
 
   private const val S3_BASE = "https://updates2.signal.org"
   const val DYNAMIC_PATH = "/dynamic"

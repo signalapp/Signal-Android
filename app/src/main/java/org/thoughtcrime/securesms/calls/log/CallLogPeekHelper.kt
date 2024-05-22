@@ -9,7 +9,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
@@ -157,8 +157,8 @@ class CallLogPeekHelper : DefaultLifecycleObserver {
 
       items.forEach {
         when (it.identifier.peekEntryType) {
-          PeekEntryType.CALL_LINK -> ApplicationDependencies.getSignalCallManager().peekCallLinkCall(it.recipientId)
-          PeekEntryType.GROUP_CALL -> ApplicationDependencies.getSignalCallManager().peekGroupCall(it.recipientId)
+          PeekEntryType.CALL_LINK -> AppDependencies.signalCallManager.peekCallLinkCall(it.recipientId)
+          PeekEntryType.GROUP_CALL -> AppDependencies.signalCallManager.peekGroupCall(it.recipientId)
         }
       }
 

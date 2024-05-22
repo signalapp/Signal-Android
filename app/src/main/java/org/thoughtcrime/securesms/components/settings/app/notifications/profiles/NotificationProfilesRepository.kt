@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.NotificationProfileDatabase
 import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
@@ -44,7 +44,7 @@ class NotificationProfilesRepository {
         }
       }
 
-      val databaseObserver: DatabaseObserver = ApplicationDependencies.getDatabaseObserver()
+      val databaseObserver: DatabaseObserver = AppDependencies.databaseObserver
       val profileObserver = DatabaseObserver.Observer { emitProfile() }
 
       databaseObserver.registerNotificationProfileObserver(profileObserver)
@@ -132,7 +132,7 @@ class NotificationProfilesRepository {
         SignalStore.notificationProfileValues().manuallyDisabledAt = now
       }
     }
-      .doOnComplete { ApplicationDependencies.getDatabaseObserver().notifyNotificationProfileObservers() }
+      .doOnComplete { AppDependencies.databaseObserver.notifyNotificationProfileObservers() }
       .subscribeOn(Schedulers.io())
   }
 
@@ -142,7 +142,7 @@ class NotificationProfilesRepository {
       SignalStore.notificationProfileValues().manuallyEnabledUntil = enableUntil
       SignalStore.notificationProfileValues().manuallyDisabledAt = now
     }
-      .doOnComplete { ApplicationDependencies.getDatabaseObserver().notifyNotificationProfileObservers() }
+      .doOnComplete { AppDependencies.databaseObserver.notifyNotificationProfileObservers() }
       .subscribeOn(Schedulers.io())
   }
 
@@ -153,7 +153,7 @@ class NotificationProfilesRepository {
       SignalStore.notificationProfileValues().manuallyEnabledUntil = if (inScheduledWindow) schedule.endDateTime(now.toLocalDateTime()).toMillis() else Long.MAX_VALUE
       SignalStore.notificationProfileValues().manuallyDisabledAt = if (inScheduledWindow) now else 0
     }
-      .doOnComplete { ApplicationDependencies.getDatabaseObserver().notifyNotificationProfileObservers() }
+      .doOnComplete { AppDependencies.databaseObserver.notifyNotificationProfileObservers() }
       .subscribeOn(Schedulers.io())
   }
 

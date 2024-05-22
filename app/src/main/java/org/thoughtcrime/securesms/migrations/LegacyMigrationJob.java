@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTable.MmsReader;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
@@ -144,7 +144,7 @@ public class LegacyMigrationJob extends MigrationJob {
 //    }
 
     if (lastSeenVersion < CONTACTS_ACCOUNT_VERSION) {
-      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
+      AppDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     }
 
     if (lastSeenVersion < MEDIA_DOWNLOAD_CONTROLS_VERSION) {
@@ -152,12 +152,12 @@ public class LegacyMigrationJob extends MigrationJob {
     }
 
     if (lastSeenVersion < REDPHONE_SUPPORT_VERSION) {
-      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
-      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
+      AppDependencies.getJobManager().add(new RefreshAttributesJob());
+      AppDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     }
 
     if (lastSeenVersion < PROFILES) {
-      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
+      AppDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     }
 
     if (lastSeenVersion < SCREENSHOTS) {
@@ -226,12 +226,12 @@ public class LegacyMigrationJob extends MigrationJob {
 
     if (lastSeenVersion < UNIDENTIFIED_DELIVERY) {
       Log.i(TAG, "Scheduling UD attributes refresh.");
-      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
+      AppDependencies.getJobManager().add(new RefreshAttributesJob());
     }
 
     if (lastSeenVersion < SIGNALING_KEY_DEPRECATION) {
       Log.i(TAG, "Scheduling a RefreshAttributesJob to remove the signaling key remotely.");
-      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
+      AppDependencies.getJobManager().add(new RefreshAttributesJob());
     }
   }
 
@@ -255,7 +255,7 @@ public class LegacyMigrationJob extends MigrationJob {
         attachmentDb.setTransferState(attachment.mmsId, attachment.attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE);
       } else if (record != null && !record.isOutgoing() && record.isPush()) {
         Log.i(TAG, "queuing new attachment download job for incoming push part " + attachment.attachmentId + ".");
-        ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(attachment.mmsId, attachment.attachmentId, false, false));
+        AppDependencies.getJobManager().add(new AttachmentDownloadJob(attachment.mmsId, attachment.attachmentId, false, false));
       }
       reader.close();
     }

@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.UriAttachmentBuilder
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.providers.BlobProvider
@@ -38,7 +38,7 @@ class AttachmentCompressionJobTest {
       StreamUtil.readFully(it)
     }
 
-    val blob = BlobProvider.getInstance().forData(imageBytes).createForSingleSessionOnDisk(ApplicationDependencies.getApplication())
+    val blob = BlobProvider.getInstance().forData(imageBytes).createForSingleSessionOnDisk(AppDependencies.application)
 
     val firstPreUpload = createAttachment(1, blob, AttachmentTable.TransformProperties.empty())
     val firstDatabaseAttachment = SignalDatabase.attachments.insertAttachmentForPreUpload(firstPreUpload)
@@ -51,12 +51,12 @@ class AttachmentCompressionJobTest {
 
     val secondJobLatch = CountDownLatch(1)
     val jobThread = Thread {
-      firstCompressionJob.setContext(ApplicationDependencies.getApplication())
+      firstCompressionJob.setContext(AppDependencies.application)
       firstJobResult = firstCompressionJob.run()
 
       secondJobLatch.await()
 
-      secondCompressionJob!!.setContext(ApplicationDependencies.getApplication())
+      secondCompressionJob!!.setContext(AppDependencies.application)
       secondJobResult = secondCompressionJob!!.run()
     }
 

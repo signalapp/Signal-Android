@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.database.model.DistributionListId;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -69,7 +69,7 @@ public class RemoteDeleteSendJob extends BaseJob {
     if (conversationRecipient.isDistributionList()) {
       recipients = SignalDatabase.storySends().getRemoteDeleteRecipients(message.getId(), message.getTimestamp());
       if (recipients.isEmpty()) {
-        return ApplicationDependencies.getJobManager().startChain(MultiDeviceStorySendSyncJob.create(message.getDateSent(), messageId));
+        return AppDependencies.getJobManager().startChain(MultiDeviceStorySendSyncJob.create(message.getDateSent(), messageId));
       }
     } else {
       recipients = conversationRecipient.isGroup() ? Stream.of(conversationRecipient.getParticipantIds()).toList()
@@ -88,11 +88,11 @@ public class RemoteDeleteSendJob extends BaseJob {
                                                                         .build());
 
     if (conversationRecipient.isDistributionList()) {
-      return ApplicationDependencies.getJobManager()
-                                    .startChain(sendJob)
-                                    .then(MultiDeviceStorySendSyncJob.create(message.getDateSent(), messageId));
+      return AppDependencies.getJobManager()
+                            .startChain(sendJob)
+                            .then(MultiDeviceStorySendSyncJob.create(message.getDateSent(), messageId));
     } else {
-      return ApplicationDependencies.getJobManager().startChain(sendJob);
+      return AppDependencies.getJobManager().startChain(sendJob);
     }
   }
 
@@ -225,7 +225,7 @@ public class RemoteDeleteSendJob extends BaseJob {
                                                                                    null);
 
     if (conversationRecipient.isSelf()) {
-      ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage);
+      AppDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage);
     }
 
     return GroupSendJobHelper.getCompletedSends(destinations, results);

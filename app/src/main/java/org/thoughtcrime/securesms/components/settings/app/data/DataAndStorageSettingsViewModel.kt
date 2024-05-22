@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -43,7 +43,7 @@ class DataAndStorageSettingsViewModel(
 
   fun setCallDataMode(callDataMode: CallDataMode) {
     SignalStore.settings().callDataMode = callDataMode
-    ApplicationDependencies.getSignalCallManager().dataModeUpdate()
+    AppDependencies.signalCallManager.dataModeUpdate()
     getStateAndCopyStorageUsage()
   }
 
@@ -59,13 +59,13 @@ class DataAndStorageSettingsViewModel(
   private fun getState() = DataAndStorageSettingsState(
     totalStorageUse = 0,
     mobileAutoDownloadValues = TextSecurePreferences.getMobileMediaDownloadAllowed(
-      ApplicationDependencies.getApplication()
+      AppDependencies.application
     ),
     wifiAutoDownloadValues = TextSecurePreferences.getWifiMediaDownloadAllowed(
-      ApplicationDependencies.getApplication()
+      AppDependencies.application
     ),
     roamingAutoDownloadValues = TextSecurePreferences.getRoamingMediaDownloadAllowed(
-      ApplicationDependencies.getApplication()
+      AppDependencies.application
     ),
     callDataMode = SignalStore.settings().callDataMode,
     isProxyEnabled = SignalStore.proxy().isProxyEnabled,

@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.logsubmit
 
 import android.content.Context
 import org.thoughtcrime.securesms.database.LogDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -21,7 +21,7 @@ class LogSectionAnr : LogSection {
   override fun getTitle(): String = "ANR"
 
   override fun getContent(context: Context): CharSequence {
-    val anrs = LogDatabase.getInstance(ApplicationDependencies.getApplication()).anrs.getAll()
+    val anrs = LogDatabase.getInstance(AppDependencies.application).anrs.getAll()
 
     return if (anrs.isEmpty()) {
       "None"

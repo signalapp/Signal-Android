@@ -70,7 +70,7 @@ import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
@@ -226,7 +226,7 @@ class ConversationRepository(
 
       if (preUploadResults.isEmpty()) {
         MessageSender.send(
-          ApplicationDependencies.getApplication(),
+          AppDependencies.application,
           message,
           threadId,
           MessageSender.SendType.SIGNAL,
@@ -236,7 +236,7 @@ class ConversationRepository(
         }
       } else {
         MessageSender.sendPushWithPreUploadedMedia(
-          ApplicationDependencies.getApplication(),
+          AppDependencies.application,
           message,
           preUploadResults,
           threadId
@@ -308,7 +308,7 @@ class ConversationRepository(
         ExpiredBuildReminder.isEligible() -> ExpiredBuildReminder(applicationContext)
         UnauthorizedReminder.isEligible(applicationContext) -> UnauthorizedReminder()
         ServiceOutageReminder.isEligible(applicationContext) -> {
-          ApplicationDependencies.getJobManager().add(ServiceOutageDetectionJob())
+          AppDependencies.jobManager.add(ServiceOutageDetectionJob())
           ServiceOutageReminder()
         }
 
@@ -342,7 +342,7 @@ class ConversationRepository(
         emptyList()
       }
 
-      val records = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients)
+      val records = AppDependencies.protocolStore.aci().identities().getIdentityRecords(recipients)
       val isVerified = recipient.registered == RecipientTable.RegisteredState.REGISTERED &&
         Recipient.self().isRegistered &&
         records.isVerified &&
@@ -355,7 +355,7 @@ class ConversationRepository(
   fun resetVerifiedStatusToDefault(unverifiedIdentities: List<IdentityRecord>): Completable {
     return Completable.fromCallable {
       ReentrantSessionLock.INSTANCE.acquire().use {
-        val identityStore = ApplicationDependencies.getProtocolStore().aci().identities()
+        val identityStore = AppDependencies.protocolStore.aci().identities()
         for ((recipientId, identityKey) in unverifiedIdentities) {
           identityStore.setVerified(recipientId, identityKey, VerifiedStatus.DEFAULT)
         }
@@ -421,8 +421,8 @@ class ConversationRepository(
           .createForSingleSessionOnDisk(applicationContext)
 
         attachments.deleteAttachmentFilesForViewOnceMessage(mmsMessageRecord.id)
-        ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary()
-        ApplicationDependencies.getJobManager().add(MultiDeviceViewOnceOpenJob(MessageTable.SyncMessageId(mmsMessageRecord.fromRecipient.id, mmsMessageRecord.dateSent)))
+        AppDependencies.viewOnceMessageManager.scheduleIfNecessary()
+        AppDependencies.jobManager.add(MultiDeviceViewOnceOpenJob(MessageTable.SyncMessageId(mmsMessageRecord.fromRecipient.id, mmsMessageRecord.dateSent)))
 
         tempUri
       } catch (e: IOException) {
@@ -576,7 +576,7 @@ class ConversationRepository(
 
   fun startExpirationTimeout(expirationInfos: List<MessageTable.ExpirationInfo>) {
     SignalDatabase.messages.markExpireStarted(expirationInfos.map { it.id to it.expireStarted })
-    ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(expirationInfos)
+    AppDependencies.expiringMessageManager.scheduleDeletion(expirationInfos)
   }
 
   fun markLastSeen(threadId: Long) {

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 public class LogSectionJobs implements LogSection {
 
@@ -15,6 +15,6 @@ public class LogSectionJobs implements LogSection {
 
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
-    return ApplicationDependencies.getJobManager().getDebugInfo();
+    return AppDependencies.getJobManager().getDebugInfo();
   }
 }

@@ -110,7 +110,7 @@ import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
@@ -2468,10 +2468,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         Log.i(TAG, "Scheduling push attachment downloads for " + slides.size() + " items");
 
         for (Slide slide : slides) {
-          ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(messageRecord.getId(),
-                                                                                ((DatabaseAttachment) slide.asAttachment()).attachmentId,
-                                                                                true,
-                                                                                false));
+          AppDependencies.getJobManager().add(new AttachmentDownloadJob(messageRecord.getId(),
+                                                                        ((DatabaseAttachment) slide.asAttachment()).attachmentId,
+                                                                        true,
+                                                                        false));
         }
       }
     }
@@ -2492,7 +2492,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         final DatabaseAttachment databaseAttachment = (DatabaseAttachment) slide.asAttachment();
         if (databaseAttachment.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
           final AttachmentId attachmentId = databaseAttachment.attachmentId;
-          final JobManager   jobManager   = ApplicationDependencies.getJobManager();
+          final JobManager   jobManager   = AppDependencies.getJobManager();
           final String       queue        = RestoreAttachmentJob.constructQueueString(attachmentId);
           setup(v, slide);
           jobManager.add(new RestoreAttachmentJob(messageRecord.getId(),
@@ -2507,7 +2507,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
           });
         } else if (databaseAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_STARTED) {
           final AttachmentId attachmentId = databaseAttachment.attachmentId;
-          final JobManager   jobManager   = ApplicationDependencies.getJobManager();
+          final JobManager   jobManager   = AppDependencies.getJobManager();
           final String       queue        = AttachmentDownloadJob.constructQueueString(attachmentId);
           setup(v, slide);
           jobManager.add(new AttachmentDownloadJob(messageRecord.getId(),

@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.paging.PagedDataSource;
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.model.GiphyResponse;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
@@ -50,7 +50,7 @@ final class GiphyMp4PagedDataSource implements PagedDataSource<String, GiphyImag
 
   GiphyMp4PagedDataSource(@Nullable String searchQuery) {
     this.searchString = Optional.ofNullable(searchQuery).map(String::trim).orElse("");
-    this.client       = ApplicationDependencies.getOkHttpClient().newBuilder().proxySelector(new ContentProxySelector()).build();
+    this.client       = AppDependencies.getOkHttpClient().newBuilder().proxySelector(new ContentProxySelector()).build();
   }
 
   @Override

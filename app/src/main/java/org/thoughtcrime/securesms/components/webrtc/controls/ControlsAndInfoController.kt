@@ -52,7 +52,7 @@ import org.thoughtcrime.securesms.components.webrtc.CallOverflowPopupWindow
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 import org.thoughtcrime.securesms.util.padding
@@ -411,10 +411,10 @@ class ControlsAndInfoController(
       .setNegativeButton(android.R.string.cancel, null)
       .setMessage(webRtcCallView.resources.getString(R.string.CallLinkInfoSheet__remove_s_from_the_call, callParticipant.recipient.getShortDisplayName(webRtcCallActivity)))
       .setPositiveButton(R.string.CallLinkInfoSheet__remove) { _, _ ->
-        ApplicationDependencies.getSignalCallManager().removeFromCallLink(callParticipant)
+        AppDependencies.signalCallManager.removeFromCallLink(callParticipant)
       }
       .setNeutralButton(R.string.CallLinkInfoSheet__block_from_call) { _, _ ->
-        ApplicationDependencies.getSignalCallManager().blockFromCallLink(callParticipant)
+        AppDependencies.signalCallManager.blockFromCallLink(callParticipant)
       }
       .show()
   }

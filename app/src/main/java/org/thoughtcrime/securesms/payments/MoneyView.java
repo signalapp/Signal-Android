@@ -13,7 +13,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.whispersystems.signalservice.api.payments.Currency;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
@@ -101,7 +101,7 @@ public final class MoneyView extends AppCompatTextView {
     if (timestamp > 0L) {
       balanceSpan = new SpannableString(getResources().getString(R.string.CurrencyAmountFormatter_s_at_s,
                                         balance,
-                                        DateUtils.getTimeString(ApplicationDependencies.getApplication(), Locale.getDefault(), timestamp)));
+                                        DateUtils.getTimeString(AppDependencies.getApplication(), Locale.getDefault(), timestamp)));
     } else {
       balanceSpan = new SpannableString(balance);
     }

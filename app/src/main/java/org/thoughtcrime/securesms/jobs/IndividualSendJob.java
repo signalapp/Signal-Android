@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
@@ -103,7 +103,7 @@ public class IndividualSendJob extends PushSendJob {
     try {
       OutgoingMessage message = SignalDatabase.messages().getOutgoingMessage(messageId);
       if (message.getScheduledDate() != -1) {
-        ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary();
+        AppDependencies.getScheduledMessageManager().scheduleIfNecessary();
         return;
       }
 
@@ -142,7 +142,7 @@ public class IndividualSendJob extends PushSendJob {
   {
     SignalLocalMetrics.IndividualMessageSend.onJobStarted(messageId);
 
-    ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
+    ExpiringMessageManager expirationManager = AppDependencies.getExpiringMessageManager();
     MessageTable    database              = SignalDatabase.messages();
     OutgoingMessage message               = database.getOutgoingMessage(messageId);
     long            threadId              = database.getMessageRecord(messageId).getThreadId();
@@ -208,7 +208,7 @@ public class IndividualSendJob extends PushSendJob {
       warn(TAG, "Failure", uue);
       database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
-      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
+      AppDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     } catch (UntrustedIdentityException uie) {
       warn(TAG, "Failure", uie);
       RecipientId recipientId = Recipient.external(context, uie.getIdentifier()).getId();
@@ -251,7 +251,7 @@ public class IndividualSendJob extends PushSendJob {
         throw new UndeliverableMessageException(messageRecipient.getId() + " not registered!");
       }
 
-      SignalServiceMessageSender                 messageSender       = ApplicationDependencies.getSignalServiceMessageSender();
+      SignalServiceMessageSender                 messageSender       = AppDependencies.getSignalServiceMessageSender();
       SignalServiceAddress                       address             = RecipientUtil.toSignalServiceAddress(context, messageRecipient);
       List<Attachment>                           attachments         = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>              serviceAttachments  = getAttachmentPointersFor(attachments);

@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.keyvalue.StorySend;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -84,7 +84,7 @@ public final class MultiShareSender {
   @WorkerThread
   public static MultiShareSendResultCollection sendSync(@NonNull MultiShareArgs multiShareArgs) {
     List<MultiShareSendResult> results                           = new ArrayList<>(multiShareArgs.getContactSearchKeys().size());
-    Context                    context                           = ApplicationDependencies.getApplication();
+    Context                    context                           = AppDependencies.getApplication();
     String                     message                           = multiShareArgs.getDraftText();
     SlideDeck                  slideDeck;
     List<OutgoingMessage>      storiesBatch                      = new LinkedList<>();

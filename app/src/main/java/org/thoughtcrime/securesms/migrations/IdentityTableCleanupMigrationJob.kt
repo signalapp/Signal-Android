@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.migrations
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.IdentityTable
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.AccountConsistencyWorkerJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -41,7 +41,7 @@ internal class IdentityTableCleanupMigrationJob(
       return
     }
 
-    ApplicationDependencies.getProtocolStore().aci().identities().saveIdentityWithoutSideEffects(
+    AppDependencies.protocolStore.aci().identities().saveIdentityWithoutSideEffects(
       Recipient.self().id,
       SignalStore.account().aci!!,
       SignalStore.account().aciIdentityKey.publicKey,
@@ -51,7 +51,7 @@ internal class IdentityTableCleanupMigrationJob(
       true
     )
 
-    ApplicationDependencies.getProtocolStore().pni().identities().saveIdentityWithoutSideEffects(
+    AppDependencies.protocolStore.pni().identities().saveIdentityWithoutSideEffects(
       Recipient.self().id,
       SignalStore.account().pni!!,
       SignalStore.account().pniIdentityKey.publicKey,
@@ -61,7 +61,7 @@ internal class IdentityTableCleanupMigrationJob(
       true
     )
 
-    ApplicationDependencies.getJobManager().add(AccountConsistencyWorkerJob())
+    AppDependencies.jobManager.add(AccountConsistencyWorkerJob())
   }
 
   override fun shouldRetry(e: Exception): Boolean = false

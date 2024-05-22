@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.core.util.roundedString
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.devicelist.protos.DeviceName
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -40,14 +40,14 @@ class LinkedDeviceInactiveCheckJob private constructor(
 
     @JvmStatic
     fun enqueue() {
-      ApplicationDependencies.getJobManager().add(LinkedDeviceInactiveCheckJob())
+      AppDependencies.jobManager.add(LinkedDeviceInactiveCheckJob())
     }
 
     @JvmStatic
     fun enqueueIfNecessary() {
       val timeSinceLastCheck = System.currentTimeMillis() - SignalStore.misc().linkedDeviceLastActiveCheckTime
       if (timeSinceLastCheck > 1.days.inWholeMilliseconds || timeSinceLastCheck < 0) {
-        ApplicationDependencies.getJobManager().add(LinkedDeviceInactiveCheckJob())
+        AppDependencies.jobManager.add(LinkedDeviceInactiveCheckJob())
       }
     }
   }
@@ -58,7 +58,7 @@ class LinkedDeviceInactiveCheckJob private constructor(
 
   override fun run(): Result {
     val devices = try {
-      ApplicationDependencies.getSignalServiceAccountManager().devices
+      AppDependencies.signalServiceAccountManager.devices
     } catch (e: IOException) {
       return Result.retry(defaultBackoff())
     }
@@ -79,7 +79,7 @@ class LinkedDeviceInactiveCheckJob private constructor(
       .minBy { it.lastSeen }
       .let {
         val nameProto = DeviceName.ADAPTER.decode(Base64.decode(it.getName()))
-        val decryptedBytes = DeviceNameCipher.decryptDeviceName(nameProto, ApplicationDependencies.getProtocolStore().aci().identityKeyPair) ?: return@let null
+        val decryptedBytes = DeviceNameCipher.decryptDeviceName(nameProto, AppDependencies.protocolStore.aci().identityKeyPair) ?: return@let null
         val name = String(decryptedBytes)
 
         LeastActiveLinkedDevice(

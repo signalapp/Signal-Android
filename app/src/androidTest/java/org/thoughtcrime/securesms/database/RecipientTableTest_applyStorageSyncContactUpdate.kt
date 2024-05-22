@@ -9,7 +9,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageRecordUpdate
 import org.thoughtcrime.securesms.storage.StorageSyncModels
@@ -28,7 +28,7 @@ class RecipientTableTest_applyStorageSyncContactUpdate {
   @Test
   fun insertMessageOnVerifiedToDefault() {
     // GIVEN
-    val identities = ApplicationDependencies.getProtocolStore().aci().identities()
+    val identities = AppDependencies.protocolStore.aci().identities()
     val other = Recipient.resolved(harness.others[0])
 
     MmsHelper.insert(recipient = other)

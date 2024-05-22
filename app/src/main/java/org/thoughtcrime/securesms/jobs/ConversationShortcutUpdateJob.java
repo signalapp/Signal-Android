@@ -7,13 +7,12 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ public class ConversationShortcutUpdateJob extends BaseJob {
   public static final String KEY = "ConversationShortcutUpdateJob";
 
   public static void enqueue() {
-    ApplicationDependencies.getJobManager().add(new ConversationShortcutUpdateJob());
+    AppDependencies.getJobManager().add(new ConversationShortcutUpdateJob());
   }
 
   private ConversationShortcutUpdateJob() {

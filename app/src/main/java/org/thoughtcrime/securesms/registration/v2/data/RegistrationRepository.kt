@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.gcm.FcmUtil
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
@@ -165,16 +165,16 @@ object RegistrationRepository {
       SignalStore.account().setAci(aci)
       SignalStore.account().setPni(pni)
 
-      ApplicationDependencies.resetProtocolStores()
+      AppDependencies.resetProtocolStores()
 
-      ApplicationDependencies.getProtocolStore().aci().sessions().archiveAllSessions()
-      ApplicationDependencies.getProtocolStore().pni().sessions().archiveAllSessions()
+      AppDependencies.protocolStore.aci().sessions().archiveAllSessions()
+      AppDependencies.protocolStore.pni().sessions().archiveAllSessions()
       SenderKeyUtil.clearAllState()
 
-      val aciProtocolStore = ApplicationDependencies.getProtocolStore().aci()
+      val aciProtocolStore = AppDependencies.protocolStore.aci()
       val aciMetadataStore = SignalStore.account().aciPreKeys
 
-      val pniProtocolStore = ApplicationDependencies.getProtocolStore().pni()
+      val pniProtocolStore = AppDependencies.protocolStore.pni()
       val pniMetadataStore = SignalStore.account().pniPreKeys
 
       storeSignedAndLastResortPreKeys(aciProtocolStore, aciMetadataStore, aciPreKeyCollection)
@@ -188,7 +188,7 @@ object RegistrationRepository {
       recipientTable.linkIdsForSelf(aci, pni, registrationData.e164)
       recipientTable.setProfileKey(selfId, registrationData.profileKey)
 
-      ApplicationDependencies.getRecipientCache().clearSelf()
+      AppDependencies.recipientCache.clearSelf()
 
       SignalStore.account().setE164(registrationData.e164)
       SignalStore.account().fcmToken = registrationData.fcmToken
@@ -206,11 +206,11 @@ object RegistrationRepository {
 
       SvrRepository.onRegistrationComplete(response.masterKey, response.pin, hasPin, reglockEnabled)
 
-      ApplicationDependencies.closeConnections()
-      ApplicationDependencies.getIncomingMessageObserver()
+      AppDependencies.resetNetwork()
+      AppDependencies.incomingMessageObserver
       PreKeysSyncJob.enqueue()
 
-      val jobManager = ApplicationDependencies.getJobManager()
+      val jobManager = AppDependencies.jobManager
       jobManager.add(DirectoryRefreshJob(false))
       jobManager.add(RotateCertificateJob())
 

@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.getThumbnailMediaName
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.ArchiveThumbnailUploadJobData
@@ -47,7 +47,7 @@ class ArchiveThumbnailUploadJob private constructor(
 
     fun enqueueIfNecessary(attachmentId: AttachmentId) {
       if (SignalStore.backup().backsUpMedia) {
-        ApplicationDependencies.getJobManager().add(ArchiveThumbnailUploadJob(attachmentId))
+        AppDependencies.jobManager.add(ArchiveThumbnailUploadJob(attachmentId))
       }
     }
   }
@@ -111,7 +111,7 @@ class ArchiveThumbnailUploadJob private constructor(
     val stream = buildSignalServiceAttachmentStream(thumbnailResult, resumableUpload)
 
     val attachmentPointer: Attachment = try {
-      val pointer = ApplicationDependencies.getSignalServiceMessageSender().uploadAttachment(stream)
+      val pointer = AppDependencies.signalServiceMessageSender.uploadAttachment(stream)
       PointerAttachment.forPointer(Optional.of(pointer)).get()
     } catch (e: IOException) {
       Log.w(TAG, "Failed to upload attachment", e)

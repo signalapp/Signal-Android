@@ -49,7 +49,7 @@ import java.util.function.Supplier;
 import static org.mockito.Mockito.mock;
 
 @SuppressWarnings("ConstantConditions")
-public class MockApplicationDependencyProvider implements ApplicationDependencies.Provider {
+public class MockApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull GroupsV2Operations provideGroupsV2Operations(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
     return null;

@@ -104,9 +104,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 /**
- * Implementation of {@link ApplicationDependencies.Provider} that provides real app dependencies.
+ * Implementation of {@link AppDependencies.Provider} that provides real app dependencies.
  */
-public class ApplicationDependencyProvider implements ApplicationDependencies.Provider {
+public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   private final Application context;
 

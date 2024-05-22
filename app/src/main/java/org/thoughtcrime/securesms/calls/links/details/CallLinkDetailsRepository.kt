@@ -12,14 +12,14 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.MaybeCompat
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.ReadCallLinkResult
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkManager
 
 class CallLinkDetailsRepository(
-  private val callLinkManager: SignalCallLinkManager = ApplicationDependencies.getSignalCallManager().callLinkManager
+  private val callLinkManager: SignalCallLinkManager = AppDependencies.signalCallManager.callLinkManager
 ) {
   fun refreshCallLinkState(callLinkRoomId: CallLinkRoomId): Disposable {
     return MaybeCompat.fromCallable { SignalDatabase.callLinks.getCallLinkByRoomId(callLinkRoomId) }

@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -57,7 +57,7 @@ class ExternalLaunchDonationJob private constructor(
     }
   }
 
-  private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
+  private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, AppDependencies.okHttpClient)
 
   override fun serialize(): ByteArray {
     return stripe3DSData.toProtoBytes()
@@ -142,10 +142,10 @@ class ExternalLaunchDonationJob private constructor(
 
     Log.i(TAG, "Setting default payment method...", true)
     val setPaymentMethodResponse = if (stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
-      ApplicationDependencies.getDonationsService()
+      AppDependencies.donationsService
         .setDefaultIdealPaymentMethod(subscriber.subscriberId, stripeSetupIntent.id)
     } else {
-      ApplicationDependencies.getDonationsService()
+      AppDependencies.donationsService
         .setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethod!!)
     }
 
@@ -161,7 +161,7 @@ class ExternalLaunchDonationJob private constructor(
       val levelUpdateOperation = RecurringInAppPaymentRepository.getOrCreateLevelUpdateOperation(TAG, subscriptionLevel)
       Log.d(TAG, "Attempting to set user subscription level to $subscriptionLevel", true)
 
-      val updateSubscriptionLevelResponse = ApplicationDependencies.getDonationsService().updateSubscriptionLevel(
+      val updateSubscriptionLevelResponse = AppDependencies.donationsService.updateSubscriptionLevel(
         subscriber.subscriberId,
         subscriptionLevel,
         subscriber.currencyCode,

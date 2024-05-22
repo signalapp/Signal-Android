@@ -54,7 +54,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewV2Binding
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mediapreview.caption.ExpandingCaptionView
 import org.thoughtcrime.securesms.mediapreview.mediarail.CenterDecoration
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter
@@ -154,7 +154,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     val threadId = args.threadId
     viewModel.fetchAttachments(requireContext(), startingAttachmentId, threadId, sorting)
     val dbObserver = DatabaseObserver.Observer { viewModel.fetchAttachments(requireContext(), startingAttachmentId, threadId, sorting, true) }
-    ApplicationDependencies.getDatabaseObserver().registerAttachmentObserver(dbObserver)
+    AppDependencies.databaseObserver.registerAttachmentObserver(dbObserver)
     this.dbChangeObserver = dbObserver
   }
 
@@ -513,7 +513,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     super.onDestroy()
     val observer = dbChangeObserver
     if (observer != null) {
-      ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer)
+      AppDependencies.databaseObserver.unregisterObserver(observer)
       dbChangeObserver = null
     }
   }

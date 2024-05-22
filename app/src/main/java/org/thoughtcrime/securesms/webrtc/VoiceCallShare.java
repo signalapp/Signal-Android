@@ -9,7 +9,7 @@ import android.text.TextUtils;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.concurrent.SimpleTask;
 
@@ -35,9 +35,9 @@ public class VoiceCallShare extends Activity {
           SimpleTask.run(() -> Recipient.external(this, destination), recipient -> {
             if (!TextUtils.isEmpty(destination)) {
               if (VIDEO_CALL_MIME_TYPE.equals(getIntent().getType())) {
-                ApplicationDependencies.getSignalCallManager().startOutgoingVideoCall(recipient);
+                AppDependencies.getSignalCallManager().startOutgoingVideoCall(recipient);
               } else {
-                ApplicationDependencies.getSignalCallManager().startOutgoingAudioCall(recipient);
+                AppDependencies.getSignalCallManager().startOutgoingAudioCall(recipient);
               }
 
               Intent activityIntent = new Intent(this, WebRtcCallActivity.class);

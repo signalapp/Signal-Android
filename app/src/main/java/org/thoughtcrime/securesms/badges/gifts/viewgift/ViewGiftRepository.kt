@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import java.util.Locale
 
 /**
@@ -21,8 +21,8 @@ class ViewGiftRepository {
     val presentation = ReceiptCredentialPresentation(giftBadge.redemptionToken.toByteArray())
     return Single
       .fromCallable {
-        ApplicationDependencies
-          .getDonationsService()
+        AppDependencies
+          .donationsService
           .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }
@@ -45,9 +45,9 @@ class ViewGiftRepository {
         }
       }
 
-      ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageObserver)
+      AppDependencies.databaseObserver.registerMessageUpdateObserver(messageObserver)
       emitter.setCancellable {
-        ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageObserver)
+        AppDependencies.databaseObserver.unregisterObserver(messageObserver)
       }
 
       refresh()

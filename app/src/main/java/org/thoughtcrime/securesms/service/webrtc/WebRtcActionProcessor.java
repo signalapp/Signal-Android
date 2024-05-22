@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -692,7 +692,7 @@ public abstract class WebRtcActionProcessor {
       activePeer = remotePeer;
     }
 
-    ApplicationDependencies.getAppForegroundObserver().removeListener(webRtcInteractor.getForegroundListener());
+    AppDependencies.getAppForegroundObserver().removeListener(webRtcInteractor.getForegroundListener());
 
     if (activePeer.getState() != CallState.IDLE) {
       webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);

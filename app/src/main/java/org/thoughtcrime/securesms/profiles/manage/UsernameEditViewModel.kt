@@ -15,7 +15,7 @@ import org.signal.core.util.Result
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.usernames.Username
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameSetResult
@@ -139,7 +139,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
    * @param userConfirmedResetOk True if the user is submitting this after confirming that they're ok with resetting their username via [Event.NEEDS_CONFIRM_RESET].
    */
   fun onUsernameSubmitted(userConfirmedResetOk: Boolean) {
-    if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
+    if (!NetworkUtil.isConnected(AppDependencies.application)) {
       events.onNext(Event.NETWORK_FAILURE)
       return
     }

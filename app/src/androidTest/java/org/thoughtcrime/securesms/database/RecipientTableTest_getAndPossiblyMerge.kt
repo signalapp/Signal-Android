@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
@@ -1113,8 +1113,8 @@ class RecipientTableTest_getAndPossiblyMerge {
           SignalDatabase.rawDatabase.execSQL("DELETE FROM $table")
         }
 
-      ApplicationDependencies.getRecipientCache().clear()
-      ApplicationDependencies.getRecipientCache().clearSelf()
+      AppDependencies.recipientCache.clear()
+      AppDependencies.recipientCache.clearSelf()
       RecipientId.clearCache()
     }
 

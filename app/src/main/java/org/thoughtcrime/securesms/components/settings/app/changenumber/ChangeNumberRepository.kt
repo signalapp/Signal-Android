@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.keyvalue.CertificateType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -59,8 +59,8 @@ private val TAG: String = Log.tag(ChangeNumberRepository::class.java)
  * the global "I am changing the number" lock exclusivity.
  */
 class ChangeNumberRepository(
-  private val accountManager: SignalServiceAccountManager = ApplicationDependencies.getSignalServiceAccountManager(),
-  private val messageSender: SignalServiceMessageSender = ApplicationDependencies.getSignalServiceMessageSender()
+  private val accountManager: SignalServiceAccountManager = AppDependencies.signalServiceAccountManager,
+  private val messageSender: SignalServiceMessageSender = AppDependencies.signalServiceMessageSender
 ) {
 
   companion object {
@@ -93,20 +93,20 @@ class ChangeNumberRepository(
       val drainedListener = object : Runnable {
         override fun run() {
           emitter.onComplete()
-          ApplicationDependencies
-            .getIncomingMessageObserver()
+          AppDependencies
+            .incomingMessageObserver
             .removeDecryptionDrainedListener(this)
         }
       }
 
       emitter.setCancellable {
-        ApplicationDependencies
-          .getIncomingMessageObserver()
+        AppDependencies
+          .incomingMessageObserver
           .removeDecryptionDrainedListener(drainedListener)
       }
 
-      ApplicationDependencies
-        .getIncomingMessageObserver()
+      AppDependencies
+        .incomingMessageObserver
         .addDecryptionDrainedListener(drainedListener)
     }.subscribeOn(Schedulers.single())
       .timeout(15, TimeUnit.SECONDS)
@@ -209,7 +209,7 @@ class ChangeNumberRepository(
 
   @Suppress("UsePropertyAccessSyntax")
   fun whoAmI(): Single<WhoAmIResponse> {
-    return Single.fromCallable { ApplicationDependencies.getSignalServiceAccountManager().getWhoAmI() }
+    return Single.fromCallable { AppDependencies.signalServiceAccountManager.getWhoAmI() }
       .subscribeOn(Schedulers.single())
   }
 
@@ -229,13 +229,13 @@ class ChangeNumberRepository(
       }
     }
 
-    ApplicationDependencies.getRecipientCache().clear()
+    AppDependencies.recipientCache.clear()
 
     SignalStore.account().setE164(e164)
     SignalStore.account().setPni(pni)
-    ApplicationDependencies.resetProtocolStores()
+    AppDependencies.resetProtocolStores()
 
-    ApplicationDependencies.getGroupsV2Authorization().clear()
+    AppDependencies.groupsV2Authorization.clear()
 
     val metadata: PendingChangeNumberMetadata? = SignalStore.misc().pendingChangeNumberMetadata
     if (metadata == null) {
@@ -253,7 +253,7 @@ class ChangeNumberRepository(
       val pniSignedPreyKeyId = metadata.pniSignedPreKeyId
       val pniLastResortKyberPreKeyId = metadata.pniLastResortKyberPreKeyId
 
-      val pniProtocolStore = ApplicationDependencies.getProtocolStore().pni()
+      val pniProtocolStore = AppDependencies.protocolStore.pni()
       val pniMetadataStore = SignalStore.account().pniPreKeys
 
       SignalStore.account().pniRegistrationId = pniRegistrationId
@@ -292,16 +292,16 @@ class ChangeNumberRepository(
       )
 
       SignalStore.misc().hasPniInitializedDevices = true
-      ApplicationDependencies.getGroupsV2Authorization().clear()
+      AppDependencies.groupsV2Authorization.clear()
     }
 
     Recipient.self().live().refresh()
     StorageSyncHelper.scheduleSyncForDataChange()
 
-    ApplicationDependencies.closeConnections()
-    ApplicationDependencies.getIncomingMessageObserver()
+    AppDependencies.resetNetwork()
+    AppDependencies.incomingMessageObserver
 
-    ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+    AppDependencies.jobManager.add(RefreshAttributesJob())
 
     return rotateCertificates()
   }
@@ -335,7 +335,7 @@ class ChangeNumberRepository(
     registrationLock: String? = null
   ): ChangeNumberRequestData {
     val selfIdentifier: String = SignalStore.account().requireAci().toString()
-    val aciProtocolStore: SignalProtocolStore = ApplicationDependencies.getProtocolStore().aci()
+    val aciProtocolStore: SignalProtocolStore = AppDependencies.protocolStore.aci()
 
     val pniIdentity: IdentityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
     val deviceMessages = mutableListOf<OutgoingPushMessage>()
@@ -351,7 +351,7 @@ class ChangeNumberRepository(
       .forEach { deviceId ->
         // Signed Prekeys
         val signedPreKeyRecord: SignedPreKeyRecord = if (deviceId == primaryDeviceId) {
-          PreKeyUtil.generateAndStoreSignedPreKey(ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
+          PreKeyUtil.generateAndStoreSignedPreKey(AppDependencies.protocolStore.pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
         } else {
           PreKeyUtil.generateSignedPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
@@ -359,7 +359,7 @@ class ChangeNumberRepository(
 
         // Last-resort kyber prekeys
         val lastResortKyberPreKeyRecord: KyberPreKeyRecord = if (deviceId == primaryDeviceId) {
-          PreKeyUtil.generateAndStoreLastResortKyberPreKey(ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
+          PreKeyUtil.generateAndStoreLastResortKyberPreKey(AppDependencies.protocolStore.pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
         } else {
           PreKeyUtil.generateLastResortKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }

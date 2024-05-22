@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.to
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -305,8 +305,8 @@ class StripePaymentInProgressViewModel(
 
   class Factory(
     private val stripeRepository: StripeRepository,
-    private val recurringInAppPaymentRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(ApplicationDependencies.getDonationsService()),
-    private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(ApplicationDependencies.getDonationsService())
+    private val recurringInAppPaymentRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(AppDependencies.donationsService),
+    private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(AppDependencies.donationsService)
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(StripePaymentInProgressViewModel(stripeRepository, recurringInAppPaymentRepository, oneTimeInAppPaymentRepository)) as T

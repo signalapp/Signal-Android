@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.migrations
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.AccountConsistencyWorkerJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -34,7 +34,7 @@ internal class AccountConsistencyMigrationJob(
       return
     }
 
-    ApplicationDependencies.getJobManager().add(AccountConsistencyWorkerJob())
+    AppDependencies.jobManager.add(AccountConsistencyWorkerJob())
   }
 
   override fun shouldRetry(e: Exception): Boolean = false

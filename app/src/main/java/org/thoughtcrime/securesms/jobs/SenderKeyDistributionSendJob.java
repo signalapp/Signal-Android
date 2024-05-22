@@ -9,7 +9,7 @@ import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -116,7 +116,7 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
       }
     }
 
-    SignalServiceMessageSender             messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
+    SignalServiceMessageSender             messageSender  = AppDependencies.getSignalServiceMessageSender();
     List<SignalServiceAddress>             address        = Collections.singletonList(RecipientUtil.toSignalServiceAddress(context, targetRecipient));
     SenderKeyDistributionMessage           message        = messageSender.getOrCreateNewGroupSession(distributionId);
     List<Optional<UnidentifiedAccessPair>> access         = UnidentifiedAccessUtil.getAccessFor(context, Collections.singletonList(targetRecipient));
@@ -130,7 +130,7 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
                                                     .map(device -> targetRecipient.requireServiceId().toProtocolAddress(device))
                                                     .collect(Collectors.toList());
 
-      ApplicationDependencies.getProtocolStore().aci().markSenderKeySharedWith(distributionId, addresses);
+      AppDependencies.getProtocolStore().aci().markSenderKeySharedWith(distributionId, addresses);
     }
   }
 

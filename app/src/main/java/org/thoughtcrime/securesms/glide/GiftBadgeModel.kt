@@ -13,7 +13,7 @@ import okhttp3.OkHttpClient
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.components.settings.app.subscription.getBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import java.io.InputStream
 import java.security.MessageDigest
 import java.util.Locale
@@ -46,7 +46,7 @@ data class GiftBadgeModel(val giftBadge: GiftBadge) : Key {
     override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in InputStream>) {
       try {
         val receiptCredentialPresentation = ReceiptCredentialPresentation(giftBadge.giftBadge.redemptionToken.toByteArray())
-        val giftBadgeResponse = ApplicationDependencies.getDonationsService().getDonationsConfiguration(Locale.getDefault())
+        val giftBadgeResponse = AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault())
         if (giftBadgeResponse.result.isPresent) {
           val badge = giftBadgeResponse.result.get().getBadge(receiptCredentialPresentation.receiptLevel.toInt())
           okHttpStreamFetcher = OkHttpStreamFetcher(client, GlideUrl(badge.imageUrl.toString()))
@@ -91,7 +91,7 @@ data class GiftBadgeModel(val giftBadge: GiftBadge) : Key {
   companion object {
     @JvmStatic
     fun createFactory(): Factory {
-      return Factory(ApplicationDependencies.getSignalOkHttpClient())
+      return Factory(AppDependencies.signalOkHttpClient)
     }
   }
 }

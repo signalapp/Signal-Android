@@ -18,7 +18,7 @@ import org.signal.libsignal.protocol.util.ByteUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 
@@ -127,7 +127,7 @@ public class BackupUtil {
   }
 
   private static List<BackupInfo> getAllBackupsNewestFirst() throws NoExternalStorageException {
-    if (isUserSelectionRequired(ApplicationDependencies.getApplication())) {
+    if (isUserSelectionRequired(AppDependencies.getApplication())) {
       return getAllBackupsNewestFirstApi29();
     } else {
       return getAllBackupsNewestFirstLegacy();
@@ -142,7 +142,7 @@ public class BackupUtil {
       return Collections.emptyList();
     }
 
-    DocumentFile backupDirectory = DocumentFile.fromTreeUri(ApplicationDependencies.getApplication(), backupDirectoryUri);
+    DocumentFile backupDirectory = DocumentFile.fromTreeUri(AppDependencies.getApplication(), backupDirectoryUri);
     if (backupDirectory == null || !backupDirectory.exists() || !backupDirectory.canRead()) {
       Log.w(TAG, "Backup directory is inaccessible. Returning an empty list.");
       return Collections.emptyList();
@@ -355,7 +355,7 @@ public class BackupUtil {
           Log.w(TAG, "Delete failed: " + file.getAbsolutePath());
         }
       } else {
-        DocumentFile document = DocumentFile.fromSingleUri(ApplicationDependencies.getApplication(), uri);
+        DocumentFile document = DocumentFile.fromSingleUri(AppDependencies.getApplication(), uri);
         if (document != null && document.exists()) {
           Log.i(TAG, "Deleting DocumentFile: " + uri);
 

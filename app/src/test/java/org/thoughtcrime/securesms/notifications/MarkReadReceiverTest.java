@@ -18,7 +18,7 @@ import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.StoryType;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -45,7 +45,7 @@ public class MarkReadReceiverTest {
   public MockitoRule rule = MockitoJUnit.rule();
 
   @Mock
-  private MockedStatic<ApplicationDependencies> applicationDependenciesMockedStatic;
+  private MockedStatic<AppDependencies> applicationDependenciesMockedStatic;
 
   @Mock
   private MockedStatic<Recipient> recipientMockedStatic;
@@ -57,7 +57,7 @@ public class MarkReadReceiverTest {
 
   @Before
   public void setUp() {
-    applicationDependenciesMockedStatic.when(ApplicationDependencies::getJobManager).thenReturn(mockJobManager);
+    applicationDependenciesMockedStatic.when(AppDependencies::getJobManager).thenReturn(mockJobManager);
     doAnswer((Answer<Void>) invocation -> {
       jobs.add((Job) invocation.getArguments()[0]);
       return null;

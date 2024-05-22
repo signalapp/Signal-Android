@@ -18,7 +18,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.FeatureFlags
@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 object AndroidTelecomUtil {
 
   private val TAG = Log.tag(AndroidTelecomUtil::class.java)
-  private val context = ApplicationDependencies.getApplication()
+  private val context = AppDependencies.application
   private var systemRejected = false
   private var accountRegistered = false
 

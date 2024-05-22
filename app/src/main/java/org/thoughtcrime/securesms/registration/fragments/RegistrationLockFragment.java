@@ -7,7 +7,7 @@ import androidx.navigation.Navigation;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob;
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
@@ -50,10 +50,10 @@ public final class RegistrationLockFragment extends BaseRegistrationLockFragment
 
       Stopwatch stopwatch = new Stopwatch("RegistrationLockRestore");
 
-      ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
+      AppDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
       stopwatch.split("AccountRestore");
 
-      ApplicationDependencies
+      AppDependencies
           .getJobManager()
           .startChain(new StorageSyncJob())
           .then(new ReclaimUsernameAndLinkJob())

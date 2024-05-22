@@ -15,7 +15,7 @@ import org.mockito.junit.MockitoRule;
 import org.robolectric.ParameterizedRobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.keyvalue.InternalValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -61,7 +61,7 @@ public class EmojiUtilTest_isEmoji {
   }
 
   @Mock
-  private MockedStatic<ApplicationDependencies> applicationDependenciesMockedStatic;
+  private MockedStatic<AppDependencies> applicationDependenciesMockedStatic;
 
   @Mock
   private MockedStatic<AttachmentSecretProvider> attachmentSecretProviderMockedStatic;
@@ -81,7 +81,7 @@ public class EmojiUtilTest_isEmoji {
   public void isEmoji() throws Exception {
     Application application = ApplicationProvider.getApplicationContext();
 
-    when(ApplicationDependencies.getApplication()).thenReturn(application);
+    when(AppDependencies.getApplication()).thenReturn(application);
     when(AttachmentSecretProvider.getInstance(any())).thenThrow(RuntimeException.class);
     when(SignalStore.internalValues()).thenReturn(mock(InternalValues.class));
     EmojiSource.refresh();

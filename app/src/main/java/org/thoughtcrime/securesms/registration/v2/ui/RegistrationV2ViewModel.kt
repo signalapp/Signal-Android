@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob
@@ -596,7 +596,7 @@ class RegistrationV2ViewModel : ViewModel() {
   }
 
   fun completeRegistration() {
-    ApplicationDependencies.getJobManager().startChain(ProfileUploadJob()).then(listOf(MultiDeviceProfileKeyUpdateJob(), MultiDeviceProfileContentUpdateJob())).enqueue()
+    AppDependencies.jobManager.startChain(ProfileUploadJob()).then(listOf(MultiDeviceProfileKeyUpdateJob(), MultiDeviceProfileContentUpdateJob())).enqueue()
     RegistrationUtil.maybeMarkRegistrationComplete()
   }
 

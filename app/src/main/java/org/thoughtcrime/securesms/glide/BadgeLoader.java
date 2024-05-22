@@ -10,7 +10,7 @@ import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import org.thoughtcrime.securesms.badges.models.Badge;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.io.InputStream;
 
@@ -38,7 +38,7 @@ public class BadgeLoader implements ModelLoader<Badge, InputStream> {
   }
 
   public static Factory createFactory() {
-    return new Factory(ApplicationDependencies.getSignalOkHttpClient());
+    return new Factory(AppDependencies.getSignalOkHttpClient());
   }
 
   public static class Factory implements ModelLoaderFactory<Badge, InputStream> {

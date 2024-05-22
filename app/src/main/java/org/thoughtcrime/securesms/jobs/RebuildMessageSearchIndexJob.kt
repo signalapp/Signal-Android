@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import org.thoughtcrime.securesms.transport.RetryLaterException
@@ -18,7 +18,7 @@ class RebuildMessageSearchIndexJob private constructor(params: Parameters) : Bas
     const val KEY = "RebuildMessageSearchIndexJob"
 
     fun enqueue() {
-      ApplicationDependencies.getJobManager().add(RebuildMessageSearchIndexJob())
+      AppDependencies.jobManager.add(RebuildMessageSearchIndexJob())
     }
   }
 

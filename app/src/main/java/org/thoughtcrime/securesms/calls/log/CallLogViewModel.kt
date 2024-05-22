@@ -15,7 +15,7 @@ import org.signal.paging.ObservablePagedData
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.concurrent.TimeUnit
@@ -88,8 +88,8 @@ class CallLogViewModel(
         .flatMapCompletable { callLogRepository.peekCallLinks() }
         .subscribe()
 
-      disposables += ApplicationDependencies
-        .getSignalCallManager()
+      disposables += AppDependencies
+        .signalCallManager
         .peekInfoCache
         .observeOn(Schedulers.computation())
         .distinctUntilChanged()

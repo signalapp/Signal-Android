@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.database.model.isExpired
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.LevelUpdate
@@ -421,8 +421,8 @@ class DonateToSignalViewModel(
 
   class Factory(
     private val startType: InAppPaymentTable.Type,
-    private val subscriptionsRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(ApplicationDependencies.getDonationsService()),
-    private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(ApplicationDependencies.getDonationsService())
+    private val subscriptionsRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(AppDependencies.donationsService),
+    private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(AppDependencies.donationsService)
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(DonateToSignalViewModel(startType, subscriptionsRepository, oneTimeInAppPaymentRepository)) as T

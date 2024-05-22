@@ -5,12 +5,11 @@ import androidx.lifecycle.LiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
-import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 final class MessageRecordLiveData extends LiveData<MessageRecord> {
 
@@ -29,7 +28,7 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
 
   @Override
   protected void onInactive() {
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
+    AppDependencies.getDatabaseObserver().unregisterObserver(observer);
   }
 
   @WorkerThread
@@ -42,7 +41,7 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
       }
 
       postValue(record);
-      ApplicationDependencies.getDatabaseObserver().registerVerboseConversationObserver(record.getThreadId(), observer);
+      AppDependencies.getDatabaseObserver().registerVerboseConversationObserver(record.getThreadId(), observer);
     } catch (NoSuchMessageException ignored) {
       postValue(null);
     }

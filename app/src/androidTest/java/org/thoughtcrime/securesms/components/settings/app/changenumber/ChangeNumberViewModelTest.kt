@@ -12,7 +12,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.ThreadUtil
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -371,7 +371,7 @@ class ChangeNumberViewModelTest {
   }
 
   private fun assertSuccess(newPni: ServiceId, changeNumberRequest: ChangePhoneNumberRequest, setPreKeysRequest: PreKeyState) {
-    val pniProtocolStore = ApplicationDependencies.getProtocolStore().pni()
+    val pniProtocolStore = AppDependencies.protocolStore.pni()
     val pniMetadataStore = SignalStore.account().pniPreKeys
 
     Recipient.self().requireE164() assertIs "+15555550102"

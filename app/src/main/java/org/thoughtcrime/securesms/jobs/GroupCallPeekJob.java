@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -24,7 +24,7 @@ public final class GroupCallPeekJob extends BaseJob {
   @NonNull private final RecipientId groupRecipientId;
 
   public static void enqueue(@NonNull RecipientId groupRecipientId) {
-    JobManager         jobManager = ApplicationDependencies.getJobManager();
+    JobManager         jobManager = AppDependencies.getJobManager();
     String             queue      = QUEUE + groupRecipientId.serialize();
     Parameters.Builder parameters = new Parameters.Builder()
                                                   .setQueue(queue)
@@ -44,7 +44,7 @@ public final class GroupCallPeekJob extends BaseJob {
 
   @Override
   protected void onRun() {
-    ApplicationDependencies.getJobManager().add(new GroupCallPeekWorkerJob(groupRecipientId));
+    AppDependencies.getJobManager().add(new GroupCallPeekWorkerJob(groupRecipientId));
   }
 
   @Override

@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.InputResu
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.OutputResult
 import org.thoughtcrime.securesms.database.RecipientTable.CdsV2Result
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -91,14 +91,14 @@ object ContactDiscoveryRefreshV2 {
   @Synchronized
   fun lookupE164(e164: String): ContactDiscovery.LookupResult? {
     val response: CdsiV2Service.Response = try {
-      ApplicationDependencies.getSignalServiceAccountManager().getRegisteredUsersWithCdsi(
+      AppDependencies.signalServiceAccountManager.getRegisteredUsersWithCdsi(
         emptySet(),
         setOf(e164),
         SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
         Optional.empty(),
         BuildConfig.CDSI_MRENCLAVE,
         10_000,
-        if (FeatureFlags.useLibsignalNetForCdsiLookup()) ApplicationDependencies.getLibsignalNetwork() else null
+        if (FeatureFlags.useLibsignalNetForCdsiLookup()) AppDependencies.libsignalNetwork else null
       ) {
         Log.i(TAG, "Ignoring token for one-off lookup.")
       }
@@ -156,14 +156,14 @@ object ContactDiscoveryRefreshV2 {
     stopwatch.split("preamble")
 
     val response: CdsiV2Service.Response = try {
-      ApplicationDependencies.getSignalServiceAccountManager().getRegisteredUsersWithCdsi(
+      AppDependencies.signalServiceAccountManager.getRegisteredUsersWithCdsi(
         previousE164s,
         newE164s,
         SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
         Optional.ofNullable(token),
         BuildConfig.CDSI_MRENCLAVE,
         timeoutMs,
-        if (FeatureFlags.useLibsignalNetForCdsiLookup()) ApplicationDependencies.getLibsignalNetwork() else null
+        if (FeatureFlags.useLibsignalNetForCdsiLookup()) AppDependencies.libsignalNetwork else null
       ) { tokenToSave ->
         stopwatch.split("network-pre-token")
         if (!isPartialRefresh) {

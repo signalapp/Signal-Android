@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
@@ -83,7 +83,7 @@ object Stories {
 
   fun sendTextStories(messages: List<OutgoingMessage>): Completable {
     return Completable.create { emitter ->
-      MessageSender.sendStories(ApplicationDependencies.getApplication(), messages, null, null)
+      MessageSender.sendStories(AppDependencies.application, messages, null, null)
       emitter.onComplete()
     }
   }
@@ -136,11 +136,11 @@ object Stories {
   fun enqueueAttachmentsFromStoryForDownloadSync(record: MmsMessageRecord, ignoreAutoDownloadConstraints: Boolean) {
     SignalDatabase.attachments.getAttachmentsForMessage(record.id).filterNot { it.isSticker }.forEach {
       val job = AttachmentDownloadJob(record.id, it.attachmentId, ignoreAutoDownloadConstraints)
-      ApplicationDependencies.getJobManager().add(job)
+      AppDependencies.jobManager.add(job)
     }
 
     if (record.hasLinkPreview() && record.linkPreviews[0].attachmentId != null) {
-      ApplicationDependencies.getJobManager().add(
+      AppDependencies.jobManager.add(
         AttachmentDownloadJob(record.id, record.linkPreviews[0].attachmentId!!, true)
       )
     }
@@ -279,7 +279,7 @@ object Stories {
       var player: ExoPlayer? = null
       val countDownLatch = CountDownLatch(1)
       ThreadUtil.runOnMainSync {
-        val mainThreadPlayer = ApplicationDependencies.getExoPlayerPool().get("stories_duration_check")
+        val mainThreadPlayer = AppDependencies.exoPlayerPool.get("stories_duration_check")
         if (mainThreadPlayer == null) {
           Log.w(TAG, "Could not get a player from the pool, so we cannot get the length of the video.")
           countDownLatch.countDown()
@@ -309,7 +309,7 @@ object Stories {
       ThreadUtil.runOnMainSync {
         val mainThreadPlayer = player
         if (mainThreadPlayer != null) {
-          ApplicationDependencies.getExoPlayerPool().pool(mainThreadPlayer)
+          AppDependencies.exoPlayerPool.pool(mainThreadPlayer)
         }
       }
 

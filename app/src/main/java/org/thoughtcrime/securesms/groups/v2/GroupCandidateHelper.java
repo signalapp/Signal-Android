@@ -7,7 +7,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ProfileUtil;
@@ -28,7 +28,7 @@ public class GroupCandidateHelper {
   private final RecipientTable              recipientTable;
 
   public GroupCandidateHelper() {
-    signalServiceAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
+    signalServiceAccountManager = AppDependencies.getSignalServiceAccountManager();
     recipientTable              = SignalDatabase.recipients();
   }
 

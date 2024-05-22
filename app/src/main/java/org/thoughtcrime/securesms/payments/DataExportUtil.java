@@ -8,7 +8,7 @@ import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.reconciliation.LedgerReconcile;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -42,7 +42,7 @@ public final class DataExportUtil {
 
   @RequiresApi(api = 26)
   private static @NonNull String createTsv(@NonNull List<Payment> payments) {
-    Context       context = ApplicationDependencies.getApplication();
+    Context       context = AppDependencies.getApplication();
     StringBuilder sb      = new StringBuilder();
 
     sb.append(String.format(Locale.US, "%s\t%s\t%s\t%s\t%s%n", "Date Time", "From", "To", "Amount", "Fee"));

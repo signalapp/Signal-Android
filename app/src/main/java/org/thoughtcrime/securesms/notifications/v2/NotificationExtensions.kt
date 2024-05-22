@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -42,7 +42,7 @@ fun Recipient.getContactDrawable(context: Context): Drawable? {
     try {
       val transforms: MutableList<Transformation<Bitmap>> = mutableListOf()
       if (shouldBlurAvatar) {
-        transforms += BlurTransformation(ApplicationDependencies.getApplication(), 0.25f, BlurTransformation.MAX_RADIUS)
+        transforms += BlurTransformation(AppDependencies.application, 0.25f, BlurTransformation.MAX_RADIUS)
       }
       transforms += CircleCrop()
 

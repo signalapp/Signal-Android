@@ -15,7 +15,7 @@ import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver
 import org.thoughtcrime.securesms.notifications.MessageNotifier
@@ -395,8 +395,8 @@ private class CancelableExecutor {
       }
       if (!canceled.get()) {
         Log.i(TAG, "Not canceled, notifying...")
-        ApplicationDependencies.getMessageNotifier().cancelDelayedNotifications()
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, thread)
+        AppDependencies.messageNotifier.cancelDelayedNotifications()
+        AppDependencies.messageNotifier.updateNotification(context, thread)
       } else {
         Log.w(TAG, "Canceled, not notifying...")
       }

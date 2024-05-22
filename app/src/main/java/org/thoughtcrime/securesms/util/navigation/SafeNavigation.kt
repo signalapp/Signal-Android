@@ -9,7 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 
 private const val TAG = "SafeNavigation"
 
@@ -62,7 +62,7 @@ private fun getDisplayName(id: Int): String? {
     id.toString()
   } else {
     try {
-      ApplicationDependencies.getApplication().resources.getResourceName(id)
+      AppDependencies.application.resources.getResourceName(id)
     } catch (e: Resources.NotFoundException) {
       id.toString()
     }

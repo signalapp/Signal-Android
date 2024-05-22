@@ -14,7 +14,7 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.badges.models.Badge;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -108,7 +108,7 @@ class EditProfileViewModel extends ViewModel {
   }
 
   public boolean isRegisteredAndUpToDate() {
-    return !TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication()) && SignalStore.account().isRegistered() && !SignalStore.misc().isClientDeprecated();
+    return !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.getApplication()) && SignalStore.account().isRegistered() && !SignalStore.misc().isClientDeprecated();
   }
 
   public boolean isDeprecated() {
@@ -170,7 +170,7 @@ class EditProfileViewModel extends ViewModel {
     about.postValue(recipient.getAbout());
     aboutEmoji.postValue(recipient.getAboutEmoji());
     badge.postValue(Optional.ofNullable(recipient.getFeaturedBadge()));
-    renderAvatar(AvatarHelper.getSelfProfileAvatarStream(ApplicationDependencies.getApplication()));
+    renderAvatar(AvatarHelper.getSelfProfileAvatarStream(AppDependencies.getApplication()));
   }
 
   private void renderAvatar(@Nullable StreamDetails details) {

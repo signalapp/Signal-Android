@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.util.Debouncer;
@@ -210,7 +210,7 @@ public class LinkPreviewViewModel extends ViewModel {
   }
 
   private @Nullable RequestController performRequest(String url) {
-    return repository.getLinkPreview(ApplicationDependencies.getApplication(), url, new LinkPreviewRepository.Callback() {
+    return repository.getLinkPreview(AppDependencies.getApplication(), url, new LinkPreviewRepository.Callback() {
       @Override
       public void onSuccess(@NonNull LinkPreview linkPreview) {
         ThreadUtil.runOnMain(() -> {

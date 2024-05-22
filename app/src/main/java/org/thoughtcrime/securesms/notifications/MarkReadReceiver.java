@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.database.MessageTable.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.CallLogEventSendJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
@@ -45,7 +45,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
     final ArrayList<ConversationId> threads = intent.getParcelableArrayListExtra(THREADS_EXTRA);
 
     if (threads != null) {
-      MessageNotifier notifier = ApplicationDependencies.getMessageNotifier();
+      MessageNotifier notifier = AppDependencies.getMessageNotifier();
       for (ConversationId thread : threads) {
         notifier.removeStickyThread(thread);
       }
@@ -65,7 +65,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
         process(messageIdsCollection);
         processCallEvents(threads, System.currentTimeMillis());
 
-        ApplicationDependencies.getMessageNotifier().updateNotification(context);
+        AppDependencies.getMessageNotifier().updateNotification(context);
         finisher.finish();
       });
     }
@@ -113,7 +113,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
     for (RecipientId peer : peers) {
       CallTable.Call lastCallInThread = SignalDatabase.calls().markAllCallEventsWithPeerBeforeTimestampRead(peer, timestamp);
       if (lastCallInThread != null) {
-        ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forMarkedAsReadInConversation(lastCallInThread));
+        AppDependencies.getJobManager().add(CallLogEventSendJob.forMarkedAsReadInConversation(lastCallInThread));
       }
     }
   }
@@ -123,8 +123,8 @@ public class MarkReadReceiver extends BroadcastReceiver {
       long now = System.currentTimeMillis();
       SignalDatabase.messages().markExpireStarted(Stream.of(expirationInfo).map(info -> new kotlin.Pair<>(info.getId(), now)).toList());
 
-      ApplicationDependencies.getExpiringMessageManager()
-                             .scheduleDeletion(Stream.of(expirationInfo).map(info -> info.copy(info.getId(), info.getExpiresIn(), now, info.isMms())).toList());
+      AppDependencies.getExpiringMessageManager()
+                     .scheduleDeletion(Stream.of(expirationInfo).map(info -> info.copy(info.getId(), info.getExpiresIn(), now, info.isMms())).toList());
     }
   }
 }

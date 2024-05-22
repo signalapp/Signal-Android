@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -57,7 +57,7 @@ public class StickerAdditionMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
-    JobManager jobManager = ApplicationDependencies.getJobManager();
+    JobManager jobManager = AppDependencies.getJobManager();
 
     for (BlessedPacks.Pack pack : packs) {
       Log.i(TAG, "Installing reference for blessed pack: " + pack.getPackId());

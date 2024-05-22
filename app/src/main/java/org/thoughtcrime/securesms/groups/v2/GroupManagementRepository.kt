@@ -10,7 +10,7 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupChangeException
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException
@@ -26,7 +26,7 @@ private val TAG: String = Log.tag(GroupManagementRepository::class.java)
 /**
  * Single source repository for managing GV2 groups.
  */
-class GroupManagementRepository @JvmOverloads constructor(private val context: Context = ApplicationDependencies.getApplication()) {
+class GroupManagementRepository @JvmOverloads constructor(private val context: Context = AppDependencies.application) {
 
   fun addMembers(groupRecipient: Recipient, selected: List<RecipientId>, consumer: Consumer<GroupAddMembersResult>) {
     addMembers(null, groupRecipient, selected, consumer)

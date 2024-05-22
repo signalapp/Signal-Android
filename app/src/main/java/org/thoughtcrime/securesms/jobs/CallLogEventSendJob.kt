@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.jobs
 import androidx.annotation.WorkerThread
 import okio.ByteString.Companion.toByteString
 import org.thoughtcrime.securesms.database.CallTable
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.CallLogEventSendJobData
@@ -97,7 +97,7 @@ class CallLogEventSendJob private constructor(
   override fun onFailure() = Unit
 
   override fun onRun() {
-    ApplicationDependencies.getSignalServiceMessageSender()
+    AppDependencies.signalServiceMessageSender
       .sendSyncMessage(
         SignalServiceSyncMessage.forCallLogEvent(callLogEvent),
         Optional.empty()

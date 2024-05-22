@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.CursorUtil;
 
@@ -24,7 +24,7 @@ public class ConversationReader extends ThreadTable.StaticReader {
   private final Cursor cursor;
 
   public ConversationReader(@NonNull Cursor cursor) {
-    super(cursor, ApplicationDependencies.getApplication());
+    super(cursor, AppDependencies.getApplication());
     this.cursor = cursor;
   }
 

@@ -5,7 +5,7 @@ import androidx.annotation.CheckResult
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
@@ -36,7 +36,7 @@ class ContactsManagementRepository(context: Context) {
       val rotateProfileKey = !recipient.hasGroupsInCommon
       SignalDatabase.recipients.markHidden(recipient.id, rotateProfileKey, false)
       if (rotateProfileKey) {
-        ApplicationDependencies.getJobManager().add(RotateProfileKeyJob())
+        AppDependencies.jobManager.add(RotateProfileKeyJob())
       }
     }.subscribeOn(Schedulers.io())
   }

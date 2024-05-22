@@ -33,7 +33,7 @@ import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.parcelers.MillisecondDurationParceler
 import org.thoughtcrime.securesms.util.parcelers.NullableSubscriberIdParceler
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -160,7 +160,7 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .where(ID_WHERE, inAppPayment.id)
       .run()
 
-    ApplicationDependencies.getDatabaseObserver().notifyInAppPaymentsObservers(inAppPayment)
+    AppDependencies.databaseObserver.notifyInAppPaymentsObservers(inAppPayment)
   }
 
   fun getAllWaitingForAuth(): List<InAppPayment> {

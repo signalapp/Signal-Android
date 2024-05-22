@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.RecipientRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
@@ -219,13 +219,13 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               if (recipient.hasAci) {
                 SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requireAci().toString())
                 SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requirePni(), addressName = recipient.requireAci().toString())
-                ApplicationDependencies.getProtocolStore().aci().identities().delete(recipient.requireAci().toString())
+                AppDependencies.protocolStore.aci().identities().delete(recipient.requireAci().toString())
               }
 
               if (recipient.hasPni) {
                 SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requirePni().toString())
                 SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requirePni(), addressName = recipient.requirePni().toString())
-                ApplicationDependencies.getProtocolStore().aci().identities().delete(recipient.requirePni().toString())
+                AppDependencies.protocolStore.aci().identities().delete(recipient.requirePni().toString())
               }
 
               startActivity(MainActivity.clearTop(requireContext()))

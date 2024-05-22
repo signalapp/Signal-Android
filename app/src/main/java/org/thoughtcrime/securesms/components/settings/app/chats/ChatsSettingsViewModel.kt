@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.chats
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
@@ -22,7 +22,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
       keepMutedChatsArchived = SignalStore.settings().shouldKeepMutedChatsArchived(),
       useSystemEmoji = SignalStore.settings().isPreferSystemEmoji,
       enterKeySends = SignalStore.settings().isEnterKeySends,
-      localBackupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(ApplicationDependencies.getApplication()),
+      localBackupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application),
       remoteBackupsEnabled = SignalStore.backup().areBackupsEnabled
     )
   )
@@ -59,7 +59,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
   }
 
   fun refresh() {
-    val backupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(ApplicationDependencies.getApplication())
+    val backupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application)
     val remoteBackupsEnabled = SignalStore.backup().areBackupsEnabled
 
     if (store.state.localBackupsEnabled != backupsEnabled ||

@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -34,7 +34,7 @@ public final class ForceUpdateGroupV2Job extends BaseJob {
           group.get().isV2Group() &&
           group.get().getLastForceUpdateTimestamp() + FORCE_UPDATE_INTERVAL < System.currentTimeMillis()
       ) {
-        ApplicationDependencies.getJobManager().add(new ForceUpdateGroupV2Job(groupId));
+        AppDependencies.getJobManager().add(new ForceUpdateGroupV2Job(groupId));
       }
     });
   }
@@ -65,7 +65,7 @@ public final class ForceUpdateGroupV2Job extends BaseJob {
 
   @Override
   public void onRun() {
-    ApplicationDependencies.getJobManager().add(new ForceUpdateGroupV2WorkerJob(groupId));
+    AppDependencies.getJobManager().add(new ForceUpdateGroupV2WorkerJob(groupId));
   }
 
   @Override

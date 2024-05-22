@@ -8,13 +8,12 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -90,7 +89,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
 
     out.close();
 
-    SignalServiceMessageSender    messageSender    = ApplicationDependencies.getSignalServiceMessageSender();
+    SignalServiceMessageSender    messageSender    = AppDependencies.getSignalServiceMessageSender();
     SignalServiceAttachmentStream attachmentStream = SignalServiceAttachment.newStreamBuilder()
                                                                             .withStream(new ByteArrayInputStream(baos.toByteArray()))
                                                                             .withContentType("application/octet-stream")

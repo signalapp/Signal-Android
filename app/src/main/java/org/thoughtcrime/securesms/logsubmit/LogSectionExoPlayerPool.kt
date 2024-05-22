@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.logsubmit
 
 import android.content.Context
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.video.exo.ExoPlayerPool
 
 /**
@@ -11,7 +11,7 @@ class LogSectionExoPlayerPool : LogSection {
   override fun getTitle(): String = "EXOPLAYER POOL"
 
   override fun getContent(context: Context): CharSequence {
-    val poolStats = ApplicationDependencies.getExoPlayerPool().getPoolStats()
+    val poolStats = AppDependencies.exoPlayerPool.getPoolStats()
     val owners: Map<String, List<ExoPlayerPool.OwnershipInfo>> = poolStats.owners.groupBy { it.tag }
     val output = StringBuilder()
 

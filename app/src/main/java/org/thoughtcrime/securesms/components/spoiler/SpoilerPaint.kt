@@ -11,7 +11,7 @@ import androidx.annotation.MainThread
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.components.spoiler.SpoilerPaint.update
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.Util
 import kotlin.random.Random
 
@@ -28,9 +28,9 @@ object SpoilerPaint {
    */
   var shader: BitmapShader? = null
 
-  private val WIDTH = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 50.dp else 100.dp
-  private val HEIGHT = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 20.dp else 40.dp
-  private val PARTICLES_PER_PIXEL = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 0.001f else 0.002f
+  private val WIDTH = if (Util.isLowMemory(AppDependencies.application)) 50.dp else 100.dp
+  private val HEIGHT = if (Util.isLowMemory(AppDependencies.application)) 20.dp else 40.dp
+  private val PARTICLES_PER_PIXEL = if (Util.isLowMemory(AppDependencies.application)) 0.001f else 0.002f
 
   private var shaderBitmap: Bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ALPHA_8)
   private var bufferBitmap: Bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ALPHA_8)

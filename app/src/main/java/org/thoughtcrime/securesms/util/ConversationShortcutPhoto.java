@@ -25,8 +25,7 @@ import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.security.MessageDigest;
@@ -55,7 +54,7 @@ public final class ConversationShortcutPhoto implements Key {
 
   @Override
   public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
-    messageDigest.update(recipient.getDisplayName(ApplicationDependencies.getApplication()).getBytes());
+    messageDigest.update(recipient.getDisplayName(AppDependencies.getApplication()).getBytes());
     messageDigest.update(avatarObject.getBytes());
     messageDigest.update(isSystemContactPhoto() ? (byte) 1 : (byte) 0);
     messageDigest.update(profileAvatarFileDetails.getDiskCacheKeyBytes());

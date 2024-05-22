@@ -47,7 +47,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.serialize
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSendSyncJob
@@ -1149,7 +1149,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     notifyConversationListListeners()
     notifyConversationListeners(threadId)
-    ApplicationDependencies.getDatabaseObserver().notifyConversationDeleteListeners(threadId)
+    AppDependencies.databaseObserver.notifyConversationDeleteListeners(threadId)
     ConversationUtil.clearShortcuts(context, setOf(recipientIdForThreadId))
   }
 
@@ -1187,7 +1187,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     notifyConversationListListeners()
     notifyConversationListeners(selectedConversations)
-    ApplicationDependencies.getDatabaseObserver().notifyConversationDeleteListeners(selectedConversations)
+    AppDependencies.databaseObserver.notifyConversationDeleteListeners(selectedConversations)
     ConversationUtil.clearShortcuts(context, recipientIds)
   }
 

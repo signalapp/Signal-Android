@@ -9,14 +9,14 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDona
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class AppSettingsViewModel(
-  recurringInAppPaymentRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(ApplicationDependencies.getDonationsService())
+  recurringInAppPaymentRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(AppDependencies.donationsService)
 ) : ViewModel() {
 
   private val store = Store(
@@ -25,7 +25,7 @@ class AppSettingsViewModel(
       0,
       SignalStore.donationsValues().getExpiredGiftBadge() != null,
       SignalStore.donationsValues().isLikelyASustainer() || InAppDonations.hasAtLeastOnePaymentMethodAvailable(),
-      TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication()) || !SignalStore.account().isRegistered,
+      TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account().isRegistered,
       SignalStore.misc().isClientDeprecated
     )
   )
@@ -58,7 +58,7 @@ class AppSettingsViewModel(
     store.update {
       it.copy(
         clientDeprecated = SignalStore.misc().isClientDeprecated,
-        userUnregistered = TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication()) || !SignalStore.account().isRegistered
+        userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account().isRegistered
       )
     }
   }

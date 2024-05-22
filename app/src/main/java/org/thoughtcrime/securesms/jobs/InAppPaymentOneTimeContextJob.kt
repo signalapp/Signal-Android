@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaym
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -57,14 +57,14 @@ class InAppPaymentOneTimeContextJob private constructor(
     fun createJobChain(inAppPayment: InAppPaymentTable.InAppPayment, makePrimary: Boolean = false): Chain {
       return when (inAppPayment.type) {
         InAppPaymentTable.Type.ONE_TIME_DONATION -> {
-          ApplicationDependencies.getJobManager()
+          AppDependencies.jobManager
             .startChain(create(inAppPayment))
             .then(InAppPaymentRedemptionJob.create(inAppPayment, makePrimary))
             .then(RefreshOwnProfileJob())
             .then(MultiDeviceProfileContentUpdateJob())
         }
         InAppPaymentTable.Type.ONE_TIME_GIFT -> {
-          ApplicationDependencies.getJobManager()
+          AppDependencies.jobManager
             .startChain(create(inAppPayment))
             .then(InAppPaymentGiftSendJob.create(inAppPayment))
         }
@@ -111,7 +111,7 @@ class InAppPaymentOneTimeContextJob private constructor(
     val (inAppPayment, requestContext) = getAndValidateInAppPayment()
 
     info("Submitting request context to server...")
-    val serviceResponse = ApplicationDependencies.getDonationsService().submitBoostReceiptCredentialRequestSync(
+    val serviceResponse = AppDependencies.donationsService.submitBoostReceiptCredentialRequestSync(
       inAppPayment.data.redemption!!.paymentIntentId,
       requestContext.request,
       inAppPayment.data.paymentMethodType.toDonationProcessor()
@@ -121,7 +121,7 @@ class InAppPaymentOneTimeContextJob private constructor(
       handleApplicationError(inAppPayment, serviceResponse)
     } else if (serviceResponse.result.isPresent) {
       val receiptCredential = try {
-        ApplicationDependencies.getClientZkReceiptOperations().receiveReceiptCredential(requestContext, serviceResponse.result.get())
+        AppDependencies.clientZkReceiptOperations.receiveReceiptCredential(requestContext, serviceResponse.result.get())
       } catch (e: VerificationFailedException) {
         warning("Failed to receive credential.", e)
         throw InAppPaymentRetryException(e)
@@ -130,7 +130,7 @@ class InAppPaymentOneTimeContextJob private constructor(
       if (isCredentialValid(inAppPayment, receiptCredential)) {
         info("Validated credential. Getting presentation.")
         val receiptCredentialPresentation = try {
-          ApplicationDependencies.getClientZkReceiptOperations().createReceiptCredentialPresentation(receiptCredential)
+          AppDependencies.clientZkReceiptOperations.createReceiptCredentialPresentation(receiptCredential)
         } catch (e: VerificationFailedException) {
           warning("Failed to get presentation from credential.")
           throw InAppPaymentRetryException(e)

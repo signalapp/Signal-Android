@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.GifSlide
@@ -50,7 +50,7 @@ import java.io.IOException
 import java.util.concurrent.Executor
 
 class DraftRepository(
-  private val context: Context = ApplicationDependencies.getApplication(),
+  private val context: Context = AppDependencies.application,
   private val threadTable: ThreadTable = SignalDatabase.threads,
   private val draftTable: DraftTable = SignalDatabase.drafts,
   private val saveDraftsExecutor: Executor = SerialMonoLifoExecutor(SignalExecutors.BOUNDED),

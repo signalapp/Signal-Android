@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.database.model.toBodyRangeList
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.log
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.warn
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
@@ -91,7 +91,7 @@ object StoryMessageProcessor {
 
     if (insertResult != null) {
       Stories.enqueueNextStoriesForDownload(threadRecipient.id, false, FeatureFlags.storiesAutoDownloadMaximum())
-      ApplicationDependencies.getExpireStoriesManager().scheduleIfNecessary()
+      AppDependencies.expireStoriesManager.scheduleIfNecessary()
     }
   }
 

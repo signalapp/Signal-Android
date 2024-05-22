@@ -7,7 +7,7 @@ import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -18,7 +18,7 @@ final class AddMembersRepository {
 
   AddMembersRepository(@NonNull GroupId groupId) {
     this.groupId = groupId;
-    this.context = ApplicationDependencies.getApplication();
+    this.context = AppDependencies.getApplication();
   }
 
   @WorkerThread

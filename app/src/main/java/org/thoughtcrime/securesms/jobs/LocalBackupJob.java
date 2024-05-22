@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -49,7 +49,7 @@ public final class LocalBackupJob extends BaseJob {
   public static final String TEMP_BACKUP_FILE_SUFFIX = ".tmp";
 
   public static void enqueue(boolean force) {
-    JobManager         jobManager = ApplicationDependencies.getJobManager();
+    JobManager         jobManager = AppDependencies.getJobManager();
     Parameters.Builder parameters = new Parameters.Builder()
                                                   .setQueue(QUEUE)
                                                   .setMaxInstancesForFactory(1)
@@ -58,7 +58,7 @@ public final class LocalBackupJob extends BaseJob {
       jobManager.cancelAllInQueue(QUEUE);
     }
 
-    if (BackupUtil.isUserSelectionRequired(ApplicationDependencies.getApplication())) {
+    if (BackupUtil.isUserSelectionRequired(AppDependencies.getApplication())) {
       jobManager.add(new LocalBackupJobApi29(parameters.build()));
     } else {
       jobManager.add(new LocalBackupJob(parameters.build()));

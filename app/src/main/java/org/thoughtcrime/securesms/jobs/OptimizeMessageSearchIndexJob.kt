@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.transport.RetryLaterException
@@ -21,7 +21,7 @@ class OptimizeMessageSearchIndexJob private constructor(parameters: Parameters) 
 
     @JvmStatic
     fun enqueue() {
-      ApplicationDependencies.getJobManager().add(OptimizeMessageSearchIndexJob())
+      AppDependencies.jobManager.add(OptimizeMessageSearchIndexJob())
     }
   }
 

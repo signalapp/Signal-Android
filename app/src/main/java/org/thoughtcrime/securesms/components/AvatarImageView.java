@@ -39,7 +39,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
@@ -205,7 +205,7 @@ public final class AvatarImageView extends AppCompatImageView {
 
           List<Transformation<Bitmap>> transforms = new ArrayList<>();
           if (shouldBlur) {
-            transforms.add(new BlurTransformation(ApplicationDependencies.getApplication(), 0.25f, BlurTransformation.MAX_RADIUS));
+            transforms.add(new BlurTransformation(AppDependencies.getApplication(), 0.25f, BlurTransformation.MAX_RADIUS));
           }
           transforms.add(new CircleCrop());
           blurred = shouldBlur;

@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.model.addButton
 import org.thoughtcrime.securesms.database.model.addLink
 import org.thoughtcrime.securesms.database.model.addStyle
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -74,7 +74,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
           .build()
       )
 
-      ApplicationDependencies.getJobManager()
+      AppDependencies.jobManager
         .startChain(CreateReleaseChannelJob.create())
         .then(job)
         .enqueue()
@@ -238,9 +238,9 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
         if (insertResult != null) {
           addedNewNotes = addedNewNotes || (note.releaseNote.includeBoostMessage ?: true)
           SignalDatabase.attachments.getAttachmentsForMessage(insertResult.messageId)
-            .forEach { ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, false)) }
+            .forEach { AppDependencies.jobManager.add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, false)) }
 
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+          AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
           TrimThreadJob.enqueueAsync(insertResult.threadId)
 
           highestVersion = max(highestVersion, note.releaseNote.androidMinVersion!!.toInt())
@@ -309,7 +309,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
           SignalDatabase.remoteMegaphones.insert(record)
 
           if (record.imageUrl != null) {
-            ApplicationDependencies.getJobManager().add(FetchRemoteMegaphoneImageJob(record.uuid, record.imageUrl))
+            AppDependencies.jobManager.add(FetchRemoteMegaphoneImageJob(record.uuid, record.imageUrl))
           }
         }
       }

@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ApkUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -45,7 +45,7 @@ class AppUpdatesSettingsFragment : DSLSettingsFragment(R.string.preferences_app_
         title = DSLSettingsText.from("Check for updates"),
         summary = DSLSettingsText.from("Last checked on: $lastSuccessfulUpdateString"),
         onClick = {
-          ApplicationDependencies.getJobManager().add(ApkUpdateJob())
+          AppDependencies.jobManager.add(ApkUpdateJob())
         }
       )
     }

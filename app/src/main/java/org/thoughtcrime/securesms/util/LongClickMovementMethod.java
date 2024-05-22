@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.lang.ref.WeakReference;
 
@@ -119,7 +119,7 @@ public class LongClickMovementMethod extends LinkMovementMethod {
 
   /** This signature is available in the base class and can lead to the wrong instance being returned. */
   public static LongClickMovementMethod getInstance() {
-    return getInstance(ApplicationDependencies.getApplication());
+    return getInstance(AppDependencies.getApplication());
   }
 
   public static LongClickMovementMethod getInstance(Context context) {

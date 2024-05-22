@@ -41,7 +41,7 @@ import java.util.Optional
  *
  * Handles setting up a mock web server for API calls, and provides mockable versions of [SignalServiceNetworkAccess].
  */
-class InstrumentationApplicationDependencyProvider(val application: Application, private val default: ApplicationDependencyProvider) : ApplicationDependencies.Provider by default {
+class InstrumentationApplicationDependencyProvider(val application: Application, private val default: ApplicationDependencyProvider) : AppDependencies.Provider by default {
 
   private val serviceTrustStore: TrustStore
   private val uncensoredConfiguration: SignalServiceConfiguration

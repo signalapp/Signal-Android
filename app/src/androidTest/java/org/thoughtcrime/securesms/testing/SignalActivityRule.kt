@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -47,7 +47,7 @@ import java.util.UUID
  */
 class SignalActivityRule(private val othersCount: Int = 4, private val createGroup: Boolean = false) : ExternalResource() {
 
-  val application: Application = ApplicationDependencies.getApplication()
+  val application: Application = AppDependencies.application
 
   lateinit var context: Context
     private set
@@ -145,7 +145,7 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
       SignalDatabase.recipients.setProfileSharing(recipientId, true)
       SignalDatabase.recipients.markRegistered(recipientId, aci)
       val otherIdentity = IdentityKeyUtil.generateIdentityKeyPair()
-      ApplicationDependencies.getProtocolStore().aci().saveIdentity(SignalProtocolAddress(aci.toString(), 0), otherIdentity.publicKey)
+      AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(aci.toString(), 0), otherIdentity.publicKey)
       others += recipientId
       othersKeys += otherIdentity
     }
@@ -158,14 +158,14 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
   }
 
   fun changeIdentityKey(recipient: Recipient, identityKey: IdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey) {
-    ApplicationDependencies.getProtocolStore().aci().saveIdentity(SignalProtocolAddress(recipient.requireServiceId().toString(), 0), identityKey)
+    AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(recipient.requireServiceId().toString(), 0), identityKey)
   }
 
   fun getIdentity(recipient: Recipient): IdentityKey {
-    return ApplicationDependencies.getProtocolStore().aci().identities().getIdentity(SignalProtocolAddress(recipient.requireServiceId().toString(), 0))
+    return AppDependencies.protocolStore.aci().identities().getIdentity(SignalProtocolAddress(recipient.requireServiceId().toString(), 0))
   }
 
   fun setVerified(recipient: Recipient, status: IdentityTable.VerifiedStatus) {
-    ApplicationDependencies.getProtocolStore().aci().identities().setVerified(recipient.id, getIdentity(recipient), IdentityTable.VerifiedStatus.VERIFIED)
+    AppDependencies.protocolStore.aci().identities().setVerified(recipient.id, getIdentity(recipient), IdentityTable.VerifiedStatus.VERIFIED)
   }
 }

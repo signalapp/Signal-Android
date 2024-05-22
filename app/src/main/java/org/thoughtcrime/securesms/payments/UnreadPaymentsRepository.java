@@ -7,7 +7,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.util.UUID;
 import java.util.concurrent.Executor;
@@ -26,13 +26,13 @@ public class UnreadPaymentsRepository {
 
   @WorkerThread
   private void markAllPaymentsSeenInternal() {
-    Context context = ApplicationDependencies.getApplication();
+    Context context = AppDependencies.getApplication();
     SignalDatabase.payments().markAllSeen();
   }
 
   @WorkerThread
   private void markPaymentSeenInternal(@NonNull UUID paymentId) {
-    Context context = ApplicationDependencies.getApplication();
+    Context context = AppDependencies.getApplication();
     SignalDatabase.payments().markPaymentSeen(paymentId);
   }
 

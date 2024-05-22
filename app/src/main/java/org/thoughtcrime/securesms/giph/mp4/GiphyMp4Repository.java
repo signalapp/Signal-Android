@@ -7,7 +7,7 @@ import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
@@ -69,7 +69,7 @@ final class GiphyMp4Repository {
         return BlobProvider.getInstance()
                            .forData(response.body().byteStream(), response.body().contentLength())
                            .withMimeType(mime)
-                           .createForSingleSessionOnDisk(ApplicationDependencies.getApplication());
+                           .createForSingleSessionOnDisk(AppDependencies.getApplication());
       } else {
         throw new IOException("Unexpected response code: " + response.code());
       }

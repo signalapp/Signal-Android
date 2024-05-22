@@ -5,7 +5,7 @@ import androidx.annotation.VisibleForTesting;
 import androidx.preference.PreferenceDataStore;
 
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public final class SignalStore {
     if (instance == null) {
       synchronized (SignalStore.class) {
         if (instance == null) {
-          instance = new SignalStore(new KeyValueStore(KeyValueDatabase.getInstance(ApplicationDependencies.getApplication())));
+          instance = new SignalStore(new KeyValueStore(KeyValueDatabase.getInstance(AppDependencies.getApplication())));
         }
       }
     }
@@ -91,7 +91,7 @@ public final class SignalStore {
     this.storyValues               = new StoryValues(store);
     this.apkUpdate                 = new ApkUpdateValues(store);
     this.backupValues              = new BackupValues(store);
-    this.plainTextValues           = new PlainTextSharedPrefsDataStore(ApplicationDependencies.getApplication());
+    this.plainTextValues           = new PlainTextSharedPrefsDataStore(AppDependencies.getApplication());
   }
 
   public static void onFirstEverAppLaunch() {

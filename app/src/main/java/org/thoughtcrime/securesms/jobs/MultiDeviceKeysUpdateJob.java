@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -70,7 +70,7 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
       return;
     }
 
-    SignalServiceMessageSender messageSender     = ApplicationDependencies.getSignalServiceMessageSender();
+    SignalServiceMessageSender messageSender     = AppDependencies.getSignalServiceMessageSender();
     StorageKey                 storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
 
     messageSender.sendSyncMessage(SignalServiceSyncMessage.forKeys(new KeysMessage(Optional.ofNullable(storageServiceKey), Optional.of(SignalStore.svr().getOrCreateMasterKey()))),

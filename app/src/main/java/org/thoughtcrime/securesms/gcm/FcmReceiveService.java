@@ -10,7 +10,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.SubmitRateLimitPushChallengeJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -43,14 +43,14 @@ public class FcmReceiveService extends FirebaseMessagingService {
     } else if (rateLimitChallenge != null) {
       handleRateLimitPushChallenge(rateLimitChallenge);
     } else {
-      handleReceivedNotification(ApplicationDependencies.getApplication(), remoteMessage);
+      handleReceivedNotification(AppDependencies.getApplication(), remoteMessage);
     }
   }
 
   @Override
   public void onDeletedMessages() {
     Log.w(TAG, "onDeleteMessages() -- Messages may have been dropped. Doing a normal message fetch.");
-    handleReceivedNotification(ApplicationDependencies.getApplication(), null);
+    handleReceivedNotification(AppDependencies.getApplication(), null);
   }
 
   @Override
@@ -62,7 +62,7 @@ public class FcmReceiveService extends FirebaseMessagingService {
       return;
     }
 
-    ApplicationDependencies.getJobManager().add(new FcmRefreshJob());
+    AppDependencies.getJobManager().add(new FcmRefreshJob());
   }
 
   @Override
@@ -100,6 +100,6 @@ public class FcmReceiveService extends FirebaseMessagingService {
 
   private static void handleRateLimitPushChallenge(@NonNull String challenge) {
     Log.d(TAG, "Got a rate limit push challenge.");
-    ApplicationDependencies.getJobManager().add(new SubmitRateLimitPushChallengeJob(challenge));
+    AppDependencies.getJobManager().add(new SubmitRateLimitPushChallengeJob(challenge));
   }
 }

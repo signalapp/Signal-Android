@@ -12,7 +12,7 @@ import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.SyncSystemContactLinksJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
@@ -162,7 +162,7 @@ object ContactDiscovery {
     stopwatch.split("cds")
 
     if (hasContactsPermissions(context)) {
-      ApplicationDependencies.getJobManager().add(SyncSystemContactLinksJob())
+      AppDependencies.jobManager.add(SyncSystemContactLinksJob())
 
       val useFullSync = forceFullSystemContactSync || (removeSystemContactLinksIfMissing && result.registeredIds.size > FULL_SYSTEM_CONTACT_SYNC_THRESHOLD)
       syncRecipientsWithSystemContacts(
@@ -218,7 +218,7 @@ object ContactDiscovery {
       .forEach { result ->
         val hour = Calendar.getInstance()[Calendar.HOUR_OF_DAY]
         if (hour in 9..22) {
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(result.threadId))
+          AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(result.threadId))
         } else {
           Log.i(TAG, "Not notifying of a new user due to the time of day. (Hour: $hour)")
         }
@@ -301,8 +301,8 @@ object ContactDiscovery {
 
     val protocolAddress = Recipient.resolved(id).requireServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID)
 
-    return ApplicationDependencies.getProtocolStore().aci().containsSession(protocolAddress) ||
-      ApplicationDependencies.getProtocolStore().pni().containsSession(protocolAddress)
+    return AppDependencies.protocolStore.aci().containsSession(protocolAddress) ||
+      AppDependencies.protocolStore.pni().containsSession(protocolAddress)
   }
 
   class RefreshResult(

@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadin
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -70,7 +70,7 @@ class ManageDonationsFragment :
 
   private val viewModel: ManageDonationsViewModel by viewModels(
     factoryProducer = {
-      ManageDonationsViewModel.Factory(RecurringInAppPaymentRepository(ApplicationDependencies.getDonationsService()))
+      ManageDonationsViewModel.Factory(RecurringInAppPaymentRepository(AppDependencies.donationsService))
     }
   )
 

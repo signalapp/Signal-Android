@@ -16,7 +16,7 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.Debouncer;
 
 // TODO [nicholas]: move to v2 package and make package-private. convert to Kotlin
@@ -66,14 +66,14 @@ public final class SignalStrengthPhoneStateListener extends PhoneStateListener
 
   @Override
   public void onResume(@NonNull LifecycleOwner owner) {
-    TelephonyManager telephonyManager = (TelephonyManager) ApplicationDependencies.getApplication().getSystemService(Context.TELEPHONY_SERVICE);
+    TelephonyManager telephonyManager = (TelephonyManager) AppDependencies.getApplication().getSystemService(Context.TELEPHONY_SERVICE);
     telephonyManager.listen(this, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
     Log.i(TAG, "Listening to cell phone signal strength changes");
   }
 
   @Override
   public void onPause(@NonNull LifecycleOwner owner) {
-    TelephonyManager telephonyManager = (TelephonyManager) ApplicationDependencies.getApplication().getSystemService(Context.TELEPHONY_SERVICE);
+    TelephonyManager telephonyManager = (TelephonyManager) AppDependencies.getApplication().getSystemService(Context.TELEPHONY_SERVICE);
     telephonyManager.listen(this, PhoneStateListener.LISTEN_NONE);
     Log.i(TAG, "Stopped listening to cell phone signal strength changes");
   }

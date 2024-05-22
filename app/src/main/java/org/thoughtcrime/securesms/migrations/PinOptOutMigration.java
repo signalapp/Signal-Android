@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
@@ -41,10 +41,10 @@ public final class PinOptOutMigration extends MigrationJob {
       Log.w(TAG, "Discovered a legacy opt-out user! Resetting the state.");
 
       SignalStore.svr().optOut();
-      ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob())
-                                             .then(new RefreshOwnProfileJob())
-                                             .then(new StorageForcePushJob())
-                                             .enqueue();
+      AppDependencies.getJobManager().startChain(new RefreshAttributesJob())
+                     .then(new RefreshOwnProfileJob())
+                     .then(new StorageForcePushJob())
+                     .enqueue();
     } else if (SignalStore.svr().hasOptedOut()) {
       Log.i(TAG, "Discovered an opt-out user, but they're already in a good state. No action required.");
     } else {

@@ -11,7 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.util.Currency
@@ -49,8 +49,8 @@ class SubscriptionsConfigurationExtensionsKtTest {
 
   @Test
   fun `When I getGiftBadges, then I expect exactly 1 badge with the id GIFT`() {
-    mockkStatic(ApplicationDependencies::class) {
-      every { ApplicationDependencies.getApplication() } returns ApplicationProvider.getApplicationContext()
+    mockkStatic(AppDependencies::class) {
+      every { AppDependencies.application } returns ApplicationProvider.getApplicationContext()
 
       val giftBadges = testSubject.getGiftBadges()
 
@@ -61,8 +61,8 @@ class SubscriptionsConfigurationExtensionsKtTest {
 
   @Test
   fun `When I getBoostBadges, then I expect exactly 1 badge with the id BOOST`() {
-    mockkStatic(ApplicationDependencies::class) {
-      every { ApplicationDependencies.getApplication() } returns ApplicationProvider.getApplicationContext()
+    mockkStatic(AppDependencies::class) {
+      every { AppDependencies.application } returns ApplicationProvider.getApplicationContext()
 
       val boostBadges = testSubject.getBoostBadges()
 
@@ -163,8 +163,8 @@ class SubscriptionsConfigurationExtensionsKtTest {
 
   @Test
   fun `Given GIFT_LEVEL, When I getBadge, then I expect the gift badge`() {
-    mockkStatic(ApplicationDependencies::class) {
-      every { ApplicationDependencies.getApplication() } returns ApplicationProvider.getApplicationContext()
+    mockkStatic(AppDependencies::class) {
+      every { AppDependencies.application } returns ApplicationProvider.getApplicationContext()
       val badge = testSubject.getBadge(SubscriptionsConfiguration.GIFT_LEVEL)
 
       assertTrue(badge.isGift())
@@ -173,8 +173,8 @@ class SubscriptionsConfigurationExtensionsKtTest {
 
   @Test
   fun `Given BOOST_LEVEL, When I getBadge, then I expect the boost badge`() {
-    mockkStatic(ApplicationDependencies::class) {
-      every { ApplicationDependencies.getApplication() } returns ApplicationProvider.getApplicationContext()
+    mockkStatic(AppDependencies::class) {
+      every { AppDependencies.application } returns ApplicationProvider.getApplicationContext()
       val badge = testSubject.getBadge(SubscriptionsConfiguration.BOOST_LEVEL)
 
       assertTrue(badge.isBoost())
@@ -183,8 +183,8 @@ class SubscriptionsConfigurationExtensionsKtTest {
 
   @Test
   fun `Given a sub level, When I getBadge, then I expect a sub badge`() {
-    mockkStatic(ApplicationDependencies::class) {
-      every { ApplicationDependencies.getApplication() } returns ApplicationProvider.getApplicationContext()
+    mockkStatic(AppDependencies::class) {
+      every { AppDependencies.application } returns ApplicationProvider.getApplicationContext()
       val badge = testSubject.getBadge(SubscriptionsConfiguration.SUBSCRIPTION_LEVELS.first())
 
       assertTrue(badge.isSubscription())

@@ -6,7 +6,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -76,7 +76,7 @@ class ResetSvrGuessCountJob private constructor(
       val masterKey: MasterKey = SignalStore.svr().getOrCreateMasterKey()
 
       val svr2Result = if (!svr2Complete) {
-        resetGuessCount(ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE), pin, masterKey)
+        resetGuessCount(AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE), pin, masterKey)
       } else {
         Log.d(TAG, "Already reset guess count on SVR2. Skipping.")
         Result.success()

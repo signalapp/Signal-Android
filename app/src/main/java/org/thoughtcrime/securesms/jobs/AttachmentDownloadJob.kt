@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobLogger.format
@@ -136,7 +136,7 @@ class AttachmentDownloadJob private constructor(
     doWork()
 
     if (!SignalDatabase.messages.isStory(messageId)) {
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, forConversation(0))
+      AppDependencies.messageNotifier.updateNotification(context, forConversation(0))
     }
   }
 
@@ -180,7 +180,7 @@ class AttachmentDownloadJob private constructor(
       attachment.archiveMediaId == null &&
       SignalStore.backup().backsUpMedia
     ) {
-      ApplicationDependencies.getJobManager().add(ArchiveAttachmentJob(attachmentId))
+      AppDependencies.jobManager.add(ArchiveAttachmentJob(attachmentId))
     }
   }
 
@@ -221,7 +221,7 @@ class AttachmentDownloadJob private constructor(
         false
       }
 
-      val messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver()
+      val messageReceiver = AppDependencies.signalServiceMessageReceiver
       val pointer = createAttachmentPointer(attachment, useArchiveCdn)
 
       val progressListener = object : SignalServiceAttachment.ProgressListener {

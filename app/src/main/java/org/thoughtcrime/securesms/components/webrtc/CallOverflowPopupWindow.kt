@@ -17,7 +17,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.PopupWindowCompat
 import androidx.fragment.app.FragmentActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.visible
 
@@ -36,14 +36,14 @@ class CallOverflowPopupWindow(private val activity: FragmentActivity, parentView
     val root = (contentView as LinearLayout)
     val reactionScrubber = root.findViewById<CallReactionScrubber>(R.id.reaction_scrubber)
     reactionScrubber.initialize(activity.supportFragmentManager) {
-      ApplicationDependencies.getSignalCallManager().react(it)
+      AppDependencies.signalCallManager.react(it)
       dismiss()
     }
     if (FeatureFlags.groupCallRaiseHand()) {
       val raiseHand = root.findViewById<ConstraintLayout>(R.id.raise_hand_layout_parent)
       raiseHand.visible = true
       raiseHand.setOnClickListener {
-        ApplicationDependencies.getSignalCallManager().raiseHand(!raisedHandDelegate.isSelfHandRaised())
+        AppDependencies.signalCallManager.raiseHand(!raisedHandDelegate.isSelfHandRaised())
         dismiss()
       }
     }

@@ -11,7 +11,7 @@ import org.signal.core.util.concurrent.SimpleTask
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
@@ -50,7 +50,7 @@ object ConversationDialogs {
       .setPositiveButton(R.string.ConversationFragment_verify) { d, _ ->
         SimpleTask.run(
           fragment.lifecycle,
-          { ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.id) },
+          { AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipient.id) },
           { identityRecord ->
             identityRecord.ifPresent {
               VerifyIdentityActivity.startOrShowExchangeMessagesDialog(fragment.requireContext(), identityRecord.get())

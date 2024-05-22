@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -33,10 +33,10 @@ class CheckServiceReachabilityJob private constructor(params: Parameters) : Base
 
     @JvmStatic
     fun enqueueIfNecessary() {
-      val isCensored = ApplicationDependencies.getSignalServiceNetworkAccess().isCensored()
+      val isCensored = AppDependencies.signalServiceNetworkAccess.isCensored()
       val timeSinceLastCheck = System.currentTimeMillis() - SignalStore.misc().lastCensorshipServiceReachabilityCheckTime
       if (SignalStore.account().isRegistered && isCensored && timeSinceLastCheck > TimeUnit.DAYS.toMillis(1)) {
-        ApplicationDependencies.getJobManager().add(CheckServiceReachabilityJob())
+        AppDependencies.jobManager.add(CheckServiceReachabilityJob())
       }
     }
   }
@@ -56,7 +56,7 @@ class CheckServiceReachabilityJob private constructor(params: Parameters) : Base
       return
     }
 
-    if (!ApplicationDependencies.getSignalServiceNetworkAccess().isCensored()) {
+    if (!AppDependencies.signalServiceNetworkAccess.isCensored()) {
       Log.w(TAG, "Not currently censored, skipping.")
       SignalStore.misc().lastCensorshipServiceReachabilityCheckTime = System.currentTimeMillis()
       return
@@ -66,7 +66,7 @@ class CheckServiceReachabilityJob private constructor(params: Parameters) : Base
 
     val uncensoredWebsocket = OkHttpWebSocketConnection(
       "uncensored-test",
-      ApplicationDependencies.getSignalServiceNetworkAccess().uncensoredConfiguration,
+      AppDependencies.signalServiceNetworkAccess.uncensoredConfiguration,
       Optional.of(
         StaticCredentialsProvider(
           SignalStore.account().aci,

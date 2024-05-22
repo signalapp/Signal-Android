@@ -47,7 +47,7 @@ import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
@@ -168,7 +168,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addBlocking("scrubber", () -> Scrubber.setIdentifierHmacKeyProvider(() -> SignalStore.svr().getOrCreateMasterKey().deriveLoggingKey()))
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
-                            .addBlocking("lifecycle-observer", () -> ApplicationDependencies.getAppForegroundObserver().addListener(this))
+                            .addBlocking("lifecycle-observer", () -> AppDependencies.getAppForegroundObserver().addListener(this))
                             .addBlocking("message-retriever", this::initializeMessageRetrieval)
                             .addBlocking("dynamic-theme", () -> DynamicTheme.setDefaultDayNightMode(this))
                             .addBlocking("proxy-init", () -> {
@@ -196,10 +196,10 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addNonBlocking(StorageSyncHelper::scheduleRoutineSync)
                             .addNonBlocking(this::beginJobLoop)
                             .addNonBlocking(EmojiSource::refresh)
-                            .addNonBlocking(() -> ApplicationDependencies.getGiphyMp4Cache().onAppStart(this))
+                            .addNonBlocking(() -> AppDependencies.getGiphyMp4Cache().onAppStart(this))
                             .addNonBlocking(this::ensureProfileUploaded)
-                            .addNonBlocking(() -> ApplicationDependencies.getExpireStoriesManager().scheduleIfNecessary())
-                            .addPostRender(() -> ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary())
+                            .addNonBlocking(() -> AppDependencies.getExpireStoriesManager().scheduleIfNecessary())
+                            .addPostRender(() -> AppDependencies.getDeletedCallEventManager().scheduleIfNecessary())
                             .addPostRender(() -> RateLimitUtil.retryAllRateLimitedMessages(this))
                             .addPostRender(this::initializeExpiringMessageManager)
                             .addPostRender(this::initializeTrimThreadsByDateManager)
@@ -210,13 +210,13 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addPostRender(() -> JumboEmoji.updateCurrentVersion(this))
                             .addPostRender(RetrieveRemoteAnnouncementsJob::enqueue)
                             .addPostRender(() -> AndroidTelecomUtil.registerPhoneAccount())
-                            .addPostRender(() -> ApplicationDependencies.getJobManager().add(new FontDownloaderJob()))
+                            .addPostRender(() -> AppDependencies.getJobManager().add(new FontDownloaderJob()))
                             .addPostRender(CheckServiceReachabilityJob::enqueueIfNecessary)
                             .addPostRender(GroupV2UpdateSelfProfileKeyJob::enqueueForGroupsIfNecessary)
                             .addPostRender(StoryOnboardingDownloadJob.Companion::enqueueIfNeeded)
                             .addPostRender(PnpInitializeDevicesJob::enqueueIfNecessary)
-                            .addPostRender(() -> ApplicationDependencies.getExoPlayerPool().getPoolStats().getMaxUnreserved())
-                            .addPostRender(() -> ApplicationDependencies.getRecipientCache().warmUp())
+                            .addPostRender(() -> AppDependencies.getExoPlayerPool().getPoolStats().getMaxUnreserved())
+                            .addPostRender(() -> AppDependencies.getRecipientCache().warmUp())
                             .addPostRender(AccountConsistencyWorkerJob::enqueueIfNecessary)
                             .addPostRender(GroupRingCleanupJob::enqueue)
                             .addPostRender(LinkedDeviceInactiveCheckJob::enqueueIfNecessary)
@@ -233,11 +233,11 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     long startTime = System.currentTimeMillis();
     Log.i(TAG, "App is now visible.");
 
-    ApplicationDependencies.getFrameRateTracker().start();
-    ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
-    ApplicationDependencies.getDeadlockDetector().start();
+    AppDependencies.getFrameRateTracker().start();
+    AppDependencies.getMegaphoneRepository().onAppForegrounded();
+    AppDependencies.getDeadlockDetector().start();
     InAppPaymentKeepAliveJob.enqueueAndTrackTimeIfNecessary();
-    ApplicationDependencies.getJobManager().add(new InAppPaymentAuthCheckJob());
+    AppDependencies.getJobManager().add(new InAppPaymentAuthCheckJob());
     FcmFetchManager.onForeground(this);
     startAnrDetector();
 
@@ -246,7 +246,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
       RetrieveProfileJob.enqueueRoutineFetchIfNecessary();
       executePendingContactSync();
       KeyCachingService.onAppForegrounded(this);
-      ApplicationDependencies.getShakeToReport().enable();
+      AppDependencies.getShakeToReport().enable();
       checkBuildExpiration();
       MemoryTracker.start();
 
@@ -268,10 +268,10 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   public void onBackground() {
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
-    ApplicationDependencies.getMessageNotifier().clearVisibleThread();
-    ApplicationDependencies.getFrameRateTracker().stop();
-    ApplicationDependencies.getShakeToReport().disable();
-    ApplicationDependencies.getDeadlockDetector().stop();
+    AppDependencies.getMessageNotifier().clearVisibleThread();
+    AppDependencies.getFrameRateTracker().stop();
+    AppDependencies.getShakeToReport().disable();
+    AppDependencies.getDeadlockDetector().stop();
     MemoryTracker.stop();
     AnrDetector.stop();
   }
@@ -354,16 +354,16 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   }
 
   private void initializeApplicationMigrations() {
-    ApplicationMigrations.onApplicationCreate(this, ApplicationDependencies.getJobManager());
+    ApplicationMigrations.onApplicationCreate(this, AppDependencies.getJobManager());
   }
 
   public void initializeMessageRetrieval() {
-    ApplicationDependencies.getIncomingMessageObserver();
+    AppDependencies.getIncomingMessageObserver();
   }
 
   @VisibleForTesting
   void initializeAppDependencies() {
-    ApplicationDependencies.init(this, new ApplicationDependencyProvider(this));
+    AppDependencies.init(this, new ApplicationDependencyProvider(this));
   }
 
   private void initializeFirstEverAppLaunch() {
@@ -389,31 +389,31 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
       long nextSetTime = SignalStore.account().getFcmTokenLastSetTime() + TimeUnit.HOURS.toMillis(6);
 
       if (SignalStore.account().getFcmToken() == null || nextSetTime <= System.currentTimeMillis()) {
-        ApplicationDependencies.getJobManager().add(new FcmRefreshJob());
+        AppDependencies.getJobManager().add(new FcmRefreshJob());
       }
     }
   }
 
   private void initializeExpiringMessageManager() {
-    ApplicationDependencies.getExpiringMessageManager().checkSchedule();
+    AppDependencies.getExpiringMessageManager().checkSchedule();
   }
 
   private void initializeRevealableMessageManager() {
-    ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
+    AppDependencies.getViewOnceMessageManager().scheduleIfNecessary();
   }
 
   private void initializePendingRetryReceiptManager() {
-    ApplicationDependencies.getPendingRetryReceiptManager().scheduleIfNecessary();
+    AppDependencies.getPendingRetryReceiptManager().scheduleIfNecessary();
   }
 
   private void initializeScheduledMessageManager() {
-    ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary();
+    AppDependencies.getScheduledMessageManager().scheduleIfNecessary();
   }
 
   private void initializeTrimThreadsByDateManager() {
     KeepMessagesDuration keepMessagesDuration = SignalStore.settings().getKeepMessagesDuration();
     if (keepMessagesDuration != KeepMessagesDuration.FOREVER) {
-      ApplicationDependencies.getTrimThreadsByDateManager().scheduleIfNecessary();
+      AppDependencies.getTrimThreadsByDateManager().scheduleIfNecessary();
     }
   }
 
@@ -448,7 +448,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   @WorkerThread
   private void initializeCircumvention() {
-    if (ApplicationDependencies.getSignalServiceNetworkAccess().isCensored()) {
+    if (AppDependencies.getSignalServiceNetworkAccess().isCensored()) {
       try {
         ProviderInstaller.installIfNeeded(ApplicationContext.this);
       } catch (Throwable t) {
@@ -460,19 +460,19 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   private void ensureProfileUploaded() {
     if (SignalStore.account().isRegistered() && !SignalStore.registrationValues().hasUploadedProfile() && !Recipient.self().getProfileName().isEmpty()) {
       Log.w(TAG, "User has a profile, but has not uploaded one. Uploading now.");
-      ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
+      AppDependencies.getJobManager().add(new ProfileUploadJob());
     }
   }
 
   private void executePendingContactSync() {
     if (TextSecurePreferences.needsFullContactSync(this)) {
-      ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(true));
+      AppDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(true));
     }
   }
 
   @VisibleForTesting
   protected void beginJobLoop() {
-    ApplicationDependencies.getJobManager().beginJobLoop();
+    AppDependencies.getJobManager().beginJobLoop();
   }
 
   @WorkerThread

@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.jobs
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
@@ -57,7 +57,7 @@ class MultiDeviceCallLinkSyncJob private constructor(
     val syncMessage = SignalServiceSyncMessage.forCallLinkUpdate(callLinkUpdate)
 
     try {
-      ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(syncMessage, Optional.empty())
+      AppDependencies.signalServiceMessageSender.sendSyncMessage(syncMessage, Optional.empty())
     } catch (e: Exception) {
       Log.w(TAG, "Unable to send call link update message.", e)
       throw e

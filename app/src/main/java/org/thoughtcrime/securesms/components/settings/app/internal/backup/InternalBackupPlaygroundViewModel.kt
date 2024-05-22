@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupMetadata
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentJob
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
@@ -69,7 +69,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   fun triggerBackupJob() {
     _state.value = _state.value.copy(backupState = BackupState.EXPORT_IN_PROGRESS)
 
-    disposables += Single.fromCallable { ApplicationDependencies.getJobManager().runSynchronously(BackupMessagesJob(), 120_000) }
+    disposables += Single.fromCallable { AppDependencies.jobManager.runSynchronously(BackupMessagesJob(), 120_000) }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy {
@@ -166,8 +166,8 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     _state.value = _state.value.copy(backupState = BackupState.IMPORT_IN_PROGRESS)
 
     disposables += Single.fromCallable {
-      ApplicationDependencies
-        .getJobManager()
+      AppDependencies
+        .jobManager
         .startChain(BackupRestoreJob())
         .then(SyncArchivedMediaJob())
         .then(BackupRestoreMediaJob())
@@ -245,8 +245,8 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   private fun reUploadAndArchiveMedia(attachmentId: AttachmentId) {
     disposables += Single
       .fromCallable {
-        ApplicationDependencies
-          .getJobManager()
+        AppDependencies
+          .jobManager
           .startChain(AttachmentUploadJob(attachmentId))
           .then(ArchiveAttachmentJob(attachmentId))
           .enqueueAndBlockUntilCompletion(15.seconds.inWholeMilliseconds)
@@ -325,7 +325,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
         val archivedAttachment = SignalDatabase.attachments.getAttachmentsForMessage(insertMessage.messageId).first()
 
-        ApplicationDependencies.getJobManager().add(
+        AppDependencies.jobManager.add(
           AttachmentDownloadJob(
             messageId = insertMessage.messageId,
             attachmentId = archivedAttachment.attachmentId,

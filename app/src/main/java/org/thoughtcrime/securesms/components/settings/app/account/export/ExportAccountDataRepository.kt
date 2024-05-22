@@ -5,14 +5,14 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import java.io.IOException
 
 class ExportAccountDataRepository(
-  private val accountManager: SignalServiceAccountManager = ApplicationDependencies.getSignalServiceAccountManager()
+  private val accountManager: SignalServiceAccountManager = AppDependencies.signalServiceAccountManager
 ) {
 
   fun downloadAccountDataReport(exportAsJson: Boolean): Single<ExportedReport> {

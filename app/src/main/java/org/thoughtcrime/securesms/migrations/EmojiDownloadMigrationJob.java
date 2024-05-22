@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.migrations;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
@@ -35,7 +35,7 @@ public final class EmojiDownloadMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
-    ApplicationDependencies.getJobManager().add(new DownloadLatestEmojiDataJob(false));
+    AppDependencies.getJobManager().add(new DownloadLatestEmojiDataJob(false));
     EmojiSearchIndexDownloadJob.scheduleImmediately();
   }
 

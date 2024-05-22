@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -198,7 +198,7 @@ public final class Megaphones {
       return new Megaphone.Builder(Event.PINS_FOR_ALL, Megaphone.Style.FULLSCREEN)
           .enableSnooze(null)
           .setOnVisibleListener((megaphone, listener) -> {
-            if (new NetworkConstraint.Factory(ApplicationDependencies.getApplication()).create().isMet()) {
+            if (new NetworkConstraint.Factory(AppDependencies.getApplication()).create().isMet()) {
               listener.onMegaphoneNavigationRequested(SvrMigrationActivity.createIntent(), SvrMigrationActivity.REQUEST_NEW_PIN);
             }
           })
@@ -209,7 +209,7 @@ public final class Megaphones {
           .setTitle(R.string.KbsMegaphone__create_a_pin)
           .setBody(R.string.KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped)
           .setActionButton(R.string.KbsMegaphone__create_pin, (megaphone, listener) -> {
-            Intent intent = CreateSvrPinActivity.getIntentForPinCreate(ApplicationDependencies.getApplication());
+            Intent intent = CreateSvrPinActivity.getIntentForPinCreate(AppDependencies.getApplication());
 
             listener.onMegaphoneNavigationRequested(intent, CreateSvrPinActivity.REQUEST_NEW_PIN);
           })
@@ -418,7 +418,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowTurnOffCircumventionMegaphone() {
-    return ApplicationDependencies.getSignalServiceNetworkAccess().isCensored() &&
+    return AppDependencies.getSignalServiceNetworkAccess().isCensored() &&
            SignalStore.misc().isServiceReachableWithoutCircumvention();
   }
 

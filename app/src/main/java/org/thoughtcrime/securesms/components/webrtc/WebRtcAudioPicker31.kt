@@ -8,7 +8,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentActivity
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceMapping
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 
@@ -24,7 +24,7 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
   }
 
   fun showPicker(fragmentActivity: FragmentActivity, threshold: Int, onDismiss: (DialogInterface) -> Unit): DialogInterface? {
-    val am = ApplicationDependencies.getAndroidCallAudioManager()
+    val am = AppDependencies.androidCallAudioManager
     if (am.availableCommunicationDevices.isEmpty()) {
       Toast.makeText(fragmentActivity, R.string.WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected, Toast.LENGTH_LONG).show()
       return null

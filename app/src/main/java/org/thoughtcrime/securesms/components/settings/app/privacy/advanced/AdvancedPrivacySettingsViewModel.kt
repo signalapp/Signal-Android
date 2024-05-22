@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
@@ -32,7 +32,7 @@ class AdvancedPrivacySettingsViewModel(
 
   init {
     disposables.add(
-      ApplicationDependencies.getSignalWebSocket().webSocketState
+      AppDependencies.webSocketObserver
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe { refresh() }
     )
@@ -51,14 +51,14 @@ class AdvancedPrivacySettingsViewModel(
 
   fun setAllowSealedSenderFromAnyone(enabled: Boolean) {
     sharedPreferences.edit().putBoolean(TextSecurePreferences.UNIVERSAL_UNIDENTIFIED_ACCESS, enabled).apply()
-    ApplicationDependencies.getJobManager().startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
+    AppDependencies.jobManager.startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
     refresh()
   }
 
   fun setCensorshipCircumventionEnabled(enabled: Boolean) {
     SignalStore.settings().setCensorshipCircumventionEnabled(enabled)
     SignalStore.misc().isServiceReachableWithoutCircumvention = false
-    ApplicationDependencies.resetAllNetworkConnections()
+    AppDependencies.resetNetwork()
     refresh()
   }
 
@@ -75,14 +75,14 @@ class AdvancedPrivacySettingsViewModel(
 
     return AdvancedPrivacySettingsState(
       isPushEnabled = SignalStore.account().isRegistered,
-      alwaysRelayCalls = TextSecurePreferences.isTurnOnly(ApplicationDependencies.getApplication()),
+      alwaysRelayCalls = TextSecurePreferences.isTurnOnly(AppDependencies.application),
       censorshipCircumventionState = censorshipCircumventionState,
       censorshipCircumventionEnabled = getCensorshipCircumventionEnabled(censorshipCircumventionState),
       showSealedSenderStatusIcon = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(
-        ApplicationDependencies.getApplication()
+        AppDependencies.application
       ),
       allowSealedSenderFromAnyone = TextSecurePreferences.isUniversalUnidentifiedAccess(
-        ApplicationDependencies.getApplication()
+        AppDependencies.application
       ),
       false
     )
@@ -90,10 +90,10 @@ class AdvancedPrivacySettingsViewModel(
 
   private fun getCensorshipCircumventionState(): CensorshipCircumventionState {
     val countryCode: Int = PhoneNumberFormatter.getLocalCountryCode()
-    val isCountryCodeCensoredByDefault: Boolean = ApplicationDependencies.getSignalServiceNetworkAccess().isCountryCodeCensoredByDefault(countryCode)
+    val isCountryCodeCensoredByDefault: Boolean = AppDependencies.signalServiceNetworkAccess.isCountryCodeCensoredByDefault(countryCode)
     val enabledState: SettingsValues.CensorshipCircumventionEnabled = SignalStore.settings().censorshipCircumventionEnabled
-    val hasInternet: Boolean = NetworkConstraint.isMet(ApplicationDependencies.getApplication())
-    val websocketConnected: Boolean = ApplicationDependencies.getSignalWebSocket().webSocketState.firstOrError().blockingGet() == WebSocketConnectionState.CONNECTED
+    val hasInternet: Boolean = NetworkConstraint.isMet(AppDependencies.application)
+    val websocketConnected: Boolean = AppDependencies.signalWebSocket.webSocketState.firstOrError().blockingGet() == WebSocketConnectionState.CONNECTED
 
     return when {
       SignalStore.internalValues().allowChangingCensorshipSetting() -> {

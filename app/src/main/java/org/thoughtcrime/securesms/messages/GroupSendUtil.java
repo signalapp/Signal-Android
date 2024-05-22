@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.database.MessageSendLogTables;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListId;
 import org.thoughtcrime.securesms.database.model.MessageId;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -65,7 +65,6 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public final class GroupSendUtil {
 
@@ -298,7 +297,7 @@ public final class GroupSendUtil {
     }
 
     List<SendMessageResult>    allResults    = new ArrayList<>(allTargets.size());
-    SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
+    SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
 
     if (senderKeyTargets.size() > 0 && distributionId != null) {
       long           keyCreateTime  = SenderKeyUtil.getCreateTimeForOurKey(distributionId);

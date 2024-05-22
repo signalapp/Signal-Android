@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.mediasend.CompositeMediaTransform
@@ -295,7 +295,7 @@ class MediaSelectionRepository(context: Context) {
     scheduledDate: Long
   ) {
     val slideDeck = SlideDeck()
-    val context: Context = ApplicationDependencies.getApplication()
+    val context: Context = AppDependencies.application
 
     for (mediaItem in nonUploadedMedia) {
       if (MediaUtil.isVideoType(mediaItem.mimeType)) {

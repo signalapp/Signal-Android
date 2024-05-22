@@ -48,7 +48,7 @@ import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
 import org.thoughtcrime.securesms.util.activityViewModel
@@ -96,11 +96,11 @@ class PendingParticipantsBottomSheet : ComposeBottomSheetDialogFragment() {
   }
 
   private fun onApprove(recipient: Recipient) {
-    ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestAccepted(recipient.id)
+    AppDependencies.signalCallManager.setCallLinkJoinRequestAccepted(recipient.id)
   }
 
   private fun onDeny(recipient: Recipient) {
-    ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestRejected(recipient.id)
+    AppDependencies.signalCallManager.setCallLinkJoinRequestRejected(recipient.id)
   }
 
   private fun onApproveAll() {

@@ -23,7 +23,7 @@ import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -178,7 +178,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   public void onCreate() {
     Log.v(TAG, "onCreate");
     super.onCreate();
-    this.callManager                   = ApplicationDependencies.getSignalCallManager();
+    this.callManager                   = AppDependencies.getSignalCallManager();
     this.hangUpRtcOnDeviceCallAnswered = new HangUpRtcOnPstnCallAnsweredListener();
     this.lastNotificationId            = INVALID_NOTIFICATION_ID;
 
@@ -418,14 +418,14 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     public void stop() {
       keepRunning = false;
       ThreadUtil.cancelRunnableOnMain(webSocketKeepAliveTask);
-      ApplicationDependencies.getIncomingMessageObserver().removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN);
+      AppDependencies.getIncomingMessageObserver().removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN);
     }
 
     @MainThread
     @Override
     public void run() {
       if (keepRunning) {
-        ApplicationDependencies.getIncomingMessageObserver().registerKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN);
+        AppDependencies.getIncomingMessageObserver().registerKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN);
         ThreadUtil.runOnMainDelayed(this, REQUEST_WEBSOCKET_STAY_OPEN_DELAY);
       }
     }
@@ -437,8 +437,8 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
       ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
       NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
 
-      ApplicationDependencies.getSignalCallManager().networkChange(activeNetworkInfo != null && activeNetworkInfo.isConnected());
-      ApplicationDependencies.getSignalCallManager().dataModeUpdate();
+      AppDependencies.getSignalCallManager().networkChange(activeNetworkInfo != null && activeNetworkInfo.isConnected());
+      AppDependencies.getSignalCallManager().dataModeUpdate();
     }
   }
 
@@ -446,7 +446,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
       if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
-        ApplicationDependencies.getSignalCallManager().screenOff();
+        AppDependencies.getSignalCallManager().screenOff();
       }
     }
   }

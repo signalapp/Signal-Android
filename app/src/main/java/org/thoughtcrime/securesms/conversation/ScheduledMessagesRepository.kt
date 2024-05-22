@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.conversation.v2.data.AttachmentHelper
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
@@ -21,7 +21,7 @@ class ScheduledMessagesRepository {
    */
   fun getScheduledMessages(context: Context, threadId: Long): Observable<List<ConversationMessage>> {
     return Observable.create { emitter ->
-      val databaseObserver: DatabaseObserver = ApplicationDependencies.getDatabaseObserver()
+      val databaseObserver: DatabaseObserver = AppDependencies.databaseObserver
       val observer = DatabaseObserver.Observer { emitter.onNext(getScheduledMessagesSync(context, threadId)) }
 
       databaseObserver.registerScheduledMessageObserver(threadId, observer)
@@ -42,7 +42,7 @@ class ScheduledMessagesRepository {
 
     attachmentHelper.fetchAttachments()
 
-    scheduledMessages = attachmentHelper.buildUpdatedModels(ApplicationDependencies.getApplication(), scheduledMessages)
+    scheduledMessages = attachmentHelper.buildUpdatedModels(AppDependencies.application, scheduledMessages)
 
     val replies: List<ConversationMessage> = scheduledMessages
       .map { ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it, threadRecipient) }
@@ -55,7 +55,7 @@ class ScheduledMessagesRepository {
    */
   fun getScheduledMessageCount(threadId: Long): Observable<Int> {
     return Observable.create { emitter ->
-      val databaseObserver: DatabaseObserver = ApplicationDependencies.getDatabaseObserver()
+      val databaseObserver: DatabaseObserver = AppDependencies.databaseObserver
       val observer = DatabaseObserver.Observer { emitter.onNext(SignalDatabase.messages.getScheduledMessageCountForThread(threadId)) }
 
       databaseObserver.registerScheduledMessageObserver(threadId, observer)

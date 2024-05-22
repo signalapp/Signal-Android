@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTestRestoreActivity;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.SvrConstants;
@@ -248,7 +248,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
       startActivity(profile);
     } else {
       RegistrationUtil.maybeMarkRegistrationComplete();
-      ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
+      AppDependencies.getJobManager().add(new ProfileUploadJob());
       startActivity(MainActivity.clearTop(activity));
     }
 

@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.QuoteModel
@@ -235,7 +235,7 @@ class BackupTest {
 
   @Test
   fun accountData() {
-    val context = ApplicationDependencies.getApplication()
+    val context = AppDependencies.application
 
     backupTest(validateKeyValue = true) {
       val self = Recipient.self()

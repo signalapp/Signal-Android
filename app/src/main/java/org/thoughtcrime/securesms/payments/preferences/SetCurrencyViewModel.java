@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.SettingHeader;
 import org.thoughtcrime.securesms.components.settings.SettingProgress;
 import org.thoughtcrime.securesms.components.settings.SingleSelectSetting;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.currency.CurrencyExchange;
 import org.thoughtcrime.securesms.payments.currency.CurrencyExchangeRepository;
@@ -206,7 +206,7 @@ public final class SetCurrencyViewModel extends ViewModel {
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new SetCurrencyViewModel(new CurrencyExchangeRepository(ApplicationDependencies.getPayments())));
+      return modelClass.cast(new SetCurrencyViewModel(new CurrencyExchangeRepository(AppDependencies.getPayments())));
     }
   }
 }

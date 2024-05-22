@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
 import org.thoughtcrime.securesms.database.ThreadTable
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
@@ -42,13 +42,13 @@ class ManageStorageSettingsViewModel : ViewModel() {
   fun deleteChatHistory() {
     viewModelScope.launch {
       SignalDatabase.threads.deleteAllConversations()
-      ApplicationDependencies.getMessageNotifier().updateNotification(ApplicationDependencies.getApplication())
+      AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
     }
   }
 
   fun setKeepMessagesDuration(newDuration: KeepMessagesDuration) {
     SignalStore.settings().setKeepMessagesForDuration(newDuration)
-    ApplicationDependencies.getTrimThreadsByDateManager().scheduleIfNecessary()
+    AppDependencies.trimThreadsByDateManager.scheduleIfNecessary()
 
     store.update { it.copy(keepMessagesDuration = newDuration) }
   }

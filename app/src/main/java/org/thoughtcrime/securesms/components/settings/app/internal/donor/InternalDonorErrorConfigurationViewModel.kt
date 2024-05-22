@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.getBoostB
 import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBadges
 import org.thoughtcrime.securesms.components.settings.app.subscription.getSubscriptionLevels
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
@@ -31,7 +31,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   init {
     val giftBadges: Single<List<Badge>> = Single
       .fromCallable {
-        ApplicationDependencies.getDonationsService()
+        AppDependencies.donationsService
           .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }
@@ -40,7 +40,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
 
     val boostBadges: Single<List<Badge>> = Single
       .fromCallable {
-        ApplicationDependencies.getDonationsService()
+        AppDependencies.donationsService
           .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }
@@ -49,7 +49,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
 
     val subscriptionBadges: Single<List<Badge>> = Single
       .fromCallable {
-        ApplicationDependencies.getDonationsService()
+        AppDependencies.donationsService
           .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }

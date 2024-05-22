@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkUrlAndStatus;
@@ -39,8 +39,8 @@ public final class LiveGroup {
 
   private static final Comparator<GroupMemberEntry.FullMember>         LOCAL_FIRST       = (m1, m2) -> Boolean.compare(m2.getMember().isSelf(), m1.getMember().isSelf());
   private static final Comparator<GroupMemberEntry.FullMember>         ADMIN_FIRST       = (m1, m2) -> Boolean.compare(m2.isAdmin(), m1.isAdmin());
-  private static final Comparator<GroupMemberEntry.FullMember>         HAS_DISPLAY_NAME  = (m1, m2) -> Boolean.compare(m2.getMember().hasAUserSetDisplayName(ApplicationDependencies.getApplication()), m1.getMember().hasAUserSetDisplayName(ApplicationDependencies.getApplication()));
-  private static final Comparator<GroupMemberEntry.FullMember>         ALPHABETICAL      = (m1, m2) -> m1.getMember().getDisplayName(ApplicationDependencies.getApplication()).compareToIgnoreCase(m2.getMember().getDisplayName(ApplicationDependencies.getApplication()));
+  private static final Comparator<GroupMemberEntry.FullMember>         HAS_DISPLAY_NAME  = (m1, m2) -> Boolean.compare(m2.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()), m1.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()));
+  private static final Comparator<GroupMemberEntry.FullMember>         ALPHABETICAL      = (m1, m2) -> m1.getMember().getDisplayName(AppDependencies.getApplication()).compareToIgnoreCase(m2.getMember().getDisplayName(AppDependencies.getApplication()));
   private static final Comparator<? super GroupMemberEntry.FullMember> MEMBER_ORDER      = ComparatorCompat.chain(LOCAL_FIRST)
                                                                                                            .thenComparing(ADMIN_FIRST)
                                                                                                            .thenComparing(HAS_DISPLAY_NAME)
@@ -54,7 +54,7 @@ public final class LiveGroup {
   private final LiveData<GroupLinkUrlAndStatus>                   groupLink;
 
   public LiveGroup(@NonNull GroupId groupId) {
-    Context                        context       = ApplicationDependencies.getApplication();
+    Context                        context       = AppDependencies.getApplication();
     MutableLiveData<LiveRecipient> liveRecipient = new MutableLiveData<>();
 
     this.groupDatabase     = SignalDatabase.groups();
@@ -123,7 +123,7 @@ public final class LiveGroup {
       if (!TextUtils.isEmpty(title)) {
         return title;
       }
-      return recipient.getDisplayName(ApplicationDependencies.getApplication());
+      return recipient.getDisplayName(AppDependencies.getApplication());
     });
   }
 

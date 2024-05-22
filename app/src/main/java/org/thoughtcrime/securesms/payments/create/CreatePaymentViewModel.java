@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.money.FiatMoney;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.Balance;
 import org.thoughtcrime.securesms.payments.CreatePaymentDetails;
@@ -74,15 +74,15 @@ public class CreatePaymentViewModel extends ViewModel {
     LiveData<Optional<CurrencyExchange.ExchangeRate>> liveExchangeRate = LiveDataUtil.mapAsync(SignalStore.paymentsValues().liveCurrentCurrency(),
                                                                                                currency -> {
                                                                                                  try {
-                                                                                                   return Optional.ofNullable(ApplicationDependencies.getPayments()
-                                                                                                                                                       .getCurrencyExchange(true)
-                                                                                                                                                       .getExchangeRate(currency));
+                                                                                                   return Optional.ofNullable(AppDependencies.getPayments()
+                                                                                                                                             .getCurrencyExchange(true)
+                                                                                                                                             .getExchangeRate(currency));
                                                                                                  } catch (IOException e1) {
                                                                                                    Log.w(TAG, "Unable to get fresh exchange data, falling back to cached", e1);
                                                                                                    try {
-                                                                                                     return Optional.ofNullable(ApplicationDependencies.getPayments()
-                                                                                                                                                         .getCurrencyExchange(false)
-                                                                                                                                                         .getExchangeRate(currency));
+                                                                                                     return Optional.ofNullable(AppDependencies.getPayments()
+                                                                                                                                               .getCurrencyExchange(false)
+                                                                                                                                               .getExchangeRate(currency));
                                                                                                    } catch (IOException e2) {
                                                                                                      Log.w(TAG, "Unable to get any exchange data", e2);
                                                                                                      return Optional.empty();
@@ -90,7 +90,7 @@ public class CreatePaymentViewModel extends ViewModel {
                                                                                                  }
                                                                                                });
 
-    inputState.update(liveExchangeRate, (rate, state) -> updateAmount(ApplicationDependencies.getApplication(), state.updateExchangeRate(rate), AmountKeyboardGlyph.NONE));
+    inputState.update(liveExchangeRate, (rate, state) -> updateAmount(AppDependencies.getApplication(), state.updateExchangeRate(rate), AmountKeyboardGlyph.NONE));
   }
 
   @NonNull LiveData<Boolean> getEnclaveFailure() {

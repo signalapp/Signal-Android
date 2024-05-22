@@ -11,7 +11,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob
@@ -56,7 +56,7 @@ class RegistrationCompleteFragment : LoggingFragment() {
       Log.i(TAG, "Pin restore flow not required. Profile name: $isProfileNameEmpty | Profile avatar: $isAvatarEmpty | Needs PIN: $needsPin")
 
       if (!needsProfile && !needsPin) {
-        ApplicationDependencies.getJobManager()
+        AppDependencies.jobManager
           .startChain(ProfileUploadJob())
           .then(listOf(MultiDeviceProfileKeyUpdateJob(), MultiDeviceProfileContentUpdateJob()))
           .enqueue()

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import org.signal.core.util.Stopwatch
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.log
@@ -88,7 +88,7 @@ object ReceiptMessageProcessor {
       for (targetTimestamp in missingTargetTimestamps) {
         warn(envelope.timestamp!!, "[handleReadReceipt] Could not find matching message! targetTimestamp: $targetTimestamp, receiptAuthor: $senderRecipientId | Receipt, so associating with message from self ($selfId)")
         if (earlyMessageCacheEntry != null) {
-          ApplicationDependencies.getEarlyMessageCache().store(selfId, targetTimestamp, earlyMessageCacheEntry)
+          AppDependencies.earlyMessageCache.store(selfId, targetTimestamp, earlyMessageCacheEntry)
         }
       }
     }
@@ -133,7 +133,7 @@ object ReceiptMessageProcessor {
       for (targetTimestamp in missingTargetTimestamps) {
         warn(envelope.timestamp!!, "[handleViewedReceipt] Could not find matching message! targetTimestamp: $targetTimestamp, receiptAuthor: $senderRecipientId | Receipt so associating with message from self ($selfId)")
         if (earlyMessageCacheEntry != null) {
-          ApplicationDependencies.getEarlyMessageCache().store(selfId, targetTimestamp, earlyMessageCacheEntry)
+          AppDependencies.earlyMessageCache.store(selfId, targetTimestamp, earlyMessageCacheEntry)
         }
       }
     }

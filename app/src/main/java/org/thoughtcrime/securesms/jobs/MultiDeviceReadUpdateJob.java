@@ -10,7 +10,7 @@ import org.signal.core.util.ListUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -68,7 +68,7 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
    * maximum size.
    */
   public static void enqueue(@NonNull List<SyncMessageId> messageIds) {
-    JobManager                jobManager      = ApplicationDependencies.getJobManager();
+    JobManager                jobManager      = AppDependencies.getJobManager();
     List<List<SyncMessageId>> messageIdChunks = ListUtil.chunk(messageIds, SendReadReceiptJob.MAX_TIMESTAMPS);
 
     if (messageIdChunks.size() > 1) {
@@ -120,7 +120,7 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
       }
     }
 
-    SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
+    SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
     messageSender.sendSyncMessage(SignalServiceSyncMessage.forRead(readMessages), UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

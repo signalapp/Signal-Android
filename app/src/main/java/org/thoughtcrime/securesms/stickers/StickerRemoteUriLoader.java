@@ -7,7 +7,7 @@ import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 
 import java.io.InputStream;
@@ -38,7 +38,7 @@ public final class StickerRemoteUriLoader implements ModelLoader<StickerRemoteUr
 
     @Override
     public @NonNull ModelLoader<StickerRemoteUri, InputStream> build(@NonNull MultiModelLoaderFactory multiFactory) {
-      return new StickerRemoteUriLoader(ApplicationDependencies.getSignalServiceMessageReceiver());
+      return new StickerRemoteUriLoader(AppDependencies.getSignalServiceMessageReceiver());
     }
 
     @Override

@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.util.Debouncer;
@@ -66,7 +66,7 @@ public class MarkReadHelper {
 
         Log.d(TAG, "Marking " + infos.size() + " messages as read.");
 
-        ApplicationDependencies.getMessageNotifier().updateNotification(context);
+        AppDependencies.getMessageNotifier().updateNotification(context);
         MarkReadReceiver.process(infos);
         MarkReadReceiver.processCallEvents(Collections.singletonList(conversationId), timestamp);
       });

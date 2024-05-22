@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.RegistrationSessionProcessor
 import org.thoughtcrime.securesms.registration.SmsRetrieverReceiver
@@ -40,7 +40,7 @@ class ChangeNumberViewModel(
   savedState: SavedStateHandle,
   password: String,
   verifyAccountRepository: VerifyAccountRepository,
-  private val smsRetrieverReceiver: SmsRetrieverReceiver = SmsRetrieverReceiver(ApplicationDependencies.getApplication())
+  private val smsRetrieverReceiver: SmsRetrieverReceiver = SmsRetrieverReceiver(AppDependencies.application)
 ) : BaseRegistrationViewModel(savedState, verifyAccountRepository, password) {
 
   var oldNumberState: NumberViewState = NumberViewState.Builder().build()
@@ -222,7 +222,7 @@ class ChangeNumberViewModel(
   class Factory(owner: SavedStateRegistryOwner) : AbstractSavedStateViewModelFactory(owner, null) {
 
     override fun <T : ViewModel> create(key: String, modelClass: Class<T>, handle: SavedStateHandle): T {
-      val context: Application = ApplicationDependencies.getApplication()
+      val context: Application = AppDependencies.application
       val localNumber: String = SignalStore.account().e164!!
       val password: String = SignalStore.account().servicePassword!!
 

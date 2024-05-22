@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
 import org.thoughtcrime.securesms.jobs.InAppPaymentRecurringContextJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
@@ -190,7 +190,7 @@ class RecurringInAppPaymentRepository(private val donationsService: DonationsSer
         Log.d(TAG, "Attempting to set user subscription level to $subscriptionLevel", true)
         Single
           .fromCallable {
-            ApplicationDependencies.getDonationsService().updateSubscriptionLevel(
+            AppDependencies.donationsService.updateSubscriptionLevel(
               subscriber.subscriberId,
               subscriptionLevel,
               subscriber.currencyCode,

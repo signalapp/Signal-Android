@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDona
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.rx.RxStore
 
@@ -69,7 +69,7 @@ class GatewaySelectorViewModel(
   class Factory(
     private val args: GatewaySelectorBottomSheetArgs,
     private val repository: StripeRepository,
-    private val gatewaySelectorRepository: GatewaySelectorRepository = GatewaySelectorRepository(ApplicationDependencies.getDonationsService())
+    private val gatewaySelectorRepository: GatewaySelectorRepository = GatewaySelectorRepository(AppDependencies.donationsService)
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(GatewaySelectorViewModel(args, repository, gatewaySelectorRepository)) as T

@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.service
 
 import android.content.Context
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AnalyzeDatabaseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.toMillis
@@ -35,7 +35,7 @@ class AnalyzeDatabaseAlarmListener : PersistentAlarmManagerListener() {
   }
 
   override fun onAlarm(context: Context, scheduledTime: Long): Long {
-    ApplicationDependencies.getJobManager().add(AnalyzeDatabaseJob())
+    AppDependencies.jobManager.add(AnalyzeDatabaseJob())
 
     val nextTime = getNextTime()
     SignalStore.misc().nextDatabaseAnalysisTime = nextTime

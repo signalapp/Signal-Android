@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.net;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 
 import java.net.InetAddress;
@@ -38,10 +38,10 @@ public class SequentialDns implements Dns {
           Log.w(TAG, String.format(Locale.ENGLISH, "Didn't find any addresses for %s using %s. Continuing.", hostname, dns.getClass().getSimpleName()));
         }
       } catch (UnknownHostException e) {
-        Log.w(TAG, String.format(Locale.ENGLISH, "Failed to resolve %s using %s. Continuing. Network Type: %s", hostname, dns.getClass().getSimpleName(), NetworkUtil.getNetworkTypeDescriptor(ApplicationDependencies.getApplication())));
+        Log.w(TAG, String.format(Locale.ENGLISH, "Failed to resolve %s using %s. Continuing. Network Type: %s", hostname, dns.getClass().getSimpleName(), NetworkUtil.getNetworkTypeDescriptor(AppDependencies.getApplication())));
       }
     }
-    Log.w(TAG, "Failed to resolve using any DNS. Network Type: " + NetworkUtil.getNetworkTypeDescriptor(ApplicationDependencies.getApplication()));
+    Log.w(TAG, "Failed to resolve using any DNS. Network Type: " + NetworkUtil.getNetworkTypeDescriptor(AppDependencies.getApplication()));
     throw new UnknownHostException(hostname);
   }
 }

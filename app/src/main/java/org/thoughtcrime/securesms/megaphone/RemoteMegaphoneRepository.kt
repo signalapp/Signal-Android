@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.RemoteMegaphoneTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord.ActionId
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.megaphone.RemoteMegaphoneRepository.Action
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -37,7 +37,7 @@ object RemoteMegaphoneRepository {
   private val TAG = Log.tag(RemoteMegaphoneRepository::class.java)
 
   private val db: RemoteMegaphoneTable = SignalDatabase.remoteMegaphones
-  private val context: Application = ApplicationDependencies.getApplication()
+  private val context: Application = AppDependencies.application
 
   private val snooze: Action = Action { _, controller, remote ->
     controller.onMegaphoneSnooze(Megaphones.Event.REMOTE_MEGAPHONE)

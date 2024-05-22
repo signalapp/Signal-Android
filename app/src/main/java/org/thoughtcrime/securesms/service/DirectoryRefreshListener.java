@@ -2,9 +2,8 @@ package org.thoughtcrime.securesms.service;
 
 
 import android.content.Context;
-import android.content.Intent;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -22,7 +21,7 @@ public class DirectoryRefreshListener extends PersistentAlarmManagerListener {
   @Override
   protected long onAlarm(Context context, long scheduledTime) {
     if (scheduledTime != 0 && SignalStore.account().isRegistered()) {
-      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(true));
+      AppDependencies.getJobManager().add(new DirectoryRefreshJob(true));
     }
 
     long newTime;

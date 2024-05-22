@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -51,7 +51,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     const val KEY = "InAppPaymentAuthCheckJob"
   }
 
-  private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
+  private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, AppDependencies.okHttpClient)
 
   override fun serialize(): ByteArray? = null
 
@@ -211,9 +211,9 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
 
     Log.i(TAG, "Setting default payment method...", true)
     val setPaymentMethodResponse = if (inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
-      ApplicationDependencies.getDonationsService().setDefaultIdealPaymentMethod(subscriber.subscriberId, stripeSetupIntent.id)
+      AppDependencies.donationsService.setDefaultIdealPaymentMethod(subscriber.subscriberId, stripeSetupIntent.id)
     } else {
-      ApplicationDependencies.getDonationsService().setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethod)
+      AppDependencies.donationsService.setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethod)
     }
 
     when (val result = checkResult(setPaymentMethodResponse)) {
@@ -230,7 +230,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
       val updateOperation: LevelUpdateOperation = RecurringInAppPaymentRepository.getOrCreateLevelUpdateOperation(TAG, level)
       Log.d(TAG, "Attempting to set user subscription level to $level", true)
 
-      val updateLevelResponse = ApplicationDependencies.getDonationsService().updateSubscriptionLevel(
+      val updateLevelResponse = AppDependencies.donationsService.updateSubscriptionLevel(
         subscriber.subscriberId,
         level,
         subscriber.currencyCode,

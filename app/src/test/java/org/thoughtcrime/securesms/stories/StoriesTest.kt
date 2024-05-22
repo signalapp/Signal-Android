@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.FakeMessageRecords
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 
@@ -36,7 +36,7 @@ class StoriesTest {
   private lateinit var mockJobManager: JobManager
 
   @Mock
-  private lateinit var mockApplicationDependenciesStatic: MockedStatic<ApplicationDependencies>
+  private lateinit var mockApplicationDependenciesStatic: MockedStatic<AppDependencies>
 
   @Mock
   private lateinit var mockSignalDatabaseStatic: MockedStatic<SignalDatabase>
@@ -53,7 +53,7 @@ class StoriesTest {
 
     SignalDatabase.setSignalDatabaseInstanceForTesting(mockSignalDatabase)
     whenever(SignalDatabase.attachments).thenReturn(mockAttachmentTable)
-    whenever(ApplicationDependencies.getJobManager()).thenReturn(mockJobManager)
+    whenever(AppDependencies.jobManager).thenReturn(mockJobManager)
     whenever(mockAttachmentTable.getAttachmentsForMessage(any())).thenReturn(emptyList())
   }
 

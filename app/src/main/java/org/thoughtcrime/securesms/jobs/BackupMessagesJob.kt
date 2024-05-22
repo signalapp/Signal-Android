@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
@@ -37,7 +37,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
     const val QUEUE = "BackupMessagesQueue"
 
     fun enqueue() {
-      val jobManager = ApplicationDependencies.getJobManager()
+      val jobManager = AppDependencies.jobManager
       jobManager.add(BackupMessagesJob())
     }
   }
@@ -92,7 +92,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
       }
     }
     if (needToBackfill > 0) {
-      ApplicationDependencies.getJobManager().add(ArchiveAttachmentBackfillJob(totalCount = totalCount, progress = progress - needToBackfill))
+      AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob(totalCount = totalCount, progress = progress - needToBackfill))
       return true
     }
     return false
@@ -112,7 +112,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
 
   override fun onRun() {
     EventBus.getDefault().postSticky(BackupV2Event(type = BackupV2Event.Type.PROGRESS_MESSAGES, count = 0, estimatedTotalCount = 0))
-    val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(ApplicationDependencies.getApplication())
+    val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
 
     val outputStream = FileOutputStream(tempBackupFile)
     BackupRepository.export(outputStream = outputStream, append = { tempBackupFile.appendBytes(it) }, plaintext = false)

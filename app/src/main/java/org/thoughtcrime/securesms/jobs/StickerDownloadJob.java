@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerTable;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -97,7 +97,7 @@ public class StickerDownloadJob extends BaseJob {
       return;
     }
 
-    SignalServiceMessageReceiver receiver     = ApplicationDependencies.getSignalServiceMessageReceiver();
+    SignalServiceMessageReceiver receiver     = AppDependencies.getSignalServiceMessageReceiver();
     byte[]                       packIdBytes  = Hex.fromStringCondensed(sticker.getPackId ());
     byte[]                       packKeyBytes = Hex.fromStringCondensed(sticker.getPackKey());
     InputStream                  stream       = receiver.retrieveSticker(packIdBytes, packKeyBytes, sticker.getStickerId());

@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBa
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.util.Currency
 import java.util.Locale
@@ -51,7 +51,7 @@ class GiftFlowRepository {
   fun getGiftBadge(): Single<Pair<Int, Badge>> {
     return Single
       .fromCallable {
-        ApplicationDependencies.getDonationsService()
+        AppDependencies.donationsService
           .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }
@@ -62,7 +62,7 @@ class GiftFlowRepository {
   fun getGiftPricing(): Single<Map<Currency, FiatMoney>> {
     return Single
       .fromCallable {
-        ApplicationDependencies.getDonationsService()
+        AppDependencies.donationsService
           .getDonationsConfiguration(Locale.getDefault())
       }
       .subscribeOn(Schedulers.io())

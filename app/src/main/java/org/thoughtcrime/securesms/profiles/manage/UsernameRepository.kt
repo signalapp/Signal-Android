@@ -12,7 +12,7 @@ import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkResetResult
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -88,7 +88,7 @@ object UsernameRepository {
   private const val BASE_URL = "https://signal.me/#eu/"
   private const val USERNAME_SYNC_ERROR_THRESHOLD = 3
 
-  private val accountManager: SignalServiceAccountManager get() = ApplicationDependencies.getSignalServiceAccountManager()
+  private val accountManager: SignalServiceAccountManager get() = AppDependencies.signalServiceAccountManager
 
   /**
    * Given a nickname, this will temporarily reserve a matching discriminator that can later be confirmed via [confirmUsernameAndCreateNewLink].
@@ -180,7 +180,7 @@ object UsernameRepository {
    * Creates or rotates the username link for the local user.
    */
   fun createOrResetUsernameLink(): Single<UsernameLinkResetResult> {
-    if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
+    if (!NetworkUtil.isConnected(AppDependencies.application)) {
       Log.w(TAG, "[createOrResetUsernameLink] No network! Not making any changes.")
       return Single.just(UsernameLinkResetResult.NetworkUnavailable)
     }
@@ -269,7 +269,7 @@ object UsernameRepository {
   fun fetchAciForUsername(username: String): Single<UsernameAciFetchResult> {
     return Single.fromCallable {
       try {
-        val aci: ACI = ApplicationDependencies.getSignalServiceAccountManager().getAciByUsername(Username(username))
+        val aci: ACI = AppDependencies.signalServiceAccountManager.getAciByUsername(Username(username))
         UsernameAciFetchResult.Success(aci)
       } catch (e: UsernameIsNotAssociatedWithAnAccountException) {
         Log.w(TAG, "[fetchAciFromUsername] Failed to get ACI for username hash", e)
@@ -397,7 +397,7 @@ object UsernameRepository {
   private fun updateUsernameDisplayForCurrentLinkInternal(updatedUsername: Username): UsernameSetResult {
     Log.i(TAG, "[updateUsernameDisplayForCurrentLink] Beginning username update...")
 
-    if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
+    if (!NetworkUtil.isConnected(AppDependencies.application)) {
       Log.w(TAG, "[deleteUsernameInternal] No network connection! Not attempting the request.")
       return UsernameSetResult.NETWORK_ERROR
     }
@@ -428,7 +428,7 @@ object UsernameRepository {
   private fun confirmUsernameAndCreateNewLinkInternal(username: Username): UsernameSetResult {
     Log.i(TAG, "[confirmUsernameAndCreateNewLink] Beginning username confirmation...")
 
-    if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
+    if (!NetworkUtil.isConnected(AppDependencies.application)) {
       Log.w(TAG, "[confirmUsernameAndCreateNewLink] No network connection! Not attempting the request.")
       return UsernameSetResult.NETWORK_ERROR
     }
@@ -464,7 +464,7 @@ object UsernameRepository {
 
   @WorkerThread
   private fun deleteUsernameInternal(): UsernameDeleteResult {
-    if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
+    if (!NetworkUtil.isConnected(AppDependencies.application)) {
       Log.w(TAG, "[deleteUsernameInternal] No network connection! Not attempting the request.")
       return UsernameDeleteResult.NETWORK_ERROR
     }

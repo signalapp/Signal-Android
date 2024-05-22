@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -128,7 +128,7 @@ public class RefreshOwnProfileJob extends BaseJob {
 
       if (!self.getProfileName().isEmpty()) {
         Log.w(TAG, "We have a name locally. Scheduling a profile upload.");
-        ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
+        AppDependencies.getJobManager().add(new ProfileUploadJob());
       } else {
         Log.w(TAG, "We don't have a name locally, either!");
       }
@@ -208,7 +208,7 @@ public class RefreshOwnProfileJob extends BaseJob {
 
   private static void setProfileAvatar(@Nullable String avatar) {
     Log.d(TAG, "Saving " + (!Util.isEmpty(avatar) ? "non-" : "") + "empty avatar.");
-    ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(Recipient.self(), avatar));
+    AppDependencies.getJobManager().add(new RetrieveProfileAvatarJob(Recipient.self(), avatar));
   }
 
   private void setProfileCapabilities(@Nullable SignalServiceProfile.Capabilities capabilities) {
@@ -222,13 +222,13 @@ public class RefreshOwnProfileJob extends BaseJob {
   private void ensureUnidentifiedAccessCorrect(@Nullable String unidentifiedAccessVerifier, boolean universalUnidentifiedAccess) {
     if (unidentifiedAccessVerifier == null) {
       Log.w(TAG, "No unidentified access is set remotely! Refreshing attributes.");
-      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
+      AppDependencies.getJobManager().add(new RefreshAttributesJob());
       return;
     }
 
     if (TextSecurePreferences.isUniversalUnidentifiedAccess(context) != universalUnidentifiedAccess) {
       Log.w(TAG, "The universal access flag doesn't match our local value (local: " + TextSecurePreferences.isUniversalUnidentifiedAccess(context) + ", remote: " + universalUnidentifiedAccess + ")! Refreshing attributes.");
-      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
+      AppDependencies.getJobManager().add(new RefreshAttributesJob());
       return;
     }
 
@@ -245,7 +245,7 @@ public class RefreshOwnProfileJob extends BaseJob {
 
     if (!verified) {
       Log.w(TAG, "Unidentified access failed to verify! Refreshing attributes.");
-      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
+      AppDependencies.getJobManager().add(new RefreshAttributesJob());
     }
   }
 
@@ -282,10 +282,10 @@ public class RefreshOwnProfileJob extends BaseJob {
   }
 
   private void syncWithStorageServiceThenUploadProfile() {
-    ApplicationDependencies.getJobManager()
-                           .startChain(new StorageSyncJob())
-                           .then(new ProfileUploadJob())
-                           .enqueue();
+    AppDependencies.getJobManager()
+                   .startChain(new StorageSyncJob())
+                   .then(new ProfileUploadJob())
+                   .enqueue();
   }
 
   private static void checkUsernameIsInSync() {
@@ -294,7 +294,7 @@ public class RefreshOwnProfileJob extends BaseJob {
     try {
       String localUsername = SignalStore.account().getUsername();
 
-      WhoAmIResponse whoAmIResponse     = ApplicationDependencies.getSignalServiceAccountManager().getWhoAmI();
+      WhoAmIResponse whoAmIResponse     = AppDependencies.getSignalServiceAccountManager().getWhoAmI();
       String         remoteUsernameHash = whoAmIResponse.getUsernameHash();
       String         localUsernameHash  = localUsername != null ? Base64.encodeUrlSafeWithoutPadding(new Username(localUsername).getHash()) : null;
 
@@ -320,7 +320,7 @@ public class RefreshOwnProfileJob extends BaseJob {
       UsernameLinkComponents localUsernameLink = SignalStore.account().getUsernameLink();
 
       if (localUsernameLink != null) {
-        byte[]                remoteEncryptedUsername = ApplicationDependencies.getSignalServiceAccountManager().getEncryptedUsernameFromLinkServerId(localUsernameLink.getServerId());
+        byte[]                remoteEncryptedUsername = AppDependencies.getSignalServiceAccountManager().getEncryptedUsernameFromLinkServerId(localUsernameLink.getServerId());
         Username.UsernameLink combinedLink            = new Username.UsernameLink(localUsernameLink.getEntropy(), remoteEncryptedUsername);
         Username              remoteUsername          = Username.fromLink(combinedLink);
 
@@ -387,8 +387,8 @@ public class RefreshOwnProfileJob extends BaseJob {
 
         boolean isDueToPaymentFailure = false;
         if (subscriber != null) {
-          ServiceResponse<ActiveSubscription> response = ApplicationDependencies.getDonationsService()
-                                                                                .getSubscription(subscriber.getSubscriberId());
+          ServiceResponse<ActiveSubscription> response = AppDependencies.getDonationsService()
+                                                                        .getSubscription(subscriber.getSubscriberId());
 
           if (response.getResult().isPresent()) {
             ActiveSubscription activeSubscription = response.getResult().get();

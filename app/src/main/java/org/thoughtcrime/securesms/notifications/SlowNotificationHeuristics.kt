@@ -10,7 +10,7 @@ import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.FeatureFlags
@@ -102,7 +102,7 @@ object SlowNotificationHeuristics {
       return false
     }
     val configuration = getConfiguration()
-    val db = LocalMetricsDatabase.getInstance(ApplicationDependencies.getApplication())
+    val db = LocalMetricsDatabase.getInstance(AppDependencies.application)
 
     val metrics = db.getMetrics()
 
@@ -133,7 +133,7 @@ object SlowNotificationHeuristics {
    */
   @JvmStatic
   fun isPotentiallyCausedByBatteryOptimizations(): Boolean {
-    val applicationContext = ApplicationDependencies.getApplication()
+    val applicationContext = AppDependencies.application
     if (DeviceProperties.getDataSaverState(applicationContext) == DeviceProperties.DataSaverState.ENABLED) {
       return false
     }
@@ -187,7 +187,7 @@ object SlowNotificationHeuristics {
       Log.d(TAG, "not enough messages for message latency")
       return false
     }
-    val db = LocalMetricsDatabase.getInstance(ApplicationDependencies.getApplication())
+    val db = LocalMetricsDatabase.getInstance(AppDependencies.application)
     for ((percentage, threshold) in percentiles.entries) {
       val averageLatency = db.eventPercent(SignalLocalMetrics.MessageLatency.NAME_HIGH, percentage.coerceAtMost(100).coerceAtLeast(0))
 
@@ -200,7 +200,7 @@ object SlowNotificationHeuristics {
   }
 
   private fun haveEnoughData(eventName: String, minimumEventAgeMs: Long): Boolean {
-    val db = LocalMetricsDatabase.getInstance(ApplicationDependencies.getApplication())
+    val db = LocalMetricsDatabase.getInstance(AppDependencies.application)
 
     val oldestEvent = db.getOldestMetricTime(eventName)
 

@@ -17,7 +17,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.JsonUtils
@@ -66,8 +66,8 @@ class ExportAccountDataTest {
 
   @Before
   fun setup() {
-    if (!ApplicationDependencies.isInitialized()) {
-      ApplicationDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
+    if (!AppDependencies.isInitialized) {
+      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
     }
   }
 

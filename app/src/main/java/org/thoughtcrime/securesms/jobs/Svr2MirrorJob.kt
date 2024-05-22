@@ -6,7 +6,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -72,7 +72,7 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
         return Result.success()
       }
 
-      val svr2: SecureValueRecoveryV2 = ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
+      val svr2: SecureValueRecoveryV2 = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
 
       val session: PinChangeSession = serializedChangeSession?.let { session ->
         svr2.resumePinChangeSession(pin, SignalStore.svr().getOrCreateMasterKey(), session)
@@ -84,7 +84,7 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
         is BackupResponse.Success -> {
           Log.i(TAG, "Successfully migrated to SVR2! $svr2")
           SignalStore.svr().appendAuthTokenToList(response.authorization.asBasic())
-          ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+          AppDependencies.jobManager.add(RefreshAttributesJob())
           Result.success()
         }
         is BackupResponse.ApplicationError -> {

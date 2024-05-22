@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.safety.SafetyNumberRecipient;
@@ -91,7 +91,7 @@ public final class SafetyNumberChangeRepository {
 
     List<Recipient> recipients = Stream.of(recipientIds).map(Recipient::resolved).toList();
 
-    List<ChangedRecipient> changedRecipients = Stream.of(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).getIdentityRecords())
+    List<ChangedRecipient> changedRecipients = Stream.of(AppDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).getIdentityRecords())
                                                      .map(record -> new ChangedRecipient(Recipient.resolved(record.getRecipientId()), record))
                                                      .toList();
 
@@ -120,7 +120,7 @@ public final class SafetyNumberChangeRepository {
 
   @WorkerThread
   private TrustAndVerifyResult trustOrVerifyChangedRecipientsInternal(@NonNull List<ChangedRecipient> changedRecipients) {
-    SignalIdentityKeyStore identityStore = ApplicationDependencies.getProtocolStore().aci().identities();
+    SignalIdentityKeyStore identityStore = AppDependencies.getProtocolStore().aci().identities();
 
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       for (ChangedRecipient changedRecipient : changedRecipients) {
@@ -128,9 +128,9 @@ public final class SafetyNumberChangeRepository {
 
         if (changedRecipient.isUnverified()) {
           Log.d(TAG, "Setting " + identityRecord.getRecipientId() + " as verified");
-          ApplicationDependencies.getProtocolStore().aci().identities().setVerified(identityRecord.getRecipientId(),
-                                                                                    identityRecord.getIdentityKey(),
-                                                                                    IdentityTable.VerifiedStatus.DEFAULT);
+          AppDependencies.getProtocolStore().aci().identities().setVerified(identityRecord.getRecipientId(),
+                                                                            identityRecord.getIdentityKey(),
+                                                                            IdentityTable.VerifiedStatus.DEFAULT);
         } else {
           Log.d(TAG, "Setting " + identityRecord.getRecipientId() + " as approved");
           identityStore.setApproval(identityRecord.getRecipientId(), true);
@@ -171,13 +171,13 @@ public final class SafetyNumberChangeRepository {
         }
 
         Log.d(TAG, "Saving identity for: " + changedRecipient.getRecipient().getId() + " " + newIdentityKey.hashCode());
-        SignalIdentityKeyStore.SaveResult result = ApplicationDependencies.getProtocolStore().aci().identities().saveIdentity(mismatchAddress, newIdentityKey, true);
+        SignalIdentityKeyStore.SaveResult result = AppDependencies.getProtocolStore().aci().identities().saveIdentity(mismatchAddress, newIdentityKey, true);
 
         Log.d(TAG, "Saving identity result: " + result);
         if (result == SignalIdentityKeyStore.SaveResult.NO_CHANGE) {
           Log.i(TAG, "Archiving sessions explicitly as they appear to be out of sync.");
-          ApplicationDependencies.getProtocolStore().aci().sessions().archiveSessions(changedRecipient.getRecipient().getId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
-          ApplicationDependencies.getProtocolStore().aci().sessions().archiveSiblingSessions(mismatchAddress);
+          AppDependencies.getProtocolStore().aci().sessions().archiveSessions(changedRecipient.getRecipient().getId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+          AppDependencies.getProtocolStore().aci().sessions().archiveSiblingSessions(mismatchAddress);
           SignalDatabase.senderKeyShared().deleteAllFor(changedRecipient.getRecipient().getId());
         }
       }

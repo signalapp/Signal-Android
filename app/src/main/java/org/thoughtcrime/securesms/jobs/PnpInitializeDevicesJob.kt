@@ -16,7 +16,7 @@ import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.protocol.util.Medium
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberRepository
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -52,7 +52,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
         return
       }
 
-      ApplicationDependencies.getJobManager().add(PnpInitializeDevicesJob())
+      AppDependencies.jobManager.add(PnpInitializeDevicesJob())
     }
   }
 
@@ -117,8 +117,8 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
   }
 
   private fun initializeDevices(newE164: String): Single<ServiceResponse<VerifyResponse>> {
-    val accountManager = ApplicationDependencies.getSignalServiceAccountManager()
-    val messageSender = ApplicationDependencies.getSignalServiceMessageSender()
+    val accountManager = AppDependencies.signalServiceAccountManager
+    val messageSender = AppDependencies.signalServiceMessageSender
 
     return Single.fromCallable {
       var completed = false
@@ -157,9 +157,9 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
     newE164: String
   ): PniKeyDistributionRequest {
     val selfIdentifier: String = SignalStore.account().requireAci().toString()
-    val aciProtocolStore: SignalProtocolStore = ApplicationDependencies.getProtocolStore().aci()
-    val pniProtocolStore: SignalProtocolStore = ApplicationDependencies.getProtocolStore().pni()
-    val messageSender = ApplicationDependencies.getSignalServiceMessageSender()
+    val aciProtocolStore: SignalProtocolStore = AppDependencies.protocolStore.aci()
+    val pniProtocolStore: SignalProtocolStore = AppDependencies.protocolStore.pni()
+    val messageSender = AppDependencies.signalServiceMessageSender
 
     val pniIdentity: IdentityKeyPair = SignalStore.account().pniIdentityKey
     val deviceMessages = mutableListOf<OutgoingPushMessage>()

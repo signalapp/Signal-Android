@@ -10,7 +10,7 @@ import org.signal.libsignal.protocol.InvalidKeyException;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.UnknownStorageIdTable;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -87,7 +87,7 @@ public class StorageForcePushJob extends BaseJob {
     }
 
     StorageKey                  storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
-    SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
+    SignalServiceAccountManager accountManager    = AppDependencies.getSignalServiceAccountManager();
     RecipientTable              recipientTable    = SignalDatabase.recipients();
     UnknownStorageIdTable       storageIdTable    = SignalDatabase.unknownStorageIds();
 

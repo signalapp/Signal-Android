@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.database.DatabaseObserver;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.util.Optional;
 
@@ -25,7 +25,7 @@ class LongMessageViewModel extends ViewModel {
 
     repository.getMessage(application, messageId, longMessage -> {
       if (longMessage.isPresent()) {
-        ApplicationDependencies.getDatabaseObserver().registerConversationObserver(longMessage.get().getMessageRecord().getThreadId(), threadObserver);
+        AppDependencies.getDatabaseObserver().registerConversationObserver(longMessage.get().getMessageRecord().getThreadId(), threadObserver);
       }
 
       message.postValue(longMessage);
@@ -38,7 +38,7 @@ class LongMessageViewModel extends ViewModel {
 
   @Override
   protected void onCleared() {
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(threadObserver);
+    AppDependencies.getDatabaseObserver().unregisterObserver(threadObserver);
   }
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {

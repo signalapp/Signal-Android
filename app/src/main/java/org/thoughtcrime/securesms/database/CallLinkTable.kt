@@ -28,7 +28,7 @@ import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
@@ -103,8 +103,8 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       recipientId
     }
 
-    ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(callLink.roomId)
-    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
+    AppDependencies.databaseObserver.notifyCallLinkObservers(callLink.roomId)
+    AppDependencies.databaseObserver.notifyCallUpdateObservers()
 
     return recipientId!!
   }
@@ -124,8 +124,8 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       .where("$ROOM_ID = ?", roomId.serialize())
       .run()
 
-    ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(roomId)
-    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
+    AppDependencies.databaseObserver.notifyCallLinkObservers(roomId)
+    AppDependencies.databaseObserver.notifyCallUpdateObservers()
   }
 
   fun updateCallLinkState(
@@ -151,8 +151,8 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     }
 
     Recipient.live(recipientId).refresh()
-    ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(roomId)
-    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
+    AppDependencies.databaseObserver.notifyCallLinkObservers(roomId)
+    AppDependencies.databaseObserver.notifyCallUpdateObservers()
   }
 
   fun callLinkExists(
@@ -230,7 +230,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         record = callLink,
         recipient = peer,
         searchQuery = query,
-        callLinkPeekInfo = ApplicationDependencies.getSignalCallManager().peekInfoSnapshot[peer.id]
+        callLinkPeekInfo = AppDependencies.signalCallManager.peekInfoSnapshot[peer.id]
       )
     }
   }

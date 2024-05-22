@@ -21,7 +21,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.signal.core.util.SqlUtil;
@@ -74,7 +74,7 @@ public class MediaRepository {
                      return Collections.emptyList();
                    }
 
-                   return getMediaInBucket(ApplicationDependencies.getApplication(), Media.ALL_MEDIA_BUCKET_ID);
+                   return getMediaInBucket(AppDependencies.getApplication(), Media.ALL_MEDIA_BUCKET_ID);
                  })
                  .onErrorReturn(t -> {
                    Log.w(TAG, "Unable to get recent media", t);

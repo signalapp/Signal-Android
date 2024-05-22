@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
 
@@ -34,10 +34,10 @@ class ViewOnceMessageRepository {
 
         MessageTable.MarkedMessageInfo info = mmsDatabase.setIncomingMessageViewed(record.getId());
         if (info != null) {
-          ApplicationDependencies.getJobManager().add(new SendViewedReceiptJob(record.getThreadId(),
-                                                                               info.getSyncMessageId().getRecipientId(),
-                                                                               info.getSyncMessageId().getTimetamp(),
-                                                                               info.getMessageId()));
+          AppDependencies.getJobManager().add(new SendViewedReceiptJob(record.getThreadId(),
+                                                                       info.getSyncMessageId().getRecipientId(),
+                                                                       info.getSyncMessageId().getTimetamp(),
+                                                                       info.getMessageId()));
           MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(info.getSyncMessageId()));
         }
 

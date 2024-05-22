@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -47,7 +47,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
   private final boolean   forceUpdate;
 
   public static void enqueueForceUpdate(Recipient recipient) {
-    SignalExecutors.BOUNDED.execute(() -> ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, recipient.resolve().getProfileAvatar(), true)));
+    SignalExecutors.BOUNDED.execute(() -> AppDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, recipient.resolve().getProfileAvatar(), true)));
   }
 
   public RetrieveProfileAvatarJob(Recipient recipient, String profileAvatar) {
@@ -121,7 +121,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
     File downloadDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
     try {
-      SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
+      SignalServiceMessageReceiver receiver = AppDependencies.getSignalServiceMessageReceiver();
 
       try (InputStream avatarStream = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, profileKey, AvatarHelper.AVATAR_DOWNLOAD_FAILSAFE_MAX_SIZE)) {
         AvatarHelper.setAvatar(context, recipient.getId(), avatarStream);

@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
@@ -106,9 +106,9 @@ final class GroupManagerV2 {
   GroupManagerV2(@NonNull Context context) {
     this(context,
          SignalDatabase.groups(),
-         ApplicationDependencies.getSignalServiceAccountManager().getGroupsV2Api(),
-         ApplicationDependencies.getGroupsV2Operations(),
-         ApplicationDependencies.getGroupsV2Authorization(),
+         AppDependencies.getSignalServiceAccountManager().getGroupsV2Api(),
+         AppDependencies.getGroupsV2Operations(),
+         AppDependencies.getGroupsV2Authorization(),
          SignalStore.account().getServiceIds(),
          new GroupCandidateHelper(),
          new SendGroupUpdateHelper(context));
@@ -469,7 +469,7 @@ final class GroupManagerV2 {
 
       if (!groupCandidate.hasValidProfileKeyCredential()) {
         Log.w(TAG, "[updateSelfProfileKeyInGroup] No credential available, repairing");
-        ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
+        AppDependencies.getJobManager().add(new ProfileUploadJob());
         return null;
       }
 
@@ -495,7 +495,7 @@ final class GroupManagerV2 {
 
       if (!groupCandidate.hasValidProfileKeyCredential()) {
         Log.w(TAG, "[AcceptInvite] No credential available, repairing");
-        ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
+        AppDependencies.getJobManager().add(new ProfileUploadJob());
         return null;
       }
 
@@ -799,7 +799,7 @@ final class GroupManagerV2 {
     try {
       groupsV2Api.putNewGroup(newGroup, authorization.getAuthorizationForToday(serviceIds, groupSecretParams));
 
-      DecryptedGroup decryptedGroup = groupsV2Api.getGroup(groupSecretParams, ApplicationDependencies.getGroupsV2Authorization().getAuthorizationForToday(serviceIds, groupSecretParams));
+      DecryptedGroup decryptedGroup = groupsV2Api.getGroup(groupSecretParams, AppDependencies.getGroupsV2Authorization().getAuthorizationForToday(serviceIds, groupSecretParams));
       if (decryptedGroup == null) {
         throw new GroupChangeFailedException();
       }
@@ -948,15 +948,15 @@ final class GroupManagerV2 {
       } catch (GroupNotAMemberException e) {
         Log.w(TAG, "Despite adding self to group, server says we are not a member, scheduling refresh of group info " + groupId, e);
 
-        ApplicationDependencies.getJobManager()
-                               .add(new RequestGroupV2InfoJob(groupId));
+        AppDependencies.getJobManager()
+                       .add(new RequestGroupV2InfoJob(groupId));
 
         throw new GroupChangeFailedException(e);
       } catch (IOException e) {
         Log.w(TAG, "Group data fetch failed, scheduling refresh of group info " + groupId, e);
 
-        ApplicationDependencies.getJobManager()
-                               .add(new RequestGroupV2InfoJob(groupId));
+        AppDependencies.getJobManager()
+                       .add(new RequestGroupV2InfoJob(groupId));
 
         throw e;
       }
@@ -1226,7 +1226,7 @@ final class GroupManagerV2 {
 
       if (plainGroupChange != null && DecryptedGroupUtil.changeIsSilent(plainGroupChange)) {
         if (sendToMembers) {
-          ApplicationDependencies.getJobManager().add(PushGroupSilentUpdateSendJob.create(context, groupId, groupMutation.getNewGroupState(), outgoingMessage));
+          AppDependencies.getJobManager().add(PushGroupSilentUpdateSendJob.create(context, groupId, groupMutation.getNewGroupState(), outgoingMessage));
         }
 
         return new RecipientAndThread(groupRecipient, -1);

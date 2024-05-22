@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.database.PaymentTable.PaymentTransaction;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.CreatePaymentDetails;
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil;
@@ -201,7 +201,7 @@ final class ConfirmPaymentViewModel extends ViewModel {
       return modelClass.cast(new ConfirmPaymentViewModel(new ConfirmPaymentState(createPaymentDetails.getPayee(),
                                                                                  createPaymentDetails.getAmount(),
                                                                                  createPaymentDetails.getNote()),
-                                                         new ConfirmPaymentRepository(ApplicationDependencies.getPayments().getWallet())));
+                                                         new ConfirmPaymentRepository(AppDependencies.getPayments().getWallet())));
     }
   }
 }

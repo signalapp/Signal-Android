@@ -12,7 +12,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData
@@ -54,7 +54,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
     @WorkerThread
     @JvmStatic
     fun enqueueMessageDeletes(messageRecords: Set<MessageRecord>) {
-      if (!TextSecurePreferences.isMultiDevice(ApplicationDependencies.getApplication())) {
+      if (!TextSecurePreferences.isMultiDevice(AppDependencies.application)) {
         return
       }
 
@@ -64,13 +64,13 @@ class MultiDeviceDeleteSendSyncJob private constructor(
       }
 
       messageRecords.chunked(CHUNK_SIZE).forEach { chunk ->
-        ApplicationDependencies.getJobManager().add(createMessageDeletes(chunk))
+        AppDependencies.jobManager.add(createMessageDeletes(chunk))
       }
     }
 
     @WorkerThread
     fun enqueueThreadDeletes(threads: List<Pair<Long, Set<MessageRecord>>>, isFullDelete: Boolean) {
-      if (!TextSecurePreferences.isMultiDevice(ApplicationDependencies.getApplication())) {
+      if (!TextSecurePreferences.isMultiDevice(AppDependencies.application)) {
         return
       }
 
@@ -80,7 +80,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
       }
 
       threads.chunked(THREAD_CHUNK_SIZE).forEach { chunk ->
-        ApplicationDependencies.getJobManager().add(createThreadDeletes(chunk, isFullDelete))
+        AppDependencies.jobManager.add(createThreadDeletes(chunk, isFullDelete))
       }
     }
 
@@ -250,7 +250,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
     val syncMessageContent = deleteForMeContent(deleteForMe)
 
     return try {
-      ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(syncMessageContent, true, Optional.empty()).isSuccess
+      AppDependencies.signalServiceMessageSender.sendSyncMessage(syncMessageContent, true, Optional.empty()).isSuccess
     } catch (e: IOException) {
       Log.w(TAG, "Unable to send message delete sync", e)
       false

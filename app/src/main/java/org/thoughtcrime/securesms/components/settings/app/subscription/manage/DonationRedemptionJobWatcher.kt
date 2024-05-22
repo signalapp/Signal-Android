@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationS
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
 import org.thoughtcrime.securesms.jobs.DonationReceiptRedemptionJob
@@ -58,8 +58,8 @@ object DonationRedemptionJobWatcher {
       RedemptionType.ONE_TIME -> DonationReceiptRedemptionJob.ONE_TIME_QUEUE
     }
 
-    val donationJobSpecs = ApplicationDependencies
-      .getJobManager()
+    val donationJobSpecs = AppDependencies
+      .jobManager
       .find { it.queueKey?.startsWith(queue) == true }
       .sortedBy { it.createTime }
 

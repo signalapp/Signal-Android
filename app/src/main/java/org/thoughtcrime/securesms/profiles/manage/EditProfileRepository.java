@@ -8,7 +8,7 @@ import androidx.core.util.Consumer;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -29,7 +29,7 @@ final class EditProfileRepository {
       try {
         ProfileUtil.uploadProfileWithName(context, profileName);
         SignalDatabase.recipients().setProfileName(Recipient.self().getId(), profileName);
-        ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
+        AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
 
         callback.accept(Result.SUCCESS);
       } catch (IOException e) {
@@ -44,7 +44,7 @@ final class EditProfileRepository {
       try {
         ProfileUtil.uploadProfileWithAbout(context, about, emoji);
         SignalDatabase.recipients().setAbout(Recipient.self().getId(), about, emoji);
-        ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
+        AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
 
         callback.accept(Result.SUCCESS);
       } catch (IOException e) {
@@ -60,7 +60,7 @@ final class EditProfileRepository {
         ProfileUtil.uploadProfileWithAvatar(new StreamDetails(new ByteArrayInputStream(data), contentType, data.length));
         AvatarHelper.setAvatar(context, Recipient.self().getId(), new ByteArrayInputStream(data));
         SignalStore.misc().setHasEverHadAnAvatar(true);
-        ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
+        AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
 
         callback.accept(Result.SUCCESS);
       } catch (IOException e) {
@@ -75,7 +75,7 @@ final class EditProfileRepository {
       try {
         ProfileUtil.uploadProfileWithAvatar(null);
         AvatarHelper.delete(context, Recipient.self().getId());
-        ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
+        AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
 
         callback.accept(Result.SUCCESS);
       } catch (IOException e) {

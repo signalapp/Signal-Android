@@ -43,7 +43,7 @@ import androidx.media3.ui.PlayerView;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewPlayerControlView;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 
@@ -149,7 +149,7 @@ public class VideoPlayer extends FrameLayout {
 
   public void setVideoSource(@NonNull VideoSlide videoSource, boolean autoplay, String poolTag, long clipStartMs, long clipEndMs) {
     if (exoPlayer == null) {
-      exoPlayer = ApplicationDependencies.getExoPlayerPool().require(poolTag);
+      exoPlayer = AppDependencies.getExoPlayerPool().require(poolTag);
       exoPlayer.addListener(exoPlayerListener);
       exoPlayer.addListener(playerListener);
       exoView.setPlayer(exoPlayer);
@@ -263,7 +263,7 @@ public class VideoPlayer extends FrameLayout {
       exoPlayer.removeListener(playerListener);
       exoPlayer.removeListener(exoPlayerListener);
 
-      ApplicationDependencies.getExoPlayerPool().pool(exoPlayer);
+      AppDependencies.getExoPlayerPool().pool(exoPlayer);
       this.exoPlayer = null;
     }
   }

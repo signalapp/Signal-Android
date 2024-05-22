@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.payments.CryptoValueUtil;
 import org.thoughtcrime.securesms.payments.Direction;
 import org.thoughtcrime.securesms.payments.FailureReason;
@@ -648,7 +648,7 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
    */
   private void notifyChanged() {
     changeSignal.postValue(new Object());
-    ApplicationDependencies.getDatabaseObserver().notifyAllPaymentsListeners();
+    AppDependencies.getDatabaseObserver().notifyAllPaymentsListeners();
   }
 
   /**
@@ -657,10 +657,10 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
    */
   private void notifyUuidChanged(@Nullable UUID uuid) {
     if (uuid != null) {
-      ApplicationDependencies.getDatabaseObserver().notifyPaymentListeners(uuid);
+      AppDependencies.getDatabaseObserver().notifyPaymentListeners(uuid);
       MessageId messageId = SignalDatabase.messages().getPaymentMessage(uuid);
       if (messageId != null) {
-        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(messageId);
+        AppDependencies.getDatabaseObserver().notifyMessageUpdateObservers(messageId);
       }
     }
   }

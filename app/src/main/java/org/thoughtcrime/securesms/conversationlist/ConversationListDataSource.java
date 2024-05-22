@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SignalTrace;
@@ -86,9 +86,9 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
         } else if (MessageTypes.isGroupUpdate(record.getType())) {
           UpdateDescription description;
           if (record.getMessageExtras() != null) {
-            description = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), record.getMessageExtras(), null);
+            description = MessageRecord.getGv2ChangeDescription(AppDependencies.getApplication(), record.getMessageExtras(), null);
           } else {
-            description = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), record.getBody(), null);
+            description = MessageRecord.getGv2ChangeDescription(AppDependencies.getApplication(), record.getBody(), null);
           }
           needsResolve.addAll(description.getMentioned().stream().map(RecipientId::from).collect(Collectors.toList()));
         }
@@ -97,7 +97,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
     stopwatch.split("cursor");
 
-    ApplicationDependencies.getRecipientCache().addToCache(recipients);
+    AppDependencies.getRecipientCache().addToCache(recipients);
     stopwatch.split("cache-recipients");
 
     Recipient.resolvedList(needsResolve);

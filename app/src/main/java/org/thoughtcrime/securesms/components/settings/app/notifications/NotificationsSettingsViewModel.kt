@@ -6,7 +6,7 @@ import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics
@@ -118,7 +118,7 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
       inChatSoundsEnabled = SignalStore.settings().isMessageNotificationsInChatSoundsEnabled,
       repeatAlerts = SignalStore.settings().messageNotificationsRepeatAlerts,
       messagePrivacy = SignalStore.settings().messageNotificationsPrivacy.toString(),
-      priority = TextSecurePreferences.getNotificationPriority(ApplicationDependencies.getApplication()),
+      priority = TextSecurePreferences.getNotificationPriority(AppDependencies.application),
       troubleshootNotifications = if (calculateSlowNotifications) {
         SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && SlowNotificationHeuristics.isHavingDelayedNotifications()
       } else if (currentState != null) {

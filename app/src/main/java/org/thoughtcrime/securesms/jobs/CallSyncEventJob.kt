@@ -4,7 +4,7 @@ import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallId
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -77,7 +77,7 @@ class CallSyncEventJob private constructor(
 
     fun enqueueDeleteSyncEvents(deletedCalls: Set<CallTable.Call>) {
       deletedCalls.chunked(50).forEach {
-        ApplicationDependencies.getJobManager().add(
+        AppDependencies.jobManager.add(
           createForDelete(it)
         )
       }
@@ -127,7 +127,7 @@ class CallSyncEventJob private constructor(
     val syncMessage = createSyncMessage(syncTimestamp, callSyncEvent, call.type)
 
     return try {
-      ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forCallEvent(syncMessage), Optional.empty())
+      AppDependencies.signalServiceMessageSender.sendSyncMessage(SignalServiceSyncMessage.forCallEvent(syncMessage), Optional.empty())
       null
     } catch (e: Exception) {
       Log.w(TAG, "Unable to send call event sync message for ${callSyncEvent.callId}", e)

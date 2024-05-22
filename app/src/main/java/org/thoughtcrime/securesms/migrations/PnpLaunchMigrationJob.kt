@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.migrations
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
@@ -24,7 +24,7 @@ internal class PnpLaunchMigrationJob(parameters: Parameters = Parameters.Builder
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    ApplicationDependencies.getJobManager()
+    AppDependencies.jobManager
       .startChain(RefreshAttributesJob())
       .then(ProfileUploadJob())
       .enqueue()

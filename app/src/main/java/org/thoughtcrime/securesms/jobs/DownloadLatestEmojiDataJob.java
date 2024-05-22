@@ -11,7 +11,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.emoji.EmojiData;
 import org.thoughtcrime.securesms.emoji.EmojiDownloader;
 import org.thoughtcrime.securesms.emoji.EmojiFiles;
@@ -60,7 +60,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
 
     if (nextScheduledCheck <= System.currentTimeMillis()) {
       Log.i(TAG, "Scheduling DownloadLatestEmojiDataJob.");
-      ApplicationDependencies.getJobManager().add(new DownloadLatestEmojiDataJob(false));
+      AppDependencies.getJobManager().add(new DownloadLatestEmojiDataJob(false));
 
       EmojiFiles.Version version = EmojiFiles.Version.readVersion(context);
 

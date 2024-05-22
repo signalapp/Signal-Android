@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeRepository.SafetyNumberChangeState;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
@@ -71,7 +71,7 @@ public final class SafetyNumberChangeViewModel extends ViewModel {
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      SafetyNumberChangeRepository repo = new SafetyNumberChangeRepository(ApplicationDependencies.getApplication());
+      SafetyNumberChangeRepository repo = new SafetyNumberChangeRepository(AppDependencies.getApplication());
       return Objects.requireNonNull(modelClass.cast(new SafetyNumberChangeViewModel(recipientIds, messageId, messageType, repo)));
     }
   }

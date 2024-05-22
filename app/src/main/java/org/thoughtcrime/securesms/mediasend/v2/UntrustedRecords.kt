@@ -8,7 +8,7 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.IdentityRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.concurrent.TimeUnit
 
@@ -43,8 +43,8 @@ object UntrustedRecords {
       .flatten()
 
     val calculatedUntrustedWindow = System.currentTimeMillis() - changedSince
-    return ApplicationDependencies
-      .getProtocolStore()
+    return AppDependencies
+      .protocolStore
       .aci()
       .identities()
       .getIdentityRecords(recipients)

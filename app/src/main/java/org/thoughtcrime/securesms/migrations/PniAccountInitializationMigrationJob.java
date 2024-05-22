@@ -8,7 +8,7 @@ import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -70,8 +70,8 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
       Log.w(TAG, "Already generated the PNI identity. Skipping this step.");
     }
 
-    SignalServiceAccountManager   accountManager = ApplicationDependencies.getSignalServiceAccountManager();
-    SignalServiceAccountDataStore protocolStore  = ApplicationDependencies.getProtocolStore().pni();
+    SignalServiceAccountManager   accountManager = AppDependencies.getSignalServiceAccountManager();
+    SignalServiceAccountDataStore protocolStore  = AppDependencies.getProtocolStore().pni();
     PreKeyMetadataStore           metadataStore  = SignalStore.account().pniPreKeys();
 
     if (!metadataStore.isSignedPreKeyRegistered()) {

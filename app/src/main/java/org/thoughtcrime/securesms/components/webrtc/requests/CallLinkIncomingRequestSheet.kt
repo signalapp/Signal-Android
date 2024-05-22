@@ -40,7 +40,7 @@ import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.BottomSheetUtil
@@ -90,12 +90,12 @@ class CallLinkIncomingRequestSheet : ComposeBottomSheetDialogFragment() {
   }
 
   private fun onApproveEntry() {
-    ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestAccepted(recipientId)
+    AppDependencies.signalCallManager.setCallLinkJoinRequestAccepted(recipientId)
     dismissAllowingStateLoss()
   }
 
   private fun onDenyEntry() {
-    ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestRejected(recipientId)
+    AppDependencies.signalCallManager.setCallLinkJoinRequestRejected(recipientId)
     dismissAllowingStateLoss()
   }
 }

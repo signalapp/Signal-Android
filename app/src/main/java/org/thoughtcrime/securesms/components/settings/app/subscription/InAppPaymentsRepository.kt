@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import android.annotation.SuppressLint
 import androidx.annotation.WorkerThread
-import com.squareup.wire.get
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -37,7 +36,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
@@ -147,9 +146,9 @@ object InAppPaymentsRepository {
         }
       }
 
-      ApplicationDependencies.getDatabaseObserver().registerInAppPaymentObserver(observer)
+      AppDependencies.databaseObserver.registerInAppPaymentObserver(observer)
       emitter.setCancellable {
-        ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer)
+        AppDependencies.databaseObserver.unregisterObserver(observer)
       }
 
       SignalDatabase.inAppPayments.getById(inAppPaymentId)?.also {
@@ -415,8 +414,8 @@ object InAppPaymentsRepository {
         emitter.onNext(Optional.ofNullable(latestInAppPayment))
       }
 
-      ApplicationDependencies.getDatabaseObserver().registerInAppPaymentObserver(observer)
-      emitter.setCancellable { ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer) }
+      AppDependencies.databaseObserver.registerInAppPaymentObserver(observer)
+      emitter.setCancellable { AppDependencies.databaseObserver.unregisterObserver(observer) }
     }.switchMap { inAppPaymentOptional ->
       val inAppPayment = inAppPaymentOptional.getOrNull() ?: return@switchMap jobStatusObservable
 
@@ -504,7 +503,7 @@ object InAppPaymentsRepository {
 
     return try {
       val receiptSerial = ReceiptSerial(randomBytes)
-      val operations = ApplicationDependencies.getClientZkReceiptOperations()
+      val operations = AppDependencies.clientZkReceiptOperations
       operations.createReceiptCredentialRequestContext(secureRandom, receiptSerial)
     } catch (e: InvalidInputException) {
       Log.e(TAG, "Failed to create credential.", e)

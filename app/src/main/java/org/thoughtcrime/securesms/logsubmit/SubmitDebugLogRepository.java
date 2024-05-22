@@ -20,7 +20,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.util.logging.Scrubber;
 import org.signal.core.util.tracing.Tracer;
 import org.thoughtcrime.securesms.database.LogDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -106,7 +106,7 @@ public class SubmitDebugLogRepository {
   private final ExecutorService executor;
 
   public SubmitDebugLogRepository() {
-    this.context  = ApplicationDependencies.getApplication();
+    this.context  = AppDependencies.getApplication();
     this.executor = SignalExecutors.SERIAL;
   }
 

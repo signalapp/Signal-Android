@@ -15,7 +15,7 @@ import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 @RunWith(RobolectricTestRunner::class)
@@ -27,7 +27,7 @@ abstract class BaseRecipientTest {
   val mockitoRule: MockitoRule = MockitoJUnit.rule()
 
   @Mock
-  private lateinit var applicationDependenciesStaticMock: MockedStatic<ApplicationDependencies>
+  private lateinit var applicationDependenciesStaticMock: MockedStatic<AppDependencies>
 
   @Mock
   private lateinit var attachmentSecretProviderStaticMock: MockedStatic<AttachmentSecretProvider>
@@ -42,7 +42,7 @@ abstract class BaseRecipientTest {
   fun superSetUp() {
     val application = ApplicationProvider.getApplicationContext<Application>()
 
-    `when`(ApplicationDependencies.getApplication()).thenReturn(application)
+    `when`(AppDependencies.application).thenReturn(application)
     `when`(AttachmentSecretProvider.getInstance(ArgumentMatchers.any())).thenThrow(RuntimeException::class.java)
   }
 }

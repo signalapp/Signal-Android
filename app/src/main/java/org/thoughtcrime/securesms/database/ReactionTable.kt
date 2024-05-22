@@ -9,7 +9,7 @@ import org.signal.core.util.delete
 import org.signal.core.util.update
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.ReactionRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
@@ -119,7 +119,7 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
       writableDatabase.endTransaction()
     }
 
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(messageId)
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(messageId)
   }
 
   fun deleteReaction(messageId: MessageId, recipientId: RecipientId) {
@@ -137,7 +137,7 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
       writableDatabase.endTransaction()
     }
 
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(messageId)
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(messageId)
   }
 
   fun deleteReactions(messageId: MessageId) {

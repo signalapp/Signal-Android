@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupProtoUtil
 import org.thoughtcrime.securesms.groups.LiveGroup
@@ -93,7 +93,7 @@ class ConversationSettingsRepository(
   fun getIdentity(recipientId: RecipientId, consumer: (IdentityRecord?) -> Unit) {
     SignalExecutors.BOUNDED.execute {
       if (SignalStore.account().aci != null && SignalStore.account().pni != null) {
-        consumer(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId).orElse(null))
+        consumer(AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipientId).orElse(null))
       } else {
         consumer(null)
       }

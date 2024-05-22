@@ -14,7 +14,7 @@ import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.util.FeatureFlags
 
@@ -31,8 +31,8 @@ class PaymentsValuesTest {
 
   @Before
   fun setup() {
-    if (!ApplicationDependencies.isInitialized()) {
-      ApplicationDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
+    if (!AppDependencies.isInitialized) {
+      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
     }
   }
 

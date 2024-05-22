@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver.MessageObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentRedemptionJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -113,10 +113,10 @@ class ViewReceivedGiftViewModel(
         }
       }
 
-      ApplicationDependencies.getJobManager().add(InAppPaymentRedemptionJob.create(MessageId(messageId), setAsPrimary))
-      ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageObserver)
+      AppDependencies.jobManager.add(InAppPaymentRedemptionJob.create(MessageId(messageId), setAsPrimary))
+      AppDependencies.databaseObserver.registerMessageUpdateObserver(messageObserver)
       emitter.setCancellable {
-        ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageObserver)
+        AppDependencies.databaseObserver.unregisterObserver(messageObserver)
       }
     }.timeout(10, TimeUnit.SECONDS, Completable.error(BadgeRedemptionError.TimeoutWaitingForTokenError(DonationErrorSource.GIFT_REDEMPTION)))
   }

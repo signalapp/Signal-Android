@@ -13,7 +13,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.SettingHeader;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.PaymentsAvailability;
 import org.thoughtcrime.securesms.keyvalue.PaymentsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -284,7 +284,7 @@ public class PaymentsHomeViewModel extends ViewModel {
       //noinspection ConstantConditions
       return modelClass.cast(new PaymentsHomeViewModel(new PaymentsHomeRepository(),
                                                        new PaymentsRepository(),
-                                                       new CurrencyExchangeRepository(ApplicationDependencies.getPayments())));
+                                                       new CurrencyExchangeRepository(AppDependencies.getPayments())));
     }
   }
 

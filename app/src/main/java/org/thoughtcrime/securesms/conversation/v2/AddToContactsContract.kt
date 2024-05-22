@@ -16,7 +16,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
@@ -33,7 +33,7 @@ class AddToContactsContract : ActivityResultContract<Intent, Unit>() {
   override fun createIntent(context: Context, input: Intent): Intent = input
 
   override fun parseResult(resultCode: Int, intent: Intent?) {
-    ApplicationDependencies.getJobManager().add(DirectoryRefreshJob(false))
+    AppDependencies.jobManager.add(DirectoryRefreshJob(false))
   }
 
   companion object {

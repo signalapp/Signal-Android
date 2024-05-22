@@ -44,7 +44,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.pendingMember
 import org.thoughtcrime.securesms.database.model.databaseprotos.requestingMember
 import org.thoughtcrime.securesms.database.setNewDescription
 import org.thoughtcrime.securesms.database.setNewTitle
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization
@@ -108,10 +108,10 @@ class GroupsV2StateProcessorTest {
     profileAndMessageHelper = spyk(ProfileAndMessageHelper(serviceIds.aci, masterKey, groupId))
     jobManager = mockk()
 
-    mockkStatic(ApplicationDependencies::class)
-    every { ApplicationDependencies.getJobManager() } returns jobManager
-    every { ApplicationDependencies.getSignalServiceAccountManager().getGroupsV2Api() } returns groupsV2API
-    every { ApplicationDependencies.getGroupsV2Authorization() } returns groupsV2Authorization
+    mockkStatic(AppDependencies::class)
+    every { AppDependencies.jobManager } returns jobManager
+    every { AppDependencies.signalServiceAccountManager.getGroupsV2Api() } returns groupsV2API
+    every { AppDependencies.groupsV2Authorization } returns groupsV2Authorization
 
     mockkObject(SignalDatabase)
     every { SignalDatabase.groups } returns groupTable
@@ -125,7 +125,7 @@ class GroupsV2StateProcessorTest {
 
   @After
   fun tearDown() {
-    unmockkStatic(ApplicationDependencies::class)
+    unmockkStatic(AppDependencies::class)
     unmockkObject(SignalDatabase)
     unmockkObject(ProfileAndMessageHelper)
     unmockkStatic(DecryptedGroupUtil::class)

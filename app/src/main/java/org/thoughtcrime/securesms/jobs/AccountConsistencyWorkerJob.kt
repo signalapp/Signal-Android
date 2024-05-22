@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -25,7 +25,7 @@ class AccountConsistencyWorkerJob private constructor(parameters: Parameters) : 
     @JvmStatic
     fun enqueueIfNecessary() {
       if (System.currentTimeMillis() - SignalStore.misc().lastConsistencyCheckTime > 3.days.inWholeMilliseconds) {
-        ApplicationDependencies.getJobManager().add(AccountConsistencyWorkerJob())
+        AppDependencies.jobManager.add(AccountConsistencyWorkerJob())
       }
     }
   }

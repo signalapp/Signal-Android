@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
@@ -201,7 +201,7 @@ object NotificationFactory {
   private fun shouldAlert(conversation: NotificationConversation, lastNotificationTimestamp: Long, alertOverride: Boolean): Boolean {
     val throttle: Duration = when {
       conversation.recipient.isGroup && (conversation.mostRecentNotification as? MessageNotification)?.hasSelfMention == false -> GROUP_THROTTLE
-      ApplicationDependencies.getIncomingMessageObserver().decryptionDrained -> STILL_DECRYPTING_INDIVIDUAL_THROTTLE
+      AppDependencies.incomingMessageObserver.decryptionDrained -> STILL_DECRYPTING_INDIVIDUAL_THROTTLE
       else -> 0.seconds
     }
     val canAlertBasedOnTime: Boolean = lastNotificationTimestamp < System.currentTimeMillis() - throttle.inWholeMilliseconds || lastNotificationTimestamp > System.currentTimeMillis()

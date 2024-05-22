@@ -48,7 +48,7 @@ import kotlinx.coroutines.delay
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.concurrent.TimeUnit
@@ -158,7 +158,7 @@ private fun RaiseHand(
                 val context = LocalContext.current
                 TextButton(
                   onClick = {
-                    ApplicationDependencies.getSignalCallManager().raiseHand(false)
+                    AppDependencies.signalCallManager.raiseHand(false)
                   },
                   modifier = Modifier.wrapContentWidth(Alignment.End)
                 ) {

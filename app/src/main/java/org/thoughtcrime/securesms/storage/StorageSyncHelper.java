@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
@@ -230,7 +230,7 @@ public final class StorageSyncHelper {
     }
 
     if (fetchProfile && update.getNew().getAvatarUrlPath().isPresent()) {
-      ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(self, update.getNew().getAvatarUrlPath().get()));
+      AppDependencies.getJobManager().add(new RetrieveProfileAvatarJob(self, update.getNew().getAvatarUrlPath().get()));
     }
 
     if (!update.getNew().getUsername().equals(update.getOld().getUsername())) {
@@ -255,7 +255,7 @@ public final class StorageSyncHelper {
       Log.d(TAG, "Registration still ongoing. Ignore sync request.");
       return;
     }
-    ApplicationDependencies.getJobManager().add(new StorageSyncJob());
+    AppDependencies.getJobManager().add(new StorageSyncJob());
   }
 
   public static void scheduleRoutineSync() {

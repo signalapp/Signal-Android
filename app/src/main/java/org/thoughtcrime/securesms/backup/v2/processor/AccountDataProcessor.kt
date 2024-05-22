@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.Username
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode
@@ -34,7 +34,7 @@ import kotlin.jvm.optionals.getOrNull
 object AccountDataProcessor {
 
   fun export(emitter: BackupFrameEmitter) {
-    val context = ApplicationDependencies.getApplication()
+    val context = AppDependencies.application
 
     val self = Recipient.self().fresh()
     val record = recipients.getRecordForSync(self.id)
@@ -81,7 +81,7 @@ object AccountDataProcessor {
 
     SignalStore.account().setRegistered(true)
 
-    val context = ApplicationDependencies.getApplication()
+    val context = AppDependencies.application
     val settings = accountData.accountSettings
 
     if (settings != null) {
@@ -122,7 +122,7 @@ object AccountDataProcessor {
       }
 
       if (accountData.avatarUrlPath.isNotEmpty()) {
-        ApplicationDependencies.getJobManager().add(RetrieveProfileAvatarJob(Recipient.self().fresh(), accountData.avatarUrlPath))
+        AppDependencies.jobManager.add(RetrieveProfileAvatarJob(Recipient.self().fresh(), accountData.avatarUrlPath))
       }
 
       if (accountData.usernameLink != null) {

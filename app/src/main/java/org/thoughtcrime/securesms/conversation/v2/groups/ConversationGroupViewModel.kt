@@ -16,7 +16,7 @@ import org.signal.core.util.concurrent.subscribeWithSubject
 import org.thoughtcrime.securesms.conversation.v2.ConversationRecipientRepository
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.model.GroupRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
@@ -123,7 +123,7 @@ class ConversationGroupViewModel(
       .filter { it.isPushV2Group && !it.isBlocked }
       .subscribe {
         val groupId = it.requireGroupId().requireV2()
-        ApplicationDependencies.getJobManager()
+        AppDependencies.jobManager
           .startChain(RequestGroupV2InfoJob(groupId))
           .then(GroupV2UpdateSelfProfileKeyJob.withoutLimits(groupId))
           .enqueue()

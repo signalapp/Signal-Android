@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
@@ -40,7 +40,7 @@ public class UntrustedSendDialog extends AlertDialog.Builder implements DialogIn
 
   @Override
   public void onClick(DialogInterface dialog, int which) {
-    final SignalIdentityKeyStore identityStore = ApplicationDependencies.getProtocolStore().aci().identities();
+    final SignalIdentityKeyStore identityStore = AppDependencies.getProtocolStore().aci().identities();
 
     SimpleTask.run(() -> {
       try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {

@@ -5,7 +5,7 @@ import androidx.core.util.Consumer;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.SendPaymentsActivatedJob;
@@ -25,11 +25,11 @@ public class PaymentsHomeRepository {
     SignalExecutors.BOUNDED.execute(() -> {
       SignalStore.paymentsValues().setMobileCoinPaymentsEnabled(true);
       try {
-        ProfileUtil.uploadProfile(ApplicationDependencies.getApplication());
-        ApplicationDependencies.getJobManager()
-                               .startChain(PaymentLedgerUpdateJob.updateLedger())
-                               .then(new SendPaymentsActivatedJob())
-                               .enqueue();
+        ProfileUtil.uploadProfile(AppDependencies.getApplication());
+        AppDependencies.getJobManager()
+                       .startChain(PaymentLedgerUpdateJob.updateLedger())
+                       .then(new SendPaymentsActivatedJob())
+                       .enqueue();
         callback.onComplete(null);
       } catch (PaymentsRegionException e) {
         SignalStore.paymentsValues().setMobileCoinPaymentsEnabled(false);
@@ -50,7 +50,7 @@ public class PaymentsHomeRepository {
 
   private void tryToRestoreProfile() {
     try {
-      ProfileUtil.uploadProfile(ApplicationDependencies.getApplication());
+      ProfileUtil.uploadProfile(AppDependencies.getApplication());
       Log.i(TAG, "Restored profile");
     } catch (IOException e) {
       Log.w(TAG, "Problem uploading profile", e);
@@ -60,7 +60,7 @@ public class PaymentsHomeRepository {
   public void deactivatePayments(@NonNull Consumer<Boolean> consumer) {
     SignalExecutors.BOUNDED.execute(() -> {
       SignalStore.paymentsValues().setMobileCoinPaymentsEnabled(false);
-      ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
+      AppDependencies.getJobManager().add(new ProfileUploadJob());
       consumer.accept(!SignalStore.paymentsValues().mobileCoinPaymentsEnabled());
     });
   }

@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
@@ -68,7 +68,7 @@ public final class RequestGroupV2InfoJob extends BaseJob {
 
   @Override
   public void onRun() {
-    ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoWorkerJob(groupId, toRevision));
+    AppDependencies.getJobManager().add(new RequestGroupV2InfoWorkerJob(groupId, toRevision));
   }
 
   @Override

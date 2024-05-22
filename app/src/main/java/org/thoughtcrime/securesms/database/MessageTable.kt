@@ -110,7 +110,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.jobs.OptimizeMessageSearchIndexJob
 import org.thoughtcrime.securesms.jobs.ThreadUpdateJob
@@ -680,8 +680,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       threads.updateSnippetTypeSilently(threadId)
     }
 
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(MessageId(id))
-    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(id))
+    AppDependencies.databaseObserver.notifyConversationListListeners()
   }
 
   private fun updateMessageBodyAndType(messageId: Long, body: String, maskOff: Long, maskOn: Long): InsertResult {
@@ -776,7 +776,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     notifyConversationListeners(threadsUpdated)
     notifyConversationListListeners()
-    ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(storyRecipientsUpdated)
+    AppDependencies.databaseObserver.notifyStoryObservers(storyRecipientsUpdated)
 
     return results
   }
@@ -856,7 +856,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     threads.update(threadId, true)
 
     notifyConversationListeners(threadId)
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(MessageId(messageId))
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
   }
 
   fun insertGroupCall(
@@ -1245,7 +1245,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         BODY to Base64.encodeWithPadding(event.encode())
       )
       .run()
-    ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadId)
+    AppDependencies.databaseObserver.notifyConversationListeners(threadId)
   }
 
   fun insertSessionSwitchoverEvent(recipientId: RecipientId, threadId: Long, event: SessionSwitchoverEvent) {
@@ -1263,7 +1263,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         BODY to Base64.encodeWithPadding(event.encode())
       )
       .run()
-    ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadId)
+    AppDependencies.databaseObserver.notifyConversationListeners(threadId)
   }
 
   fun insertSmsExportMessage(recipientId: RecipientId, threadId: Long) {
@@ -1289,7 +1289,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     if (updated) {
-      ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadId)
+      AppDependencies.databaseObserver.notifyConversationListeners(threadId)
     }
   }
 
@@ -1635,7 +1635,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .where(storiesBeforeTimestampWhere, sharedArgs)
         .run()
         .readToList { RecipientId.from(it.requireLong(FROM_RECIPIENT_ID)) }
-        .forEach { id -> ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(id) }
+        .forEach { id -> AppDependencies.databaseObserver.notifyStoryObservers(id) }
 
       val deletedStoryCount = db.select(ID)
         .from(TABLE_NAME)
@@ -1694,7 +1694,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       db.execSQL(deleteStoryRepliesQuery, sharedArgs)
       db.execSQL(disassociateQuoteQuery, sharedArgs)
 
-      ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(recipientId)
+      AppDependencies.databaseObserver.notifyStoryObservers(recipientId)
 
       val deletedStoryCount = db.select(ID)
         .from(TABLE_NAME)
@@ -2004,7 +2004,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun markAsRateLimited(messageId: Long) {
     val threadId = getThreadIdForMessage(messageId)
     updateMailboxBitmask(messageId, 0, MessageTypes.MESSAGE_RATE_LIMITED_BIT, Optional.of(threadId))
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(MessageId(messageId))
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
   }
 
   fun clearRateLimitStatus(ids: Collection<Long>) {
@@ -2019,22 +2019,22 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun markAsSending(messageId: Long) {
     val threadId = getThreadIdForMessage(messageId)
     updateMailboxBitmask(messageId, MessageTypes.BASE_TYPE_MASK, MessageTypes.BASE_SENDING_TYPE, Optional.of(threadId))
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(MessageId(messageId))
-    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
+    AppDependencies.databaseObserver.notifyConversationListListeners()
   }
 
   fun markAsSentFailed(messageId: Long) {
     val threadId = getThreadIdForMessage(messageId)
     updateMailboxBitmask(messageId, MessageTypes.BASE_TYPE_MASK, MessageTypes.BASE_SENT_FAILED_TYPE, Optional.of(threadId))
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(MessageId(messageId))
-    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
+    AppDependencies.databaseObserver.notifyConversationListListeners()
   }
 
   fun markAsSent(messageId: Long, secure: Boolean) {
     val threadId = getThreadIdForMessage(messageId)
     updateMailboxBitmask(messageId, MessageTypes.BASE_TYPE_MASK, MessageTypes.BASE_SENT_TYPE or if (secure) MessageTypes.PUSH_MESSAGE_BIT or MessageTypes.SECURE_MESSAGE_BIT else 0, Optional.of(threadId))
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(MessageId(messageId))
-    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
+    AppDependencies.databaseObserver.notifyConversationListListeners()
   }
 
   fun markAsRemoteDelete(targetMessage: MessageRecord) {
@@ -2094,11 +2094,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     OptimizeMessageSearchIndexJob.enqueue()
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(MessageId(messageId))
-    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
+    AppDependencies.databaseObserver.notifyConversationListListeners()
 
     if (deletedAttachments) {
-      ApplicationDependencies.getDatabaseObserver().notifyAttachmentObservers()
+      AppDependencies.databaseObserver.notifyAttachmentObservers()
     }
   }
 
@@ -2109,7 +2109,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .where("$ID = ?", messageId)
       .run()
 
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(MessageId(messageId))
+    AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
   }
 
   fun clearScheduledStatus(threadId: Long, messageId: Long, expiresIn: Long): Boolean {
@@ -2124,8 +2124,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .where("$ID = ? AND $SCHEDULED_DATE != ?", messageId, -1)
       .run()
 
-    ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, MessageId(messageId))
-    ApplicationDependencies.getDatabaseObserver().notifyScheduledMessageObservers(threadId)
+    AppDependencies.databaseObserver.notifyMessageInsertObservers(threadId, MessageId(messageId))
+    AppDependencies.databaseObserver.notifyScheduledMessageObservers(threadId)
 
     return rowsUpdated > 0
   }
@@ -2137,8 +2137,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .where("$ID = ? AND $SCHEDULED_DATE != ?", messageId, -1)
       .run()
 
-    ApplicationDependencies.getDatabaseObserver().notifyScheduledMessageObservers(threadId)
-    ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary()
+    AppDependencies.databaseObserver.notifyScheduledMessageObservers(threadId)
+    AppDependencies.scheduledMessageManager.scheduleIfNecessary()
 
     if (rowsUpdated == 0) {
       Log.w(TAG, "Failed to reschedule messageId=$messageId to new time $time. may have been sent already")
@@ -2169,7 +2169,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           .values(EXPIRE_STARTED to startedAtTimestamp)
           .where("$ID = ? AND ($EXPIRE_STARTED = 0 OR $EXPIRE_STARTED > ?)", id, startedAtTimestamp)
           .run()
-        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(MessageId(id))
+        AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(id))
       }
     }
   }
@@ -2697,7 +2697,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     if (retrieved.storyType.isStory) {
-      ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(threads.getRecipientIdForThreadId(threadId)!!)
+      AppDependencies.databaseObserver.notifyStoryObservers(threads.getRecipientIdForThreadId(threadId)!!)
     }
 
     return Optional.of(
@@ -2807,7 +2807,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     if (updated) {
-      ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(MessageId(messageId))
+      AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
       notifyConversationListeners(threadId)
     }
   }
@@ -3085,16 +3085,16 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     if (!message.storyType.isStory) {
       if (message.outgoingQuote == null && editedMessage == null) {
-        ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, MessageId(messageId))
+        AppDependencies.databaseObserver.notifyMessageInsertObservers(threadId, MessageId(messageId))
       } else {
-        ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadId)
+        AppDependencies.databaseObserver.notifyConversationListeners(threadId)
       }
 
       if (message.scheduledDate != -1L) {
-        ApplicationDependencies.getDatabaseObserver().notifyScheduledMessageObservers(threadId)
+        AppDependencies.databaseObserver.notifyScheduledMessageObservers(threadId)
       }
     } else {
-      ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(message.threadRecipient.id)
+      AppDependencies.databaseObserver.notifyStoryObservers(message.threadRecipient.id)
     }
 
     if (!message.isIdentityVerified && !message.isIdentityDefault) {
@@ -3309,8 +3309,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
     }
 
-    ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary()
-    ApplicationDependencies.getDatabaseObserver().notifyScheduledMessageObservers(threadId)
+    AppDependencies.scheduledMessageManager.scheduleIfNecessary()
+    AppDependencies.databaseObserver.notifyScheduledMessageObservers(threadId)
   }
 
   fun deleteScheduledMessages(recipientId: RecipientId) {
@@ -4316,8 +4316,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     for (update in messageUpdates) {
-      ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(update.messageId)
-      ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(setOf(update.threadId))
+      AppDependencies.databaseObserver.notifyMessageUpdateObservers(update.messageId)
+      AppDependencies.databaseObserver.notifyVerboseConversationListeners(setOf(update.threadId))
     }
 
     if (messageUpdates.isNotEmpty()) {
@@ -4344,7 +4344,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     for (threadUpdate in messageUpdates) {
-      ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(threadUpdate.messageId)
+      AppDependencies.databaseObserver.notifyMessageUpdateObservers(threadUpdate.messageId)
     }
 
     return messageUpdates.isNotEmpty()
@@ -4377,11 +4377,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     for (update in messageUpdates) {
-      ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(update.messageId)
-      ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(setOf(update.threadId))
+      AppDependencies.databaseObserver.notifyMessageUpdateObservers(update.messageId)
+      AppDependencies.databaseObserver.notifyVerboseConversationListeners(setOf(update.threadId))
 
       if (messageQualifier == MessageQualifier.STORY) {
-        ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(threads.getRecipientIdForThreadId(update.threadId)!!)
+        AppDependencies.databaseObserver.notifyStoryObservers(threads.getRecipientIdForThreadId(update.threadId)!!)
       }
     }
 
@@ -4512,7 +4512,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     for (expiringMessage in expiringMessages) {
-      ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(expiringMessage.first(), true, proposedExpireStarted, expiringMessage.second())
+      AppDependencies.expiringMessageManager.scheduleDeletion(expiringMessage.first(), true, proposedExpireStarted, expiringMessage.second())
     }
 
     for (threadId in updatedThreads) {
@@ -5165,7 +5165,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     private val context: Context
 
     init {
-      context = ApplicationDependencies.getApplication()
+      context = AppDependencies.application
     }
 
     override fun getNext(): MessageRecord? {

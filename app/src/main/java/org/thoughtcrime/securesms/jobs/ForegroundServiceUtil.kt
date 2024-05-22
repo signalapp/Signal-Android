@@ -12,7 +12,7 @@ import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.service.GenericForegroundService
 import org.thoughtcrime.securesms.service.NotificationController
 import org.thoughtcrime.securesms.util.ServiceUtil
@@ -137,7 +137,7 @@ object ForegroundServiceUtil {
   private fun blockUntilCapable(context: Context, timeout: Long = DEFAULT_TIMEOUT): Boolean {
     val alarmManager = ServiceUtil.getAlarmManager(context)
 
-    if (Build.VERSION.SDK_INT < 31 || ApplicationDependencies.getAppForegroundObserver().isForegrounded) {
+    if (Build.VERSION.SDK_INT < 31 || AppDependencies.appForegroundObserver.isForegrounded) {
       return true
     }
 

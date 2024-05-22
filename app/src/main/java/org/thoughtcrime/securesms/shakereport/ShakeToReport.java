@@ -17,7 +17,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
@@ -142,7 +142,7 @@ public final class ShakeToReport implements ShakeDetector.Listener {
   }
 
   private void enableIfVisible() {
-    if (ApplicationDependencies.getAppForegroundObserver().isForegrounded()) {
+    if (AppDependencies.getAppForegroundObserver().isForegrounded()) {
       enable();
     }
   }

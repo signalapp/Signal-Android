@@ -13,7 +13,7 @@ import androidx.media3.datasource.DataSource;
 import androidx.media3.datasource.DataSpec;
 import androidx.media3.datasource.TransferListener;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.net.ChunkedDataFetcher;
 
 import java.io.EOFException;
@@ -63,8 +63,8 @@ class ChunkedDataSource implements DataSource {
       // Exoplayer sometimes interrupts the thread
     }
 
-    Context       context = ApplicationDependencies.getApplication();
-    GiphyMp4Cache cache   = ApplicationDependencies.getGiphyMp4Cache();
+    Context       context = AppDependencies.getApplication();
+    GiphyMp4Cache cache   = AppDependencies.getGiphyMp4Cache();
 
     cacheEntry = cache.read(context, dataSpec.uri);
 

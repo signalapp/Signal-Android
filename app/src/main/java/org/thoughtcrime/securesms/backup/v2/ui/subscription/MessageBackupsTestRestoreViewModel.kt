@@ -17,7 +17,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.SyncArchivedMediaJob
@@ -48,8 +48,8 @@ class MessageBackupsTestRestoreViewModel : ViewModel() {
   fun restore() {
     _state.value = _state.value.copy(importState = ImportState.IN_PROGRESS)
     disposables += Single.fromCallable {
-      ApplicationDependencies
-        .getJobManager()
+      AppDependencies
+        .jobManager
         .startChain(BackupRestoreJob())
         .then(SyncArchivedMediaJob())
         .then(BackupRestoreMediaJob())

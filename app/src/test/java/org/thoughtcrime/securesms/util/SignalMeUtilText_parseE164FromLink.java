@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.ParameterizedRobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.thoughtcrime.securesms.SignalStoreRule;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
 
 import java.util.Arrays;
@@ -55,6 +55,6 @@ public class SignalMeUtilText_parseE164FromLink {
 
   @Test
   public void parse() {
-    assertEquals(output, SignalMeUtil.parseE164FromLink(ApplicationDependencies.getApplication(), input));
+    assertEquals(output, SignalMeUtil.parseE164FromLink(AppDependencies.getApplication(), input));
   }
 }

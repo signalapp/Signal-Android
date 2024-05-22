@@ -39,7 +39,7 @@ import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -460,7 +460,7 @@ class Recipient(
   /** The name to show for a group. It will be the group name if present, otherwise we default to a list of shortened member names. */
   fun getGroupName(context: Context): String? {
     return if (groupIdValue != null && Util.isEmpty(groupName)) {
-      val selfId = ApplicationDependencies.getRecipientCache().getSelfId()
+      val selfId = AppDependencies.recipientCache.getSelfId()
       val others = participantIdsValue
         .filter { id: RecipientId -> id != selfId }
         .take(MAX_MEMBER_NAMES)
@@ -666,7 +666,7 @@ class Recipient(
 
   /** Returns a live, observable copy of this recipient. */
   fun live(): LiveRecipient {
-    return ApplicationDependencies.getRecipientCache().getLive(id)
+    return AppDependencies.recipientCache.getLive(id)
   }
 
   enum class HiddenState(private val value: Int) {
@@ -863,7 +863,7 @@ class Recipient(
     @JvmStatic
     @AnyThread
     fun live(id: RecipientId): LiveRecipient {
-      return ApplicationDependencies.getRecipientCache().getLive(id)
+      return AppDependencies.recipientCache.getLive(id)
     }
 
     /**
@@ -1077,11 +1077,11 @@ class Recipient(
 
     @JvmStatic
     fun self(): Recipient {
-      return ApplicationDependencies.getRecipientCache().getSelf()
+      return AppDependencies.recipientCache.getSelf()
     }
 
     /** Whether we've set a recipient for 'self' yet. We do this during registration. */
     val isSelfSet: Boolean
-      get() = ApplicationDependencies.getRecipientCache().getSelfId() != null
+      get() = AppDependencies.recipientCache.getSelfId() != null
   }
 }

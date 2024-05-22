@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -78,11 +78,11 @@ public final class PinValues extends SignalStoreValues {
   }
 
   public long getCurrentInterval() {
-    return getLong(NEXT_INTERVAL, TextSecurePreferences.getRegistrationLockNextReminderInterval(ApplicationDependencies.getApplication()));
+    return getLong(NEXT_INTERVAL, TextSecurePreferences.getRegistrationLockNextReminderInterval(AppDependencies.getApplication()));
   }
 
   public long getLastSuccessfulEntryTime() {
-    return getLong(LAST_SUCCESSFUL_ENTRY, TextSecurePreferences.getRegistrationLockLastReminderTime(ApplicationDependencies.getApplication()));
+    return getLong(LAST_SUCCESSFUL_ENTRY, TextSecurePreferences.getRegistrationLockLastReminderTime(AppDependencies.getApplication()));
   }
 
   public void setKeyboardType(@NonNull PinKeyboardType keyboardType) {

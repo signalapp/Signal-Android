@@ -207,7 +207,7 @@ import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
@@ -469,7 +469,7 @@ class ConversationFragment :
   private val conversationTooltips = ConversationTooltips(this)
   private val colorizer = Colorizer()
   private val textDraftSaveDebouncer = Debouncer(500)
-  private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(ApplicationDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY) }
+  private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY) }
 
   private lateinit var layoutManager: ConversationLayoutManager
   private lateinit var markReadHelper: MarkReadHelper
@@ -636,7 +636,7 @@ class ConversationFragment :
     groupCallViewModel.peekGroupCall()
 
     if (!args.conversationScreenType.isInBubble) {
-      ApplicationDependencies.getMessageNotifier().setVisibleThread(ConversationId.forConversation(args.threadId))
+      AppDependencies.messageNotifier.setVisibleThread(ConversationId.forConversation(args.threadId))
     }
 
     viewModel.updateIdentityRecordsInBackground()
@@ -666,7 +666,7 @@ class ConversationFragment :
     ConversationUtil.refreshRecipientShortcuts()
 
     if (!args.conversationScreenType.isInBubble) {
-      ApplicationDependencies.getMessageNotifier().clearVisibleThread()
+      AppDependencies.messageNotifier.clearVisibleThread()
     }
 
     if (activity?.isFinishing == true) {
@@ -1118,7 +1118,7 @@ class ConversationFragment :
       }
     })
 
-    ApplicationDependencies.getTypingStatusRepository().getTypists(args.threadId).observe(viewLifecycleOwner) {
+    AppDependencies.typingStatusRepository.getTypists(args.threadId).observe(viewLifecycleOwner) {
       val recipient = viewModel.recipientSnapshot ?: return@observe
 
       typingIndicatorAdapter.setState(
@@ -3934,7 +3934,7 @@ class ConversationFragment :
         return
       }
 
-      val typingStatusSender = ApplicationDependencies.getTypingStatusSender()
+      val typingStatusSender = AppDependencies.typingStatusSender
       if (text.length == 0) {
         typingStatusSender.onTypingStoppedWithNotify(args.threadId)
       } else if (text.length < previousText.length && previousText.contains(text)) {

@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.jobs
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.CallLinkUpdateSendJobData
@@ -82,7 +82,7 @@ class CallLinkUpdateSendJob private constructor(
       type = callLinkUpdateType
     )
 
-    ApplicationDependencies.getSignalServiceMessageSender()
+    AppDependencies.signalServiceMessageSender
       .sendSyncMessage(SignalServiceSyncMessage.forCallLinkUpdate(callLinkUpdate), Optional.empty())
 
     if (callLinkUpdateType == CallLinkUpdate.Type.DELETE) {

@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
@@ -64,7 +64,7 @@ class SafetyNumberChangeDialogPreviewer {
     scenario.onActivity { conversationActivity ->
       SafetyNumberBottomSheet
         .forIdentityRecordsAndDestinations(
-          identityRecords = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(othersRecipients).identityRecords,
+          identityRecords = AppDependencies.protocolStore.aci().identities().getIdentityRecords(othersRecipients).identityRecords,
           destinations = listOf(ContactSearchKey.RecipientSearchKey(myStoryRecipientId, true))
         )
         .show(conversationActivity.supportFragmentManager)

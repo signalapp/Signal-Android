@@ -14,7 +14,7 @@ import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.getDownloadManager
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ApkUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Environment
@@ -41,7 +41,7 @@ object ApkUpdateInstaller {
     if (downloadId != SignalStore.apkUpdate().downloadId) {
       Log.w(TAG, "DownloadId doesn't match the one we're waiting for (current: $downloadId, expected: ${SignalStore.apkUpdate().downloadId})! We likely have newer data. Ignoring.")
       ApkUpdateNotifications.dismissInstallPrompt(context)
-      ApplicationDependencies.getJobManager().add(ApkUpdateJob())
+      AppDependencies.jobManager.add(ApkUpdateJob())
       return
     }
 
@@ -61,7 +61,7 @@ object ApkUpdateInstaller {
     }
 
     if (!userInitiated && !shouldAutoUpdate()) {
-      Log.w(TAG, "Not user-initiated and not eligible for auto-update. Prompting. (API=${Build.VERSION.SDK_INT}, Foreground=${ApplicationDependencies.getAppForegroundObserver().isForegrounded}, AutoUpdate=${SignalStore.apkUpdate().autoUpdate})")
+      Log.w(TAG, "Not user-initiated and not eligible for auto-update. Prompting. (API=${Build.VERSION.SDK_INT}, Foreground=${AppDependencies.appForegroundObserver.isForegrounded}, AutoUpdate=${SignalStore.apkUpdate().autoUpdate})")
       ApkUpdateNotifications.showInstallPrompt(context, downloadId)
       return
     }
@@ -145,6 +145,6 @@ object ApkUpdateInstaller {
 
   private fun shouldAutoUpdate(): Boolean {
     // TODO Auto-updates temporarily restricted to nightlies. Once we have designs for allowing users to opt-out of auto-updates, we can re-enable this
-    return Environment.IS_NIGHTLY && Build.VERSION.SDK_INT >= 31 && SignalStore.apkUpdate().autoUpdate && !ApplicationDependencies.getAppForegroundObserver().isForegrounded
+    return Environment.IS_NIGHTLY && Build.VERSION.SDK_INT >= 31 && SignalStore.apkUpdate().autoUpdate && !AppDependencies.appForegroundObserver.isForegrounded
   }
 }

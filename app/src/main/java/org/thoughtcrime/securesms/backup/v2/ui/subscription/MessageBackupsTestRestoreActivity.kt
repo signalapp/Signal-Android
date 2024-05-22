@@ -37,7 +37,7 @@ import org.signal.core.ui.Dividers
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.MainActivity
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
@@ -133,7 +133,7 @@ class MessageBackupsTestRestoreActivity : BaseActivity() {
       if (state.importState == MessageBackupsTestRestoreViewModel.ImportState.RESTORED) {
         SideEffect {
           RegistrationUtil.maybeMarkRegistrationComplete()
-          ApplicationDependencies.getJobManager().add(ProfileUploadJob())
+          AppDependencies.jobManager.add(ProfileUploadJob())
           startActivity(MainActivity.clearTop(this))
         }
       }
@@ -152,7 +152,7 @@ class MessageBackupsTestRestoreActivity : BaseActivity() {
       startActivity(profile)
     } else {
       RegistrationUtil.maybeMarkRegistrationComplete()
-      ApplicationDependencies.getJobManager().add(ProfileUploadJob())
+      AppDependencies.jobManager.add(ProfileUploadJob())
       startActivity(MainActivity.clearTop(this))
     }
     finish()

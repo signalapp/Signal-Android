@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.collections.immutable.persistentListOf
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3
@@ -104,8 +104,8 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
 
   private fun SvrImplementation.toImplementation(): SecureValueRecovery {
     return when (this) {
-      SvrImplementation.SVR2 -> ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
-      SvrImplementation.SVR3 -> ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV3(ApplicationDependencies.getLibsignalNetwork().network, TestShareSetStorage())
+      SvrImplementation.SVR2 -> AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
+      SvrImplementation.SVR3 -> AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork.network, TestShareSetStorage())
     }
   }
 

@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
@@ -53,7 +53,7 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
     factoryProducer = {
       val messageId = MessageId.deserialize(arguments?.getString(KEY_MESSAGE_ID, null) ?: throw IllegalArgumentException())
       val conversationRecipientId = RecipientId.from(arguments?.getString(KEY_CONVERSATION_RECIPIENT_ID, null) ?: throw IllegalArgumentException())
-      MessageQuotesViewModel.Factory(ApplicationDependencies.getApplication(), messageId, conversationRecipientId)
+      MessageQuotesViewModel.Factory(AppDependencies.application, messageId, conversationRecipientId)
     }
   )
 

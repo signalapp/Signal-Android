@@ -12,7 +12,7 @@ import org.signal.contacts.SystemContactsRepository
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.SyncSystemContactLinksJob
 
@@ -53,7 +53,7 @@ internal class ContactLinkRebuildMigrationJob(parameters: Parameters = Parameter
       removeIfMissing = true
     )
 
-    ApplicationDependencies.getJobManager().add(SyncSystemContactLinksJob())
+    AppDependencies.jobManager.add(SyncSystemContactLinksJob())
   }
 
   override fun shouldRetry(e: Exception): Boolean = false

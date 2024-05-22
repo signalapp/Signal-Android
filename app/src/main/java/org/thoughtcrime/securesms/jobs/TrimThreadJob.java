@@ -23,7 +23,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
@@ -42,7 +42,7 @@ public class TrimThreadJob extends BaseJob {
 
   public static void enqueueAsync(long threadId) {
     if (SignalStore.settings().getKeepMessagesDuration() != KeepMessagesDuration.FOREVER || SignalStore.settings().isTrimByLengthEnabled()) {
-      SignalExecutors.BOUNDED.execute(() -> ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId)));
+      SignalExecutors.BOUNDED.execute(() -> AppDependencies.getJobManager().add(new TrimThreadJob(threadId)));
     }
   }
 

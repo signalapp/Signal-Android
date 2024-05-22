@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.ArchiveAttachmentBackfillJobData
@@ -91,7 +91,7 @@ class ArchiveAttachmentBackfillJob private constructor(
       val resetCount = SignalDatabase.attachments.resetPendingArchiveBackfills()
       if (resetCount > 0) {
         Log.w(TAG, "We thought we were done, but $resetCount items were still in progress! Need to run again to retry.")
-        ApplicationDependencies.getJobManager().add(
+        AppDependencies.jobManager.add(
           ArchiveAttachmentBackfillJob(
             progress = (totalCount ?: resetCount) - resetCount,
             totalCount = totalCount ?: resetCount
@@ -160,7 +160,7 @@ class ArchiveAttachmentBackfillJob private constructor(
 
       Log.d(TAG, "Beginning upload...")
       val remoteAttachment: SignalServiceAttachmentPointer = try {
-        ApplicationDependencies.getSignalServiceMessageSender().uploadAttachment(attachmentStream)
+        AppDependencies.signalServiceMessageSender.uploadAttachment(attachmentStream)
       } catch (e: IOException) {
         Log.w(TAG, "Failed to upload $attachmentId", e)
         return Result.retry(defaultBackoff())
@@ -226,7 +226,7 @@ class ArchiveAttachmentBackfillJob private constructor(
   }
 
   private fun reenqueueWithIncrementedProgress() {
-    ApplicationDependencies.getJobManager().add(
+    AppDependencies.jobManager.add(
       ArchiveAttachmentBackfillJob(
         totalCount = totalCount,
         progress = progress?.inc()?.coerceAtMost(totalCount ?: 0)

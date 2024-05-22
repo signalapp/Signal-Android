@@ -40,7 +40,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
 import org.thoughtcrime.securesms.mms.PartUriParser;
@@ -89,7 +89,7 @@ public class VoiceNotePlaybackService extends MediaSessionService {
 
     setMediaNotificationProvider(new VoiceNoteMediaNotificationProvider(this));
     setListener(new MediaSessionServiceListener());
-    ApplicationDependencies.getDatabaseObserver().registerAttachmentObserver(attachmentDeletionObserver);
+    AppDependencies.getDatabaseObserver().registerAttachmentObserver(attachmentDeletionObserver);
   }
 
   @Override
@@ -102,7 +102,7 @@ public class VoiceNotePlaybackService extends MediaSessionService {
 
   @Override
   public void onDestroy() {
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(attachmentDeletionObserver);
+    AppDependencies.getDatabaseObserver().unregisterObserver(attachmentDeletionObserver);
     player.release();
     mediaSession.release();
     mediaSession = null;
@@ -321,10 +321,10 @@ public class VoiceNotePlaybackService extends MediaSessionService {
         MessageTable.MarkedMessageInfo markedMessageInfo = messageDatabase.setIncomingMessageViewed(messageId);
 
         if (markedMessageInfo != null) {
-          ApplicationDependencies.getJobManager().add(new SendViewedReceiptJob(markedMessageInfo.getThreadId(),
-                                                                               recipientId,
-                                                                               markedMessageInfo.getSyncMessageId().getTimetamp(),
-                                                                               new MessageId(messageId)));
+          AppDependencies.getJobManager().add(new SendViewedReceiptJob(markedMessageInfo.getThreadId(),
+                                                                       recipientId,
+                                                                       markedMessageInfo.getSyncMessageId().getTimetamp(),
+                                                                       new MessageId(messageId)));
           MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(markedMessageInfo.getSyncMessageId()));
         }
       });

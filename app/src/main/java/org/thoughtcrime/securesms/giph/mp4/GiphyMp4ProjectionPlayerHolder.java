@@ -23,7 +23,7 @@ import androidx.media3.ui.AspectRatioFrameLayout;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.video.exo.ExoPlayerKt;
 
@@ -58,7 +58,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
     this.policyEnforcer = policyEnforcer;
 
     if (player.getExoPlayer() == null) {
-      ExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get(TAG);
+      ExoPlayer fromPool = AppDependencies.getExoPlayerPool().get(TAG);
 
       if (fromPool == null) {
         Log.i(TAG, "Could not get exoplayer from pool.");
@@ -84,7 +84,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
       player.stop();
       player.setExoPlayer(null);
       exoPlayer.removeListener(this);
-      ApplicationDependencies.getExoPlayerPool().pool(exoPlayer);
+      AppDependencies.getExoPlayerPool().pool(exoPlayer);
     }
   }
 
@@ -146,7 +146,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
   @Override
   public void onResume(@NonNull LifecycleOwner owner) {
     if (mediaItem != null) {
-      ExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get(TAG);
+      ExoPlayer fromPool = AppDependencies.getExoPlayerPool().get(TAG);
       if (fromPool != null) {
         ExoPlayerKt.configureForGifPlayback(fromPool);
         fromPool.addListener(this);
@@ -163,7 +163,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
       player.getExoPlayer().stop();
       player.getExoPlayer().clearMediaItems();
       player.getExoPlayer().removeListener(this);
-      ApplicationDependencies.getExoPlayerPool().pool(player.getExoPlayer());
+      AppDependencies.getExoPlayerPool().pool(player.getExoPlayer());
       player.setExoPlayer(null);
     }
   }

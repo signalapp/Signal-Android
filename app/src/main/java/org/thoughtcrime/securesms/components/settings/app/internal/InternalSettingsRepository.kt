@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
 import org.thoughtcrime.securesms.database.model.addStyle
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.emoji.EmojiFiles
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
@@ -43,7 +43,7 @@ class InternalSettingsRepository(context: Context) {
 
   fun addSampleReleaseNote() {
     SignalExecutors.UNBOUNDED.execute {
-      ApplicationDependencies.getJobManager().runSynchronously(CreateReleaseChannelJob.create(), 5000)
+      AppDependencies.jobManager.runSynchronously(CreateReleaseChannelJob.create(), 5000)
 
       val title = "Release Note Title"
       val bodyText = "Release note body. Aren't I awesome?"
@@ -68,9 +68,9 @@ class InternalSettingsRepository(context: Context) {
 
       if (insertResult != null) {
         SignalDatabase.attachments.getAttachmentsForMessage(insertResult.messageId)
-          .forEach { ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, false)) }
+          .forEach { AppDependencies.jobManager.add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, false)) }
 
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+        AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
       }
     }
   }
@@ -100,7 +100,7 @@ class InternalSettingsRepository(context: Context) {
       SignalDatabase.remoteMegaphones.insert(record)
 
       if (record.imageUrl != null) {
-        ApplicationDependencies.getJobManager().add(FetchRemoteMegaphoneImageJob(record.uuid, record.imageUrl))
+        AppDependencies.jobManager.add(FetchRemoteMegaphoneImageJob(record.uuid, record.imageUrl))
       }
     }
   }

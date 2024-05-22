@@ -8,7 +8,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -54,7 +54,7 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
       }
 
       Log.d(TAG, "Attempting to enqueue StoryOnboardingDownloadJob...")
-      ApplicationDependencies.getJobManager()
+      AppDependencies.jobManager
         .startChain(CreateReleaseChannelJob.create())
         .then(create())
         .enqueue()
@@ -155,7 +155,7 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
     Log.i(TAG, "Enqueueing download jobs...")
     insertResults.forEach { insertResult ->
       SignalDatabase.attachments.getAttachmentsForMessage(insertResult.messageId).forEach {
-        ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, true))
+        AppDependencies.jobManager.add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, true))
       }
     }
   }

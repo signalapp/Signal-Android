@@ -10,7 +10,7 @@ import androidx.annotation.WorkerThread
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
@@ -39,7 +39,7 @@ object SvrRepository {
 
   val TAG = Log.tag(SvrRepository::class.java)
 
-  private val svr2: SecureValueRecovery = ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
+  private val svr2: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
 
   /** An ordered list of SVR implementations to read from. They should be in priority order, with the most important one listed first. */
   private val readImplementations: List<SecureValueRecovery> = listOf(svr2)
@@ -141,21 +141,21 @@ object SvrRepository {
             if (implementation == svr2) {
               SignalStore.svr().appendAuthTokenToList(response.authorization.asBasic())
             }
-            ApplicationDependencies.getJobManager().add(ResetSvrGuessCountJob())
+            AppDependencies.jobManager.add(ResetSvrGuessCountJob())
             stopwatch.split("metadata")
 
-            ApplicationDependencies.getJobManager().runSynchronously(StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN)
+            AppDependencies.jobManager.runSynchronously(StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN)
             stopwatch.split("account-restore")
 
-            ApplicationDependencies
-              .getJobManager()
+            AppDependencies
+              .jobManager
               .startChain(StorageSyncJob())
               .then(ReclaimUsernameAndLinkJob())
               .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
             stopwatch.split("contact-restore")
 
             if (implementation != svr2) {
-              ApplicationDependencies.getJobManager().add(Svr2MirrorJob())
+              AppDependencies.jobManager.add(Svr2MirrorJob())
             }
 
             stopwatch.stop(TAG)
@@ -231,9 +231,9 @@ object SvrRepository {
         SignalStore.pinValues().keyboardType = keyboardType
         SignalStore.pinValues().resetPinReminders()
 
-        ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PINS_FOR_ALL)
+        AppDependencies.megaphoneRepository.markFinished(Megaphones.Event.PINS_FOR_ALL)
 
-        ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+        AppDependencies.jobManager.add(RefreshAttributesJob())
       } else {
         Log.w(TAG, "[setPin] Failed to set PIN! $overallResponse", true)
 
@@ -274,7 +274,7 @@ object SvrRepository {
         SignalStore.svr().setMasterKey(masterKey, userPin)
         SignalStore.pinValues().resetPinReminders()
 
-        ApplicationDependencies.getJobManager().add(ResetSvrGuessCountJob())
+        AppDependencies.jobManager.add(ResetSvrGuessCountJob())
       } else if (hasPinToRestore) {
         Log.i(TAG, "[onRegistrationComplete] Has a PIN to restore.", true)
         SignalStore.svr().clearRegistrationLockAndPin()
@@ -285,7 +285,7 @@ object SvrRepository {
       }
     }
 
-    ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+    AppDependencies.jobManager.add(RefreshAttributesJob())
   }
 
   /**
@@ -306,7 +306,7 @@ object SvrRepository {
     operationLock.withLock {
       SignalStore.svr().optOut()
 
-      ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PINS_FOR_ALL)
+      AppDependencies.megaphoneRepository.markFinished(Megaphones.Event.PINS_FOR_ALL)
 
       bestEffortRefreshAttributes()
       bestEffortForcePushStorage()
@@ -321,7 +321,7 @@ object SvrRepository {
       check(SignalStore.svr().hasPin() && !SignalStore.svr().hasOptedOut()) { "Must have a PIN to set a registration lock!" }
 
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Enabling registration lock.", true)
-      ApplicationDependencies.getSignalServiceAccountManager().enableRegistrationLock(SignalStore.svr().getOrCreateMasterKey())
+      AppDependencies.signalServiceAccountManager.enableRegistrationLock(SignalStore.svr().getOrCreateMasterKey())
       SignalStore.svr().isRegistrationLockEnabled = true
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Registration lock successfully enabled.", true)
     }
@@ -335,7 +335,7 @@ object SvrRepository {
       check(SignalStore.svr().hasPin() && !SignalStore.svr().hasOptedOut()) { "Must have a PIN to disable registration lock!" }
 
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Disabling registration lock.", true)
-      ApplicationDependencies.getSignalServiceAccountManager().disableRegistrationLock()
+      AppDependencies.signalServiceAccountManager.disableRegistrationLock()
       SignalStore.svr().isRegistrationLockEnabled = false
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Registration lock successfully disabled.", true)
     }
@@ -370,12 +370,12 @@ object SvrRepository {
 
   @WorkerThread
   private fun bestEffortRefreshAttributes() {
-    val result = ApplicationDependencies.getJobManager().runSynchronously(RefreshAttributesJob(), TimeUnit.SECONDS.toMillis(10))
+    val result = AppDependencies.jobManager.runSynchronously(RefreshAttributesJob(), TimeUnit.SECONDS.toMillis(10))
     if (result.isPresent && result.get() == JobTracker.JobState.SUCCESS) {
       Log.i(TAG, "Attributes were refreshed successfully.", true)
     } else if (result.isPresent) {
       Log.w(TAG, "Attribute refresh finished, but was not successful. Enqueuing one for later. (Result: " + result.get() + ")", true)
-      ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+      AppDependencies.jobManager.add(RefreshAttributesJob())
     } else {
       Log.w(TAG, "Job did not finish in the allotted time. It'll finish later.", true)
     }
@@ -383,12 +383,12 @@ object SvrRepository {
 
   @WorkerThread
   private fun bestEffortForcePushStorage() {
-    val result = ApplicationDependencies.getJobManager().runSynchronously(StorageForcePushJob(), TimeUnit.SECONDS.toMillis(10))
+    val result = AppDependencies.jobManager.runSynchronously(StorageForcePushJob(), TimeUnit.SECONDS.toMillis(10))
     if (result.isPresent && result.get() == JobTracker.JobState.SUCCESS) {
       Log.i(TAG, "Storage was force-pushed successfully.", true)
     } else if (result.isPresent) {
       Log.w(TAG, "Storage force-pushed finished, but was not successful. Enqueuing one for later. (Result: " + result.get() + ")", true)
-      ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+      AppDependencies.jobManager.add(RefreshAttributesJob())
     } else {
       Log.w(TAG, "Storage fore push did not finish in the allotted time. It'll finish later.", true)
     }
@@ -398,7 +398,7 @@ object SvrRepository {
     val tokenIsNew = SignalStore.svr().appendAuthTokenToList(credentials.asBasic())
 
     if (tokenIsNew && SignalStore.svr().hasPin()) {
-      BackupManager(ApplicationDependencies.getApplication()).dataChanged()
+      BackupManager(AppDependencies.application).dataChanged()
     }
   }
 

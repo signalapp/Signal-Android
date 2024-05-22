@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.MemoryFileUtil;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -35,7 +35,7 @@ public final class BlobContentProvider extends BaseContentProvider {
     Log.i(TAG, "openFile() called: " + uri);
 
     try {
-      try (InputStream stream = BlobProvider.getInstance().getStream(ApplicationDependencies.getApplication(), uri)) {
+      try (InputStream stream = BlobProvider.getInstance().getStream(AppDependencies.getApplication(), uri)) {
         Long fileSize = BlobProvider.getFileSize(uri);
         if (fileSize == null) {
           Log.w(TAG, "No file size available");

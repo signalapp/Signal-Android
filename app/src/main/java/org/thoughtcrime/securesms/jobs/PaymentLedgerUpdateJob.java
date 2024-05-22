@@ -8,7 +8,7 @@ import com.mobilecoin.lib.exceptions.FogSyncException;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -75,9 +75,9 @@ public final class PaymentLedgerUpdateJob extends BaseJob {
       }
     }
 
-    MobileCoinLedgerWrapper ledger = ApplicationDependencies.getPayments()
-                                                            .getWallet()
-                                                            .tryGetFullLedger(minimumBlockIndex);
+    MobileCoinLedgerWrapper ledger = AppDependencies.getPayments()
+                                                    .getWallet()
+                                                    .tryGetFullLedger(minimumBlockIndex);
 
     if (ledger == null) {
       Log.i(TAG, "Ledger not updated yet, waiting for a minimum block index");

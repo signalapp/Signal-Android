@@ -19,7 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData
 import org.thoughtcrime.securesms.messages.MessageHelper
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -80,7 +80,7 @@ class MultiDeviceDeleteSendSyncJobTest {
     val records: Set<MessageRecord> = MessageTableTestUtils.getMessages(threadId).toSet()
 
     // WHEN
-    every { ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(capture(content), any(), any()) } returns success
+    every { AppDependencies.signalServiceMessageSender.sendSyncMessage(capture(content), any(), any()) } returns success
 
     val job = MultiDeviceDeleteSendSyncJob.createMessageDeletes(records)
     val result = job.run()
@@ -102,7 +102,7 @@ class MultiDeviceDeleteSendSyncJobTest {
     val records: Set<MessageRecord> = MessageTableTestUtils.getMessages(threadId).toSet()
 
     // WHEN
-    every { ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(capture(content), any(), any()) } returns success
+    every { AppDependencies.signalServiceMessageSender.sendSyncMessage(capture(content), any(), any()) } returns success
 
     val job = MultiDeviceDeleteSendSyncJob.createMessageDeletes(records)
     val result = job.run()
@@ -118,7 +118,7 @@ class MultiDeviceDeleteSendSyncJobTest {
     val alice = messageHelper.alice.toLong()
 
     // WHEN
-    every { ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(capture(content), any(), any()) } returns failure
+    every { AppDependencies.signalServiceMessageSender.sendSyncMessage(capture(content), any(), any()) } returns failure
 
     val job = MultiDeviceDeleteSendSyncJob(
       messages = listOf(DeleteSyncJobData.AddressableMessage(alice, 1, alice)),

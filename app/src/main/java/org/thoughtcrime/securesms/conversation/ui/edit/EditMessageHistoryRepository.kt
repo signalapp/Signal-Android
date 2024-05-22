@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.v2.data.AttachmentHelper
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.recipients.Recipient
 
@@ -21,7 +21,7 @@ object EditMessageHistoryRepository {
         return@create
       }
 
-      val databaseObserver: DatabaseObserver = ApplicationDependencies.getDatabaseObserver()
+      val databaseObserver: DatabaseObserver = AppDependencies.databaseObserver
       val observer = DatabaseObserver.Observer { emitter.onNext(getEditHistorySync(messageId)) }
 
       databaseObserver.registerConversationObserver(threadId, observer)
@@ -38,7 +38,7 @@ object EditMessageHistoryRepository {
   }
 
   private fun getEditHistorySync(messageId: Long): List<ConversationMessage> {
-    val context = ApplicationDependencies.getApplication()
+    val context = AppDependencies.application
     val records = SignalDatabase
       .messages
       .getMessageEditHistory(messageId)

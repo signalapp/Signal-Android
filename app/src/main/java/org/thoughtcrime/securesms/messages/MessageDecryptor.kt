@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.JobManager
@@ -360,8 +360,8 @@ object MessageDecryptor {
             return@FollowUpOperation null
           }
 
-          ApplicationDependencies.getPendingRetryReceiptCache().insert(sender.id, senderDevice, envelope.timestamp!!, receivedTimestamp, threadId)
-          ApplicationDependencies.getPendingRetryReceiptManager().scheduleIfNecessary()
+          AppDependencies.pendingRetryReceiptCache.insert(sender.id, senderDevice, envelope.timestamp!!, receivedTimestamp, threadId)
+          AppDependencies.pendingRetryReceiptManager.scheduleIfNecessary()
           null
         }
 

@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
@@ -163,7 +163,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
               .setTitle(R.string.preferences_account_delete_all_data_confirmation_title)
               .setMessage(R.string.preferences_account_delete_all_data_confirmation_message)
               .setPositiveButton(R.string.preferences_account_delete_all_data_confirmation_proceed) { _: DialogInterface, _: Int ->
-                if (!ServiceUtil.getActivityManager(ApplicationDependencies.getApplication()).clearApplicationUserData()) {
+                if (!ServiceUtil.getActivityManager(AppDependencies.application).clearApplicationUserData()) {
                   Toast.makeText(requireContext(), R.string.preferences_account_delete_all_data_failed, Toast.LENGTH_LONG).show()
                 }
               }

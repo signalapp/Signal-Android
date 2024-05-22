@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.manage.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.DonationRedemptionJobWatcher;
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
@@ -68,14 +68,14 @@ public class SubscriptionKeepAliveJob extends BaseJob {
       return;
     }
 
-    ServiceResponse<EmptyResponse> response = ApplicationDependencies.getDonationsService()
-                                                                     .putSubscription(subscriber.getSubscriberId());
+    ServiceResponse<EmptyResponse> response = AppDependencies.getDonationsService()
+                                                             .putSubscription(subscriber.getSubscriberId());
 
     verifyResponse(response);
     Log.i(TAG, "Successful call to PUT subscription ID", true);
 
-    ServiceResponse<ActiveSubscription> activeSubscriptionResponse = ApplicationDependencies.getDonationsService()
-                                                                                            .getSubscription(subscriber.getSubscriberId());
+    ServiceResponse<ActiveSubscription> activeSubscriptionResponse = AppDependencies.getDonationsService()
+                                                                                    .getSubscription(subscriber.getSubscriberId());
 
     verifyResponse(activeSubscriptionResponse);
     Log.i(TAG, "Successful call to GET active subscription", true);

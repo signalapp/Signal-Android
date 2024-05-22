@@ -12,7 +12,7 @@ import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.util.FeatureFlags
 import java.net.URLDecoder
@@ -43,9 +43,9 @@ object CallLinks {
         refresh()
       }
 
-      ApplicationDependencies.getDatabaseObserver().registerCallLinkObserver(roomId, observer)
+      AppDependencies.databaseObserver.registerCallLinkObserver(roomId, observer)
       emitter.setCancellable {
-        ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer)
+        AppDependencies.databaseObserver.unregisterObserver(observer)
       }
 
       refresh()

@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException
 import org.thoughtcrime.securesms.groups.GroupId
@@ -50,7 +50,7 @@ class LeaveGroupV2WorkerJob(parameters: Parameters, private val groupId: GroupId
       SignalDatabase.recipients.setProfileSharing(groupRecipient.id, enabled = false)
       SignalDatabase.threads.setEntireThreadRead(threadId)
       SignalDatabase.threads.update(threadId, unarchive = false, allowDeletion = false)
-      ApplicationDependencies.getMessageNotifier().updateNotification(context)
+      AppDependencies.messageNotifier.updateNotification(context)
     }
   }
 

@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.database.model.DonationReceiptRecord;
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
@@ -94,11 +94,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     RefreshOwnProfileJob                  refreshOwnProfileJob               = RefreshOwnProfileJob.forSubscription();
     MultiDeviceProfileContentUpdateJob    multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
 
-    return ApplicationDependencies.getJobManager()
-                                  .startChain(requestReceiptJob)
-                                  .then(redeemReceiptJob)
-                                  .then(refreshOwnProfileJob)
-                                  .then(multiDeviceProfileContentUpdateJob);
+    return AppDependencies.getJobManager()
+                          .startChain(requestReceiptJob)
+                          .then(redeemReceiptJob)
+                          .then(refreshOwnProfileJob)
+                          .then(multiDeviceProfileContentUpdateJob);
   }
 
   private SubscriptionReceiptRequestResponseJob(@NonNull Parameters parameters,
@@ -217,8 +217,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     }
 
     Log.d(TAG, "Submitting receipt credential request.");
-    ServiceResponse<ReceiptCredentialResponse> response = ApplicationDependencies.getDonationsService()
-                                                                                 .submitReceiptCredentialRequestSync(subscriberId, requestContext.getRequest());
+    ServiceResponse<ReceiptCredentialResponse> response = AppDependencies.getDonationsService()
+                                                                         .submitReceiptCredentialRequestSync(subscriberId, requestContext.getRequest());
 
     if (response.getApplicationError().isPresent()) {
       handleApplicationError(response);
@@ -250,8 +250,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   }
 
   private @NonNull ActiveSubscription getLatestSubscriptionInformation() throws Exception {
-    ServiceResponse<ActiveSubscription> activeSubscription = ApplicationDependencies.getDonationsService()
-                                                                                    .getSubscription(subscriberId);
+    ServiceResponse<ActiveSubscription> activeSubscription = AppDependencies.getDonationsService()
+                                                                            .getSubscription(subscriberId);
 
     if (activeSubscription.getResult().isPresent()) {
       return activeSubscription.getResult().get();
@@ -265,7 +265,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   }
 
   private ReceiptCredentialPresentation getReceiptCredentialPresentation(@NonNull ReceiptCredential receiptCredential) throws RetryableException {
-    ClientZkReceiptOperations operations = ApplicationDependencies.getClientZkReceiptOperations();
+    ClientZkReceiptOperations operations = AppDependencies.getClientZkReceiptOperations();
 
     try {
       return operations.createReceiptCredentialPresentation(receiptCredential);
@@ -276,7 +276,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   }
 
   private ReceiptCredential getReceiptCredential(@NonNull ReceiptCredentialRequestContext requestContext, @NonNull ReceiptCredentialResponse response) throws RetryableException {
-    ClientZkReceiptOperations operations = ApplicationDependencies.getClientZkReceiptOperations();
+    ClientZkReceiptOperations operations = AppDependencies.getClientZkReceiptOperations();
 
     try {
       return operations.receiveReceiptCredential(requestContext, response);
@@ -364,7 +364,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(subscription.getEndOfCurrentPeriod());
       SignalStore.donationsValues().setShowMonthlyDonationCanceledDialog(true);
 
-      ApplicationDependencies.getDonationsService().getDonationsConfiguration(Locale.getDefault()).getResult().ifPresent(config -> {
+      AppDependencies.getDonationsService().getDonationsConfiguration(Locale.getDefault()).getResult().ifPresent(config -> {
         SignalStore.donationsValues().setExpiredBadge(DonationsConfigurationExtensionsKt.getBadge(config, subscription.getLevel()));
       });
 

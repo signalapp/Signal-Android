@@ -10,7 +10,7 @@ import org.signal.core.util.drain
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import java.io.File
 import java.io.FileNotFoundException
@@ -58,7 +58,7 @@ class AttachmentHashBackfillJob private constructor(parameters: Parameters) : Jo
     if (!file.exists()) {
       Log.w(TAG, "File does not exist! Clearing all usages.", true)
       SignalDatabase.attachments.clearUsagesOfDataFile(file)
-      ApplicationDependencies.getJobManager().add(AttachmentHashBackfillJob())
+      AppDependencies.jobManager.add(AttachmentHashBackfillJob())
       return Result.success()
     }
 
@@ -90,7 +90,7 @@ class AttachmentHashBackfillJob private constructor(parameters: Parameters) : Jo
     // Sleep just so we don't hammer the device with hash calculations and disk I/O
     ThreadUtil.sleep(1000)
 
-    ApplicationDependencies.getJobManager().add(AttachmentHashBackfillJob())
+    AppDependencies.jobManager.add(AttachmentHashBackfillJob())
     return Result.success()
   }
 
@@ -100,7 +100,7 @@ class AttachmentHashBackfillJob private constructor(parameters: Parameters) : Jo
       SignalDatabase.attachments.markDataFileAsUnhashable(file)
     } ?: Log.w(TAG, "Job failed, but no active file is set!")
 
-    ApplicationDependencies.getJobManager().add(AttachmentHashBackfillJob())
+    AppDependencies.jobManager.add(AttachmentHashBackfillJob())
   }
 
   class Factory : Job.Factory<AttachmentHashBackfillJob> {

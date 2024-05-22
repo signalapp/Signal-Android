@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.PendingRetryReceiptCache;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.util.concurrent.TimeUnit;
 
@@ -35,7 +35,7 @@ public final class PendingRetryReceiptManager extends TimedEventManager<PendingR
   public PendingRetryReceiptManager(@NonNull Application application) {
     super(application, "PendingRetryReceiptManager");
 
-    this.pendingCache    = ApplicationDependencies.getPendingRetryReceiptCache();
+    this.pendingCache    = AppDependencies.getPendingRetryReceiptCache();
     this.messageDatabase = SignalDatabase.messages();
 
     scheduleIfNecessary();
@@ -94,7 +94,7 @@ public final class PendingRetryReceiptManager extends TimedEventManager<PendingR
     @Override
     public void onReceive(Context context, Intent intent) {
       Log.d(TAG, "onReceive()");
-      ApplicationDependencies.getPendingRetryReceiptManager().scheduleIfNecessary();
+      AppDependencies.getPendingRetryReceiptManager().scheduleIfNecessary();
     }
   }
 }

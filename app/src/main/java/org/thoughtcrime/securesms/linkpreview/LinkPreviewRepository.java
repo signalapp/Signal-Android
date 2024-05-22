@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.calls.links.CallLinks;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
@@ -96,7 +96,7 @@ public class LinkPreviewRepository {
 
   public @NonNull Single<Result<LinkPreview, Error>> getLinkPreview(@NonNull String url) {
     return Single.<Result<LinkPreview, Error>>create(emitter -> {
-      RequestController controller = getLinkPreview(ApplicationDependencies.getApplication(),
+      RequestController controller = getLinkPreview(AppDependencies.getApplication(),
                                                     url,
                                                     new Callback() {
                                                       @Override
@@ -234,12 +234,12 @@ public class LinkPreviewRepository {
         byte[]                           data        = OkHttpUtil.readAsBytes(bodyStream, FAILSAFE_MAX_IMAGE_SIZE);
         Bitmap                           bitmap      = BitmapFactory.decodeByteArray(data, 0, data.length);
         Optional<Attachment>             thumbnail   = Optional.empty();
-        PushMediaConstraints.MediaConfig mediaConfig = PushMediaConstraints.MediaConfig.getDefault(ApplicationDependencies.getApplication());
+        PushMediaConstraints.MediaConfig mediaConfig = PushMediaConstraints.MediaConfig.getDefault(AppDependencies.getApplication());
 
         if (bitmap != null) {
           for (final int maxDimension : mediaConfig.getImageSizeTargets()) {
             ImageCompressionUtil.Result result = ImageCompressionUtil.compressWithinConstraints(
-                ApplicationDependencies.getApplication(),
+                AppDependencies.getApplication(),
                 MediaUtil.IMAGE_JPEG,
                 bitmap,
                 maxDimension,
@@ -279,7 +279,7 @@ public class LinkPreviewRepository {
         byte[]               packIdBytes   = Hex.fromStringCondensed(packIdString);
         byte[]               packKeyBytes  = Hex.fromStringCondensed(packKeyString);
 
-        SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
+        SignalServiceMessageReceiver receiver = AppDependencies.getSignalServiceMessageReceiver();
         SignalServiceStickerManifest manifest = receiver.retrieveStickerManifest(packIdBytes, packKeyBytes);
 
         String                title        = OptionalUtil.or(manifest.getTitle(), manifest.getAuthor()).orElse("");
@@ -320,11 +320,11 @@ public class LinkPreviewRepository {
       return () -> { };
     }
 
-    Disposable disposable = ApplicationDependencies.getSignalCallManager()
-                                                   .getCallLinkManager()
-                                                   .readCallLink(new CallLinkCredentials(callLinkRootKey.getKeyBytes(), null))
-                                                   .observeOn(Schedulers.io())
-                                                   .subscribe(
+    Disposable disposable = AppDependencies.getSignalCallManager()
+                                           .getCallLinkManager()
+                                           .readCallLink(new CallLinkCredentials(callLinkRootKey.getKeyBytes(), null))
+                                           .observeOn(Schedulers.io())
+                                           .subscribe(
                                                         result -> {
                                                           if (result instanceof ReadCallLinkResult.Success) {
                                                             ReadCallLinkResult.Success success = (ReadCallLinkResult.Success) result;

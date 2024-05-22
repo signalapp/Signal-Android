@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionViewState
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerRepositoryV2
 import org.thoughtcrime.securesms.conversation.v2.ConversationRecipientRepository
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -23,8 +23,8 @@ import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
 class InlineQueryViewModelV2(
   private val recipientRepository: ConversationRecipientRepository,
   private val mentionsPickerRepository: MentionsPickerRepositoryV2 = MentionsPickerRepositoryV2(),
-  private val emojiSearchRepository: EmojiSearchRepository = EmojiSearchRepository(ApplicationDependencies.getApplication()),
-  private val recentEmojis: RecentEmojiPageModel = RecentEmojiPageModel(ApplicationDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY)
+  private val emojiSearchRepository: EmojiSearchRepository = EmojiSearchRepository(AppDependencies.application),
+  private val recentEmojis: RecentEmojiPageModel = RecentEmojiPageModel(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY)
 ) : ViewModel() {
 
   private val querySubject: PublishSubject<InlineQuery> = PublishSubject.create()

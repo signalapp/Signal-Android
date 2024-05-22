@@ -11,7 +11,7 @@ import androidx.savedstate.SavedStateRegistryOwner;
 
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob;
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
@@ -396,10 +396,10 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
 
     Stopwatch stopwatch = new Stopwatch("ReRegisterRestore");
 
-    ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
+    AppDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
     stopwatch.split("AccountRestore");
 
-    ApplicationDependencies
+    AppDependencies
         .getJobManager()
         .startChain(new StorageSyncJob())
         .then(new ReclaimUsernameAndLinkJob())
@@ -451,8 +451,8 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
       //noinspection ConstantConditions
       return modelClass.cast(new RegistrationViewModel(handle,
                                                        isReregister,
-                                                       new VerifyAccountRepository(ApplicationDependencies.getApplication()),
-                                                       new RegistrationRepository(ApplicationDependencies.getApplication())));
+                                                       new VerifyAccountRepository(AppDependencies.getApplication()),
+                                                       new RegistrationRepository(AppDependencies.getApplication())));
     }
   }
 }

@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
@@ -28,7 +28,7 @@ class SafetyNumberBottomSheetRepository {
    */
   fun getIdentityRecord(recipientId: RecipientId): Maybe<IdentityRecord> {
     return Single.fromCallable {
-      ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId)
+      AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipientId)
     }.flatMapMaybe {
       if (it.isPresent) {
         Maybe.just(it.get())
@@ -171,7 +171,7 @@ class SafetyNumberBottomSheetRepository {
     val recipientObservables: List<Observable<ResolvedIdentity>> = recipients.map {
       Recipient.observable(it).switchMap { recipient ->
         Observable.fromCallable {
-          val record = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.id)
+          val record = AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipient.id)
           ResolvedIdentity(recipient, record)
         }
       }

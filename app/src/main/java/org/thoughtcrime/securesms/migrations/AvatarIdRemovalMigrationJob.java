@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 
@@ -38,7 +38,7 @@ public class AvatarIdRemovalMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
-    ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
+    AppDependencies.getJobManager().add(new RefreshOwnProfileJob());
   }
 
   @Override

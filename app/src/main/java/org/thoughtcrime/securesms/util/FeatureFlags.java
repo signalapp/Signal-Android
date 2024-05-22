@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -313,7 +313,7 @@ public final class FeatureFlags {
    * desired test state.
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
-    put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> RoutineMessageFetchReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
+    put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> RoutineMessageFetchReceiver.startOrUpdateAlarm(AppDependencies.getApplication()));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
@@ -337,7 +337,7 @@ public final class FeatureFlags {
 
     if (timeSinceLastFetch < 0 || timeSinceLastFetch > FETCH_INTERVAL) {
       Log.i(TAG, "Scheduling remote config refresh.");
-      ApplicationDependencies.getJobManager().add(new RemoteConfigRefreshJob());
+      AppDependencies.getJobManager().add(new RemoteConfigRefreshJob());
     } else {
       Log.i(TAG, "Skipping remote config refresh. Refreshed " + timeSinceLastFetch + " ms ago.");
     }
@@ -345,7 +345,7 @@ public final class FeatureFlags {
 
   @WorkerThread
   public static void refreshSync() throws IOException {
-    RemoteConfigResult result = ApplicationDependencies.getSignalServiceAccountManager().getRemoteConfig();
+    RemoteConfigResult result = AppDependencies.getSignalServiceAccountManager().getRemoteConfig();
     FeatureFlags.update(result.getConfig());
   }
 

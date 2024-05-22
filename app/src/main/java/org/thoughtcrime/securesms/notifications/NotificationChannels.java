@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.RecipientTable.VibrateState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -89,7 +89,7 @@ public class NotificationChannels {
     if (instance == null) {
       synchronized (NotificationChannels.class) {
         if (instance == null) {
-          instance = new NotificationChannels(ApplicationDependencies.getApplication());
+          instance = new NotificationChannels(AppDependencies.getApplication());
         }
       }
     }
@@ -694,7 +694,7 @@ public class NotificationChannels {
     }
 
     if (oldVersion < Version.AUDIO_ATTRIBUTE_CHANGE) {
-      Context context                       = ApplicationDependencies.getApplication();
+      Context context                       = AppDependencies.getApplication();
       int     existingMessageChannelVersion = TextSecurePreferences.getNotificationMessagesChannelVersion(context);
       int     newMessageChannelVersion      = existingMessageChannelVersion + 1;
       String  existingChannelId             = "messages_" + existingMessageChannelVersion;

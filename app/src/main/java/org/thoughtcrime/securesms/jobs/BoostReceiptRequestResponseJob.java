@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
@@ -119,11 +119,11 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     RefreshOwnProfileJob               refreshOwnProfileJob               = RefreshOwnProfileJob.forBoost();
     MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
 
-    return ApplicationDependencies.getJobManager()
-                                  .startChain(requestReceiptJob)
-                                  .then(redeemReceiptJob)
-                                  .then(refreshOwnProfileJob)
-                                  .then(multiDeviceProfileContentUpdateJob);
+    return AppDependencies.getJobManager()
+                          .startChain(requestReceiptJob)
+                          .then(redeemReceiptJob)
+                          .then(refreshOwnProfileJob)
+                          .then(multiDeviceProfileContentUpdateJob);
   }
 
   public static JobManager.Chain createJobChainForGift(@NonNull String paymentIntentId,
@@ -138,9 +138,9 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     GiftSendJob                    giftSendJob       = new GiftSendJob(recipientId, additionalMessage);
 
 
-    return ApplicationDependencies.getJobManager()
-                                  .startChain(requestReceiptJob)
-                                  .then(giftSendJob);
+    return AppDependencies.getJobManager()
+                          .startChain(requestReceiptJob)
+                          .then(giftSendJob);
   }
 
   private BoostReceiptRequestResponseJob(@NonNull Parameters parameters,
@@ -212,7 +212,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
       secureRandom.nextBytes(randomBytes);
 
       ReceiptSerial             receiptSerial = new ReceiptSerial(randomBytes);
-      ClientZkReceiptOperations operations    = ApplicationDependencies.getClientZkReceiptOperations();
+      ClientZkReceiptOperations operations    = AppDependencies.getClientZkReceiptOperations();
 
       requestContext = operations.createReceiptCredentialRequestContext(secureRandom, receiptSerial);
     } else {
@@ -220,8 +220,8 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     }
 
     Log.d(TAG, "Submitting credential to server", true);
-    ServiceResponse<ReceiptCredentialResponse> response = ApplicationDependencies.getDonationsService()
-                                                                                 .submitBoostReceiptCredentialRequestSync(paymentIntentId, requestContext.getRequest(), donationProcessor);
+    ServiceResponse<ReceiptCredentialResponse> response = AppDependencies.getDonationsService()
+                                                                         .submitBoostReceiptCredentialRequestSync(paymentIntentId, requestContext.getRequest(), donationProcessor);
 
     if (response.getApplicationError().isPresent()) {
       handleApplicationError(context, response, donationErrorSource);
@@ -344,7 +344,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   }
 
   private ReceiptCredentialPresentation getReceiptCredentialPresentation(@NonNull ReceiptCredential receiptCredential) throws RetryableException {
-    ClientZkReceiptOperations operations = ApplicationDependencies.getClientZkReceiptOperations();
+    ClientZkReceiptOperations operations = AppDependencies.getClientZkReceiptOperations();
 
     try {
       return operations.createReceiptCredentialPresentation(receiptCredential);
@@ -356,7 +356,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   }
 
   private ReceiptCredential getReceiptCredential(@NonNull ReceiptCredentialResponse response) throws RetryableException {
-    ClientZkReceiptOperations operations = ApplicationDependencies.getClientZkReceiptOperations();
+    ClientZkReceiptOperations operations = AppDependencies.getClientZkReceiptOperations();
 
     try {
       return operations.receiveReceiptCredential(requestContext, response);

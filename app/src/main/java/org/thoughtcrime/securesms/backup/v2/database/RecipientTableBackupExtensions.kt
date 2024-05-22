@@ -44,13 +44,12 @@ import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
@@ -164,8 +163,8 @@ fun RecipientTable.clearAllDataForBackupRestore() {
   SqlUtil.resetAutoIncrementValue(writableDatabase, RecipientTable.TABLE_NAME)
 
   RecipientId.clearCache()
-  ApplicationDependencies.getRecipientCache().clear()
-  ApplicationDependencies.getRecipientCache().clearSelf()
+  AppDependencies.recipientCache.clear()
+  AppDependencies.recipientCache.clearSelf()
 }
 
 fun RecipientTable.restoreContactFromBackup(contact: Contact): RecipientId {
@@ -212,7 +211,7 @@ fun RecipientTable.restoreGroupFromBackup(group: Group): RecipientId {
   val masterKey = GroupMasterKey(group.masterKey.toByteArray())
   val groupId = GroupId.v2(masterKey)
 
-  val operations = ApplicationDependencies.getGroupsV2Operations().forGroup(GroupSecretParams.deriveFromMasterKey(masterKey))
+  val operations = AppDependencies.groupsV2Operations.forGroup(GroupSecretParams.deriveFromMasterKey(masterKey))
   val decryptedState = if (group.snapshot == null) {
     DecryptedGroup(revision = GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
   } else {
@@ -525,6 +524,6 @@ private fun Group.StorySendMode.toGroupShowAsStoryState(): GroupTable.ShowAsStor
 private val Contact.formattedE164: String?
   get() {
     return e164?.let {
-      PhoneNumberFormatter.get(ApplicationDependencies.getApplication()).format(e164.toString())
+      PhoneNumberFormatter.get(AppDependencies.application).format(e164.toString())
     }
   }

@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.RecipientTable.RecipientReader;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
@@ -87,7 +87,7 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
         }
       }
 
-      SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
+      SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
       messageSender.sendSyncMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)),
                                     UnidentifiedAccessUtil.getAccessForSync(context));
     }

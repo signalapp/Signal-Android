@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -192,9 +192,9 @@ class PayPalPaymentInProgressViewModel(
   }
 
   class Factory(
-    private val payPalRepository: PayPalRepository = PayPalRepository(ApplicationDependencies.getDonationsService()),
-    private val recurringInAppPaymentRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(ApplicationDependencies.getDonationsService()),
-    private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(ApplicationDependencies.getDonationsService())
+    private val payPalRepository: PayPalRepository = PayPalRepository(AppDependencies.donationsService),
+    private val recurringInAppPaymentRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(AppDependencies.donationsService),
+    private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(AppDependencies.donationsService)
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(PayPalPaymentInProgressViewModel(payPalRepository, recurringInAppPaymentRepository, oneTimeInAppPaymentRepository)) as T

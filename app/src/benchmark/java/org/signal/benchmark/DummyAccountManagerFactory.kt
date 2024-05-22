@@ -2,7 +2,7 @@ package org.signal.benchmark
 
 import android.content.Context
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
@@ -16,7 +16,7 @@ import java.util.Optional
 class DummyAccountManagerFactory : AccountManagerFactory() {
   override fun createAuthenticated(context: Context, aci: ACI, pni: PNI, number: String, deviceId: Int, password: String): SignalServiceAccountManager {
     return DummyAccountManager(
-      ApplicationDependencies.getSignalServiceNetworkAccess().getConfiguration(number),
+      AppDependencies.signalServiceNetworkAccess.getConfiguration(number),
       aci,
       pni,
       number,

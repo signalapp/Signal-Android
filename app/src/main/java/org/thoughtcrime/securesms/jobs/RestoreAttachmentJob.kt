@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.getThumbnailMediaName
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobLogger.format
@@ -90,7 +90,7 @@ class RestoreAttachmentJob private constructor(
     }
 
     fun modifyPriorities(ids: Set<AttachmentId>, priority: Int) {
-      val jobManager = ApplicationDependencies.getJobManager()
+      val jobManager = AppDependencies.jobManager
       jobManager.update { spec ->
         val jobData = getJsonJobData(spec)
         if (jobSpecMatchesAnyAttachmentId(jobData, ids) && spec.priority != priority) {
@@ -159,7 +159,7 @@ class RestoreAttachmentJob private constructor(
     doWork()
 
     if (!SignalDatabase.messages.isStory(messageId)) {
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, forConversation(0))
+      AppDependencies.messageNotifier.updateNotification(context, forConversation(0))
     }
   }
 
@@ -232,7 +232,7 @@ class RestoreAttachmentJob private constructor(
         false
       }
 
-      val messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver()
+      val messageReceiver = AppDependencies.signalServiceMessageReceiver
       val pointer = createAttachmentPointer(attachment, useArchiveCdn)
 
       val progressListener = object : SignalServiceAttachment.ProgressListener {
@@ -451,7 +451,7 @@ class RestoreAttachmentJob private constructor(
     }
 
     val cdnCredentials = BackupRepository.getCdnReadCredentials(attachment.archiveCdn).successOrThrow().headers
-    val messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver()
+    val messageReceiver = AppDependencies.signalServiceMessageReceiver
     val pointer = createThumbnailPointer(attachment)
 
     Log.w(TAG, "Downloading thumbnail for $attachmentId mediaName=${attachment.getThumbnailMediaName()}")

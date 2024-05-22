@@ -19,7 +19,7 @@ import org.signal.core.util.ResourceUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.PromptLogsBottomSheetBinding
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics
 import org.thoughtcrime.securesms.util.BottomSheetUtil
@@ -63,7 +63,7 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
   private val viewModel: PromptLogsViewModel by viewModels(
     factoryProducer = {
       val purpose = Purpose.deserialize(requireArguments().getInt(KEY_PURPOSE))
-      PromptLogsViewModel.Factory(ApplicationDependencies.getApplication(), purpose)
+      PromptLogsViewModel.Factory(AppDependencies.application, purpose)
     }
   )
 

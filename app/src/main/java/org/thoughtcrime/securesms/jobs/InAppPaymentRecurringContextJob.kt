@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -59,7 +59,7 @@ class InAppPaymentRecurringContextJob private constructor(
     }
 
     fun createJobChain(inAppPayment: InAppPaymentTable.InAppPayment, makePrimary: Boolean = false): Chain {
-      return ApplicationDependencies.getJobManager()
+      return AppDependencies.jobManager
         .startChain(create(inAppPayment))
         .then(InAppPaymentRedemptionJob.create(inAppPayment, makePrimary))
         .then(RefreshOwnProfileJob())
@@ -212,7 +212,7 @@ class InAppPaymentRecurringContextJob private constructor(
   }
 
   private fun getActiveSubscription(inAppPayment: InAppPaymentTable.InAppPayment): ActiveSubscription {
-    val activeSubscriptionResponse = ApplicationDependencies.getDonationsService().getSubscription(inAppPayment.subscriberId)
+    val activeSubscriptionResponse = AppDependencies.donationsService.getSubscription(inAppPayment.subscriberId)
     return if (activeSubscriptionResponse.result.isPresent) {
       activeSubscriptionResponse.result.get()
     } else if (activeSubscriptionResponse.applicationError.isPresent) {
@@ -352,7 +352,7 @@ class InAppPaymentRecurringContextJob private constructor(
   ) {
     info("Submitting receipt credential request")
     val response: ServiceResponse<ReceiptCredentialResponse> = when (inAppPayment.type) {
-      InAppPaymentTable.Type.RECURRING_DONATION -> ApplicationDependencies.getDonationsService().submitReceiptCredentialRequestSync(inAppPayment.subscriberId!!, requestContext.request)
+      InAppPaymentTable.Type.RECURRING_DONATION -> AppDependencies.donationsService.submitReceiptCredentialRequestSync(inAppPayment.subscriberId!!, requestContext.request)
       else -> throw Exception("Unsupported type: ${inAppPayment.type}")
     }
 
@@ -430,7 +430,7 @@ class InAppPaymentRecurringContextJob private constructor(
     requestContext: ReceiptCredentialRequestContext,
     response: ReceiptCredentialResponse
   ) {
-    val operations = ApplicationDependencies.getClientZkReceiptOperations()
+    val operations = AppDependencies.clientZkReceiptOperations
     val receiptCredential: ReceiptCredential = try {
       operations.receiveReceiptCredential(requestContext, response)
     } catch (e: VerificationFailedException) {

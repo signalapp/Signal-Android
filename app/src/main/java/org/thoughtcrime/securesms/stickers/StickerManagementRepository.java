@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerTable;
 import org.thoughtcrime.securesms.database.StickerTable.StickerPackRecordReader;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackOperationJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
@@ -38,7 +38,7 @@ final class StickerManagementRepository {
 
   void fetchUnretrievedReferencePacks() {
     SignalExecutors.SERIAL.execute(() -> {
-      JobManager jobManager = ApplicationDependencies.getJobManager();
+      JobManager jobManager = AppDependencies.getJobManager();
 
       try (Cursor cursor = attachmentDatabase.getUnavailableStickerPacks()) {
         while (cursor != null && cursor.moveToNext()) {
@@ -79,14 +79,14 @@ final class StickerManagementRepository {
       stickerDatabase.uninstallPack(packId);
 
       if (TextSecurePreferences.isMultiDevice(context)) {
-        ApplicationDependencies.getJobManager().add(new MultiDeviceStickerPackOperationJob(packId, packKey, MultiDeviceStickerPackOperationJob.Type.REMOVE));
+        AppDependencies.getJobManager().add(new MultiDeviceStickerPackOperationJob(packId, packKey, MultiDeviceStickerPackOperationJob.Type.REMOVE));
       }
     });
   }
 
   void installStickerPack(@NonNull String packId, @NonNull String packKey, boolean notify) {
     SignalExecutors.SERIAL.execute(() -> {
-      JobManager jobManager = ApplicationDependencies.getJobManager();
+      JobManager jobManager = AppDependencies.getJobManager();
 
       if (stickerDatabase.isPackAvailableAsReference(packId)) {
         stickerDatabase.markPackAsInstalled(packId, notify);

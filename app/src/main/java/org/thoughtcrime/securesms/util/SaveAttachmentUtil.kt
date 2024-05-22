@@ -27,7 +27,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.PartAuthority
 import java.io.File
 import java.io.FileOutputStream
@@ -110,15 +110,15 @@ object SaveAttachmentUtil {
     val updateValues = ContentValues()
     val mediaUri = result.mediaUri ?: return null
 
-    val inputStream: InputStream = PartAuthority.getAttachmentStream(ApplicationDependencies.getApplication(), attachment.uri) ?: return null
+    val inputStream: InputStream = PartAuthority.getAttachmentStream(AppDependencies.application, attachment.uri) ?: return null
     inputStream.use { inStream ->
       if (result.outputUri.scheme == ContentResolver.SCHEME_FILE) {
         FileOutputStream(mediaUri.path).use { outStream ->
           StreamUtil.copy(inStream, outStream)
-          MediaScannerConnection.scanFile(ApplicationDependencies.getApplication(), arrayOf(mediaUri.path), arrayOf(contentType), null)
+          MediaScannerConnection.scanFile(AppDependencies.application, arrayOf(mediaUri.path), arrayOf(contentType), null)
         }
       } else {
-        ApplicationDependencies.getApplication().contentResolver.openOutputStream(mediaUri, "w").use { outStream ->
+        AppDependencies.application.contentResolver.openOutputStream(mediaUri, "w").use { outStream ->
           val total = StreamUtil.copy(inStream, outStream)
           if (total > 0) {
             updateValues.put(MediaStore.MediaColumns.SIZE, total)
@@ -132,7 +132,7 @@ object SaveAttachmentUtil {
     }
 
     if (updateValues.size() > 0) {
-      ApplicationDependencies.getApplication().contentResolver.update(mediaUri, updateValues, null, null)
+      AppDependencies.application.contentResolver.update(mediaUri, updateValues, null, null)
     }
 
     return result.outputUri.lastPathSegment
@@ -231,11 +231,11 @@ object SaveAttachmentUtil {
     }
 
     return try {
-      CreateMediaUriResult(outputUri, ApplicationDependencies.getApplication().contentResolver.insert(outputUri, contentValues))
+      CreateMediaUriResult(outputUri, AppDependencies.application.contentResolver.insert(outputUri, contentValues))
     } catch (e: RuntimeException) {
       if (e is IllegalArgumentException || e.cause is IllegalArgumentException) {
         Log.w(TAG, "Unable to create uri in $outputUri with mimeType [$mimeType]")
-        CreateMediaUriResult(StorageUtil.getDownloadUri(), ApplicationDependencies.getApplication().contentResolver.insert(StorageUtil.getDownloadUri(), contentValues))
+        CreateMediaUriResult(StorageUtil.getDownloadUri(), AppDependencies.application.contentResolver.insert(StorageUtil.getDownloadUri(), contentValues))
       } else {
         throw e
       }
@@ -272,7 +272,7 @@ object SaveAttachmentUtil {
 
   @Throws(IOException::class)
   private fun pathTaken(outputUri: Uri, dataPath: String): Boolean {
-    val cursor: Cursor = ApplicationDependencies.getApplication().contentResolver.query(
+    val cursor: Cursor = AppDependencies.application.contentResolver.query(
       outputUri,
       arrayOf(MediaStore.MediaColumns.DATA),
       "${MediaStore.MediaColumns.DATA} = ?",
@@ -285,7 +285,7 @@ object SaveAttachmentUtil {
 
   @Throws(IOException::class)
   private fun displayNameTaken(outputUri: Uri, displayName: String): Boolean {
-    val cursor: Cursor = ApplicationDependencies.getApplication().contentResolver.query(
+    val cursor: Cursor = AppDependencies.application.contentResolver.query(
       outputUri,
       arrayOf(MediaStore.MediaColumns.DISPLAY_NAME),
       "${MediaStore.MediaColumns.DISPLAY_NAME} = ?",

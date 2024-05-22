@@ -4,7 +4,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -52,9 +52,9 @@ enum class StoryViewState {
           refresh()
         }
 
-        ApplicationDependencies.getDatabaseObserver().registerStoryObserver(recipientId, storyObserver)
+        AppDependencies.databaseObserver.registerStoryObserver(recipientId, storyObserver)
         emitter.setCancellable {
-          ApplicationDependencies.getDatabaseObserver().unregisterObserver(storyObserver)
+          AppDependencies.databaseObserver.unregisterObserver(storyObserver)
         }
 
         refresh()

@@ -8,7 +8,7 @@ import org.signal.libsignal.protocol.InvalidMessageException;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -84,7 +84,7 @@ public final class AvatarGroupsV1DownloadJob extends BaseJob {
         attachment = File.createTempFile("avatar", "tmp", context.getCacheDir());
         attachment.deleteOnExit();
 
-        SignalServiceMessageReceiver   receiver    = ApplicationDependencies.getSignalServiceMessageReceiver();
+        SignalServiceMessageReceiver   receiver    = AppDependencies.getSignalServiceMessageReceiver();
         SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(0, new SignalServiceAttachmentRemoteId.V2(avatarId), contentType, key, Optional.of(0), Optional.empty(), 0, 0, digest, Optional.empty(), 0, fileName, false, false, false, Optional.empty(), Optional.empty(), System.currentTimeMillis());
         InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, AvatarHelper.AVATAR_DOWNLOAD_FAILSAFE_MAX_SIZE);
 

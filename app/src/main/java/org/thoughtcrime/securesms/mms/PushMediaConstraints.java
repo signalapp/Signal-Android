@@ -6,7 +6,7 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
@@ -22,7 +22,7 @@ public class PushMediaConstraints extends MediaConstraints {
   private final MediaConfig currentConfig;
 
   public PushMediaConstraints(@Nullable SentMediaQuality sentMediaQuality) {
-    currentConfig = getCurrentConfig(ApplicationDependencies.getApplication(), sentMediaQuality);
+    currentConfig = getCurrentConfig(AppDependencies.getApplication(), sentMediaQuality);
   }
 
   @Override
@@ -153,7 +153,7 @@ public class PushMediaConstraints extends MediaConstraints {
     }
 
     public static @Nullable MediaConfig forLevel(int level) {
-      boolean isLowMemory = Util.isLowMemory(ApplicationDependencies.getApplication());
+      boolean isLowMemory = Util.isLowMemory(AppDependencies.getApplication());
 
       return Arrays.stream(values())
                    .filter(v -> v.level == level && v.isLowMemory == isLowMemory)

@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -47,7 +47,7 @@ public class AccountRecordMigrationJob extends MigrationJob {
     }
 
     SignalDatabase.recipients().markNeedsSync(Recipient.self().getId());
-    ApplicationDependencies.getJobManager().add(new StorageSyncJob());
+    AppDependencies.getJobManager().add(new StorageSyncJob());
   }
 
   @Override

@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.model.withAttachments
 import org.thoughtcrime.securesms.database.model.withCall
 import org.thoughtcrime.securesms.database.model.withPayment
 import org.thoughtcrime.securesms.database.model.withReactions
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.payments.Payment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -52,7 +52,7 @@ object MessageDataFetcher {
   @WorkerThread
   fun fetch(messageRecords: List<MessageRecord>): ExtraMessageData {
     val startTimeNanos = System.nanoTime()
-    val context = ApplicationDependencies.getApplication()
+    val context = AppDependencies.application
 
     val messageIds: List<Long> = messageRecords.map { it.id }
     val executor = SignalExecutors.BOUNDED

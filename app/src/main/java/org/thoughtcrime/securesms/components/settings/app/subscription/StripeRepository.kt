@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -51,8 +51,8 @@ class StripeRepository(
 ) : StripeApi.PaymentIntentFetcher, StripeApi.SetupIntentHelper {
 
   private val googlePayApi = GooglePayApi(activity, StripeApi.Gateway(Environment.Donations.STRIPE_CONFIGURATION), Environment.Donations.GOOGLE_PAY_CONFIGURATION)
-  private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
-  private val recurringInAppPaymentRepository = RecurringInAppPaymentRepository(ApplicationDependencies.getDonationsService())
+  private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, AppDependencies.okHttpClient)
+  private val recurringInAppPaymentRepository = RecurringInAppPaymentRepository(AppDependencies.donationsService)
 
   fun isGooglePayAvailable(): Completable {
     return googlePayApi.queryIsReadyToPay()
@@ -148,8 +148,8 @@ class StripeRepository(
     Log.d(TAG, "Fetching payment intent from Signal service for $price... (Locale.US minimum precision: ${price.minimumUnitPrecisionString})")
     return Single
       .fromCallable {
-        ApplicationDependencies
-          .getDonationsService()
+        AppDependencies
+          .donationsService
           .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode, level, sourceType.paymentMethod)
       }
       .flatMap(ServiceResponse<StripeClientSecret>::flattenResult)
@@ -173,8 +173,8 @@ class StripeRepository(
     return Single.fromCallable { InAppPaymentsRepository.requireSubscriber(subscriberType) }
       .flatMap {
         Single.fromCallable {
-          ApplicationDependencies
-            .getDonationsService()
+          AppDependencies
+            .donationsService
             .createStripeSubscriptionPaymentMethod(it.subscriberId, paymentSourceType.paymentMethod)
         }
       }
@@ -240,12 +240,12 @@ class StripeRepository(
       Log.d(TAG, "Setting default payment method via Signal service...")
       Single.fromCallable {
         if (paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
-          ApplicationDependencies
-            .getDonationsService()
+          AppDependencies
+            .donationsService
             .setDefaultIdealPaymentMethod(subscriberRecord.subscriberId, setupIntentId)
         } else {
-          ApplicationDependencies
-            .getDonationsService()
+          AppDependencies
+            .donationsService
             .setDefaultStripePaymentMethod(subscriberRecord.subscriberId, paymentMethodId)
         }
       }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().doOnComplete {

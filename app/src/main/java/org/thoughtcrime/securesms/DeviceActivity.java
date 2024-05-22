@@ -28,7 +28,7 @@ import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.qr.kitkat.ScanListener;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -191,7 +191,7 @@ public class DeviceActivity extends PassphraseRequiredActivity
 
         try {
           Context                     context          = DeviceActivity.this;
-          SignalServiceAccountManager accountManager   = ApplicationDependencies.getSignalServiceAccountManager();
+          SignalServiceAccountManager accountManager   = AppDependencies.getSignalServiceAccountManager();
           String                      verificationCode = accountManager.getNewDeviceVerificationCode();
           String                      ephemeralId      = uri.getQueryParameter("uuid");
           String                      publicKeyEncoded = uri.getQueryParameter("pub_key");

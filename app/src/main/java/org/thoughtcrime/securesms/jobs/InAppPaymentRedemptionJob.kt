@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.InAppPaymentRedemptionJobData
@@ -46,7 +46,7 @@ class InAppPaymentRedemptionJob private constructor(
      * Utilized when active subscription is in the REDEMPTION_STARTED stage of the redemption pipeline
      */
     fun enqueueJobChainForRecurringKeepAlive(inAppPayment: InAppPaymentTable.InAppPayment) {
-      ApplicationDependencies.getJobManager()
+      AppDependencies.jobManager
         .startChain(create(inAppPayment, makePrimary = false))
         .then(RefreshOwnProfileJob())
         .then(MultiDeviceProfileContentUpdateJob())
@@ -156,8 +156,8 @@ class InAppPaymentRedemptionJob private constructor(
     val receiptCredentialPresentation = ReceiptCredentialPresentation(credentialBytes)
 
     Log.d(TAG, "Attempting to redeem receipt credential presentation...", true)
-    val serviceResponse = ApplicationDependencies
-      .getDonationsService()
+    val serviceResponse = AppDependencies
+      .donationsService
       .redeemReceipt(
         receiptCredentialPresentation,
         SignalStore.donationsValues().getDisplayBadgesOnProfile(),
@@ -207,8 +207,8 @@ class InAppPaymentRedemptionJob private constructor(
     val receiptCredentialPresentation = ReceiptCredentialPresentation(credentialBytes.toByteArray())
 
     Log.d(TAG, "Attempting to redeem receipt credential presentation...", true)
-    val serviceResponse = ApplicationDependencies
-      .getDonationsService()
+    val serviceResponse = AppDependencies
+      .donationsService
       .redeemReceipt(
         receiptCredentialPresentation,
         SignalStore.donationsValues().getDisplayBadgesOnProfile(),
