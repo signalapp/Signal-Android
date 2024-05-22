@@ -11,7 +11,8 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.RestoreAttachmentThumbnailJob
 
 /**
  * Responsible for managing logic around restore prioritization
@@ -28,17 +29,24 @@ object BackupRestoreManager {
   fun prioritizeAttachmentsIfNeeded(messageRecords: List<MessageRecord>) {
     SignalExecutors.BOUNDED.execute {
       synchronized(this) {
-        val restoringAttachments: List<AttachmentId> = messageRecords
+        val restoringAttachments = messageRecords
           .mapNotNull { (it as? MmsMessageRecord?)?.slideDeck?.slides }
           .flatten()
           .mapNotNull { it.asAttachment() as? DatabaseAttachment }
-          .filter { it.transferState == AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS && !reprioritizedAttachments.contains(it.attachmentId) }
-          .map { it.attachmentId }
+          .filter {
+            val needThumbnail = it.thumbnailRestoreState == AttachmentTable.ThumbnailRestoreState.NEEDS_RESTORE && it.transferState == AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS
+            (needThumbnail || it.thumbnailRestoreState == AttachmentTable.ThumbnailRestoreState.IN_PROGRESS) && !reprioritizedAttachments.contains(it.attachmentId)
+          }
+          .map { it.attachmentId to it.mmsId }
+          .toSet()
 
-        reprioritizedAttachments += restoringAttachments
-
-        if (restoringAttachments.isNotEmpty()) {
-          RestoreAttachmentJob.modifyPriorities(restoringAttachments.toSet(), 1)
+        reprioritizedAttachments += restoringAttachments.map { it.first }
+        val thumbnailJobs = restoringAttachments.map {
+          val (attachmentId, mmsId) = it
+          RestoreAttachmentThumbnailJob(attachmentId = attachmentId, messageId = mmsId, highPriority = true)
+        }
+        if (thumbnailJobs.isNotEmpty()) {
+          AppDependencies.jobManager.addAll(thumbnailJobs)
         }
       }
     }

@@ -211,6 +211,7 @@ public final class JobManagerFactories {
       put(RequestGroupV2InfoWorkerJob.KEY,           new RequestGroupV2InfoWorkerJob.Factory());
       put(RequestGroupV2InfoJob.KEY,                 new RequestGroupV2InfoJob.Factory());
       put(RestoreAttachmentJob.KEY,                  new RestoreAttachmentJob.Factory());
+      put(RestoreAttachmentThumbnailJob.KEY,         new RestoreAttachmentThumbnailJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory());
       put(RetrieveProfileJob.KEY,                    new RetrieveProfileJob.Factory());
       put(RetrieveRemoteAnnouncementsJob.KEY,        new RetrieveRemoteAnnouncementsJob.Factory());

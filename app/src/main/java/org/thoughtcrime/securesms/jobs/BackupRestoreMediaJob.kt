@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -50,24 +51,33 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
     val jobManager = AppDependencies.jobManager
     val batchSize = 100
     val restoreTime = System.currentTimeMillis()
-    var restoreJobBatch: List<RestoreAttachmentJob>
+    var restoreJobBatch: List<Job>
     do {
       val attachmentBatch = SignalDatabase.attachments.getRestorableAttachments(batchSize)
       val messageIds = attachmentBatch.map { it.mmsId }.toSet()
       val messageMap = SignalDatabase.messages.getMessages(messageIds).associate { it.id to (it as MmsMessageRecord) }
       restoreJobBatch = SignalDatabase.attachments.getRestorableAttachments(batchSize).map { attachment ->
         val message = messageMap[attachment.mmsId]!!
-        RestoreAttachmentJob(
-          messageId = attachment.mmsId,
-          attachmentId = attachment.attachmentId,
-          manual = false,
-          forceArchiveDownload = true,
-          restoreMode = if (shouldRestoreFullSize(message, restoreTime, optimizeStorage = SignalStore.backup().optimizeStorage)) {
-            RestoreAttachmentJob.RestoreMode.ORIGINAL
-          } else {
-            RestoreAttachmentJob.RestoreMode.THUMBNAIL
-          }
-        )
+        if (shouldRestoreFullSize(message, restoreTime, SignalStore.backup().optimizeStorage)) {
+          RestoreAttachmentJob(
+            messageId = attachment.mmsId,
+            attachmentId = attachment.attachmentId,
+            manual = false,
+            forceArchiveDownload = true,
+            restoreMode = RestoreAttachmentJob.RestoreMode.ORIGINAL
+          )
+        } else {
+          SignalDatabase.attachments.setTransferState(
+            messageId = attachment.mmsId,
+            attachmentId = attachment.attachmentId,
+            transferState = AttachmentTable.TRANSFER_RESTORE_OFFLOADED
+          )
+          RestoreAttachmentThumbnailJob(
+            messageId = attachment.mmsId,
+            attachmentId = attachment.attachmentId,
+            highPriority = false
+          )
+        }
       }
       jobManager.addAll(restoreJobBatch)
     } while (restoreJobBatch.isNotEmpty())

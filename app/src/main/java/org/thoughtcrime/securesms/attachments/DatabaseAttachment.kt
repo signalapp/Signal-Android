@@ -172,7 +172,7 @@ class DatabaseAttachment : Attachment {
 
   override fun equals(other: Any?): Boolean {
     return other != null &&
-      other is DatabaseAttachment && other.attachmentId == attachmentId
+      other is DatabaseAttachment && other.attachmentId == attachmentId && other.uri == uri
   }
 
   override fun hashCode(): Int {

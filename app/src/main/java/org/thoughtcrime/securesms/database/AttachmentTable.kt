@@ -739,12 +739,34 @@ class AttachmentTable(
     notifyConversationListeners(threadId)
   }
 
+  fun setThumbnailTransferState(messageId: Long, attachmentId: AttachmentId, thumbnailRestoreState: ThumbnailRestoreState) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(THUMBNAIL_RESTORE_STATE to thumbnailRestoreState.value)
+      .where("$ID = ?", attachmentId.id)
+      .run()
+
+    val threadId = messages.getThreadIdForMessage(messageId)
+    notifyConversationListeners(threadId)
+  }
+
   @Throws(MmsException::class)
   fun setTransferProgressFailed(attachmentId: AttachmentId, mmsId: Long) {
     writableDatabase
       .update(TABLE_NAME)
       .values(TRANSFER_STATE to TRANSFER_PROGRESS_FAILED)
       .where("$ID = ? AND $TRANSFER_STATE < $TRANSFER_PROGRESS_PERMANENT_FAILURE", attachmentId.id)
+      .run()
+
+    notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
+  }
+
+  @Throws(MmsException::class)
+  fun setThumbnailRestoreProgressFailed(attachmentId: AttachmentId, mmsId: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(THUMBNAIL_RESTORE_STATE to ThumbnailRestoreState.PERMANENT_FAILURE.value)
+      .where("$ID = ? AND $THUMBNAIL_RESTORE_STATE != ?", attachmentId.id, ThumbnailRestoreState.FINISHED)
       .run()
 
     notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
@@ -860,17 +882,13 @@ class AttachmentTable(
     writableDatabase.withinTransaction { db ->
       val values = contentValuesOf(
         THUMBNAIL_FILE to fileWriteResult.file.absolutePath,
-        THUMBNAIL_RANDOM to fileWriteResult.random
+        THUMBNAIL_RANDOM to fileWriteResult.random,
+        THUMBNAIL_RESTORE_STATE to ThumbnailRestoreState.FINISHED.value
       )
 
       db.update(TABLE_NAME)
         .values(values)
         .where("$ARCHIVE_MEDIA_ID = ?", archiveMediaId)
-        .run()
-
-      db.update(TABLE_NAME)
-        .values(TRANSFER_STATE to TRANSFER_RESTORE_OFFLOADED)
-        .where("$ID = ?", attachmentId.id)
         .run()
     }
 
@@ -1776,6 +1794,7 @@ class AttachmentTable(
         put(ARCHIVE_MEDIA_NAME, attachment.archiveMediaName)
         put(ARCHIVE_MEDIA_ID, attachment.archiveMediaId)
         put(ARCHIVE_THUMBNAIL_MEDIA_ID, attachment.archiveThumbnailMediaId)
+        put(THUMBNAIL_RESTORE_STATE, ThumbnailRestoreState.NEEDS_RESTORE.value)
 
         attachment.stickerLocator?.let { sticker ->
           put(STICKER_PACK_ID, sticker.packId)

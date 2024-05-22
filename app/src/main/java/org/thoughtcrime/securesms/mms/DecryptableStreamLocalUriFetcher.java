@@ -8,6 +8,7 @@ import android.net.Uri;
 import com.bumptech.glide.load.data.StreamLocalUriFetcher;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.ByteArrayInputStream;
@@ -38,6 +39,18 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
         ByteArrayInputStream thumbnailStream = new ByteArrayInputStream(baos.toByteArray());
         thumbnail.recycle();
         return thumbnailStream;
+      }
+      if (PartAuthority.isAttachmentUri(uri) && MediaUtil.isVideoType(PartAuthority.getAttachmentContentType(context, uri))) {
+        try {
+          AttachmentId attachmentId = PartAuthority.requireAttachmentId(uri);
+          Uri thumbnailUri = PartAuthority.getAttachmentThumbnailUri(attachmentId);
+          InputStream thumbStream = PartAuthority.getAttachmentThumbnailStream(context, thumbnailUri);
+          if (thumbStream != null) {
+            return thumbStream;
+          }
+        } catch (IOException e) {
+          Log.i(TAG, "Failed to fetch thumbnail", e);
+        }
       }
     }
 

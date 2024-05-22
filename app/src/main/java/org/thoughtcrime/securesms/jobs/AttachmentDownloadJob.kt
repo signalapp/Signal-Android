@@ -84,6 +84,26 @@ class AttachmentDownloadJob private constructor(
       val parsed = AttachmentId(data.getLong(KEY_ATTACHMENT_ID))
       return attachmentId == parsed
     }
+
+    @JvmStatic
+    fun downloadAttachmentIfNeeded(databaseAttachment: DatabaseAttachment): String? {
+      if (databaseAttachment.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
+        return RestoreAttachmentJob.restoreOffloadedAttachment(databaseAttachment)
+      } else if (databaseAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_STARTED &&
+        databaseAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE &&
+        databaseAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE
+      ) {
+        val downloadJob = AttachmentDownloadJob(
+          messageId = databaseAttachment.mmsId,
+          attachmentId = databaseAttachment.attachmentId,
+          manual = true,
+          forceArchiveDownload = false
+        )
+        AppDependencies.jobManager.add(downloadJob)
+        return downloadJob.id
+      }
+      return null
+    }
   }
 
   private val attachmentId: Long

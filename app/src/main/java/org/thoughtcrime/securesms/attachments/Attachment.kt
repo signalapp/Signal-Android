@@ -71,6 +71,8 @@ abstract class Attachment(
   abstract val uri: Uri?
   abstract val publicUri: Uri?
   abstract val thumbnailUri: Uri?
+  val displayUri: Uri?
+    get() = uri ?: thumbnailUri
 
   protected constructor(parcel: Parcel) : this(
     contentType = parcel.readString()!!,

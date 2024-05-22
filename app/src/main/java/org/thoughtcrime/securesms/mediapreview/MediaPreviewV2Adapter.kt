@@ -28,7 +28,7 @@ class MediaPreviewV2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment)
 
     val contentType = attachment.contentType
     val args = bundleOf(
-      MediaPreviewFragment.DATA_URI to attachment.uri,
+      MediaPreviewFragment.DATA_URI to attachment.displayUri,
       MediaPreviewFragment.DATA_CONTENT_TYPE to contentType,
       MediaPreviewFragment.DATA_SIZE to attachment.size,
       MediaPreviewFragment.AUTO_PLAY to attachment.videoGif,

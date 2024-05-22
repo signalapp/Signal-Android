@@ -2468,10 +2468,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         Log.i(TAG, "Scheduling push attachment downloads for " + slides.size() + " items");
 
         for (Slide slide : slides) {
-          AppDependencies.getJobManager().add(new AttachmentDownloadJob(messageRecord.getId(),
-                                                                        ((DatabaseAttachment) slide.asAttachment()).attachmentId,
-                                                                        true,
-                                                                        false));
+          AttachmentDownloadJob.downloadAttachmentIfNeeded((DatabaseAttachment) slide.asAttachment());
         }
       }
     }
@@ -2484,37 +2481,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     @Override
     public void onClick(View v, Slide slide) {
-      if (messageRecord.isOutgoing()) {
-        Log.d(TAG, "Video player button for outgoing slide clicked.");
-        return;
-      }
       if (MediaUtil.isInstantVideoSupported(slide)) {
         final DatabaseAttachment databaseAttachment = (DatabaseAttachment) slide.asAttachment();
-        if (databaseAttachment.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
-          final AttachmentId attachmentId = databaseAttachment.attachmentId;
-          final JobManager   jobManager   = AppDependencies.getJobManager();
-          final String       queue        = RestoreAttachmentJob.constructQueueString(attachmentId);
+        String jobId = AttachmentDownloadJob.downloadAttachmentIfNeeded(databaseAttachment);
+        if (jobId != null) {
           setup(v, slide);
-          jobManager.add(new RestoreAttachmentJob(messageRecord.getId(),
-                                                  attachmentId,
-                                                  true,
-                                                  false,
-                                                  RestoreAttachmentJob.RestoreMode.ORIGINAL));
-          jobManager.addListener(queue, (job, jobState) -> {
-            if (jobState.isComplete()) {
-              cleanup();
-            }
-          });
-        } else if (databaseAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_STARTED) {
-          final AttachmentId attachmentId = databaseAttachment.attachmentId;
-          final JobManager   jobManager   = AppDependencies.getJobManager();
-          final String       queue        = AttachmentDownloadJob.constructQueueString(attachmentId);
-          setup(v, slide);
-          jobManager.add(new AttachmentDownloadJob(messageRecord.getId(),
-                                                   attachmentId,
-                                                   true,
-                                                   false));
-          jobManager.addListener(queue, (job, jobState) -> {
+          AppDependencies.getJobManager().addListener(jobId, (job, jobState) -> {
             if (jobState.isComplete()) {
               cleanup();
             }
@@ -2590,7 +2562,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         performClick();
       } else if (!canPlayContent && mediaItem != null && eventListener != null) {
         eventListener.onPlayInlineContent(conversationMessage);
-      } else if (MediaPreviewV2Fragment.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null) {
+      } else if (MediaPreviewV2Fragment.isContentTypeSupported(slide.getContentType()) && slide.getDisplayUri() != null) {
+        AttachmentDownloadJob.downloadAttachmentIfNeeded((DatabaseAttachment) slide.asAttachment());
         launchMediaPreview(v, slide);
       } else if (slide.getUri() != null) {
         Log.i(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
@@ -2634,8 +2607,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       return;
     }
 
-    Uri mediaUri = slide.getUri();
-
+    Uri mediaUri = slide.getDisplayUri();
     if (mediaUri == null) {
       Log.w(TAG, "Could not launch media preview for item: uri was null");
       return;

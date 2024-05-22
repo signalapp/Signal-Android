@@ -89,22 +89,17 @@ class RestoreAttachmentJob private constructor(
       return ids.contains(parsed)
     }
 
-    fun modifyPriorities(ids: Set<AttachmentId>, priority: Int) {
-      val jobManager = AppDependencies.jobManager
-      jobManager.update { spec ->
-        val jobData = getJsonJobData(spec)
-        if (jobSpecMatchesAnyAttachmentId(jobData, ids) && spec.priority != priority) {
-          val restoreMode = RestoreMode.deserialize(jobData!!.getIntOrDefault(KEY_RESTORE_MODE, RestoreMode.ORIGINAL.value))
-          val modifiedJobData = if (restoreMode == RestoreMode.ORIGINAL) {
-            jobData.buildUpon().putInt(KEY_RESTORE_MODE, RestoreMode.BOTH.value).build()
-          } else {
-            jobData
-          }
-          spec.copy(priority = priority, serializedData = modifiedJobData.serialize())
-        } else {
-          spec
-        }
-      }
+    @JvmStatic
+    fun restoreOffloadedAttachment(attachment: DatabaseAttachment): String {
+      val restoreJob = RestoreAttachmentJob(
+        messageId = attachment.mmsId,
+        attachmentId = attachment.attachmentId,
+        manual = false,
+        forceArchiveDownload = true,
+        restoreMode = RestoreAttachmentJob.RestoreMode.ORIGINAL
+      )
+      AppDependencies.jobManager.add(restoreJob)
+      return restoreJob.id
     }
   }
 
@@ -148,7 +143,7 @@ class RestoreAttachmentJob private constructor(
     val attachmentId = AttachmentId(attachmentId)
     val attachment = SignalDatabase.attachments.getAttachment(attachmentId)
     val pending = attachment != null && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE
-    if (attachment?.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE) {
+    if (attachment?.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE || attachment?.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
       Log.i(TAG, "onAdded() Marking attachment restore progress as 'started'")
       SignalDatabase.attachments.setTransferState(messageId, attachmentId, AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS)
     }
@@ -427,8 +422,16 @@ class RestoreAttachmentJob private constructor(
   }
 
   private fun downloadThumbnail(attachmentId: AttachmentId, attachment: DatabaseAttachment) {
-    if (attachment.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
+    if (attachment.thumbnailRestoreState == AttachmentTable.ThumbnailRestoreState.FINISHED) {
       Log.w(TAG, "$attachmentId already has thumbnail downloaded")
+      return
+    }
+    if (attachment.thumbnailRestoreState == AttachmentTable.ThumbnailRestoreState.NONE) {
+      Log.w(TAG, "$attachmentId has no thumbnail state")
+      return
+    }
+    if (attachment.thumbnailRestoreState == AttachmentTable.ThumbnailRestoreState.PERMANENT_FAILURE) {
+      Log.w(TAG, "$attachmentId thumbnail permanently failed")
       return
     }
     if (attachment.archiveMediaName == null) {
@@ -442,7 +445,6 @@ class RestoreAttachmentJob private constructor(
 
     val progressListener = object : SignalServiceAttachment.ProgressListener {
       override fun onAttachmentProgress(total: Long, progress: Long) {
-        EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress))
       }
 
       override fun shouldCancel(): Boolean {
