@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCall
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
+import org.thoughtcrime.securesms.backup.v2.proto.PaymentNotification
 import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
@@ -41,8 +42,10 @@ import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
+import org.thoughtcrime.securesms.database.PaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.calls
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil
@@ -57,6 +60,9 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchove
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.QuoteModel
+import org.thoughtcrime.securesms.payments.FailureReason
+import org.thoughtcrime.securesms.payments.State
+import org.thoughtcrime.securesms.payments.proto.PaymentMetaData
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -65,6 +71,7 @@ import java.io.Closeable
 import java.io.IOException
 import java.util.LinkedList
 import java.util.Queue
+import kotlin.jvm.optionals.getOrNull
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange as BackupBodyRange
 
 /**
@@ -219,7 +226,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
                     CallTable.Event.OUTGOING_RING -> GroupCall.State.OUTGOING_RING
                   },
                   ringerRecipientId = call.ringerRecipient?.toLong(),
-                  startedCallAci = if (call.ringerRecipient != null) SignalDatabase.recipients.getRecord(call.ringerRecipient).aci?.toByteString() else null,
+                  startedCallRecipientId = call.ringerRecipient?.toLong(),
                   startedCallTimestamp = call.timestamp
                 )
               )
@@ -304,7 +311,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
                   builder.updateMessage = ChatUpdateMessage(
                     groupCall = GroupCall(
                       state = GroupCall.State.GENERIC,
-                      startedCallAci = ACI.from(UuidUtil.parseOrThrow(groupCallUpdateDetails.startedCallUuid)).toByteString(),
+                      startedCallRecipientId = recipients.getByAci(ACI.from(UuidUtil.parseOrThrow(groupCallUpdateDetails.startedCallUuid))).getOrNull()?.toLong(),
                       startedCallTimestamp = groupCallUpdateDetails.startedCallTimestamp,
                       endedCallTimestamp = groupCallUpdateDetails.endedCallTimestamp
                     )
@@ -314,6 +321,24 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
                 }
               }
             }
+          }
+        }
+        MessageTypes.isPaymentsNotification(record.type) -> {
+          val paymentUuid = UuidUtil.parseOrNull(record.body)
+          val payment = if (paymentUuid != null) {
+            SignalDatabase.payments.getPayment(paymentUuid)
+          } else {
+            null
+          }
+          if (payment == null) {
+            builder.paymentNotification = PaymentNotification()
+          } else {
+            builder.paymentNotification = PaymentNotification(
+              amountMob = payment.amount.serializeAmountString(),
+              feeMob = payment.fee.serializeAmountString(),
+              note = payment.note,
+              transactionDetails = payment.getTransactionDetails()
+            )
           }
         }
         record.body == null && !attachmentsById.containsKey(record.id) -> {
@@ -481,6 +506,46 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
   private fun List<DatabaseAttachment>.toBackupAttachments(): List<MessageAttachment> {
     return this.map { attachment ->
       attachment.toBackupAttachment()
+    }
+  }
+
+  private fun PaymentTable.PaymentTransaction.getTransactionDetails(): PaymentNotification.TransactionDetails? {
+    if (failureReason != null || state == State.FAILED) {
+      return PaymentNotification.TransactionDetails(failedTransaction = PaymentNotification.TransactionDetails.FailedTransaction(reason = failureReason.toBackupFailureReason()))
+    }
+    return PaymentNotification.TransactionDetails(
+      transaction = PaymentNotification.TransactionDetails.Transaction(
+        status = this.state.toBackupState(),
+        timestamp = timestamp,
+        blockIndex = blockIndex,
+        blockTimestamp = blockTimestamp,
+        mobileCoinIdentification = paymentMetaData.mobileCoinTxoIdentification?.toBackup()
+      )
+    )
+  }
+
+  private fun PaymentMetaData.MobileCoinTxoIdentification.toBackup(): PaymentNotification.TransactionDetails.MobileCoinTxoIdentification {
+    return PaymentNotification.TransactionDetails.MobileCoinTxoIdentification(
+      publicKey = this.publicKey,
+      keyImages = this.keyImages
+    )
+  }
+
+  private fun State.toBackupState(): PaymentNotification.TransactionDetails.Transaction.Status {
+    return when (this) {
+      State.INITIAL -> PaymentNotification.TransactionDetails.Transaction.Status.INITIAL
+      State.SUBMITTED -> PaymentNotification.TransactionDetails.Transaction.Status.SUBMITTED
+      State.SUCCESSFUL -> PaymentNotification.TransactionDetails.Transaction.Status.SUCCESSFUL
+      State.FAILED -> throw IllegalArgumentException("state cannot be failed")
+    }
+  }
+
+  private fun FailureReason?.toBackupFailureReason(): PaymentNotification.TransactionDetails.FailedTransaction.FailureReason {
+    return when (this) {
+      FailureReason.UNKNOWN -> PaymentNotification.TransactionDetails.FailedTransaction.FailureReason.GENERIC
+      FailureReason.INSUFFICIENT_FUNDS -> PaymentNotification.TransactionDetails.FailedTransaction.FailureReason.INSUFFICIENT_FUNDS
+      FailureReason.NETWORK -> PaymentNotification.TransactionDetails.FailedTransaction.FailureReason.NETWORK
+      else -> PaymentNotification.TransactionDetails.FailedTransaction.FailureReason.GENERIC
     }
   }
 

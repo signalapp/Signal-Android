@@ -326,6 +326,7 @@ message ChatItem {
     StickerMessage stickerMessage = 13;
     RemoteDeletedMessage remoteDeletedMessage = 14;
     ChatUpdateMessage updateMessage = 15;
+    PaymentNotification paymentNotification = 16;
   }
 }
 
@@ -366,6 +367,57 @@ message StandardMessage {
 message ContactMessage {
   repeated ContactAttachment contact = 1;
   repeated Reaction reactions = 2;
+}
+
+message PaymentNotification {
+
+  // Transaction details should largely be best effort. If fields are missing or
+  // invalid, we should try to render things to the best of our abilities.
+  message TransactionDetails {
+    message MobileCoinTxoIdentification { // Used to map to payments on the ledger
+      repeated bytes publicKey = 1; // for received transactions
+      repeated bytes keyImages = 2; // for sent transactions
+    }
+
+    message FailedTransaction { // Failed payments can't be synced from the ledger
+      enum FailureReason {
+        GENERIC = 0;
+        NETWORK = 1;
+        INSUFFICIENT_FUNDS = 2;
+      }
+      FailureReason reason = 1;
+    }
+
+    message Transaction {
+      enum Status {
+        INITIAL = 0;
+        SUBMITTED = 1;
+        SUCCESSFUL = 2;
+      }
+      Status status = 1;
+
+      // This identification is used to map the payment table to the ledger
+      // and is likely required otherwise we may have issues reconciling with
+      // the ledger. If this
+      MobileCoinTxoIdentification mobileCoinIdentification = 2;
+      optional uint64 timestamp = 3;
+      optional uint64 blockIndex = 4;
+      optional uint64 blockTimestamp = 5;
+      optional bytes transaction = 6; // mobile coin blobs, these are best effort, if they are invalid or fail to parse, treat as if missing, but do not block
+      optional bytes receipt = 7; // mobile coin blobs, these are best effort, if they are invalid or fail to parse, treat as if missing, but do not block
+    }
+
+    oneof payment {
+      Transaction transaction = 1;
+      FailedTransaction failedTransaction = 2;
+    }
+  }
+
+  optional string amountMob = 1; // stored as a decimal string, e.g. 1.00001
+  optional string feeMob = 2; // stored as a decimal string, e.g. 1.00001
+  optional string note = 3;
+  TransactionDetails transactionDetails = 4;
+
 }
 
 message ContactAttachment {
@@ -656,7 +708,7 @@ message GroupCall {
   optional uint64 callId = 1;
   State state = 2;
   optional uint64 ringerRecipientId = 3;
-  optional bytes startedCallAci = 4;
+  optional uint64 startedCallRecipientId = 4;
   uint64 startedCallTimestamp = 5;
   // The time the call ended. 0 indicates an unknown time.
   uint64 endedCallTimestamp = 6;

@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.ReactionTable
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
@@ -500,7 +501,17 @@ class ChatItemImportInserter(
         this.put(MessageTable.TYPE, typeFlags)
       }
       updateMessage.groupCall != null -> {
-        this.put(MessageTable.BODY, GroupCallUpdateDetailsUtil.createBodyFromBackup(updateMessage.groupCall))
+        val startedCallRecipientId = if (updateMessage.groupCall.startedCallRecipientId != null) {
+          backupState.backupToLocalRecipientId[updateMessage.groupCall.startedCallRecipientId]
+        } else {
+          null
+        }
+        val startedCall = if (startedCallRecipientId != null) {
+          recipients.getRecord(startedCallRecipientId).aci
+        } else {
+          null
+        }
+        this.put(MessageTable.BODY, GroupCallUpdateDetailsUtil.createBodyFromBackup(updateMessage.groupCall, startedCall))
         this.put(MessageTable.TYPE, MessageTypes.GROUP_CALL_TYPE)
       }
       updateMessage.groupChange != null -> {

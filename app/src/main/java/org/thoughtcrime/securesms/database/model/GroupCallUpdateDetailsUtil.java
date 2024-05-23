@@ -6,8 +6,10 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCall;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
@@ -28,11 +30,9 @@ public final class GroupCallUpdateDetailsUtil {
   /**
    * Generates a group chat update message body from backup data
    */
-  public static @NonNull String createBodyFromBackup(@NonNull GroupCall groupCallChatUpdate) {
-    ServiceId.ACI startedCall = groupCallChatUpdate.startedCallAci != null ? ServiceId.ACI.parseOrNull(groupCallChatUpdate.startedCallAci) : null;
-
+  public static @NonNull String createBodyFromBackup(@NonNull GroupCall groupCallChatUpdate, ServiceId.ACI startedCallAci) {
     GroupCallUpdateDetails details = new GroupCallUpdateDetails.Builder()
-        .startedCallUuid(Objects.toString(startedCall, null))
+        .startedCallUuid(Objects.toString(startedCallAci, null))
         .startedCallTimestamp(groupCallChatUpdate.startedCallTimestamp)
         .endedCallTimestamp(groupCallChatUpdate.endedCallTimestamp)
         .isCallFull(false)
