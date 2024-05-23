@@ -519,7 +519,7 @@ class Recipient(
   }
 
   fun hasNonUsernameDisplayName(context: Context): Boolean {
-    return getNameFromLocalData(context) != null
+    return getNameFromLocalData(context).isNotNullOrBlank()
   }
 
   /** A full-length display name for this user, ignoring the username. */
