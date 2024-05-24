@@ -61,7 +61,7 @@ object EnvelopeContentValidator {
       content.typingMessage != null -> validateTypingMessage(envelope, content.typingMessage)
       content.decryptionErrorMessage != null -> validateDecryptionErrorMessage(content.decryptionErrorMessage.toByteArray())
       content.storyMessage != null -> validateStoryMessage(content.storyMessage)
-      content.editMessage != null -> validateEditMessage(envelope, content.editMessage)
+      content.editMessage != null -> validateEditMessage(content.editMessage)
       content.pniSignatureMessage != null -> Result.Valid
       content.senderKeyDistributionMessage != null -> Result.Valid
       else -> Result.Invalid("Content is empty!")
@@ -182,7 +182,7 @@ object EnvelopeContentValidator {
       } else if (syncMessage.sent.storyMessageRecipients.isNotEmpty()) {
         Result.Valid
       } else if (syncMessage.sent.editMessage != null) {
-        validateEditMessage(envelope, syncMessage.sent.editMessage)
+        validateEditMessage(syncMessage.sent.editMessage)
       } else {
         Result.Invalid("[SyncMessage] Empty SyncMessage.sent!")
       }
@@ -281,7 +281,7 @@ object EnvelopeContentValidator {
     return Result.Valid
   }
 
-  private fun validateEditMessage(envelope: Envelope, editMessage: EditMessage): Result {
+  private fun validateEditMessage(editMessage: EditMessage): Result {
     if (editMessage.dataMessage == null) {
       return Result.Invalid("[EditMessage] No data message present")
     }
@@ -299,7 +299,23 @@ object EnvelopeContentValidator {
       )
     }
 
-    return validateDataMessage(envelope, dataMessage)
+    if (dataMessage.preview.any { it.image != null && it.image.isPresentAndInvalid() }) {
+      return Result.Invalid("[EditMessage] Invalid AttachmentPointer on DataMessage.previewList.image!")
+    }
+
+    if (dataMessage.bodyRanges.any { it.mentionAci != null && it.mentionAci.isNullOrInvalidAci() }) {
+      return Result.Invalid("[EditMessage] Invalid UUID on body range!")
+    }
+
+    if (dataMessage.attachments.any { it.isNullOrInvalid() }) {
+      return Result.Invalid("[EditMessage] Invalid attachments!")
+    }
+
+    if (dataMessage.groupV2 != null) {
+      validateGroupContextV2(dataMessage.groupV2, "[EditMessage]")?.let { return it }
+    }
+
+    return Result.Valid
   }
 
   private fun AttachmentPointer?.isNullOrInvalid(): Boolean {
