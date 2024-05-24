@@ -72,8 +72,17 @@ message ProfileChangeDetails {
         string newValue = 2;
     }
 
-    StringChange profileNameChange = 1;
-    StringChange learnedProfileName = 2;
+    message LearnedProfileName {
+        oneof PreviouslyKnownAs {
+            string e164 = 1;
+            string username = 2;
+        }
+    }
+
+    StringChange       profileNameChange            = 1;
+    // Deprecated - Use learnedProfileName instead
+    StringChange       deprecatedLearnedProfileName = 2;
+    LearnedProfileName learnedProfileName           = 3;
 }
 
 message BodyRangeList {

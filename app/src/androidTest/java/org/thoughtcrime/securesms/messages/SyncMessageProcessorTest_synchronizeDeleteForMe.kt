@@ -448,7 +448,7 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
 
     // Detected changes
     SignalDatabase.messages.insertProfileNameChangeMessages(alice, "new name", "previous name")
-    SignalDatabase.messages.insertLearnedProfileNameChangeMessage(alice, "previous display name")
+    SignalDatabase.messages.insertLearnedProfileNameChangeMessage(alice, null, "username.42")
     SignalDatabase.messages.insertNumberChangeMessages(alice.id)
     SignalDatabase.messages.insertSmsExportMessage(alice.id, SignalDatabase.threads.getThreadIdFor(messageHelper.alice)!!)
     SignalDatabase.messages.insertSessionSwitchoverEvent(alice.id, aliceThreadId, SessionSwitchoverEvent())

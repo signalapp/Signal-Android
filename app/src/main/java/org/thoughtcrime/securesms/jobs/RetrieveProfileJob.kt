@@ -376,8 +376,15 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
         !recipient.isGroup &&
         !recipient.isSelf
       ) {
-        Log.i(TAG, "Learned profile name for first time, insert event")
-        SignalDatabase.messages.insertLearnedProfileNameChangeMessage(recipient, recipient.getDisplayName(context))
+        val username = SignalDatabase.recipients.getUsername(recipient.id)
+        val e164 = if (username == null) SignalDatabase.recipients.getE164sForIds(listOf(recipient.id)).firstOrNull() else null
+
+        if (username != null || e164 != null) {
+          Log.i(TAG, "Learned profile name for first time, inserting event")
+          SignalDatabase.messages.insertLearnedProfileNameChangeMessage(recipient, e164, username)
+        } else {
+          Log.w(TAG, "Learned profile name for first time, but do not have username or e164 for ${recipient.id}")
+        }
       }
 
       if (remoteProfileName != localProfileName) {

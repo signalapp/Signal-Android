@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.Base64;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -57,7 +58,6 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -461,8 +461,19 @@ public abstract class MessageRecord extends DisplayRecord {
         }
 
         return staticUpdateDescription(updateMessage, R.drawable.ic_update_profile_16);
+      } else if (profileChangeDetails.deprecatedLearnedProfileName != null) {
+        return staticUpdateDescription(context.getString(R.string.MessageRecord_started_this_chat, profileChangeDetails.deprecatedLearnedProfileName.previous), R.drawable.symbol_thread_16);
       } else if (profileChangeDetails.learnedProfileName != null) {
-        return staticUpdateDescription(context.getString(R.string.MessageRecord_started_this_chat, profileChangeDetails.learnedProfileName.previous), R.drawable.symbol_thread_16);
+        String previouslyKnownAs;
+        if (!Util.isEmpty(profileChangeDetails.learnedProfileName.e164)) {
+          previouslyKnownAs = PhoneNumberFormatter.prettyPrint(profileChangeDetails.learnedProfileName.e164);
+        } else {
+          previouslyKnownAs = profileChangeDetails.learnedProfileName.username;
+        }
+
+        if (!Util.isEmpty(previouslyKnownAs)) {
+          return staticUpdateDescription(context.getString(R.string.MessageRecord_started_this_chat, previouslyKnownAs), R.drawable.symbol_thread_16);
+        }
       }
     }
 

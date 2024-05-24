@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCall
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
+import org.thoughtcrime.securesms.backup.v2.proto.LearnedProfileChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.PaymentNotification
 import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
@@ -147,21 +148,19 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           builder.expiresInMs = 0
         }
         MessageTypes.isProfileChange(record.type) -> {
-          if (record.body == null) continue
-          builder.updateMessage = ChatUpdateMessage(
-            profileChange = try {
-              val decoded: ByteArray = Base64.decode(record.body!!)
-              val profileChangeDetails = ProfileChangeDetails.ADAPTER.decode(decoded)
-              if (profileChangeDetails.profileNameChange != null) {
-                ProfileChangeChatUpdate(previousName = profileChangeDetails.profileNameChange.previous, newName = profileChangeDetails.profileNameChange.newValue)
-              } else {
-                ProfileChangeChatUpdate()
-              }
-            } catch (e: IOException) {
-              Log.w(TAG, "Profile name change details could not be read", e)
-              ProfileChangeChatUpdate()
-            }
-          )
+          val profileChangeDetails = if (record.messageExtras != null) {
+            record.messageExtras.profileChangeDetails
+          } else {
+            Base64.decodeOrNull(record.body)?.let { ProfileChangeDetails.ADAPTER.decode(it) }
+          }
+
+          builder.updateMessage = if (profileChangeDetails?.profileNameChange != null) {
+            ChatUpdateMessage(profileChange = ProfileChangeChatUpdate(previousName = profileChangeDetails.profileNameChange.previous, newName = profileChangeDetails.profileNameChange.newValue))
+          } else if (profileChangeDetails?.learnedProfileName != null) {
+            ChatUpdateMessage(learnedProfileChange = LearnedProfileChatUpdate(e164 = profileChangeDetails.learnedProfileName.e164?.e164ToLong(), username = profileChangeDetails.learnedProfileName.username))
+          } else {
+            continue
+          }
           builder.sms = false
         }
         MessageTypes.isSessionSwitchoverType(record.type) -> {

@@ -648,6 +648,7 @@ message ChatUpdateMessage {
     SessionSwitchoverChatUpdate sessionSwitchover = 6;
     IndividualCall individualCall = 7;
     GroupCall groupCall = 8;
+    LearnedProfileChatUpdate learnedProfileChange = 9;
   }
 }
 
@@ -742,6 +743,13 @@ message ExpirationTimerChatUpdate {
 message ProfileChangeChatUpdate {
   string previousName = 1;
   string newName = 2;
+}
+
+message LearnedProfileChatUpdate {
+  oneof previousName {
+    uint64 e164 = 1;
+    string username = 2;
+  }
 }
 
 message ThreadMergeChatUpdate {
