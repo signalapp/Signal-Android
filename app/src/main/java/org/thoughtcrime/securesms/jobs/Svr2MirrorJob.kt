@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.SvrRepository
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSession
@@ -64,11 +63,6 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
 
       if (pin == null) {
         Log.w(TAG, "No PIN available! Can't migrate!")
-        return Result.success()
-      }
-
-      if (!FeatureFlags.svr2()) {
-        Log.w(TAG, "SVR2 was disabled! SKipping.")
         return Result.success()
       }
 

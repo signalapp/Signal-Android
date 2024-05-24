@@ -101,7 +101,6 @@ public final class FeatureFlags {
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
   private static final String MAX_ATTACHMENT_RECEIVE_SIZE_BYTES = "global.attachments.maxReceiveBytes";
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
-  private static final String SVR2_KILLSWITCH                   = "android.svr2.killSwitch";
   private static final String CDS_DISABLE_COMPAT_MODE           = "cds.disableCompatibilityMode";
   private static final String FCM_MAY_HAVE_MESSAGES_KILL_SWITCH = "android.fcmNotificationFallbackKillSwitch";
   public static final  String PROMPT_FOR_NOTIFICATION_LOGS      = "android.logs.promptNotifications";
@@ -185,7 +184,6 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
       AD_HOC_CALLING,
-      SVR2_KILLSWITCH,
       CDS_DISABLE_COMPAT_MODE,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
       PROMPT_FOR_NOTIFICATION_LOGS,
@@ -271,7 +269,6 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_COUNT,
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
-      SVR2_KILLSWITCH,
       CDS_DISABLE_COMPAT_MODE,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
       PROMPT_FOR_NOTIFICATION_LOGS,
@@ -297,7 +294,6 @@ public final class FeatureFlags {
   @VisibleForTesting
   static final Set<String> STICKY = SetUtil.newHashSet(
       VERIFY_V2,
-      SVR2_KILLSWITCH,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
   );
 
@@ -904,14 +900,6 @@ public final class FeatureFlags {
    */
   public static long getBackgroundMessageProcessForegroundDelay() {
     return getInteger(MESSAGE_PROCESSOR_DELAY, 300);
-  }
-
-  /**
-   * Whether or not SVR2 should be used at all. Defaults to true. In practice this is reserved as a killswitch.
-   */
-  public static boolean svr2() {
-    // Despite us always inverting the value, it's important that this defaults to false so that the STICKY property works as intended
-    return !getBoolean(SVR2_KILLSWITCH, false);
   }
 
   private enum VersionFlag {

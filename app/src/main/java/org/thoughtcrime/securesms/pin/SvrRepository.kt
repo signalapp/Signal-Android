@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
@@ -154,6 +153,7 @@ object SvrRepository {
               .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
             stopwatch.split("contact-restore")
 
+            // TODO [svr3]
             if (implementation != svr2) {
               AppDependencies.jobManager.add(Svr2MirrorJob())
             }
@@ -200,7 +200,6 @@ object SvrRepository {
       val masterKey: MasterKey = SignalStore.svr().getOrCreateMasterKey()
 
       val responses: List<BackupResponse> = writeImplementations
-        .filter { it != svr2 || FeatureFlags.svr2() }
         .map { it.setPin(userPin, masterKey) }
         .map { it.execute() }
 
