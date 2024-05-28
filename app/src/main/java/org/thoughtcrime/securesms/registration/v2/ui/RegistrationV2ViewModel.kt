@@ -600,6 +600,25 @@ class RegistrationV2ViewModel : ViewModel() {
     }
   }
 
+  fun verifyCodeAndRegisterAccountWithRegistrationLock(context: Context, pin: String, submissionErrorHandler: (RegistrationResult) -> Unit, registrationErrorHandler: (RegisterAccountResult) -> Unit) {
+    Log.v(TAG, "verifyCodeAndRegisterAccountWithRegistrationLock()")
+    store.update {
+      it.copy(
+        inProgress = true,
+        registrationCheckpoint = RegistrationCheckpoint.PIN_ENTERED
+      )
+    }
+    viewModelScope.launch {
+      verifyCodeInternal(
+        context = context,
+        pin = pin,
+        reglockEnabled = true,
+        submissionErrorHandler = submissionErrorHandler,
+        registrationErrorHandler = registrationErrorHandler
+      )
+    }
+  }
+
   private suspend fun verifyCodeInternal(context: Context, reglockEnabled: Boolean, pin: String?, submissionErrorHandler: (RegistrationResult) -> Unit, registrationErrorHandler: (RegisterAccountResult) -> Unit) {
     val sessionId = getOrCreateValidSession(context, submissionErrorHandler)?.body?.id ?: return
     val registrationData = getRegistrationData()

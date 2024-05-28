@@ -150,7 +150,7 @@
 
     <fragment
         android:id="@+id/registrationLockV2Fragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.RegistrationLockFragment"
+        android:name="org.thoughtcrime.securesms.registration.v2.ui.registrationlock.RegistrationLockV2Fragment"
         android:label="fragment_kbs_lock"
         tools:layout="@layout/fragment_registration_lock">
 
@@ -209,13 +209,13 @@
 
     <fragment
         android:id="@+id/accountLockedV2Fragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.AccountLockedFragment"
+        android:name="org.thoughtcrime.securesms.registration.v2.ui.accountlocked.AccountLockedV2Fragment"
         android:label="fragment_account_locked"
         tools:layout="@layout/account_locked_fragment" />
 
     <fragment
         android:id="@+id/captchaV2Fragment"
-        android:name="org.thoughtcrime.securesms.registration.v2.ui.captcha.CaptchaFragment"
+        android:name="org.thoughtcrime.securesms.registration.v2.ui.captcha.RegistrationCaptchaV2Fragment"
         android:label="fragment_captcha"
         tools:layout="@layout/fragment_registration_captcha" />
 

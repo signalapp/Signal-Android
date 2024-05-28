@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationPinRestoreEntryV2Binding
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
-import org.thoughtcrime.securesms.registration.fragments.BaseRegistrationLockFragment
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
 import org.thoughtcrime.securesms.registration.v2.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
@@ -84,7 +83,7 @@ class ReRegisterWithPinV2Fragment : LoggingFragment(R.layout.fragment_registrati
     if (state.networkError != null) {
       genericErrorDialog()
     } else if (!state.canSkipSms) {
-      abortSkipSmsFlow()
+      findNavController().safeNavigate(ReRegisterWithPinV2FragmentDirections.actionReRegisterWithPinFragmentToEnterPhoneNumberV2Fragment())
     } else if (state.isRegistrationLockEnabled && state.svrTriesRemaining == 0) {
       Log.w(TAG, "Unable to continue skip flow, KBS is locked")
       onAccountLocked()
@@ -92,10 +91,6 @@ class ReRegisterWithPinV2Fragment : LoggingFragment(R.layout.fragment_registrati
       presentProgress(state.inProgress)
       presentTriesRemaining(state.svrTriesRemaining)
     }
-  }
-
-  private fun abortSkipSmsFlow() {
-    findNavController().safeNavigate(ReRegisterWithPinV2FragmentDirections.actionReRegisterWithPinFragmentToEnterPhoneNumberV2Fragment())
   }
 
   private fun presentProgress(inProgress: Boolean) {
@@ -118,8 +113,8 @@ class ReRegisterWithPinV2Fragment : LoggingFragment(R.layout.fragment_registrati
       return
     }
 
-    if (pin.trim().length < BaseRegistrationLockFragment.MINIMUM_PIN_LENGTH) {
-      Toast.makeText(requireContext(), getString(R.string.RegistrationActivity_your_pin_has_at_least_d_digits_or_characters, BaseRegistrationLockFragment.MINIMUM_PIN_LENGTH), Toast.LENGTH_LONG).show()
+    if (pin.trim().length < SvrConstants.MINIMUM_PIN_LENGTH) {
+      Toast.makeText(requireContext(), getString(R.string.RegistrationActivity_your_pin_has_at_least_d_digits_or_characters, SvrConstants.MINIMUM_PIN_LENGTH), Toast.LENGTH_LONG).show()
       enableAndFocusPinEntry()
       return
     }
@@ -134,8 +129,6 @@ class ReRegisterWithPinV2Fragment : LoggingFragment(R.layout.fragment_registrati
       },
       registrationErrorHandler = ::registrationErrorHandler
     )
-
-    // TODO [regv2]: check for registration lock + wrong pin and decrement SVR tries remaining
   }
 
   private fun presentTriesRemaining(triesRemaining: Int) {
