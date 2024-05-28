@@ -72,6 +72,7 @@ import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadat
 import java.io.IOException
 import java.nio.charset.StandardCharsets
 import java.util.Locale
+import java.util.Optional
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.seconds
@@ -277,6 +278,7 @@ object RegistrationRepository {
    */
   suspend fun createSession(context: Context, e164: String, password: String, mcc: String?, mnc: String?): RegistrationSessionCreationResult =
     withContext(Dispatchers.IO) {
+      Log.d(TAG, "About to create a registration session…")
       val fcmToken: String? = FcmUtil.getToken(context).orElse(null)
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
 
@@ -301,14 +303,21 @@ object RegistrationRepository {
    * Validates an existing session, if its ID is provided. If the session is expired/invalid, or none is provided, it will attempt to initiate a new session.
    */
   suspend fun createOrValidateSession(context: Context, sessionId: String?, e164: String, password: String, mcc: String?, mnc: String?): RegistrationSessionResult {
-    if (sessionId != null) {
+    val savedSessionId = if (sessionId == null && e164 == SignalStore.registrationValues().sessionE164) {
+      SignalStore.registrationValues().sessionId
+    } else {
+      sessionId
+    }
+
+    if (savedSessionId != null) {
       Log.d(TAG, "Validating existing registration session.")
-      val sessionValidationResult = validateSession(context, sessionId, e164, password)
+      val sessionValidationResult = validateSession(context, savedSessionId, e164, password)
       when (sessionValidationResult) {
         is RegistrationSessionCheckResult.Success -> {
           Log.d(TAG, "Existing registration session is valid.")
           return sessionValidationResult
         }
+
         is RegistrationSessionCheckResult.UnknownError -> {
           Log.w(TAG, "Encountered error when validating existing session.", sessionValidationResult.getCause())
           return sessionValidationResult
@@ -338,9 +347,9 @@ object RegistrationRepository {
   /**
    * Submits the user-entered verification code to the service.
    */
-  suspend fun submitVerificationCode(context: Context, e164: String, password: String, sessionId: String, registrationData: RegistrationData): VerificationCodeRequestResult =
+  suspend fun submitVerificationCode(context: Context, sessionId: String, registrationData: RegistrationData): VerificationCodeRequestResult =
     withContext(Dispatchers.IO) {
-      val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
+      val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, registrationData.e164, SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.password).registrationApi
       val result = api.verifyAccount(sessionId = sessionId, verificationCode = registrationData.code)
       return@withContext VerificationCodeRequestResult.from(result)
     }
@@ -353,6 +362,15 @@ object RegistrationRepository {
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
       val captchaSubmissionResult = api.submitCaptchaToken(sessionId = sessionId, captchaToken = captchaToken)
       return@withContext VerificationCodeRequestResult.from(captchaSubmissionResult)
+    }
+
+  suspend fun requestAndVerifyPushToken(context: Context, sessionId: String, e164: String, password: String) =
+    withContext(Dispatchers.IO) {
+      val fcmToken = getFcmToken(context)
+      val accountManager = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
+      val pushChallenge = PushChallengeRequest.getPushChallengeBlocking(accountManager, sessionId, Optional.ofNullable(fcmToken), PUSH_REQUEST_TIMEOUT).orElse(null)
+      val pushSubmissionResult = accountManager.registrationApi.submitPushChallengeToken(sessionId = sessionId, pushChallengeToken = pushChallenge)
+      return@withContext VerificationCodeRequestResult.from(pushSubmissionResult)
     }
 
   /**
@@ -439,7 +457,7 @@ object RegistrationRepository {
         Log.i(TAG, "Push challenge unsuccessful. Updating registration state accordingly.")
         return@withContext NetworkResult.ApplicationError<RegistrationSessionMetadataResponse>(NullPointerException())
       } catch (ex: Exception) {
-        Log.w(TAG, "Exception caught, but the earlier try block should have caught it?", ex) // TODO [regv2]: figure out why this exception is not caught
+        Log.w(TAG, "Exception caught, but the earlier try block should have caught it?", ex)
         return@withContext NetworkResult.ApplicationError<RegistrationSessionMetadataResponse>(ex)
       }
     }
@@ -529,8 +547,7 @@ object RegistrationRepository {
   enum class Mode(val isSmsRetrieverSupported: Boolean, val transport: PushServiceSocket.VerificationCodeTransport) {
     SMS_WITH_LISTENER(true, PushServiceSocket.VerificationCodeTransport.SMS),
     SMS_WITHOUT_LISTENER(false, PushServiceSocket.VerificationCodeTransport.SMS),
-    PHONE_CALL(false, PushServiceSocket.VerificationCodeTransport.VOICE),
-    NONE(false, PushServiceSocket.VerificationCodeTransport.SMS)
+    PHONE_CALL(false, PushServiceSocket.VerificationCodeTransport.VOICE)
   }
 
   private class PushTokenChallengeSubscriber {

@@ -9,11 +9,13 @@ import okio.IOException
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.push.exceptions.AlreadyVerifiedException
 import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredException
 import org.whispersystems.signalservice.api.push.exceptions.ExternalServiceFailureException
 import org.whispersystems.signalservice.api.push.exceptions.ImpossiblePhoneNumberException
 import org.whispersystems.signalservice.api.push.exceptions.InvalidTransportModeException
 import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException
+import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException
 import org.whispersystems.signalservice.api.push.exceptions.NonNormalizedPhoneNumberException
 import org.whispersystems.signalservice.api.push.exceptions.PushChallengeRequiredException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
@@ -36,15 +38,17 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
     fun from(networkResult: NetworkResult<RegistrationSessionMetadataResponse>): VerificationCodeRequestResult {
       return when (networkResult) {
         is NetworkResult.Success -> {
-          val challenges = networkResult.result.body.requestedInformation
+          val challenges = Challenge.parse(networkResult.result.body.requestedInformation)
           if (challenges.isNotEmpty()) {
+            Log.d(TAG, "Received \"successful\" response that contains challenges: ${challenges.joinToString { it.key }}")
             ChallengeRequired(challenges)
           } else {
             Success(
               sessionId = networkResult.result.body.id,
               allowedToRequestCode = networkResult.result.body.allowedToRequestCode,
               nextSmsTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextSms),
-              nextCallTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextCall)
+              nextCallTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextCall),
+              verified = networkResult.result.body.verified
             )
           }
         }
@@ -64,6 +68,8 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
             is MalformedRequestException -> MalformedRequest(cause)
             is RegistrationRetryException -> MustRetry(cause)
             is LockedException -> RegistrationLocked(cause = cause, timeRemaining = cause.timeRemaining)
+            is NoSuchSessionException -> NoSuchSession(cause)
+            is AlreadyVerifiedException -> AlreadyVerified(cause)
             else -> UnknownError(cause)
           }
         }
@@ -78,7 +84,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
 
       try {
         val response = JsonUtil.fromJson(errorResult.body, RegistrationSessionMetadataJson::class.java)
-        return ChallengeRequired(response.requestedInformation)
+        return ChallengeRequired(Challenge.parse(response.requestedInformation))
       } catch (parseException: IOException) {
         Log.w(TAG, "Attempted to parse error body for list of requested information, but encountered exception.", parseException)
         return UnknownError(parseException)
@@ -94,9 +100,9 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
     }
   }
 
-  class Success(val sessionId: String, val allowedToRequestCode: Boolean, val nextSmsTimestamp: Long, val nextCallTimestamp: Long) : VerificationCodeRequestResult(null)
+  class Success(val sessionId: String, val allowedToRequestCode: Boolean, val nextSmsTimestamp: Long, val nextCallTimestamp: Long, val verified: Boolean) : VerificationCodeRequestResult(null)
 
-  class ChallengeRequired(val challenges: List<String>) : VerificationCodeRequestResult(null)
+  class ChallengeRequired(val challenges: List<Challenge>) : VerificationCodeRequestResult(null)
 
   class RateLimited(cause: Throwable, val timeRemaining: Long) : VerificationCodeRequestResult(cause)
 
@@ -117,6 +123,10 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
   class MustRetry(cause: Throwable) : VerificationCodeRequestResult(cause)
 
   class RegistrationLocked(cause: Throwable, val timeRemaining: Long) : VerificationCodeRequestResult(cause)
+
+  class NoSuchSession(cause: Throwable) : VerificationCodeRequestResult(cause)
+
+  class AlreadyVerified(cause: Throwable) : VerificationCodeRequestResult(cause)
 
   class UnknownError(cause: Throwable) : VerificationCodeRequestResult(cause)
 }

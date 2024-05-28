@@ -10,7 +10,8 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.fragment.app.activityViewModels
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.LoggingFragment
@@ -18,12 +19,16 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationCaptchaV2Binding
 import org.thoughtcrime.securesms.registration.fragments.RegistrationConstants
-import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
 
-class CaptchaFragment : LoggingFragment(R.layout.fragment_registration_captcha_v2) {
+abstract class CaptchaV2Fragment : LoggingFragment(R.layout.fragment_registration_captcha_v2) {
 
-  private val sharedViewModel by activityViewModels<RegistrationV2ViewModel>()
   private val binding: FragmentRegistrationCaptchaV2Binding by ViewBinderDelegate(FragmentRegistrationCaptchaV2Binding::bind)
+
+  private val backListener = object : OnBackPressedCallback(true) {
+    override fun handleOnBackPressed() {
+      handleUserExit()
+    }
+  }
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,14 +41,21 @@ class CaptchaFragment : LoggingFragment(R.layout.fragment_registration_captcha_v
       override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
         if (url.startsWith(RegistrationConstants.SIGNAL_CAPTCHA_SCHEME)) {
           val token = url.substring(RegistrationConstants.SIGNAL_CAPTCHA_SCHEME.length)
-          sharedViewModel.setCaptchaResponse(token)
+          handleCaptchaToken(token)
+          backListener.isEnabled = false
           findNavController().navigateUp()
           return true
         }
         return false
       }
     }
-
+    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+      handleUserExit()
+    }
     binding.registrationCaptchaWebView.loadUrl(BuildConfig.SIGNAL_CAPTCHA_URL)
   }
+
+  abstract fun handleCaptchaToken(token: String)
+
+  abstract fun handleUserExit()
 }

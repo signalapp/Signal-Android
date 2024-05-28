@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
+import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
 
 /**
  * ViewModel for the phone number entry screen.
@@ -27,12 +28,18 @@ class EnterPhoneNumberV2ViewModel : ViewModel() {
 
   private val TAG = Log.tag(EnterPhoneNumberV2ViewModel::class.java)
 
-  private val store = MutableStateFlow(EnterPhoneNumberV2State.INIT)
+  private val store = MutableStateFlow(EnterPhoneNumberV2State())
   val uiState = store.asLiveData()
 
   val supportedCountryPrefixes: List<CountryPrefix> = PhoneNumberUtil.getInstance().supportedCallingCodes
     .map { CountryPrefix(it, PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(it)) }
     .sortedBy { it.digits }
+
+  var mode: RegistrationRepository.Mode
+    get() = store.value.mode
+    set(value) = store.update {
+      it.copy(mode = value)
+    }
 
   fun countryPrefix(): CountryPrefix {
     return supportedCountryPrefixes[store.value.countryPrefixIndex]

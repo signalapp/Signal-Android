@@ -34,6 +34,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
+import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
@@ -43,6 +44,9 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
+import org.thoughtcrime.securesms.registration.v2.data.network.Challenge
+import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationResult
+import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationSessionCreationResult
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2State
@@ -111,12 +115,14 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
         presentNetworkError(it)
       }
 
-      if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
+      if (sharedState.challengesRequested.contains(Challenge.CAPTCHA) && sharedState.captchaToken.isNotNullOrBlank()) {
+        sharedViewModel.submitCaptchaToken(requireContext(), ::handleErrorResponse)
+      } else if (sharedState.challengesRemaining.isNotEmpty()) {
+        handleChallenges(sharedState.challengesRemaining)
+      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
         moveToEnterPinScreen()
       } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
         moveToVerificationEntryScreen()
-      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.CHALLENGE_COMPLETED) {
-        sharedViewModel.submitCaptchaToken(requireContext(), ::handleErrorResponse)
       }
     }
 
@@ -158,6 +164,17 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
     spinnerView.setText(fragmentViewModel.countryPrefix().toString())
 
     ViewUtil.focusAndShowKeyboard(phoneNumberInputLayout)
+  }
+
+  private fun handleChallenges(remainingChallenges: List<Challenge>) {
+    when (remainingChallenges.first()) {
+      Challenge.CAPTCHA -> moveToCaptcha()
+      Challenge.PUSH -> performPushChallenge()
+    }
+  }
+
+  private fun performPushChallenge() {
+    sharedViewModel.requestAndSubmitPushToken(requireContext(), ::handleErrorResponse)
   }
 
   private fun initializeInputFields() {
@@ -263,11 +280,18 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
     }
   }
 
-  private fun handleErrorResponse(result: VerificationCodeRequestResult, mode: RegistrationRepository.Mode) {
+  private fun handleErrorResponse(result: RegistrationResult) {
+    if (!result.isSuccess()) {
+      Log.i(TAG, "Handling error response.", result.getCause())
+    }
     when (result) {
+      is RegistrationSessionCreationResult.Success,
       is VerificationCodeRequestResult.Success -> Unit
+      is RegistrationSessionCreationResult.AttemptsExhausted,
       is VerificationCodeRequestResult.AttemptsExhausted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_service))
-      is VerificationCodeRequestResult.ChallengeRequired -> findNavController().safeNavigate(EnterPhoneNumberV2FragmentDirections.actionRequestCaptcha())
+      is VerificationCodeRequestResult.ChallengeRequired -> {
+        handleChallenges(result.challenges)
+      }
       is VerificationCodeRequestResult.ExternalServiceFailure -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
       is VerificationCodeRequestResult.ImpossibleNumber -> {
         MaterialAlertDialogBuilder(requireContext()).apply {
@@ -286,13 +310,19 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
           show()
         }
       }
+      is RegistrationSessionCreationResult.MalformedRequest,
       is VerificationCodeRequestResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
       is VerificationCodeRequestResult.MustRetry -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
-      is VerificationCodeRequestResult.NonNormalizedNumber -> handleNonNormalizedNumberError(result.originalNumber, result.normalizedNumber, mode)
+      is VerificationCodeRequestResult.NonNormalizedNumber -> handleNonNormalizedNumberError(result.originalNumber, result.normalizedNumber, fragmentViewModel.mode)
+      is RegistrationSessionCreationResult.RateLimited -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
       is VerificationCodeRequestResult.RateLimited -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
-      is VerificationCodeRequestResult.TokenNotAccepted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human))
+      is VerificationCodeRequestResult.TokenNotAccepted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human)) { _, _ -> moveToCaptcha() }
       else -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
     }
+  }
+
+  private fun moveToCaptcha() {
+    findNavController().safeNavigate(EnterPhoneNumberV2FragmentDirections.actionRequestCaptcha())
   }
 
   private fun presentRemoteErrorDialog(message: String, positiveButtonListener: DialogInterface.OnClickListener? = null) {
@@ -325,7 +355,6 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
             RegistrationRepository.Mode.SMS_WITH_LISTENER,
             RegistrationRepository.Mode.SMS_WITHOUT_LISTENER -> sharedViewModel.requestSmsCode(requireContext(), ::handleErrorResponse)
             RegistrationRepository.Mode.PHONE_CALL -> sharedViewModel.requestVerificationCall(requireContext(), ::handleErrorResponse)
-            RegistrationRepository.Mode.NONE -> Log.w(TAG, "Somehow got a non normalized number exception even though we didn't request a code.")
           }
           dialogInterface.dismiss()
         }

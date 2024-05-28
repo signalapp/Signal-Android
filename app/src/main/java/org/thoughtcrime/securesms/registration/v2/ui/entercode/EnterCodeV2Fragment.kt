@@ -21,8 +21,8 @@ import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterCodeV2Bin
 import org.thoughtcrime.securesms.registration.fragments.ContactSupportBottomSheetFragment
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.fragments.SignalStrengthPhoneStateListener
-import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.v2.data.network.RegisterAccountResult
+import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationResult
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
@@ -102,8 +102,8 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
     }
 
     sharedViewModel.uiState.observe(viewLifecycleOwner) {
-      binding.resendSmsCountDown.startCountDownTo(it.nextSms)
-      binding.callMeCountDown.startCountDownTo(it.nextCall)
+      binding.resendSmsCountDown.startCountDownTo(it.nextSmsTimestamp)
+      binding.callMeCountDown.startCountDownTo(it.nextCallTimestamp)
       if (it.inProgress) {
         binding.keyboard.displayProgress()
       } else {
@@ -112,64 +112,33 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
     }
   }
 
-  private fun handleSessionErrorResponse(requestResult: VerificationCodeRequestResult, mode: RegistrationRepository.Mode) {
-    when (requestResult) {
+  private fun handleSessionErrorResponse(result: RegistrationResult) {
+    when (result) {
       is VerificationCodeRequestResult.Success -> binding.keyboard.displaySuccess()
-      is VerificationCodeRequestResult.RateLimited -> {
-        binding.keyboard.displayFailure().addListener(
-          object : AssertedSuccessListener<Boolean>() {
-            override fun onSuccess(result: Boolean?) {
-              presentRemoteErrorDialog(getString(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later)) { _, _ ->
-                binding.code.clear()
-              }
-            }
-          }
-        )
-      }
-
-      is VerificationCodeRequestResult.RegistrationLocked -> {
-        binding.keyboard.displayLocked().addListener(
-          object : AssertedSuccessListener<Boolean>() {
-            override fun onSuccess(result: Boolean?) {
-              findNavController().safeNavigate(EnterCodeV2FragmentDirections.actionRequireKbsLockPin(requestResult.timeRemaining))
-            }
-          }
-        )
-      }
-
-      else -> {
-        binding.keyboard.displayFailure().addListener(
-          object : AssertedSuccessListener<Boolean>() {
-            override fun onSuccess(result: Boolean?) {
-              Log.w(TAG, "Encountered unexpected error!", requestResult.getCause())
-              presentRemoteErrorDialog(getString(R.string.RegistrationActivity_error_connecting_to_service))
-            }
-          }
-        )
-      }
+      is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
+      is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
+      else -> presentGenericError(result)
     }
   }
 
   private fun handleRegistrationErrorResponse(result: RegisterAccountResult) {
     when (result) {
-      is RegisterAccountResult.Success -> Log.d(TAG, "Register account was successful.")
-      is RegisterAccountResult.AuthorizationFailed -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_error_connecting_to_service))
-      is RegisterAccountResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_error_connecting_to_service))
-      is RegisterAccountResult.RegistrationLocked -> {
-        Log.w(TAG, "Account is registration locked, cannot register.")
-        findNavController().safeNavigate(EnterCodeV2FragmentDirections.actionRequireKbsLockPin(result.timeRemaining))
-      }
-      is RegisterAccountResult.UnknownError -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_error_connecting_to_service))
-      is RegisterAccountResult.ValidationError -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_error_connecting_to_service))
-      is RegisterAccountResult.IncorrectRecoveryPassword -> {
-        Log.w(TAG, "User somehow got recovery password error while entering code. This is very suspicious!")
-        sharedViewModel.setUserSkippedReRegisterFlow(true)
-        popBackStack()
-      }
-
+      is RegisterAccountResult.Success -> binding.keyboard.displaySuccess()
+      is RegisterAccountResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
       is RegisterAccountResult.AttemptsExhausted,
       is RegisterAccountResult.RateLimited -> presentRateLimitedDialog()
+      else -> presentGenericError(result)
     }
+  }
+
+  private fun presentRegistrationLocked(timeRemaining: Long) {
+    binding.keyboard.displayLocked().addListener(
+      object : AssertedSuccessListener<Boolean>() {
+        override fun onSuccess(result: Boolean?) {
+          findNavController().safeNavigate(EnterCodeV2FragmentDirections.actionRequireKbsLockPin(timeRemaining))
+        }
+      }
+    )
   }
 
   private fun presentRateLimitedDialog() {
@@ -193,15 +162,22 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
     )
   }
 
-  private fun presentRemoteErrorDialog(message: String, title: String? = null, positiveButtonListener: DialogInterface.OnClickListener? = null) {
-    MaterialAlertDialogBuilder(requireContext()).apply {
-      title?.let {
-        setTitle(it)
+  private fun presentGenericError(requestResult: RegistrationResult) {
+    binding.keyboard.displayFailure().addListener(
+      object : AssertedSuccessListener<Boolean>() {
+        override fun onSuccess(result: Boolean?) {
+          Log.w(TAG, "Encountered unexpected error!", requestResult.getCause())
+          MaterialAlertDialogBuilder(requireContext()).apply {
+            null?.let<String, MaterialAlertDialogBuilder> {
+              setTitle(it)
+            }
+            setMessage(getString(R.string.RegistrationActivity_error_connecting_to_service))
+            setPositiveButton(android.R.string.ok, null)
+            show()
+          }
+        }
       }
-      setMessage(message)
-      setPositiveButton(android.R.string.ok, positiveButtonListener)
-      show()
-    }
+    )
   }
 
   private fun popBackStack() {
