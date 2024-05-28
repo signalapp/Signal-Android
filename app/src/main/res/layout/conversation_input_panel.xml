@@ -134,6 +134,7 @@
         app:layout_constraintBottom_toBottomOf="@id/compose_bubble"
         app:layout_constraintStart_toStartOf="@id/compose_bubble"
         app:layout_constraintTop_toBottomOf="@id/compose_bubble_top_elements"
+        app:layout_constraintVertical_bias="1.0"
         app:tint="@color/signal_colorOnSurfaceVariant" />
 
     <org.thoughtcrime.securesms.components.ComposeText
