@@ -80,12 +80,14 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
   }
 
   private fun launch(recipient: Recipient) {
-    if (recipient.isGroup) {
-      CommunicationActions.startVideoCall(this, recipient)
-    } else {
-      CommunicationActions.startVoiceCall(this, recipient)
-    }
-  }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+            // Microphone permission granted, proceed with call initiation
+            if (recipient.isGroup) {
+                CommunicationActions.startVideoCall(this, recipient)
+            } else {
+                CommunicationActions.startVoiceCall(this, recipient)
+            }
+        }
 
   companion object {
 
