@@ -18,8 +18,9 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * Helper class to show a fullscreen blocking indeterminate progress dialog.
+ * @deprecated  Replaced by {@link org.thoughtcrime.securesms.components.SignalProgressDialog}
  */
+@Deprecated
 public final class SimpleProgressDialog {
 
   private static final String TAG = Log.tag(SimpleProgressDialog.class);
