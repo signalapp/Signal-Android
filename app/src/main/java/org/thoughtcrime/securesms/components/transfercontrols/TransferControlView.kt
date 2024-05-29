@@ -41,6 +41,8 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   private var state = TransferControlViewState()
   private val progressUpdateDebouncer: ThrottledDebouncer = ThrottledDebouncer(100)
 
+  private var mode: Mode = Mode.GONE
+
   init {
     tag = uuid
     binding = TransferControlsViewBinding.inflate(LayoutInflater.from(context), this)
@@ -70,6 +72,10 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     state = newState
   }
 
+  fun isGone(): Boolean {
+    return mode == Mode.GONE
+  }
+
   private fun applyState(currentState: TransferControlViewState) {
     val mode = deriveMode(currentState)
     verboseLog("New state applying, mode = $mode")
@@ -92,6 +98,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       Mode.RETRY_UPLOADING -> displayRetry(currentState, true)
       Mode.GONE -> displayChildrenAsGone()
     }
+    this.mode = mode
   }
 
   private fun deriveMode(currentState: TransferControlViewState): Mode {

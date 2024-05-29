@@ -679,7 +679,7 @@ public class ThumbnailView extends FrameLayout {
   private class ThumbnailClickDispatcher implements View.OnClickListener {
     @Override
     public void onClick(View view) {
-      boolean controlsVisible = transferControlViewStub.getVisibility() == View.VISIBLE;
+      boolean controlsVisible = transferControlViewStub.getVisibility() == View.VISIBLE && !transferControlViewStub.get().isGone();
       if (thumbnailClickListener != null && !controlsVisible) {
         thumbnailClickListener.onClick(view, slide);
       } else if (parentClickListener != null) {
