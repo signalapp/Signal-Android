@@ -677,7 +677,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
         }
 
         binding.footerDate.setOnClickListener {
-          conversationContext.clickListener.onEditedIndicatorClicked(record)
+          conversationContext.clickListener.onEditedIndicatorClicked(conversationMessage)
         }
       }
 

@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapter
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationBottomSheetCallback
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
+import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
@@ -253,9 +254,9 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
       getAdapterListener().onSendPaymentClicked(recipientId)
     }
 
-    override fun onEditedIndicatorClicked(messageRecord: MessageRecord) {
+    override fun onEditedIndicatorClicked(conversationMessage: ConversationMessage) {
       dismiss()
-      getAdapterListener().onEditedIndicatorClicked(messageRecord)
+      getAdapterListener().onEditedIndicatorClicked(conversationMessage)
     }
 
     override fun onShowSafetyTips(forGroup: Boolean) = Unit

@@ -125,7 +125,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onViewGiftBadgeClicked(@NonNull MessageRecord messageRecord);
     void onGiftBadgeRevealed(@NonNull MessageRecord messageRecord);
     void goToMediaPreview(ConversationItem parent, View sharedElement, MediaIntentFactory.MediaPreviewArgs args);
-    void onEditedIndicatorClicked(@NonNull MessageRecord messageRecord);
+    void onEditedIndicatorClicked(@NonNull ConversationMessage conversationMessage);
     void onShowGroupDescriptionClicked(@NonNull String groupName, @NonNull String description, boolean shouldLinkifyWebLinks);
     void onJoinCallLink(@NonNull CallLinkRootKey callLinkRootKey);
     void onShowSafetyTips(boolean forGroup);

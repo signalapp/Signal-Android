@@ -9,14 +9,13 @@ import com.google.android.material.button.MaterialButton
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.conversation.ConversationMessage
-import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.fragments.requireListener
 
 /**
  * Shows an education sheet to users explaining how double tapping a sent message within 24hrs will allow them to edit it
  */
-class DoubleTapEditEducationSheet(private val item: MultiselectPart) : FixedRoundedCornerBottomSheetDialogFragment() {
+class DoubleTapEditEducationSheet(private val conversationMessage: ConversationMessage) : FixedRoundedCornerBottomSheetDialogFragment() {
 
   companion object {
     const val KEY = "DOUBLE_TAP_EDIT_EDU"
@@ -32,14 +31,14 @@ class DoubleTapEditEducationSheet(private val item: MultiselectPart) : FixedRoun
     SignalStore.uiHints().hasSeenDoubleTapEditEducationSheet = true
 
     view.findViewById<MaterialButton>(R.id.got_it).setOnClickListener {
-      requireListener<Callback>().onDoubleTapEditEducationSheetNext(item.conversationMessage)
+      requireListener<Callback>().onDoubleTapEditEducationSheetNext(conversationMessage)
       dismissAllowingStateLoss()
     }
   }
 
   override fun onCancel(dialog: DialogInterface) {
     super.onCancel(dialog)
-    requireListener<Callback>().onDoubleTapEditEducationSheetNext(item.conversationMessage)
+    requireListener<Callback>().onDoubleTapEditEducationSheetNext(conversationMessage)
   }
 
   interface Callback {

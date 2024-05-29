@@ -294,6 +294,7 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.Dialogs
+import org.thoughtcrime.securesms.util.DoubleClickDebouncer
 import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
@@ -469,6 +470,7 @@ class ConversationFragment :
   private val conversationTooltips = ConversationTooltips(this)
   private val colorizer = Colorizer()
   private val textDraftSaveDebouncer = Debouncer(500)
+  private val doubleTapToEditDebouncer = DoubleClickDebouncer(200)
   private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY) }
 
   private lateinit var layoutManager: ConversationLayoutManager
@@ -2783,16 +2785,20 @@ class ConversationFragment :
 
     override fun onItemDoubleClick(item: MultiselectPart) {
       Log.d(TAG, "onItemDoubleClick")
-      if (!isValidEditMessageSend(item.getMessageRecord(), System.currentTimeMillis())) {
+      onDoubleTapToEdit(item.conversationMessage)
+    }
+
+    private fun onDoubleTapToEdit(conversationMessage: ConversationMessage) {
+      if (!isValidEditMessageSend(conversationMessage.getMessageRecord(), System.currentTimeMillis())) {
         return
       }
 
       if (SignalStore.uiHints().hasSeenDoubleTapEditEducationSheet) {
-        onDoubleTapEditEducationSheetNext(item.conversationMessage)
+        onDoubleTapEditEducationSheetNext(conversationMessage)
         return
       }
 
-      DoubleTapEditEducationSheet(item).show(childFragmentManager, DoubleTapEditEducationSheet.KEY)
+      DoubleTapEditEducationSheet(conversationMessage).show(childFragmentManager, DoubleTapEditEducationSheet.KEY)
     }
 
     override fun onMessageWithErrorClicked(messageRecord: MessageRecord) {
@@ -3003,9 +3009,12 @@ class ConversationFragment :
       requireActivity().startActivity(MediaIntentFactory.create(requireActivity(), args), options.toBundle())
     }
 
-    override fun onEditedIndicatorClicked(messageRecord: MessageRecord) {
-      if (messageRecord.isOutgoing) {
-        EditMessageHistoryDialog.show(childFragmentManager, messageRecord.toRecipient.id, messageRecord)
+    override fun onEditedIndicatorClicked(conversationMessage: ConversationMessage) {
+      val messageRecord = conversationMessage.messageRecord
+      if (conversationMessage.messageRecord.isOutgoing) {
+        if (!doubleTapToEditDebouncer.onClick { EditMessageHistoryDialog.show(childFragmentManager, messageRecord.toRecipient.id, messageRecord) }) {
+          onDoubleTapToEdit(conversationMessage)
+        }
       } else {
         EditMessageHistoryDialog.show(childFragmentManager, messageRecord.fromRecipient.id, messageRecord)
       }

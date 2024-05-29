@@ -1730,7 +1730,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (MessageRecordUtil.isEditMessage(current)) {
         activeFooter.getDateView().setOnClickListener(v -> {
           if (eventListener != null) {
-            eventListener.onEditedIndicatorClicked(current);
+            eventListener.onEditedIndicatorClicked(conversationMessage);
           }
         });
       } else {
