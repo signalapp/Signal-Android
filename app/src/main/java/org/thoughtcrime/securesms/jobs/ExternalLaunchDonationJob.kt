@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.jobs
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
@@ -15,11 +16,11 @@ import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.Companion.toDonationErrorValue
-import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
@@ -68,7 +69,7 @@ class ExternalLaunchDonationJob private constructor(
   override fun onFailure() {
     if (donationError != null) {
       when (stripe3DSData.inAppPayment.type) {
-        InAppPaymentTable.Type.ONE_TIME_DONATION -> {
+        InAppPaymentType.ONE_TIME_DONATION -> {
           SignalStore.donationsValues().setPendingOneTimeDonation(
             DonationSerializationHelper.createPendingOneTimeDonationProto(
               Badges.fromDatabaseBadge(stripe3DSData.inAppPayment.data.badge!!),
@@ -80,7 +81,7 @@ class ExternalLaunchDonationJob private constructor(
           )
         }
 
-        InAppPaymentTable.Type.RECURRING_DONATION -> {
+        InAppPaymentType.RECURRING_DONATION -> {
           SignalStore.donationsValues().appendToTerminalDonationQueue(
             TerminalDonationQueue.TerminalDonation(
               level = stripe3DSData.inAppPayment.data.level,
@@ -113,7 +114,7 @@ class ExternalLaunchDonationJob private constructor(
     checkIntentStatus(stripePaymentIntent.status)
 
     Log.i(TAG, "Creating and inserting donation receipt record.", true)
-    val donationReceiptRecord = if (stripe3DSData.inAppPayment.type == InAppPaymentTable.Type.ONE_TIME_DONATION) {
+    val donationReceiptRecord = if (stripe3DSData.inAppPayment.type == InAppPaymentType.ONE_TIME_DONATION) {
       DonationReceiptRecord.createForBoost(stripe3DSData.inAppPayment.data.amount!!.toFiatMoney())
     } else {
       DonationReceiptRecord.createForGift(stripe3DSData.inAppPayment.data.amount!!.toFiatMoney())
@@ -270,7 +271,7 @@ class ExternalLaunchDonationJob private constructor(
     error("Not needed, this job should not be creating intents.")
   }
 
-  override fun fetchSetupIntent(sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
+  override fun fetchSetupIntent(inAppPaymentType: InAppPaymentType, sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
     error("Not needed, this job should not be creating intents.")
   }
 }

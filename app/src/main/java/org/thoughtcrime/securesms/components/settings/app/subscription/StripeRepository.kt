@@ -5,14 +5,15 @@ import android.content.Intent
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
 import org.signal.donations.json.StripeIntentStatus
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentMethodType
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.OneTimeDonationError
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.Environment
 import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret
 import org.whispersystems.signalservice.internal.EmptyResponse
@@ -46,8 +46,7 @@ import org.whispersystems.signalservice.internal.ServiceResponse
  * 1. Confirm the PaymentIntent via the Stripe API
  */
 class StripeRepository(
-  activity: Activity,
-  private val subscriberType: InAppPaymentSubscriberRecord.Type = InAppPaymentSubscriberRecord.Type.DONATION
+  activity: Activity
 ) : StripeApi.PaymentIntentFetcher, StripeApi.SetupIntentHelper {
 
   private val googlePayApi = GooglePayApi(activity, StripeApi.Gateway(Environment.Donations.STRIPE_CONFIGURATION), Environment.Donations.GOOGLE_PAY_CONFIGURATION)
@@ -56,17 +55,6 @@ class StripeRepository(
 
   fun isGooglePayAvailable(): Completable {
     return googlePayApi.queryIsReadyToPay()
-  }
-
-  fun scheduleSyncForAccountRecordChange() {
-    SignalExecutors.BOUNDED.execute {
-      scheduleSyncForAccountRecordChangeSync()
-    }
-  }
-
-  private fun scheduleSyncForAccountRecordChangeSync() {
-    SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
-    StorageSyncHelper.scheduleSyncForDataChange()
   }
 
   fun requestTokenFromGooglePay(price: FiatMoney, label: String, requestCode: Int) {
@@ -118,11 +106,12 @@ class StripeRepository(
   }
 
   fun createAndConfirmSetupIntent(
+    inAppPaymentType: InAppPaymentType,
     paymentSource: StripeApi.PaymentSource,
     paymentSourceType: PaymentSourceType.Stripe
   ): Single<StripeApi.Secure3DSAction> {
     Log.d(TAG, "Continuing subscription setup...", true)
-    return stripeApi.createSetupIntent(paymentSourceType)
+    return stripeApi.createSetupIntent(inAppPaymentType, paymentSourceType)
       .flatMap { result ->
         Log.d(TAG, "Retrieved SetupIntent, confirming...", true)
         stripeApi.confirmSetupIntent(paymentSource, result.setupIntent)
@@ -169,7 +158,7 @@ class StripeRepository(
    * it means that the PaymentMethod is already tied to a PayPal account. We can retry in this
    * situation by simply deleting the old subscriber id on the service and replacing it.
    */
-  private fun createPaymentMethod(paymentSourceType: PaymentSourceType.Stripe, retryOn409: Boolean = true): Single<StripeClientSecret> {
+  private fun createPaymentMethod(subscriberType: InAppPaymentSubscriberRecord.Type, paymentSourceType: PaymentSourceType.Stripe, retryOn409: Boolean = true): Single<StripeClientSecret> {
     return Single.fromCallable { InAppPaymentsRepository.requireSubscriber(subscriberType) }
       .flatMap {
         Single.fromCallable {
@@ -180,16 +169,16 @@ class StripeRepository(
       }
       .flatMap { serviceResponse ->
         if (retryOn409 && serviceResponse.status == 409) {
-          recurringInAppPaymentRepository.rotateSubscriberId(subscriberType).andThen(createPaymentMethod(paymentSourceType, retryOn409 = false))
+          recurringInAppPaymentRepository.rotateSubscriberId(subscriberType).andThen(createPaymentMethod(subscriberType, paymentSourceType, retryOn409 = false))
         } else {
           serviceResponse.flattenResult()
         }
       }
   }
 
-  override fun fetchSetupIntent(sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
+  override fun fetchSetupIntent(inAppPaymentType: InAppPaymentType, sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
     Log.d(TAG, "Fetching setup intent from Signal service...")
-    return createPaymentMethod(sourceType)
+    return createPaymentMethod(inAppPaymentType.requireSubscriberType(), sourceType)
       .map {
         StripeIntentAccessor(
           objectType = StripeIntentAccessor.ObjectType.SETUP_INTENT,
@@ -231,6 +220,7 @@ class StripeRepository(
   fun setDefaultPaymentMethod(
     paymentMethodId: String,
     setupIntentId: String,
+    subscriberType: InAppPaymentSubscriberRecord.Type,
     paymentSourceType: PaymentSourceType
   ): Completable {
     return Single.fromCallable {

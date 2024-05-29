@@ -13,6 +13,7 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toInAppPaymentDataChargeFailure
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -70,6 +71,7 @@ class InAppPaymentRecurringContextJob private constructor(
 
   override fun onAdded() {
     val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
+    info("Added context job for payment with state ${inAppPayment?.state}")
     if (inAppPayment?.state == InAppPaymentTable.State.CREATED) {
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
@@ -357,10 +359,7 @@ class InAppPaymentRecurringContextJob private constructor(
     requestContext: ReceiptCredentialRequestContext
   ) {
     info("Submitting receipt credential request")
-    val response: ServiceResponse<ReceiptCredentialResponse> = when (inAppPayment.type) {
-      InAppPaymentTable.Type.RECURRING_DONATION -> AppDependencies.donationsService.submitReceiptCredentialRequestSync(inAppPayment.subscriberId!!, requestContext.request)
-      else -> throw Exception("Unsupported type: ${inAppPayment.type}")
-    }
+    val response: ServiceResponse<ReceiptCredentialResponse> = AppDependencies.donationsService.submitReceiptCredentialRequestSync(inAppPayment.subscriberId!!, requestContext.request)
 
     if (response.applicationError.isPresent) {
       handleApplicationError(inAppPayment, response)

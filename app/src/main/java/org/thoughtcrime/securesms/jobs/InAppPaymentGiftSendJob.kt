@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.badges.gifts.Gifts
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -50,13 +51,29 @@ class InAppPaymentGiftSendJob private constructor(
 
   override fun onFailure() {
     warning("Failed to send gift.")
+
+    val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
+    if (inAppPayment != null && inAppPayment.data.error == null) {
+      warn(TAG, "Marking an unknown error. Check logs for more details.")
+      SignalDatabase.inAppPayments.update(
+        inAppPayment.copy(
+          notified = true,
+          state = InAppPaymentTable.State.END,
+          data = inAppPayment.data.copy(
+            error = InAppPaymentData.Error(
+              type = InAppPaymentData.Error.Type.UNKNOWN
+            )
+          )
+        )
+      )
+    }
   }
 
   override fun onRun() {
     val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
 
     requireNotNull(inAppPayment, "Not found.")
-    check(inAppPayment!!.type == InAppPaymentTable.Type.ONE_TIME_GIFT, "Invalid type: ${inAppPayment.type}")
+    check(inAppPayment!!.type == InAppPaymentType.ONE_TIME_GIFT, "Invalid type: ${inAppPayment.type}")
     check(inAppPayment.state == InAppPaymentTable.State.PENDING, "Invalid state: ${inAppPayment.state}")
     requireNotNull(inAppPayment.data.redemption, "No redemption present on data")
     check(inAppPayment.data.redemption!!.stage == InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED, "Invalid stage: ${inAppPayment.data.redemption.stage}")
@@ -64,7 +81,21 @@ class InAppPaymentGiftSendJob private constructor(
     val recipient = Recipient.resolved(RecipientId.from(requireNotNull(inAppPayment.data.recipientId, "No recipient on data.")))
     val token = requireNotNull(inAppPayment.data.redemption.receiptCredentialPresentation, "No presentation present on data.")
 
-    check(!recipient.isIndividual || recipient.registered != RecipientTable.RegisteredState.REGISTERED, "Invalid recipient ${recipient.id} for gift send.")
+    if (!recipient.isIndividual || recipient.registered != RecipientTable.RegisteredState.REGISTERED) {
+      SignalDatabase.inAppPayments.update(
+        inAppPayment.copy(
+          notified = false,
+          state = InAppPaymentTable.State.END,
+          data = inAppPayment.data.copy(
+            error = InAppPaymentData.Error(
+              type = InAppPaymentData.Error.Type.INVALID_GIFT_RECIPIENT
+            )
+          )
+        )
+      )
+
+      throw Exception("Invalid recipient ${recipient.id} for gift send.")
+    }
 
     val thread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
     val outgoingMessage = Gifts.createOutgoingGiftMessage(
@@ -129,6 +160,7 @@ class InAppPaymentGiftSendJob private constructor(
   private fun info(message: String, throwable: Throwable? = null) {
     Log.i(TAG, "InAppPayment $inAppPaymentId: $message", throwable, true)
   }
+
   private fun warning(message: String, throwable: Throwable? = null) {
     Log.w(TAG, "InAppPayment $inAppPaymentId: $message", throwable, true)
   }
@@ -136,7 +168,7 @@ class InAppPaymentGiftSendJob private constructor(
   class Factory : Job.Factory<InAppPaymentGiftSendJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): InAppPaymentGiftSendJob {
       return InAppPaymentGiftSendJob(
-        inAppPaymentId = InAppPaymentTable.InAppPaymentId(serializedData!!.toString().toLong()),
+        inAppPaymentId = InAppPaymentTable.InAppPaymentId(serializedData!!.decodeToString().toLong()),
         parameters = parameters
       )
     }

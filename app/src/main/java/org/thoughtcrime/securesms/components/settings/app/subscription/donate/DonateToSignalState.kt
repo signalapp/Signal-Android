@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
 import org.signal.core.util.money.FiatMoney
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.NonVerifiedMonthlyDonation
-import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.database.model.isLongRunning
@@ -18,71 +18,71 @@ import java.util.Currency
 import java.util.concurrent.TimeUnit
 
 data class DonateToSignalState(
-  val inAppPaymentType: InAppPaymentTable.Type,
+  val inAppPaymentType: InAppPaymentType,
   val oneTimeDonationState: OneTimeDonationState = OneTimeDonationState(),
   val monthlyDonationState: MonthlyDonationState = MonthlyDonationState()
 ) {
 
   val areFieldsEnabled: Boolean
     get() = when (inAppPaymentType) {
-      InAppPaymentTable.Type.ONE_TIME_DONATION -> oneTimeDonationState.donationStage == DonationStage.READY
-      InAppPaymentTable.Type.RECURRING_DONATION -> monthlyDonationState.donationStage == DonationStage.READY
+      InAppPaymentType.ONE_TIME_DONATION -> oneTimeDonationState.donationStage == DonationStage.READY
+      InAppPaymentType.RECURRING_DONATION -> monthlyDonationState.donationStage == DonationStage.READY
       else -> error("This flow does not support $inAppPaymentType")
     }
 
   val badge: Badge?
     get() = when (inAppPaymentType) {
-      InAppPaymentTable.Type.ONE_TIME_DONATION -> oneTimeDonationState.badge
-      InAppPaymentTable.Type.RECURRING_DONATION -> monthlyDonationState.selectedSubscription?.badge
+      InAppPaymentType.ONE_TIME_DONATION -> oneTimeDonationState.badge
+      InAppPaymentType.RECURRING_DONATION -> monthlyDonationState.selectedSubscription?.badge
       else -> error("This flow does not support $inAppPaymentType")
     }
 
   val canSetCurrency: Boolean
     get() = when (inAppPaymentType) {
-      InAppPaymentTable.Type.ONE_TIME_DONATION -> areFieldsEnabled && !oneTimeDonationState.isOneTimeDonationPending
-      InAppPaymentTable.Type.RECURRING_DONATION -> areFieldsEnabled && !monthlyDonationState.isSubscriptionActive
+      InAppPaymentType.ONE_TIME_DONATION -> areFieldsEnabled && !oneTimeDonationState.isOneTimeDonationPending
+      InAppPaymentType.RECURRING_DONATION -> areFieldsEnabled && !monthlyDonationState.isSubscriptionActive
       else -> error("This flow does not support $inAppPaymentType")
     }
 
   val selectedCurrency: Currency
     get() = when (inAppPaymentType) {
-      InAppPaymentTable.Type.ONE_TIME_DONATION -> oneTimeDonationState.selectedCurrency
-      InAppPaymentTable.Type.RECURRING_DONATION -> monthlyDonationState.selectedCurrency
+      InAppPaymentType.ONE_TIME_DONATION -> oneTimeDonationState.selectedCurrency
+      InAppPaymentType.RECURRING_DONATION -> monthlyDonationState.selectedCurrency
       else -> error("This flow does not support $inAppPaymentType")
     }
 
   val selectableCurrencyCodes: List<String>
     get() = when (inAppPaymentType) {
-      InAppPaymentTable.Type.ONE_TIME_DONATION -> oneTimeDonationState.selectableCurrencyCodes
-      InAppPaymentTable.Type.RECURRING_DONATION -> monthlyDonationState.selectableCurrencyCodes
+      InAppPaymentType.ONE_TIME_DONATION -> oneTimeDonationState.selectableCurrencyCodes
+      InAppPaymentType.RECURRING_DONATION -> monthlyDonationState.selectableCurrencyCodes
       else -> error("This flow does not support $inAppPaymentType")
     }
 
   val level: Int
     get() = when (inAppPaymentType) {
-      InAppPaymentTable.Type.ONE_TIME_DONATION -> 1
-      InAppPaymentTable.Type.RECURRING_DONATION -> monthlyDonationState.selectedSubscription!!.level
+      InAppPaymentType.ONE_TIME_DONATION -> 1
+      InAppPaymentType.RECURRING_DONATION -> monthlyDonationState.selectedSubscription!!.level
       else -> error("This flow does not support $inAppPaymentType")
     }
 
   val continueEnabled: Boolean
     get() = when (inAppPaymentType) {
-      InAppPaymentTable.Type.ONE_TIME_DONATION -> areFieldsEnabled && oneTimeDonationState.isSelectionValid && InAppDonations.hasAtLeastOnePaymentMethodAvailable()
-      InAppPaymentTable.Type.RECURRING_DONATION -> areFieldsEnabled && monthlyDonationState.isSelectionValid && InAppDonations.hasAtLeastOnePaymentMethodAvailable()
+      InAppPaymentType.ONE_TIME_DONATION -> areFieldsEnabled && oneTimeDonationState.isSelectionValid && InAppDonations.hasAtLeastOnePaymentMethodAvailable()
+      InAppPaymentType.RECURRING_DONATION -> areFieldsEnabled && monthlyDonationState.isSelectionValid && InAppDonations.hasAtLeastOnePaymentMethodAvailable()
       else -> error("This flow does not support $inAppPaymentType")
     }
 
   val canContinue: Boolean
     get() = when (inAppPaymentType) {
-      InAppPaymentTable.Type.ONE_TIME_DONATION -> continueEnabled && !oneTimeDonationState.isOneTimeDonationPending
-      InAppPaymentTable.Type.RECURRING_DONATION -> continueEnabled && !monthlyDonationState.isSubscriptionActive && !monthlyDonationState.transactionState.isInProgress
+      InAppPaymentType.ONE_TIME_DONATION -> continueEnabled && !oneTimeDonationState.isOneTimeDonationPending
+      InAppPaymentType.RECURRING_DONATION -> continueEnabled && !monthlyDonationState.isSubscriptionActive && !monthlyDonationState.transactionState.isInProgress
       else -> error("This flow does not support $inAppPaymentType")
     }
 
   val canUpdate: Boolean
     get() = when (inAppPaymentType) {
-      InAppPaymentTable.Type.ONE_TIME_DONATION -> false
-      InAppPaymentTable.Type.RECURRING_DONATION -> areFieldsEnabled && monthlyDonationState.isSelectionValid
+      InAppPaymentType.ONE_TIME_DONATION -> false
+      InAppPaymentType.RECURRING_DONATION -> areFieldsEnabled && monthlyDonationState.isSelectionValid
       else -> error("This flow does not support $inAppPaymentType")
     }
 

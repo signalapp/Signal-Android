@@ -11,9 +11,11 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.PayPalRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -123,7 +125,7 @@ class PayPalPaymentInProgressViewModel(
   ) {
     Log.d(TAG, "Proceeding with one-time payment pipeline...", true)
     store.update { DonationProcessorStage.PAYMENT_PIPELINE }
-    val verifyUser = if (inAppPayment.type == InAppPaymentTable.Type.ONE_TIME_GIFT) {
+    val verifyUser = if (inAppPayment.type == InAppPaymentType.ONE_TIME_GIFT) {
       OneTimeInAppPaymentRepository.verifyRecipientIsAllowedToReceiveAGift(RecipientId.from(inAppPayment.data.recipientId!!))
     } else {
       Completable.complete()
@@ -168,7 +170,7 @@ class PayPalPaymentInProgressViewModel(
   }
 
   private fun proceedMonthly(inAppPayment: InAppPaymentTable.InAppPayment, routeToPaypalConfirmation: (PayPalCreatePaymentMethodResponse) -> Single<PayPalPaymentMethodId>) {
-    Log.d(TAG, "Proceeding with monthly payment pipeline...")
+    Log.d(TAG, "Proceeding with monthly payment pipeline for InAppPayment::${inAppPayment.id} of type ${inAppPayment.type}...", true)
 
     val setup = recurringInAppPaymentRepository.ensureSubscriberId(inAppPayment.type.requireSubscriberType())
       .andThen(recurringInAppPaymentRepository.cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType()))

@@ -23,7 +23,9 @@ import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorStage
@@ -46,9 +48,9 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
   private val disposables = LifecycleDisposable()
 
   private val viewModel: StripePaymentInProgressViewModel by navGraphViewModels(
-    R.id.donate_to_signal,
+    R.id.checkout_flow,
     factoryProducer = {
-      StripePaymentInProgressViewModel.Factory(requireListener<DonationPaymentComponent>().stripeRepository)
+      StripePaymentInProgressViewModel.Factory(requireListener<InAppPaymentComponent>().stripeRepository)
     }
   )
 
@@ -94,6 +96,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
             REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
               inAppPayment = args.inAppPayment,
+              inAppPaymentType = args.inAppPaymentType,
               status = DonationProcessorActionResult.Status.FAILURE
             )
           )
@@ -108,6 +111,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
             REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
               inAppPayment = args.inAppPayment,
+              inAppPaymentType = args.inAppPaymentType,
               status = DonationProcessorActionResult.Status.SUCCESS
             )
           )

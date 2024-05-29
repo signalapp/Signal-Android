@@ -23,6 +23,7 @@ public class SubscriptionsConfiguration {
 
   public static final int               BOOST_LEVEL        = 1;
   public static final int               GIFT_LEVEL         = 100;
+  public static final int               BACKUPS_LEVEL      = 201;
   public static final HashSet<Integer>  SUBSCRIPTION_LEVELS = new HashSet<>(Arrays.asList(500, 1000, 2000));
 
   @JsonProperty("currencies")

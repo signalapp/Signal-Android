@@ -22,6 +22,7 @@ import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorStage
@@ -44,7 +45,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
   private val binding by ViewBinderDelegate(DonationInProgressFragmentBinding::bind)
   private val args: PayPalPaymentInProgressFragmentArgs by navArgs()
 
-  private val viewModel: PayPalPaymentInProgressViewModel by navGraphViewModels(R.id.donate_to_signal, factoryProducer = {
+  private val viewModel: PayPalPaymentInProgressViewModel by navGraphViewModels(R.id.checkout_flow, factoryProducer = {
     PayPalPaymentInProgressViewModel.Factory()
   })
 
@@ -62,9 +63,11 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         DonationProcessorAction.PROCESS_NEW_DONATION -> {
           viewModel.processNewDonation(args.inAppPayment!!, this::oneTimeConfirmationPipeline, this::monthlyConfirmationPipeline)
         }
+
         DonationProcessorAction.UPDATE_SUBSCRIPTION -> {
           viewModel.updateSubscription(args.inAppPayment!!)
         }
+
         DonationProcessorAction.CANCEL_SUBSCRIPTION -> {
           viewModel.cancelSubscription(InAppPaymentSubscriberRecord.Type.DONATION) // TODO [message-backups] Remove hardcode
         }
@@ -90,11 +93,13 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
             REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
               inAppPayment = args.inAppPayment,
+              inAppPaymentType = args.inAppPaymentType,
               status = DonationProcessorActionResult.Status.FAILURE
             )
           )
         )
       }
+
       DonationProcessorStage.COMPLETE -> {
         viewModel.onEndAction()
         findNavController().popBackStack()
@@ -104,11 +109,13 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
             REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
               inAppPayment = args.inAppPayment,
+              inAppPaymentType = args.inAppPaymentType,
               status = DonationProcessorActionResult.Status.SUCCESS
             )
           )
         )
       }
+
       DonationProcessorStage.CANCELLING -> binding.progressCardStatus.setText(R.string.StripePaymentInProgressFragment__cancelling)
     }
   }

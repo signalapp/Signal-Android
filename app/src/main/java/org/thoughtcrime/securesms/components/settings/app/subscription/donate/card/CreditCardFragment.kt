@@ -16,17 +16,17 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
-import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.databinding.CreditCardFragmentBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -40,9 +40,9 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
   private val viewModel: CreditCardViewModel by viewModels()
   private val lifecycleDisposable = LifecycleDisposable()
   private val stripePaymentViewModel: StripePaymentInProgressViewModel by navGraphViewModels(
-    R.id.donate_to_signal,
+    R.id.checkout_flow,
     factoryProducer = {
-      StripePaymentInProgressViewModel.Factory(requireListener<DonationPaymentComponent>().stripeRepository)
+      StripePaymentInProgressViewModel.Factory(requireListener<InAppPaymentComponent>().stripeRepository)
     }
   )
 
@@ -59,7 +59,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
     }
 
     // TODO [message-backups] Copy for this button in backups checkout flow.
-    binding.continueButton.text = if (args.inAppPayment.type == InAppPaymentTable.Type.RECURRING_DONATION) {
+    binding.continueButton.text = if (args.inAppPayment.type == InAppPaymentType.RECURRING_DONATION) {
       getString(
         R.string.CreditCardFragment__donate_s_month,
         FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())

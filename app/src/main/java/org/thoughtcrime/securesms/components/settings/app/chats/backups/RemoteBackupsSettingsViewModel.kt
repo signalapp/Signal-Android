@@ -8,7 +8,10 @@ package org.thoughtcrime.securesms.components.settings.app.chats.backups
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
@@ -21,7 +24,7 @@ import org.thoughtcrime.securesms.service.MessageBackupListener
 class RemoteBackupsSettingsViewModel : ViewModel() {
   private val internalState = mutableStateOf(
     RemoteBackupsSettingsState(
-      messageBackupsTier = SignalStore.backup().backupTier,
+      messageBackupsType = null,
       lastBackupTimestamp = SignalStore.backup().lastBackupTime,
       backupSize = SignalStore.backup().totalBackupSize,
       backupsFrequency = SignalStore.backup().backupFrequency
@@ -29,6 +32,10 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   )
 
   val state: State<RemoteBackupsSettingsState> = internalState
+
+  init {
+    refresh()
+  }
 
   fun setCanBackUpUsingCellular(canBackUpUsingCellular: Boolean) {
     SignalStore.backup().backupWithCellular = canBackUpUsingCellular
@@ -51,12 +58,17 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun refresh() {
-    internalState.value = state.value.copy(
-      messageBackupsTier = SignalStore.backup().backupTier,
-      lastBackupTimestamp = SignalStore.backup().lastBackupTime,
-      backupSize = SignalStore.backup().totalBackupSize,
-      backupsFrequency = SignalStore.backup().backupFrequency
-    )
+    viewModelScope.launch {
+      val tier = SignalStore.backup().backupTier
+      val backupType = if (tier != null) BackupRepository.getBackupsType(tier) else null
+
+      internalState.value = state.value.copy(
+        messageBackupsType = backupType,
+        lastBackupTimestamp = SignalStore.backup().lastBackupTime,
+        backupSize = SignalStore.backup().totalBackupSize,
+        backupsFrequency = SignalStore.backup().backupFrequency
+      )
+    }
   }
 
   fun turnOffAndDeleteBackups() {

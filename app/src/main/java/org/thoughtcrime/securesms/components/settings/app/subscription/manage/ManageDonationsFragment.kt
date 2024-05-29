@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.View
@@ -11,9 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.dp
 import org.signal.core.util.money.FiatMoney
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.gifts.ExpiredGiftSheet
-import org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowActivity
 import org.thoughtcrime.securesms.badges.models.BadgePreview
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -26,7 +25,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.completed
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
-import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -167,7 +165,7 @@ class ManageDonationsFragment :
       primaryWrappedButton(
         text = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_to_signal),
         onClick = {
-          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentTable.Type.ONE_TIME_DONATION))
+          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.ONE_TIME_DONATION))
         }
       )
 
@@ -277,7 +275,7 @@ class ManageDonationsFragment :
           subscriberRequiresCancel = state.subscriberRequiresCancel,
           onRowClick = {
             if (it != ManageDonationsState.RedemptionState.IN_PROGRESS) {
-              findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentTable.Type.RECURRING_DONATION))
+              findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.RECURRING_DONATION))
             }
           },
           onPendingClick = {
@@ -345,7 +343,7 @@ class ManageDonationsFragment :
       title = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_for_a_friend),
       icon = DSLSettingsIcon.from(R.drawable.symbol_gift_24),
       onClick = {
-        startActivity(Intent(requireContext(), GiftFlowActivity::class.java))
+        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.ONE_TIME_GIFT))
       }
     )
   }
@@ -445,6 +443,6 @@ class ManageDonationsFragment :
   }
 
   override fun onMakeAMonthlyDonation() {
-    findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentTable.Type.RECURRING_DONATION))
+    findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.RECURRING_DONATION))
   }
 }

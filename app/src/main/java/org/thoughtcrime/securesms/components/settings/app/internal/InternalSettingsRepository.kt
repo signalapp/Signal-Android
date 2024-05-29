@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.internal
 import android.content.Context
 import org.json.JSONObject
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
@@ -34,7 +34,7 @@ class InternalSettingsRepository(context: Context) {
 
   fun enqueueSubscriptionRedemption() {
     SignalExecutors.BOUNDED.execute {
-      val latest = SignalDatabase.inAppPayments.getByLatestEndOfPeriod(InAppPaymentTable.Type.RECURRING_DONATION)
+      val latest = SignalDatabase.inAppPayments.getByLatestEndOfPeriod(InAppPaymentType.RECURRING_DONATION)
       if (latest != null) {
         InAppPaymentRecurringContextJob.createJobChain(latest).enqueue()
       }

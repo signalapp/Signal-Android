@@ -7,13 +7,13 @@ import androidx.navigation.NavDirections
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileScheduleFragmentArgs
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
-import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -31,12 +31,12 @@ private const val NOTIFICATION_CATEGORY = "android.intent.category.NOTIFICATION_
 private const val STATE_WAS_CONFIGURATION_UPDATED = "app.settings.state.configuration.updated"
 private const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
 
-class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
+class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
 
   private var wasConfigurationUpdated = false
 
   override val stripeRepository: StripeRepository by lazy { StripeRepository(this) }
-  override val googlePayResultPublisher: Subject<DonationPaymentComponent.GooglePayResult> = PublishSubject.create()
+  override val googlePayResultPublisher: Subject<InAppPaymentComponent.GooglePayResult> = PublishSubject.create()
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     if (intent?.hasExtra(ARG_NAV_GRAPH) != true) {
@@ -57,8 +57,8 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
         StartLocation.PROXY -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
         StartLocation.NOTIFICATIONS -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
         StartLocation.CHANGE_NUMBER -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
-        StartLocation.SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToDonateToSignal(InAppPaymentTable.Type.RECURRING_DONATION)
-        StartLocation.BOOST -> AppSettingsFragmentDirections.actionDirectToDonateToSignal(InAppPaymentTable.Type.ONE_TIME_DONATION)
+        StartLocation.SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToCheckout(InAppPaymentType.RECURRING_DONATION)
+        StartLocation.BOOST -> AppSettingsFragmentDirections.actionDirectToCheckout(InAppPaymentType.ONE_TIME_DONATION)
         StartLocation.MANAGE_SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToManageDonations()
         StartLocation.NOTIFICATION_PROFILES -> AppSettingsFragmentDirections.actionDirectToNotificationProfiles()
         StartLocation.CREATE_NOTIFICATION_PROFILE -> AppSettingsFragmentDirections.actionDirectToCreateNotificationProfiles()
@@ -128,7 +128,7 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
   @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    googlePayResultPublisher.onNext(DonationPaymentComponent.GooglePayResult(requestCode, resultCode, data))
+    googlePayResultPublisher.onNext(InAppPaymentComponent.GooglePayResult(requestCode, resultCode, data))
   }
 
   companion object {

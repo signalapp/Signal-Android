@@ -5,7 +5,7 @@ import android.os.Parcelable
 import io.reactivex.rxjava3.subjects.Subject
 import kotlinx.parcelize.Parcelize
 
-interface DonationPaymentComponent {
+interface InAppPaymentComponent {
   val stripeRepository: StripeRepository
   val googlePayResultPublisher: Subject<GooglePayResult>
 

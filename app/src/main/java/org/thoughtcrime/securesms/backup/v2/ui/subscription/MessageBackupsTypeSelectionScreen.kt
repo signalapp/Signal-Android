@@ -21,7 +21,6 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,8 +39,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withAnnotation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
@@ -52,7 +49,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import java.math.BigDecimal
-import java.util.Currency
 
 /**
  * Screen which allows the user to select their preferred backup type.
@@ -61,7 +57,7 @@ import java.util.Currency
 @Composable
 fun MessageBackupsTypeSelectionScreen(
   selectedBackupTier: MessageBackupTier?,
-  availableBackupTiers: List<MessageBackupTier>,
+  availableBackupTypes: List<MessageBackupsType>,
   onMessageBackupsTierSelected: (MessageBackupTier) -> Unit,
   onNavigationClick: () -> Unit,
   onReadMoreClicked: () -> Unit,
@@ -129,16 +125,13 @@ fun MessageBackupsTypeSelectionScreen(
         }
 
         itemsIndexed(
-          availableBackupTiers,
-          { _, item -> item }
+          availableBackupTypes,
+          { _, item -> item.tier }
         ) { index, item ->
-          val type = remember(item) {
-            getTierDetails(item)
-          }
           MessageBackupsTypeBlock(
-            messageBackupsType = type,
-            isSelected = item == selectedBackupTier,
-            onSelected = { onMessageBackupsTierSelected(item) },
+            messageBackupsType = item,
+            isSelected = item.tier == selectedBackupTier,
+            onSelected = { onMessageBackupsTierSelected(item.tier) },
             modifier = Modifier.padding(top = if (index == 0) 20.dp else 18.dp)
           )
         }
@@ -167,7 +160,7 @@ private fun MessageBackupsTypeSelectionScreenPreview() {
   Previews.Preview {
     MessageBackupsTypeSelectionScreen(
       selectedBackupTier = MessageBackupTier.FREE,
-      availableBackupTiers = listOf(MessageBackupTier.FREE, MessageBackupTier.PAID),
+      availableBackupTypes = emptyList(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },
       onNavigationClick = {},
       onReadMoreClicked = {},
@@ -234,56 +227,5 @@ private fun formatCostPerMonth(pricePerMonth: FiatMoney): String {
     "Free"
   } else {
     "${FiatMoneyUtil.format(LocalContext.current.resources, pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())}/month"
-  }
-}
-
-@Stable
-data class MessageBackupsType(
-  val tier: MessageBackupTier,
-  val pricePerMonth: FiatMoney,
-  val title: String,
-  val features: ImmutableList<MessageBackupsTypeFeature>
-)
-
-fun getTierDetails(tier: MessageBackupTier): MessageBackupsType {
-  return when (tier) {
-    MessageBackupTier.FREE -> MessageBackupsType(
-      tier = MessageBackupTier.FREE,
-      pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance("USD")),
-      title = "Text + 30 days of media",
-      features = persistentListOf(
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = "Full text message backup"
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_album_compact_bold_16,
-          label = "Last 30 days of media"
-        )
-      )
-    )
-    MessageBackupTier.PAID -> MessageBackupsType(
-      tier = MessageBackupTier.PAID,
-      pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("USD")),
-      title = "Text + All your media",
-      features = persistentListOf(
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = "Full text message backup"
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_album_compact_bold_16,
-          label = "Full media backup"
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = "1TB of storage (~250K photos)"
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_heart_compact_bold_16,
-          label = "Thanks for supporting Signal!"
-        )
-      )
-    )
   }
 }

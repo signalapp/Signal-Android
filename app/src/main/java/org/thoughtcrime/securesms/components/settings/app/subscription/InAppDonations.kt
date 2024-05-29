@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
-import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig
@@ -24,7 +24,7 @@ object InAppDonations {
     return isCreditCardAvailable() || isPayPalAvailable() || isGooglePayAvailable() || isSEPADebitAvailable() || isIDEALAvailable()
   }
 
-  fun isPaymentSourceAvailable(paymentSourceType: PaymentSourceType, inAppPaymentType: InAppPaymentTable.Type): Boolean {
+  fun isPaymentSourceAvailable(paymentSourceType: PaymentSourceType, inAppPaymentType: InAppPaymentType): Boolean {
     return when (paymentSourceType) {
       PaymentSourceType.PayPal -> isPayPalAvailableForDonateToSignalType(inAppPaymentType)
       PaymentSourceType.Stripe.CreditCard -> isCreditCardAvailable()
@@ -35,12 +35,12 @@ object InAppDonations {
     }
   }
 
-  private fun isPayPalAvailableForDonateToSignalType(inAppPaymentType: InAppPaymentTable.Type): Boolean {
+  private fun isPayPalAvailableForDonateToSignalType(inAppPaymentType: InAppPaymentType): Boolean {
     return when (inAppPaymentType) {
-      InAppPaymentTable.Type.UNKNOWN -> error("Unsupported type UNKNOWN")
-      InAppPaymentTable.Type.ONE_TIME_DONATION, InAppPaymentTable.Type.ONE_TIME_GIFT -> RemoteConfig.paypalOneTimeDonations
-      InAppPaymentTable.Type.RECURRING_DONATION -> RemoteConfig.paypalRecurringDonations
-      InAppPaymentTable.Type.RECURRING_BACKUP -> RemoteConfig.messageBackups && RemoteConfig.paypalRecurringDonations
+      InAppPaymentType.UNKNOWN -> error("Unsupported type UNKNOWN")
+      InAppPaymentType.ONE_TIME_DONATION, InAppPaymentType.ONE_TIME_GIFT -> RemoteConfig.paypalOneTimeDonations
+      InAppPaymentType.RECURRING_DONATION -> RemoteConfig.paypalRecurringDonations
+      InAppPaymentType.RECURRING_BACKUP -> RemoteConfig.messageBackups && RemoteConfig.paypalRecurringDonations
     } && !LocaleRemoteConfig.isPayPalDisabled()
   }
 
@@ -83,15 +83,15 @@ object InAppDonations {
    * Whether the user is in a region which supports SEPA Debit transfers, based off local phone number
    * and donation type.
    */
-  fun isSEPADebitAvailableForDonateToSignalType(inAppPaymentType: InAppPaymentTable.Type): Boolean {
-    return inAppPaymentType != InAppPaymentTable.Type.ONE_TIME_GIFT && isSEPADebitAvailable()
+  fun isSEPADebitAvailableForDonateToSignalType(inAppPaymentType: InAppPaymentType): Boolean {
+    return inAppPaymentType != InAppPaymentType.ONE_TIME_GIFT && isSEPADebitAvailable()
   }
 
   /**
    * Whether the user is in a region which suports IDEAL transfers, based off local phone number and
    * donation type
    */
-  fun isIDEALAvailbleForDonateToSignalType(inAppPaymentType: InAppPaymentTable.Type): Boolean {
-    return inAppPaymentType != InAppPaymentTable.Type.ONE_TIME_GIFT && isIDEALAvailable()
+  fun isIDEALAvailbleForDonateToSignalType(inAppPaymentType: InAppPaymentType): Boolean {
+    return inAppPaymentType != InAppPaymentType.ONE_TIME_GIFT && isIDEALAvailable()
   }
 }

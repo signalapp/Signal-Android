@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.jobs
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
+import org.signal.donations.InAppPaymentType
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
@@ -56,14 +57,14 @@ class InAppPaymentOneTimeContextJob private constructor(
 
     fun createJobChain(inAppPayment: InAppPaymentTable.InAppPayment, makePrimary: Boolean = false): Chain {
       return when (inAppPayment.type) {
-        InAppPaymentTable.Type.ONE_TIME_DONATION -> {
+        InAppPaymentType.ONE_TIME_DONATION -> {
           AppDependencies.jobManager
             .startChain(create(inAppPayment))
             .then(InAppPaymentRedemptionJob.create(inAppPayment, makePrimary))
             .then(RefreshOwnProfileJob())
             .then(MultiDeviceProfileContentUpdateJob())
         }
-        InAppPaymentTable.Type.ONE_TIME_GIFT -> {
+        InAppPaymentType.ONE_TIME_GIFT -> {
           AppDependencies.jobManager
             .startChain(create(inAppPayment))
             .then(InAppPaymentGiftSendJob.create(inAppPayment))

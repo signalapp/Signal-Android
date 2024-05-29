@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
 import com.google.android.material.button.MaterialButton
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.databinding.DonationPillToggleBinding
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingViewHolder
@@ -16,7 +16,7 @@ object DonationPillToggle {
   }
 
   class Model(
-    val selected: InAppPaymentTable.Type,
+    val selected: InAppPaymentType,
     val onClick: () -> Unit
   ) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean = true
@@ -29,10 +29,10 @@ object DonationPillToggle {
   private class ViewHolder(binding: DonationPillToggleBinding) : BindingViewHolder<Model, DonationPillToggleBinding>(binding) {
     override fun bind(model: Model) {
       when (model.selected) {
-        InAppPaymentTable.Type.ONE_TIME_DONATION -> {
+        InAppPaymentType.ONE_TIME_DONATION -> {
           presentButtons(model, binding.oneTime, binding.monthly)
         }
-        InAppPaymentTable.Type.RECURRING_DONATION -> {
+        InAppPaymentType.RECURRING_DONATION -> {
           presentButtons(model, binding.monthly, binding.oneTime)
         }
         else -> {

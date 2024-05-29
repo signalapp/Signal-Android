@@ -288,6 +288,7 @@ public class PushServiceSocket {
   private static final String REQUEST_RATE_LIMIT_PUSH_CHALLENGE = "/v1/challenge/push";
 
   private static final String DONATION_REDEEM_RECEIPT = "/v1/donation/redeem-receipt";
+  private static final String ARCHIVES_REDEEM_RECEIPT = "/v1/archives/redeem-receipt";
 
   private static final String UPDATE_SUBSCRIPTION_LEVEL                  = "/v1/subscription/%s/level/%s/%s/%s";
   private static final String SUBSCRIPTION                               = "/v1/subscription/%s";
@@ -1312,8 +1313,13 @@ public class PushServiceSocket {
   }
 
   public void redeemDonationReceipt(ReceiptCredentialPresentation receiptCredentialPresentation, boolean visible, boolean primary) throws IOException {
-    String payload = JsonUtil.toJson(new RedeemReceiptRequest(Base64.encodeWithPadding(receiptCredentialPresentation.serialize()), visible, primary));
+    String payload = JsonUtil.toJson(new RedeemDonationReceiptRequest(Base64.encodeWithPadding(receiptCredentialPresentation.serialize()), visible, primary));
     makeServiceRequest(DONATION_REDEEM_RECEIPT, "POST", payload);
+  }
+
+  public void redeemArchivesReceipt(ReceiptCredentialPresentation receiptCredentialPresentation) throws IOException {
+    String payload = JsonUtil.toJson(new RedeemArchivesReceiptRequest(Base64.encodeWithPadding(receiptCredentialPresentation.serialize())));
+    makeServiceRequest(ARCHIVES_REDEEM_RECEIPT, "POST", payload);
   }
 
   public StripeClientSecret createStripeOneTimePaymentIntent(String currencyCode, String paymentMethod, long amount, long level) throws IOException {

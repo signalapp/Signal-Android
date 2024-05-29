@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.s
 import android.os.Parcelable
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentMethodType
@@ -43,12 +44,12 @@ data class Stripe3DSData(
         intentClientSecret = stripeIntentAccessor.intentClientSecret
       ),
       gatewayRequest = ExternalLaunchTransactionState.GatewayRequest(
-        donateToSignalType = when (inAppPayment.type) {
-          InAppPaymentTable.Type.UNKNOWN -> error("Unsupported type UNKNOWN")
-          InAppPaymentTable.Type.ONE_TIME_DONATION -> ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.ONE_TIME
-          InAppPaymentTable.Type.RECURRING_DONATION -> ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.MONTHLY
-          InAppPaymentTable.Type.ONE_TIME_GIFT -> ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.GIFT
-          InAppPaymentTable.Type.RECURRING_BACKUP -> error("Unimplemented") // TODO [message-backups] do we still need this?
+        inAppPaymentType = when (inAppPayment.type) {
+          InAppPaymentType.UNKNOWN -> error("Unsupported type UNKNOWN")
+          InAppPaymentType.ONE_TIME_DONATION -> ExternalLaunchTransactionState.GatewayRequest.InAppPaymentType.ONE_TIME_DONATION
+          InAppPaymentType.RECURRING_DONATION -> ExternalLaunchTransactionState.GatewayRequest.InAppPaymentType.RECURRING_DONATION
+          InAppPaymentType.ONE_TIME_GIFT -> ExternalLaunchTransactionState.GatewayRequest.InAppPaymentType.ONE_TIME_GIFT
+          InAppPaymentType.RECURRING_BACKUP -> ExternalLaunchTransactionState.GatewayRequest.InAppPaymentType.RECURRING_BACKUPS
         },
         badge = inAppPayment.data.badge,
         label = inAppPayment.data.label,
@@ -76,11 +77,11 @@ data class Stripe3DSData(
         ),
         inAppPayment = InAppPaymentTable.InAppPayment(
           id = InAppPaymentTable.InAppPaymentId(-1), // TODO [alex] -- can we start writing this in for new transactions?
-          type = when (proto.gatewayRequest!!.donateToSignalType) {
-            ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.MONTHLY -> InAppPaymentTable.Type.RECURRING_DONATION
-            ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.ONE_TIME -> InAppPaymentTable.Type.ONE_TIME_DONATION
-            ExternalLaunchTransactionState.GatewayRequest.DonateToSignalType.GIFT -> InAppPaymentTable.Type.ONE_TIME_GIFT
-            // TODO [message-backups] -- Backups?
+          type = when (proto.gatewayRequest!!.inAppPaymentType) {
+            ExternalLaunchTransactionState.GatewayRequest.InAppPaymentType.RECURRING_DONATION -> InAppPaymentType.RECURRING_DONATION
+            ExternalLaunchTransactionState.GatewayRequest.InAppPaymentType.ONE_TIME_DONATION -> InAppPaymentType.ONE_TIME_DONATION
+            ExternalLaunchTransactionState.GatewayRequest.InAppPaymentType.ONE_TIME_GIFT -> InAppPaymentType.ONE_TIME_GIFT
+            ExternalLaunchTransactionState.GatewayRequest.InAppPaymentType.RECURRING_BACKUPS -> InAppPaymentType.RECURRING_BACKUP
           },
           endOfPeriod = 0.milliseconds,
           updatedAt = 0.milliseconds,

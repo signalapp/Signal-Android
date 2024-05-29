@@ -473,20 +473,21 @@ message ExternalLaunchTransactionState {
     }
 
     message GatewayRequest {
-        enum DonateToSignalType {
-            MONTHLY  = 0;
-            ONE_TIME = 1;
-            GIFT     = 2;
+        enum InAppPaymentType {
+            RECURRING_DONATION = 0;
+            ONE_TIME_DONATION  = 1;
+            ONE_TIME_GIFT      = 2;
+            RECURRING_BACKUPS  = 3;
         }
 
-        DonateToSignalType donateToSignalType = 1;
-        BadgeList.Badge    badge              = 2;
-        string             label              = 3;
-        DecimalValue       price              = 4;
-        string             currencyCode       = 5;
-        int64              level              = 6;
-        int64              recipient_id       = 7;
-        string             additionalMessage  = 8;
+        InAppPaymentType inAppPaymentType  = 1;
+        BadgeList.Badge  badge             = 2;
+        string           label             = 3;
+        DecimalValue     price             = 4;
+        string           currencyCode      = 5;
+        int64            level             = 6;
+        int64            recipient_id      = 7;
+        string           additionalMessage = 8;
     }
 
     StripeIntentAccessor stripeIntentAccessor = 1;

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.errors
 
 import android.content.Context
 import androidx.annotation.StringRes
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeDeclineCode
 import org.signal.donations.StripeFailureCode
@@ -38,7 +39,7 @@ class DonationErrorParams<V> private constructor(
         is DonationError.BadgeRedemptionError.TimeoutWaitingForTokenError -> getStillProcessingErrorParams(context, callback)
         is DonationError.BadgeRedemptionError.FailedToValidateCredentialError -> getBadgeCredentialValidationErrorParams(context, callback)
         is DonationError.BadgeRedemptionError.GenericError -> getGenericRedemptionError(context, throwable.source.toInAppPaymentType(), callback)
-        else -> getGenericRedemptionError(context, InAppPaymentTable.Type.ONE_TIME_DONATION, callback)
+        else -> getGenericRedemptionError(context, InAppPaymentType.ONE_TIME_DONATION, callback)
       }
     }
 
@@ -81,9 +82,9 @@ class DonationErrorParams<V> private constructor(
       }
     }
 
-    private fun <V> getGenericRedemptionError(context: Context, type: InAppPaymentTable.Type, callback: Callback<V>): DonationErrorParams<V> {
+    private fun <V> getGenericRedemptionError(context: Context, type: InAppPaymentType, callback: Callback<V>): DonationErrorParams<V> {
       return when (type) {
-        InAppPaymentTable.Type.ONE_TIME_GIFT -> DonationErrorParams(
+        InAppPaymentType.ONE_TIME_GIFT -> DonationErrorParams(
           title = R.string.DonationsErrors__donation_failed,
           message = R.string.DonationsErrors__your_payment_was_processed_but,
           positiveAction = callback.onContactSupport(context),

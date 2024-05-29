@@ -193,7 +193,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
     Log.d(TAG, "Attempting to redeem token... isForSubscription: " + isForSubscription(), true);
     ServiceResponse<EmptyResponse> response = AppDependencies.getDonationsService()
-                                                             .redeemReceipt(presentation,
+                                                             .redeemDonationReceipt(presentation,
                                                                                     SignalStore.donationsValues().getDisplayBadgesOnProfile(),
                                                                                     makePrimary);
 

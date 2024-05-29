@@ -92,6 +92,7 @@ import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.setActionItemTint
+import org.signal.donations.InAppPaymentType
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.GroupMembersDialog
@@ -102,7 +103,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.audio.AudioRecorder
 import org.thoughtcrime.securesms.badges.gifts.OpenableGift
 import org.thoughtcrime.securesms.badges.gifts.OpenableGiftItemDecoration
-import org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowActivity
 import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGiftBottomSheet
 import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomSheet
 import org.thoughtcrime.securesms.components.AnimatingToggle
@@ -125,6 +125,7 @@ import org.thoughtcrime.securesms.components.location.SignalPlace
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation
@@ -196,7 +197,6 @@ import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
 import org.thoughtcrime.securesms.database.DraftTable
-import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
@@ -2926,7 +2926,7 @@ class ConversationFragment :
 
     override fun onCallToAction(action: String) {
       if ("gift_badge" == action) {
-        startActivity(Intent(requireContext(), GiftFlowActivity::class.java))
+        startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.ONE_TIME_GIFT))
       } else if ("username_edit" == action) {
         startActivity(EditProfileActivity.getIntentForUsernameEdit(requireContext()))
       }
@@ -2936,7 +2936,7 @@ class ConversationFragment :
       requireActivity()
         .supportFragmentManager
         .beginTransaction()
-        .add(DonateToSignalFragment.Dialog.create(InAppPaymentTable.Type.ONE_TIME_DONATION), "one_time_nav")
+        .add(DonateToSignalFragment.Dialog.create(InAppPaymentType.ONE_TIME_DONATION), "one_time_nav")
         .commitNow()
     }
 

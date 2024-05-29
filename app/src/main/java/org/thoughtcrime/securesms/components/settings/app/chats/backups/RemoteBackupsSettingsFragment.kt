@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.components.settings.app.chats.backups
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.compose.foundation.background
@@ -38,6 +37,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.collections.immutable.persistentListOf
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -50,12 +51,14 @@ import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.Snackbars
 import org.signal.core.ui.Texts
+import org.signal.core.util.money.FiatMoney
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFlowActivity
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.getTierDetails
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -63,6 +66,8 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
+import java.math.BigDecimal
+import java.util.Currency
 import java.util.Locale
 
 /**
@@ -82,7 +87,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     val callbacks = remember { Callbacks() }
 
     RemoteBackupsSettingsContent(
-      messageBackupTier = state.messageBackupsTier,
+      messageBackupsType = state.messageBackupsType,
       lastBackupTimestamp = state.lastBackupTimestamp,
       canBackUpUsingCellular = state.canBackUpUsingCellular,
       backupsFrequency = state.backupsFrequency,
@@ -101,7 +106,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onEnableBackupsClick() {
-      startActivity(Intent(requireContext(), MessageBackupsFlowActivity::class.java))
+      startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.RECURRING_BACKUP))
     }
 
     override fun onBackUpUsingCellularClick(canUseCellular: Boolean) {
@@ -137,7 +142,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onTurnOffAndDeleteBackupsConfirm() {
-      viewModel.turnOffAndDeleteBackups()
+      // TODO [alex] CheckoutFlowStartFragment.launchForBackupsCancellation(childFragmentManager)
     }
 
     override fun onBackupsTypeClick() {
@@ -159,6 +164,12 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     super.onResume()
     viewModel.refresh()
   }
+
+//  override fun onCheckoutFlowResult(result: CheckoutFlowStartFragment.Result) {
+//    if (result is CheckoutFlowStartFragment.Result.CancelationSuccess) {
+//      Snackbar.make(requireView(), R.string.SubscribeFragment__your_subscription_has_been_cancelled, Snackbar.LENGTH_LONG).show()
+//    }
+//  }
 }
 
 /**
@@ -181,7 +192,7 @@ private interface ContentCallbacks {
 
 @Composable
 private fun RemoteBackupsSettingsContent(
-  messageBackupTier: MessageBackupTier?,
+  messageBackupsType: MessageBackupsType?,
   lastBackupTimestamp: Long,
   canBackUpUsingCellular: Boolean,
   backupsFrequency: BackupFrequency,
@@ -209,13 +220,13 @@ private fun RemoteBackupsSettingsContent(
     ) {
       item {
         BackupTypeRow(
-          messageBackupTier = messageBackupTier,
+          messageBackupsType = messageBackupsType,
           onEnableBackupsClick = contentCallbacks::onEnableBackupsClick,
           onChangeBackupsTypeClick = contentCallbacks::onBackupsTypeClick
         )
       }
 
-      if (messageBackupTier == null) {
+      if (messageBackupsType == null) {
         item {
           Rows.TextRow(
             text = "Payment history",
@@ -253,7 +264,7 @@ private fun RemoteBackupsSettingsContent(
                 color = MaterialTheme.colorScheme.onSurface
               )
               Text(
-                text = Util.getPrettyFileSize(backupSize ?: 0),
+                text = Util.getPrettyFileSize(backupSize),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
               )
@@ -358,16 +369,14 @@ private fun RemoteBackupsSettingsContent(
 
 @Composable
 private fun BackupTypeRow(
-  messageBackupTier: MessageBackupTier?,
+  messageBackupsType: MessageBackupsType?,
   onEnableBackupsClick: () -> Unit,
   onChangeBackupsTypeClick: () -> Unit
 ) {
-  val messageBackupsType = if (messageBackupTier != null) getTierDetails(messageBackupTier) else null
-
   Row(
     modifier = Modifier
       .fillMaxWidth()
-      .clickable(enabled = messageBackupTier != null, onClick = onChangeBackupsTypeClick)
+      .clickable(enabled = messageBackupsType != null, onClick = onChangeBackupsTypeClick)
       .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
       .padding(top = 16.dp, bottom = 14.dp)
   ) {
@@ -573,7 +582,7 @@ private fun getTextForFrequency(backupsFrequency: BackupFrequency): String {
 private fun RemoteBackupsSettingsContentPreview() {
   Previews.Preview {
     RemoteBackupsSettingsContent(
-      messageBackupTier = null,
+      messageBackupsType = null,
       lastBackupTimestamp = -1,
       canBackUpUsingCellular = false,
       backupsFrequency = BackupFrequency.MANUAL,
@@ -591,7 +600,12 @@ private fun RemoteBackupsSettingsContentPreview() {
 private fun BackupTypeRowPreview() {
   Previews.Preview {
     BackupTypeRow(
-      messageBackupTier = MessageBackupTier.PAID,
+      messageBackupsType = MessageBackupsType(
+        tier = MessageBackupTier.FREE,
+        title = "Free",
+        pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance("USD")),
+        features = persistentListOf()
+      ),
       onChangeBackupsTypeClick = {},
       onEnableBackupsClick = {}
     )

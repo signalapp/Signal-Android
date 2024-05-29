@@ -6,8 +6,10 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.donations.InAppPaymentType
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
@@ -158,7 +160,7 @@ class InAppPaymentRedemptionJob private constructor(
     Log.d(TAG, "Attempting to redeem receipt credential presentation...", true)
     val serviceResponse = AppDependencies
       .donationsService
-      .redeemReceipt(
+      .redeemDonationReceipt(
         receiptCredentialPresentation,
         SignalStore.donationsValues().getDisplayBadgesOnProfile(),
         jobData.makePrimary
@@ -206,14 +208,23 @@ class InAppPaymentRedemptionJob private constructor(
 
     val receiptCredentialPresentation = ReceiptCredentialPresentation(credentialBytes.toByteArray())
 
-    Log.d(TAG, "Attempting to redeem receipt credential presentation...", true)
-    val serviceResponse = AppDependencies
-      .donationsService
-      .redeemReceipt(
-        receiptCredentialPresentation,
-        SignalStore.donationsValues().getDisplayBadgesOnProfile(),
-        jobData.makePrimary
-      )
+    val serviceResponse = if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+      Log.d(TAG, "Attempting to redeem archive receipt credential presentation...", true)
+      AppDependencies
+        .donationsService
+        .redeemArchivesReceipt(
+          receiptCredentialPresentation
+        )
+    } else {
+      Log.d(TAG, "Attempting to redeem donation receipt credential presentation...", true)
+      AppDependencies
+        .donationsService
+        .redeemDonationReceipt(
+          receiptCredentialPresentation,
+          SignalStore.donationsValues().getDisplayBadgesOnProfile(),
+          jobData.makePrimary
+        )
+    }
 
     verifyServiceResponse(serviceResponse) {
       val protoError = InAppPaymentData.Error(

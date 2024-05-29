@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Wrapper activity for ConversationFragment.
  */
-open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner, DonationPaymentComponent {
+open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner, InAppPaymentComponent {
 
   companion object {
     private const val STATE_WATERMARK = "share_data_watermark"
@@ -33,7 +33,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   override val voiceNoteMediaController = VoiceNoteMediaController(this, true)
 
   override val stripeRepository: StripeRepository by lazy { StripeRepository(this) }
-  override val googlePayResultPublisher: Subject<DonationPaymentComponent.GooglePayResult> = PublishSubject.create()
+  override val googlePayResultPublisher: Subject<InAppPaymentComponent.GooglePayResult> = PublishSubject.create()
 
   private val motionEventRelay: MotionEventRelay by viewModels()
   private val shareDataTimestampViewModel: ShareDataTimestampViewModel by viewModels()
@@ -87,7 +87,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    googlePayResultPublisher.onNext(DonationPaymentComponent.GooglePayResult(requestCode, resultCode, data))
+    googlePayResultPublisher.onNext(InAppPaymentComponent.GooglePayResult(requestCode, resultCode, data))
   }
 
   private fun replaceFragment() {

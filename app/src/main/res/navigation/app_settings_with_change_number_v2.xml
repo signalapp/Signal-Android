@@ -535,21 +535,14 @@
         app:popUpToInclusive="true" />
 
     <action
-        android:id="@+id/action_direct_to_donateToSignal"
-        app:destination="@id/donate_to_signal"
+        android:id="@+id/action_direct_to_checkout"
+        app:destination="@id/checkoutFlowActivity"
         app:enterAnim="@anim/fragment_open_enter"
         app:exitAnim="@anim/fragment_open_exit"
         app:popEnterAnim="@anim/fragment_close_enter"
         app:popExitAnim="@anim/fragment_close_exit"
         app:popUpTo="@id/app_settings"
-        app:popUpToInclusive="true">
-
-        <argument
-            android:name="start_type"
-            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$Type"
-            app:nullable="false" />
-
-    </action>
+        app:popUpToInclusive="true" />
 
     <action
         android:id="@+id/action_direct_to_notificationProfiles"
@@ -742,17 +735,11 @@
             app:destination="@id/subscribeLearnMoreBottomSheetDialog" />
         <action
             android:id="@+id/action_manageDonationsFragment_to_donateToSignalFragment"
-            app:destination="@id/donate_to_signal"
+            app:destination="@id/checkoutFlowActivity"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit">
-
-            <argument
-                android:name="start_type"
-                app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$Type"
-                app:nullable="false" />
-        </action>
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <fragment
@@ -779,8 +766,6 @@
             android:name="id"
             app:argType="long" />
     </fragment>
-
-    <include app:graph="@navigation/donate_to_signal" />
 
     <dialog
         android:id="@+id/subscribeLearnMoreBottomSheetDialog"
@@ -992,5 +977,15 @@
 
     <include app:graph="@navigation/username_link_settings" />
     <include app:graph="@navigation/story_privacy_settings" />
+
+    <activity
+        android:id="@+id/checkoutFlowActivity"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity"
+        android:label="checkout_flow_activity">
+
+        <argument
+            android:name="in_app_payment_type"
+            app:argType="org.signal.donations.InAppPaymentType" />
+    </activity>
 
 </navigation>

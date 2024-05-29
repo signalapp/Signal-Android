@@ -2,18 +2,17 @@ package org.thoughtcrime.securesms.megaphone
 
 import android.app.Application
 import android.content.Context
-import android.content.Intent
 import androidx.annotation.AnyThread
 import androidx.annotation.WorkerThread
 import org.json.JSONArray
 import org.json.JSONException
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowActivity
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalActivity
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
 import org.thoughtcrime.securesms.database.RemoteMegaphoneTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
@@ -53,12 +52,12 @@ object RemoteMegaphoneRepository {
   }
 
   private val donate: Action = Action { context, controller, remote ->
-    controller.onMegaphoneNavigationRequested(Intent(context, DonateToSignalActivity::class.java))
+    controller.onMegaphoneNavigationRequested(CheckoutFlowActivity.createIntent(context, InAppPaymentType.ONE_TIME_DONATION))
     snooze.run(context, controller, remote)
   }
 
   private val donateForFriend: Action = Action { context, controller, remote ->
-    controller.onMegaphoneNavigationRequested(Intent(context, GiftFlowActivity::class.java))
+    controller.onMegaphoneNavigationRequested(CheckoutFlowActivity.createIntent(context, InAppPaymentType.ONE_TIME_GIFT))
     snooze.run(context, controller, remote)
   }
 

@@ -10,7 +10,7 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
  *
  * Request object for redeeming a receipt from a donation transaction.
  */
-class RedeemReceiptRequest {
+class RedeemDonationReceiptRequest {
 
   private final String  receiptCredentialPresentation;
   private final boolean visible;
@@ -21,8 +21,7 @@ class RedeemReceiptRequest {
    * @param visible boolean indicating if the new badge should be visible or not on the profile
    * @param primary boolean indicating if the new badge should be primary or not on the profile; is always treated as false if `visible` is false
    */
-  @JsonCreator
-  RedeemReceiptRequest(
+  @JsonCreator RedeemDonationReceiptRequest(
       @JsonProperty("receiptCredentialPresentation") String receiptCredentialPresentation,
       @JsonProperty("visible") boolean visible,
       @JsonProperty("primary") boolean primary) {

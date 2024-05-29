@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.donations.InAppPaymentType;
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository;
 import org.thoughtcrime.securesms.database.InAppPaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -29,7 +30,7 @@ final class LogSectionBadges implements LogSection {
       return "Self not yet available!";
     }
 
-    InAppPaymentTable.InAppPayment latestRecurringDonation = SignalDatabase.inAppPayments().getLatestInAppPaymentByType(InAppPaymentTable.Type.RECURRING_DONATION);
+    InAppPaymentTable.InAppPayment latestRecurringDonation = SignalDatabase.inAppPayments().getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION);
 
     if (latestRecurringDonation != null) {
       return new StringBuilder().append("Badge Count                     : ").append(Recipient.self().getBadges().size()).append("\n")

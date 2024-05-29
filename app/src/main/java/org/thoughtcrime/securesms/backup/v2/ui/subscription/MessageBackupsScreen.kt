@@ -12,5 +12,7 @@ enum class MessageBackupsScreen {
   TYPE_SELECTION,
   CHECKOUT_SHEET,
   PROCESS_PAYMENT,
-  COMPLETED
+  COMPLETED;
+
+  fun isAfter(other: MessageBackupsScreen): Boolean = ordinal > other.ordinal
 }

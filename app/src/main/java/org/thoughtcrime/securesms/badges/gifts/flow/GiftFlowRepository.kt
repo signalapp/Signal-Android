@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.badges.gifts.flow
 import android.content.Context
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -25,14 +25,10 @@ import java.util.Locale
  */
 class GiftFlowRepository {
 
-  companion object {
-    private val TAG = Log.tag(GiftFlowRepository::class.java)
-  }
-
   fun insertInAppPayment(context: Context, giftSnapshot: GiftFlowState): Single<InAppPaymentTable.InAppPayment> {
     return Single.fromCallable {
       SignalDatabase.inAppPayments.insert(
-        type = InAppPaymentTable.Type.ONE_TIME_GIFT,
+        type = InAppPaymentType.ONE_TIME_GIFT,
         state = InAppPaymentTable.State.CREATED,
         subscriberId = null,
         endOfPeriod = null,

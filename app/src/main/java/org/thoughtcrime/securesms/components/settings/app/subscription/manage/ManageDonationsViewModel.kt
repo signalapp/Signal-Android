@@ -12,9 +12,9 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
-import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -87,7 +87,7 @@ class ManageDonationsViewModel(
       store.update { it.copy(hasReceipts = hasReceipts) }
     }
 
-    disposables += InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentTable.Type.RECURRING_DONATION).subscribeBy { redemptionStatus ->
+    disposables += InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.RECURRING_DONATION).subscribeBy { redemptionStatus ->
       store.update { manageDonationsState ->
         manageDonationsState.copy(
           nonVerifiedMonthlyDonation = if (redemptionStatus is DonationRedemptionJobStatus.PendingExternalVerification) redemptionStatus.nonVerifiedMonthlyDonation else null,
@@ -98,7 +98,7 @@ class ManageDonationsViewModel(
 
     disposables += Observable.combineLatest(
       SignalStore.donationsValues().observablePendingOneTimeDonation,
-      InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentTable.Type.ONE_TIME_DONATION)
+      InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.ONE_TIME_DONATION)
     ) { pendingFromStore, pendingFromJob ->
       if (pendingFromStore.isPresent) {
         pendingFromStore

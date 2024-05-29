@@ -62,9 +62,9 @@ class StripeApi(
     data class Failure(val reason: Throwable) : CreatePaymentSourceFromCardDataResult()
   }
 
-  fun createSetupIntent(sourceType: PaymentSourceType.Stripe): Single<CreateSetupIntentResult> {
+  fun createSetupIntent(inAppPaymentType: InAppPaymentType, sourceType: PaymentSourceType.Stripe): Single<CreateSetupIntentResult> {
     return setupIntentHelper
-      .fetchSetupIntent(sourceType)
+      .fetchSetupIntent(inAppPaymentType, sourceType)
       .map { CreateSetupIntentResult(it) }
       .subscribeOn(Schedulers.io())
   }
@@ -588,6 +588,7 @@ class StripeApi(
 
   interface SetupIntentHelper {
     fun fetchSetupIntent(
+      inAppPaymentType: InAppPaymentType,
       sourceType: PaymentSourceType.Stripe
     ): Single<StripeIntentAccessor>
   }

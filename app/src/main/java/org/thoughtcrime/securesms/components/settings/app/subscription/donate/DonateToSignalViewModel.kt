@@ -16,6 +16,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.money.PlatformCurrencyUtil
 import org.signal.core.util.orNull
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
@@ -50,7 +51,7 @@ import java.util.Optional
  * only in charge of rendering our "current view of the world."
  */
 class DonateToSignalViewModel(
-  startType: InAppPaymentTable.Type,
+  startType: InAppPaymentType,
   private val subscriptionsRepository: RecurringInAppPaymentRepository,
   private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository
 ) : ViewModel() {
@@ -137,8 +138,8 @@ class DonateToSignalViewModel(
     store.update {
       it.copy(
         inAppPaymentType = when (it.inAppPaymentType) {
-          InAppPaymentTable.Type.ONE_TIME_DONATION -> InAppPaymentTable.Type.RECURRING_DONATION
-          InAppPaymentTable.Type.RECURRING_DONATION -> InAppPaymentTable.Type.ONE_TIME_DONATION
+          InAppPaymentType.ONE_TIME_DONATION -> InAppPaymentType.RECURRING_DONATION
+          InAppPaymentType.RECURRING_DONATION -> InAppPaymentType.ONE_TIME_DONATION
           else -> error("Should never get here.")
         }
       )
@@ -222,8 +223,8 @@ class DonateToSignalViewModel(
 
   private fun getAmount(snapshot: DonateToSignalState): FiatMoney {
     return when (snapshot.inAppPaymentType) {
-      InAppPaymentTable.Type.ONE_TIME_DONATION -> getOneTimeAmount(snapshot.oneTimeDonationState)
-      InAppPaymentTable.Type.RECURRING_DONATION -> getSelectedSubscriptionCost()
+      InAppPaymentType.ONE_TIME_DONATION -> getOneTimeAmount(snapshot.oneTimeDonationState)
+      InAppPaymentType.RECURRING_DONATION -> getSelectedSubscriptionCost()
       else -> error("This ViewModel does not support ${snapshot.inAppPaymentType}.")
     }
   }
@@ -237,7 +238,7 @@ class DonateToSignalViewModel(
   }
 
   private fun initializeOneTimeDonationState(oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository) {
-    val oneTimeDonationFromJob: Observable<Optional<PendingOneTimeDonation>> = InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentTable.Type.ONE_TIME_DONATION).map {
+    val oneTimeDonationFromJob: Observable<Optional<PendingOneTimeDonation>> = InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.ONE_TIME_DONATION).map {
       when (it) {
         is DonationRedemptionJobStatus.PendingExternalVerification -> Optional.ofNullable(it.pendingOneTimeDonation)
 
@@ -331,7 +332,7 @@ class DonateToSignalViewModel(
   }
 
   private fun monitorLevelUpdateProcessing() {
-    val redemptionJobStatus: Observable<DonationRedemptionJobStatus> = InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentTable.Type.RECURRING_DONATION)
+    val redemptionJobStatus: Observable<DonationRedemptionJobStatus> = InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.RECURRING_DONATION)
 
     monthlyDonationDisposables += Observable
       .combineLatest(redemptionJobStatus, LevelUpdate.isProcessing, ::Pair)
@@ -420,7 +421,7 @@ class DonateToSignalViewModel(
   }
 
   class Factory(
-    private val startType: InAppPaymentTable.Type,
+    private val startType: InAppPaymentType,
     private val subscriptionsRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(AppDependencies.donationsService),
     private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(AppDependencies.donationsService)
   ) : ViewModelProvider.Factory {

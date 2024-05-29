@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.components.settings.app.chats
 
-import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFlowActivity
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -92,7 +92,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
             if (state.remoteBackupsEnabled) {
               Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_remoteBackupsSettingsFragment)
             } else {
-              startActivity(Intent(requireContext(), MessageBackupsFlowActivity::class.java))
+              startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.RECURRING_BACKUP))
             }
           }
         )

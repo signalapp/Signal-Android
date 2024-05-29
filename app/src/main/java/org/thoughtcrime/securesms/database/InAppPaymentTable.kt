@@ -30,8 +30,7 @@ import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.updateAll
 import org.signal.core.util.withinTransaction
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
-import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.parcelers.MillisecondDurationParceler
@@ -129,7 +128,7 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
   }
 
   fun insert(
-    type: Type,
+    type: InAppPaymentType,
     state: State,
     subscriberId: SubscriberId?,
     endOfPeriod: Duration?,
@@ -193,18 +192,18 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .readToSingleObject(InAppPayment.Companion)
   }
 
-  fun getByEndOfPeriod(type: Type, endOfPeriod: Duration): InAppPayment? {
+  fun getByEndOfPeriod(type: InAppPaymentType, endOfPeriod: Duration): InAppPayment? {
     return readableDatabase.select()
       .from(TABLE_NAME)
-      .where("$TYPE = ? AND $END_OF_PERIOD = ?", Type.serialize(type), endOfPeriod.inWholeSeconds)
+      .where("$TYPE = ? AND $END_OF_PERIOD = ?", InAppPaymentType.serialize(type), endOfPeriod.inWholeSeconds)
       .run()
       .readToSingleObject(InAppPayment.Companion)
   }
 
-  fun getByLatestEndOfPeriod(type: Type): InAppPayment? {
+  fun getByLatestEndOfPeriod(type: InAppPaymentType): InAppPayment? {
     return readableDatabase.select()
       .from(TABLE_NAME)
-      .where("$TYPE = ? AND $END_OF_PERIOD > 0", Type.serialize(type))
+      .where("$TYPE = ? AND $END_OF_PERIOD > 0", InAppPaymentType.serialize(type))
       .orderBy("$END_OF_PERIOD DESC")
       .limit(1)
       .run()
@@ -248,9 +247,9 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .where(
         "$STATE = ? AND ($TYPE = ? OR $TYPE = ? OR $TYPE = ?)",
         State.serialize(State.PENDING),
-        Type.serialize(Type.RECURRING_DONATION),
-        Type.serialize(Type.ONE_TIME_DONATION),
-        Type.serialize(Type.ONE_TIME_GIFT)
+        InAppPaymentType.serialize(InAppPaymentType.RECURRING_DONATION),
+        InAppPaymentType.serialize(InAppPaymentType.ONE_TIME_DONATION),
+        InAppPaymentType.serialize(InAppPaymentType.ONE_TIME_GIFT)
       )
       .run()
   }
@@ -258,12 +257,12 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
   /**
    * Returns whether there are any pending donations in the database.
    */
-  fun hasPending(type: Type): Boolean {
+  fun hasPending(type: InAppPaymentType): Boolean {
     return readableDatabase.exists(TABLE_NAME)
       .where(
         "$STATE = ? AND $TYPE = ?",
         State.serialize(State.PENDING),
-        Type.serialize(type)
+        InAppPaymentType.serialize(type)
       )
       .run()
   }
@@ -271,7 +270,7 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
   /**
    * Retrieves from the database the latest payment of the given type that is either in the PENDING or WAITING_FOR_AUTHORIZATION state.
    */
-  fun getLatestInAppPaymentByType(type: Type): InAppPayment? {
+  fun getLatestInAppPaymentByType(type: InAppPaymentType): InAppPayment? {
     return readableDatabase.select()
       .from(TABLE_NAME)
       .where(
@@ -279,7 +278,7 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
         State.serialize(State.PENDING),
         State.serialize(State.WAITING_FOR_AUTHORIZATION),
         State.serialize(State.END),
-        Type.serialize(type)
+        InAppPaymentType.serialize(type)
       )
       .orderBy("$INSERTED_AT DESC")
       .limit(1)
@@ -311,7 +310,7 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
   @TypeParceler<SubscriberId?, NullableSubscriberIdParceler>
   data class InAppPayment(
     val id: InAppPaymentId,
-    val type: Type,
+    val type: InAppPaymentType,
     val state: State,
     val insertedAt: Duration,
     val updatedAt: Duration,
@@ -329,7 +328,7 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       override fun serialize(data: InAppPayment): ContentValues {
         return contentValuesOf(
           ID to data.id.serialize(),
-          TYPE to data.type.apply { check(this != Type.UNKNOWN) }.code,
+          TYPE to data.type.apply { check(this != InAppPaymentType.UNKNOWN) }.code,
           STATE to data.state.code,
           INSERTED_AT to data.insertedAt.inWholeSeconds,
           UPDATED_AT to data.updatedAt.inWholeSeconds,
@@ -343,7 +342,7 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       override fun deserialize(input: Cursor): InAppPayment {
         return InAppPayment(
           id = InAppPaymentId(input.requireLong(ID)),
-          type = Type.deserialize(input.requireInt(TYPE)),
+          type = InAppPaymentType.deserialize(input.requireInt(TYPE)),
           state = State.deserialize(input.requireInt(STATE)),
           insertedAt = input.requireLong(INSERTED_AT).seconds,
           updatedAt = input.requireLong(UPDATED_AT).seconds,
@@ -353,61 +352,6 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
           data = InAppPaymentData.ADAPTER.decode(input.requireNonNullBlob(DATA))
         )
       }
-    }
-  }
-
-  enum class Type(val code: Int, val recurring: Boolean) {
-    /**
-     * Used explicitly for mapping DonationErrorSource. Writing this value
-     * into an InAppPayment is an error.
-     */
-    UNKNOWN(-1, false),
-
-    /**
-     * This payment is for a gift badge
-     */
-    ONE_TIME_GIFT(0, false),
-
-    /**
-     * This payment is for a one-time donation
-     */
-    ONE_TIME_DONATION(1, false),
-
-    /**
-     * This payment is for a recurring donation
-     */
-    RECURRING_DONATION(2, true),
-
-    /**
-     * This payment is for a recurring backup payment
-     */
-    RECURRING_BACKUP(3, true);
-
-    companion object : Serializer<Type, Int> {
-      override fun serialize(data: Type): Int = data.code
-      override fun deserialize(input: Int): Type = values().first { it.code == input }
-    }
-
-    fun toErrorSource(): DonationErrorSource {
-      return when (this) {
-        UNKNOWN -> DonationErrorSource.UNKNOWN
-        ONE_TIME_GIFT -> DonationErrorSource.GIFT
-        ONE_TIME_DONATION -> DonationErrorSource.ONE_TIME
-        RECURRING_DONATION -> DonationErrorSource.MONTHLY
-        RECURRING_BACKUP -> DonationErrorSource.UNKNOWN // TODO [message-backups] error handling
-      }
-    }
-
-    fun toSubscriberType(): InAppPaymentSubscriberRecord.Type? {
-      return when (this) {
-        RECURRING_BACKUP -> InAppPaymentSubscriberRecord.Type.BACKUP
-        RECURRING_DONATION -> InAppPaymentSubscriberRecord.Type.DONATION
-        else -> null
-      }
-    }
-
-    fun requireSubscriberType(): InAppPaymentSubscriberRecord.Type {
-      return requireNotNull(toSubscriberType())
     }
   }
 

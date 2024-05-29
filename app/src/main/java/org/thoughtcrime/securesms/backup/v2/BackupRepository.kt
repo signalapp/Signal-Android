@@ -5,11 +5,14 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
-import org.signal.core.util.LongSerializer
 import org.signal.core.util.logging.Log
+import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.messagebackup.MessageBackup
 import org.signal.libsignal.messagebackup.MessageBackup.ValidationResult
@@ -17,6 +20,7 @@ import org.signal.libsignal.messagebackup.MessageBackupKey
 import org.signal.libsignal.protocol.ServiceId.Aci
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
@@ -35,8 +39,11 @@ import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFeature
 import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
@@ -58,13 +65,16 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.Pro
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
-import java.lang.Exception
+import java.math.BigDecimal
 import java.time.ZonedDateTime
+import java.util.Currency
+import java.util.Locale
 import kotlin.time.Duration.Companion.milliseconds
 
 object BackupRepository {
@@ -673,6 +683,82 @@ object BackupRepository {
       }
   }
 
+  suspend fun getAvailableBackupsTypes(availableBackupTiers: List<MessageBackupTier>): List<MessageBackupsType> {
+    return availableBackupTiers.map { getBackupsType(it) }
+  }
+
+  suspend fun getBackupsType(tier: MessageBackupTier): MessageBackupsType {
+    val backupCurrency = SignalStore.donationsValues().getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.BACKUP)
+    return when (tier) {
+      MessageBackupTier.FREE -> getFreeType(backupCurrency)
+      MessageBackupTier.PAID -> getPaidType(backupCurrency)
+    }
+  }
+
+  private fun getFreeType(currency: Currency): MessageBackupsType {
+    return MessageBackupsType(
+      tier = MessageBackupTier.FREE,
+      pricePerMonth = FiatMoney(BigDecimal.ZERO, currency),
+      title = "Text + 30 days of media", // TODO [message-backups] Finalize text (does this come from server?)
+      features = persistentListOf(
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+          label = "Full text message backup" // TODO [message-backups] Finalize text (does this come from server?)
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_album_compact_bold_16,
+          label = "Last 30 days of media" // TODO [message-backups] Finalize text (does this come from server?)
+        )
+      )
+    )
+  }
+
+  private suspend fun getPaidType(currency: Currency): MessageBackupsType {
+    val serviceResponse = withContext(Dispatchers.IO) {
+      AppDependencies
+        .donationsService
+        .getDonationsConfiguration(Locale.getDefault())
+    }
+
+    if (serviceResponse.result.isEmpty) {
+      if (serviceResponse.applicationError.isPresent) {
+        throw serviceResponse.applicationError.get()
+      }
+
+      if (serviceResponse.executionError.isPresent) {
+        throw serviceResponse.executionError.get()
+      }
+
+      error("Unhandled error occurred while downloading configuration.")
+    }
+
+    val config = serviceResponse.result.get()
+
+    return MessageBackupsType(
+      tier = MessageBackupTier.PAID,
+      pricePerMonth = FiatMoney(config.currencies[currency.currencyCode.lowercase()]!!.backupSubscription[SubscriptionsConfiguration.BACKUPS_LEVEL]!!, currency),
+      title = "Text + All your media", // TODO [message-backups] Finalize text (does this come from server?)
+      features = persistentListOf(
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+          label = "Full text message backup" // TODO [message-backups] Finalize text (does this come from server?)
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_album_compact_bold_16,
+          label = "Full media backup" // TODO [message-backups] Finalize text (does this come from server?)
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+          label = "1TB of storage (~250K photos)" // TODO [message-backups] Finalize text (does this come from server?)
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_heart_compact_bold_16,
+          label = "Thanks for supporting Signal!" // TODO [message-backups] Finalize text (does this come from server?)
+        )
+      )
+    )
+  }
+
   /**
    * Ensures that the backupId has been reserved and that your public key has been set, while also returning an auth credential.
    * Should be the basis of all backup operations.
@@ -765,18 +851,3 @@ class BackupMetadata(
   val usedSpace: Long,
   val mediaCount: Long
 )
-
-enum class MessageBackupTier(val value: Int) {
-  FREE(0),
-  PAID(1);
-
-  companion object Serializer : LongSerializer<MessageBackupTier?> {
-    override fun serialize(data: MessageBackupTier?): Long {
-      return data?.value?.toLong() ?: -1
-    }
-
-    override fun deserialize(data: Long): MessageBackupTier? {
-      return values().firstOrNull { it.value == data.toInt() }
-    }
-  }
-}

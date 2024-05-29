@@ -80,9 +80,23 @@ public class DonationsService {
    * @param visible                       Whether the badge will be visible on the user's profile immediately after redemption
    * @param primary                       Whether the badge will be made primary immediately after redemption
    */
-  public ServiceResponse<EmptyResponse> redeemReceipt(ReceiptCredentialPresentation receiptCredentialPresentation, boolean visible, boolean primary) {
+  public ServiceResponse<EmptyResponse> redeemDonationReceipt(ReceiptCredentialPresentation receiptCredentialPresentation, boolean visible, boolean primary) {
     try {
       pushServiceSocket.redeemDonationReceipt(receiptCredentialPresentation, visible, primary);
+      return ServiceResponse.forResult(EmptyResponse.INSTANCE, 200, null);
+    } catch (Exception e) {
+      return ServiceResponse.<EmptyResponse>forUnknownError(e);
+    }
+  }
+
+  /**
+   * Allows a user to redeem a given receipt they were given after submitting a donation successfully.
+   *
+   * @param receiptCredentialPresentation Receipt
+   */
+  public ServiceResponse<EmptyResponse> redeemArchivesReceipt(ReceiptCredentialPresentation receiptCredentialPresentation) {
+    try {
+      pushServiceSocket.redeemArchivesReceipt(receiptCredentialPresentation);
       return ServiceResponse.forResult(EmptyResponse.INSTANCE, 200, null);
     } catch (Exception e) {
       return ServiceResponse.<EmptyResponse>forUnknownError(e);

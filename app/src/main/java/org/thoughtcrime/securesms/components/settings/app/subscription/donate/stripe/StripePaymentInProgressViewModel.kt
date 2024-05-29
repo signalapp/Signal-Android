@@ -13,11 +13,14 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.donations.GooglePayPaymentSource
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -30,8 +33,6 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -76,7 +77,7 @@ class StripePaymentInProgressViewModel(
   }
 
   fun processNewDonation(inAppPayment: InAppPaymentTable.InAppPayment, nextActionHandler: StripeNextActionHandler) {
-    Log.d(TAG, "Proceeding with donation...", true)
+    Log.d(TAG, "Proceeding with InAppPayment::${inAppPayment.id} of type ${inAppPayment.type}...", true)
 
     val paymentSourceProvider: PaymentSourceProvider = resolvePaymentSourceProvider(inAppPayment.type.toErrorSource())
 
@@ -145,7 +146,7 @@ class StripePaymentInProgressViewModel(
   private fun proceedMonthly(inAppPayment: InAppPaymentTable.InAppPayment, paymentSourceProvider: PaymentSourceProvider, nextActionHandler: StripeNextActionHandler) {
     val ensureSubscriberId: Completable = recurringInAppPaymentRepository.ensureSubscriberId(inAppPayment.type.requireSubscriberType())
     val createAndConfirmSetupIntent: Single<StripeApi.Secure3DSAction> = paymentSourceProvider.paymentSource.flatMap {
-      stripeRepository.createAndConfirmSetupIntent(it, paymentSourceProvider.paymentSourceType as PaymentSourceType.Stripe)
+      stripeRepository.createAndConfirmSetupIntent(inAppPayment.type, it, paymentSourceProvider.paymentSourceType as PaymentSourceType.Stripe)
     }
 
     val setLevel: Completable = recurringInAppPaymentRepository.setSubscriptionLevel(inAppPayment, paymentSourceProvider.paymentSourceType)
@@ -171,7 +172,7 @@ class StripePaymentInProgressViewModel(
         )
           .flatMap { secure3DSResult -> stripeRepository.getStatusAndPaymentMethodId(secure3DSResult, secure3DSAction.paymentMethodId) }
       }
-      .flatMapCompletable { stripeRepository.setDefaultPaymentMethod(it.paymentMethod!!, it.intentId, paymentSourceProvider.paymentSourceType) }
+      .flatMapCompletable { stripeRepository.setDefaultPaymentMethod(it.paymentMethod!!, it.intentId, inAppPayment.type.requireSubscriberType(), paymentSourceProvider.paymentSourceType) }
       .onErrorResumeNext {
         when (it) {
           is DonationError -> Completable.error(it)
@@ -202,7 +203,7 @@ class StripePaymentInProgressViewModel(
 
     val amount = inAppPayment.data.amount!!.toFiatMoney()
     val recipientId = inAppPayment.data.recipientId?.let { RecipientId.from(it) } ?: Recipient.self().id
-    val verifyUser = if (inAppPayment.type == InAppPaymentTable.Type.ONE_TIME_GIFT) {
+    val verifyUser = if (inAppPayment.type == InAppPaymentType.ONE_TIME_GIFT) {
       OneTimeInAppPaymentRepository.verifyRecipientIsAllowedToReceiveAGift(recipientId)
     } else {
       Completable.complete()
@@ -257,9 +258,6 @@ class StripePaymentInProgressViewModel(
     disposables += recurringInAppPaymentRepository.cancelActiveSubscription(subscriberType).subscribeBy(
       onComplete = {
         Log.d(TAG, "Cancellation succeeded", true)
-        SignalStore.donationsValues().updateLocalStateForManualCancellation(subscriberType)
-        MultiDeviceSubscriptionSyncRequestJob.enqueue()
-        stripeRepository.scheduleSyncForAccountRecordChange()
         store.update { DonationProcessorStage.COMPLETE }
       },
       onError = { throwable ->

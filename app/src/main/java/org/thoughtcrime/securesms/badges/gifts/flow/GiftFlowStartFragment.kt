@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.models.Ne
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
 import org.thoughtcrime.securesms.components.settings.models.SplashImage
-import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -92,7 +92,7 @@ class GiftFlowStartFragment : DSLSettingsFragment(
           selectedCurrency = state.currency,
           isEnabled = state.stage == GiftFlowState.Stage.READY,
           onClick = {
-            val action = GiftFlowStartFragmentDirections.actionGiftFlowStartFragmentToSetCurrencyFragment(InAppPaymentTable.Type.ONE_TIME_GIFT, viewModel.getSupportedCurrencyCodes().toTypedArray())
+            val action = GiftFlowStartFragmentDirections.actionGiftFlowStartFragmentToSetCurrencyFragment(InAppPaymentType.ONE_TIME_GIFT, viewModel.getSupportedCurrencyCodes().toTypedArray())
             findNavController().safeNavigate(action)
           }
         )

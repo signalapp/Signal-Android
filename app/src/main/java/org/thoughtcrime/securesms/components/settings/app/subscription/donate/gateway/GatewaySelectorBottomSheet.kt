@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.BadgeDisplay112
@@ -19,8 +20,8 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFrag
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.NO_TINT
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.PayPalButton
 import org.thoughtcrime.securesms.components.settings.configure
@@ -41,7 +42,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
   private val args: GatewaySelectorBottomSheetArgs by navArgs()
 
   private val viewModel: GatewaySelectorViewModel by viewModels(factoryProducer = {
-    GatewaySelectorViewModel.Factory(args, requireListener<DonationPaymentComponent>().stripeRepository)
+    GatewaySelectorViewModel.Factory(args, requireListener<InAppPaymentComponent>().stripeRepository)
   })
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
@@ -206,11 +207,11 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
     fun DSLConfiguration.presentTitleAndSubtitle(context: Context, inAppPayment: InAppPaymentTable.InAppPayment) {
       when (inAppPayment.type) {
-        InAppPaymentTable.Type.UNKNOWN -> error("Unsupported type UNKNOWN")
-        InAppPaymentTable.Type.RECURRING_BACKUP -> error("This type is not supported") // TODO [message-backups] necessary?
-        InAppPaymentTable.Type.RECURRING_DONATION -> presentMonthlyText(context, inAppPayment)
-        InAppPaymentTable.Type.ONE_TIME_DONATION -> presentOneTimeText(context, inAppPayment)
-        InAppPaymentTable.Type.ONE_TIME_GIFT -> presentGiftText(context, inAppPayment)
+        InAppPaymentType.UNKNOWN -> error("Unsupported type UNKNOWN")
+        InAppPaymentType.RECURRING_BACKUP -> error("This type is not supported") // TODO [message-backups] necessary?
+        InAppPaymentType.RECURRING_DONATION -> presentMonthlyText(context, inAppPayment)
+        InAppPaymentType.ONE_TIME_DONATION -> presentOneTimeText(context, inAppPayment)
+        InAppPaymentType.ONE_TIME_GIFT -> presentGiftText(context, inAppPayment)
       }
     }
 

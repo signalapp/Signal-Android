@@ -749,13 +749,6 @@
         android:exported="false"/>
 
     <activity
-        android:name=".backup.v2.ui.subscription.MessageBackupsFlowActivity"
-        android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-        android:exported="false"
-        android:theme="@style/Signal.DayNight.NoActionBar"
-        android:windowSoftInputMode="adjustResize" />
-
-    <activity
         android:name=".stories.settings.StorySettingsActivity"
         android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
         android:theme="@style/Signal.DayNight.NoActionBar"
@@ -798,13 +791,6 @@
 
     <activity
         android:name=".components.settings.conversation.CallInfoActivity"
-        android:configChanges="touchscreen|keyboard|keyboardHidden|screenLayout|screenSize"
-        android:theme="@style/Signal.DayNight.NoActionBar"
-        android:windowSoftInputMode="stateAlwaysHidden"
-        android:exported="false"/>
-
-    <activity
-        android:name=".badges.gifts.flow.GiftFlowActivity"
         android:configChanges="touchscreen|keyboard|keyboardHidden|screenLayout|screenSize"
         android:theme="@style/Signal.DayNight.NoActionBar"
         android:windowSoftInputMode="stateAlwaysHidden"
@@ -1120,10 +1106,10 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
-    <activity android:name=".components.settings.app.subscription.donate.DonateToSignalActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false"/>
+    <activity android:name=".components.settings.app.subscription.donate.CheckoutFlowActivity"
+            android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:exported="false"/>
 
     <service
         android:enabled="true"

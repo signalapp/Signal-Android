@@ -4,9 +4,10 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
-import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -16,7 +17,7 @@ import java.util.Currency
 import java.util.Locale
 
 class SetCurrencyViewModel(
-  private val inAppPaymentType: InAppPaymentTable.Type,
+  private val inAppPaymentType: InAppPaymentType,
   supportedCurrencyCodes: List<String>
 ) : ViewModel() {
 
@@ -89,7 +90,7 @@ class SetCurrencyViewModel(
     }
   }
 
-  class Factory(private val inAppPaymentType: InAppPaymentTable.Type, private val supportedCurrencyCodes: List<String>) : ViewModelProvider.Factory {
+  class Factory(private val inAppPaymentType: InAppPaymentType, private val supportedCurrencyCodes: List<String>) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(SetCurrencyViewModel(inAppPaymentType, supportedCurrencyCodes))!!
     }

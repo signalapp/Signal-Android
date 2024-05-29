@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.components.settings.app.chats.backups.type
 
-import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,19 +18,24 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.fragment.findNavController
+import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Rows
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
+import org.signal.core.util.money.FiatMoney
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFlowActivity
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.getTierDetails
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.viewModel
+import java.math.BigDecimal
+import java.util.Currency
 import java.util.Locale
 
 /**
@@ -67,7 +71,7 @@ class BackupsTypeSettingsFragment : ComposeFragment() {
     }
 
     override fun onChangeOrCancelSubscriptionClick() {
-      startActivity(Intent(requireContext(), MessageBackupsFlowActivity::class.java))
+      startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.RECURRING_BACKUP))
     }
   }
 
@@ -88,7 +92,7 @@ private fun BackupsTypeSettingsContent(
   state: BackupsTypeSettingsState,
   contentCallbacks: ContentCallbacks
 ) {
-  if (state.backupsTier == null) {
+  if (state.messageBackupsType == null) {
     return
   }
 
@@ -102,7 +106,7 @@ private fun BackupsTypeSettingsContent(
     ) {
       item {
         BackupsTypeRow(
-          backupsTier = state.backupsTier,
+          messageBackupsType = state.messageBackupsType,
           nextRenewalTimestamp = state.nextRenewalTimestamp
         )
       }
@@ -132,13 +136,9 @@ private fun BackupsTypeSettingsContent(
 
 @Composable
 private fun BackupsTypeRow(
-  backupsTier: MessageBackupTier,
+  messageBackupsType: MessageBackupsType,
   nextRenewalTimestamp: Long
 ) {
-  val messageBackupsType = remember(backupsTier) {
-    getTierDetails(backupsTier)
-  }
-
   val resources = LocalContext.current.resources
   val formattedAmount = remember(messageBackupsType.pricePerMonth) {
     FiatMoneyUtil.format(resources, messageBackupsType.pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
@@ -191,7 +191,12 @@ private fun BackupsTypeSettingsContentPreview() {
   Previews.Preview {
     BackupsTypeSettingsContent(
       state = BackupsTypeSettingsState(
-        backupsTier = MessageBackupTier.PAID
+        messageBackupsType = MessageBackupsType(
+          tier = MessageBackupTier.FREE,
+          pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance("USD")),
+          title = "Free",
+          features = persistentListOf()
+        )
       ),
       contentCallbacks = object : ContentCallbacks {}
     )

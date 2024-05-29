@@ -6,6 +6,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.badges.Badges
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.BadgeRedemptionError
@@ -96,7 +98,7 @@ class RecurringInAppPaymentRepository(private val donationsService: DonationsSer
   }
 
   fun ensureSubscriberId(subscriberType: InAppPaymentSubscriberRecord.Type, isRotation: Boolean = false): Completable {
-    Log.d(TAG, "Ensuring SubscriberId exists on Signal service {isRotation?$isRotation}...", true)
+    Log.d(TAG, "Ensuring SubscriberId for type $subscriberType exists on Signal service {isRotation?$isRotation}...", true)
     val subscriberId: SubscriberId = if (isRotation) {
       SubscriberId.generate()
     } else {
@@ -138,7 +140,12 @@ class RecurringInAppPaymentRepository(private val donationsService: DonationsSer
       .subscribeOn(Schedulers.io())
       .flatMap(ServiceResponse<EmptyResponse>::flattenResult)
       .ignoreElement()
-      .doOnComplete { Log.d(TAG, "Cancelled active subscription.", true) }
+      .doOnComplete {
+        Log.d(TAG, "Cancelled active subscription.", true)
+        SignalStore.donationsValues().updateLocalStateForManualCancellation(subscriberType)
+        MultiDeviceSubscriptionSyncRequestJob.enqueue()
+        InAppPaymentsRepository.scheduleSyncForAccountRecordChange()
+      }
   }
 
   fun cancelActiveSubscriptionIfNecessary(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
