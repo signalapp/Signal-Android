@@ -4,11 +4,13 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.text.TextUtils;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -24,6 +26,21 @@ public class AttachmentUtil {
 
   private static final String TAG = Log.tag(AttachmentUtil.class);
 
+  @MainThread
+  public static boolean isRestoreOnOpenPermitted(@NonNull Context context, @Nullable Attachment attachment) {
+    if (attachment == null) {
+      Log.w(TAG, "attachment was null, returning vacuous true");
+      return true;
+    }
+    Set<String> allowedTypes = getAllowedAutoDownloadTypes(context);
+    String      contentType  = attachment.contentType;
+
+    if (MediaUtil.isImageType(contentType)) {
+      return NotInCallConstraint.isNotInConnectedCall() && allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType));
+    }
+    return false;
+  }
+  
   @WorkerThread
   public static boolean isAutoDownloadPermitted(@NonNull Context context, @Nullable DatabaseAttachment attachment) {
     if (attachment == null) {

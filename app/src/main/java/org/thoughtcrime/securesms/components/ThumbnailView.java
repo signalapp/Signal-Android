@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.stories.StoryTextPostModel;
+import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.views.Stub;
@@ -370,7 +371,7 @@ public class ThumbnailView extends FrameLayout {
       transferControlViewStub.get().setSlides(List.of(slide));
     }
     int transferState = TransferControlView.getTransferState(List.of(slide));
-    boolean isOffloadedImage = transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED && MediaUtil.isImageType(slide.getContentType());
+    boolean isOffloadedImage = (transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED && MediaUtil.isImageType(slide.getContentType())) && AttachmentUtil.isRestoreOnOpenPermitted(getContext(), slide.asAttachment());
 
     if (!showControls ||
         transferState == AttachmentTable.TRANSFER_PROGRESS_DONE ||
