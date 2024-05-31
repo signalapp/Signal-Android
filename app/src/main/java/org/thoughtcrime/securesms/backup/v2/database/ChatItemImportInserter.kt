@@ -105,7 +105,9 @@ class ChatItemImportInserter(
       MessageTable.LINK_PREVIEWS,
       MessageTable.MESSAGE_RANGES,
       MessageTable.VIEW_ONCE,
-      MessageTable.MESSAGE_EXTRAS
+      MessageTable.MESSAGE_EXTRAS,
+      MessageTable.ORIGINAL_MESSAGE_ID,
+      MessageTable.LATEST_REVISION_ID
     )
 
     private val REACTION_COLUMNS = arrayOf(
@@ -157,8 +159,22 @@ class ChatItemImportInserter(
       Log.w(TAG, "[insert] Could not find a backup recipientId for backup chatId ${chatItem.chatId}! Skipping.")
       return
     }
+    val messageInsert = chatItem.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId)
+    if (chatItem.revisions.isNotEmpty()) {
+      val originalId = messageId
+      val latestRevisionId = originalId + chatItem.revisions.size
+      val sortedRevisions = chatItem.revisions.sortedBy { it.dateSent }.map { it.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId) }
+      for (revision in sortedRevisions) {
+        revision.contentValues.put(MessageTable.ORIGINAL_MESSAGE_ID, originalId)
+        revision.contentValues.put(MessageTable.LATEST_REVISION_ID, latestRevisionId)
+        revision.contentValues.put(MessageTable.REVISION_NUMBER, (messageId - originalId))
+        buffer.messages += revision
+        messageId++
+      }
 
-    buffer.messages += chatItem.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId)
+      messageInsert.contentValues.put(MessageTable.ORIGINAL_MESSAGE_ID, originalId)
+    }
+    buffer.messages += messageInsert
     buffer.reactions += chatItem.toReactionContentValues(messageId)
     buffer.groupReceipts += chatItem.toGroupReceiptContentValues(messageId, chatBackupRecipientId)
 
@@ -697,7 +713,11 @@ class ChatItemImportInserter(
       ?: if (this.contentType == null) null else PointerAttachment.forPointer(quotedAttachment = DataMessage.Quote.QuotedAttachment(contentType = this.contentType, fileName = this.fileName, thumbnail = null)).orNull()
   }
 
-  private class MessageInsert(val contentValues: ContentValues, val followUp: ((Long) -> Unit)?)
+  private class MessageInsert(
+    val contentValues: ContentValues,
+    val followUp: ((Long) -> Unit)?,
+    val edits: List<MessageInsert>? = null
+  )
 
   private class Buffer(
     val messages: MutableList<MessageInsert> = mutableListOf(),

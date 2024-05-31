@@ -15,6 +15,7 @@ import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
+import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -70,6 +71,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.Closeable
 import java.io.IOException
+import java.util.HashMap
 import java.util.LinkedList
 import java.util.Queue
 import kotlin.jvm.optionals.getOrNull
@@ -95,6 +97,8 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
    * the pending items here.
    */
   private val buffer: Queue<ChatItem> = LinkedList()
+
+  private val revisionMap: HashMap<Long, ArrayList<ChatItem>> = HashMap()
 
   override fun hasNext(): Boolean {
     return buffer.isNotEmpty() || (cursor.count > 0 && !cursor.isLast && !cursor.isAfterLast)
@@ -346,8 +350,20 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         }
         else -> builder.standardMessage = record.toStandardMessage(reactionsById[id], mentions = mentionsById[id], attachments = attachmentsById[record.id])
       }
-
-      buffer += builder.build()
+      if (record.latestRevisionId == null) {
+        val previousEdits = revisionMap.remove(record.id)
+        if (previousEdits != null) {
+          builder.revisions = previousEdits
+        }
+        buffer += builder.build()
+      } else {
+        var previousEdits = revisionMap[record.latestRevisionId]
+        if (previousEdits == null) {
+          previousEdits = ArrayList()
+          revisionMap[record.latestRevisionId] = previousEdits
+        }
+        previousEdits += builder.build()
+      }
     }
 
     return if (buffer.isNotEmpty()) {
@@ -709,8 +725,8 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       quoteMissing = this.requireBoolean(MessageTable.QUOTE_MISSING),
       quoteBodyRanges = this.requireBlob(MessageTable.QUOTE_BODY_RANGES),
       quoteType = this.requireInt(MessageTable.QUOTE_TYPE),
-      originalMessageId = this.requireLong(MessageTable.ORIGINAL_MESSAGE_ID),
-      latestRevisionId = this.requireLong(MessageTable.LATEST_REVISION_ID),
+      originalMessageId = this.requireLongOrNull(MessageTable.ORIGINAL_MESSAGE_ID),
+      latestRevisionId = this.requireLongOrNull(MessageTable.LATEST_REVISION_ID),
       hasDeliveryReceipt = this.requireBoolean(MessageTable.HAS_DELIVERY_RECEIPT),
       viewed = this.requireBoolean(MessageTable.VIEWED_COLUMN),
       hasReadReceipt = this.requireBoolean(MessageTable.HAS_READ_RECEIPT),
@@ -744,8 +760,8 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     val quoteMissing: Boolean,
     val quoteBodyRanges: ByteArray?,
     val quoteType: Int,
-    val originalMessageId: Long,
-    val latestRevisionId: Long,
+    val originalMessageId: Long?,
+    val latestRevisionId: Long?,
     val hasDeliveryReceipt: Boolean,
     val hasReadReceipt: Boolean,
     val viewed: Boolean,
