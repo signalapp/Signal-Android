@@ -8,16 +8,20 @@ package org.thoughtcrime.securesms.registration.v2.ui.entercode
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterCodeV2Binding
+import org.thoughtcrime.securesms.registration.ReceivedSmsEvent
 import org.thoughtcrime.securesms.registration.fragments.ContactSupportBottomSheetFragment
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.fragments.SignalStrengthPhoneStateListener
@@ -28,6 +32,7 @@ import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.visible
 
 /**
  * The final screen of account registration, where the user enters their verification code.
@@ -101,6 +106,12 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
       }
     }
 
+    sharedViewModel.incorrectCodeAttempts.observe(viewLifecycleOwner) { attempts: Int ->
+      if (attempts >= 3) {
+        binding.havingTroubleButton.visible = true
+      }
+    }
+
     sharedViewModel.uiState.observe(viewLifecycleOwner) {
       binding.resendSmsCountDown.startCountDownTo(it.nextSmsTimestamp)
       binding.callMeCountDown.startCountDownTo(it.nextCallTimestamp)
@@ -116,6 +127,7 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
     when (result) {
       is VerificationCodeRequestResult.Success -> binding.keyboard.displaySuccess()
       is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
+      is VerificationCodeRequestResult.AttemptsExhausted -> presentAccountLocked()
       is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
       else -> presentGenericError(result)
     }
@@ -125,10 +137,22 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
     when (result) {
       is RegisterAccountResult.Success -> binding.keyboard.displaySuccess()
       is RegisterAccountResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
-      is RegisterAccountResult.AttemptsExhausted,
+      is RegisterAccountResult.AuthorizationFailed -> presentIncorrectCodeDialog()
+      is RegisterAccountResult.AttemptsExhausted -> presentAccountLocked()
       is RegisterAccountResult.RateLimited -> presentRateLimitedDialog()
+
       else -> presentGenericError(result)
     }
+  }
+
+  private fun presentAccountLocked() {
+    binding.keyboard.displayLocked().addListener(
+      object : AssertedSuccessListener<Boolean>() {
+        override fun onSuccess(result: Boolean?) {
+          findNavController().safeNavigate(EnterCodeV2FragmentDirections.actionAccountLocked())
+        }
+      }
+    )
   }
 
   private fun presentRegistrationLocked(timeRemaining: Long) {
@@ -162,6 +186,21 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
     )
   }
 
+  private fun presentIncorrectCodeDialog() {
+    sharedViewModel.incrementIncorrectCodeAttempts()
+
+    Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_code, Toast.LENGTH_LONG).show()
+    binding.keyboard.displayFailure().addListener(object : AssertedSuccessListener<Boolean?>() {
+      override fun onSuccess(result: Boolean?) {
+        binding.callMeCountDown.setVisibility(View.VISIBLE)
+        binding.resendSmsCountDown.setVisibility(View.VISIBLE)
+        binding.wrongNumber.setVisibility(View.VISIBLE)
+        binding.code.clear()
+        binding.keyboard.displayKeyboard()
+      }
+    })
+  }
+
   private fun presentGenericError(requestResult: RegistrationResult) {
     binding.keyboard.displayFailure().addListener(
       object : AssertedSuccessListener<Boolean>() {
@@ -172,7 +211,7 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
               setTitle(it)
             }
             setMessage(getString(R.string.RegistrationActivity_error_connecting_to_service))
-            setPositiveButton(android.R.string.ok, null)
+            setPositiveButton(android.R.string.ok) { _, _ -> binding.keyboard.displayKeyboard() }
             show()
           }
         }
@@ -183,6 +222,34 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
   private fun popBackStack() {
     sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PUSH_NETWORK_AUDITED)
     NavHostFragment.findNavController(this).popBackStack()
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  fun onVerificationCodeReceived(event: ReceivedSmsEvent) {
+    binding.code.clear()
+
+    if (event.code.isBlank() || event.code.length != ReceivedSmsEvent.CODE_LENGTH) {
+      Log.i(TAG, "Received invalid code of length ${event.code.length}. Ignoring.")
+      return
+    }
+
+    val finalIndex = ReceivedSmsEvent.CODE_LENGTH - 1
+    autopilotCodeEntryActive = true
+    try {
+      event.code
+        .map { it.digitToInt() }
+        .forEachIndexed { i, digit ->
+          binding.code.postDelayed({
+            binding.code.append(digit)
+            if (i == finalIndex) {
+              autopilotCodeEntryActive = false
+            }
+          }, i * 200L)
+        }
+    } catch (notADigit: IllegalArgumentException) {
+      Log.w(TAG, "Failed to convert code into digits.", notADigit)
+      autopilotCodeEntryActive = false
+    }
   }
 
   private inner class PhoneStateCallback : SignalStrengthPhoneStateListener.Callback {

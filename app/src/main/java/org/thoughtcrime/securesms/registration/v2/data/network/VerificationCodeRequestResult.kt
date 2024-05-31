@@ -21,6 +21,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushChallengeRequire
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
 import org.whispersystems.signalservice.api.push.exceptions.RegistrationRetryException
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException
+import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.LockedException
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataJson
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
@@ -45,9 +46,11 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
           } else {
             Success(
               sessionId = networkResult.result.body.id,
-              allowedToRequestCode = networkResult.result.body.allowedToRequestCode,
               nextSmsTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextSms),
               nextCallTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextCall),
+              nextVerificationAttempt = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextVerificationAttempt),
+              allowedToRequestCode = networkResult.result.body.allowedToRequestCode,
+              challengesRequested = Challenge.parse(networkResult.result.body.requestedInformation),
               verified = networkResult.result.body.verified
             )
           }
@@ -67,7 +70,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
             is InvalidTransportModeException -> InvalidTransportModeFailure(cause)
             is MalformedRequestException -> MalformedRequest(cause)
             is RegistrationRetryException -> MustRetry(cause)
-            is LockedException -> RegistrationLocked(cause = cause, timeRemaining = cause.timeRemaining)
+            is LockedException -> RegistrationLocked(cause = cause, timeRemaining = cause.timeRemaining, svr2Credentials = cause.svr2Credentials)
             is NoSuchSessionException -> NoSuchSession(cause)
             is AlreadyVerifiedException -> AlreadyVerified(cause)
             else -> UnknownError(cause)
@@ -100,7 +103,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
     }
   }
 
-  class Success(val sessionId: String, val allowedToRequestCode: Boolean, val nextSmsTimestamp: Long, val nextCallTimestamp: Long, val verified: Boolean) : VerificationCodeRequestResult(null)
+  class Success(val sessionId: String, val nextSmsTimestamp: Long, val nextCallTimestamp: Long, nextVerificationAttempt: Long, val allowedToRequestCode: Boolean, challengesRequested: List<Challenge>, val verified: Boolean) : VerificationCodeRequestResult(null)
 
   class ChallengeRequired(val challenges: List<Challenge>) : VerificationCodeRequestResult(null)
 
@@ -122,7 +125,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
 
   class MustRetry(cause: Throwable) : VerificationCodeRequestResult(cause)
 
-  class RegistrationLocked(cause: Throwable, val timeRemaining: Long) : VerificationCodeRequestResult(cause)
+  class RegistrationLocked(cause: Throwable, val timeRemaining: Long, val svr2Credentials: AuthCredentials) : VerificationCodeRequestResult(cause)
 
   class NoSuchSession(cause: Throwable) : VerificationCodeRequestResult(cause)
 

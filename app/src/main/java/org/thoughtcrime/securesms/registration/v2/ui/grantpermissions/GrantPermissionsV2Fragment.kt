@@ -94,6 +94,7 @@ class GrantPermissionsV2Fragment : ComposeFragment() {
     permissions.forEach {
       Log.d(TAG, "${it.key} = ${it.value}")
     }
+    sharedViewModel.maybePrefillE164(requireContext())
     sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PERMISSIONS_GRANTED)
     proceedToNextScreen()
   }

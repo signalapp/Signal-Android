@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.registration.v2.ui.phonenumber
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.text.Editable
 import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.view.KeyEvent
@@ -202,20 +203,22 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
 
     spinnerView.threshold = 100
     spinnerView.setAdapter(spinnerAdapter)
-    spinnerView.addTextChangedListener { s ->
-      if (s.isNullOrEmpty()) {
-        return@addTextChangedListener
-      }
+    spinnerView.addTextChangedListener(afterTextChanged = ::onCountryDropDownChanged)
+  }
 
-      if (s[0] != '+') {
-        s.insert(0, "+")
-      }
+  private fun onCountryDropDownChanged(s: Editable?) {
+    if (s.isNullOrEmpty()) {
+      return
+    }
 
-      fragmentViewModel.supportedCountryPrefixes.firstOrNull { it.toString() == s.toString() }?.let {
-        fragmentViewModel.setCountry(it.digits)
-        val numberLength: Int = phoneNumberInputLayout.text?.length ?: 0
-        phoneNumberInputLayout.setSelection(numberLength, numberLength)
-      }
+    if (s[0] != '+') {
+      s.insert(0, "+")
+    }
+
+    fragmentViewModel.supportedCountryPrefixes.firstOrNull { it.toString() == s.toString() }?.let {
+      fragmentViewModel.setCountry(it.digits)
+      val numberLength: Int = phoneNumberInputLayout.text?.length ?: 0
+      phoneNumberInputLayout.setSelection(numberLength, numberLength)
     }
   }
 
@@ -380,9 +383,12 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       sharedViewModel.fetchFcmToken(requireContext())
     } else {
       sharedViewModel.uiState.value?.let { value ->
+        val now = System.currentTimeMillis()
         if (value.phoneNumber == null) {
           fragmentViewModel.setError(EnterPhoneNumberV2State.Error.INVALID_PHONE_NUMBER)
           sharedViewModel.setInProgress(false)
+        } else if (now < value.nextSmsTimestamp) {
+          moveToVerificationEntryScreen()
         } else {
           presentConfirmNumberDialog(value.phoneNumber, value.isReRegister, value.canSkipSms, missingFcmConsentRequired = true)
         }
@@ -441,7 +447,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
     }
   }
 
-  private fun onConfirmNumberDialogCanceled() {
+  private fun handleConfirmNumberDialogCanceled() {
     Log.d(TAG, "User canceled confirm number, returning to edit number.")
     sharedViewModel.setInProgress(false)
     ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(phoneNumberInputLayout)
@@ -473,8 +479,8 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
           sharedViewModel.onUserConfirmedPhoneNumber(requireContext(), ::handleErrorResponse)
         }
       }
-      setNegativeButton(R.string.RegistrationActivity_edit_number) { _, _ -> onConfirmNumberDialogCanceled() }
-      setOnCancelListener { _ -> onConfirmNumberDialogCanceled() }
+      setNegativeButton(R.string.RegistrationActivity_edit_number) { _, _ -> handleConfirmNumberDialogCanceled() }
+      setOnCancelListener { _ -> handleConfirmNumberDialogCanceled() }
     }.show()
   }
 

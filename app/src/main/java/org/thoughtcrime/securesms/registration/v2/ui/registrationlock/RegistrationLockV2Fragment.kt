@@ -49,6 +49,7 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
   companion object {
     private val TAG = Log.tag(RegistrationLockV2Fragment::class.java)
   }
+
   private val binding: FragmentRegistrationLockBinding by ViewBinderDelegate(FragmentRegistrationLockBinding::bind)
 
   private val viewModel by activityViewModels<RegistrationV2ViewModel>()
@@ -145,17 +146,25 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
     when (requestResult) {
       is VerificationCodeRequestResult.Success -> Unit
       is VerificationCodeRequestResult.RateLimited -> onRateLimited()
-      is VerificationCodeRequestResult.AttemptsExhausted,
-      is VerificationCodeRequestResult.RegistrationLocked -> onKbsAccountLocked()
+      is VerificationCodeRequestResult.AttemptsExhausted -> navigateToAccountLocked()
+      is VerificationCodeRequestResult.RegistrationLocked -> {
+        Log.i(TAG, "Registration locked response to verify account!")
+        binding.kbsLockPinConfirm.cancelSpinning()
+        enableAndFocusPinEntry()
+        Toast.makeText(requireContext(), "Reg lock!", Toast.LENGTH_LONG).show()
+      }
+
       else -> when (val cause = requestResult.getCause()) {
         is SvrWrongPinException -> {
           Log.w(TAG, "TODO figure out which Result class this results in and create a concrete class.")
           onIncorrectKbsRegistrationLockPin(cause.triesRemaining)
         }
+
         is SvrNoDataException -> {
           Log.w(TAG, "TODO figure out which Result class this results in and create a concrete class.")
-          onKbsAccountLocked()
+          navigateToAccountLocked()
         }
+
         else -> {
           Log.w(TAG, "Unable to verify code with registration lock", cause)
           onError()
@@ -168,17 +177,25 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
     when (result) {
       is RegisterAccountResult.Success -> Unit
       is RegisterAccountResult.RateLimited -> onRateLimited()
-      is RegisterAccountResult.AttemptsExhausted,
-      is RegisterAccountResult.RegistrationLocked -> onKbsAccountLocked()
+      is RegisterAccountResult.AttemptsExhausted -> navigateToAccountLocked()
+      is RegisterAccountResult.RegistrationLocked -> {
+        Log.i(TAG, "Registration locked response to register account!")
+        binding.kbsLockPinConfirm.cancelSpinning()
+        enableAndFocusPinEntry()
+        Toast.makeText(requireContext(), "Reg lock!", Toast.LENGTH_LONG).show()
+      }
+
       else -> when (val cause = result.getCause()) {
         is SvrWrongPinException -> {
           Log.w(TAG, "TODO figure out which Result class this results in and create a concrete class.")
           onIncorrectKbsRegistrationLockPin(cause.triesRemaining)
         }
+
         is SvrNoDataException -> {
           Log.w(TAG, "TODO figure out which Result class this results in and create a concrete class.")
-          onKbsAccountLocked()
+          navigateToAccountLocked()
         }
+
         else -> {
           Log.w(TAG, "Unable to register account with registration lock", cause)
           onError()
@@ -194,7 +211,7 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
 
     if (svrTriesRemaining == 0) {
       Log.w(TAG, "Account locked. User out of attempts on KBS.")
-      onAccountLocked()
+      navigateToAccountLocked()
       return
     }
 
@@ -227,10 +244,6 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
       .show()
   }
 
-  private fun onKbsAccountLocked() {
-    onAccountLocked()
-  }
-
   fun onError() {
     binding.kbsLockPinConfirm.cancelSpinning()
     enableAndFocusPinEntry()
@@ -250,10 +263,6 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
 
   private fun getLockoutDays(timeRemainingMs: Long): Int {
     return TimeUnit.MILLISECONDS.toDays(timeRemainingMs).toInt() + 1
-  }
-
-  private fun onAccountLocked() {
-    navigateToAccountLocked()
   }
 
   private fun getTriesRemainingDialogMessage(triesRemaining: Int, daysRemaining: Int): String {
@@ -316,7 +325,7 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
 
       stopwatch.stop(TAG)
       null
-    }, { none: Any? ->
+    }, {
       binding.kbsLockPinConfirm.cancelSpinning()
       findNavController().safeNavigate(RegistrationLockV2FragmentDirections.actionSuccessfulRegistration())
     })

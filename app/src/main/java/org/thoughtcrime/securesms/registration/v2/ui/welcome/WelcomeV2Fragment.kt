@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.registration.v2.ui.welcome
 
-import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -30,9 +29,7 @@ import org.thoughtcrime.securesms.restore.RestoreActivity
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import kotlin.jvm.optionals.getOrNull
 
 /**
  * First screen that is displayed on the very first app launch.
@@ -57,7 +54,6 @@ class WelcomeV2Fragment : LoggingFragment(R.layout.fragment_registration_welcome
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    maybePrefillE164()
     setDebugLogSubmitMultiTapView(binding.image)
     setDebugLogSubmitMultiTapView(binding.title)
     binding.welcomeContinueButton.setOnClickListener { onContinueClicked() }
@@ -70,17 +66,14 @@ class WelcomeV2Fragment : LoggingFragment(R.layout.fragment_registration_welcome
     if (Permissions.isRuntimePermissionsRequired() && !hasAllPermissions()) {
       findNavController().safeNavigate(WelcomeV2FragmentDirections.actionWelcomeFragmentToGrantPermissionsV2Fragment(GrantPermissionsV2Fragment.WelcomeAction.CONTINUE))
     } else {
-      skipRestore()
+      sharedViewModel.maybePrefillE164(requireContext())
+      findNavController().safeNavigate(WelcomeV2FragmentDirections.actionSkipRestore())
     }
   }
 
   private fun hasAllPermissions(): Boolean {
     val isUserSelectionRequired = BackupUtil.isUserSelectionRequired(requireContext())
     return WelcomePermissions.getWelcomePermissions(isUserSelectionRequired).all { ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED }
-  }
-
-  private fun skipRestore() {
-    findNavController().safeNavigate(WelcomeV2FragmentDirections.actionSkipRestore())
   }
 
   private fun onTermsClicked() {
@@ -95,21 +88,6 @@ class WelcomeV2Fragment : LoggingFragment(R.layout.fragment_registration_welcome
 
       val restoreIntent = RestoreActivity.getIntentForRestore(requireActivity())
       launchRestoreActivity.launch(restoreIntent)
-    }
-  }
-
-  private fun maybePrefillE164() {
-    if (Permissions.hasAll(requireContext(), Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_PHONE_NUMBERS)) {
-      val localNumber = Util.getDeviceNumber(requireContext()).getOrNull()
-
-      if (localNumber != null) {
-        Log.v(TAG, "Phone number detected.")
-        sharedViewModel.setPhoneNumber(localNumber)
-      } else {
-        Log.i(TAG, "Could not read phone number.")
-      }
-    } else {
-      Log.i(TAG, "No phone permission.")
     }
   }
 

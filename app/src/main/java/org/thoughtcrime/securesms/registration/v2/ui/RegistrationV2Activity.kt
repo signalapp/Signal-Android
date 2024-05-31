@@ -9,6 +9,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.ActivityNavigator
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BaseActivity
@@ -20,6 +22,7 @@ import org.thoughtcrime.securesms.pin.PinRestoreActivity
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.registration.SmsRetrieverReceiver
 
 /**
  * Activity to hold the entire registration process.
@@ -29,6 +32,12 @@ class RegistrationV2Activity : BaseActivity() {
   private val TAG = Log.tag(RegistrationV2Activity::class.java)
 
   val sharedViewModel: RegistrationV2ViewModel by viewModels()
+
+  private var smsRetrieverReceiver: SmsRetrieverReceiver? = null
+
+  init {
+    lifecycle.addObserver(SmsRetrieverObserver())
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -77,6 +86,18 @@ class RegistrationV2Activity : BaseActivity() {
       startActivity(startIntent)
       finish()
       ActivityNavigator.applyPopAnimationsToPendingTransition(this)
+    }
+  }
+
+  private inner class SmsRetrieverObserver : DefaultLifecycleObserver {
+    override fun onCreate(owner: LifecycleOwner) {
+      smsRetrieverReceiver = SmsRetrieverReceiver(application)
+      smsRetrieverReceiver?.registerReceiver()
+    }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+      smsRetrieverReceiver?.unregisterReceiver()
+      smsRetrieverReceiver = null
     }
   }
 

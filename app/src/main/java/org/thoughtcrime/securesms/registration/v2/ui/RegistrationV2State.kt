@@ -15,7 +15,7 @@ import org.whispersystems.signalservice.internal.push.AuthCredentials
  */
 data class RegistrationV2State(
   val sessionId: String? = null,
-  val enteredCode: String? = null,
+  val enteredCode: String = "",
   val phoneNumber: Phonenumber.PhoneNumber? = null,
   val inProgress: Boolean = false,
   val isReRegister: Boolean = false,
@@ -23,6 +23,7 @@ data class RegistrationV2State(
   val canSkipSms: Boolean = false,
   val svrAuthCredentials: AuthCredentials? = null,
   val svrTriesRemaining: Int = 10,
+  val incorrectCodeAttempts: Int = 0,
   val isRegistrationLockEnabled: Boolean = false,
   val lockedTimeRemaining: Long = 0L,
   val userSkippedReregistration: Boolean = false,
@@ -32,8 +33,11 @@ data class RegistrationV2State(
   val challengesRequested: List<Challenge> = emptyList(),
   val challengesPresented: Set<Challenge> = emptySet(),
   val captchaToken: String? = null,
+  val allowedToRequestCode: Boolean = false,
   val nextSmsTimestamp: Long = 0L,
   val nextCallTimestamp: Long = 0L,
+  val nextVerificationAttempt: Long = 0L,
+  val verified: Boolean = false,
   val smsListenerTimeout: Long = 0L,
   val registrationCheckpoint: RegistrationCheckpoint = RegistrationCheckpoint.INITIALIZATION,
   val networkError: Throwable? = null

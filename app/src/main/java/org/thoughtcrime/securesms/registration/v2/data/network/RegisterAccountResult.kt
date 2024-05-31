@@ -43,6 +43,7 @@ sealed class RegisterAccountResult(cause: Throwable?) : RegistrationResult(cause
         }
       }
     }
+
     private fun createRateLimitProcessor(exception: RateLimitException): RegisterAccountResult {
       return if (exception.retryAfterMilliseconds.isPresent) {
         RateLimited(exception, exception.retryAfterMilliseconds.get())
