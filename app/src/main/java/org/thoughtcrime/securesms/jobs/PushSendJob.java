@@ -76,6 +76,7 @@ import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
+import org.whispersystems.signalservice.internal.push.AttachmentPointer;
 import org.whispersystems.signalservice.internal.push.BodyRange;
 
 import java.io.ByteArrayInputStream;
@@ -445,7 +446,11 @@ public abstract class PushSendJob extends SendJob {
       SharedContact.Avatar  avatar  = null;
 
       if (contact.getAvatar() != null && contact.getAvatar().getAttachment() != null) {
-        avatar = SharedContact.Avatar.newBuilder().withAttachment(getAttachmentFor(contact.getAvatarAttachment()))
+        SignalServiceAttachment attachment = getAttachmentPointerFor(contact.getAvatar().getAttachment());
+        if (attachment == null) {
+          attachment = getAttachmentFor(contact.getAvatar().getAttachment());
+        }
+        avatar = SharedContact.Avatar.newBuilder().withAttachment(attachment)
                                                   .withProfileFlag(contact.getAvatar().isProfile())
                                                   .build();
       }
