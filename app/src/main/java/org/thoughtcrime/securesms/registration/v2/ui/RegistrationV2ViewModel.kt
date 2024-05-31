@@ -507,7 +507,12 @@ class RegistrationV2ViewModel : ViewModel() {
       is RegisterAccountResult.RegistrationLocked -> {
         Log.i(TAG, "Account is registration locked!", registrationResult.getCause())
       }
+      is RegisterAccountResult.SvrWrongPin -> {
+        Log.i(TAG, "Received wrong SVR PIN response! ${registrationResult.triesRemaining} tries remaining.")
+        updateSvrTriesRemaining(registrationResult.triesRemaining)
+      }
 
+      is RegisterAccountResult.SvrNoData,
       is RegisterAccountResult.AttemptsExhausted,
       is RegisterAccountResult.RateLimited,
       is RegisterAccountResult.AuthorizationFailed,

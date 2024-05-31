@@ -5,8 +5,10 @@
 
 package org.thoughtcrime.securesms.registration.v2.data.network
 
+import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.registration.v2.data.RegistrationRepository
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException
 import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException
@@ -61,4 +63,9 @@ sealed class RegisterAccountResult(cause: Throwable?) : RegistrationResult(cause
   class AttemptsExhausted(cause: Throwable) : RegisterAccountResult(cause)
   class RegistrationLocked(cause: Throwable, val timeRemaining: Long, val svr2Credentials: AuthCredentials?) : RegisterAccountResult(cause)
   class UnknownError(cause: Throwable) : RegisterAccountResult(cause)
+
+  class SvrNoData(cause: SvrNoDataException) : RegisterAccountResult(cause)
+  class SvrWrongPin(cause: SvrWrongPinException) : RegisterAccountResult(cause) {
+    val triesRemaining = cause.triesRemaining
+  }
 }

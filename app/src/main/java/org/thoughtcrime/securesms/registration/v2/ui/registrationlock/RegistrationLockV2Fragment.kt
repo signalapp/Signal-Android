@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
-import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.v2.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationResult
@@ -41,7 +40,6 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.whispersystems.signalservice.api.SvrNoDataException
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
@@ -154,21 +152,9 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
         Toast.makeText(requireContext(), "Reg lock!", Toast.LENGTH_LONG).show()
       }
 
-      else -> when (val cause = requestResult.getCause()) {
-        is SvrWrongPinException -> {
-          Log.w(TAG, "TODO figure out which Result class this results in and create a concrete class.")
-          onIncorrectKbsRegistrationLockPin(cause.triesRemaining)
-        }
-
-        is SvrNoDataException -> {
-          Log.w(TAG, "TODO figure out which Result class this results in and create a concrete class.")
-          navigateToAccountLocked()
-        }
-
-        else -> {
-          Log.w(TAG, "Unable to verify code with registration lock", cause)
-          onError()
-        }
+      else -> {
+        Log.w(TAG, "Unable to verify code with registration lock", requestResult.getCause())
+        onError()
       }
     }
   }
@@ -185,21 +171,12 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
         Toast.makeText(requireContext(), "Reg lock!", Toast.LENGTH_LONG).show()
       }
 
-      else -> when (val cause = result.getCause()) {
-        is SvrWrongPinException -> {
-          Log.w(TAG, "TODO figure out which Result class this results in and create a concrete class.")
-          onIncorrectKbsRegistrationLockPin(cause.triesRemaining)
-        }
+      is RegisterAccountResult.SvrWrongPin -> onIncorrectKbsRegistrationLockPin(result.triesRemaining)
+      is RegisterAccountResult.SvrNoData -> navigateToAccountLocked()
 
-        is SvrNoDataException -> {
-          Log.w(TAG, "TODO figure out which Result class this results in and create a concrete class.")
-          navigateToAccountLocked()
-        }
-
-        else -> {
-          Log.w(TAG, "Unable to register account with registration lock", cause)
-          onError()
-        }
+      else -> {
+        Log.w(TAG, "Unable to register account with registration lock", result.getCause())
+        onError()
       }
     }
   }

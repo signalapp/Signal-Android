@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.registration.v2.ui.reregisterwithpin
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import org.signal.core.util.logging.Log
@@ -17,12 +16,17 @@ class ReRegisterWithPinV2ViewModel : ViewModel() {
   }
 
   private val store = MutableStateFlow(ReRegisterWithPinV2State())
-  val uiState = store.asLiveData()
 
   val isLocalVerification: Boolean
     get() = store.value.isLocalVerification
   val hasIncorrectGuess: Boolean
     get() = store.value.hasIncorrectGuess
+
+  fun markAsRemoteVerification() {
+    store.update {
+      it.copy(isLocalVerification = false)
+    }
+  }
 
   fun markIncorrectGuess() {
     store.update {

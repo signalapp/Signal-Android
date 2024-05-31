@@ -268,6 +268,12 @@ class ReRegisterWithPinV2Fragment : LoggingFragment(R.layout.fragment_registrati
 
       is RegisterAccountResult.AttemptsExhausted,
       is RegisterAccountResult.RateLimited -> presentRateLimitedDialog()
+
+      is RegisterAccountResult.SvrNoData -> onAccountLocked()
+      is RegisterAccountResult.SvrWrongPin -> {
+        reRegisterViewModel.markIncorrectGuess()
+        reRegisterViewModel.markAsRemoteVerification()
+      }
     }
   }
 }

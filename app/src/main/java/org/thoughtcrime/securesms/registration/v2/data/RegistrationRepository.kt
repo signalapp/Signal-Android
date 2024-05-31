@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.pin.SvrRepository
+import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -55,6 +56,7 @@ import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
@@ -383,7 +385,17 @@ object RegistrationRepository {
       val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
       val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
 
-      val masterKey: MasterKey? = masterKeyProducer?.produceMasterKey()
+      val masterKey: MasterKey?
+      try {
+        masterKey = masterKeyProducer?.produceMasterKey()
+      } catch (e: SvrNoDataException) {
+        return@withContext RegisterAccountResult.SvrNoData(e)
+      } catch (e: SvrWrongPinException) {
+        return@withContext RegisterAccountResult.SvrWrongPin(e)
+      } catch (e: IOException) {
+        return@withContext RegisterAccountResult.UnknownError(e)
+      }
+
       val registrationLock: String? = masterKey?.deriveRegistrationLock()
 
       val accountAttributes = AccountAttributes(
