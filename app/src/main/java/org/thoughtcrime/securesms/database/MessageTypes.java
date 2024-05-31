@@ -117,6 +117,7 @@ public interface MessageTypes {
   long SPECIAL_TYPE_REPORTED_SPAM             = 0x500000000L;
   long SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED  = 0x600000000L;
   long SPECIAL_TYPE_PAYMENTS_ACTIVATED        = 0x800000000L;
+  long SPECIAL_TYPE_PAYMENTS_TOMBSTONE        = 0x900000000L;
 
   long IGNORABLE_TYPESMASK_WHEN_COUNTING = END_SESSION_BIT | KEY_EXCHANGE_IDENTITY_UPDATE_BIT | KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
 
@@ -130,6 +131,10 @@ public interface MessageTypes {
 
   static boolean isPaymentsNotification(long type) {
     return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_PAYMENTS_NOTIFICATION;
+  }
+
+  static boolean isPaymentTombstone(long type) {
+    return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_PAYMENTS_TOMBSTONE;
   }
 
   static boolean isPaymentsRequestToActivate(long type) {

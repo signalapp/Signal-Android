@@ -25,16 +25,20 @@ import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
+import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.payments.CryptoValueUtil;
 import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
+import org.whispersystems.signalservice.api.payments.Money;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -219,6 +223,18 @@ public class MmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     } else if (isPaymentNotification() && payment != null) {
       return new SpannableString(context.getString(R.string.MessageRecord__payment_s, payment.getAmount().toString(FormatterOptions.defaults())));
+    } else if (isPaymentTombstone() || isPaymentNotification()) {
+      MessageExtras extras = getMessageExtras();
+
+      Money amount = null;
+      if (extras != null && extras.paymentTombstone != null && extras.paymentTombstone.amount != null) {
+        amount = CryptoValueUtil.cryptoValueToMoney(extras.paymentTombstone.amount);
+      }
+      if (amount == null) {
+        return new SpannableString(context.getString(R.string.MessageRecord__payment_tombstone));
+      } else {
+        return new SpannableString(context.getString(R.string.MessageRecord__payment_s, amount.toString(FormatterOptions.defaults())));
+      }
     }
 
     return super.getDisplayBody(context);

@@ -330,5 +330,6 @@ class V2ConversationItemShapeTest {
     override fun onMessageRequestAcceptOptionsClicked() = Unit
 
     override fun onItemDoubleClick(item: MultiselectPart) = Unit
+    override fun onPaymentTombstoneClicked() = Unit
   }
 }

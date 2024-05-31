@@ -229,6 +229,10 @@ public abstract class DisplayRecord {
     return MessageTypes.isPaymentsNotification(type);
   }
 
+  public boolean isPaymentTombstone() {
+    return MessageTypes.isPaymentTombstone(type);
+  }
+
   public boolean isPaymentsRequestToActivate() {
     return MessageTypes.isPaymentsRequestToActivate(type);
   }

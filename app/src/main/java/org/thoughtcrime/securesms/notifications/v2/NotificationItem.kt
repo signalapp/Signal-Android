@@ -232,7 +232,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
       ThreadBodyUtil.getFormattedBodyForNotification(context, record, null)
     } else if (record.isStoryReaction()) {
       ThreadBodyUtil.getFormattedBodyForNotification(context, record, null)
-    } else if (record.isPaymentNotification) {
+    } else if (record.isPaymentNotification || record.isPaymentTombstone) {
       ThreadBodyUtil.getFormattedBodyForNotification(context, record, null)
     } else {
       getBodyWithMentionsAndStyles(context, record)
@@ -342,7 +342,7 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
       context.getString(R.string.MessageNotifier_reacted_s_to_your_sticker, EMOJI_REPLACEMENT_STRING)
     } else if (record.isMms && record.isViewOnce) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_view_once_media, EMOJI_REPLACEMENT_STRING)
-    } else if (record.isPaymentNotification) {
+    } else if (record.isPaymentNotification || record.isPaymentTombstone) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_payment, EMOJI_REPLACEMENT_STRING)
     } else if (!bodyIsEmpty) {
       context.getString(R.string.MessageNotifier_reacted_s_to_s, EMOJI_REPLACEMENT_STRING, body)

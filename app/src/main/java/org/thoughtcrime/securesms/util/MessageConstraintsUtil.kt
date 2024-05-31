@@ -85,6 +85,7 @@ object MessageConstraintsUtil {
       !message.isRemoteDelete &&
       !message.hasGiftBadge() &&
       !message.isPaymentNotification &&
+      !message.isPaymentTombstone &&
       (currentTime - message.dateSent < SEND_THRESHOLD || message.toRecipient.isSelf)
   }
 

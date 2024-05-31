@@ -132,5 +132,6 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onReportSpamLearnMoreClicked();
     void onMessageRequestAcceptOptionsClicked();
     void onItemDoubleClick(MultiselectPart multiselectPart);
+    void onPaymentTombstoneClicked();
   }
 }

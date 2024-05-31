@@ -61,7 +61,7 @@ public final class ThreadBodyUtil {
       return format(EmojiStrings.GIFT, getGiftSummary(context, record), null);
     } else if (MessageRecordUtil.isStoryReaction(record)) {
       return new ThreadBody(getStoryReactionSummary(context, record));
-    } else if (record.isPaymentNotification()) {
+    } else if (record.isPaymentNotification() || record.isPaymentTombstone()) {
       return format(EmojiStrings.CARD, context.getString(R.string.ThreadRecord_payment), null);
     } else if (record.isPaymentsRequestToActivate()) {
       return format(EmojiStrings.CARD, getPaymentActivationRequestSummary(context, record), null);

@@ -499,10 +499,17 @@ message MessageExtras {
         GV2UpdateDescription gv2UpdateDescription = 1;
         signalservice.GroupContext gv1Context = 2;
         ProfileChangeDetails profileChangeDetails = 3;
+        PaymentTombstone paymentTombstone = 4;
     }
 }
 
 message GV2UpdateDescription {
     optional DecryptedGroupV2Context gv2ChangeDescription = 1;
     backup.GroupChangeChatUpdate groupChangeUpdate = 2;
+}
+
+message PaymentTombstone {
+    optional string note = 1;
+    CryptoValue amount = 2;
+    CryptoValue fee = 3;
 }
