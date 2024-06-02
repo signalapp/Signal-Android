@@ -39,8 +39,8 @@ import kotlin.time.Duration.Companion.seconds
 import kotlin.time.DurationUnit
 
 /**
- * Utility methods to help display dates in a nice, easily readable way.
- */
+ * Utility methods to help display dates in a nice, easily readable way.
+ */
 object DateUtils : android.text.format.DateUtils() {
   private val TAG = Log.tag(DateUtils::class.java)
   private val MAX_RELATIVE_TIMESTAMP = 3.minutes.inWholeMilliseconds
@@ -54,11 +54,20 @@ object DateUtils : android.text.format.DateUtils() {
 
   private var is24HourDateCache: Is24HourDateEntry? = null
 
+  private var defaultDateFormat = "yyyy-MM-dd HH:mm:ss" // Set a default date format
+
   /**
+   * Sets the default date format string used by various methods in this class.
+   */
+  fun setDefaultDateFormat(format: String) {
+    defaultDateFormat = format
+  }
+
+/**
    * A relative timestamp to use in space-constrained areas, like the conversation list.
    */
   @JvmStatic
-  fun getBriefRelativeTimeSpanString(c: Context, locale: Locale, timestamp: Long): String {
+  fun getBriefRelativeTimeSpanString(c: Context, locale: Locale, timestamp: Long, format: String = getDefaultDateFormat()): String {
     return when {
       isNow(timestamp) -> {
         c.getString(R.string.DateUtils_just_now)
