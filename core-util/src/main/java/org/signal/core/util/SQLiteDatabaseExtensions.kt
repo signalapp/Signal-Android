@@ -146,7 +146,7 @@ fun SupportSQLiteDatabase.delete(tableName: String): DeleteBuilderPart1 {
  * Deletes all data in the table.
  */
 fun SupportSQLiteDatabase.deleteAll(tableName: String): Int {
-  return this.delete(tableName, null, null)
+  return this.delete(tableName, null, arrayOfNulls<String>(0))
 }
 
 fun SupportSQLiteDatabase.insertInto(tableName: String): InsertBuilderPart1 {
