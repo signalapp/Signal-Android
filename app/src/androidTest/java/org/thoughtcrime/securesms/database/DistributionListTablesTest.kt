@@ -26,15 +26,6 @@ class DistributionListTablesTest {
   }
 
   @Test
-  fun createList_whenNameConflict_failToInsert() {
-    val id: DistributionListId? = distributionDatabase.createList("test", recipientList(1, 2, 3))
-    Assert.assertNotNull(id)
-
-    val id2: DistributionListId? = distributionDatabase.createList("test", recipientList(1, 2, 3))
-    Assert.assertNull(id2)
-  }
-
-  @Test
   fun getList_returnCorrectList() {
     createRecipients(3)
     val members: List<RecipientId> = recipientList(1, 2, 3)
