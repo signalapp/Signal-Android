@@ -357,7 +357,7 @@ object MessageContentFuzzer {
       caption = string(allowNullString = true)
       blurHash = string()
       uploadTimestamp = random.nextLong()
-      cdnNumber = 1
+      cdnNumber = 2
 
       build()
     }
