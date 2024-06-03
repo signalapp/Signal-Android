@@ -90,10 +90,10 @@ class SafetyNumberBottomSheetRepositoryTest {
     subjectUnderTest.removeFromStories(toRemove, listOf(destinationKey)).subscribe()
     testSubscriber.request(1)
     testScheduler.triggerActions()
-    testSubscriber.awaitCount(3)
+    testSubscriber.awaitCount(2)
 
     // THEN
-    testSubscriber.assertValueAt(2) { map ->
+    testSubscriber.assertValueAt(1) { map ->
       assertMatch(
         map,
         mapOf(
@@ -116,10 +116,10 @@ class SafetyNumberBottomSheetRepositoryTest {
     subjectUnderTest.removeAllFromStory(distributionListMembers, distributionList).subscribe()
     testSubscriber.request(1)
     testScheduler.triggerActions()
-    testSubscriber.awaitCount(3)
+    testSubscriber.awaitCount(2)
 
     // THEN
-    testSubscriber.assertValueAt(2) { map ->
+    testSubscriber.assertValueAt(1) { map ->
       assertMatch(map, mapOf())
     }
   }
