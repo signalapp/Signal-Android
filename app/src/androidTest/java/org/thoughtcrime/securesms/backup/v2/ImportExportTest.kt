@@ -5,11 +5,8 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
-import android.Manifest
-import android.app.UiAutomation
-import android.os.Environment
+import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
-import io.mockk.InternalPlatformDsl.toArray
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert
 import org.junit.Before
@@ -17,6 +14,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestName
 import org.signal.core.util.Base64
+import org.signal.core.util.test.getObjectDiff
 import org.signal.libsignal.messagebackup.MessageBackup
 import org.signal.libsignal.messagebackup.MessageBackupKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
@@ -134,6 +132,9 @@ class ImportExportTest {
      */
     private val standardFrames = arrayOf(defaultBackupInfo, standardAccountData, selfRecipient, releaseNotes)
   }
+
+  private val context: Context
+    get() = InstrumentationRegistry.getInstrumentation().targetContext
 
   @JvmField
   @Rule
@@ -369,12 +370,12 @@ class ImportExportTest {
         }
       }
     }
-    val import = exportFrames(
+
+    exportFrames(
       *standardFrames,
       *recipients.toArray(),
       *chatItems.toArray()
     )
-    outputFile(import)
   }
 
   @Test
@@ -565,12 +566,12 @@ class ImportExportTest {
       )
     )
     import(importData)
-    val exported = export()
+    val exported = BackupRepository.export()
     val expected = exportFrames(
       *standardFrames,
       alexa
     )
-    outputFile(importData, expected)
+
     compare(expected, exported)
   }
 
@@ -994,14 +995,13 @@ class ImportExportTest {
       expirationNotStarted
     )
     import(importData)
-    val exported = export()
+    val exported = BackupRepository.export()
     val expected = exportFrames(
       *standardFrames,
       alice,
       chat,
       expirationNotStarted
     )
-    outputFile(importData, expected)
     compare(expected, exported)
   }
 
@@ -1396,25 +1396,8 @@ class ImportExportTest {
     return outputStream.toByteArray()
   }
 
-  /**
-   * Exports the passed in frames as a backup and then attempts to
-   * import them.
-   */
-  private fun import(vararg objects: Any) {
-    val importData = exportFrames(*objects)
-    import(importData)
-  }
-
   private fun import(importData: ByteArray) {
     BackupRepository.import(length = importData.size.toLong(), inputStreamFactory = { ByteArrayInputStream(importData) }, selfData = BackupRepository.SelfData(SELF_ACI, SELF_PNI, SELF_E164, SELF_PROFILE_KEY))
-  }
-
-  /**
-   * Export our current database as a backup.
-   */
-  private fun export(): ByteArray {
-    val exportData = BackupRepository.export()
-    return exportData
   }
 
   private fun validate(importData: ByteArray): MessageBackup.ValidationResult {
@@ -1426,10 +1409,12 @@ class ImportExportTest {
   }
 
   /**
-   * Imports the passed in frames and then exports them.
+   * Given some [Frame]s, this will do the following:
    *
-   * It will do a comparison to assert that the import and export
-   * are equal.
+   * 1. Write the frames using an [EncryptedBackupWriter] and keep the result in memory (A).
+   * 2. Import those frames back into the local database.
+   * 3. Export the state of the local database and keep the result in memory (B).
+   * 4. Assert that (A) and (B) are identical. Or, in other words, assert that importing and exporting again results in the original backup data.
    */
   private fun importExport(vararg objects: Any) {
     val outputStream = ByteArrayOutputStream()
@@ -1454,12 +1439,13 @@ class ImportExportTest {
         }
       }
     }
-    val importData = outputStream.toByteArray()
-    outputFile(importData)
-    BackupRepository.import(length = importData.size.toLong(), inputStreamFactory = { ByteArrayInputStream(importData) }, selfData = BackupRepository.SelfData(SELF_ACI, SELF_PNI, SELF_E164, SELF_PROFILE_KEY))
 
-    val export = export()
-    compare(importData, export)
+    val originalBackupData = outputStream.toByteArray()
+
+    BackupRepository.import(length = originalBackupData.size.toLong(), inputStreamFactory = { ByteArrayInputStream(originalBackupData) }, selfData = BackupRepository.SelfData(SELF_ACI, SELF_PNI, SELF_E164, SELF_PROFILE_KEY))
+
+    val generatedBackupData = BackupRepository.export()
+    compare(originalBackupData, generatedBackupData)
   }
 
   private fun compare(import: ByteArray, export: ByteArray) {
@@ -1513,11 +1499,11 @@ class ImportExportTest {
     prettyAssertEquals(stickersImported, stickersExported) { it.packId }
   }
 
-  private fun <T> prettyAssertEquals(import: List<T>, export: List<T>) {
+  private inline fun <reified T : Any> prettyAssertEquals(import: List<T>, export: List<T>) {
     Assert.assertEquals(import.size, export.size)
     import.zip(export).forEach { (a1, a2) ->
       if (a1 != a2) {
-        Assert.fail("Items do not match: \n $a1 \n $a2")
+        Assert.fail("Items do not match:\n\n-- Pretty diff\n${getObjectDiff(a1, a2)}\n-- Full objects\n$a1\n$a2")
       }
     }
   }
@@ -1526,7 +1512,7 @@ class ImportExportTest {
     return nextFloat() < prob
   }
 
-  private fun <T, R : Comparable<R>> prettyAssertEquals(import: List<T>, export: List<T>, selector: (T) -> R?) {
+  private inline fun <reified T : Any, R : Comparable<R>> prettyAssertEquals(import: List<T>, export: List<T>, crossinline selector: (T) -> R?) {
     if (import.size != export.size) {
       var msg = StringBuilder()
       for (i in import) {
@@ -1562,9 +1548,8 @@ class ImportExportTest {
     return frames
   }
 
-  private fun outputFile(importBytes: ByteArray, resultBytes: ByteArray? = null) {
-    grantPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
-    val dir = File(Environment.getExternalStorageDirectory(), "backup-tests")
+  private fun writeToOutputFile(importBytes: ByteArray, resultBytes: ByteArray? = null) {
+    val dir = File(context.filesDir, "backup-tests")
     if (dir.mkdirs() || dir.exists()) {
       FileOutputStream(File(dir, testName.methodName + ".import")).use {
         it.write(importBytes)
@@ -1577,13 +1562,6 @@ class ImportExportTest {
           it.flush()
         }
       }
-    }
-  }
-
-  private fun grantPermissions(vararg permissions: String?) {
-    val auto: UiAutomation = InstrumentationRegistry.getInstrumentation().uiAutomation
-    for (perm in permissions) {
-      auto.grantRuntimePermissionAsUser(InstrumentationRegistry.getInstrumentation().targetContext.packageName, perm, android.os.Process.myUserHandle())
     }
   }
 }
