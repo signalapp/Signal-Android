@@ -478,20 +478,22 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   @WorkerThread
   fun updateLocalStateForLocalSubscribe(subscriberType: InAppPaymentSubscriberRecord.Type) {
     synchronized(subscriberType) {
-      Log.d(TAG, "[updateLocalStateForLocalSubscribe] Clearing donation values.")
+      if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
+        Log.d(TAG, "[updateLocalStateForLocalSubscribe] Clearing donation values.")
 
-      clearUserManuallyCancelled()
-      clearLevelOperations()
-      setUnexpectedSubscriptionCancelationChargeFailure(null)
-      unexpectedSubscriptionCancelationReason = null
-      unexpectedSubscriptionCancelationTimestamp = 0L
-      refreshSubscriptionRequestCredential()
-      clearSubscriptionReceiptCredential()
+        clearUserManuallyCancelled()
+        clearLevelOperations()
+        setUnexpectedSubscriptionCancelationChargeFailure(null)
+        unexpectedSubscriptionCancelationReason = null
+        unexpectedSubscriptionCancelationTimestamp = 0L
+        refreshSubscriptionRequestCredential()
+        clearSubscriptionReceiptCredential()
 
-      val expiredBadge = getExpiredBadge()
-      if (expiredBadge != null && expiredBadge.isSubscription()) {
-        Log.d(TAG, "[updateLocalStateForLocalSubscribe] Clearing expired badge.")
-        setExpiredBadge(null)
+        val expiredBadge = getExpiredBadge()
+        if (expiredBadge != null && expiredBadge.isSubscription()) {
+          Log.d(TAG, "[updateLocalStateForLocalSubscribe] Clearing expired badge.")
+          setExpiredBadge(null)
+        }
       }
 
       val subscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)

@@ -298,8 +298,7 @@ object InAppPaymentsRepository {
   @JvmStatic
   @WorkerThread
   fun isUserManuallyCancelled(subscriberType: InAppPaymentSubscriberRecord.Type): Boolean {
-    val subscriber = getSubscriber(subscriberType) ?: return false
-    val latestSubscription = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(subscriber.type.inAppPaymentType)
+    val latestSubscription = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(subscriberType.inAppPaymentType)
 
     return if (latestSubscription == null) {
       SignalStore.donationsValues().isUserManuallyCancelled()
