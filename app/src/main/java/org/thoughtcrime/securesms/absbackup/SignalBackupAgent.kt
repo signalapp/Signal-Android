@@ -21,6 +21,7 @@ class SignalBackupAgent : BackupAgent() {
   )
 
   override fun onBackup(oldState: ParcelFileDescriptor?, data: BackupDataOutput, newState: ParcelFileDescriptor) {
+    Log.i(TAG, "Performing backup to Android Backup Service.")
     val contentsHash = cumulativeHashCode()
     if (oldState == null) {
       performBackup(data)
@@ -36,9 +37,11 @@ class SignalBackupAgent : BackupAgent() {
     }
 
     DataOutputStream(FileOutputStream(newState.fileDescriptor)).use { it.writeInt(contentsHash) }
+    Log.i(TAG, "Backup finished.")
   }
 
   private fun performBackup(data: BackupDataOutput) {
+    Log.i(TAG, "Creating new backup data.")
     items.forEach {
       val backupData = it.getDataForBackup()
       data.writeEntityHeader(it.getKey(), backupData.size)
@@ -54,7 +57,7 @@ class SignalBackupAgent : BackupAgent() {
       items.find { dataInput.key == it.getKey() }?.restoreData(buffer)
     }
     DataOutputStream(FileOutputStream(newState.fileDescriptor)).use { it.writeInt(cumulativeHashCode()) }
-    Log.i(TAG, "Android Backup Service complete.")
+    Log.i(TAG, "Android Backup Service restore complete.")
   }
 
   private fun cumulativeHashCode(): Int {
@@ -62,6 +65,6 @@ class SignalBackupAgent : BackupAgent() {
   }
 
   companion object {
-    private const val TAG = "SignalBackupAgent"
+    private val TAG = Log.tag(SignalBackupAgent::class)
   }
 }
