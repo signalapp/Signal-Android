@@ -93,6 +93,8 @@ class RegistrationV2ViewModel : ViewModel() {
 
   val incorrectCodeAttempts = store.map { it.incorrectCodeAttempts }.asLiveData()
 
+  val inProgress = store.map { it.inProgress }.asLiveData()
+
   val svrTriesRemaining: Int
     get() = store.value.svrTriesRemaining
 
@@ -427,7 +429,6 @@ class RegistrationV2ViewModel : ViewModel() {
     when (sessionResult) {
       is UnknownError -> {
         handleGenericError(sessionResult.getCause())
-        return false
       }
 
       is Success -> {

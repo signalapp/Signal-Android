@@ -115,6 +115,14 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
     if (triesRemaining < 5) {
       binding.kbsLockPinInputLabel.text = requireContext().resources.getQuantityString(R.plurals.RegistrationLockFragment__d_attempts_remaining, triesRemaining, triesRemaining)
     }
+
+    viewModel.inProgress.observe(viewLifecycleOwner) {
+      if (it) {
+        binding.kbsLockPinConfirm.setSpinning()
+      } else {
+        binding.kbsLockPinConfirm.cancelSpinning()
+      }
+    }
   }
 
   private fun handlePinEntry() {
