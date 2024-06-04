@@ -98,6 +98,11 @@ class ChangeNumberVerifyV2Fragment : LoggingFragment(R.layout.fragment_change_ph
             showErrorDialog(R.string.RegistrationActivity_rate_limited_to_service)
           }
 
+          is VerificationCodeRequestResult.TokenNotAccepted -> {
+            Log.i(TAG, "Token was not accepted.")
+            showErrorDialog(R.string.RegistrationActivity_additional_verification_required)
+          }
+
           else -> {
             Log.w(TAG, "Unable to request sms code", castResult.getCause())
             showErrorDialog(R.string.RegistrationActivity_unable_to_request_verification_code)

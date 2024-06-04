@@ -267,6 +267,13 @@ class ChangeNumberV2ViewModel : ViewModel() {
     Log.v(TAG, "submitCaptchaToken()")
     val e164 = number.e164Number
     val captchaToken = store.value.captchaToken ?: throw IllegalStateException("Can't submit captcha token if no captcha token is set!")
+    store.update {
+      it.copy(
+        captchaToken = null,
+        inProgress = true,
+        changeNumberOutcome = null
+      )
+    }
 
     viewModelScope.launch {
       Log.d(TAG, "Getting session in order to submit captcha token…")
@@ -275,7 +282,6 @@ class ChangeNumberV2ViewModel : ViewModel() {
         Log.d(TAG, "Captcha submission no longer necessary, bailing.")
         store.update {
           it.copy(
-            captchaToken = null,
             inProgress = false,
             changeNumberOutcome = null
           )
@@ -286,7 +292,7 @@ class ChangeNumberV2ViewModel : ViewModel() {
       val captchaSubmissionResult = RegistrationRepository.submitCaptchaToken(context, e164, password, session.body.id, captchaToken)
       Log.d(TAG, "Captcha token submitted.")
       store.update {
-        it.copy(captchaToken = null, inProgress = false, changeNumberOutcome = ChangeNumberOutcome.ChangeNumberRequestOutcome(captchaSubmissionResult))
+        it.copy(inProgress = false, changeNumberOutcome = ChangeNumberOutcome.ChangeNumberRequestOutcome(captchaSubmissionResult))
       }
     }
   }

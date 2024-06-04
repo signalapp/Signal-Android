@@ -88,11 +88,11 @@ class ChangeNumberV2Repository(
           }
         }
 
-        it.invokeOnCancellation {
+        it.invokeOnCancellation { cancellationCause ->
           AppDependencies
             .incomingMessageObserver
             .removeDecryptionDrainedListener(drainedListener)
-          Log.d(TAG, "Decryptions draining canceled.")
+          Log.d(TAG, "Decryptions draining canceled.", cancellationCause)
         }
 
         AppDependencies
