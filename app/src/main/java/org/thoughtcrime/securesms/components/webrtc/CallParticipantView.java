@@ -37,7 +37,6 @@ import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AvatarUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
 import org.whispersystems.signalservice.api.util.Preconditions;
@@ -182,7 +181,7 @@ public class CallParticipantView extends ConstraintLayout {
       audioIndicator.setVisibility(View.VISIBLE);
       audioIndicator.bind(participant.isMicrophoneEnabled(), participant.getAudioLevel());
       final String shortRecipientDisplayName = participant.getShortRecipientDisplayName(getContext());
-      if (FeatureFlags.groupCallRaiseHand() && raiseHandAllowed && participant.isHandRaised()) {
+      if (raiseHandAllowed && participant.isHandRaised()) {
         raiseHandIcon.setVisibility(View.VISIBLE);
         nameLabel.setVisibility(View.VISIBLE);
         nameLabel.setText(shortRecipientDisplayName);

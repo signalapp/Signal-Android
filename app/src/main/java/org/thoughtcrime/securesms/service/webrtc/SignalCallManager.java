@@ -922,9 +922,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onRaisedHands(@NonNull GroupCall groupCall, List<Long> raisedHands) {
-    if (FeatureFlags.groupCallRaiseHand()) {
-      process((s, p) -> p.handleGroupCallRaisedHand(s, raisedHands));
-    }
+    process((s, p) -> p.handleGroupCallRaisedHand(s, raisedHands));
   }
 
   @Override

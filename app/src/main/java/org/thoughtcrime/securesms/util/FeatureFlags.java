@@ -112,7 +112,6 @@ public final class FeatureFlags {
   public static final  String IDEAL_ENABLED_REGIONS             = "global.donations.idealEnabledRegions";
   public static final  String SEPA_ENABLED_REGIONS              = "global.donations.sepaEnabledRegions";
   private static final String NOTIFICATION_THUMBNAIL_BLOCKLIST  = "android.notificationThumbnailProductBlocklist";
-  private static final String CALLING_RAISE_HAND                = "android.calling.raiseHand";
   private static final String USE_ACTIVE_CALL_MANAGER           = "android.calling.useActiveCallManager.5";
   private static final String GIF_SEARCH                        = "global.gifSearch";
   private static final String AUDIO_REMUXING                    = "android.media.audioRemux.1";
@@ -195,7 +194,6 @@ public final class FeatureFlags {
       IDEAL_ENABLED_REGIONS,
       SEPA_ENABLED_REGIONS,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
-      CALLING_RAISE_HAND,
       USE_ACTIVE_CALL_MANAGER,
       GIF_SEARCH,
       AUDIO_REMUXING,
@@ -276,7 +274,6 @@ public final class FeatureFlags {
       PROMPT_BATTERY_SAVER,
       CRASH_PROMPT_CONFIG,
       NOTIFICATION_THUMBNAIL_BLOCKLIST,
-      CALLING_RAISE_HAND,
       VIDEO_RECORD_1X_ZOOM,
       RETRY_RECEIPT_MAX_COUNT,
       RETRY_RECEIPT_MAX_COUNT_RESET_AGE,
@@ -665,13 +662,6 @@ public final class FeatureFlags {
 
   public static String sepaEnabledRegions() {
     return getString(SEPA_ENABLED_REGIONS, "");
-  }
-
-  /**
-   * Whether or not group call raise hand is enabled.
-   */
-  public static boolean groupCallRaiseHand() {
-    return getBoolean(CALLING_RAISE_HAND, false);
   }
 
   /** List of device products that are blocked from showing notification thumbnails. */

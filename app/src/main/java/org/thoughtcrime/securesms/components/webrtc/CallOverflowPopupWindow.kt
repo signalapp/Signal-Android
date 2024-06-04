@@ -18,7 +18,6 @@ import androidx.core.widget.PopupWindowCompat
 import androidx.fragment.app.FragmentActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -39,13 +38,11 @@ class CallOverflowPopupWindow(private val activity: FragmentActivity, parentView
       AppDependencies.signalCallManager.react(it)
       dismiss()
     }
-    if (FeatureFlags.groupCallRaiseHand()) {
-      val raiseHand = root.findViewById<ConstraintLayout>(R.id.raise_hand_layout_parent)
-      raiseHand.visible = true
-      raiseHand.setOnClickListener {
-        AppDependencies.signalCallManager.raiseHand(!raisedHandDelegate.isSelfHandRaised())
-        dismiss()
-      }
+    val raiseHand = root.findViewById<ConstraintLayout>(R.id.raise_hand_layout_parent)
+    raiseHand.visible = true
+    raiseHand.setOnClickListener {
+      AppDependencies.signalCallManager.raiseHand(!raisedHandDelegate.isSelfHandRaised())
+      dismiss()
     }
   }
 
