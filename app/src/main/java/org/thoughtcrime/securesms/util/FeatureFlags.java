@@ -735,7 +735,7 @@ public final class FeatureFlags {
 
   /** Whether or not to use the V2 refactor of registration. */
   public static boolean registrationV2() {
-    return getBoolean(REGISTRATION_V2, false);
+    return getBoolean(REGISTRATION_V2, true);
   }
 
   /** Whether unauthenticated chat web socket is backed by libsignal-net */
