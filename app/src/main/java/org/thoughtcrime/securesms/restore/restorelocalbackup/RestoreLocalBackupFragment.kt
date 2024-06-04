@@ -12,6 +12,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -53,7 +55,17 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
     setDebugLogSubmitMultiTapView(binding.verifyHeader)
     Log.i(TAG, "Backup restore.")
 
+    if (navigationViewModel.getBackupFileUri() == null) {
+      Log.i(TAG, "No backup URI found, must navigate back to choose one.")
+      findNavController().navigateUp()
+      return
+    }
+
     binding.restoreButton.setOnClickListener { presentBackupPassPhrasePromptDialog() }
+
+    binding.cancelLocalRestoreButton.setOnClickListener {
+      findNavController().navigateUp()
+    }
 
     // TODO [regv2]: check for re-register and skip ahead to phone number entry
 
@@ -73,9 +85,11 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
       } else {
         presentProgressEnded()
       }
+    }
 
-      if (fragmentState.backupRestoreComplete) {
-        val importResult = fragmentState.backupImportResult
+    restoreLocalBackupViewModel.backupComplete.observe(viewLifecycleOwner) {
+      if (it.first) {
+        val importResult = it.second
         if (importResult == null) {
           onBackupCompletedSuccessfully()
         } else {

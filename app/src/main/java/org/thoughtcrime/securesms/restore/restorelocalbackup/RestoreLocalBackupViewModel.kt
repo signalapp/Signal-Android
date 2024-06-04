@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
@@ -23,6 +24,8 @@ import org.thoughtcrime.securesms.restore.RestoreRepository
 class RestoreLocalBackupViewModel(fileBackupUri: Uri) : ViewModel() {
   private val store = MutableStateFlow(RestoreLocalBackupState(fileBackupUri))
   val uiState = store.asLiveData()
+
+  val backupComplete = store.map { Pair(it.backupRestoreComplete, it.backupImportResult) }.asLiveData()
 
   fun prepareRestore(context: Context) {
     val backupFileUri = store.value.uri

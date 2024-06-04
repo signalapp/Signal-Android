@@ -90,13 +90,6 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@+id/restoreBackupV2Fragment"
             app:popUpToInclusive="true" />
-
-        <argument
-            android:name="uri"
-            android:defaultValue="@null"
-            app:argType="android.net.Uri"
-            app:nullable="true" />
-
     </fragment>
 
     <dialog

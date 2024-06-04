@@ -71,6 +71,7 @@ import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataHeaders
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
+import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import java.io.IOException
 import java.nio.charset.StandardCharsets
 import java.util.Locale
@@ -159,6 +160,7 @@ object RegistrationRepository {
   @JvmStatic
   suspend fun registerAccountLocally(context: Context, registrationData: RegistrationData, response: AccountRegistrationResult, reglockEnabled: Boolean) =
     withContext(Dispatchers.IO) {
+      Log.v(TAG, "registerAccountLocally()")
       val aciPreKeyCollection: PreKeyCollection = response.aciPreKeyCollection
       val pniPreKeyCollection: PreKeyCollection = response.pniPreKeyCollection
       val aci: ACI = ACI.parseOrThrow(response.uuid)
@@ -422,7 +424,7 @@ object RegistrationRepository {
       val pniPreKeyCollection = org.thoughtcrime.securesms.registration.RegistrationRepository.generateSignedAndLastResortPreKeys(pniIdentity, SignalStore.account().pniPreKeys)
 
       val result: NetworkResult<AccountRegistrationResult> = api.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, aciPreKeyCollection, pniPreKeyCollection, registrationData.fcmToken, true)
-        .map { accountRegistrationResponse ->
+        .map { accountRegistrationResponse: VerifyAccountResponse ->
           AccountRegistrationResult(
             uuid = accountRegistrationResponse.uuid,
             pni = accountRegistrationResponse.pni,

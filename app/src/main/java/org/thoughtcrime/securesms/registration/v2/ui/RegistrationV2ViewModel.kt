@@ -494,7 +494,7 @@ class RegistrationV2ViewModel : ViewModel() {
     Log.v(TAG, "handleRegistrationResult()")
     when (registrationResult) {
       is RegisterAccountResult.Success -> {
-        Log.i(TAG, "Register account result: Success!")
+        Log.i(TAG, "Register account result: Success! Registration lock: $reglockEnabled")
         onSuccessfulRegistration(context, registrationData, registrationResult.accountRegistrationResult, reglockEnabled)
         return true
       }
@@ -600,6 +600,7 @@ class RegistrationV2ViewModel : ViewModel() {
   }
 
   private suspend fun verifyReRegisterInternal(context: Context, pin: String, masterKey: MasterKey, registrationErrorHandler: (RegisterAccountResult) -> Unit) {
+    Log.v(TAG, "verifyReRegisterInternal()")
     updateFcmToken(context)
 
     val registrationData = getRegistrationData()
@@ -615,10 +616,12 @@ class RegistrationV2ViewModel : ViewModel() {
    * @return a [Pair] containing the server response and a boolean signifying whether the current account is registration locked.
    */
   private suspend fun registerAccountInternal(context: Context, sessionId: String?, registrationData: RegistrationData, pin: String?, masterKey: MasterKey): Pair<RegisterAccountResult, Boolean> {
+    Log.v(TAG, "registerAccountInternal()")
     val registrationResult: RegisterAccountResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, pin = pin) { masterKey }
 
     // Check if reg lock is enabled
     if (registrationResult !is RegisterAccountResult.RegistrationLocked) {
+      Log.i(TAG, "Received a non-registration lock response to registration. Assuming registration lock as DISABLED")
       return Pair(registrationResult, false)
     }
 
