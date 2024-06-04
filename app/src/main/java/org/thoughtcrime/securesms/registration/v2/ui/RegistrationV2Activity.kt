@@ -42,8 +42,8 @@ class RegistrationV2Activity : BaseActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_registration_navigation_v2)
-    sharedViewModel.uiState.observe(this) {
-      if (it.registrationCheckpoint == RegistrationCheckpoint.SERVICE_REGISTRATION_COMPLETED) {
+    sharedViewModel.checkpoint.observe(this) {
+      if (it >= RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE) {
         handleSuccessfulVerify()
       }
     }
@@ -57,6 +57,7 @@ class RegistrationV2Activity : BaseActivity() {
     if (SignalStore.storageService().needsAccountRestore()) {
       Log.i(TAG, "Performing pin restore.")
       startActivity(Intent(this, PinRestoreActivity::class.java))
+      finish()
     } else {
       val isProfileNameEmpty = Recipient.self().profileName.isEmpty
       val isAvatarEmpty = !AvatarHelper.hasAvatar(this, Recipient.self().id)

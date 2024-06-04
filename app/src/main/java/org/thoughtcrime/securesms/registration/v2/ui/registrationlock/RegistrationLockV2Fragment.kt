@@ -15,17 +15,11 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.signal.core.util.Stopwatch
-import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationLockBinding
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
-import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob
-import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
@@ -33,14 +27,11 @@ import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegat
 import org.thoughtcrime.securesms.registration.v2.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.v2.data.network.RegistrationResult
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult
-import org.thoughtcrime.securesms.registration.v2.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2ViewModel
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registration_lock) {
@@ -93,12 +84,6 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
 
     viewModel.lockedTimeRemaining.observe(viewLifecycleOwner) { t: Long -> timeRemaining = t }
 
-    viewModel.checkpoint.observe(viewLifecycleOwner) {
-      if (it >= RegistrationCheckpoint.SERVICE_REGISTRATION_COMPLETED) {
-        handleSuccessfulPinEntry()
-      }
-    }
-
     val triesRemaining: Int = viewModel.svrTriesRemaining
 
     if (triesRemaining <= 3) {
@@ -143,6 +128,8 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
       return
     }
 
+    SignalStore.pinValues().keyboardType = getPinEntryKeyboardType()
+
     binding.kbsLockPinConfirm.setSpinning()
 
     viewModel.verifyCodeAndRegisterAccountWithRegistrationLock(requireContext(), pin, ::handleSessionErrorResponse, ::handleRegistrationErrorResponse)
@@ -152,7 +139,10 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
     when (requestResult) {
       is VerificationCodeRequestResult.Success -> Unit
       is VerificationCodeRequestResult.RateLimited -> onRateLimited()
-      is VerificationCodeRequestResult.AttemptsExhausted -> navigateToAccountLocked()
+      is VerificationCodeRequestResult.AttemptsExhausted -> {
+        findNavController().safeNavigate(RegistrationLockV2FragmentDirections.actionAccountLocked())
+      }
+
       is VerificationCodeRequestResult.RegistrationLocked -> {
         Log.i(TAG, "Registration locked response to verify account!")
         binding.kbsLockPinConfirm.cancelSpinning()
@@ -171,7 +161,10 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
     when (result) {
       is RegisterAccountResult.Success -> Unit
       is RegisterAccountResult.RateLimited -> onRateLimited()
-      is RegisterAccountResult.AttemptsExhausted -> navigateToAccountLocked()
+      is RegisterAccountResult.AttemptsExhausted -> {
+        findNavController().safeNavigate(RegistrationLockV2FragmentDirections.actionAccountLocked())
+      }
+
       is RegisterAccountResult.RegistrationLocked -> {
         Log.i(TAG, "Registration locked response to register account!")
         binding.kbsLockPinConfirm.cancelSpinning()
@@ -180,7 +173,9 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
       }
 
       is RegisterAccountResult.SvrWrongPin -> onIncorrectKbsRegistrationLockPin(result.triesRemaining)
-      is RegisterAccountResult.SvrNoData -> navigateToAccountLocked()
+      is RegisterAccountResult.SvrNoData -> {
+        findNavController().safeNavigate(RegistrationLockV2FragmentDirections.actionAccountLocked())
+      }
 
       else -> {
         Log.w(TAG, "Unable to register account with registration lock", result.getCause())
@@ -196,7 +191,7 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
 
     if (svrTriesRemaining == 0) {
       Log.w(TAG, "Account locked. User out of attempts on KBS.")
-      navigateToAccountLocked()
+      findNavController().safeNavigate(RegistrationLockV2FragmentDirections.actionAccountLocked())
       return
     }
 
@@ -279,41 +274,6 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
     )
 
     binding.kbsLockPinInput.getText().clear()
-  }
-
-  private fun navigateToAccountLocked() {
-    findNavController().safeNavigate(RegistrationLockV2FragmentDirections.actionAccountLocked())
-  }
-
-  private fun handleSuccessfulPinEntry() {
-    SignalStore.pinValues().keyboardType = getPinEntryKeyboardType()
-
-    SimpleTask.run<Any?>({
-      SignalStore.onboarding().clearAll()
-      val stopwatch = Stopwatch("RegistrationLockRestore")
-
-      AppDependencies.jobManager.runSynchronously(StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN)
-      stopwatch.split("AccountRestore")
-
-      AppDependencies.jobManager
-        .startChain(StorageSyncJob())
-        .then(ReclaimUsernameAndLinkJob())
-        .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
-      stopwatch.split("ContactRestore")
-
-      try {
-        FeatureFlags.refreshSync()
-      } catch (e: IOException) {
-        Log.w(TAG, "Failed to refresh flags.", e)
-      }
-      stopwatch.split("FeatureFlags")
-
-      stopwatch.stop(TAG)
-      null
-    }, {
-      binding.kbsLockPinConfirm.cancelSpinning()
-      findNavController().safeNavigate(RegistrationLockV2FragmentDirections.actionSuccessfulRegistration())
-    })
   }
 
   private fun sendEmailToSupport() {

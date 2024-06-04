@@ -21,12 +21,16 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.updateAndGet
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob
+import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
+import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob
+import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.pin.SvrRepository
@@ -64,6 +68,7 @@ import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration.Companion.minutes
 
@@ -496,6 +501,11 @@ class RegistrationV2ViewModel : ViewModel() {
     when (registrationResult) {
       is RegisterAccountResult.Success -> {
         Log.i(TAG, "Register account result: Success! Registration lock: $reglockEnabled")
+        store.update {
+          it.copy(
+            registrationCheckpoint = RegistrationCheckpoint.SERVICE_REGISTRATION_COMPLETED
+          )
+        }
         onSuccessfulRegistration(context, registrationData, registrationResult.accountRegistrationResult, reglockEnabled)
         return true
       }
@@ -749,11 +759,31 @@ class RegistrationV2ViewModel : ViewModel() {
     Log.v(TAG, "onSuccessfulRegistration()")
     RegistrationRepository.registerAccountLocally(context, registrationData, remoteResult, reglockEnabled)
 
-    refreshFeatureFlags()
+    if (reglockEnabled) {
+      SignalStore.onboarding().clearAll()
+      val stopwatch = Stopwatch("RegistrationLockRestore")
+
+      AppDependencies.jobManager.runSynchronously(StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN)
+      stopwatch.split("AccountRestore")
+
+      AppDependencies.jobManager
+        .startChain(StorageSyncJob())
+        .then(ReclaimUsernameAndLinkJob())
+        .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
+      stopwatch.split("ContactRestore")
+
+      refreshFeatureFlags()
+
+      stopwatch.split("FeatureFlags")
+
+      stopwatch.stop(TAG)
+    } else {
+      refreshFeatureFlags()
+    }
 
     store.update {
       it.copy(
-        registrationCheckpoint = RegistrationCheckpoint.SERVICE_REGISTRATION_COMPLETED,
+        registrationCheckpoint = RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE,
         inProgress = false
       )
     }
