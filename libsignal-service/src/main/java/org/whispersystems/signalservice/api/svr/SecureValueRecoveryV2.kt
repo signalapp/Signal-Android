@@ -26,7 +26,6 @@ import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.Hex
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.IOException
-import kotlin.jvm.Throws
 import org.signal.svr2.proto.BackupResponse as ProtoBackupResponse
 import org.signal.svr2.proto.ExposeResponse as ProtoExposeResponse
 import org.signal.svr2.proto.RestoreResponse as ProtoRestoreResponse

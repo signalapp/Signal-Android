@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.pin
 
 import android.app.backup.BackupManager
+import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
@@ -359,7 +360,8 @@ object SvrRepository {
   }
 
   @WorkerThread
-  private fun restoreMasterKeyPreRegistration(svr: SecureValueRecovery, credentials: AuthCredentials?, userPin: String): RestoreResponse {
+  @VisibleForTesting
+  fun restoreMasterKeyPreRegistration(svr: SecureValueRecovery, credentials: AuthCredentials?, userPin: String): RestoreResponse {
     return if (credentials == null) {
       RestoreResponse.Missing
     } else {

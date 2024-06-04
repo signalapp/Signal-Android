@@ -31,7 +31,7 @@ object MockProvider {
 
   val lockedFailure = PushServiceSocket.RegistrationLockFailure().apply {
     svr1Credentials = AuthCredentials.create("username", "password")
-    svr2Credentials = null
+    svr2Credentials = AuthCredentials.create("username", "password")
   }
 
   val primaryOnlyDeviceList = DeviceInfoList().apply {

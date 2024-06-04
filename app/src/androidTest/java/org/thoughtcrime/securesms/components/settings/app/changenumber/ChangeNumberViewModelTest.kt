@@ -3,6 +3,9 @@ package org.thoughtcrime.securesms.components.settings.app.changenumber
 import androidx.lifecycle.SavedStateHandle
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.FlakyTest
+import io.mockk.every
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
 import okhttp3.mockwebserver.MockResponse
 import org.junit.After
 import org.junit.Before
@@ -15,6 +18,7 @@ import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
 import org.thoughtcrime.securesms.registration.VerifyResponseProcessor
@@ -34,10 +38,14 @@ import org.thoughtcrime.securesms.testing.parsedRequestBody
 import org.thoughtcrime.securesms.testing.success
 import org.thoughtcrime.securesms.testing.timeout
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
+import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
+import org.whispersystems.signalservice.api.svr.SecureValueRecovery
+import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.MismatchedDevices
 import org.whispersystems.signalservice.internal.push.PreKeyState
+import java.security.SecureRandom
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
@@ -62,10 +70,13 @@ class ChangeNumberViewModelTest {
       viewModel.setNewCountry(1)
       viewModel.setNewNationalNumber("5555550102")
     }
+
+    mockkObject(SvrRepository)
   }
 
   @After
   fun tearDown() {
+    unmockkObject(SvrRepository)
     InstrumentationApplicationDependencyProvider.clearHandlers()
   }
 
@@ -249,6 +260,8 @@ class ChangeNumberViewModelTest {
       Get("/v1/certificate/delivery") { MockResponse().success(MockProvider.senderCertificate) }
     )
 
+    every { SvrRepository.restoreMasterKeyPreRegistration(any(), any(), any()) } returns SecureValueRecovery.RestoreResponse.Success(MasterKey.createNew(SecureRandom()), AuthCredentials.create("username", "password"))
+
     // WHEN
     viewModel.requestVerificationCode(VerifyAccountRepository.Mode.SMS_WITHOUT_LISTENER, null, null).blockingGet().resultOrThrow
     viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet().also { processor ->
@@ -355,6 +368,8 @@ class ChangeNumberViewModelTest {
       },
       Get("/v1/certificate/delivery") { MockResponse().success(MockProvider.senderCertificate) }
     )
+
+    every { SvrRepository.restoreMasterKeyPreRegistration(any(), any(), any()) } returns SecureValueRecovery.RestoreResponse.Success(MasterKey.createNew(SecureRandom()), AuthCredentials.create("username", "password"))
 
     // WHEN
     viewModel.requestVerificationCode(VerifyAccountRepository.Mode.SMS_WITHOUT_LISTENER, null, null).blockingGet().resultOrThrow
