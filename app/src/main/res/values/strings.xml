@@ -5720,8 +5720,10 @@
     <string name="StoryGroupReplyFragment__no_replies_yet">No replies yet</string>
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
-    <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reacted to the story</string>
+    <!-- Displayed for when you reacted to a story when viewing replies -->
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reacted to the story</string>
+    <!-- Displayed for other users that reacted to a story when viewing replies -->
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reacted to the story</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Views</string>
     <!-- Label for story replies tab -->
