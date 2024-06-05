@@ -66,7 +66,8 @@ object MessageConstraintsUtil {
       targetMessage.revisionNumber < MAX_EDIT_COUNT &&
       !targetMessage.isViewOnceMessage() &&
       !targetMessage.hasAudio() &&
-      !targetMessage.hasSharedContact()
+      !targetMessage.hasSharedContact() &&
+      !targetMessage.hasSticker()
   }
 
   /**
