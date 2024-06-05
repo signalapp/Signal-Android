@@ -257,7 +257,7 @@ class ArchiveApi(
     }
   }
 
-  private fun getZkCredential(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): BackupAuthCredential {
+  fun getZkCredential(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): BackupAuthCredential {
     val backupAuthResponse = BackupAuthCredentialResponse(serviceCredential.credential)
     val backupRequestContext = BackupAuthCredentialRequestContext.create(backupKey.value, aci.rawUuid)
 

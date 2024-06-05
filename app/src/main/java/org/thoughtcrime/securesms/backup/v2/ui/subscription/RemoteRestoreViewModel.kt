@@ -17,18 +17,23 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.backup.v2.RestoreV2Event
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.SyncArchivedMediaJob
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.registration.RegistrationUtil
 import java.io.InputStream
 import kotlin.time.Duration.Companion.seconds
 
-class MessageBackupsTestRestoreViewModel : ViewModel() {
+class RemoteRestoreViewModel : ViewModel() {
   val disposables = CompositeDisposable()
 
-  private val _state: MutableState<ScreenState> = mutableStateOf(ScreenState(importState = ImportState.NONE, plaintext = false))
+  private val _state: MutableState<ScreenState> = mutableStateOf(ScreenState(backupTier = SignalStore.backup().backupTier, importState = ImportState.NONE, restoreProgress = null))
+
   val state: State<ScreenState> = _state
 
   fun import(length: Long, inputStreamFactory: () -> InputStream) {
@@ -37,7 +42,7 @@ class MessageBackupsTestRestoreViewModel : ViewModel() {
     val self = Recipient.self()
     val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
 
-    disposables += Single.fromCallable { BackupRepository.import(length, inputStreamFactory, selfData, plaintext = _state.value.plaintext) }
+    disposables += Single.fromCallable { BackupRepository.import(length, inputStreamFactory, selfData) }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy {
@@ -54,6 +59,7 @@ class MessageBackupsTestRestoreViewModel : ViewModel() {
         .then(SyncArchivedMediaJob())
         .then(BackupRestoreMediaJob())
         .enqueueAndBlockUntilCompletion(120.seconds.inWholeMilliseconds)
+      RegistrationUtil.maybeMarkRegistrationComplete()
     }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
@@ -62,8 +68,8 @@ class MessageBackupsTestRestoreViewModel : ViewModel() {
       }
   }
 
-  fun onPlaintextToggled() {
-    _state.value = _state.value.copy(plaintext = !_state.value.plaintext)
+  fun updateRestoreProgress(restoreEvent: RestoreV2Event) {
+    _state.value = _state.value.copy(restoreProgress = restoreEvent)
   }
 
   override fun onCleared() {
@@ -71,8 +77,9 @@ class MessageBackupsTestRestoreViewModel : ViewModel() {
   }
 
   data class ScreenState(
+    val backupTier: MessageBackupTier?,
     val importState: ImportState,
-    val plaintext: Boolean
+    val restoreProgress: RestoreV2Event?
   )
 
   enum class ImportState(val inProgress: Boolean = false) {

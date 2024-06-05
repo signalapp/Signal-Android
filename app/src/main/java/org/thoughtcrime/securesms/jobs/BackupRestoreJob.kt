@@ -5,11 +5,13 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.RestoreV2Event
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -71,6 +73,7 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
           progress = progress.toFloat() / total.toFloat(),
           indeterminate = false
         )
+        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress, total))
       }
 
       override fun shouldCancel() = isCanceled

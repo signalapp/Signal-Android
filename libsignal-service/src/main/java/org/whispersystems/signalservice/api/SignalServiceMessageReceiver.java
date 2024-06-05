@@ -28,6 +28,7 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
@@ -222,6 +223,10 @@ public class SignalServiceMessageReceiver {
 
   public void retrieveBackup(int cdnNumber, Map<String, String> headers, String cdnPath, File destination, ProgressListener listener) throws MissingConfigurationException, IOException {
     socket.retrieveBackup(cdnNumber, headers, cdnPath, destination, 1_000_000_000L, listener);
+  }
+
+  public boolean checkBackupExistence(int cdnNumber, Map<String, String> headers, String cdnPath) throws MissingConfigurationException, IOException {
+    return socket.checkForBackup(cdnNumber, headers, cdnPath);
   }
 
   public InputStream retrieveSticker(byte[] packId, byte[] packKey, int stickerId)

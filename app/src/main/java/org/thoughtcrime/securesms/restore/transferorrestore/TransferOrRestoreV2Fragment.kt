@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.restore.transferorrestore
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import org.signal.core.util.logging.Log
@@ -16,7 +15,9 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentTransferRestoreV2Binding
 import org.thoughtcrime.securesms.devicetransfer.newdevice.BackupRestorationType
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
+import org.thoughtcrime.securesms.registration.v2.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.restore.RestoreViewModel
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -39,7 +40,11 @@ class TransferOrRestoreV2Fragment : LoggingFragment(R.layout.fragment_transfer_r
     binding.transferOrRestoreFragmentRestoreRemote.setOnClickListener { sharedViewModel.onRestoreFromRemoteBackupSelected() }
     binding.transferOrRestoreFragmentNext.setOnClickListener { launchSelection(sharedViewModel.getBackupRestorationType()) }
     binding.transferOrRestoreFragmentMoreOptions.setOnClickListener {
-      Log.w(TAG, "Not yet implemented!", NotImplementedError()) // TODO [regv2]
+      TransferOrRestoreMoreOptionsDialog.show(fragmentManager = childFragmentManager, skipOnly = true)
+    }
+
+    if (SignalStore.backup().backupTier == null) {
+      binding.transferOrRestoreFragmentRestoreRemoteCard.visible = false
     }
 
     binding.transferOrRestoreFragmentRestoreRemoteCard.visible = FeatureFlags.messageBackups()
@@ -72,9 +77,7 @@ class TransferOrRestoreV2Fragment : LoggingFragment(R.layout.fragment_transfer_r
         NavHostFragment.findNavController(this).safeNavigate(TransferOrRestoreV2FragmentDirections.actionTransferOrRestoreToRestore())
       }
       BackupRestorationType.REMOTE_BACKUP -> {
-        // TODO [regv2]
-        Log.w(TAG, "Not yet implemented!", NotImplementedError())
-        Toast.makeText(requireContext(), "Not yet implemented!", Toast.LENGTH_LONG).show()
+        startActivity(RemoteRestoreActivity.getIntent(requireContext()))
       }
       else -> {
         throw IllegalArgumentException()

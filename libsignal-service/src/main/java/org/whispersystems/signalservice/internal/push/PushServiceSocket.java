@@ -948,6 +948,10 @@ public class PushServiceSocket {
     downloadFromCdn(destination, cdnNumber, headers, cdnPath, maxSizeBytes, listener);
   }
 
+  public boolean checkForBackup(int cdnNumber, Map<String, String> headers, String cdnPath) throws PushNetworkException, MissingConfigurationException, NonSuccessfulResponseCodeException {
+    return checkExistsOnCdn(cdnNumber, headers, cdnPath);
+  }
+
   public void retrieveAttachment(int cdnNumber, Map<String, String> headers, SignalServiceAttachmentRemoteId cdnPath, File destination, long maxSizeBytes, ProgressListener listener)
       throws IOException, MissingConfigurationException
   {
@@ -1695,6 +1699,51 @@ public class PushServiceSocket {
         }
       } else if (response.code() == 416) {
         throw new RangeException(offset);
+      } else {
+        throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
+      }
+    } catch (NonSuccessfulResponseCodeException | PushNetworkException e) {
+      throw e;
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
+    } finally {
+      synchronized (connections) {
+        connections.remove(call);
+      }
+    }
+  }
+
+  private boolean checkExistsOnCdn(int cdnNumber, Map<String, String> headers, String path) throws MissingConfigurationException, PushNetworkException, NonSuccessfulResponseCodeException {
+    ConnectionHolder[] cdnNumberClients = cdnClientsMap.get(cdnNumber);
+    if (cdnNumberClients == null) {
+      throw new MissingConfigurationException("Attempted to download from unsupported CDN number: " + cdnNumber + ", Our configuration supports: " + cdnClientsMap.keySet());
+    }
+    ConnectionHolder   connectionHolder = getRandom(cdnNumberClients, random);
+    OkHttpClient       okHttpClient     = connectionHolder.getClient()
+                                                          .newBuilder()
+                                                          .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                          .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                          .build();
+
+    Request.Builder request = new Request.Builder().url(connectionHolder.getUrl() + "/" + path).get();
+
+    if (connectionHolder.getHostHeader().isPresent()) {
+      request.addHeader("Host", connectionHolder.getHostHeader().get());
+    }
+
+    for (Map.Entry<String, String> header : headers.entrySet()) {
+      request.addHeader(header.getKey(), header.getValue());
+    }
+
+    Call call = okHttpClient.newCall(request.build());
+
+    synchronized (connections) {
+      connections.add(call);
+    }
+
+    try (Response response = call.execute()) {
+      if (response.isSuccessful()) {
+        return true;
       } else {
         throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
       }

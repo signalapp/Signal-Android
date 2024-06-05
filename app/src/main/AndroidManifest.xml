@@ -988,8 +988,8 @@
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
 
-    <activity android:name=".backup.v2.ui.subscription.MessageBackupsTestRestoreActivity"
-              android:theme="@style/TextSecure.LightRegistrationTheme"
+    <activity android:name=".registration.v2.ui.restore.RemoteRestoreActivity"
+              android:theme="@style/Signal.DayNight.NoActionBar"
               android:exported="false"/>
 
     <activity android:name=".profiles.manage.EditProfileActivity"

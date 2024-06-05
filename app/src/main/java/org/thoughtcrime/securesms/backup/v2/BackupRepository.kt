@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
 import org.signal.core.util.LongSerializer
@@ -14,6 +15,7 @@ import org.signal.libsignal.messagebackup.MessageBackup
 import org.signal.libsignal.messagebackup.MessageBackup.ValidationResult
 import org.signal.libsignal.messagebackup.MessageBackupKey
 import org.signal.libsignal.protocol.ServiceId.Aci
+import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -58,6 +60,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
+import java.lang.Exception
 import kotlin.time.Duration.Companion.milliseconds
 
 object BackupRepository {
@@ -152,12 +155,12 @@ object BackupRepository {
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
     val frameReader = if (plaintext) {
-      PlainTextBackupReader(inputStreamFactory())
+      PlainTextBackupReader(inputStreamFactory(), length)
     } else {
       EncryptedBackupReader(
         key = backupKey,
         aci = selfData.aci,
-        streamLength = length,
+        length = length,
         dataStream = inputStreamFactory
       )
     }
@@ -190,6 +193,7 @@ object BackupRepository {
       val backupState = BackupState(backupKey)
       val chatItemInserter: ChatItemImportInserter = ChatItemBackupProcessor.beginImport(backupState)
 
+      val totalLength = frameReader.getStreamLength()
       for (frame in frameReader) {
         when {
           frame.account != null -> {
@@ -220,6 +224,7 @@ object BackupRepository {
 
           else -> Log.w(TAG, "Unrecognized frame")
         }
+        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_RESTORE, frameReader.getBytesRead(), totalLength))
       }
 
       if (chatItemInserter.flush()) {
@@ -260,6 +265,21 @@ object BackupRepository {
       .then { credential ->
         api.getBackupInfo(backupKey, credential)
           .map { it.usedSpace }
+      }
+  }
+
+  private fun getBackupTier(): NetworkResult<MessageBackupTier> {
+    val api = AppDependencies.signalServiceAccountManager.archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return initBackupAndFetchAuth(backupKey)
+      .map { credential ->
+        val zkCredential = api.getZkCredential(backupKey, credential)
+        if (zkCredential.backupLevel == BackupLevel.MEDIA) {
+          MessageBackupTier.PAID
+        } else {
+          MessageBackupTier.FREE
+        }
       }
   }
 
@@ -328,6 +348,24 @@ object BackupRepository {
         val (cdnCredentials, info) = pair
         val messageReceiver = AppDependencies.signalServiceMessageReceiver
         messageReceiver.retrieveBackup(info.cdn!!, cdnCredentials, "backups/${info.backupDir}/${info.backupName}", destination, listener)
+      } is NetworkResult.Success
+  }
+
+  fun checkForBackupFile(): Boolean {
+    val api = AppDependencies.signalServiceAccountManager.archiveApi
+    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+
+    return initBackupAndFetchAuth(backupKey)
+      .then { credential ->
+        api.getBackupInfo(backupKey, credential)
+      }
+      .then { info -> getCdnReadCredentials(info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
+      .then { pair ->
+        val (cdnCredentials, info) = pair
+        val messageReceiver = AppDependencies.signalServiceMessageReceiver
+        NetworkResult.fromFetch {
+          messageReceiver.checkBackupExistence(info.cdn!!, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
+        }
       } is NetworkResult.Success
   }
 
@@ -560,6 +598,24 @@ object BackupRepository {
       .also { Log.i(TAG, "getCdnReadCredentialsResult: $it") }
   }
 
+  fun restoreBackupTier(): MessageBackupTier? {
+    // TODO: more complete error handling
+    try {
+      checkForBackupFile()
+    } catch (e: Exception) {
+      Log.i(TAG, "Could not check for backup file.", e)
+      SignalStore.backup().backupTier = null
+      return null
+    }
+    SignalStore.backup().backupTier = try {
+      getBackupTier().successOrThrow()
+    } catch (e: Exception) {
+      Log.i(TAG, "Could not retrieve backup tier.", e)
+      null
+    }
+    return SignalStore.backup().backupTier
+  }
+
   /**
    * Retrieves backupDir and mediaDir, preferring cached value if available.
    *
@@ -693,13 +749,13 @@ enum class MessageBackupTier(val value: Int) {
   FREE(0),
   PAID(1);
 
-  companion object Serializer : LongSerializer<MessageBackupTier> {
-    override fun serialize(data: MessageBackupTier): Long {
-      return data.value.toLong()
+  companion object Serializer : LongSerializer<MessageBackupTier?> {
+    override fun serialize(data: MessageBackupTier?): Long {
+      return data?.value?.toLong() ?: -1
     }
 
-    override fun deserialize(data: Long): MessageBackupTier {
-      return values().firstOrNull { it.value == data.toInt() } ?: FREE
+    override fun deserialize(data: Long): MessageBackupTier? {
+      return values().firstOrNull { it.value == data.toInt() } ?: null
     }
   }
 }

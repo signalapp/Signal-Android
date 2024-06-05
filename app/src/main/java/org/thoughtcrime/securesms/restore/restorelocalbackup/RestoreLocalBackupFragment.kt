@@ -111,7 +111,6 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
 
   private fun onBackupCompletedSuccessfully() {
     Log.d(TAG, "onBackupCompletedSuccessfully()")
-    SignalStore.internalValues().setForceEnterRestoreV2Flow(false)
     val activity = requireActivity() as RestoreActivity
     navigationViewModel.getNextIntent()?.let {
       Log.d(TAG, "Launching ${it.component}")

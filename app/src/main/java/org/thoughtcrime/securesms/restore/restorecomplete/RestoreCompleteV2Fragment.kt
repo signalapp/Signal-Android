@@ -10,7 +10,6 @@ import android.view.View
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.restore.RestoreActivity
 
 /**
@@ -29,7 +28,6 @@ class RestoreCompleteV2Fragment : LoggingFragment(R.layout.fragment_registration
 
   private fun onBackupCompletedSuccessfully() {
     Log.d(TAG, "onBackupCompletedSuccessfully()")
-    SignalStore.internalValues().setForceEnterRestoreV2Flow(false)
     val activity = requireActivity() as RestoreActivity
     activity.finishActivitySuccessfully()
   }

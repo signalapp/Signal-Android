@@ -10,4 +10,6 @@ import org.thoughtcrime.securesms.backup.v2.proto.Frame
 
 interface BackupImportReader : Iterator<Frame>, AutoCloseable {
   fun getHeader(): BackupInfo?
+  fun getBytesRead(): Long
+  fun getStreamLength(): Long
 }

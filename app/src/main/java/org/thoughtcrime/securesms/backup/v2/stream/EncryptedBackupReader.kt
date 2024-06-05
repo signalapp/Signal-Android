@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.stream
 
+import com.google.common.io.CountingInputStream
 import org.signal.core.util.readFully
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.readVarInt32
@@ -32,21 +33,22 @@ import javax.crypto.spec.SecretKeySpec
 class EncryptedBackupReader(
   key: BackupKey,
   aci: ACI,
-  streamLength: Long,
+  val length: Long,
   dataStream: () -> InputStream
 ) : BackupImportReader {
 
   val backupInfo: BackupInfo?
   var next: Frame? = null
   val stream: InputStream
+  val countingStream: CountingInputStream
 
   init {
     val keyMaterial = key.deriveBackupSecrets(aci)
 
-    validateMac(keyMaterial.macKey, streamLength, dataStream())
+    validateMac(keyMaterial.macKey, length, dataStream())
 
-    val inputStream = dataStream()
-    val iv = inputStream.readNBytesOrThrow(16)
+    countingStream = CountingInputStream(dataStream())
+    val iv = countingStream.readNBytesOrThrow(16)
 
     val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding").apply {
       init(Cipher.DECRYPT_MODE, SecretKeySpec(keyMaterial.cipherKey, "AES"), IvParameterSpec(iv))
@@ -55,8 +57,8 @@ class EncryptedBackupReader(
     stream = GZIPInputStream(
       CipherInputStream(
         TruncatingInputStream(
-          wrapped = inputStream,
-          maxBytes = streamLength - MAC_SIZE
+          wrapped = countingStream,
+          maxBytes = length - MAC_SIZE
         ),
         cipher
       )
@@ -68,6 +70,10 @@ class EncryptedBackupReader(
   override fun getHeader(): BackupInfo? {
     return backupInfo
   }
+
+  override fun getBytesRead() = countingStream.count
+
+  override fun getStreamLength() = length
 
   override fun hasNext(): Boolean {
     return next != null

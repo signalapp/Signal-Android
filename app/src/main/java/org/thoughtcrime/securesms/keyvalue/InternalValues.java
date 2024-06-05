@@ -199,14 +199,6 @@ public final class InternalValues extends SignalStoreValues {
     return FeatureFlags.internalUser() && getBoolean(CONVERSATION_ITEM_V2_MEDIA, false);
   }
 
-  public void setForceEnterRestoreV2Flow(boolean enter) {
-    putBoolean(FORCE_ENTER_RESTORE_V2_FLOW, enter);
-  }
-
-  public boolean enterRestoreV2Flow() {
-    return FeatureFlags.restoreAfterRegistration() && getBoolean(FORCE_ENTER_RESTORE_V2_FLOW, false);
-  }
-
   public synchronized void setWebSocketShadowingStats(byte[] bytes) {
     putBlob(WEB_SOCKET_SHADOWING_STATS, bytes);
   }

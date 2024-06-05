@@ -1537,7 +1537,7 @@ class ImportExportTest {
     val frameReader = EncryptedBackupReader(
       key = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey(),
       aci = selfData.aci,
-      streamLength = import.size.toLong(),
+      length = import.size.toLong(),
       dataStream = inputFactory
     )
     val frames = ArrayList<Frame>()

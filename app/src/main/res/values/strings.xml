@@ -4143,8 +4143,15 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">You need access to your old device.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Restore from backup</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restore your messages from a local backup. If you don’t restore now, you won\'t be able to restore later.</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">Restore local backup</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restore Signal backup</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Restore all your text messages + your last 30 days of media</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">More options</string>
+
+    <string name="TransferOrRestoreFragment__cancel">Cancel</string>
+    <string name="TransferOrRestoreFragment__skip_transfer">Log in without transferring</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">Continue without transferring your messages and media</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Open Signal on your old Android phone</string>

@@ -23,7 +23,9 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.SmsRetrieverReceiver
+import org.thoughtcrime.securesms.registration.v2.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
+import org.thoughtcrime.securesms.util.FeatureFlags
 
 /**
  * Activity to hold the entire registration process.
@@ -76,8 +78,6 @@ class RegistrationV2Activity : BaseActivity() {
 
       Log.i(TAG, "Pin restore flow not required. Profile name: $isProfileNameEmpty | Profile avatar: $isAvatarEmpty | Needs PIN: $needsPin")
 
-      SignalStore.internalValues().setForceEnterRestoreV2Flow(true)
-
       if (!needsProfile && !needsPin) {
         sharedViewModel.completeRegistration()
       }
@@ -86,9 +86,9 @@ class RegistrationV2Activity : BaseActivity() {
       val startIntent = MainActivity.clearTop(this).apply {
         if (needsPin) {
           putExtra("next_intent", CreateSvrPinActivity.getIntentForPinCreate(this@RegistrationV2Activity))
-        }
-
-        if (needsProfile) {
+        } else if (!SignalStore.registrationValues().hasSkippedTransferOrRestore() && FeatureFlags.messageBackups()) {
+          putExtra("next_intent", RemoteRestoreActivity.getIntent(this@RegistrationV2Activity))
+        } else if (needsProfile) {
           putExtra("next_intent", CreateProfileActivity.getIntentForUserProfile(this@RegistrationV2Activity))
         }
       }

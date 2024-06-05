@@ -733,7 +733,7 @@ public final class FeatureFlags {
 
   /** Whether or not to launch the restore activity after registration is complete, rather than before. */
   public static boolean restoreAfterRegistration() {
-    return getBoolean(RESTORE_POST_REGISTRATION, false);
+    return BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || getBoolean(RESTORE_POST_REGISTRATION, false);
   }
 
   /**

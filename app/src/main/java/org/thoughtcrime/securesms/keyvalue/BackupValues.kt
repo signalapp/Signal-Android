@@ -60,7 +60,7 @@ internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var nextBackupTime: Long by longValue(KEY_NEXT_BACKUP_TIME, -1)
   var lastBackupTime: Long by longValue(KEY_LAST_BACKUP_TIME, -1)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
-  var backupTier: MessageBackupTier by enumValue(KEY_BACKUP_TIER, MessageBackupTier.FREE, MessageBackupTier.Serializer)
+  var backupTier: MessageBackupTier? by enumValue(KEY_BACKUP_TIER, null, MessageBackupTier.Serializer)
 
   val totalBackupSize: Long get() = lastBackupProtoSize + usedBackupMediaSpace
 
