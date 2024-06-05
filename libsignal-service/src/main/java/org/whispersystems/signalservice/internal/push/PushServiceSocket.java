@@ -2027,11 +2027,9 @@ public class PushServiceSocket {
 
     try (Response response = call.execute()) {
       if (response.isSuccessful()) {
-        offset = Long.parseLong(response.header("Upload-Offset"));
-      } else if (response.code() >= 400 || response.code() < 500) {
-        throw new ResumeLocationInvalidException("Response: " + response);
+        offset = Long.parseLong(Objects.requireNonNull(response.header("Upload-Offset")));
       } else {
-        throw new NonSuccessfulResumableUploadResponseCodeException(response.code(), "Response: " + response);
+        throw new ResumeLocationInvalidException("Response: " + response);
       }
     } catch (PushNetworkException | NonSuccessfulResponseCodeException e) {
       throw e;

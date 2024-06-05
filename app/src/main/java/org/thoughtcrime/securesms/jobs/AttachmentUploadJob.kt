@@ -32,6 +32,7 @@ import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException
+import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import java.io.IOException
 import java.util.Optional
@@ -166,6 +167,11 @@ class AttachmentUploadJob private constructor(
         Log.w(TAG, "Failed to upload due to a 400 when getting resumable upload information. Clearing upload spec.", e)
         uploadSpec = null
       }
+
+      throw e
+    } catch (e: ResumeLocationInvalidException) {
+      Log.w(TAG, "Resume location invalid. Clearing upload spec.", e)
+      uploadSpec = null
 
       throw e
     }
