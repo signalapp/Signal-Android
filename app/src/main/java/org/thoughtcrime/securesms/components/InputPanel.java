@@ -447,6 +447,7 @@ public class InputPanel extends ConstraintLayout
       composeText.setText("");
       messageToEdit = null;
       quoteView.setMessageType(QuoteView.MessageType.PREVIEW);
+      clearQuote();
     }
     updateEditModeUi();
   }
