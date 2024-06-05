@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
+import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.databinding.DonateToSignalFragmentBinding
@@ -50,7 +51,8 @@ class DonateToSignalFragment :
   DSLSettingsFragment(
     layoutId = R.layout.donate_to_signal_fragment
   ),
-  DonationCheckoutDelegate.Callback {
+  DonationCheckoutDelegate.Callback,
+  ThanksForYourSupportBottomSheetDialogFragment.Callback {
 
   companion object {
     private val TAG = Log.tag(DonateToSignalFragment::class.java)
@@ -489,5 +491,9 @@ class DonateToSignalFragment :
 
   override fun navigateToDonationPending(inAppPayment: InAppPaymentTable.InAppPayment) {
     findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToDonationPendingBottomSheet(inAppPayment))
+  }
+
+  override fun onBoostThanksSheetDismissed() {
+    findNavController().popBackStack()
   }
 }
