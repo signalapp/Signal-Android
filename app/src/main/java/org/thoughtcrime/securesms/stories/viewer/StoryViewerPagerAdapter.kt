@@ -35,6 +35,10 @@ class StoryViewerPagerAdapter(
     return pages[position].toLong()
   }
 
+  override fun containsItem(itemId: Long): Boolean {
+    return pages.find { it.toLong() == itemId } != null
+  }
+
   override fun createFragment(position: Int): Fragment {
     return StoryViewerPageFragment.create(arguments.copy(recipientId = pages[position]))
   }
