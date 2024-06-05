@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.registration.v2.ui.phonenumber
 
 import android.telephony.PhoneNumberFormattingTextWatcher
+import android.text.TextWatcher
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -31,6 +32,17 @@ class EnterPhoneNumberV2ViewModel : ViewModel() {
   private val store = MutableStateFlow(EnterPhoneNumberV2State())
   val uiState = store.asLiveData()
 
+  val formatter: TextWatcher?
+    get() = store.value.phoneNumberFormatter
+
+  val phoneNumber: PhoneNumber?
+    get() = try {
+      parsePhoneNumber(store.value)
+    } catch (ex: NumberParseException) {
+      Log.w(TAG, "Could not parse phone number in current state.", ex)
+      null
+    }
+
   val supportedCountryPrefixes: List<CountryPrefix> = PhoneNumberUtil.getInstance().supportedCallingCodes
     .map { CountryPrefix(it, PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(it)) }
     .sortedBy { it.digits }
@@ -43,15 +55,6 @@ class EnterPhoneNumberV2ViewModel : ViewModel() {
 
   fun countryPrefix(): CountryPrefix {
     return supportedCountryPrefixes[store.value.countryPrefixIndex]
-  }
-
-  fun phoneNumber(): PhoneNumber? {
-    return try {
-      parsePhoneNumber(store.value)
-    } catch (ex: NumberParseException) {
-      Log.w(TAG, "Could not parse phone number in current state.", ex)
-      null
-    }
   }
 
   fun setPhoneNumber(phoneNumber: String?) {

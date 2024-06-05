@@ -10,8 +10,6 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.i18n.phonenumbers.NumberParseException
-import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -106,19 +104,8 @@ class RegistrationV2ViewModel : ViewModel() {
   val isReregister: Boolean
     get() = store.value.isReRegister
 
-  init {
-    val existingE164 = SignalStore.registrationValues().sessionE164
-    if (existingE164 != null) {
-      try {
-        val existingPhoneNumber = PhoneNumberUtil.getInstance().parse(existingE164, null)
-        if (existingPhoneNumber != null) {
-          setPhoneNumber(existingPhoneNumber)
-        }
-      } catch (ex: NumberParseException) {
-        Log.w(TAG, "Could not parse stored E164.", ex)
-      }
-    }
-  }
+  val phoneNumber: Phonenumber.PhoneNumber?
+    get() = store.value.phoneNumber
 
   fun maybePrefillE164(context: Context) {
     Log.v(TAG, "maybePrefillE164()")

@@ -130,15 +130,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
     fragmentViewModel.uiState.observe(viewLifecycleOwner) { fragmentState ->
 
       fragmentState.phoneNumberFormatter?.let {
-        if (it != currentPhoneNumberFormatter) {
-          currentPhoneNumberFormatter?.let { oldWatcher ->
-            Log.d(TAG, "Removing current phone number formatter in fragment")
-            phoneNumberInputLayout.removeTextChangedListener(oldWatcher)
-          }
-          phoneNumberInputLayout.addTextChangedListener(it)
-          currentPhoneNumberFormatter = it
-          Log.d(TAG, "Updating phone number formatter in fragment")
-        }
+        bindPhoneNumberFormatter(it)
       }
 
       if (fragmentViewModel.isEnteredNumberValid(fragmentState)) {
@@ -154,17 +146,31 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
 
     initializeInputFields()
 
-    val existingPhoneNumber = sharedViewModel.uiState.value?.phoneNumber
+    val existingPhoneNumber = sharedViewModel.phoneNumber
     if (existingPhoneNumber != null) {
       fragmentViewModel.restoreState(existingPhoneNumber)
-      fragmentViewModel.phoneNumber()?.let {
-        phoneNumberInputLayout.setText(it.nationalNumber.toString())
+      spinnerView.setText(existingPhoneNumber.countryCode.toString())
+      fragmentViewModel.formatter?.let {
+        bindPhoneNumberFormatter(it)
       }
+      phoneNumberInputLayout.setText(existingPhoneNumber.nationalNumber.toString())
+    } else {
+      spinnerView.setText(fragmentViewModel.countryPrefix().toString())
     }
 
-    spinnerView.setText(fragmentViewModel.countryPrefix().toString())
-
     ViewUtil.focusAndShowKeyboard(phoneNumberInputLayout)
+  }
+
+  private fun bindPhoneNumberFormatter(formatter: TextWatcher) {
+    if (formatter != currentPhoneNumberFormatter) {
+      currentPhoneNumberFormatter?.let { oldWatcher ->
+        Log.d(TAG, "Removing current phone number formatter in fragment")
+        phoneNumberInputLayout.removeTextChangedListener(oldWatcher)
+      }
+      phoneNumberInputLayout.addTextChangedListener(formatter)
+      currentPhoneNumberFormatter = formatter
+      Log.d(TAG, "Updating phone number formatter in fragment")
+    }
   }
 
   private fun handleChallenges(remainingChallenges: List<Challenge>) {
@@ -187,11 +193,13 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
     phoneNumberInputLayout.addTextChangedListener {
       fragmentViewModel.setPhoneNumber(it?.toString())
     }
+
     phoneNumberInputLayout.onFocusChangeListener = View.OnFocusChangeListener { _: View?, hasFocus: Boolean ->
       if (hasFocus) {
         binding.scrollView.postDelayed({ binding.scrollView.smoothScrollTo(0, binding.registerButton.bottom) }, 250)
       }
     }
+
     phoneNumberInputLayout.imeOptions = EditorInfo.IME_ACTION_DONE
     phoneNumberInputLayout.setOnEditorActionListener { v: TextView?, actionId: Int, _: KeyEvent? ->
       if (actionId == EditorInfo.IME_ACTION_DONE && v != null) {
@@ -298,7 +306,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       is VerificationCodeRequestResult.ExternalServiceFailure -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
       is VerificationCodeRequestResult.ImpossibleNumber -> {
         MaterialAlertDialogBuilder(requireContext()).apply {
-          setMessage(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid, fragmentViewModel.phoneNumber()?.toE164()))
+          setMessage(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid, fragmentViewModel.phoneNumber?.toE164()))
           setPositiveButton(android.R.string.ok, null)
           show()
         }
@@ -369,7 +377,7 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       Dialogs.showAlertDialog(
         requireContext(),
         getString(R.string.RegistrationActivity_invalid_number),
-        getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid, fragmentViewModel.phoneNumber()?.toE164())
+        getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid, fragmentViewModel.phoneNumber?.toE164())
       )
     }
   }

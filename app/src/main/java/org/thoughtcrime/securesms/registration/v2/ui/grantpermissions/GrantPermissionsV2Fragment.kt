@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -101,7 +102,7 @@ class GrantPermissionsV2Fragment : ComposeFragment() {
 
   private fun proceedToNextScreen() {
     when (welcomeAction) {
-      WelcomeAction.CONTINUE -> NavHostFragment.findNavController(this).safeNavigate(GrantPermissionsV2FragmentDirections.actionEnterPhoneNumber())
+      WelcomeAction.CONTINUE -> findNavController().safeNavigate(GrantPermissionsV2FragmentDirections.actionEnterPhoneNumber())
       WelcomeAction.RESTORE_BACKUP -> {
         val restoreIntent = RestoreActivity.getIntentForRestore(requireActivity())
         launchRestoreActivity.launch(restoreIntent)
