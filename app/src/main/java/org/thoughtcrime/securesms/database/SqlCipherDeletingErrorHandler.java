@@ -48,6 +48,8 @@ public final class SqlCipherDeletingErrorHandler implements DatabaseErrorHandler
       } catch (Throwable t) {
         Log.e(TAG, "Failed to do cipher_integrity_check!", t);
       }
+    } catch (Throwable t) {
+      Log.e(TAG, "Failed to run diagnostics!", t);
     } finally {
       Log.w(TAG, "Deleting database " + databaseName);
       AppDependencies.getApplication().deleteDatabase(databaseName);
