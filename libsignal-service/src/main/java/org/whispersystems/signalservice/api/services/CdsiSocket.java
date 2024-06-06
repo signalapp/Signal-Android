@@ -165,7 +165,8 @@ final class CdsiSocket {
                 webSocket.close(1000, "OK");
                 break;
             }
-          } catch (IOException | AttestationDataException | SgxCommunicationFailureException e) {
+          } catch (IOException | AttestationDataException | SgxCommunicationFailureException | AssertionError e) {
+            // TODO only catching AssertionError because of libsignal bug. Remove when bug is fixed.
             Log.w(TAG, e);
             webSocket.close(1000, "OK");
             emitter.tryOnError(e);

@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -42,6 +43,6 @@ public class OutdatedBuildReminder extends Reminder {
   }
 
   private static int getDaysUntilExpiry() {
-    return (int) TimeUnit.MILLISECONDS.toDays(Util.getTimeUntilBuildExpiry());
+    return (int) TimeUnit.MILLISECONDS.toDays(Util.getTimeUntilBuildExpiry(SignalStore.misc().getEstimatedServerTime()));
   }
 }

@@ -119,6 +119,7 @@ public final class JobManagerFactories {
       put(BackupRestoreJob.KEY,                      new BackupRestoreJob.Factory());
       put(BackupRestoreMediaJob.KEY,                 new BackupRestoreMediaJob.Factory());
       put(BoostReceiptRequestResponseJob.KEY,        new BoostReceiptRequestResponseJob.Factory());
+      put(BuildExpirationConfirmationJob.KEY,        new BuildExpirationConfirmationJob.Factory());
       put(CallLinkPeekJob.KEY,                       new CallLinkPeekJob.Factory());
       put(CallLinkUpdateSendJob.KEY,                 new CallLinkUpdateSendJob.Factory());
       put(CallLogEventSendJob.KEY,                   new CallLogEventSendJob.Factory());

@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.gcm.FcmFetchManager;
 import org.thoughtcrime.securesms.jobs.AccountConsistencyWorkerJob;
+import org.thoughtcrime.securesms.jobs.BuildExpirationConfirmationJob;
 import org.thoughtcrime.securesms.jobs.CheckServiceReachabilityJob;
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
@@ -255,7 +256,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
       long timeDiff           = currentTime - lastForegroundTime;
 
       if (timeDiff < 0) {
-        Log.w(TAG, "Time travel! The system clock has moved backwards. (currentTime: " + currentTime + " ms, lastForegroundTime: " + lastForegroundTime + " ms, diff: " + timeDiff + " ms)");
+        Log.w(TAG, "Time travel! The system clock has moved backwards. (currentTime: " + currentTime + " ms, lastForegroundTime: " + lastForegroundTime + " ms, diff: " + timeDiff + " ms)", true);
       }
 
       SignalStore.misc().setLastForegroundTime(currentTime);
@@ -277,9 +278,9 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   }
 
   public void checkBuildExpiration() {
-    if (Util.getTimeUntilBuildExpiry() <= 0 && !SignalStore.misc().isClientDeprecated()) {
-      Log.w(TAG, "Build expired!");
-      SignalStore.misc().setClientDeprecated(true);
+    if (Util.getTimeUntilBuildExpiry(SignalStore.misc().getEstimatedServerTime()) <= 0 && !SignalStore.misc().isClientDeprecated()) {
+      Log.w(TAG, "Build potentially expired! Enqueing job to check.", true);
+      AppDependencies.getJobManager().add(new BuildExpirationConfirmationJob());
     }
   }
 

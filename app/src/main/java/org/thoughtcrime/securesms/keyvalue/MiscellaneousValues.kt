@@ -203,6 +203,12 @@ internal class MiscellaneousValues internal constructor(store: KeyValueStore) : 
   val lastKnownServerTimeOffset by longValue(SERVER_TIME_OFFSET, 0)
 
   /**
+   * An estimate of the server time, based on the last-known server time offset.
+   */
+  val estimatedServerTime: Long
+    get() = System.currentTimeMillis() - lastKnownServerTimeOffset
+
+  /**
    * The last time (using our local clock) we updated the server time offset returned by [.getLastKnownServerTimeOffset]}.
    */
   val lastKnownServerTimeOffsetUpdateTime by longValue(LAST_SERVER_TIME_OFFSET_UPDATE, 0)
