@@ -4,11 +4,15 @@ import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.util.toOptional
+import org.signal.qr.QrProcessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
 
@@ -166,6 +170,26 @@ class LinkDeviceViewModel : ViewModel() {
       it.copy(
         showFinishedSheet = false
       )
+    }
+  }
+
+  fun scanImage(context: Context, uri: Uri) {
+    viewModelScope.launch(Dispatchers.IO) {
+      val loadBitmap = Glide.with(context)
+        .asBitmap()
+        .format(DecodeFormat.PREFER_ARGB_8888)
+        .load(uri)
+        .submit()
+
+      val result = QrProcessor().getScannedData(loadBitmap.get()).toOptional()
+      if (result.isPresent) {
+        onQrCodeScanned(result.get())
+      } else {
+        _state.value = _state.value.copy(
+          qrCodeInvalid = true,
+          showFrontCamera = null
+        )
+      }
     }
   }
 }

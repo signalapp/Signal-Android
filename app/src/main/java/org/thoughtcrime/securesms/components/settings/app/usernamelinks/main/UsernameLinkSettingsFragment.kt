@@ -95,7 +95,7 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    galleryLauncher = registerForActivityResult(UsernameQrImageSelectionActivity.Contract()) { uri ->
+    galleryLauncher = registerForActivityResult(QrImageSelectionActivity.Contract()) { uri ->
       if (uri != null) {
         viewModel.scanImage(requireContext(), uri)
       }

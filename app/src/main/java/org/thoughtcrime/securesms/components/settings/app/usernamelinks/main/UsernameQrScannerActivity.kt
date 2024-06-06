@@ -42,6 +42,7 @@ import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameQrScannerActivity.Contract
 import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -70,7 +71,7 @@ class UsernameQrScannerActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     disposables.bindTo(this)
 
-    val galleryLauncher = registerForActivityResult(UsernameQrImageSelectionActivity.Contract()) { uri ->
+    val galleryLauncher = registerForActivityResult(QrImageSelectionActivity.Contract()) { uri ->
       if (uri != null) {
         viewModel.onQrImageSelected(this, uri)
       }

@@ -19,9 +19,9 @@ import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.gallery.MediaGalleryFragment
 
 /**
- * Select username qr code from gallery instead of using camera.
+ * Select qr code from gallery instead of using camera. Used in usernames and when linking devices
  */
-class UsernameQrImageSelectionActivity : AppCompatActivity(), MediaGalleryFragment.Callbacks {
+class QrImageSelectionActivity : AppCompatActivity(), MediaGalleryFragment.Callbacks {
 
   override fun attachBaseContext(newBase: Context) {
     delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
@@ -50,7 +50,7 @@ class UsernameQrImageSelectionActivity : AppCompatActivity(), MediaGalleryFragme
 
   class Contract : ActivityResultContract<Unit, Uri?>() {
     override fun createIntent(context: Context, input: Unit): Intent {
-      return Intent(context, UsernameQrImageSelectionActivity::class.java)
+      return Intent(context, QrImageSelectionActivity::class.java)
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
