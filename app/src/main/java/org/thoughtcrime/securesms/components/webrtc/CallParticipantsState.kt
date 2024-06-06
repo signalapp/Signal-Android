@@ -60,6 +60,7 @@ data class CallParticipantsState(
         .sortedBy { it.timestamp }
         .toMutableList()
       if (localParticipant.isHandRaised) {
+        results.removeIf { it.sender.id == localParticipant.recipient.id }
         results.add(GroupCallRaiseHandEvent(localParticipant.recipient, localParticipant.handRaisedTimestamp))
       }
       return results.toImmutableList()
