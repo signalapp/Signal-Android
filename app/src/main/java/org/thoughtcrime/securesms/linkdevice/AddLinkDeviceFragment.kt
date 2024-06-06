@@ -113,7 +113,11 @@ class AddLinkDeviceFragment : ComposeFragment() {
       onQrCodeScanned = { data -> viewModel.onQrCodeScanned(data) },
       onQrCodeApproved = {
         viewModel.onQrCodeApproved()
-        biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.BiometricDeviceAuthentication__signal)) }
+        if (biometricAuth.canAuthenticate()) {
+          biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.BiometricDeviceAuthentication__signal)) }
+        } else {
+          viewModel.addDevice()
+        }
       },
       onQrCodeDismissed = { viewModel.onQrCodeDismissed() },
       onQrCodeRetry = { viewModel.onQrCodeScanned(state.url) },
