@@ -23,6 +23,7 @@ class QrScannerView @JvmOverloads constructor(
 
   private var scannerView: ScannerView? = null
   private val qrDataPublish: PublishSubject<String> = PublishSubject.create()
+  private var forceLegacy: Boolean = false
 
   val qrData: Observable<String> = qrDataPublish
 
@@ -37,12 +38,14 @@ class QrScannerView @JvmOverloads constructor(
     addView(scannerView)
 
     this.scannerView = (scannerView as ScannerView)
+    this.forceLegacy = forceLegacy
   }
 
   @JvmOverloads
   fun start(lifecycleOwner: LifecycleOwner, forceLegacy: Boolean = false) {
     if (scannerView != null) {
       Log.w(TAG, "Attempt to start scanning that has already started")
+      scannerView?.resume()
       return
     }
 
@@ -59,6 +62,14 @@ class QrScannerView @JvmOverloads constructor(
   fun toggleCamera() {
     Log.d(TAG, "Toggling camera")
     scannerView?.toggleCamera()
+  }
+
+  // Biometrics require use of camera so we disable when needed
+  fun destroy() {
+    scannerView?.destroy()
+    if (!forceLegacy) {
+      scannerView = null
+    }
   }
 
   companion object {

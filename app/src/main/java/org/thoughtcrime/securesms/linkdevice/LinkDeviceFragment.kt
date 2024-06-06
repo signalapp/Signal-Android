@@ -21,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +35,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
@@ -42,11 +43,11 @@ import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
-import org.thoughtcrime.securesms.DeviceActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Locale
 
 /**
@@ -54,15 +55,21 @@ import java.util.Locale
  */
 class LinkDeviceFragment : ComposeFragment() {
 
-  private val viewModel: LinkDeviceViewModel by viewModels()
+  private val viewModel: LinkDeviceViewModel by activityViewModels()
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state
+    val state by viewModel.state.collectAsState()
 
     LaunchedEffect(state.toastDialog) {
       if (state.toastDialog.isNotEmpty()) {
         Toast.makeText(requireContext(), state.toastDialog, Toast.LENGTH_LONG).show()
+      }
+    }
+
+    LaunchedEffect(state.showFinishedSheet) {
+      if (state.showFinishedSheet) {
+        onShowFinishedSheet()
       }
     }
 
@@ -93,9 +100,7 @@ class LinkDeviceFragment : ComposeFragment() {
   }
 
   private fun openLinkNewDevice() {
-    // TODO(Michelle): Use linkDeviceAddFragment
-    startActivity(DeviceActivity.getIntentForScanner(requireContext()))
-    // findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceAddFragment)
+    findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
   }
 
   private fun setDeviceToRemove(device: Device?) {
@@ -104,6 +109,11 @@ class LinkDeviceFragment : ComposeFragment() {
 
   private fun onRemoveDevice(device: Device) {
     viewModel.removeDevice(requireContext(), device)
+  }
+
+  private fun onShowFinishedSheet() {
+    LinkDeviceFinishedSheet().show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+    viewModel.markFinishedSheetSeen()
   }
 }
 

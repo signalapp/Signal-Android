@@ -36,6 +36,7 @@ internal class ScannerView21 constructor(
 
   private val lifecycleObserver: DefaultLifecycleObserver = object : DefaultLifecycleObserver {
     override fun onDestroy(owner: LifecycleOwner) {
+      cameraProvider?.unbindAll()
       cameraProvider = null
       camera = null
       analyzerExecutor.shutdown()
@@ -76,6 +77,14 @@ internal class ScannerView21 constructor(
     }
 
     lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
+  }
+
+  override fun resume() = Unit
+
+  override fun destroy() {
+    lifecyleOwner?.let {
+      lifecycleObserver.onDestroy(it)
+    }
   }
 
   private fun onCameraProvider(lifecycle: LifecycleOwner, cameraProvider: ProcessCameraProvider?) {

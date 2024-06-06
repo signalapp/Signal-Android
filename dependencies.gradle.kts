@@ -148,6 +148,7 @@ dependencyResolutionManagement {
       library("android-tooltips", "com.tomergoldst.android:tooltips:1.0.6")
       library("stream", "com.annimon:stream:1.1.8")
       library("lottie", "com.airbnb.android:lottie:5.2.0")
+      library("lottie-compose", "com.airbnb.android:lottie-compose:6.4.0")
       library("dnsjava", "dnsjava:dnsjava:2.1.9")
       library("nanohttpd-webserver", "org.nanohttpd", "nanohttpd-webserver").versionRef("nanohttpd")
       library("nanohttpd-websocket", "org.nanohttpd", "nanohttpd-websocket").versionRef("nanohttpd")

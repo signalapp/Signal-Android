@@ -1,15 +1,23 @@
 package org.thoughtcrime.securesms.linkdevice
 
+import android.net.Uri
 import org.signal.core.util.Base64.decode
+import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.ecc.Curve
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.devicelist.protos.DeviceName
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.api.push.exceptions.NotFoundException
+import org.whispersystems.signalservice.internal.push.DeviceLimitExceededException
 import java.io.IOException
+import java.security.InvalidKeyException
 
 /**
  * Repository for linked devices and its various actions (linking, unlinking, listing).
@@ -70,5 +78,50 @@ object LinkDeviceRepository {
       Log.w(TAG, "Failed while reading the protobuf.", e)
     }
     return defaultDevice
+  }
+
+  fun isValidQr(uri: Uri): Boolean {
+    val ephemeralId: String? = uri.getQueryParameter("uuid")
+    val publicKeyEncoded: String? = uri.getQueryParameter("pub_key")
+    return ephemeralId.isNotNullOrBlank() && publicKeyEncoded.isNotNullOrBlank()
+  }
+
+  fun addDevice(uri: Uri): LinkDeviceResult {
+    return try {
+      val accountManager = AppDependencies.signalServiceAccountManager
+      val verificationCode = accountManager.getNewDeviceVerificationCode()
+      if (!isValidQr(uri)) {
+        LinkDeviceResult.BAD_CODE
+      } else {
+        val ephemeralId: String? = uri.getQueryParameter("uuid")
+        val publicKeyEncoded: String? = uri.getQueryParameter("pub_key")
+        val publicKey = Curve.decodePoint(publicKeyEncoded?.let { decode(it) }, 0)
+        val aciIdentityKeyPair = SignalStore.account().aciIdentityKey
+        val pniIdentityKeyPair = SignalStore.account().pniIdentityKey
+        val profileKey = ProfileKeyUtil.getSelfProfileKey()
+
+        accountManager.addDevice(ephemeralId, publicKey, aciIdentityKeyPair, pniIdentityKeyPair, profileKey, SignalStore.svr().getOrCreateMasterKey(), verificationCode)
+        TextSecurePreferences.setMultiDevice(AppDependencies.application, true)
+        LinkDeviceResult.SUCCESS
+      }
+    } catch (e: NotFoundException) {
+      LinkDeviceResult.NO_DEVICE
+    } catch (e: DeviceLimitExceededException) {
+      LinkDeviceResult.LIMIT_EXCEEDED
+    } catch (e: IOException) {
+      LinkDeviceResult.NETWORK_ERROR
+    } catch (e: InvalidKeyException) {
+      LinkDeviceResult.KEY_ERROR
+    }
+  }
+
+  enum class LinkDeviceResult {
+    SUCCESS,
+    NO_DEVICE,
+    NETWORK_ERROR,
+    KEY_ERROR,
+    LIMIT_EXCEEDED,
+    BAD_CODE,
+    UNKNOWN
   }
 }

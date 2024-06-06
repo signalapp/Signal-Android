@@ -235,7 +235,26 @@
     <fragment
         android:id="@+id/linkDeviceFragment"
         android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceFragment"
-        android:label="link_device_fragment" />
+        android:label="link_device_fragment">
+        <action
+            android:id="@+id/action_linkDeviceFragment_to_addLinkDeviceFragment"
+            app:destination="@id/addLinkDeviceFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLinkDeviceFragment"
+        android:name="org.thoughtcrime.securesms.linkdevice.AddLinkDeviceFragment"
+        android:label="link_device_add_fragment">
+        <action
+            android:id="@+id/action_addLinkDeviceFragment_to_linkDeviceIntroBottomSheet"
+            app:destination="@id/linkDeviceIntroBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/linkDeviceIntroBottomSheet"
+        android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceIntroBottomSheet" />
 
     <!-- Payments -->
     <activity

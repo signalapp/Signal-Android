@@ -1,35 +1,33 @@
 package org.thoughtcrime.securesms.linkdevice
 
 import android.content.Context
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
 
 /**
  * Maintains the state of the [LinkDeviceFragment]
  */
 class LinkDeviceViewModel : ViewModel() {
 
-  private val _state = mutableStateOf(LinkDeviceSettingsState())
-  val state: State<LinkDeviceSettingsState> = _state
-
-  fun onResume() {
-    _state.value = _state.value.copy()
-  }
+  private val _state = MutableStateFlow(LinkDeviceSettingsState())
+  val state = _state.asStateFlow()
 
   fun setDeviceToRemove(device: Device?) {
-    _state.value = _state.value.copy(deviceToRemove = device)
+    _state.update { it.copy(deviceToRemove = device) }
   }
 
   fun removeDevice(context: Context, device: Device) {
     viewModelScope.launch(Dispatchers.IO) {
-      _state.value = _state.value.copy(
-        progressDialogMessage = R.string.DeviceListActivity_unlinking_device
-      )
+      _state.update { it.copy(progressDialogMessage = R.string.DeviceListActivity_unlinking_device) }
+
       val success = LinkDeviceRepository.removeDevice(device.id)
       if (success) {
         loadDevices(context)
@@ -38,9 +36,9 @@ class LinkDeviceViewModel : ViewModel() {
           progressDialogMessage = -1
         )
       } else {
-        _state.value = _state.value.copy(
-          progressDialogMessage = -1
-        )
+        _state.update {
+          it.copy(progressDialogMessage = -1)
+        }
       }
     }
   }
@@ -54,11 +52,120 @@ class LinkDeviceViewModel : ViewModel() {
           progressDialogMessage = -1
         )
       } else {
-        _state.value = _state.value.copy(
-          devices = devices,
-          progressDialogMessage = -1
+        _state.update {
+          it.copy(
+            toastDialog = "",
+            devices = devices,
+            progressDialogMessage = -1
+          )
+        }
+      }
+    }
+  }
+
+  fun showFrontCamera() {
+    _state.update {
+      val frontCamera = it.showFrontCamera
+      it.copy(
+        showFrontCamera = if (frontCamera == null) true else !frontCamera,
+        pendingBiometrics = false
+      )
+    }
+  }
+
+  fun markIntroSheetSeen() {
+    _state.update {
+      it.copy(
+        seenIntroSheet = true,
+        showFrontCamera = null
+      )
+    }
+  }
+
+  fun onQrCodeScanned(url: String) {
+    if (_state.value.qrCodeFound || _state.value.qrCodeInvalid) {
+      return
+    }
+
+    val uri = Uri.parse(url)
+    if (LinkDeviceRepository.isValidQr(uri)) {
+      _state.update {
+        it.copy(
+          qrCodeFound = true,
+          qrCodeInvalid = false,
+          url = url,
+          showFrontCamera = null
         )
       }
+    } else {
+      _state.update {
+        it.copy(
+          qrCodeFound = false,
+          qrCodeInvalid = true,
+          url = url,
+          showFrontCamera = null
+        )
+      }
+    }
+  }
+
+  fun onQrCodeApproved() {
+    _state.update {
+      it.copy(
+        qrCodeFound = false,
+        qrCodeInvalid = false,
+        pendingBiometrics = true
+      )
+    }
+  }
+
+  fun onQrCodeDismissed() {
+    _state.update {
+      it.copy(
+        qrCodeFound = false,
+        qrCodeInvalid = false
+      )
+    }
+  }
+
+  fun clearBiometrics() {
+    _state.update {
+      it.copy(
+        pendingBiometrics = false
+      )
+    }
+  }
+
+  fun addDevice() {
+    val uri = Uri.parse(_state.value.url)
+    viewModelScope.launch(Dispatchers.IO) {
+      val result = LinkDeviceRepository.addDevice(uri)
+      _state.update {
+        it.copy(
+          pendingBiometrics = false,
+          linkDeviceResult = result,
+          url = ""
+        )
+      }
+      LinkedDeviceInactiveCheckJob.enqueue()
+    }
+  }
+
+  fun onLinkDeviceResult(showSheet: Boolean) {
+    _state.update {
+      it.copy(
+        showFinishedSheet = showSheet,
+        linkDeviceResult = LinkDeviceRepository.LinkDeviceResult.UNKNOWN,
+        toastDialog = ""
+      )
+    }
+  }
+
+  fun markFinishedSheetSeen() {
+    _state.update {
+      it.copy(
+        showFinishedSheet = false
+      )
     }
   }
 }

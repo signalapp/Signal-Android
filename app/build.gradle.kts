@@ -540,6 +540,7 @@ dependencies {
   }
   implementation(libs.stream)
   implementation(libs.lottie)
+  implementation(libs.lottie.compose)
   implementation(libs.signal.android.database.sqlcipher)
   implementation(libs.androidx.sqlite)
   implementation(libs.google.ez.vcard) {
