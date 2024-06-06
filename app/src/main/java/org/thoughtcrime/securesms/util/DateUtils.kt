@@ -210,13 +210,7 @@ object DateUtils : android.text.format.DateUtils() {
     return if (isSameDay(System.currentTimeMillis(), timestamp)) {
       context.getString(R.string.DeviceListItem_today)
     } else {
-      val format: String = when {
-        timestamp.isWithin(6.days) -> "EEE "
-        timestamp.isWithin(365.days) -> "MMM d"
-        else -> "MMM d, yyy"
-      }
-
-      timestamp.toDateString(format, locale)
+      timestamp.toDateString("dd/MM/yy", locale)
     }
   }
 

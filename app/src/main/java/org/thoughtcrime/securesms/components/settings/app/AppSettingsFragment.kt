@@ -160,7 +160,11 @@ class AppSettingsFragment : DSLSettingsFragment(
         title = DSLSettingsText.from(R.string.preferences__linked_devices),
         icon = DSLSettingsIcon.from(R.drawable.symbol_devices_24),
         onClick = {
-          findNavController().safeNavigate(R.id.action_appSettingsFragment_to_deviceActivity)
+          if (FeatureFlags.linkedDevicesV2()) {
+            findNavController().safeNavigate(R.id.action_appSettingsFragment_to_linkDeviceFragment)
+          } else {
+            findNavController().safeNavigate(R.id.action_appSettingsFragment_to_deviceActivity)
+          }
         },
         isEnabled = state.isRegisteredAndUpToDate()
       )

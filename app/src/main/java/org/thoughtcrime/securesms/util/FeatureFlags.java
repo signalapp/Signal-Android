@@ -129,6 +129,7 @@ public final class FeatureFlags {
   private static final String RESTORE_POST_REGISTRATION         = "android.registration.restorePostRegistration";
   private static final String LIBSIGNAL_WEB_SOCKET_SHADOW_PCT   = "android.libsignalWebSocketShadowingPercentage";
   private static final String DELETE_SYNC_SEND_RECEIVE          = "android.deleteSyncSendReceive";
+  private static final String LINKED_DEVICES_V2                 = "android.linkedDevices.v2";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -211,7 +212,7 @@ public final class FeatureFlags {
   );
 
   @VisibleForTesting
-  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(MESSAGE_BACKUPS, REGISTRATION_V2, RESTORE_POST_REGISTRATION);
+  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(MESSAGE_BACKUPS, REGISTRATION_V2, RESTORE_POST_REGISTRATION, LINKED_DEVICES_V2);
 
   /**
    * Values in this map will take precedence over any value. This should only be used for local
@@ -748,6 +749,11 @@ public final class FeatureFlags {
   /** Whether or not to delete syncing is enabled. */
   public static boolean deleteSyncEnabled() {
     return getBoolean(DELETE_SYNC_SEND_RECEIVE, false);
+  }
+
+  /** Whether or not to use V2 of linked devices. */
+  public static boolean linkedDevicesV2() {
+    return getBoolean(LINKED_DEVICES_V2, false);
   }
 
   /** Only for rendering debug info. */
