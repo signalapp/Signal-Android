@@ -188,11 +188,7 @@ private fun getSnackbarText(state: RaiseHandState): String {
   return if (!state.isExpanded) {
     pluralStringResource(id = R.plurals.CallRaiseHandSnackbar_raised_hands, count = state.raisedHands.size, getShortDisplayName(state.raisedHands), state.raisedHands.size - 1)
   } else {
-    if (state.raisedHands.size == 1 && state.raisedHands.first().sender.isSelf) {
-      stringResource(id = R.string.CallOverflowPopupWindow__you_raised_your_hand)
-    } else {
-      pluralStringResource(id = R.plurals.CallOverflowPopupWindow__raised_a_hand, count = state.raisedHands.size, state.raisedHands.first().sender.getShortDisplayName(LocalContext.current), state.raisedHands.size - 1)
-    }
+    pluralStringResource(id = R.plurals.CallOverflowPopupWindow__raised_a_hand, count = state.raisedHands.size, state.raisedHands.first().sender.getShortDisplayName(LocalContext.current), state.raisedHands.size - 1)
   }
 }
 
