@@ -14,6 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.i18n.phonenumbers.PhoneNumberUtil
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.logging.Log
@@ -120,6 +121,14 @@ class EnterCodeV2Fragment : LoggingFragment(R.layout.fragment_registration_enter
       } else {
         binding.keyboard.displayKeyboard()
       }
+    }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    sharedViewModel.phoneNumber?.let {
+      val formatted = PhoneNumberUtil.getInstance().format(it, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
+      binding.verificationSubheader.setText(requireContext().getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, formatted))
     }
   }
 

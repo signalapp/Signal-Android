@@ -13,15 +13,18 @@ import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 
 /**
  * Activity to hold the restore from backup flow.
  */
 class RestoreActivity : BaseActivity() {
 
+  private val dynamicTheme = DynamicNoActionBarTheme()
   private val sharedViewModel: RestoreViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    dynamicTheme.onCreate(this)
     super.onCreate(savedInstanceState)
 
     setResult(RESULT_CANCELED)
@@ -30,6 +33,11 @@ class RestoreActivity : BaseActivity() {
     intent.getParcelableExtraCompat(PassphraseRequiredActivity.NEXT_INTENT_EXTRA, Intent::class.java)?.let {
       sharedViewModel.setNextIntent(it)
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    dynamicTheme.onResume(this)
   }
 
   fun finishActivitySuccessfully() {

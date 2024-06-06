@@ -33,6 +33,7 @@
             android:inputType="none"
             android:padding="0dp"
             android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="?attr/colorOnSurface"
             tools:text="0" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -63,6 +64,7 @@
             android:inputType="none"
             android:padding="0dp"
             android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="?attr/colorOnSurface"
             tools:text="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -93,6 +95,7 @@
             android:inputType="none"
             android:padding="0dp"
             android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="?attr/colorOnSurface"
             tools:text="2" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -140,6 +143,7 @@
             android:inputType="none"
             android:padding="0dp"
             android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="?attr/colorOnSurface"
             tools:text="3" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -170,6 +174,7 @@
             android:inputType="none"
             android:padding="0dp"
             android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="?attr/colorOnSurface"
             tools:text="4" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -200,6 +205,7 @@
             android:inputType="none"
             android:padding="0dp"
             android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="?attr/colorOnSurface"
             tools:text="5" />
 
     </com.google.android.material.textfield.TextInputLayout>

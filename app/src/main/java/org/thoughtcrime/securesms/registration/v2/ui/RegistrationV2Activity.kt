@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.SmsRetrieverReceiver
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 
 /**
  * Activity to hold the entire registration process.
@@ -31,6 +32,7 @@ class RegistrationV2Activity : BaseActivity() {
 
   private val TAG = Log.tag(RegistrationV2Activity::class.java)
 
+  private val dynamicTheme = DynamicNoActionBarTheme()
   val sharedViewModel: RegistrationV2ViewModel by viewModels()
 
   private var smsRetrieverReceiver: SmsRetrieverReceiver? = null
@@ -40,13 +42,21 @@ class RegistrationV2Activity : BaseActivity() {
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    dynamicTheme.onCreate(this)
+
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_registration_navigation_v2)
+
     sharedViewModel.checkpoint.observe(this) {
       if (it >= RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE) {
         handleSuccessfulVerify()
       }
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    dynamicTheme.onResume(this)
   }
 
   private fun handleSuccessfulVerify() {
