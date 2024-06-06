@@ -63,6 +63,11 @@ class EnterPhoneNumberV2ViewModel : ViewModel() {
 
   fun setCountry(digits: Int) {
     val matchingIndex = countryCodeToAdapterIndex(digits)
+    if (matchingIndex == -1) {
+      Log.d(TAG, "Invalid country code specified $digits")
+      return
+    }
+
     store.update {
       it.copy(countryPrefixIndex = matchingIndex)
     }

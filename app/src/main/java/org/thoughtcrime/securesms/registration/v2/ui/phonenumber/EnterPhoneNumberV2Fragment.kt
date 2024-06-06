@@ -186,8 +186,11 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
 
   private fun initializeInputFields() {
     binding.countryCode.editText?.addTextChangedListener { s ->
-      val countryCode: Int = s.toString().toInt()
-      fragmentViewModel.setCountry(countryCode)
+      val sanitized = s.toString().filter { c -> c.isDigit() }
+      if (sanitized.isNotNullOrBlank()) {
+        val countryCode: Int = sanitized.toInt()
+        fragmentViewModel.setCountry(countryCode)
+      }
     }
 
     phoneNumberInputLayout.addTextChangedListener {
