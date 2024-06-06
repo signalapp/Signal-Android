@@ -424,6 +424,14 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
             return;
           }
 
+          String eraId = info.getEraId();
+          if (eraId != null && !info.getJoinedMembers().isEmpty()) {
+            if (SignalDatabase.calls().insertAdHocCallFromObserveEvent(callLinkRecipient, System.currentTimeMillis(), eraId)) {
+              AppDependencies.getJobManager()
+                             .add(CallSyncEventJob.createForObserved(callLinkRecipient.getId(), CallId.fromEra(eraId).longValue()));
+            }
+          }
+
           linkPeekInfoStore.update(store -> {
             Map<RecipientId, CallLinkPeekInfo> newHashMap = new HashMap<>(store);
             newHashMap.put(id, CallLinkPeekInfo.fromPeekInfo(info));

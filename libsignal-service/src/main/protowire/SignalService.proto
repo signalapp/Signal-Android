@@ -614,6 +614,7 @@ message SyncMessage {
       ACCEPTED       = 1;
       NOT_ACCEPTED   = 2;
       DELETE         = 3;
+      OBSERVED       = 4;
     }
 
     optional bytes     conversationId = 1;

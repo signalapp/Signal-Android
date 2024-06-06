@@ -47,6 +47,18 @@ object CallEventSyncMessageUtil {
     )
   }
 
+  @JvmStatic
+  fun createObservedCallEvent(remotePeer: RemotePeer, timestamp: Long, isOutgoing: Boolean, isVideoCall: Boolean): CallEvent {
+    return createCallEvent(
+      remotePeer.id,
+      remotePeer.callId.longValue(),
+      timestamp,
+      isOutgoing,
+      isVideoCall,
+      CallEvent.Event.OBSERVED
+    )
+  }
+
   private fun createCallEvent(
     recipientId: RecipientId,
     callId: Long,

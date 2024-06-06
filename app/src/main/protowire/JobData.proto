@@ -9,11 +9,21 @@ option java_multiple_files = true;
 
 
 message CallSyncEventJobRecord {
-  uint64 recipientId = 1;
-  reserved             2;
-  uint64 callId      = 3;
-  uint32 direction   = 4;
-  uint32 event       = 5;
+
+  enum Event {
+    UNKNOWN_ACTION = 0;
+    ACCEPTED       = 1;
+    NOT_ACCEPTED   = 2;
+    DELETE         = 3;
+    OBSERVED       = 4;
+  }
+
+  uint64 recipientId     = 1;
+  reserved                 2;
+  uint64 callId          = 3;
+  uint32 direction       = 4;
+  uint32 deprecatedEvent = 5; // Deprecated for callEvent.
+  Event  callEvent       = 6;
 }
 
 message CallSyncEventJobData {

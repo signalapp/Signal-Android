@@ -1380,6 +1380,23 @@ object SyncMessageProcessor {
     val event: CallTable.Event? = CallTable.Event.from(callEvent.event)
     val hasConversationId: Boolean = callEvent.conversationId != null
 
+    if (hasConversationId && type == CallTable.Type.AD_HOC_CALL && callEvent.event == SyncMessage.CallEvent.Event.OBSERVED && direction != null) {
+      log(envelopeTimestamp, "Handling OBSERVED ad-hoc calling event")
+      if (direction == CallTable.Direction.OUTGOING) {
+        warn("Received an OBSERVED sync message for an outgoing event. Dropping.")
+        return
+      }
+
+      val recipient = resolveCallLinkRecipient(callEvent)
+      SignalDatabase.calls.insertOrUpdateAdHocCallFromObserveEvent(
+        callRecipient = recipient,
+        timestamp = callEvent.timestamp!!,
+        callId = callId
+      )
+
+      return
+    }
+
     if (timestamp == 0L || type == null || direction == null || event == null || !hasConversationId) {
       warn(envelopeTimestamp, "Group/Ad-hoc call event sync message is not valid, ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId")
       return
@@ -1387,9 +1404,7 @@ object SyncMessageProcessor {
 
     val recipient: Recipient? = when (type) {
       CallTable.Type.AD_HOC_CALL -> {
-        val callLinkRoomId = CallLinkRoomId.fromBytes(callEvent.conversationId!!.toByteArray())
-        val callLink = SignalDatabase.callLinks.getOrCreateCallLinkByRoomId(callLinkRoomId)
-        Recipient.resolved(callLink.recipientId)
+        resolveCallLinkRecipient(callEvent)
       }
       CallTable.Type.GROUP_CALL -> {
         val groupId: GroupId = GroupId.push(callEvent.conversationId!!.toByteArray())
@@ -1451,6 +1466,12 @@ object SyncMessageProcessor {
         else -> warn("Unsupported event type $event. Ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId call: null")
       }
     }
+  }
+
+  private fun resolveCallLinkRecipient(callEvent: SyncMessage.CallEvent): Recipient {
+    val callLinkRoomId = CallLinkRoomId.fromBytes(callEvent.conversationId!!.toByteArray())
+    val callLink = SignalDatabase.callLinks.getOrCreateCallLinkByRoomId(callLinkRoomId)
+    return Recipient.resolved(callLink.recipientId)
   }
 
   private fun handleSynchronizeDeleteForMe(context: Context, deleteForMe: SyncMessage.DeleteForMe, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
