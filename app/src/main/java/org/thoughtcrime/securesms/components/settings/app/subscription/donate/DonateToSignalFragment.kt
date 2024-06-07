@@ -150,7 +150,7 @@ class DonateToSignalFragment :
         }
 
         is DonateToSignalAction.DisplayGatewaySelectorDialog -> {
-          Log.d(TAG, "Presenting gateway selector for ${action.inAppPayment}")
+          Log.d(TAG, "Presenting gateway selector for ${action.inAppPayment.id}")
           val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToGatewaySelectorBottomSheetDialog(action.inAppPayment)
 
           findNavController().safeNavigate(navAction)

@@ -218,6 +218,7 @@ class StripePaymentInProgressViewModel(
             .handle(
               action = action,
               inAppPayment = inAppPayment.copy(
+                state = InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION,
                 data = inAppPayment.data.copy(
                   redemption = null,
                   waitForAuth = InAppPaymentData.WaitingForAuthorizationState(
