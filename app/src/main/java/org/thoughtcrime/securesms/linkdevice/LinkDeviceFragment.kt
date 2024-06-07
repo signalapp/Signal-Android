@@ -88,7 +88,7 @@ class LinkDeviceFragment : ComposeFragment() {
 
     Scaffolds.Settings(
       title = stringResource(id = R.string.preferences__linked_devices),
-      onNavigationClick = { navController.popBackStack() },
+      onNavigationClick = { findNavController().popOrFinish() },
       navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding: PaddingValues ->
@@ -101,6 +101,12 @@ class LinkDeviceFragment : ComposeFragment() {
         setDeviceToRemove = { device -> viewModel.setDeviceToRemove(device) },
         onRemoveDevice = { device -> viewModel.removeDevice(requireContext(), device) }
       )
+    }
+  }
+
+  private fun NavController.popOrFinish() {
+    if (!popBackStack()) {
+      requireActivity().finishAfterTransition()
     }
   }
 }
@@ -117,7 +123,7 @@ fun DeviceDescriptionScreen(
 ) {
   if (state.progressDialogMessage != -1) {
     if (navController?.currentDestination?.id == R.id.linkDeviceFinishedSheet) {
-      navController?.popBackStack()
+      navController.popBackStack()
     }
     Dialogs.IndeterminateProgressDialog(stringResource(id = state.progressDialogMessage))
   }

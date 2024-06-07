@@ -166,7 +166,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     this.controlsContainer           = view.findViewById(R.id.camerax_controls_container);
     this.cameraXModePolicy           = CameraXModePolicy.acquire(requireContext(),
                                                         controller.getMediaConstraints(),
-                                                        requireArguments().getBoolean(IS_VIDEO_ENABLED, true));
+                                                        requireArguments().getBoolean(IS_VIDEO_ENABLED, true),
+                                                        requireArguments().getBoolean(IS_QR_SCAN_ENABLED, false));
     this.missingPermissionsContainer = view.findViewById(R.id.missing_permissions_container);
     this.missingPermissionsText      = view.findViewById(R.id.missing_permissions_text);
     this.allowAccessButton           = view.findViewById(R.id.allow_access_button);
