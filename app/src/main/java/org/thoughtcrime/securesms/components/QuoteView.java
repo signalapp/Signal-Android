@@ -325,8 +325,10 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
 
     // Given that most types have images, we specifically check images last
     if (viewOnceSlide != null) {
+      mediaDescriptionText.setPadding(0, mediaDescriptionText.getPaddingTop(), 0, (int) DimensionUnit.DP.toPixels(8));
       mediaDescriptionText.setText(R.string.QuoteView_view_once_media);
     } else if (audioSlide != null) {
+      mediaDescriptionText.setPadding(0, mediaDescriptionText.getPaddingTop(), 0, (int) DimensionUnit.DP.toPixels(8));
       mediaDescriptionText.setText(R.string.QuoteView_audio);
     } else if (documentSlide != null) {
       mediaDescriptionText.setVisibility(GONE);
