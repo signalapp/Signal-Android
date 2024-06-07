@@ -233,7 +233,7 @@ public final class RegistrationRepository {
                          .map(BackupAuthCheckProcessor::new)
                          .doOnSuccess(processor -> {
                            Log.d(TAG, "Received SVR backup auth credential response.");
-                           if (SignalStore.svr().removeAuthTokens(processor.getInvalid())) {
+                           if (SignalStore.svr().removeSvr2AuthTokens(processor.getInvalid())) {
                              new BackupManager(context).dataChanged();
                            }
                          });

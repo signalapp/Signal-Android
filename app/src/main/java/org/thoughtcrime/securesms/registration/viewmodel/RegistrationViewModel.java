@@ -353,7 +353,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
   }
 
   private Single<Boolean> checkForValidSvrAuthCredentials() {
-    final List<String> svrAuthTokenList = SignalStore.svr().getAuthTokenList();
+    final List<String> svrAuthTokenList = SignalStore.svr().getSvr2AuthTokens();
     List<String> usernamePasswords = svrAuthTokenList
         .stream()
         .limit(10)
@@ -376,7 +376,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                  .flatMap(p -> {
                                    if (p.hasValidSvr2AuthCredential()) {
                                      Log.d(TAG, "Saving valid SVR2 auth credential.");
-                                     setSvrAuthCredentials(new SvrAuthCredentialSet(null, p.requireSvr2AuthCredential()));
+                                     setSvrAuthCredentials(new SvrAuthCredentialSet(p.requireSvr2AuthCredential(), null));
                                      return Single.just(true);
                                    } else {
                                      Log.d(TAG, "SVR2 response contained no valid SVR2 auth credentials.");

@@ -11,6 +11,7 @@ import com.google.i18n.phonenumbers.Phonenumber
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.v2.data.network.Challenge
+import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 
 /**
@@ -24,7 +25,8 @@ data class RegistrationV2State(
   val isReRegister: Boolean = false,
   val recoveryPassword: String? = SignalStore.svr().getRecoveryPassword(),
   val canSkipSms: Boolean = false,
-  val svrAuthCredentials: AuthCredentials? = null,
+  val svr2AuthCredentials: AuthCredentials? = null,
+  val svr3AuthCredentials: Svr3Credentials? = null,
   val svrTriesRemaining: Int = 10,
   val incorrectCodeAttempts: Int = 0,
   val isRegistrationLockEnabled: Boolean = false,

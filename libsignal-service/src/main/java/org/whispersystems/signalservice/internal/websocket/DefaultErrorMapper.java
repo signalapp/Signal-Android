@@ -121,8 +121,8 @@ public final class DefaultErrorMapper implements ErrorMapper {
 
         return new LockedException(accountLockFailure.length,
                                    accountLockFailure.timeRemaining,
-                                   accountLockFailure.svr1Credentials,
-                                   accountLockFailure.svr2Credentials);
+                                   accountLockFailure.svr2Credentials,
+                                   accountLockFailure.svr3Credentials);
       case 428:
         ProofRequiredResponse proofRequiredResponse;
         try {

@@ -218,12 +218,10 @@ public abstract class Job {
       return resultType == ResultType.SUCCESS;
     }
 
-    @VisibleForTesting(otherwise = PACKAGE_PRIVATE)
     public boolean isRetry() {
       return resultType == ResultType.RETRY;
     }
 
-    @VisibleForTesting(otherwise = PACKAGE_PRIVATE)
     public boolean isFailure() {
       return resultType == ResultType.FAILURE;
     }

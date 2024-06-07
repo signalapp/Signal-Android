@@ -5,31 +5,29 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobs.protos.Svr3MirrorJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.Svr3Migration
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSession
-import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2
+import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3
 import kotlin.concurrent.withLock
 import kotlin.time.Duration.Companion.days
 
 /**
- * Ensures a user's SVR data is written to SVR2.
+ * Ensures a user's SVR data is written to SVR3.
  */
-class Svr2MirrorJob private constructor(parameters: Parameters, private var serializedChangeSession: String?) : Job(parameters) {
+class Svr3MirrorJob private constructor(parameters: Parameters, private var serializedChangeSession: String?) : Job(parameters) {
 
   companion object {
-    const val KEY = "Svr2MirrorJob"
+    const val KEY = "Svr3MirrorJob"
 
-    private val TAG = Log.tag(Svr2MirrorJob::class.java)
-
+    private val TAG = Log.tag(Svr3MirrorJob::class.java)
     private const val KEY_CHANGE_SESSION = "change_session"
   }
 
@@ -38,24 +36,23 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
       .addConstraint(NetworkConstraint.KEY)
       .setLifespan(30.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
-      .setQueue("Svr2MirrorJob")
+      .setQueue("Svr3MirrorJob")
       .setMaxInstancesForFactory(1)
       .build(),
     null
   )
 
   override fun serialize(): ByteArray? {
-    return JsonJobData.Builder()
-      .putString(KEY_CHANGE_SESSION, serializedChangeSession)
-      .build()
-      .serialize()
+    return Svr3MirrorJobData(
+      serializedChangeSession = serializedChangeSession
+    ).encode()
   }
 
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
-    if (!Svr3Migration.shouldWriteToSvr2) {
-      Log.w(TAG, "Writes to SVR2 are disabled. Skipping.")
+    if (!Svr3Migration.shouldWriteToSvr3) {
+      Log.w(TAG, "Writes to SVR3 are disabled. Skipping.")
       return Result.success()
     }
 
@@ -72,18 +69,18 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
         return Result.success()
       }
 
-      val svr2: SecureValueRecoveryV2 = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
+      val svr3: SecureValueRecoveryV3 = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork)
 
       val session: PinChangeSession = serializedChangeSession?.let { session ->
-        svr2.resumePinChangeSession(pin, SignalStore.svr().getOrCreateMasterKey(), session)
-      } ?: svr2.setPin(pin, SignalStore.svr().getOrCreateMasterKey())
+        svr3.resumePinChangeSession(pin, SignalStore.svr().getOrCreateMasterKey(), session)
+      } ?: svr3.setPin(pin, SignalStore.svr().getOrCreateMasterKey())
 
       serializedChangeSession = session.serialize()
 
       return when (val response: BackupResponse = session.execute()) {
         is BackupResponse.Success -> {
-          Log.i(TAG, "Successfully migrated to SVR2! $svr2")
-          SignalStore.svr().appendSvr2AuthTokenToList(response.authorization.asBasic())
+          Log.i(TAG, "Successfully migrated to SVR3! $svr3")
+          SignalStore.svr().appendSvr3AuthTokenToList(response.authorization.asBasic())
           AppDependencies.jobManager.add(RefreshAttributesJob())
           Result.success()
         }
@@ -122,9 +119,10 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
 
   override fun onFailure() = Unit
 
-  class Factory : Job.Factory<Svr2MirrorJob> {
-    override fun create(parameters: Parameters, serializedData: ByteArray?): Svr2MirrorJob {
-      return Svr2MirrorJob(parameters, JsonJobData.deserialize(serializedData).getString(KEY_CHANGE_SESSION))
+  class Factory : Job.Factory<Svr3MirrorJob> {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): Svr3MirrorJob {
+      val jobData: Svr3MirrorJobData? = serializedData?.let { Svr3MirrorJobData.ADAPTER.decode(serializedData) }
+      return Svr3MirrorJob(parameters, jobData?.serializedChangeSession)
     }
   }
 }

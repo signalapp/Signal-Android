@@ -129,7 +129,7 @@ sealed class NetworkResult<T>(
 
   /**
    * Will perform an operation if the result at this point in the chain is successful. Note that it runs if the chain is _currently_ successful. It does not
-   * depend on anything futher down the chain.
+   * depend on anything further down the chain.
    *
    * ```kotlin
    * val networkResult: NetworkResult<MyData> = NetworkResult

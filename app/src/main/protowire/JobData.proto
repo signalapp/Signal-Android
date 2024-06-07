@@ -99,3 +99,7 @@ message DeleteSyncJobData {
   repeated ThreadDelete threadDeletes = 2;
   repeated ThreadDelete localOnlyThreadDeletes = 3;
 }
+
+message Svr3MirrorJobData {
+  optional string serializedChangeSession = 1;
+}

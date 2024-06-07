@@ -229,7 +229,13 @@ class RegistrationV2ViewModel : ViewModel() {
           is BackupAuthCheckResult.SuccessWithCredentials -> {
             Log.d(TAG, "Found local valid SVR auth credentials.")
             store.update {
-              it.copy(isReRegister = true, canSkipSms = true, svrAuthCredentials = svrCredentialsResult.authCredentials, inProgress = false)
+              it.copy(
+                isReRegister = true,
+                canSkipSms = true,
+                svr2AuthCredentials = svrCredentialsResult.svr2Credentials,
+                svr3AuthCredentials = svrCredentialsResult.svr3Credentials,
+                inProgress = false
+              )
             }
             return@launch
           }
@@ -571,12 +577,14 @@ class RegistrationV2ViewModel : ViewModel() {
     }
 
     // remote recovery password
-    val authCredentials = store.value.svrAuthCredentials
-    if (authCredentials != null) {
-      Log.d(TAG, "Found SVR auth credentials, fetching recovery password from SVR.")
+    val svr2Credentials = store.value.svr2AuthCredentials
+    val svr3Credentials = store.value.svr3AuthCredentials
+
+    if (svr2Credentials != null || svr3Credentials != null) {
+      Log.d(TAG, "Found SVR auth credentials, fetching recovery password from SVR (svr2: ${svr2Credentials != null}, svr3: ${svr3Credentials != null}).")
       viewModelScope.launch(context = coroutineExceptionHandler) {
         try {
-          val masterKey = RegistrationRepository.fetchMasterKeyFromSvrRemote(pin, authCredentials)
+          val masterKey = RegistrationRepository.fetchMasterKeyFromSvrRemote(pin, svr2Credentials, svr3Credentials)
           setRecoveryPassword(masterKey.deriveRegistrationRecoveryPassword())
           updateSvrTriesRemaining(10)
           verifyReRegisterInternal(context, pin, masterKey, registrationErrorHandler)
@@ -628,7 +636,10 @@ class RegistrationV2ViewModel : ViewModel() {
 
     Log.i(TAG, "Received a registration lock response when trying to register an account. Retrying with master key.")
     store.update {
-      it.copy(svrAuthCredentials = registrationResult.svr2Credentials)
+      it.copy(
+        svr2AuthCredentials = registrationResult.svr2Credentials,
+        svr3AuthCredentials = registrationResult.svr3Credentials
+      )
     }
 
     return Pair(RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, pin = pin) { masterKey }, true)
@@ -716,19 +727,26 @@ class RegistrationV2ViewModel : ViewModel() {
       if (pin == null && SignalStore.svr().registrationLockToken != null) {
         Log.d(TAG, "Retrying registration with stored credentials.")
         result = RegistrationRepository.registerAccount(context, sessionId, registrationData, SignalStore.svr().pin) { SignalStore.svr().getOrCreateMasterKey() }
-      } else if (result.svr2Credentials != null) {
-        Log.d(TAG, "Retrying registration with received credentials.")
-        val credentials = result.svr2Credentials
+      } else if (result.svr2Credentials != null || result.svr3Credentials != null) {
+        Log.d(TAG, "Retrying registration with received credentials (svr2: ${result.svr2Credentials != null}, svr3: ${result.svr3Credentials != null}).")
+        val svr2Credentials = result.svr2Credentials
+        val svr3Credentials = result.svr3Credentials
         state = store.updateAndGet {
-          it.copy(svrAuthCredentials = credentials)
+          it.copy(svr2AuthCredentials = svr2Credentials, svr3AuthCredentials = svr3Credentials)
         }
       }
     }
 
     if (reglock && pin.isNotNullOrBlank()) {
-      Log.d(TAG, "Registration lock enabled, attempting to register account restore master key from SVR.")
+      Log.d(TAG, "Registration lock enabled, attempting to register account restore master key from SVR (svr2: ${state.svr2AuthCredentials != null}, svr3: ${state.svr3AuthCredentials != null})")
       result = RegistrationRepository.registerAccount(context, sessionId, registrationData, pin) {
-        SvrRepository.restoreMasterKeyPreRegistration(SvrAuthCredentialSet(null, state.svrAuthCredentials), pin)
+        SvrRepository.restoreMasterKeyPreRegistration(
+          credentials = SvrAuthCredentialSet(
+            svr2Credentials = state.svr2AuthCredentials,
+            svr3Credentials = state.svr3AuthCredentials
+          ),
+          userPin = pin
+        )
       }
     }
 

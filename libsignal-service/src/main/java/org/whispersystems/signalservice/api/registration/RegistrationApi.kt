@@ -9,7 +9,8 @@ import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
 import org.whispersystems.signalservice.api.account.PreKeyCollection
-import org.whispersystems.signalservice.internal.push.BackupAuthCheckResponse
+import org.whispersystems.signalservice.internal.push.BackupV2AuthCheckResponse
+import org.whispersystems.signalservice.internal.push.BackupV3AuthCheckResponse
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
@@ -103,13 +104,24 @@ class RegistrationApi(
   }
 
   /**
-   * Retrieves an SVR auth credential that corresponds with the supplied username and password.
+   * Validates the provided SVR2 auth credentials, returning information on their usability.
    *
    * `POST /v2/backup/auth/check`
    */
-  fun getSvrAuthCredential(e164: String, usernamePasswords: List<String>): NetworkResult<BackupAuthCheckResponse> {
+  fun validateSvr2AuthCredential(e164: String, usernamePasswords: List<String>): NetworkResult<BackupV2AuthCheckResponse> {
     return NetworkResult.fromFetch {
-      pushServiceSocket.checkBackupAuthCredentials(e164, usernamePasswords)
+      pushServiceSocket.checkSvr2AuthCredentials(e164, usernamePasswords)
+    }
+  }
+
+  /**
+   * Validates the provided SVR3 auth credentials, returning information on their usability.
+   *
+   * `POST /v3/backup/auth/check`
+   */
+  fun validateSvr3AuthCredential(e164: String, usernamePasswords: List<String>): NetworkResult<BackupV3AuthCheckResponse> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.checkSvr3AuthCredentials(e164, usernamePasswords)
     }
   }
 

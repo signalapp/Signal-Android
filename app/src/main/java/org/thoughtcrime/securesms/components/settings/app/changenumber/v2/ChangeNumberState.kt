@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.components.settings.app.changenumber.v2
 import org.thoughtcrime.securesms.registration.v2.data.network.Challenge
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState
+import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 
 /**
@@ -21,7 +22,8 @@ data class ChangeNumberState(
   val sessionId: String? = null,
   val changeNumberOutcome: ChangeNumberOutcome? = null,
   val lockedTimeRemaining: Long = 0L,
-  val svrCredentials: AuthCredentials? = null,
+  val svr2Credentials: AuthCredentials? = null,
+  val svr3Credentials: Svr3Credentials? = null,
   val svrTriesRemaining: Int = 10,
   val incorrectCodeAttempts: Int = 0,
   val nextSmsTimestamp: Long = 0L,

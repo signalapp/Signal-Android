@@ -21,7 +21,7 @@ sealed class VerifyResponseProcessor(response: ServiceResponse<VerifyResponse>) 
     get() {
       return error?.let {
         if (it is LockedException) {
-          SvrAuthCredentialSet(it.svr1Credentials, it.svr2Credentials)
+          SvrAuthCredentialSet(svr2Credentials = it.svr2Credentials, svr3Credentials = it.svr3Credentials)
         } else {
           null
         }
@@ -65,7 +65,7 @@ sealed class VerifyResponseProcessor(response: ServiceResponse<VerifyResponse>) 
  */
 class VerifyResponseWithoutKbs(response: ServiceResponse<VerifyResponse>) : VerifyResponseProcessor(response) {
   override fun isRegistrationLockPresentAndSvrExhausted(): Boolean {
-    return registrationLock() && getLockedException().svr1Credentials == null && getLockedException().svr2Credentials == null
+    return registrationLock() && getLockedException().svr2Credentials == null
   }
 }
 

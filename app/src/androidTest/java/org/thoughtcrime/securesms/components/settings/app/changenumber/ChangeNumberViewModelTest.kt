@@ -260,7 +260,8 @@ class ChangeNumberViewModelTest {
       Get("/v1/certificate/delivery") { MockResponse().success(MockProvider.senderCertificate) }
     )
 
-    every { SvrRepository.restoreMasterKeyPreRegistration(any(), any(), any()) } returns SecureValueRecovery.RestoreResponse.Success(MasterKey.createNew(SecureRandom()), AuthCredentials.create("username", "password"))
+    every { SvrRepository.restoreMasterKeyPreRegistrationFromV2(any(), any()) } returns SecureValueRecovery.RestoreResponse.Success(MasterKey.createNew(SecureRandom()), AuthCredentials.create("username", "password"))
+    every { SvrRepository.restoreMasterKeyPreRegistrationFromV3(any(), any()) } returns SecureValueRecovery.RestoreResponse.Success(MasterKey.createNew(SecureRandom()), AuthCredentials.create("username", "password"))
 
     // WHEN
     viewModel.requestVerificationCode(VerifyAccountRepository.Mode.SMS_WITHOUT_LISTENER, null, null).blockingGet().resultOrThrow
@@ -369,7 +370,8 @@ class ChangeNumberViewModelTest {
       Get("/v1/certificate/delivery") { MockResponse().success(MockProvider.senderCertificate) }
     )
 
-    every { SvrRepository.restoreMasterKeyPreRegistration(any(), any(), any()) } returns SecureValueRecovery.RestoreResponse.Success(MasterKey.createNew(SecureRandom()), AuthCredentials.create("username", "password"))
+    every { SvrRepository.restoreMasterKeyPreRegistrationFromV2(any(), any()) } returns SecureValueRecovery.RestoreResponse.Success(MasterKey.createNew(SecureRandom()), AuthCredentials.create("username", "password"))
+    every { SvrRepository.restoreMasterKeyPreRegistrationFromV3(any(), any()) } returns SecureValueRecovery.RestoreResponse.Success(MasterKey.createNew(SecureRandom()), AuthCredentials.create("username", "password"))
 
     // WHEN
     viewModel.requestVerificationCode(VerifyAccountRepository.Mode.SMS_WITHOUT_LISTENER, null, null).blockingGet().resultOrThrow

@@ -57,6 +57,7 @@ import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.api.storage.StorageManifestKey;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3;
+import org.whispersystems.signalservice.api.svr.SvrApi;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -64,7 +65,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.push.BackupAuthCheckRequest;
-import org.whispersystems.signalservice.internal.push.BackupAuthCheckResponse;
+import org.whispersystems.signalservice.internal.push.BackupV2AuthCheckResponse;
 import org.whispersystems.signalservice.internal.push.CdsiAuthResponse;
 import org.whispersystems.signalservice.internal.push.OneTimePreKeyCounts;
 import org.whispersystems.signalservice.internal.push.PaymentAddress;
@@ -183,8 +184,8 @@ public class SignalServiceAccountManager {
     return new SecureValueRecoveryV2(configuration, mrEnclave, pushServiceSocket);
   }
 
-  public SecureValueRecoveryV3 getSecureValueRecoveryV3(Network network, SecureValueRecoveryV3.ShareSetStorage storage) {
-    return new SecureValueRecoveryV3(network, pushServiceSocket, storage);
+  public SecureValueRecoveryV3 getSecureValueRecoveryV3(Network network) {
+    return new SecureValueRecoveryV3(network, pushServiceSocket);
   }
 
   public WhoAmIResponse getWhoAmI() throws IOException {
@@ -205,9 +206,9 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public Single<ServiceResponse<BackupAuthCheckResponse>> checkBackupAuthCredentials(@Nonnull String e164, @Nonnull List<String> usernamePasswords) {
+  public Single<ServiceResponse<BackupV2AuthCheckResponse>> checkBackupAuthCredentials(@Nonnull String e164, @Nonnull List<String> usernamePasswords) {
 
-    return pushServiceSocket.checkBackupAuthCredentials(new BackupAuthCheckRequest(e164, usernamePasswords), DefaultResponseMapper.getDefault(BackupAuthCheckResponse.class));
+    return pushServiceSocket.checkSvr2AuthCredentials(new BackupAuthCheckRequest(e164, usernamePasswords), DefaultResponseMapper.getDefault(BackupV2AuthCheckResponse.class));
   }
 
   /**
@@ -877,6 +878,10 @@ public class SignalServiceAccountManager {
 
   public RegistrationApi getRegistrationApi() {
     return new RegistrationApi(pushServiceSocket);
+  }
+
+  public SvrApi getSvrApi() {
+    return new SvrApi(pushServiceSocket);
   }
 
   public AuthCredentials getPaymentsAuthorization() throws IOException {

@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
-import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3
 
 class InternalSvrPlaygroundViewModel : ViewModel() {
 
@@ -105,22 +104,7 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
   private fun SvrImplementation.toImplementation(): SecureValueRecovery {
     return when (this) {
       SvrImplementation.SVR2 -> AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
-      SvrImplementation.SVR3 -> AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork, TestShareSetStorage())
-    }
-  }
-
-  /**
-   * Temporary implementation of share set storage. Only useful for testing.
-   */
-  private class TestShareSetStorage : SecureValueRecoveryV3.ShareSetStorage {
-    private var shareSet: ByteArray? = null
-
-    override fun write(data: ByteArray) {
-      shareSet = data
-    }
-
-    override fun read(): ByteArray? {
-      return shareSet
+      SvrImplementation.SVR3 -> AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork)
     }
   }
 }

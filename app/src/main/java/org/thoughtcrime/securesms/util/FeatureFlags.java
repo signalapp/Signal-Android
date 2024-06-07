@@ -130,6 +130,7 @@ public final class FeatureFlags {
   private static final String LIBSIGNAL_WEB_SOCKET_SHADOW_PCT   = "android.libsignalWebSocketShadowingPercentage";
   private static final String DELETE_SYNC_SEND_RECEIVE          = "android.deleteSyncSendReceive";
   private static final String LINKED_DEVICES_V2                 = "android.linkedDevices.v2";
+  private static final String SVR3_MIGRATION_PHASE              = "global.svr3.phase";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -208,7 +209,8 @@ public final class FeatureFlags {
       CAMERAX_CUSTOM_CONTROLLER,
       LIBSIGNAL_WEB_SOCKET_ENABLED,
       LIBSIGNAL_WEB_SOCKET_SHADOW_PCT,
-      DELETE_SYNC_SEND_RECEIVE
+      DELETE_SYNC_SEND_RECEIVE,
+      SVR3_MIGRATION_PHASE
   );
 
   @VisibleForTesting
@@ -283,7 +285,8 @@ public final class FeatureFlags {
       RX_MESSAGE_SEND,
       LINKED_DEVICE_LIFESPAN_SECONDS,
       CAMERAX_CUSTOM_CONTROLLER,
-      DELETE_SYNC_SEND_RECEIVE
+      DELETE_SYNC_SEND_RECEIVE,
+      SVR3_MIGRATION_PHASE
   );
 
   /**
@@ -308,6 +311,8 @@ public final class FeatureFlags {
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
     put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> RoutineMessageFetchReceiver.startOrUpdateAlarm(AppDependencies.getApplication()));
+    // TODO [svr3] we need to know what it changed from and to so we can enqueue for 0 -> 1
+//    put(SVR3_MIGRATION_PHASE, change -> if (change));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
@@ -754,6 +759,11 @@ public final class FeatureFlags {
   /** Whether or not to use V2 of linked devices. */
   public static boolean linkedDevicesV2() {
     return getBoolean(LINKED_DEVICES_V2, false);
+  }
+
+  /** Which phase we're in for the SVR3 migration */
+  public static int svr3MigrationPhase() {
+    return getInteger(SVR3_MIGRATION_PHASE, 0);
   }
 
   /** Only for rendering debug info. */

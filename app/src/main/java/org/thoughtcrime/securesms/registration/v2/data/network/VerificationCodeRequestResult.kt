@@ -21,6 +21,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushChallengeRequire
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
 import org.whispersystems.signalservice.api.push.exceptions.RegistrationRetryException
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException
+import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.LockedException
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataJson
@@ -70,7 +71,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
             is InvalidTransportModeException -> InvalidTransportModeFailure(cause)
             is MalformedRequestException -> MalformedRequest(cause)
             is RegistrationRetryException -> MustRetry(cause)
-            is LockedException -> RegistrationLocked(cause = cause, timeRemaining = cause.timeRemaining, svr2Credentials = cause.svr2Credentials)
+            is LockedException -> RegistrationLocked(cause = cause, timeRemaining = cause.timeRemaining, svr2Credentials = cause.svr2Credentials, svr3Credentials = cause.svr3Credentials)
             is NoSuchSessionException -> NoSuchSession(cause)
             is AlreadyVerifiedException -> AlreadyVerified(cause)
             else -> UnknownError(cause)
@@ -125,7 +126,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
 
   class MustRetry(cause: Throwable) : VerificationCodeRequestResult(cause)
 
-  class RegistrationLocked(cause: Throwable, val timeRemaining: Long, val svr2Credentials: AuthCredentials) : VerificationCodeRequestResult(cause)
+  class RegistrationLocked(cause: Throwable, val timeRemaining: Long, val svr2Credentials: AuthCredentials, val svr3Credentials: Svr3Credentials) : VerificationCodeRequestResult(cause)
 
   class NoSuchSession(cause: Throwable) : VerificationCodeRequestResult(cause)
 

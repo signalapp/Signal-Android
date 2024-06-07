@@ -26,8 +26,9 @@ public final class SvrValues extends SignalStoreValues {
   private static final String LAST_CREATE_FAILED_TIMESTAMP    = "kbs.last_create_failed_timestamp";
   public static final  String OPTED_OUT                       = "kbs.opted_out";
   private static final String PIN_FORGOTTEN_OR_SKIPPED        = "kbs.pin.forgotten.or.skipped";
-  private static final String SVR_AUTH_TOKENS                 = "kbs.kbs_auth_tokens";
+  private static final String SVR2_AUTH_TOKENS                = "kbs.kbs_auth_tokens";
   private static final String SVR_LAST_AUTH_REFRESH_TIMESTAMP = "kbs.kbs_auth_tokens.last_refresh_timestamp";
+  private static final String SVR3_AUTH_TOKENS                = "kbs.svr3_auth_tokens";
 
   SvrValues(KeyValueStore store) {
     super(store);
@@ -40,7 +41,10 @@ public final class SvrValues extends SignalStoreValues {
   @Override
   @NonNull
   List<String> getKeysToIncludeInBackup() {
-    return List.of(SVR_AUTH_TOKENS);
+    return List.of(
+        SVR2_AUTH_TOKENS,
+        SVR3_AUTH_TOKENS
+    );
   }
 
   /**
@@ -54,7 +58,7 @@ public final class SvrValues extends SignalStoreValues {
               .remove(PIN)
               .remove(LAST_CREATE_FAILED_TIMESTAMP)
               .remove(OPTED_OUT)
-              .remove(SVR_AUTH_TOKENS)
+              .remove(SVR2_AUTH_TOKENS)
               .remove(SVR_LAST_AUTH_REFRESH_TIMESTAMP)
               .commit();
   }
@@ -167,13 +171,22 @@ public final class SvrValues extends SignalStoreValues {
     putBoolean(PIN_FORGOTTEN_OR_SKIPPED, value);
   }
 
-  public synchronized void putAuthTokenList(List<String> tokens) {
-    putList(SVR_AUTH_TOKENS, tokens, StringStringSerializer.INSTANCE);
+  public synchronized void putSvr2AuthTokens(List<String> tokens) {
+    putList(SVR2_AUTH_TOKENS, tokens, StringStringSerializer.INSTANCE);
     setLastRefreshAuthTimestamp(System.currentTimeMillis());
   }
 
-  public synchronized List<String> getAuthTokenList() {
-    return getList(SVR_AUTH_TOKENS, StringStringSerializer.INSTANCE);
+  public synchronized void putSvr3AuthTokens(List<String> tokens) {
+    putList(SVR3_AUTH_TOKENS, tokens, StringStringSerializer.INSTANCE);
+    setLastRefreshAuthTimestamp(System.currentTimeMillis());
+  }
+
+  public synchronized List<String> getSvr2AuthTokens() {
+    return getList(SVR2_AUTH_TOKENS, StringStringSerializer.INSTANCE);
+  }
+
+  public synchronized List<String> getSvr3AuthTokens() {
+    return getList(SVR3_AUTH_TOKENS, StringStringSerializer.INSTANCE);
   }
 
   /**
@@ -181,21 +194,47 @@ public final class SvrValues extends SignalStoreValues {
    * @param token
    * @return whether the token was added (new) or ignored (already existed)
    */
-  public synchronized boolean appendAuthTokenToList(String token) {
-    List<String> tokens = getAuthTokenList();
+  public synchronized boolean appendSvr2AuthTokenToList(String token) {
+    List<String> tokens = getSvr2AuthTokens();
     if (tokens.contains(token)) {
       return false;
     } else {
       final List<String> result = Stream.concat(Stream.of(token), tokens.stream()).limit(10).collect(Collectors.toList());
-      putAuthTokenList(result);
+      putSvr2AuthTokens(result);
       return true;
     }
   }
 
-  public boolean removeAuthTokens(@NonNull List<String> invalid) {
-    List<String> tokens = new ArrayList<>(getAuthTokenList());
+  /**
+   * Keeps the 10 most recent SVR3 auth tokens.
+   * @param token
+   * @return whether the token was added (new) or ignored (already existed)
+   */
+  public synchronized boolean appendSvr3AuthTokenToList(String token) {
+    List<String> tokens = getSvr3AuthTokens();
+    if (tokens.contains(token)) {
+      return false;
+    } else {
+      final List<String> result = Stream.concat(Stream.of(token), tokens.stream()).limit(10).collect(Collectors.toList());
+      putSvr3AuthTokens(result);
+      return true;
+    }
+  }
+
+  public boolean removeSvr2AuthTokens(@NonNull List<String> invalid) {
+    List<String> tokens = new ArrayList<>(getSvr2AuthTokens());
     if (tokens.removeAll(invalid)) {
-      putAuthTokenList(tokens);
+      putSvr2AuthTokens(tokens);
+      return true;
+    }
+
+    return false;
+  }
+
+  public boolean removeSvr3AuthTokens(@NonNull List<String> invalid) {
+    List<String> tokens = new ArrayList<>(getSvr3AuthTokens());
+    if (tokens.removeAll(invalid)) {
+      putSvr3AuthTokens(tokens);
       return true;
     }
 

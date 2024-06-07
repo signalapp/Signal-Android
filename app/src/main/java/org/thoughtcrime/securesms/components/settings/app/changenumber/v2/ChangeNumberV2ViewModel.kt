@@ -253,7 +253,15 @@ class ChangeNumberV2ViewModel : ViewModel() {
     val result: ChangeNumberResult = if (pin == null) {
       repository.changeNumberWithoutRegistrationLock(sessionId = sessionId, newE164 = number.e164Number)
     } else {
-      repository.changeNumberWithRegistrationLock(sessionId = sessionId, newE164 = number.e164Number, pin, SvrAuthCredentialSet(null, store.value.svrCredentials))
+      repository.changeNumberWithRegistrationLock(
+        sessionId = sessionId,
+        newE164 = number.e164Number,
+        pin = pin,
+        svrAuthCredentials = SvrAuthCredentialSet(
+          svr2Credentials = store.value.svr2Credentials,
+          svr3Credentials = store.value.svr3Credentials
+        )
+      )
     }
 
     if (result is ChangeNumberResult.Success) {
@@ -422,7 +430,8 @@ class ChangeNumberV2ViewModel : ViewModel() {
       is VerificationCodeRequestResult.RegistrationLocked ->
         store.update {
           it.copy(
-            svrCredentials = result.svr2Credentials
+            svr2Credentials = result.svr2Credentials,
+            svr3Credentials = result.svr3Credentials
           )
         }
       else -> Log.i(TAG, "Received exception during verification.", result.getCause())
@@ -438,7 +447,8 @@ class ChangeNumberV2ViewModel : ViewModel() {
       is ChangeNumberResult.RegistrationLocked ->
         store.update {
           it.copy(
-            svrCredentials = result.svr2Credentials
+            svr2Credentials = result.svr2Credentials,
+            svr3Credentials = result.svr3Credentials
           )
         }
       is ChangeNumberResult.SvrWrongPin -> {

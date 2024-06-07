@@ -10,7 +10,6 @@ import android.content.Context
 import androidx.core.app.NotificationManagerCompat
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
@@ -37,6 +36,7 @@ import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationIds
+import org.thoughtcrime.securesms.pin.Svr3Migration
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.push.AccountManagerFactory
@@ -67,6 +67,7 @@ import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.registration.RegistrationApi
+import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataHeaders
@@ -259,9 +260,10 @@ object RegistrationRepository {
     return PinHashUtil.verifyLocalPinHash(pinHash, pin)
   }
 
-  suspend fun fetchMasterKeyFromSvrRemote(pin: String, authCredentials: AuthCredentials): MasterKey =
+  suspend fun fetchMasterKeyFromSvrRemote(pin: String, svr2Credentials: AuthCredentials?, svr3Credentials: Svr3Credentials?): MasterKey =
     withContext(Dispatchers.IO) {
-      val masterKey = SvrRepository.restoreMasterKeyPreRegistration(SvrAuthCredentialSet(null, authCredentials), pin)
+      val credentialSet = SvrAuthCredentialSet(svr2Credentials = svr2Credentials, svr3Credentials = svr3Credentials)
+      val masterKey = SvrRepository.restoreMasterKeyPreRegistration(credentialSet, pin)
       SignalStore.svr().setMasterKey(masterKey, pin)
       return@withContext masterKey
     }
@@ -488,36 +490,55 @@ object RegistrationRepository {
 
   suspend fun hasValidSvrAuthCredentials(context: Context, e164: String, password: String): BackupAuthCheckResult =
     withContext(Dispatchers.IO) {
-      val usernamePasswords = async { retrieveLocalSvrCredentials() }
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
 
-      val authTokens = usernamePasswords.await()
-
-      if (authTokens.isEmpty()) {
-        return@withContext BackupAuthCheckResult.SuccessWithoutCredentials()
-      }
-
-      val result = api.getSvrAuthCredential(e164, authTokens)
-        .runIfSuccessful {
-          val removedInvalidTokens = SignalStore.svr().removeAuthTokens(it.invalid)
-          if (removedInvalidTokens) {
-            BackupManager(context).dataChanged()
-          }
+      val svr3Result = SignalStore.svr().svr3AuthTokens
+        ?.takeIf { Svr3Migration.shouldReadFromSvr3 }
+        ?.takeIf { it.isNotEmpty() }
+        ?.toSvrCredentials()
+        ?.let { authTokens ->
+          api
+            .validateSvr3AuthCredential(e164, authTokens)
+            .runIfSuccessful {
+              val removedInvalidTokens = SignalStore.svr().removeSvr3AuthTokens(it.invalid)
+              if (removedInvalidTokens) {
+                BackupManager(context).dataChanged()
+              }
+            }
+            .let { BackupAuthCheckResult.fromV3(it) }
         }
 
-      return@withContext BackupAuthCheckResult.from(result)
+      if (svr3Result is BackupAuthCheckResult.SuccessWithCredentials) {
+        Log.d(TAG, "Found valid SVR3 credentials.")
+        return@withContext svr3Result
+      }
+
+      Log.d(TAG, "No valid SVR3 credentials, looking for SVR2.")
+
+      return@withContext SignalStore.svr().svr2AuthTokens
+        ?.takeIf { it.isNotEmpty() }
+        ?.toSvrCredentials()
+        ?.let { authTokens ->
+          api
+            .validateSvr2AuthCredential(e164, authTokens)
+            .runIfSuccessful {
+              val removedInvalidTokens = SignalStore.svr().removeSvr2AuthTokens(it.invalid)
+              if (removedInvalidTokens) {
+                BackupManager(context).dataChanged()
+              }
+            }
+            .let { BackupAuthCheckResult.fromV2(it) }
+        } ?: BackupAuthCheckResult.SuccessWithoutCredentials()
     }
 
-  private suspend fun retrieveLocalSvrCredentials(): List<String> = withContext(Dispatchers.IO) {
-    return@withContext SignalStore.svr()
-      .authTokenList
+  /** Converts the basic-auth creds we have locally into username:password pairs that are suitable for handing off to the service. */
+  private fun List<String?>.toSvrCredentials(): List<String> {
+    return this
       .asSequence()
       .filterNotNull()
-      .take<String>(10)
-      .map<String, String> {
-        it.replace("Basic ", "").trim()
-      }
-      .mapNotNull<String, ByteArray> {
+      .take(10)
+      .map { it.replace("Basic ", "").trim() }
+      .mapNotNull {
         try {
           Base64.decode(it)
         } catch (e: IOException) {
@@ -525,9 +546,7 @@ object RegistrationRepository {
           null
         }
       }
-      .map<ByteArray, String> {
-        String(it, StandardCharsets.ISO_8859_1)
-      }
+      .map { String(it, StandardCharsets.ISO_8859_1) }
       .toList()
   }
 
