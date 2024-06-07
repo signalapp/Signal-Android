@@ -358,6 +358,11 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     return getBoolean(USER_MANUALLY_CANCELLED, false)
   }
 
+  @Deprecated("Manual cancellation is stored in InAppPayment records. We should no longer need to set this value.")
+  fun markUserManuallyCancelled() {
+    return putBoolean(USER_MANUALLY_CANCELLED, true)
+  }
+
   @Deprecated("Manual cancellation is stored in InAppPayment records. We no longer need to clear this value.")
   fun clearUserManuallyCancelled() {
     remove(USER_MANUALLY_CANCELLED)
@@ -459,6 +464,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
           Log.d(TAG, "[updateLocalStateForManualCancellation] Clearing expired badge.")
           setExpiredBadge(null)
         }
+        SignalStore.donationsValues().markUserManuallyCancelled()
       }
 
       val subscriber = InAppPaymentsRepository.getSubscriber(subscriberType)

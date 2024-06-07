@@ -549,13 +549,13 @@ class ChatItemImportInserter(
         typeFlags = MessageTypes.PROFILE_CHANGE_TYPE
         val profileChangeDetails = ProfileChangeDetails(profileNameChange = ProfileChangeDetails.StringChange(previous = updateMessage.profileChange.previousName, newValue = updateMessage.profileChange.newName))
         val messageExtras = MessageExtras(profileChangeDetails = profileChangeDetails).encode()
-        put(MessageTable.MESSAGE_EXTRAS, Base64.encodeWithPadding(messageExtras))
+        put(MessageTable.MESSAGE_EXTRAS, messageExtras)
       }
       updateMessage.learnedProfileChange != null -> {
         typeFlags = MessageTypes.PROFILE_CHANGE_TYPE
         val profileChangeDetails = ProfileChangeDetails(learnedProfileName = ProfileChangeDetails.LearnedProfileName(e164 = updateMessage.learnedProfileChange.e164?.toString(), username = updateMessage.learnedProfileChange.username))
         val messageExtras = MessageExtras(profileChangeDetails = profileChangeDetails).encode()
-        put(MessageTable.MESSAGE_EXTRAS, Base64.encodeWithPadding(messageExtras))
+        put(MessageTable.MESSAGE_EXTRAS, messageExtras)
       }
       updateMessage.sessionSwitchover != null -> {
         typeFlags = MessageTypes.SESSION_SWITCHOVER_TYPE or (getAsLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK.inv())

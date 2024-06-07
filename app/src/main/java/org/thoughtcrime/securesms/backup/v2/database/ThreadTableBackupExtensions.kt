@@ -116,8 +116,9 @@ class ChatIterator(private val cursor: Cursor) : Iterator<Chat>, Closeable {
       null
     }
 
-    val chatStyleBuilder = ChatStyle.Builder()
+    var chatStyleBuilder: ChatStyle.Builder? = null
     if (chatColors != null) {
+      chatStyleBuilder = ChatStyle.Builder()
       val presetBubbleColor = chatColors.tryToMapToBackupPreset()
       if (presetBubbleColor != null) {
         chatStyleBuilder.bubbleColorPreset = presetBubbleColor
@@ -139,7 +140,7 @@ class ChatIterator(private val cursor: Cursor) : Iterator<Chat>, Closeable {
       muteUntilMs = cursor.requireLong(RecipientTable.MUTE_UNTIL),
       markedUnread = ThreadTable.ReadStatus.deserialize(cursor.requireInt(ThreadTable.READ)) == ThreadTable.ReadStatus.FORCED_UNREAD,
       dontNotifyForMentionsIfMuted = RecipientTable.MentionSetting.DO_NOT_NOTIFY.id == cursor.requireInt(RecipientTable.MENTION_SETTING),
-      style = chatStyleBuilder.build()
+      style = chatStyleBuilder?.build()
     )
   }
 

@@ -94,7 +94,7 @@ object BackupRepository {
       )
     }
 
-    val exportState = ExportState(backupTime = System.currentTimeMillis(), allowMediaBackup = true)
+    val exportState = ExportState(backupTime = System.currentTimeMillis(), allowMediaBackup = SignalStore.backup().backsUpMedia)
 
     writer.use {
       writer.write(
