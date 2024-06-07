@@ -1944,7 +1944,8 @@
     <string name="RedPhone_ringing">Ringing…</string>
     <string name="RedPhone_busy">Busy</string>
     <string name="RedPhone_recipient_unavailable">Recipient unavailable</string>
-    <string name="RedPhone_network_failed">Network failed!</string>
+    <!-- Error message shown during a call when a fatal network error occurs. -->
+    <string name="RedPhone_network_failed">Network failed! Please check network connection and try again.</string>
     <string name="RedPhone_number_not_registered">Number not registered!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">The number you dialed does not support secure voice!</string>
     <string name="RedPhone_got_it">Got it</string>

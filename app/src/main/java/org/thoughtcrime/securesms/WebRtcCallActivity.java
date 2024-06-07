@@ -1102,7 +1102,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     @Override
     public void toggleControls() {
       WebRtcControls controlState = viewModel.getWebRtcControls().getValue();
-      if (controlState != null && !controlState.displayIncomingCallButtons()) {
+      if (controlState != null && !controlState.displayIncomingCallButtons() && !controlState.displayErrorControls()) {
         controlsAndInfo.toggleControls();
       }
     }
@@ -1287,9 +1287,12 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     @Override
     public void onHidden() {
-      fullscreenHelper.hideSystemUI();
-      if (videoTooltip != null) {
-        videoTooltip.dismiss();
+      WebRtcControls controlState = viewModel.getWebRtcControls().getValue();
+      if (controlState == null || !controlState.displayErrorControls()) {
+        fullscreenHelper.hideSystemUI();
+        if (videoTooltip != null) {
+          videoTooltip.dismiss();
+        }
       }
     }
   }
