@@ -46,7 +46,7 @@ object QrScanScreens {
     update: (QrScannerView) -> Unit = NoOpUpdate,
     hasPermission: Boolean,
     onRequestPermissions: () -> Unit = {},
-    qrString: String,
+    qrHeaderLabelString: String,
     onGalleryOpened: () -> Unit = {}
   ) {
     val path = remember { Path() }
@@ -97,7 +97,7 @@ object QrScanScreens {
           }
         } else {
           Text(
-            text = qrString,
+            text = qrHeaderLabelString,
             style = MaterialTheme.typography.bodyMedium,
             color = Color.White,
             textAlign = TextAlign.Center,

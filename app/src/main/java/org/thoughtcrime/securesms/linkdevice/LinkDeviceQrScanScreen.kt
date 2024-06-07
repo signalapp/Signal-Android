@@ -107,7 +107,7 @@ fun LinkDeviceQrScanScreen(
         },
         hasPermission = hasPermission,
         onRequestPermissions = onRequestPermissions,
-        qrString = stringResource(R.string.AddLinkDeviceFragment__scan_the_qr_code),
+        qrHeaderLabelString = stringResource(R.string.AddLinkDeviceFragment__scan_the_qr_code),
         onGalleryOpened = onGalleryOpened
       )
     }
