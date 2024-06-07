@@ -881,6 +881,10 @@
     <string name="LinkDeviceFragment__unlink">Unlink</string>
     <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
     <string name="LinkDeviceFragment__s_unlinked">%s unlinked</string>
+    <!-- Progress dialog message indicating that a device is currently being linked with an account -->
+    <string name="LinkDeviceFragment__linking_device">Linking device…</string>
+    <!-- Toast message shown after a device has been linked -->
+    <string name="LinkDeviceFragment__device_approved">Device approved</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->

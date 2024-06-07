@@ -26,7 +26,8 @@ import java.util.Optional;
 
 public class MultiDeviceConfigurationUpdateJob extends BaseJob {
 
-  public static final String KEY = "MultiDeviceConfigurationUpdateJob";
+  public static final String KEY   = "MultiDeviceConfigurationUpdateJob";
+  public static final String QUEUE = "__MULTI_DEVICE_CONFIGURATION_UPDATE_JOB__";
 
   private static final String TAG = Log.tag(MultiDeviceConfigurationUpdateJob.class);
 
@@ -46,7 +47,7 @@ public class MultiDeviceConfigurationUpdateJob extends BaseJob {
                                            boolean linkPreviewsEnabled)
   {
     this(new Job.Parameters.Builder()
-                           .setQueue("__MULTI_DEVICE_CONFIGURATION_UPDATE_JOB__")
+                           .setQueue(QUEUE)
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(10)
                            .build(),

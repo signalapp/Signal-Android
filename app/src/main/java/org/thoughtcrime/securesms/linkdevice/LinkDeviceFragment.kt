@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.linkdevice
 
+import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,6 +25,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,6 +40,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
@@ -45,7 +50,6 @@ import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Locale
@@ -57,69 +61,54 @@ class LinkDeviceFragment : ComposeFragment() {
 
   private val viewModel: LinkDeviceViewModel by activityViewModels()
 
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    viewModel.initialize(requireContext())
+  }
+
   @Composable
   override fun FragmentContent() {
     val state by viewModel.state.collectAsState()
+    val navController: NavController by remember { mutableStateOf(findNavController()) }
 
     LaunchedEffect(state.toastDialog) {
       if (state.toastDialog.isNotEmpty()) {
         Toast.makeText(requireContext(), state.toastDialog, Toast.LENGTH_LONG).show()
+        viewModel.clearToast()
       }
     }
 
     LaunchedEffect(state.showFinishedSheet) {
       if (state.showFinishedSheet) {
-        onShowFinishedSheet()
+        findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceFinishedSheet)
+        viewModel.markFinishedSheetSeen()
       }
     }
 
     Scaffolds.Settings(
       title = stringResource(id = R.string.preferences__linked_devices),
-      onNavigationClick = { findNavController().popBackStack() },
+      onNavigationClick = { navController.popBackStack() },
       navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding: PaddingValues ->
       DeviceDescriptionScreen(
         state = state,
+        navController = navController,
         modifier = Modifier.padding(contentPadding),
-        onLearnMore = this::openLearnMore,
-        onLinkDevice = this::openLinkNewDevice,
-        setDeviceToRemove = this::setDeviceToRemove,
-        onRemoveDevice = this::onRemoveDevice
+        onLearnMore = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet) },
+        onLinkDevice = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment) },
+        setDeviceToRemove = { device -> viewModel.setDeviceToRemove(device) },
+        onRemoveDevice = { device -> viewModel.removeDevice(requireContext(), device) }
       )
     }
-  }
-
-  override fun onResume() {
-    super.onResume()
-    viewModel.loadDevices(requireContext())
-  }
-
-  private fun openLearnMore() {
-    LinkDeviceLearnMoreBottomSheetFragment().show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
-  }
-
-  private fun openLinkNewDevice() {
-    findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
-  }
-
-  private fun setDeviceToRemove(device: Device?) {
-    viewModel.setDeviceToRemove(device)
-  }
-
-  private fun onRemoveDevice(device: Device) {
-    viewModel.removeDevice(requireContext(), device)
-  }
-
-  private fun onShowFinishedSheet() {
-    LinkDeviceFinishedSheet().show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
-    viewModel.markFinishedSheetSeen()
   }
 }
 
 @Composable
 fun DeviceDescriptionScreen(
   state: LinkDeviceSettingsState,
+  navController: NavController? = null,
   modifier: Modifier = Modifier,
   onLearnMore: () -> Unit = {},
   onLinkDevice: () -> Unit = {},
@@ -127,6 +116,9 @@ fun DeviceDescriptionScreen(
   onRemoveDevice: (Device) -> Unit = {}
 ) {
   if (state.progressDialogMessage != -1) {
+    if (navController?.currentDestination?.id == R.id.linkDeviceFinishedSheet) {
+      navController?.popBackStack()
+    }
     Dialogs.IndeterminateProgressDialog(stringResource(id = state.progressDialogMessage))
   }
   if (state.deviceToRemove != null) {

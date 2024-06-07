@@ -243,7 +243,20 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_linkDeviceFragment_to_linkDeviceFinishedSheet"
+            app:destination="@id/linkDeviceFinishedSheet" />
+        <action
+            android:id="@+id/action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet"
+            app:destination="@id/linkDeviceLearnMoreBottomSheet" />
     </fragment>
+    <dialog
+        android:id="@+id/linkDeviceFinishedSheet"
+        android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceFinishedSheet" />
+    <dialog
+        android:id="@+id/linkDeviceLearnMoreBottomSheet"
+        android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceLearnMoreBottomSheetFragment" />
+
     <fragment
         android:id="@+id/addLinkDeviceFragment"
         android:name="org.thoughtcrime.securesms.linkdevice.AddLinkDeviceFragment"

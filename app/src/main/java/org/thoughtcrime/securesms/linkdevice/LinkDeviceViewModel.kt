@@ -14,7 +14,11 @@ import kotlinx.coroutines.launch
 import org.signal.core.util.toOptional
 import org.signal.qr.QrProcessor
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
+import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob
 
 /**
  * Maintains the state of the [LinkDeviceFragment]
@@ -23,6 +27,26 @@ class LinkDeviceViewModel : ViewModel() {
 
   private val _state = MutableStateFlow(LinkDeviceSettingsState())
   val state = _state.asStateFlow()
+
+  private lateinit var listener: JobTracker.JobListener
+
+  fun initialize(context: Context) {
+    listener = JobTracker.JobListener { _, jobState ->
+      if (jobState.isComplete) {
+        loadDevices(context = context, isPotentialNewDevice = true)
+      }
+    }
+    AppDependencies.jobManager.addListener(
+      { job: Job -> job.parameters.queue?.startsWith(MultiDeviceConfigurationUpdateJob.QUEUE) ?: false },
+      listener
+    )
+    loadDevices(context)
+  }
+
+  override fun onCleared() {
+    super.onCleared()
+    AppDependencies.jobManager.removeListener(listener)
+  }
 
   fun setDeviceToRemove(device: Device?) {
     _state.update { it.copy(deviceToRemove = device) }
@@ -47,7 +71,14 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  fun loadDevices(context: Context) {
+  private fun loadDevices(context: Context, isPotentialNewDevice: Boolean = false) {
+    if (isPotentialNewDevice && !_state.value.pendingNewDevice) {
+      return
+    }
+    _state.value = _state.value.copy(
+      progressDialogMessage = if (isPotentialNewDevice) R.string.LinkDeviceFragment__linking_device else -1,
+      pendingNewDevice = if (isPotentialNewDevice) false else _state.value.pendingNewDevice
+    )
     viewModelScope.launch(Dispatchers.IO) {
       val devices = LinkDeviceRepository.loadDevices()
       if (devices == null) {
@@ -58,7 +89,7 @@ class LinkDeviceViewModel : ViewModel() {
       } else {
         _state.update {
           it.copy(
-            toastDialog = "",
+            toastDialog = if (isPotentialNewDevice) context.getString(R.string.LinkDeviceFragment__device_approved) else "",
             devices = devices,
             progressDialogMessage = -1
           )
@@ -160,7 +191,8 @@ class LinkDeviceViewModel : ViewModel() {
       it.copy(
         showFinishedSheet = showSheet,
         linkDeviceResult = LinkDeviceRepository.LinkDeviceResult.UNKNOWN,
-        toastDialog = ""
+        toastDialog = "",
+        pendingNewDevice = true
       )
     }
   }
@@ -190,6 +222,14 @@ class LinkDeviceViewModel : ViewModel() {
           showFrontCamera = null
         )
       }
+    }
+  }
+
+  fun clearToast() {
+    _state.update {
+      it.copy(
+        toastDialog = ""
+      )
     }
   }
 }
