@@ -21,7 +21,7 @@
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="delete">Eliminar</string>
-    <string name="please_wait">Espera, por favor…</string>
+    <string name="please_wait">Espera un momento…</string>
     <string name="save">Guardar</string>
     <string name="note_to_self">Notas privadas</string>
 
@@ -38,20 +38,20 @@
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
-    <string name="ApplicationMigrationActivity__signal_is_updating">Signal se está actualizando …</string>
+    <string name="ApplicationMigrationActivity__signal_is_updating">Signal se está actualizando…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡Todavía no has fijado una clave de acceso!</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Todavía no has fijado una clave de acceso.</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">¿Desactivar clave de acceso?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Esto desbloqueará permanentemente Signal y las notificaciones por mensajes.</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Esto desbloqueará permanentemente Signal y las notificaciones de mensajes.</string>
     <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
-    <string name="ApplicationPreferencesActivity_error_connecting_to_server">¡Fallo al conectarse al servidor!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">El bloqueo de registro necesita el PIN. Desactiva primero el bloqueo de registro y después el PIN.</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fallo al conectarse al servidor</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Se necesita el PIN para el bloqueo de registro. Desactiva primero el bloqueo de registro y después el PIN.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN creado.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivado.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Mostrar frase de recuperación</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Frase de recuperación</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desactivar tu PIN, debes guardar la frase de recuperación de tu cartera de pagos para asegurarte que puedas recuperar tu cuenta de pagos en un futuro.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrar clave de recuperación de pagos</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">Registrar clave</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desactivar tu PIN, debes registrar la clave de recuperación de tu cartera de pagos para asegurarte de que puedas recuperar tu cuenta de pagos si lo necesitas.</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -71,7 +71,7 @@
     <string name="DraftDatabase_Draft_image_snippet">(imagen)</string>
     <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
     <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
-    <string name="DraftDatabase_Draft_location_snippet">(posición)</string>
+    <string name="DraftDatabase_Draft_location_snippet">(ubicación)</string>
     <string name="DraftDatabase_Draft_quote_snippet">(responder)</string>
     <string name="DraftDatabase_Draft_voice_note">(Nota de voz)</string>
 
@@ -79,14 +79,14 @@
     <string name="AttachmentKeyboard_gallery">Galería</string>
     <string name="AttachmentKeyboard_file">Archivo</string>
     <string name="AttachmentKeyboard_contact">Contacto</string>
-    <string name="AttachmentKeyboard_location">Posición</string>
+    <string name="AttachmentKeyboard_location">Ubicación</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal necesita permiso para mostrar tus fotos y vídeos</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Permitir acceso</string>
     <string name="AttachmentKeyboard_payment">Pago</string>
 
     <!-- AttachmentManager -->
-    <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el contenido seleccionado.</string>
+    <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el archivo seleccionado.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal necesita acceso al almacenamiento de tu teléfono para adjuntar fotos, vídeos o audio. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Almacenamiento».</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal necesita acceso a los contactos en tu teléfono para adjuntar información de personas en tus chats. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Contactos».</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal necesita acceso a tu posición para adjuntar la información en tus chats. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Ubicación».</string>
@@ -116,11 +116,11 @@
     <string name="AttachmentManager__cancel">Cancelar</string>
 
     <!-- AttachmentUploadJob -->
-    <string name="AttachmentUploadJob_uploading_media">Transfiriendo adjunto …</string>
-    <string name="AttachmentUploadJob_compressing_video_start">Comprimiendo vídeo …</string>
+    <string name="AttachmentUploadJob_uploading_media">Cargando archivo multimedia…</string>
+    <string name="AttachmentUploadJob_compressing_video_start">Comprimiendo vídeo…</string>
 
     <!-- BackgroundMessageRetriever -->
-    <string name="BackgroundMessageRetriever_checking_for_messages">Comprobando mensajes …</string>
+    <string name="BackgroundMessageRetriever_checking_for_messages">Comprobando mensajes…</string>
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Ignorar</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Invitaciones pendientes</string>
+    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
     <string name="PendingMembersActivity_requests">Solicitudes</string>
     <string name="PendingMembersActivity_invites">Invitaciones</string>
     <string name="PendingMembersActivity_people_you_invited">Personas invitadas por ti</string>
@@ -1645,7 +1645,7 @@
     <!-- Message shown to inform user that a payment is missing details due to restore -->
     <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
-    <string name="MessageRecord_payments_restore_tombstone_tap_more">Tap for more</string>
+    <string name="MessageRecord_payments_restore_tombstone_tap_more">Toca para ver más</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
     <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
@@ -1710,7 +1710,7 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Pago: %1$s</string>
     <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
-    <string name="MessageRecord__payment_tombstone">Payment</string>
+    <string name="MessageRecord__payment_tombstone">Pago</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Denunciado como spam</string>
     <!-- Update message shown in chat after accept a message request -->
@@ -1961,11 +1961,11 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Alguien te ha expulsado de la llamada.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">Allow access to your camera and microphone</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">Permite acceso a tu cámara y tu micrófono</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">Allow access to your microphone</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">Permitir acceso a tu micrófono</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">Allow access to your camera</string>
+    <string name="WebRtcCallActivity__allow_access_camera">Permite acceso a tu cámara</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
@@ -2076,18 +2076,16 @@
     <string name="CallOverflowPopupWindow__lower_hand">Bajar la mano</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Cancelar</string>
-    <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">Has levantado la mano</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Ver</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s ha levantado la mano</item>
-        <item quantity="other">%1$s + %2$d han levantado la mano</item>
+        <item quantity="one">%1$s raised a hand</item>
+        <item quantity="other">%1$s + %2$d raised a hand</item>
     </plurals>
 
-    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
+    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallRaiseHandSnackbar_raised_hands">
         <item quantity="one">%1$s</item>
         <item quantity="other">%1$s +%2$d</item>
@@ -2215,7 +2213,7 @@
     <string name="RegistrationActivity_cancel">Cancelar</string>
     <string name="RegistrationActivity_next">Siguiente</string>
     <string name="RegistrationActivity_continue">Adelante</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Lleva la privacidad contigo.\nSé tú mism@ en todos tus mensajes.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Lleva la privacidad contigo.\nSé tú en cada mensaje.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Número de teléfono</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -5718,9 +5716,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">No puedes responder a esta historia porque ya no perteneces a este grupo.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reaccionó a la historia</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reaccionó a la historia</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Vistas</string>
     <!-- Label for story replies tab -->
@@ -6947,7 +6945,7 @@
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
+    <string name="DeleteSyncEducation_acknowledge_button">Aceptar</string>
 
     <!-- EOF -->
 </resources>

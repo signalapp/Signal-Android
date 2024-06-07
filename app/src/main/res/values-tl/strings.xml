@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">I-dismiss</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Pending group invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
     <string name="PendingMembersActivity_requests">Requests</string>
     <string name="PendingMembersActivity_invites">Invites</string>
     <string name="PendingMembersActivity_people_you_invited">Mga taong iyong inimbitahan</string>
@@ -1961,11 +1961,11 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Natanggal ka mula sa tawag.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">Allow access to your camera and microphone</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">Magbigay ng access sa camera at microphone mo</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">Allow access to your microphone</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">Payagang ma-access ang microphone mo</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">Allow access to your camera</string>
+    <string name="WebRtcCallActivity__allow_access_camera">Magbigay ng access sa camera mo</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
@@ -2076,18 +2076,16 @@
     <string name="CallOverflowPopupWindow__lower_hand">Ibaba ang Kamay</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">I-cancel</string>
-    <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">Itinaas mo ang iyong kamay</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Tingnan</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">Si %1$s ay nagtaas ng kamay</item>
-        <item quantity="other">Sila %1$s + %2$d ay nagtaas ng kamay</item>
+        <item quantity="one">%1$s raised a hand</item>
+        <item quantity="other">%1$s + %2$d raised a hand</item>
     </plurals>
 
-    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
+    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallRaiseHandSnackbar_raised_hands">
         <item quantity="one">%1$s</item>
         <item quantity="other">%1$s +%2$d</item>
@@ -5718,9 +5716,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Hindi ka pwedeng mag-reply sa story na ito dahil hindi ka na member ng group.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Nag-react sa story</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Nag-react sa story</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Views</string>
     <!-- Label for story replies tab -->

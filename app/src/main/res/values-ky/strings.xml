@@ -1013,7 +1013,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Жок</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Топко чакыруулар</string>
+    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
     <string name="PendingMembersActivity_requests">Өтүнүчтөр</string>
     <string name="PendingMembersActivity_invites">Чакыруулар</string>
     <string name="PendingMembersActivity_people_you_invited">Сиз чакырган адамдар</string>
@@ -1652,7 +1652,7 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Төлөм: %1$s</string>
     <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
-    <string name="MessageRecord__payment_tombstone">Payment</string>
+    <string name="MessageRecord__payment_tombstone">Төлөм</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Спам деп кабарланды</string>
     <!-- Update message shown in chat after accept a message request -->
@@ -1891,11 +1891,11 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Сизди кимдир-бирөө чалуудан чыгарып салды.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">Allow access to your camera and microphone</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">Камерага жана микрофонго кирүүгө уруксат бериңиз</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">Allow access to your microphone</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">Микрофонуңузга уруксат бериңиз</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">Allow access to your camera</string>
+    <string name="WebRtcCallActivity__allow_access_camera">Камераңызга кирүүгө уруксат бериңиз</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
@@ -2001,17 +2001,15 @@
     <string name="CallOverflowPopupWindow__lower_hand">Колду түшүрүү</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Жок</string>
-    <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">Колуңузду көтөрдүңүз</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Карап көрүү</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="other">%1$s жана дагы %2$d колдорун көтөрүштү</item>
+        <item quantity="other">%1$s + %2$d raised a hand</item>
     </plurals>
 
-    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
+    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallRaiseHandSnackbar_raised_hands">
         <item quantity="other">%1$s жана дагы %2$d</item>
     </plurals>
@@ -5588,9 +5586,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Бул топтон чыгып кеткениңизден улам, бул окуяга жооп бере албайсыз.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Окуяга сезимин билдирди</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Окуяга сезимин билдирди</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Көрүүлөр</string>
     <!-- Label for story replies tab -->

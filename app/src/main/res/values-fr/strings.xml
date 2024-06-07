@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Fermer</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Invitations au groupe en attente</string>
+    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
     <string name="PendingMembersActivity_requests">Demandes</string>
     <string name="PendingMembersActivity_invites">Invitations</string>
     <string name="PendingMembersActivity_people_you_invited">Personnes que vous avez invitées</string>
@@ -1645,7 +1645,7 @@
     <!-- Message shown to inform user that a payment is missing details due to restore -->
     <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
-    <string name="MessageRecord_payments_restore_tombstone_tap_more">Tap for more</string>
+    <string name="MessageRecord_payments_restore_tombstone_tap_more">Plus d\'infos</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
     <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
@@ -1710,7 +1710,7 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Paiement : %1$s</string>
     <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
-    <string name="MessageRecord__payment_tombstone">Payment</string>
+    <string name="MessageRecord__payment_tombstone">Paiement</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Signalé comme spam</string>
     <!-- Update message shown in chat after accept a message request -->
@@ -1961,11 +1961,11 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Une personne vous a retiré de l’appel.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">Allow access to your camera and microphone</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">Autoriser l’accès à l’appareil photo et au microphone</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">Allow access to your microphone</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">Autoriser l’accès au microphone</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">Allow access to your camera</string>
+    <string name="WebRtcCallActivity__allow_access_camera">Autoriser l’accès à l’appareil photo</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
@@ -2076,18 +2076,16 @@
     <string name="CallOverflowPopupWindow__lower_hand">Baisser la main</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Annuler</string>
-    <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">Vous avez levé la main</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Afficher</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s a levé la main</item>
-        <item quantity="other">%1$s + %2$d ont levé la main</item>
+        <item quantity="one">%1$s raised a hand</item>
+        <item quantity="other">%1$s + %2$d raised a hand</item>
     </plurals>
 
-    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
+    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallRaiseHandSnackbar_raised_hands">
         <item quantity="one">%1$s</item>
         <item quantity="other">%1$s + %2$d</item>
@@ -5090,7 +5088,7 @@
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_the_group_story">Ajouter « %1$s » à la Story de groupe</string>
+    <string name="MediaReviewFragment__add_to_the_group_story">Ajouter à la story de groupe « %1$s »</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Ajouter à la story</string>
     <string name="MediaReviewFragment__add_a_message">Ajouter un message</string>
@@ -5718,9 +5716,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Vous ne pouvez pas interagir avec cette story, car vous n\'êtes plus membre de ce groupe.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">a réagi à la story</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">a réagi à la story</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Vues</string>
     <!-- Label for story replies tab -->

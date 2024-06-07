@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">رد کردن</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
+    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
     <string name="PendingMembersActivity_requests">درخواست‌ها</string>
     <string name="PendingMembersActivity_invites">دعوت‌ها</string>
     <string name="PendingMembersActivity_people_you_invited">افرادی که شما دعوت کردید</string>
@@ -1645,7 +1645,7 @@
     <!-- Message shown to inform user that a payment is missing details due to restore -->
     <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
-    <string name="MessageRecord_payments_restore_tombstone_tap_more">Tap for more</string>
+    <string name="MessageRecord_payments_restore_tombstone_tap_more">برای قالب‌های بیشتر لمس کنید</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
     <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
@@ -1710,7 +1710,7 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">پرداخت: %1$s</string>
     <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
-    <string name="MessageRecord__payment_tombstone">Payment</string>
+    <string name="MessageRecord__payment_tombstone">پرداخت</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">به‌عنوان هرزنامه گزارش شد</string>
     <!-- Update message shown in chat after accept a message request -->
@@ -1961,11 +1961,11 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">کسی شما را از تماس حذف کرده است.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">Allow access to your camera and microphone</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">اجازه دسترسی به دوربین و میکروفن</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">Allow access to your microphone</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">اجازۀ دسترسی به میکروفون‌تان</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">Allow access to your camera</string>
+    <string name="WebRtcCallActivity__allow_access_camera">اجازه دسترسی به دوربین</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
@@ -2076,18 +2076,16 @@
     <string name="CallOverflowPopupWindow__lower_hand">پایین آوردن دست</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">لغو</string>
-    <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">شما دستتان را بالا بردید</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">مشاهده</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s دستش را بالا برده است</item>
-        <item quantity="other">%1$s + %2$d دستشان را بالا برده‌اند</item>
+        <item quantity="one">%1$s raised a hand</item>
+        <item quantity="other">%1$s + %2$d raised a hand</item>
     </plurals>
 
-    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
+    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallRaiseHandSnackbar_raised_hands">
         <item quantity="one">%1$s</item>
         <item quantity="other">%1$s +%2$d</item>
@@ -5718,9 +5716,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">شما نمی‌توانید به این استوری پاسخ دهید زیرا دیگر عضو این گروه نیستید.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">به استوری واکنش نشان داد</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">به استوری واکنش نشان داد</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">بازدیدها</string>
     <!-- Label for story replies tab -->
@@ -6947,7 +6945,7 @@
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
+    <string name="DeleteSyncEducation_acknowledge_button">تأیید</string>
 
     <!-- EOF -->
 </resources>

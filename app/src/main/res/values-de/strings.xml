@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Verwerfen</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string>
+    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
     <string name="PendingMembersActivity_requests">Anfragen</string>
     <string name="PendingMembersActivity_invites">Einladungen</string>
     <string name="PendingMembersActivity_people_you_invited">Von dir eingeladene Personen</string>
@@ -1645,7 +1645,7 @@
     <!-- Message shown to inform user that a payment is missing details due to restore -->
     <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
-    <string name="MessageRecord_payments_restore_tombstone_tap_more">Tap for more</string>
+    <string name="MessageRecord_payments_restore_tombstone_tap_more">Antippen für mehr</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
     <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
@@ -1710,7 +1710,7 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Zahlung: %1$s</string>
     <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
-    <string name="MessageRecord__payment_tombstone">Payment</string>
+    <string name="MessageRecord__payment_tombstone">Zahlung</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Als Spam gemeldet</string>
     <!-- Update message shown in chat after accept a message request -->
@@ -1961,11 +1961,11 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Jemand hat dich aus dem Anruf entfernt.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">Allow access to your camera and microphone</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">Zugriff auf deine Kamera und dein Mikrofon erlauben</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">Allow access to your microphone</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">Zugriff auf dein Mikrofon erlauben</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">Allow access to your camera</string>
+    <string name="WebRtcCallActivity__allow_access_camera">Zugriff auf deine Kamera erlauben</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
@@ -2076,18 +2076,16 @@
     <string name="CallOverflowPopupWindow__lower_hand">Hand senken</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Abbrechen</string>
-    <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">Du hast deine Hand gehoben</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Anzeigen</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s hat die Hand gehoben</item>
-        <item quantity="other">%1$s + %2$d haben ihre Hand gehoben</item>
+        <item quantity="one">%1$s raised a hand</item>
+        <item quantity="other">%1$s + %2$d raised a hand</item>
     </plurals>
 
-    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
+    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallRaiseHandSnackbar_raised_hands">
         <item quantity="one">%1$s</item>
         <item quantity="other">%1$s + %2$d</item>
@@ -2612,7 +2610,7 @@
     <string name="NotificationChannel_group_chats">Chats</string>
     <string name="NotificationChannel_missing_display_name">Unbekannt</string>
     <string name="NotificationChannel_voice_notes">Sprachnachrichten</string>
-    <string name="NotificationChannel_contact_joined_signal">Neuer Signal-Kontakt</string>
+    <string name="NotificationChannel_contact_joined_signal">Neuer Kontakt nutzt Signal</string>
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Keine Aktivität verfügbar, um die Einstellungen für den Benachrichtigungskanal zu öffnen.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
     <string name="NotificationChannel_background_connection">Hintergrundverbindung</string>
@@ -2760,7 +2758,7 @@
     <!-- Row item description for refreshing contacts -->
     <string name="contact_selection_activity__missing_someone">Fehlt jemand? Versuche es mit Aktualisieren</string>
     <!-- Row item title for finding people on Signal via your contacts -->
-    <string name="contact_selection_activity__find_people_you_know">Finde auf Signal Leute, die du kennst</string>
+    <string name="contact_selection_activity__find_people_you_know">Leute auf Signal finden, die du kennst</string>
     <!-- Row item description asking users for access to their contacts to find people they know -->
     <string name="contact_selection_activity__allow_access_to_contacts">Zugriff auf deine Kontakte erlauben</string>
     <!-- Row header title for more section -->
@@ -5718,9 +5716,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Du kannst nicht auf diese Story antworten, weil du nicht mehr Mitglied in dieser Gruppe bist.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Hat auf Story reagiert</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Hat auf Story reagiert</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Aufrufe</string>
     <!-- Label for story replies tab -->

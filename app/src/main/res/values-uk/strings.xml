@@ -270,7 +270,7 @@
         <item quantity="other">Ви можете поділитися максимум із %1$d чату.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Оберіть одержувача Signal</string>
-    <string name="CameraContacts_no_signal_contacts">Немає контактів Signal</string>
+    <string name="CameraContacts_no_signal_contacts">Контактів Signal немає</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Ви можете використовувати кнопку Камера лише для відправлення фото контактам Signal. </string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">Не можете знайти, кого шукали?</string>
     <string name="CameraContacts_invite_a_contact_to_join_signal">Запросити контакт приєднатися до Signal</string>
@@ -586,10 +586,10 @@
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">Ця людина має таке ж ім\'я, як і ваш інший контакт</string>
     <string name="ConversationFragment_contact_us">Зв\'яжіться з нами</string>
-    <string name="ConversationFragment_verify">Підтвердження</string>
+    <string name="ConversationFragment_verify">Перевірити</string>
     <string name="ConversationFragment_not_now">Не зараз</string>
-    <string name="ConversationFragment_your_safety_number_with_s_changed">Ваш код безпеки із %1$s змінився</string>
-    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ваш код безпеки з %1$s змінився, ймовірно тому що цей користувач перевстановив Signal або змінив пристрій. Торкніться «Підтвердити» щоб підтвердити новий код безпеки. Це необов\'язково.</string>
+    <string name="ConversationFragment_your_safety_number_with_s_changed">Змінився код безпеки користувача %1$s</string>
+    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ваш код безпеки з користувачем %1$s змінився. Імовірно, користувач перевстановив Signal або змінив пристрій. Торкніться «Перевірити», щоб перевірити новий код безпеки. Це необов\'язково.</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">Заблокувати запит?</string>
     <!-- Dialog message for block group link join requests -->
@@ -1112,7 +1112,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Закрити</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Очікуванні запрошення в групу</string>
+    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
     <string name="PendingMembersActivity_requests">Запити</string>
     <string name="PendingMembersActivity_invites">Запрошення</string>
     <string name="PendingMembersActivity_people_you_invited">Люди, яких ви запросили</string>
@@ -1731,11 +1731,11 @@
 
     <!-- End of GV2 specific update messages -->
 
-    <string name="MessageRecord_your_safety_number_with_s_has_changed">Код безпеки для чату з %1$s змінився.</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ви позначили, що код безпеки для чату з користувачем %1$s перевірено</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Ви позначили з іншого пристрою, що код безпеки для чату з користувачем %1$s перевірено</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ви позначили, що код безпеки для чату з користувачем %1$s не перевірено</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ви позначили з іншого пристрою, що код безпеки для чату з користувачем %1$s не перевірено</string>
+    <string name="MessageRecord_your_safety_number_with_s_has_changed">Змінився код безпеки для чатів з користувачем %1$s.</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ви позначили, що код безпеки для чатів з користувачем %1$s перевірено</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Ви позначили з іншого пристрою, що код безпеки для чатів з користувачем %1$s перевірено</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ви позначили, що код безпеки для чатів з користувачем %1$s не перевірено</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ви позначили з іншого пристрою, що код безпеки для чатів з користувачем %1$s не перевірено</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Повідомлення від %1$s неможливо доставити</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s змінює номер телефону.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
@@ -1757,7 +1757,7 @@
     <!-- Message shown to inform user that a payment is missing details due to restore -->
     <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
-    <string name="MessageRecord_payments_restore_tombstone_tap_more">Tap for more</string>
+    <string name="MessageRecord_payments_restore_tombstone_tap_more">Більше</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
     <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
@@ -1826,7 +1826,7 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Платіж: %1$s</string>
     <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
-    <string name="MessageRecord__payment_tombstone">Payment</string>
+    <string name="MessageRecord__payment_tombstone">Платіж</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Повідомлено про спам</string>
     <!-- Update message shown in chat after accept a message request -->
@@ -2101,11 +2101,11 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Хтось видалив вас з учасників виклику.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">Allow access to your camera and microphone</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">Надайте доступ до камери й мікрофона</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">Allow access to your microphone</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">Надайте доступ до мікрофона</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">Allow access to your camera</string>
+    <string name="WebRtcCallActivity__allow_access_camera">Надайте доступ до камери</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
@@ -2226,20 +2226,18 @@
     <string name="CallOverflowPopupWindow__lower_hand">Опустити руку</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Скасувати</string>
-    <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">Ви підняли руку</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Детальніше</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s піднімає руку</item>
-        <item quantity="few">%1$s + %2$d підняли руки</item>
-        <item quantity="many">%1$s + %2$d підняли руки</item>
-        <item quantity="other">%1$s + %2$d підняли руки</item>
+        <item quantity="one">%1$s raised a hand</item>
+        <item quantity="few">%1$s + %2$d raised a hand</item>
+        <item quantity="many">%1$s + %2$d raised a hand</item>
+        <item quantity="other">%1$s + %2$d raised a hand</item>
     </plurals>
 
-    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
+    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallRaiseHandSnackbar_raised_hands">
         <item quantity="one">%1$s</item>
         <item quantity="few">%1$s +%2$d</item>
@@ -2539,7 +2537,7 @@
     <string name="ThreadRecord_disappearing_messages_disabled">Тимчасові повідомлення вимкнено</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Таймер встановлено на %1$s</string>
     <string name="ThreadRecord_safety_number_changed">Змінився код безпеки</string>
-    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Код безпеки для чату з %1$s змінився.</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Змінився код безпеки для чатів з користувачем %1$s.</string>
     <string name="ThreadRecord_you_marked_verified">Ви перевірили</string>
     <string name="ThreadRecord_you_marked_unverified">Номер безпеки є НЕперевіреним</string>
     <string name="ThreadRecord_message_could_not_be_processed">Не вдалось опрацювати повідомлення</string>
@@ -2946,7 +2944,7 @@
     <string name="contact_filter_toolbar__show_dial_pad_description">Показати клавіатуру набору номеру</string>
 
     <!-- contact_selection_group_activity -->
-    <string name="contact_selection_group_activity__no_contacts">Контактів не знайдено.</string>
+    <string name="contact_selection_group_activity__no_contacts">Контактів немає.</string>
     <string name="contact_selection_group_activity__finding_contacts">Завантаження контактів…</string>
 
     <!-- single_contact_selection_activity -->
@@ -3045,8 +3043,8 @@
     <string name="ConversationUpdateItem_update_contact">Оновити контакт</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Заблокувати запит</string>
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Спільних груп немає. Переглядайте запити уважно.</string>
-    <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">У цій групі немає контактів. Переглядайте запити уважно.</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Спільних груп немає. Уважно перевіряйте, від кого надходять запити.</string>
+    <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">У цій групі немає контактів. Уважно перевіряйте, від кого надходять запити.</string>
     <string name="ConversationUpdateItem_view">Детальніше</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Таймер цього тимчасового повідомлення буде встановлено на %1$s, коли ви його відправите.</string>
     <!-- Update item button text to show to boost a feature -->
@@ -3183,15 +3181,15 @@
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- unverified safety numbers -->
-    <string name="IdentityUtil_unverified_banner_one">Ваш код безпеки для чату з %1$s змінився, і ви ще його не перевірили</string>
+    <string name="IdentityUtil_unverified_banner_one">Ваш код безпеки для чатів з користувачем %1$s змінився, і ви ще його не перевірили</string>
     <string name="IdentityUtil_unverified_banner_two">Ваші коди безпеки для чатів з %1$s і з %2$s знов позначено як неперевірені</string>
     <string name="IdentityUtil_unverified_banner_many">Ваші коди безпеки для чатів з %1$s, %2$s і з %3$s знов позначено як неперевірені</string>
 
-    <string name="IdentityUtil_unverified_dialog_one">Ваш код безпеки для чату з %1$s змінився. Це може означати або те, що хтось намагається перехопити ваші розмови, або те, що на пристрої %1$s просто було перевстановлено Signal.</string>
+    <string name="IdentityUtil_unverified_dialog_one">Ваш код безпеки для чатів з користувачем %1$s змінився. Це могло статись або через те, що хтось намагається перехопити ваші розмови, або через те, що на пристрої користувача %1$s просто було перевстановлено Signal.</string>
     <string name="IdentityUtil_unverified_dialog_two">Ваші коди безпеки для чатів з %1$s і з %2$s змінився. Це може означати або те, що хтось намагається перехопити ваші розмови, або те, що вони просто перевстановили Signal.</string>
     <string name="IdentityUtil_unverified_dialog_many">Ваші коди безпеки для чатів з %1$s, %2$s і з %3$s змінилися. Це може означати або те, що хтось намагається перехопити ваші розмови, або те, що вони просто перевстановили Signal.</string>
 
-    <string name="IdentityUtil_untrusted_dialog_one">Ваш код безпеки для чату з %1$s щойно змінився.</string>
+    <string name="IdentityUtil_untrusted_dialog_one">Щойно змінився ваш код безпеки для чатів з користувачем %1$s.</string>
     <string name="IdentityUtil_untrusted_dialog_two">Ваші коди безпеки для чатів з %1$s і з %2$s щойно змінилися.</string>
     <string name="IdentityUtil_untrusted_dialog_many">Ваші коди безпеки для чатів з %1$s, %2$s і з %3$s щойно змінилися.</string>
 
@@ -4680,7 +4678,7 @@
     <string name="ChatWallpaperFragment__reset_chat_colors">Скинути кольори чату</string>
     <string name="ChatWallpaperFragment__reset_chat_color">Скинути колір чату</string>
     <string name="ChatWallpaperFragment__reset_chat_color_question">Скинути колір чату?</string>
-    <string name="ChatWallpaperFragment__set_wallpaper">Встановити шпалери</string>
+    <string name="ChatWallpaperFragment__set_wallpaper">Обрати шпалери</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Темний режим затемнює шпалери</string>
     <string name="ChatWallpaperFragment__contact_name">Ім\'я контакту</string>
     <string name="ChatWallpaperFragment__reset">Скинути</string>
@@ -4701,9 +4699,9 @@
 
     <!-- ChatWallpaperPreviewActivity -->
     <string name="ChatWallpaperPreviewActivity__preview">Попередній перегляд</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper">Встановити шпалери</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper">Установити шпалери</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Гортайте, щоб побачити більше шпалер</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Встановити шпалери для усіх чатів</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Установити шпалери для всіх чатів</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Задати шпалери для %1$s</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Для перегляду галереї потрібен дозвіл на доступ до сховища.</string>
 
@@ -4711,8 +4709,8 @@
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Розведіть чи зведіть два пальці для зміни масштабу, потягніть для зміни положення.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Встановити шпалери для усіх чатів.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_s">Задати шпалери для %1$s.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Установити шпалери для всіх чатів.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_s">Це будуть шпалери для чату «%1$s».</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Помилка встановлення шпалери.</string>
     <string name="WallpaperCropActivity__blur_photo">Розмити фото</string>
 
@@ -5978,9 +5976,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Ви не можете відповісти на цю історію, тому що ви вже не учасник цієї групи.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Реакція на історію</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Реакція на історію</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Перегляди</string>
     <!-- Label for story replies tab -->
@@ -6700,7 +6698,7 @@
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">Відкрити контакти</string>
     <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
-    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">Програму для контактів не знайдено</string>
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">Застосунок для контактів не знайдено</string>
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
@@ -7255,7 +7253,7 @@
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
+    <string name="DeleteSyncEducation_acknowledge_button">Добре</string>
 
     <!-- EOF -->
 </resources>

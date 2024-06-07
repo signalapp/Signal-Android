@@ -259,7 +259,7 @@
     <string name="CameraXFragment_to_scan_qr_codes">Om QR-codes te scannen:</string>
 
     <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Recente contactpersonen</string>
+    <string name="CameraContacts_recent_contacts">Recente contacten</string>
     <string name="CameraContacts_signal_contacts">Signal-gebruikers</string>
     <string name="CameraContacts_signal_groups">Signal-groepen</string>
     <!-- A warning shown in a toast when  -->
@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Sluiten</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Uitnodigingen in afwachting</string>
+    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
     <string name="PendingMembersActivity_requests">Verzoeken</string>
     <string name="PendingMembersActivity_invites">Uitnodigingen</string>
     <string name="PendingMembersActivity_people_you_invited">Door jou uitgenodigd</string>
@@ -1287,7 +1287,7 @@
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Delen via andere app</string>
-    <string name="InviteActivity_share_with_contacts">Contactpersonen kiezen (sms)</string>
+    <string name="InviteActivity_share_with_contacts">Delen met contacten</string>
     <string name="InviteActivity_share_via">Delen via …</string>
 
     <string name="InviteActivity_cancel">Annuleren</string>
@@ -1395,7 +1395,7 @@
 
     <!-- NotificationsMegaphone -->
     <string name="NotificationsMegaphone_turn_on_notifications">Meldingen inschakelen?</string>
-    <string name="NotificationsMegaphone_never_miss_a_message">Mis nooit een melding van je contactpersonen en groepen.</string>
+    <string name="NotificationsMegaphone_never_miss_a_message">Mis nooit een melding van je contacten en groepen.</string>
     <string name="NotificationsMegaphone_turn_on">Inschakelen</string>
     <string name="NotificationsMegaphone_not_now">Niet nu</string>
 
@@ -1645,7 +1645,7 @@
     <!-- Message shown to inform user that a payment is missing details due to restore -->
     <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
-    <string name="MessageRecord_payments_restore_tombstone_tap_more">Tap for more</string>
+    <string name="MessageRecord_payments_restore_tombstone_tap_more">Tik voor meer</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
     <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
@@ -1710,7 +1710,7 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Betaling: %1$s</string>
     <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
-    <string name="MessageRecord__payment_tombstone">Payment</string>
+    <string name="MessageRecord__payment_tombstone">Betaling</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Gemeld als spam</string>
     <!-- Update message shown in chat after accept a message request -->
@@ -1961,11 +1961,11 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Iemand heeft je uit de oproep verwijderd.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">Allow access to your camera and microphone</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">Toegang tot je camera en microfoon toestaan</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">Allow access to your microphone</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">Toegang tot je microfoon toestaan</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">Allow access to your camera</string>
+    <string name="WebRtcCallActivity__allow_access_camera">Toegang tot je camera toestaan</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
@@ -2076,18 +2076,16 @@
     <string name="CallOverflowPopupWindow__lower_hand">Hand omlaag doen</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Annuleren</string>
-    <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">Je hebt je hand opgestoken</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Weergeven</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s heeft een hand opgestoken</item>
-        <item quantity="other">%1$s en %2$d hebben hun hand opgestoken</item>
+        <item quantity="one">%1$s raised a hand</item>
+        <item quantity="other">%1$s + %2$d raised a hand</item>
     </plurals>
 
-    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
+    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallRaiseHandSnackbar_raised_hands">
         <item quantity="one">%1$s</item>
         <item quantity="other">%1$s + %2$d</item>
@@ -2467,8 +2465,8 @@
     <string name="UsernameEditFragment_continue">Doorgaan</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-        <item quantity="one">%1$d van je contactpersonen is bereikbaar via Signal.</item>
-        <item quantity="other">%1$d van je contactpersonen zijn bereikbaar via Signal.</item>
+        <item quantity="one">%1$d van je contacten is bereikbaar via Signal.</item>
+        <item quantity="other">%1$d van je contacten zijn bereikbaar via Signal.</item>
     </plurals>
 
     <!-- UsernameShareBottomSheet -->
@@ -2772,15 +2770,15 @@
     <string name="contact_filter_toolbar__show_dial_pad_description">Numeriek toetsenblok weergeven</string>
 
     <!-- contact_selection_group_activity -->
-    <string name="contact_selection_group_activity__no_contacts">Geen contactpersonen gevonden.</string>
-    <string name="contact_selection_group_activity__finding_contacts">Contactpersonen laden…</string>
+    <string name="contact_selection_group_activity__no_contacts">Geen contacten.</string>
+    <string name="contact_selection_group_activity__finding_contacts">Contacten laden…</string>
 
     <!-- single_contact_selection_activity -->
     <string name="SingleContactSelectionActivity_contact_photo">Foto van contactpersoon</string>
 
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal heeft toegang tot je lijst met contacten nodig om je contacten weer te kunnen geven, maar toestemming om contacten in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
-    <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout bij het ophalen van contactpersonen, ga na dat je netwerkverbinding werkt</string>
+    <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout bij het ophalen van contacten, ga na dat je netwerkverbinding werkt</string>
     <string name="ContactSelectionListFragment_username_not_found">Gebruikersnaam niet gevonden</string>
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"‘%1$s’ is geen Signal-gebruiker. Controleer de gebruikersnaam en probeer het opnieuw."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Het is niet nodig om jezelf toe te voegen aan de groep</string>
@@ -2803,11 +2801,11 @@
     <!-- Text on button prompting users to give Signal contact permissions -->
     <string name="ContactSelectionListFragment__allow_access">Toegang geven</string>
     <!-- Text asking for user\'s contact permission -->
-    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Toegang tot je contacten toestaan. Je contacten zijn versleuteld en niet zichtbaar voor de Signal-dienst.</string>
+    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Sta toegang tot je contacten toe. Je contacten zijn versleuteld en niet zichtbaar voor de Signal-dienst.</string>
 
     <!-- contact_selection_list_fragment -->
-    <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal heeft toegang tot je contacten nodig om contactpersonen te kunnen weergeven.</string>
-    <string name="contact_selection_list_fragment__show_contacts">Contactpersonen weergeven</string>
+    <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal heeft toegang tot je contacten nodig om deze te kunnen weergeven.</string>
+    <string name="contact_selection_list_fragment__show_contacts">Contacten weergeven</string>
 
     <!-- contact_selection_list_item -->
     <plurals name="contact_selection_list_item__number_of_members">
@@ -3141,7 +3139,7 @@
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Wachtwoord aanmaken</string>
-    <string name="AndroidManifest__select_contacts">Contactpersonen selecteren</string>
+    <string name="AndroidManifest__select_contacts">Contacten selecteren</string>
     <string name="AndroidManifest__change_passphrase">Wachtwoord wijzigen</string>
     <string name="AndroidManifest__verify_safety_number">Veiligheidsnummer verifiëren</string>
     <string name="AndroidManifest__media_preview">Mediavoorbeeld</string>
@@ -4001,10 +3999,10 @@
     <string name="Permissions_permission_required">Toestemming vereist</string>
     <string name="Permissions_continue">Doorgaan</string>
     <string name="Permissions_not_now">Niet nu</string>
-    <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-databank wordt gemigreerd</string>
+    <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-database wordt gemigreerd</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Back-upwachtwoord</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Back-ups worden opgeslagen op het externe opslaggeheugen en versleuteld met het wachtwoord hieronder. Je hebt dit wachtwoord nodig om de back-up te herstellen.</string>
-    <string name="backup_enable_dialog__you_must_have_this_passphrase">Je hebt in de toekomst dit wachtwoord nodig om je gegevens vanuit een back-up te kunnen herstellen.</string>
+    <string name="backup_enable_dialog__you_must_have_this_passphrase">Je hebt dit wachtwoord nodig om je gegevens vanuit een back-up te kunnen herstellen.</string>
     <string name="backup_enable_dialog__folder">Opslaglocatie</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik heb dit wachtwoord opgeschreven. Zonder dit wachtwoord kan ik back-ups niet gebruiken om gegevens terug te zetten.</string>
     <string name="registration_activity__restore_backup">Back-upgegevens terugzetten</string>
@@ -4106,7 +4104,7 @@
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Het is niet gelukt om registratievergrendeling uit te schakelen.</string>
     <string name="AppProtectionPreferenceFragment_none">Geen</string>
     <string name="preferences_app_protection__registration_lock">Registratievergrendeling</string>
-    <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Je moet je Signal-pincode invoeren omdat registratievergrendeling is ingeschakeld</string>
+    <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Je moet je pincode voor registratievergrendeling invoeren</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Je pincode bestaat uit ten minste %1$d cijfers of karakters</string>
     <string name="RegistrationActivity_too_many_attempts">Te veel pogingen</string>
     <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Je hebt te veel pogingen ondernomen om met een ongeldige pincode de registratievergrendeling uit te schakelen, probeer het morgen opnieuw.</string>
@@ -5718,9 +5716,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Je kunt niet reageren op dit verhaal, omdat je geen lid van deze groep meer bent.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reageerde op dit verhaal</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reageerde op dit verhaal</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Gezien door</string>
     <!-- Label for story replies tab -->
@@ -6101,7 +6099,7 @@
         <item quantity="other">%1$d ontvangers kunnen Signal opnieuw geïnstalleerd hebben of van toestel veranderd zijn. Tik op een ontvanger om het nieuwe veiligheidsnummer te bevestigen. Dit is optioneel.</item>
     </plurals>
     <!-- Section header for 1:1 contacts in review fragment -->
-    <string name="SafetyNumberBucketRowItem__contacts">Contactpersonen</string>
+    <string name="SafetyNumberBucketRowItem__contacts">Contacten</string>
     <!-- Context menu label for distribution list headers in review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__remove_all">Alle verwijderen</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
@@ -6947,7 +6945,7 @@
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
+    <string name="DeleteSyncEducation_acknowledge_button">Begrepen</string>
 
     <!-- EOF -->
 </resources>
