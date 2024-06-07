@@ -76,8 +76,8 @@ class LinkedDeviceInactiveCheckJob private constructor(
     val leastActiveDevice: LeastActiveLinkedDevice? = devices
       .filter { it.id != SignalServiceAddress.DEFAULT_DEVICE_ID }
       .filter { it.name != null }
-      .minBy { it.lastSeen }
-      .let {
+      .minByOrNull { it.lastSeen }
+      ?.let {
         val nameProto = DeviceName.ADAPTER.decode(Base64.decode(it.getName()))
         val decryptedBytes = DeviceNameCipher.decryptDeviceName(nameProto, AppDependencies.protocolStore.aci().identityKeyPair) ?: return@let null
         val name = String(decryptedBytes)
