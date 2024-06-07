@@ -373,14 +373,16 @@ class RegistrationV2ViewModel : ViewModel() {
     val e164 = getCurrentE164() ?: throw IllegalStateException("Can't submit captcha token if no phone number is set!")
     val captchaToken = store.value.captchaToken ?: throw IllegalStateException("Can't submit captcha token if no captcha token is set!")
 
+    store.update {
+      it.copy(captchaToken = null)
+    }
+
     viewModelScope.launch {
       val session = getOrCreateValidSession(context, errorHandler) ?: return@launch bail { Log.i(TAG, "Could not create valid session for submitting a captcha token.") }
       Log.d(TAG, "Submitting captcha token…")
       val captchaSubmissionResult = RegistrationRepository.submitCaptchaToken(context, e164, password, session.body.id, captchaToken)
       Log.d(TAG, "Captcha token submitted.")
-      store.update {
-        it.copy(captchaToken = null)
-      }
+
       handleSessionStateResult(context, captchaSubmissionResult, errorHandler)
     }
   }
