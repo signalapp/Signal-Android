@@ -162,6 +162,9 @@ object ChatColorsPalette {
     @JvmStatic
     val default = ULTRAMARINE
 
+    /*
+     * If updating this list of colors, make sure to update the backup import/export colors as well.
+     */
     val solids = listOf(
       CRIMSON,
       VERMILION,

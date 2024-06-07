@@ -86,6 +86,8 @@ fun RecipientTable.getContactsForBackup(selfId: Long): BackupContactIterator {
       RecipientTable.PROFILE_FAMILY_NAME,
       RecipientTable.PROFILE_JOINED_NAME,
       RecipientTable.MUTE_UNTIL,
+      RecipientTable.CHAT_COLORS,
+      RecipientTable.CUSTOM_CHAT_COLORS_ID,
       RecipientTable.EXTRAS
     )
     .from(RecipientTable.TABLE_NAME)
