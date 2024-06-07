@@ -386,9 +386,11 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   private void initializeFcmCheck() {
     if (SignalStore.account().isRegistered()) {
-      long nextSetTime = SignalStore.account().getFcmTokenLastSetTime() + TimeUnit.HOURS.toMillis(6);
+      long lastSetTime = SignalStore.account().getFcmTokenLastSetTime();
+      long nextSetTime = lastSetTime + TimeUnit.HOURS.toMillis(6);
+      long now         = System.currentTimeMillis();
 
-      if (SignalStore.account().getFcmToken() == null || nextSetTime <= System.currentTimeMillis()) {
+      if (SignalStore.account().getFcmToken() == null || nextSetTime <= now || lastSetTime > now) {
         AppDependencies.getJobManager().add(new FcmRefreshJob());
       }
     }
