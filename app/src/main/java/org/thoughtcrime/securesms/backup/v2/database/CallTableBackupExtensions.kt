@@ -38,7 +38,7 @@ fun CallTable.restoreCallLogFromBackup(call: AdHocCall, backupState: BackupState
     CallTable.TYPE to CallTable.Type.serialize(CallTable.Type.AD_HOC_CALL),
     CallTable.DIRECTION to CallTable.Direction.serialize(CallTable.Direction.OUTGOING),
     CallTable.EVENT to CallTable.Event.serialize(event),
-    CallTable.TIMESTAMP to call.startedCallTimestamp
+    CallTable.TIMESTAMP to call.callTimestamp
   )
 
   writableDatabase.insert(CallTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, values)
@@ -64,7 +64,7 @@ class CallLogIterator(private val cursor: Cursor) : Iterator<AdHocCall?>, Closea
       callId = callId,
       recipientId = cursor.requireLong(CallTable.PEER),
       state = AdHocCall.State.GENERIC,
-      startedCallTimestamp = cursor.requireLong(CallTable.TIMESTAMP)
+      callTimestamp = cursor.requireLong(CallTable.TIMESTAMP)
     )
   }
 

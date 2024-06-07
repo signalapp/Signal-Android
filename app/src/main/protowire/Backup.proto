@@ -74,6 +74,13 @@ message AccountData {
     bool hasSeenGroupStoryEducationSheet = 15;
     bool hasCompletedUsernameOnboarding = 16;
     PhoneNumberSharingMode phoneNumberSharingMode = 17;
+    ChatStyle defaultChatStyle = 18;
+  }
+
+  message SubscriberData {
+    bytes subscriberId = 1;
+    string currencyCode = 2;
+    bool manuallyCancelled = 3;
   }
 
   bytes profileKey = 1;
@@ -82,10 +89,9 @@ message AccountData {
   string givenName = 4;
   string familyName = 5;
   string avatarUrlPath = 6;
-  bytes subscriberId = 7;
-  string subscriberCurrencyCode = 8;
-  bool subscriptionManuallyCancelled = 9;
-  AccountSettings accountSettings = 10;
+  SubscriberData donationSubscriberData = 7;
+  SubscriberData backupsSubscriberData = 8;
+  AccountSettings accountSettings = 9;
 }
 
 message Recipient {
@@ -93,7 +99,7 @@ message Recipient {
   oneof destination {
     Contact contact = 2;
     Group group = 3;
-    DistributionList distributionList = 4;
+    DistributionListItem distributionList = 4;
     Self self = 5;
     ReleaseNotes releaseNotes = 6;
     CallLink callLink = 7;
@@ -101,10 +107,15 @@ message Recipient {
 }
 
 message Contact {
-  enum Registered {
-    UNKNOWN = 0;
-    REGISTERED = 1;
-    NOT_REGISTERED = 2;
+  message Registered { }
+  message NotRegistered {
+    uint64 unregisteredTimestamp = 1;
+  }
+
+  enum Visibility {
+    VISIBLE = 0;
+    HIDDEN = 1;
+    HIDDEN_MESSAGE_REQUEST = 2;
   }
 
   optional bytes aci = 1; // should be 16 bytes
@@ -112,9 +123,13 @@ message Contact {
   optional string username = 3;
   optional uint64 e164 = 4;
   bool blocked = 5;
-  bool hidden = 6;
-  Registered registered = 7;
-  uint64 unregisteredTimestamp = 8;
+  Visibility visibility = 6;
+
+  oneof registration {
+    Registered registered = 7;
+    NotRegistered notRegistered = 8;
+  }
+
   optional bytes profileKey = 9;
   bool profileSharing = 10;
   optional string profileGivenName = 11;
@@ -225,7 +240,7 @@ message Chat {
   uint64 muteUntilMs = 6;
   bool markedUnread = 7;
   bool dontNotifyForMentionsIfMuted = 8;
-  FilePointer wallpaper = 9;
+  ChatStyle style = 9;
 }
 
 /**
@@ -260,10 +275,16 @@ message AdHocCall {
   // Refers to a `CallLink` recipient.
   uint64 recipientId = 2;
   State state = 3;
-  optional bytes startedCallAci = 4;
-  uint64 startedCallTimestamp = 5;
-  // The time the call ended. 0 indicates an unknown time.
-  uint64 endedCallTimestamp = 6;
+  uint64 callTimestamp = 4;
+}
+
+message DistributionListItem {
+  bytes distributionId = 1; // distribution list ids are uuids
+
+  oneof item {
+    uint64 deletionTimestamp = 2;
+    DistributionList distributionList = 3;
+  }
 }
 
 message DistributionList {
@@ -275,11 +296,9 @@ message DistributionList {
   }
 
   string name = 1;
-  bytes distributionId = 2; // distribution list ids are uuids
-  bool allowReplies = 3;
-  uint64 deletionTimestamp = 4;
-  PrivacyMode privacyMode = 5;
-  repeated uint64 memberRecipientIds = 6; // generated recipient id
+  bool allowReplies = 2;
+  PrivacyMode privacyMode = 3;
+  repeated uint64 memberRecipientIds = 4; // generated recipient id
 }
 
 message Identity {
@@ -370,9 +389,6 @@ message ContactMessage {
 }
 
 message PaymentNotification {
-
-  // Transaction details should largely be best effort. If fields are missing or
-  // invalid, we should try to render things to the best of our abilities.
   message TransactionDetails {
     message MobileCoinTxoIdentification { // Used to map to payments on the ledger
       repeated bytes publicKey = 1; // for received transactions
@@ -398,13 +414,13 @@ message PaymentNotification {
 
       // This identification is used to map the payment table to the ledger
       // and is likely required otherwise we may have issues reconciling with
-      // the ledger. If this
+      // the ledger
       MobileCoinTxoIdentification mobileCoinIdentification = 2;
       optional uint64 timestamp = 3;
       optional uint64 blockIndex = 4;
       optional uint64 blockTimestamp = 5;
-      optional bytes transaction = 6; // mobile coin blobs, these are best effort, if they are invalid or fail to parse, treat as if missing, but do not block
-      optional bytes receipt = 7; // mobile coin blobs, these are best effort, if they are invalid or fail to parse, treat as if missing, but do not block
+      optional bytes transaction = 6; // mobile coin blobs
+      optional bytes receipt = 7; // mobile coin blobs
     }
 
     oneof payment {
@@ -481,7 +497,7 @@ message ContactAttachment {
   repeated Phone number = 3;
   repeated Email email = 4;
   repeated PostalAddress address = 5;
-  optional string avatarUrlPath = 6;
+  optional FilePointer avatar = 6;
   optional string organization = 7;
 }
 
@@ -729,6 +745,7 @@ message SimpleChatUpdate {
     BAD_DECRYPT = 9;
     PAYMENTS_ACTIVATED = 10;
     PAYMENT_ACTIVATION_REQUEST = 11;
+    UNSUPPORTED_PROTOCOL_MESSAGE = 12;
   }
 
   Type type = 1;
@@ -1018,4 +1035,80 @@ message StickerPack {
 message StickerPackSticker {
   string emoji = 1;
   uint32 id = 2;
+}
+
+
+message ChatStyle {
+  message Gradient {
+    uint32 angle = 1; // degrees
+    repeated uint32 colors = 2;
+    repeated float positions = 3; // percent from 0 to 1
+  }
+
+  message AutomaticBubbleColor {
+  }
+
+  enum WallpaperPreset {
+    UNKNOWN_WALLPAPER_PRESET = 0;
+    SOLID_BLUSH = 1;
+    SOLID_COPPER = 2;
+    SOLID_DUST = 3;
+    SOLID_CELADON = 4;
+    SOLID_RAINFOREST = 5;
+    SOLID_PACIFIC = 6;
+    SOLID_FROST = 7;
+    SOLID_NAVY = 8;
+    SOLID_LILAC = 9;
+    SOLID_PINK = 10;
+    SOLID_EGGPLANT = 11;
+    SOLID_SILVER = 12;
+    GRADIENT_SUNSET = 13;
+    GRADIENT_NOIR = 14;
+    GRADIENT_HEATMAP = 15;
+    GRADIENT_AQUA = 16;
+    GRADIENT_IRIDESCENT = 17;
+    GRADIENT_MONSTERA = 18;
+    GRADIENT_BLISS = 19;
+    GRADIENT_SKY = 20;
+    GRADIENT_PEACH = 21;
+  }
+
+  enum BubbleColorPreset {
+    UNKNOWN_BUBBLE_COLOR_PRESET = 0;
+    SOLID_ULTRAMARINE = 1;
+    SOLID_CRIMSON = 2;
+    SOLID_VERMILION = 3;
+    SOLID_BURLAP = 4;
+    SOLID_FOREST = 5;
+    SOLID_WINTERGREEN = 6;
+    SOLID_TEAL = 7;
+    SOLID_BLUE = 8;
+    SOLID_INDIGO = 9;
+    SOLID_VIOLET = 10;
+    SOLID_PLUM = 11;
+    SOLID_TAUPE = 12;
+    SOLID_STEEL = 13;
+    GRADIENT_EMBER = 14;
+    GRADIENT_MIDNIGHT = 15;
+    GRADIENT_INFRARED = 16;
+    GRADIENT_LAGOON = 17;
+    GRADIENT_FLUORESCENT = 18;
+    GRADIENT_BASIL = 19;
+    GRADIENT_SUBLIME = 20;
+    GRADIENT_SEA = 21;
+    GRADIENT_TANGERINE = 22;
+  }
+
+  oneof wallpaper {
+    WallpaperPreset wallpaperPreset = 1;
+    FilePointer wallpaperPhoto = 2;
+  }
+
+  oneof bubbleColor {
+    BubbleColorPreset bubbleColorPreset = 3;
+    Gradient bubbleGradient = 4;
+    uint32 bubbleSolidColor = 5;
+    // Bubble setting is automatically determined based on the wallpaper setting.
+    AutomaticBubbleColor autoBubbleColor = 6;
+  }
 }

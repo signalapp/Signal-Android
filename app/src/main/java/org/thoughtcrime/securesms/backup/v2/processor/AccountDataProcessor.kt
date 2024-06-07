@@ -49,10 +49,7 @@ object AccountDataProcessor {
           givenName = self.profileName.givenName,
           familyName = self.profileName.familyName,
           avatarUrlPath = self.profileAvatar ?: "",
-          subscriptionManuallyCancelled = InAppPaymentsRepository.isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION),
           username = self.username.getOrNull(),
-          subscriberId = subscriber?.subscriberId?.bytes?.toByteString() ?: defaultAccountRecord.subscriberId,
-          subscriberCurrencyCode = subscriber?.currency?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
           accountSettings = AccountData.AccountSettings(
             storyViewReceiptsEnabled = SignalStore.storyValues().viewedReceiptsEnabled,
             typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context),
@@ -71,6 +68,11 @@ object AccountDataProcessor {
             displayBadgesOnProfile = SignalStore.donationsValues().getDisplayBadgesOnProfile(),
             hasSeenGroupStoryEducationSheet = SignalStore.storyValues().userHasSeenGroupStoryEducationSheet,
             hasCompletedUsernameOnboarding = SignalStore.uiHints().hasCompletedUsernameOnboarding()
+          ),
+          donationSubscriberData = AccountData.SubscriberData(
+            subscriberId = subscriber?.subscriberId?.bytes?.toByteString() ?: defaultAccountRecord.subscriberId,
+            currencyCode = subscriber?.currency?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
+            manuallyCancelled = InAppPaymentsRepository.isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION)
           )
         )
       )
@@ -103,23 +105,25 @@ object AccountDataProcessor {
       SignalStore.storyValues().userHasSeenGroupStoryEducationSheet = settings.hasSeenGroupStoryEducationSheet
       SignalStore.storyValues().viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
 
-      if (accountData.subscriberId.size > 0) {
-        val remoteSubscriberId = SubscriberId.fromBytes(accountData.subscriberId.toByteArray())
-        val localSubscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
+      if (accountData.donationSubscriberData != null) {
+        if (accountData.donationSubscriberData.subscriberId.size > 0) {
+          val remoteSubscriberId = SubscriberId.fromBytes(accountData.donationSubscriberData.subscriberId.toByteArray())
+          val localSubscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
 
-        val subscriber = InAppPaymentSubscriberRecord(
-          remoteSubscriberId,
-          Currency.getInstance(accountData.subscriberCurrencyCode),
-          InAppPaymentSubscriberRecord.Type.DONATION,
-          localSubscriber?.requiresCancel ?: false,
-          InAppPaymentsRepository.getLatestPaymentMethodType(InAppPaymentSubscriberRecord.Type.DONATION)
-        )
+          val subscriber = InAppPaymentSubscriberRecord(
+            remoteSubscriberId,
+            Currency.getInstance(accountData.donationSubscriberData.currencyCode),
+            InAppPaymentSubscriberRecord.Type.DONATION,
+            localSubscriber?.requiresCancel ?: accountData.donationSubscriberData.manuallyCancelled,
+            InAppPaymentsRepository.getLatestPaymentMethodType(InAppPaymentSubscriberRecord.Type.DONATION)
+          )
 
-        InAppPaymentsRepository.setSubscriber(subscriber)
-      }
+          InAppPaymentsRepository.setSubscriber(subscriber)
+        }
 
-      if (accountData.subscriptionManuallyCancelled) {
-        SignalStore.donationsValues().updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
+        if (accountData.donationSubscriberData.manuallyCancelled) {
+          SignalStore.donationsValues().updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
+        }
       }
 
       if (accountData.avatarUrlPath.isNotEmpty()) {

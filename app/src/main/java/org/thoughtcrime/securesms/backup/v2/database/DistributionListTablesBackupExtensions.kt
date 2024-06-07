@@ -15,6 +15,8 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
 import org.signal.core.util.select
 import org.thoughtcrime.securesms.backup.v2.BackupState
+import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
+import org.thoughtcrime.securesms.backup.v2.proto.DistributionListItem
 import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
@@ -60,19 +62,28 @@ fun DistributionListTables.getAllForBackup(): List<BackupRecipient> {
     .map { recipient ->
       BackupRecipient(
         id = recipient.id.toLong(),
-        distributionList = BackupDistributionList(
-          name = recipient.record.name,
-          distributionId = recipient.record.distributionId.asUuid().toByteArray().toByteString(),
-          allowReplies = recipient.record.allowsReplies,
-          deletionTimestamp = recipient.record.deletedAtTimestamp,
-          privacyMode = recipient.record.privacyMode.toBackupPrivacyMode(),
-          memberRecipientIds = recipient.record.members.map { it.toLong() }
-        )
+        distributionList = if (recipient.record.deletedAtTimestamp != 0L) {
+          DistributionListItem(
+            distributionId = recipient.record.distributionId.asUuid().toByteArray().toByteString(),
+            deletionTimestamp = recipient.record.deletedAtTimestamp
+          )
+        } else {
+          DistributionListItem(
+            distributionId = recipient.record.distributionId.asUuid().toByteArray().toByteString(),
+            distributionList = DistributionList(
+              name = recipient.record.name,
+              allowReplies = recipient.record.allowsReplies,
+              privacyMode = recipient.record.privacyMode.toBackupPrivacyMode(),
+              memberRecipientIds = recipient.record.members.map { it.toLong() }
+            )
+          )
+        }
       )
     }
 }
 
-fun DistributionListTables.restoreFromBackup(dlist: BackupDistributionList, backupState: BackupState): RecipientId {
+fun DistributionListTables.restoreFromBackup(dlistItem: DistributionListItem, backupState: BackupState): RecipientId? {
+  val dlist = dlistItem.distributionList ?: return null
   val members: List<RecipientId> = dlist.memberRecipientIds
     .mapNotNull { backupState.backupToLocalRecipientId[it] }
 
@@ -83,9 +94,9 @@ fun DistributionListTables.restoreFromBackup(dlist: BackupDistributionList, back
   val dlistId = this.createList(
     name = dlist.name,
     members = members,
-    distributionId = DistributionId.from(UuidUtil.fromByteString(dlist.distributionId)),
+    distributionId = DistributionId.from(UuidUtil.fromByteString(dlistItem.distributionId)),
     allowsReplies = dlist.allowReplies,
-    deletionTimestamp = dlist.deletionTimestamp,
+    deletionTimestamp = dlistItem.deletionTimestamp ?: 0,
     storageId = null,
     privacyMode = dlist.privacyMode.toLocalPrivacyMode()
   )!!

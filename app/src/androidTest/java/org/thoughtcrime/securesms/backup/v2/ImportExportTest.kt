@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Contact
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
+import org.thoughtcrime.securesms.backup.v2.proto.DistributionListItem
 import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
@@ -85,9 +86,11 @@ class ImportExportTest {
       givenName = "Peter",
       familyName = "Parker",
       avatarUrlPath = "https://example.com/",
-      subscriberId = SubscriberId.generate().bytes.toByteString(),
-      subscriberCurrencyCode = "USD",
-      subscriptionManuallyCancelled = true,
+      donationSubscriberData = AccountData.SubscriberData(
+        subscriberId = SubscriberId.generate().bytes.toByteString(),
+        currencyCode = "USD",
+        manuallyCancelled = true
+      ),
       accountSettings = AccountData.AccountSettings(
         readReceipts = true,
         sealedSenderIndicators = true,
@@ -116,9 +119,8 @@ class ImportExportTest {
         username = "cool.01",
         e164 = 141255501234,
         blocked = false,
-        hidden = false,
-        registered = Contact.Registered.REGISTERED,
-        unregisteredTimestamp = 0L,
+        visibility = Contact.Visibility.VISIBLE,
+        registered = Contact.Registered(),
         profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
         profileSharing = true,
         profileGivenName = "Alexa",
@@ -171,9 +173,8 @@ class ImportExportTest {
             username = "rec$i.01",
             e164 = 14125550000 + i,
             blocked = false,
-            hidden = false,
-            registered = Contact.Registered.REGISTERED,
-            unregisteredTimestamp = 0L,
+            visibility = Contact.Visibility.VISIBLE,
+            registered = Contact.Registered(),
             profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
             profileSharing = true,
             profileGivenName = "Test",
@@ -237,9 +238,8 @@ class ImportExportTest {
             username = if (random.trueWithProbability(0.2f)) "rec$i.01" else null,
             e164 = 14125550000 + i,
             blocked = random.trueWithProbability(0.1f),
-            hidden = random.trueWithProbability(0.1f),
-            registered = Contact.Registered.REGISTERED,
-            unregisteredTimestamp = 0L,
+            visibility = if (random.trueWithProbability(0.1f)) Contact.Visibility.HIDDEN else Contact.Visibility.VISIBLE,
+            registered = Contact.Registered(),
             profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
             profileSharing = random.trueWithProbability(0.9f),
             profileGivenName = "Test",
@@ -390,9 +390,8 @@ class ImportExportTest {
           username = "cool.01",
           e164 = 141255501234,
           blocked = true,
-          hidden = true,
-          registered = Contact.Registered.REGISTERED,
-          unregisteredTimestamp = 0L,
+          visibility = Contact.Visibility.VISIBLE,
+          registered = Contact.Registered(),
           profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
           profileSharing = true,
           profileGivenName = "Alexa",
@@ -408,9 +407,8 @@ class ImportExportTest {
           username = null,
           e164 = 141255501235,
           blocked = true,
-          hidden = true,
-          registered = Contact.Registered.NOT_REGISTERED,
-          unregisteredTimestamp = 1234568927398L,
+          visibility = Contact.Visibility.HIDDEN,
+          notRegistered = Contact.NotRegistered(unregisteredTimestamp = 1234568927398L),
           profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
           profileSharing = false,
           profileGivenName = "Peter",
@@ -470,9 +468,8 @@ class ImportExportTest {
           username = "cool.01",
           e164 = 141255501234,
           blocked = true,
-          hidden = true,
-          registered = Contact.Registered.REGISTERED,
-          unregisteredTimestamp = 0L,
+          visibility = Contact.Visibility.HIDDEN,
+          registered = Contact.Registered(),
           profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
           profileSharing = true,
           profileGivenName = "Alexa",
@@ -488,9 +485,8 @@ class ImportExportTest {
           username = null,
           e164 = 141255501235,
           blocked = true,
-          hidden = true,
-          registered = Contact.Registered.REGISTERED,
-          unregisteredTimestamp = 0L,
+          visibility = Contact.Visibility.HIDDEN,
+          registered = Contact.Registered(),
           profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
           profileSharing = true,
           profileGivenName = "Peter",
@@ -506,9 +502,8 @@ class ImportExportTest {
           username = null,
           e164 = 141255501236,
           blocked = true,
-          hidden = true,
-          registered = Contact.Registered.REGISTERED,
-          unregisteredTimestamp = 0L,
+          visibility = Contact.Visibility.HIDDEN,
+          registered = Contact.Registered(),
           profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
           profileSharing = true,
           profileGivenName = "Father",
@@ -518,13 +513,14 @@ class ImportExportTest {
       ),
       Recipient(
         id = 6,
-        distributionList = DistributionList(
-          name = "Kim Family",
+        distributionList = DistributionListItem(
           distributionId = DistributionId.create().asUuid().toByteArray().toByteString(),
-          allowReplies = true,
-          deletionTimestamp = 0L,
-          privacyMode = DistributionList.PrivacyMode.ONLY_WITH,
-          memberRecipientIds = listOf(3, 4, 5)
+          distributionList = DistributionList(
+            name = "Kim Family",
+            allowReplies = true,
+            privacyMode = DistributionList.PrivacyMode.ONLY_WITH,
+            memberRecipientIds = listOf(3, 4, 5)
+          )
         )
       )
     )
@@ -540,9 +536,8 @@ class ImportExportTest {
         username = "cool.01",
         e164 = 141255501234,
         blocked = true,
-        hidden = true,
-        registered = Contact.Registered.REGISTERED,
-        unregisteredTimestamp = 0L,
+        visibility = Contact.Visibility.HIDDEN,
+        registered = Contact.Registered(),
         profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
         profileSharing = true,
         profileGivenName = "Alexa",
@@ -555,13 +550,9 @@ class ImportExportTest {
       alexa,
       Recipient(
         id = 6,
-        distributionList = DistributionList(
-          name = "Deleted list",
+        distributionList = DistributionListItem(
           distributionId = DistributionId.create().asUuid().toByteArray().toByteString(),
-          allowReplies = true,
-          deletionTimestamp = 12345L,
-          privacyMode = DistributionList.PrivacyMode.ONLY_WITH,
-          memberRecipientIds = listOf(3)
+          deletionTimestamp = 12345L
         )
       )
     )
@@ -587,9 +578,8 @@ class ImportExportTest {
           username = "cool.01",
           e164 = 141255501234,
           blocked = false,
-          hidden = false,
-          registered = Contact.Registered.REGISTERED,
-          unregisteredTimestamp = 0L,
+          visibility = Contact.Visibility.VISIBLE,
+          registered = Contact.Registered(),
           profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
           profileSharing = true,
           profileGivenName = "Alexa",
@@ -614,8 +604,7 @@ class ImportExportTest {
         expirationTimerMs = 1.days.inWholeMilliseconds,
         muteUntilMs = System.currentTimeMillis(),
         markedUnread = true,
-        dontNotifyForMentionsIfMuted = true,
-        wallpaper = null
+        dontNotifyForMentionsIfMuted = true
       )
     )
   }
@@ -689,9 +678,8 @@ class ImportExportTest {
           username = "cool.01",
           e164 = 141255501234,
           blocked = false,
-          hidden = false,
-          registered = Contact.Registered.REGISTERED,
-          unregisteredTimestamp = 0L,
+          visibility = Contact.Visibility.VISIBLE,
+          registered = Contact.Registered(),
           profileKey = TestRecipientUtils.generateProfileKey().toByteString(),
           profileSharing = true,
           profileGivenName = "Alexa",
@@ -716,8 +704,7 @@ class ImportExportTest {
         expirationTimerMs = 1.days.inWholeMilliseconds,
         muteUntilMs = System.currentTimeMillis(),
         markedUnread = true,
-        dontNotifyForMentionsIfMuted = true,
-        wallpaper = null
+        dontNotifyForMentionsIfMuted = true
       ),
       *individualCalls.toArray()
     )
@@ -1361,8 +1348,7 @@ class ImportExportTest {
       expirationTimerMs = 0,
       muteUntilMs = 0,
       markedUnread = false,
-      dontNotifyForMentionsIfMuted = false,
-      wallpaper = null
+      dontNotifyForMentionsIfMuted = false
     )
   }
 
