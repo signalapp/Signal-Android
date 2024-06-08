@@ -2,16 +2,12 @@ package org.thoughtcrime.securesms.keyvalue
 
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
+import io.mockk.every
+import io.mockk.mockkObject
 import org.junit.Assert.assertEquals
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.MockedStatic
-import org.mockito.Mockito.`when`
-import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -22,18 +18,13 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 @Config(manifest = Config.NONE, application = Application::class)
 class PaymentsValuesTest {
 
-  @Rule
-  @JvmField
-  val mockitoRule: MockitoRule = MockitoJUnit.rule()
-
-  @Mock
-  private lateinit var featureFlags: MockedStatic<FeatureFlags>
-
   @Before
   fun setup() {
     if (!AppDependencies.isInitialized) {
       AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
     }
+
+    mockkObject(FeatureFlags)
   }
 
   @Test
@@ -57,8 +48,8 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(false)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    every { FeatureFlags.payments() } returns false
+    every { FeatureFlags.paymentsCountryBlocklist() } returns ""
 
     assertEquals(PaymentsAvailability.DISABLED_REMOTELY, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -73,8 +64,8 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(false)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    every { FeatureFlags.payments() } returns false
+    every { FeatureFlags.paymentsCountryBlocklist() } returns ""
 
     assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -89,8 +80,8 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(true)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    every { FeatureFlags.payments() } returns true
+    every { FeatureFlags.paymentsCountryBlocklist() } returns ""
 
     assertEquals(PaymentsAvailability.REGISTRATION_AVAILABLE, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -105,8 +96,8 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(true)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    every { FeatureFlags.payments() } returns true
+    every { FeatureFlags.paymentsCountryBlocklist() } returns ""
 
     assertEquals(PaymentsAvailability.WITHDRAW_AND_SEND, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -121,8 +112,8 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(true)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("1")
+    every { FeatureFlags.payments() } returns true
+    every { FeatureFlags.paymentsCountryBlocklist() } returns "1"
 
     assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -137,8 +128,8 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(true)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("1")
+    every { FeatureFlags.payments() } returns true
+    every { FeatureFlags.paymentsCountryBlocklist() } returns "1"
 
     assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.paymentsValues().paymentsAvailability)
   }

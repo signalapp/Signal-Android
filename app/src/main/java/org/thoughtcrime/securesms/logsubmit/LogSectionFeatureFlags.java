@@ -21,10 +21,10 @@ public class LogSectionFeatureFlags implements LogSection {
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
     StringBuilder       out           = new StringBuilder();
-    Map<String, Object> memory        = FeatureFlags.getMemoryValues();
-    Map<String, Object> disk          = FeatureFlags.getDiskValues();
-    Map<String, Object> pending       = FeatureFlags.getPendingDiskValues();
-    Map<String, Object> forced        = FeatureFlags.getForcedValues();
+    Map<String, Object> memory        = FeatureFlags.getDebugMemoryValues();
+    Map<String, Object> disk          = FeatureFlags.getDebugDiskValues();
+    Map<String, Object> pending       = FeatureFlags.getDebugPendingDiskValues();
+    Map<String, Object> forced        = FeatureFlags.getDebugForcedValues();
     int                 remoteLength  = Stream.of(memory.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
     int                 diskLength    = Stream.of(disk.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
     int                 pendingLength = Stream.of(pending.keySet()).map(String::length).max(Integer::compareTo).orElse(0);

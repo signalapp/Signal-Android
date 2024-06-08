@@ -2,15 +2,11 @@ package org.thoughtcrime.securesms.crash
 
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
+import io.mockk.every
+import io.mockk.mockkObject
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.MockedStatic
-import org.mockito.Mockito.`when`
-import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.assertIs
@@ -28,15 +24,10 @@ import java.util.UUID
 @Config(manifest = Config.NONE, application = Application::class)
 class CrashConfigTest {
 
-  @Rule
-  @JvmField
-  val mockitoRule: MockitoRule = MockitoJUnit.rule()
-
-  @Mock
-  private lateinit var featureFlags: MockedStatic<FeatureFlags>
-
   @Before
   fun setup() {
+    mockkObject(FeatureFlags)
+
     if (!AppDependencies.isInitialized) {
       AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
     }
@@ -54,31 +45,31 @@ class CrashConfigTest {
 
   @Test
   fun `simple name pattern`() {
-    `when`(FeatureFlags.crashPromptConfig()).thenReturn("""[ { "name": "test", "percent": 100 } ]""")
+    every { FeatureFlags.crashPromptConfig() } returns """[ { "name": "test", "percent": 100 } ]"""
     CrashConfig.computePatterns() assertIs listOf(CrashConfig.CrashPattern(namePattern = "test"))
   }
 
   @Test
   fun `simple message pattern`() {
-    `when`(FeatureFlags.crashPromptConfig()).thenReturn("""[ { "message": "test", "percent": 100 } ]""")
+    every { FeatureFlags.crashPromptConfig() } returns """[ { "message": "test", "percent": 100 } ]"""
     CrashConfig.computePatterns() assertIs listOf(CrashConfig.CrashPattern(messagePattern = "test"))
   }
 
   @Test
   fun `simple stackTrace pattern`() {
-    `when`(FeatureFlags.crashPromptConfig()).thenReturn("""[ { "stackTrace": "test", "percent": 100 } ]""")
+    every { FeatureFlags.crashPromptConfig() } returns """[ { "stackTrace": "test", "percent": 100 } ]"""
     CrashConfig.computePatterns() assertIs listOf(CrashConfig.CrashPattern(stackTracePattern = "test"))
   }
 
   @Test
   fun `all fields set`() {
-    `when`(FeatureFlags.crashPromptConfig()).thenReturn("""[ { "name": "test1", "message": "test2", "stackTrace": "test3", "percent": 100 } ]""")
+    every { FeatureFlags.crashPromptConfig() } returns """[ { "name": "test1", "message": "test2", "stackTrace": "test3", "percent": 100 } ]"""
     CrashConfig.computePatterns() assertIs listOf(CrashConfig.CrashPattern(namePattern = "test1", messagePattern = "test2", stackTracePattern = "test3"))
   }
 
   @Test
   fun `multiple configs`() {
-    `when`(FeatureFlags.crashPromptConfig()).thenReturn(
+    every { FeatureFlags.crashPromptConfig() } returns
       """
       [ 
         { "name": "test1", "percent": 100 },
@@ -86,7 +77,6 @@ class CrashConfigTest {
         { "stackTrace": "test3", "percent": 100 }
       ]
       """
-    )
 
     CrashConfig.computePatterns() assertIs listOf(
       CrashConfig.CrashPattern(namePattern = "test1"),
@@ -97,7 +87,7 @@ class CrashConfigTest {
 
   @Test
   fun `empty fields are considered null`() {
-    `when`(FeatureFlags.crashPromptConfig()).thenReturn(
+    every { FeatureFlags.crashPromptConfig() } returns
       """
       [ 
         { "name": "", "percent": 100 },
@@ -105,7 +95,6 @@ class CrashConfigTest {
         { "message": "test2", "stackTrace": "", "percent": 100 }
       ]
       """
-    )
 
     CrashConfig.computePatterns() assertIs listOf(
       CrashConfig.CrashPattern(namePattern = "test1"),
@@ -115,31 +104,31 @@ class CrashConfigTest {
 
   @Test
   fun `ignore zero percent`() {
-    `when`(FeatureFlags.crashPromptConfig()).thenReturn("""[ { "name": "test", "percent": 0 } ]""")
+    every { FeatureFlags.crashPromptConfig() } returns """[ { "name": "test", "percent": 0 } ]"""
     CrashConfig.computePatterns() assertIs emptyList()
   }
 
   @Test
   fun `not setting percent is the same as zero percent`() {
-    `when`(FeatureFlags.crashPromptConfig()).thenReturn("""[ { "name": "test" } ]""")
+    every { FeatureFlags.crashPromptConfig() } returns """[ { "name": "test" } ]"""
     CrashConfig.computePatterns() assertIs emptyList()
   }
 
   @Test
   fun `ignore configs without a pattern`() {
-    `when`(FeatureFlags.crashPromptConfig()).thenReturn("""[ { "percent": 100 } ]""")
+    every { FeatureFlags.crashPromptConfig() } returns """[ { "percent": 100 } ]"""
     CrashConfig.computePatterns() assertIs emptyList()
   }
 
   @Test
   fun `ignore invalid json`() {
-    `when`(FeatureFlags.crashPromptConfig()).thenReturn("asdf")
+    every { FeatureFlags.crashPromptConfig() } returns "asdf"
     CrashConfig.computePatterns() assertIs emptyList()
   }
 
   @Test
   fun `ignore empty json`() {
-    `when`(FeatureFlags.crashPromptConfig()).thenReturn("")
+    every { FeatureFlags.crashPromptConfig() } returns ""
     CrashConfig.computePatterns() assertIs emptyList()
   }
 }
