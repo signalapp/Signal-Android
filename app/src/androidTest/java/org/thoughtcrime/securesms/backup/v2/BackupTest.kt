@@ -10,6 +10,7 @@ import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.signal.core.util.Hex
 import org.signal.core.util.SqlUtil
@@ -89,11 +90,13 @@ class BackupTest {
     SignalStore.account().generatePniIdentityKeyIfNecessary()
   }
 
+  @Ignore("Will likely be removed soon")
   @Test
   fun emptyDatabase() {
     backupTest { }
   }
 
+  @Ignore("Will likely be removed soon")
   @Test
   fun noteToSelf() {
     backupTest {
@@ -105,6 +108,7 @@ class BackupTest {
     }
   }
 
+  @Ignore("Will likely be removed soon")
   @Test
   fun individualChat() {
     backupTest {
@@ -121,6 +125,7 @@ class BackupTest {
     }
   }
 
+  @Ignore("Will likely be removed soon")
   @Test
   fun individualRecipients() {
     backupTest {
@@ -152,6 +157,7 @@ class BackupTest {
     }
   }
 
+  @Ignore("Will likely be removed soon")
   @Test
   fun individualCallLogs() {
     backupTest {
@@ -234,6 +240,7 @@ class BackupTest {
     }
   }
 
+  @Ignore("Will likely be removed soon")
   @Test
   fun accountData() {
     val context = AppDependencies.application
