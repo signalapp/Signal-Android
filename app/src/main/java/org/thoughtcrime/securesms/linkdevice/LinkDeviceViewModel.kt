@@ -76,7 +76,7 @@ class LinkDeviceViewModel : ViewModel() {
       return
     }
     _state.value = _state.value.copy(
-      progressDialogMessage = if (isPotentialNewDevice) R.string.LinkDeviceFragment__linking_device else -1,
+      progressDialogMessage = if (isPotentialNewDevice) R.string.LinkDeviceFragment__linking_device else R.string.LinkDeviceFragment__loading,
       pendingNewDevice = if (isPotentialNewDevice) false else _state.value.pendingNewDevice
     )
     viewModelScope.launch(Dispatchers.IO) {
