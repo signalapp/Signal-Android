@@ -41,21 +41,28 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
       }
     }
 
+    @JvmStatic
+    fun getNextDailyBackupTimeFromNowWithJitter(now: LocalDateTime, hour: Int, minute: Int, maxJitterSeconds: Int): LocalDateTime {
+      var next = now.withHour(hour).withMinute(minute).withSecond(0)
+
+      if (!now.plusSeconds(maxJitterSeconds.toLong() / 2).isBefore(next)) {
+        next = next.plusDays(1)
+      }
+
+      val jitter = Random().nextInt(BACKUP_JITTER_WINDOW_SECONDS) - BACKUP_JITTER_WINDOW_SECONDS / 2
+      return next.plusSeconds(jitter.toLong())
+    }
+
     fun setNextBackupTimeToIntervalFromNow(): Long {
       val now = LocalDateTime.now()
       val hour = SignalStore.settings().backupHour
       val minute = SignalStore.settings().backupMinute
-      var next = now.withHour(hour).withMinute(minute).withSecond(0)
-      val jitter = Random().nextInt(BACKUP_JITTER_WINDOW_SECONDS) - BACKUP_JITTER_WINDOW_SECONDS / 2
-      next.plusSeconds(jitter.toLong())
+      var next = getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, BACKUP_JITTER_WINDOW_SECONDS)
       next = when (SignalStore.backup().backupFrequency) {
-        BackupFrequency.DAILY -> next.plusDays(1)
-        BackupFrequency.MANUAL -> next.plusDays(365)
-        BackupFrequency.MONTHLY -> next.plusDays(30)
-        BackupFrequency.WEEKLY -> next.plusDays(7)
-      }
-      if (now.isAfter(next)) {
-        next = next.plusDays(1)
+        BackupFrequency.MANUAL -> next.plusDays(364)
+        BackupFrequency.MONTHLY -> next.plusDays(29)
+        BackupFrequency.WEEKLY -> next.plusDays(6)
+        else -> next
       }
       val nextTime = next.toMillis()
       SignalStore.backup().nextBackupTime = nextTime
