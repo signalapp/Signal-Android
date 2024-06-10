@@ -94,7 +94,7 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
             .setTitle(R.string.MediaCaptureFragment_device_link_dialog_title)
             .setMessage(R.string.MediaCaptureFragment_device_link_dialog_body)
             .setPositiveButton(R.string.MediaCaptureFragment_device_link_dialog_continue) { d, _ ->
-              if (FeatureFlags.linkedDevicesV2()) {
+              if (FeatureFlags.internalUser()) {
                 startActivity(AppSettingsActivity.linkedDevices(requireContext()))
               } else {
                 startActivity(DeviceActivity.getIntentForScanner(requireContext()))

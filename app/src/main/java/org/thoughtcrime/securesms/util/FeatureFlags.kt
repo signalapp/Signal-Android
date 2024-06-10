@@ -125,7 +125,6 @@ object FeatureFlags {
   private const val RESTORE_POST_REGISTRATION = "android.registration.restorePostRegistration"
   private const val LIBSIGNAL_WEB_SOCKET_SHADOW_PCT = "android.libsignalWebSocketShadowingPercentage"
   private const val DELETE_SYNC_SEND_RECEIVE = "android.deleteSyncSendReceive"
-  private const val LINKED_DEVICES_V2 = "android.linkedDevices.v2"
   private const val SVR3_MIGRATION_PHASE = "global.svr3.phase"
 
   /**
@@ -212,7 +211,7 @@ object FeatureFlags {
 
   @JvmField
   @VisibleForTesting
-  val NOT_REMOTE_CAPABLE: Set<String> = SetUtil.newHashSet(MESSAGE_BACKUPS, REGISTRATION_V2, RESTORE_POST_REGISTRATION, LINKED_DEVICES_V2)
+  val NOT_REMOTE_CAPABLE: Set<String> = SetUtil.newHashSet(MESSAGE_BACKUPS, REGISTRATION_V2, RESTORE_POST_REGISTRATION)
 
   /**
    * Values in this map will take precedence over any value. This should only be used for local
@@ -808,11 +807,6 @@ object FeatureFlags {
   @JvmStatic
   fun deleteSyncEnabled(): Boolean {
     return getBoolean(DELETE_SYNC_SEND_RECEIVE, false)
-  }
-
-  /** Whether or not to use V2 of linked devices.  */
-  fun linkedDevicesV2(): Boolean {
-    return getBoolean(LINKED_DEVICES_V2, false)
   }
 
   /** Which phase we're in for the SVR3 migration  */
