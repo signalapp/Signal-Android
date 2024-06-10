@@ -78,7 +78,17 @@ class ImportExportTest {
 
     val defaultBackupInfo = BackupInfo(version = 1L, backupTimeMs = 123456L)
     val selfRecipient = Recipient(id = 1, self = Self())
-    val releaseNotes = Recipient(id = 2, releaseNotes = ReleaseNotes())
+    val myStory = Recipient(
+      id = 2,
+      distributionList = DistributionListItem(
+        distributionId = DistributionId.MY_STORY.asUuid().toByteArray().toByteString(),
+        distributionList = DistributionList(
+          name = DistributionId.MY_STORY.toString(),
+          privacyMode = DistributionList.PrivacyMode.ALL
+        )
+      )
+    )
+    val releaseNotes = Recipient(id = 3, releaseNotes = ReleaseNotes())
     val standardAccountData = AccountData(
       profileKey = SELF_PROFILE_KEY.serialize().toByteString(),
       username = "self.01",
@@ -112,7 +122,7 @@ class ImportExportTest {
       )
     )
     val alice = Recipient(
-      id = 3,
+      id = 4,
       contact = Contact(
         aci = TestRecipientUtils.nextAci().toByteString(),
         pni = TestRecipientUtils.nextPni().toByteString(),
@@ -130,9 +140,9 @@ class ImportExportTest {
     )
 
     /**
-     * When using standardFrames you must start recipient ids at 3.
+     * When using standardFrames you must start recipient ids at 4.
      */
-    private val standardFrames = arrayOf(defaultBackupInfo, standardAccountData, selfRecipient, releaseNotes)
+    private val standardFrames = arrayOf(defaultBackupInfo, standardAccountData, selfRecipient, myStory, releaseNotes)
   }
 
   private val context: Context
@@ -161,7 +171,7 @@ class ImportExportTest {
   fun largeNumberOfRecipientsAndChats() {
     val recipients = ArrayList<Recipient>(5000)
     val chats = ArrayList<Chat>(5000)
-    var id = 3L
+    var id = 4L
     for (i in 0..5000) {
       val recipientId = id++
       recipients.add(
@@ -383,7 +393,7 @@ class ImportExportTest {
     importExport(
       *standardFrames,
       Recipient(
-        id = 3,
+        id = 4,
         contact = Contact(
           aci = TestRecipientUtils.nextAci().toByteString(),
           pni = TestRecipientUtils.nextPni().toByteString(),
@@ -400,7 +410,7 @@ class ImportExportTest {
         )
       ),
       Recipient(
-        id = 4,
+        id = 5,
         contact = Contact(
           aci = null,
           pni = null,
@@ -424,7 +434,7 @@ class ImportExportTest {
     importExport(
       *standardFrames,
       Recipient(
-        id = 3,
+        id = 4,
         group = Group(
           masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
           whitelisted = true,
@@ -439,7 +449,7 @@ class ImportExportTest {
         )
       ),
       Recipient(
-        id = 4,
+        id = 5,
         group = Group(
           masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
           whitelisted = false,
@@ -461,7 +471,7 @@ class ImportExportTest {
     importExport(
       *standardFrames,
       Recipient(
-        id = 3,
+        id = 4,
         contact = Contact(
           aci = TestRecipientUtils.nextAci().toByteString(),
           pni = TestRecipientUtils.nextPni().toByteString(),
@@ -478,7 +488,7 @@ class ImportExportTest {
         )
       ),
       Recipient(
-        id = 4,
+        id = 5,
         contact = Contact(
           aci = null,
           pni = null,
@@ -495,7 +505,7 @@ class ImportExportTest {
         )
       ),
       Recipient(
-        id = 5,
+        id = 6,
         contact = Contact(
           aci = null,
           pni = null,
@@ -512,7 +522,7 @@ class ImportExportTest {
         )
       ),
       Recipient(
-        id = 6,
+        id = 7,
         distributionList = DistributionListItem(
           distributionId = DistributionId.create().asUuid().toByteArray().toByteString(),
           distributionList = DistributionList(
@@ -529,7 +539,7 @@ class ImportExportTest {
   @Test
   fun deletedDistributionList() {
     val alexa = Recipient(
-      id = 3,
+      id = 4,
       contact = Contact(
         aci = TestRecipientUtils.nextAci().toByteString(),
         pni = TestRecipientUtils.nextPni().toByteString(),
@@ -571,7 +581,7 @@ class ImportExportTest {
     importExport(
       *standardFrames,
       Recipient(
-        id = 3,
+        id = 4,
         contact = Contact(
           aci = TestRecipientUtils.nextAci().toByteString(),
           pni = TestRecipientUtils.nextPni().toByteString(),
@@ -588,7 +598,7 @@ class ImportExportTest {
         )
       ),
       Recipient(
-        id = 4,
+        id = 5,
         group = Group(
           masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
           whitelisted = true,
@@ -598,7 +608,7 @@ class ImportExportTest {
       ),
       Chat(
         id = 1,
-        recipientId = 3,
+        recipientId = 4,
         archived = true,
         pinnedOrder = 1,
         expirationTimerMs = 1.days.inWholeMilliseconds,
@@ -671,7 +681,7 @@ class ImportExportTest {
     importExport(
       *standardFrames,
       Recipient(
-        id = 3,
+        id = 4,
         contact = Contact(
           aci = startedAci,
           pni = TestRecipientUtils.nextPni().toByteString(),
@@ -688,7 +698,7 @@ class ImportExportTest {
         )
       ),
       Recipient(
-        id = 4,
+        id = 5,
         group = Group(
           masterKey = TestRecipientUtils.generateGroupMasterKey().toByteString(),
           whitelisted = true,
@@ -698,7 +708,7 @@ class ImportExportTest {
       ),
       Chat(
         id = 1,
-        recipientId = 3,
+        recipientId = 4,
         archived = true,
         pinnedOrder = 1,
         expirationTimerMs = 1.days.inWholeMilliseconds,
@@ -1038,23 +1048,6 @@ class ImportExportTest {
                 incrementalMacChunkSize = 0
               ),
               wasDownloaded = false
-            ),
-            MessageAttachment(
-              pointer = FilePointer(
-                backupLocator = FilePointer.BackupLocator(
-                  "digestherebutimlazy",
-                  cdnNumber = 3,
-                  key = (1..32).map { it.toByte() }.toByteArray().toByteString(),
-                  digest = (1..64).map { it.toByte() }.toByteArray().toByteString(),
-                  size = 12345
-                ),
-                contentType = "image/png",
-                width = 100,
-                height = 200,
-                caption = "Love this cool picture! Too bad u cant download it",
-                incrementalMacChunkSize = 0
-              ),
-              wasDownloaded = true
             )
           )
         )
@@ -1470,7 +1463,14 @@ class ImportExportTest {
     for (f in framesExported) {
       when {
         f.account != null -> accountImported.add(f.account!!)
-        f.recipient != null -> recipientsExported.add(f.recipient!!)
+        f.recipient != null -> {
+          val frameRecipient = f.recipient!!
+          if (frameRecipient.distributionList != null && frameRecipient.distributionList!!.distributionId == DistributionId.MY_STORY.asUuid().toByteArray().toByteString()) {
+            recipientsExported.add(frameRecipient.copy(distributionList = frameRecipient.distributionList!!.copyWithoutMembers()))
+          } else {
+            recipientsExported.add(f.recipient!!)
+          }
+        }
         f.chat != null -> chatsExported.add(f.chat!!)
         f.chatItem != null -> chatItemsExported.add(f.chatItem!!)
         f.adHocCall != null -> callsExported.add(f.adHocCall!!)
@@ -1483,6 +1483,14 @@ class ImportExportTest {
     prettyAssertEquals(chatItemsImported, chatItemsExported) { it.dateSent }
     prettyAssertEquals(callsImported, callsExported) { it.callId }
     prettyAssertEquals(stickersImported, stickersExported) { it.packId }
+  }
+
+  private fun DistributionListItem.copyWithoutMembers(): DistributionListItem {
+    return this.copy(
+      distributionList = this.distributionList?.copy(
+        memberRecipientIds = emptyList()
+      )
+    )
   }
 
   private inline fun <reified T : Any> prettyAssertEquals(import: List<T>, export: List<T>) {

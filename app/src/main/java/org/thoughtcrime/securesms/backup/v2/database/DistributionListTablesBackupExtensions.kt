@@ -97,6 +97,7 @@ fun DistributionListTables.restoreFromBackup(dlistItem: DistributionListItem, ba
   val dlistId = if (distributionId == DistributionId.MY_STORY) {
     setPrivacyMode(DistributionListId.MY_STORY, privacyMode)
     members.forEach { addMemberToList(DistributionListId.MY_STORY, privacyMode, it) }
+    setAllowsReplies(DistributionListId.MY_STORY, dlist.allowReplies)
     DistributionListId.MY_STORY
   } else {
     createList(
