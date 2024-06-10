@@ -18,4 +18,8 @@ class BackupsTypeSettingsViewModel : ViewModel() {
   )
 
   val state: State<BackupsTypeSettingsState> = internalState
+
+  fun refresh() {
+    internalState.value = state.value.copy(backupsTier = SignalStore.backup().backupTier)
+  }
 }

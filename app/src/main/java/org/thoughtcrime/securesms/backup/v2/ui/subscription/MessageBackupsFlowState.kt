@@ -11,8 +11,8 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 
 data class MessageBackupsFlowState(
-  val selectedMessageBackupTier: MessageBackupTier? = null,
-  val currentMessageBackupTier: MessageBackupTier? = null,
+  val selectedMessageBackupTier: MessageBackupTier? = SignalStore.backup().backupTier,
+  val currentMessageBackupTier: MessageBackupTier? = SignalStore.backup().backupTier,
   val availableBackupTiers: List<MessageBackupTier> = emptyList(),
   val selectedPaymentMethod: InAppPaymentData.PaymentMethodType? = null,
   val availablePaymentMethods: List<InAppPaymentData.PaymentMethodType> = emptyList(),

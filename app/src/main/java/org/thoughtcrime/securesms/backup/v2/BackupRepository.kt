@@ -755,7 +755,7 @@ enum class MessageBackupTier(val value: Int) {
     }
 
     override fun deserialize(data: Long): MessageBackupTier? {
-      return values().firstOrNull { it.value == data.toInt() } ?: null
+      return values().firstOrNull { it.value == data.toInt() }
     }
   }
 }

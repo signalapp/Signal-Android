@@ -154,6 +154,11 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     super.onViewCreated(view, savedInstanceState)
     EventBus.getDefault().registerForLifecycle(subscriber = this, lifecycleOwner = viewLifecycleOwner)
   }
+
+  override fun onResume() {
+    super.onResume()
+    viewModel.refresh()
+  }
 }
 
 /**

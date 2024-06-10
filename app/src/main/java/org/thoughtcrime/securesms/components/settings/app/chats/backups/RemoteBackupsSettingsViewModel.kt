@@ -50,6 +50,15 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     internalState.value = state.value.copy(snackbar = snackbar)
   }
 
+  fun refresh() {
+    internalState.value = state.value.copy(
+      messageBackupsTier = SignalStore.backup().backupTier,
+      lastBackupTimestamp = SignalStore.backup().lastBackupTime,
+      backupSize = SignalStore.backup().totalBackupSize,
+      backupsFrequency = SignalStore.backup().backupFrequency
+    )
+  }
+
   fun turnOffAndDeleteBackups() {
     // TODO [message-backups] -- Delete.
     SignalStore.backup().areBackupsEnabled = false

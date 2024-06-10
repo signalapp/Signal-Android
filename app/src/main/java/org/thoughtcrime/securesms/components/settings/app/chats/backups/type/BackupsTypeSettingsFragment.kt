@@ -70,6 +70,11 @@ class BackupsTypeSettingsFragment : ComposeFragment() {
       startActivity(Intent(requireContext(), MessageBackupsFlowActivity::class.java))
     }
   }
+
+  override fun onResume() {
+    super.onResume()
+    viewModel.refresh()
+  }
 }
 
 private interface ContentCallbacks {
@@ -130,7 +135,7 @@ private fun BackupsTypeRow(
   backupsTier: MessageBackupTier,
   nextRenewalTimestamp: Long
 ) {
-  val messageBackupsType = remember {
+  val messageBackupsType = remember(backupsTier) {
     getTierDetails(backupsTier)
   }
 
