@@ -549,8 +549,8 @@
     <string name="ConversationFragment_delete_everywhere">Futa kila mahali</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
     <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">This message will be deleted from all your devices.</item>
-        <item quantity="other">These messages will be deleted from all your devices.</item>
+        <item quantity="one">Ujumbe huu utafutwa kwenye vifaa vyako vyote.</item>
+        <item quantity="other">Jumbe hizi zitafutwa kwenye vifaa vyako vyote.</item>
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ujumbe huu utafutwa kwa watu wote kwenye gumzo ikiwa wanatumia toleo jipya la Signal. Wataweza kuona kuwa umefuta ujumbe.</string>
     <string name="ConversationFragment_quoted_message_not_found">Ujumbe halisi haupatikani</string>
@@ -654,8 +654,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">This will permanently delete the selected chat from all your devices.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats from all your devices.</item>
+        <item quantity="one">Hii itafuta kabisa gumzo lililochaguliwa kutoka kwenye vifaa vyako vyote.</item>
+        <item quantity="other">Hii itafuta kabisa magumzo yote %1$d yaliyochaguliwa kutoka kwenye vifaa vyako vyote.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Inafutwa</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1331,8 +1331,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">This will permanently delete the selected file from all your devices. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Hii itafuta kabisa faili lililochaguliwa kutoka kwenye vifaa vyako vyote. Ujumbe wowote unaohusiana na kipengele hiki utafutwa.</item>
+        <item quantity="other">Hii itafuta kabisa mafaili yote %1$d yaliyochaguliwa kutoka kwenye vifaa vyako vyote. Ujumbe wowote unaohusiana na kipengele hiki utafutwa.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Inafutwa</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Jumbe zinafutwa</string>
@@ -1643,13 +1643,13 @@
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s sasa anaweza kupokea Malipo</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
+    <string name="MessageRecord_payments_restore_tombstone">Taarifa za malipo hazipo</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
     <string name="MessageRecord_payments_restore_tombstone_tap_more">Gusa uone Zaidi</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
-    <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
+    <string name="PaymentTombstoneLearnMoreDialog_title">Taarifa za malipo hazipo</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">This details of this payment are not available because your messages were restored from a source that did not contain this payment history. This does not affect your wallet balance or the status of past payments.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">Taarifa ya malipo haya hazipo kwa sababu ujumbe wako ulirejeshwa kutoka kwenye chanzo kisicho na historia ya malipo. Hii haiathiri salio la pochi yako au hali ya malipo yaliyopita.</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -1967,19 +1967,19 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">Ruhusu ufikiaji wa kamera yako</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Ili kuanza kupiga au kujiunga kwenye simu, iruhusu Signal kufikia kamera na maikrofoni yako.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">To start or join a call, allow Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">Ili kuanza kupiga au kujiunga kwenye simu, iruhusu Signal kufikia maikrofoni yako.</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">To enable your video, allow Signal access to your camera.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">Ili kuonyesha video yako, iruhusu Signal kufikia kamera yako.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal needs microphone permissions to start or join a call.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal inahitaji ruhusa za maikrofoni ili kuanza kupiga au kujiunga kwenye simu.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal needs camera access to enable your video</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal inahitaji kufikia kamera ili kuonyesha video</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="WebRtcCallActivity__to_start_call">To start or join a call:</string>
+    <string name="WebRtcCallActivity__to_start_call">Ili kuanza kupiga au kujiunga kwenye simu:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
-    <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
+    <string name="WebRtcCallActivity__to_enable_video">Ili kuonyesha video yako:</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Simu ya Signal</string>
@@ -2522,7 +2522,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Futa ujumbe?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Hii itafuta ujumbe kabisa.</string>
     <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">Hii itafuta kabisa ujumbe huu kwenye vifaa vyako vyote.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$shadi %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Kutoka kwako kwenda %1$s</string>
@@ -3383,11 +3383,11 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Hii itafuta daima historia yote ya jumbe na media kwenye kifaa chako.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Hii itafuta kabisa historia ya jumbe na video kutoka kwenye kifaa hiki na vifaa vyovyote vilivyounganishwa.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Una uhakika ungetaka kufuta historia yote ya jumbe?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Historia yote ya jumbe itaondolewa kabisa. Kitendo hiki hakiwezi kutenguliwa.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Historia ya jumbe zote itaondolewa kwenye vifaa vyote. Kitendo hiki hakitenguliwi.</string>
     <string name="preferences_storage__delete_all_now">Futa zote sasa</string>
     <string name="preferences_storage__forever">Daima</string>
     <string name="preferences_storage__one_year">Mwaka 1</string>
@@ -5716,9 +5716,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Huwezi kujibu stori hii kwa sababu wewe si mwanachama tena wa kikundi hiki.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Ametoa hisia kwa hadithi yako</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Ame-react kwa stori yako</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Ametoa hisia kwa hadithi yako</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Ame-react kwa stori yako</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Mitazamo</string>
     <!-- Label for story replies tab -->
@@ -6936,14 +6936,14 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Jumbe zinazozidi urefu uliochaguliwa zitafutwa kabisa.</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Weka ukomo wa vifaa vilivyounganishwa</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Itakapowashwa, ukomo wa gumzo pia utafuta jumbe kutoka kwenye vifaa vyako vilivyounganishwa.</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
+    <string name="DeleteSyncEducation_title">Kufuta sasa kumeunganishwa kwenye vifaa vyao vyote</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">Unapofuta jumbe, video na magumzo, yatafutwa kwenye simu yako na vifaa vyote vilivyounganishwa.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">Sawa</string>
 

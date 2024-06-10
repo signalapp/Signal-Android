@@ -271,7 +271,7 @@
     <string name="CameraContacts_no_signal_contacts">Geen Signal-gebruikers</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Je kunt de cameraknop alleen gebruiken om foto\'s te versturen naar Signal-gebruikers. </string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">Kun je de persoon die je zoekt niet vinden?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Nodig een contactpersoon uit om ook Signal te gebruiken</string>
+    <string name="CameraContacts_invite_a_contact_to_join_signal">Nodig een contact uit om ook Signal te gebruiken</string>
     <string name="CameraContacts__menu_search">Zoeken</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -345,7 +345,7 @@
     <string name="ContactShareEditActivity_type_mobile">Mobiel</string>
     <string name="ContactShareEditActivity_type_work">Werk</string>
     <string name="ContactShareEditActivity_type_missing">Anders</string>
-    <string name="ContactShareEditActivity_invalid_contact">De geselecteerde contactpersoon was ongeldig</string>
+    <string name="ContactShareEditActivity_invalid_contact">Het geselecteerde contact was ongeldig</string>
     <!-- Content descrption for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">Naam bewerken</string>
     <!-- Content description for user avatar in edit activity -->
@@ -554,7 +554,7 @@
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Dit bericht wordt verwijderd voor iedereen in de chat als ze een recente versie van Signal gebruiken. Ze kunnen zien dat je een bericht hebt verwijderd.</string>
     <string name="ConversationFragment_quoted_message_not_found">Oorspronkelijk bericht niet gevonden</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Het oorspronkelijke bericht is niet langer beschikbaar</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">Oorspronkelijk bericht niet langer beschikbaar.</string>
     <string name="ConversationFragment_failed_to_open_message">Openen van bericht is mislukt</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Je kunt elk bericht naar rechts vegen om snel een reactie te schijven</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
@@ -564,7 +564,7 @@
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
     <string name="ConversationFragment__tap_to_review">Tik hier om ze te vergelijken</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">Deze persoon heeft dezelfde naam als een andere contactpersoon.</string>
+    <string name="ConversationFragment__review_banner_body">Deze persoon heeft dezelfde naam als een ander contact.</string>
     <string name="ConversationFragment_contact_us">Neem contact met ons op</string>
     <string name="ConversationFragment_verify">Verifiëren</string>
     <string name="ConversationFragment_not_now">Niet nu</string>
@@ -857,7 +857,7 @@
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Chatsessie vernieuwd</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Het kan soms nodig zijn om je chatsessie te vernieuwen. Dit heeft geen invloed op de beveiliging van je chat, maar het is mogelijk dat je een bericht van je contactpersoon hebt gemist. Vraag je contactpersoon eventueel om de meest recente berichten opnieuw te verzenden.</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Het kan soms nodig zijn om je chatsessie te vernieuwen. Dit heeft geen invloed op de beveiliging van je chat, maar het is mogelijk dat je een bericht van je contact hebt gemist. Vraag je contact eventueel om de meest recente berichten opnieuw te verzenden.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">‘%1$s’ ontkoppelen?</string>
@@ -1095,12 +1095,12 @@
     <string name="AddGroupDetailsFragment__group_creation_failed">Nieuwe groep aanmaken is mislukt</string>
     <string name="AddGroupDetailsFragment__try_again_later">Probeer het later opnieuw.</string>
     <string name="AddGroupDetailsFragment__remove">Verwijderen</string>
-    <string name="AddGroupDetailsFragment__sms_contact">Sms-contactpersoon</string>
+    <string name="AddGroupDetailsFragment__sms_contact">Sms-contact</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s uit deze groep verwijderen?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Je hebt een contactpersoon geselecteerd die geen Signal-groepen heeft, dus dit zal een mms-groep zijn. Aangepaste mms-groepsnamen en -foto\'s zullen alleen voor jou zichtbaar zijn.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Je hebt een contact geselecteerd die geen Signal-groepen heeft, dus dit zal een mms-groep zijn. Aangepaste mms-groepsnamen en -foto\'s zullen alleen voor jou zichtbaar zijn.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Je hebt een contactpersoon geselecteerd die geen Signal-groepen heeft, dus deze groep zal gebruikmaken van mms. Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen voor jou zichtbaar zijn. Ondersteuning voor mms-groepen wordt binnenkort verwijderd, zodat we ons kunnen richten op versleutelde berichten.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Je hebt een contact geselecteerd die geen Signal-groepen heeft, dus deze groep zal gebruikmaken van mms. Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen voor jou zichtbaar zijn. Ondersteuning voor mms-groepen wordt binnenkort verwijderd, zodat we ons kunnen richten op versleutelde berichten.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Wie mogen nieuwe leden toevoegen?</string>
@@ -2572,7 +2572,7 @@
     <string name="MessageNotifier_reply">Reageren</string>
     <string name="MessageNotifier_signal_message">Signal-bericht</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
-    <string name="MessageNotifier_unknown_contact_message">Contactpersoon</string>
+    <string name="MessageNotifier_unknown_contact_message">Contact</string>
     <string name="MessageNotifier_reacted_s_to_s">Reageerde met %1$s op ‘%2$s’.</string>
     <string name="MessageNotifier_reacted_s_to_your_video">Reageerde met %1$s op je video.</string>
     <string name="MessageNotifier_reacted_s_to_your_image">Reageerde met %1$s op je afbeelding.</string>
@@ -2774,7 +2774,7 @@
     <string name="contact_selection_group_activity__finding_contacts">Contacten laden…</string>
 
     <!-- single_contact_selection_activity -->
-    <string name="SingleContactSelectionActivity_contact_photo">Foto van contactpersoon</string>
+    <string name="SingleContactSelectionActivity_contact_photo">Foto van contact</string>
 
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal heeft toegang tot je lijst met contacten nodig om je contacten weer te kunnen geven, maar toestemming om contacten in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
@@ -2848,7 +2848,7 @@
     <string name="conversation_item_sent__message_read">Bericht gelezen</string>
 
     <!-- conversation_item_received -->
-    <string name="conversation_item_received__contact_photo_description">Foto van contactpersoon</string>
+    <string name="conversation_item_received__contact_photo_description">Foto van contact</string>
 
     <!-- ConversationUpdateItem -->
     <string name="ConversationUpdateItem_loading">Aan het laden</string>
@@ -2860,7 +2860,7 @@
     <string name="ConversationUpdateItem_call_is_full">De oproep is vol</string>
     <string name="ConversationUpdateItem_invite_friends">Vrienden uitnodigen</string>
     <string name="ConversationUpdateItem_enable_call_notifications">Oproepmeldingen inschakelen</string>
-    <string name="ConversationUpdateItem_update_contact">Contactpersoon aanpassen</string>
+    <string name="ConversationUpdateItem_update_contact">Contact</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Verzoek blokkeren</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Je hebt geen gemeenschappelijke groepen met deze persoon. Beoordeel dit gespreksverzoek zorgvuldig.</string>
@@ -3025,7 +3025,7 @@
     <string name="message_recipients_list_item__resend">Opnieuw verzenden</string>
 
     <!-- Displayed in a toast when user long presses an item in MyStories -->
-    <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Verzendtijd naar klembord gekopieerd.</string>
+    <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Tijdstempel naar klembord gekopieerd.</string>
     <!-- Displayed when there are no outgoing stories -->
     <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Nieuwe delen van je verhaal zullen hier worden weergegeven.</string>
 
@@ -3592,7 +3592,7 @@
     <string name="PaymentsAddMoneyFragment__add_funds">Krediet toevoegen</string>
     <string name="PaymentsAddMoneyFragment__your_wallet_address">Het adres van je portemonnee</string>
     <string name="PaymentsAddMoneyFragment__copy">Kopiëren</string>
-    <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Gekopieerd naar het klembord</string>
+    <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Gekopieerd naar klembord</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">Maak een account bij een beurs die MobileCoin ondersteunt. Stuur vervolgens vanaf je beurs-account MobileCoin naar je Signal portemonnee-adres door de QR-code te scannen of door het adres te kopiëren om op Signal krediet toe te voegen.</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
@@ -3772,7 +3772,7 @@
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Je kunt niet meer dan %1$d chats vastzetten</string>
 
     <!-- conversation_list_item_view -->
-    <string name="conversation_list_item_view__contact_photo_image">Afbeelding van contactpersoon</string>
+    <string name="conversation_list_item_view__contact_photo_image">Afbeelding van contact</string>
     <string name="conversation_list_item_view__archived">Gearchiveerd</string>
 
 
@@ -4354,7 +4354,7 @@
     <string name="ReviewCard__request">Wil een gesprek met je beginnen</string>
     <string name="ReviewCard__your_contact">Persoon die in je contactenlijst staat</string>
     <string name="ReviewCard__remove_from_group">Uit de groep verwijderen</string>
-    <string name="ReviewCard__update_contact">Contactpersoon aanpassen</string>
+    <string name="ReviewCard__update_contact">Contact aanpassen</string>
     <string name="ReviewCard__block">Blokkeren</string>
     <string name="ReviewCard__delete">Verwijderen</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
@@ -4448,7 +4448,7 @@
     <string name="ChatWallpaperFragment__reset_chat_color_question">Chatkleur verwijderen?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">Chatachtergrond kiezen</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Achtergrond dimmen bij donkere modus</string>
-    <string name="ChatWallpaperFragment__contact_name">Naam van contactpersoon</string>
+    <string name="ChatWallpaperFragment__contact_name">Naam van contact</string>
     <string name="ChatWallpaperFragment__reset">Voor dit gesprek verwijderen</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Achtergrond-voorbeeld</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Wil je alleen de standaardkleur verwijderen of wil je alle chatkleuren verwijderen?</string>
@@ -4469,16 +4469,16 @@
     <string name="ChatWallpaperPreviewActivity__preview">Voorbeeld</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">Chatachtergrond kiezen</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Veeg om meer achtergronden weer te geven.</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Achtergrond instellen voor alle chats</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Deze standaard achtergrond instellen voor %1$s.</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Deze achtergrond instellen voor alle chats.</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Deze achtergrond instellen voor %1$s.</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Om je galerij te bekijken is toestemming nodig om de opslag te gebruiken.</string>
 
     <!-- WallpaperImageSelectionActivity -->
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Knijp met twee vingers om te vergroten of te draaien, sleep met één vinger om te verschuiven.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Achtergrond instellen voor alle chats.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_s">Achtergrond instellen voor %1$s.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Deze achtergrond instellen voor alle chats.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_s">Deze achtergrond instellen voor %1$s.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Het instellen van een achtergrond is mislukt.</string>
     <string name="WallpaperCropActivity__blur_photo">Afbeelding vervagen</string>
 
@@ -4733,7 +4733,7 @@
     <string name="NotificationsSettingsFragment__messages">Berichten</string>
     <string name="NotificationsSettingsFragment__calls">Oproepen</string>
     <string name="NotificationsSettingsFragment__notify_when">Geef me een melding wanneer…</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Een contactpersoon die in mijn systeemcontactenlijst staat sinds kort via Signal bereikbaar is</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Iemand uit mijn telefooncontacten sinds kort via Signal bereikbaar is</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Meldingsprofielen</string>
     <!-- Notification preference option header -->
@@ -4940,7 +4940,7 @@
     <string name="ConversationSettingsFragment__permissions">Machtigingen</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Verzoeken &amp; uitnodiging</string>
     <string name="ConversationSettingsFragment__group_link">Groepslink</string>
-    <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>
+    <string name="ConversationSettingsFragment__add_as_a_contact">Als contact toevoegen</string>
     <string name="ConversationSettingsFragment__unmute">Niet langer dempen</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat gedempt tot %1$s</string>
@@ -5892,7 +5892,7 @@
     <!-- Choose groups bottom sheet title -->
     <string name="ChooseGroupStoryBottomSheet__choose_groups">Groepen kiezen</string>
     <!-- Displayed when copying group story reply text to clipboard -->
-    <string name="StoryGroupReplyFragment__copied_to_clipboard">Gekopieerd naar het klembord</string>
+    <string name="StoryGroupReplyFragment__copied_to_clipboard">Gekopieerd naar klembord</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
     <string name="StoryViewerPageFragment__see_more">Bekijk meer</string>
     <!-- Displayed in toast after sending a direct reply -->

@@ -540,7 +540,7 @@
     <string name="ConversationFragment_delete_everywhere">從所有裝置中刪除</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
     <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="other">These messages will be deleted from all your devices.</item>
+        <item quantity="other">這些訊息將會從你所有裝置中永久刪除。</item>
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">如果聊天中的每個人都使用最新版本的Signal，則該訊息將被刪除。 他們將能夠看到你刪除了一則訊息。</string>
     <string name="ConversationFragment_quoted_message_not_found">無法找到原始訊息</string>
@@ -642,7 +642,7 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="other">This will permanently delete all %1$d selected chats from all your devices.</item>
+        <item quantity="other">這將從你所有裝置中永久刪除共 %1$d 則已選的聊天。</item>
     </plurals>
     <string name="ConversationListFragment_deleting">正在刪除</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1287,7 +1287,7 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
+        <item quantity="other">這將從你所有裝置中永久刪除共 %1$d 個已選檔案。與這些項目關聯的任何訊息文字亦將會被刪除。</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">正在刪除</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">刪除訊息中…</string>
@@ -1587,13 +1587,13 @@
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s 現在可以接受付款</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
+    <string name="MessageRecord_payments_restore_tombstone">未能提供付款詳情</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
     <string name="MessageRecord_payments_restore_tombstone_tap_more">點擊已獲得更多資訊</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
-    <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
+    <string name="PaymentTombstoneLearnMoreDialog_title">未能提供付款詳情</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">This details of this payment are not available because your messages were restored from a source that did not contain this payment history. This does not affect your wallet balance or the status of past payments.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">未能提供此付款的詳細資訊，因為你的訊息是從不含此付款紀錄的來源所還原的。這不會影響你的錢包餘額或過去付款的狀態。</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -1897,19 +1897,19 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">允許存取你的相機</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">要開始或加入通話，請允許 Signal 存取你的相機和麥克風。</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">To start or join a call, allow Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">要開始或加入通話，請允許 Signal 存取你的麥克風。</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">To enable your video, allow Signal access to your camera.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">要啟用視訊，請允許 Signal 存取你的相機。</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal needs microphone permissions to start or join a call.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal 需要麥克風權限以開始或加入通話。</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal needs camera access to enable your video</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal 需要相機存取權限以啟用視訊</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="WebRtcCallActivity__to_start_call">To start or join a call:</string>
+    <string name="WebRtcCallActivity__to_start_call">要開始或加入通話：</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
-    <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
+    <string name="WebRtcCallActivity__to_enable_video">要啟用你的視訊：</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal 語音通話</string>
@@ -2438,7 +2438,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">刪除訊息？</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">這將永久刪除此訊息。</string>
     <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">這將從你所有裝置中永久刪除此訊息。</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s到%2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">你給 %1$s</string>
@@ -3284,11 +3284,11 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">這將從你的裝置中永久刪除所有訊息歷史記錄和媒體檔案。</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">這將永久刪除此裝置和任何已連結裝置上的所有訊息紀錄和多媒體。</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">你確定要刪除所有訊息歷史記錄嗎?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">所有訊息歷史記錄將被永久刪除。 此操作無法取消。</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">所有訊息紀錄將會從所有裝置中永久移除。此動作無法復原。</string>
     <string name="preferences_storage__delete_all_now">立即刪除全部</string>
     <string name="preferences_storage__forever">永久</string>
     <string name="preferences_storage__one_year">1年</string>
@@ -6782,14 +6782,14 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">訊息超過所選數量將被永久刪除。</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">為已連結裝置設定上限</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">啟用後，聊天訊息量上限也會應用在已連結裝置並刪除訊息。</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
+    <string name="DeleteSyncEducation_title">現已在你所有裝置上同步刪除</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">當你刪除訊息、多媒體或聊天時，它們將從你的手機和所有已連結裝置中刪除。</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">確定</string>
 

@@ -549,8 +549,8 @@
     <string name="ConversationFragment_delete_everywhere">Eliminar de todos os dispositivos</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
     <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">This message will be deleted from all your devices.</item>
-        <item quantity="other">These messages will be deleted from all your devices.</item>
+        <item quantity="one">Esta mensaxe borrarase de todos os teus dispositivos.</item>
+        <item quantity="other">Estas mensaxes borraranse de todos os teus dispositivos.</item>
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Esta mensaxe eliminarase para todos na conversa se teñen unha versión recente de Signal. Poderán ver que borraches unha mensaxe.</string>
     <string name="ConversationFragment_quoted_message_not_found">Non se atopou a mensaxe orixinal</string>
@@ -654,8 +654,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">This will permanently delete the selected chat from all your devices.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats from all your devices.</item>
+        <item quantity="one">Isto borrará a conversa seleccionada de forma permanente de todos os teus dispositivos.</item>
+        <item quantity="other">Isto borrará as %1$d conversas seleccionadas de forma permanente de todos os teus dispositivos.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Borrando</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1331,8 +1331,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">This will permanently delete the selected file from all your devices. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Isto borrará permanentemente o ficheiro seleccionado de todos os teus dispositivos. Calquera mensaxe de texto asociada con este elemento tamén se borrará.</item>
+        <item quantity="other">Isto borrará permanentemente todos os %1$d ficheiros seleccionados de todos os teus dispositivos. Calquera mensaxe de texto asociada con estes elementos tamén se borrará.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Borrando</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Borrando mensaxes…</string>
@@ -1643,13 +1643,13 @@
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s agora pode aceptar Pagamentos</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
+    <string name="MessageRecord_payments_restore_tombstone">A información de pagamento non está dispoñible</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
-    <string name="MessageRecord_payments_restore_tombstone_tap_more">Tap for more</string>
+    <string name="MessageRecord_payments_restore_tombstone_tap_more">Preme para saber máis</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
-    <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
+    <string name="PaymentTombstoneLearnMoreDialog_title">A información de pagamento non está dispoñible</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">This details of this payment are not available because your messages were restored from a source that did not contain this payment history. This does not affect your wallet balance or the status of past payments.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">A información de pagamento non está dispoñible porque as túas mensaxes restauráronse dunha fonte que non contiña este historial de pagamentos. Isto non afecta o saldo da túa carteira ou o estado de pagamentos anteriores.</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -1967,19 +1967,19 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">Permitir acceso á cámara</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Para iniciar ou unirse a unha chamada, permite que Signal acceda á cámara e ao micrófono.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">To start or join a call, allow Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">Para iniciar ou unirse a unha chamada, permite que Signal acceda ao teu micrófono.</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">To enable your video, allow Signal access to your camera.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">Para facer vídeos, Signal necesita acceder á cámara.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal needs microphone permissions to start or join a call.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal necesita acceder ao micrófono para iniciar o unirse a unha chamada.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal needs camera access to enable your video</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal necesita acceder á cámara para facer vídeos</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="WebRtcCallActivity__to_start_call">To start or join a call:</string>
+    <string name="WebRtcCallActivity__to_start_call">Para iniciar ou unirse a unha chamada:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
-    <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
+    <string name="WebRtcCallActivity__to_enable_video">Para activar o vídeo:</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Chamada Signal</string>
@@ -2522,7 +2522,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Borrar mensaxe?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Isto borrará de xeito permanente esta mensaxe.</string>
     <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">Isto borrará esta mensaxe de forma permanente de todos os teus dispositivos.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s a %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Ti a %1$s</string>
@@ -3383,11 +3383,11 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Isto eliminará permanentemente todo o historial de mensaxes e multimedia do teu dispositivo.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Borrarase todo o historial de mensaxes e arquivos de forma permanente, tanto deste dispositivo como de todos os dispositivos vinculados.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Tes a certeza de querer eliminar todo o historial de mensaxes?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Eliminarase todo o historial de mensaxes. Esta acción non se pode desfacer.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Borrarase o historial de mensaxes de forma permanente de todos os dispositivos. Esta acción non se pode desfacer.</string>
     <string name="preferences_storage__delete_all_now">Borrar todo agora</string>
     <string name="preferences_storage__forever">Para sempre</string>
     <string name="preferences_storage__one_year">1 ano</string>
@@ -5716,9 +5716,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Non podes responder a esta historia porque xa non formas parte deste grupo.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reaccionou á túa historia</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reaccionaches á historia</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reaccionou á túa historia</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reaccionou á historia</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Visualizacións</string>
     <!-- Label for story replies tab -->
@@ -6936,14 +6936,14 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">As mensaxes que superen a cantidade seleccionada eliminaranse de forma permanente.</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Aplicar límites nos dispositivos vinculados</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Ao activarse, estes límites tamén borrarán mensaxes dos teus dispositivos vinculados.</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
+    <string name="DeleteSyncEducation_title">Agora a acción de borrar está sincronizada en todos os teus dispositivos</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">Cando borres mensaxes, arquivos ou conversas enteiras, borraranse tanto no teu teléfono coma en todos os teus dispositivos vinculados.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">Aceptar</string>
 

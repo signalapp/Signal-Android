@@ -540,7 +540,7 @@
     <string name="ConversationFragment_delete_everywhere">Xóa trên tất cả</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
     <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="other">These messages will be deleted from all your devices.</item>
+        <item quantity="other">Những tin nhắn này sẽ được xóa trên tất cả thiết bị của bạn.</item>
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Tin nhắn này sẽ được xóa cho tất cả mọi người trong cuộc trò chuyện nếu họ sử dụng phiên bản mới của Signal. Họ sẽ có thể thấy rằng bạn đã xoá tin nhắn.</string>
     <string name="ConversationFragment_quoted_message_not_found">Không tìm thấy tin nhắn ban đầu</string>
@@ -642,7 +642,7 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="other">This will permanently delete all %1$d selected chats from all your devices.</item>
+        <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d cuộc trò chuyện đã chọn trên tất cả thiết bị của bạn.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Đang xóa</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1287,7 +1287,7 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
+        <item quantity="other">Thao tác này sẽ xóa vĩnh viễn tất cả %1$d tệp đã chọn trên tất cả thiết bị của bạn. Các tin nhắn có liên kết với tệp này cũng sẽ được xóa.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Đang xóa</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Đang xóa tin nhắn…</string>
@@ -1587,13 +1587,13 @@
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s giờ đã có thể nhận Thanh toán</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
+    <string name="MessageRecord_payments_restore_tombstone">Hiện chưa có thông tin chi tiết về khoản thanh toán</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
     <string name="MessageRecord_payments_restore_tombstone_tap_more">Nhấn để xem thêm</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
-    <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
+    <string name="PaymentTombstoneLearnMoreDialog_title">Hiện chưa có thông tin chi tiết về khoản thanh toán</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">This details of this payment are not available because your messages were restored from a source that did not contain this payment history. This does not affect your wallet balance or the status of past payments.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">Hiện chưa có thông tin chi tiết về khoản thanh toán này vì tin nhắn của bạn được khôi phục từ một nguồn không chứa lịch sử thanh toán. Điều này không ảnh hưởng đến số dư trong ví hay trạng thái của những giao dịch thanh toán trước đây.</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -1897,19 +1897,19 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">Cho phép truy cập camera của bạn</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Để bắt đầu hoặc tham gia cuộc gọi, hãy cho phép Signal truy cập camera và microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">To start or join a call, allow Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">Để bắt đầu hoặc tham gia cuộc gọi, hãy cho phép Signal truy cập microphone của bạn.</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">To enable your video, allow Signal access to your camera.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">Để bật video, hãy cho phép Signal truy cập camera của bạn.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal needs microphone permissions to start or join a call.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal cần các quyền đối với microphone để bắt đầu hoặc tham gia một cuộc gọi.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal needs camera access to enable your video</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal cần quyền truy cập camera để bật video của bạn</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="WebRtcCallActivity__to_start_call">To start or join a call:</string>
+    <string name="WebRtcCallActivity__to_start_call">Để bắt đầu hoặc tham gia cuộc gọi:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
-    <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
+    <string name="WebRtcCallActivity__to_enable_video">Để bật video của bạn:</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Cuộc gọi Signal</string>
@@ -2438,7 +2438,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Xóa tin nhắn?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Thao tác này sẽ xóa vĩnh viễn tin nhắn này.</string>
     <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">Thao tác này sẽ xóa vĩnh viễn tin nhắn này trên tất cả thiết bị của bạn.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s đến %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Bạn gửi đến %1$s</string>
@@ -3284,11 +3284,11 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Thao tác này sẽ xóa vĩnh viễn tất cả lịch sử tin nhắn và đa phương tiện khỏi máy bạn.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Thao tác này sẽ xóa vĩnh viễn tất cả lịch sử tin nhắn và tệp đa phương tiện trên thiết bị này và bất kỳ thiết bị đã liên kết nào.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Bạn có muốn xóa tất cả lịch sử tin nhắn?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tất cả lịch sử tin nhắn sẽ được xóa vĩnh viễn. Thao tác này không thể được hoàn tác.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Tất cả lịch sử tin nhắn sẽ được xóa vĩnh viễn trên tất cả thiết bị. Hành động này không thể hoàn tác.</string>
     <string name="preferences_storage__delete_all_now">Xóa tất cả</string>
     <string name="preferences_storage__forever">Vĩnh viễn</string>
     <string name="preferences_storage__one_year">1 năm</string>
@@ -6782,14 +6782,14 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Tin nhắn vượt quá độ dài đã chọn sẽ được xóa vĩnh viễn.</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Áp dụng giới hạn cho các thiết bị đã liên kết</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Khi được bật, giới hạn của cuộc trò chuyện cũng sẽ xóa tin nhắn trên các thiết bị đã liên kết của bạn.</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
+    <string name="DeleteSyncEducation_title">Việc xóa nay được đồng bộ trên tất cả thiết bị của bạn</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">Khi bạn xóa tin nhắn, tệp đa phương tiện hoặc cuộc trò chuyện, những nội dung đó sẽ được xóa trên điện thoại của bạn và tất cả thiết bị đã liên kết.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 

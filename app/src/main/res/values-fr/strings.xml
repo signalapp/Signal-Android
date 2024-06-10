@@ -1150,7 +1150,7 @@
     <string name="ManageProfileFragment_badges">Macarons</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
     <string name="ManageProfileFragment_link_setting_text">Code QR ou lien</string>
-    <string name="ManageProfileFragment__edit_photo">Modifier la photo</string>
+    <string name="ManageProfileFragment__edit_photo">Changer de photo</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_title">Partagez votre nom d’utilisateur</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->

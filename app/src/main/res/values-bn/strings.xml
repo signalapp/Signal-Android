@@ -549,8 +549,8 @@
     <string name="ConversationFragment_delete_everywhere">সব জায়গা থেকে মুছে ফেলুন</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
     <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">This message will be deleted from all your devices.</item>
-        <item quantity="other">These messages will be deleted from all your devices.</item>
+        <item quantity="one">এই মেসেজটি আপনার সকল ডিভাইস থেকে মুছে ফেলা হবে।</item>
+        <item quantity="other">এই মেসেজগুলি আপনার সকল ডিভাইস থেকে মুছে ফেলা হবে।</item>
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">এই ম্যাসেজটি চ্যাট-এর প্রত্যেকের জন্য মুছে ফেলা হবে, যদি তাদের কাছে Signal-এর কোনো সাম্প্রতিক সংস্করণ থেকে থাকে। তারা দেখতে পাবেন যে আপনি একটি ম্যাসেজ মুছে ফেলেছেন।</string>
     <string name="ConversationFragment_quoted_message_not_found">মূল বার্তাটি পাওয়া যায়নি</string>
@@ -654,8 +654,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">This will permanently delete the selected chat from all your devices.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats from all your devices.</item>
+        <item quantity="one">এটি আপনার ডিভাইস থেকে সকল নির্বাচিত চ্যাট স্থায়ীভাবে মুছে ফেলবে।</item>
+        <item quantity="other">এটি আপনার ডিভাইস থেকে নির্বাচিত সকল %1$d চ্যাট স্থায়ীভাবে মুছে ফেলবে।</item>
     </plurals>
     <string name="ConversationListFragment_deleting">মোছা হচ্ছে…</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1331,8 +1331,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">This will permanently delete the selected file from all your devices. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">এটি আপনার সকল ডিভাইস থেকে নির্বাচিত ফাইলটিকে স্থায়ীভাবে মুছে ফেলবে। এই আইটেমটির সাথে যুক্ত মেসেজের টেক্সটও মুছে ফেলা হবে।</item>
+        <item quantity="other">এটি আপনার সকল ডিভাইস থেকে নির্বাচিত %1$dটি ফাইল স্থায়ীভাবে মুছে ফেলবে। এই আইটেমটির সাথে যুক্ত মেসেজের টেক্সটও মুছে ফেলা হবে।</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">মোছা হচ্ছে…</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">বার্তা সমূহ মোছা হচ্ছে…</string>
@@ -1643,13 +1643,13 @@
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s এখন পেমেন্ট গ্রহণ করতে পারবেন</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
+    <string name="MessageRecord_payments_restore_tombstone">পেমেন্টের বিস্তারিত পাওয়া যাচ্ছে না</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
     <string name="MessageRecord_payments_restore_tombstone_tap_more">আরো পেতে ট্যাপ করুন</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
-    <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
+    <string name="PaymentTombstoneLearnMoreDialog_title">পেমেন্টের বিস্তারিত পাওয়া যাচ্ছে না</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">This details of this payment are not available because your messages were restored from a source that did not contain this payment history. This does not affect your wallet balance or the status of past payments.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">এই পেমেন্টের এই তথ্য পাওয়া যাচ্ছে না, কারণ আপনার মেসেজগুলো এমন একটি উৎস থেকে পুনরুদ্ধার করা হয়েছিল যেখানে এই পেমেন্ট সংক্রান্ত কোনো ইতিহাস নেই। এটি আপনার ওয়ালেটের ব্যালেন্স বা অতীতের পেমেন্ট স্ট্যাটাসকে প্রভাবিত করে না।</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -1967,19 +1967,19 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">আপনার ক্যামেরায় অ্যাক্সেসের অনুমতি দিন</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">কোনো কল শুরু করতে বা যোগ দিতে, আপনার ক্যামেরা এবং মাইক্রোফোনে Signal-এর অ্যাক্সেসের অনুমতি দিন।</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">To start or join a call, allow Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">কোনো কল শুরু করতে বা কলে যোগ দিতে, আপনার মাইক্রোফোনে Signal-এ অ্যাক্সেসের অনুমতি দিন।</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">To enable your video, allow Signal access to your camera.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">আপনার ভিডিও সক্রিয় করতে, আপনার ক্যামেরায় Signal-কে অ্যাক্সেসের অনুমতি দিন।</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal needs microphone permissions to start or join a call.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">কোনো কল শুরু করতে বা কলে যোগ দিতে Signal-এর মাইক্রোফোনে অ্যাক্সেসের অনুমতি প্রয়োজন।</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal needs camera access to enable your video</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">আপনার ভিডিও সক্রিয় করতে Signal-এর ক্যামেরা অ্যাক্সেসের প্রয়োজন</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="WebRtcCallActivity__to_start_call">To start or join a call:</string>
+    <string name="WebRtcCallActivity__to_start_call">কোনো কল শুরু করতে বা কলে যোগ দিতে:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
-    <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
+    <string name="WebRtcCallActivity__to_enable_video">আপনার ভিডিও সক্রিয় করতে:</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal কল</string>
@@ -2522,7 +2522,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">বার্তা মুছে ফেলবেন?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">এর ফলে এই বার্তাটি চিরতরে মুছে যাবে।</string>
     <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">এটি আপনার সকল ডিভাইস থেকে এই মেসেজটি স্থায়ীভাবে মুছে ফেলবে।</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s থেকে %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">আপনার কাছ থেকে %1$s-এর কাছে</string>
@@ -3383,11 +3383,11 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">এটি আপনার ডিভাইস থেকে বার্তার সকল ইতিহাস ও মিডিয়া চিরতরে মুছে ফেলবে।</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">এটি এই ডিভাইস এবং যেকোনো লিংককৃত ডিভাইস থেকে সকল মেসেজের ইতিহাস এবং মিডিয়া স্থায়ীভাবে মুছে ফেলবে।</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">আপনি কি বার্তার সকল ইতিহাস মুছে ফেলার ব্যাপারে নিশ্চিত?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">বার্তার সকল ইতিহাস স্থায়ীভাবে মুছে ফেলা হবে। এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">সকল মেসেজের ইতিহাস স্থায়ীভাবে সকল ডিভাইস থেকে মুছে ফেলা হবে। এই কার্যক্রমটি পূর্বাবস্থায় ফেরানো যাবে না।</string>
     <string name="preferences_storage__delete_all_now">এখনই সব মুছে ফেলুন</string>
     <string name="preferences_storage__forever">চিরতরে</string>
     <string name="preferences_storage__one_year">১ বছর</string>
@@ -6936,14 +6936,14 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">নির্বাচিত দৈর্ঘ্যের তুলনায় অধিক দৈর্ঘ্যের মেসেজ স্থায়ীভাবে মুছে ফেলা হবে।</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">লিংককৃত ডিভাইসে সীমাবদ্ধতা আরোপ করুন</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">সক্রিয় করা হলে, চ্যাটের উপর আরোপিত সীমাবদ্ধতা আপনার লিংককৃত ডিভাইসগুলো থেকে মেসেজও মুছে ফেলবে।</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
+    <string name="DeleteSyncEducation_title">মুছে ফেলার বিষয়টি এখন আপনার সকল ডিভাইস জুড়ে সিঙ্ক করা হয়েছে</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">আপনি মেসেজ, মিডিয়া বা চ্যাট মুছে ফেললে, সেগুলো আপনার ফোন এবং সকল লিংককৃত ডিভাইস থেকে মুছে যাবে।</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">ঠিক আছে</string>
 

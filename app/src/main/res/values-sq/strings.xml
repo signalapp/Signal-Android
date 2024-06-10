@@ -549,8 +549,8 @@
     <string name="ConversationFragment_delete_everywhere">Fshije kudo</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
     <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">This message will be deleted from all your devices.</item>
-        <item quantity="other">These messages will be deleted from all your devices.</item>
+        <item quantity="one">Ky mesazh do të fshihet nga të gjitha pajisjet.</item>
+        <item quantity="other">Këto mesazhe do të fshihen nga të gjitha pajisjet.</item>
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ky mesazh do të fshihet për të gjithë në bisedë, nëse janë të gjithë në të njëjtin version të fundit të Signal. Ata do të mund të shohin që ke fshirë një mesazh.</string>
     <string name="ConversationFragment_quoted_message_not_found">Mesazhi origjinal nuk u gjet</string>
@@ -654,8 +654,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">This will permanently delete the selected chat from all your devices.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats from all your devices.</item>
+        <item quantity="one">Kjo do të fshijë përgjithmonë bisedën e zgjedhur nga të gjitha pajisjet.</item>
+        <item quantity="other">Kjo do të fshijë përgjithmonë të gjitha %1$d bisedat e zgjedhura nga të gjitha pajisjet.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Po fshihet</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1331,8 +1331,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">This will permanently delete the selected file from all your devices. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Kjo do të fshijë përgjithmonë skedarin e zgjedhur nga të gjitha pajisjet. Çdo tekst mesazhi i lidhur me këtë artikull do të fshihet gjithashtu.</item>
+        <item quantity="other">Kjo do të fshijë përgjithmonë të gjithë %1$d skedarët e zgjedhur nga të gjitha pajisjet. Çdo tekst mesazhi i lidhur me këto artikuj do të fshihet gjithashtu.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Po fshihet</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Po fshihen mesazhet…</string>
@@ -1643,13 +1643,13 @@
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s tani mund të pranojë pagesat</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
+    <string name="MessageRecord_payments_restore_tombstone">Detajet e pagesës nuk janë të disponueshme</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
     <string name="MessageRecord_payments_restore_tombstone_tap_more">Për Më Tepër, Prekeni</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
-    <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
+    <string name="PaymentTombstoneLearnMoreDialog_title">Detajet e pagesës nuk disponohen</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">This details of this payment are not available because your messages were restored from a source that did not contain this payment history. This does not affect your wallet balance or the status of past payments.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">Detajet e pagese nuk disponohen pasi mesazhet u rikthyen nga një burim, i cili nuk e përmbante këtë histori pagese. Kjo nuk ndikon në bilancin e portofolit ose në statusin e pagesave të mëparshme.</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -1967,17 +1967,17 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">Lejo përdorimin e kamerës</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Për të bërë ose për t\'iu bashkuar një telefonate, jepi akses Signal në kamera dhe mikrofon.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">To start or join a call, allow Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">Për të bërë ose për t\'iu bashkuar një telefonate, jepi akses Signal në mikrofon.</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">To enable your video, allow Signal access to your camera.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">Për të aktivizuar videon, jepi akses Signal te kamera.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal needs microphone permissions to start or join a call.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal ka nevojë për leje përdorimi të mikrofonit për të nisur ose për t\'iu bashkuar një telefonate.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal needs camera access to enable your video</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal duhet të ketë akses te kamera për të aktivizuar videon</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="WebRtcCallActivity__to_start_call">To start or join a call:</string>
+    <string name="WebRtcCallActivity__to_start_call">Për të filluar ose për t\'iu bashkuar një telefonate:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
     <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
 
@@ -2522,7 +2522,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Të fshihet mesazhi?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Kjo do ta fshijë përgjithmonë këtë mesazh.</string>
     <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">Kjo do ta fshijë përgjithmonë këtë mesazh nga të gjitha pajisjet.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s për %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Ju për %1$s</string>
@@ -3383,11 +3383,11 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Kjo do të fshijë përgjithmonë të gjithë historikun e mesazheve dhe mediat nga pajisja jote.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Kjo do të fshijë përgjithmonë të gjithë historikun e mesazheve dhe median e kësaj pajisjeje dhe çdo pajisjeje tjetër të lidhur.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Je i sigurt se dëshiron të fshish krejt historikun e mesazheve?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">I gjithë historiku i mesazheve do të hiqet përgjithmonë. Ky veprim nuk mund të zhbëhet.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">I gjithë historiku i mesazheve do të fshihet përgjithmonë nga të gjitha pajisjet. Ky veprim nuk mund të zhbëhet.</string>
     <string name="preferences_storage__delete_all_now">Fshije krejt tani</string>
     <string name="preferences_storage__forever">Përgjithmonë</string>
     <string name="preferences_storage__one_year">1 vit</string>
@@ -5686,7 +5686,7 @@
     <!-- Used to join views and replies when both exist on a story item -->
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
-    <string name="StoryViewerPageFragment__you">Ju</string>
+    <string name="StoryViewerPageFragment__you">Ti</string>
     <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$s për %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
@@ -6936,14 +6936,14 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Mesazhet që tejkalojnë gjatësinë e zgjedhur do të fshihen përgjithmonë.</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Vendos kufizime për pajisjet e lidhura</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Kur aktivizohen, kufijtë e bisedës do të fshijnë edhe mesazhet e pajisjeve të lidhura.</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
+    <string name="DeleteSyncEducation_title">Fshirja u sinkronizua tashmë në të gjitha pajisjet</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">Kur fshin mesazhe, media ose biseda, ato do të fshihen nga telefoni yt dhe tek të gjitha pajisjet e lidhura.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
