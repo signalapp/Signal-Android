@@ -16,7 +16,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
-import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter.translateDecryptedChange
+import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -632,11 +632,12 @@ class GroupsV2StateProcessor private constructor(
     fun storeMessage(decryptedGroupV2Context: DecryptedGroupV2Context, timestamp: Long, serverGuid: String?) {
       val editor: Optional<ServiceId> = getEditor(decryptedGroupV2Context)
 
+      val serviceIds = SignalStore.account().getServiceIds()
       val outgoing = editor.isEmpty || aci == editor.get()
 
       val updateDescription = GV2UpdateDescription(
         gv2ChangeDescription = decryptedGroupV2Context,
-        groupChangeUpdate = translateDecryptedChange(SignalStore.account().getServiceIds(), decryptedGroupV2Context)
+        groupChangeUpdate = GroupsV2UpdateMessageConverter.translateDecryptedChange(serviceIds, decryptedGroupV2Context)
       )
 
       if (outgoing) {
@@ -654,12 +655,22 @@ class GroupsV2StateProcessor private constructor(
         }
       } else {
         try {
-          val sender = RecipientId.from(editor.get())
-          val groupMessage = IncomingMessage.groupUpdate(sender, timestamp, groupId, decryptedGroupV2Context, serverGuid)
+          val isGroupAdd = updateDescription
+            .groupChangeUpdate!!
+            .updates
+            .asSequence()
+            .mapNotNull { it.groupMemberAddedUpdate }
+            .any { serviceIds.matches(it.newMemberAci) }
+
+          val groupMessage = IncomingMessage.groupUpdate(RecipientId.from(editor.get()), timestamp, groupId, updateDescription, isGroupAdd, serverGuid)
           val insertResult = SignalDatabase.messages.insertMessageInbox(groupMessage)
 
           if (insertResult.isPresent) {
             SignalDatabase.threads.update(insertResult.get().threadId, unarchive = false, allowDeletion = false)
+
+            if (isGroupAdd) {
+              AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
+            }
           } else {
             Log.w(TAG, "Could not insert update message")
           }
