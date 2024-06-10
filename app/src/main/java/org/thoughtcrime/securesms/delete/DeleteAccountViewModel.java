@@ -102,7 +102,8 @@ public class DeleteAccountViewModel extends ViewModel {
     number.setCountryCode(countryCode);
     number.setNationalNumber(nationalNumber);
 
-    if (PhoneNumberUtil.getInstance().isNumberMatch(number, Recipient.self().requireE164()) == PhoneNumberUtil.MatchType.EXACT_MATCH) {
+    final PhoneNumberUtil.MatchType matchType = PhoneNumberUtil.getInstance().isNumberMatch(number, Recipient.self().requireE164());
+    if (matchType == PhoneNumberUtil.MatchType.EXACT_MATCH || matchType == PhoneNumberUtil.MatchType.SHORT_NSN_MATCH || matchType == PhoneNumberUtil.MatchType.NSN_MATCH) {
       events.setValue(DeleteAccountEvent.ConfirmDeletion.INSTANCE);
     } else {
       events.setValue(DeleteAccountEvent.NotAMatch.INSTANCE);
