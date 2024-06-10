@@ -167,8 +167,8 @@ class GroupTableTest {
 
   @Test
   fun givenTwoGroupsWithoutMembers_whenIQueryThem_thenIExpectEach() {
-    val g1 = insertPushGroup(listOf())
-    val g2 = insertPushGroup(listOf())
+    val g1 = insertPushGroup(members = emptyList())
+    val g2 = insertPushGroup(members = emptyList())
 
     val gr1 = groupTable.getGroup(g1)
     val gr2 = groupTable.getGroup(g2)
@@ -195,6 +195,85 @@ class GroupTableTest {
     assertEquals(groups[0].id, groupInCommon)
   }
 
+  @Test
+  fun givenTwoGroupsWithANameThatSharesAToken_whenISearchForTheSharedToken_thenIExpectBothGroups() {
+    insertPushGroup("Group Alice")
+    insertPushGroup("Group Bob")
+
+    SignalDatabase.groups.queryGroupsByTitle(
+      inputQuery = "Group",
+      includeInactive = false,
+      excludeV1 = false,
+      excludeMms = false
+    ).use {
+      assertEquals(2, it.cursor?.count)
+
+      val firstGroup = it.getNext()
+      val secondGroup = it.getNext()
+
+      assertEquals("Group Alice", firstGroup?.title)
+      assertEquals("Group Bob", secondGroup?.title)
+    }
+  }
+
+  @Test
+  fun givenTwoGroupsWithANameThatSharesAToken_whenISearchForAnUnsharedToken_thenIExpectOneGroup() {
+    insertPushGroup("Group Alice")
+    insertPushGroup("Group Bob")
+
+    SignalDatabase.groups.queryGroupsByTitle(
+      inputQuery = "Alice",
+      includeInactive = false,
+      excludeV1 = false,
+      excludeMms = false
+    ).use {
+      assertEquals(1, it.cursor?.count)
+
+      val firstGroup = it.getNext()
+
+      assertEquals("Group Alice", firstGroup?.title)
+    }
+  }
+
+  @Test
+  fun givenAGroupWithThreeTokens_whenISearchForTheFirstAndLastToken_thenIExpectThatGroup() {
+    insertPushGroup("Group & Alice")
+
+    SignalDatabase.groups.queryGroupsByTitle(
+      inputQuery = "Group Alice",
+      includeInactive = false,
+      excludeV1 = false,
+      excludeMms = false
+    ).use {
+      assertEquals(1, it.cursor?.count)
+
+      val firstGroup = it.getNext()
+
+      assertEquals("Group & Alice", firstGroup?.title)
+    }
+  }
+
+  @Test
+  fun givenTwoGroupsWithSharedTokens_whenISearchForAnExactMatch_thenIExpectThatGroupFirst() {
+    insertPushGroup("Group Alice Bob")
+    insertPushGroup("Group Bob")
+
+    SignalDatabase.groups.queryGroupsByTitle(
+      inputQuery = "Group Bob",
+      includeInactive = false,
+      excludeV1 = false,
+      excludeMms = false
+    ).use {
+      assertEquals(2, it.cursor?.count)
+
+      val firstGroup = it.getNext()
+      val second = it.getNext()
+
+      assertEquals("Group Bob", firstGroup?.title)
+      assertEquals("Group Alice Bob", second?.title)
+    }
+  }
+
   private fun insertThread(groupId: GroupId): Long {
     val groupRecipient = SignalDatabase.recipients.getByGroupId(groupId).get()
     return SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(groupRecipient))
@@ -214,6 +293,7 @@ class GroupTableTest {
   }
 
   private fun insertPushGroup(
+    title: String = "Test Group",
     members: List<DecryptedMember> = listOf(
       DecryptedMember.Builder()
         .aciBytes(harness.self.requireAci().toByteString())
@@ -229,6 +309,7 @@ class GroupTableTest {
   ): GroupId {
     val groupMasterKey = GroupMasterKey(Random.nextBytes(GroupMasterKey.SIZE))
     val decryptedGroupState = DecryptedGroup.Builder()
+      .title(title)
       .members(members)
       .revision(0)
       .build()

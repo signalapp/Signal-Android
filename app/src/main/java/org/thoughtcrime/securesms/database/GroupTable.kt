@@ -74,6 +74,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     private val TAG = Log.tag(GroupTable::class.java)
 
     const val MEMBER_GROUP_CONCAT = "member_group_concat"
+    const val TITLE_SEARCH_RANK = "title_search_rank"
     const val THREAD_DATE = "thread_date"
 
     const val TABLE_NAME = "groups"
@@ -154,18 +155,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       .map { columnName: String -> "$TABLE_NAME.$columnName" }
       .toList()
 
-    //language=sql
-    private const val JOINED_GROUP_SELECT = """
-      SELECT 
-        DISTINCT $TABLE_NAME.*, 
-        (
-            SELECT GROUP_CONCAT(${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID})
-            FROM ${MembershipTable.TABLE_NAME} 
-            WHERE ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
-        ) as $MEMBER_GROUP_CONCAT
-      FROM $TABLE_NAME          
-    """
-
     val CREATE_TABLES = arrayOf(CREATE_TABLE, MembershipTable.CREATE_TABLE)
   }
 
@@ -203,7 +192,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
   private fun getGroup(query: SqlUtil.Query): Optional<GroupRecord> {
     //language=sql
-    val select = "$JOINED_GROUP_SELECT WHERE ${query.where}"
+    val select = "${joinedGroupSelect()} WHERE ${query.where}"
 
     readableDatabase
       .query(select, query.whereArgs)
@@ -356,9 +345,9 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     val query = getGroupQueryWhereStatement(inputQuery, includeInactive, excludeV1, excludeMms)
     //language=sql
     val statement = """
-      $JOINED_GROUP_SELECT
+      ${joinedGroupSelect(inputQuery)}
       WHERE ${query.where}
-      ORDER BY $TITLE COLLATE NOCASE ASC
+      ORDER BY $TITLE_SEARCH_RANK DESC, $TITLE COLLATE NOCASE ASC
     """
 
     val cursor = databaseHelper.signalReadableDatabase.query(statement, query.whereArgs)
@@ -368,10 +357,10 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   private fun queryGroupsByRecency(groupQuery: GroupQuery): Reader {
     val query = getGroupQueryWhereStatement(groupQuery.searchQuery, groupQuery.includeInactive, !groupQuery.includeV1, !groupQuery.includeMms)
     val sql = """
-      $JOINED_GROUP_SELECT
+      ${joinedGroupSelect(groupQuery.searchQuery)}
       INNER JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$RECIPIENT_ID
       WHERE ${query.where} 
-      ORDER BY ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC
+      ORDER BY  $TITLE_SEARCH_RANK DESC, ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC
     """
 
     return Reader(databaseHelper.signalReadableDatabase.rawQuery(sql, query.whereArgs))
@@ -388,15 +377,24 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   private fun getGroupQueryWhereStatement(inputQuery: String, includeInactive: Boolean, excludeV1: Boolean, excludeMms: Boolean): SqlUtil.Query {
     var query: String
     val queryArgs: Array<String>
-    val caseInsensitiveQuery = buildCaseInsensitiveGlobPattern(inputQuery)
+    val tokens = inputQuery.split(" ").filter { it.isNotEmpty() }.map { buildCaseInsensitiveGlobPattern(it) }
+    val tokenSearchQuery = tokens.joinToString(" AND ") { "$TITLE GLOB ?" }
 
-    if (includeInactive) {
-      query = "$TITLE GLOB ? AND ($TABLE_NAME.$ACTIVE = ? OR $TABLE_NAME.$RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1))"
-      queryArgs = buildArgs(caseInsensitiveQuery, 1)
-    } else {
-      query = "$TITLE GLOB ? AND $TABLE_NAME.$ACTIVE = ?"
-      queryArgs = buildArgs(caseInsensitiveQuery, 1)
+    val searchQuery = tokenSearchQuery.ifEmpty {
+      "$TITLE GLOB ?"
     }
+
+    val searchTokens = tokens.ifEmpty {
+      listOf(buildCaseInsensitiveGlobPattern(inputQuery))
+    }
+
+    query = if (includeInactive) {
+      "($searchQuery) AND ($TABLE_NAME.$ACTIVE = ? OR $TABLE_NAME.$RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1))"
+    } else {
+      "($searchQuery) AND $TABLE_NAME.$ACTIVE = ?"
+    }
+
+    queryArgs = buildArgs(*searchTokens.toTypedArray(), 1)
 
     if (excludeV1) {
       query += " AND $EXPECTED_V2_ID IS NULL"
@@ -494,7 +492,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   fun getGroups(): Reader {
-    val cursor = readableDatabase.query(JOINED_GROUP_SELECT)
+    val cursor = readableDatabase.query(joinedGroupSelect())
     return Reader(cursor)
   }
 
@@ -1268,6 +1266,27 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     } else {
       ids
     }
+  }
+
+  //language=sql
+  private fun joinedGroupSelect(titleSearchQuery: String? = null): String {
+    val titleSearchRankColumn = if (titleSearchQuery == null) {
+      ""
+    } else {
+      val glob = buildCaseInsensitiveGlobPattern(titleSearchQuery)
+      ", ($TITLE GLOB \"$glob\") as $TITLE_SEARCH_RANK"
+    }
+
+    return """
+        SELECT 
+        DISTINCT $TABLE_NAME.*, 
+        (
+            SELECT GROUP_CONCAT(${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID})
+            FROM ${MembershipTable.TABLE_NAME} 
+            WHERE ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
+        ) as $MEMBER_GROUP_CONCAT $titleSearchRankColumn
+        FROM $TABLE_NAME          
+      """
   }
 
   enum class MemberSet(val includeSelf: Boolean, val includePending: Boolean) {
