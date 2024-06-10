@@ -66,7 +66,7 @@ import java.util.Locale
 import java.util.Optional
 
 class ConversationAdapterV2(
-  private val lifecycleOwner: LifecycleOwner,
+  override val lifecycleOwner: LifecycleOwner,
   override val requestManager: RequestManager,
   override val clickListener: ItemClickListener,
   private var hasWallpaper: Boolean,
@@ -356,66 +356,10 @@ class ConversationAdapterV2(
     }
   }
 
-  private inner class OutgoingTextOnlyViewHolder(itemView: View) : ConversationViewHolder<OutgoingTextOnly>(itemView) {
-    override fun bind(model: OutgoingTextOnly) {
-      bindable.setEventListener(clickListener)
-
-      if (bindPayloadsIfAvailable()) {
-        return
-      }
-
-      bindable.bind(
-        lifecycleOwner,
-        model.conversationMessage,
-        previousMessage,
-        nextMessage,
-        requestManager,
-        Locale.getDefault(),
-        _selected,
-        model.conversationMessage.threadRecipient,
-        searchQuery,
-        false,
-        hasWallpaper && displayMode.displayWallpaper(),
-        isMessageRequestAccepted,
-        model.conversationMessage == inlineContent,
-        colorizer,
-        displayMode
-      )
-    }
-  }
-
   private inner class OutgoingMediaViewHolder(itemView: View) : ConversationViewHolder<OutgoingMedia>(itemView) {
     override fun bind(model: OutgoingMedia) {
       bindable.setEventListener(clickListener)
       bindable.setGestureDetector(gestureDetector)
-
-      if (bindPayloadsIfAvailable()) {
-        return
-      }
-
-      bindable.bind(
-        lifecycleOwner,
-        model.conversationMessage,
-        previousMessage,
-        nextMessage,
-        requestManager,
-        Locale.getDefault(),
-        _selected,
-        model.conversationMessage.threadRecipient,
-        searchQuery,
-        false,
-        hasWallpaper && displayMode.displayWallpaper(),
-        isMessageRequestAccepted,
-        model.conversationMessage == inlineContent,
-        colorizer,
-        displayMode
-      )
-    }
-  }
-
-  private inner class IncomingTextOnlyViewHolder(itemView: View) : ConversationViewHolder<IncomingTextOnly>(itemView) {
-    override fun bind(model: IncomingTextOnly) {
-      bindable.setEventListener(clickListener)
 
       if (bindPayloadsIfAvailable()) {
         return

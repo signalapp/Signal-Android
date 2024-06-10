@@ -24,6 +24,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.updateLayoutParams
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import org.signal.core.util.StringUtil
 import org.signal.core.util.dp
@@ -44,7 +45,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
@@ -70,7 +70,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   private val binding: V2ConversationItemTextOnlyBindingBridge,
   private val conversationContext: V2ConversationContext,
   footerDelegate: V2FooterPositionDelegate = V2FooterPositionDelegate(binding)
-) : V2ConversationItemViewHolder<Model>(binding.root, conversationContext), Multiselectable, InteractiveConversationElement, RecipientForeverObserver {
+) : V2ConversationItemViewHolder<Model>(binding.root, conversationContext), Multiselectable, InteractiveConversationElement, Observer<Recipient> {
 
   companion object {
     private val STYLE_FACTORY = SearchUtil.StyleFactory { arrayOf<CharacterStyle>(BackgroundColorSpan(Color.YELLOW), ForegroundColorSpan(Color.BLACK)) }
@@ -210,12 +210,12 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     check(model is ConversationMessageElement)
 
     if (this::conversationMessage.isInitialized) {
-      conversationMessage.messageRecord.fromRecipient.live().removeForeverObserver(this)
+      conversationMessage.messageRecord.fromRecipient.live().removeObserver(this)
     }
 
     conversationMessage = model.conversationMessage
     if (conversationMessage.threadRecipient.isGroup) {
-      conversationMessage.messageRecord.fromRecipient.live().observeForever(this)
+      conversationMessage.messageRecord.fromRecipient.live().observe(conversationContext.lifecycleOwner, this)
     }
 
     shape = shapeDelegate.setMessageShape(
@@ -790,7 +790,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     }
   }
 
-  override fun onRecipientChanged(recipient: Recipient) {
+  override fun onChanged(recipient: Recipient) {
     presentSender()
   }
 }
