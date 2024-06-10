@@ -91,15 +91,24 @@ fun DistributionListTables.restoreFromBackup(dlistItem: DistributionListItem, ba
     Log.w(TAG, "Couldn't find some member recipients! Missing backup recipientIds: ${dlist.memberRecipientIds.toSet() - members.toSet()}")
   }
 
-  val dlistId = this.createList(
-    name = dlist.name,
-    members = members,
-    distributionId = DistributionId.from(UuidUtil.fromByteString(dlistItem.distributionId)),
-    allowsReplies = dlist.allowReplies,
-    deletionTimestamp = dlistItem.deletionTimestamp ?: 0,
-    storageId = null,
-    privacyMode = dlist.privacyMode.toLocalPrivacyMode()
-  )!!
+  val distributionId = DistributionId.from(UuidUtil.fromByteString(dlistItem.distributionId))
+  val privacyMode = dlist.privacyMode.toLocalPrivacyMode()
+
+  val dlistId = if (distributionId == DistributionId.MY_STORY) {
+    setPrivacyMode(DistributionListId.MY_STORY, privacyMode)
+    members.forEach { addMemberToList(DistributionListId.MY_STORY, privacyMode, it) }
+    DistributionListId.MY_STORY
+  } else {
+    createList(
+      name = dlist.name,
+      members = members,
+      distributionId = distributionId,
+      allowsReplies = dlist.allowReplies,
+      deletionTimestamp = dlistItem.deletionTimestamp ?: 0,
+      storageId = null,
+      privacyMode = privacyMode
+    )!!
+  }
 
   return SignalDatabase.distributionLists.getRecipientId(dlistId)!!
 }
