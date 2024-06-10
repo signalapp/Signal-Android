@@ -118,7 +118,7 @@ fun MessageBackupsTypeSelectionScreen(
 
           ClickableText(
             text = readMoreString,
-            style = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center),
+            style = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSurface),
             onClick = { offset ->
               readMoreString
                 .getStringAnnotations(tag = "URL", start = offset, end = offset)
