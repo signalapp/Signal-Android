@@ -3220,7 +3220,7 @@
 
     <string name="arrays__name_and_message">Name und Nachricht</string>
     <string name="arrays__name_only">Nur Name</string>
-    <string name="arrays__no_name_or_message">Weder Name noch Nachricht</string>
+    <string name="arrays__no_name_or_message">Kein Name und Inhalt</string>
 
     <string name="arrays__images">Bilder</string>
     <string name="arrays__audio">Audio</string>

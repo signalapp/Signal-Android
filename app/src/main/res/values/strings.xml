@@ -2083,7 +2083,7 @@
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
     <plurals name="CallOverflowPopupWindow__raised_a_hand">
         <item quantity="one">%1$s raised a hand</item>
-        <item quantity="other">%1$s + %2$d raised a hand</item>
+        <item quantity="other">%1$s +%2$d raised a hand</item>
     </plurals>
 
     <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->

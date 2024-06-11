@@ -130,7 +130,7 @@ private fun CallInfoPreview() {
     Surface {
       val remoteParticipants = listOf(CallParticipant(recipient = Recipient.UNKNOWN))
       CallInfo(
-        participantsState = ParticipantsState(remoteParticipants = remoteParticipants, raisedHands = remoteParticipants.map { GroupCallRaiseHandEvent(it.recipient, System.currentTimeMillis()) }),
+        participantsState = ParticipantsState(remoteParticipants = remoteParticipants, raisedHands = remoteParticipants.map { GroupCallRaiseHandEvent(it, System.currentTimeMillis()) }),
         controlAndInfoState = ControlAndInfoState(),
         onShareLinkClicked = { },
         onEditNameClicked = { },
@@ -216,11 +216,13 @@ private fun CallInfo(
       }
 
       items(
-        items = participantsState.raisedHands,
-        key = { it.sender.id },
-        contentType = { null }
+        items = participantsState.raisedHands.map { it.sender },
+        key = {
+          val key: Long = it.callParticipantId.demuxId // Due to a bug in how the Compose toolchain inlines saveable states, this Long needs to be set into its own variable within the lambda before being returned.
+          key
+        }
       ) {
-        HandRaisedRow(recipient = it.sender)
+        HandRaisedRow(recipient = it.recipient, it.getShortRecipientDisplayName(LocalContext.current), it.isSelf && it.isPrimary)
       }
 
       item {
@@ -346,7 +348,7 @@ private fun CallParticipantRowPreview() {
 private fun HandRaisedRowPreview() {
   SignalTheme(isDarkMode = true) {
     Surface {
-      HandRaisedRow(Recipient.UNKNOWN, canLowerHand = true)
+      HandRaisedRow(Recipient.UNKNOWN, "Peter Parker", canLowerHand = true)
     }
   }
 }
@@ -371,10 +373,10 @@ private fun CallParticipantRow(
 }
 
 @Composable
-private fun HandRaisedRow(recipient: Recipient, canLowerHand: Boolean = recipient.isSelf) {
+private fun HandRaisedRow(recipient: Recipient, name: String, canLowerHand: Boolean) {
   CallParticipantRow(
     initialRecipient = recipient,
-    name = recipient.getShortDisplayName(LocalContext.current),
+    name = name,
     showIcons = true,
     isVideoEnabled = true,
     isMicrophoneEnabled = true,

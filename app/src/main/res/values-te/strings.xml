@@ -549,8 +549,8 @@
     <string name="ConversationFragment_delete_everywhere">ప్రతిచోటా తొలగించండి</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
     <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">This message will be deleted from all your devices.</item>
-        <item quantity="other">These messages will be deleted from all your devices.</item>
+        <item quantity="one">ఈ సందేశం మీ పరికరాలన్నింటి నుండి తొలగించబడుతుంది.</item>
+        <item quantity="other">ఈ సందేశాలు మీ పరికరాలన్నింటి నుండి తొలగించబడతాయి.</item>
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ఒకవేళ వారు Signal యొక్క ఇటీవలి వెర్షన్‌లో ఉంటే చాట్‌లోని ప్రతి ఒక్కరికీ ఈ సందేశం తొలగించబడుతుంది. మీరు సందేశాన్ని తొలగించినట్లుగా వారు చూడగలుగుతారు.</string>
     <string name="ConversationFragment_quoted_message_not_found">అసలు సందేశం కనుగొనబడలేదు</string>
@@ -654,8 +654,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">This will permanently delete the selected chat from all your devices.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats from all your devices.</item>
+        <item quantity="one">ఇది ఎంపిక చేసిన చాట్‌ను మీ పరికరాలన్నింటి నుండి శాశ్వతంగా తొలగిస్తుంది.</item>
+        <item quantity="other">ఇది ఎంపిక చేసిన అన్ని %1$d చాట్‌లను మీ పరికరాలన్నింటి నుండి శాశ్వతంగా తొలగిస్తుంది.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">తొలగిపోతున్నాయ్</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1331,8 +1331,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">This will permanently delete the selected file from all your devices. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">ఇది ఎంచుకున్న ఫైల్‌ను మీ పరికరాలన్నింటి నుండి శాశ్వతంగా తొలగిస్తుంది. ఈ అంశంతో కూడి ఉన్న ఏదైనా సందేశం టెక్స్ట్ కూడా తొలగించబడుతుంది.</item>
+        <item quantity="other">ఇది ఎంచుకున్న అన్ని %1$d ఫైళ్ళను మీ పరికరాలన్నింటి నుండి శాశ్వతంగా తొలగిస్తుంది. ఈ అంశాలతో కూడి ఉన్న ఏదైనా సందేశం టెక్స్ట్ కూడా తొలగించబడుతుంది.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">తొలగిపోతున్నాయ్</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">సందేశాలను తొలగిస్తోంది …</string>
@@ -1643,13 +1643,13 @@
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s ఇప్పుడు చెల్లింపులను అంగీకరించవచ్చు.</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
+    <string name="MessageRecord_payments_restore_tombstone">చెల్లింపు వివరాలు అందుబాటులో లేవు</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
     <string name="MessageRecord_payments_restore_tombstone_tap_more">మరిన్ని కోసం తాకండి</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
-    <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
+    <string name="PaymentTombstoneLearnMoreDialog_title">చెల్లింపు వివరాలు అందుబాటులో లేవు</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">This details of this payment are not available because your messages were restored from a source that did not contain this payment history. This does not affect your wallet balance or the status of past payments.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">ఈ చెల్లింపు చరిత్ర లేని సోర్స్ నుండి మీ సందేశాలు పునరుద్ధరించబడినందున ఈ చెల్లింపు వివరాలు అందుబాటులో లేవు. ఇది మీ వాలెట్ బ్యాలెన్స్‌ను లేదా గత చెల్లింపుల స్థితిని ప్రభావితం చేయదు.</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -1967,19 +1967,19 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">మీ కెమెరాకు యాక్సెస్‌ను అనుమతించండి</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">కాల్‌ను ప్రారంభించడానికి లేదా చేరడానికి మీ కెమెరాకు మరియు మైక్రోఫోన్‌కు Signal యాక్సెస్‌ను అనుమతించండి.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">To start or join a call, allow Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">కాల్‌ను ప్రారంభించడానికి లేదా చేరడానికి మీ మైక్రోఫోన్‌కు Signal యాక్సెస్‌ను అనుమతించండి.</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">To enable your video, allow Signal access to your camera.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">మీ వీడియోను ఎనేబుల్ చేయడానికి, మీ కెమెరాకు Signal యాక్సెస్‌ను అనుమతించండి.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal needs microphone permissions to start or join a call.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">కాల్‌ను ప్రారంభించడానికి లేదా చేరడానికి Signal కు మైక్రోఫోన్ అనుమతులు అవసరం.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal needs camera access to enable your video</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">మీ వీడియోను ఎనేబుల్ చేయడానికి Signal కు కెమెరా యాక్సెస్ అవసరం</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="WebRtcCallActivity__to_start_call">To start or join a call:</string>
+    <string name="WebRtcCallActivity__to_start_call">కాల్‌ను ప్రారంభించడానికి లేదా దానిలో చేరడానికి:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
-    <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
+    <string name="WebRtcCallActivity__to_enable_video">మీ వీడియోను ఎనేబుల్ చేయడానికి:</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal కాల్</string>
@@ -2522,7 +2522,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">సందేశాన్ని తొలగించేదా?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">ఈ సందేశాన్ని ఇది శాశ్వతంగా తొలగిస్తుంది.</string>
     <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">ఇది మీ పరికరాలన్నింటి నుండి ఈ సందేశాన్నిశాశ్వతంగా తొలగిస్తుంది.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$sకు%2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">మీ నుంచి %1$sకు</string>
@@ -3383,11 +3383,11 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ఇది మీ పరికరం నుండి సందేశ చరిత్ర మరియు మీడియాను అంతటిని శాశ్వతంగా తొలగిస్తుంది.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">ఇది మీ పరికరం మరియు ఏ లింక్ చేసిన పరికరాల నుండి అయినా మొత్తం సందేశ చరిత్ర మరియు మీడియాను శాశ్వతంగా తొలగిస్తుంది.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">మీరు ఖచ్చితంగా సందేశ చరిత్ర అంతటిని తొలగించాలని అనుకుంటున్నారా?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">సందేశ చరిత్ర అంతా శాశ్వతంగా తొలగించబడుతుంది. ఈ చర్య రద్దు చేయబడదు.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">అన్ని పరికరాల నుండి మొత్తం సందేశ చరిత్ర శాశ్వతంగా తొలగించబడుతుంది. ఈ చర్య రద్దు చేయబడదు.</string>
     <string name="preferences_storage__delete_all_now">ఇప్పుడు అన్నీ తొలిగించండి</string>
     <string name="preferences_storage__forever">ఎప్పటికీ</string>
     <string name="preferences_storage__one_year">1 సంవత్సరం</string>
@@ -6936,14 +6936,14 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">ఎంచుకున్న నిడివిని మించే సందేశాలు శాశ్వతంగా తొలగించబడతాయి.</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">లింక్ చేసిన పరికరాలకు పరిమితులను వర్తింపజేయండి</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">ఎనేబుల్ చేసినప్పుడు, చాట్ పరిమితులు మీ లింక్ చేసిన పరికరాల నుండి సందేశాలను కూడా తొలగిస్తాయి.</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
+    <string name="DeleteSyncEducation_title">తొలగించడం ఇప్పుడు మీ అన్ని పరికరాలలో సింక్ చేయబడింది</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">మీరు సందేశాలు, మీడియా లేదా చాట్‌లను తొలగించినప్పుడు, అవి మీ ఫోన్ మరియు అన్ని లింక్ చేసిన పరికరాల నుండి తొలగించబడతాయి.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">సరే</string>
 

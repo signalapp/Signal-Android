@@ -549,8 +549,8 @@
     <string name="ConversationFragment_delete_everywhere">Törlés mindenhol</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
     <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">This message will be deleted from all your devices.</item>
-        <item quantity="other">These messages will be deleted from all your devices.</item>
+        <item quantity="one">Ez az üzenet minden eszközödön törlésre kerül.</item>
+        <item quantity="other">Ezek az üzenetek minden eszközödön törlésre kerülnek.</item>
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ez az üzenet a csevegés minden tagja számára törlésre kerül, ha a Signal legújabb verzióját használják. A többiek számára látható lesz, hogy töröltél egy üzenetet.</string>
     <string name="ConversationFragment_quoted_message_not_found">Az eredeti üzenet nem található</string>
@@ -654,8 +654,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">This will permanently delete the selected chat from all your devices.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats from all your devices.</item>
+        <item quantity="one">Ez véglegesen törölni fogja a kiválasztott csevegést az összes eszközödről.</item>
+        <item quantity="other">Ez véglegesen törölni fogja mind a(z) %1$d kiválasztott csevegést az összes eszközödről.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Törlés</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1331,8 +1331,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">This will permanently delete the selected file from all your devices. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Ez véglegesen törölni fogja a kiválasztott fájlt minden eszközödről. A fájlhoz tartozó szöveges üzenetek is törlésre kerülnek.</item>
+        <item quantity="other">Ez véglegesen törölni fogja mind a(z) %1$d kiválasztott fájlt minden eszközödről. A fájlokhoz tartozó szöveges üzenetek is törlésre kerülnek.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Törlés</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Üzenetek törlése…</string>
@@ -1643,13 +1643,13 @@
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s mostantól fogadhat Kifizetéseket</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
+    <string name="MessageRecord_payments_restore_tombstone">A fizetési részletek nem állnak rendelkezésre</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
     <string name="MessageRecord_payments_restore_tombstone_tap_more">Továbbiakért koppints</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
-    <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
+    <string name="PaymentTombstoneLearnMoreDialog_title">A fizetési adatok nem állnak rendelkezésre</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">This details of this payment are not available because your messages were restored from a source that did not contain this payment history. This does not affect your wallet balance or the status of past payments.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">A fizetés részletei nem állnak rendelkezésre, mert az üzeneteidet olyan forrásból állítottuk vissza, amely nem tartalmazta ezt a fizetési előzményt. Ez nincs hatással a tárcaegyenlegedre vagy a korábbi fizetések állapotára.</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -1967,19 +1967,19 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">Engedélyezd a kamerához való hozzáférést</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Hívás indításához vagy híváshoz való csatlakozáshoz adj hozzáférést a Signalnak a kamerádhoz és a mikrofonodhoz.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">To start or join a call, allow Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">Hívás indításához vagy híváshoz való csatlakozáshoz adj hozzáférést a Signalnak a mikrofonodhoz.</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">To enable your video, allow Signal access to your camera.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">A videó engedélyezéséhez adj a Signalnak hozzáférést a kamerádhoz.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal needs microphone permissions to start or join a call.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">A Signalnak mikrofonengedélyekre van szüksége ahhoz, hogy hívást kezdeményezzen vagy híváshoz csatlakozzon.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal needs camera access to enable your video</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">A videó készítéséhez a Signalnak hozzá kell férnie a kamerádhoz</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="WebRtcCallActivity__to_start_call">To start or join a call:</string>
+    <string name="WebRtcCallActivity__to_start_call">Hívás indításához vagy csatlakozáshoz:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
-    <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
+    <string name="WebRtcCallActivity__to_enable_video">A videó engedélyezése:</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal hívás</string>
@@ -2522,7 +2522,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Törlöd az üzenetet?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Ez véglegesen törölni fogja ezt az üzenetet.</string>
     <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">Ez véglegesen törölni fogja ezt az üzenetet minden eszközödről.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s (címzett: %2$s)</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Tőled neki: %1$s</string>
@@ -3383,11 +3383,11 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ez véglegesen törölni fogja eszközödről az üzenet-előzményeket és médiafájlokat.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Ezzel véglegesen törlöd az összes üzenetelőzményt és médiafájlt erről és a kapcsolódó eszközökről.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Biztosan törölni szeretnéd az összes üzenet-előzményt?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">A teljes üzenet-előzmény törlésre kerül. A műveletet nem lehet visszavonni.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">A teljes üzenetelőzmény véglegesen törlésre kerül minden eszközről. Ez a művelet nem vonható vissza.</string>
     <string name="preferences_storage__delete_all_now">Összes törlése most</string>
     <string name="preferences_storage__forever">örökké</string>
     <string name="preferences_storage__one_year">1 év</string>
@@ -5716,9 +5716,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Nem válaszolhatsz erre a Történetre, mert már nem vagy tagja ennek a csoportnak.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reagált a Történetre</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Reagáltál a történetre</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reagált a Történetre</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Reagált a történetre</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Megtekintések</string>
     <!-- Label for story replies tab -->
@@ -6936,14 +6936,14 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">A megadott hosszúságot meghaladó üzenetek véglegesen törlődnek.</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Korlátozások alkalmazása a kapcsolt eszközökre</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Ha engedélyezve van, a csevegési korlátok a kapcsolt eszközökről is törlik az üzeneteket.</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
+    <string name="DeleteSyncEducation_title">A törlés mostantól az összes eszközödön szinkronizálva van</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">Amikor üzeneteket, médiafájlt vagy csevegéseket törölsz, azok a telefonodról és az összes kapcsolt eszközről is törlésre kerülnek.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 

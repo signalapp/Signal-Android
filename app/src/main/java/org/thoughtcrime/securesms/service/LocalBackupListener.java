@@ -47,14 +47,7 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
     LocalDateTime now    = LocalDateTime.now();
     int           hour   = SignalStore.settings().getBackupHour();
     int           minute = SignalStore.settings().getBackupMinute();
-    LocalDateTime next   = now.withHour(hour).withMinute(minute).withSecond(0);
-
-    if (now.isAfter(next)) {
-      next = next.plusDays(1);
-    }
-
-    int jitter = (new Random().nextInt(BACKUP_JITTER_WINDOW_SECONDS)) - (BACKUP_JITTER_WINDOW_SECONDS / 2);
-    next = next.plusSeconds(jitter);
+    LocalDateTime next   = MessageBackupListener.getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, BACKUP_JITTER_WINDOW_SECONDS);
 
     long nextTime = JavaTimeExtensionsKt.toMillis(next);
 

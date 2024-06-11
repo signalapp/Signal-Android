@@ -567,10 +567,10 @@
     <string name="ConversationFragment_delete_everywhere">Удалить везде</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
     <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">This message will be deleted from all your devices.</item>
-        <item quantity="few">These messages will be deleted from all your devices.</item>
-        <item quantity="many">These messages will be deleted from all your devices.</item>
-        <item quantity="other">These messages will be deleted from all your devices.</item>
+        <item quantity="one">Это сообщение будет удалено со всех ваших устройств.</item>
+        <item quantity="few">Это сообщение будет удалено со всех ваших устройств.</item>
+        <item quantity="many">Это сообщение будет удалено со всех ваших устройств.</item>
+        <item quantity="other">Это сообщение будет удалено со всех ваших устройств.</item>
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Это сообщение будет удалено для всех в этом чате, если у них установлена недавняя версия Signal. Они смогут увидеть, что вы удалили сообщение.</string>
     <string name="ConversationFragment_quoted_message_not_found">Исходное сообщение не найдено</string>
@@ -678,10 +678,10 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">This will permanently delete the selected chat from all your devices.</item>
-        <item quantity="few">This will permanently delete all %1$d selected chats from all your devices.</item>
-        <item quantity="many">This will permanently delete all %1$d selected chats from all your devices.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats from all your devices.</item>
+        <item quantity="one">Это навсегда удалит выбранный чат со всех ваших устройств.</item>
+        <item quantity="few">Это навсегда удалит все %1$d выбранных чата со всех ваших устройств.</item>
+        <item quantity="many">Это навсегда удалит все %1$d выбранных чатов со всех ваших устройств.</item>
+        <item quantity="other">Это навсегда удалит все %1$d выбранных чата со всех ваших устройств.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Удаление</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1419,10 +1419,10 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">This will permanently delete the selected file from all your devices. Any message text associated with this item will also be deleted.</item>
-        <item quantity="few">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
-        <item quantity="many">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Это навсегда удалит выбранный файл со всех ваших устройств. Текст сообщений, связанных с этими элементами, также будет удалён.</item>
+        <item quantity="few">Это навсегда удалит %1$d выбранных файла со всех ваших устройств. Текст сообщений, связанных с этими элементами, также будет удалён.</item>
+        <item quantity="many">Это навсегда удалит %1$d выбранных файлов со всех ваших устройств. Текст сообщений, связанных с этими элементами, также будет удалён.</item>
+        <item quantity="other">Это навсегда удалит %1$d выбранных файла со всех ваших устройств. Текст сообщений, связанных с этими элементами, также будет удалён.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Удаление</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Удаляем сообщения…</string>
@@ -1755,13 +1755,13 @@
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s теперь может принимать платежи</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
+    <string name="MessageRecord_payments_restore_tombstone">Подробности платежа недоступны</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
     <string name="MessageRecord_payments_restore_tombstone_tap_more">Показать полностью</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
-    <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
+    <string name="PaymentTombstoneLearnMoreDialog_title">Подробности платежа недоступны</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">This details of this payment are not available because your messages were restored from a source that did not contain this payment history. This does not affect your wallet balance or the status of past payments.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">Сведения об данном платеже недоступны, так как ваши сообщения были восстановлены из источника, который не содержал эту историю платежей. Это не влияет на баланс вашего кошелька или статус прошлых платежей.</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -2107,19 +2107,19 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">Разрешите доступ к камере</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Чтобы начать звонок или присоединиться к нему, разрешите Signal доступ к камере и микрофону.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">To start or join a call, allow Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">Чтобы начать звонок или присоединиться к нему, разрешите Signal доступ к микрофону.</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">To enable your video, allow Signal access to your camera.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">Для включения видео разрешите Signal доступ к камере.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal needs microphone permissions to start or join a call.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal требуется разрешение на доступ к микрофону, чтобы начать или присоединиться к звонку.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal needs camera access to enable your video</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal требуется доступ к камере, чтобы включить видео</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="WebRtcCallActivity__to_start_call">To start or join a call:</string>
+    <string name="WebRtcCallActivity__to_start_call">Чтобы начать или присоединиться к звонку:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
-    <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
+    <string name="WebRtcCallActivity__to_enable_video">Чтобы включить видео:</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Звонок Signal</string>
@@ -2690,7 +2690,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Удалить сообщение?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Это сообщение будет навсегда удалено.</string>
     <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">Это сообщение будет безвозвратно удалено со всех ваших устройств.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s для %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Вы отправили %1$s</string>
@@ -3581,11 +3581,11 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Все сообщения и медиафайлы будут безвозвратно удалены с вашего устройства.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Все сообщения и медиафайлы будут безвозвратно удалены с этого устройства и всех связанных устройств.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Вы действительно хотите удалить всю историю сообщений?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Вся история сообщений будет безвозвратно удалена. Это действие невозможно отменить.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Вся история сообщений будет безвозвратно удалена со всех устройств. Это действие не может быть отменено.</string>
     <string name="preferences_storage__delete_all_now">Удалить всё сейчас</string>
     <string name="preferences_storage__forever">Бессрочно</string>
     <string name="preferences_storage__one_year">1 год</string>
@@ -7244,14 +7244,14 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Сообщения, превышающие выбранные ограничения, будут удалены без возможности восстановления.</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Применить ограничения к связанным устройствам</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Если эта функция включена, в соответствии с ограничениями чата также будут удаляться сообщения на связанных устройствах.</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
+    <string name="DeleteSyncEducation_title">Удаление теперь происходит синхронно на всех ваших устройствах</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">При удалении сообщений, медиафайлов или чатов они будут удаляться с вашего телефона и со всех связанных устройств.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">ОК</string>
 

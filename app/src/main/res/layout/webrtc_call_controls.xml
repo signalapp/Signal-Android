@@ -81,9 +81,11 @@
             android:clickable="false"
             android:contentDescription="@string/WebRtcCallView__toggle_camera_direction"
             android:scaleType="fitXY"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/webrtc_call_screen_camera_toggle" />
+            app:srcCompat="@drawable/webrtc_call_screen_camera_toggle"
+            tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/call_screen_above_controls_barrier"

@@ -90,8 +90,10 @@
         android:layout_height="28dp"
         android:layout_marginStart="@dimen/webrtc_audio_indicator_margin"
         android:layout_marginBottom="@dimen/webrtc_audio_indicator_margin"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
 
     <FrameLayout
         android:id="@+id/call_participant_switch_camera"

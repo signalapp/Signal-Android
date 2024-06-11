@@ -103,6 +103,13 @@ public final class LiveRecipient {
   }
 
   /**
+   * Removes observer of this data.
+   */
+  public void removeObserver(@NonNull Observer<Recipient> observer) {
+    ThreadUtil.runOnMain(() -> observableLiveData.removeObserver(observer));
+  }
+
+  /**
    * Removes all observers of this data registered for the given LifecycleOwner.
    */
   public void removeObservers(@NonNull LifecycleOwner owner) {

@@ -5,10 +5,10 @@
 
 package org.thoughtcrime.securesms.events
 
-import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.concurrent.TimeUnit
 
-data class GroupCallRaiseHandEvent(val sender: Recipient, val timestamp: Long) {
+data class GroupCallRaiseHandEvent(val sender: CallParticipant, val timestamp: Long) {
+
   fun getCollapseTimestamp(): Long {
     return timestamp + TimeUnit.SECONDS.toMillis(LIFESPAN_SECONDS)
   }
