@@ -429,17 +429,12 @@ final class VideoTrackConverter {
         }
     }
 
-    String dumpState() {
-        return String.format(Locale.US,
-                "V{"
-                        + "extracted:%d(done:%b) "
-                        + "decoded:%d(done:%b) "
-                        + "encoded:%d(done:%b) "
-                        + "muxing:%b(track:%d)} ",
-                mVideoExtractedFrameCount, mVideoExtractorDone,
-                mVideoDecodedFrameCount, mVideoDecoderDone,
-                mVideoEncodedFrameCount, mVideoEncoderDone,
-                mMuxer != null, mOutputVideoTrack);
+    VideoTrackConverterState dumpState() {
+        return new VideoTrackConverterState(
+            mVideoExtractedFrameCount, mVideoExtractorDone,
+            mVideoDecodedFrameCount, mVideoDecoderDone,
+            mVideoEncodedFrameCount, mVideoEncoderDone,
+            mMuxer != null, mOutputVideoTrack);
     }
 
     void verifyEndState() {

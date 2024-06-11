@@ -47,6 +47,8 @@ public final class MediaConverter {
     private static final String TAG = "media-converter";
     private static final boolean VERBOSE = false; // lots of logging
 
+    private static final int STUCK_FRAME_THRESHOLD = 100;
+
     // Describes when the annotation will be discarded
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({VIDEO_CODEC_H264, VIDEO_CODEC_H265})
@@ -217,6 +219,8 @@ public final class MediaConverter {
             final @Nullable AudioTrackConverter audioTrackConverter,
             final @NonNull Muxer muxer) throws IOException, TranscodingException {
 
+        MediaConverterState oldState = null;
+        int stuckFrames = 0;
         boolean muxing = false;
         int percentProcessed = 0;
         long inputDuration = Math.max(
@@ -227,11 +231,19 @@ public final class MediaConverter {
                 ((videoTrackConverter != null && !videoTrackConverter.mVideoEncoderDone) ||
                  (audioTrackConverter != null &&!audioTrackConverter.mAudioEncoderDone))) {
 
+            final MediaConverterState currentState = new MediaConverterState(videoTrackConverter != null ? videoTrackConverter.dumpState() : null, audioTrackConverter != null ? audioTrackConverter.dumpState() : null, muxing);
+
             if (VERBOSE) {
-                Log.d(TAG, "loop: " +
-                        (videoTrackConverter == null ? "" : videoTrackConverter.dumpState()) +
-                        (audioTrackConverter == null ? "" : audioTrackConverter.dumpState()) +
-                        " muxing:" + muxing);
+                Log.d(TAG, "loop: " + currentState);
+            }
+
+            if (currentState.equals(oldState)) {
+                if (++stuckFrames >= STUCK_FRAME_THRESHOLD) {
+                    mCancelled = true;
+                }
+            } else {
+                oldState = currentState;
+                stuckFrames = 0;
             }
 
             if (videoTrackConverter != null && (audioTrackConverter == null || audioTrackConverter.mAudioExtractorDone || videoTrackConverter.mMuxingVideoPresentationTime <= audioTrackConverter.mMuxingAudioPresentationTime)) {
