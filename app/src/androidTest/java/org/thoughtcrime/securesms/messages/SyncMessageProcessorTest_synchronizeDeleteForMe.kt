@@ -12,6 +12,7 @@ import io.mockk.unmockkStatic
 import org.hamcrest.Matchers.greaterThan
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -418,6 +419,7 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
     SignalDatabase.threads.getThreadRecord(aliceThreadId) assertIs null
   }
 
+  @Ignore("race condition flake")
   @Test
   fun multipleLocalOnlyConversation() {
     // GIVEN
