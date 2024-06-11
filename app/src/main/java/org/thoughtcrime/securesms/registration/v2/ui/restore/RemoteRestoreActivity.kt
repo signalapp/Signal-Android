@@ -30,6 +30,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
@@ -63,7 +64,9 @@ import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.restore.transferorrestore.TransferOrRestoreMoreOptionsDialog
+import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Util
+import java.util.Locale
 
 class RemoteRestoreActivity : BaseActivity() {
   companion object {
@@ -93,6 +96,7 @@ class RemoteRestoreActivity : BaseActivity() {
               TransferOrRestoreMoreOptionsDialog.show(fragmentManager = supportFragmentManager, skipOnly = false)
             },
             state.backupTier,
+            state.backupTime,
             state.backupTier != MessageBackupTier.PAID
           )
           if (state.importState == RemoteRestoreViewModel.ImportState.RESTORED) {
@@ -238,6 +242,7 @@ class RemoteRestoreActivity : BaseActivity() {
         onCancelClick = {},
         onMoreOptionsClick = {},
         MessageBackupTier.PAID,
+        System.currentTimeMillis(),
         true
       )
     }
@@ -250,6 +255,7 @@ class RemoteRestoreActivity : BaseActivity() {
     onCancelClick: () -> Unit,
     onMoreOptionsClick: () -> Unit,
     tier: MessageBackupTier?,
+    lastBackupTime: Long,
     cancelable: Boolean
   ) {
     Column(
@@ -264,7 +270,14 @@ class RemoteRestoreActivity : BaseActivity() {
       )
 
       val yourLastBackupText = buildAnnotatedString {
-        append("Your last backup was made on March 5, 2024 at 9:00am.") // TODO [message-backups] Finalized copy.
+        append(
+          stringResource(
+            id = R.string.RemoteRestoreActivity__backup_created_at,
+            DateUtils.formatDateWithoutDayOfWeek(Locale.getDefault(), lastBackupTime),
+            DateUtils.getOnlyTimeString(LocalContext.current, lastBackupTime)
+          )
+
+        )
         append(" ")
         if (tier != MessageBackupTier.PAID) {
           withStyle(SpanStyle(fontWeight = FontWeight.SemiBold)) {

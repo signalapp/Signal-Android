@@ -143,7 +143,10 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     _state.value = _state.value.copy(remoteBackupState = RemoteBackupState.Unknown)
 
     disposables += Single
-      .fromCallable { BackupRepository.getRemoteBackupState() }
+      .fromCallable {
+        BackupRepository.restoreBackupTier()
+        BackupRepository.getRemoteBackupState()
+      }
       .subscribeOn(Schedulers.io())
       .subscribe { result ->
         when {

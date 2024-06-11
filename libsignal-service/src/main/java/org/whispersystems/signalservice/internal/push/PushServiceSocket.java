@@ -171,6 +171,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -964,10 +966,6 @@ public class PushServiceSocket {
     downloadFromCdn(destination, cdnNumber, headers, cdnPath, maxSizeBytes, listener);
   }
 
-  public boolean checkForBackup(int cdnNumber, Map<String, String> headers, String cdnPath) throws PushNetworkException, MissingConfigurationException, NonSuccessfulResponseCodeException {
-    return checkExistsOnCdn(cdnNumber, headers, cdnPath);
-  }
-
   public void retrieveAttachment(int cdnNumber, Map<String, String> headers, SignalServiceAttachmentRemoteId cdnPath, File destination, long maxSizeBytes, ProgressListener listener)
       throws IOException, MissingConfigurationException
   {
@@ -1722,7 +1720,8 @@ public class PushServiceSocket {
     }
   }
 
-  private boolean checkExistsOnCdn(int cdnNumber, Map<String, String> headers, String path) throws MissingConfigurationException, PushNetworkException, NonSuccessfulResponseCodeException {
+  @Nullable
+  public ZonedDateTime getCdnLastModifiedTime(int cdnNumber, Map<String, String> headers, String path) throws MissingConfigurationException, PushNetworkException, NonSuccessfulResponseCodeException {
     ConnectionHolder[] cdnNumberClients = cdnClientsMap.get(cdnNumber);
     if (cdnNumberClients == null) {
       throw new MissingConfigurationException("Attempted to download from unsupported CDN number: " + cdnNumber + ", Our configuration supports: " + cdnClientsMap.keySet());
@@ -1752,7 +1751,11 @@ public class PushServiceSocket {
 
     try (Response response = call.execute()) {
       if (response.isSuccessful()) {
-        return true;
+        String lastModified = response.header("Last-Modified");
+        if (lastModified == null) {
+          return null;
+        }
+        return ZonedDateTime.parse(lastModified, DateTimeFormatter.RFC_1123_DATE_TIME);
       } else {
         throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
       }

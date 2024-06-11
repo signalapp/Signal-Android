@@ -32,7 +32,14 @@ import kotlin.time.Duration.Companion.seconds
 class RemoteRestoreViewModel : ViewModel() {
   val disposables = CompositeDisposable()
 
-  private val _state: MutableState<ScreenState> = mutableStateOf(ScreenState(backupTier = SignalStore.backup().backupTier, importState = ImportState.NONE, restoreProgress = null))
+  private val _state: MutableState<ScreenState> = mutableStateOf(
+    ScreenState(
+      backupTier = SignalStore.backup().backupTier,
+      backupTime = SignalStore.backup().lastBackupTime,
+      importState = ImportState.NONE,
+      restoreProgress = null
+    )
+  )
 
   val state: State<ScreenState> = _state
 
@@ -78,6 +85,7 @@ class RemoteRestoreViewModel : ViewModel() {
 
   data class ScreenState(
     val backupTier: MessageBackupTier?,
+    val backupTime: Long,
     val importState: ImportState,
     val restoreProgress: RestoreV2Event?
   )

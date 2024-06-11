@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.toMillis
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.StatusCodeErrorAction
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
@@ -62,6 +63,7 @@ import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
 import java.lang.Exception
+import java.time.ZonedDateTime
 import kotlin.time.Duration.Companion.milliseconds
 
 object BackupRepository {
@@ -355,7 +357,7 @@ object BackupRepository {
       } is NetworkResult.Success
   }
 
-  fun checkForBackupFile(): Boolean {
+  fun getBackupFileLastModified(): NetworkResult<ZonedDateTime?> {
     val api = AppDependencies.signalServiceAccountManager.archiveApi
     val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
 
@@ -368,9 +370,9 @@ object BackupRepository {
         val (cdnCredentials, info) = pair
         val messageReceiver = AppDependencies.signalServiceMessageReceiver
         NetworkResult.fromFetch {
-          messageReceiver.checkBackupExistence(info.cdn!!, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
+          messageReceiver.getCdnLastModifiedTime(info.cdn!!, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
         }
-      } is NetworkResult.Success
+      }
   }
 
   /**
@@ -605,7 +607,10 @@ object BackupRepository {
   fun restoreBackupTier(): MessageBackupTier? {
     // TODO: more complete error handling
     try {
-      checkForBackupFile()
+      val lastModified = getBackupFileLastModified().successOrThrow()
+      if (lastModified != null) {
+        SignalStore.backup().lastBackupTime = lastModified.toMillis()
+      }
     } catch (e: Exception) {
       Log.i(TAG, "Could not check for backup file.", e)
       SignalStore.backup().backupTier = null
