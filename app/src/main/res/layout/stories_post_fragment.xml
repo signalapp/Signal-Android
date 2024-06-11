@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,12 +22,15 @@
     <org.thoughtcrime.securesms.stories.StoryTextPostView
         android:id="@+id/text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
 
-    <org.thoughtcrime.securesms.video.VideoPlayer
-        android:id="@+id/video"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:playerLayoutId="@layout/story_video_player" />
+        <org.thoughtcrime.securesms.video.VideoPlayer
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:playerLayoutId="@layout/story_video_player"
+            tools:layout_editor_absoluteX="-162dp"
+            tools:layout_editor_absoluteY="204dp" />
+    </org.thoughtcrime.securesms.stories.StoryTextPostView>
 
 </FrameLayout>

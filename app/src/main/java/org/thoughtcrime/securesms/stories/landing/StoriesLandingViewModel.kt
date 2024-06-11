@@ -31,6 +31,18 @@ class StoriesLandingViewModel(private val storiesLandingRepository: StoriesLandi
     }
   }
 
+  fun refresh() {
+    disposables += storiesLandingRepository.getStories().subscribe { stories ->
+      store.update { state ->
+        state.copy(
+          loadingState = StoriesLandingState.LoadingState.LOADED,
+          storiesLandingItems = stories.sorted(),
+          displayMyStoryItem = stories.isEmpty() || stories.none { it.storyRecipient.isMyStory }
+        )
+      }
+    }
+  }
+
   override fun onCleared() {
     disposables.clear()
   }

@@ -4,6 +4,8 @@ import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -17,6 +19,7 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.transition.TransitionInflater
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -142,6 +145,18 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
+    val swipeRefreshLayout: SwipeRefreshLayout = view.findViewById(R.id.swipeRefresh)
+
+    swipeRefreshLayout.setOnRefreshListener {
+      // Handle refresh action here
+      viewModel.refresh()
+
+      // Simulate refreshing for 1 second
+      Handler(Looper.getMainLooper()).postDelayed({
+        swipeRefreshLayout.isRefreshing = false
+      }, 1000)
+    }
 
     reminderView = ViewUtil.findStubById(view, R.id.reminder)
     updateReminders()
