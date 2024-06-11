@@ -37,7 +37,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.Role
@@ -151,7 +150,9 @@ private fun RaiseHand(
             Icon(
               imageVector = ImageVector.vectorResource(id = R.drawable.symbol_raise_hand_24),
               contentDescription = null,
-              modifier = Modifier.align(Alignment.CenterVertically).padding(vertical = 8.dp)
+              modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .padding(vertical = 8.dp)
             )
 
             Text(
@@ -194,10 +195,20 @@ private fun getSnackbarText(state: RaiseHandState): String {
   if (state.isEmpty) {
     return ""
   }
+
+  val displayedName = getShortDisplayName(raisedHands = state.raisedHands)
   return if (!state.isExpanded) {
-    pluralStringResource(id = R.plurals.CallRaiseHandSnackbar_raised_hands, count = state.raisedHands.size, getShortDisplayName(state.raisedHands), state.raisedHands.size - 1)
+    if (state.raisedHands.size == 1) {
+      stringResource(id = R.string.CallRaiseHandSnackbar_raised_hands_singular, displayedName)
+    } else {
+      stringResource(id = R.string.CallRaiseHandSnackbar_raised_hands_plural, displayedName, state.raisedHands.size - 1)
+    }
   } else {
-    pluralStringResource(id = R.plurals.CallOverflowPopupWindow__raised_a_hand, count = state.raisedHands.size, state.raisedHands.first().sender.getShortRecipientDisplayName(LocalContext.current), state.raisedHands.size - 1)
+    if (state.raisedHands.size == 1) {
+      stringResource(id = R.string.CallRaiseHandSnackbar__raised_a_hand_singular, displayedName)
+    } else {
+      stringResource(id = R.string.CallRaiseHandSnackbar__raised_a_hand_plural, displayedName, state.raisedHands.size - 1)
+    }
   }
 }
 
