@@ -10,6 +10,7 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decode
 import org.signal.core.util.Base64.decodeOrThrow
+import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
@@ -37,6 +38,8 @@ import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
 import org.thoughtcrime.securesms.backup.v2.proto.SessionSwitchoverChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.SimpleChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
+import org.thoughtcrime.securesms.backup.v2.proto.Sticker
+import org.thoughtcrime.securesms.backup.v2.proto.StickerMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Text
 import org.thoughtcrime.securesms.backup.v2.proto.ThreadMergeChatUpdate
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -84,7 +87,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.BodyRange as BackupBodyRange
  *
  * All of this complexity is hidden from the user -- they just get a normal iterator interface.
  */
-class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: Int, private val archiveMedia: Boolean) : Iterator<ChatItem>, Closeable {
+class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: Int, private val archiveMedia: Boolean) : Iterator<ChatItem?>, Closeable {
 
   companion object {
     private val TAG = Log.tag(ChatItemExportIterator::class.java)
@@ -104,7 +107,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     return buffer.isNotEmpty() || (cursor.count > 0 && !cursor.isLast && !cursor.isAfterLast)
   }
 
-  override fun next(): ChatItem {
+  override fun next(): ChatItem? {
     if (buffer.isNotEmpty()) {
       return buffer.remove()
     }
@@ -344,11 +347,31 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
             )
           }
         }
-        record.body == null && !attachmentsById.containsKey(record.id) -> {
-          Log.w(TAG, "Record missing a body and doesnt have attachments, skipping")
-          continue
+        else -> {
+          if (record.body == null && !attachmentsById.containsKey(record.id)) {
+            Log.w(TAG, "Record missing a body and doesnt have attachments, skipping")
+            continue
+          }
+          val attachments = attachmentsById[record.id]
+          val sticker = attachments?.firstOrNull { dbAttachment ->
+            dbAttachment.isSticker
+          }
+          if (sticker != null) {
+            val stickerLocator = sticker.stickerLocator!!
+            builder.stickerMessage = StickerMessage(
+              sticker = Sticker(
+                packId = Hex.fromStringCondensed(stickerLocator.packId).toByteString(),
+                packKey = Hex.fromStringCondensed(stickerLocator.packKey).toByteString(),
+                stickerId = stickerLocator.stickerId,
+                emoji = stickerLocator.emoji,
+                data_ = sticker.toBackupAttachment().pointer
+              ),
+              reactions = reactionsById[id].toBackupReactions()
+            )
+          } else {
+            builder.standardMessage = record.toStandardMessage(reactionsById[id], mentions = mentionsById[id], attachments = attachmentsById[record.id])
+          }
         }
-        else -> builder.standardMessage = record.toStandardMessage(reactionsById[id], mentions = mentionsById[id], attachments = attachmentsById[record.id])
       }
       if (record.latestRevisionId == null) {
         val previousEdits = revisionMap.remove(record.id)
@@ -369,7 +392,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     return if (buffer.isNotEmpty()) {
       buffer.remove()
     } else {
-      throw NoSuchElementException()
+      null
     }
   }
 

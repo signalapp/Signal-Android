@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.backup.v2.processor.AdHocCallBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatItemBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.RecipientBackupProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.StickerBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.stream.BackupExportWriter
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
@@ -129,6 +130,11 @@ object BackupRepository {
           eventTimer.emit("call")
         }
 
+        StickerBackupProcessor.export { frame ->
+          writer.write(frame)
+          eventTimer.emit("sticker-pack")
+        }
+
         ChatItemBackupProcessor.export(exportState) { frame ->
           writer.write(frame)
           eventTimer.emit("message")
@@ -186,6 +192,7 @@ object BackupRepository {
       SignalDatabase.threads.clearAllDataForBackupRestore()
       SignalDatabase.messages.clearAllDataForBackupRestore()
       SignalDatabase.attachments.clearAllDataForBackupRestore()
+      SignalDatabase.stickers.clearAllDataForBackupRestore()
 
       // Add back self after clearing data
       val selfId: RecipientId = SignalDatabase.recipients.getAndPossiblyMerge(selfData.aci, selfData.pni, selfData.e164, pniVerified = true, changeSelf = true)
@@ -220,6 +227,11 @@ object BackupRepository {
           frame.adHocCall != null -> {
             AdHocCallBackupProcessor.import(frame.adHocCall, backupState)
             eventTimer.emit("call")
+          }
+
+          frame.stickerPack != null -> {
+            StickerBackupProcessor.import(frame.stickerPack)
+            eventTimer.emit("sticker-pack")
           }
 
           frame.chatItem != null -> {

@@ -10,6 +10,7 @@ import android.os.Parcel
 import org.signal.core.util.Base64
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.stickers.StickerLocator
 
 class ArchivedAttachment : Attachment {
 
@@ -44,6 +45,7 @@ class ArchivedAttachment : Attachment {
     blurHash: String?,
     voiceNote: Boolean,
     borderless: Boolean,
+    stickerLocator: StickerLocator?,
     gif: Boolean,
     quote: Boolean
   ) : super(
@@ -66,7 +68,7 @@ class ArchivedAttachment : Attachment {
     incrementalMacChunkSize = incrementalMacChunkSize ?: 0,
     uploadTimestamp = 0,
     caption = caption,
-    stickerLocator = null,
+    stickerLocator = stickerLocator,
     blurHash = BlurHash.parseOrNull(blurHash),
     audioHash = null,
     transformProperties = null
