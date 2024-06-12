@@ -49,8 +49,8 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LRUCache
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.asChain
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
 import org.whispersystems.signalservice.api.crypto.ContentHint
@@ -156,7 +156,7 @@ object MessageDecryptor {
       if (validationResult is EnvelopeContentValidator.Result.Invalid) {
         Log.w(TAG, "${logPrefix(envelope, cipherResult)} Invalid content! ${validationResult.reason}", validationResult.throwable)
 
-        if (FeatureFlags.internalUser) {
+        if (RemoteConfig.internalUser) {
           postInvalidMessageNotification(context, validationResult.reason)
         }
 
@@ -213,11 +213,11 @@ object MessageDecryptor {
           check(e is ProtocolException)
           Log.w(TAG, "${logPrefix(envelope, e)} Decryption error!", e, true)
 
-          if (FeatureFlags.internalUser) {
+          if (RemoteConfig.internalUser) {
             postDecryptionErrorNotification(context)
           }
 
-          if (FeatureFlags.retryReceipts) {
+          if (RemoteConfig.retryReceipts) {
             buildResultForDecryptionError(context, envelope, serverDeliveredTimestamp, followUpOperations, e)
           } else {
             Log.w(TAG, "${logPrefix(envelope, e)} Retry receipts disabled! Enqueuing a session reset job, which will also insert an error message.", e, true)
@@ -296,7 +296,7 @@ object MessageDecryptor {
 
     val errorCount: DecryptionErrorCount = decryptionErrorCounts.getOrPut(sender.id) { DecryptionErrorCount(count = 0, lastReceivedTime = 0) }
     val timeSinceLastError = receivedTimestamp - errorCount.lastReceivedTime
-    if (timeSinceLastError > FeatureFlags.retryReceiptMaxCountResetAge && errorCount.count > 0) {
+    if (timeSinceLastError > RemoteConfig.retryReceiptMaxCountResetAge && errorCount.count > 0) {
       Log.i(TAG, "${logPrefix(envelope, senderServiceId)} Resetting decryption error count for ${sender.id} because it has been $timeSinceLastError ms since the last error.", true)
       errorCount.count = 0
     }
@@ -304,8 +304,8 @@ object MessageDecryptor {
     errorCount.count++
     errorCount.lastReceivedTime = receivedTimestamp
 
-    if (errorCount.count > FeatureFlags.retryReceiptMaxCount) {
-      Log.w(TAG, "${logPrefix(envelope, senderServiceId)} This is error number ${errorCount.count} from ${sender.id}, which is greater than the maximum of ${FeatureFlags.retryReceiptMaxCount}. Ignoring.", true)
+    if (errorCount.count > RemoteConfig.retryReceiptMaxCount) {
+      Log.w(TAG, "${logPrefix(envelope, senderServiceId)} This is error number ${errorCount.count} from ${sender.id}, which is greater than the maximum of ${RemoteConfig.retryReceiptMaxCount}. Ignoring.", true)
 
       if (contentHint == ContentHint.IMPLICIT) {
         Log.w(TAG, "${logPrefix(envelope, senderServiceId)} The content hint is $contentHint, so no error message is needed.", true)

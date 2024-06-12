@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException
 import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException
 import org.whispersystems.signalservice.api.services.CdsiV2Service
@@ -98,7 +98,7 @@ object ContactDiscoveryRefreshV2 {
         Optional.empty(),
         BuildConfig.CDSI_MRENCLAVE,
         10_000,
-        if (FeatureFlags.useLibsignalNetForCdsiLookup) AppDependencies.libsignalNetwork else null
+        if (RemoteConfig.useLibsignalNetForCdsiLookup) AppDependencies.libsignalNetwork else null
       ) {
         Log.i(TAG, "Ignoring token for one-off lookup.")
       }
@@ -145,8 +145,8 @@ object ContactDiscoveryRefreshV2 {
       return ContactDiscovery.RefreshResult(emptySet(), emptyMap())
     }
 
-    if (newE164s.size > FeatureFlags.cdsHardLimit) {
-      Log.w(TAG, "[$tag] Number of new contacts (${newE164s.size.roundedString()} > hard limit (${FeatureFlags.cdsHardLimit}! Failing and marking ourselves as permanently blocked.")
+    if (newE164s.size > RemoteConfig.cdsHardLimit) {
+      Log.w(TAG, "[$tag] Number of new contacts (${newE164s.size.roundedString()} > hard limit (${RemoteConfig.cdsHardLimit}! Failing and marking ourselves as permanently blocked.")
       SignalStore.misc().markCdsPermanentlyBlocked()
       throw IOException("New contacts over the CDS hard limit!")
     }
@@ -163,7 +163,7 @@ object ContactDiscoveryRefreshV2 {
         Optional.ofNullable(token),
         BuildConfig.CDSI_MRENCLAVE,
         timeoutMs,
-        if (FeatureFlags.useLibsignalNetForCdsiLookup) AppDependencies.libsignalNetwork else null
+        if (RemoteConfig.useLibsignalNetForCdsiLookup) AppDependencies.libsignalNetwork else null
       ) { tokenToSave ->
         stopwatch.split("network-pre-token")
         if (!isPartialRefresh) {

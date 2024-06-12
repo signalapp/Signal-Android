@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Arrays;
@@ -24,7 +24,7 @@ public final class GeographicalRestrictions {
 
     String bareE164 = e164.startsWith("+") ? e164.substring(1) : e164;
 
-    return parsePrefixes(FeatureFlags.paymentsCountryBlocklist())
+    return parsePrefixes(RemoteConfig.paymentsCountryBlocklist())
         .stream()
         .noneMatch(bareE164::startsWith);
   }

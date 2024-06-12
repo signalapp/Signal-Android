@@ -310,7 +310,7 @@ public class CommunicationActions {
       return;
     }
 
-    if (!FeatureFlags.adHocCalling()) {
+    if (!RemoteConfig.adHocCalling()) {
       Toast.makeText(activity, R.string.CommunicationActions_cant_join_call, Toast.LENGTH_SHORT).show();
       return;
     }
@@ -340,7 +340,7 @@ public class CommunicationActions {
   }
 
   private static void startVideoCall(@NonNull CallContext callContext, @NonNull CallLinkRootKey rootKey) {
-    if (!FeatureFlags.adHocCalling()) {
+    if (!RemoteConfig.adHocCalling()) {
       Toast.makeText(callContext.getContext(), R.string.CommunicationActions_cant_join_call, Toast.LENGTH_SHORT).show();
       return;
     }

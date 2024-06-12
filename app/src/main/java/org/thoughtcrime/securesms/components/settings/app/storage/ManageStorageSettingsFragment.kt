@@ -66,7 +66,7 @@ import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.preferences.widgets.StorageGraphView
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.viewModel
@@ -138,7 +138,7 @@ class ManageStorageSettingsFragment : ComposeFragment() {
         dialog("confirm-delete-chat-history") {
           Dialogs.SimpleAlertDialog(
             title = stringResource(id = R.string.preferences_storage__delete_message_history),
-            body = if (TextSecurePreferences.isMultiDevice(LocalContext.current) && FeatureFlags.deleteSyncEnabled) {
+            body = if (TextSecurePreferences.isMultiDevice(LocalContext.current) && RemoteConfig.deleteSyncEnabled) {
               stringResource(id = R.string.preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device)
             } else {
               stringResource(id = R.string.preferences_storage__this_will_delete_all_message_history_and_media_from_your_device)
@@ -154,7 +154,7 @@ class ManageStorageSettingsFragment : ComposeFragment() {
         dialog("double-confirm-delete-chat-history", dialogProperties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)) {
           Dialogs.SimpleAlertDialog(
             title = stringResource(id = R.string.preferences_storage__are_you_sure_you_want_to_delete_all_message_history),
-            body = if (TextSecurePreferences.isMultiDevice(LocalContext.current) && FeatureFlags.deleteSyncEnabled) {
+            body = if (TextSecurePreferences.isMultiDevice(LocalContext.current) && RemoteConfig.deleteSyncEnabled) {
               stringResource(id = R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device)
             } else {
               stringResource(id = R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone)

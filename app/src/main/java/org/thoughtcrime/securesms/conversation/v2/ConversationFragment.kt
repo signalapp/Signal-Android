@@ -296,13 +296,13 @@ import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.DoubleClickDebouncer
 import org.thoughtcrime.securesms.util.DrawableUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil.getEditMessageThresholdHours
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil.isValidEditMessageSend
 import org.thoughtcrime.securesms.util.PlayStoreUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.StorageUtil
@@ -1687,7 +1687,7 @@ class ConversationFragment :
     val keyboardPage = when (keyboardMode) {
       TextSecurePreferences.MediaKeyboardMode.EMOJI -> if (isSystemEmojiPreferred) KeyboardPage.STICKER else KeyboardPage.EMOJI
       TextSecurePreferences.MediaKeyboardMode.STICKER -> KeyboardPage.STICKER
-      TextSecurePreferences.MediaKeyboardMode.GIF -> if (FeatureFlags.gifSearchAvailable) KeyboardPage.GIF else KeyboardPage.STICKER
+      TextSecurePreferences.MediaKeyboardMode.GIF -> if (RemoteConfig.gifSearchAvailable) KeyboardPage.GIF else KeyboardPage.STICKER
     }
 
     inputPanel.setMediaKeyboardToggleMode(keyboardPage)
@@ -2408,7 +2408,7 @@ class ConversationFragment :
     disposables += DeleteDialog.show(
       context = requireContext(),
       messageRecords = records,
-      message = if (TextSecurePreferences.isMultiDevice(requireContext()) && FeatureFlags.deleteSyncEnabled) {
+      message = if (TextSecurePreferences.isMultiDevice(requireContext()) && RemoteConfig.deleteSyncEnabled) {
         resources.getQuantityString(R.plurals.ConversationFragment_delete_on_linked_warning, records.size)
       } else {
         null

@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.calls.log
 
 import org.signal.paging.PagedDataSource
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 class CallLogPagedDataSource(
   private val query: String?,
@@ -10,7 +10,7 @@ class CallLogPagedDataSource(
 ) : PagedDataSource<CallLogRow.Id, CallLogRow> {
 
   private val hasFilter = filter == CallLogFilter.MISSED
-  private val hasCallLinkRow = FeatureFlags.adHocCalling && filter == CallLogFilter.ALL && query.isNullOrEmpty()
+  private val hasCallLinkRow = RemoteConfig.adHocCalling && filter == CallLogFilter.ALL && query.isNullOrEmpty()
 
   private var callEventsCount = 0
   private var callLinksCount = 0

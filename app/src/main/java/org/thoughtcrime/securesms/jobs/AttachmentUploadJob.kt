@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.AttachmentProgressService
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
@@ -66,7 +66,7 @@ class AttachmentUploadJob private constructor(
     @JvmStatic
     val maxPlaintextSize: Long
       get() {
-        val maxCipherTextSize = FeatureFlags.maxAttachmentSizeBytes
+        val maxCipherTextSize = RemoteConfig.maxAttachmentSizeBytes
         val maxPaddedSize = AttachmentCipherStreamUtil.getPlaintextLength(maxCipherTextSize)
         return PaddingInputStream.getMaxUnpaddedSize(maxPaddedSize)
       }

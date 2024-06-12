@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -84,7 +84,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       sectionHeaderPref(R.string.preferences_chats__backups)
 
-      if (FeatureFlags.messageBackups || state.remoteBackupsEnabled) {
+      if (RemoteConfig.messageBackups || state.remoteBackupsEnabled) {
         clickPref(
           title = DSLSettingsText.from("Signal Backups"), // TODO [message-backups] -- Finalized copy
           summary = DSLSettingsText.from(if (state.remoteBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),

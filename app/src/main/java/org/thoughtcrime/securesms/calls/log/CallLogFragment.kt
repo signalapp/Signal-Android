@@ -62,7 +62,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -253,7 +253,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, count, count))
       .setMessage(
-        if (FeatureFlags.adHocCalling) {
+        if (RemoteConfig.adHocCalling) {
           getString(R.string.CallLogFragment__call_links_youve_created)
         } else {
           null
@@ -403,7 +403,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, 1, 1))
       .setMessage(
-        if (FeatureFlags.adHocCalling) {
+        if (RemoteConfig.adHocCalling) {
           getString(R.string.CallLogFragment__call_links_youve_created)
         } else {
           null

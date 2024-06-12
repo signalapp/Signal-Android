@@ -18,7 +18,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
 import org.thoughtcrime.securesms.jobs.MessageFetchJob;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.util.Locale;
 import java.util.Optional;
@@ -48,7 +48,7 @@ public final class RoutineMessageFetchReceiver extends BroadcastReceiver {
         return;
       }
 
-      long foregroundDelayMs = FeatureFlags.getBackgroundMessageProcessForegroundDelay();
+      long foregroundDelayMs = RemoteConfig.getBackgroundMessageProcessForegroundDelay();
       long jobTimeout        = foregroundDelayMs + 200;
 
       Log.i(TAG, String.format(Locale.US, "Starting PushNotificationReceiveJob asynchronously with %d delay before foreground shown", foregroundDelayMs));
@@ -76,7 +76,7 @@ public final class RoutineMessageFetchReceiver extends BroadcastReceiver {
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 123, alarmIntent, PendingIntentFlags.updateCurrent());
     AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-    long interval = FeatureFlags.getBackgroundMessageProcessInterval();
+    long interval = RemoteConfig.getBackgroundMessageProcessInterval();
 
     if (interval < 0) {
       alarmManager.cancel(pendingIntent);

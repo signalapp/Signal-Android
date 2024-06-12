@@ -18,19 +18,19 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Provide access to locale specific values within feature flags following the locale CSV-Colon format.
+ * Provide access to locale-specific values within remote config, following the locale CSV-Colon format.
  *
  * Example: countryCode:integerValue,countryCode:integerValue,*:integerValue
  */
-public final class LocaleFeatureFlags {
+public final class LocaleRemoteConfig {
 
-  private static final String TAG = Log.tag(LocaleFeatureFlags.class);
+  private static final String TAG = Log.tag(LocaleRemoteConfig.class);
 
   private static final String COUNTRY_WILDCARD = "*";
   private static final int    NOT_FOUND        = -1;
 
   public static @NonNull Optional<PushMediaConstraints.MediaConfig> getMediaQualityLevel() {
-    Map<String, Integer> countryValues = parseCountryValues(FeatureFlags.getMediaQualityLevels(), NOT_FOUND);
+    Map<String, Integer> countryValues = parseCountryValues(RemoteConfig.getMediaQualityLevels(), NOT_FOUND);
     int                  level         = getCountryValue(countryValues, Recipient.self().getE164().orElse(""), NOT_FOUND);
 
     return Optional.ofNullable(PushMediaConstraints.MediaConfig.forLevel(level));
@@ -44,37 +44,37 @@ public final class LocaleFeatureFlags {
    * @return Whether Google Pay is disabled in this region
    */
   public static boolean isGooglePayDisabled() {
-    return isEnabledE164Start(FeatureFlags.googlePayDisabledRegions());
+    return isEnabledE164Start(RemoteConfig.googlePayDisabledRegions());
   }
 
   /**
    * @return Whether credit cards are disabled in this region
    */
   public static boolean isCreditCardDisabled() {
-    return isEnabledE164Start(FeatureFlags.creditCardDisabledRegions());
+    return isEnabledE164Start(RemoteConfig.creditCardDisabledRegions());
   }
 
   /**
    * @return Whether PayPal is disabled in this region
    */
   public static boolean isPayPalDisabled() {
-    return isEnabledE164Start(FeatureFlags.paypalDisabledRegions());
+    return isEnabledE164Start(RemoteConfig.paypalDisabledRegions());
   }
 
   public static boolean isIdealEnabled() {
-    return isEnabledE164Start(FeatureFlags.idealEnabledRegions());
+    return isEnabledE164Start(RemoteConfig.idealEnabledRegions());
   }
 
   public static boolean isSepaEnabled() {
-    return isEnabledE164Start(FeatureFlags.sepaEnabledRegions());
+    return isEnabledE164Start(RemoteConfig.sepaEnabledRegions());
   }
 
   public static boolean isDelayedNotificationPromptEnabled() {
-    return FeatureFlags.internalUser() || isEnabledPartsPerMillion(FeatureFlags.PROMPT_FOR_NOTIFICATION_LOGS, FeatureFlags.promptForDelayedNotificationLogs());
+    return RemoteConfig.internalUser() || isEnabledPartsPerMillion(RemoteConfig.PROMPT_FOR_NOTIFICATION_LOGS, RemoteConfig.promptForDelayedNotificationLogs());
   }
 
   public static boolean isBatterySaverPromptEnabled() {
-    return FeatureFlags.internalUser() || isEnabledPartsPerMillion(FeatureFlags.PROMPT_BATTERY_SAVER, FeatureFlags.promptBatterySaver());
+    return RemoteConfig.internalUser() || isEnabledPartsPerMillion(RemoteConfig.PROMPT_BATTERY_SAVER, RemoteConfig.promptBatterySaver());
   }
 
   /**

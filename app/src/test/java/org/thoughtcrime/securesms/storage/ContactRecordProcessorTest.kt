@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.EmptyLogger
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
@@ -38,7 +38,7 @@ class ContactRecordProcessorTest {
   lateinit var recipientTable: RecipientTable
 
   @Mock
-  lateinit var featureFlags: MockedStatic<FeatureFlags>
+  lateinit var remoteConfig: MockedStatic<RemoteConfig>
 
   @Mock
   lateinit var signalStore: MockedStatic<SignalStore>

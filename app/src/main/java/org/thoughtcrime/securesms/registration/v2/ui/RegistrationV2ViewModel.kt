@@ -60,7 +60,7 @@ import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeR
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.TokenNotAccepted
 import org.thoughtcrime.securesms.registration.v2.data.network.VerificationCodeRequestResult.UnknownError
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
 import org.whispersystems.signalservice.api.SvrNoDataException
@@ -782,13 +782,13 @@ class RegistrationV2ViewModel : ViewModel() {
         .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
       stopwatch.split("ContactRestore")
 
-      refreshFeatureFlags()
+      refreshRemoteConfig()
 
-      stopwatch.split("FeatureFlags")
+      stopwatch.split("RemoteConfig")
 
       stopwatch.stop(TAG)
     } else {
-      refreshFeatureFlags()
+      refreshRemoteConfig()
     }
 
     store.update {
@@ -865,10 +865,10 @@ class RegistrationV2ViewModel : ViewModel() {
       Log.i(TAG, "Took " + (System.currentTimeMillis() - startTime) + " ms to restore the backup tier..")
     }
 
-    private suspend fun refreshFeatureFlags() = withContext(Dispatchers.IO) {
+    private suspend fun refreshRemoteConfig() = withContext(Dispatchers.IO) {
       val startTime = System.currentTimeMillis()
       try {
-        FeatureFlags.refreshSync()
+        RemoteConfig.refreshSync()
         Log.i(TAG, "Took " + (System.currentTimeMillis() - startTime) + " ms to get feature flags.")
       } catch (e: IOException) {
         Log.w(TAG, "Failed to refresh flags after " + (System.currentTimeMillis() - startTime) + " ms.", e)

@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.internal.websocket.WebSocketShadowingBridge
 
 /**
@@ -37,7 +37,7 @@ class DefaultWebSocketShadowingBridge(private val context: Application) : WebSoc
   }
 
   override fun triggerFailureNotification(message: String) {
-    if (!FeatureFlags.internalUser) {
+    if (!RemoteConfig.internalUser) {
       return
     }
     val notification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)

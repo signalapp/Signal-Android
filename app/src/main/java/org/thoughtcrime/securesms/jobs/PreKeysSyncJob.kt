@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.PreKeysSyncJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.account.PreKeyUpload
@@ -138,7 +138,7 @@ class PreKeysSyncJob private constructor(
         warn(TAG, "Forced rotation was requested, but the consistency checks passed!")
         val timeSinceLastForcedRotation = System.currentTimeMillis() - SignalStore.misc().lastForcedPreKeyRefresh
         // We check < 0 in case someone changed their clock and had a bad value set
-        timeSinceLastForcedRotation > FeatureFlags.preKeyForceRefreshInterval || timeSinceLastForcedRotation < 0
+        timeSinceLastForcedRotation > RemoteConfig.preKeyForceRefreshInterval || timeSinceLastForcedRotation < 0
       }
     } else {
       false

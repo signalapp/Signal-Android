@@ -39,7 +39,7 @@ import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity;
 import org.thoughtcrime.securesms.profiles.username.NewWaysToConnectDialogFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
@@ -104,7 +104,7 @@ public final class Megaphones {
    * The megaphones we want to display *in priority order*. This is a {@link LinkedHashMap}, so order is preserved.
    * We will render the first applicable megaphone in this collection.
    * <p>
-   * This is also when you would hide certain megaphones based on things like {@link FeatureFlags}.
+   * This is also when you would hide certain megaphones based on things like {@link RemoteConfig}.
    */
   private static Map<Event, MegaphoneSchedule> buildDisplayOrder(@NonNull Context context, @NonNull Map<Event, MegaphoneRecord> records) {
     return new LinkedHashMap<>() {{
@@ -132,7 +132,7 @@ public final class Megaphones {
       return false;
     }
 
-    long expiringAt = device.lastActiveTimestamp + FeatureFlags.getLinkedDeviceLifespan();
+    long expiringAt = device.lastActiveTimestamp + RemoteConfig.getLinkedDeviceLifespan();
     long expiringIn = Math.max(expiringAt - System.currentTimeMillis(), 0);
 
     return expiringIn < TimeUnit.DAYS.toMillis(7) && expiringIn > 0;
@@ -177,7 +177,7 @@ public final class Megaphones {
       throw new IllegalStateException("No linked device to show");
     }
 
-    long expiringAt   = device.lastActiveTimestamp + FeatureFlags.getLinkedDeviceLifespan();
+    long expiringAt   = device.lastActiveTimestamp + RemoteConfig.getLinkedDeviceLifespan();
     long expiringIn   = Math.max(expiringAt - System.currentTimeMillis(), 0);
     int  expiringDays = (int) TimeUnit.MILLISECONDS.toDays(expiringIn);
 

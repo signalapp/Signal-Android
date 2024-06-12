@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.service.AttachmentProgressService;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor.MemoryFileException;
@@ -256,8 +256,8 @@ public final class AttachmentCompressionJob extends BaseJob {
           }
         }
 
-        if (FeatureFlags.useStreamingVideoMuxer()) {
-          StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getVideoTranscodingSettings(), constraints.getCompressedVideoMaxSize(context), FeatureFlags.allowAudioRemuxing());
+        if (RemoteConfig.useStreamingVideoMuxer()) {
+          StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getVideoTranscodingSettings(), constraints.getCompressedVideoMaxSize(context), RemoteConfig.allowAudioRemuxing());
 
           if (transcoder.isTranscodeRequired()) {
             Log.i(TAG, "Compressing with streaming muxer");

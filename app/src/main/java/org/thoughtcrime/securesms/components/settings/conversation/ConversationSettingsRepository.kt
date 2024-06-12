@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.IOException
 
 private val TAG = Log.tag(ConversationSettingsRepository::class.java)
@@ -159,9 +159,9 @@ class ConversationSettingsRepository(
           members.addAll(groupRecord.members)
           members.addAll(pendingMembers)
 
-          GroupCapacityResult(Recipient.self().id, members, FeatureFlags.groupLimits, groupRecord.isAnnouncementGroup)
+          GroupCapacityResult(Recipient.self().id, members, RemoteConfig.groupLimits, groupRecord.isAnnouncementGroup)
         } else {
-          GroupCapacityResult(Recipient.self().id, groupRecord.members, FeatureFlags.groupLimits, false)
+          GroupCapacityResult(Recipient.self().id, groupRecord.members, RemoteConfig.groupLimits, false)
         }
       )
     }

@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.registration.v2.ui.RegistrationV2Activity;
 import org.thoughtcrime.securesms.restore.RestoreActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.AppStartup;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;
@@ -189,7 +189,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private boolean userCanTransferOrRestore() {
-    return !SignalStore.registrationValues().isRegistrationComplete() && FeatureFlags.restoreAfterRegistration() && !SignalStore.registrationValues().hasSkippedTransferOrRestore();
+    return !SignalStore.registrationValues().isRegistrationComplete() && RemoteConfig.restoreAfterRegistration() && !SignalStore.registrationValues().hasSkippedTransferOrRestore();
   }
 
   private boolean userMustCreateSignalPin() {
@@ -222,7 +222,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getPushRegistrationIntent() {
-    if (FeatureFlags.registrationV2()) {
+    if (RemoteConfig.registrationV2()) {
       return RegistrationV2Activity.newIntentForNewRegistration(this, getIntent());
     } else {
       return RegistrationNavigationActivity.newIntentForNewRegistration(this, getIntent());
@@ -269,7 +269,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getChangeNumberLockIntent() {
-    if (FeatureFlags.registrationV2()) {
+    if (RemoteConfig.registrationV2()) {
       return ChangeNumberLockV2Activity.createIntent(this);
     } else {
       return ChangeNumberLockActivity.createIntent(this);

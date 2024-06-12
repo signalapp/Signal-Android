@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -303,7 +303,7 @@ public final class GroupSendUtil {
       long           keyCreateTime  = SenderKeyUtil.getCreateTimeForOurKey(distributionId);
       long           keyAge         = System.currentTimeMillis() - keyCreateTime;
 
-      if (keyCreateTime != -1 && keyAge > FeatureFlags.senderKeyMaxAge()) {
+      if (keyCreateTime != -1 && keyAge > RemoteConfig.senderKeyMaxAge()) {
         Log.w(TAG, "DistributionId " + distributionId + " was created at " + keyCreateTime + " and is " + (keyAge) + " ms old (~" + TimeUnit.MILLISECONDS.toDays(keyAge) + " days). Rotating.");
         SenderKeyUtil.rotateOurKey(distributionId);
       }

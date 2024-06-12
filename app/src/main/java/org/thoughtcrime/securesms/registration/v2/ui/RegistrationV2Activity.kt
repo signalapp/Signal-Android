@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.SmsRetrieverReceiver
 import org.thoughtcrime.securesms.registration.v2.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Activity to hold the entire registration process.
@@ -86,7 +86,7 @@ class RegistrationV2Activity : BaseActivity() {
       val startIntent = MainActivity.clearTop(this).apply {
         if (needsPin) {
           putExtra("next_intent", CreateSvrPinActivity.getIntentForPinCreate(this@RegistrationV2Activity))
-        } else if (!SignalStore.registrationValues().hasSkippedTransferOrRestore() && FeatureFlags.messageBackups) {
+        } else if (!SignalStore.registrationValues().hasSkippedTransferOrRestore() && RemoteConfig.messageBackups) {
           putExtra("next_intent", RemoteRestoreActivity.getIntent(this@RegistrationV2Activity))
         } else if (needsProfile) {
           putExtra("next_intent", CreateProfileActivity.getIntentForUserProfile(this@RegistrationV2Activity))

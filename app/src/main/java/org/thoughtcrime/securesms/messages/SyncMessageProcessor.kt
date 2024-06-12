@@ -90,10 +90,10 @@ import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -1368,7 +1368,7 @@ object SyncMessageProcessor {
 
   @Throws(BadGroupIdException::class)
   private fun handleSynchronizeGroupOrAdHocCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
-    if (!FeatureFlags.adHocCalling && callEvent.type == SyncMessage.CallEvent.Type.AD_HOC_CALL) {
+    if (!RemoteConfig.adHocCalling && callEvent.type == SyncMessage.CallEvent.Type.AD_HOC_CALL) {
       log(envelopeTimestamp, "Ad-Hoc calling is not currently supported by this client, ignoring.")
       return
     }
@@ -1475,7 +1475,7 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeDeleteForMe(context: Context, deleteForMe: SyncMessage.DeleteForMe, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
-    if (!FeatureFlags.deleteSyncEnabled) {
+    if (!RemoteConfig.deleteSyncEnabled) {
       warn(envelopeTimestamp, "Delete for me sync message dropped as support not enabled")
       return
     }

@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.registration.VerifyResponse;
 import org.thoughtcrime.securesms.registration.VerifyResponseProcessor;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLockProcessor;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SvrNoDataException;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
@@ -407,11 +407,11 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
     stopwatch.split("ContactRestore");
 
     try {
-      FeatureFlags.refreshSync();
+      RemoteConfig.refreshSync();
     } catch (IOException e) {
       Log.w(TAG, "Failed to refresh flags.", e);
     }
-    stopwatch.split("FeatureFlags");
+    stopwatch.split("RemoteConfig");
 
     stopwatch.stop(TAG);
   }

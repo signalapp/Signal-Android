@@ -9,7 +9,7 @@ import android.content.Context
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.toMillis
 import java.time.LocalDateTime
 import java.util.Random
@@ -36,7 +36,7 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
 
     @JvmStatic
     fun schedule(context: Context?) {
-      if (FeatureFlags.messageBackups && SignalStore.backup().areBackupsEnabled) {
+      if (RemoteConfig.messageBackups && SignalStore.backup().areBackupsEnabled) {
         MessageBackupListener().onReceive(context, getScheduleIntent())
       }
     }

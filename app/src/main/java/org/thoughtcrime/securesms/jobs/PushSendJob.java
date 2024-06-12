@@ -62,7 +62,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -76,7 +76,6 @@ import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
-import org.whispersystems.signalservice.internal.push.AttachmentPointer;
 import org.whispersystems.signalservice.internal.push.BodyRange;
 
 import java.io.ByteArrayInputStream;
@@ -176,7 +175,7 @@ public abstract class PushSendJob extends SendJob {
       }
     } else if (exception instanceof NonSuccessfulResponseCodeException) {
       if (((NonSuccessfulResponseCodeException) exception).is5xx()) {
-        return BackoffUtil.exponentialBackoff(pastAttemptCount, FeatureFlags.getServerErrorMaxBackoff());
+        return BackoffUtil.exponentialBackoff(pastAttemptCount, RemoteConfig.getServerErrorMaxBackoff());
       }
     } else if (exception instanceof RetryLaterException) {
       long backoff = ((RetryLaterException) exception).getBackoff();

@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.TranscodingPreset;
@@ -129,6 +129,6 @@ public abstract class MediaConstraints {
   }
 
   public static boolean isVideoTranscodeAvailable() {
-    return Build.VERSION.SDK_INT >= 26 && (FeatureFlags.useStreamingVideoMuxer() || MemoryFileDescriptor.supported());
+    return Build.VERSION.SDK_INT >= 26 && (RemoteConfig.useStreamingVideoMuxer() || MemoryFileDescriptor.supported());
   }
 }

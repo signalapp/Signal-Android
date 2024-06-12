@@ -25,16 +25,15 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
 /**
- * A location for flags that can be set locally and remotely. These flags can guard features that
- * are not yet ready to be activated.
+ * A location for accessing remotely-configured values.
  *
- * When creating a new flag:
+ * When creating a new config:
  * - At the bottom of the file, create a new `val` with the name you'd like.
  * - Use one of the helper delegates, like [remoteBoolean] or [remoteValue], to define your `val`.
- * - See the documentation for [Config] understand all of the fields.
+ * - See the documentation for [Config] to understand all of the fields.
  */
-object FeatureFlags {
-  private val TAG = Log.tag(FeatureFlags::class.java)
+object RemoteConfig {
+  private val TAG = Log.tag(RemoteConfig::class.java)
 
   // region Core behavior
 
@@ -851,7 +850,7 @@ object FeatureFlags {
   @JvmStatic
   @get:JvmName("promptForDelayedNotificationLogs")
   val promptForDelayedNotificationLogs: String by remoteString(
-    key = FeatureFlags.PROMPT_FOR_NOTIFICATION_LOGS,
+    key = RemoteConfig.PROMPT_FOR_NOTIFICATION_LOGS,
     defaultValue = "*",
     hotSwappable = true
   )

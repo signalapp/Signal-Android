@@ -12,7 +12,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -24,7 +24,7 @@ class PaymentsValuesTest {
       AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
     }
 
-    mockkObject(FeatureFlags)
+    mockkObject(RemoteConfig)
   }
 
   @Test
@@ -48,8 +48,8 @@ class PaymentsValuesTest {
       }
     )
 
-    every { FeatureFlags.payments } returns false
-    every { FeatureFlags.paymentsCountryBlocklist } returns ""
+    every { RemoteConfig.payments } returns false
+    every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
     assertEquals(PaymentsAvailability.DISABLED_REMOTELY, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -64,8 +64,8 @@ class PaymentsValuesTest {
       }
     )
 
-    every { FeatureFlags.payments } returns false
-    every { FeatureFlags.paymentsCountryBlocklist } returns ""
+    every { RemoteConfig.payments } returns false
+    every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
     assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -80,8 +80,8 @@ class PaymentsValuesTest {
       }
     )
 
-    every { FeatureFlags.payments } returns true
-    every { FeatureFlags.paymentsCountryBlocklist } returns ""
+    every { RemoteConfig.payments } returns true
+    every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
     assertEquals(PaymentsAvailability.REGISTRATION_AVAILABLE, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -96,8 +96,8 @@ class PaymentsValuesTest {
       }
     )
 
-    every { FeatureFlags.payments } returns true
-    every { FeatureFlags.paymentsCountryBlocklist } returns ""
+    every { RemoteConfig.payments } returns true
+    every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
     assertEquals(PaymentsAvailability.WITHDRAW_AND_SEND, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -112,8 +112,8 @@ class PaymentsValuesTest {
       }
     )
 
-    every { FeatureFlags.payments } returns true
-    every { FeatureFlags.paymentsCountryBlocklist } returns "1"
+    every { RemoteConfig.payments } returns true
+    every { RemoteConfig.paymentsCountryBlocklist } returns "1"
 
     assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -128,8 +128,8 @@ class PaymentsValuesTest {
       }
     )
 
-    every { FeatureFlags.payments } returns true
-    every { FeatureFlags.paymentsCountryBlocklist } returns "1"
+    every { RemoteConfig.payments } returns true
+    every { RemoteConfig.paymentsCountryBlocklist } returns "1"
 
     assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.paymentsValues().paymentsAvailability)
   }

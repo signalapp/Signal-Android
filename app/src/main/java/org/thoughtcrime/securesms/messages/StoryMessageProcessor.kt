@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.Envelope
@@ -90,7 +90,7 @@ object StoryMessageProcessor {
     }
 
     if (insertResult != null) {
-      Stories.enqueueNextStoriesForDownload(threadRecipient.id, false, FeatureFlags.storiesAutoDownloadMaximum)
+      Stories.enqueueNextStoriesForDownload(threadRecipient.id, false, RemoteConfig.storiesAutoDownloadMaximum)
       AppDependencies.expireStoriesManager.scheduleIfNecessary()
     }
   }

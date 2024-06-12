@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain;
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 public abstract class BaseJob extends Job {
 
@@ -57,7 +57,7 @@ public abstract class BaseJob extends Job {
    * override this behavior to define custom backoff behavior.
    */
   public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
-    return BackoffUtil.exponentialBackoff(pastAttemptCount, FeatureFlags.getDefaultMaxBackoff());
+    return BackoffUtil.exponentialBackoff(pastAttemptCount, RemoteConfig.getDefaultMaxBackoff());
   }
 
   protected abstract void onRun() throws Exception;

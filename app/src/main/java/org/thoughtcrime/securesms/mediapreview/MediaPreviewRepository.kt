@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.longmessage.resolveBody
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.AttachmentUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Repository for accessing the attachments in the encrypted database.
@@ -85,7 +85,7 @@ class MediaPreviewRepository {
   fun localDelete(attachment: DatabaseAttachment): Completable {
     return Completable.fromRunnable {
       val deletedMessageRecord = AttachmentUtil.deleteAttachment(attachment)
-      if (deletedMessageRecord != null && FeatureFlags.deleteSyncEnabled) {
+      if (deletedMessageRecord != null && RemoteConfig.deleteSyncEnabled) {
         MultiDeviceDeleteSendSyncJob.enqueueMessageDeletes(setOf(deletedMessageRecord))
       }
     }.subscribeOn(Schedulers.io())

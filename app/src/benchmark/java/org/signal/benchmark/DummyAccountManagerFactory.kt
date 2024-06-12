@@ -4,7 +4,7 @@ import android.content.Context
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.push.AccountManagerFactory
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.account.PreKeyUpload
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -23,8 +23,8 @@ class DummyAccountManagerFactory : AccountManagerFactory() {
       deviceId,
       password,
       BuildConfig.SIGNAL_AGENT,
-      FeatureFlags.okHttpAutomaticRetry(),
-      FeatureFlags.groupLimits().hardLimit
+      RemoteConfig.okHttpAutomaticRetry(),
+      RemoteConfig.groupLimits().hardLimit
     )
   }
 

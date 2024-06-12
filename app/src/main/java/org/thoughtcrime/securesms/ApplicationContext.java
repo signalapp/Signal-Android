@@ -98,7 +98,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -144,7 +144,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
     long startTime = System.currentTimeMillis();
 
-    if (FeatureFlags.internalUser()) {
+    if (RemoteConfig.internalUser()) {
       Tracer.getInstance().setMaxBufferSize(35_000);
     }
 
@@ -179,7 +179,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                               }
                             })
                             .addBlocking("blob-provider", this::initializeBlobProvider)
-                            .addBlocking("feature-flags", FeatureFlags::init)
+                            .addBlocking("remote-config", RemoteConfig::init)
                             .addBlocking("ring-rtc", this::initializeRingRtc)
                             .addBlocking("glide", () -> SignalGlideModule.setRegisterGlideComponents(new SignalGlideComponents()))
                             .addNonBlocking(() -> RegistrationUtil.maybeMarkRegistrationComplete())
@@ -207,7 +207,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addPostRender(RefreshSvrCredentialsJob::enqueueIfNecessary)
                             .addPostRender(() -> DownloadLatestEmojiDataJob.scheduleIfNecessary(this))
                             .addPostRender(EmojiSearchIndexDownloadJob::scheduleIfNecessary)
-                            .addPostRender(() -> SignalDatabase.messageLog().trimOldMessages(System.currentTimeMillis(), FeatureFlags.retryRespondMaxAge()))
+                            .addPostRender(() -> SignalDatabase.messageLog().trimOldMessages(System.currentTimeMillis(), RemoteConfig.retryRespondMaxAge()))
                             .addPostRender(() -> JumboEmoji.updateCurrentVersion(this))
                             .addPostRender(RetrieveRemoteAnnouncementsJob::enqueue)
                             .addPostRender(() -> AndroidTelecomUtil.registerPhoneAccount())
@@ -243,7 +243,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     startAnrDetector();
 
     SignalExecutors.BOUNDED.execute(() -> {
-      FeatureFlags.refreshIfNecessary();
+      RemoteConfig.refreshIfNecessary();
       RetrieveProfileJob.enqueueRoutineFetchIfNecessary();
       executePendingContactSync();
       KeyCachingService.onAppForegrounded(this);
@@ -289,7 +289,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
    * This is so we can capture ANR's that happen on boot before the foreground event.
    */
   private void startAnrDetector() {
-    AnrDetector.start(TimeUnit.SECONDS.toMillis(5), FeatureFlags::internalUser, (dumps) -> {
+    AnrDetector.start(TimeUnit.SECONDS.toMillis(5), RemoteConfig::internalUser, (dumps) -> {
       LogDatabase.getInstance(this).anrs().save(System.currentTimeMillis(), dumps);
       return Unit.INSTANCE;
     });
@@ -314,7 +314,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   @VisibleForTesting
   protected void initializeLogging() {
-    Log.initialize(FeatureFlags::internalUser, new AndroidLogger(), new PersistentLogger(this));
+    Log.initialize(RemoteConfig::internalUser, new AndroidLogger(), new PersistentLogger(this));
 
     SignalProtocolLoggerProvider.setProvider(new CustomSignalProtocolLogger());
 
@@ -437,7 +437,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   private void initializeRingRtc() {
     try {
       Map<String, String> fieldTrials = new HashMap<>();
-      if (FeatureFlags.callingFieldTrialAnyAddressPortsKillSwitch()) {
+      if (RemoteConfig.callingFieldTrialAnyAddressPortsKillSwitch()) {
         fieldTrials.put("RingRTC-AnyAddressPortsKillSwitch", "Enabled");
       }
       if (!SignalStore.internalValues().callingDisableLBRed()) {

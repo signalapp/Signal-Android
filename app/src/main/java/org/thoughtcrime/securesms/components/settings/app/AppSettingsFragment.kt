@@ -35,8 +35,8 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
 import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.PlayStoreUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -160,7 +160,7 @@ class AppSettingsFragment : DSLSettingsFragment(
         title = DSLSettingsText.from(R.string.preferences__linked_devices),
         icon = DSLSettingsIcon.from(R.drawable.symbol_devices_24),
         onClick = {
-          if (FeatureFlags.internalUser) {
+          if (RemoteConfig.internalUser) {
             findNavController().safeNavigate(R.id.action_appSettingsFragment_to_linkDeviceFragment)
           } else {
             findNavController().safeNavigate(R.id.action_appSettingsFragment_to_deviceActivity)
@@ -281,7 +281,7 @@ class AppSettingsFragment : DSLSettingsFragment(
         }
       )
 
-      if (FeatureFlags.internalUser) {
+      if (RemoteConfig.internalUser) {
         dividerPref()
 
         clickPref(

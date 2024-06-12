@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.payments.FailureReason;
 import org.thoughtcrime.securesms.payments.PaymentTransactionId;
 import org.thoughtcrime.securesms.payments.Payments;
 import org.thoughtcrime.securesms.payments.Wallet;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.IOException;
@@ -118,7 +118,7 @@ public final class PaymentTransactionCheckJob extends BaseJob {
   public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
     if (exception instanceof NonSuccessfulResponseCodeException) {
       if (((NonSuccessfulResponseCodeException) exception).is5xx()) {
-        return BackoffUtil.exponentialBackoff(pastAttemptCount, FeatureFlags.getServerErrorMaxBackoff());
+        return BackoffUtil.exponentialBackoff(pastAttemptCount, RemoteConfig.getServerErrorMaxBackoff());
       }
     }
 

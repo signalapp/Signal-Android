@@ -22,8 +22,8 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.megaphone.RemoteMegaphoneRepository.Action
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.LocaleFeatureFlags
+import org.thoughtcrime.securesms.util.LocaleRemoteConfig
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.VersionTracker
 import java.util.Objects
 import kotlin.math.min
@@ -89,7 +89,7 @@ object RemoteMegaphoneRepository {
     return db.getPotentialMegaphonesAndClearOld(now)
       .asSequence()
       .filter { it.imageUrl == null || it.imageUri != null }
-      .filter { it.countries == null || LocaleFeatureFlags.shouldShowReleaseNote(it.uuid, it.countries) }
+      .filter { it.countries == null || LocaleRemoteConfig.shouldShowReleaseNote(it.uuid, it.countries) }
       .filter { it.conditionalId == null || checkCondition(it.conditionalId) }
       .filter { it.snoozedAt == 0L || checkSnooze(it, now) }
       .firstOrNull()
@@ -112,7 +112,7 @@ object RemoteMegaphoneRepository {
   private fun checkCondition(conditionalId: String): Boolean {
     return when (conditionalId) {
       "standard_donate" -> shouldShowDonateMegaphone()
-      "internal_user" -> FeatureFlags.internalUser
+      "internal_user" -> RemoteConfig.internalUser
       else -> false
     }
   }

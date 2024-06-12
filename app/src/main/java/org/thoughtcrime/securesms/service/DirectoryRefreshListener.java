@@ -6,7 +6,7 @@ import android.content.Context;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
@@ -30,7 +30,7 @@ public class DirectoryRefreshListener extends PersistentAlarmManagerListener {
       newTime = Math.min(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(6),
                          SignalStore.misc().getCdsBlockedUtil());
     } else {
-      newTime = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(FeatureFlags.cdsRefreshIntervalSeconds());
+      newTime = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(RemoteConfig.cdsRefreshIntervalSeconds());
       TextSecurePreferences.setDirectoryRefreshTime(context, newTime);
     }
 

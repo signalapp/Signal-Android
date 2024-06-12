@@ -36,7 +36,7 @@ import org.thoughtcrime.securesms.messagedetails.MessageDetailsAdapter.Callbacks
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
 
@@ -96,7 +96,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   }
 
   private void bindInternalDetails(MessageRecord messageRecord) {
-    if (!FeatureFlags.internalUser()) {
+    if (!RemoteConfig.internalUser()) {
       internalDetailsButton.setVisibility(View.GONE);
       return;
     }

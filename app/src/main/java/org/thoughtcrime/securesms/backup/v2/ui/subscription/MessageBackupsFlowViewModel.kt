@@ -14,13 +14,13 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.kbs.PinHashUtil.verifyLocalPinHash
 
 class MessageBackupsFlowViewModel : ViewModel() {
   private val internalState = mutableStateOf(
     MessageBackupsFlowState(
-      availableBackupTiers = if (!FeatureFlags.messageBackups) {
+      availableBackupTiers = if (!RemoteConfig.messageBackups) {
         emptyList()
       } else {
         listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)

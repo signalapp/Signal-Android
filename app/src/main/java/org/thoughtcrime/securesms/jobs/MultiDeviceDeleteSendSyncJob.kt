@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.pad
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.internal.push.Content
@@ -58,7 +58,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
         return
       }
 
-      if (!FeatureFlags.deleteSyncEnabled) {
+      if (!RemoteConfig.deleteSyncEnabled) {
         Log.i(TAG, "Delete sync support not enabled.")
         return
       }
@@ -74,7 +74,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
         return
       }
 
-      if (!FeatureFlags.deleteSyncEnabled) {
+      if (!RemoteConfig.deleteSyncEnabled) {
         Log.i(TAG, "Delete sync support not enabled.")
         return
       }

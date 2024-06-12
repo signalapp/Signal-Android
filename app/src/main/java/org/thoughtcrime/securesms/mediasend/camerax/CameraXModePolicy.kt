@@ -5,7 +5,7 @@ import android.os.Build
 import androidx.camera.view.CameraController
 import org.signal.core.util.asListContains
 import org.thoughtcrime.securesms.mms.MediaConstraints
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.video.VideoUtil
 
 /**
@@ -86,7 +86,7 @@ sealed class CameraXModePolicy {
       val isMixedModeSupported = isVideoSupported &&
         Build.VERSION.SDK_INT >= 26 &&
         CameraXUtil.isMixedModeSupported(context) &&
-        !FeatureFlags.cameraXMixedModelBlocklist.asListContains(Build.MODEL)
+        !RemoteConfig.cameraXMixedModelBlocklist.asListContains(Build.MODEL)
 
       return when {
         isMixedModeSupported -> Mixed(isQrScanEnabled)

@@ -9,9 +9,9 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MediaUtil.SlideType
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 @SuppressLint("RecipientIdDatabaseReferenceUsage", "ThreadIdDatabaseReferenceUsage") // Not a real table, just a view
 class MediaTable internal constructor(context: Context?, databaseHelper: SignalDatabase?) : DatabaseTable(context, databaseHelper) {
@@ -164,7 +164,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   @JvmOverloads
   fun getGalleryMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0): Cursor {
-    var query = if (FeatureFlags.messageBackups) {
+    var query = if (RemoteConfig.messageBackups) {
       sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS_AND_THUMBNAILS))
     } else {
       sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS))

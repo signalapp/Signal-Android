@@ -7,7 +7,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 /**
  * A base class for jobs that are intended to be used in {@link ApplicationMigrations}. Some
@@ -47,7 +47,7 @@ abstract class MigrationJob extends Job {
     } catch (Exception e) {
       if (shouldRetry(e)) {
         Log.w(TAG, JobLogger.format(this, "Encountered a retryable exception."), e);
-        return Result.retry(BackoffUtil.exponentialBackoff(getRunAttempt() + 1, FeatureFlags.getDefaultMaxBackoff()));
+        return Result.retry(BackoffUtil.exponentialBackoff(getRunAttempt() + 1, RemoteConfig.getDefaultMaxBackoff()));
       } else {
         Log.w(TAG, JobLogger.format(this, "Encountered a non-runtime fatal exception."), e);
         throw new FailedMigrationError(e);

@@ -4,8 +4,8 @@ import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.LocaleFeatureFlags
+import org.thoughtcrime.securesms.util.LocaleRemoteConfig
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Helper object to determine in-app donations availability.
@@ -38,45 +38,45 @@ object InAppDonations {
   private fun isPayPalAvailableForDonateToSignalType(inAppPaymentType: InAppPaymentTable.Type): Boolean {
     return when (inAppPaymentType) {
       InAppPaymentTable.Type.UNKNOWN -> error("Unsupported type UNKNOWN")
-      InAppPaymentTable.Type.ONE_TIME_DONATION, InAppPaymentTable.Type.ONE_TIME_GIFT -> FeatureFlags.paypalOneTimeDonations
-      InAppPaymentTable.Type.RECURRING_DONATION -> FeatureFlags.paypalRecurringDonations
-      InAppPaymentTable.Type.RECURRING_BACKUP -> FeatureFlags.messageBackups && FeatureFlags.paypalRecurringDonations
-    } && !LocaleFeatureFlags.isPayPalDisabled()
+      InAppPaymentTable.Type.ONE_TIME_DONATION, InAppPaymentTable.Type.ONE_TIME_GIFT -> RemoteConfig.paypalOneTimeDonations
+      InAppPaymentTable.Type.RECURRING_DONATION -> RemoteConfig.paypalRecurringDonations
+      InAppPaymentTable.Type.RECURRING_BACKUP -> RemoteConfig.messageBackups && RemoteConfig.paypalRecurringDonations
+    } && !LocaleRemoteConfig.isPayPalDisabled()
   }
 
   /**
    * Whether the user is in a region that supports credit cards, based off local phone number.
    */
   fun isCreditCardAvailable(): Boolean {
-    return !LocaleFeatureFlags.isCreditCardDisabled()
+    return !LocaleRemoteConfig.isCreditCardDisabled()
   }
 
   /**
    * Whether the user is in a region that supports PayPal, based off local phone number.
    */
   fun isPayPalAvailable(): Boolean {
-    return (FeatureFlags.paypalOneTimeDonations || FeatureFlags.paypalRecurringDonations) && !LocaleFeatureFlags.isPayPalDisabled()
+    return (RemoteConfig.paypalOneTimeDonations || RemoteConfig.paypalRecurringDonations) && !LocaleRemoteConfig.isPayPalDisabled()
   }
 
   /**
    * Whether the user is using a device that supports GooglePay, based off Wallet API and phone number.
    */
   fun isGooglePayAvailable(): Boolean {
-    return SignalStore.donationsValues().isGooglePayReady && !LocaleFeatureFlags.isGooglePayDisabled()
+    return SignalStore.donationsValues().isGooglePayReady && !LocaleRemoteConfig.isGooglePayDisabled()
   }
 
   /**
    * Whether the user is in a region which supports SEPA Debit transfers, based off local phone number.
    */
   fun isSEPADebitAvailable(): Boolean {
-    return Environment.IS_STAGING || (FeatureFlags.sepaDebitDonations && LocaleFeatureFlags.isSepaEnabled())
+    return Environment.IS_STAGING || (RemoteConfig.sepaDebitDonations && LocaleRemoteConfig.isSepaEnabled())
   }
 
   /**
    * Whether the user is in a region which supports IDEAL transfers, based off local phone number.
    */
   fun isIDEALAvailable(): Boolean {
-    return Environment.IS_STAGING || (FeatureFlags.idealDonations && LocaleFeatureFlags.isIdealEnabled())
+    return Environment.IS_STAGING || (RemoteConfig.idealDonations && LocaleRemoteConfig.isIdealEnabled())
   }
 
   /**

@@ -21,7 +21,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 
 /**
@@ -192,7 +192,7 @@ object AndroidTelecomUtil {
   }
 
   private fun isTelecomAllowedForDevice(): Boolean {
-    if (FeatureFlags.internalUser) {
+    if (RemoteConfig.internalUser) {
       return !SignalStore.internalValues().callingDisableTelecom()
     }
     return RingRtcDynamicConfiguration.isTelecomAllowedForDevice()

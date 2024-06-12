@@ -37,7 +37,7 @@ import kotlin.time.Duration.Companion.seconds
  *
  * When a hardcoded error threshold is reached, the user is notified to submit debug logs.
  *
- * @see [org.thoughtcrime.securesms.util.FeatureFlags.libSignalWebSocketShadowingPercentage]
+ * @see [org.thoughtcrime.securesms.util.RemoteConfig.libSignalWebSocketShadowingPercentage]
  */
 class ShadowingWebSocketConnection(
   name: String,

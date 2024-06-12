@@ -66,7 +66,7 @@ import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkManager;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -389,7 +389,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       return;
     }
 
-    if (!FeatureFlags.adHocCalling()) {
+    if (!RemoteConfig.adHocCalling()) {
       Log.i(TAG, "Ad Hoc Calling is disabled. Ignoring request to peek.");
       return;
     }

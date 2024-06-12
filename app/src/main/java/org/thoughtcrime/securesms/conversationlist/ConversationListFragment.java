@@ -169,7 +169,7 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -1202,7 +1202,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     alert.setTitle(context.getResources().getQuantityString(R.plurals.ConversationListFragment_delete_selected_conversations,
                                                             conversationsCount, conversationsCount));
 
-    if (TextSecurePreferences.isMultiDevice(context) && FeatureFlags.deleteSyncEnabled()) {
+    if (TextSecurePreferences.isMultiDevice(context) && RemoteConfig.deleteSyncEnabled()) {
       alert.setMessage(context.getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device,
                                                                 conversationsCount, conversationsCount));
     } else {

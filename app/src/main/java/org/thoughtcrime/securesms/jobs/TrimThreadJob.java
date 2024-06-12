@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 public class TrimThreadJob extends BaseJob {
 
@@ -78,7 +78,7 @@ public class TrimThreadJob extends BaseJob {
     long trimBeforeDate = keepMessagesDuration != KeepMessagesDuration.FOREVER ? System.currentTimeMillis() - keepMessagesDuration.getDuration()
                                                                                : ThreadTable.NO_TRIM_BEFORE_DATE_SET;
 
-    SignalDatabase.threads().trimThread(threadId, SignalStore.settings().shouldSyncThreadTrimDeletes() && FeatureFlags.deleteSyncEnabled(), trimLength, trimBeforeDate, false);
+    SignalDatabase.threads().trimThread(threadId, SignalStore.settings().shouldSyncThreadTrimDeletes() && RemoteConfig.deleteSyncEnabled(), trimLength, trimBeforeDate, false);
   }
 
   @Override

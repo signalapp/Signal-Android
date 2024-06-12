@@ -14,8 +14,8 @@ import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.stickers.StickerLocator
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -171,7 +171,7 @@ object SignalServiceProtoUtil {
   }
 
   fun List<AttachmentPointer>.toPointersWithinLimit(): List<Attachment> {
-    return mapNotNull { it.toPointer() }.take(FeatureFlags.maxAttachmentCount)
+    return mapNotNull { it.toPointer() }.take(RemoteConfig.maxAttachmentCount)
   }
 
   fun AttachmentPointer.toPointer(stickerLocator: StickerLocator? = null): Attachment? {

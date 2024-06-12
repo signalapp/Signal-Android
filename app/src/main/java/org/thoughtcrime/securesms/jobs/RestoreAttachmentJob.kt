@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forConversation
 import org.thoughtcrime.securesms.transport.RetryLaterException
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -208,7 +208,7 @@ class RestoreAttachmentJob private constructor(
     attachmentId: AttachmentId,
     attachment: DatabaseAttachment
   ) {
-    val maxReceiveSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes
+    val maxReceiveSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val attachmentFile: File = SignalDatabase.attachments.getOrCreateTransferFile(attachmentId)
     var archiveFile: File? = null
     var useArchiveCdn = false
@@ -439,7 +439,7 @@ class RestoreAttachmentJob private constructor(
       return
     }
 
-    val maxThumbnailSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes
+    val maxThumbnailSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val thumbnailTransferFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
     val thumbnailFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
 

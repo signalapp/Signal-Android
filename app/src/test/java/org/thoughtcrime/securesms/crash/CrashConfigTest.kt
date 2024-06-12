@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.MockKeyValuePersistentStorage
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
@@ -26,7 +26,7 @@ class CrashConfigTest {
 
   @Before
   fun setup() {
-    mockkObject(FeatureFlags)
+    mockkObject(RemoteConfig)
 
     if (!AppDependencies.isInitialized) {
       AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
@@ -45,31 +45,31 @@ class CrashConfigTest {
 
   @Test
   fun `simple name pattern`() {
-    every { FeatureFlags.crashPromptConfig } returns """[ { "name": "test", "percent": 100 } ]"""
+    every { RemoteConfig.crashPromptConfig } returns """[ { "name": "test", "percent": 100 } ]"""
     CrashConfig.computePatterns() assertIs listOf(CrashConfig.CrashPattern(namePattern = "test"))
   }
 
   @Test
   fun `simple message pattern`() {
-    every { FeatureFlags.crashPromptConfig } returns """[ { "message": "test", "percent": 100 } ]"""
+    every { RemoteConfig.crashPromptConfig } returns """[ { "message": "test", "percent": 100 } ]"""
     CrashConfig.computePatterns() assertIs listOf(CrashConfig.CrashPattern(messagePattern = "test"))
   }
 
   @Test
   fun `simple stackTrace pattern`() {
-    every { FeatureFlags.crashPromptConfig } returns """[ { "stackTrace": "test", "percent": 100 } ]"""
+    every { RemoteConfig.crashPromptConfig } returns """[ { "stackTrace": "test", "percent": 100 } ]"""
     CrashConfig.computePatterns() assertIs listOf(CrashConfig.CrashPattern(stackTracePattern = "test"))
   }
 
   @Test
   fun `all fields set`() {
-    every { FeatureFlags.crashPromptConfig } returns """[ { "name": "test1", "message": "test2", "stackTrace": "test3", "percent": 100 } ]"""
+    every { RemoteConfig.crashPromptConfig } returns """[ { "name": "test1", "message": "test2", "stackTrace": "test3", "percent": 100 } ]"""
     CrashConfig.computePatterns() assertIs listOf(CrashConfig.CrashPattern(namePattern = "test1", messagePattern = "test2", stackTracePattern = "test3"))
   }
 
   @Test
   fun `multiple configs`() {
-    every { FeatureFlags.crashPromptConfig } returns
+    every { RemoteConfig.crashPromptConfig } returns
       """
       [ 
         { "name": "test1", "percent": 100 },
@@ -87,7 +87,7 @@ class CrashConfigTest {
 
   @Test
   fun `empty fields are considered null`() {
-    every { FeatureFlags.crashPromptConfig } returns
+    every { RemoteConfig.crashPromptConfig } returns
       """
       [ 
         { "name": "", "percent": 100 },
@@ -104,31 +104,31 @@ class CrashConfigTest {
 
   @Test
   fun `ignore zero percent`() {
-    every { FeatureFlags.crashPromptConfig } returns """[ { "name": "test", "percent": 0 } ]"""
+    every { RemoteConfig.crashPromptConfig } returns """[ { "name": "test", "percent": 0 } ]"""
     CrashConfig.computePatterns() assertIs emptyList()
   }
 
   @Test
   fun `not setting percent is the same as zero percent`() {
-    every { FeatureFlags.crashPromptConfig } returns """[ { "name": "test" } ]"""
+    every { RemoteConfig.crashPromptConfig } returns """[ { "name": "test" } ]"""
     CrashConfig.computePatterns() assertIs emptyList()
   }
 
   @Test
   fun `ignore configs without a pattern`() {
-    every { FeatureFlags.crashPromptConfig } returns """[ { "percent": 100 } ]"""
+    every { RemoteConfig.crashPromptConfig } returns """[ { "percent": 100 } ]"""
     CrashConfig.computePatterns() assertIs emptyList()
   }
 
   @Test
   fun `ignore invalid json`() {
-    every { FeatureFlags.crashPromptConfig } returns "asdf"
+    every { RemoteConfig.crashPromptConfig } returns "asdf"
     CrashConfig.computePatterns() assertIs emptyList()
   }
 
   @Test
   fun `ignore empty json`() {
-    every { FeatureFlags.crashPromptConfig } returns ""
+    every { RemoteConfig.crashPromptConfig } returns ""
     CrashConfig.computePatterns() assertIs emptyList()
   }
 }

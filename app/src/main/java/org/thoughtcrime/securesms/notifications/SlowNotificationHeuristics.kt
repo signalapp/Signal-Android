@@ -13,10 +13,10 @@ import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.DeviceProperties
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.JsonUtils
-import org.thoughtcrime.securesms.util.LocaleFeatureFlags
+import org.thoughtcrime.securesms.util.LocaleRemoteConfig
 import org.thoughtcrime.securesms.util.PowerManagerCompat
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
@@ -36,7 +36,7 @@ object SlowNotificationHeuristics {
   private val TAG = Log.tag(SlowNotificationHeuristics::class.java)
 
   fun getConfiguration(): Configuration {
-    val json = FeatureFlags.delayedNotificationsPromptConfig
+    val json = RemoteConfig.delayedNotificationsPromptConfig
     return if (TextUtils.isEmpty(json)) {
       getDefaultConfiguration()
     } else {
@@ -64,7 +64,7 @@ object SlowNotificationHeuristics {
 
   @JvmStatic
   fun shouldPromptUserForLogs(): Boolean {
-    if (!LocaleFeatureFlags.isDelayedNotificationPromptEnabled() || SignalStore.uiHints().hasDeclinedToShareNotificationLogs()) {
+    if (!LocaleRemoteConfig.isDelayedNotificationPromptEnabled() || SignalStore.uiHints().hasDeclinedToShareNotificationLogs()) {
       return false
     }
     if (System.currentTimeMillis() - SignalStore.uiHints().lastNotificationLogsPrompt < TimeUnit.DAYS.toMillis(7)) {
@@ -80,7 +80,7 @@ object SlowNotificationHeuristics {
       return false
     }
 
-    val remoteEnabled = LocaleFeatureFlags.isBatterySaverPromptEnabled() || LocaleFeatureFlags.isDelayedNotificationPromptEnabled()
+    val remoteEnabled = LocaleRemoteConfig.isBatterySaverPromptEnabled() || LocaleRemoteConfig.isDelayedNotificationPromptEnabled()
     if (!remoteEnabled || SignalStore.uiHints().hasDismissedBatterySaverPrompt()) {
       return false
     }

@@ -11,7 +11,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
@@ -62,8 +62,8 @@ public class AccountManagerFactory {
                                            deviceId,
                                            password,
                                            BuildConfig.SIGNAL_AGENT,
-                                           FeatureFlags.okHttpAutomaticRetry(),
-                                           FeatureFlags.groupLimits().getHardLimit());
+                                           RemoteConfig.okHttpAutomaticRetry(),
+                                           RemoteConfig.groupLimits().getHardLimit());
   }
 
   /**
@@ -91,8 +91,8 @@ public class AccountManagerFactory {
                                            deviceId,
                                            password,
                                            BuildConfig.SIGNAL_AGENT,
-                                           FeatureFlags.okHttpAutomaticRetry(),
-                                           FeatureFlags.groupLimits().getHardLimit());
+                                           RemoteConfig.okHttpAutomaticRetry(),
+                                           RemoteConfig.groupLimits().getHardLimit());
   }
 
 }

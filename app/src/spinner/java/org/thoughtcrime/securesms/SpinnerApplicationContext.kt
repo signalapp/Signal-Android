@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logging.PersistentLogger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.AppSignatureUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.Locale
 
 class SpinnerApplicationContext : ApplicationContext() {
@@ -86,7 +86,7 @@ class SpinnerApplicationContext : ApplicationContext() {
       )
     )
 
-    Log.initialize({ FeatureFlags.internalUser }, AndroidLogger(), PersistentLogger(this), SpinnerLogger())
+    Log.initialize({ RemoteConfig.internalUser }, AndroidLogger(), PersistentLogger(this), SpinnerLogger())
 
     DatabaseMonitor.initialize(object : QueryMonitor {
       override fun onSql(sql: String, args: Array<Any>?) {

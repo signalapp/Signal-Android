@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.CallLinkUpdateSendJobData
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
@@ -65,7 +65,7 @@ class CallLinkUpdateSendJob private constructor(
   override fun onFailure() = Unit
 
   override fun onRun() {
-    if (!FeatureFlags.adHocCalling) {
+    if (!RemoteConfig.adHocCalling) {
       Log.i(TAG, "Call links are not enabled. Exiting.")
       return
     }

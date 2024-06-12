@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.payments.proto.MobileCoinLedger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.payments.Money
 import java.io.IOException
@@ -118,7 +118,7 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
       if (!SignalStore.account().isRegistered) {
         return PaymentsAvailability.NOT_IN_REGION
       }
-      return if (FeatureFlags.payments) {
+      return if (RemoteConfig.payments) {
         if (mobileCoinPaymentsEnabled()) {
           if (GeographicalRestrictions.e164Allowed(SignalStore.account().e164)) {
             PaymentsAvailability.WITHDRAW_AND_SEND

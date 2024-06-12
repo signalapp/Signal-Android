@@ -27,8 +27,8 @@ import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.assert
 import org.thoughtcrime.securesms.testing.assertIs
 import org.thoughtcrime.securesms.testing.assertIsNotNull
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.IdentityUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
@@ -43,15 +43,15 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
   fun setUp() {
     messageHelper = MessageHelper(harness)
 
-    mockkStatic(FeatureFlags::class)
-    every { FeatureFlags.deleteSyncEnabled } returns true
+    mockkStatic(RemoteConfig::class)
+    every { RemoteConfig.deleteSyncEnabled } returns true
   }
 
   @After
   fun tearDown() {
     messageHelper.tearDown()
 
-    unmockkStatic(FeatureFlags::class)
+    unmockkStatic(RemoteConfig::class)
   }
 
   @Test

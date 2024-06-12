@@ -11,12 +11,12 @@ import org.junit.runners.Parameterized
 import org.thoughtcrime.securesms.assertIs
 
 @RunWith(Parameterized::class)
-class LocaleFeatureFlags_isEnabled(private val serializedList: String, private val e164: List<String>, private val output: Boolean) {
+class LocaleRemoteConfig_isEnabled(private val serializedList: String, private val e164: List<String>, private val output: Boolean) {
 
   @Test
   fun isLegal() {
     e164.forEach {
-      LocaleFeatureFlags.isEnabledE164Start(serializedList, it) assertIs output
+      LocaleRemoteConfig.isEnabledE164Start(serializedList, it) assertIs output
     }
   }
 

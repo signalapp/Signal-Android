@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.io.FileDescriptor
 import java.util.Optional
@@ -94,7 +94,7 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
             .setTitle(R.string.MediaCaptureFragment_device_link_dialog_title)
             .setMessage(R.string.MediaCaptureFragment_device_link_dialog_body)
             .setPositiveButton(R.string.MediaCaptureFragment_device_link_dialog_continue) { d, _ ->
-              if (FeatureFlags.internalUser) {
+              if (RemoteConfig.internalUser) {
                 startActivity(AppSettingsActivity.linkedDevices(requireContext()))
               } else {
                 startActivity(DeviceActivity.getIntentForScanner(requireContext()))

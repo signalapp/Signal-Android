@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.net.URLDecoder
 
 /**
@@ -54,7 +54,7 @@ object CallLinks {
 
   @JvmStatic
   fun isCallLink(url: String): Boolean {
-    if (!FeatureFlags.adHocCalling) {
+    if (!RemoteConfig.adHocCalling) {
       return false
     }
 
@@ -67,7 +67,7 @@ object CallLinks {
 
   @JvmStatic
   fun parseUrl(url: String): CallLinkRootKey? {
-    if (!FeatureFlags.adHocCalling) {
+    if (!RemoteConfig.adHocCalling) {
       return null
     }
 

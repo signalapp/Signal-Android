@@ -62,10 +62,10 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
 import org.thoughtcrime.securesms.util.LRUCache
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isScheduled
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
@@ -326,7 +326,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return
     }
 
-    val syncThreadTrimDeletes = SignalStore.settings().shouldSyncThreadTrimDeletes() && FeatureFlags.deleteSyncEnabled
+    val syncThreadTrimDeletes = SignalStore.settings().shouldSyncThreadTrimDeletes() && RemoteConfig.deleteSyncEnabled
     val threadTrimsToSync = mutableListOf<Pair<Long, Set<MessageRecord>>>()
 
     readableDatabase
@@ -1131,7 +1131,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     var addressableMessages: Set<MessageRecord> = emptySet()
     writableDatabase.withinTransaction { db ->
-      if (syncThreadDeletes && FeatureFlags.deleteSyncEnabled) {
+      if (syncThreadDeletes && RemoteConfig.deleteSyncEnabled) {
         addressableMessages = messages.getMostRecentAddressableMessages(threadId)
       }
 
@@ -1164,7 +1164,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         db.deactivateThread(query)
       }
 
-      if (FeatureFlags.deleteSyncEnabled) {
+      if (RemoteConfig.deleteSyncEnabled) {
         for (threadId in selectedConversations) {
           addressableMessages += threadId to messages.getMostRecentAddressableMessages(threadId)
         }

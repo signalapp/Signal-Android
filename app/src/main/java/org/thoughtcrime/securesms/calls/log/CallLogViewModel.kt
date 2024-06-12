@@ -16,7 +16,7 @@ import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.concurrent.TimeUnit
 
@@ -82,7 +82,7 @@ class CallLogViewModel(
       controller.onDataInvalidated()
     }
 
-    if (FeatureFlags.adHocCalling) {
+    if (RemoteConfig.adHocCalling) {
       disposables += Observable
         .interval(30, TimeUnit.SECONDS, Schedulers.computation())
         .flatMapCompletable { callLogRepository.peekCallLinks() }

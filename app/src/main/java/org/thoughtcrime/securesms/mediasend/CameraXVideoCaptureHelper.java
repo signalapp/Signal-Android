@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.mediasend.camerax.CameraXModePolicy;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.Debouncer;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.VideoUtil;
 
@@ -259,7 +259,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   }
 
   public float getDefaultVideoZoomRatio() {
-    if (FeatureFlags.startVideoRecordAt1x()) {
+    if (RemoteConfig.startVideoRecordAt1x()) {
       return 1f;
     } else {
       return Objects.requireNonNull(cameraController.getZoomState().getValue()).getMinZoomRatio();

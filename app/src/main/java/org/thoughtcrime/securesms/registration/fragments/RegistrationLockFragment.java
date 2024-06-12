@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
@@ -61,11 +61,11 @@ public final class RegistrationLockFragment extends BaseRegistrationLockFragment
       stopwatch.split("ContactRestore");
 
       try {
-        FeatureFlags.refreshSync();
+        RemoteConfig.refreshSync();
       } catch (IOException e) {
         Log.w(TAG, "Failed to refresh flags.", e);
       }
-      stopwatch.split("FeatureFlags");
+      stopwatch.split("RemoteConfig");
 
       stopwatch.stop(TAG);
 

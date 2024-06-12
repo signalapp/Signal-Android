@@ -57,8 +57,8 @@ import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogF
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
 import org.thoughtcrime.securesms.stories.settings.privacy.ChooseInitialMyStoryMembershipBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -124,7 +124,7 @@ class MultiselectForwardFragment :
     contactSearchMediator = ContactSearchMediator(
       this,
       emptySet(),
-      FeatureFlags.shareSelectionLimit,
+      RemoteConfig.shareSelectionLimit,
       ContactSearchAdapter.DisplayOptions(
         displayCheckBox = !args.selectSingleRecipient,
         displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER,

@@ -12,8 +12,8 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.BitmapDecodingException
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.kb
 import org.thoughtcrime.securesms.util.mb
 
@@ -41,7 +41,7 @@ object NotificationThumbnails {
    * specifics here, we'll just disable notification thumbnails for them.
    */
   private val isBlocklisted by lazy {
-    FeatureFlags.notificationThumbnailProductBlocklist.asListContains(Build.PRODUCT)
+    RemoteConfig.notificationThumbnailProductBlocklist.asListContains(Build.PRODUCT)
   }
 
   fun getWithoutModifying(notificationItem: NotificationItem): NotificationItem.ThumbnailInfo {

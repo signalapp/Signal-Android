@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.reconciliation.LedgerReconcile;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +25,7 @@ public final class DataExportUtil {
   private DataExportUtil() {}
 
   public static @NonNull String createTsv() {
-    if (!FeatureFlags.internalUser()) {
+    if (!RemoteConfig.internalUser()) {
       throw new AssertionError("This is intended for internal use only");
     }
 

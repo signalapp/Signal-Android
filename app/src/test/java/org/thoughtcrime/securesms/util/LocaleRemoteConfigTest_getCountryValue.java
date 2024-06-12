@@ -17,7 +17,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class LocaleFeatureFlagsTest_getCountryValue {
+public class LocaleRemoteConfigTest_getCountryValue {
 
   private final String               phoneNumber;
   private final Map<String, Integer> countryCounts;
@@ -66,7 +66,7 @@ public class LocaleFeatureFlagsTest_getCountryValue {
     Log.initialize(new EmptyLogger());
   }
 
-  public LocaleFeatureFlagsTest_getCountryValue(@NonNull String phoneNumber,
+  public LocaleRemoteConfigTest_getCountryValue(@NonNull String phoneNumber,
                                                 @NonNull Map<String, Integer> countryCounts,
                                                 long output)
   {
@@ -77,7 +77,7 @@ public class LocaleFeatureFlagsTest_getCountryValue {
 
   @Test
   public void determineCountEnabled() {
-    assertEquals(output, LocaleFeatureFlags.getCountryValue(countryCounts, phoneNumber, 0));
+    assertEquals(output, LocaleRemoteConfig.getCountryValue(countryCounts, phoneNumber, 0));
   }
 
 }

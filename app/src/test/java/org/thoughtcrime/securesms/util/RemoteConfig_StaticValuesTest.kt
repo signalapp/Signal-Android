@@ -8,7 +8,7 @@ import kotlin.reflect.full.memberProperties
 /**
  * Ensures we don't release with forced values which is intended for local development only.
  */
-class FeatureFlags_StaticValuesTest {
+class RemoteConfig_StaticValuesTest {
 
   /**
    * This test cycles the REMOTE_VALUES through a bunch of different inputs, then looks at all of the public getters and checks to see if they return different
@@ -31,7 +31,7 @@ class FeatureFlags_StaticValuesTest {
       "*"
     )
 
-    val configKeys = FeatureFlags.configsByKey.keys
+    val configKeys = RemoteConfig.configsByKey.keys
 
     val ignoreList = setOf(
       "REMOTE_VALUES",
@@ -44,7 +44,7 @@ class FeatureFlags_StaticValuesTest {
       "PROMPT_FOR_NOTIFICATION_LOGS"
     )
 
-    val publicVals: List<KProperty1<*, *>> = FeatureFlags::class.memberProperties
+    val publicVals: List<KProperty1<*, *>> = RemoteConfig::class.memberProperties
       .filter { it.visibility == KVisibility.PUBLIC }
       .filterNot { ignoreList.contains(it.name) }
 
@@ -52,11 +52,11 @@ class FeatureFlags_StaticValuesTest {
 
     for (input in remoteTestInputs) {
       for (key in configKeys) {
-        FeatureFlags.REMOTE_VALUES[key] = input
+        RemoteConfig.REMOTE_VALUES[key] = input
       }
 
       for (publicVal in publicVals) {
-        val output: Any? = publicVal.getter.call(FeatureFlags)
+        val output: Any? = publicVal.getter.call(RemoteConfig)
         val existingOutputs: MutableSet<Any?> = publicValOutputs.getOrDefault(publicVal.name, mutableSetOf())
         existingOutputs.add(output)
         publicValOutputs[publicVal.name] = existingOutputs

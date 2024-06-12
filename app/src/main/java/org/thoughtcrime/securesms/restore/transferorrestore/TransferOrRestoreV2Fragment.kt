@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
 import org.thoughtcrime.securesms.registration.v2.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.restore.RestoreViewModel
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
@@ -47,8 +47,8 @@ class TransferOrRestoreV2Fragment : LoggingFragment(R.layout.fragment_transfer_r
       binding.transferOrRestoreFragmentRestoreRemoteCard.visible = false
     }
 
-    binding.transferOrRestoreFragmentRestoreRemoteCard.visible = FeatureFlags.messageBackups
-    binding.transferOrRestoreFragmentMoreOptions.visible = FeatureFlags.messageBackups
+    binding.transferOrRestoreFragmentRestoreRemoteCard.visible = RemoteConfig.messageBackups
+    binding.transferOrRestoreFragmentMoreOptions.visible = RemoteConfig.messageBackups
 
     val description = getString(R.string.TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device)
     val toBold = getString(R.string.TransferOrRestoreFragment__you_need_access_to_your_old_device)

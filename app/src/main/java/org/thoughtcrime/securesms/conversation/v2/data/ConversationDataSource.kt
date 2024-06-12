@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 
 private typealias ConversationElement = MappingModel<*>
@@ -125,7 +125,7 @@ class ConversationDataSource(
     records = MessageDataFetcher.updateModelsWithData(records, extraData).toMutableList()
     stopwatch.split("models")
 
-    if (FeatureFlags.messageBackups && SignalStore.backup().restoreState.inProgress) {
+    if (RemoteConfig.messageBackups && SignalStore.backup().restoreState.inProgress) {
       BackupRestoreManager.prioritizeAttachmentsIfNeeded(records)
       stopwatch.split("restore")
     }

@@ -12,7 +12,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.databinding.FragmentTransferRestoreBinding;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
@@ -41,7 +41,7 @@ public final class TransferOrRestoreFragment extends LoggingFragment {
     binding.transferOrRestoreFragmentNext.setOnClickListener(v -> launchSelection(viewModel.getStateSnapshot()));
     binding.transferOrRestoreFragmentMoreOptions.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_transferOrRestore_to_moreOptions));
 
-    int visibility = FeatureFlags.messageBackups() ? View.VISIBLE : View.GONE;
+    int visibility = RemoteConfig.messageBackups() ? View.VISIBLE : View.GONE;
     binding.transferOrRestoreFragmentRestoreRemoteCard.setVisibility(visibility);
     binding.transferOrRestoreFragmentMoreOptions.setVisibility(visibility);
 

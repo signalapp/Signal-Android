@@ -8,7 +8,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
@@ -32,7 +32,7 @@ public final class EnterSmsCodeFragment extends BaseEnterSmsCodeFragment<Registr
     SimpleTask.run(() -> {
       long startTime = System.currentTimeMillis();
       try {
-        FeatureFlags.refreshSync();
+        RemoteConfig.refreshSync();
         Log.i(TAG, "Took " + (System.currentTimeMillis() - startTime) + " ms to get feature flags.");
       } catch (IOException e) {
         Log.w(TAG, "Failed to refresh flags after " + (System.currentTimeMillis() - startTime) + " ms.", e);

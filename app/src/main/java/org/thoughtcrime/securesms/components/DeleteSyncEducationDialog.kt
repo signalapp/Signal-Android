@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 /**
@@ -48,7 +48,7 @@ class DeleteSyncEducationDialog : ComposeBottomSheetDialogFragment() {
     fun shouldShow(): Boolean {
       return TextSecurePreferences.isMultiDevice(AppDependencies.application) &&
         !SignalStore.uiHints().hasSeenDeleteSyncEducationSheet &&
-        FeatureFlags.deleteSyncEnabled
+        RemoteConfig.deleteSyncEnabled
     }
 
     @JvmStatic

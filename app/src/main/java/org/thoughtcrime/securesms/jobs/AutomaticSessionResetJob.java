@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -91,8 +91,8 @@ public class AutomaticSessionResetJob extends BaseJob {
     SignalDatabase.senderKeyShared().deleteAllFor(recipientId);
     insertLocalMessage();
 
-    if (FeatureFlags.automaticSessionReset()) {
-      long                resetInterval      = TimeUnit.SECONDS.toMillis(FeatureFlags.automaticSessionResetIntervalSeconds());
+    if (RemoteConfig.automaticSessionReset()) {
+      long                resetInterval      = TimeUnit.SECONDS.toMillis(RemoteConfig.automaticSessionResetIntervalSeconds());
       DeviceLastResetTime resetTimes         = SignalDatabase.recipients().getLastSessionResetTimes(recipientId);
       long                timeSinceLastReset = System.currentTimeMillis() - getLastResetTime(resetTimes, deviceId);
 

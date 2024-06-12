@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.s3.S3
 import org.thoughtcrime.securesms.transport.RetryLaterException
-import org.thoughtcrime.securesms.util.LocaleFeatureFlags
+import org.thoughtcrime.securesms.util.LocaleRemoteConfig
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.io.IOException
 import java.lang.Integer.max
@@ -170,7 +170,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
           false
         }
       }
-      .filter { it.countries == null || LocaleFeatureFlags.shouldShowReleaseNote(it.uuid, it.countries) }
+      .filter { it.countries == null || LocaleRemoteConfig.shouldShowReleaseNote(it.uuid, it.countries) }
       .sortedBy { it.androidMinVersion!!.toInt() }
       .map { resolveReleaseNote(it) }
       .toList()

@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forC
 import org.thoughtcrime.securesms.s3.S3
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.AttachmentUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -222,7 +222,7 @@ class AttachmentDownloadJob private constructor(
     attachmentId: AttachmentId,
     attachment: DatabaseAttachment
   ) {
-    val maxReceiveSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes
+    val maxReceiveSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val attachmentFile: File = SignalDatabase.attachments.getOrCreateTransferFile(attachmentId)
     var archiveFile: File? = null
     var useArchiveCdn = false
@@ -401,7 +401,7 @@ class AttachmentDownloadJob private constructor(
       S3.getObject(attachment.fileName!!).use { response ->
         val body = response.body()
         if (body != null) {
-          if (body.contentLength() > FeatureFlags.maxAttachmentReceiveSizeBytes) {
+          if (body.contentLength() > RemoteConfig.maxAttachmentReceiveSizeBytes) {
             throw MmsException("Attachment too large, failing download")
           }
           SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, (body.source() as Source).buffer().inputStream())

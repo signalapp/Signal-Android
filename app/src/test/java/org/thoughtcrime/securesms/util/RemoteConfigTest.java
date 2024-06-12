@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
 import org.thoughtcrime.securesms.BaseUnitTest;
-import org.thoughtcrime.securesms.util.FeatureFlags.ConfigChange;
-import org.thoughtcrime.securesms.util.FeatureFlags.UpdateResult;
+import org.thoughtcrime.securesms.util.RemoteConfig.ConfigChange;
+import org.thoughtcrime.securesms.util.RemoteConfig.UpdateResult;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,14 +16,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.mapOf;
 
-public class FeatureFlagsTest extends BaseUnitTest {
+public class RemoteConfigTest extends BaseUnitTest {
 
   private static final String A = "A";
   private static final String B = "B";
 
   @Test
   public void updateInternal_newValue_ignoreNotInRemoteCapable() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true,
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true,
                                                             B, true),
                                                       mapOf(),
                                                       mapOf(),
@@ -38,7 +38,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_newValue() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true),
                                                       mapOf(),
                                                       mapOf(),
                                                       setOf(A),
@@ -52,7 +52,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_newValue_hotSwap() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true),
                                                       mapOf(),
                                                       mapOf(),
                                                       setOf(A),
@@ -66,7 +66,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_newValue_hotSwap_integer() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, 1),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, 1),
                                                       mapOf(),
                                                       mapOf(),
                                                       setOf(A),
@@ -80,7 +80,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_newValue_sticky() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true),
                                                       mapOf(),
                                                       mapOf(),
                                                       setOf(A),
@@ -94,7 +94,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_newValue_hotSwap_sticky() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true),
                                                       mapOf(),
                                                       mapOf(),
                                                       setOf(A),
@@ -108,7 +108,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_replaceValue() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true),
                                                       mapOf(A, false),
                                                       mapOf(A, false),
                                                       setOf(A),
@@ -122,7 +122,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_replaceValue_integer() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, 2),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, 2),
                                                       mapOf(A, 1),
                                                       mapOf(A, 1),
                                                       setOf(A),
@@ -136,7 +136,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_replaceValue_hotSwap() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true),
                                                       mapOf(A, false),
                                                       mapOf(A, false),
                                                       setOf(A),
@@ -150,7 +150,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_replaceValue_hotSwa_integer() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, 2),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, 2),
                                                       mapOf(A, 1),
                                                       mapOf(A, 1),
                                                       setOf(A),
@@ -164,7 +164,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_replaceValue_hotSwap_stickyChange() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true),
                                                       mapOf(A, false),
                                                       mapOf(A, false),
                                                       setOf(A),
@@ -178,7 +178,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_replaceValue_hotSwap_stickyIgnore_memoryAndDisk() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, false),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, false),
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(A),
@@ -192,7 +192,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_removeValue() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(),
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(A),
@@ -206,7 +206,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_removeValue_notRemoteCapable() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true),
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(),
@@ -220,7 +220,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_removeValue_hotSwap() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(),
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(A),
@@ -234,7 +234,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_removeValue_hotSwap_notRemoteCapable() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true),
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(),
@@ -248,7 +248,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_removeValue_stickyAlreadyEnabled() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(),
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(A),
@@ -262,7 +262,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_removeValue_stickyNotEnabled() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(),
                                                       mapOf(A, false),
                                                       mapOf(A, false),
                                                       setOf(A),
@@ -276,7 +276,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_removeValue_stickyNotEnabled_notRemoteCapable() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true),
                                                       mapOf(A, false),
                                                       mapOf(A, false),
                                                       setOf(),
@@ -290,7 +290,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_removeValue_hotSwap_stickyAlreadyEnabled() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(),
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(A),
@@ -304,7 +304,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_removeValue_hotSwap_stickyAlreadyEnabled_notRemoteCapable() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true),
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(),
@@ -318,7 +318,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_removeValue_hotSwap_stickyNotEnabled() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(),
                                                       mapOf(A, false),
                                                       mapOf(A, false),
                                                       setOf(A),
@@ -332,7 +332,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_removeValue_typeMismatch_hotSwap() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, "5"),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, "5"),
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(A),
@@ -346,9 +346,9 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_twoNewValues() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true,
-        B, false),
-        mapOf(),
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true,
+                                                            B, false),
+                                                      mapOf(),
                                                       mapOf(),
                                                       setOf(A, B),
                                                       setOf(),
@@ -361,7 +361,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void updateInternal_replaceOneOfTwoValues() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true,
+    UpdateResult result = RemoteConfig.updateInternal(mapOf(A, true,
                                                             B, false),
                                                       mapOf(A, true,
                                                             B, true),
@@ -400,7 +400,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
       put("j", "stacy");
     }};
 
-    Map<String, ConfigChange> changes = FeatureFlags.computeChanges(oldMap, newMap);
+    Map<String, ConfigChange> changes = RemoteConfig.computeChanges(oldMap, newMap);
 
     assertFalse(changes.containsKey("a"));
     assertEquals(new ConfigChange(false, true), changes.get("b"));

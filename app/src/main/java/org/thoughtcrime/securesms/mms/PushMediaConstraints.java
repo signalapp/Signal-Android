@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
+import org.thoughtcrime.securesms.util.LocaleRemoteConfig;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.TranscodingPreset;
 
@@ -68,7 +68,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public long getCompressedVideoMaxSize(Context context) {
-    if (FeatureFlags.useStreamingVideoMuxer()) {
+    if (RemoteConfig.useStreamingVideoMuxer()) {
       return getMaxAttachmentSize();
     } else {
       return Util.isLowMemory(context) ? 30 * MB
@@ -104,7 +104,7 @@ public class PushMediaConstraints extends MediaConstraints {
     if (sentMediaQuality == SentMediaQuality.HIGH) {
       return MediaConfig.LEVEL_3;
     }
-    return LocaleFeatureFlags.getMediaQualityLevel().orElse(MediaConfig.getDefault(context));
+    return LocaleRemoteConfig.getMediaQualityLevel().orElse(MediaConfig.getDefault(context));
   }
 
   public enum MediaConfig {
