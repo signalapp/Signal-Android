@@ -9,10 +9,9 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.AppDependencies.application
-import org.thoughtcrime.securesms.dependencies.AppDependencies.jobManager
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
+import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver
 import java.io.IOException
@@ -67,7 +66,7 @@ object FeatureFlags {
 
     if (timeSinceLastFetch < 0 || timeSinceLastFetch > FETCH_INTERVAL.inWholeMilliseconds) {
       Log.i(TAG, "Scheduling remote config refresh.")
-      jobManager.add(RemoteConfigRefreshJob())
+      AppDependencies.jobManager.add(RemoteConfigRefreshJob())
     } else {
       Log.i(TAG, "Skipping remote config refresh. Refreshed $timeSinceLastFetch ms ago.")
     }
@@ -194,29 +193,17 @@ object FeatureFlags {
 
   @JvmStatic
   @VisibleForTesting
-  fun computeChanges(oldMap: Map<String, Any>, newMap: Map<String, Any>): Map<String, Change> {
-    val changes: MutableMap<String, Change> = mutableMapOf()
-    val allKeys: MutableSet<String> = mutableSetOf()
+  fun computeChanges(oldMap: Map<String, Any>, newMap: Map<String, Any>): Map<String, ConfigChange> {
+    val allKeys: Set<String> = oldMap.keys + newMap.keys
 
-    allKeys += oldMap.keys
-    allKeys += newMap.keys
-
-    for (key in allKeys) {
-      val oldValue = oldMap[key]
-      val newValue = newMap[key]
-
-      if (oldValue == null && newValue == null) {
-        throw AssertionError("Should not be possible.")
-      } else if (oldValue != null && newValue == null) {
-        changes[key] = Change.REMOVED
-      } else if (newValue !== oldValue && newValue is Boolean) {
-        changes[key] = if (newValue) Change.ENABLED else Change.DISABLED
-      } else if (oldValue != newValue) {
-        changes[key] = Change.CHANGED
+    return allKeys
+      .filter { oldMap[it] != newMap[it] }
+      .associateWith { key ->
+        ConfigChange(
+          oldValue = oldMap[key],
+          newValue = newMap[key]
+        )
       }
-    }
-
-    return changes
   }
 
   private fun parseStoredConfig(stored: String?): Map<String, Any> {
@@ -256,7 +243,7 @@ object FeatureFlags {
     }
   }
 
-  private fun triggerFlagChangeListeners(changes: Map<String, Change>) {
+  private fun triggerFlagChangeListeners(changes: Map<String, ConfigChange>) {
     for ((key, value) in changes) {
       val listener = configsByKey[key]?.onChangeListener
 
@@ -271,16 +258,14 @@ object FeatureFlags {
   class UpdateResult(
     val memory: Map<String, Any>,
     val disk: Map<String, Any>,
-    val memoryChanges: Map<String, Change>
+    val memoryChanges: Map<String, ConfigChange>
   )
+
+  data class ConfigChange(val oldValue: Any?, val newValue: Any?)
 
   @VisibleForTesting
   fun interface OnFlagChange {
-    fun onFlagChange(change: Change)
-  }
-
-  enum class Change {
-    ENABLED, DISABLED, CHANGED, REMOVED
+    fun onFlagChange(change: ConfigChange)
   }
 
   // endregion
@@ -1072,7 +1057,7 @@ object FeatureFlags {
   val backgroundMessageProcessInterval: Long by remoteValue(
     key = "android.messageProcessor.alarmIntervalMins",
     hotSwappable = true,
-    onChangeListener = { RoutineMessageFetchReceiver.startOrUpdateAlarm(application) }
+    onChangeListener = { RoutineMessageFetchReceiver.startOrUpdateAlarm(AppDependencies.application) }
   ) { value ->
     val inMinutes = value.asLong(6.hours.inWholeMinutes)
     inMinutes.minutes.inWholeMilliseconds
@@ -1098,9 +1083,14 @@ object FeatureFlags {
   val svr3MigrationPhase: Int by remoteInt(
     key = "global.svr3.phase",
     defaultValue = 0,
-    hotSwappable = true
+    hotSwappable = true,
+    onChangeListener = {
+      if ((it.oldValue == null || it.oldValue == 0) && it.newValue == 1) {
+        Log.w(TAG, "Detected the SVR3 migration phase change to 1! Enqueuing a mirroring job.")
+        AppDependencies.jobManager.add(Svr3MirrorJob())
+      }
+    }
   )
-  // TODO [svr3] on change listener to enqueue migration
 
   // endregion
 }

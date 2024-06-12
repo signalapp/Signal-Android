@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
 import org.thoughtcrime.securesms.BaseUnitTest;
-import org.thoughtcrime.securesms.util.FeatureFlags.Change;
+import org.thoughtcrime.securesms.util.FeatureFlags.ConfigChange;
 import org.thoughtcrime.securesms.util.FeatureFlags.UpdateResult;
 
 import java.util.Arrays;
@@ -61,7 +61,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertEquals(Change.ENABLED, result.getMemoryChanges().get(A));
+    assertEquals(new ConfigChange(null, true), result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -75,7 +75,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
     assertEquals(mapOf(A, 1), result.getMemory());
     assertEquals(mapOf(A, 1), result.getDisk());
-    assertEquals(Change.CHANGED, result.getMemoryChanges().get(A));
+    assertEquals(new ConfigChange(null, 1), result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -103,7 +103,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertEquals(Change.ENABLED, result.getMemoryChanges().get(A));
+    assertEquals(new ConfigChange(null, true), result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -145,7 +145,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertEquals(Change.ENABLED, result.getMemoryChanges().get(A));
+    assertEquals(new ConfigChange(false, true), result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -159,7 +159,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
     assertEquals(mapOf(A, 2), result.getMemory());
     assertEquals(mapOf(A, 2), result.getDisk());
-    assertEquals(Change.CHANGED, result.getMemoryChanges().get(A));
+    assertEquals(new ConfigChange(1, 2), result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -173,7 +173,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertEquals(Change.ENABLED, result.getMemoryChanges().get(A));
+    assertEquals(new ConfigChange(false, true), result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -229,7 +229,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
     assertEquals(mapOf(), result.getMemory());
     assertEquals(mapOf(), result.getDisk());
-    assertEquals(Change.REMOVED, result.getMemoryChanges().get(A));
+    assertEquals(new ConfigChange(true, null), result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -243,7 +243,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
     assertEquals(mapOf(), result.getMemory());
     assertEquals(mapOf(), result.getDisk());
-    assertEquals(Change.REMOVED, result.getMemoryChanges().get(A));
+    assertEquals(new ConfigChange(true, null), result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -327,7 +327,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
     assertEquals(mapOf(), result.getMemory());
     assertEquals(mapOf(), result.getDisk());
-    assertEquals(Change.REMOVED, result.getMemoryChanges().get(A));
+    assertEquals(new ConfigChange(false, null), result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -341,7 +341,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
     assertEquals(mapOf(), result.getMemory());
     assertEquals(mapOf(), result.getDisk());
-    assertEquals(Change.REMOVED, result.getMemoryChanges().get(A));
+    assertEquals(new ConfigChange(true, null), result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -378,7 +378,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   @Test
   public void computeChanges_generic() {
-    Map<String, Object> oldMap = new HashMap<String, Object>() {{
+    Map<String, Object> oldMap = new HashMap<>() {{
       put("a", true);
       put("b", false);
       put("c", true);
@@ -389,7 +389,7 @@ public class FeatureFlagsTest extends BaseUnitTest {
       put("j", "gwen");
     }};
 
-    Map<String, Object> newMap = new HashMap<String, Object>() {{
+    Map<String, Object> newMap = new HashMap<>() {{
       put("a", true);
       put("b", true);
       put("c", false);
@@ -400,17 +400,17 @@ public class FeatureFlagsTest extends BaseUnitTest {
       put("j", "stacy");
     }};
 
-    Map<String, Change> changes = FeatureFlags.computeChanges(oldMap, newMap);
+    Map<String, ConfigChange> changes = FeatureFlags.computeChanges(oldMap, newMap);
 
     assertFalse(changes.containsKey("a"));
-    assertEquals(Change.ENABLED, changes.get("b"));
-    assertEquals(Change.DISABLED, changes.get("c"));
-    assertEquals(Change.REMOVED, changes.get("d"));
-    assertEquals(Change.ENABLED, changes.get("e"));
-    assertEquals(Change.DISABLED, changes.get("f"));
-    assertEquals(Change.CHANGED, changes.get("h"));
+    assertEquals(new ConfigChange(false, true), changes.get("b"));
+    assertEquals(new ConfigChange(true, false), changes.get("c"));
+    assertEquals(new ConfigChange(false, null), changes.get("d"));
+    assertEquals(new ConfigChange(null, true), changes.get("e"));
+    assertEquals(new ConfigChange(null, false), changes.get("f"));
+    assertEquals(new ConfigChange(5, 7), changes.get("h"));
     assertFalse(changes.containsKey("i"));
-    assertEquals(Change.CHANGED, changes.get("j"));
+    assertEquals(new ConfigChange("gwen", "stacy"), changes.get("j"));
   }
 
   private static <V> Set<V> setOf(V... values) {
