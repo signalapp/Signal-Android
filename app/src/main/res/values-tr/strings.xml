@@ -2079,17 +2079,15 @@
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Görüntüle</string>
 
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
+    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s raised a hand</string>
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s raised a hand</item>
-        <item quantity="other">%1$s + %2$d raised a hand</item>
-    </plurals>
+    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d raised a hand</string>
 
+    <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
+    <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
     <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallRaiseHandSnackbar_raised_hands">
-        <item quantity="one">%1$s</item>
-        <item quantity="other">%1$s +%2$d</item>
-    </plurals>
+    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s +%2$d</string>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Kaldırılmış el görünümünü genişlet</string>

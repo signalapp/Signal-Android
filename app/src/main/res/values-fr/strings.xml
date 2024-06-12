@@ -345,7 +345,7 @@
     <string name="ContactShareEditActivity_type_mobile">Mobile</string>
     <string name="ContactShareEditActivity_type_work">Travail</string>
     <string name="ContactShareEditActivity_type_missing">Autre</string>
-    <string name="ContactShareEditActivity_invalid_contact">Le contact sélectionné était invalide</string>
+    <string name="ContactShareEditActivity_invalid_contact">Le contact sélectionné est incorrect</string>
     <!-- Content descrption for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">Modifier le nom</string>
     <!-- Content description for user avatar in edit activity -->
@@ -549,8 +549,8 @@
     <string name="ConversationFragment_delete_everywhere">Supprimer de tous les appareils</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
     <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">This message will be deleted from all your devices.</item>
-        <item quantity="other">These messages will be deleted from all your devices.</item>
+        <item quantity="one">Ce message sera supprimé de tous vos appareils.</item>
+        <item quantity="other">Ces messages seront supprimés de tous vos appareils.</item>
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ce message sera supprimé pour tous les membres participant à la conversation s’ils utilisent une version récente de Signal. Ils pourront voir que vous avez supprimé un message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Le message original est introuvable</string>
@@ -649,13 +649,13 @@
         <item quantity="other">Supprimer les conversations sélectionnées ?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">La conversation sélectionnée sera supprimée de manière permanente.</item>
-        <item quantity="other">Les %1$d conversations sélectionnées seront supprimées de manière permanente.</item>
+        <item quantity="one">La conversation sélectionnée sera définitivement supprimée.</item>
+        <item quantity="other">Les %1$d conversations sélectionnées seront définitivement supprimées.</item>
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">This will permanently delete the selected chat from all your devices.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats from all your devices.</item>
+        <item quantity="one">Vous allez définitivement supprimer cette conversation de tous vos appareils.</item>
+        <item quantity="other">Vous allez définitivement supprimer ces %1$d conversations de tous vos appareils.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Suppression</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -690,8 +690,8 @@
     <string name="ConversationListFragment_select_all">Tout sélect.</string>
     <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
-        <item quantity="one">%1$d sélectionné</item>
-        <item quantity="other">%1$d sélectionnés</item>
+        <item quantity="one">%1$d élément sélectionné</item>
+        <item quantity="other">%1$d éléments sélectionnés</item>
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
@@ -840,7 +840,7 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Toutes les heures sont indiquées en (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">L\'horaire sélectionné est passé. En le sélectionnant, le message sera envoyé immédiatement.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Vous avez sélectionné une heure passée. Si vous conservez cette sélection, le message est envoyé immédiatement.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
     <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Envoyer immédiatement</string>
 
@@ -851,7 +851,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Supprimer</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Supprimer le message programmé sélectionné ?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Supprimer ce message programmé ?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Suppression du message programmé…</string>
 
@@ -1326,13 +1326,13 @@
         <item quantity="other">Supprimer les éléments sélectionnés ?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">Cela supprimera définitivement le fichier sélectionné. Tout texto associé à cet élément sera aussi supprimé.</item>
-        <item quantity="other">Cela supprimera définitivement les %1$d fichiers sélectionnés. Tout texto associé à ces éléments sera aussi supprimé.</item>
+        <item quantity="one">Cela supprimera définitivement le fichier sélectionné. Le message associé à cet élément sera aussi supprimé.</item>
+        <item quantity="other">Cela supprimera définitivement les %1$d fichiers sélectionnés. Les messages associés à ces éléments seront aussi supprimés.</item>
     </plurals>
     <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">This will permanently delete the selected file from all your devices. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Vous allez définitivement supprimer ce fichier de tous vos appareils. Tous les messages associés seront également supprimés.</item>
+        <item quantity="other">Vous allez définitivement supprimer ces %1$d fichiers de tous vos appareils. Tous les messages associés seront également supprimés.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Suppression</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Suppression des messages…</string>
@@ -1357,8 +1357,8 @@
 
     <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
-        <item quantity="one">%1$d sélectionnée (%2$s)</item>
-        <item quantity="other">%1$d sélectionnées (%2$s)</item>
+        <item quantity="one">%1$d élément sélectionné (%2$s)</item>
+        <item quantity="other">%1$d éléments sélectionnés (%2$s)</item>
     </plurals>
     <string name="MediaOverviewActivity_file">Fichier</string>
     <string name="MediaOverviewActivity_audio">Audio</string>
@@ -1643,13 +1643,13 @@
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s accepte désormais les paiements</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
+    <string name="MessageRecord_payments_restore_tombstone">Infos de paiement indisponibles</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
-    <string name="MessageRecord_payments_restore_tombstone_tap_more">Plus d\'infos</string>
+    <string name="MessageRecord_payments_restore_tombstone_tap_more">En savoir plus</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
-    <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
+    <string name="PaymentTombstoneLearnMoreDialog_title">Infos de paiement indisponibles</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">This details of this payment are not available because your messages were restored from a source that did not contain this payment history. This does not affect your wallet balance or the status of past payments.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">Les informations de paiement sont indisponibles, car Signal a récupéré vos messages à partir d’un appareil qui ne contenait pas l’historique de cette transaction. Cela n’a aucune incidence sur le solde de votre compte, ni sur l’état de vos anciens paiements.</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -1967,19 +1967,19 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">Autoriser l’accès à l’appareil photo</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Pour passer ou rejoindre un appel, autorisez Signal à accéder à votre appareil photo et à votre microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">To start or join a call, allow Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">Pour passer ou rejoindre un appel, autorisez Signal à accéder à votre microphone.</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">To enable your video, allow Signal access to your camera.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">Pour prendre des vidéos, autorisez Signal à accéder à votre appareil photo.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal needs microphone permissions to start or join a call.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Pour passer ou rejoindre un appel, autorisez Signal à accéder au Microphone.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal needs camera access to enable your video</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Pour prendre des vidéos, Signal doit accéder à l’appareil photo.</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="WebRtcCallActivity__to_start_call">To start or join a call:</string>
+    <string name="WebRtcCallActivity__to_start_call">Pour passer ou rejoindre un appel :</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
-    <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
+    <string name="WebRtcCallActivity__to_enable_video">Pour prendre des vidéos :</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Appel Signal</string>
@@ -2079,17 +2079,15 @@
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Afficher</string>
 
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
+    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s raised a hand</string>
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s raised a hand</item>
-        <item quantity="other">%1$s + %2$d raised a hand</item>
-    </plurals>
+    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d raised a hand</string>
 
+    <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
+    <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
     <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallRaiseHandSnackbar_raised_hands">
-        <item quantity="one">%1$s</item>
-        <item quantity="other">%1$s + %2$d</item>
-    </plurals>
+    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s +%2$d</string>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Agrandir lla liste des personnes ayant levé la main</string>
@@ -2140,7 +2138,7 @@
     <!-- CallParticipantView -->
     <string name="CallParticipantView__s_is_blocked">%1$s est bloqué</string>
     <string name="CallParticipantView__more_info">Plus de précisions</string>
-    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Vous ne recevrez ni l’audio, ni la vidéo de cet utilisateur, et il ne recevra pas les vôtres.</string>
+    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Vous ne recevez ni l’audio, ni la vidéo de cet utilisateur et il ne reçoit pas les vôtres.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Impossible de recevoir l’audio et la vidéo de %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Impossible de recevoir l’audio et la vidéo de %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Cette personne n’a peut-être pas confirmé le changement de votre numéro de sécurité, il y a peut-être un problème avec son appareil ou elle vous a bloqué.</string>
@@ -2522,7 +2520,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Supprimer le message ?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Ce message sera irrémédiablement supprimé.</string>
     <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">Cela supprimera ce message de tous vos appareils.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s à %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Vous à %1$s</string>
@@ -3383,11 +3381,11 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tout l’historique et tous les contenus multimédias des messages seront irrémédiablement supprimés de votre appareil.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Cela supprimera définitivement tout l’historique des messages et tous les fichiers de cet appareil et des appareils associés.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Voulez-vous vraiment supprimer tout l’historique des messages ?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tout l’historique des messages sera irrémédiablement effacé. Cette action ne peut être annulée.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Vous allez définitivement supprimer tout l’historique de vos messages de tous vos appareils. Cette action est irréversible.</string>
     <string name="preferences_storage__delete_all_now">Tout supprimer maintenant</string>
     <string name="preferences_storage__forever">Pour toujours</string>
     <string name="preferences_storage__one_year">1 an</string>
@@ -3408,7 +3406,7 @@
     <string name="preferences_chats__chats">Conversations</string>
     <string name="preferences_app_updates__title">Mises à jour de l’appli</string>
     <string name="preferences_data_and_storage__manage_storage">Gérer l\'espace de stockage</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Utiliser moins de données pour les appels</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Limiter la consommation de données lors des appels</string>
     <string name="preferences_data_and_storage__never">Jamais</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi et données mobiles</string>
     <string name="preferences_data_and_storage__mobile_data_only">Données mobiles uniquement</string>
@@ -3724,8 +3722,8 @@
 
     <!-- Heading which shows how many messages are currently selected -->
     <plurals name="conversation_context__s_selected">
-        <item quantity="one">%1$d sélectionné</item>
-        <item quantity="other">%1$d sélectionnés</item>
+        <item quantity="one">%1$d message sélectionné</item>
+        <item quantity="other">%1$d messages sélectionnés</item>
     </plurals>
 
     <!-- conversation_context_image -->
@@ -5097,7 +5095,7 @@
     <string name="MediaReviewFragment__view_once_message">Média à vue unique</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Un ou plusieurs fichiers sont trop volumineux.</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un élément ou plus étaient invalides</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Trop d’éléments sélectionnés</string>
+    <string name="MediaReviewFragment__too_many_items_selected">Vous avez sélectionné un trop grand nombre d’éléments</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Vue unique activée pour cette vidéo</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -5716,7 +5714,7 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Vous ne pouvez pas interagir avec cette story, car vous n\'êtes plus membre de ce groupe.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">a réagi à la story</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">avez réagi à la story</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">a réagi à la story</string>
     <!-- Label for story views tab -->
@@ -6936,14 +6934,14 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Une fois cette limite atteinte, Signal supprime définitivement les messages.</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Appliquer ces limites aux appareils associés</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Si vous activez cette option, les limites de stockage s’appliqueront aussi à vos appareils associés : les messages qui y sont stockés seront également supprimés.</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
+    <string name="DeleteSyncEducation_title">La suppression des messages est maintenant synchronisée sur tous vos appareils.</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">Lorsque vous supprimez des messages, des fichiers ou des conversations, ils sont supprimés de votre téléphone et de tous vos appareils associés.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 

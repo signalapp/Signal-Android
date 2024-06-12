@@ -290,7 +290,7 @@
     <string name="ClientDeprecatedActivity_update">Bijwerken</string>
     <string name="ClientDeprecatedActivity_dont_update">Niet bijwerken</string>
     <string name="ClientDeprecatedActivity_warning">Waarschuwing</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Jouw versie van Signal is verlopen. Je kunt je gespreksgeschiedenis nog weergeven maar je kunt geen nieuwe berichten verzenden of ontvangen totdat je Signal hebt bijgewerkt.</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Jouw versie van Signal is verlopen. Je kunt je chatgeschiedenis nog bekijken maar je kunt geen nieuwe berichten verzenden of ontvangen totdat je Signal hebt bijgewerkt.</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Geen webbrowser gevonden.</string>
@@ -466,14 +466,14 @@
     <string name="ConversationActivity_delete_conversation">Chat verwijderen?</string>
     <string name="ConversationActivity_delete_and_leave_group">Groep verwijderen en verlaten?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Deze chat zal op al je eigen apparaten worden verwijderd.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal op al je eigen apparaten worden verwijderd.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en de chat zal op al je eigen apparaten worden verwijderd.</string>
     <string name="ConversationActivity_delete">Verwijderen</string>
     <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
 
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
     <string name="ConversationActivity__to_start_call">Om een oproep te starten:</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Om een oproep te starten, moet je Signal toegang geven tot je microfoon.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Geef Signal toegang tot je microfoon om een oproep te starten</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
     <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal heeft toegang tot de microfoon nodig om een oproep te starten.</string>
 
@@ -549,8 +549,8 @@
     <string name="ConversationFragment_delete_everywhere">Verwijderen van alle apparaten</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
     <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">This message will be deleted from all your devices.</item>
-        <item quantity="other">These messages will be deleted from all your devices.</item>
+        <item quantity="one">Dit bericht wordt op al je apparaten verwijderd.</item>
+        <item quantity="other">Deze berichten worden op al je apparaten verwijderd.</item>
     </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Dit bericht wordt verwijderd voor iedereen in de chat als ze een recente versie van Signal gebruiken. Ze kunnen zien dat je een bericht hebt verwijderd.</string>
     <string name="ConversationFragment_quoted_message_not_found">Oorspronkelijk bericht niet gevonden</string>
@@ -654,8 +654,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">This will permanently delete the selected chat from all your devices.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats from all your devices.</item>
+        <item quantity="one">Hiermee wordt de geselecteerde chat permanent van al je apparaten verwijderd.</item>
+        <item quantity="other">Hiermee worden alle %1$d geselecteerde chats permanent van al je apparaten verwijderd.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Aan het verwijderen</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -947,7 +947,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Wat zijn ‘nieuwe-stijl’ groepen?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nieuwe-stijl groepen hebben functionaliteiten waaronder @vermeldingen en groepsbeheer en in de toekomst zullen er meer functionaliteiten aan worden toegevoegd.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Alle gespreksgeschiedenis en media van voor het omzetten zijn behouden gebleven.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Alle chatgeschiedenis en media van voor het omzetten zijn behouden gebleven.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Om weer lid te worden van deze groep zul je een uitnodiging moeten accepteren. Je zult geen berichten van deze groep ontvangen zolang je dat nog niet hebt gedaan.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">Dit groepslid zal opnieuw een uitnodiging om tot de groep toe te treden moeten accepteren en zal geen berichten krijgen zolang dit is geaccepteerd:</item>
@@ -962,7 +962,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Omzetten naar nieuwe-stijl groep</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Deze groep omzetten naar een nieuwe groep</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Nieuwe-stijl groepen hebben functionaliteiten waaronder @vermeldingen en groepsbeheer en in de toekomst zullen er meer functionaliteiten aan worden toegevoegd.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Alle gespreksgeschiedenis en media van voor het omzetten zullen behouden blijven.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Alle chatgeschiedenis en media van voor het omzetten zullen behouden blijven.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Er is een netwerkfout opgetreden. Probeer het later opnieuw.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Omzetten is mislukt.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1331,8 +1331,8 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">This will permanently delete the selected file from all your devices. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Hiermee wordt het geselecteerde bestand permanent van al je apparaten verwijderd. Als er tekst was bijgevoegd, wordt die ook verwijderd.</item>
+        <item quantity="other">Hiermee worden alle %1$d geselecteerde bestanden permanent van al je apparaten verwijderd. Als er tekst was bijgevoegd, wordt die ook verwijderd.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Aan het verwijderen</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten aan het verwijderen…</string>
@@ -1629,9 +1629,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Vind je deze nieuwe functie leuk? Steun Signal met een eenmalige donatie.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Je berichtengeschiedenis met %1$s en diens nummer %2$s zijn samengevoegd.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Je chatgeschiedenis met %1$s en diens nummer %2$s zijn samengevoegd.</string>
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Je berichtengeschiedenis met %1$s en een andere chat met hem of haar zijn samengevoegd.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Je chatgeschiedenis met %1$s en een andere chat met hem of haar zijn samengevoegd.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
     <string name="MessageRecord_s_belongs_to_s">%1$s is van %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
@@ -1643,13 +1643,13 @@
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s kan nu Betalingen accepteren</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">Payment details are not available</string>
+    <string name="MessageRecord_payments_restore_tombstone">Betalingsgegevens zijn niet beschikbaar</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
     <string name="MessageRecord_payments_restore_tombstone_tap_more">Tik voor meer</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
-    <string name="PaymentTombstoneLearnMoreDialog_title">Payment details not available</string>
+    <string name="PaymentTombstoneLearnMoreDialog_title">Betalingsgegevens niet beschikbaar</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">This details of this payment are not available because your messages were restored from a source that did not contain this payment history. This does not affect your wallet balance or the status of past payments.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">De details van deze betaling zijn niet beschikbaar, omdat je berichten zijn hersteld vanuit een bron die deze betalingsgeschiedenis niet bevatte. Dit heeft geen invloed op het saldo in je portemonnee of de status van eerdere betalingen.</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -1967,19 +1967,19 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">Toegang tot je camera toestaan</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">To start or join a call, allow Signal access to your camera and microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Geef Signal toegang tot je camera en microfoon om een oproep te starten of eraan deel te nemen.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">To start or join a call, allow Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">Geef Signal toegang tot je microfoon om een oproep te starten of eraan deel te nemen.</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">To enable your video, allow Signal access to your camera.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">Geef Signal toegang tot je camera om video in te schakelen.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal needs microphone permissions to start or join a call.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal heeft toegang tot de microfoon nodig om een oproep te starten of eraan deel te nemen.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal needs camera access to enable your video</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal heeft toegang tot de camera nodig om video in te schakelen</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="WebRtcCallActivity__to_start_call">To start or join a call:</string>
+    <string name="WebRtcCallActivity__to_start_call">Om een oproep te beginnen of eraan deel te nemen:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
-    <string name="WebRtcCallActivity__to_enable_video">To enable your video:</string>
+    <string name="WebRtcCallActivity__to_enable_video">Om video in te schakelen:</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal-oproep</string>
@@ -2079,17 +2079,15 @@
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Weergeven</string>
 
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
+    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s raised a hand</string>
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s raised a hand</item>
-        <item quantity="other">%1$s + %2$d raised a hand</item>
-    </plurals>
+    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d raised a hand</string>
 
+    <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
+    <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
     <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallRaiseHandSnackbar_raised_hands">
-        <item quantity="one">%1$s</item>
-        <item quantity="other">%1$s + %2$d</item>
-    </plurals>
+    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s +%2$d</string>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Weergave opgestoken hand uitklappen</string>
@@ -2140,7 +2138,7 @@
     <!-- CallParticipantView -->
     <string name="CallParticipantView__s_is_blocked">%1$s is geblokkeerd</string>
     <string name="CallParticipantView__more_info">Meer informatie</string>
-    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Je zult hen niet kunnen zien of horen en zij zullen jou niet kunnen zien of horen.</string>
+    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Je kunt hen niet zien of horen en zij kunnen jou niet zien of horen.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan geen audio &amp; video van %1$s ontvangen</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan geen audio en video van %1$s ontvangen</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dit kan zijn omdat diegene de wijziging van het veiligheidsnummer niet heeft geverifieerd, er een probleem is met hun apparaat, of als ze jou hebben geblokkeerd.</string>
@@ -2269,13 +2267,13 @@
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Aan contactenlijst toevoegen</string>
     <string name="SharedContactDetailsActivity_invite_to_signal">Uitnodigen voor Signal</string>
-    <string name="SharedContactDetailsActivity_signal_message">Signal-gesprek openen</string>
+    <string name="SharedContactDetailsActivity_signal_message">Signal-chat openen</string>
     <string name="SharedContactDetailsActivity_signal_call">Signal-oproep</string>
 
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Aan contactenlijst toevoegen</string>
     <string name="SharedContactView_invite_to_signal">Uitnodigen voor Signal</string>
-    <string name="SharedContactView_message">Signal-gesprek openen</string>
+    <string name="SharedContactView_message">Signal-chat openen</string>
 
     <!-- SignalBottomActionBar -->
     <string name="SignalBottomActionBar_more">Meer opties</string>
@@ -2400,7 +2398,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Gepland bericht</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Je berichtengeschiedenis is samengevoegd</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Je chatgeschiedenis is samengevoegd</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s is van %2$s</string>
 
@@ -2522,7 +2520,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht verwijderen?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal permanent worden verwijderd.</string>
     <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">Hiermee wordt dit bericht permanent van al je apparaten verwijderd.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s naar %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Jij naar %1$s</string>
@@ -2709,7 +2707,7 @@
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toegang tot de microfoon en de camera nodig om oproepen te maken of te ontvangen, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Beantwoord vanaf een gekoppeld apparaat.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Geweigerd vanaf een gekoppeld apparaat.</string>
-    <string name="WebRtcCallActivity__busy_on_a_linked_device">Bezet omdat je al een gesprek voerde via een van je gekoppelde apparaten.</string>
+    <string name="WebRtcCallActivity__busy_on_a_linked_device">Bezet omdat je al een gesprek voerde via een gekoppeld apparaat.</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
     <string name="WebRtcCallActivity__flip_camera_tooltip">Het icoontje om van camera te wisselen is hierheen verplaatst. Tik op je video om het uit te proberen</string>
 
@@ -3313,7 +3311,7 @@
     <string name="preferences__payment_lock">Betalingsvergrendeling</string>
     <string name="preferences__conversation_length_limit">Aantal berichten per chat</string>
     <string name="preferences__keep_messages">Bewaartermijn voor berichten</string>
-    <string name="preferences__clear_message_history">Alle gespreksgeschiedenis wissen</string>
+    <string name="preferences__clear_message_history">Alle chatgeschiedenis wissen</string>
     <string name="preferences__linked_devices">Gekoppelde apparaten</string>
     <string name="preferences__light_theme">Licht</string>
     <string name="preferences__dark_theme">Donker</string>
@@ -3365,7 +3363,7 @@
     <string name="preferences_chats__when_using_wifi">Bij wifi-verbinding</string>
     <string name="preferences_chats__when_roaming">Bij roaming</string>
     <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
-    <string name="preferences_chats__message_history">Gespreksgeschiedenis</string>
+    <string name="preferences_chats__message_history">Chatgeschiedenis</string>
     <string name="preferences_storage__storage_usage">Opslaggebruik</string>
     <string name="preferences_storage__photos">Afbeeldingen</string>
     <string name="preferences_storage__videos">Video\'s</string>
@@ -3374,20 +3372,20 @@
     <string name="preferences_storage__review_storage">Alle bestanden weergeven</string>
     <string name="preferences_storage__delete_older_messages">Oude berichten verwijderen?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Berichtengeschiedenis wissen?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal alle gespreksgeschiedenis en media ouder dan %1$s permanent van dit apparaat wissen.</string>
+    <string name="preferences_storage__delete_message_history">Chatgeschiedenis wissen?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal alle chatgeschiedenis en media ouder dan %1$s permanent van dit apparaat wissen.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
         <item quantity="one">Hiermee worden alle chats permanent ingekort tot het meest recente bericht.</item>
         <item quantity="other">Hiermee worden alle chats permanent ingekort tot de %1$s meest recente berichten.</item>
     </plurals>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit zal al je gespreksgeschiedenis en media van dit apparaat permanent verwijderen.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit zal al je chatgeschiedenis en media van dit apparaat permanent verwijderen.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Weet je zeker dat je alle gespreksgeschiedenis wilt verwijderen?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle gespreksgeschiedenis zal permanent worden verwijderd. Dit kan niet ongedaan worden gemaakt.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Hiermee worden alle chatgeschiedenis en media permanent van dit apparaat en alle gekoppelde apparaten verwijderd.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Weet je zeker dat je alle chatgeschiedenis wilt verwijderen?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle chatgeschiedenis zal permanent worden verwijderd. Dit kan niet ongedaan worden gemaakt.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Alle chatgeschiedenis wordt permanent verwijderd van alle apparaten. Dit kan niet ongedaan worden gemaakt.</string>
     <string name="preferences_storage__delete_all_now">Nu alles verwijderen</string>
     <string name="preferences_storage__forever">Voor altijd</string>
     <string name="preferences_storage__one_year">1 jaar</string>
@@ -3435,7 +3433,7 @@
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Censuuromzeiling kan alleen worden ingeschakeld als je apparaat met het internet is verbonden.</string>
     <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Van iedereen toestaan</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Sta toe dat je berichten met een verzegelde afzender ontvangt welke afkomstig zijn van personen naar wie je nog nooit een bericht hebt verzonden en ook nooit mee in hetzelfde groepsgesprek zat.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Sta toe dat je berichten met een verzegelde afzender ontvangt welke afkomstig zijn van personen naar wie je nog nooit een bericht hebt verzonden en ook nooit mee in dezelfde groepschat zat.</string>
     <string name="preferences_proxy">Proxy</string>
     <string name="preferences_use_proxy">Proxy gebruiken</string>
     <string name="preferences_off">Uit</string>
@@ -4449,10 +4447,10 @@
     <string name="ChatWallpaperFragment__set_wallpaper">Chatachtergrond kiezen</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Achtergrond dimmen bij donkere modus</string>
     <string name="ChatWallpaperFragment__contact_name">Naam van contact</string>
-    <string name="ChatWallpaperFragment__reset">Voor dit gesprek verwijderen</string>
+    <string name="ChatWallpaperFragment__reset">Voor deze chat verwijderen</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Achtergrond-voorbeeld</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Wil je alleen de standaardkleur verwijderen of wil je alle chatkleuren verwijderen?</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Wil je alleen de standaardachtergrond verwijderen of wil je alle achtergronden van alle gesprekken verwijderen?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Wil je alleen de standaardachtergrond verwijderen of wil je alle achtergronden van alle chats verwijderen?</string>
     <string name="ChatWallpaperFragment__reset_default_colors">Standaardkleur verwijderen</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Alle kleurinstellingen verwijderen</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Standaardachtergrond verwijderen</string>
@@ -6930,20 +6928,20 @@
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">Chatlimieten</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Berichtengeschiedenis wissen</string>
+    <string name="ManageStorageSettingsFragment_delete_message_history">Chatgeschiedenis wissen</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
     <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Berichten die ouder zijn dan de geselecteerde bewaartermijn worden permanent verwijderd.</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
     <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Berichten die het geselecteerde maximale aantal berichten per chat overschrijden, worden permanent verwijderd.</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Limieten toepassen op gekoppelde apparaten</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Verwijder met chatlimieten ook berichten op je gekoppelde apparaten</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
+    <string name="DeleteSyncEducation_title">Verwijderen wordt vanaf nu gesynchroniseerd op al je apparaten</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">Wanneer je berichten, media of chats verwijdert, worden deze verwijderd van je telefoon en alle gekoppelde apparaten.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">Begrepen</string>
 

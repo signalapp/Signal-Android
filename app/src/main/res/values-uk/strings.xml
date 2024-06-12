@@ -1535,7 +1535,7 @@
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s оновив групу.</string>
-    <string name="MessageRecord_s_joined_signal">%1$s тепер є в Signal!</string>
+    <string name="MessageRecord_s_joined_signal">%1$s тепер користується Signal!</string>
     <string name="MessageRecord_you_disabled_disappearing_messages">Ви вимкнули тимчасові повідомлення.</string>
     <string name="MessageRecord_s_disabled_disappearing_messages">Користувач %1$s вимкнув тимчасові повідомлення.</string>
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ви встановили таймер тимчасових повідомлень: %1$s.</string>
@@ -2229,21 +2229,15 @@
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Детальніше</string>
 
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
+    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s raised a hand</string>
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s raised a hand</item>
-        <item quantity="few">%1$s + %2$d raised a hand</item>
-        <item quantity="many">%1$s + %2$d raised a hand</item>
-        <item quantity="other">%1$s + %2$d raised a hand</item>
-    </plurals>
+    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d raised a hand</string>
 
+    <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
+    <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
     <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallRaiseHandSnackbar_raised_hands">
-        <item quantity="one">%1$s</item>
-        <item quantity="few">%1$s +%2$d</item>
-        <item quantity="many">%1$s +%2$d</item>
-        <item quantity="other">%1$s +%2$d</item>
-    </plurals>
+    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s +%2$d</string>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Розгорнути перегляд тих, хто підняв руки</string>
@@ -2533,7 +2527,7 @@
     <string name="ThreadRecord_you_activated_payments">Ви активували платежі</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
     <string name="ThreadRecord_can_accept_payments">%1$s тепер може приймати платежі</string>
-    <string name="ThreadRecord_s_is_on_signal">%1$s тепер є в Signal!</string>
+    <string name="ThreadRecord_s_is_on_signal">%1$s тепер користується Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Тимчасові повідомлення вимкнено</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Таймер встановлено на %1$s</string>
     <string name="ThreadRecord_safety_number_changed">Змінився код безпеки</string>
@@ -2825,7 +2819,7 @@
 
     <!-- NewWaysToConnectDialogFragment -->
     <!-- Fragment title, displayed at the top of the content -->
-    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Нові способи додавання контактів</string>
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Контактуйте по-новому</string>
     <!-- Row item title for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Конфіденційність номера телефону</string>
     <!-- Row item description for phone number privacy explainer -->
@@ -3329,7 +3323,7 @@
     <string name="message_details_recipient__failed_to_send">Не вдалося надіслати</string>
     <string name="message_details_recipient__new_safety_number">Новий код безпеки</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">Переглянути історію редагування</string>
+    <string name="MessageDetails__view_edit_history">Переглянути правки</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Створити фразу-пароль</string>
@@ -6749,7 +6743,7 @@
     <string name="SetUpYourUsername__learn_more">Подробиці</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="PnpLaunchMegaphone_title">Нові способи додавання контактів</string>
+    <string name="PnpLaunchMegaphone_title">Контактуйте по-новому</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="PnpLaunchMegaphone_body">Запроваджуємо конфіденційність номера телефону, посилання й можливість створити ім\'я користувача.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
@@ -6985,7 +6979,7 @@
     <string name="ChooseNavigationBarStyleFragment__compact">Компактний</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
-    <string name="EditMessageHistoryDialog_title">Історія редагування</string>
+    <string name="EditMessageHistoryDialog_title">Правки</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">Змінити повідомлення</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->

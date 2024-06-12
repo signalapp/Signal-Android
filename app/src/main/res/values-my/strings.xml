@@ -355,7 +355,7 @@
     <string name="ConversationItem_error_partially_not_delivered">တစ်စိတ်တစ်ပိုင်းပို့ပြီး၊ အသေးစိတ်သိရှိရန် နှိပ်ပါ</string>
     <string name="ConversationItem_error_network_not_delivered">ပို့ဆောင်မှု မအောင်မြင်ပါ</string>
     <string name="ConversationItem_group_action_left">%1$s အဖွဲ့မှထွက်သွားသည်။</string>
-    <string name="ConversationItem_send_paused">áá±áá­á¯á·áá¾á¯áá­á¯ áááºááá·áºáá²á·áááº</string>
+    <string name="ConversationItem_send_paused">ပေးပို့မှု ခေတ္တရပ်နေသည်</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">မလုံခြုံသောဖုန်းစာတိုပို့စနစ်ကိုပြန်သုံးမလား?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">မလုံခြုံသော ရုပ်သံပုံပါ စာပို့စနစ်ကို ပြန်သုံးမလား?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">သင်ပေးပို့သော သူသည် Signal <b></b>မသုံးတော့သဖြင့် ဤနည်းလမ်းဖြင့် စာတိုကို ပေးပို့၍မရနိုင်ပါ။ \n\n ရိုးရိုးစာတိုစနစ်ဖြင့်ပေးပို့မလား?</string>
@@ -2004,15 +2004,15 @@
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">ကြည့်မယ်</string>
 
+    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
+    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s raised a hand</string>
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="other">%1$s + %2$d raised a hand</item>
-    </plurals>
+    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d raised a hand</string>
 
+    <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
+    <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
     <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallRaiseHandSnackbar_raised_hands">
-        <item quantity="other">%1$s + %2$d ဦး</item>
-    </plurals>
+    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s +%2$d</string>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">လက်မြှောက်ထားသူများကို ဖြန့်၍ ကြည့်ရှုရန်</string>
