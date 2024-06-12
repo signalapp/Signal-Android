@@ -90,6 +90,7 @@ public final class Megaphones {
                                        .map(Map.Entry::getKey)
                                        .map(records::get)
                                        .map(record -> Megaphones.forRecord(context, record))
+                                       .filterNot(Objects::isNull)
                                        .toList();
 
     if (megaphones.size() > 0) {
@@ -137,7 +138,7 @@ public final class Megaphones {
     return expiringIn < TimeUnit.DAYS.toMillis(7) && expiringIn > 0;
   }
 
-  private static @NonNull Megaphone forRecord(@NonNull Context context, @NonNull MegaphoneRecord record) {
+  private static @Nullable Megaphone forRecord(@NonNull Context context, @NonNull MegaphoneRecord record) {
     switch (record.getEvent()) {
       case PINS_FOR_ALL:
         return buildPinsForAllMegaphone(record);
@@ -308,42 +309,43 @@ public final class Megaphones {
         .build();
   }
 
-  private static @NonNull Megaphone buildRemoteMegaphone(@NonNull Context context) {
+  private static @Nullable Megaphone buildRemoteMegaphone(@NonNull Context context) {
     RemoteMegaphoneRecord record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(System.currentTimeMillis());
 
-    if (record != null) {
-      Megaphone.Builder builder = new Megaphone.Builder(Event.REMOTE_MEGAPHONE, Megaphone.Style.BASIC)
-          .setTitle(record.getTitle())
-          .setBody(record.getBody());
-
-      if (record.getImageUri() != null) {
-        builder.setImageRequestBuilder(Glide.with(context).asDrawable().load(record.getImageUri()));
-      }
-
-      if (record.hasPrimaryAction()) {
-        //noinspection ConstantConditions
-        builder.setActionButton(record.getPrimaryActionText(), (megaphone, controller) -> {
-          RemoteMegaphoneRepository.getAction(Objects.requireNonNull(record.getPrimaryActionId()))
-                                   .run(context, controller, record);
-        });
-      }
-
-      if (record.hasSecondaryAction()) {
-        //noinspection ConstantConditions
-        builder.setSecondaryButton(record.getSecondaryActionText(), (megaphone, controller) -> {
-          RemoteMegaphoneRepository.getAction(Objects.requireNonNull(record.getSecondaryActionId()))
-                                   .run(context, controller, record);
-        });
-      }
-
-      builder.setOnVisibleListener((megaphone, controller) -> {
-        RemoteMegaphoneRepository.markShown(record.getUuid());
-      });
-
-      return builder.build();
-    } else {
-      throw new IllegalStateException("No record to show");
+    if (record == null) {
+      Log.w(TAG, "No remote megaphone record when told to show one!");
+      return null;
     }
+
+    Megaphone.Builder builder = new Megaphone.Builder(Event.REMOTE_MEGAPHONE, Megaphone.Style.BASIC)
+        .setTitle(record.getTitle())
+        .setBody(record.getBody());
+
+    if (record.getImageUri() != null) {
+      builder.setImageRequestBuilder(Glide.with(context).asDrawable().load(record.getImageUri()));
+    }
+
+    if (record.hasPrimaryAction()) {
+      //noinspection ConstantConditions
+      builder.setActionButton(record.getPrimaryActionText(), (megaphone, controller) -> {
+        RemoteMegaphoneRepository.getAction(Objects.requireNonNull(record.getPrimaryActionId()))
+                                 .run(context, controller, record);
+      });
+    }
+
+    if (record.hasSecondaryAction()) {
+      //noinspection ConstantConditions
+      builder.setSecondaryButton(record.getSecondaryActionText(), (megaphone, controller) -> {
+        RemoteMegaphoneRepository.getAction(Objects.requireNonNull(record.getSecondaryActionId()))
+                                 .run(context, controller, record);
+      });
+    }
+
+    builder.setOnVisibleListener((megaphone, controller) -> {
+      RemoteMegaphoneRepository.markShown(record.getUuid());
+    });
+
+    return builder.build();
   }
 
   @SuppressLint("InlinedApi")
