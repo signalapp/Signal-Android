@@ -37,7 +37,7 @@ class DefaultWebSocketShadowingBridge(private val context: Application) : WebSoc
   }
 
   override fun triggerFailureNotification(message: String) {
-    if (!FeatureFlags.internalUser()) {
+    if (!FeatureFlags.internalUser) {
       return
     }
     val notification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)

@@ -171,7 +171,7 @@ object SignalServiceProtoUtil {
   }
 
   fun List<AttachmentPointer>.toPointersWithinLimit(): List<Attachment> {
-    return mapNotNull { it.toPointer() }.take(FeatureFlags.maxAttachmentCount())
+    return mapNotNull { it.toPointer() }.take(FeatureFlags.maxAttachmentCount)
   }
 
   fun AttachmentPointer.toPointer(stickerLocator: StickerLocator? = null): Attachment? {

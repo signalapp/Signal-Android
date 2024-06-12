@@ -90,7 +90,7 @@ object StoryMessageProcessor {
     }
 
     if (insertResult != null) {
-      Stories.enqueueNextStoriesForDownload(threadRecipient.id, false, FeatureFlags.storiesAutoDownloadMaximum())
+      Stories.enqueueNextStoriesForDownload(threadRecipient.id, false, FeatureFlags.storiesAutoDownloadMaximum)
       AppDependencies.expireStoriesManager.scheduleIfNecessary()
     }
   }

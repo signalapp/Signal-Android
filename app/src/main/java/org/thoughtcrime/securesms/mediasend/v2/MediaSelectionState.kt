@@ -36,7 +36,7 @@ data class MediaSelectionState(
 
   val transcodingPreset: TranscodingPreset = MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(quality.code)).videoTranscodingSettings
 
-  val maxSelection = FeatureFlags.maxAttachmentCount()
+  val maxSelection = FeatureFlags.maxAttachmentCount
 
   val canSend = !isSent && selectedMedia.isNotEmpty()
 

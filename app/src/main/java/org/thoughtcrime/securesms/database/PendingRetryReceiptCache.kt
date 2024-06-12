@@ -21,7 +21,7 @@ class PendingRetryReceiptCache @VisibleForTesting constructor(
   private var populated: Boolean = false
 
   fun insert(author: RecipientId, authorDevice: Int, sentTimestamp: Long, receivedTimestamp: Long, threadId: Long) {
-    if (!FeatureFlags.retryReceipts()) return
+    if (!FeatureFlags.retryReceipts) return
     ensurePopulated()
     val model: PendingRetryReceiptModel = database.insert(author, authorDevice, sentTimestamp, receivedTimestamp, threadId)
     synchronized(pendingRetries) {
@@ -36,7 +36,7 @@ class PendingRetryReceiptCache @VisibleForTesting constructor(
   }
 
   fun get(author: RecipientId, sentTimestamp: Long): PendingRetryReceiptModel? {
-    if (!FeatureFlags.retryReceipts()) return null
+    if (!FeatureFlags.retryReceipts) return null
     ensurePopulated()
 
     synchronized(pendingRetries) {
@@ -45,7 +45,7 @@ class PendingRetryReceiptCache @VisibleForTesting constructor(
   }
 
   fun getOldest(): PendingRetryReceiptModel? {
-    if (!FeatureFlags.retryReceipts()) return null
+    if (!FeatureFlags.retryReceipts) return null
     ensurePopulated()
 
     synchronized(pendingRetries) {
@@ -54,7 +54,7 @@ class PendingRetryReceiptCache @VisibleForTesting constructor(
   }
 
   fun delete(model: PendingRetryReceiptModel) {
-    if (!FeatureFlags.retryReceipts()) return
+    if (!FeatureFlags.retryReceipts) return
     ensurePopulated()
 
     synchronized(pendingRetries) {
@@ -64,7 +64,7 @@ class PendingRetryReceiptCache @VisibleForTesting constructor(
   }
 
   fun clear() {
-    if (!FeatureFlags.retryReceipts()) return
+    if (!FeatureFlags.retryReceipts) return
 
     synchronized(pendingRetries) {
       pendingRetries.clear()

@@ -208,7 +208,7 @@ class RestoreAttachmentJob private constructor(
     attachmentId: AttachmentId,
     attachment: DatabaseAttachment
   ) {
-    val maxReceiveSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes()
+    val maxReceiveSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes
     val attachmentFile: File = SignalDatabase.attachments.getOrCreateTransferFile(attachmentId)
     var archiveFile: File? = null
     var useArchiveCdn = false
@@ -439,7 +439,7 @@ class RestoreAttachmentJob private constructor(
       return
     }
 
-    val maxThumbnailSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes()
+    val maxThumbnailSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes
     val thumbnailTransferFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
     val thumbnailFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
 

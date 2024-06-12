@@ -222,7 +222,7 @@ class AttachmentDownloadJob private constructor(
     attachmentId: AttachmentId,
     attachment: DatabaseAttachment
   ) {
-    val maxReceiveSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes()
+    val maxReceiveSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes
     val attachmentFile: File = SignalDatabase.attachments.getOrCreateTransferFile(attachmentId)
     var archiveFile: File? = null
     var useArchiveCdn = false
@@ -401,7 +401,7 @@ class AttachmentDownloadJob private constructor(
       S3.getObject(attachment.fileName!!).use { response ->
         val body = response.body()
         if (body != null) {
-          if (body.contentLength() > FeatureFlags.maxAttachmentReceiveSizeBytes()) {
+          if (body.contentLength() > FeatureFlags.maxAttachmentReceiveSizeBytes) {
             throw MmsException("Attachment too large, failing download")
           }
           SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, (body.source() as Source).buffer().inputStream())

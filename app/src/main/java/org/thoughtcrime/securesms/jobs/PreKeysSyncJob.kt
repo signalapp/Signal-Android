@@ -138,7 +138,7 @@ class PreKeysSyncJob private constructor(
         warn(TAG, "Forced rotation was requested, but the consistency checks passed!")
         val timeSinceLastForcedRotation = System.currentTimeMillis() - SignalStore.misc().lastForcedPreKeyRefresh
         // We check < 0 in case someone changed their clock and had a bad value set
-        timeSinceLastForcedRotation > FeatureFlags.preKeyForceRefreshInterval() || timeSinceLastForcedRotation < 0
+        timeSinceLastForcedRotation > FeatureFlags.preKeyForceRefreshInterval || timeSinceLastForcedRotation < 0
       }
     } else {
       false

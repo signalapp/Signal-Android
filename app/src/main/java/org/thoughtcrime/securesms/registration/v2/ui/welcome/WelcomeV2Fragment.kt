@@ -61,7 +61,7 @@ class WelcomeV2Fragment : LoggingFragment(R.layout.fragment_registration_welcome
     binding.welcomeContinueButton.setOnClickListener { onContinueClicked() }
     binding.welcomeTermsButton.setOnClickListener { onTermsClicked() }
     binding.welcomeTransferOrRestore.setOnClickListener { onTransferOrRestoreClicked() }
-    binding.welcomeTransferOrRestore.visible = !FeatureFlags.restoreAfterRegistration()
+    binding.welcomeTransferOrRestore.visible = !FeatureFlags.restoreAfterRegistration
   }
 
   private fun onContinueClicked() {

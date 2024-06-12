@@ -17,7 +17,7 @@ data class TextStoryPostCreationState(
   val body: CharSequence = "",
   val textColor: Int = HSVColorSlider.getLastColor(),
   val textColorStyle: TextColorStyle = TextColorStyle.NO_BACKGROUND,
-  val textAlignment: TextAlignment = if (FeatureFlags.storiesTextFunctions()) TextAlignment.START else TextAlignment.CENTER,
+  val textAlignment: TextAlignment = if (FeatureFlags.storiesTextFunctions) TextAlignment.START else TextAlignment.CENTER,
   val textFont: TextFont = TextFont.REGULAR,
   @IntRange(from = 0, to = 100) val textScale: Int = 50,
   val backgroundColor: ChatColors = TextStoryBackgroundColors.getInitialBackgroundColor(),

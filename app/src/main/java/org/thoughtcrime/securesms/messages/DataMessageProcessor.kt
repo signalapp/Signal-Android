@@ -220,7 +220,7 @@ object DataMessageProcessor {
 
     if (insertResult != null && insertResult.threadWasNewlyCreated && !threadRecipient.isGroup && !threadRecipient.isSelf && !senderRecipient.isSystemContact) {
       val timeSinceLastSync = System.currentTimeMillis() - SignalStore.misc().lastCdsForegroundSyncTime
-      if (timeSinceLastSync > FeatureFlags.cdsForegroundSyncInterval() || timeSinceLastSync < 0) {
+      if (timeSinceLastSync > FeatureFlags.cdsForegroundSyncInterval || timeSinceLastSync < 0) {
         log(envelope.timestamp!!, "New 1:1 chat. Scheduling a CDS sync to see if they match someone in our contacts.")
         AppDependencies.jobManager.add(DirectoryRefreshJob(false))
         SignalStore.misc().lastCdsForegroundSyncTime = System.currentTimeMillis()

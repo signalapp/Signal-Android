@@ -132,7 +132,7 @@ public final class Megaphones {
       return false;
     }
 
-    long expiringAt = device.lastActiveTimestamp + FeatureFlags.linkedDeviceLifespan();
+    long expiringAt = device.lastActiveTimestamp + FeatureFlags.getLinkedDeviceLifespan();
     long expiringIn = Math.max(expiringAt - System.currentTimeMillis(), 0);
 
     return expiringIn < TimeUnit.DAYS.toMillis(7) && expiringIn > 0;
@@ -177,7 +177,7 @@ public final class Megaphones {
       throw new IllegalStateException("No linked device to show");
     }
 
-    long expiringAt   = device.lastActiveTimestamp + FeatureFlags.linkedDeviceLifespan();
+    long expiringAt   = device.lastActiveTimestamp + FeatureFlags.getLinkedDeviceLifespan();
     long expiringIn   = Math.max(expiringAt - System.currentTimeMillis(), 0);
     int  expiringDays = (int) TimeUnit.MILLISECONDS.toDays(expiringIn);
 

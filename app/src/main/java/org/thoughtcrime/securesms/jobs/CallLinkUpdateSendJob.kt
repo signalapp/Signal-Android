@@ -65,7 +65,7 @@ class CallLinkUpdateSendJob private constructor(
   override fun onFailure() = Unit
 
   override fun onRun() {
-    if (!FeatureFlags.adHocCalling()) {
+    if (!FeatureFlags.adHocCalling) {
       Log.i(TAG, "Call links are not enabled. Exiting.")
       return
     }

@@ -561,7 +561,7 @@ open class MessageContentProcessor(private val context: Context) {
   }
 
   private fun handleRetryReceipt(envelope: Envelope, metadata: EnvelopeMetadata, decryptionErrorMessage: DecryptionErrorMessage, senderRecipient: Recipient) {
-    if (!FeatureFlags.retryReceipts()) {
+    if (!FeatureFlags.retryReceipts) {
       warn(envelope.timestamp!!, "[RetryReceipt] Feature flag disabled, skipping retry receipt.")
       return
     }

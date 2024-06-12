@@ -86,7 +86,7 @@ class SpinnerApplicationContext : ApplicationContext() {
       )
     )
 
-    Log.initialize({ FeatureFlags.internalUser() }, AndroidLogger(), PersistentLogger(this), SpinnerLogger())
+    Log.initialize({ FeatureFlags.internalUser }, AndroidLogger(), PersistentLogger(this), SpinnerLogger())
 
     DatabaseMonitor.initialize(object : QueryMonitor {
       override fun onSql(sql: String, args: Array<Any>?) {

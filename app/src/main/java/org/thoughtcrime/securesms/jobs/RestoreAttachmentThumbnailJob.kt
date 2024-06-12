@@ -197,7 +197,7 @@ class RestoreAttachmentThumbnailJob private constructor(
       return
     }
 
-    val maxThumbnailSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes()
+    val maxThumbnailSize: Long = FeatureFlags.maxAttachmentReceiveSizeBytes
     val thumbnailTransferFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
     val thumbnailFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
 

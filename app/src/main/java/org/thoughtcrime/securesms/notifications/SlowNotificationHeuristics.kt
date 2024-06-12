@@ -36,7 +36,7 @@ object SlowNotificationHeuristics {
   private val TAG = Log.tag(SlowNotificationHeuristics::class.java)
 
   fun getConfiguration(): Configuration {
-    val json = FeatureFlags.delayedNotificationsPromptConfig()
+    val json = FeatureFlags.delayedNotificationsPromptConfig
     return if (TextUtils.isEmpty(json)) {
       getDefaultConfiguration()
     } else {

@@ -47,8 +47,8 @@ class TransferOrRestoreV2Fragment : LoggingFragment(R.layout.fragment_transfer_r
       binding.transferOrRestoreFragmentRestoreRemoteCard.visible = false
     }
 
-    binding.transferOrRestoreFragmentRestoreRemoteCard.visible = FeatureFlags.messageBackups()
-    binding.transferOrRestoreFragmentMoreOptions.visible = FeatureFlags.messageBackups()
+    binding.transferOrRestoreFragmentRestoreRemoteCard.visible = FeatureFlags.messageBackups
+    binding.transferOrRestoreFragmentMoreOptions.visible = FeatureFlags.messageBackups
 
     val description = getString(R.string.TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device)
     val toBold = getString(R.string.TransferOrRestoreFragment__you_need_access_to_your_old_device)

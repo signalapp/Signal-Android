@@ -22,19 +22,19 @@ object RingRtcDynamicConfiguration {
     return when {
       isHardwareBlocklisted() || isKnownFaultyHardwareImplementation() -> AudioProcessingMethod.ForceSoftwareAec3
       isSoftwareBlocklisted() -> AudioProcessingMethod.ForceHardware
-      Build.VERSION.SDK_INT < 29 && FeatureFlags.useHardwareAecIfOlderThanApi29() -> AudioProcessingMethod.ForceHardware
+      Build.VERSION.SDK_INT < 29 && FeatureFlags.useHardwareAecIfOlderThanApi29 -> AudioProcessingMethod.ForceHardware
       Build.VERSION.SDK_INT < 29 -> AudioProcessingMethod.ForceSoftwareAec3
       else -> AudioProcessingMethod.ForceHardware
     }
   }
 
   fun isTelecomAllowedForDevice(): Boolean {
-    return FeatureFlags.telecomManufacturerAllowList().lowercase().asListContains(Build.MANUFACTURER.lowercase()) &&
-      !FeatureFlags.telecomModelBlockList().lowercase().asListContains(Build.MODEL.lowercase())
+    return FeatureFlags.telecomManufacturerAllowList.lowercase().asListContains(Build.MANUFACTURER.lowercase()) &&
+      !FeatureFlags.telecomModelBlocklist.lowercase().asListContains(Build.MODEL.lowercase())
   }
 
   private fun isHardwareBlocklisted(): Boolean {
-    return FeatureFlags.hardwareAecBlocklistModels().asListContains(Build.MODEL)
+    return FeatureFlags.hardwareAecBlocklistModels.asListContains(Build.MODEL)
   }
 
   fun isKnownFaultyHardwareImplementation(): Boolean {
@@ -44,6 +44,6 @@ object RingRtcDynamicConfiguration {
   }
 
   private fun isSoftwareBlocklisted(): Boolean {
-    return FeatureFlags.softwareAecBlocklistModels().asListContains(Build.MODEL)
+    return FeatureFlags.softwareAecBlocklistModels.asListContains(Build.MODEL)
   }
 }

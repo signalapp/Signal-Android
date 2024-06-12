@@ -71,7 +71,7 @@ object FcmFetchManager {
   }
 
   private fun postMayHaveMessagesNotification(context: Context) {
-    if (FeatureFlags.fcmMayHaveMessagesNotificationKillSwitch()) {
+    if (FeatureFlags.fcmMayHaveMessagesNotificationKillSwitch) {
       Log.w(TAG, "May have messages notification kill switch")
       return
     }

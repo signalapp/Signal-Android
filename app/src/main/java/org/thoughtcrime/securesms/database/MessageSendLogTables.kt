@@ -153,7 +153,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
 
   /** @return The ID of the inserted entry, or -1 if none was inserted. Can be used with [addRecipientToExistingEntryIfPossible] */
   fun insertIfPossible(recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageId: MessageId, urgent: Boolean): Long {
-    if (!FeatureFlags.retryReceipts()) return -1
+    if (!FeatureFlags.retryReceipts) return -1
 
     if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
       val recipientDevice = listOf(RecipientDevice(recipientId, sendMessageResult.success.devices))
@@ -165,7 +165,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
 
   /** @return The ID of the inserted entry, or -1 if none was inserted. Can be used with [addRecipientToExistingEntryIfPossible] */
   fun insertIfPossible(recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageIds: List<MessageId>, urgent: Boolean): Long {
-    if (!FeatureFlags.retryReceipts()) return -1
+    if (!FeatureFlags.retryReceipts) return -1
 
     if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
       val recipientDevice = listOf(RecipientDevice(recipientId, sendMessageResult.success.devices))
@@ -177,7 +177,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
 
   /** @return The ID of the inserted entry, or -1 if none was inserted. Can be used with [addRecipientToExistingEntryIfPossible] */
   fun insertIfPossible(sentTimestamp: Long, possibleRecipients: List<Recipient>, results: List<SendMessageResult>, contentHint: ContentHint, messageId: MessageId, urgent: Boolean): Long {
-    if (!FeatureFlags.retryReceipts()) return -1
+    if (!FeatureFlags.retryReceipts) return -1
 
     val accessList = RecipientAccessList(possibleRecipients)
 
@@ -198,7 +198,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
   }
 
   fun addRecipientToExistingEntryIfPossible(payloadId: Long, recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageId: MessageId, urgent: Boolean): Long {
-    if (!FeatureFlags.retryReceipts()) return payloadId
+    if (!FeatureFlags.retryReceipts) return payloadId
 
     if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
       val db = databaseHelper.signalWritableDatabase
@@ -274,9 +274,9 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
   }
 
   fun getLogEntry(recipientId: RecipientId, device: Int, dateSent: Long): MessageLogEntry? {
-    if (!FeatureFlags.retryReceipts()) return null
+    if (!FeatureFlags.retryReceipts) return null
 
-    trimOldMessages(System.currentTimeMillis(), FeatureFlags.retryRespondMaxAge())
+    trimOldMessages(System.currentTimeMillis(), FeatureFlags.retryRespondMaxAge)
 
     val db = databaseHelper.signalReadableDatabase
     val table = "${MslPayloadTable.TABLE_NAME} LEFT JOIN ${MslRecipientTable.TABLE_NAME} ON ${MslPayloadTable.TABLE_NAME}.${MslPayloadTable.ID} = ${MslRecipientTable.TABLE_NAME}.${MslRecipientTable.PAYLOAD_ID}"
@@ -356,7 +356,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
   }
 
   fun deleteAllForRecipient(recipientId: RecipientId) {
-    if (!FeatureFlags.retryReceipts()) return
+    if (!FeatureFlags.retryReceipts) return
 
     writableDatabase
       .delete(MslRecipientTable.TABLE_NAME)

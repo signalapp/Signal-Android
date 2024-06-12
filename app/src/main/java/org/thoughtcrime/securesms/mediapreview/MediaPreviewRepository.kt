@@ -85,7 +85,7 @@ class MediaPreviewRepository {
   fun localDelete(attachment: DatabaseAttachment): Completable {
     return Completable.fromRunnable {
       val deletedMessageRecord = AttachmentUtil.deleteAttachment(attachment)
-      if (deletedMessageRecord != null && FeatureFlags.deleteSyncEnabled()) {
+      if (deletedMessageRecord != null && FeatureFlags.deleteSyncEnabled) {
         MultiDeviceDeleteSendSyncJob.enqueueMessageDeletes(setOf(deletedMessageRecord))
       }
     }.subscribeOn(Schedulers.io())

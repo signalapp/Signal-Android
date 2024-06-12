@@ -38,9 +38,9 @@ object InAppDonations {
   private fun isPayPalAvailableForDonateToSignalType(inAppPaymentType: InAppPaymentTable.Type): Boolean {
     return when (inAppPaymentType) {
       InAppPaymentTable.Type.UNKNOWN -> error("Unsupported type UNKNOWN")
-      InAppPaymentTable.Type.ONE_TIME_DONATION, InAppPaymentTable.Type.ONE_TIME_GIFT -> FeatureFlags.paypalOneTimeDonations()
-      InAppPaymentTable.Type.RECURRING_DONATION -> FeatureFlags.paypalRecurringDonations()
-      InAppPaymentTable.Type.RECURRING_BACKUP -> FeatureFlags.messageBackups() && FeatureFlags.paypalRecurringDonations()
+      InAppPaymentTable.Type.ONE_TIME_DONATION, InAppPaymentTable.Type.ONE_TIME_GIFT -> FeatureFlags.paypalOneTimeDonations
+      InAppPaymentTable.Type.RECURRING_DONATION -> FeatureFlags.paypalRecurringDonations
+      InAppPaymentTable.Type.RECURRING_BACKUP -> FeatureFlags.messageBackups && FeatureFlags.paypalRecurringDonations
     } && !LocaleFeatureFlags.isPayPalDisabled()
   }
 
@@ -55,7 +55,7 @@ object InAppDonations {
    * Whether the user is in a region that supports PayPal, based off local phone number.
    */
   fun isPayPalAvailable(): Boolean {
-    return (FeatureFlags.paypalOneTimeDonations() || FeatureFlags.paypalRecurringDonations()) && !LocaleFeatureFlags.isPayPalDisabled()
+    return (FeatureFlags.paypalOneTimeDonations || FeatureFlags.paypalRecurringDonations) && !LocaleFeatureFlags.isPayPalDisabled()
   }
 
   /**
@@ -69,14 +69,14 @@ object InAppDonations {
    * Whether the user is in a region which supports SEPA Debit transfers, based off local phone number.
    */
   fun isSEPADebitAvailable(): Boolean {
-    return Environment.IS_STAGING || (FeatureFlags.sepaDebitDonations() && LocaleFeatureFlags.isSepaEnabled())
+    return Environment.IS_STAGING || (FeatureFlags.sepaDebitDonations && LocaleFeatureFlags.isSepaEnabled())
   }
 
   /**
    * Whether the user is in a region which supports IDEAL transfers, based off local phone number.
    */
   fun isIDEALAvailable(): Boolean {
-    return Environment.IS_STAGING || (FeatureFlags.idealDonations() && LocaleFeatureFlags.isIdealEnabled())
+    return Environment.IS_STAGING || (FeatureFlags.idealDonations && LocaleFeatureFlags.isIdealEnabled())
   }
 
   /**

@@ -20,7 +20,7 @@ import org.whispersystems.signalservice.api.kbs.PinHashUtil.verifyLocalPinHash
 class MessageBackupsFlowViewModel : ViewModel() {
   private val internalState = mutableStateOf(
     MessageBackupsFlowState(
-      availableBackupTiers = if (!FeatureFlags.messageBackups()) {
+      availableBackupTiers = if (!FeatureFlags.messageBackups) {
         emptyList()
       } else {
         listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)

@@ -124,7 +124,7 @@ class MultiselectForwardFragment :
     contactSearchMediator = ContactSearchMediator(
       this,
       emptySet(),
-      FeatureFlags.shareSelectionLimit(),
+      FeatureFlags.shareSelectionLimit,
       ContactSearchAdapter.DisplayOptions(
         displayCheckBox = !args.selectSingleRecipient,
         displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER,

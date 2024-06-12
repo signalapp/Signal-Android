@@ -86,7 +86,7 @@ sealed class CameraXModePolicy {
       val isMixedModeSupported = isVideoSupported &&
         Build.VERSION.SDK_INT >= 26 &&
         CameraXUtil.isMixedModeSupported(context) &&
-        !FeatureFlags.cameraXMixedModelBlocklist().asListContains(Build.MODEL)
+        !FeatureFlags.cameraXMixedModelBlocklist.asListContains(Build.MODEL)
 
       return when {
         isMixedModeSupported -> Mixed(isQrScanEnabled)

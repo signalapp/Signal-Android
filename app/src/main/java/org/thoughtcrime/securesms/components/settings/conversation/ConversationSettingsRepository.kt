@@ -159,9 +159,9 @@ class ConversationSettingsRepository(
           members.addAll(groupRecord.members)
           members.addAll(pendingMembers)
 
-          GroupCapacityResult(Recipient.self().id, members, FeatureFlags.groupLimits(), groupRecord.isAnnouncementGroup)
+          GroupCapacityResult(Recipient.self().id, members, FeatureFlags.groupLimits, groupRecord.isAnnouncementGroup)
         } else {
-          GroupCapacityResult(Recipient.self().id, groupRecord.members, FeatureFlags.groupLimits(), false)
+          GroupCapacityResult(Recipient.self().id, groupRecord.members, FeatureFlags.groupLimits, false)
         }
       )
     }

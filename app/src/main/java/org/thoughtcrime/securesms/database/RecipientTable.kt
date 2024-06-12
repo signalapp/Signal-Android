@@ -4152,7 +4152,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * get them back through CDS).
    */
   fun debugClearServiceIds(recipientId: RecipientId? = null) {
-    check(FeatureFlags.internalUser())
+    check(FeatureFlags.internalUser)
 
     writableDatabase
       .update(TABLE_NAME)
@@ -4177,7 +4177,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Should only be used for debugging! A very destructive action that clears all known profile keys and credentials.
    */
   fun debugClearProfileData(recipientId: RecipientId? = null) {
-    check(FeatureFlags.internalUser())
+    check(FeatureFlags.internalUser)
 
     writableDatabase
       .update(TABLE_NAME)
@@ -4208,7 +4208,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Should only be used for debugging! Clears the E164 and PNI from a recipient.
    */
   fun debugClearE164AndPni(recipientId: RecipientId) {
-    check(FeatureFlags.internalUser())
+    check(FeatureFlags.internalUser)
 
     writableDatabase
       .update(TABLE_NAME)
@@ -4228,7 +4228,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Only works if the recipient has a PNI.
    */
   fun debugRemoveAci(recipientId: RecipientId) {
-    check(FeatureFlags.internalUser())
+    check(FeatureFlags.internalUser)
 
     writableDatabase.execSQL(
       """

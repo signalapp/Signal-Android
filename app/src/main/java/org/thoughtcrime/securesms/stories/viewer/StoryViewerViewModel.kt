@@ -172,7 +172,7 @@ class StoryViewerViewModel(
       .filter { it != RecipientId.UNKNOWN }
       .distinctUntilChanged()
       .subscribe {
-        Stories.enqueueNextStoriesForDownload(it, true, FeatureFlags.storiesAutoDownloadMaximum())
+        Stories.enqueueNextStoriesForDownload(it, true, FeatureFlags.storiesAutoDownloadMaximum)
       }
   }
 

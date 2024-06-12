@@ -84,7 +84,7 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
       )
     )
 
-    if (FeatureFlags.internalUser() && args.inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
+    if (FeatureFlags.internalUser && args.inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
       val openApp = MaterialButton(requireContext()).apply {
         text = "Open App"
         layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {

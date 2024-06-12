@@ -44,7 +44,7 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
     messageHelper = MessageHelper(harness)
 
     mockkStatic(FeatureFlags::class)
-    every { FeatureFlags.deleteSyncEnabled() } returns true
+    every { FeatureFlags.deleteSyncEnabled } returns true
   }
 
   @After

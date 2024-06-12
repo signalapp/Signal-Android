@@ -84,7 +84,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       sectionHeaderPref(R.string.preferences_chats__backups)
 
-      if (FeatureFlags.messageBackups() || state.remoteBackupsEnabled) {
+      if (FeatureFlags.messageBackups || state.remoteBackupsEnabled) {
         clickPref(
           title = DSLSettingsText.from("Signal Backups"), // TODO [message-backups] -- Finalized copy
           summary = DSLSettingsText.from(if (state.remoteBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),

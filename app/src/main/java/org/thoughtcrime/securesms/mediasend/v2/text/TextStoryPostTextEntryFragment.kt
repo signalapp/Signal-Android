@@ -105,7 +105,7 @@ class TextStoryPostTextEntryFragment : KeyboardEntryDialogFragment(
       backgroundButton
     )
 
-    if (FeatureFlags.storiesTextFunctions()) {
+    if (FeatureFlags.storiesTextFunctions) {
       fadeableViews = fadeableViews + alignmentButton
       alignmentButton.visibility = View.VISIBLE
       scaleBar.visibility = View.VISIBLE

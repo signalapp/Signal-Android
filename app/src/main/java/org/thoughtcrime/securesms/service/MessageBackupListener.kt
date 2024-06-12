@@ -36,7 +36,7 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
 
     @JvmStatic
     fun schedule(context: Context?) {
-      if (FeatureFlags.messageBackups() && SignalStore.backup().areBackupsEnabled) {
+      if (FeatureFlags.messageBackups && SignalStore.backup().areBackupsEnabled) {
         MessageBackupListener().onReceive(context, getScheduleIntent())
       }
     }

@@ -1368,7 +1368,7 @@ object SyncMessageProcessor {
 
   @Throws(BadGroupIdException::class)
   private fun handleSynchronizeGroupOrAdHocCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
-    if (!FeatureFlags.adHocCalling() && callEvent.type == SyncMessage.CallEvent.Type.AD_HOC_CALL) {
+    if (!FeatureFlags.adHocCalling && callEvent.type == SyncMessage.CallEvent.Type.AD_HOC_CALL) {
       log(envelopeTimestamp, "Ad-Hoc calling is not currently supported by this client, ignoring.")
       return
     }
@@ -1475,7 +1475,7 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeDeleteForMe(context: Context, deleteForMe: SyncMessage.DeleteForMe, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
-    if (!FeatureFlags.deleteSyncEnabled()) {
+    if (!FeatureFlags.deleteSyncEnabled) {
       warn(envelopeTimestamp, "Delete for me sync message dropped as support not enabled")
       return
     }

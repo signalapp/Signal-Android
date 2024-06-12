@@ -28,7 +28,7 @@ object CrashConfig {
   fun computePatterns(): List<CrashPattern> {
     val aci: ServiceId.ACI = SignalStore.account().aci ?: return emptyList()
 
-    val serialized = FeatureFlags.crashPromptConfig()
+    val serialized = FeatureFlags.crashPromptConfig
     if (serialized.isNullOrBlank()) {
       return emptyList()
     }

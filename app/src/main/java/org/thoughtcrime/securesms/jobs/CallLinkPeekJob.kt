@@ -46,7 +46,7 @@ internal class CallLinkPeekJob private constructor(
   )
 
   override fun onRun() {
-    if (!FeatureFlags.adHocCalling()) {
+    if (!FeatureFlags.adHocCalling) {
       Log.i(TAG, "Ad hoc calling is disabled. Dropping peek for call link.")
       return
     }

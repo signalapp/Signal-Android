@@ -125,7 +125,7 @@ class ConversationDataSource(
     records = MessageDataFetcher.updateModelsWithData(records, extraData).toMutableList()
     stopwatch.split("models")
 
-    if (FeatureFlags.messageBackups() && SignalStore.backup().restoreState.inProgress) {
+    if (FeatureFlags.messageBackups && SignalStore.backup().restoreState.inProgress) {
       BackupRestoreManager.prioritizeAttachmentsIfNeeded(records)
       stopwatch.split("restore")
     }

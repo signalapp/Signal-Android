@@ -601,7 +601,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     MaterialAlertDialogBuilder(requireContext()).apply {
       setIcon(R.drawable.symbol_error_triangle_fill_24)
       setTitle(R.string.MediaPreviewActivity_media_delete_confirmation_title)
-      setMessage(if (TextSecurePreferences.isMultiDevice(requireContext()) && FeatureFlags.deleteSyncEnabled()) R.string.MediaPreviewActivity_media_delete_confirmation_message_linked_device else R.string.MediaPreviewActivity_media_delete_confirmation_message)
+      setMessage(if (TextSecurePreferences.isMultiDevice(requireContext()) && FeatureFlags.deleteSyncEnabled) R.string.MediaPreviewActivity_media_delete_confirmation_message_linked_device else R.string.MediaPreviewActivity_media_delete_confirmation_message)
       setCancelable(true)
       setNegativeButton(android.R.string.cancel, null)
       setPositiveButton(R.string.ConversationFragment_delete_for_me) { _, _ ->

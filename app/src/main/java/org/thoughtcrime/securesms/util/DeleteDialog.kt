@@ -109,7 +109,7 @@ object DeleteDialog {
         }
       }
 
-      if (FeatureFlags.deleteSyncEnabled()) {
+      if (FeatureFlags.deleteSyncEnabled) {
         MultiDeviceDeleteSendSyncJob.enqueueMessageDeletes(messageRecords)
       }
 

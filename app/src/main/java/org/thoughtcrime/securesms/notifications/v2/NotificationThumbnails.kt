@@ -41,7 +41,7 @@ object NotificationThumbnails {
    * specifics here, we'll just disable notification thumbnails for them.
    */
   private val isBlocklisted by lazy {
-    FeatureFlags.notificationThumbnailProductBlocklist().asListContains(Build.PRODUCT)
+    FeatureFlags.notificationThumbnailProductBlocklist.asListContains(Build.PRODUCT)
   }
 
   fun getWithoutModifying(notificationItem: NotificationItem): NotificationItem.ThumbnailInfo {

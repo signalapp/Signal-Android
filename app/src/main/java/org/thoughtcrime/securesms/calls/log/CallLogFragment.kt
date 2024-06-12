@@ -253,7 +253,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, count, count))
       .setMessage(
-        if (FeatureFlags.adHocCalling()) {
+        if (FeatureFlags.adHocCalling) {
           getString(R.string.CallLogFragment__call_links_youve_created)
         } else {
           null
@@ -403,7 +403,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, 1, 1))
       .setMessage(
-        if (FeatureFlags.adHocCalling()) {
+        if (FeatureFlags.adHocCalling) {
           getString(R.string.CallLogFragment__call_links_youve_created)
         } else {
           null

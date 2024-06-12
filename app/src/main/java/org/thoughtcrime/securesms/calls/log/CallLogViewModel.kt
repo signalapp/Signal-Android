@@ -82,7 +82,7 @@ class CallLogViewModel(
       controller.onDataInvalidated()
     }
 
-    if (FeatureFlags.adHocCalling()) {
+    if (FeatureFlags.adHocCalling) {
       disposables += Observable
         .interval(30, TimeUnit.SECONDS, Schedulers.computation())
         .flatMapCompletable { callLogRepository.peekCallLinks() }

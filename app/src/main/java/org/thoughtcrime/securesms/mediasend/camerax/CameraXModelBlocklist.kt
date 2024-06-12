@@ -12,6 +12,6 @@ object CameraXModelBlocklist {
 
   @JvmStatic
   fun isBlocklisted(): Boolean {
-    return FeatureFlags.cameraXModelBlocklist().asListContains(Build.MODEL)
+    return FeatureFlags.cameraXModelBlocklist.asListContains(Build.MODEL)
   }
 }

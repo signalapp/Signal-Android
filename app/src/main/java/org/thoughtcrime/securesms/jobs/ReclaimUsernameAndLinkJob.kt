@@ -48,7 +48,7 @@ class ReclaimUsernameAndLinkJob private constructor(parameters: Parameters) : Jo
     return when (UsernameRepository.reclaimUsernameIfNecessary()) {
       UsernameRepository.UsernameReclaimResult.SUCCESS -> Result.success()
       UsernameRepository.UsernameReclaimResult.PERMANENT_ERROR -> Result.success()
-      UsernameRepository.UsernameReclaimResult.NETWORK_ERROR -> Result.retry(BackoffUtil.exponentialBackoff(runAttempt + 1, FeatureFlags.getDefaultMaxBackoff()))
+      UsernameRepository.UsernameReclaimResult.NETWORK_ERROR -> Result.retry(BackoffUtil.exponentialBackoff(runAttempt + 1, FeatureFlags.defaultMaxBackoff))
     }
   }
 

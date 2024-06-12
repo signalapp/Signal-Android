@@ -58,7 +58,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
         return
       }
 
-      if (!FeatureFlags.deleteSyncEnabled()) {
+      if (!FeatureFlags.deleteSyncEnabled) {
         Log.i(TAG, "Delete sync support not enabled.")
         return
       }
@@ -74,7 +74,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
         return
       }
 
-      if (!FeatureFlags.deleteSyncEnabled()) {
+      if (!FeatureFlags.deleteSyncEnabled) {
         Log.i(TAG, "Delete sync support not enabled.")
         return
       }

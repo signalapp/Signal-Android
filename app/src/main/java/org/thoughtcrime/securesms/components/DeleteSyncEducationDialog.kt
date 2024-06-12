@@ -48,7 +48,7 @@ class DeleteSyncEducationDialog : ComposeBottomSheetDialogFragment() {
     fun shouldShow(): Boolean {
       return TextSecurePreferences.isMultiDevice(AppDependencies.application) &&
         !SignalStore.uiHints().hasSeenDeleteSyncEducationSheet &&
-        FeatureFlags.deleteSyncEnabled()
+        FeatureFlags.deleteSyncEnabled
     }
 
     @JvmStatic

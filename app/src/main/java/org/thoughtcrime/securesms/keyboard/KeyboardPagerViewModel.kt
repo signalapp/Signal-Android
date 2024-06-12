@@ -20,7 +20,7 @@ class KeyboardPagerViewModel : ViewModel() {
       startingPages.remove(KeyboardPage.EMOJI)
     }
 
-    if (!FeatureFlags.gifSearchAvailable()) {
+    if (!FeatureFlags.gifSearchAvailable) {
       startingPages.remove(KeyboardPage.GIF)
     }
 

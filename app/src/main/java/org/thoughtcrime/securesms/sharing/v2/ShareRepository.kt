@@ -82,7 +82,7 @@ class ShareRepository(context: Context) {
     }
 
     val media: List<Media> = mimeTypes.toList()
-      .take(FeatureFlags.maxAttachmentCount())
+      .take(FeatureFlags.maxAttachmentCount)
       .map { (uri, mimeType) ->
         val stream: InputStream = try {
           appContext.contentResolver.openInputStream(uri)

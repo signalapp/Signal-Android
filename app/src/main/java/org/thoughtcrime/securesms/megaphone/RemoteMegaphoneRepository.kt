@@ -112,7 +112,7 @@ object RemoteMegaphoneRepository {
   private fun checkCondition(conditionalId: String): Boolean {
     return when (conditionalId) {
       "standard_donate" -> shouldShowDonateMegaphone()
-      "internal_user" -> FeatureFlags.internalUser()
+      "internal_user" -> FeatureFlags.internalUser
       else -> false
     }
   }

@@ -86,7 +86,7 @@ class RegistrationV2Activity : BaseActivity() {
       val startIntent = MainActivity.clearTop(this).apply {
         if (needsPin) {
           putExtra("next_intent", CreateSvrPinActivity.getIntentForPinCreate(this@RegistrationV2Activity))
-        } else if (!SignalStore.registrationValues().hasSkippedTransferOrRestore() && FeatureFlags.messageBackups()) {
+        } else if (!SignalStore.registrationValues().hasSkippedTransferOrRestore() && FeatureFlags.messageBackups) {
           putExtra("next_intent", RemoteRestoreActivity.getIntent(this@RegistrationV2Activity))
         } else if (needsProfile) {
           putExtra("next_intent", CreateProfileActivity.getIntentForUserProfile(this@RegistrationV2Activity))

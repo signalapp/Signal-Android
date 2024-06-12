@@ -19,11 +19,11 @@ object Svr3Migration {
    * Whether or not you should write to SVR3. If [shouldWriteToSvr2] is also enabled, you should write to SVR3 first.
    */
   val shouldWriteToSvr3: Boolean
-    get() = shouldReadFromSvr3 && FeatureFlags.svr3MigrationPhase().let { it == 1 || it == 2 }
+    get() = shouldReadFromSvr3 && FeatureFlags.svr3MigrationPhase.let { it == 1 || it == 2 }
 
   /**
    * Whether or not you should write to SVR2. If [shouldWriteToSvr3] is also enabled, you should write to SVR3 first.
    */
   val shouldWriteToSvr2: Boolean
-    get() = !shouldReadFromSvr3 || FeatureFlags.svr3MigrationPhase() != 2
+    get() = !shouldReadFromSvr3 || FeatureFlags.svr3MigrationPhase != 2
 }
