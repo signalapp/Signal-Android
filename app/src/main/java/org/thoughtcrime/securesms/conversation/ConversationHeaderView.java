@@ -21,8 +21,6 @@ import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.databinding.ConversationHeaderViewBinding;
 import org.thoughtcrime.securesms.fonts.SignalSymbols;
@@ -50,8 +48,6 @@ public class ConversationHeaderView extends ConstraintLayout {
     inflate(getContext(), R.layout.conversation_header_view, this);
 
     binding = ConversationHeaderViewBinding.bind(this);
-
-    binding.messageRequestAvatar.setFallbackPhotoProvider(new FallbackPhotoProvider());
   }
 
   public void setBadge(@Nullable Recipient recipient) {
@@ -196,22 +192,5 @@ public class ConversationHeaderView extends ConstraintLayout {
         .append(SpanUtil.buildCenteredImageSpan(drawable))
         .append(SpanUtil.space(8, DimensionUnit.SP))
         .append(input);
-  }
-
-  private static final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {
-    @Override
-    public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
-      return new ResourceContactPhoto(R.drawable.ic_profile_64);
-    }
-
-    @Override
-    public @NonNull FallbackContactPhoto getPhotoForGroup() {
-      return new ResourceContactPhoto(R.drawable.ic_group_64);
-    }
-
-    @Override
-    public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-      return new ResourceContactPhoto(R.drawable.ic_note_64);
-    }
   }
 }

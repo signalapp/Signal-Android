@@ -28,14 +28,14 @@ import com.bumptech.glide.request.transition.Transition;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.providers.AvatarProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.Objects;
-import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -115,7 +115,7 @@ public final class AvatarUtil {
     if (Build.VERSION.SDK_INT > 29) {
       return IconCompat.createWithContentUri(AvatarProvider.getContentUri(recipient.getId()));
     } else {
-      return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE));
+      return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient, AdaptiveBitmapMetrics.getInnerWidth()));
     }
   }
 
@@ -162,7 +162,7 @@ public final class AvatarUtil {
       photo = recipient.getContactPhoto();
     }
 
-    final int size = targetSize == -1 ? DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE : targetSize;
+    final int size = targetSize == -1 ? AdaptiveBitmapMetrics.getInnerWidth() : targetSize;
     final RequestBuilder<T> request = requestBuilder.load(photo)
                                                 .error(getFallback(context, recipient, size))
                                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -183,9 +183,12 @@ public final class AvatarUtil {
   }
 
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    String name = Optional.of(recipient.getDisplayName(context)).orElse("");
+    FallbackAvatar fallbackAvatar = FallbackAvatar.forTextOrDefault(recipient.getDisplayName(context), recipient.getAvatarColor());
 
-    return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40, targetSize).asDrawable(context, recipient.getAvatarColor());
+    Drawable avatar = new FallbackAvatarDrawable(context, fallbackAvatar).circleCrop();
+    avatar.setBounds(0, 0, targetSize, targetSize);
+
+    return avatar;
   }
 
   /**
@@ -199,7 +202,7 @@ public final class AvatarUtil {
     private final int size;
 
     private AvatarTarget(int size) {
-      this.size = size == UNDEFINED_SIZE ? DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE : size;
+      this.size = size == UNDEFINED_SIZE ? AdaptiveBitmapMetrics.getInnerWidth() : size;
     }
 
     public @Nullable Bitmap await() throws InterruptedException {

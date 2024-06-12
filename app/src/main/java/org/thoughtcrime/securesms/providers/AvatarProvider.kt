@@ -21,8 +21,8 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.KeyCachingService
+import org.thoughtcrime.securesms.util.AdaptiveBitmapMetrics
 import org.thoughtcrime.securesms.util.AvatarUtil
-import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.io.File
 import java.io.FileNotFoundException
@@ -168,7 +168,7 @@ class AvatarProvider : BaseContentProvider() {
       ParcelFileDescriptor.AutoCloseOutputStream(pipe[1]).use { output ->
         if (VERBOSE) Log.i(TAG, "Writing to pipe:${recipient.id}")
 
-        AvatarUtil.getBitmapForNotification(context!!, recipient, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE).apply {
+        AvatarUtil.getBitmapForNotification(context!!, recipient, AdaptiveBitmapMetrics.innerWidth).apply {
           compress(Bitmap.CompressFormat.PNG, 100, output)
         }
         output.flush()

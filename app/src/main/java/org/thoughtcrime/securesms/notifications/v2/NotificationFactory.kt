@@ -19,8 +19,9 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -390,7 +391,7 @@ object NotificationFactory {
         recipient.getContactDrawable(context)
       }
     } else {
-      GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, AvatarColor.UNKNOWN)
+      FallbackAvatarDrawable(context, FallbackAvatar.forTextOrDefault("Unknown", AvatarColor.UNKNOWN)).circleCrop()
     }.toLargeBitmap(context)
 
     val builder: NotificationBuilder = NotificationBuilder.create(context)

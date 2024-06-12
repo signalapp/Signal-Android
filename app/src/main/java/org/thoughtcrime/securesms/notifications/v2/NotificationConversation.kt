@@ -10,8 +10,9 @@ import androidx.core.app.TaskStackBuilder
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
 import org.thoughtcrime.securesms.contacts.TurnOffContactJoinedNotificationsActivity
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.Util
-import java.lang.NullPointerException
 
 /**
  * Encapsulate all the notifications for a given conversation (thread) and the top
@@ -57,7 +57,7 @@ data class NotificationConversation(
     return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
       recipient.getContactDrawable(context)
     } else {
-      GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, AvatarColor.UNKNOWN)
+      FallbackAvatarDrawable(context, FallbackAvatar.forTextOrDefault("Unknown", AvatarColor.UNKNOWN)).circleCrop()
     }
   }
 

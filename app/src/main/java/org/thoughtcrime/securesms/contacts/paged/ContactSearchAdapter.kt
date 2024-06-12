@@ -13,8 +13,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
 import org.signal.core.util.BreakIteratorCompat
-import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
 import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
@@ -24,8 +24,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -243,10 +241,10 @@ open class ContactSearchAdapter(
 
     fun bindAvatar(model: StoryModel) {
       if (model.story.recipient.isMyStory) {
-        avatar.setFallbackPhotoProvider(MyStoryFallbackPhotoProvider(Recipient.self().getDisplayName(context), 40.dp))
+        avatar.setFallbackAvatarProvider(MyStoryFallbackAvatarProvider)
         avatar.displayProfileAvatar(Recipient.self())
       } else {
-        avatar.setFallbackPhotoProvider(Recipient.DEFAULT_FALLBACK_PHOTO_PROVIDER)
+        avatar.setFallbackAvatarProvider(null)
         avatar.displayChatAvatar(getRecipient(model))
       }
       groupStoryIndicator.visible = showStoryRing && model.story.recipient.isGroup
@@ -308,9 +306,14 @@ open class ContactSearchAdapter(
       }
     }
 
-    private class MyStoryFallbackPhotoProvider(private val name: String, private val targetSize: Int) : Recipient.FallbackPhotoProvider() {
-      override val photoForLocalNumber: FallbackContactPhoto
-        get() = GeneratedContactPhoto(name, R.drawable.symbol_person_40, targetSize)
+    private object MyStoryFallbackAvatarProvider : AvatarImageView.FallbackAvatarProvider {
+      override fun getFallbackAvatar(recipient: Recipient): FallbackAvatar {
+        if (recipient.isSelf) {
+          return FallbackAvatar.Resource.Person(recipient.avatarColor)
+        }
+
+        return super.getFallbackAvatar(recipient)
+      }
     }
 
     override fun onAttachedToWindow() {

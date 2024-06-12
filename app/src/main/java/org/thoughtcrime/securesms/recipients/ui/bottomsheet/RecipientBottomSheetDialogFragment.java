@@ -31,8 +31,6 @@ import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.badges.view.ViewBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon;
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference;
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.nicknames.NicknameActivity;
@@ -167,13 +165,6 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
 
     viewModel.getRecipient().observe(getViewLifecycleOwner(), recipient -> {
       interactionsContainer.setVisibility(recipient.isSelf() ? View.GONE : View.VISIBLE);
-
-      avatar.setFallbackPhotoProvider(new Recipient.FallbackPhotoProvider() {
-        @Override
-        public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-          return new FallbackPhoto80dp(R.drawable.ic_note_80, recipient.getAvatarColor());
-        }
-      });
       avatar.displayChatAvatar(recipient);
 
       if (!recipient.isSelf()) {

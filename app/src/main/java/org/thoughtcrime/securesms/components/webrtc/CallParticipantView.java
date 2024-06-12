@@ -25,13 +25,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -49,8 +48,6 @@ import java.util.concurrent.TimeUnit;
  * avatar in full screen or pip mode, and their video feed.
  */
 public class CallParticipantView extends ConstraintLayout {
-
-  private static final FallbackPhotoProvider FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
 
   private static final long DELAY_SHOWING_MISSING_MEDIA_KEYS = TimeUnit.SECONDS.toMillis(5);
   private static final int  SMALL_AVATAR                     = ViewUtil.dpToPx(96);
@@ -116,7 +113,6 @@ public class CallParticipantView extends ConstraintLayout {
     raiseHandIcon         = findViewById(R.id.call_participant_raise_hand_icon);
     nameLabel             = findViewById(R.id.call_participant_name_label);
 
-    avatar.setFallbackPhotoProvider(FALLBACK_PHOTO_PROVIDER);
     useLargeAvatar();
   }
 
@@ -422,12 +418,13 @@ public class CallParticipantView extends ConstraintLayout {
   private void setPipAvatar(@NonNull Recipient recipient) {
     ContactPhoto         contactPhoto  = recipient.isSelf() ? new ProfileContactPhoto(Recipient.self())
                                                             : recipient.getContactPhoto();
-    FallbackContactPhoto fallbackPhoto = recipient.getFallbackContactPhoto(FALLBACK_PHOTO_PROVIDER);
+
+    FallbackAvatarDrawable fallbackAvatarDrawable = new FallbackAvatarDrawable(getContext(), recipient.getFallbackAvatar());
 
     Glide.with(this)
             .load(contactPhoto)
-            .fallback(fallbackPhoto.asCallCard(getContext()))
-            .error(fallbackPhoto.asCallCard(getContext()))
+            .fallback(fallbackAvatarDrawable)
+            .error(fallbackAvatarDrawable)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .fitCenter()
             .into(pipAvatar);
@@ -453,20 +450,6 @@ public class CallParticipantView extends ConstraintLayout {
                    .setMessage(R.string.CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change)
                    .setPositiveButton(android.R.string.ok, null)
                    .show();
-  }
-
-  private static final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {
-    @Override
-    public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-      return super.getPhotoForRecipientWithoutName();
-    }
-
-    @Override
-    public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
-      ResourceContactPhoto photo = new ResourceContactPhoto(R.drawable.ic_profile_outline_120);
-      photo.setScaleType(ImageView.ScaleType.CENTER_CROP);
-      return photo;
-    }
   }
 
   public enum SelfPipMode {

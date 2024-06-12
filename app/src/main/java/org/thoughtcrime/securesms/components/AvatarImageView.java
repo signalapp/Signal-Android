@@ -12,7 +12,6 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
@@ -29,14 +28,18 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.shape.RelativeCornerSize;
+import com.google.android.material.shape.RoundedCornerTreatment;
+import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -46,13 +49,12 @@ import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheet
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.BlurTransformation;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class AvatarImageView extends AppCompatImageView {
+public final class AvatarImageView extends ShapeableImageView {
 
   private static final int SIZE_LARGE = 1;
   private static final int SIZE_SMALL = 2;
@@ -65,14 +67,14 @@ public final class AvatarImageView extends AppCompatImageView {
   private int                             size;
   private boolean                         inverted;
   private OnClickListener                 listener;
-  private Recipient.FallbackPhotoProvider fallbackPhotoProvider;
   private boolean                         blurred;
   private ChatColors                      chatColors;
   private FixedSizeTarget                 fixedSizeTarget;
 
-  private @Nullable RecipientContactPhoto recipientContactPhoto;
-  private @NonNull  Drawable              unknownRecipientDrawable;
-  private @Nullable AvatarColor           fallbackPhotoColor;
+  private @Nullable RecipientContactPhoto  recipientContactPhoto;
+  private @NonNull  Drawable               unknownRecipientDrawable;
+  private @NonNull  FallbackAvatarProvider fallbackAvatarProvider = new DefaultFallbackAvatarProvider();
+
 
   public AvatarImageView(Context context) {
     super(context);
@@ -94,9 +96,11 @@ public final class AvatarImageView extends AppCompatImageView {
       typedArray.recycle();
     }
 
-    unknownRecipientDrawable = new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20).asDrawable(context, AvatarColor.UNKNOWN, inverted);
+    unknownRecipientDrawable = new FallbackAvatarDrawable(context, new FallbackAvatar.Resource.Person(AvatarColor.UNKNOWN));
     blurred                  = false;
     chatColors               = null;
+
+    setShapeAppearanceModel(ShapeAppearanceModel.builder().setAllCorners(new RoundedCornerTreatment()).setAllCornerSizes(new RelativeCornerSize(0.5f)).build());
   }
 
   @Override
@@ -110,12 +114,8 @@ public final class AvatarImageView extends AppCompatImageView {
     super.setOnClickListener(listener);
   }
 
-  public void setFallbackPhotoProvider(Recipient.FallbackPhotoProvider fallbackPhotoProvider) {
-    this.fallbackPhotoProvider = fallbackPhotoProvider;
-  }
-
-  public void setFallbackPhotoColor(@Nullable AvatarColor fallbackPhotoColor) {
-    this.fallbackPhotoColor = fallbackPhotoColor;
+  public void setFallbackAvatarProvider(@Nullable FallbackAvatarProvider fallbackAvatarProvider) {
+    this.fallbackAvatarProvider = fallbackAvatarProvider != null ? fallbackAvatarProvider : new DefaultFallbackAvatarProvider();
   }
 
   /**
@@ -184,18 +184,21 @@ public final class AvatarImageView extends AppCompatImageView {
         this.chatColors       = chatColors;
         recipientContactPhoto = photo;
 
-        Recipient.FallbackPhotoProvider activeFallbackPhotoProvider = this.fallbackPhotoProvider;
+        FallbackAvatarProvider activeFallbackPhotoProvider = this.fallbackAvatarProvider;
         if (recipient.isSelf() && avatarOptions.useSelfProfileAvatar) {
-          activeFallbackPhotoProvider = new Recipient.FallbackPhotoProvider() {
+          activeFallbackPhotoProvider = new FallbackAvatarProvider() {
             @Override
-            public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-              return super.getPhotoForRecipientWithName(recipient.getDisplayName(getContext()), ViewUtil.getWidth(AvatarImageView.this));
+            public @NonNull FallbackAvatar getFallbackAvatar(@NonNull Recipient recipient) {
+              if (recipient.isSelf()) {
+                return new FallbackAvatar.Resource.Person(recipient.getAvatarColor());
+              }
+
+              return FallbackAvatarProvider.super.getFallbackAvatar(recipient);
             }
           };
         }
 
-        Drawable fallbackContactPhotoDrawable = size == SIZE_SMALL ? photo.recipient.getSmallFallbackContactPhotoDrawable(getContext(), inverted, activeFallbackPhotoProvider, ViewUtil.getWidth(this))
-                                                                   : photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted, activeFallbackPhotoProvider, ViewUtil.getWidth(this));
+        Drawable fallback = new FallbackAvatarDrawable(getContext(), activeFallbackPhotoProvider.getFallbackAvatar(recipient));
 
         if (fixedSizeTarget != null) {
           requestManager.clear(fixedSizeTarget);
@@ -212,8 +215,8 @@ public final class AvatarImageView extends AppCompatImageView {
 
           RequestBuilder<Drawable> request = requestManager.load(photo.contactPhoto)
                                                          .dontAnimate()
-                                                         .fallback(fallbackContactPhotoDrawable)
-                                                         .error(fallbackContactPhotoDrawable)
+                                                         .fallback(fallback)
+                                                         .error(fallback)
                                                          .diskCacheStrategy(DiskCacheStrategy.ALL)
                                                          .downsample(DownsampleStrategy.CENTER_INSIDE)
                                                          .transform(new MultiTransformation<>(transforms))
@@ -227,7 +230,7 @@ public final class AvatarImageView extends AppCompatImageView {
           }
 
         } else {
-          setImageDrawable(fallbackContactPhotoDrawable);
+          setImageDrawable(fallback);
         }
       }
 
@@ -235,12 +238,7 @@ public final class AvatarImageView extends AppCompatImageView {
     } else {
       recipientContactPhoto = null;
       requestManager.clear(this);
-      if (fallbackPhotoProvider != null) {
-        setImageDrawable(fallbackPhotoProvider.getPhotoForRecipientWithoutName()
-                                              .asDrawable(getContext(), Util.firstNonNull(fallbackPhotoColor, AvatarColor.UNKNOWN), inverted));
-      } else {
-        setImageDrawable(unknownRecipientDrawable);
-      }
+      setImageDrawable(unknownRecipientDrawable);
 
       disableQuickContact();
     }
@@ -267,13 +265,9 @@ public final class AvatarImageView extends AppCompatImageView {
     }
   }
 
-  public void setImageBytesForGroup(@Nullable byte[] avatarBytes,
-                                    @Nullable Recipient.FallbackPhotoProvider fallbackPhotoProvider,
-                                    @NonNull AvatarColor color)
+  public void setImageBytesForGroup(@Nullable byte[] avatarBytes, @NonNull AvatarColor color)
   {
-    Drawable fallback = Util.firstNonNull(fallbackPhotoProvider, Recipient.DEFAULT_FALLBACK_PHOTO_PROVIDER)
-                            .getPhotoForGroup()
-                            .asDrawable(getContext(), color);
+    Drawable fallback = new FallbackAvatarDrawable(getContext(), new FallbackAvatar.Resource.Group(color));
 
     Glide.with(this)
             .load(avatarBytes)
@@ -294,6 +288,14 @@ public final class AvatarImageView extends AppCompatImageView {
     super.setOnClickListener(listener);
     setClickable(listener != null);
   }
+
+  public interface FallbackAvatarProvider {
+    default @NonNull FallbackAvatar getFallbackAvatar(@NonNull Recipient recipient) {
+      return recipient.getFallbackAvatar();
+    }
+  }
+
+  private static class DefaultFallbackAvatarProvider implements FallbackAvatarProvider {}
 
   private static class RecipientContactPhoto {
 

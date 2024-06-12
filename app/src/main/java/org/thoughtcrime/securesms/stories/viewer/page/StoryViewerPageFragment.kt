@@ -4,10 +4,8 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Rect
-import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.os.Bundle
 import android.text.SpannableString
@@ -52,13 +50,9 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBar
 import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBarListener
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
-import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto20dp
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.MessageStyler
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardBottomSheet
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
@@ -228,9 +222,6 @@ class StoryViewerPageFragment :
       storyCaptionContainer,
       addToGroupStoryButtonWrapper
     )
-
-    senderAvatar.setFallbackPhotoProvider(FallbackPhotoProvider())
-    groupAvatar.setFallbackPhotoProvider(FallbackPhotoProvider())
 
     closeView.setOnClickListener {
       requireActivity().onBackPressed()
@@ -1373,30 +1364,6 @@ class StoryViewerPageFragment :
       }
 
       return true
-    }
-  }
-
-  private class FallbackPhotoProvider : Recipient.FallbackPhotoProvider() {
-    override val photoForGroup: FallbackContactPhoto
-      get() = FallbackPhoto20dp(R.drawable.symbol_group_20)
-
-    override val photoForResolvingRecipient: FallbackContactPhoto
-      get() = throw UnsupportedOperationException("This provider does not support resolving recipients")
-
-    override val photoForLocalNumber: FallbackContactPhoto
-      get() = throw UnsupportedOperationException("This provider does not support local number")
-
-    override fun getPhotoForRecipientWithName(name: String, targetSize: Int): FallbackContactPhoto {
-      return FixedSizeGeneratedContactPhoto(name, R.drawable.symbol_person_20)
-    }
-
-    override val photoForRecipientWithoutName: FallbackContactPhoto
-      get() = FallbackPhoto20dp(R.drawable.symbol_person_20)
-  }
-
-  private class FixedSizeGeneratedContactPhoto(name: String, fallbackResId: Int) : GeneratedContactPhoto(name, fallbackResId) {
-    override fun newFallbackDrawable(context: Context, color: AvatarColor, inverted: Boolean): Drawable {
-      return FallbackPhoto20dp(fallbackResId).asDrawable(context, color, inverted)
     }
   }
 

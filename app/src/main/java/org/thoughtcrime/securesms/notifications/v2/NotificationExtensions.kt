@@ -13,9 +13,9 @@ import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
@@ -37,7 +37,7 @@ fun Drawable?.toLargeBitmap(context: Context): Bitmap? {
 
 fun Recipient.getContactDrawable(context: Context): Drawable? {
   val contactPhoto: ContactPhoto? = if (isSelf) ProfileContactPhoto(this) else contactPhoto
-  val fallbackContactPhoto: FallbackContactPhoto = if (isSelf) getFallback(context) else fallbackContactPhoto
+  val fallbackAvatar: FallbackAvatar = if (isSelf) getFallback(context) else getFallbackAvatar()
   return if (contactPhoto != null) {
     try {
       val transforms: MutableList<Transformation<Bitmap>> = mutableListOf()
@@ -56,12 +56,12 @@ fun Recipient.getContactDrawable(context: Context): Drawable? {
         )
         .get()
     } catch (e: InterruptedException) {
-      fallbackContactPhoto.asDrawable(context, avatarColor)
+      FallbackAvatarDrawable(context, fallbackAvatar).circleCrop()
     } catch (e: ExecutionException) {
-      fallbackContactPhoto.asDrawable(context, avatarColor)
+      FallbackAvatarDrawable(context, fallbackAvatar).circleCrop()
     }
   } else {
-    fallbackContactPhoto.asDrawable(context, avatarColor)
+    FallbackAvatarDrawable(context, fallbackAvatar).circleCrop()
   }
 }
 
@@ -84,8 +84,8 @@ fun Intent.makeUniqueToPreventMerging(): Intent {
   return setData((Uri.parse("custom://" + System.currentTimeMillis())))
 }
 
-fun Recipient.getFallback(context: Context): FallbackContactPhoto {
-  return GeneratedContactPhoto(getDisplayName(context), R.drawable.ic_profile_outline_40)
+fun Recipient.getFallback(context: Context): FallbackAvatar {
+  return FallbackAvatar.forTextOrDefault(getDisplayName(context), avatarColor)
 }
 
 fun NotificationManager.isDisplayingSummaryNotification(): Boolean {
