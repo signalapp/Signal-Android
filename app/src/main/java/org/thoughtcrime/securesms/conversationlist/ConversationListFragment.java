@@ -301,7 +301,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                       SelectionLimits.NO_LIMITS,
                                                       new ContactSearchAdapter.DisplayOptions(
                                                           false,
-                                                          ContactSearchAdapter.DisplaySmsTag.DEFAULT,
                                                           ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
                                                           false,
                                                           false

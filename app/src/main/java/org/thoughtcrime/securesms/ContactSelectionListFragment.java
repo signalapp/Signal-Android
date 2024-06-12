@@ -337,7 +337,6 @@ public final class ContactSelectionListFragment extends LoggingFragment {
         selectionLimit,
         new ContactSearchAdapter.DisplayOptions(
             isMulti,
-            ContactSearchAdapter.DisplaySmsTag.DEFAULT,
             ContactSearchAdapter.DisplaySecondaryInformation.ALWAYS,
             newCallCallback != null,
             false

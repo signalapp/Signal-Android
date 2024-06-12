@@ -127,7 +127,6 @@ class MultiselectForwardFragment :
       FeatureFlags.shareSelectionLimit(),
       ContactSearchAdapter.DisplayOptions(
         displayCheckBox = !args.selectSingleRecipient,
-        displaySmsTag = ContactSearchAdapter.DisplaySmsTag.DEFAULT,
         displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
         displayStoryRing = true
       ),

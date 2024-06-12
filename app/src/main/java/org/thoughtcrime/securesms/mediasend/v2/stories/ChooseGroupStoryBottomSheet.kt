@@ -68,7 +68,6 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
       selectionLimits = FeatureFlags.shareSelectionLimit(),
       displayOptions = ContactSearchAdapter.DisplayOptions(
         displayCheckBox = true,
-        displaySmsTag = ContactSearchAdapter.DisplaySmsTag.DEFAULT,
         displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER
       ),
       mapStateToConfiguration = { state ->

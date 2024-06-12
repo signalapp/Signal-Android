@@ -507,7 +507,6 @@ open class ContactSearchAdapter(
     protected val name: FromTextView = itemView.findViewById(R.id.name)
     protected val number: TextView = itemView.findViewById(R.id.number)
     protected val label: TextView = itemView.findViewById(R.id.label)
-    protected val smsTag: View = itemView.findViewById(R.id.sms_tag)
     private val startAudio: View = itemView.findViewById(R.id.start_audio)
     private val startVideo: View = itemView.findViewById(R.id.start_video)
 
@@ -543,7 +542,6 @@ open class ContactSearchAdapter(
       bindAvatar(model)
       bindNumberField(model)
       bindLabelField(model)
-      bindSmsTagField(model)
       bindCallButtons(model)
     }
 
@@ -578,14 +576,6 @@ open class ContactSearchAdapter(
       label.visible = false
     }
 
-    protected open fun bindSmsTagField(model: T) {
-      smsTag.visible = when (displayOptions.displaySmsTag) {
-        DisplaySmsTag.DEFAULT -> isSmsContact(model)
-        DisplaySmsTag.IF_NOT_REGISTERED -> isNotRegistered(model)
-        DisplaySmsTag.NEVER -> false
-      }
-    }
-
     protected open fun bindLongPress(model: T) = Unit
 
     private fun bindCallButtons(model: T) {
@@ -605,14 +595,6 @@ open class ContactSearchAdapter(
         startVideo.visible = false
         startAudio.visible = false
       }
-    }
-
-    private fun isSmsContact(model: T): Boolean {
-      return getRecipient(model).isUnregistered && !getRecipient(model).isDistributionList
-    }
-
-    private fun isNotRegistered(model: T): Boolean {
-      return getRecipient(model).isUnregistered && !getRecipient(model).isDistributionList
     }
 
     abstract fun isSelected(model: T): Boolean
@@ -748,12 +730,6 @@ open class ContactSearchAdapter(
     fun onDeletePrivateStory(story: ContactSearchData.Story, isSelected: Boolean)
   }
 
-  enum class DisplaySmsTag {
-    DEFAULT,
-    IF_NOT_REGISTERED,
-    NEVER
-  }
-
   /**
    * Whether or not we should display a recipient's 'about' or e164, if either are
    * available.
@@ -765,7 +741,6 @@ open class ContactSearchAdapter(
 
   data class DisplayOptions(
     val displayCheckBox: Boolean = false,
-    val displaySmsTag: DisplaySmsTag = DisplaySmsTag.NEVER,
     val displaySecondaryInformation: DisplaySecondaryInformation = DisplaySecondaryInformation.NEVER,
     val displayCallButtons: Boolean = false,
     val displayStoryRing: Boolean = false

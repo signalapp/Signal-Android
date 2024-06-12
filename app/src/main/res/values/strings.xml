@@ -5108,9 +5108,6 @@
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">Select a color</string>
 
-    <!-- ContactSelectionListItem -->
-    <string name="ContactSelectionListItem__sms">SMS</string>
-
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Share</string>
 
