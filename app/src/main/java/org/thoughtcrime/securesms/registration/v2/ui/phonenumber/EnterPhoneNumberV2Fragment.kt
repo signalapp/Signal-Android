@@ -197,9 +197,13 @@ class EnterPhoneNumberV2Fragment : LoggingFragment(R.layout.fragment_registratio
       fragmentViewModel.setPhoneNumber(it?.toString())
     }
 
+    val scrollView = binding.scrollView
+    val registerButton = binding.registerButton
     phoneNumberInputLayout.onFocusChangeListener = View.OnFocusChangeListener { _: View?, hasFocus: Boolean ->
       if (hasFocus) {
-        binding.scrollView.postDelayed({ binding.scrollView.smoothScrollTo(0, binding.registerButton.bottom) }, 250)
+        scrollView.postDelayed({
+          scrollView.smoothScrollTo(0, registerButton.bottom)
+        }, 250)
       }
     }
 
