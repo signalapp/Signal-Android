@@ -80,7 +80,7 @@ class ContactSupportBottomSheetFragment : ComposeBottomSheetDialogFragment() {
   private fun buildClickableString(): AnnotatedString {
     val troubleshootingStepsString = stringResource(R.string.RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring)
     val contactSupportString = stringResource(R.string.RegistrationActivity_support_bottom_sheet_cta_contact_support_substring)
-    val completeString = stringResource(R.string.RegistrationActivity_support_bottom_sheet_body_call_to_action)
+    val completeString = stringResource(R.string.RegistrationActivity_support_bottom_sheet_body_call_to_action, troubleshootingStepsString, contactSupportString)
 
     val troubleshootingStartIndex = completeString.indexOf(troubleshootingStepsString)
     val troubleshootingEndIndex = troubleshootingStartIndex + troubleshootingStepsString.length
