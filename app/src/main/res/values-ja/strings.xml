@@ -1013,7 +1013,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">キャンセル</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">申請と招待</string>
     <string name="PendingMembersActivity_requests">申請</string>
     <string name="PendingMembersActivity_invites">招待</string>
     <string name="PendingMembersActivity_people_you_invited">あなたが招待した人々</string>
@@ -2146,8 +2146,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">登録でお困りですか？</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• お使いの携帯電話が圏内にあってSMSまたは通話が可能かどうかを確認してください\n • 電話番号への着信が可能か確認してください\n • 電話番号が正しく入力されていることを確認してください。</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">詳細については、これらのトラブルシューティングの手順に従うか、サポートにお問い合わせください</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">これらのトラブルシューティングの手順</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

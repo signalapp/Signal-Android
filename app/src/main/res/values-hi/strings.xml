@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">हटाएँ</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">अनुरोध और आमंत्रण</string>
     <string name="PendingMembersActivity_requests">अनुरोध</string>
     <string name="PendingMembersActivity_invites">आमंत्रण</string>
     <string name="PendingMembersActivity_people_you_invited">आपके द्वारा आमंत्रित लोग</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">पंजीकरण में परेशानी हो रही है?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• सुनिश्चित करें कि आपके फोन में आपका SMS या कॉल प्राप्त करने के लिए सेल्यूलर सिग्नल है\n • पुष्टि करें कि आप नंबर पर फोन कॉल प्राप्त कर सकते हैं\n • जांचें कि आपने अपना फोन नंबर सही दर्ज किया है।</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">अधिक जानकारी के लिए, कृपया इन समस्या निवारण चरणों का पालन करें या सपोर्ट से संपर्क करें</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ये समस्या निवारण चरण</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

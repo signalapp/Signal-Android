@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Fermer</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Demandes d’ajout et invitations</string>
     <string name="PendingMembersActivity_requests">Demandes</string>
     <string name="PendingMembersActivity_invites">Invitations</string>
     <string name="PendingMembersActivity_people_you_invited">Personnes que vous avez invitées</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Un problème d’inscription ?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Assurez-vous que votre téléphone dispose d’un signal cellulaire pour recevoir votre SMS ou votre appel.\n • Confirmez que vous pouvez recevoir un appel à ce numéro.\n • Vérifiez que vous avez renseigné votre numéro de téléphone correctement.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Pour plus d’informations, veuillez suivre ces étapes de dépannage ou contacter le service d’assistance.</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ces étapes de dépannage</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

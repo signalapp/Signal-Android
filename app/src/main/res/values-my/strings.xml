@@ -1013,7 +1013,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">ပယ်ရန်</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">တောင်းဆိုချက်များနှင့် ဖိတ်ခေါ်မှုများ</string>
     <string name="PendingMembersActivity_requests">တောင်းဆိုမှုများ</string>
     <string name="PendingMembersActivity_invites">ဖိတ်ကြားချက်များ</string>
     <string name="PendingMembersActivity_people_you_invited">သင်ဖိတ်ကြားထားသောလူများ</string>
@@ -2146,8 +2146,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">စာရင်းသွင်းမှုနှင့်စပ်လျဉ်း၍ အခက်အခဲရှိပါသလား။</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• သင့် SMS သို့မဟုတ် ခေါ်ဆိုမှုကို လက်ခံရန် သင့်ဖုန်းတွင် ဆယ်လူလာ လိုင်းရှိကြောင်း သေချာပါစေ\n • နံပါတ်သို့ ဖုန်းခေါ်ဆိုမှု လက်ခံနိုင်ကြောင်း အတည်ပြုပါ\n • သင့်ဖုန်းနံပါတ်ကို မှန်ကန်စွာ ရိုက်ထည့်ထားကြောင်း စစ်ဆေးပါ။</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">နောက်ထပ်အချက်အလက်အတွက် ဤပြဿနာဖြေရှင်းနည်း အဆင့်များအတိုင်း လုပ်ဆောင်ပါ သို့မဟုတ် ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ပါ</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ဤပြဿနာဖြေရှင်းနည်း အဆင့်များ</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

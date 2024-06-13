@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Kaloje</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Kërkesa &amp; ftesa</string>
     <string name="PendingMembersActivity_requests">Kërkesat</string>
     <string name="PendingMembersActivity_invites">Ftesat</string>
     <string name="PendingMembersActivity_people_you_invited">Persona që ju keni ftuar</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Ke probleme me regjistrimin?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Sigurohu që telefoni yt të ketë sinjal celular për të marrë SMS ose thirrje • Konfirmo se mund të marrësh telefonata në numër\n • Kontrollo nëse ke vendosur saktë numrin tënd të telefonit.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Për më shumë informacion, ndiqni këto hapa për zgjidhjen e problemeve ose kontaktoni me asistencën</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">me këto hapa për zgjidhjen e problemeve</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

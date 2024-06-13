@@ -1112,7 +1112,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Закрити</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Запити і запрошення</string>
     <string name="PendingMembersActivity_requests">Запити</string>
     <string name="PendingMembersActivity_invites">Запрошення</string>
     <string name="PendingMembersActivity_people_you_invited">Люди, яких ви запросили</string>
@@ -2389,8 +2389,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Виникли проблеми з реєстрацією?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Перевірте сигнал стільникової мережі на вашому телефоні для отримання SMS чи виклику\n • Переконайтеся, що ви можете отримувати телефонні виклики на цей номер\n • Перевірте правильність введеного номера телефону.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Щоб отримати додаткову інформацію, виконайте ці кроки з вирішення проблем або зверніться до служби підтримки</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ці кроки з вирішення проблем</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

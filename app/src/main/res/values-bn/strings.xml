@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">বাতিল করুন</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">অনুরোধ &amp; আমন্ত্রণ</string>
     <string name="PendingMembersActivity_requests">অনুরোধসমুহ</string>
     <string name="PendingMembersActivity_invites">আমন্ত্রণসমূহ</string>
     <string name="PendingMembersActivity_people_you_invited">আপনার আমন্ত্রিত লোকেরা</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">রেজিস্ট্রেশন করতে সমস্যা হচ্ছে?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• নিশ্চিত করুন যে আপনার ফোনে আপনার এসএমএস বা কল পাওয়ার জন্য একটি সেলুলার সিগন্যাল রয়েছে\n • নিশ্চিত করুন যে আপনি আপনার নম্বরে একটি ফোন কল পেতে পারেন\n • আপনি আপনার ফোন নম্বর সঠিকভাবে লিখেছেন কি না তা যাচাই করুন।</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">আরো তথ্যের জন্য, অনুগ্রহ করে সমস্যা সমাধানের এই ধাপগুলো অনুসরণ করুন বা সহায়তা কেন্দ্রের সাথে যোগাযোগ করুন</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">সমস্যা সমাধানের এই ধাপগুলো</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

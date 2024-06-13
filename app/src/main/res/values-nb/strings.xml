@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Avbryt</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Forespørsler og invitasjoner</string>
     <string name="PendingMembersActivity_requests">Forespørsler</string>
     <string name="PendingMembersActivity_invites">Invitasjoner</string>
     <string name="PendingMembersActivity_people_you_invited">Personer du har invitert</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Har du problemer med å registrere deg?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Pass på at telefonen din har dekning, slik at du kan motta koden på SMS eller via anrop\n • Sørg for at du kan motta anrop til telefonnummeret\n • Dobbeltsjekk at du har skrevet inn riktig telefonnummer.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For å få mer informasjon kan du følge disse feilsøkingstrinnene eller kontakte brukerstøtten vår</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">disse feilsøkingstrinnene</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

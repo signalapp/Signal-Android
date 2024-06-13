@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Жабу</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Өтініштер және шақырулар</string>
     <string name="PendingMembersActivity_requests">Өтініштер</string>
     <string name="PendingMembersActivity_invites">Шақырулар</string>
     <string name="PendingMembersActivity_people_you_invited">Сіз шақырған адамдар</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Тіркелу кезінде қиындыққа тап болып жатырсыз ба?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• SMS немесе қоңырау қабылдай алатындай телефоныңызда ұялы байланыс болуы керек. \n • Сол нөмірге телефон қоңырауын қабылдай алатын болуыңыз керек\n • Телефон нөміріңізді дұрыс енгізгеніңізді тексеріңіз.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Толық ақпарат алу үшін ақауларды түзету қадамдарын орындаңыз немесе қолдау көрсету қызметіне хабарласыңыз</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">бұл ақауларды түзету қадамдары</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
@@ -5714,9 +5714,9 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Бұл сториске жауап бере алмайсыз, себебі сіз ендігәрі бұл топтың мүшесі емессіз.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Осы сториске реакция қалдырды</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Сториске реакция қалдырдыңыз</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Осы сториске реакция қалдырды</string>
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Сториске реакция қалдырды</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Көру саны</string>
     <!-- Label for story replies tab -->

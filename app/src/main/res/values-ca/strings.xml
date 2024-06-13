@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Descarta</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Sol·licituds i invitacions</string>
     <string name="PendingMembersActivity_requests">Sol·licituds</string>
     <string name="PendingMembersActivity_invites">Invitacions</string>
     <string name="PendingMembersActivity_people_you_invited">Persones que heu convidat</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Problemes per registrar-te?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Assegura\'t que el teu telèfon tingui senyal per rebre el teu SMS o trucada\n • Confirma que puguis rebre una trucada telefònica al número\n • Comprova que has introduït el teu número de telèfon correctament.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Per obtenir més informació, segueix aquests passos de resolució de problemes o posa\'t en contacte amb el servei d\'assistència</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">aquests passos de resolució de problemes</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

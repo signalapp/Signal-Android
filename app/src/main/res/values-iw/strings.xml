@@ -1112,7 +1112,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">ביטול</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">בקשות והזמנות</string>
     <string name="PendingMembersActivity_requests">בקשות</string>
     <string name="PendingMembersActivity_invites">הזמנות</string>
     <string name="PendingMembersActivity_people_you_invited">אנשים שהזמנת</string>
@@ -2389,8 +2389,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">נתקלת בבעיות בהרשמה?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• לוודא שלטלפון שלך יש אות סלולרי שמאפשר לו לקבל את ה–SMS או השיחה\n • לוודא שיש לך אפשרות לקבל שיחת טלפון למספר\n • לבדוק שהכנסת את מספר הטלפון שלך נכון.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">למידע נוסף, יש לבצע את השלבים הבאים לפתרון תקלות או ליצור קשר עם התמיכה</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">השלבים הבאים לפתרון תקלות</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

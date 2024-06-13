@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Elvetés</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Kérelmek &amp; meghívók</string>
     <string name="PendingMembersActivity_requests">Kérések</string>
     <string name="PendingMembersActivity_invites">Meghívók</string>
     <string name="PendingMembersActivity_people_you_invited">Általad meghívott személyek</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Problémáid vannak a regisztrációval?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Győződj meg róla, hogy telefonod rendelkezik térerővel az SMS vagy a hívás fogadásához\n • Erősítsd meg, hogy fogadhatsz-e hívást a számra\n • Ellenőrizd, hogy helyesen adtad-e meg a telefonszámod.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">További információért kövesd ezeket a hibaelhárítási lépéseket, vagy lépj kapcsolatba az ügyfélszolgálattal</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ezeket a hibaelhárítási lépéseket</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

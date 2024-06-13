@@ -1013,7 +1013,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">취소</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">요청 및 초대</string>
     <string name="PendingMembersActivity_requests">요청</string>
     <string name="PendingMembersActivity_invites">초대</string>
     <string name="PendingMembersActivity_people_you_invited">초대한 사람들</string>
@@ -2146,8 +2146,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">등록에 어려움이 있나요?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• SMS나 통화에 휴대폰에 셀룰러 데이터를 사용할 수 있는지 확인하세요.\n • 해당 번호로 전화를 받을 수 있는지 확인하세요.\n • 올바른 전화번호를 입력했는지 확인하세요.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">자세한 내용은 다음 문제 해결 단계를 따르거나 지원팀에 문의하세요.</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">이 문제 해결 단계</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

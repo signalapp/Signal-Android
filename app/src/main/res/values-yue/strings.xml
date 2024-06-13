@@ -1013,7 +1013,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">關閉</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">請求與邀請</string>
     <string name="PendingMembersActivity_requests">請求</string>
     <string name="PendingMembersActivity_invites">邀請</string>
     <string name="PendingMembersActivity_people_you_invited">您邀請咗嘅人</string>
@@ -2146,8 +2146,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">註冊時出現問題﹖</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• 確認你嘅手機有流動網絡訊號嚟接收 SMS 或來電⏎ • 確認你嘅電話冧把可以接收來電⏎ • 檢查你輸入嘅電話冧把係咪正確。</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">如果需要更多資訊，請你跟住呢啲疑難排解步驟去做，又或者聯絡支援</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">呢啲疑難排解步驟</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

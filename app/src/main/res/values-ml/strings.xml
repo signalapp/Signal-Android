@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">ഒഴിവാക്കുക</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">അഭ്യർത്ഥനകൾ &amp; ക്ഷണങ്ങൾ</string>
     <string name="PendingMembersActivity_requests">അഭ്യർത്ഥനകൾ</string>
     <string name="PendingMembersActivity_invites">ക്ഷണങ്ങൾ</string>
     <string name="PendingMembersActivity_people_you_invited">നിങ്ങൾ ക്ഷണിച്ച ആളുകൾ</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">രജിസ്റ്റർ ചെയ്യുന്നതിൽ ബുദ്ധിമുട്ട് നേരിടുന്നുണ്ടോ?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• SMS-ഓ കോളോ ലഭിക്കാൻ നിങ്ങളുടെ ഫോണിൽ സെല്ലുലാർ സേവനമുണ്ടെന്ന് ഉറപ്പാക്കുക\n • ആ നമ്പറിലേക്ക് നിങ്ങൾക്ക് ഫോൺ കോൾ ലഭിക്കുമെന്ന് സ്ഥിരീകരിക്കുക • നിങ്ങളുടെ ഫോൺ നമ്പർ ശരിയായാണോ നൽകിയിരിക്കുന്നത് എന്ന് പരിശോധിക്കുക.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">കൂടുതൽ വിവരങ്ങൾക്ക്, ഈ ട്രബിൾഷൂട്ടിംഗ് ഘട്ടങ്ങൾ പാലിക്കുക അല്ലെങ്കിൽ പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ഈ ട്രബിൾഷൂട്ടിംഗ് ഘട്ടങ്ങൾ</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

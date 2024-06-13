@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Απόρριψη</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Αιτήματα &amp; προσκλήσεις</string>
     <string name="PendingMembersActivity_requests">Αιτήματα</string>
     <string name="PendingMembersActivity_invites">Προσκλήσεις</string>
     <string name="PendingMembersActivity_people_you_invited">Άτομα που έχεις προσκαλέσει</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Αντιμετωπίζεις προβλήματα με την εγγραφή;</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Βεβαιώσου ότι το τηλέφωνό σου διαθέτει σήμα κινητής τηλεφωνίας για να λάβεις το SMS ή την κλήση σου \n • Επιβεβαίωσε ότι μπορείς να δεχτείς τηλεφωνικές κλήσεις στον αριθμό \n • Έλεγξε ότι έχεις εισαγάγει σωστά τον αριθμό τηλεφώνου σου.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Για περισσότερες πληροφορίες, ακολούθησε αυτά τα βήματα αντιμετώπισης προβλημάτων ή Επικοινώνησε με την Υποστήριξη</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">αυτά τα βήματα αντιμετώπισης προβλημάτων</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

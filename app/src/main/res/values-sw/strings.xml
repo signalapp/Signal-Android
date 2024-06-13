@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Tupilia mbali</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Maombi na mialiko</string>
     <string name="PendingMembersActivity_requests">Maombi</string>
     <string name="PendingMembersActivity_invites">Mialiko</string>
     <string name="PendingMembersActivity_people_you_invited">Watu ulioalika</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Unasumbuka kujisajili?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Hakikisha nambari yako inapata mtandao wa simu ili kupokea SMS au kupigiwa simu\n • Hakikisha kama unaweza kupokea simu kwenye nambari\n • Angalia kama umeingiza vyema nambari za simu.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Kwa habari zaidi, tafadhali fuata maelekezo haya ya kutatua tatizo au Wasiliana na Msaada</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">hatua hizi za urekebishaji</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

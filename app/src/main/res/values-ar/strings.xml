@@ -1178,7 +1178,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">تجاهُل</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">الطلبات و الدعوات</string>
     <string name="PendingMembersActivity_requests">الطلبات</string>
     <string name="PendingMembersActivity_invites">الدعوات</string>
     <string name="PendingMembersActivity_people_you_invited">الأشخاص الذين دعوتهم</string>
@@ -2551,8 +2551,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">هل تواجه مشكلة في التسجيل؟</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• تأكد من أن هاتفك يتوفر على إشارة خلوية للتوصل بالرسالة القصيرة أو الاتصال\n • قم بتأكيد إمكانية استقبالك اتصال على الرقم\n • تحقق من أنك أدخلت رقم هاتفك بشكل صحيح.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">لِمزيد من المعلومات، يُرجى اتباع خطوات المُساعفة هذه أو الاتصال بالدعم</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">خطوات المُساعفة هذه</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

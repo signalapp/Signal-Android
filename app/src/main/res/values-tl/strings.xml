@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">I-dismiss</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Requests at invites</string>
     <string name="PendingMembersActivity_requests">Requests</string>
     <string name="PendingMembersActivity_invites">Invites</string>
     <string name="PendingMembersActivity_people_you_invited">Mga taong iyong inimbitahan</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Nagkakaproblema ka ba sa pag-register?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Siguraduhing may signal ang iyong phone para maka-receive ka ng verification code sa SMS o tawag\n • Kumpirmahing nakaka-receive ka ng tawag sa number mo\n • I-check kung tama ang phone number na inilagay mo.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Para sa iba pang impormasyon, sundin ang sumusunod na troubleshooting steps o Kontakin ang Support</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ang sumusunod na troubleshooting steps</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

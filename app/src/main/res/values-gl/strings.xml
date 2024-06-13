@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Rexeitar</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Solicitudes e convites</string>
     <string name="PendingMembersActivity_requests">Solicitudes</string>
     <string name="PendingMembersActivity_invites">Invitacións</string>
     <string name="PendingMembersActivity_people_you_invited">Persoas que convidaches</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Tes problemas para rexistrarte?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Asegúrate de que o teu teléfono teña sinal móbil para recibir mensaxes SMS ou chamadas\n • Comproba que podes recibir unha chamada a ese número\n • Revisa se introduciches o número de teléfono correctamente.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Para obter máis información, segue estes pasos para solucionar o problema ou contacta coa Axuda</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">estes pasos para solucionar o problema</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

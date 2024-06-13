@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Wys weg</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Versoeke &amp; uitnodigings</string>
     <string name="PendingMembersActivity_requests">Versoeke</string>
     <string name="PendingMembersActivity_invites">Uitnodigings</string>
     <string name="PendingMembersActivity_people_you_invited">Mense wat jy genooi het</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Probleme met registrasie?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Maak seker dat jou foon \'n selsein het om jou SMS of oproep te ontvang\n • Bevestig dat jy \'n foonoproep na die nommer kan ontvang\n • Kontroleer dat jy jou telefoonnommer korrek ingevoer het.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Vir meer inligting, volg asseblief hierdie foutopsporingstappe of kontak Steundiens</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">hierdie foutopsporingstappe</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

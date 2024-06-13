@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">रद्द करा</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">विनंत्या आणि आमंत्रण</string>
     <string name="PendingMembersActivity_requests">विनंत्या</string>
     <string name="PendingMembersActivity_invites">आमंत्रण</string>
     <string name="PendingMembersActivity_people_you_invited">आपण आमंत्रित केलेल्या व्यक्ती</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">नोंदणी करण्यामध्ये समस्या आली?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• कृपया आपल्या फोनला आपले SMS किंवा कॉल प्राप्त करण्यास सेल्युलर सिग्नल असल्याची खात्री करा\n • तुम्ही या क्रमांकावर फोन कॉल प्राप्त करु शकता याची पुष्टी करा\n • आपण आपला फोन नंबर बरोबर प्रविष्ट केला आहे याची खात्री करा.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">अधिक माहितीसाठी, कृपया या निराकरण टप्प्यांची अंमलबजावणी करा किंवा सपोर्टशी संपर्क साधा</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">हे निराकरणाचे टप्पे आहेत</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

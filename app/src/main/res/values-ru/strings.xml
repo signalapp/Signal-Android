@@ -1112,7 +1112,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Закрыть</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Запросы и приглашения</string>
     <string name="PendingMembersActivity_requests">Запросы</string>
     <string name="PendingMembersActivity_invites">Приглашения</string>
     <string name="PendingMembersActivity_people_you_invited">Люди, которых пригласили вы</string>
@@ -2389,8 +2389,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Возникли проблемы с регистрацией?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Убедитесь, что на вашем телефоне есть сигнал сотовой связи для приема SMS или звонка\n • Подтвердите, что можете принять телефонный звонок на номер\n • Проверьте правильность введённого номера телефона.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Для получения дополнительной информации выполните следующие шаги для устранения неполадок или свяжитесь с поддержкой</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">следующие шаги для устранения неполадок</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
@@ -5970,7 +5970,7 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Вы не можете отвечать на эту историю, потому что уже не являетесь участником группы.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Отреагировал(-а) на историю</string>
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Отреагировали на историю</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Отреагировал(-а) на историю</string>
     <!-- Label for story views tab -->

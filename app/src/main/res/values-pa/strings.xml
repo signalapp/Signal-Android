@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">ਖਾਰਜ ਕਰੋ</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">ਬੇਨਤੀਆਂ &amp; ਸੱਦੇ</string>
     <string name="PendingMembersActivity_requests">ਬੇਨਤੀਆਂ</string>
     <string name="PendingMembersActivity_invites">ਸੱਦੇ</string>
     <string name="PendingMembersActivity_people_you_invited">ਤੁਹਾਡੇ ਵੱਲੋਂ ਸੱਦੇ ਗਏ ਲੋਕ</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">ਰਜਿਸਟਰ ਕਰਨ ਵਿੱਚ ਸਮੱਸਿਆ ਪੇਸ਼ ਆ ਰਹੀ ਹੈ?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• SMS ਜਾਂ ਕਾਲ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡੇ ਫ਼ੋਨ ਵਿੱਚ ਸੈਲੂਲਰ ਸਿਗਨਲ ਆ ਰਿਹਾ ਹੋਵੇ\n • ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਤੁਸੀਂ ਨੰਬਰ \'ਤੇ ਫ਼ੋਨ ਕਾਲ ਪ੍ਰਾਪਤ ਕਰ ਸਕਦੇ ਹੋ\n • ਜਾਂਚ ਕਰੋ ਕਿ ਤੁਸੀਂ ਆਪਣਾ ਫ਼ੋਨ ਨੰਬਰ ਸਹੀ ਢੰਗ ਨਾਲ ਦਰਜ ਕੀਤਾ ਹੈ।</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਸਮੱਸਿਆ ਦਾ ਨਿਪਟਾਰਾ ਕਰਨ ਵਾਲੇ ਇਹਨਾਂ ਕਦਮਾਂ ਦੀ ਪਾਲਣਾ ਕਰੋ ਜਾਂ ਸਹਾਇਤਾ ਟੀਮ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ਸਮੱਸਿਆ ਦਾ ਨਿਪਟਾਰਾ ਕਰਨ ਵਾਲੇ ਇਹਨਾਂ ਕਦਮਾਂ</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

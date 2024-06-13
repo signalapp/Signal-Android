@@ -1145,7 +1145,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Ruaig</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; Invites</string>
     <string name="PendingMembersActivity_requests">Iarratais</string>
     <string name="PendingMembersActivity_invites">Cuirí</string>
     <string name="PendingMembersActivity_people_you_invited">Daoine ar thug tú cuirí dóibh</string>
@@ -2470,8 +2470,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Deacracht agat le clárú?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Cinntigh go bhfuil comhartha móibíleach ag do ghuthán chun do SMS nó glao a fháil\n • Deimhnigh gur féidir leat glao gutháin a fháil ar an uimhir\n • Cinntigh gur chuir tú d\'uimhir ghutháin isteach i gceart.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Le tuilleadh faisnéise a fháil, lean na céimeanna fabhtcheartaithe seo nó déan teagmháil leis an bhFoireann Tacaíochta</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">na céimeanna fabhtcheartaithe seo</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

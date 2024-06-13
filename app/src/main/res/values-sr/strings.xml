@@ -1046,7 +1046,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Одбаци</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Захтеви и позивнице</string>
     <string name="PendingMembersActivity_requests">Захтеви</string>
     <string name="PendingMembersActivity_invites">Позивнице</string>
     <string name="PendingMembersActivity_people_you_invited">Људи које сте позвали</string>
@@ -2227,8 +2227,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Имате проблема са регистрацијом?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Проверите да ли ваш телефон има мобилни сигнал за примање SMS-а или позива\n • Проверите да ли можете да примате телефонске позиве на овај број\n • Проверите да ли сте исправно унели свој број телефона.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Ако вам је потребно више информација, пратите ове кораке за решавање проблема или се обратите подршци</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ове кораке за решавање проблема</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

@@ -1013,7 +1013,7 @@
     <string name="PromptBatterySaverBottomSheet__dismiss">Bỏ qua</string>
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Requests &amp; invites</string>
+    <string name="PendingMembersActivity_pending_group_invites">Yêu cầu &amp; lời mời</string>
     <string name="PendingMembersActivity_requests">Yêu cầu</string>
     <string name="PendingMembersActivity_invites">Lời mời</string>
     <string name="PendingMembersActivity_people_you_invited">Những người mà bạn đã mời</string>
@@ -2146,8 +2146,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Bạn gặp vấn đề khi đăng ký?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Đảm bảo rằng điện thoại của bạn có tín hiệu dữ liệu di động để nhận tin nhắn SMS hoặc cuộc gọi\n • Đảm bảo rằng bạn có thể nhận cuộc gọi đến số\n • Kiểm tra xem bạn đã nhập đúng số điện thoại của mình.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Để biết thêm thông tin, vui lòng làm theo các bước giải quyết vấn đề sau hoặc Liên hệ Hỗ trợ</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">các bước giải quyết vấn đề sau</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
