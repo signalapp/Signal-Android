@@ -10,15 +10,19 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,14 +35,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -53,6 +62,8 @@ import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Locale
+
+private const val PLACEHOLDER = "__ICON_PLACEHOLDER__"
 
 /**
  * Fragment that shows current linked devices
@@ -154,7 +165,7 @@ fun DeviceDescriptionScreen(
     )
     ClickableText(
       text = AnnotatedString(stringResource(id = R.string.LearnMoreTextView_learn_more)),
-      style = TextStyle(color = MaterialTheme.colorScheme.primary)
+      style = LocalTextStyle.current.copy(color = MaterialTheme.colorScheme.primary)
     ) {
       onLearnMore()
     }
@@ -163,7 +174,7 @@ fun DeviceDescriptionScreen(
 
     Buttons.LargeTonal(
       onClick = onLinkDevice,
-      modifier = Modifier.width(300.dp)
+      modifier = Modifier.defaultMinSize(300.dp).padding(bottom = 8.dp)
     ) {
       Text(stringResource(id = R.string.LinkDeviceFragment__link_a_new_device))
     }
@@ -188,14 +199,35 @@ fun DeviceDescriptionScreen(
       verticalAlignment = Alignment.CenterVertically
     ) {
       Spacer(modifier = Modifier.size(12.dp))
-      Icon(
-        painter = painterResource(R.drawable.symbol_lock_24),
-        contentDescription = null
-      )
+
+      val message = stringResource(id = R.string.LinkDeviceFragment__messages_and_chat_info_are_protected, PLACEHOLDER)
+      val (messageText, messageInline) = remember(message) {
+        val parts = message.split(PLACEHOLDER)
+        val annotatedString = buildAnnotatedString {
+          append(parts[0])
+          appendInlineContent("icon")
+          append(parts[1])
+        }
+
+        val inlineContentMap = mapOf(
+          "icon" to InlineTextContent(Placeholder(16.sp, 16.sp, PlaceholderVerticalAlign.Center)) {
+            Image(
+              imageVector = ImageVector.vectorResource(id = R.drawable.symbol_lock_24),
+              contentDescription = null,
+              modifier = Modifier.fillMaxSize()
+            )
+          }
+        )
+
+        annotatedString to inlineContentMap
+      }
+
       Text(
+        text = messageText,
+        inlineContent = messageInline,
         style = MaterialTheme.typography.bodySmall,
         textAlign = TextAlign.Center,
-        text = stringResource(id = R.string.LinkDeviceFragment__messages_and_chat_info_are_protected)
+        color = MaterialTheme.colorScheme.onSurfaceVariant
       )
     }
   }
@@ -230,8 +262,8 @@ fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit) {
     Column {
       Text(text = titleString, style = MaterialTheme.typography.bodyLarge)
       Spacer(modifier = Modifier.size(4.dp))
-      Text(stringResource(R.string.DeviceListItem_linked_s, linkedDate), style = MaterialTheme.typography.bodyMedium)
-      Text(stringResource(R.string.DeviceListItem_last_active_s, lastActive), style = MaterialTheme.typography.bodyMedium)
+      Text(stringResource(R.string.DeviceListItem_linked_s, linkedDate), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+      Text(stringResource(R.string.DeviceListItem_last_active_s, lastActive), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
   }
   Spacer(modifier = Modifier.size(16.dp))

@@ -866,8 +866,8 @@
     <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use Signal on desktop or iPad. Your messages will sync to your linked devices.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Link a new device</string>
-    <!-- Text explaining that on linked devices, messages will be encrypted -->
-    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Messages and chat info are protected by end-to-end encryption on all devices</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
     <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on Desktop or iPad</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
