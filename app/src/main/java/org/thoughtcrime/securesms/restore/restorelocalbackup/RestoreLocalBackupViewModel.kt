@@ -25,21 +25,29 @@ class RestoreLocalBackupViewModel(fileBackupUri: Uri) : ViewModel() {
   private val store = MutableStateFlow(RestoreLocalBackupState(fileBackupUri))
   val uiState = store.asLiveData()
 
+  val backupReadError = store.map { it.backupFileStateError }.asLiveData()
+
   val backupComplete = store.map { Pair(it.backupRestoreComplete, it.backupImportResult) }.asLiveData()
 
   fun prepareRestore(context: Context) {
     val backupFileUri = store.value.uri
     viewModelScope.launch {
-      val backupInfo = RestoreRepository.getLocalBackupFromUri(context, backupFileUri)
+      val result: RestoreRepository.BackupInfoResult = RestoreRepository.getLocalBackupFromUri(context, backupFileUri)
 
-      if (backupInfo == null) {
+      if (result.failure && result.failureCause != null) {
+        store.update {
+          it.copy(
+            backupFileStateError = result.failureCause.state
+          )
+        }
+      } else if (result.backupInfo == null) {
         abort()
         return@launch
       }
 
       store.update {
         it.copy(
-          backupInfo = backupInfo
+          backupInfo = result.backupInfo
         )
       }
     }
@@ -99,6 +107,10 @@ class RestoreLocalBackupViewModel(fileBackupUri: Uri) : ViewModel() {
         restoreInProgress = event.type != BackupEvent.Type.FINISHED
       )
     }
+  }
+
+  fun clearBackupFileStateError() {
+    store.update { it.copy(backupFileStateError = null) }
   }
 
   companion object {

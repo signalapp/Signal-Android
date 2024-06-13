@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.service.LocalBackupListener
 import org.thoughtcrime.securesms.util.BackupUtil
+import org.thoughtcrime.securesms.util.BackupUtil.BackupInfo
 import java.io.IOException
 
 /**
@@ -28,8 +29,13 @@ import java.io.IOException
 object RestoreRepository {
   private val TAG = Log.tag(RestoreRepository.javaClass)
 
-  suspend fun getLocalBackupFromUri(context: Context, uri: Uri): BackupUtil.BackupInfo? = withContext(Dispatchers.IO) {
-    BackupUtil.getBackupInfoFromSingleUri(context, uri)
+  suspend fun getLocalBackupFromUri(context: Context, uri: Uri): BackupInfoResult = withContext(Dispatchers.IO) {
+    try {
+      return@withContext BackupInfoResult(backupInfo = BackupUtil.getBackupInfoFromSingleUri(context, uri), failureCause = null, failure = false)
+    } catch (ex: BackupUtil.BackupFileException) {
+      Log.w(TAG, "Encountered error while trying to read backup!", ex)
+      return@withContext BackupInfoResult(backupInfo = null, failureCause = ex, failure = true)
+    }
   }
 
   suspend fun restoreBackupAsynchronously(context: Context, backupFileUri: Uri, passphrase: String): BackupImportResult = withContext(Dispatchers.IO) {
@@ -88,4 +94,6 @@ object RestoreRepository {
     FAILURE_FOREIGN_KEY,
     FAILURE_UNKNOWN
   }
+
+  data class BackupInfoResult(val backupInfo: BackupInfo?, val failureCause: BackupUtil.BackupFileException?, val failure: Boolean)
 }
