@@ -10,6 +10,8 @@ import org.signal.core.util.mebiBytes
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
 import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -1070,12 +1072,13 @@ object RemoteConfig {
   )
 
   /** Whether or not to delete syncing is enabled.  */
-  @JvmStatic
-  @get:JvmName("deleteSyncEnabled")
   val deleteSyncEnabled: Boolean by remoteBoolean(
-    key = "android.deleteSyncSendReceive",
+    key = "android.deleteSyncEnabled",
     defaultValue = false,
-    hotSwappable = true
+    hotSwappable = true,
+    onChangeListener = {
+      AppDependencies.jobManager.startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
+    }
   )
 
   /** Which phase we're in for the SVR3 migration  */

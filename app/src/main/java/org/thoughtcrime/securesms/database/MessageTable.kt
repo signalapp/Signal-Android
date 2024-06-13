@@ -462,8 +462,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
      * - Not an encryption message
      * - Not a report spam message
      * - Not a message rqeuest accepted message
+     * - Not be a story
      * - Have a valid sent timestamp
      * - Be a normal message or direct (1:1) story reply
+     *
+     * Changes should be reflected in [MmsMessageRecord.canDeleteSync].
      */
     private const val IS_ADDRESSABLE_CLAUSE = """
       (($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_SENT_TYPE} OR ($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_INBOX_TYPE}) AND 
@@ -472,7 +475,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       ($TYPE & ${MessageTypes.KEY_EXCHANGE_MASK}) = 0 AND 
       ($TYPE & ${MessageTypes.ENCRYPTION_MASK}) = 0 AND
       ($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK}) != ${MessageTypes.SPECIAL_TYPE_REPORTED_SPAM} AND
-      ($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK}) != ${MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED} AND      
+      ($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK}) != ${MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED} AND
+      $STORY_TYPE = 0 AND
       $DATE_SENT > 0 AND
       $PARENT_STORY_ID <= 0
     """
@@ -3277,7 +3281,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     threads.setLastScrolled(threadId, 0)
 
     val threadDeleted = if (updateThread) {
-      threads.update(threadId, false)
+      threads.update(threadId, unarchive = false, syncThreadDelete = false)
     } else {
       false
     }
@@ -3330,11 +3334,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         deleteScheduledMessage(record.id)
       }
     }
-  }
-
-  fun deleteThread(threadId: Long) {
-    Log.d(TAG, "deleteThread($threadId)")
-    deleteThreads(setOf(threadId))
   }
 
   private fun getSerializedSharedContacts(insertedAttachmentIds: Map<Attachment, AttachmentId>, contacts: List<Contact>): String? {
@@ -3432,27 +3431,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
     }
     return ids
-  }
-
-  private fun deleteThreads(threadIds: Set<Long>) {
-    Log.d(TAG, "deleteThreads(count: ${threadIds.size})")
-
-    writableDatabase.withinTransaction { db ->
-      SqlUtil.buildCollectionQuery(THREAD_ID, threadIds).forEach { query ->
-        db.select(ID, THREAD_ID)
-          .from(TABLE_NAME)
-          .where(query.where, query.whereArgs)
-          .run()
-          .forEach { cursor ->
-            deleteMessage(cursor.requireLong(ID), cursor.requireLong(THREAD_ID), notify = false, updateThread = false)
-          }
-      }
-    }
-
-    notifyConversationListeners(threadIds)
-    notifyStickerListeners()
-    notifyStickerPackListeners()
-    OptimizeMessageSearchIndexJob.enqueue()
   }
 
   fun deleteMessagesInThreadBeforeDate(threadId: Long, date: Long, inclusive: Boolean): Int {

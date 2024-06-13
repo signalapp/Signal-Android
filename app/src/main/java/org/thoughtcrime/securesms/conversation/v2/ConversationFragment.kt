@@ -2408,7 +2408,7 @@ class ConversationFragment :
     disposables += DeleteDialog.show(
       context = requireContext(),
       messageRecords = records,
-      message = if (TextSecurePreferences.isMultiDevice(requireContext()) && RemoteConfig.deleteSyncEnabled) {
+      message = if (TextSecurePreferences.isMultiDevice(requireContext()) && Recipient.self().deleteSyncCapability.isSupported) {
         resources.getQuantityString(R.plurals.ConversationFragment_delete_on_linked_warning, records.size)
       } else {
         null

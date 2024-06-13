@@ -87,7 +87,7 @@ class ReviewCardRepository {
       ThreadTable threadTable = SignalDatabase.threads();
       long        threadId    = Objects.requireNonNull(threadTable.getThreadIdFor(recipientId));
 
-      threadTable.deleteConversation(threadId);
+      threadTable.deleteConversation(threadId, false);
       onActionCompleteListener.run();
     });
   }

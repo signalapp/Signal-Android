@@ -210,7 +210,7 @@ public class MessageSender {
     onMessageSent();
 
     for (long threadId : threads) {
-      threadTable.update(threadId, true);
+      threadTable.update(threadId, true, true);
     }
   }
 
@@ -242,7 +242,7 @@ public class MessageSender {
 
       sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList(), message.getScheduledDate() > 0);
       onMessageSent();
-      threadTable.update(allocatedThreadId, true);
+      threadTable.update(allocatedThreadId, true, true);
 
       return allocatedThreadId;
     } catch (MmsException e) {
@@ -279,7 +279,7 @@ public class MessageSender {
 
       sendMessageInternal(context, recipient, SendType.SIGNAL, messageId, jobIds, false);
       onMessageSent();
-      threadTable.update(allocatedThreadId, true);
+      threadTable.update(allocatedThreadId, true, true);
 
       return allocatedThreadId;
     } catch (MmsException e) {

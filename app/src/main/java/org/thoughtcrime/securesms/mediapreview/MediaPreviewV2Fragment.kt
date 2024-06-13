@@ -70,7 +70,6 @@ import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SaveAttachmentTask
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.StorageUtil
@@ -601,7 +600,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     MaterialAlertDialogBuilder(requireContext()).apply {
       setIcon(R.drawable.symbol_error_triangle_fill_24)
       setTitle(R.string.MediaPreviewActivity_media_delete_confirmation_title)
-      setMessage(if (TextSecurePreferences.isMultiDevice(requireContext()) && RemoteConfig.deleteSyncEnabled) R.string.MediaPreviewActivity_media_delete_confirmation_message_linked_device else R.string.MediaPreviewActivity_media_delete_confirmation_message)
+      setMessage(if (TextSecurePreferences.isMultiDevice(requireContext()) && Recipient.self().deleteSyncCapability.isSupported) R.string.MediaPreviewActivity_media_delete_confirmation_message_linked_device else R.string.MediaPreviewActivity_media_delete_confirmation_message)
       setCancelable(true)
       setNegativeButton(android.R.string.cancel, null)
       setPositiveButton(R.string.ConversationFragment_delete_for_me) { _, _ ->

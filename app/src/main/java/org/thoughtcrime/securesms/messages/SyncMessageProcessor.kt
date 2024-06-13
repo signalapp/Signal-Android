@@ -1103,7 +1103,7 @@ object SyncMessageProcessor {
       MessageRequestResponse.Type.DELETE -> {
         SignalDatabase.recipients.setProfileSharing(recipient.id, false)
         if (threadId > 0) {
-          SignalDatabase.threads.deleteConversation(threadId)
+          SignalDatabase.threads.deleteConversation(threadId, syncThreadDelete = false)
         }
       }
       MessageRequestResponse.Type.BLOCK -> {
@@ -1114,7 +1114,7 @@ object SyncMessageProcessor {
         SignalDatabase.recipients.setBlocked(recipient.id, true)
         SignalDatabase.recipients.setProfileSharing(recipient.id, false)
         if (threadId > 0) {
-          SignalDatabase.threads.deleteConversation(threadId)
+          SignalDatabase.threads.deleteConversation(threadId, syncThreadDelete = false)
         }
       }
       MessageRequestResponse.Type.SPAM -> {
@@ -1475,11 +1475,6 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeDeleteForMe(context: Context, deleteForMe: SyncMessage.DeleteForMe, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
-    if (!RemoteConfig.deleteSyncEnabled) {
-      warn(envelopeTimestamp, "Delete for me sync message dropped as support not enabled")
-      return
-    }
-
     log(envelopeTimestamp, "Synchronize delete message messageDeletes=${deleteForMe.messageDeletes.size} conversationDeletes=${deleteForMe.conversationDeletes.size} localOnlyConversationDeletes=${deleteForMe.localOnlyConversationDeletes.size}")
 
     if (deleteForMe.messageDeletes.isNotEmpty()) {
@@ -1586,8 +1581,8 @@ object SyncMessageProcessor {
         }
       }
 
-      threadAci != null -> {
-        ServiceId.parseOrNull(threadAci)?.let {
+      threadServiceId != null -> {
+        ServiceId.parseOrNull(threadServiceId)?.let {
           SignalDatabase.recipients.getOrInsertFromServiceId(it)
         }
       }
@@ -1601,8 +1596,8 @@ object SyncMessageProcessor {
   }
 
   private fun SyncMessage.DeleteForMe.AddressableMessage.toSyncMessageId(envelopeTimestamp: Long): MessageTable.SyncMessageId? {
-    return if (this.sentTimestamp != null && (this.authorAci != null || this.authorE164 != null)) {
-      val serviceId = ServiceId.parseOrNull(this.authorAci)
+    return if (this.sentTimestamp != null && (this.authorServiceId != null || this.authorE164 != null)) {
+      val serviceId = ServiceId.parseOrNull(this.authorServiceId)
       val id = if (serviceId != null) {
         SignalDatabase.recipients.getOrInsertFromServiceId(serviceId)
       } else {

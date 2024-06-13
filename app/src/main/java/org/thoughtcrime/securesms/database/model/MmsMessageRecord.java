@@ -308,6 +308,19 @@ public class MmsMessageRecord extends MessageRecord {
     return latestRevisionId;
   }
 
+  @Override
+  public boolean canDeleteSync() {
+    return (isSent() || MessageTypes.isInboxType(type)) &&
+           (isSecure() || isPush()) &&
+           (type & MessageTypes.GROUP_MASK) == 0 &&
+           (type & MessageTypes.KEY_EXCHANGE_MASK) == 0 &&
+           !isReportedSpam() &&
+           !isMessageRequestAccepted() &&
+           storyType == StoryType.NONE &&
+           getDateSent() > 0 &&
+           (parentStoryId == null || parentStoryId.isDirectReply());
+  }
+
   public @NonNull MmsMessageRecord withReactions(@NonNull List<ReactionRecord> reactions) {
     return new MmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), hasDeliveryReceipt(), getThreadId(), getBody(), getSlideDeck(),
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),

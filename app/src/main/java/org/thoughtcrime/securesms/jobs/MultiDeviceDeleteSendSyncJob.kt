@@ -20,9 +20,7 @@ import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.AddressableMessa
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.ThreadDelete
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.pad
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.internal.push.Content
@@ -58,13 +56,18 @@ class MultiDeviceDeleteSendSyncJob private constructor(
         return
       }
 
-      if (!RemoteConfig.deleteSyncEnabled) {
+      if (!Recipient.self().deleteSyncCapability.isSupported) {
         Log.i(TAG, "Delete sync support not enabled.")
         return
       }
 
       messageRecords.chunked(CHUNK_SIZE).forEach { chunk ->
-        AppDependencies.jobManager.add(createMessageDeletes(chunk))
+        val deletes = createMessageDeletes(chunk)
+        if (deletes.isNotEmpty()) {
+          AppDependencies.jobManager.add(MultiDeviceDeleteSendSyncJob(messages = deletes))
+        } else {
+          Log.i(TAG, "No valid message deletes to sync")
+        }
       }
     }
 
@@ -74,26 +77,37 @@ class MultiDeviceDeleteSendSyncJob private constructor(
         return
       }
 
-      if (!RemoteConfig.deleteSyncEnabled) {
+      if (!Recipient.self().deleteSyncCapability.isSupported) {
         Log.i(TAG, "Delete sync support not enabled.")
         return
       }
 
       threads.chunked(THREAD_CHUNK_SIZE).forEach { chunk ->
-        AppDependencies.jobManager.add(createThreadDeletes(chunk, isFullDelete))
+        val threadDeletes = createThreadDeletes(chunk, isFullDelete)
+        if (threadDeletes.isNotEmpty()) {
+          AppDependencies.jobManager.add(
+            MultiDeviceDeleteSendSyncJob(
+              threads = threadDeletes.filter { it.messages.isNotEmpty() },
+              localOnlyThreads = threadDeletes.filter { it.messages.isEmpty() }
+            )
+          )
+        } else {
+          Log.i(TAG, "No valid thread deletes to sync")
+        }
       }
     }
 
     @WorkerThread
-    @VisibleForTesting
-    fun createMessageDeletes(messageRecords: Collection<MessageRecord>): MultiDeviceDeleteSendSyncJob {
-      val deletes = messageRecords.mapNotNull { message ->
+    private fun createMessageDeletes(messageRecords: Collection<MessageRecord>): List<AddressableMessage> {
+      return messageRecords.mapNotNull { message ->
         val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)
         if (threadRecipient == null) {
           Log.w(TAG, "Unable to find thread recipient for message: ${message.id} thread: ${message.threadId}")
           null
         } else if (threadRecipient.isReleaseNotes) {
           Log.w(TAG, "Syncing release channel deletes are not currently supported")
+          null
+        } else if (threadRecipient.isDistributionList || !message.canDeleteSync()) {
           null
         } else {
           AddressableMessage(
@@ -103,20 +117,19 @@ class MultiDeviceDeleteSendSyncJob private constructor(
           )
         }
       }
-
-      return MultiDeviceDeleteSendSyncJob(messages = deletes)
     }
 
     @WorkerThread
-    @VisibleForTesting
-    fun createThreadDeletes(threads: List<Pair<Long, Set<MessageRecord>>>, isFullDelete: Boolean): MultiDeviceDeleteSendSyncJob {
-      val threadDeletes: List<ThreadDelete> = threads.mapNotNull { (threadId, messages) ->
+    private fun createThreadDeletes(threads: List<Pair<Long, Set<MessageRecord>>>, isFullDelete: Boolean): List<ThreadDelete> {
+      return threads.mapNotNull { (threadId, messages) ->
         val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
         if (threadRecipient == null) {
           Log.w(TAG, "Unable to find thread recipient for thread: $threadId")
           null
         } else if (threadRecipient.isReleaseNotes) {
           Log.w(TAG, "Syncing release channel delete is not currently supported")
+          null
+        } else if (threadRecipient.isDistributionList) {
           null
         } else {
           ThreadDelete(
@@ -131,11 +144,6 @@ class MultiDeviceDeleteSendSyncJob private constructor(
           )
         }
       }
-
-      return MultiDeviceDeleteSendSyncJob(
-        threads = threadDeletes.filter { it.messages.isNotEmpty() },
-        localOnlyThreads = threadDeletes.filter { it.messages.isEmpty() }
-      )
     }
   }
 
@@ -157,7 +165,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
-    if (!self().isRegistered) {
+    if (!Recipient.self().isRegistered) {
       Log.w(TAG, "Not registered")
       return Result.failure()
     }
@@ -250,6 +258,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
     val syncMessageContent = deleteForMeContent(deleteForMe)
 
     return try {
+      Log.d(TAG, "Sending delete sync messageDeletes=${deleteForMe.messageDeletes.size} conversationDeletes=${deleteForMe.conversationDeletes.size} localOnlyConversationDeletes=${deleteForMe.localOnlyConversationDeletes.size}")
       AppDependencies.signalServiceMessageSender.sendSyncMessage(syncMessageContent, true, Optional.empty()).isSuccess
     } catch (e: IOException) {
       Log.w(TAG, "Unable to send message delete sync", e)
@@ -271,7 +280,8 @@ class MultiDeviceDeleteSendSyncJob private constructor(
   private fun Recipient.toDeleteSyncConversationId(): DeleteForMe.ConversationIdentifier? {
     return when {
       isGroup -> DeleteForMe.ConversationIdentifier(threadGroupId = requireGroupId().decodedId.toByteString())
-      hasAci -> DeleteForMe.ConversationIdentifier(threadAci = requireAci().toString())
+      hasAci -> DeleteForMe.ConversationIdentifier(threadServiceId = requireAci().toString())
+      hasPni -> DeleteForMe.ConversationIdentifier(threadServiceId = requirePni().toString())
       hasE164 -> DeleteForMe.ConversationIdentifier(threadE164 = requireE164())
       else -> null
     }
@@ -279,19 +289,19 @@ class MultiDeviceDeleteSendSyncJob private constructor(
 
   private fun AddressableMessage.toDeleteSyncMessage(): DeleteForMe.AddressableMessage? {
     val author: Recipient = Recipient.resolved(RecipientId.from(authorRecipientId))
-    val authorAci: String? = author.aci.orNull()?.toString()
-    val authorE164: String? = if (authorAci == null) {
+    val authorServiceId: String? = author.aci.orNull()?.toString() ?: author.pni.orNull()?.toString()
+    val authorE164: String? = if (authorServiceId == null) {
       author.e164.orNull()
     } else {
       null
     }
 
-    return if (authorAci == null && authorE164 == null) {
-      Log.w(TAG, "Unable to send sync message without aci and e164 recipient: ${author.id}")
+    return if (authorServiceId == null && authorE164 == null) {
+      Log.w(TAG, "Unable to send sync message without serviceId or e164 recipient: ${author.id}")
       null
     } else {
       DeleteForMe.AddressableMessage(
-        authorAci = authorAci,
+        authorServiceId = authorServiceId,
         authorE164 = authorE164,
         sentTimestamp = sentTimestamp
       )

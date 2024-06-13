@@ -1240,7 +1240,7 @@ final class GroupManagerV2 {
           try {
             long messageId = SignalDatabase.messages().insertMessageOutbox(outgoingMessage, threadId, false, null);
             SignalDatabase.messages().markAsSent(messageId, true);
-            SignalDatabase.threads().update(threadId, true);
+            SignalDatabase.threads().update(threadId, true, true);
           } catch (MmsException e) {
             throw new AssertionError(e);
           }

@@ -55,7 +55,7 @@ public final class ThreadUpdateJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    SignalDatabase.threads().update(threadId, true);
+    SignalDatabase.threads().update(threadId, true, true);
     if (!AppDependencies.getIncomingMessageObserver().getDecryptionDrained()) {
       ThreadUtil.sleep(DEBOUNCE_INTERVAL_WITH_BACKLOG);
     }

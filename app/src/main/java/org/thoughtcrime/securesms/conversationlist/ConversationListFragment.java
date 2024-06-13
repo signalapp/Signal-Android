@@ -1202,7 +1202,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     alert.setTitle(context.getResources().getQuantityString(R.plurals.ConversationListFragment_delete_selected_conversations,
                                                             conversationsCount, conversationsCount));
 
-    if (TextSecurePreferences.isMultiDevice(context) && RemoteConfig.deleteSyncEnabled()) {
+    if (TextSecurePreferences.isMultiDevice(context) && Recipient.self().getDeleteSyncCapability().isSupported()) {
       alert.setMessage(context.getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device,
                                                                 conversationsCount, conversationsCount));
     } else {
@@ -1230,7 +1230,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
           @Override
           protected Void doInBackground(Void... params) {
-            SignalDatabase.threads().deleteConversations(selectedConversations);
+            SignalDatabase.threads().deleteConversations(selectedConversations, true);
             AppDependencies.getMessageNotifier().updateNotification(requireActivity());
             return null;
           }

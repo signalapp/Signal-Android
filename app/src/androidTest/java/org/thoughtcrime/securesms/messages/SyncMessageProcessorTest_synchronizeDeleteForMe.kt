@@ -6,9 +6,6 @@
 package org.thoughtcrime.securesms.messages
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import io.mockk.every
-import io.mockk.mockkStatic
-import io.mockk.unmockkStatic
 import org.hamcrest.Matchers.greaterThan
 import org.junit.After
 import org.junit.Before
@@ -28,7 +25,6 @@ import org.thoughtcrime.securesms.testing.assert
 import org.thoughtcrime.securesms.testing.assertIs
 import org.thoughtcrime.securesms.testing.assertIsNotNull
 import org.thoughtcrime.securesms.util.IdentityUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
@@ -42,16 +38,11 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
   @Before
   fun setUp() {
     messageHelper = MessageHelper(harness)
-
-    mockkStatic(RemoteConfig::class)
-    every { RemoteConfig.deleteSyncEnabled } returns true
   }
 
   @After
   fun tearDown() {
     messageHelper.tearDown()
-
-    unmockkStatic(RemoteConfig::class)
   }
 
   @Test

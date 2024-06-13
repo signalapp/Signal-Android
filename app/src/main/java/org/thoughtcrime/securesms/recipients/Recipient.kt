@@ -317,6 +317,9 @@ class Recipient(
   /** The user's payment capability. */
   val paymentActivationCapability: Capability = capabilities.paymentActivation
 
+  /** The user's payment capability. */
+  val deleteSyncCapability: Capability = capabilities.deleteSync
+
   /** The state around whether we can send sealed sender to this user. */
   val unidentifiedAccessMode: UnidentifiedAccessMode = if (pni.isPresent && pni == serviceId) {
     UnidentifiedAccessMode.DISABLED

@@ -545,6 +545,8 @@
     <string name="ConversationFragment_delete_for_everyone">Delete for everyone</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <!-- Dialog button for deleting one or more note-to-self messages that will be sync'd to other devices -->
+    <string name="ConversationFragment_delete">Delete</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
     <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->

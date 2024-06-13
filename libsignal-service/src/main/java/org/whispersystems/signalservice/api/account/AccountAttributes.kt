@@ -61,6 +61,7 @@ class AccountAttributes @JsonCreator constructor(
     @JsonProperty val stories: Boolean,
     @JsonProperty val giftBadges: Boolean,
     @JsonProperty val pni: Boolean,
-    @JsonProperty val paymentActivation: Boolean
+    @JsonProperty val paymentActivation: Boolean,
+    @JsonProperty val deleteSync: Boolean
   )
 }

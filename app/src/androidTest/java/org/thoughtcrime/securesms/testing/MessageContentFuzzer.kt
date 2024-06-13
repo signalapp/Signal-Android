@@ -162,12 +162,12 @@ object MessageContentFuzzer {
                 conversation = if (conversation.isGroup) {
                   SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
                 } else {
-                  SyncMessage.DeleteForMe.ConversationIdentifier(threadAci = conversation.requireAci().toString())
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
                 },
 
                 messages = conversationDeletes.map { (author, timestamp) ->
                   SyncMessage.DeleteForMe.AddressableMessage(
-                    authorAci = Recipient.resolved(author).requireAci().toString(),
+                    authorServiceId = Recipient.resolved(author).requireAci().toString(),
                     sentTimestamp = timestamp
                   )
                 }
@@ -190,12 +190,12 @@ object MessageContentFuzzer {
                 conversation = if (conversation.isGroup) {
                   SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
                 } else {
-                  SyncMessage.DeleteForMe.ConversationIdentifier(threadAci = conversation.requireAci().toString())
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
                 },
 
                 mostRecentMessages = conversationDeletes.map { (author, timestamp) ->
                   SyncMessage.DeleteForMe.AddressableMessage(
-                    authorAci = Recipient.resolved(author).requireAci().toString(),
+                    authorServiceId = Recipient.resolved(author).requireAci().toString(),
                     sentTimestamp = timestamp
                   )
                 },
@@ -220,7 +220,7 @@ object MessageContentFuzzer {
                 conversation = if (conversation.isGroup) {
                   SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
                 } else {
-                  SyncMessage.DeleteForMe.ConversationIdentifier(threadAci = conversation.requireAci().toString())
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
                 }
               )
             }

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms
 
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.account.AccountAttributes
 
 object AppCapabilities {
@@ -17,7 +18,8 @@ object AppCapabilities {
       stories = true,
       giftBadges = true,
       pni = true,
-      paymentActivation = true
+      paymentActivation = true,
+      deleteSync = RemoteConfig.deleteSyncEnabled
     )
   }
 }

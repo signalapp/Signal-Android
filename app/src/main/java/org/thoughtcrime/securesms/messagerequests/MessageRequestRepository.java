@@ -274,7 +274,7 @@ public final class MessageRequestRepository {
       }
 
       ThreadTable threadTable = SignalDatabase.threads();
-      threadTable.deleteConversation(threadId);
+      threadTable.deleteConversation(threadId, false);
 
       onMessageRequestDeleted.run();
     });

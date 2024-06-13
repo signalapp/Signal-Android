@@ -16,8 +16,8 @@ import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSendSyncJob;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -65,7 +65,7 @@ final class MediaActions {
                                                      recordCount);
 
     String    confirmMessage;
-    if (TextSecurePreferences.isMultiDevice(context) && RemoteConfig.deleteSyncEnabled()) {
+    if (TextSecurePreferences.isMultiDevice(context) && Recipient.self().getDeleteSyncCapability().isSupported()) {
       confirmMessage = res.getQuantityString(R.plurals.MediaOverviewActivity_Media_delete_confirm_message_linked_device,
                                              recordCount,
                                              recordCount);
@@ -98,7 +98,7 @@ final class MediaActions {
             }
           }
 
-          if (RemoteConfig.deleteSyncEnabled() && Util.hasItems(deletedMessageRecords)) {
+          if (Recipient.self().getDeleteSyncCapability().isSupported() && Util.hasItems(deletedMessageRecords)) {
             MultiDeviceDeleteSendSyncJob.enqueueMessageDeletes(deletedMessageRecords);
           }
 

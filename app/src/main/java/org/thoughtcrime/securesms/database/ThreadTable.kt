@@ -65,7 +65,6 @@ import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
 import org.thoughtcrime.securesms.util.LRUCache
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isScheduled
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
@@ -326,7 +325,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return
     }
 
-    val syncThreadTrimDeletes = SignalStore.settings().shouldSyncThreadTrimDeletes() && RemoteConfig.deleteSyncEnabled
+    val syncThreadTrimDeletes = SignalStore.settings().shouldSyncThreadTrimDeletes() && Recipient.self().deleteSyncCapability.isSupported
     val threadTrimsToSync = mutableListOf<Pair<Long, Set<MessageRecord>>>()
 
     readableDatabase
@@ -1119,55 +1118,32 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       if (containsAddressable || isEmpty) {
         false
       } else {
-        deleteConversation(threadId, syncThreadDeletes = false)
+        deleteConversation(threadId, syncThreadDelete = false)
         true
       }
     }
   }
 
   @JvmOverloads
-  fun deleteConversation(threadId: Long, syncThreadDeletes: Boolean = true) {
-    val recipientIdForThreadId = getRecipientIdForThreadId(threadId)
-
-    var addressableMessages: Set<MessageRecord> = emptySet()
-    writableDatabase.withinTransaction { db ->
-      if (syncThreadDeletes && RemoteConfig.deleteSyncEnabled) {
-        addressableMessages = messages.getMostRecentAddressableMessages(threadId)
-      }
-
-      messages.deleteThread(threadId)
-      drafts.clearDrafts(threadId)
-      db.deactivateThread(threadId)
-      synchronized(threadIdCache) {
-        threadIdCache.remove(recipientIdForThreadId)
-      }
-    }
-
-    if (syncThreadDeletes) {
-      MultiDeviceDeleteSendSyncJob.enqueueThreadDeletes(listOf(threadId to addressableMessages), isFullDelete = true)
-    }
-
-    notifyConversationListListeners()
-    notifyConversationListeners(threadId)
-    AppDependencies.databaseObserver.notifyConversationDeleteListeners(threadId)
-    ConversationUtil.clearShortcuts(context, setOf(recipientIdForThreadId))
+  fun deleteConversation(threadId: Long, syncThreadDelete: Boolean = true) {
+    deleteConversations(setOf(threadId), syncThreadDelete)
   }
 
-  fun deleteConversations(selectedConversations: Set<Long>) {
+  fun deleteConversations(selectedConversations: Set<Long>, syncThreadDeletes: Boolean = true) {
     val recipientIds = getRecipientIdsForThreadIds(selectedConversations)
 
     val addressableMessages = mutableListOf<Pair<Long, Set<MessageRecord>>>()
 
     val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(ID, selectedConversations)
     writableDatabase.withinTransaction { db ->
-      for (query in queries) {
-        db.deactivateThread(query)
-      }
-
-      if (RemoteConfig.deleteSyncEnabled) {
+      if (syncThreadDeletes && Recipient.self().deleteSyncCapability.isSupported) {
         for (threadId in selectedConversations) {
           addressableMessages += threadId to messages.getMostRecentAddressableMessages(threadId)
         }
+      }
+
+      for (query in queries) {
+        db.deactivateThread(query)
       }
 
       messages.deleteAbandonedMessages()
@@ -1183,12 +1159,19 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
     }
 
-    MultiDeviceDeleteSendSyncJob.enqueueThreadDeletes(addressableMessages, isFullDelete = true)
+    if (syncThreadDeletes) {
+      MultiDeviceDeleteSendSyncJob.enqueueThreadDeletes(addressableMessages, isFullDelete = true)
+    }
 
     notifyConversationListListeners()
     notifyConversationListeners(selectedConversations)
+    notifyStickerListeners()
+    notifyStickerPackListeners()
     AppDependencies.databaseObserver.notifyConversationDeleteListeners(selectedConversations)
+
     ConversationUtil.clearShortcuts(context, recipientIds)
+
+    OptimizeMessageSearchIndexJob.enqueue()
   }
 
   @SuppressLint("DiscouragedApi")
@@ -1485,12 +1468,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       .run()
   }
 
-  fun update(threadId: Long, unarchive: Boolean): Boolean {
+  fun update(threadId: Long, unarchive: Boolean, syncThreadDelete: Boolean = true): Boolean {
     return update(
       threadId = threadId,
       unarchive = unarchive,
       allowDeletion = true,
-      notifyListeners = true
+      notifyListeners = true,
+      syncThreadDelete = syncThreadDelete
     )
   }
 
@@ -1499,16 +1483,18 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       threadId = threadId,
       unarchive = unarchive,
       allowDeletion = true,
-      notifyListeners = false
+      notifyListeners = false,
+      syncThreadDelete = true
     )
   }
 
-  fun update(threadId: Long, unarchive: Boolean, allowDeletion: Boolean): Boolean {
+  fun update(threadId: Long, unarchive: Boolean, allowDeletion: Boolean, syncThreadDelete: Boolean = true): Boolean {
     return update(
       threadId = threadId,
       unarchive = unarchive,
       allowDeletion = allowDeletion,
-      notifyListeners = true
+      notifyListeners = true,
+      syncThreadDelete = syncThreadDelete
     )
   }
 
@@ -1543,7 +1529,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     stopwatch?.split("thread-update")
   }
 
-  private fun update(threadId: Long, unarchive: Boolean, allowDeletion: Boolean, notifyListeners: Boolean): Boolean {
+  private fun update(threadId: Long, unarchive: Boolean, allowDeletion: Boolean, notifyListeners: Boolean, syncThreadDelete: Boolean): Boolean {
     if (threadId == -1L) {
       Log.d(TAG, "Skipping update for threadId -1")
       return false
@@ -1558,7 +1544,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       if (!meaningfulMessages) {
         if (shouldDelete) {
           Log.d(TAG, "Deleting thread $threadId because it has no meaningful messages.")
-          deleteConversation(threadId)
+          deleteConversation(threadId, syncThreadDelete = syncThreadDelete)
           return@withinTransaction true
         } else if (!isPinned) {
           return@withinTransaction false

@@ -823,6 +823,13 @@ public abstract class MessageRecord extends DisplayRecord {
     return revisionNumber;
   }
 
+  /**
+   * A message that can be correctly identified and delete sync'd across devices.
+   */
+  public boolean canDeleteSync() {
+    return false;
+  }
+
   public static final class InviteAddState {
 
     private final boolean invited;

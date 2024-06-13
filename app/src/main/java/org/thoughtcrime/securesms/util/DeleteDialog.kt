@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSendSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask
 
@@ -45,13 +46,24 @@ object DeleteDialog {
     if (forceRemoteDelete) {
       builder.setPositiveButton(R.string.ConversationFragment_delete_for_everyone) { _, _ -> deleteForEveryone(messageRecords, emitter) }
     } else {
-      builder.setPositiveButton(if (isNoteToSelfDelete) R.string.ConversationFragment_delete_on_this_device else R.string.ConversationFragment_delete_for_me) { _, _ ->
+      val deleteSyncEnabled = Recipient.self().deleteSyncCapability.isSupported
+
+      val positiveButton = if (isNoteToSelfDelete) {
+        if (deleteSyncEnabled) R.string.ConversationFragment_delete else R.string.ConversationFragment_delete_on_this_device
+      } else {
+        R.string.ConversationFragment_delete_for_me
+      }
+
+      builder.setPositiveButton(positiveButton) { _, _ ->
         DeleteProgressDialogAsyncTask(context, messageRecords) {
           emitter.onSuccess(Pair(true, it))
         }.executeOnExecutor(SignalExecutors.BOUNDED)
       }
 
-      if (MessageConstraintsUtil.isValidRemoteDeleteSend(messageRecords, System.currentTimeMillis()) && (!isNoteToSelfDelete || TextSecurePreferences.isMultiDevice(context))) {
+      val canDeleteForEveryone = MessageConstraintsUtil.isValidRemoteDeleteSend(messageRecords, System.currentTimeMillis()) && !isNoteToSelfDelete
+      val canDeleteForEveryoneInNoteToSelf = isNoteToSelfDelete && TextSecurePreferences.isMultiDevice(context) && !deleteSyncEnabled
+
+      if (canDeleteForEveryone || canDeleteForEveryoneInNoteToSelf) {
         builder.setNeutralButton(if (isNoteToSelfDelete) R.string.ConversationFragment_delete_everywhere else R.string.ConversationFragment_delete_for_everyone) { _, _ -> handleDeleteForEveryone(context, messageRecords, emitter) }
       }
     }
@@ -109,7 +121,7 @@ object DeleteDialog {
         }
       }
 
-      if (RemoteConfig.deleteSyncEnabled) {
+      if (Recipient.self().deleteSyncCapability.isSupported) {
         MultiDeviceDeleteSendSyncJob.enqueueMessageDeletes(messageRecords)
       }
 

@@ -98,7 +98,7 @@ public final class IdentityUtil {
             } catch (MmsException e) {
               throw new AssertionError(e);
             }
-            SignalDatabase.threads().update(threadId, true);
+            SignalDatabase.threads().update(threadId, true, true);
           }
         }
       }
@@ -129,7 +129,7 @@ public final class IdentityUtil {
       } catch (MmsException e) {
         throw new AssertionError();
       }
-      SignalDatabase.threads().update(threadId, true);
+      SignalDatabase.threads().update(threadId, true, true);
     }
   }
 
