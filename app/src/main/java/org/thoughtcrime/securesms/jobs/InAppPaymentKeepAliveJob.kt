@@ -250,7 +250,7 @@ class InAppPaymentKeepAliveJob private constructor(
         inAppPaymentData = InAppPaymentData(
           badge = badge,
           amount = FiatValue(
-            currencyCode = subscriber.currencyCode,
+            currencyCode = subscriber.currency.currencyCode,
             amount = subscription.amount.toDecimalValue()
           ),
           error = null,

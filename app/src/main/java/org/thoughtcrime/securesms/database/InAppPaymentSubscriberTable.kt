@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
+import java.util.Currency
 
 /**
  * A table matching up SubscriptionIds to currency codes and type
@@ -77,7 +78,7 @@ class InAppPaymentSubscriberTable(
    * This is a destructive, mutating operation. For setting specific values, prefer the alternative setters available on this table class.
    */
   fun insertOrReplace(inAppPaymentSubscriberRecord: InAppPaymentSubscriberRecord) {
-    Log.i(TAG, "Setting subscriber for currency ${inAppPaymentSubscriberRecord.currencyCode}", Exception(), true)
+    Log.i(TAG, "Setting subscriber for currency ${inAppPaymentSubscriberRecord.currency.currencyCode}", Exception(), true)
 
     writableDatabase.withinTransaction { db ->
       db.insertInto(TABLE_NAME)
@@ -85,7 +86,7 @@ class InAppPaymentSubscriberTable(
         .run(conflictStrategy = SQLiteDatabase.CONFLICT_REPLACE)
 
       SignalStore.donationsValues().setSubscriberCurrency(
-        inAppPaymentSubscriberRecord.currencyCode,
+        inAppPaymentSubscriberRecord.currency,
         inAppPaymentSubscriberRecord.type
       )
     }
@@ -137,7 +138,7 @@ class InAppPaymentSubscriberTable(
     override fun serialize(data: InAppPaymentSubscriberRecord): ContentValues {
       return contentValuesOf(
         SUBSCRIBER_ID to data.subscriberId.serialize(),
-        CURRENCY_CODE to data.currencyCode.uppercase(),
+        CURRENCY_CODE to data.currency.currencyCode.uppercase(),
         TYPE to TypeSerializer.serialize(data.type),
         REQUIRES_CANCEL to data.requiresCancel,
         PAYMENT_METHOD_TYPE to data.paymentMethodType.value
@@ -145,11 +146,13 @@ class InAppPaymentSubscriberTable(
     }
 
     override fun deserialize(input: Cursor): InAppPaymentSubscriberRecord {
+      val type = TypeSerializer.deserialize(input.requireInt(TYPE))
+      val currencyCode = input.requireNonNullString(CURRENCY_CODE).takeIf { it.isNotEmpty() }
       return InAppPaymentSubscriberRecord(
         subscriberId = SubscriberId.deserialize(input.requireNonNullString(SUBSCRIBER_ID)),
-        currencyCode = input.requireNonNullString(CURRENCY_CODE),
-        type = TypeSerializer.deserialize(input.requireInt(TYPE)),
-        requiresCancel = input.requireBoolean(REQUIRES_CANCEL),
+        currency = currencyCode?.let { Currency.getInstance(it) } ?: SignalStore.donationsValues().getSubscriptionCurrency(type),
+        type = type,
+        requiresCancel = input.requireBoolean(REQUIRES_CANCEL) || currencyCode.isNullOrBlank(),
         paymentMethodType = InAppPaymentData.PaymentMethodType.fromValue(input.requireInt(PAYMENT_METHOD_TYPE)) ?: InAppPaymentData.PaymentMethodType.UNKNOWN
       )
     }

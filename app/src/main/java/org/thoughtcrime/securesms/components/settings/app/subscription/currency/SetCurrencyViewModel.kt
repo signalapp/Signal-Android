@@ -50,7 +50,7 @@ class SetCurrencyViewModel(
         InAppPaymentsRepository.setSubscriber(
           InAppPaymentSubscriberRecord(
             subscriberId = SubscriberId.generate(),
-            currencyCode = currency.currencyCode,
+            currency = currency,
             type = inAppPaymentType.requireSubscriberType(),
             requiresCancel = false,
             paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN

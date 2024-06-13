@@ -29,6 +29,7 @@ import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.Cha
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.Subscription
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.io.IOException
+import java.util.Currency
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -288,10 +289,15 @@ class InAppPaymentRecurringContextJob private constructor(
   }
 
   private fun handlePaymentFailure(inAppPayment: InAppPaymentTable.InAppPayment, subscription: Subscription, chargeFailure: ChargeFailure?) {
-    val subscriber = SignalDatabase.inAppPaymentSubscribers.getBySubscriberId(inAppPayment.subscriberId!!)
-    if (subscriber != null) {
-      InAppPaymentsRepository.setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriber, true)
-    }
+    SignalDatabase.inAppPaymentSubscribers.insertOrReplace(
+      InAppPaymentSubscriberRecord(
+        subscriberId = inAppPayment.subscriberId!!,
+        currency = Currency.getInstance(inAppPayment.data.amount!!.currencyCode),
+        type = inAppPayment.type.requireSubscriberType(),
+        requiresCancel = true,
+        paymentMethodType = inAppPayment.data.paymentMethodType
+      )
+    )
 
     if (inAppPayment.data.redemption?.keepAlive == true) {
       info("Cancellation occurred during keep-alive. Setting cancellation state.")

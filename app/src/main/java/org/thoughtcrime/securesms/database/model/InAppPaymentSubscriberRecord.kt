@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.database.model
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
+import java.util.Currency
 
 /**
  * Represents a SubscriberId and metadata that can be used for a recurring
@@ -15,7 +16,7 @@ import org.whispersystems.signalservice.api.subscriptions.SubscriberId
  */
 data class InAppPaymentSubscriberRecord(
   val subscriberId: SubscriberId,
-  val currencyCode: String,
+  val currency: Currency,
   val type: Type,
   val requiresCancel: Boolean,
   val paymentMethodType: InAppPaymentData.PaymentMethodType

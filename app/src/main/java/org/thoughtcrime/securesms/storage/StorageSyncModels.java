@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
@@ -32,6 +33,7 @@ import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record;
 
+import java.util.Currency;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -281,24 +283,32 @@ public final class StorageSyncModels {
     if (subscriber == null) {
       return new SignalAccountRecord.Subscriber(null, null);
     } else {
-      return new SignalAccountRecord.Subscriber(subscriber.getCurrencyCode(), subscriber.getSubscriberId().getBytes());
+      return new SignalAccountRecord.Subscriber(subscriber.getCurrency().getCurrencyCode(), subscriber.getSubscriberId().getBytes());
     }
   }
 
-  /**
-   * TODO - We need to store the subscriber type.
-   */
   public static @Nullable InAppPaymentSubscriberRecord remoteToLocalSubscriber(
       @NonNull SignalAccountRecord.Subscriber subscriber,
       @NonNull InAppPaymentSubscriberRecord.Type type
   ) {
     if (subscriber.getId().isPresent()) {
-      SubscriberId                 subscriberId            = SubscriberId.fromBytes(subscriber.getId().get());
-      InAppPaymentSubscriberRecord localSubscriberRecord   = SignalDatabase.inAppPaymentSubscribers().getBySubscriberId(subscriberId);
-      boolean                      requiresCancel          = localSubscriberRecord != null && localSubscriberRecord.getRequiresCancel();
-      InAppPaymentData.PaymentMethodType paymentMethodType = localSubscriberRecord != null ? localSubscriberRecord.getPaymentMethodType() : InAppPaymentData.PaymentMethodType.UNKNOWN;
+      SubscriberId                       subscriberId          = SubscriberId.fromBytes(subscriber.getId().get());
+      InAppPaymentSubscriberRecord       localSubscriberRecord = SignalDatabase.inAppPaymentSubscribers().getBySubscriberId(subscriberId);
+      boolean                            requiresCancel        = localSubscriberRecord != null && localSubscriberRecord.getRequiresCancel();
+      InAppPaymentData.PaymentMethodType paymentMethodType     = localSubscriberRecord != null ? localSubscriberRecord.getPaymentMethodType() : InAppPaymentData.PaymentMethodType.UNKNOWN;
 
-      return new InAppPaymentSubscriberRecord(subscriberId, subscriber.getCurrencyCode().get(), type, requiresCancel, paymentMethodType);
+      Currency currency;
+      if (subscriber.getCurrencyCode().isEmpty()) {
+        return null;
+      } else {
+        try {
+          currency = Currency.getInstance(subscriber.getCurrencyCode().get());
+        } catch (IllegalArgumentException e) {
+          return null;
+        }
+      }
+
+      return new InAppPaymentSubscriberRecord(subscriberId, currency, type, requiresCancel, paymentMethodType);
     } else {
       return null;
     }

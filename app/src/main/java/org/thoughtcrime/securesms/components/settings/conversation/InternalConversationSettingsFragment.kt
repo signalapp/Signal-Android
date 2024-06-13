@@ -240,7 +240,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
         // TODO [alex] - DB on main thread!
         val subscriber: InAppPaymentSubscriberRecord? = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
         val summary = if (subscriber != null) {
-          """currency code: ${subscriber.currencyCode}
+          """currency code: ${subscriber.currency.currencyCode}
             |subscriber id: ${subscriber.subscriberId.serialize()}
           """.trimMargin()
         } else {

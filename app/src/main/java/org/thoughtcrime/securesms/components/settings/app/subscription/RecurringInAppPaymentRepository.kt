@@ -115,7 +115,7 @@ class RecurringInAppPaymentRepository(private val donationsService: DonationsSer
         InAppPaymentsRepository.setSubscriber(
           InAppPaymentSubscriberRecord(
             subscriberId = subscriberId,
-            currencyCode = SignalStore.donationsValues().getSubscriptionCurrency(subscriberType).currencyCode,
+            currency = SignalStore.donationsValues().getSubscriptionCurrency(subscriberType),
             type = subscriberType,
             requiresCancel = false,
             paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN
@@ -193,7 +193,7 @@ class RecurringInAppPaymentRepository(private val donationsService: DonationsSer
             AppDependencies.donationsService.updateSubscriptionLevel(
               subscriber.subscriberId,
               subscriptionLevel,
-              subscriber.currencyCode,
+              subscriber.currency.currencyCode,
               levelUpdateOperation.idempotencyKey.serialize(),
               subscriberType
             )

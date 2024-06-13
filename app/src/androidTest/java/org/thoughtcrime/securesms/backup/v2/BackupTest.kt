@@ -47,6 +47,7 @@ import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.io.ByteArrayInputStream
+import java.util.Currency
 import java.util.UUID
 import kotlin.random.Random
 
@@ -253,7 +254,7 @@ class BackupTest {
       SignalDatabase.recipients.setProfileName(self.id, ProfileName.fromParts("Peter", "Parker"))
       SignalDatabase.recipients.setProfileAvatar(self.id, "https://example.com/")
 
-      InAppPaymentsRepository.setSubscriber(InAppPaymentSubscriberRecord(SubscriberId.generate(), "USD", InAppPaymentSubscriberRecord.Type.DONATION, false, InAppPaymentData.PaymentMethodType.UNKNOWN))
+      InAppPaymentsRepository.setSubscriber(InAppPaymentSubscriberRecord(SubscriberId.generate(), Currency.getInstance("USD"), InAppPaymentSubscriberRecord.Type.DONATION, false, InAppPaymentData.PaymentMethodType.UNKNOWN))
       SignalStore.donationsValues().setDisplayBadgesOnProfile(false)
 
       SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE

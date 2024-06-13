@@ -37,7 +37,7 @@ internal class SubscriberIdMigrationJob(
         SignalDatabase.inAppPaymentSubscribers.insertOrReplace(
           InAppPaymentSubscriberRecord(
             subscriber.subscriberId,
-            subscriber.currencyCode,
+            subscriber.currency,
             InAppPaymentSubscriberRecord.Type.DONATION,
             SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt,
             SignalStore.donationsValues().getSubscriptionPaymentSourceType().toPaymentMethodType()

@@ -164,7 +164,7 @@ class ExternalLaunchDonationJob private constructor(
       val updateSubscriptionLevelResponse = AppDependencies.donationsService.updateSubscriptionLevel(
         subscriber.subscriberId,
         subscriptionLevel,
-        subscriber.currencyCode,
+        subscriber.currency.currencyCode,
         levelUpdateOperation.idempotencyKey.serialize(),
         subscriber.type
       )

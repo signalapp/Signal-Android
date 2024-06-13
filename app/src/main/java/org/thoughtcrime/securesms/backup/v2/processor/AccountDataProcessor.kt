@@ -29,6 +29,7 @@ import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.storage.StorageRecordProtoUtil.defaultAccountRecord
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.api.util.UuidUtil
+import java.util.Currency
 import kotlin.jvm.optionals.getOrNull
 
 object AccountDataProcessor {
@@ -51,7 +52,7 @@ object AccountDataProcessor {
           subscriptionManuallyCancelled = InAppPaymentsRepository.isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION),
           username = self.username.getOrNull(),
           subscriberId = subscriber?.subscriberId?.bytes?.toByteString() ?: defaultAccountRecord.subscriberId,
-          subscriberCurrencyCode = subscriber?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
+          subscriberCurrencyCode = subscriber?.currency?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
           accountSettings = AccountData.AccountSettings(
             storyViewReceiptsEnabled = SignalStore.storyValues().viewedReceiptsEnabled,
             typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context),
@@ -108,7 +109,7 @@ object AccountDataProcessor {
 
         val subscriber = InAppPaymentSubscriberRecord(
           remoteSubscriberId,
-          accountData.subscriberCurrencyCode,
+          Currency.getInstance(accountData.subscriberCurrencyCode),
           InAppPaymentSubscriberRecord.Type.DONATION,
           localSubscriber?.requiresCancel ?: false,
           InAppPaymentsRepository.getLatestPaymentMethodType(InAppPaymentSubscriberRecord.Type.DONATION)
