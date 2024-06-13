@@ -415,10 +415,12 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       return CallLink(
         recipientId = data.requireLong(RECIPIENT_ID).let { if (it > 0) RecipientId.from(it) else RecipientId.UNKNOWN },
         roomId = CallLinkRoomId.DatabaseSerializer.deserialize(data.requireNonNullString(ROOM_ID)),
-        credentials = CallLinkCredentials(
-          linkKeyBytes = data.requireNonNullBlob(ROOT_KEY),
-          adminPassBytes = data.requireBlob(ADMIN_KEY)
-        ),
+        credentials = data.requireBlob(ROOT_KEY)?.let { linkKey ->
+          CallLinkCredentials(
+            linkKeyBytes = linkKey,
+            adminPassBytes = data.requireBlob(ADMIN_KEY)
+          )
+        },
         state = SignalCallLinkState(
           name = data.requireNonNullString(NAME),
           restrictions = data.requireInt(RESTRICTIONS).mapToRestrictions(),

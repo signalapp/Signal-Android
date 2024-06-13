@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.database
 
 import android.database.Cursor
+import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.select
 import org.signal.ringrtc.CallLinkRootKey
@@ -63,8 +64,8 @@ class BackupCallLinkIterator(private val cursor: Cursor) : Iterator<BackupRecipi
     return BackupRecipient(
       id = callLink.recipientId.toLong(),
       callLink = CallLink(
-        rootKey = callLink.credentials!!.linkKeyBytes.toByteString(),
-        adminKey = callLink.credentials.adminPassBytes?.toByteString(),
+        rootKey = callLink.credentials?.linkKeyBytes?.toByteString() ?: ByteString.EMPTY,
+        adminKey = callLink.credentials?.adminPassBytes?.toByteString(),
         name = callLink.state.name,
         expirationMs = callLink.state.expiration.toEpochMilli(),
         restrictions = callLink.state.restrictions.toBackup()
