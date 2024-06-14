@@ -461,9 +461,11 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
         }
       }
 
-      val subscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
-      InAppPaymentsRepository.setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriber, true)
-      SignalDatabase.inAppPayments.markSubscriptionManuallyCanceled(subscriberId = subscriber.subscriberId)
+      val subscriber = InAppPaymentsRepository.getSubscriber(subscriberType)
+      InAppPaymentsRepository.setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberType, subscriber?.subscriberId, true)
+      if (subscriber != null) {
+        SignalDatabase.inAppPayments.markSubscriptionManuallyCanceled(subscriberId = subscriber.subscriberId)
+      }
     }
   }
 

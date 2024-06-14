@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.push.DonationProcessor
 import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError
 import java.security.SecureRandom
@@ -307,19 +308,29 @@ object InAppPaymentsRepository {
     }
   }
 
+  @JvmStatic
+  @WorkerThread
+  fun setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriber: InAppPaymentSubscriberRecord, shouldCancel: Boolean) {
+    setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriber.type, subscriber.subscriberId, shouldCancel)
+  }
+
   /**
    * Sets whether we should force a cancellation before our next subscription attempt. This is to help clean up
    * bad state in some edge cases.
    */
   @JvmStatic
   @WorkerThread
-  fun setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriber: InAppPaymentSubscriberRecord, shouldCancel: Boolean) {
-    if (subscriber.type == InAppPaymentSubscriberRecord.Type.DONATION) {
+  fun setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberType: InAppPaymentSubscriberRecord.Type, subscriberId: SubscriberId?, shouldCancel: Boolean) {
+    if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
       SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt = shouldCancel
     }
 
+    if (subscriberId == null) {
+      return
+    }
+
     SignalDatabase.inAppPaymentSubscribers.setRequiresCancel(
-      subscriberId = subscriber.subscriberId,
+      subscriberId = subscriberId,
       requiresCancel = shouldCancel
     )
   }
