@@ -50,7 +50,7 @@ public class ZoomingImageView extends FrameLayout {
   private static final float SMALL_IMAGES_ZOOM_LEVEL_MID = 3.0f;
   private static final float SMALL_IMAGES_ZOOM_LEVEL_MAX = 8.0f;
 
-  private final PhotoView                 photoView;
+  private final PhotoView                 gifView;
   private final SubsamplingScaleImageView subsamplingImageView;
 
   public ZoomingImageView(Context context) {
@@ -66,54 +66,34 @@ public class ZoomingImageView extends FrameLayout {
 
     inflate(context, R.layout.zooming_image_view, this);
 
-    this.photoView            = findViewById(R.id.image_view);
+    this.gifView              = findViewById(R.id.image_view);
     this.subsamplingImageView = findViewById(R.id.subsampling_image_view);
 
-    this.photoView.setZoomTransitionDuration(ZOOM_TRANSITION_DURATION);
-    this.photoView.setScaleLevels(ZOOM_LEVEL_MIN, SMALL_IMAGES_ZOOM_LEVEL_MID, SMALL_IMAGES_ZOOM_LEVEL_MAX);
+    this.gifView.setZoomTransitionDuration(ZOOM_TRANSITION_DURATION);
+    this.gifView.setScaleLevels(ZOOM_LEVEL_MIN, SMALL_IMAGES_ZOOM_LEVEL_MID, SMALL_IMAGES_ZOOM_LEVEL_MAX);
 
     this.subsamplingImageView.setDoubleTapZoomDuration(ZOOM_TRANSITION_DURATION);
     this.subsamplingImageView.setDoubleTapZoomScale(LARGE_IMAGES_ZOOM_LEVEL_MID);
     this.subsamplingImageView.setMaxScale(LARGE_IMAGES_ZOOM_LEVEL_MAX);
 
-    this.photoView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
+    this.gifView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
     this.subsamplingImageView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
   }
 
   @SuppressLint("StaticFieldLeak")
-  public void setImageUri(@NonNull RequestManager requestManager, @NonNull Uri uri, @NonNull String contentType, @NonNull Runnable onMediaReady)
-  {
-    final Context context        = getContext();
-    final int     maxTextureSize = BitmapUtil.getMaxTextureSize();
-
-    Log.i(TAG, "Max texture size: " + maxTextureSize);
-
-    SimpleTask.run(ViewUtil.getActivityLifecycle(this), () -> {
-      if (MediaUtil.isGif(contentType)) return null;
-
-      try {
-        InputStream inputStream = PartAuthority.getAttachmentStream(context, uri);
-        return BitmapUtil.getDimensions(inputStream);
-      } catch (IOException | BitmapDecodingException e) {
-        Log.w(TAG, e);
-        return null;
-      }
-    }, dimensions -> {
-      Log.i(TAG, "Dimensions: " + (dimensions == null ? "(null)" : dimensions.first + ", " + dimensions.second));
-
-      if (dimensions == null || (dimensions.first <= maxTextureSize && dimensions.second <= maxTextureSize)) {
-        Log.i(TAG, "Loading in standard image view...");
-        setImageViewUri(requestManager, uri, onMediaReady);
-      } else {
-        Log.i(TAG, "Loading in subsampling image view...");
-        setSubsamplingImageViewUri(uri);
-        onMediaReady.run();
-      }
-    });
+  public void setImageUri(@NonNull RequestManager requestManager, @NonNull Uri uri, @NonNull String contentType, @NonNull Runnable onMediaReady) {
+    if (MediaUtil.isGif(contentType)) {
+      Log.i(TAG, "Loading in gif image view...");
+      setImageViewUri(requestManager, uri, onMediaReady);
+    } else {
+      Log.i(TAG, "Loading in subsampling image view...");
+      setSubsamplingImageViewUri(uri);
+      onMediaReady.run();
+    }
   }
 
   private void setImageViewUri(@NonNull RequestManager requestManager, @NonNull Uri uri, @NonNull Runnable onMediaReady) {
-    photoView.setVisibility(View.VISIBLE);
+    gifView.setVisibility(View.VISIBLE);
     subsamplingImageView.setVisibility(View.GONE);
 
     requestManager.load(new DecryptableUri(uri))
@@ -121,7 +101,7 @@ public class ZoomingImageView extends FrameLayout {
                  .dontTransform()
                  .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                  .addListener(ActionRequestListener.onEither(onMediaReady))
-                 .into(photoView);
+                 .into(gifView);
   }
 
   private void setSubsamplingImageViewUri(@NonNull Uri uri) {
@@ -129,7 +109,7 @@ public class ZoomingImageView extends FrameLayout {
     subsamplingImageView.setRegionDecoderFactory(new AttachmentRegionDecoderFactory());
 
     subsamplingImageView.setVisibility(View.VISIBLE);
-    photoView.setVisibility(View.GONE);
+    gifView.setVisibility(View.GONE);
 
     // We manually set the orientation ourselves because using
     // SubsamplingScaleImageView.ORIENTATION_USE_EXIF is unreliable:
@@ -155,7 +135,7 @@ public class ZoomingImageView extends FrameLayout {
   }
 
   public void cleanup() {
-    photoView.setImageDrawable(null);
+    gifView.setImageDrawable(null);
     subsamplingImageView.recycle();
   }
 
