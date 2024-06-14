@@ -225,7 +225,7 @@ public final class StorageSyncHelper {
       InAppPaymentsRepository.setSubscriber(remoteSubscriber);
     }
 
-    if (update.getNew().isSubscriptionManuallyCancelled()) {
+    if (update.getNew().isSubscriptionManuallyCancelled() && !update.getOld().isSubscriptionManuallyCancelled()) {
       SignalStore.donationsValues().updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION);
     }
 
