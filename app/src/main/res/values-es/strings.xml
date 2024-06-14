@@ -45,7 +45,7 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">¿Desactivar clave de acceso?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Esto desbloqueará permanentemente Signal y las notificaciones de mensajes.</string>
     <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
-    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fallo al conectarse al servidor</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error al conectarse al servidor</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Se necesita el PIN para el bloqueo de registro. Desactiva primero el bloqueo de registro y después el PIN.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN creado.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivado.</string>
@@ -603,7 +603,7 @@
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">Desbloquear</string>
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam">Spam denunciado</string>
+    <string name="ConversationFragment_reported_spam">Denunciado como spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam_message">Signal ha sido notificado de que esta persona puede estar enviando spam. Signal no puede ver el contenido de ningún chat.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
@@ -1762,7 +1762,7 @@
         <item quantity="other">%1$d grupos adicionales</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Denunciar…</string>
+    <string name="MessageRequestBottomView_report">Denunciar</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves no coinciden!</string>
