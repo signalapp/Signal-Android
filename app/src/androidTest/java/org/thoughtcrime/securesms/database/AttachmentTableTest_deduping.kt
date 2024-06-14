@@ -824,7 +824,8 @@ class AttachmentTableTest_deduping {
         uploadTimestamp,
         databaseAttachment.caption,
         databaseAttachment.stickerLocator,
-        databaseAttachment.blurHash
+        databaseAttachment.blurHash,
+        databaseAttachment.uuid
       )
     }
   }

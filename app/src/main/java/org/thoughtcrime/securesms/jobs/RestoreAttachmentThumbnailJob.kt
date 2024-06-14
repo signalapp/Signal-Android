@@ -168,7 +168,8 @@ class RestoreAttachmentThumbnailJob private constructor(
         attachment.videoGif,
         Optional.empty(),
         Optional.ofNullable(attachment.blurHash).map { it.hash },
-        attachment.uploadTimestamp
+        attachment.uploadTimestamp,
+        attachment.uuid
       )
     } catch (e: IOException) {
       Log.w(TAG, e)

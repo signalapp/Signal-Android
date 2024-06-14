@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.database
 
 import android.content.ContentValues
 import androidx.core.content.contentValuesOf
+import okio.ByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.SqlUtil
@@ -817,7 +818,7 @@ class ChatItemImportInserter(
     }
   }
 
-  private fun FilePointer?.toLocalAttachment(voiceNote: Boolean, borderless: Boolean, gif: Boolean, wasDownloaded: Boolean, stickerLocator: StickerLocator? = null, contentType: String? = this?.contentType, fileName: String? = this?.fileName): Attachment? {
+  private fun FilePointer?.toLocalAttachment(voiceNote: Boolean, borderless: Boolean, gif: Boolean, wasDownloaded: Boolean, stickerLocator: StickerLocator? = null, contentType: String? = this?.contentType, fileName: String? = this?.fileName, uuid: ByteString? = null): Attachment? {
     if (this == null) return null
 
     if (attachmentLocator != null) {
@@ -839,7 +840,8 @@ class ChatItemImportInserter(
         gif,
         Optional.ofNullable(caption),
         Optional.ofNullable(blurHash),
-        attachmentLocator.uploadTimestamp
+        attachmentLocator.uploadTimestamp,
+        UuidUtil.fromByteStringOrNull(uuid)
       )
       return PointerAttachment.forPointer(
         pointer = Optional.of(signalAttachmentPointer),
@@ -858,7 +860,8 @@ class ChatItemImportInserter(
         voiceNote = voiceNote,
         borderless = borderless,
         gif = gif,
-        quote = false
+        quote = false,
+        uuid = UuidUtil.fromByteStringOrNull(uuid)
       )
     } else if (backupLocator != null) {
       return ArchivedAttachment(
@@ -882,7 +885,8 @@ class ChatItemImportInserter(
         borderless = borderless,
         gif = gif,
         quote = false,
-        stickerLocator = stickerLocator
+        stickerLocator = stickerLocator,
+        uuid = UuidUtil.fromByteStringOrNull(uuid)
       )
     }
     return null
@@ -910,7 +914,8 @@ class ChatItemImportInserter(
       voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
       gif = flag == MessageAttachment.Flag.GIF,
       borderless = flag == MessageAttachment.Flag.BORDERLESS,
-      wasDownloaded = wasDownloaded
+      wasDownloaded = wasDownloaded,
+      uuid = uuid
     )
   }
 
@@ -921,7 +926,8 @@ class ChatItemImportInserter(
       borderless = flag == MessageAttachment.Flag.BORDERLESS,
       wasDownloaded = wasDownloaded,
       contentType = contentType,
-      fileName = fileName
+      fileName = fileName,
+      uuid = uuid
     )
   }
 

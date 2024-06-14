@@ -551,6 +551,7 @@ message MessageAttachment {
   FilePointer pointer = 1;
   Flag flag = 2;
   bool wasDownloaded = 3;
+  optional bytes uuid = 4;
 }
 
 message FilePointer {

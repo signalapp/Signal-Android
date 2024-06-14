@@ -12,6 +12,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil
 import org.whispersystems.signalservice.internal.push.DataMessage
 import java.util.Optional
+import java.util.UUID
 
 class PointerAttachment : Attachment {
   @VisibleForTesting
@@ -35,7 +36,8 @@ class PointerAttachment : Attachment {
     uploadTimestamp: Long,
     caption: String?,
     stickerLocator: StickerLocator?,
-    blurHash: BlurHash?
+    blurHash: BlurHash?,
+    uuid: UUID?
   ) : super(
     contentType = contentType,
     transferState = transferState,
@@ -59,7 +61,8 @@ class PointerAttachment : Attachment {
     stickerLocator = stickerLocator,
     blurHash = blurHash,
     audioHash = null,
-    transformProperties = null
+    transformProperties = null,
+    uuid = uuid
   )
 
   constructor(parcel: Parcel) : super(parcel)
@@ -115,7 +118,8 @@ class PointerAttachment : Attachment {
           uploadTimestamp = pointer.get().asPointer().uploadTimestamp,
           caption = pointer.get().asPointer().caption.orElse(null),
           stickerLocator = stickerLocator,
-          blurHash = BlurHash.parseOrNull(pointer.get().asPointer().blurHash.orElse(null))
+          blurHash = BlurHash.parseOrNull(pointer.get().asPointer().blurHash.orElse(null)),
+          uuid = pointer.get().asPointer().uuid
         )
       )
     }
@@ -152,7 +156,8 @@ class PointerAttachment : Attachment {
           uploadTimestamp = thumbnail?.asPointer()?.uploadTimestamp ?: 0,
           caption = thumbnail?.asPointer()?.caption?.orElse(null),
           stickerLocator = null,
-          blurHash = null
+          blurHash = null,
+          uuid = thumbnail?.asPointer()?.uuid
         )
       )
     }

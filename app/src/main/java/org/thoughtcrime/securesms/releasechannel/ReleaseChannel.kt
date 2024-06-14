@@ -29,7 +29,7 @@ object ReleaseChannel {
     mediaWidth: Int = 0,
     mediaHeight: Int = 0,
     mediaType: String = "image/webp",
-    serverUuid: String? = UUID.randomUUID().toString(),
+    mediaAttachmentUuid: UUID? = UUID.randomUUID(),
     messageRanges: BodyRangeList? = null,
     storyType: StoryType = StoryType.NONE
   ): MessageTable.InsertResult? {
@@ -52,7 +52,8 @@ object ReleaseChannel {
         MediaUtil.isVideo(mediaType),
         Optional.empty(),
         Optional.empty(),
-        System.currentTimeMillis()
+        System.currentTimeMillis(),
+        mediaAttachmentUuid
       )
 
       Optional.of(listOf(attachment))
@@ -68,7 +69,7 @@ object ReleaseChannel {
       receivedTimeMillis = System.currentTimeMillis(),
       body = body,
       attachments = PointerAttachment.forPointers(attachments),
-      serverGuid = serverUuid,
+      serverGuid = UUID.randomUUID().toString(),
       messageRanges = messageRanges,
       storyType = storyType
     )

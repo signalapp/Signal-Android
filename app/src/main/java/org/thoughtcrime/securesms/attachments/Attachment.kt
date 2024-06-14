@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.ParcelUtil
+import org.whispersystems.signalservice.api.util.UuidUtil
+import java.util.UUID
 
 /**
  * Note: We have to use our own Parcelable implementation because we need to do custom stuff to preserve
@@ -65,7 +67,9 @@ abstract class Attachment(
   @JvmField
   val audioHash: AudioHash?,
   @JvmField
-  val transformProperties: TransformProperties?
+  val transformProperties: TransformProperties?,
+  @JvmField
+  val uuid: UUID?
 ) : Parcelable {
 
   abstract val uri: Uri?
@@ -97,7 +101,8 @@ abstract class Attachment(
     stickerLocator = ParcelCompat.readParcelable(parcel, StickerLocator::class.java.classLoader, StickerLocator::class.java),
     blurHash = ParcelCompat.readParcelable(parcel, BlurHash::class.java.classLoader, BlurHash::class.java),
     audioHash = ParcelCompat.readParcelable(parcel, AudioHash::class.java.classLoader, AudioHash::class.java),
-    transformProperties = ParcelCompat.readParcelable(parcel, TransformProperties::class.java.classLoader, TransformProperties::class.java)
+    transformProperties = ParcelCompat.readParcelable(parcel, TransformProperties::class.java.classLoader, TransformProperties::class.java),
+    uuid = UuidUtil.parseOrNull(parcel.readString())
   )
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -125,6 +130,7 @@ abstract class Attachment(
     dest.writeParcelable(blurHash, 0)
     dest.writeParcelable(audioHash, 0)
     dest.writeParcelable(transformProperties, 0)
+    dest.writeString(uuid?.toString())
   }
 
   override fun describeContents(): Int {

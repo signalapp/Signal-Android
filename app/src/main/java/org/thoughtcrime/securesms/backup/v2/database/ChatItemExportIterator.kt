@@ -537,7 +537,8 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         MessageAttachment.Flag.BORDERLESS
       } else {
         MessageAttachment.Flag.NONE
-      }
+      },
+      uuid = uuid?.let { UuidUtil.toByteString(uuid) }
     )
   }
 

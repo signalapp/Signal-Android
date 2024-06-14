@@ -862,7 +862,8 @@ public class SignalServiceMessageSender {
                                               attachment.isGif(),
                                               attachment.getCaption(),
                                               attachment.getBlurHash(),
-                                              attachment.getUploadTimestamp());
+                                              attachment.getUploadTimestamp(),
+                                              attachment.getUuid());
   }
 
   public ResumableUploadSpec getResumableUploadSpec() throws IOException {
@@ -907,7 +908,8 @@ public class SignalServiceMessageSender {
                                               attachment.isGif(),
                                               attachment.getCaption(),
                                               attachment.getBlurHash(),
-                                              attachment.getUploadTimestamp());
+                                              attachment.getUploadTimestamp(),
+                                              attachment.getUuid());
   }
 
   private SendMessageResult sendVerifiedSyncMessage(VerifiedMessage message)

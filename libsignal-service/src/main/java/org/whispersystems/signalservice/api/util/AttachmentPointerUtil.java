@@ -35,8 +35,8 @@ public final class AttachmentPointerUtil {
                                               ((pointer.flags != null ? pointer.flags : 0) & FlagUtil.toBinaryFlag(AttachmentPointer.Flags.GIF.getValue())) != 0,
                                               pointer.caption != null ? Optional.of(pointer.caption) : Optional.empty(),
                                               pointer.blurHash != null ? Optional.of(pointer.blurHash) : Optional.empty(),
-                                              pointer.uploadTimestamp != null ? pointer.uploadTimestamp : 0);
-
+                                              pointer.uploadTimestamp != null ? pointer.uploadTimestamp : 0,
+                                              UuidUtil.fromByteStringOrNull(pointer.uuid));
   }
 
   public static AttachmentPointer createAttachmentPointer(SignalServiceAttachmentPointer attachment) {
@@ -102,6 +102,10 @@ public final class AttachmentPointerUtil {
 
     if (attachment.getBlurHash().isPresent()) {
       builder.blurHash(attachment.getBlurHash().get());
+    }
+
+    if (attachment.getUuid() != null) {
+      builder.uuid(UuidUtil.toByteString(attachment.getUuid()));
     }
 
     return builder.build();

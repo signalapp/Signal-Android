@@ -154,7 +154,8 @@ class ConversationItemPreviewer {
       false,
       Optional.empty(),
       Optional.empty(),
-      System.currentTimeMillis()
+      System.currentTimeMillis(),
+      null
     )
   }
 }

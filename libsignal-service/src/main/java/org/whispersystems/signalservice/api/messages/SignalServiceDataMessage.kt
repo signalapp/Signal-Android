@@ -106,11 +106,6 @@ class SignalServiceDataMessage private constructor(
       return this
     }
 
-    fun withAttachment(attachment: SignalServiceAttachment?): Builder {
-      attachment?.let { attachments.add(attachment) }
-      return this
-    }
-
     fun withAttachments(attachments: List<SignalServiceAttachment>?): Builder {
       attachments?.let { this.attachments.addAll(attachments) }
       return this

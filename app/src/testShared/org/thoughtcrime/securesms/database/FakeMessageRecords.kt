@@ -101,7 +101,8 @@ object FakeMessageRecords {
       archiveThumbnailCdn,
       archiveMediaId,
       archiveMediaName,
-      thumbnailRestoreState
+      thumbnailRestoreState,
+      null
     )
   }
 

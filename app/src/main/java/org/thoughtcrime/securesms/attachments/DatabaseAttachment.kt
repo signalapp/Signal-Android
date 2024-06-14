@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.ParcelUtil
+import java.util.UUID
 
 class DatabaseAttachment : Attachment {
 
@@ -79,7 +80,8 @@ class DatabaseAttachment : Attachment {
     archiveThumbnailCdn: Int,
     archiveMediaName: String?,
     archiveMediaId: String?,
-    thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState
+    thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState,
+    uuid: UUID?
   ) : super(
     contentType = contentType!!,
     transferState = transferProgress,
@@ -102,7 +104,8 @@ class DatabaseAttachment : Attachment {
     stickerLocator = stickerLocator,
     blurHash = blurHash,
     audioHash = audioHash,
-    transformProperties = transformProperties
+    transformProperties = transformProperties,
+    uuid = uuid
   ) {
     this.attachmentId = attachmentId
     this.mmsId = mmsId

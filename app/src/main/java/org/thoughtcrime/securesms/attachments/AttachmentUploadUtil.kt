@@ -55,6 +55,7 @@ object AttachmentUploadUtil {
       .withResumableUploadSpec(ResumableUploadSpec.from(uploadSpec))
       .withCancelationSignal(cancellationSignal)
       .withListener(progressListener)
+      .withUuid(attachment.uuid)
 
     if (MediaUtil.isImageType(attachment.contentType)) {
       builder.withBlurHash(getImageBlurHash(context, attachment))

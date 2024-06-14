@@ -88,6 +88,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -211,6 +212,7 @@ public abstract class PushSendJob extends SendJob {
                                     .withWidth(attachment.width)
                                     .withHeight(attachment.height)
                                     .withCaption(attachment.caption)
+                                    .withUuid(attachment.uuid)
                                     .withListener(new SignalServiceAttachment.ProgressListener() {
                                       @Override
                                       public void onAttachmentProgress(long total, long progress) {
@@ -305,7 +307,8 @@ public abstract class PushSendJob extends SendJob {
                                                 attachment.videoGif,
                                                 Optional.ofNullable(attachment.caption),
                                                 Optional.ofNullable(attachment.blurHash).map(BlurHash::getHash),
-                                                attachment.uploadTimestamp);
+                                                attachment.uploadTimestamp,
+                                                attachment.uuid);
     } catch (IOException | ArithmeticException e) {
       Log.w(TAG, e);
       return null;
@@ -380,7 +383,8 @@ public abstract class PushSendJob extends SendJob {
                                                                            .withHeight(thumbnailData.getHeight())
                                                                            .withLength(thumbnailData.getData().length)
                                                                            .withStream(new ByteArrayInputStream(thumbnailData.getData()))
-                                                                           .withResumableUploadSpec(AppDependencies.getSignalServiceMessageSender().getResumableUploadSpec());
+                                                                           .withResumableUploadSpec(AppDependencies.getSignalServiceMessageSender().getResumableUploadSpec())
+                                                                           .withUuid(UUID.randomUUID());
 
           thumbnail = builder.build();
         }

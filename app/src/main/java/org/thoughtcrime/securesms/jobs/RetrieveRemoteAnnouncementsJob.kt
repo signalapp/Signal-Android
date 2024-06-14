@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.s3.S3
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig
+import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.io.IOException
 import java.lang.Integer.max
@@ -232,7 +233,8 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
           media = note.translation.media,
           mediaWidth = note.translation.mediaWidth?.toIntOrNull() ?: 0,
           mediaHeight = note.translation.mediaHeight?.toIntOrNull() ?: 0,
-          mediaType = note.translation.mediaContentType ?: "image/webp"
+          mediaType = note.translation.mediaContentType ?: "image/webp",
+          mediaAttachmentUuid = UuidUtil.parseOrNull(note.releaseNote.uuid)
         )
 
         if (insertResult != null) {
