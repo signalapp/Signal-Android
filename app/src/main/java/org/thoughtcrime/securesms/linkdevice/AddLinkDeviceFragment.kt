@@ -34,7 +34,6 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.QrImageSelectionActivity
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -51,7 +50,6 @@ class AddLinkDeviceFragment : ComposeFragment() {
   private val viewModel: LinkDeviceViewModel by activityViewModels()
   private lateinit var biometricAuth: BiometricDeviceAuthentication
   private lateinit var biometricDeviceLockLauncher: ActivityResultLauncher<String>
-  private lateinit var galleryLauncher: ActivityResultLauncher<Unit>
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -74,12 +72,6 @@ class AddLinkDeviceFragment : ComposeFragment() {
       BiometricPrompt(requireActivity(), BiometricAuthenticationListener()),
       promptInfo
     )
-
-    galleryLauncher = registerForActivityResult(QrImageSelectionActivity.Contract()) { uri ->
-      if (uri != null) {
-        viewModel.scanImage(requireContext(), uri)
-      }
-    }
   }
 
   override fun onPause() {
@@ -125,8 +117,7 @@ class AddLinkDeviceFragment : ComposeFragment() {
         viewModel.onLinkDeviceResult(true)
         navController.popBackStack()
       },
-      onLinkDeviceFailure = { viewModel.onLinkDeviceResult(false) },
-      onGalleryOpened = { galleryLauncher.launch(Unit) }
+      onLinkDeviceFailure = { viewModel.onLinkDeviceResult(false) }
     )
   }
 
@@ -174,8 +165,7 @@ private fun MainScreen(
   onQrCodeDismissed: () -> Unit = {},
   onQrCodeRetry: () -> Unit = {},
   onLinkDeviceSuccess: () -> Unit = {},
-  onLinkDeviceFailure: () -> Unit = {},
-  onGalleryOpened: () -> Unit = {}
+  onLinkDeviceFailure: () -> Unit = {}
 ) {
   Scaffolds.Settings(
     title = "",
@@ -202,7 +192,6 @@ private fun MainScreen(
       linkDeviceResult = state.linkDeviceResult,
       onLinkDeviceSuccess = onLinkDeviceSuccess,
       onLinkDeviceFailure = onLinkDeviceFailure,
-      onGalleryOpened = onGalleryOpened,
       modifier = Modifier.padding(contentPadding)
     )
   }

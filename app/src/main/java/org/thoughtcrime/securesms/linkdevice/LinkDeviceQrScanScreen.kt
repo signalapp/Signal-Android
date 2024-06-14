@@ -37,7 +37,6 @@ fun LinkDeviceQrScanScreen(
   linkDeviceResult: LinkDeviceRepository.LinkDeviceResult,
   onLinkDeviceSuccess: () -> Unit,
   onLinkDeviceFailure: () -> Unit,
-  onGalleryOpened: () -> Unit,
   modifier: Modifier = Modifier
 ) {
   val lifecycleOwner = LocalLifecycleOwner.current
@@ -107,8 +106,7 @@ fun LinkDeviceQrScanScreen(
         },
         hasPermission = hasPermission,
         onRequestPermissions = onRequestPermissions,
-        qrHeaderLabelString = stringResource(R.string.AddLinkDeviceFragment__scan_the_qr_code),
-        onGalleryOpened = onGalleryOpened
+        qrHeaderLabelString = stringResource(R.string.AddLinkDeviceFragment__scan_the_qr_code)
       )
     }
   }
