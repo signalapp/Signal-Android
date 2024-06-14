@@ -236,4 +236,6 @@
     <dimen name="image_editor_hud_tool_invisible_circle_diameter">40dp</dimen>
     <dimen name="image_editor_hud_tool_invisible_circle_padding">6dp</dimen>
 
+    <dimen name="contact_permission_button_min_width">140dp</dimen>
+
 </resources>

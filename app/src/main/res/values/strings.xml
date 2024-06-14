@@ -2855,6 +2855,8 @@
     <string name="ContactSelectionListFragment_to_find_people">To find people you know on Signal:</string>
     <!-- Text on button prompting users to give Signal contact permissions -->
     <string name="ContactSelectionListFragment__allow_access">Allow access</string>
+    <!-- Text on button to dismiss Signal's request for contact permissions -->
+    <string name="ContactSelectionListFragment__no_thanks">No thanks</string>
     <!-- Text asking for user\'s contact permission -->
     <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
 

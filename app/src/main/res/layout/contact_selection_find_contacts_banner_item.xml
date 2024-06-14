@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="16dp"
     android:background="@drawable/rounded_outline"
-    android:padding="15dp"
+    android:paddingVertical="24dp"
+    android:paddingHorizontal="16dp"
     tools:viewBindingIgnore="true">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -36,7 +37,6 @@
         android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="@string/ContactSelectionListFragment__allow_access_to_your_contacts_encrypted"
         android:textAppearance="@style/Signal.Text.BodyMedium"
@@ -46,28 +46,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/no_thanks_button"
-        style="@style/Signal.Widget.Button.Medium.Tonal"
-        android:layout_width="140dp"
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/permission_buttons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/allow_contacts_button"
-        android:text="@string/RatingManager_no_thanks" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/allow_contacts_button"
-        style="@style/Signal.Widget.Button.Medium.Tonal"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toEndOf="@id/no_thanks_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/description"
-        android:text="@string/ContactSelectionListFragment__allow_access" />
+        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="10dp"
+        app:flexWrap="wrap_reverse">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/no_thanks_button"
+            style="@style/Signal.Widget.Button.Medium.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="6dp"
+            android:minWidth="@dimen/contact_permission_button_min_width"
+            android:text="@string/ContactSelectionListFragment__no_thanks"
+            app:layout_flexGrow="1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/allow_contacts_button"
+            style="@style/Signal.Widget.Button.Medium.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="6dp"
+            android:minWidth="@dimen/contact_permission_button_min_width"
+            android:text="@string/ContactSelectionListFragment__allow_access"
+            app:layout_flexGrow="1" />
+
+    </com.google.android.flexbox.FlexboxLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
