@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2024 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
     <string name="app_name" translatable="false">Signal</string>
@@ -2126,19 +2131,35 @@
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">View</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s raised a hand</string>
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallRaiseHandSnackbar__raised_a_hand_plural">
+
+    <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s raised a hand</string>
+    <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
         <item quantity="one">%1$s +%2$d raised a hand</item>
         <item quantity="other">%1$s +%2$d raised a hand</item>
     </plurals>
 
+    <!-- A notification to the user that one participant in the call successfully raised their hand. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">%1$s raised a hand</string>
+    <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
+        <item quantity="one">%1$s +%2$d raised a hand</item>
+        <item quantity="other">%1$s +%2$d raised a hand</item>
+    </plurals>
 
-    <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
-    <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
-    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <plurals name="CallRaiseHandSnackbar_raised_hands_plural">
+    <!-- A badge to show the user has their hand raised. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__collapsed_second_person_raised_hand_single">%1$s</string>
+    <!-- A badge to show the user and at least one other participant in the call have their hand raised. The placeholder is a number quantifying how many other hands are also raised, besides the user.  -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_second_person_raised_hands_multiple">
+        <item quantity="one">%1$s +%2$d</item>
+        <item quantity="other">%1$s +%2$d</item>
+    </plurals>
+
+    <!-- A badge to show how many hands are raised. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_singular">%1$s</string>
+    <!-- A badge to show how many hands are raised. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_multiple">
         <item quantity="one">%1$s +%2$d</item>
         <item quantity="other">%1$s +%2$d</item>
     </plurals>

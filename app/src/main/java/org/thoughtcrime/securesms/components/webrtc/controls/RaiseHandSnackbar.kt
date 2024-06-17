@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Signal Messenger, LLC
+ * Copyright 2024 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
@@ -201,15 +201,31 @@ private fun getSnackbarText(state: RaiseHandState): String {
   val additionalHandsCount = state.raisedHands.size - 1
   return if (!state.isExpanded) {
     if (state.raisedHands.size == 1) {
-      stringResource(id = R.string.CallRaiseHandSnackbar_raised_hands_singular, displayedName)
+      if (state.raisedHands.first().sender.isSelf) {
+        stringResource(id = R.string.CallRaiseHandSnackbar__collapsed_second_person_raised_hand_single, displayedName)
+      } else {
+        stringResource(id = R.string.CallRaiseHandSnackbar__collapsed_third_person_raised_hands_singular, displayedName)
+      }
     } else {
-      pluralStringResource(id = R.plurals.CallRaiseHandSnackbar_raised_hands_plural, count = additionalHandsCount, displayedName, state.raisedHands.size - 1)
+      if (state.raisedHands.first().sender.isSelf) {
+        pluralStringResource(id = R.plurals.CallRaiseHandSnackbar__collapsed_second_person_raised_hands_multiple, count = additionalHandsCount, displayedName, additionalHandsCount)
+      } else {
+        pluralStringResource(id = R.plurals.CallRaiseHandSnackbar__collapsed_third_person_raised_hands_multiple, count = additionalHandsCount, displayedName, additionalHandsCount)
+      }
     }
   } else {
     if (state.raisedHands.size == 1) {
-      stringResource(id = R.string.CallRaiseHandSnackbar__raised_a_hand_singular, displayedName)
+      if (state.raisedHands.first().sender.isSelf) {
+        stringResource(id = R.string.CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single, displayedName)
+      } else {
+        stringResource(id = R.string.CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single, displayedName)
+      }
     } else {
-      pluralStringResource(id = R.plurals.CallRaiseHandSnackbar__raised_a_hand_plural, count = additionalHandsCount, displayedName, state.raisedHands.size - 1)
+      if (state.raisedHands.first().sender.isSelf) {
+        pluralStringResource(id = R.plurals.CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple, count = additionalHandsCount, displayedName, additionalHandsCount)
+      } else {
+        pluralStringResource(id = R.plurals.CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple, count = additionalHandsCount, displayedName, additionalHandsCount)
+      }
     }
   }
 }
