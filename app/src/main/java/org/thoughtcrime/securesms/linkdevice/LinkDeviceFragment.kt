@@ -15,12 +15,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -132,7 +134,7 @@ fun DeviceDescriptionScreen(
   setDeviceToRemove: (Device?) -> Unit = {},
   onRemoveDevice: (Device) -> Unit = {}
 ) {
-  if (state.progressDialogMessage != -1) {
+  if (state.progressDialogMessage != -1 && state.progressDialogMessage != R.string.LinkDeviceFragment__loading) {
     if (navController?.currentDestination?.id == R.id.linkDeviceFinishedSheet &&
       state.progressDialogMessage == R.string.LinkDeviceFragment__linking_device
     ) {
@@ -179,15 +181,35 @@ fun DeviceDescriptionScreen(
       Text(stringResource(id = R.string.LinkDeviceFragment__link_a_new_device))
     }
 
-    if (state.devices.isNotEmpty()) {
-      Dividers.Default()
+    Dividers.Default()
 
-      Column {
-        Text(
-          text = stringResource(R.string.LinkDeviceFragment__my_linked_devices),
-          style = MaterialTheme.typography.titleMedium,
-          modifier = Modifier.padding(start = 24.dp, top = 12.dp, bottom = 24.dp)
+    Column(modifier = Modifier.fillMaxWidth()) {
+      Text(
+        text = stringResource(R.string.LinkDeviceFragment__my_linked_devices),
+        style = MaterialTheme.typography.titleMedium,
+        modifier = Modifier.padding(start = 24.dp, top = 12.dp, bottom = 12.dp)
+      )
+      if (state.progressDialogMessage == R.string.LinkDeviceFragment__loading) {
+        Spacer(modifier = Modifier.size(30.dp))
+        CircularProgressIndicator(
+          modifier = Modifier
+            .size(36.dp)
+            .align(Alignment.CenterHorizontally),
+          color = MaterialTheme.colorScheme.primary
         )
+        Spacer(modifier = Modifier.size(30.dp))
+      } else if (state.devices.isEmpty()) {
+        Text(
+          text = stringResource(R.string.LinkDeviceFragment__no_linked_devices),
+          textAlign = TextAlign.Center,
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          modifier = Modifier
+            .fillMaxWidth()
+            .defaultMinSize(minHeight = 96.dp)
+            .wrapContentHeight(align = Alignment.CenterVertically)
+        )
+      } else {
         state.devices.forEach { device ->
           DeviceRow(device, setDeviceToRemove)
         }
@@ -198,8 +220,6 @@ fun DeviceDescriptionScreen(
       modifier = Modifier.padding(horizontal = 40.dp, vertical = 12.dp),
       verticalAlignment = Alignment.CenterVertically
     ) {
-      Spacer(modifier = Modifier.size(12.dp))
-
       val message = stringResource(id = R.string.LinkDeviceFragment__messages_and_chat_info_are_protected, PLACEHOLDER)
       val (messageText, messageInline) = remember(message) {
         val parts = message.split(PLACEHOLDER)
@@ -214,7 +234,8 @@ fun DeviceDescriptionScreen(
             Image(
               imageVector = ImageVector.vectorResource(id = R.drawable.symbol_lock_24),
               contentDescription = null,
-              modifier = Modifier.fillMaxSize()
+              modifier = Modifier.fillMaxSize(),
+              colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
             )
           }
         )
@@ -251,22 +272,20 @@ fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit) {
       colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
       contentScale = ContentScale.Inside,
       modifier = Modifier
-        .padding(start = 24.dp)
+        .padding(start = 24.dp, top = 28.dp, bottom = 28.dp)
         .size(40.dp)
         .background(
           color = MaterialTheme.colorScheme.surfaceVariant,
           shape = CircleShape
         )
     )
-    Spacer(modifier = Modifier.size(20.dp))
+    Spacer(modifier = Modifier.size(16.dp))
     Column {
       Text(text = titleString, style = MaterialTheme.typography.bodyLarge)
-      Spacer(modifier = Modifier.size(4.dp))
       Text(stringResource(R.string.DeviceListItem_linked_s, linkedDate), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
       Text(stringResource(R.string.DeviceListItem_last_active_s, lastActive), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
   }
-  Spacer(modifier = Modifier.size(16.dp))
 }
 
 @SignalPreview
