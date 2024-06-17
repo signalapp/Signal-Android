@@ -9,10 +9,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.hamcrest.Matchers.greaterThan
 import org.junit.After
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.logging.Log
+import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -29,6 +30,10 @@ import org.thoughtcrime.securesms.util.IdentityUtil
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
 class SyncMessageProcessorTest_synchronizeDeleteForMe {
+
+  companion object {
+    private val TAG = "SyncDeleteForMeTest"
+  }
 
   @get:Rule
   val harness = SignalActivityRule(createGroup = true)
@@ -264,20 +269,25 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
     // GIVEN
     val messages = mutableListOf<MessageTable.SyncMessageId>()
 
+    Log.v(TAG, "Adding normal messages")
     for (i in 0 until 10) {
       messages += MessageTable.SyncMessageId(messageHelper.alice, messageHelper.incomingText().timestamp)
       messages += MessageTable.SyncMessageId(harness.self.id, messageHelper.outgoingText().timestamp)
     }
 
     val alice = Recipient.resolved(messageHelper.alice)
+    Log.v(TAG, "Adding identity message")
     IdentityUtil.markIdentityVerified(harness.context, alice, true, true)
+    Log.v(TAG, "Adding profile message")
     SignalDatabase.messages.insertProfileNameChangeMessages(alice, "new name", "previous name")
+    Log.v(TAG, "Adding call message")
     SignalDatabase.calls.insertOneToOneCall(1, System.currentTimeMillis(), alice.id, CallTable.Type.AUDIO_CALL, CallTable.Direction.OUTGOING, CallTable.Event.ACCEPTED)
 
     val threadId = SignalDatabase.threads.getThreadIdFor(messageHelper.alice)!!
     SignalDatabase.messages.getMessageCountForThread(threadId) assertIs 23
 
     // WHEN
+    Log.v(TAG, "Processing sync message")
     messageHelper.syncDeleteForMeConversation(
       DeleteForMeSync(
         conversationId = messageHelper.alice,
@@ -410,7 +420,6 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
     SignalDatabase.threads.getThreadRecord(aliceThreadId) assertIs null
   }
 
-  @Ignore("race condition flake")
   @Test
   fun multipleLocalOnlyConversation() {
     // GIVEN
@@ -428,41 +437,65 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
     IdentityUtil.markIdentityVerified(harness.context, alice, false, true)
     IdentityUtil.markIdentityVerified(harness.context, alice, true, false)
     IdentityUtil.markIdentityVerified(harness.context, alice, false, false)
+    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 5
 
     IdentityUtil.markIdentityUpdate(harness.context, alice.id)
+    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 6
 
     // Calls
     SignalDatabase.calls.insertOneToOneCall(1, System.currentTimeMillis(), alice.id, CallTable.Type.AUDIO_CALL, CallTable.Direction.OUTGOING, CallTable.Event.ACCEPTED)
     SignalDatabase.calls.insertOneToOneCall(2, System.currentTimeMillis(), alice.id, CallTable.Type.VIDEO_CALL, CallTable.Direction.INCOMING, CallTable.Event.MISSED)
     SignalDatabase.calls.insertOneToOneCall(3, System.currentTimeMillis(), alice.id, CallTable.Type.AUDIO_CALL, CallTable.Direction.INCOMING, CallTable.Event.MISSED_NOTIFICATION_PROFILE)
+    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 9
 
     SignalDatabase.calls.insertAcceptedGroupCall(4, messageHelper.group.recipientId, CallTable.Direction.INCOMING, System.currentTimeMillis())
     SignalDatabase.calls.insertDeclinedGroupCall(5, messageHelper.group.recipientId, System.currentTimeMillis())
+    SignalDatabase.messages.getMessageCountForThread(groupThreadId) assertIs 8
 
     // Detected changes
     SignalDatabase.messages.insertProfileNameChangeMessages(alice, "new name", "previous name")
+    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 10
+    SignalDatabase.messages.getMessageCountForThread(groupThreadId) assertIs 9
+
     SignalDatabase.messages.insertLearnedProfileNameChangeMessage(alice, null, "username.42")
+    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 11
+    SignalDatabase.messages.getMessageCountForThread(groupThreadId) assertIs 9
+
     SignalDatabase.messages.insertNumberChangeMessages(alice.id)
+    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 12
+    SignalDatabase.messages.getMessageCountForThread(groupThreadId) assertIs 10
+
     SignalDatabase.messages.insertSmsExportMessage(alice.id, SignalDatabase.threads.getThreadIdFor(messageHelper.alice)!!)
+    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 13
+    SignalDatabase.messages.getMessageCountForThread(groupThreadId) assertIs 10
+
     SignalDatabase.messages.insertSessionSwitchoverEvent(alice.id, aliceThreadId, SessionSwitchoverEvent())
+    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 14
+    SignalDatabase.messages.getMessageCountForThread(groupThreadId) assertIs 10
 
     // Sent failed
     SignalDatabase.messages.markAsSending(messageHelper.outgoingText().messageId)
+    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 15
     SignalDatabase.messages.markAsSentFailed(messageHelper.outgoingText().messageId)
+    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 16
     messageHelper.outgoingText().let {
       SignalDatabase.messages.markAsSending(it.messageId)
       SignalDatabase.messages.markAsRateLimited(it.messageId)
     }
+    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 17
 
     // Group change
     messageHelper.outgoingGroupChange()
+    SignalDatabase.messages.getMessageCountForThread(groupThreadId) assertIs 11
 
     // Cleanup and confirm setup
     SignalDatabase.messages.deleteMessage(messageId = oneToOnePlaceHolderMessage, threadId = aliceThreadId, notify = false, updateThread = false)
     SignalDatabase.messages.deleteMessage(messageId = groupPlaceholderMessage, threadId = aliceThreadId, notify = false, updateThread = false)
 
-    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 16
-    SignalDatabase.messages.getMessageCountForThread(groupThreadId) assertIs 10
+    SignalDatabase.rawDatabase.withinTransaction {
+      SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assertIs 16
+      SignalDatabase.messages.getMessageCountForThread(groupThreadId) assertIs 10
+    }
 
     // WHEN
     messageHelper.syncDeleteForMeLocalOnlyConversation(messageHelper.alice, messageHelper.group.recipientId)
