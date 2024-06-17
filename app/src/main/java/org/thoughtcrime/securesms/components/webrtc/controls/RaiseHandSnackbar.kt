@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.Role
@@ -197,17 +198,18 @@ private fun getSnackbarText(state: RaiseHandState): String {
   }
 
   val displayedName = getShortDisplayName(raisedHands = state.raisedHands)
+  val additionalHandsCount = state.raisedHands.size - 1
   return if (!state.isExpanded) {
     if (state.raisedHands.size == 1) {
       stringResource(id = R.string.CallRaiseHandSnackbar_raised_hands_singular, displayedName)
     } else {
-      stringResource(id = R.string.CallRaiseHandSnackbar_raised_hands_plural, displayedName, state.raisedHands.size - 1)
+      pluralStringResource(id = R.plurals.CallRaiseHandSnackbar_raised_hands_plural, count = additionalHandsCount, displayedName, state.raisedHands.size - 1)
     }
   } else {
     if (state.raisedHands.size == 1) {
       stringResource(id = R.string.CallRaiseHandSnackbar__raised_a_hand_singular, displayedName)
     } else {
-      stringResource(id = R.string.CallRaiseHandSnackbar__raised_a_hand_plural, displayedName, state.raisedHands.size - 1)
+      pluralStringResource(id = R.plurals.CallRaiseHandSnackbar__raised_a_hand_plural, count = additionalHandsCount, displayedName, state.raisedHands.size - 1)
     }
   }
 }
