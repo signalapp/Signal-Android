@@ -67,10 +67,10 @@ class ApkUpdateJob private constructor(parameters: Parameters) : BaseJob(paramet
     val request = Request.Builder().url(BuildConfig.APK_UPDATE_MANIFEST_URL).build()
 
     val rawUpdateDescriptor: String = client.newCall(request).execute().use { response ->
-      if (!response.isSuccessful || response.body() == null) {
+      if (!response.isSuccessful || response.body == null) {
         throw IOException("Failed to read update descriptor")
       }
-      response.body()!!.string()
+      response.body!!.string()
     }
 
     val updateDescriptor: UpdateDescriptor = JsonUtils.fromJson(rawUpdateDescriptor, UpdateDescriptor::class.java)

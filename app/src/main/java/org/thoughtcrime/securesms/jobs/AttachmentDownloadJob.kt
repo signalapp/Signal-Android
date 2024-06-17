@@ -400,7 +400,7 @@ class AttachmentDownloadJob private constructor(
   ) {
     try {
       S3.getObject(attachment.fileName!!).use { response ->
-        val body = response.body()
+        val body = response.body
         if (body != null) {
           if (body.contentLength() > RemoteConfig.maxAttachmentReceiveSizeBytes) {
             throw MmsException("Attachment too large, failing download")

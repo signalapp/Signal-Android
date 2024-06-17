@@ -53,10 +53,10 @@ object S3 {
   fun getString(endpoint: String): String {
     getObject(endpoint).use { response ->
       if (!response.isSuccessful) {
-        throw NonSuccessfulResponseCodeException(response.code())
+        throw NonSuccessfulResponseCodeException(response.code)
       }
 
-      return response.body()?.string()?.trim() ?: throw IOException()
+      return response.body?.string()?.trim() ?: throw IOException()
     }
   }
 
@@ -110,13 +110,13 @@ object S3 {
       getObject(endpoint).use { response ->
         if (!response.isSuccessful) {
           return ServiceResponse.forApplicationError(
-            DefaultErrorMapper.getDefault().parseError(response.code()),
-            response.code(),
+            DefaultErrorMapper.getDefault().parseError(response.code),
+            response.code,
             ""
           )
         }
 
-        val source = response.body()?.source()
+        val source = response.body?.source()
 
         val outputStream = ByteArrayOutputStream()
 
@@ -166,7 +166,7 @@ object S3 {
       }
 
       getObject(objectPathOnNetwork).use { response ->
-        val source = response.body()?.source()
+        val source = response.body?.source()
 
         val outputStream: OutputStream = if (doNotEncrypt) {
           FileOutputStream(objectFileOnDisk)

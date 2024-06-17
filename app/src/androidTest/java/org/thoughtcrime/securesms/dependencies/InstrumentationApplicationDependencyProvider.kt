@@ -58,18 +58,21 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
         Get("/v1/websocket/?login=") {
           MockResponse().success().withWebSocketUpgrade(mockIdentifiedWebSocket)
         },
-        Get("/v1/websocket", { !it.path.contains("login") }) {
+        Get("/v1/websocket", {
+          val path = it.path
+          return@Get path == null || !path.contains("login")
+        }) {
           MockResponse().success().withWebSocketUpgrade(object : WebSocketListener() {})
         }
       )
     }
 
-    webServer.setDispatcher(object : Dispatcher() {
+    webServer.dispatcher = object : Dispatcher() {
       override fun dispatch(request: RecordedRequest): MockResponse {
         val handler = handlers.firstOrNull { it.requestPredicate(request) }
         return handler?.responseFactory?.invoke(request) ?: MockResponse().setResponseCode(500)
       }
-    })
+    }
 
     serviceTrustStore = SignalServiceTrustStore(application)
     uncensoredConfiguration = SignalServiceConfiguration(

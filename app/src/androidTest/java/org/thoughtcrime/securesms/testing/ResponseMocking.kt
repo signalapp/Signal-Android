@@ -55,5 +55,5 @@ inline fun <reified T> RecordedRequest.parsedRequestBody(): T {
 }
 
 private fun defaultRequestPredicate(verb: String, path: String, predicate: RequestPredicate = { true }): RequestPredicate = { request ->
-  request.method == verb && request.path.startsWith("/$path") && predicate(request)
+  request.method == verb && request.path?.startsWith("/$path") == true && predicate(request)
 }
