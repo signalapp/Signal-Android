@@ -2396,7 +2396,6 @@ class ConversationFragment :
     if (DeleteSyncEducationDialog.shouldShow()) {
       DeleteSyncEducationDialog
         .show(childFragmentManager)
-        .observeOn(AndroidSchedulers.mainThread())
         .subscribe { handleDeleteMessages(messageParts) }
         .addTo(disposables)
 
@@ -2407,12 +2406,7 @@ class ConversationFragment :
 
     disposables += DeleteDialog.show(
       context = requireContext(),
-      messageRecords = records,
-      message = if (TextSecurePreferences.isMultiDevice(requireContext()) && Recipient.self().deleteSyncCapability.isSupported) {
-        resources.getQuantityString(R.plurals.ConversationFragment_delete_on_linked_warning, records.size)
-      } else {
-        null
-      }
+      messageRecords = records
     ).observeOn(AndroidSchedulers.mainThread())
       .subscribe { (deleted: Boolean, _: Boolean) ->
         if (!deleted) return@subscribe

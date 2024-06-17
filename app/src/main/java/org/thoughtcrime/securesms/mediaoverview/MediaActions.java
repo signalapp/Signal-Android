@@ -60,20 +60,8 @@ final class MediaActions {
   {
     int       recordCount    = mediaRecords.size();
     Resources res            = context.getResources();
-    String    confirmTitle   = res.getQuantityString(R.plurals.MediaOverviewActivity_Media_delete_confirm_title,
-                                                     recordCount,
-                                                     recordCount);
-
-    String    confirmMessage;
-    if (TextSecurePreferences.isMultiDevice(context) && Recipient.self().getDeleteSyncCapability().isSupported()) {
-      confirmMessage = res.getQuantityString(R.plurals.MediaOverviewActivity_Media_delete_confirm_message_linked_device,
-                                             recordCount,
-                                             recordCount);
-    } else {
-      confirmMessage = res.getQuantityString(R.plurals.MediaOverviewActivity_Media_delete_confirm_message,
-                                             recordCount,
-                                             recordCount);
-    }
+    String    confirmTitle   = res.getQuantityString(R.plurals.MediaOverviewActivity_Media_delete_confirm_title, recordCount, recordCount);
+    String    confirmMessage = res.getQuantityString(R.plurals.MediaOverviewActivity_Media_delete_confirm_message, recordCount, recordCount);
 
     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context).setTitle(confirmTitle)
                                                                                 .setMessage(confirmMessage)

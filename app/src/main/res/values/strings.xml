@@ -549,11 +549,6 @@
     <string name="ConversationFragment_delete">Delete</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
-    <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
-    <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">This message will be deleted from all your devices.</item>
-        <item quantity="other">These messages will be deleted from all your devices.</item>
-    </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Original message not found</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Original message no longer available</string>
@@ -1383,11 +1378,6 @@
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
         <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-    </plurals>
-    <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
-    <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">This will permanently delete the selected file from all your devices. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files from all your devices. Any message text associated with these items will also be deleted.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting messages…</string>
@@ -2585,8 +2575,6 @@
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
-    <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">This will permanently delete this message from all your devices.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">You to %1$s</string>
@@ -7018,7 +7006,7 @@
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages, media or chats, they will be deleted from your phone and all linked devices.</string>
+    <string name="DeleteSyncEducation_message">When you delete messages or chats, they will be deleted from your phone and linked devices.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
