@@ -93,6 +93,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V232_CreateInAppPay
 import org.thoughtcrime.securesms.database.helpers.migration.V233_FixInAppPaymentTableDefaultNotifiedValue
 import org.thoughtcrime.securesms.database.helpers.migration.V234_ThumbnailRestoreStateColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V235_AttachmentUuidColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V236_FixInAppSubscriberCurrencyIfAble
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -188,10 +189,11 @@ object SignalDatabaseMigrations {
     232 to V232_CreateInAppPaymentTable,
     233 to V233_FixInAppPaymentTableDefaultNotifiedValue,
     234 to V234_ThumbnailRestoreStateColumn,
-    235 to V235_AttachmentUuidColumn
+    235 to V235_AttachmentUuidColumn,
+    236 to V236_FixInAppSubscriberCurrencyIfAble
   )
 
-  const val DATABASE_VERSION = 235
+  const val DATABASE_VERSION = 236
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

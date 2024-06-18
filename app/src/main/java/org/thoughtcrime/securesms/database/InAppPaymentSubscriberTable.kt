@@ -45,10 +45,12 @@ class InAppPaymentSubscriberTable(
     private const val ID = "_id"
 
     /** The serialized subscriber id */
-    private const val SUBSCRIBER_ID = "subscriber_id"
+    @VisibleForTesting
+    const val SUBSCRIBER_ID = "subscriber_id"
 
     /** The currency code for this subscriber id */
-    private const val CURRENCY_CODE = "currency_code"
+    @VisibleForTesting
+    const val CURRENCY_CODE = "currency_code"
 
     /** The type of subscription used by this subscriber id */
     private const val TYPE = "type"
