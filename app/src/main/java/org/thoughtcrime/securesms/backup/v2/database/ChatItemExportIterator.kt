@@ -8,8 +8,6 @@ package org.thoughtcrime.securesms.backup.v2.database
 import android.database.Cursor
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
-import org.signal.core.util.Base64.decode
-import org.signal.core.util.Base64.decodeOrThrow
 import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBlob
@@ -59,6 +57,7 @@ import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
@@ -79,6 +78,7 @@ import java.util.LinkedList
 import java.util.Queue
 import kotlin.jvm.optionals.getOrNull
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange as BackupBodyRange
+import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
 
 /**
  * An iterator for chat items with a clever performance twist: rather than do the extra queries one at a time (for reactions,
@@ -173,7 +173,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         MessageTypes.isSessionSwitchoverType(record.type) -> {
           builder.updateMessage = ChatUpdateMessage(
             sessionSwitchover = try {
-              val event = SessionSwitchoverEvent.ADAPTER.decode(decodeOrThrow(record.body!!))
+              val event = SessionSwitchoverEvent.ADAPTER.decode(Base64.decodeOrThrow(record.body!!))
               SessionSwitchoverChatUpdate(event.e164.e164ToLong()!!)
             } catch (e: Exception) {
               SessionSwitchoverChatUpdate()
@@ -183,7 +183,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         MessageTypes.isThreadMergeType(record.type) -> {
           builder.updateMessage = ChatUpdateMessage(
             threadMerge = try {
-              val event = ThreadMergeEvent.ADAPTER.decode(decodeOrThrow(record.body!!))
+              val event = ThreadMergeEvent.ADAPTER.decode(Base64.decodeOrThrow(record.body!!))
               ThreadMergeChatUpdate(event.previousE164.e164ToLong()!!)
             } catch (e: Exception) {
               ThreadMergeChatUpdate()
@@ -198,7 +198,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
             )
           } else if (record.body != null) {
             try {
-              val decoded: ByteArray = decode(record.body)
+              val decoded: ByteArray = Base64.decode(record.body)
               val context = DecryptedGroupV2Context.ADAPTER.decode(decoded)
               builder.updateMessage = ChatUpdateMessage(
                 groupChange = GroupsV2UpdateMessageConverter.translateDecryptedChange(selfIds = SignalStore.account().getServiceIds(), context)
@@ -347,6 +347,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
             )
           }
         }
+        MessageTypes.isGiftBadge(record.type) -> { builder.giftBadge = record.toBackupGiftBadge() }
         else -> {
           if (record.body == null && !attachmentsById.containsKey(record.id)) {
             Log.w(TAG, "Record missing a body and doesnt have attachments, skipping")
@@ -479,6 +480,25 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
+  private fun BackupMessageRecord.toBackupGiftBadge(): BackupGiftBadge {
+    val giftBadge = try {
+      GiftBadge.ADAPTER.decode(Base64.decode(this.body ?: ""))
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed to decode GiftBadge!")
+      return BackupGiftBadge()
+    }
+
+    return BackupGiftBadge(
+      receiptCredentialPresentation = giftBadge.redemptionToken,
+      state = when (giftBadge.redemptionState) {
+        GiftBadge.RedemptionState.REDEEMED -> BackupGiftBadge.State.REDEEMED
+        GiftBadge.RedemptionState.FAILED -> BackupGiftBadge.State.FAILED
+        GiftBadge.RedemptionState.PENDING -> BackupGiftBadge.State.UNOPENED
+        GiftBadge.RedemptionState.STARTED -> BackupGiftBadge.State.OPENED
+      }
+    )
+  }
+
   private fun List<DatabaseAttachment>.toBackupQuoteAttachments(): List<Quote.QuotedAttachment> {
     return this.map { attachment ->
       Quote.QuotedAttachment(
@@ -507,7 +527,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         builder.backupLocator = FilePointer.BackupLocator(
           mediaName = archiveMediaName ?: this.getMediaName().toString(),
           cdnNumber = if (archiveMediaName != null) archiveCdn else Cdn.CDN_3.cdnNumber, // TODO (clark): Update when new proto with optional cdn is landed
-          key = decode(remoteKey).toByteString(),
+          key = Base64.decode(remoteKey).toByteString(),
           size = this.size.toInt(),
           digest = remoteDigest.toByteString()
         )
@@ -519,7 +539,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
             cdnKey = this.remoteLocation,
             cdnNumber = this.cdn.cdnNumber,
             uploadTimestamp = this.uploadTimestamp,
-            key = decode(remoteKey).toByteString(),
+            key = Base64.decode(remoteKey).toByteString(),
             size = this.size.toInt(),
             digest = remoteDigest.toByteString()
           )
@@ -538,7 +558,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       } else {
         MessageAttachment.Flag.NONE
       },
-      uuid = uuid?.let { UuidUtil.toByteString(uuid) }
+      clientUuid = uuid?.let { UuidUtil.toByteString(uuid) }
     )
   }
 

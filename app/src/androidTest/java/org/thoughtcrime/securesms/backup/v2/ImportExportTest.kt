@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.DistributionListItem
 import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
+import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge
 import org.thoughtcrime.securesms.backup.v2.proto.Group
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
@@ -50,6 +51,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.ThreadMergeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -1236,6 +1238,76 @@ class ImportExportTest {
     )
   }
 
+  @Test
+  fun giftBadgeMessage() {
+    var dateSentStart = 100L
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      ChatItem(
+        chatId = 1,
+        authorId = alice.id,
+        dateSent = dateSentStart++,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = dateSentStart,
+          dateServerSent = dateSentStart,
+          read = true,
+          sealedSender = true
+        ),
+        giftBadge = GiftBadge(
+          receiptCredentialPresentation = Util.getSecretBytes(32).toByteString(),
+          state = GiftBadge.State.OPENED
+        )
+      ),
+      ChatItem(
+        chatId = 1,
+        authorId = alice.id,
+        dateSent = dateSentStart++,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = dateSentStart,
+          dateServerSent = dateSentStart,
+          read = true,
+          sealedSender = true
+        ),
+        giftBadge = GiftBadge(
+          receiptCredentialPresentation = Util.getSecretBytes(32).toByteString(),
+          state = GiftBadge.State.FAILED
+        )
+      ),
+      ChatItem(
+        chatId = 1,
+        authorId = alice.id,
+        dateSent = dateSentStart++,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = dateSentStart,
+          dateServerSent = dateSentStart,
+          read = true,
+          sealedSender = true
+        ),
+        giftBadge = GiftBadge(
+          receiptCredentialPresentation = Util.getSecretBytes(32).toByteString(),
+          state = GiftBadge.State.REDEEMED
+        )
+      ),
+      ChatItem(
+        chatId = 1,
+        authorId = alice.id,
+        dateSent = dateSentStart++,
+        incoming = ChatItem.IncomingMessageDetails(
+          dateReceived = dateSentStart,
+          dateServerSent = dateSentStart,
+          read = true,
+          sealedSender = true
+        ),
+        giftBadge = GiftBadge(
+          receiptCredentialPresentation = Util.getSecretBytes(32).toByteString(),
+          state = GiftBadge.State.UNOPENED
+        )
+      )
+    )
+  }
+
   fun enumerateIncomingMessageDetails(dateSent: Long): List<ChatItem.IncomingMessageDetails> {
     val details = mutableListOf<ChatItem.IncomingMessageDetails>()
     details.add(
@@ -1508,17 +1580,29 @@ class ImportExportTest {
 
   private inline fun <reified T : Any, R : Comparable<R>> prettyAssertEquals(import: List<T>, export: List<T>, crossinline selector: (T) -> R?) {
     if (import.size != export.size) {
-      var msg = StringBuilder()
+      val msg = StringBuilder()
+      msg.append("There's a different number of items in the lists!\n\n")
+
+      msg.append("Imported:\n")
       for (i in import) {
         msg.append(i)
         msg.append("\n")
       }
+      if (import.isEmpty()) {
+        msg.append("<None>")
+      }
+      msg.append("\n")
+      msg.append("Exported:\n")
       for (i in export) {
         msg.append(i)
         msg.append("\n")
       }
+      if (export.isEmpty()) {
+        msg.append("<None>")
+      }
       Assert.fail(msg.toString())
     }
+
     Assert.assertEquals(import.size, export.size)
     val sortedImport = import.sortedBy(selector)
     val sortedExport = export.sortedBy(selector)

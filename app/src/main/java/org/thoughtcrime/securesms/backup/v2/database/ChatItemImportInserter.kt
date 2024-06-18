@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.PaymentTombstone
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
@@ -77,6 +78,7 @@ import org.whispersystems.signalservice.internal.push.DataMessage
 import java.math.BigInteger
 import java.util.Optional
 import java.util.UUID
+import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
 
 /**
  * An object that will ingest all fo the [ChatItem]s you want to write, buffer them until hitting a specified batch size, and then batch insert them
@@ -410,6 +412,7 @@ class ChatItemImportInserter(
       this.remoteDeletedMessage != null -> contentValues.put(MessageTable.REMOTE_DELETED, 1)
       this.updateMessage != null -> contentValues.addUpdateMessage(this.updateMessage)
       this.paymentNotification != null -> contentValues.addPaymentNotification(this, chatRecipientId)
+      this.giftBadge != null -> contentValues.addGiftBadge(this.giftBadge)
     }
 
     return contentValues
@@ -515,6 +518,10 @@ class ChatItemImportInserter(
 
     if (!this.sms) {
       type = type or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT
+    }
+
+    if (this.giftBadge != null) {
+      type = type or MessageTypes.SPECIAL_TYPE_GIFT_BADGE
     }
 
     return type
@@ -693,6 +700,20 @@ class ChatItemImportInserter(
         )
       ).encode()
     )
+  }
+
+  private fun ContentValues.addGiftBadge(giftBadge: BackupGiftBadge) {
+    val dbGiftBadge = GiftBadge(
+      redemptionToken = giftBadge.receiptCredentialPresentation,
+      redemptionState = when (giftBadge.state) {
+        BackupGiftBadge.State.UNOPENED -> GiftBadge.RedemptionState.PENDING
+        BackupGiftBadge.State.OPENED -> GiftBadge.RedemptionState.STARTED
+        BackupGiftBadge.State.REDEEMED -> GiftBadge.RedemptionState.REDEEMED
+        BackupGiftBadge.State.FAILED -> GiftBadge.RedemptionState.FAILED
+      }
+    )
+
+    put(MessageTable.BODY, Base64.encodeWithPadding(GiftBadge.ADAPTER.encode(dbGiftBadge)))
   }
 
   private fun String?.tryParseMoney(): Money? {
@@ -915,7 +936,7 @@ class ChatItemImportInserter(
       gif = flag == MessageAttachment.Flag.GIF,
       borderless = flag == MessageAttachment.Flag.BORDERLESS,
       wasDownloaded = wasDownloaded,
-      uuid = uuid
+      uuid = clientUuid
     )
   }
 
@@ -927,7 +948,7 @@ class ChatItemImportInserter(
       wasDownloaded = wasDownloaded,
       contentType = contentType,
       fileName = fileName,
-      uuid = uuid
+      uuid = clientUuid
     )
   }
 

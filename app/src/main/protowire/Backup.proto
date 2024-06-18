@@ -301,15 +301,6 @@ message DistributionList {
   repeated uint64 memberRecipientIds = 4; // generated recipient id
 }
 
-message Identity {
-  bytes serviceId = 1;
-  bytes identityKey = 2;
-  uint64 timestamp = 3;
-  bool firstUse = 4;
-  bool verified = 5;
-  bool nonblockingApproval = 6;
-}
-
 message ChatItem {
   message IncomingMessageDetails {
     uint64 dateReceived = 1;
@@ -346,6 +337,7 @@ message ChatItem {
     RemoteDeletedMessage remoteDeletedMessage = 14;
     ChatUpdateMessage updateMessage = 15;
     PaymentNotification paymentNotification = 16;
+    GiftBadge giftBadge = 17;
   }
 }
 
@@ -436,6 +428,18 @@ message PaymentNotification {
 
 }
 
+message GiftBadge {
+  enum State {
+    UNOPENED = 0;
+    OPENED = 1;
+    REDEEMED = 2;
+    FAILED = 3;
+  }
+
+  bytes receiptCredentialPresentation = 1;
+  State state = 2;
+}
+
 message ContactAttachment {
   message Name {
     optional string givenName = 1;
@@ -501,12 +505,6 @@ message ContactAttachment {
   optional string organization = 7;
 }
 
-message DocumentMessage {
-  Text text = 1;
-  FilePointer document = 2;
-  repeated Reaction reactions = 3;
-}
-
 message StickerMessage {
   Sticker sticker = 1;
   repeated Reaction reactions = 2;
@@ -551,7 +549,9 @@ message MessageAttachment {
   FilePointer pointer = 1;
   Flag flag = 2;
   bool wasDownloaded = 3;
-  optional bytes uuid = 4;
+  // Cross-client identifier for this attachment among all attachments on the
+  // owning message. See: SignalService.AttachmentPointer.clientUuid.
+  optional bytes clientUuid = 4;
 }
 
 message FilePointer {
@@ -1028,16 +1028,7 @@ message GroupExpirationTimerUpdate {
 message StickerPack {
   bytes packId = 1;
   bytes packKey = 2;
-  string title = 3;
-  string author = 4;
-  repeated StickerPackSticker stickers = 5; // First one should be cover sticker.
 }
-
-message StickerPackSticker {
-  string emoji = 1;
-  uint32 id = 2;
-}
-
 
 message ChatStyle {
   message Gradient {
