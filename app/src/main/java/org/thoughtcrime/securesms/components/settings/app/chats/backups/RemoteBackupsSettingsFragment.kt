@@ -79,8 +79,6 @@ import java.util.Locale
 
 /**
  * Remote backups settings fragment.
- *
- * TODO [message-backups] -- All copy in this file is non-final
  */
 class RemoteBackupsSettingsFragment : ComposeFragment() {
 
@@ -208,7 +206,7 @@ private fun RemoteBackupsSettingsContent(
   }
 
   Scaffolds.Settings(
-    title = "Signal Backups",
+    title = stringResource(id = R.string.RemoteBackupsSettingsFragment__signal_backups),
     onNavigationClick = contentCallbacks::onNavigationClick,
     navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24),
     snackbarHost = {
@@ -230,7 +228,7 @@ private fun RemoteBackupsSettingsContent(
       if (messageBackupsType == null) {
         item {
           Rows.TextRow(
-            text = "Payment history",
+            text = stringResource(id = R.string.RemoteBackupsSettingsFragment__payment_history),
             onClick = contentCallbacks::onViewPaymentHistory
           )
         }
@@ -240,7 +238,7 @@ private fun RemoteBackupsSettingsContent(
         }
 
         item {
-          Texts.SectionHeader(text = "Backup Details")
+          Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
         }
 
         if (backupProgress == null || backupProgress.type == BackupV2Event.Type.FINISHED) {
@@ -260,7 +258,7 @@ private fun RemoteBackupsSettingsContent(
           Rows.TextRow(text = {
             Column {
               Text(
-                text = "Backup size",
+                text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_size),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface
               )
@@ -278,7 +276,7 @@ private fun RemoteBackupsSettingsContent(
             text = {
               Column {
                 Text(
-                  text = "Backup frequency",
+                  text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_frequency),
                   style = MaterialTheme.typography.bodyLarge,
                   color = MaterialTheme.colorScheme.onSurface
                 )
@@ -296,7 +294,7 @@ private fun RemoteBackupsSettingsContent(
         item {
           Rows.ToggleRow(
             checked = canBackUpUsingCellular,
-            text = "Back up using cellular",
+            text = stringResource(id = R.string.RemoteBackupsSettingsFragment__back_up_using_cellular),
             onCheckChanged = contentCallbacks::onBackUpUsingCellularClick
           )
         }
@@ -307,7 +305,7 @@ private fun RemoteBackupsSettingsContent(
 
         item {
           Rows.TextRow(
-            text = "Turn off and delete backup",
+            text = stringResource(id = R.string.RemoteBackupsSettingsFragment__turn_off_and_delete_backup),
             foregroundTint = MaterialTheme.colorScheme.error,
             onClick = contentCallbacks::onTurnOffAndDeleteBackupsClick
           )
@@ -341,34 +339,26 @@ private fun RemoteBackupsSettingsContent(
     }
   }
 
+  val snackbarMessageId = remember(requestedSnackbar) {
+    when (requestedSnackbar) {
+      RemoteBackupsSettingsState.Snackbar.NONE -> -1
+      RemoteBackupsSettingsState.Snackbar.BACKUP_DELETED_AND_TURNED_OFF -> R.string.RemoteBackupsSettingsFragment__backup_deleted_and_turned_off
+      RemoteBackupsSettingsState.Snackbar.BACKUP_TYPE_CHANGED_AND_SUBSCRIPTION_CANCELLED -> R.string.RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted
+      RemoteBackupsSettingsState.Snackbar.SUBSCRIPTION_CANCELLED -> R.string.RemoteBackupsSettingsFragment__subscription_cancelled
+      RemoteBackupsSettingsState.Snackbar.DOWNLOAD_COMPLETE -> R.string.RemoteBackupsSettingsFragment__download_complete
+    }
+  }
+
+  val snackbarText = if (snackbarMessageId == -1) "" else stringResource(id = snackbarMessageId)
+
   LaunchedEffect(requestedSnackbar) {
     when (requestedSnackbar) {
       RemoteBackupsSettingsState.Snackbar.NONE -> {
         snackbarHostState.currentSnackbarData?.dismiss()
       }
 
-      RemoteBackupsSettingsState.Snackbar.BACKUP_DELETED_AND_TURNED_OFF -> {
-        snackbarHostState.showSnackbar(
-          "Backup deleted and turned off"
-        )
-      }
-
-      RemoteBackupsSettingsState.Snackbar.BACKUP_TYPE_CHANGED_AND_SUBSCRIPTION_CANCELLED -> {
-        snackbarHostState.showSnackbar(
-          "Backup type changed and subscription cancelled"
-        )
-      }
-
-      RemoteBackupsSettingsState.Snackbar.SUBSCRIPTION_CANCELLED -> {
-        snackbarHostState.showSnackbar(
-          "Subscription cancelled"
-        )
-      }
-
-      RemoteBackupsSettingsState.Snackbar.DOWNLOAD_COMPLETE -> {
-        snackbarHostState.showSnackbar(
-          "Download complete"
-        )
+      else -> {
+        snackbarHostState.showSnackbar(snackbarText)
       }
     }
     contentCallbacks.onSnackbarDismissed()
@@ -392,14 +382,14 @@ private fun BackupTypeRow(
       modifier = Modifier.weight(1f)
     ) {
       Text(
-        text = "Backup type",
+        text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_type),
         style = MaterialTheme.typography.bodyLarge,
         color = MaterialTheme.colorScheme.onSurface
       )
 
       if (messageBackupsType == null) {
         Text(
-          text = "Backups disabled",
+          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backups_disabled),
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -410,14 +400,14 @@ private fun BackupTypeRow(
         }
 
         Text(
-          text = "${messageBackupsType.title} · $formattedCurrency/month"
+          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__s_dot_s_per_month, messageBackupsType.title, formattedCurrency)
         )
       }
     }
 
     if (messageBackupsType == null) {
       Buttons.Small(onClick = onEnableBackupsClick) {
-        Text(text = "Enable backups")
+        Text(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__enable_backups))
       }
     }
   }
@@ -439,11 +429,14 @@ private fun InProgressBackupRow(
       if (totalProgress == null || totalProgress == 0) {
         LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
       } else {
-        LinearProgressIndicator(modifier = Modifier.fillMaxWidth(), progress = ((progress ?: 0) / totalProgress).toFloat())
+        LinearProgressIndicator(
+          modifier = Modifier.fillMaxWidth(),
+          progress = { ((progress ?: 0) / totalProgress).toFloat() }
+        )
       }
 
       Text(
-        text = "$progress/$totalProgress",
+        text = stringResource(R.string.RemoteBackupsSettingsFragment__d_slash_d, progress ?: 0, totalProgress ?: 0),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )
@@ -465,7 +458,7 @@ private fun LastBackupRow(
       modifier = Modifier.weight(1f)
     ) {
       Text(
-        text = "Last backup",
+        text = stringResource(id = R.string.RemoteBackupsSettingsFragment__last_backup),
         style = MaterialTheme.typography.bodyLarge,
         color = MaterialTheme.colorScheme.onSurface
       )
@@ -482,13 +475,13 @@ private fun LastBackupRow(
         }
 
         Text(
-          text = "$day at $time",
+          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__s_at_s, day, time),
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.onSurfaceVariant
         )
       } else {
         Text(
-          text = "Never",
+          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__never),
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -496,7 +489,7 @@ private fun LastBackupRow(
     }
 
     Buttons.Small(onClick = onBackupNowClick) {
-      Text(text = "Back up now")
+      Text(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__back_up_now))
     }
   }
 }
@@ -507,9 +500,9 @@ private fun TurnOffAndDeleteBackupsDialog(
   onDismiss: () -> Unit
 ) {
   Dialogs.SimpleAlertDialog(
-    title = "Turn off and delete backups?",
-    body = "You will not be charged again. Your backup will be deleted and no new backups will be created.",
-    confirm = "Turn off and delete",
+    title = stringResource(id = R.string.RemoteBackupsSettingsFragment__turn_off_and_delete_backups),
+    body = stringResource(id = R.string.RemoteBackupsSettingsFragment__you_will_not_be_charged_again),
+    confirm = stringResource(id = R.string.RemoteBackupsSettingsFragment__turn_off_and_delete),
     dismiss = stringResource(id = android.R.string.cancel),
     confirmColor = MaterialTheme.colorScheme.error,
     onConfirm = onConfirm,
@@ -591,7 +584,7 @@ private fun BackupFrequencyDialog(
           .fillMaxWidth()
       ) {
         Text(
-          text = "Backup frequency",
+          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_frequency),
           style = MaterialTheme.typography.headlineMedium,
           modifier = Modifier.padding(24.dp)
         )
@@ -601,7 +594,7 @@ private fun BackupFrequencyDialog(
             selected = selected == it,
             text = getTextForFrequency(backupsFrequency = it),
             label = when (it) {
-              BackupFrequency.MANUAL -> "By tapping \"Back up now\""
+              BackupFrequency.MANUAL -> stringResource(id = R.string.RemoteBackupsSettingsFragment__by_tapping_back_up_now)
               else -> null
             },
             modifier = Modifier
@@ -632,10 +625,10 @@ private fun BackupFrequencyDialog(
 @Composable
 private fun getTextForFrequency(backupsFrequency: BackupFrequency): String {
   return when (backupsFrequency) {
-    BackupFrequency.DAILY -> "Daily"
-    BackupFrequency.WEEKLY -> "Weekly"
-    BackupFrequency.MONTHLY -> "Monthly"
-    BackupFrequency.MANUAL -> "Manually back up"
+    BackupFrequency.DAILY -> stringResource(id = R.string.RemoteBackupsSettingsFragment__daily)
+    BackupFrequency.WEEKLY -> stringResource(id = R.string.RemoteBackupsSettingsFragment__weekly)
+    BackupFrequency.MONTHLY -> stringResource(id = R.string.RemoteBackupsSettingsFragment__monthly)
+    BackupFrequency.MANUAL -> stringResource(id = R.string.RemoteBackupsSettingsFragment__manually_back_up)
   }
 }
 
