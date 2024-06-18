@@ -31,8 +31,6 @@ class PayPalRepository(private val donationsService: DonationsService) {
     private val TAG = Log.tag(PayPalRepository::class.java)
   }
 
-  private val recurringInAppPaymentRepository = RecurringInAppPaymentRepository(donationsService)
-
   fun createOneTimePaymentIntent(
     amount: FiatMoney,
     badgeRecipient: RecipientId,
@@ -88,7 +86,7 @@ class PayPalRepository(private val donationsService: DonationsService) {
       )
     }.flatMap { serviceResponse ->
       if (retryOn409 && serviceResponse.status == 409) {
-        recurringInAppPaymentRepository.rotateSubscriberId(subscriberType).andThen(createPaymentMethod(subscriberType, retryOn409 = false))
+        RecurringInAppPaymentRepository.rotateSubscriberId(subscriberType).andThen(createPaymentMethod(subscriberType, retryOn409 = false))
       } else {
         serviceResponse.flattenResult()
       }

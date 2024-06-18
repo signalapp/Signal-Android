@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -25,9 +24,7 @@ import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.util.Optional
 
-class ManageDonationsViewModel(
-  private val subscriptionsRepository: RecurringInAppPaymentRepository
-) : ViewModel() {
+class ManageDonationsViewModel : ViewModel() {
 
   private val store = Store(ManageDonationsState())
   private val disposables = CompositeDisposable()
@@ -65,7 +62,7 @@ class ManageDonationsViewModel(
     disposables.clear()
 
     val levelUpdateOperationEdges: Observable<Boolean> = LevelUpdate.isProcessing.distinctUntilChanged()
-    val activeSubscription: Single<ActiveSubscription> = subscriptionsRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION)
+    val activeSubscription: Single<ActiveSubscription> = RecurringInAppPaymentRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION)
 
     disposables += Single.fromCallable {
       InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)
@@ -134,7 +131,7 @@ class ManageDonationsViewModel(
       }
     )
 
-    disposables += subscriptionsRepository.getSubscriptions().subscribeBy(
+    disposables += RecurringInAppPaymentRepository.getSubscriptions().subscribeBy(
       onSuccess = { subs ->
         store.update { it.copy(availableSubscriptions = subs) }
       },
@@ -152,14 +149,6 @@ class ManageDonationsViewModel(
       is DonationRedemptionJobStatus.PendingExternalVerification,
       DonationRedemptionJobStatus.PendingReceiptRedemption,
       DonationRedemptionJobStatus.PendingReceiptRequest -> ManageDonationsState.RedemptionState.IN_PROGRESS
-    }
-  }
-
-  class Factory(
-    private val subscriptionsRepository: RecurringInAppPaymentRepository
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(ManageDonationsViewModel(subscriptionsRepository))!!
     }
   }
 

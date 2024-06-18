@@ -41,7 +41,6 @@ import org.whispersystems.signalservice.internal.push.exceptions.DonationProcess
 
 class StripePaymentInProgressViewModel(
   private val stripeRepository: StripeRepository,
-  private val recurringInAppPaymentRepository: RecurringInAppPaymentRepository,
   private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository
 ) : ViewModel() {
 
@@ -144,18 +143,18 @@ class StripePaymentInProgressViewModel(
   }
 
   private fun proceedMonthly(inAppPayment: InAppPaymentTable.InAppPayment, paymentSourceProvider: PaymentSourceProvider, nextActionHandler: StripeNextActionHandler) {
-    val ensureSubscriberId: Completable = recurringInAppPaymentRepository.ensureSubscriberId(inAppPayment.type.requireSubscriberType())
+    val ensureSubscriberId: Completable = RecurringInAppPaymentRepository.ensureSubscriberId(inAppPayment.type.requireSubscriberType())
     val createAndConfirmSetupIntent: Single<StripeApi.Secure3DSAction> = paymentSourceProvider.paymentSource.flatMap {
       stripeRepository.createAndConfirmSetupIntent(inAppPayment.type, it, paymentSourceProvider.paymentSourceType as PaymentSourceType.Stripe)
     }
 
-    val setLevel: Completable = recurringInAppPaymentRepository.setSubscriptionLevel(inAppPayment, paymentSourceProvider.paymentSourceType)
+    val setLevel: Completable = RecurringInAppPaymentRepository.setSubscriptionLevel(inAppPayment, paymentSourceProvider.paymentSourceType)
 
     Log.d(TAG, "Starting subscription payment pipeline...", true)
     store.update { DonationProcessorStage.PAYMENT_PIPELINE }
 
     val setup: Completable = ensureSubscriberId
-      .andThen(recurringInAppPaymentRepository.cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType()))
+      .andThen(RecurringInAppPaymentRepository.cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType()))
       .andThen(createAndConfirmSetupIntent)
       .flatMap { secure3DSAction ->
         nextActionHandler.handle(
@@ -255,7 +254,7 @@ class StripePaymentInProgressViewModel(
     Log.d(TAG, "Beginning cancellation...", true)
 
     store.update { DonationProcessorStage.CANCELLING }
-    disposables += recurringInAppPaymentRepository.cancelActiveSubscription(subscriberType).subscribeBy(
+    disposables += RecurringInAppPaymentRepository.cancelActiveSubscription(subscriberType).subscribeBy(
       onComplete = {
         Log.d(TAG, "Cancellation succeeded", true)
         store.update { DonationProcessorStage.COMPLETE }
@@ -270,10 +269,10 @@ class StripePaymentInProgressViewModel(
   fun updateSubscription(inAppPayment: InAppPaymentTable.InAppPayment) {
     Log.d(TAG, "Beginning subscription update...", true)
     store.update { DonationProcessorStage.PAYMENT_PIPELINE }
-    disposables += recurringInAppPaymentRepository
+    disposables += RecurringInAppPaymentRepository
       .cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType())
-      .andThen(recurringInAppPaymentRepository.getPaymentSourceTypeOfLatestSubscription(inAppPayment.type.requireSubscriberType()))
-      .flatMapCompletable { paymentSourceType -> recurringInAppPaymentRepository.setSubscriptionLevel(inAppPayment, paymentSourceType) }
+      .andThen(RecurringInAppPaymentRepository.getPaymentSourceTypeOfLatestSubscription(inAppPayment.type.requireSubscriberType()))
+      .flatMapCompletable { paymentSourceType -> RecurringInAppPaymentRepository.setSubscriptionLevel(inAppPayment, paymentSourceType) }
       .subscribeBy(
         onComplete = {
           Log.w(TAG, "Completed subscription update", true)
@@ -304,11 +303,10 @@ class StripePaymentInProgressViewModel(
 
   class Factory(
     private val stripeRepository: StripeRepository,
-    private val recurringInAppPaymentRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(AppDependencies.donationsService),
     private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(AppDependencies.donationsService)
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(StripePaymentInProgressViewModel(stripeRepository, recurringInAppPaymentRepository, oneTimeInAppPaymentRepository)) as T
+      return modelClass.cast(StripePaymentInProgressViewModel(stripeRepository, oneTimeInAppPaymentRepository)) as T
     }
   }
 }

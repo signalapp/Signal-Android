@@ -52,7 +52,6 @@ import java.util.Optional
  */
 class DonateToSignalViewModel(
   startType: InAppPaymentType,
-  private val subscriptionsRepository: RecurringInAppPaymentRepository,
   private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository
 ) : ViewModel() {
 
@@ -75,7 +74,7 @@ class DonateToSignalViewModel(
 
   init {
     initializeOneTimeDonationState(oneTimeInAppPaymentRepository)
-    initializeMonthlyDonationState(subscriptionsRepository)
+    initializeMonthlyDonationState(RecurringInAppPaymentRepository)
 
     networkDisposable += InternetConnectionObserver
       .observe()
@@ -91,7 +90,7 @@ class DonateToSignalViewModel(
   fun retryMonthlyDonationState() {
     if (!monthlyDonationDisposables.isDisposed && store.state.monthlyDonationState.donationStage == DonateToSignalState.DonationStage.FAILURE) {
       store.update { it.copy(monthlyDonationState = it.monthlyDonationState.copy(donationStage = DonateToSignalState.DonationStage.INIT)) }
-      initializeMonthlyDonationState(subscriptionsRepository)
+      initializeMonthlyDonationState(RecurringInAppPaymentRepository)
     }
   }
 
@@ -181,7 +180,7 @@ class DonateToSignalViewModel(
   }
 
   fun refreshActiveSubscription() {
-    subscriptionsRepository
+    RecurringInAppPaymentRepository
       .getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION)
       .subscribeBy(
         onSuccess = {
@@ -395,7 +394,7 @@ class DonateToSignalViewModel(
             val usd = PlatformCurrencyUtil.USD
             val newSubscriber = InAppPaymentsRepository.getSubscriber(usd, InAppPaymentSubscriberRecord.Type.DONATION) ?: InAppPaymentSubscriberRecord(SubscriberId.generate(), usd, InAppPaymentSubscriberRecord.Type.DONATION, false, InAppPaymentData.PaymentMethodType.UNKNOWN)
             InAppPaymentsRepository.setSubscriber(newSubscriber)
-            subscriptionsRepository.syncAccountRecord().subscribe()
+            RecurringInAppPaymentRepository.syncAccountRecord().subscribe()
           }
         }
       },
@@ -422,11 +421,10 @@ class DonateToSignalViewModel(
 
   class Factory(
     private val startType: InAppPaymentType,
-    private val subscriptionsRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(AppDependencies.donationsService),
     private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(AppDependencies.donationsService)
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(DonateToSignalViewModel(startType, subscriptionsRepository, oneTimeInAppPaymentRepository)) as T
+      return modelClass.cast(DonateToSignalViewModel(startType, oneTimeInAppPaymentRepository)) as T
     }
   }
 }

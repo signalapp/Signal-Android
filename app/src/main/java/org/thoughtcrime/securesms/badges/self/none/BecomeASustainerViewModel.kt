@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.badges.self.none
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -10,7 +9,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.util.livedata.Store
 
-class BecomeASustainerViewModel(subscriptionsRepository: RecurringInAppPaymentRepository) : ViewModel() {
+class BecomeASustainerViewModel : ViewModel() {
 
   private val store = Store(BecomeASustainerState())
 
@@ -19,7 +18,7 @@ class BecomeASustainerViewModel(subscriptionsRepository: RecurringInAppPaymentRe
   private val disposables = CompositeDisposable()
 
   init {
-    disposables += subscriptionsRepository.getSubscriptions().subscribeBy(
+    disposables += RecurringInAppPaymentRepository.getSubscriptions().subscribeBy(
       onError = { Log.w(TAG, "Could not load subscriptions.") },
       onSuccess = { subscriptions ->
         store.update {
@@ -35,11 +34,5 @@ class BecomeASustainerViewModel(subscriptionsRepository: RecurringInAppPaymentRe
 
   companion object {
     private val TAG = Log.tag(BecomeASustainerViewModel::class.java)
-  }
-
-  class Factory(private val subscriptionsRepository: RecurringInAppPaymentRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(BecomeASustainerViewModel(subscriptionsRepository))!!
-    }
   }
 }

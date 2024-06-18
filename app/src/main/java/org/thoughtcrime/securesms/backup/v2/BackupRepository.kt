@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import androidx.annotation.WorkerThread
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -41,6 +42,7 @@ import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFeature
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
@@ -88,11 +90,19 @@ object BackupRepository {
         Log.i(TAG, "Resetting initialized state due to 401.")
         SignalStore.backup().backupsInitialized = false
       }
+
       403 -> {
         Log.i(TAG, "Bad auth credential. Clearing stored credentials.")
         SignalStore.backup().clearAllCredentials()
       }
     }
+  }
+
+  @WorkerThread
+  fun turnOffAndDeleteBackup() {
+    RecurringInAppPaymentRepository.cancelActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
+    SignalStore.backup().areBackupsEnabled = false
+    SignalStore.backup().backupTier = null
   }
 
   fun export(outputStream: OutputStream, append: (ByteArray) -> Unit, plaintext: Boolean = false) {

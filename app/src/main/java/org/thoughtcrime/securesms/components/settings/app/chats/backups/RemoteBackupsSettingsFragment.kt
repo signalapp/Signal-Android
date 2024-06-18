@@ -12,12 +12,17 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
@@ -27,17 +32,19 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.collections.immutable.persistentListOf
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -83,7 +90,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state
+    val state by viewModel.state.collectAsState()
     val callbacks = remember { Callbacks() }
 
     RemoteBackupsSettingsContent(
@@ -142,7 +149,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onTurnOffAndDeleteBackupsConfirm() {
-      // TODO [alex] CheckoutFlowStartFragment.launchForBackupsCancellation(childFragmentManager)
+      viewModel.turnOffAndDeleteBackups()
     }
 
     override fun onBackupsTypeClick() {
@@ -164,12 +171,6 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     super.onResume()
     viewModel.refresh()
   }
-
-//  override fun onCheckoutFlowResult(result: CheckoutFlowStartFragment.Result) {
-//    if (result is CheckoutFlowStartFragment.Result.CancelationSuccess) {
-//      Snackbar.make(requireView(), R.string.SubscribeFragment__your_subscription_has_been_cancelled, Snackbar.LENGTH_LONG).show()
-//    }
-//  }
 }
 
 /**
@@ -328,6 +329,13 @@ private fun RemoteBackupsSettingsContent(
       BackupFrequencyDialog(
         selected = backupsFrequency,
         onSelected = contentCallbacks::onSelectBackupsFrequencyChange,
+        onDismiss = contentCallbacks::onDialogDismissed
+      )
+    }
+
+    RemoteBackupsSettingsState.Dialog.DELETING_BACKUP, RemoteBackupsSettingsState.Dialog.BACKUP_DELETED -> {
+      DeletingBackupDialog(
+        backupDeleted = requestedDialog == RemoteBackupsSettingsState.Dialog.BACKUP_DELETED,
         onDismiss = contentCallbacks::onDialogDismissed
       )
     }
@@ -511,6 +519,60 @@ private fun TurnOffAndDeleteBackupsDialog(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+private fun DeletingBackupDialog(
+  backupDeleted: Boolean,
+  onDismiss: () -> Unit
+) {
+  BasicAlertDialog(
+    onDismissRequest = onDismiss,
+    properties = DialogProperties(
+      dismissOnBackPress = false,
+      dismissOnClickOutside = false
+    )
+  ) {
+    Surface(
+      shape = AlertDialogDefaults.shape,
+      color = AlertDialogDefaults.containerColor
+    ) {
+      Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+          .defaultMinSize(minWidth = 232.dp)
+          .padding(bottom = 60.dp)
+      ) {
+        if (backupDeleted) {
+          Icon(
+            painter = painterResource(id = R.drawable.symbol_check_light_24),
+            contentDescription = null,
+            tint = Color(0xFF09B37B),
+            modifier = Modifier
+              .padding(top = 58.dp, bottom = 9.dp)
+              .size(48.dp)
+          )
+          Text(
+            text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_deleted),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+          )
+        } else {
+          CircularProgressIndicator(
+            modifier = Modifier
+              .padding(top = 64.dp, bottom = 20.dp)
+              .size(48.dp)
+          )
+          Text(
+            text = stringResource(id = R.string.RemoteBackupsSettingsFragment__deleting_backup),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+          )
+        }
+      }
+    }
+  }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
 private fun BackupFrequencyDialog(
   selected: BackupFrequency,
   onSelected: (BackupFrequency) -> Unit,
@@ -637,6 +699,17 @@ private fun TurnOffAndDeleteBackupsDialogPreview() {
   Previews.Preview {
     TurnOffAndDeleteBackupsDialog(
       onConfirm = {},
+      onDismiss = {}
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun DeleteBackupDialogPreview() {
+  Previews.Preview {
+    DeletingBackupDialog(
+      backupDeleted = true,
       onDismiss = {}
     )
   }

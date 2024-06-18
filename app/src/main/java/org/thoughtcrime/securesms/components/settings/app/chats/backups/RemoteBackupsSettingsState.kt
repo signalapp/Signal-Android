@@ -22,7 +22,9 @@ data class RemoteBackupsSettingsState(
   enum class Dialog {
     NONE,
     TURN_OFF_AND_DELETE_BACKUPS,
-    BACKUP_FREQUENCY
+    BACKUP_FREQUENCY,
+    DELETING_BACKUP,
+    BACKUP_DELETED
   }
 
   enum class Snackbar {

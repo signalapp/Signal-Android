@@ -23,8 +23,7 @@ import java.util.Optional
 private val TAG = Log.tag(BadgesOverviewViewModel::class.java)
 
 class BadgesOverviewViewModel(
-  private val badgeRepository: BadgeRepository,
-  private val subscriptionsRepository: RecurringInAppPaymentRepository
+  private val badgeRepository: BadgeRepository
 ) : ViewModel() {
   private val store = Store(BadgesOverviewState())
   private val eventSubject = PublishSubject.create<BadgesOverviewEvent>()
@@ -51,8 +50,8 @@ class BadgesOverviewViewModel(
       }
 
     disposables += Single.zip(
-      subscriptionsRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION),
-      subscriptionsRepository.getSubscriptions()
+      RecurringInAppPaymentRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION),
+      RecurringInAppPaymentRepository.getSubscriptions()
     ) { active, all ->
       if (!active.isActive && active.activeSubscription?.willCancelAtPeriodEnd() == true) {
         Optional.ofNullable<String>(all.firstOrNull { it.level == active.activeSubscription?.level }?.badge?.id)
@@ -89,11 +88,10 @@ class BadgesOverviewViewModel(
   }
 
   class Factory(
-    private val badgeRepository: BadgeRepository,
-    private val subscriptionsRepository: RecurringInAppPaymentRepository
+    private val badgeRepository: BadgeRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(BadgesOverviewViewModel(badgeRepository, subscriptionsRepository)))
+      return requireNotNull(modelClass.cast(BadgesOverviewViewModel(badgeRepository)))
     }
   }
 

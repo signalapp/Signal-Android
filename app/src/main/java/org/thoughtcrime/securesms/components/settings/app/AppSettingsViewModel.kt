@@ -15,9 +15,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
 
-class AppSettingsViewModel(
-  recurringInAppPaymentRepository: RecurringInAppPaymentRepository = RecurringInAppPaymentRepository(AppDependencies.donationsService)
-) : ViewModel() {
+class AppSettingsViewModel : ViewModel() {
 
   private val store = Store(
     AppSettingsState(
@@ -40,7 +38,7 @@ class AppSettingsViewModel(
     store.update(unreadPaymentsLiveData) { payments, state -> state.copy(unreadPaymentsCount = payments.map { it.unreadCount }.orElse(0)) }
     store.update(selfLiveData) { self, state -> state.copy(self = self) }
 
-    disposables += recurringInAppPaymentRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION).subscribeBy(
+    disposables += RecurringInAppPaymentRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION).subscribeBy(
       onSuccess = { activeSubscription ->
         store.update { state ->
           state.copy(allowUserToGoToDonationManagementScreen = activeSubscription.isActive || InAppDonations.hasAtLeastOnePaymentMethodAvailable())

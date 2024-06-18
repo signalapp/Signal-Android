@@ -51,7 +51,6 @@ class StripeRepository(
 
   private val googlePayApi = GooglePayApi(activity, StripeApi.Gateway(Environment.Donations.STRIPE_CONFIGURATION), Environment.Donations.GOOGLE_PAY_CONFIGURATION)
   private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, AppDependencies.okHttpClient)
-  private val recurringInAppPaymentRepository = RecurringInAppPaymentRepository(AppDependencies.donationsService)
 
   fun isGooglePayAvailable(): Completable {
     return googlePayApi.queryIsReadyToPay()
@@ -169,7 +168,7 @@ class StripeRepository(
       }
       .flatMap { serviceResponse ->
         if (retryOn409 && serviceResponse.status == 409) {
-          recurringInAppPaymentRepository.rotateSubscriberId(subscriberType).andThen(createPaymentMethod(subscriberType, paymentSourceType, retryOn409 = false))
+          RecurringInAppPaymentRepository.rotateSubscriberId(subscriberType).andThen(createPaymentMethod(subscriberType, paymentSourceType, retryOn409 = false))
         } else {
           serviceResponse.flattenResult()
         }

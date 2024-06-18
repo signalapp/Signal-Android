@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
+import androidx.annotation.CheckResult
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.subscription.Subscription
-import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -39,7 +39,11 @@ import kotlin.time.Duration.Companion.milliseconds
  * Repository which can query for the user's active subscription as well as a list of available subscriptions,
  * in the currency indicated.
  */
-class RecurringInAppPaymentRepository(private val donationsService: DonationsService) {
+object RecurringInAppPaymentRepository {
+
+  private val TAG = Log.tag(RecurringInAppPaymentRepository::class.java)
+
+  private val donationsService = AppDependencies.donationsService
 
   fun getActiveSubscription(type: InAppPaymentSubscriberRecord.Type): Single<ActiveSubscription> {
     val localSubscription = InAppPaymentsRepository.getSubscriber(type)
@@ -129,29 +133,29 @@ class RecurringInAppPaymentRepository(private val donationsService: DonationsSer
       }
   }
 
-  fun cancelActiveSubscription(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
+  fun cancelActiveSubscriptionSync(subscriberType: InAppPaymentSubscriberRecord.Type) {
     Log.d(TAG, "Canceling active subscription...", true)
-    return Single
-      .fromCallable {
-        val localSubscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
+    val localSubscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
 
-        donationsService.cancelSubscription(localSubscriber.subscriberId)
-      }
+    val serviceResponse: ServiceResponse<EmptyResponse> = donationsService.cancelSubscription(localSubscriber.subscriberId)
+    serviceResponse.resultOrThrow
+
+    Log.d(TAG, "Cancelled active subscription.", true)
+    SignalStore.donationsValues().updateLocalStateForManualCancellation(subscriberType)
+    MultiDeviceSubscriptionSyncRequestJob.enqueue()
+    InAppPaymentsRepository.scheduleSyncForAccountRecordChange()
+  }
+
+  @CheckResult
+  fun cancelActiveSubscription(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
+    return Completable
+      .fromAction { cancelActiveSubscriptionSync(subscriberType) }
       .subscribeOn(Schedulers.io())
-      .flatMap(ServiceResponse<EmptyResponse>::flattenResult)
-      .ignoreElement()
-      .doOnComplete {
-        Log.d(TAG, "Cancelled active subscription.", true)
-        SignalStore.donationsValues().updateLocalStateForManualCancellation(subscriberType)
-        MultiDeviceSubscriptionSyncRequestJob.enqueue()
-        InAppPaymentsRepository.scheduleSyncForAccountRecordChange()
-      }
   }
 
   fun cancelActiveSubscriptionIfNecessary(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
     return Single.fromCallable { InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberType) }.flatMapCompletable {
       if (it) {
-        Log.d(TAG, "Cancelling active subscription...", true)
         cancelActiveSubscription(subscriberType).doOnComplete {
           SignalStore.donationsValues().updateLocalStateForManualCancellation(subscriberType)
           MultiDeviceSubscriptionSyncRequestJob.enqueue()
@@ -250,27 +254,23 @@ class RecurringInAppPaymentRepository(private val donationsService: DonationsSer
     getOrCreateLevelUpdateOperation(TAG, subscriptionLevel)
   }
 
-  companion object {
-    private val TAG = Log.tag(RecurringInAppPaymentRepository::class.java)
+  fun getOrCreateLevelUpdateOperation(tag: String, subscriptionLevel: String): LevelUpdateOperation {
+    Log.d(tag, "Retrieving level update operation for $subscriptionLevel")
+    val levelUpdateOperation = SignalStore.donationsValues().getLevelOperation(subscriptionLevel)
+    return if (levelUpdateOperation == null) {
+      val newOperation = LevelUpdateOperation(
+        idempotencyKey = IdempotencyKey.generate(),
+        level = subscriptionLevel
+      )
 
-    fun getOrCreateLevelUpdateOperation(tag: String, subscriptionLevel: String): LevelUpdateOperation {
-      Log.d(tag, "Retrieving level update operation for $subscriptionLevel")
-      val levelUpdateOperation = SignalStore.donationsValues().getLevelOperation(subscriptionLevel)
-      return if (levelUpdateOperation == null) {
-        val newOperation = LevelUpdateOperation(
-          idempotencyKey = IdempotencyKey.generate(),
-          level = subscriptionLevel
-        )
-
-        SignalStore.donationsValues().setLevelOperation(newOperation)
-        LevelUpdate.updateProcessingState(true)
-        Log.d(tag, "Created a new operation for $subscriptionLevel")
-        newOperation
-      } else {
-        LevelUpdate.updateProcessingState(true)
-        Log.d(tag, "Reusing operation for $subscriptionLevel")
-        levelUpdateOperation
-      }
+      SignalStore.donationsValues().setLevelOperation(newOperation)
+      LevelUpdate.updateProcessingState(true)
+      Log.d(tag, "Created a new operation for $subscriptionLevel")
+      newOperation
+    } else {
+      LevelUpdate.updateProcessingState(true)
+      Log.d(tag, "Reusing operation for $subscriptionLevel")
+      levelUpdateOperation
     }
   }
 

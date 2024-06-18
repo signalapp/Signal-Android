@@ -84,6 +84,18 @@ public final class ServiceResponse<Result> {
     }
   }
 
+  public Result getResultOrThrow() throws Throwable {
+    if (result.isPresent()) {
+      return result.get();
+    } else if (applicationError.isPresent()) {
+      throw applicationError.get();
+    } else  if (executionError.isPresent()) {
+      throw executionError.get();
+    } else {
+      throw new AssertionError("Should never get here");
+    }
+  }
+
   public static <T> ServiceResponse<T> forResult(T result, WebsocketResponse response) {
     return new ServiceResponse<>(result, response);
   }
