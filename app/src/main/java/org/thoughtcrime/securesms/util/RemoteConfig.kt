@@ -968,15 +968,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Use Rx threading model to do sends.  */
-  @JvmStatic
-  @get:JvmName("useRxMessageSending")
-  val useRxMessageSending: Boolean by remoteBoolean(
-    key = "android.rxMessageSend.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** The lifespan of a linked device (i.e. the time it can be inactive for before it expires), in milliseconds.  */
   @JvmStatic
   val linkedDeviceLifespan: Long by remoteValue(

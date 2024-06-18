@@ -144,8 +144,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                             provideGroupsV2Operations(signalServiceConfiguration).getProfileOperations(),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 16, 30),
                                             ByteUnit.KILOBYTES.toBytes(256),
-                                            RemoteConfig.okHttpAutomaticRetry(),
-                                            RemoteConfig.useRxMessageSending());
+                                            RemoteConfig.okHttpAutomaticRetry());
   }
 
   @Override
