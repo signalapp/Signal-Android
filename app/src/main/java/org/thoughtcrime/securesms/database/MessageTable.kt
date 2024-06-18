@@ -209,6 +209,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val QUOTE_NOT_PRESENT_ID = 0L
     const val QUOTE_TARGET_MISSING_ID = -1L
 
+    const val ADDRESSABLE_MESSAGE_LIMIT = 5
+
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -4972,26 +4974,26 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return !hasMessages
   }
 
-  fun getMostRecentAddressableMessages(threadId: Long): Set<MessageRecord> {
+  fun getMostRecentAddressableMessages(threadId: Long, excludeExpiring: Boolean): Set<MessageRecord> {
     return readableDatabase
       .select(*MMS_PROJECTION)
       .from(TABLE_NAME)
-      .where("$IS_ADDRESSABLE_CLAUSE AND $THREAD_ID = ?", threadId)
+      .where("$IS_ADDRESSABLE_CLAUSE AND $THREAD_ID = ? ${if (excludeExpiring) "AND $EXPIRES_IN = 0" else ""}", threadId)
       .orderBy("$DATE_RECEIVED DESC")
-      .limit(5)
+      .limit(ADDRESSABLE_MESSAGE_LIMIT)
       .run()
       .use {
         MmsReader(it).toSet()
       }
   }
 
-  fun getAddressableMessagesBefore(threadId: Long, beforeTimestamp: Long): Set<MessageRecord> {
+  fun getAddressableMessagesBefore(threadId: Long, beforeTimestamp: Long, excludeExpiring: Boolean): Set<MessageRecord> {
     return readableDatabase
       .select(*MMS_PROJECTION)
       .from(TABLE_NAME)
-      .where("$IS_ADDRESSABLE_CLAUSE AND $THREAD_ID = ? AND $DATE_RECEIVED < ?", threadId, beforeTimestamp)
+      .where("$IS_ADDRESSABLE_CLAUSE AND $THREAD_ID = ? AND $DATE_RECEIVED < ? ${if (excludeExpiring) "AND $EXPIRES_IN = 0" else ""}", threadId, beforeTimestamp)
       .orderBy("$DATE_RECEIVED DESC")
-      .limit(5)
+      .limit(ADDRESSABLE_MESSAGE_LIMIT)
       .run()
       .use {
         MmsReader(it).toSet()

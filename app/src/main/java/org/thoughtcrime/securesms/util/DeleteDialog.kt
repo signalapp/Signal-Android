@@ -8,7 +8,7 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSendSyncJob
+import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
@@ -122,7 +122,7 @@ object DeleteDialog {
       }
 
       if (Recipient.self().deleteSyncCapability.isSupported) {
-        MultiDeviceDeleteSendSyncJob.enqueueMessageDeletes(messageRecords)
+        MultiDeviceDeleteSyncJob.enqueueMessageDeletes(messageRecords)
       }
 
       return threadDeleted

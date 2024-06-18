@@ -14,7 +14,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSendSyncJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
@@ -87,7 +87,7 @@ final class MediaActions {
           }
 
           if (Recipient.self().getDeleteSyncCapability().isSupported() && Util.hasItems(deletedMessageRecords)) {
-            MultiDeviceDeleteSendSyncJob.enqueueMessageDeletes(deletedMessageRecords);
+            MultiDeviceDeleteSyncJob.enqueueMessageDeletes(deletedMessageRecords);
           }
 
           return null;

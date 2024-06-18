@@ -687,6 +687,7 @@ message SyncMessage {
     message ConversationDelete {
       optional ConversationIdentifier conversation = 1;
       repeated AddressableMessage mostRecentMessages = 2;
+      repeated AddressableMessage mostRecentNonExpiringMessages = 4;
       optional bool isFullDelete = 3;
     }
 

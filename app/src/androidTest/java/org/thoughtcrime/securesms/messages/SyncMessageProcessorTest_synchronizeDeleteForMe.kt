@@ -260,7 +260,7 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
     }
 
     messageHelper.syncDeleteForMeConversation(
-      DeleteForMeSync(conversationId = messageHelper.alice, randomFutureMessages, true)
+      DeleteForMeSync(conversationId = messageHelper.alice, randomFutureMessages, isFullDelete = true)
     )
 
     // THEN
@@ -269,6 +269,38 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
 
     harness.inMemoryLogger.flush()
     harness.inMemoryLogger.entries().filter { it.message?.contains("Unable to find most recent received at timestamp") == true }.size assertIs 1
+  }
+
+  @Test
+  fun singleConversationNoRecentsFoundNonExpiringRecentsFoundDelete() {
+    // GIVEN
+    val messages = mutableListOf<MessageTable.SyncMessageId>()
+
+    for (i in 0 until 10) {
+      messages += MessageTable.SyncMessageId(messageHelper.alice, messageHelper.incomingText().timestamp)
+      messages += MessageTable.SyncMessageId(harness.self.id, messageHelper.outgoingText().timestamp)
+    }
+
+    val threadId = SignalDatabase.threads.getThreadIdFor(messageHelper.alice)!!
+    SignalDatabase.messages.getMessageCountForThread(threadId) assertIs 20
+
+    // WHEN
+    val nonExpiringMessages = messages.takeLast(5).map { it.recipientId to it.timetamp }
+
+    val randomFutureMessages = (1..5).map {
+      messageHelper.alice to messageHelper.nextStartTime(it)
+    }
+
+    messageHelper.syncDeleteForMeConversation(
+      DeleteForMeSync(conversationId = messageHelper.alice, randomFutureMessages, nonExpiringMessages, true)
+    )
+
+    // THEN
+    SignalDatabase.messages.getMessageCountForThread(threadId) assertIs 0
+    SignalDatabase.threads.getThreadRecord(threadId) assertIs null
+
+    harness.inMemoryLogger.flush()
+    harness.inMemoryLogger.entries().filter { it.message?.contains("Using backup non-expiring messages") == true }.size assertIs 1
   }
 
   @Test
@@ -389,8 +421,8 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
 
     // WHEN
     messageHelper.syncDeleteForMeConversation(
-      DeleteForMeSync(conversationId = messageHelper.alice, allMessages[messageHelper.alice]!!.takeLast(5).map { it.recipientId to it.timetamp }, true),
-      DeleteForMeSync(conversationId = messageHelper.bob, allMessages[messageHelper.bob]!!.takeLast(5).map { it.recipientId to it.timetamp }, true)
+      DeleteForMeSync(conversationId = messageHelper.alice, allMessages[messageHelper.alice]!!.takeLast(5).map { it.recipientId to it.timetamp }, isFullDelete = true),
+      DeleteForMeSync(conversationId = messageHelper.bob, allMessages[messageHelper.bob]!!.takeLast(5).map { it.recipientId to it.timetamp }, isFullDelete = true)
     )
 
     // THEN

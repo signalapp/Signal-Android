@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSendSyncJob
+import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob
 import org.thoughtcrime.securesms.longmessage.resolveBody
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -86,7 +86,7 @@ class MediaPreviewRepository {
     return Completable.fromRunnable {
       val deletedMessageRecord = AttachmentUtil.deleteAttachment(attachment)
       if (deletedMessageRecord != null && Recipient.self().deleteSyncCapability.isSupported) {
-        MultiDeviceDeleteSendSyncJob.enqueueMessageDeletes(setOf(deletedMessageRecord))
+        MultiDeviceDeleteSyncJob.enqueueMessageDeletes(setOf(deletedMessageRecord))
       }
     }.subscribeOn(Schedulers.io())
   }

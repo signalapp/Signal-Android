@@ -1536,8 +1536,12 @@ object SyncMessageProcessor {
         continue
       }
 
-      val mostRecentMessagesToDelete: List<MessageTable.SyncMessageId> = delete.mostRecentMessages.mapNotNull { it.toSyncMessageId(envelopeTimestamp) }
-      val latestReceivedAt = SignalDatabase.messages.getLatestReceivedAt(threadId, mostRecentMessagesToDelete)
+      var latestReceivedAt = SignalDatabase.messages.getLatestReceivedAt(threadId, delete.mostRecentMessages.mapNotNull { it.toSyncMessageId(envelopeTimestamp) })
+
+      if (latestReceivedAt == null && delete.mostRecentNonExpiringMessages.isNotEmpty()) {
+        log(envelopeTimestamp, "[handleSynchronizeDeleteForMe] Using backup non-expiring messages")
+        latestReceivedAt = SignalDatabase.messages.getLatestReceivedAt(threadId, delete.mostRecentNonExpiringMessages.mapNotNull { it.toSyncMessageId(envelopeTimestamp) })
+      }
 
       if (latestReceivedAt != null) {
         SignalDatabase.threads.trimThread(threadId = threadId, syncThreadTrimDeletes = false, trimBeforeDate = latestReceivedAt, inclusive = true)

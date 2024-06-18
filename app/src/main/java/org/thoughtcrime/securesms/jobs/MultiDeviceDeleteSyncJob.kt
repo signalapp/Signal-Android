@@ -13,6 +13,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -37,7 +38,7 @@ import kotlin.time.Duration.Companion.days
 /**
  * Send delete for me sync messages for the various type of delete syncs.
  */
-class MultiDeviceDeleteSendSyncJob private constructor(
+class MultiDeviceDeleteSyncJob private constructor(
   private var data: DeleteSyncJobData,
   parameters: Parameters = Parameters.Builder()
     .addConstraint(NetworkConstraint.KEY)
@@ -48,7 +49,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
 
   companion object {
     const val KEY = "MultiDeviceDeleteSendSyncJob"
-    private val TAG = Log.tag(MultiDeviceDeleteSendSyncJob::class.java)
+    private val TAG = Log.tag(MultiDeviceDeleteSyncJob::class.java)
 
     private const val CHUNK_SIZE = 500
     private const val THREAD_CHUNK_SIZE = CHUNK_SIZE / 5
@@ -68,7 +69,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
       messageRecords.chunked(CHUNK_SIZE).forEach { chunk ->
         val deletes = createMessageDeletes(chunk)
         if (deletes.isNotEmpty()) {
-          AppDependencies.jobManager.add(MultiDeviceDeleteSendSyncJob(messages = deletes))
+          AppDependencies.jobManager.add(MultiDeviceDeleteSyncJob(messages = deletes))
         } else {
           Log.i(TAG, "No valid message deletes to sync")
         }
@@ -89,14 +90,14 @@ class MultiDeviceDeleteSendSyncJob private constructor(
 
       val delete = createAttachmentDelete(message, attachment)
       if (delete != null) {
-        AppDependencies.jobManager.add(MultiDeviceDeleteSendSyncJob(attachments = listOf(delete)))
+        AppDependencies.jobManager.add(MultiDeviceDeleteSyncJob(attachments = listOf(delete)))
       } else {
         Log.i(TAG, "No valid attachment deletes to sync attachment:${attachment.attachmentId}")
       }
     }
 
     @WorkerThread
-    fun enqueueThreadDeletes(threads: List<Pair<Long, Set<MessageRecord>>>, isFullDelete: Boolean) {
+    fun enqueueThreadDeletes(threads: List<ThreadTable.ThreadDeleteSyncInfo>, isFullDelete: Boolean) {
       if (!TextSecurePreferences.isMultiDevice(AppDependencies.application)) {
         return
       }
@@ -110,7 +111,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
         val threadDeletes = createThreadDeletes(chunk, isFullDelete)
         if (threadDeletes.isNotEmpty()) {
           AppDependencies.jobManager.add(
-            MultiDeviceDeleteSendSyncJob(
+            MultiDeviceDeleteSyncJob(
               threads = threadDeletes.filter { it.messages.isNotEmpty() },
               localOnlyThreads = threadDeletes.filter { it.messages.isEmpty() }
             )
@@ -186,8 +187,8 @@ class MultiDeviceDeleteSendSyncJob private constructor(
     }
 
     @WorkerThread
-    private fun createThreadDeletes(threads: List<Pair<Long, Set<MessageRecord>>>, isFullDelete: Boolean): List<ThreadDelete> {
-      return threads.mapNotNull { (threadId, messages) ->
+    private fun createThreadDeletes(threads: List<ThreadTable.ThreadDeleteSyncInfo>, isFullDelete: Boolean): List<ThreadDelete> {
+      return threads.mapNotNull { (threadId, messages, nonExpiringMessages) ->
         val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
         if (threadRecipient == null) {
           Log.w(TAG, "Unable to find thread recipient for thread: $threadId")
@@ -202,6 +203,12 @@ class MultiDeviceDeleteSendSyncJob private constructor(
             threadRecipientId = threadRecipient.id.toLong(),
             isFullDelete = isFullDelete,
             messages = messages.map {
+              AddressableMessage(
+                sentTimestamp = it.dateSent,
+                authorRecipientId = it.fromRecipient.id.toLong()
+              )
+            },
+            nonExpiringMessages = nonExpiringMessages.map {
               AddressableMessage(
                 sentTimestamp = it.dateSent,
                 authorRecipientId = it.fromRecipient.id.toLong()
@@ -269,16 +276,17 @@ class MultiDeviceDeleteSendSyncJob private constructor(
     if (data.threadDeletes.isNotEmpty()) {
       val success = syncDelete(
         DeleteForMe(
-          conversationDeletes = data.threadDeletes.mapNotNull {
-            val conversation = Recipient.resolved(RecipientId.from(it.threadRecipientId)).toDeleteSyncConversationId()
+          conversationDeletes = data.threadDeletes.mapNotNull { threadDelete ->
+            val conversation = Recipient.resolved(RecipientId.from(threadDelete.threadRecipientId)).toDeleteSyncConversationId()
             if (conversation != null) {
               DeleteForMe.ConversationDelete(
                 conversation = conversation,
-                mostRecentMessages = it.messages.mapNotNull { m -> m.toDeleteSyncMessage() },
-                isFullDelete = it.isFullDelete
+                mostRecentMessages = threadDelete.messages.mapNotNull { it.toDeleteSyncMessage() },
+                isFullDelete = threadDelete.isFullDelete,
+                mostRecentNonExpiringMessages = threadDelete.messages.mapNotNull { it.toDeleteSyncMessage() }
               )
             } else {
-              Log.w(TAG, "Unable to resolve ${it.threadRecipientId} to conversation id")
+              Log.w(TAG, "Unable to resolve ${threadDelete.threadRecipientId} to conversation id")
               null
             }
           }
@@ -408,9 +416,9 @@ class MultiDeviceDeleteSendSyncJob private constructor(
     }
   }
 
-  class Factory : Job.Factory<MultiDeviceDeleteSendSyncJob> {
-    override fun create(parameters: Parameters, serializedData: ByteArray?): MultiDeviceDeleteSendSyncJob {
-      return MultiDeviceDeleteSendSyncJob(DeleteSyncJobData.ADAPTER.decode(serializedData!!), parameters)
+  class Factory : Job.Factory<MultiDeviceDeleteSyncJob> {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): MultiDeviceDeleteSyncJob {
+      return MultiDeviceDeleteSyncJob(DeleteSyncJobData.ADAPTER.decode(serializedData!!), parameters)
     }
   }
 }

@@ -100,6 +100,7 @@ message DeleteSyncJobData {
     uint64 threadRecipientId = 1;
     repeated AddressableMessage messages = 2;
     bool isFullDelete = 3;
+    repeated AddressableMessage nonExpiringMessages = 4;
   }
 
   repeated AddressableMessage messageDeletes = 1;

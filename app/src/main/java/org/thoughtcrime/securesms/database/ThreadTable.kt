@@ -50,7 +50,7 @@ import org.thoughtcrime.securesms.database.model.serialize
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSendSyncJob
+import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob
 import org.thoughtcrime.securesms.jobs.OptimizeMessageSearchIndexJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.SlideDeck
@@ -326,7 +326,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     val syncThreadTrimDeletes = SignalStore.settings().shouldSyncThreadTrimDeletes() && Recipient.self().deleteSyncCapability.isSupported
-    val threadTrimsToSync = mutableListOf<Pair<Long, Set<MessageRecord>>>()
+    val threadTrimsToSync = mutableListOf<ThreadDeleteSyncInfo>()
 
     readableDatabase
       .select(ID)
@@ -358,7 +358,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     if (syncThreadTrimDeletes && threadTrimsToSync.isNotEmpty()) {
-      MultiDeviceDeleteSendSyncJob.enqueueThreadDeletes(threadTrimsToSync, isFullDelete = false)
+      MultiDeviceDeleteSyncJob.enqueueThreadDeletes(threadTrimsToSync, isFullDelete = false)
     }
 
     notifyAttachmentListeners()
@@ -377,7 +377,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return
     }
 
-    var threadTrimToSync: Pair<Long, Set<MessageRecord>>? = null
+    var threadTrimToSync: ThreadDeleteSyncInfo? = null
     val deletes = writableDatabase.withinTransaction {
       threadTrimToSync = trimThreadInternal(threadId, syncThreadTrimDeletes, length, trimBeforeDate, inclusive)
       messages.deleteAbandonedMessages()
@@ -392,7 +392,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     if (syncThreadTrimDeletes && threadTrimToSync != null) {
-      MultiDeviceDeleteSendSyncJob.enqueueThreadDeletes(listOf(threadTrimToSync!!), isFullDelete = false)
+      MultiDeviceDeleteSyncJob.enqueueThreadDeletes(listOf(threadTrimToSync!!), isFullDelete = false)
     }
 
     notifyAttachmentListeners()
@@ -406,7 +406,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     length: Int,
     trimBeforeDate: Long,
     inclusive: Boolean = false
-  ): Pair<Long, Set<MessageRecord>>? {
+  ): ThreadDeleteSyncInfo? {
     if (length == NO_TRIM_MESSAGE_COUNT_SET && trimBeforeDate == NO_TRIM_BEFORE_DATE_SET) {
       return null
     }
@@ -427,7 +427,18 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     if (finalTrimBeforeDate != NO_TRIM_BEFORE_DATE_SET) {
       Log.i(TAG, "Trimming thread: $threadId before: $finalTrimBeforeDate inclusive: $inclusive")
 
-      val addressableMessages: Set<MessageRecord> = if (syncThreadTrimDeletes) messages.getAddressableMessagesBefore(threadId, finalTrimBeforeDate) else emptySet()
+      val addressableMessages: Set<MessageRecord> = if (syncThreadTrimDeletes) {
+        messages.getAddressableMessagesBefore(threadId, finalTrimBeforeDate, excludeExpiring = false)
+      } else {
+        emptySet()
+      }
+
+      val nonExpiringAddressableMessages: Set<MessageRecord> = if (syncThreadTrimDeletes && addressableMessages.size == MessageTable.ADDRESSABLE_MESSAGE_LIMIT && addressableMessages.any { it.expiresIn > 0 }) {
+        messages.getAddressableMessagesBefore(threadId, finalTrimBeforeDate, excludeExpiring = true)
+      } else {
+        emptySet()
+      }
+
       val deletes = messages.deleteMessagesInThreadBeforeDate(threadId, finalTrimBeforeDate, inclusive)
 
       if (deletes > 0) {
@@ -438,7 +449,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         SignalDatabase.calls.updateCallEventDeletionTimestamps()
 
         return if (syncThreadTrimDeletes && (threadDeleted || addressableMessages.isNotEmpty())) {
-          threadId to addressableMessages
+          ThreadDeleteSyncInfo(threadId, addressableMessages, nonExpiringAddressableMessages)
         } else {
           null
         }
@@ -1132,13 +1143,20 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   fun deleteConversations(selectedConversations: Set<Long>, syncThreadDeletes: Boolean = true) {
     val recipientIds = getRecipientIdsForThreadIds(selectedConversations)
 
-    val addressableMessages = mutableListOf<Pair<Long, Set<MessageRecord>>>()
+    val addressableMessages = mutableListOf<ThreadDeleteSyncInfo>()
 
     val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(ID, selectedConversations)
     writableDatabase.withinTransaction { db ->
       if (syncThreadDeletes && Recipient.self().deleteSyncCapability.isSupported) {
         for (threadId in selectedConversations) {
-          addressableMessages += threadId to messages.getMostRecentAddressableMessages(threadId)
+          val mostRecentMessages = messages.getMostRecentAddressableMessages(threadId, excludeExpiring = false)
+          val mostRecentNonExpiring = if (mostRecentMessages.size == MessageTable.ADDRESSABLE_MESSAGE_LIMIT && mostRecentMessages.any { it.expiresIn > 0 }) {
+            messages.getMostRecentAddressableMessages(threadId, excludeExpiring = true)
+          } else {
+            emptySet()
+          }
+
+          addressableMessages += ThreadDeleteSyncInfo(threadId, mostRecentMessages, mostRecentNonExpiring)
         }
       }
 
@@ -1160,7 +1178,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     if (syncThreadDeletes) {
-      MultiDeviceDeleteSendSyncJob.enqueueThreadDeletes(addressableMessages, isFullDelete = true)
+      MultiDeviceDeleteSyncJob.enqueueThreadDeletes(addressableMessages, isFullDelete = true)
     }
 
     notifyConversationListListeners()
@@ -2206,4 +2224,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val threadId: Long,
     val newlyCreated: Boolean
   )
+
+  data class ThreadDeleteSyncInfo(val threadId: Long, val addressableMessages: Set<MessageRecord>, val nonExpiringAddressableMessages: Set<MessageRecord>)
 }

@@ -187,8 +187,8 @@ object MessageContentFuzzer {
       .syncMessage(
         SyncMessage(
           deleteForMe = SyncMessage.DeleteForMe(
-            conversationDeletes = allDeletes.map { (conversationId, conversationDeletes, isFullDelete) ->
-              val conversation = Recipient.resolved(conversationId)
+            conversationDeletes = allDeletes.map { delete ->
+              val conversation = Recipient.resolved(delete.conversationId)
               SyncMessage.DeleteForMe.ConversationDelete(
                 conversation = if (conversation.isGroup) {
                   SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
@@ -196,14 +196,21 @@ object MessageContentFuzzer {
                   SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
                 },
 
-                mostRecentMessages = conversationDeletes.map { (author, timestamp) ->
+                mostRecentMessages = delete.messages.map { (author, timestamp) ->
                   SyncMessage.DeleteForMe.AddressableMessage(
                     authorServiceId = Recipient.resolved(author).requireAci().toString(),
                     sentTimestamp = timestamp
                   )
                 },
 
-                isFullDelete = isFullDelete
+                mostRecentNonExpiringMessages = delete.nonExpiringMessages.map { (author, timestamp) ->
+                  SyncMessage.DeleteForMe.AddressableMessage(
+                    authorServiceId = Recipient.resolved(author).requireAci().toString(),
+                    sentTimestamp = timestamp
+                  )
+                },
+
+                isFullDelete = delete.isFullDelete
               )
             }
           )
@@ -405,6 +412,7 @@ object MessageContentFuzzer {
   data class DeleteForMeSync(
     val conversationId: RecipientId,
     val messages: List<Pair<RecipientId, Long>>,
+    val nonExpiringMessages: List<Pair<RecipientId, Long>> = emptyList(),
     val isFullDelete: Boolean = true,
     val attachments: List<Pair<Long, AttachmentTable.SyncAttachmentId>> = emptyList()
   ) {
