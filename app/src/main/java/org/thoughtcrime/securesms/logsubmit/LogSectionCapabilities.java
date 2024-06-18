@@ -34,10 +34,12 @@ public final class LogSectionCapabilities implements LogSection {
     RecipientRecord.Capabilities   globalCapabilities = SignalDatabase.recipients().getCapabilities(self.getId());
 
     StringBuilder builder = new StringBuilder().append("-- Local").append("\n")
+                                               .append("DeleteSync: ").append(localCapabilities.getDeleteSync()).append("\n")
                                                .append("\n")
                                                .append("-- Global").append("\n");
 
     if (globalCapabilities != null) {
+      builder.append("DeleteSync: ").append(globalCapabilities.getDeleteSync()).append("\n");
       builder.append("\n");
     } else {
       builder.append("Self not found!");
