@@ -69,6 +69,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
+import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.stickers
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
@@ -653,6 +654,47 @@ class AttachmentTable(
           notifyAttachmentListeners()
         }
     }
+  }
+
+  fun deleteAttachments(toDelete: List<SyncAttachmentId>): List<SyncMessageId> {
+    val unhandled = mutableListOf<SyncMessageId>()
+    for (syncAttachmentId in toDelete) {
+      val messageId = SignalDatabase.messages.getMessageIdOrNull(syncAttachmentId.syncMessageId)
+      if (messageId != null) {
+        val attachments = readableDatabase
+          .select(ID, ATTACHMENT_UUID, REMOTE_DIGEST, DATA_HASH_END)
+          .from(TABLE_NAME)
+          .where("$MESSAGE_ID = ?", messageId)
+          .run()
+          .readToList {
+            SyncAttachment(
+              id = AttachmentId(it.requireLong(ID)),
+              uuid = UuidUtil.parseOrNull(it.requireString(ATTACHMENT_UUID)),
+              digest = it.requireBlob(REMOTE_DIGEST),
+              plaintextHash = it.requireString(DATA_HASH_END)
+            )
+          }
+
+        val byUuid: SyncAttachment? by lazy { attachments.firstOrNull { it.uuid != null && it.uuid == syncAttachmentId.uuid } }
+        val byDigest: SyncAttachment? by lazy { attachments.firstOrNull { it.digest != null && it.digest.contentEquals(syncAttachmentId.digest) } }
+        val byPlaintext: SyncAttachment? by lazy { attachments.firstOrNull { it.plaintextHash != null && it.plaintextHash == syncAttachmentId.plaintextHash } }
+
+        val attachmentToDelete = (byUuid ?: byDigest ?: byPlaintext)?.id
+        if (attachmentToDelete != null) {
+          if (attachments.size == 1) {
+            SignalDatabase.messages.deleteMessage(messageId)
+          } else {
+            deleteAttachment(attachmentToDelete)
+          }
+        } else {
+          Log.i(TAG, "Unable to locate sync attachment to delete for message:$messageId")
+        }
+      } else {
+        unhandled += syncAttachmentId.syncMessageId
+      }
+    }
+
+    return unhandled
   }
 
   fun trimAllAbandonedAttachments() {
@@ -2295,4 +2337,8 @@ class AttachmentTable(
       }
     }
   }
+
+  class SyncAttachmentId(val syncMessageId: SyncMessageId, val uuid: UUID?, val digest: ByteArray?, val plaintextHash: String?)
+
+  class SyncAttachment(val id: AttachmentId, val uuid: UUID?, val digest: ByteArray?, val plaintextHash: String?)
 }

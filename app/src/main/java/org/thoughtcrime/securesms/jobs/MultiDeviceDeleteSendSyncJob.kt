@@ -8,8 +8,10 @@ package org.thoughtcrime.securesms.jobs
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -17,12 +19,14 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.AddressableMessage
+import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.AttachmentDelete
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.ThreadDelete
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.pad
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
+import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage.DeleteForMe
@@ -68,6 +72,26 @@ class MultiDeviceDeleteSendSyncJob private constructor(
         } else {
           Log.i(TAG, "No valid message deletes to sync")
         }
+      }
+    }
+
+    @WorkerThread
+    @JvmStatic
+    fun enqueueAttachmentDelete(message: MessageRecord?, attachment: DatabaseAttachment) {
+      if (!TextSecurePreferences.isMultiDevice(AppDependencies.application)) {
+        return
+      }
+
+      if (!Recipient.self().deleteSyncCapability.isSupported) {
+        Log.i(TAG, "Delete sync support not enabled.")
+        return
+      }
+
+      val delete = createAttachmentDelete(message, attachment)
+      if (delete != null) {
+        AppDependencies.jobManager.add(MultiDeviceDeleteSendSyncJob(attachments = listOf(delete)))
+      } else {
+        Log.i(TAG, "No valid attachment deletes to sync attachment:${attachment.attachmentId}")
       }
     }
 
@@ -120,6 +144,48 @@ class MultiDeviceDeleteSendSyncJob private constructor(
     }
 
     @WorkerThread
+    private fun createAttachmentDelete(message: MessageRecord?, attachment: DatabaseAttachment): AttachmentDelete? {
+      if (message == null) {
+        return null
+      }
+
+      val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)
+      val addressableMessage = if (threadRecipient == null) {
+        Log.w(TAG, "Unable to find thread recipient for message: ${message.id} thread: ${message.threadId} attachment: ${attachment.attachmentId}")
+        null
+      } else if (threadRecipient.isReleaseNotes) {
+        Log.w(TAG, "Syncing release channel deletes are not currently supported")
+        null
+      } else if (threadRecipient.isDistributionList || !message.canDeleteSync()) {
+        null
+      } else {
+        AddressableMessage(
+          threadRecipientId = threadRecipient.id.toLong(),
+          sentTimestamp = message.dateSent,
+          authorRecipientId = message.fromRecipient.id.toLong()
+        )
+      }
+
+      if (addressableMessage == null) {
+        return null
+      }
+
+      val delete = AttachmentDelete(
+        targetMessage = addressableMessage,
+        uuid = attachment.uuid?.let { UuidUtil.toByteString(it) },
+        digest = attachment.remoteDigest?.toByteString(),
+        plaintextHash = attachment.dataHash?.let { Base64.decodeOrNull(it)?.toByteString() }
+      )
+
+      return if (delete.uuid == null && delete.digest == null && delete.plaintextHash == null) {
+        Log.w(TAG, "Unable to find uuid, digest, or plain text hash for attachment: ${attachment.attachmentId}")
+        null
+      } else {
+        delete
+      }
+    }
+
+    @WorkerThread
     private fun createThreadDeletes(threads: List<Pair<Long, Set<MessageRecord>>>, isFullDelete: Boolean): List<ThreadDelete> {
       return threads.mapNotNull { (threadId, messages) ->
         val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
@@ -151,12 +217,14 @@ class MultiDeviceDeleteSendSyncJob private constructor(
   constructor(
     messages: List<AddressableMessage> = emptyList(),
     threads: List<ThreadDelete> = emptyList(),
-    localOnlyThreads: List<ThreadDelete> = emptyList()
+    localOnlyThreads: List<ThreadDelete> = emptyList(),
+    attachments: List<AttachmentDelete> = emptyList()
   ) : this(
     DeleteSyncJobData(
       messageDeletes = messages,
       threadDeletes = threads,
-      localOnlyThreadDeletes = localOnlyThreads
+      localOnlyThreadDeletes = localOnlyThreads,
+      attachmentDeletes = attachments
     )
   )
 
@@ -244,13 +312,45 @@ class MultiDeviceDeleteSendSyncJob private constructor(
       }
     }
 
+    if (data.attachmentDeletes.isNotEmpty()) {
+      val success = syncDelete(
+        DeleteForMe(
+          attachmentDeletes = data.attachmentDeletes.mapNotNull {
+            val conversation = Recipient.resolved(RecipientId.from(it.targetMessage!!.threadRecipientId)).toDeleteSyncConversationId()
+            val targetMessage = it.targetMessage.toDeleteSyncMessage()
+
+            if (conversation != null && targetMessage != null) {
+              DeleteForMe.AttachmentDelete(
+                conversation = conversation,
+                targetMessage = targetMessage,
+                uuid = it.uuid,
+                fallbackDigest = it.digest,
+                fallbackPlaintextHash = it.plaintextHash
+              )
+            } else {
+              Log.w(TAG, "Unable to resolve ${it.targetMessage.threadRecipientId} to conversation id or resolve target message data")
+              null
+            }
+          }
+        )
+      )
+
+      if (!success) {
+        return Result.retry(defaultBackoff())
+      }
+    }
+
     return Result.success()
   }
 
   override fun onFailure() = Unit
 
   private fun syncDelete(deleteForMe: DeleteForMe): Boolean {
-    if (deleteForMe.conversationDeletes.isEmpty() && deleteForMe.messageDeletes.isEmpty() && deleteForMe.localOnlyConversationDeletes.isEmpty()) {
+    if (deleteForMe.conversationDeletes.isEmpty() &&
+      deleteForMe.messageDeletes.isEmpty() &&
+      deleteForMe.localOnlyConversationDeletes.isEmpty() &&
+      deleteForMe.attachmentDeletes.isEmpty()
+    ) {
       Log.i(TAG, "No valid deletes, nothing to send, skipping")
       return true
     }
@@ -258,7 +358,7 @@ class MultiDeviceDeleteSendSyncJob private constructor(
     val syncMessageContent = deleteForMeContent(deleteForMe)
 
     return try {
-      Log.d(TAG, "Sending delete sync messageDeletes=${deleteForMe.messageDeletes.size} conversationDeletes=${deleteForMe.conversationDeletes.size} localOnlyConversationDeletes=${deleteForMe.localOnlyConversationDeletes.size}")
+      Log.d(TAG, "Sending delete sync messageDeletes=${deleteForMe.messageDeletes.size} conversationDeletes=${deleteForMe.conversationDeletes.size} localOnlyConversationDeletes=${deleteForMe.localOnlyConversationDeletes.size} attachmentDeletes=${deleteForMe.attachmentDeletes.size}")
       AppDependencies.signalServiceMessageSender.sendSyncMessage(syncMessageContent, true, Optional.empty()).isSuccess
     } catch (e: IOException) {
       Log.w(TAG, "Unable to send message delete sync", e)

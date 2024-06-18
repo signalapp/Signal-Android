@@ -47,6 +47,7 @@ class UriAttachment : Attachment {
     transformProperties = transformProperties
   )
 
+  @JvmOverloads
   constructor(
     dataUri: Uri,
     contentType: String,
@@ -64,7 +65,8 @@ class UriAttachment : Attachment {
     stickerLocator: StickerLocator?,
     blurHash: BlurHash?,
     audioHash: AudioHash?,
-    transformProperties: TransformProperties?
+    transformProperties: TransformProperties?,
+    uuid: UUID? = UUID.randomUUID()
   ) : super(
     contentType = contentType,
     transferState = transferState,
@@ -89,7 +91,7 @@ class UriAttachment : Attachment {
     blurHash = blurHash,
     audioHash = audioHash,
     transformProperties = transformProperties,
-    uuid = UUID.randomUUID()
+    uuid = uuid
   ) {
     uri = Objects.requireNonNull(dataUri)
   }

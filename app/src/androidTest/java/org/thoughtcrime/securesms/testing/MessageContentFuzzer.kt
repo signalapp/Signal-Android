@@ -2,12 +2,15 @@ package org.thoughtcrime.securesms.testing
 
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Base64
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.buildWith
 import org.thoughtcrime.securesms.messages.TestMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
+import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
@@ -229,6 +232,35 @@ object MessageContentFuzzer {
       ).build()
   }
 
+  fun syncDeleteForMeAttachment(conversationId: RecipientId, message: Pair<RecipientId, Long>, uuid: UUID?, digest: ByteArray?, plainTextHash: String?): Content {
+    val conversation = Recipient.resolved(conversationId)
+
+    return Content
+      .Builder()
+      .syncMessage(
+        SyncMessage(
+          deleteForMe = SyncMessage.DeleteForMe(
+            attachmentDeletes = listOf(
+              SyncMessage.DeleteForMe.AttachmentDelete(
+                conversation = if (conversation.isGroup) {
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
+                } else {
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                },
+                targetMessage = SyncMessage.DeleteForMe.AddressableMessage(
+                  authorServiceId = Recipient.resolved(message.first).requireAci().toString(),
+                  sentTimestamp = message.second
+                ),
+                uuid = uuid?.let { UuidUtil.toByteString(it) },
+                fallbackDigest = digest?.toByteString(),
+                fallbackPlaintextHash = plainTextHash?.let { Base64.decodeOrNull(it)?.toByteString() }
+              )
+            )
+          )
+        )
+      ).build()
+  }
+
   /**
    * Create a random media message that may be:
    * - A text body
@@ -373,7 +405,8 @@ object MessageContentFuzzer {
   data class DeleteForMeSync(
     val conversationId: RecipientId,
     val messages: List<Pair<RecipientId, Long>>,
-    val isFullDelete: Boolean = true
+    val isFullDelete: Boolean = true,
+    val attachments: List<Pair<Long, AttachmentTable.SyncAttachmentId>> = emptyList()
   ) {
     constructor(conversationId: RecipientId, vararg messages: Pair<RecipientId, Long>) : this(conversationId, messages.toList())
   }

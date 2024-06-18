@@ -89,6 +89,13 @@ message DeleteSyncJobData {
     uint64 authorRecipientId = 3;
   }
 
+  message AttachmentDelete {
+    AddressableMessage targetMessage = 1;
+    optional bytes uuid = 2;
+    optional bytes digest = 3;
+    optional bytes plaintextHash = 4;
+  }
+
   message ThreadDelete {
     uint64 threadRecipientId = 1;
     repeated AddressableMessage messages = 2;
@@ -98,6 +105,7 @@ message DeleteSyncJobData {
   repeated AddressableMessage messageDeletes = 1;
   repeated ThreadDelete threadDeletes = 2;
   repeated ThreadDelete localOnlyThreadDeletes = 3;
+  repeated AttachmentDelete attachmentDeletes = 4;
 }
 
 message Svr3MirrorJobData {

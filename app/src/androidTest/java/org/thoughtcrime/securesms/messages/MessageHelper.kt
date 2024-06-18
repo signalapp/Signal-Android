@@ -5,23 +5,31 @@
 
 package org.thoughtcrime.securesms.messages
 
+import android.net.Uri
 import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.slot
 import io.mockk.unmockkStatic
+import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.UriAttachment
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.UriAttachmentBuilder
 import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
 import org.thoughtcrime.securesms.jobs.ThreadUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
+import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.GroupTestingUtils
 import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule
+import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.UUID
+import kotlin.random.Random
 
 /**
  * Makes inserting messages through the "normal" code paths simpler. Mostly focused on incoming messages.
@@ -68,7 +76,7 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
     return messageData
   }
 
-  fun outgoingText(conversationId: RecipientId = alice, successfulSend: Boolean = true, updateMessage: (OutgoingMessage.() -> OutgoingMessage)? = null): MessageData {
+  fun outgoingText(conversationId: RecipientId = alice, successfulSend: Boolean = true, updateMessage: ((OutgoingMessage) -> OutgoingMessage)? = null): MessageData {
     startTime = nextStartTime()
 
     val messageData = MessageData(author = harness.self.id, timestamp = startTime)
@@ -80,7 +88,7 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
       sentTimeMillis = messageData.timestamp,
       isUrgent = true,
       isSecure = true
-    ).apply { updateMessage?.invoke(this) }
+    ).let { updateMessage?.invoke(it) ?: it }
 
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(threadRecipient)
     val messageId = SignalDatabase.messages.insertMessageOutbox(message, threadId, false, null)
@@ -109,6 +117,20 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
     val messageId = SignalDatabase.messages.insertMessageOutbox(message, threadId, false, null)
 
     return messageData.copy(messageId = messageId)
+  }
+
+  fun outgoingAttachment(data: ByteArray, uuid: UUID? = UUID.randomUUID()): Attachment {
+    val uri: Uri = BlobProvider.getInstance().forData(data).createForSingleSessionInMemory()
+
+    val attachment: UriAttachment = UriAttachmentBuilder.build(
+      id = Random.nextLong(),
+      uri = uri,
+      contentType = MediaUtil.IMAGE_JPEG,
+      transformProperties = AttachmentTable.TransformProperties(),
+      uuid = uuid
+    )
+
+    return attachment
   }
 
   fun outgoingGroupChange(): MessageData {
@@ -231,6 +253,20 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
     processor.process(
       envelope = MessageContentFuzzer.envelope(messageData.timestamp, serverGuid = messageData.serverGuid),
       content = MessageContentFuzzer.syncDeleteForMeLocalOnlyConversation(conversations.toList()),
+      metadata = MessageContentFuzzer.envelopeMetadata(harness.self.id, harness.self.id, sourceDeviceId = 2),
+      serverDeliveredTimestamp = messageData.timestamp + 10
+    )
+
+    return messageData
+  }
+
+  fun syncDeleteForMeAttachment(conversationId: RecipientId, message: Pair<RecipientId, Long>, uuid: UUID?, digest: ByteArray?, plainTextHash: String?): MessageData {
+    startTime = nextStartTime()
+    val messageData = MessageData(timestamp = startTime)
+
+    processor.process(
+      envelope = MessageContentFuzzer.envelope(messageData.timestamp, serverGuid = messageData.serverGuid),
+      content = MessageContentFuzzer.syncDeleteForMeAttachment(conversationId, message, uuid, digest, plainTextHash),
       metadata = MessageContentFuzzer.envelopeMetadata(harness.self.id, harness.self.id, sourceDeviceId = 2),
       serverDeliveredTimestamp = messageData.timestamp + 10
     )

@@ -13,7 +13,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.logging.Log
+import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
+import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -24,8 +28,11 @@ import org.thoughtcrime.securesms.testing.MessageContentFuzzer.DeleteForMeSync
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.assert
 import org.thoughtcrime.securesms.testing.assertIs
+import org.thoughtcrime.securesms.testing.assertIsNot
 import org.thoughtcrime.securesms.testing.assertIsNotNull
+import org.thoughtcrime.securesms.testing.assertIsSize
 import org.thoughtcrime.securesms.util.IdentityUtil
+import java.util.UUID
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
@@ -530,5 +537,155 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
 
     harness.inMemoryLogger.flush()
     harness.inMemoryLogger.entries().filter { it.message?.contains("Thread is not local only") == true }.size assertIs 1
+  }
+
+  @Test
+  fun singleAttachmentDeletes() {
+    // GIVEN
+    val message1 = messageHelper.outgoingText { message ->
+      message.copy(
+        attachments = listOf(
+          messageHelper.outgoingAttachment(byteArrayOf(1, 2, 3)),
+          messageHelper.outgoingAttachment(byteArrayOf(2, 3, 4), null),
+          messageHelper.outgoingAttachment(byteArrayOf(5, 6, 7), null),
+          messageHelper.outgoingAttachment(byteArrayOf(10, 11, 12))
+        )
+      )
+    }
+
+    var attachments = SignalDatabase.attachments.getAttachmentsForMessage(message1.messageId)
+    attachments assertIsSize 4
+
+    val threadId = SignalDatabase.threads.getThreadIdFor(messageHelper.alice)!!
+    SignalDatabase.messages.getMessageCountForThread(threadId) assertIs 1
+
+    // Has all three
+    SignalDatabase.attachments.finalizeAttachmentAfterUpload(
+      id = attachments[0].attachmentId,
+      attachment = attachments[0].copy(digest = byteArrayOf(attachments[0].attachmentId.id.toByte())),
+      uploadTimestamp = message1.timestamp + 1
+    )
+
+    // Missing uuid and digest
+    SignalDatabase.attachments.finalizeAttachmentAfterUpload(
+      id = attachments[1].attachmentId,
+      attachment = attachments[1],
+      uploadTimestamp = message1.timestamp + 1
+    )
+
+    // Missing uuid and plain text
+    SignalDatabase.attachments.finalizeAttachmentAfterUpload(
+      id = attachments[2].attachmentId,
+      attachment = attachments[2].copy(digest = byteArrayOf(attachments[2].attachmentId.id.toByte())),
+      uploadTimestamp = message1.timestamp + 1
+    )
+    SignalDatabase.rawDatabase.update(AttachmentTable.TABLE_NAME).values(AttachmentTable.DATA_HASH_END to null).where("${AttachmentTable.ID} = ?", attachments[2].attachmentId).run()
+
+    // Different has all three
+    SignalDatabase.attachments.finalizeAttachmentAfterUpload(
+      id = attachments[3].attachmentId,
+      attachment = attachments[3].copy(digest = byteArrayOf(attachments[3].attachmentId.id.toByte())),
+      uploadTimestamp = message1.timestamp + 1
+    )
+
+    attachments = SignalDatabase.attachments.getAttachmentsForMessage(message1.messageId)
+
+    // WHEN
+    messageHelper.syncDeleteForMeAttachment(
+      conversationId = messageHelper.alice,
+      message = message1.author to message1.timestamp,
+      attachments[0].uuid,
+      attachments[0].remoteDigest,
+      attachments[0].dataHash
+    )
+
+    SignalDatabase.messages.getMessageCountForThread(threadId) assertIs 1
+    var updatedAttachments = SignalDatabase.attachments.getAttachmentsForMessage(message1.messageId)
+    updatedAttachments assertIsSize 3
+    updatedAttachments.forEach { it.attachmentId assertIsNot attachments[0].attachmentId }
+
+    messageHelper.syncDeleteForMeAttachment(
+      conversationId = messageHelper.alice,
+      message = message1.author to message1.timestamp,
+      attachments[1].uuid,
+      attachments[1].remoteDigest,
+      attachments[1].dataHash
+    )
+
+    SignalDatabase.messages.getMessageCountForThread(threadId) assertIs 1
+    updatedAttachments = SignalDatabase.attachments.getAttachmentsForMessage(message1.messageId)
+    updatedAttachments assertIsSize 2
+    updatedAttachments.forEach { it.attachmentId assertIsNot attachments[1].attachmentId }
+
+    messageHelper.syncDeleteForMeAttachment(
+      conversationId = messageHelper.alice,
+      message = message1.author to message1.timestamp,
+      attachments[2].uuid,
+      attachments[2].remoteDigest,
+      attachments[2].dataHash
+    )
+
+    SignalDatabase.messages.getMessageCountForThread(threadId) assertIs 1
+    updatedAttachments = SignalDatabase.attachments.getAttachmentsForMessage(message1.messageId)
+    updatedAttachments assertIsSize 1
+    updatedAttachments.forEach { it.attachmentId assertIsNot attachments[2].attachmentId }
+
+    messageHelper.syncDeleteForMeAttachment(
+      conversationId = messageHelper.alice,
+      message = message1.author to message1.timestamp,
+      attachments[3].uuid,
+      attachments[3].remoteDigest,
+      attachments[3].dataHash
+    )
+
+    SignalDatabase.messages.getMessageCountForThread(threadId) assertIs 0
+    updatedAttachments = SignalDatabase.attachments.getAttachmentsForMessage(message1.messageId)
+    updatedAttachments assertIsSize 0
+
+    SignalDatabase.threads.getThreadRecord(threadId) assertIs null
+  }
+
+  private fun DatabaseAttachment.copy(
+    uuid: UUID? = this.uuid,
+    digest: ByteArray? = this.remoteDigest
+  ): Attachment {
+    return DatabaseAttachment(
+      attachmentId = this.attachmentId,
+      mmsId = this.mmsId,
+      hasData = this.hasData,
+      hasThumbnail = false,
+      hasArchiveThumbnail = false,
+      contentType = this.contentType,
+      transferProgress = this.transferState,
+      size = this.size,
+      fileName = this.fileName,
+      cdn = this.cdn,
+      location = this.remoteLocation,
+      key = this.remoteKey,
+      digest = digest,
+      incrementalDigest = this.incrementalDigest,
+      incrementalMacChunkSize = this.incrementalMacChunkSize,
+      fastPreflightId = this.fastPreflightId,
+      voiceNote = this.voiceNote,
+      borderless = this.borderless,
+      videoGif = this.videoGif,
+      width = this.width,
+      height = this.height,
+      quote = this.quote,
+      caption = this.caption,
+      stickerLocator = this.stickerLocator,
+      blurHash = this.blurHash,
+      audioHash = this.audioHash,
+      transformProperties = this.transformProperties,
+      displayOrder = this.displayOrder,
+      uploadTimestamp = this.uploadTimestamp,
+      dataHash = this.dataHash,
+      archiveCdn = this.archiveCdn,
+      archiveThumbnailCdn = this.archiveThumbnailCdn,
+      archiveMediaName = this.archiveMediaName,
+      archiveMediaId = this.archiveMediaId,
+      thumbnailRestoreState = this.thumbnailRestoreState,
+      uuid = uuid
+    )
   }
 }

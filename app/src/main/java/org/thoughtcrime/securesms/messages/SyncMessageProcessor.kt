@@ -4,6 +4,7 @@ import ProtoUtil.isNotEmpty
 import android.content.Context
 import com.mobilecoin.lib.exceptions.SerializationException
 import okio.ByteString
+import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.IdentityKey
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.crypto.SecurityEvent
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
@@ -104,6 +106,7 @@ import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.StorageKey
+import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.EditMessage
@@ -1489,6 +1492,10 @@ object SyncMessageProcessor {
       handleSynchronizeLocalOnlyConversationDeletes(deleteForMe.localOnlyConversationDeletes, envelopeTimestamp)
     }
 
+    if (deleteForMe.attachmentDeletes.isNotEmpty()) {
+      handleSynchronizeAttachmentDeletes(deleteForMe.attachmentDeletes, envelopeTimestamp, earlyMessageCacheEntry)
+    }
+
     AppDependencies.messageNotifier.updateNotification(context)
   }
 
@@ -1570,6 +1577,26 @@ object SyncMessageProcessor {
     }
   }
 
+  private fun handleSynchronizeAttachmentDeletes(attachmentDeletes: List<SyncMessage.DeleteForMe.AttachmentDelete>, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
+    val toDelete: List<AttachmentTable.SyncAttachmentId> = attachmentDeletes
+      .mapNotNull { delete ->
+        delete.toSyncAttachmentId(delete.targetMessage?.toSyncMessageId(envelopeTimestamp), envelopeTimestamp)
+      }
+
+    val unhandled: List<MessageTable.SyncMessageId> = SignalDatabase.attachments.deleteAttachments(toDelete)
+
+    for (syncMessage in unhandled) {
+      warn(envelopeTimestamp, "[handleSynchronizeDeleteForMe] Could not find matching message for attachment delete! timestamp: ${syncMessage.timetamp}  author: ${syncMessage.recipientId}")
+      if (earlyMessageCacheEntry != null) {
+        AppDependencies.earlyMessageCache.store(syncMessage.recipientId, syncMessage.timetamp, earlyMessageCacheEntry)
+      }
+    }
+
+    if (unhandled.isNotEmpty() && earlyMessageCacheEntry != null) {
+      PushProcessEarlyMessagesJob.enqueue()
+    }
+  }
+
   private fun SyncMessage.DeleteForMe.ConversationIdentifier.toRecipientId(): RecipientId? {
     return when {
       threadGroupId != null -> {
@@ -1608,6 +1635,19 @@ object SyncMessageProcessor {
     } else {
       warn(envelopeTimestamp, "[handleSynchronizeDeleteForMe] Invalid delete sync missing timestamp or author")
       null
+    }
+  }
+
+  private fun SyncMessage.DeleteForMe.AttachmentDelete.toSyncAttachmentId(syncMessageId: MessageTable.SyncMessageId?, envelopeTimestamp: Long): AttachmentTable.SyncAttachmentId? {
+    val uuid = UuidUtil.fromByteStringOrNull(uuid)
+    val digest = fallbackDigest?.toByteArray()
+    val plaintextHash = fallbackPlaintextHash?.let { Base64.encodeWithPadding(it.toByteArray()) }
+
+    if (syncMessageId == null || (uuid == null && digest == null && plaintextHash == null)) {
+      warn(envelopeTimestamp, "[handleSynchronizeDeleteForMe] Invalid delete sync attachment missing identifiers")
+      return null
+    } else {
+      return AttachmentTable.SyncAttachmentId(syncMessageId, uuid, digest, plaintextHash)
     }
   }
 }

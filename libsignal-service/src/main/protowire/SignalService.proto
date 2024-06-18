@@ -676,6 +676,14 @@ message SyncMessage {
       repeated AddressableMessage messages = 2;
     }
 
+    message AttachmentDelete {
+      optional ConversationIdentifier conversation = 1;
+      optional AddressableMessage targetMessage = 2;
+      optional bytes uuid = 3; // The `uuid` from the `Attachment`.
+      optional bytes fallbackDigest = 4;
+      optional bytes fallbackPlaintextHash = 5;
+    }
+
     message ConversationDelete {
       optional ConversationIdentifier conversation = 1;
       repeated AddressableMessage mostRecentMessages = 2;
@@ -689,6 +697,7 @@ message SyncMessage {
     repeated MessageDeletes messageDeletes = 1;
     repeated ConversationDelete conversationDeletes = 2;
     repeated LocalOnlyConversationDelete localOnlyConversationDeletes = 3;
+    repeated AttachmentDelete attachmentDeletes = 4;
   }
 
   optional Sent                   sent                   = 1;

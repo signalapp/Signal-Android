@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.testing
 
 import android.database.Cursor
-import android.util.Base64
 import org.hamcrest.Matcher
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.hasSize
@@ -9,6 +8,7 @@ import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.not
 import org.hamcrest.Matchers.notNullValue
 import org.hamcrest.Matchers.nullValue
+import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.select
@@ -67,27 +67,31 @@ fun CountDownLatch.awaitFor(duration: Duration) {
   }
 }
 
-fun dumpTableToLogs(tag: String = "TestUtils", table: String) {
-  dumpTable(table).forEach { Log.d(tag, it.toString()) }
+fun dumpTableToLogs(tag: String = "TestUtils", table: String, columns: Set<String>? = null) {
+  dumpTable(table, columns).forEach { Log.d(tag, it.toString()) }
 }
 
-fun dumpTable(table: String): List<List<Pair<String, String?>>> {
+fun dumpTable(table: String, columns: Set<String>?): List<List<Pair<String, String?>>> {
   return SignalDatabase.rawDatabase
     .select()
     .from(table)
     .run()
     .readToList { cursor ->
-      val map: List<Pair<String, String?>> = cursor.columnNames.map { column ->
-        val index = cursor.getColumnIndex(column)
-        var data: String? = when (cursor.getType(index)) {
-          Cursor.FIELD_TYPE_BLOB -> Base64.encodeToString(cursor.getBlob(index), 0)
-          else -> cursor.getString(index)
-        }
-        if (table == MessageTable.TABLE_NAME && column == MessageTable.TYPE) {
-          data = MessageTableTestUtils.typeColumnToString(cursor.getLong(index))
-        }
+      val map: List<Pair<String, String?>> = cursor.columnNames.mapNotNull { column ->
+        if (columns == null || columns.contains(column)) {
+          val index = cursor.getColumnIndex(column)
+          var data: String? = when (cursor.getType(index)) {
+            Cursor.FIELD_TYPE_BLOB -> Hex.toStringCondensed(cursor.getBlob(index))
+            else -> cursor.getString(index)
+          }
+          if (table == MessageTable.TABLE_NAME && column == MessageTable.TYPE) {
+            data = MessageTableTestUtils.typeColumnToString(cursor.getLong(index))
+          }
 
-        column to data
+          column to data
+        } else {
+          null
+        }
       }
       map
     }
