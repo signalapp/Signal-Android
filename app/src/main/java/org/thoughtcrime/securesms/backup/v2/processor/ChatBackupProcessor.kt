@@ -19,8 +19,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 object ChatBackupProcessor {
   val TAG = Log.tag(ChatBackupProcessor::class.java)
 
-  fun export(exportState: ExportState, emitter: BackupFrameEmitter) {
-    SignalDatabase.threads.getThreadsForBackup().use { reader ->
+  fun export(db: SignalDatabase, exportState: ExportState, emitter: BackupFrameEmitter) {
+    db.threadTable.getThreadsForBackup().use { reader ->
       for (chat in reader) {
         if (exportState.recipientIds.contains(chat.recipientId)) {
           exportState.threadIds.add(chat.id)

@@ -18,8 +18,8 @@ object AdHocCallBackupProcessor {
 
   val TAG = Log.tag(AdHocCallBackupProcessor::class.java)
 
-  fun export(emitter: BackupFrameEmitter) {
-    SignalDatabase.calls.getAdhocCallsForBackup().use { reader ->
+  fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
+    db.callTable.getAdhocCallsForBackup().use { reader ->
       for (callLog in reader) {
         if (callLog != null) {
           emitter.emit(Frame(adHocCall = callLog))

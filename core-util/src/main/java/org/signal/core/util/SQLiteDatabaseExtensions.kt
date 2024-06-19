@@ -89,6 +89,33 @@ fun SupportSQLiteDatabase.areForeignKeyConstraintsEnabled(): Boolean {
   }
 }
 
+/**
+ * Does a full WAL checkpoint (TRUNCATE mode, where the log is for sure flushed and the log is zero'd out).
+ * Will try up to [maxAttempts] times. Can technically fail if the database is too active and the checkpoint
+ * can't complete in a reasonable amount of time.
+ *
+ * See: https://www.sqlite.org/pragma.html#pragma_wal_checkpoint
+ */
+fun SupportSQLiteDatabase.fullWalCheckpoint(maxAttempts: Int = 3): Boolean {
+  var attempts = 0
+
+  while (attempts < maxAttempts) {
+    if (this.walCheckpoint()) {
+      return true
+    }
+
+    attempts++
+  }
+
+  return false
+}
+
+private fun SupportSQLiteDatabase.walCheckpoint(): Boolean {
+  return this.query("PRAGMA wal_checkpoint(TRUNCATE)").use { cursor ->
+    cursor.moveToFirst() && cursor.getInt(0) == 0
+  }
+}
+
 fun SupportSQLiteDatabase.getIndexes(): List<Index> {
   return this.query("SELECT name, tbl_name FROM sqlite_master WHERE type='index' ORDER BY name ASC").readToList { cursor ->
     val indexName = cursor.requireNonNullString("name")

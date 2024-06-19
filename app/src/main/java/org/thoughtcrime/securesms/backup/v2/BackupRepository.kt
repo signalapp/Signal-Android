@@ -12,6 +12,7 @@ import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
+import org.signal.core.util.fullWalCheckpoint
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.withinTransaction
@@ -43,6 +44,8 @@ import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFeature
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
+import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
+import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
@@ -71,6 +74,7 @@ import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.math.BigDecimal
@@ -83,6 +87,7 @@ object BackupRepository {
 
   private val TAG = Log.tag(BackupRepository::class.java)
   private const val VERSION = 1L
+  private const val DB_SNAPSHOT_NAME = "signal-snapshot.db"
 
   private val resetInitializedStateErrorAction: StatusCodeErrorAction = { error ->
     when (error.code) {
@@ -105,64 +110,106 @@ object BackupRepository {
     SignalStore.backup().backupTier = null
   }
 
+  private fun createSignalDatabaseSnapshot(): SignalDatabase {
+    // Need to do a WAL checkpoint to ensure that the database file we're copying has all pending writes
+    if (!SignalDatabase.rawDatabase.fullWalCheckpoint()) {
+      Log.w(TAG, "Failed to checkpoint WAL! Not guaranteed to be using the most recent data.")
+    }
+
+    // We make a copy of the database within a transaction to ensure that no writes occur while we're copying the file
+    return SignalDatabase.rawDatabase.withinTransaction {
+      val context = AppDependencies.application
+
+      val existingDbFile = context.getDatabasePath(SignalDatabase.DATABASE_NAME)
+      val targetFile = File(existingDbFile.parentFile, DB_SNAPSHOT_NAME)
+
+      try {
+        existingDbFile.copyTo(targetFile, overwrite = true)
+      } catch (e: IOException) {
+        // TODO [backup] Gracefully handle this error
+        throw IllegalStateException("Failed to copy database file!", e)
+      }
+
+      SignalDatabase(
+        context = context,
+        databaseSecret = DatabaseSecretProvider.getOrCreateDatabaseSecret(context),
+        attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
+        name = DB_SNAPSHOT_NAME
+      )
+    }
+  }
+
+  private fun deleteDatabaseSnapshot() {
+    val targetFile = AppDependencies.application.getDatabasePath(DB_SNAPSHOT_NAME)
+    if (!targetFile.delete()) {
+      Log.w(TAG, "Failed to delete database snapshot!")
+    }
+  }
+
   fun export(outputStream: OutputStream, append: (ByteArray) -> Unit, plaintext: Boolean = false) {
     val eventTimer = EventTimer()
-    val writer: BackupExportWriter = if (plaintext) {
-      PlainTextBackupWriter(outputStream)
-    } else {
-      EncryptedBackupWriter(
-        key = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey(),
-        aci = SignalStore.account().aci!!,
-        outputStream = outputStream,
-        append = append
-      )
-    }
+    val dbSnapshot: SignalDatabase = createSignalDatabaseSnapshot()
 
-    val exportState = ExportState(backupTime = System.currentTimeMillis(), allowMediaBackup = SignalStore.backup().backsUpMedia)
-
-    writer.use {
-      writer.write(
-        BackupInfo(
-          version = VERSION,
-          backupTimeMs = exportState.backupTime
+    try {
+      val writer: BackupExportWriter = if (plaintext) {
+        PlainTextBackupWriter(outputStream)
+      } else {
+        EncryptedBackupWriter(
+          key = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey(),
+          aci = SignalStore.account().aci!!,
+          outputStream = outputStream,
+          append = append
         )
-      )
-      // Note: Without a transaction, we may export inconsistent state. But because we have a transaction,
-      // writes from other threads are blocked. This is something to think more about.
-      SignalDatabase.rawDatabase.withinTransaction {
-        AccountDataProcessor.export {
-          writer.write(it)
-          eventTimer.emit("account")
-        }
+      }
 
-        RecipientBackupProcessor.export(exportState) {
-          writer.write(it)
-          eventTimer.emit("recipient")
-        }
+      val exportState = ExportState(backupTime = System.currentTimeMillis(), allowMediaBackup = SignalStore.backup().backsUpMedia)
 
-        ChatBackupProcessor.export(exportState) { frame ->
-          writer.write(frame)
-          eventTimer.emit("thread")
-        }
+      writer.use {
+        writer.write(
+          BackupInfo(
+            version = VERSION,
+            backupTimeMs = exportState.backupTime
+          )
+        )
+        // Note: Without a transaction, we may export inconsistent state. But because we have a transaction,
+        // writes from other threads are blocked. This is something to think more about.
+        dbSnapshot.rawWritableDatabase.withinTransaction {
+          AccountDataProcessor.export(dbSnapshot) {
+            writer.write(it)
+            eventTimer.emit("account")
+          }
 
-        AdHocCallBackupProcessor.export { frame ->
-          writer.write(frame)
-          eventTimer.emit("call")
-        }
+          RecipientBackupProcessor.export(dbSnapshot, exportState) {
+            writer.write(it)
+            eventTimer.emit("recipient")
+          }
 
-        StickerBackupProcessor.export { frame ->
-          writer.write(frame)
-          eventTimer.emit("sticker-pack")
-        }
+          ChatBackupProcessor.export(dbSnapshot, exportState) { frame ->
+            writer.write(frame)
+            eventTimer.emit("thread")
+          }
 
-        ChatItemBackupProcessor.export(exportState) { frame ->
-          writer.write(frame)
-          eventTimer.emit("message")
+          AdHocCallBackupProcessor.export(dbSnapshot) { frame ->
+            writer.write(frame)
+            eventTimer.emit("call")
+          }
+
+          StickerBackupProcessor.export(dbSnapshot) { frame ->
+            writer.write(frame)
+            eventTimer.emit("sticker-pack")
+          }
+
+          ChatItemBackupProcessor.export(dbSnapshot, exportState) { frame ->
+            writer.write(frame)
+            eventTimer.emit("message")
+          }
         }
       }
-    }
 
-    Log.d(TAG, "export() ${eventTimer.stop().summary}")
+      Log.d(TAG, "export() ${eventTimer.stop().summary}")
+    } finally {
+      deleteDatabaseSnapshot()
+    }
   }
 
   fun export(plaintext: Boolean = false): ByteArray {

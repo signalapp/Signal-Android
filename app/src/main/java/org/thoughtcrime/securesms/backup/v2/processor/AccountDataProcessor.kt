@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
@@ -34,12 +33,14 @@ import kotlin.jvm.optionals.getOrNull
 
 object AccountDataProcessor {
 
-  fun export(emitter: BackupFrameEmitter) {
+  fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
     val context = AppDependencies.application
 
+    // TODO [backup] Need to get it from the db snapshot
     val self = Recipient.self().fresh()
-    val record = recipients.getRecordForSync(self.id)
+    val record = db.recipientTable.getRecordForSync(self.id)
 
+    // TODO [backup] Need to get it from the db snapshot
     val subscriber: InAppPaymentSubscriberRecord? = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
 
     emitter.emit(
@@ -80,7 +81,7 @@ object AccountDataProcessor {
   }
 
   fun import(accountData: AccountData, selfId: RecipientId) {
-    recipients.restoreSelfFromBackup(accountData, selfId)
+    SignalDatabase.recipients.restoreSelfFromBackup(accountData, selfId)
 
     SignalStore.account().setRegistered(true)
 

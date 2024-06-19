@@ -30,7 +30,8 @@ object RecipientBackupProcessor {
 
   val TAG = Log.tag(RecipientBackupProcessor::class.java)
 
-  fun export(state: ExportState, emitter: BackupFrameEmitter) {
+  fun export(db: SignalDatabase, state: ExportState, emitter: BackupFrameEmitter) {
+    // TODO [backup] Need to get it from the db snapshot
     val selfId = Recipient.self().id.toLong()
     val releaseChannelId = SignalStore.releaseChannelValues().releaseChannelRecipientId
     if (releaseChannelId != null) {
@@ -44,7 +45,7 @@ object RecipientBackupProcessor {
       )
     }
 
-    SignalDatabase.recipients.getContactsForBackup(selfId).use { reader ->
+    db.recipientTable.getContactsForBackup(selfId).use { reader ->
       for (backupRecipient in reader) {
         if (backupRecipient != null) {
           state.recipientIds.add(backupRecipient.id)
@@ -53,19 +54,19 @@ object RecipientBackupProcessor {
       }
     }
 
-    SignalDatabase.recipients.getGroupsForBackup().use { reader ->
+    db.recipientTable.getGroupsForBackup().use { reader ->
       for (backupRecipient in reader) {
         state.recipientIds.add(backupRecipient.id)
         emitter.emit(Frame(recipient = backupRecipient))
       }
     }
 
-    SignalDatabase.distributionLists.getAllForBackup().forEach {
+    db.distributionListTables.getAllForBackup().forEach {
       state.recipientIds.add(it.id)
       emitter.emit(Frame(recipient = it))
     }
 
-    SignalDatabase.callLinks.getCallLinksForBackup().forEach {
+    db.callLinkTable.getCallLinksForBackup().forEach {
       state.recipientIds.add(it.id)
       emitter.emit(Frame(recipient = it))
     }

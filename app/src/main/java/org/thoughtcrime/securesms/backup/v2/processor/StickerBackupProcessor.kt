@@ -17,8 +17,8 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
 
 object StickerBackupProcessor {
-  fun export(emitter: BackupFrameEmitter) {
-    StickerPackRecordReader(SignalDatabase.stickers.allStickerPacks).use { reader ->
+  fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
+    StickerPackRecordReader(db.stickerTable.allStickerPacks).use { reader ->
       var record: StickerPackRecord? = reader.next
       while (record != null) {
         if (record.isInstalled) {
