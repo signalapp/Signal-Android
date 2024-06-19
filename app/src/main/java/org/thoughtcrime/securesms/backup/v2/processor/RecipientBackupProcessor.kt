@@ -31,8 +31,7 @@ object RecipientBackupProcessor {
   val TAG = Log.tag(RecipientBackupProcessor::class.java)
 
   fun export(db: SignalDatabase, state: ExportState, emitter: BackupFrameEmitter) {
-    // TODO [backup] Need to get it from the db snapshot
-    val selfId = Recipient.self().id.toLong()
+    val selfId = db.recipientTable.getByAci(SignalStore.account().aci!!).get().toLong()
     val releaseChannelId = SignalStore.releaseChannelValues().releaseChannelRecipientId
     if (releaseChannelId != null) {
       emitter.emit(

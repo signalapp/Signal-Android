@@ -29,28 +29,26 @@ import org.whispersystems.signalservice.api.storage.StorageRecordProtoUtil.defau
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.Currency
-import kotlin.jvm.optionals.getOrNull
 
 object AccountDataProcessor {
 
   fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
     val context = AppDependencies.application
 
-    // TODO [backup] Need to get it from the db snapshot
-    val self = Recipient.self().fresh()
-    val record = db.recipientTable.getRecordForSync(self.id)
+    val selfId = db.recipientTable.getByAci(SignalStore.account().aci!!).get()
+    val selfRecord = db.recipientTable.getRecordForSync(selfId)!!
 
-    // TODO [backup] Need to get it from the db snapshot
-    val subscriber: InAppPaymentSubscriberRecord? = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
+    val donationCurrency = SignalStore.donationsValues().getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
+    val donationSubscriber = SignalDatabase.inAppPaymentSubscribers.getByCurrencyCode(donationCurrency.currencyCode, InAppPaymentSubscriberRecord.Type.DONATION)
 
     emitter.emit(
       Frame(
         account = AccountData(
-          profileKey = self.profileKey?.toByteString() ?: EMPTY,
-          givenName = self.profileName.givenName,
-          familyName = self.profileName.familyName,
-          avatarUrlPath = self.profileAvatar ?: "",
-          username = self.username.getOrNull(),
+          profileKey = selfRecord.profileKey?.toByteString() ?: EMPTY,
+          givenName = selfRecord.signalProfileName.givenName,
+          familyName = selfRecord.signalProfileName.familyName,
+          avatarUrlPath = selfRecord.signalProfileAvatar ?: "",
+          username = selfRecord.username,
           accountSettings = AccountData.AccountSettings(
             storyViewReceiptsEnabled = SignalStore.storyValues().viewedReceiptsEnabled,
             typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context),
@@ -71,8 +69,8 @@ object AccountDataProcessor {
             hasCompletedUsernameOnboarding = SignalStore.uiHints().hasCompletedUsernameOnboarding()
           ),
           donationSubscriberData = AccountData.SubscriberData(
-            subscriberId = subscriber?.subscriberId?.bytes?.toByteString() ?: defaultAccountRecord.subscriberId,
-            currencyCode = subscriber?.currency?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
+            subscriberId = donationSubscriber?.subscriberId?.bytes?.toByteString() ?: defaultAccountRecord.subscriberId,
+            currencyCode = donationSubscriber?.currency?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
             manuallyCancelled = InAppPaymentsRepository.isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION)
           )
         )
