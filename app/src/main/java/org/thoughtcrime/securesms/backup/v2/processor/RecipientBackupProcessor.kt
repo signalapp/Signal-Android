@@ -24,15 +24,13 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 
-typealias BackupRecipient = org.thoughtcrime.securesms.backup.v2.proto.Recipient
-
 object RecipientBackupProcessor {
 
   val TAG = Log.tag(RecipientBackupProcessor::class.java)
 
-  fun export(db: SignalDatabase, state: ExportState, emitter: BackupFrameEmitter) {
-    val selfId = db.recipientTable.getByAci(SignalStore.account.aci!!).get().toLong()
-    val releaseChannelId = SignalStore.releaseChannel.releaseChannelRecipientId
+  fun export(db: SignalDatabase, signalStore: SignalStore, state: ExportState, emitter: BackupFrameEmitter) {
+    val selfId = db.recipientTable.getByAci(signalStore.accountValues.aci!!).get().toLong()
+    val releaseChannelId = signalStore.releaseChannelValues.releaseChannelRecipientId
     if (releaseChannelId != null) {
       emitter.emit(
         Frame(

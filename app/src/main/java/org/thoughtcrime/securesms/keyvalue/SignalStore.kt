@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies.application
 /**
  * Simple, encrypted key-value store.
  */
-class SignalStore private constructor(private val store: KeyValueStore) {
+class SignalStore(private val store: KeyValueStore) {
 
   val accountValues = AccountValues(store)
   val svrValues = SvrValues(store)

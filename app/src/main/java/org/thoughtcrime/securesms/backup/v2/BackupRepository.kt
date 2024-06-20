@@ -47,11 +47,13 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.Recurring
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.DistributionListTables
+import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
+import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.toMillis
@@ -87,7 +89,8 @@ object BackupRepository {
 
   private val TAG = Log.tag(BackupRepository::class.java)
   private const val VERSION = 1L
-  private const val DB_SNAPSHOT_NAME = "signal-snapshot.db"
+  private const val MAIN_DB_SNAPSHOT_NAME = "signal-snapshot.db"
+  private const val KEYVALUE_DB_SNAPSHOT_NAME = "key-value-snapshot.db"
 
   private val resetInitializedStateErrorAction: StatusCodeErrorAction = { error ->
     when (error.code) {
@@ -113,7 +116,7 @@ object BackupRepository {
   private fun createSignalDatabaseSnapshot(): SignalDatabase {
     // Need to do a WAL checkpoint to ensure that the database file we're copying has all pending writes
     if (!SignalDatabase.rawDatabase.fullWalCheckpoint()) {
-      Log.w(TAG, "Failed to checkpoint WAL! Not guaranteed to be using the most recent data.")
+      Log.w(TAG, "Failed to checkpoint WAL for main database! Not guaranteed to be using the most recent data.")
     }
 
     // We make a copy of the database within a transaction to ensure that no writes occur while we're copying the file
@@ -121,7 +124,7 @@ object BackupRepository {
       val context = AppDependencies.application
 
       val existingDbFile = context.getDatabasePath(SignalDatabase.DATABASE_NAME)
-      val targetFile = File(existingDbFile.parentFile, DB_SNAPSHOT_NAME)
+      val targetFile = File(existingDbFile.parentFile, MAIN_DB_SNAPSHOT_NAME)
 
       try {
         existingDbFile.copyTo(targetFile, overwrite = true)
@@ -134,21 +137,54 @@ object BackupRepository {
         context = context,
         databaseSecret = DatabaseSecretProvider.getOrCreateDatabaseSecret(context),
         attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-        name = DB_SNAPSHOT_NAME
+        name = MAIN_DB_SNAPSHOT_NAME
       )
     }
   }
 
+  private fun createSignalStoreSnapshot(): SignalStore {
+    val context = AppDependencies.application
+
+    // Need to do a WAL checkpoint to ensure that the database file we're copying has all pending writes
+    if (!KeyValueDatabase.getInstance(context).writableDatabase.fullWalCheckpoint()) {
+      Log.w(TAG, "Failed to checkpoint WAL for KeyValueDatabase! Not guaranteed to be using the most recent data.")
+    }
+
+    // We make a copy of the database within a transaction to ensure that no writes occur while we're copying the file
+    return KeyValueDatabase.getInstance(context).writableDatabase.withinTransaction {
+      val existingDbFile = context.getDatabasePath(KeyValueDatabase.DATABASE_NAME)
+      val targetFile = File(existingDbFile.parentFile, KEYVALUE_DB_SNAPSHOT_NAME)
+
+      try {
+        existingDbFile.copyTo(targetFile, overwrite = true)
+      } catch (e: IOException) {
+        // TODO [backup] Gracefully handle this error
+        throw IllegalStateException("Failed to copy database file!", e)
+      }
+
+      val db = KeyValueDatabase.createWithName(context, KEYVALUE_DB_SNAPSHOT_NAME)
+      SignalStore(KeyValueStore(db))
+    }
+  }
+
   private fun deleteDatabaseSnapshot() {
-    val targetFile = AppDependencies.application.getDatabasePath(DB_SNAPSHOT_NAME)
+    val targetFile = AppDependencies.application.getDatabasePath(MAIN_DB_SNAPSHOT_NAME)
     if (!targetFile.delete()) {
-      Log.w(TAG, "Failed to delete database snapshot!")
+      Log.w(TAG, "Failed to delete main database snapshot!")
+    }
+  }
+
+  private fun deleteSignalStoreSnapshot() {
+    val targetFile = AppDependencies.application.getDatabasePath(KEYVALUE_DB_SNAPSHOT_NAME)
+    if (!targetFile.delete()) {
+      Log.w(TAG, "Failed to delete key value database snapshot!")
     }
   }
 
   fun export(outputStream: OutputStream, append: (ByteArray) -> Unit, plaintext: Boolean = false) {
     val eventTimer = EventTimer()
     val dbSnapshot: SignalDatabase = createSignalDatabaseSnapshot()
+    val signalStoreSnapshot: SignalStore = createSignalStoreSnapshot()
 
     try {
       val writer: BackupExportWriter = if (plaintext) {
@@ -174,12 +210,12 @@ object BackupRepository {
         // Note: Without a transaction, we may export inconsistent state. But because we have a transaction,
         // writes from other threads are blocked. This is something to think more about.
         dbSnapshot.rawWritableDatabase.withinTransaction {
-          AccountDataProcessor.export(dbSnapshot) {
+          AccountDataProcessor.export(dbSnapshot, signalStoreSnapshot) {
             writer.write(it)
             eventTimer.emit("account")
           }
 
-          RecipientBackupProcessor.export(dbSnapshot, exportState) {
+          RecipientBackupProcessor.export(dbSnapshot, signalStoreSnapshot, exportState) {
             writer.write(it)
             eventTimer.emit("recipient")
           }
@@ -209,6 +245,7 @@ object BackupRepository {
       Log.d(TAG, "export() ${eventTimer.stop().summary}")
     } finally {
       deleteDatabaseSnapshot()
+      deleteSignalStoreSnapshot()
     }
   }
 

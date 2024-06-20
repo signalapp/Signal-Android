@@ -32,7 +32,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
   private static final String TAG = Log.tag(KeyValueDatabase.class);
 
   private static final int    DATABASE_VERSION = 1;
-  private static final String DATABASE_NAME    = "signal-key-value.db";
+  public  static final String DATABASE_NAME    = "signal-key-value.db";
 
   private static final String TABLE_NAME = "key_value";
   private static final String ID         = "_id";
@@ -65,9 +65,16 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     return context.getDatabasePath(DATABASE_NAME).exists();
   }
 
+  public static KeyValueDatabase createWithName(@NonNull Application application, @NonNull String name) {
+    return new KeyValueDatabase(application, DatabaseSecretProvider.getOrCreateDatabaseSecret(application), name);
+  }
 
   private KeyValueDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
-    super(application, DATABASE_NAME, databaseSecret.asString(), null, DATABASE_VERSION, 0,new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook(), true);
+    this(application, databaseSecret, DATABASE_NAME);
+  }
+
+  private KeyValueDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret, @NonNull String name) {
+    super(application, name, databaseSecret.asString(), null, DATABASE_VERSION, 0, new SqlCipherErrorHandler(name), new SqlCipherDatabaseHook(), true);
 
     this.application = application;
   }
