@@ -47,7 +47,7 @@ class DeleteSyncEducationDialog : ComposeBottomSheetDialogFragment() {
     @JvmStatic
     fun shouldShow(): Boolean {
       return TextSecurePreferences.isMultiDevice(AppDependencies.application) &&
-        !SignalStore.uiHints().hasSeenDeleteSyncEducationSheet &&
+        !SignalStore.uiHints.hasSeenDeleteSyncEducationSheet &&
         Recipient.self().deleteSyncCapability.isSupported
     }
 
@@ -56,7 +56,7 @@ class DeleteSyncEducationDialog : ComposeBottomSheetDialogFragment() {
       val dialog = DeleteSyncEducationDialog()
 
       dialog.show(fragmentManager, null)
-      SignalStore.uiHints().hasSeenDeleteSyncEducationSheet = true
+      SignalStore.uiHints.hasSeenDeleteSyncEducationSheet = true
 
       val subject = CompletableSubject.create()
       dialog.subject = subject

@@ -165,7 +165,7 @@ class StoriesLandingRepository(context: Context) {
   fun markStoriesRead() {
     SignalExecutors.BOUNDED_IO.execute {
       val messageInfos: List<MessageTable.MarkedMessageInfo> = SignalDatabase.messages.markAllIncomingStoriesRead()
-      val releaseThread: Long? = SignalStore.releaseChannelValues().releaseChannelRecipientId?.let { SignalDatabase.threads.getThreadIdIfExistsFor(it) }
+      val releaseThread: Long? = SignalStore.releaseChannel.releaseChannelRecipientId?.let { SignalDatabase.threads.getThreadIdIfExistsFor(it) }
 
       MultiDeviceReadUpdateJob.enqueue(messageInfos.filter { it.threadId == releaseThread }.map { it.syncMessageId })
     }

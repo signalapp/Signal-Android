@@ -82,7 +82,7 @@ object DonationRedemptionJobWatcher {
 
     val jobSpec: JobSpec? = externalLaunchJobSpec ?: redemptionJobSpec ?: receiptJobSpec
 
-    return if (redemptionType == RedemptionType.SUBSCRIPTION && jobSpec == null && SignalStore.donationsValues().getSubscriptionRedemptionFailed()) {
+    return if (redemptionType == RedemptionType.SUBSCRIPTION && jobSpec == null && SignalStore.donations.getSubscriptionRedemptionFailed()) {
       DonationRedemptionJobStatus.FailedSubscription
     } else {
       jobSpec?.toDonationRedemptionStatus(redemptionType) ?: DonationRedemptionJobStatus.None

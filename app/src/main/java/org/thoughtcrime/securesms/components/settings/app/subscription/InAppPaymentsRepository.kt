@@ -312,7 +312,7 @@ object InAppPaymentsRepository {
     return if (paymentMethodType != InAppPaymentData.PaymentMethodType.UNKNOWN) {
       paymentMethodType
     } else if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
-      SignalStore.donationsValues().getSubscriptionPaymentSourceType().toPaymentMethodType()
+      SignalStore.donations.getSubscriptionPaymentSourceType().toPaymentMethodType()
     } else {
       return InAppPaymentData.PaymentMethodType.UNKNOWN
     }
@@ -328,7 +328,7 @@ object InAppPaymentsRepository {
     val latestSubscription = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(subscriberType.inAppPaymentType)
 
     return if (latestSubscription == null) {
-      SignalStore.donationsValues().isUserManuallyCancelled()
+      SignalStore.donations.isUserManuallyCancelled()
     } else {
       latestSubscription.data.cancellation?.reason == InAppPaymentData.Cancellation.Reason.MANUAL
     }
@@ -348,7 +348,7 @@ object InAppPaymentsRepository {
   @WorkerThread
   fun setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberType: InAppPaymentSubscriberRecord.Type, subscriberId: SubscriberId?, shouldCancel: Boolean) {
     if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
-      SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt = shouldCancel
+      SignalStore.donations.shouldCancelSubscriptionBeforeNextSubscribeAttempt = shouldCancel
     }
 
     if (subscriberId == null) {
@@ -371,7 +371,7 @@ object InAppPaymentsRepository {
     val latestSubscriber = getSubscriber(subscriberType)
 
     return latestSubscriber?.requiresCancel ?: if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
-      SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt
+      SignalStore.donations.shouldCancelSubscriptionBeforeNextSubscribeAttempt
     } else {
       false
     }
@@ -388,7 +388,7 @@ object InAppPaymentsRepository {
     val subscriber = SignalDatabase.inAppPaymentSubscribers.getByCurrencyCode(currency.currencyCode, type)
 
     return if (subscriber == null && type == InAppPaymentSubscriberRecord.Type.DONATION) {
-      SignalStore.donationsValues().getSubscriber(currency)
+      SignalStore.donations.getSubscriber(currency)
     } else {
       subscriber
     }
@@ -400,7 +400,7 @@ object InAppPaymentsRepository {
   @JvmStatic
   @WorkerThread
   fun getSubscriber(type: InAppPaymentSubscriberRecord.Type): InAppPaymentSubscriberRecord? {
-    val currency = SignalStore.donationsValues().getSubscriptionCurrency(type)
+    val currency = SignalStore.donations.getSubscriptionCurrency(type)
     Log.d(TAG, "Attempting to retrieve subscriber of type $type for ${currency.currencyCode}")
 
     return getSubscriber(currency, type)

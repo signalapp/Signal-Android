@@ -305,7 +305,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
         }
 
         FilterPullState.OPEN_APEX -> if (source === ConversationFilterSource.DRAG) {
-          // TODO[alex] -- hint here? SignalStore.uiHints().incrementNeverDisplayPullToFilterTip()
+          // TODO[alex] -- hint here? SignalStore.uiHints.incrementNeverDisplayPullToFilterTip()
         }
 
         FilterPullState.CLOSE_APEX -> ViewUtil.setMinimumHeight(collapsingToolbarLayout, 0)

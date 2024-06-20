@@ -136,16 +136,16 @@ class ChangeNumberViewModel(
 
   private fun <T : VerifyResponseProcessor> attemptToUnlockChangeNumber(processor: T): Single<T> {
     return if (processor.hasResult() || processor.isServerSentError()) {
-      SignalStore.misc().unlockChangeNumber()
-      SignalStore.misc().clearPendingChangeNumberMetadata()
+      SignalStore.misc.unlockChangeNumber()
+      SignalStore.misc.clearPendingChangeNumberMetadata()
       Single.just(processor)
     } else {
       changeNumberRepository.whoAmI()
         .map { whoAmI ->
           if (Objects.equals(whoAmI.number, localNumber)) {
             Log.i(TAG, "Local and remote numbers match, we can unlock.")
-            SignalStore.misc().unlockChangeNumber()
-            SignalStore.misc().clearPendingChangeNumberMetadata()
+            SignalStore.misc.unlockChangeNumber()
+            SignalStore.misc.clearPendingChangeNumberMetadata()
           }
           processor
         }
@@ -202,9 +202,9 @@ class ChangeNumberViewModel(
   }
 
   fun changeNumberWithRecoveryPassword(): Single<Boolean> {
-    val recoveryPassword = SignalStore.svr().recoveryPassword
+    val recoveryPassword = SignalStore.svr.recoveryPassword
 
-    return if (SignalStore.svr().hasPin() && recoveryPassword != null) {
+    return if (SignalStore.svr.hasPin() && recoveryPassword != null) {
       changeNumberRepository.changeNumber(recoveryPassword = recoveryPassword, newE164 = number.e164Number)
         .map { r -> VerifyResponseWithoutKbs(r) }
         .flatMap { p ->
@@ -223,8 +223,8 @@ class ChangeNumberViewModel(
 
     override fun <T : ViewModel> create(key: String, modelClass: Class<T>, handle: SavedStateHandle): T {
       val context: Application = AppDependencies.application
-      val localNumber: String = SignalStore.account().e164!!
-      val password: String = SignalStore.account().servicePassword!!
+      val localNumber: String = SignalStore.account.e164!!
+      val password: String = SignalStore.account.servicePassword!!
 
       val viewModel = ChangeNumberViewModel(
         localNumber = localNumber,

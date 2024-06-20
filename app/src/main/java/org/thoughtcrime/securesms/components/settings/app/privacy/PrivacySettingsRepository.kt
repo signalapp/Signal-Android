@@ -31,7 +31,7 @@ class PrivacySettingsRepository {
           TextSecurePreferences.isReadReceiptsEnabled(context),
           TextSecurePreferences.isTypingIndicatorsEnabled(context),
           TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
-          SignalStore.settings().isLinkPreviewsEnabled
+          SignalStore.settings.isLinkPreviewsEnabled
         )
       )
     }
@@ -47,7 +47,7 @@ class PrivacySettingsRepository {
         TextSecurePreferences.isReadReceiptsEnabled(context),
         enabled,
         TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
-        SignalStore.settings().isLinkPreviewsEnabled
+        SignalStore.settings.isLinkPreviewsEnabled
       )
     )
 

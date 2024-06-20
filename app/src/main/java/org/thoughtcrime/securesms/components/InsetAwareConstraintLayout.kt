@@ -157,9 +157,9 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   private fun getKeyboardHeight(): Int {
     val height = if (isLandscape()) {
-      SignalStore.misc().keyboardLandscapeHeight
+      SignalStore.misc.keyboardLandscapeHeight
     } else {
-      SignalStore.misc().keyboardPortraitHeight
+      SignalStore.misc.keyboardPortraitHeight
     }
 
     val minHeight = resources.getDimensionPixelSize(R.dimen.default_custom_keyboard_size)
@@ -173,9 +173,9 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   private fun setKeyboardHeight(height: Int) {
     if (isLandscape()) {
-      SignalStore.misc().keyboardLandscapeHeight = height
+      SignalStore.misc.keyboardLandscapeHeight = height
     } else {
-      SignalStore.misc().keyboardPortraitHeight = height
+      SignalStore.misc.keyboardPortraitHeight = height
     }
   }
 

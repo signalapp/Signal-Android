@@ -168,7 +168,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     binding.body.setOnLongClickListener(passthroughClickListener)
 
     binding.body.isFocusable = false
-    binding.body.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().messageFontSize.toFloat())
+    binding.body.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings.messageFontSize.toFloat())
     binding.body.movementMethod = LongClickMovementMethod.getInstance(context)
 
     if (binding.isIncoming) {
@@ -747,7 +747,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       messageRecord.isFailed -> {
         conversationContext.clickListener.onMessageWithErrorClicked(messageRecord)
       }
-      messageRecord.isRateLimited && SignalStore.rateLimit().needsRecaptcha() -> {
+      messageRecord.isRateLimited && SignalStore.rateLimit.needsRecaptcha() -> {
         conversationContext.clickListener.onMessageWithRecaptchaNeededClicked(messageRecord)
       }
       messageRecord.isOutgoing && messageRecord.isIdentityMismatchFailure -> {

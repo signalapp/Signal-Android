@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 class UsernameOutOfSyncReminder : Reminder(NO_RESOURCE) {
 
   init {
-    val action = if (SignalStore.account().usernameSyncState == UsernameSyncState.USERNAME_AND_LINK_CORRUPTED) {
+    val action = if (SignalStore.account.usernameSyncState == UsernameSyncState.USERNAME_AND_LINK_CORRUPTED) {
       R.id.reminder_action_fix_username_and_link
     } else {
       R.id.reminder_action_fix_username_link
@@ -27,7 +27,7 @@ class UsernameOutOfSyncReminder : Reminder(NO_RESOURCE) {
   }
 
   override fun getText(context: Context): CharSequence {
-    return if (SignalStore.account().usernameSyncState == UsernameSyncState.USERNAME_AND_LINK_CORRUPTED) {
+    return if (SignalStore.account.usernameSyncState == UsernameSyncState.USERNAME_AND_LINK_CORRUPTED) {
       context.getString(R.string.UsernameOutOfSyncReminder__username_and_link_corrupt)
     } else {
       context.getString(R.string.UsernameOutOfSyncReminder__link_corrupt)
@@ -41,7 +41,7 @@ class UsernameOutOfSyncReminder : Reminder(NO_RESOURCE) {
   companion object {
     @JvmStatic
     fun isEligible(): Boolean {
-      return when (SignalStore.account().usernameSyncState) {
+      return when (SignalStore.account.usernameSyncState) {
         UsernameSyncState.USERNAME_AND_LINK_CORRUPTED -> true
         UsernameSyncState.LINK_CORRUPTED -> true
         UsernameSyncState.IN_SYNC -> false

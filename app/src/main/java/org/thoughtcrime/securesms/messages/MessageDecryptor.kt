@@ -93,8 +93,8 @@ object MessageDecryptor {
     envelope: Envelope,
     serverDeliveredTimestamp: Long
   ): Result {
-    val selfAci: ACI = SignalStore.account().requireAci()
-    val selfPni: PNI = SignalStore.account().requirePni()
+    val selfAci: ACI = SignalStore.account.requireAci()
+    val selfPni: PNI = SignalStore.account.requirePni()
 
     val destination: ServiceId? = ServiceId.parseOrNull(envelope.destinationServiceId)
 
@@ -136,8 +136,8 @@ object MessageDecryptor {
     }
 
     val bufferedStore = bufferedProtocolStore.get(destination)
-    val localAddress = SignalServiceAddress(selfAci, SignalStore.account().e164)
-    val cipher = SignalServiceCipher(localAddress, SignalStore.account().deviceId, bufferedStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator())
+    val localAddress = SignalServiceAddress(selfAci, SignalStore.account.e164)
+    val cipher = SignalServiceCipher(localAddress, SignalStore.account.deviceId, bufferedStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator())
 
     return try {
       val startTimeNanos = System.nanoTime()
@@ -273,7 +273,7 @@ object MessageDecryptor {
     followUpOperations: MutableList<FollowUpOperation>,
     protocolException: ProtocolException
   ): Result {
-    if (ServiceId.parseOrNull(envelope.destinationServiceId) == SignalStore.account().pni) {
+    if (ServiceId.parseOrNull(envelope.destinationServiceId) == SignalStore.account.pni) {
       Log.w(TAG, "${logPrefix(envelope)} Decryption error for message sent to our PNI! Ignoring.")
       return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
     }

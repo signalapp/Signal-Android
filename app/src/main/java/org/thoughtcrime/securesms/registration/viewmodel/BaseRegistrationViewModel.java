@@ -79,19 +79,19 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
   }
 
   public @Nullable String getSessionId() {
-    return SignalStore.registrationValues().getSessionId();
+    return SignalStore.registration().getSessionId();
   }
 
   public void setSessionId(String sessionId) {
-    SignalStore.registrationValues().setSessionId(sessionId);
+    SignalStore.registration().setSessionId(sessionId);
   }
 
   public @Nullable String getSessionE164() {
-    return SignalStore.registrationValues().getSessionE164();
+    return SignalStore.registration().getSessionE164();
   }
 
   public void setSessionE164(String sessionE164) {
-    SignalStore.registrationValues().setSessionE164(sessionE164);
+    SignalStore.registration().setSessionE164(sessionE164);
   }
 
   public void resetSession() {

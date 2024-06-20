@@ -142,7 +142,7 @@ public class ReactionSendJob extends BaseJob {
     Recipient targetAuthor        = message.getFromRecipient();
     long      targetSentTimestamp = message.getDateSent();
 
-    if (targetAuthor.getId().equals(SignalStore.releaseChannelValues().getReleaseChannelRecipientId())) {
+    if (targetAuthor.getId().equals(SignalStore.releaseChannel().getReleaseChannelRecipientId())) {
       return;
     }
 

@@ -377,7 +377,7 @@ public final class ProfileUtil {
                                                                                     avatar,
                                                                                     badgeIds,
                                                                                     SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled()).orElse(null);
-    SignalStore.registrationValues().markHasUploadedProfile();
+    SignalStore.registration().markHasUploadedProfile();
     if (!avatar.keepTheSame) {
       SignalDatabase.recipients().setProfileAvatar(Recipient.self().getId(), avatarPath);
     }
@@ -385,7 +385,7 @@ public final class ProfileUtil {
   }
 
   private static @Nullable PaymentAddress getSelfPaymentsAddressProtobuf() {
-    if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
+    if (!SignalStore.payments().mobileCoinPaymentsEnabled()) {
       return null;
     } else {
       IdentityKeyPair         identityKeyPair = SignalStore.account().getAciIdentityKey();

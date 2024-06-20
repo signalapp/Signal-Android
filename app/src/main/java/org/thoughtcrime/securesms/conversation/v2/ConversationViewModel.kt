@@ -240,7 +240,7 @@ class ConversationViewModel(
         conversationRecipient = recipient,
         messageRequestState = messageRequestRepository.getMessageRequestState(recipient, threadId),
         groupRecord = groupRecord.orNull(),
-        isClientExpired = SignalStore.misc().isClientDeprecated,
+        isClientExpired = SignalStore.misc.isClientDeprecated,
         isUnauthorized = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
         threadContainsSms = !recipient.isRegistered && !recipient.isPushGroup && !recipient.isSelf && messageRequestRepository.threadContainsSms(threadId)
       )

@@ -56,7 +56,7 @@ class CallLinkPreJoinActionProcessor(
         .getCallLinkAuthorizationForToday(genericServerPublicParams, callLinkSecretParams)
 
       webRtcInteractor.callManager.createCallLinkCall(
-        SignalStore.internalValues().groupCallingServer(),
+        SignalStore.internal.groupCallingServer(),
         callLinkAuthCredentialPresentation.serialize(),
         callLinkRootKey,
         callLink.credentials.adminPassBytes,
@@ -85,7 +85,7 @@ class CallLinkPreJoinActionProcessor(
       return groupCallFailure(currentState, "Unable to connect to call link", e)
     }
 
-    SignalStore.tooltips().markGroupCallingLobbyEntered()
+    SignalStore.tooltips.markGroupCallingLobbyEntered()
     return currentState.builder()
       .changeCallSetupState(RemotePeer.GROUP_CALL_ID)
       .setRingGroup(false)

@@ -21,13 +21,13 @@ public final class RegistrationUtil {
    * requirements are met.
    */
   public static void maybeMarkRegistrationComplete() {
-    if (!SignalStore.registrationValues().isRegistrationComplete() &&
-        SignalStore.account().isRegistered()                       &&
-        !Recipient.self().getProfileName().isEmpty()               &&
+    if (!SignalStore.registration().isRegistrationComplete() &&
+        SignalStore.account().isRegistered() &&
+        !Recipient.self().getProfileName().isEmpty() &&
         (SignalStore.svr().hasPin() || SignalStore.svr().hasOptedOut()))
     {
       Log.i(TAG, "Marking registration completed.", new Throwable());
-      SignalStore.registrationValues().setRegistrationComplete();
+      SignalStore.registration().setRegistrationComplete();
 
       if (SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.UNDECIDED) {
         Log.w(TAG, "Phone number discoverability mode is still UNDECIDED. Setting to DISCOVERABLE.");
@@ -39,7 +39,7 @@ public final class RegistrationUtil {
                      .then(new DirectoryRefreshJob(false))
                      .enqueue();
 
-    } else if (!SignalStore.registrationValues().isRegistrationComplete()) {
+    } else if (!SignalStore.registration().isRegistrationComplete()) {
       Log.i(TAG, "Registration is not yet complete.", new Throwable());
     }
   }

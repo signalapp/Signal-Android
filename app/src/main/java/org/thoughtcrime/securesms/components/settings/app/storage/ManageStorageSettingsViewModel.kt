@@ -25,9 +25,9 @@ class ManageStorageSettingsViewModel : ViewModel() {
 
   private val store = MutableStateFlow(
     ManageStorageState(
-      keepMessagesDuration = SignalStore.settings().keepMessagesDuration,
-      lengthLimit = if (SignalStore.settings().isTrimByLengthEnabled) SignalStore.settings().threadTrimLength else ManageStorageState.NO_LIMIT,
-      syncTrimDeletes = SignalStore.settings().shouldSyncThreadTrimDeletes()
+      keepMessagesDuration = SignalStore.settings.keepMessagesDuration,
+      lengthLimit = if (SignalStore.settings.isTrimByLengthEnabled) SignalStore.settings.threadTrimLength else ManageStorageState.NO_LIMIT,
+      syncTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes()
     )
   )
   val state = store.asStateFlow()
@@ -47,7 +47,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
   }
 
   fun setKeepMessagesDuration(newDuration: KeepMessagesDuration) {
-    SignalStore.settings().setKeepMessagesForDuration(newDuration)
+    SignalStore.settings.setKeepMessagesForDuration(newDuration)
     AppDependencies.trimThreadsByDateManager.scheduleIfNecessary()
 
     store.update { it.copy(keepMessagesDuration = newDuration) }
@@ -60,13 +60,13 @@ class ManageStorageSettingsViewModel : ViewModel() {
   fun setChatLengthLimit(newLimit: Int) {
     val restrictingChange = isRestrictingLengthLimitChange(newLimit)
 
-    SignalStore.settings().setThreadTrimByLengthEnabled(newLimit != ManageStorageState.NO_LIMIT)
-    SignalStore.settings().threadTrimLength = newLimit
+    SignalStore.settings.setThreadTrimByLengthEnabled(newLimit != ManageStorageState.NO_LIMIT)
+    SignalStore.settings.threadTrimLength = newLimit
     store.update { it.copy(lengthLimit = newLimit) }
 
-    if (SignalStore.settings().isTrimByLengthEnabled && restrictingChange) {
+    if (SignalStore.settings.isTrimByLengthEnabled && restrictingChange) {
       SignalExecutors.BOUNDED.execute {
-        val keepMessagesDuration = SignalStore.settings().keepMessagesDuration
+        val keepMessagesDuration = SignalStore.settings.keepMessagesDuration
 
         val trimBeforeDate = if (keepMessagesDuration != KeepMessagesDuration.FOREVER) {
           System.currentTimeMillis() - keepMessagesDuration.duration
@@ -84,7 +84,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
   }
 
   fun setSyncTrimDeletes(syncTrimDeletes: Boolean) {
-    SignalStore.settings().setSyncThreadTrimDeletes(syncTrimDeletes)
+    SignalStore.settings.setSyncThreadTrimDeletes(syncTrimDeletes)
     store.update { it.copy(syncTrimDeletes = syncTrimDeletes) }
   }
 

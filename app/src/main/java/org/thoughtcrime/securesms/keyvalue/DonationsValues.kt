@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit
  * Key-Value store for donation related values. Note that most of this file will be deprecated after the release of
  * InAppPayments (90day rollout window + 30day max job lifespan window)
  */
-internal class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
   companion object {
     private val TAG = Log.tag(DonationsValues::class.java)
@@ -142,9 +142,9 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     private const val VERIFIED_IDEAL_SUBSCRIPTION_3DS_DATA = "donation.verified_ideal_subscription_3ds_data"
   }
 
-  override fun onFirstEverAppLaunch() = Unit
+  public override fun onFirstEverAppLaunch() = Unit
 
-  override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
+  public override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
     KEY_CURRENCY_CODE_ONE_TIME,
     KEY_LAST_KEEP_ALIVE_LAUNCH,
     KEY_LAST_END_OF_PERIOD_SECONDS,
@@ -192,7 +192,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     val currency: Currency? = if (currencyCode == null) {
       val localeCurrency = CurrencyUtil.getCurrencyByLocale(Locale.getDefault())
       if (localeCurrency == null) {
-        val e164: String? = SignalStore.account().e164
+        val e164: String? = SignalStore.account.e164
         if (e164 == null) {
           null
         } else {
@@ -464,7 +464,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
           Log.d(TAG, "[updateLocalStateForManualCancellation] Clearing expired badge.")
           setExpiredBadge(null)
         }
-        SignalStore.donationsValues().markUserManuallyCancelled()
+        SignalStore.donations.markUserManuallyCancelled()
       }
 
       val subscriber = InAppPaymentsRepository.getSubscriber(subscriberType)

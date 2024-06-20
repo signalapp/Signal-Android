@@ -162,7 +162,7 @@ class InAppPaymentRedemptionJob private constructor(
       .donationsService
       .redeemDonationReceipt(
         receiptCredentialPresentation,
-        SignalStore.donationsValues().getDisplayBadgesOnProfile(),
+        SignalStore.donations.getDisplayBadgesOnProfile(),
         jobData.makePrimary
       )
 
@@ -221,7 +221,7 @@ class InAppPaymentRedemptionJob private constructor(
         .donationsService
         .redeemDonationReceipt(
           receiptCredentialPresentation,
-          SignalStore.donationsValues().getDisplayBadgesOnProfile(),
+          SignalStore.donations.getDisplayBadgesOnProfile(),
           jobData.makePrimary
         )
     }

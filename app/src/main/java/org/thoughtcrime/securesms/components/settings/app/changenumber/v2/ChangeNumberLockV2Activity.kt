@@ -68,11 +68,11 @@ class ChangeNumberLockV2Activity : PassphraseRequiredActivity() {
   }
 
   private fun onChangeStatusConfirmed() {
-    SignalStore.misc().clearPendingChangeNumberMetadata()
+    SignalStore.misc.clearPendingChangeNumberMetadata()
 
     MaterialAlertDialogBuilder(this)
       .setTitle(R.string.ChangeNumberLockActivity__change_status_confirmed)
-      .setMessage(getString(R.string.ChangeNumberLockActivity__your_number_has_been_confirmed_as_s, PhoneNumberFormatter.prettyPrint(SignalStore.account().e164!!)))
+      .setMessage(getString(R.string.ChangeNumberLockActivity__your_number_has_been_confirmed_as_s, PhoneNumberFormatter.prettyPrint(SignalStore.account.e164!!)))
       .setPositiveButton(android.R.string.ok) { _, _ ->
         startActivity(MainActivity.clearTop(this))
         finish()

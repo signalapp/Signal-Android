@@ -56,10 +56,10 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
   }
 
   public static void scheduleIfNecessary() {
-    long    timeSinceCheck = System.currentTimeMillis() - SignalStore.emojiValues().getLastSearchIndexCheck();
+    long    timeSinceCheck = System.currentTimeMillis() - SignalStore.emoji().getLastSearchIndexCheck();
     boolean needsCheck     = false;
 
-    if (SignalStore.emojiValues().hasSearchIndex()) {
+    if (SignalStore.emoji().hasSearchIndex()) {
       needsCheck = timeSinceCheck > INTERVAL_WITH_INDEX;
     } else {
       needsCheck = timeSinceCheck > INTERVAL_WITHOUT_INDEX;
@@ -90,11 +90,11 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
     Locale locale         = DynamicLanguageContextWrapper.getUsersSelectedLocale(context);
     String remoteLanguage = findMatchingLanguage(locale, manifest.getLanguages());
 
-    if (manifest.getVersion() == SignalStore.emojiValues().getSearchVersion() &&
-        remoteLanguage.equals(SignalStore.emojiValues().getSearchLanguage()))
+    if (manifest.getVersion() == SignalStore.emoji().getSearchVersion() &&
+        remoteLanguage.equals(SignalStore.emoji().getSearchLanguage()))
     {
       Log.i(TAG, "Already using the latest version of " + manifest.getVersion() + " with the correct language " + remoteLanguage);
-      SignalStore.emojiValues().setLastSearchIndexCheck(System.currentTimeMillis());
+      SignalStore.emoji().setLastSearchIndexCheck(System.currentTimeMillis());
       return;
     }
 
@@ -107,8 +107,8 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
     }
 
     SignalDatabase.emojiSearch().setSearchIndex(searchIndex);
-    SignalStore.emojiValues().onSearchIndexUpdated(manifest.getVersion(), remoteLanguage);
-    SignalStore.emojiValues().setLastSearchIndexCheck(System.currentTimeMillis());
+    SignalStore.emoji().onSearchIndexUpdated(manifest.getVersion(), remoteLanguage);
+    SignalStore.emoji().setLastSearchIndexCheck(System.currentTimeMillis());
 
     Log.i(TAG, "Success! Now at version: " + manifest.getVersion() + ", language: " + remoteLanguage);
   }

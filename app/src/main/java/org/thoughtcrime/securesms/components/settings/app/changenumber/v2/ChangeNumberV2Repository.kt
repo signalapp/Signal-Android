@@ -108,7 +108,7 @@ class ChangeNumberV2Repository(
     SignalDatabase.recipients.updateSelfE164(e164, pni)
     val newStorageId: ByteArray? = Recipient.self().storageId
 
-    if (e164 != SignalStore.account().requireE164() && MessageDigest.isEqual(oldStorageId, newStorageId)) {
+    if (e164 != SignalStore.account.requireE164() && MessageDigest.isEqual(oldStorageId, newStorageId)) {
       Log.w(TAG, "Self storage id was not rotated, attempting to rotate again")
       SignalDatabase.recipients.rotateStorageId(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
@@ -120,13 +120,13 @@ class ChangeNumberV2Repository(
 
     AppDependencies.recipientCache.clear()
 
-    SignalStore.account().setE164(e164)
-    SignalStore.account().setPni(pni)
+    SignalStore.account.setE164(e164)
+    SignalStore.account.setPni(pni)
     AppDependencies.resetProtocolStores()
 
     AppDependencies.groupsV2Authorization.clear()
 
-    val metadata: PendingChangeNumberMetadata? = SignalStore.misc().pendingChangeNumberMetadata
+    val metadata: PendingChangeNumberMetadata? = SignalStore.misc.pendingChangeNumberMetadata
     if (metadata == null) {
       Log.w(TAG, "No change number metadata, this shouldn't happen")
       throw AssertionError("No change number metadata")
@@ -143,10 +143,10 @@ class ChangeNumberV2Repository(
       val pniLastResortKyberPreKeyId = metadata.pniLastResortKyberPreKeyId
 
       val pniProtocolStore = AppDependencies.protocolStore.pni()
-      val pniMetadataStore = SignalStore.account().pniPreKeys
+      val pniMetadataStore = SignalStore.account.pniPreKeys
 
-      SignalStore.account().pniRegistrationId = pniRegistrationId
-      SignalStore.account().setPniIdentityKeyAfterChangeNumber(pniIdentityKeyPair)
+      SignalStore.account.pniRegistrationId = pniRegistrationId
+      SignalStore.account.setPniIdentityKeyAfterChangeNumber(pniIdentityKeyPair)
 
       val signedPreKey = pniProtocolStore.loadSignedPreKey(pniSignedPreyKeyId)
       val oneTimeEcPreKeys = PreKeyUtil.generateAndStoreOneTimeEcPreKeys(pniProtocolStore, pniMetadataStore)
@@ -182,7 +182,7 @@ class ChangeNumberV2Repository(
         true
       )
 
-      SignalStore.misc().hasPniInitializedDevices = true
+      SignalStore.misc.hasPniInitializedDevices = true
       AppDependencies.groupsV2Authorization.clear()
     }
 
@@ -199,7 +199,7 @@ class ChangeNumberV2Repository(
 
   @WorkerThread
   private fun rotateCertificates() {
-    val certificateTypes = SignalStore.phoneNumberPrivacy().allCertificateTypes
+    val certificateTypes = SignalStore.phoneNumberPrivacy.allCertificateTypes
 
     Log.i(TAG, "Rotating these certificates $certificateTypes")
 
@@ -212,7 +212,7 @@ class ChangeNumberV2Repository(
 
       Log.i(TAG, "Successfully got $certificateType certificate")
 
-      SignalStore.certificateValues().setUnidentifiedAccessCertificate(certificateType, certificate)
+      SignalStore.certificate.setUnidentifiedAccessCertificate(certificateType, certificate)
     }
   }
 
@@ -264,7 +264,7 @@ class ChangeNumberV2Repository(
         registrationLock = registrationLock
       )
 
-      SignalStore.misc().setPendingChangeNumberMetadata(metadata)
+      SignalStore.misc.setPendingChangeNumberMetadata(metadata)
       withContext(Dispatchers.IO) {
         result = accountManager.registrationApi.changeNumber(request)
       }
@@ -297,7 +297,7 @@ class ChangeNumberV2Repository(
     newE164: String,
     registrationLock: String? = null
   ): ChangeNumberRequestData {
-    val selfIdentifier: String = SignalStore.account().requireAci().toString()
+    val selfIdentifier: String = SignalStore.account.requireAci().toString()
     val aciProtocolStore: SignalProtocolStore = AppDependencies.protocolStore.aci()
 
     val pniIdentity: IdentityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
@@ -314,7 +314,7 @@ class ChangeNumberV2Repository(
       .forEach { deviceId ->
         // Signed Prekeys
         val signedPreKeyRecord: SignedPreKeyRecord = if (deviceId == primaryDeviceId) {
-          PreKeyUtil.generateAndStoreSignedPreKey(AppDependencies.protocolStore.pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
+          PreKeyUtil.generateAndStoreSignedPreKey(AppDependencies.protocolStore.pni(), SignalStore.account.pniPreKeys, pniIdentity.privateKey)
         } else {
           PreKeyUtil.generateSignedPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
@@ -322,7 +322,7 @@ class ChangeNumberV2Repository(
 
         // Last-resort kyber prekeys
         val lastResortKyberPreKeyRecord: KyberPreKeyRecord = if (deviceId == primaryDeviceId) {
-          PreKeyUtil.generateAndStoreLastResortKyberPreKey(AppDependencies.protocolStore.pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
+          PreKeyUtil.generateAndStoreLastResortKyberPreKey(AppDependencies.protocolStore.pni(), SignalStore.account.pniPreKeys, pniIdentity.privateKey)
         } else {
           PreKeyUtil.generateLastResortKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
@@ -363,7 +363,7 @@ class ChangeNumberV2Repository(
     )
 
     val metadata = PendingChangeNumberMetadata(
-      previousPni = SignalStore.account().pni!!.toByteString(),
+      previousPni = SignalStore.account.pni!!.toByteString(),
       pniIdentityKeyPair = pniIdentity.serialize().toByteString(),
       pniRegistrationId = pniRegistrationIds[primaryDeviceId]!!,
       pniSignedPreKeyId = devicePniSignedPreKeys[primaryDeviceId]!!.keyId,

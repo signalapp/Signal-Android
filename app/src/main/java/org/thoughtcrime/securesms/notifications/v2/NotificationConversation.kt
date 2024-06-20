@@ -46,7 +46,7 @@ data class NotificationConversation(
   val isOnlyContactJoinedEvent: Boolean = messageCount == 1 && mostRecentNotification.isJoined
 
   fun getContentTitle(context: Context): CharSequence {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       getDisplayName(context)
     } else {
       context.getString(R.string.SingleRecipientNotificationBuilder_signal)
@@ -54,7 +54,7 @@ data class NotificationConversation(
   }
 
   fun getContactLargeIcon(context: Context): Drawable? {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       recipient.getContactDrawable(context)
     } else {
       FallbackAvatarDrawable(context, FallbackAvatar.forTextOrDefault("Unknown", AvatarColor.UNKNOWN)).circleCrop()
@@ -62,7 +62,7 @@ data class NotificationConversation(
   }
 
   fun getSlideBigPictureUri(context: Context): Uri? {
-    return if (notificationItems.size == 1 && SignalStore.settings().messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
+    return if (notificationItems.size == 1 && SignalStore.settings.messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
       mostRecentNotification.getBigPictureUri()
     } else {
       null
@@ -70,7 +70,7 @@ data class NotificationConversation(
   }
 
   fun getContentText(context: Context): CharSequence? {
-    val privacy: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
+    val privacy: NotificationPrivacyPreference = SignalStore.settings.messageNotificationsPrivacy
     val stringBuilder = SpannableStringBuilder()
 
     if (privacy.isDisplayContact && recipient.isGroup) {
@@ -85,7 +85,7 @@ data class NotificationConversation(
   }
 
   fun getConversationTitle(context: Context): CharSequence? {
-    if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+    if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       return if (isGroup) getDisplayName(context) else null
     }
     return context.getString(R.string.SingleRecipientNotificationBuilder_signal)

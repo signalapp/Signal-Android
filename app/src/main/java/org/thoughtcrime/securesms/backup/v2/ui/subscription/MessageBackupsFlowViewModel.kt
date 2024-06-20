@@ -35,9 +35,9 @@ class MessageBackupsFlowViewModel : ViewModel() {
   private val internalState = mutableStateOf(
     MessageBackupsFlowState(
       availableBackupTypes = emptyList(),
-      selectedMessageBackupTier = SignalStore.backup().backupTier,
+      selectedMessageBackupTier = SignalStore.backup.backupTier,
       availablePaymentMethods = GatewayOrderStrategy.getStrategy().orderedGateways.filter { InAppDonations.isPaymentSourceAvailable(it.toPaymentSourceType(), InAppPaymentType.RECURRING_BACKUP) },
-      startScreen = if (SignalStore.backup().backupTier == null) MessageBackupsScreen.EDUCATION else MessageBackupsScreen.TYPE_SELECTION
+      startScreen = if (SignalStore.backup.backupTier == null) MessageBackupsScreen.EDUCATION else MessageBackupsScreen.TYPE_SELECTION
     )
   )
 
@@ -103,7 +103,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
   }
 
   private fun validatePinAndUpdateState(): MessageBackupsScreen {
-    val pinHash = SignalStore.svr().localPinHash
+    val pinHash = SignalStore.svr.localPinHash
     val pin = state.value.pin
 
     if (pinHash == null || TextUtils.isEmpty(pin) || pin.length < SvrConstants.MINIMUM_PIN_LENGTH) return MessageBackupsScreen.PIN_CONFIRMATION
@@ -115,8 +115,8 @@ class MessageBackupsFlowViewModel : ViewModel() {
   }
 
   private fun validateTypeAndUpdateState(): MessageBackupsScreen {
-    SignalStore.backup().areBackupsEnabled = true
-    SignalStore.backup().backupTier = state.value.selectedMessageBackupTier!!
+    SignalStore.backup.areBackupsEnabled = true
+    SignalStore.backup.backupTier = state.value.selectedMessageBackupTier!!
 
     // TODO [message-backups] - Does anything need to be kicked off?
 

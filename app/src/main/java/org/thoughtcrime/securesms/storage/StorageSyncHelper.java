@@ -119,8 +119,8 @@ public final class StorageSyncHelper {
                                                  .map(recipientTable::getRecordForSync)
                                                  .toList();
 
-    final OptionalBool storyViewReceiptsState = SignalStore.storyValues().getViewedReceiptsEnabled() ? OptionalBool.ENABLED
-                                                                                                     : OptionalBool.DISABLED;
+    final OptionalBool storyViewReceiptsState = SignalStore.story().getViewedReceiptsEnabled() ? OptionalBool.ENABLED
+                                                                                               : OptionalBool.DISABLED;
 
     if (self.getStorageId() == null || (record != null && record.getStorageId() == null)) {
       Log.w(TAG, "[buildAccountRecord] No storageId for self or record! Generating. (Self: " + (self.getStorageId() != null) + ", Record: " + (record != null && record.getStorageId() != null) + ")");
@@ -152,19 +152,19 @@ public final class StorageSyncHelper {
                                                                  .setPhoneNumberSharingMode(StorageSyncModels.localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy().getPhoneNumberSharingMode()))
                                                                  .setPinnedConversations(StorageSyncModels.localToRemotePinnedConversations(pinned))
                                                                  .setPreferContactAvatars(SignalStore.settings().isPreferSystemContactPhotos())
-                                                                 .setPayments(SignalStore.paymentsValues().mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.paymentsValues().getPaymentsEntropy()).map(Entropy::getBytes).orElse(null))
+                                                                 .setPayments(SignalStore.payments().mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.payments().getPaymentsEntropy()).map(Entropy::getBytes).orElse(null))
                                                                  .setPrimarySendsSms(false)
                                                                  .setUniversalExpireTimer(SignalStore.settings().getUniversalExpireTimer())
-                                                                 .setDefaultReactions(SignalStore.emojiValues().getReactions())
+                                                                 .setDefaultReactions(SignalStore.emoji().getReactions())
                                                                  .setSubscriber(StorageSyncModels.localToRemoteSubscriber(InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)))
-                                                                 .setDisplayBadgesOnProfile(SignalStore.donationsValues().getDisplayBadgesOnProfile())
+                                                                 .setDisplayBadgesOnProfile(SignalStore.donations().getDisplayBadgesOnProfile())
                                                                  .setSubscriptionManuallyCancelled(InAppPaymentsRepository.isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION))
                                                                  .setKeepMutedChatsArchived(SignalStore.settings().shouldKeepMutedChatsArchived())
-                                                                 .setHasSetMyStoriesPrivacy(SignalStore.storyValues().getUserHasBeenNotifiedAboutStories())
-                                                                 .setHasViewedOnboardingStory(SignalStore.storyValues().getUserHasViewedOnboardingStory())
-                                                                 .setStoriesDisabled(SignalStore.storyValues().isFeatureDisabled())
+                                                                 .setHasSetMyStoriesPrivacy(SignalStore.story().getUserHasBeenNotifiedAboutStories())
+                                                                 .setHasViewedOnboardingStory(SignalStore.story().getUserHasViewedOnboardingStory())
+                                                                 .setStoriesDisabled(SignalStore.story().isFeatureDisabled())
                                                                  .setStoryViewReceiptsState(storyViewReceiptsState)
-                                                                 .setHasSeenGroupStoryEducationSheet(SignalStore.storyValues().getUserHasSeenGroupStoryEducationSheet())
+                                                                 .setHasSeenGroupStoryEducationSheet(SignalStore.story().getUserHasSeenGroupStoryEducationSheet())
                                                                  .setUsername(SignalStore.account().getUsername())
                                                                  .setHasCompletedUsernameOnboarding(SignalStore.uiHints().hasCompletedUsernameOnboarding());
 
@@ -197,27 +197,27 @@ public final class StorageSyncHelper {
     SignalStore.phoneNumberPrivacy().setPhoneNumberDiscoverabilityMode(update.getNew().isPhoneNumberUnlisted() ? PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE : PhoneNumberDiscoverabilityMode.DISCOVERABLE);
     SignalStore.phoneNumberPrivacy().setPhoneNumberSharingMode(StorageSyncModels.remoteToLocalPhoneNumberSharingMode(update.getNew().getPhoneNumberSharingMode()));
     SignalStore.settings().setPreferSystemContactPhotos(update.getNew().isPreferContactAvatars());
-    SignalStore.paymentsValues().setEnabledAndEntropy(update.getNew().getPayments().isEnabled(), Entropy.fromBytes(update.getNew().getPayments().getEntropy().orElse(null)));
+    SignalStore.payments().setEnabledAndEntropy(update.getNew().getPayments().isEnabled(), Entropy.fromBytes(update.getNew().getPayments().getEntropy().orElse(null)));
     SignalStore.settings().setUniversalExpireTimer(update.getNew().getUniversalExpireTimer());
-    SignalStore.emojiValues().setReactions(update.getNew().getDefaultReactions());
-    SignalStore.donationsValues().setDisplayBadgesOnProfile(update.getNew().isDisplayBadgesOnProfile());
+    SignalStore.emoji().setReactions(update.getNew().getDefaultReactions());
+    SignalStore.donations().setDisplayBadgesOnProfile(update.getNew().isDisplayBadgesOnProfile());
     SignalStore.settings().setKeepMutedChatsArchived(update.getNew().isKeepMutedChatsArchived());
-    SignalStore.storyValues().setUserHasBeenNotifiedAboutStories(update.getNew().hasSetMyStoriesPrivacy());
-    SignalStore.storyValues().setUserHasViewedOnboardingStory(update.getNew().hasViewedOnboardingStory());
-    SignalStore.storyValues().setFeatureDisabled(update.getNew().isStoriesDisabled());
-    SignalStore.storyValues().setUserHasSeenGroupStoryEducationSheet(update.getNew().hasSeenGroupStoryEducationSheet());
+    SignalStore.story().setUserHasBeenNotifiedAboutStories(update.getNew().hasSetMyStoriesPrivacy());
+    SignalStore.story().setUserHasViewedOnboardingStory(update.getNew().hasViewedOnboardingStory());
+    SignalStore.story().setFeatureDisabled(update.getNew().isStoriesDisabled());
+    SignalStore.story().setUserHasSeenGroupStoryEducationSheet(update.getNew().hasSeenGroupStoryEducationSheet());
     SignalStore.uiHints().setHasCompletedUsernameOnboarding(update.getNew().hasCompletedUsernameOnboarding());
 
     if (update.getNew().getStoryViewReceiptsState() == OptionalBool.UNSET) {
-      SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().isReadReceiptsEnabled());
+      SignalStore.story().setViewedReceiptsEnabled(update.getNew().isReadReceiptsEnabled());
     } else {
-      SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().getStoryViewReceiptsState() == OptionalBool.ENABLED);
+      SignalStore.story().setViewedReceiptsEnabled(update.getNew().getStoryViewReceiptsState() == OptionalBool.ENABLED);
     }
 
     if (update.getNew().getStoryViewReceiptsState() == OptionalBool.UNSET) {
-      SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().isReadReceiptsEnabled());
+      SignalStore.story().setViewedReceiptsEnabled(update.getNew().isReadReceiptsEnabled());
     } else {
-      SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().getStoryViewReceiptsState() == OptionalBool.ENABLED);
+      SignalStore.story().setViewedReceiptsEnabled(update.getNew().getStoryViewReceiptsState() == OptionalBool.ENABLED);
     }
 
     InAppPaymentSubscriberRecord remoteSubscriber = StorageSyncModels.remoteToLocalSubscriber(update.getNew().getSubscriber(), InAppPaymentSubscriberRecord.Type.DONATION);
@@ -226,7 +226,7 @@ public final class StorageSyncHelper {
     }
 
     if (update.getNew().isSubscriptionManuallyCancelled() && !update.getOld().isSubscriptionManuallyCancelled()) {
-      SignalStore.donationsValues().updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION);
+      SignalStore.donations().updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION);
     }
 
     if (fetchProfile && update.getNew().getAvatarUrlPath().isPresent()) {
@@ -251,7 +251,7 @@ public final class StorageSyncHelper {
   }
 
   public static void scheduleSyncForDataChange() {
-    if (!SignalStore.registrationValues().isRegistrationComplete()) {
+    if (!SignalStore.registration().isRegistrationComplete()) {
       Log.d(TAG, "Registration still ongoing. Ignore sync request.");
       return;
     }

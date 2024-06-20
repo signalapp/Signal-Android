@@ -56,7 +56,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
   private EmojiFiles.Version targetVersion;
 
   public static void scheduleIfNecessary(@NonNull Context context) {
-    long nextScheduledCheck = SignalStore.emojiValues().getNextScheduledImageCheck();
+    long nextScheduledCheck = SignalStore.emoji().getNextScheduledImageCheck();
 
     if (nextScheduledCheck <= System.currentTimeMillis()) {
       Log.i(TAG, "Scheduling DownloadLatestEmojiDataJob.");
@@ -71,7 +71,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
         interval = INTERVAL_WITHOUT_REMOTE_DOWNLOAD;
       }
 
-      SignalStore.emojiValues().setNextScheduledImageCheck(System.currentTimeMillis() + interval);
+      SignalStore.emoji().setNextScheduledImageCheck(System.currentTimeMillis() + interval);
     }
   }
 
@@ -353,7 +353,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
     EmojiPageCache.INSTANCE.clear();
 
     if (version != null) {
-      SignalStore.emojiValues().clearJumboEmojiSheets(version.getVersion());
+      SignalStore.emoji().clearJumboEmojiSheets(version.getVersion());
     }
   }
 

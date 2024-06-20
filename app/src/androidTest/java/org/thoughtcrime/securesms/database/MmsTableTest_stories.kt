@@ -40,14 +40,14 @@ class MmsTableTest_stories {
 
     mms.deleteAllThreads()
 
-    SignalStore.account().setAci(localAci)
-    SignalStore.account().setPni(localPni)
+    SignalStore.account.setAci(localAci)
+    SignalStore.account.setPni(localPni)
 
     myStory = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY))
     recipients = (0 until 5).map { SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID())) }
     releaseChannelRecipient = Recipient.resolved(SignalDatabase.recipients.insertReleaseChannelRecipient())
 
-    SignalStore.releaseChannelValues().setReleaseChannelRecipientId(releaseChannelRecipient.id)
+    SignalStore.releaseChannel.setReleaseChannelRecipientId(releaseChannelRecipient.id)
   }
 
   @Test

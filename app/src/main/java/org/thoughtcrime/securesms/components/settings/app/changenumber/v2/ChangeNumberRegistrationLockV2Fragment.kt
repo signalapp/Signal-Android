@@ -299,7 +299,7 @@ class ChangeNumberRegistrationLockV2Fragment : LoggingFragment(R.layout.fragment
   }
 
   private fun handleSuccessfulPinEntry(pin: String) {
-    val pinsDiffer: Boolean = SignalStore.svr().localPinHash?.let { !PinHashUtil.verifyLocalPinHash(it, pin) } ?: false
+    val pinsDiffer: Boolean = SignalStore.svr.localPinHash?.let { !PinHashUtil.verifyLocalPinHash(it, pin) } ?: false
 
     binding.kbsLockPinConfirm.cancelSpinning()
 
@@ -319,7 +319,7 @@ class ChangeNumberRegistrationLockV2Fragment : LoggingFragment(R.layout.fragment
   }
 
   private fun navigateUp() {
-    if (SignalStore.misc().isChangeNumberLocked) {
+    if (SignalStore.misc.isChangeNumberLocked) {
       startActivity(ChangeNumberLockV2Activity.createIntent(requireContext()))
     } else {
       findNavController().navigateUp()

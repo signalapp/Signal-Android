@@ -112,7 +112,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
 
       sectionHeaderPref(R.string.AccountSettingsFragment__account)
 
-      if (SignalStore.account().isRegistered) {
+      if (SignalStore.account.isRegistered) {
         clickPref(
           title = DSLSettingsText.from(R.string.AccountSettingsFragment__change_phone_number),
           isEnabled = state.isDeprecatedOrUnregistered(),
@@ -227,7 +227,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
 
       ViewCompat.setAutofillHints(pinEditText, HintConstants.AUTOFILL_HINT_PASSWORD)
 
-      when (SignalStore.pinValues().keyboardType) {
+      when (SignalStore.pin.keyboardType) {
         PinKeyboardType.NUMERIC -> {
           pinEditText.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
           changeKeyboard.setIconResource(PinKeyboardType.ALPHA_NUMERIC.iconResource)
@@ -247,9 +247,9 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
       pinEditText.typeface = Typeface.DEFAULT
       turnOffButton.setOnClickListener {
         val pin = pinEditText.text.toString()
-        val correct = PinHashUtil.verifyLocalPinHash(SignalStore.svr().localPinHash!!, pin)
+        val correct = PinHashUtil.verifyLocalPinHash(SignalStore.svr.localPinHash!!, pin)
         if (correct) {
-          SignalStore.pinValues().setPinRemindersEnabled(false)
+          SignalStore.pin.setPinRemindersEnabled(false)
           viewModel.refreshState()
           dialog.dismiss()
         } else {
@@ -259,7 +259,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
 
       cancelButton.setOnClickListener { dialog.dismiss() }
     } else {
-      SignalStore.pinValues().setPinRemindersEnabled(true)
+      SignalStore.pin.setPinRemindersEnabled(true)
       viewModel.refreshState()
     }
   }

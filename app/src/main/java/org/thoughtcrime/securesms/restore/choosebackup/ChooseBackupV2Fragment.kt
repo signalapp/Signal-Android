@@ -65,7 +65,7 @@ class ChooseBackupV2Fragment : LoggingFragment(R.layout.fragment_choose_backup_v
       return super.createIntent(context, input).apply {
         putExtra(Intent.EXTRA_LOCAL_ONLY, true)
         if (Build.VERSION.SDK_INT >= 26) {
-          putExtra(DocumentsContract.EXTRA_INITIAL_URI, SignalStore.settings().latestSignalBackupDirectory)
+          putExtra(DocumentsContract.EXTRA_INITIAL_URI, SignalStore.settings.latestSignalBackupDirectory)
         }
       }
     }

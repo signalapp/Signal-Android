@@ -53,9 +53,9 @@ class RecipientTableTest_getAndPossiblyMerge {
 
   @Before
   fun setup() {
-    SignalStore.account().setE164(E164_SELF)
-    SignalStore.account().setAci(ACI_SELF)
-    SignalStore.account().setPni(PNI_SELF)
+    SignalStore.account.setE164(E164_SELF)
+    SignalStore.account.setAci(ACI_SELF)
+    SignalStore.account.setPni(PNI_SELF)
   }
 
   @Test

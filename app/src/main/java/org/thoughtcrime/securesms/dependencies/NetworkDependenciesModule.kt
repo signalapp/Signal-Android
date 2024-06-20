@@ -86,7 +86,7 @@ class NetworkDependenciesModule(
   }
 
   val groupsV2Authorization: GroupsV2Authorization by lazy {
-    val authCache: GroupsV2Authorization.ValueCache = GroupsV2AuthorizationMemoryValueCache(SignalStore.groupsV2AciAuthorizationCache())
+    val authCache: GroupsV2Authorization.ValueCache = GroupsV2AuthorizationMemoryValueCache(SignalStore.groupsV2AciAuthorizationCache)
     GroupsV2Authorization(signalServiceAccountManager.groupsV2Api, authCache)
   }
 

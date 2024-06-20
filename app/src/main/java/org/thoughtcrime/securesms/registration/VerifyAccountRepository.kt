@@ -180,20 +180,20 @@ class VerifyAccountRepository(private val context: Application) {
       unidentifiedAccessKey = unidentifiedAccessKey,
       unrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
       capabilities = AppCapabilities.getCapabilities(true),
-      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.DISCOVERABLE,
+      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.DISCOVERABLE,
       name = null,
       pniRegistrationId = registrationData.pniRegistrationId,
       recoveryPassword = registrationData.recoveryPassword
     )
 
-    SignalStore.account().generateAciIdentityKeyIfNecessary()
-    val aciIdentity: IdentityKeyPair = SignalStore.account().aciIdentityKey
+    SignalStore.account.generateAciIdentityKeyIfNecessary()
+    val aciIdentity: IdentityKeyPair = SignalStore.account.aciIdentityKey
 
-    SignalStore.account().generatePniIdentityKeyIfNecessary()
-    val pniIdentity: IdentityKeyPair = SignalStore.account().pniIdentityKey
+    SignalStore.account.generatePniIdentityKeyIfNecessary()
+    val pniIdentity: IdentityKeyPair = SignalStore.account.pniIdentityKey
 
-    val aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(aciIdentity, SignalStore.account().aciPreKeys)
-    val pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(pniIdentity, SignalStore.account().pniPreKeys)
+    val aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(aciIdentity, SignalStore.account.aciPreKeys)
+    val pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(pniIdentity, SignalStore.account.pniPreKeys)
 
     return Single.fromCallable {
       val response = accountManager.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, aciPreKeyCollection, pniPreKeyCollection, registrationData.fcmToken, true)

@@ -70,7 +70,7 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
 
     // TODO [regv2]: check for re-register and skip ahead to phone number entry
 
-    if (SignalStore.settings().isBackupEnabled) {
+    if (SignalStore.settings.isBackupEnabled) {
       Log.i(TAG, "Backups enabled, so a backup must have been previously restored.")
       onBackupCompletedSuccessfully()
       return

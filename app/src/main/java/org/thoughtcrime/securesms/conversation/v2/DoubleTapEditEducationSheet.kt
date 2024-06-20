@@ -28,7 +28,7 @@ class DoubleTapEditEducationSheet(private val conversationMessage: ConversationM
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    SignalStore.uiHints().hasSeenDoubleTapEditEducationSheet = true
+    SignalStore.uiHints.hasSeenDoubleTapEditEducationSheet = true
 
     view.findViewById<MaterialButton>(R.id.got_it).setOnClickListener {
       requireListener<Callback>().onDoubleTapEditEducationSheetNext(conversationMessage)

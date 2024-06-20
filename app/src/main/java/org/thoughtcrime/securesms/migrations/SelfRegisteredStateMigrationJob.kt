@@ -25,12 +25,12 @@ internal class SelfRegisteredStateMigrationJob(
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    if (SignalStore.account().isRegistered && SignalStore.account().aci != null) {
+    if (SignalStore.account.isRegistered && SignalStore.account.aci != null) {
       val record = SignalDatabase.recipients.getRecord(Recipient.self().id)
 
       if (record.registered != RecipientTable.RegisteredState.REGISTERED) {
         Log.w(TAG, "Inconsistent registered state! Fixing...")
-        SignalDatabase.recipients.markRegistered(Recipient.self().id, SignalStore.account().aci!!)
+        SignalDatabase.recipients.markRegistered(Recipient.self().id, SignalStore.account.aci!!)
       } else {
         Log.d(TAG, "Local user is already registered.")
       }

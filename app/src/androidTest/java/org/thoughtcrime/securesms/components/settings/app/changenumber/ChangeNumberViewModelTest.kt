@@ -63,7 +63,7 @@ class ChangeNumberViewModelTest {
         localNumber = harness.self.requireE164(),
         changeNumberRepository = ChangeNumberRepository(),
         savedState = SavedStateHandle(),
-        password = SignalStore.account().servicePassword!!,
+        password = SignalStore.account.servicePassword!!,
         verifyAccountRepository = VerifyAccountRepository(harness.application)
       )
 
@@ -136,7 +136,7 @@ class ChangeNumberViewModelTest {
     processor.isServerSentError() assertIs true
     Recipient.self().requireE164() assertIs oldE164
     Recipient.self().requirePni() assertIs oldPni
-    SignalStore.misc().pendingChangeNumberMetadata.assertIsNull()
+    SignalStore.misc.pendingChangeNumberMetadata.assertIsNull()
   }
 
   /**
@@ -170,8 +170,8 @@ class ChangeNumberViewModelTest {
     processor.isServerSentError() assertIs false
     Recipient.self().requireE164() assertIs oldE164
     Recipient.self().requirePni() assertIs oldPni
-    SignalStore.misc().isChangeNumberLocked assertIs false
-    SignalStore.misc().pendingChangeNumberMetadata.assertIsNull()
+    SignalStore.misc.isChangeNumberLocked assertIs false
+    SignalStore.misc.pendingChangeNumberMetadata.assertIsNull()
   }
 
   /**
@@ -220,8 +220,8 @@ class ChangeNumberViewModelTest {
     processor.isServerSentError() assertIs false
     Recipient.self().requireE164() assertIs oldE164
     Recipient.self().requirePni() assertIs oldPni
-    SignalStore.misc().isChangeNumberLocked assertIs true
-    SignalStore.misc().pendingChangeNumberMetadata.assertIsNotNull()
+    SignalStore.misc.isChangeNumberLocked assertIs true
+    SignalStore.misc.pendingChangeNumberMetadata.assertIsNotNull()
 
     // WHEN AGAIN Processing lock
     val scenario = harness.launchActivity<ChangeNumberLockActivity>()
@@ -268,7 +268,7 @@ class ChangeNumberViewModelTest {
     viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet().also { processor ->
       processor.registrationLock() assertIs true
       Recipient.self().requirePni() assertIsNot newPni
-      SignalStore.misc().pendingChangeNumberMetadata.assertIsNull()
+      SignalStore.misc.pendingChangeNumberMetadata.assertIsNull()
     }
 
     viewModel.verifyCodeAndRegisterAccountWithRegistrationLock("pin").blockingGet().resultOrThrow
@@ -378,7 +378,7 @@ class ChangeNumberViewModelTest {
     viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet().also { processor ->
       processor.registrationLock() assertIs true
       Recipient.self().requirePni() assertIsNot newPni
-      SignalStore.misc().pendingChangeNumberMetadata.assertIsNull()
+      SignalStore.misc.pendingChangeNumberMetadata.assertIsNull()
     }
 
     viewModel.verifyCodeAndRegisterAccountWithRegistrationLock("pin").blockingGet().resultOrThrow
@@ -389,13 +389,13 @@ class ChangeNumberViewModelTest {
 
   private fun assertSuccess(newPni: ServiceId, changeNumberRequest: ChangePhoneNumberRequest, setPreKeysRequest: PreKeyState) {
     val pniProtocolStore = AppDependencies.protocolStore.pni()
-    val pniMetadataStore = SignalStore.account().pniPreKeys
+    val pniMetadataStore = SignalStore.account.pniPreKeys
 
     Recipient.self().requireE164() assertIs "+15555550102"
     Recipient.self().requirePni() assertIs newPni
 
-    SignalStore.account().pniRegistrationId assertIs changeNumberRequest.pniRegistrationIds["1"]!!
-    SignalStore.account().pniIdentityKey.publicKey assertIs changeNumberRequest.pniIdentityKey
+    SignalStore.account.pniRegistrationId assertIs changeNumberRequest.pniRegistrationIds["1"]!!
+    SignalStore.account.pniIdentityKey.publicKey assertIs changeNumberRequest.pniIdentityKey
     pniMetadataStore.activeSignedPreKeyId assertIs changeNumberRequest.devicePniSignedPrekeys["1"]!!.keyId
 
     val activeSignedPreKey: SignedPreKeyRecord = pniProtocolStore.loadSignedPreKey(pniMetadataStore.activeSignedPreKeyId)
@@ -405,6 +405,6 @@ class ChangeNumberViewModelTest {
     setPreKeysRequest.signedPreKey.publicKey assertIs activeSignedPreKey.keyPair.publicKey
     setPreKeysRequest.preKeys assertIsSize 100
 
-    SignalStore.misc().pendingChangeNumberMetadata.assertIsNull()
+    SignalStore.misc.pendingChangeNumberMetadata.assertIsNull()
   }
 }

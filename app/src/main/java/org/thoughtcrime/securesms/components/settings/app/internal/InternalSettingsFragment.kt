@@ -82,13 +82,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
     super.onPause()
     val firstVisiblePosition: Int? = layoutManager?.findFirstVisibleItemPosition()
     if (firstVisiblePosition != null) {
-      SignalStore.internalValues().lastScrollPosition = firstVisiblePosition
+      SignalStore.internal.lastScrollPosition = firstVisiblePosition
     }
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    scrollToPosition = SignalStore.internalValues().lastScrollPosition
+    scrollToPosition = SignalStore.internal.lastScrollPosition
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {
@@ -557,9 +557,9 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         clickPref(
           title = DSLSettingsText.from("Clear keep-alive timestamps"),
           onClick = {
-            SignalStore.donationsValues().subscriptionEndOfPeriodRedemptionStarted = 0L
-            SignalStore.donationsValues().subscriptionEndOfPeriodConversionStarted = 0L
-            SignalStore.donationsValues().setLastEndOfPeriod(0L)
+            SignalStore.donations.subscriptionEndOfPeriodRedemptionStarted = 0L
+            SignalStore.donations.subscriptionEndOfPeriodConversionStarted = 0L
+            SignalStore.donations.setLastEndOfPeriod(0L)
             Toast.makeText(context, "Cleared", Toast.LENGTH_SHORT).show()
           }
         )
@@ -570,7 +570,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         clickPref(
           title = DSLSettingsText.from("Clear pending one-time donation."),
           onClick = {
-            SignalStore.donationsValues().setPendingOneTimeDonation(null)
+            SignalStore.donations.setPendingOneTimeDonation(null)
           }
         )
       } else {
@@ -596,7 +596,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       clickPref(
         title = DSLSettingsText.from("Set last version seen back 10 versions"),
         onClick = {
-          SignalStore.releaseChannelValues().highestVersionNoteReceived = max(SignalStore.releaseChannelValues().highestVersionNoteReceived - 10, 0)
+          SignalStore.releaseChannel.highestVersionNoteReceived = max(SignalStore.releaseChannel.highestVersionNoteReceived - 10, 0)
         }
       )
 
@@ -616,7 +616,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       clickPref(
         title = DSLSettingsText.from("Fetch release channel"),
         onClick = {
-          SignalStore.releaseChannelValues().previousManifestMd5 = ByteArray(0)
+          SignalStore.releaseChannel.previousManifestMd5 = ByteArray(0)
           RetrieveRemoteAnnouncementsJob.enqueue(force = true)
         }
       )
@@ -687,7 +687,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Clear choose initial my story privacy state"),
         isEnabled = true,
         onClick = {
-          SignalStore.storyValues().userHasBeenNotifiedAboutStories = false
+          SignalStore.story.userHasBeenNotifiedAboutStories = false
         }
       )
 
@@ -695,7 +695,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Clear first time navigation state"),
         isEnabled = true,
         onClick = {
-          SignalStore.storyValues().userHasSeenFirstNavView = false
+          SignalStore.story.userHasSeenFirstNavView = false
         }
       )
 
@@ -746,7 +746,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             .setPositiveButton(android.R.string.ok) { _, _ ->
               val random = "${(1..5).map { ('a'..'z').random() }.joinToString(separator = "") }.${Random.nextInt(10, 100)}"
 
-              SignalStore.account().username = random
+              SignalStore.account.username = random
               SignalDatabase.recipients.setUsername(Recipient.self().id, random)
               StorageSyncHelper.scheduleSyncForDataChange()
 
@@ -765,9 +765,9 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             .setTitle("Corrupt your username link?")
             .setMessage("Are you sure? You'll have to reset your link.")
             .setPositiveButton(android.R.string.ok) { _, _ ->
-              SignalStore.account().usernameLink = UsernameLinkComponents(
+              SignalStore.account.usernameLink = UsernameLinkComponents(
                 entropy = Util.getSecretBytes(32),
-                serverId = SignalStore.account().usernameLink?.serverId ?: UUID.randomUUID()
+                serverId = SignalStore.account.usernameLink?.serverId ?: UUID.randomUUID()
               )
               StorageSyncHelper.scheduleSyncForDataChange()
               Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
@@ -782,7 +782,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       clickPref(
         title = DSLSettingsText.from("Reset pull to refresh tip count"),
         onClick = {
-          SignalStore.uiHints().resetNeverDisplayPullToRefreshCount()
+          SignalStore.uiHints.resetNeverDisplayPullToRefreshCount()
         }
       )
 
@@ -813,10 +813,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           ThreadUtil.runOnMain {
             when (it) {
               AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
-                SignalStore.account().setRegistered(false)
-                SignalStore.registrationValues().clearRegistrationComplete()
-                SignalStore.registrationValues().clearHasUploadedProfile()
-                SignalStore.registrationValues().clearSkippedTransferOrRestore()
+                SignalStore.account.setRegistered(false)
+                SignalStore.registration.clearRegistrationComplete()
+                SignalStore.registration.clearHasUploadedProfile()
+                SignalStore.registration.clearSkippedTransferOrRestore()
                 Toast.makeText(context, "Unregistered!", Toast.LENGTH_SHORT).show()
               }
 
@@ -939,7 +939,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private fun clearCdsHistory() {
     SignalDatabase.cds.clearAll()
-    SignalStore.misc().cdsToken = null
+    SignalStore.misc.cdsToken = null
     Toast.makeText(context, "Cleared all CDS history.", Toast.LENGTH_SHORT).show()
   }
 

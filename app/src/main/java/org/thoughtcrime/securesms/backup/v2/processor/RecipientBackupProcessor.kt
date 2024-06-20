@@ -31,8 +31,8 @@ object RecipientBackupProcessor {
   val TAG = Log.tag(RecipientBackupProcessor::class.java)
 
   fun export(db: SignalDatabase, state: ExportState, emitter: BackupFrameEmitter) {
-    val selfId = db.recipientTable.getByAci(SignalStore.account().aci!!).get().toLong()
-    val releaseChannelId = SignalStore.releaseChannelValues().releaseChannelRecipientId
+    val selfId = db.recipientTable.getByAci(SignalStore.account.aci!!).get().toLong()
+    val releaseChannelId = SignalStore.releaseChannel.releaseChannelRecipientId
     if (releaseChannelId != null) {
       emitter.emit(
         Frame(

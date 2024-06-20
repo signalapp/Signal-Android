@@ -170,7 +170,7 @@ class ContactSearchMediator(
   }
 
   private fun toggleStorySelection(view: View, contactSearchData: ContactSearchData.Story, isSelected: Boolean) {
-    if (contactSearchData.recipient.isMyStory && !SignalStore.storyValues().userHasBeenNotifiedAboutStories) {
+    if (contactSearchData.recipient.isMyStory && !SignalStore.story.userHasBeenNotifiedAboutStories) {
       ChooseInitialMyStoryMembershipBottomSheetDialogFragment.show(fragment.childFragmentManager)
     } else {
       toggleSelection(view, contactSearchData, isSelected)

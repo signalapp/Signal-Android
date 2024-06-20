@@ -35,7 +35,7 @@ class PaymentsValuesTest {
       }
     )
 
-    assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -51,7 +51,7 @@ class PaymentsValuesTest {
     every { RemoteConfig.payments } returns false
     every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
-    assertEquals(PaymentsAvailability.DISABLED_REMOTELY, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.DISABLED_REMOTELY, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -67,7 +67,7 @@ class PaymentsValuesTest {
     every { RemoteConfig.payments } returns false
     every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
-    assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -83,7 +83,7 @@ class PaymentsValuesTest {
     every { RemoteConfig.payments } returns true
     every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
-    assertEquals(PaymentsAvailability.REGISTRATION_AVAILABLE, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.REGISTRATION_AVAILABLE, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -99,7 +99,7 @@ class PaymentsValuesTest {
     every { RemoteConfig.payments } returns true
     every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
-    assertEquals(PaymentsAvailability.WITHDRAW_AND_SEND, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.WITHDRAW_AND_SEND, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -115,7 +115,7 @@ class PaymentsValuesTest {
     every { RemoteConfig.payments } returns true
     every { RemoteConfig.paymentsCountryBlocklist } returns "1"
 
-    assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -131,7 +131,7 @@ class PaymentsValuesTest {
     every { RemoteConfig.payments } returns true
     every { RemoteConfig.paymentsCountryBlocklist } returns "1"
 
-    assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.payments.paymentsAvailability)
   }
 
   /**
@@ -145,6 +145,6 @@ class PaymentsValuesTest {
         }
       )
     )
-    SignalStore.inject(store)
+    SignalStore.testInject(store)
   }
 }

@@ -58,7 +58,7 @@ class PrivacySettingsViewModel(
   }
 
   fun togglePaymentLock(enable: Boolean) {
-    SignalStore.paymentsValues().paymentLock = enable
+    SignalStore.payments.paymentLock = enable
     refresh()
   }
 
@@ -85,11 +85,11 @@ class PrivacySettingsViewModel(
       screenLockActivityTimeout = TextSecurePreferences.getScreenLockTimeout(AppDependencies.application),
       screenSecurity = TextSecurePreferences.isScreenSecurityEnabled(AppDependencies.application),
       incognitoKeyboard = TextSecurePreferences.isIncognitoKeyboardEnabled(AppDependencies.application),
-      paymentLock = SignalStore.paymentsValues().paymentLock,
+      paymentLock = SignalStore.payments.paymentLock,
       isObsoletePasswordEnabled = !TextSecurePreferences.isPasswordDisabled(AppDependencies.application),
       isObsoletePasswordTimeoutEnabled = TextSecurePreferences.isPassphraseTimeoutEnabled(AppDependencies.application),
       obsoletePasswordTimeout = TextSecurePreferences.getPassphraseTimeoutInterval(AppDependencies.application),
-      universalExpireTimer = SignalStore.settings().universalExpireTimer
+      universalExpireTimer = SignalStore.settings.universalExpireTimer
     )
   }
 

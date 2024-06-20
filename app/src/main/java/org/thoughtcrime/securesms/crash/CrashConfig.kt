@@ -26,14 +26,14 @@ object CrashConfig {
 
   @VisibleForTesting
   fun computePatterns(): List<CrashPattern> {
-    val aci: ServiceId.ACI = SignalStore.account().aci ?: return emptyList()
+    val aci: ServiceId.ACI = SignalStore.account.aci ?: return emptyList()
 
     val serialized = RemoteConfig.crashPromptConfig
     if (serialized.isNullOrBlank()) {
       return emptyList()
     }
 
-    if (SignalStore.account().aci == null) {
+    if (SignalStore.account.aci == null) {
       return emptyList()
     }
 

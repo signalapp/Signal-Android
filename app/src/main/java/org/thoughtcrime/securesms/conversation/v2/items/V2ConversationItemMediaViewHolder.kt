@@ -97,7 +97,7 @@ class V2ConversationItemMediaViewHolder<Model : MappingModel<Model>>(
     )
 
     quoteView.setWallpaperEnabled(conversationContext.hasWallpaper())
-    quoteView.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().getMessageQuoteFontSize(context).toFloat())
+    quoteView.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings.getMessageQuoteFontSize(context).toFloat())
 
     val isOutgoing = conversationMessage.messageRecord.isOutgoing
     when (shape) {

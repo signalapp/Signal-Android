@@ -42,7 +42,7 @@ class ChangeNumberRegistrationLockFragment : BaseRegistrationLockFragment(R.layo
   }
 
   override fun handleSuccessfulPinEntry(pin: String) {
-    val pinsDiffer: Boolean = SignalStore.svr().localPinHash?.let { !PinHashUtil.verifyLocalPinHash(it, pin) } ?: false
+    val pinsDiffer: Boolean = SignalStore.svr.localPinHash?.let { !PinHashUtil.verifyLocalPinHash(it, pin) } ?: false
 
     pinButton.cancelSpinning()
 
@@ -72,7 +72,7 @@ class ChangeNumberRegistrationLockFragment : BaseRegistrationLockFragment(R.layo
   }
 
   private fun navigateUp() {
-    if (SignalStore.misc().isChangeNumberLocked) {
+    if (SignalStore.misc.isChangeNumberLocked) {
       startActivity(ChangeNumberLockActivity.createIntent(requireContext()))
     } else {
       findNavController().navigateUp()

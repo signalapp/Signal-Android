@@ -24,8 +24,8 @@ class RefreshSvrCredentialsJob private constructor(parameters: Parameters) : Bas
 
     @JvmStatic
     fun enqueueIfNecessary() {
-      if (SignalStore.svr().hasPin() && SignalStore.account().isRegistered) {
-        val lastTimestamp = SignalStore.svr().lastRefreshAuthTimestamp
+      if (SignalStore.svr.hasPin() && SignalStore.account.isRegistered) {
+        val lastTimestamp = SignalStore.svr.lastRefreshAuthTimestamp
         if (lastTimestamp + FREQUENCY.inWholeMilliseconds < System.currentTimeMillis() || lastTimestamp > System.currentTimeMillis()) {
           AppDependencies.jobManager.add(RefreshSvrCredentialsJob())
         } else {
@@ -50,7 +50,7 @@ class RefreshSvrCredentialsJob private constructor(parameters: Parameters) : Bas
   override fun getFactoryKey(): String = KEY
 
   override fun onRun() {
-    if (!SignalStore.account().isRegistered) {
+    if (!SignalStore.account.isRegistered) {
       Log.w(TAG, "Not registered! Skipping.")
       return
     }

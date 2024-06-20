@@ -83,9 +83,9 @@ class ManageDonationsFragment :
     BadgePreview.register(adapter)
     NetworkFailure.register(adapter)
 
-    val expiredGiftBadge = SignalStore.donationsValues().getExpiredGiftBadge()
+    val expiredGiftBadge = SignalStore.donations.getExpiredGiftBadge()
     if (expiredGiftBadge != null) {
-      SignalStore.donationsValues().setExpiredGiftBadge(null)
+      SignalStore.donations.setExpiredGiftBadge(null)
       ExpiredGiftSheet.show(childFragmentManager, expiredGiftBadge)
     }
 
@@ -227,7 +227,7 @@ class ManageDonationsFragment :
   }
 
   private fun DSLConfiguration.presentNetworkFailureSettings(state: ManageDonationsState, hasReceipts: Boolean) {
-    if (SignalStore.donationsValues().isLikelyASustainer()) {
+    if (SignalStore.donations.isLikelyASustainer()) {
       presentSubscriptionSettingsWithNetworkError(state)
     } else {
       presentNotADonorSettings(hasReceipts)
@@ -409,7 +409,7 @@ class ManageDonationsFragment :
             startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
           }
           .setOnDismissListener {
-            SignalStore.donationsValues().setPendingOneTimeDonation(null)
+            SignalStore.donations.setPendingOneTimeDonation(null)
           }
           .show()
       }
@@ -429,7 +429,7 @@ class ManageDonationsFragment :
           }
           .setPositiveButton(android.R.string.ok, null)
           .setOnDismissListener {
-            SignalStore.donationsValues().setPendingOneTimeDonation(null)
+            SignalStore.donations.setPendingOneTimeDonation(null)
           }
           .show()
       }

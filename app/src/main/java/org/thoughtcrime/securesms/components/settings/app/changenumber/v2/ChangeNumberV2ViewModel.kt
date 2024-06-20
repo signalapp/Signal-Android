@@ -56,8 +56,8 @@ class ChangeNumberV2ViewModel : ViewModel() {
   private val serialContext = SignalExecutors.SERIAL.asCoroutineDispatcher()
   private val smsRetrieverReceiver: SmsRetrieverReceiver = SmsRetrieverReceiver(AppDependencies.application)
 
-  private val initialLocalNumber = SignalStore.account().e164
-  private val password = SignalStore.account().servicePassword!!
+  private val initialLocalNumber = SignalStore.account.e164
+  private val password = SignalStore.account.servicePassword!!
 
   val uiState = store.asLiveData()
   val liveOldNumberState = store.map { it.oldPhoneNumber }.asLiveData()
@@ -68,7 +68,7 @@ class ChangeNumberV2ViewModel : ViewModel() {
   init {
     try {
       val countryCode: Int = PhoneNumberUtil.getInstance()
-        .parse(SignalStore.account().e164!!, null)
+        .parse(SignalStore.account.e164!!, null)
         .countryCode
 
       store.update {
@@ -186,11 +186,11 @@ class ChangeNumberV2ViewModel : ViewModel() {
       try {
         val whoAmI = repository.whoAmI()
 
-        if (whoAmI.number == SignalStore.account().e164) {
+        if (whoAmI.number == SignalStore.account.e164) {
           return@launch bail { Log.i(TAG, "Local and remote numbers match, nothing needs to be done.") }
         }
 
-        Log.i(TAG, "Local (${SignalStore.account().e164}) and remote (${whoAmI.number}) numbers do not match, updating local.")
+        Log.i(TAG, "Local (${SignalStore.account.e164}) and remote (${whoAmI.number}) numbers do not match, updating local.")
 
         withLockOnSerialExecutor {
           repository.changeLocalNumber(whoAmI.number, ServiceId.PNI.parseOrThrow(whoAmI.pni))
@@ -391,8 +391,8 @@ class ChangeNumberV2ViewModel : ViewModel() {
 
   private suspend fun changeNumberWithRecoveryPassword(): Boolean {
     Log.v(TAG, "changeNumberWithRecoveryPassword()")
-    SignalStore.svr().recoveryPassword?.let { recoveryPassword ->
-      if (SignalStore.svr().hasPin()) {
+    SignalStore.svr.recoveryPassword?.let { recoveryPassword ->
+      if (SignalStore.svr.hasPin()) {
         val result = repository.changeNumberWithRecoveryPassword(recoveryPassword = recoveryPassword, newE164 = number.e164Number)
 
         if (result is ChangeNumberResult.Success) {
@@ -506,7 +506,7 @@ class ChangeNumberV2ViewModel : ViewModel() {
     val currentState = store.value
     val code = currentState.enteredCode ?: throw IllegalStateException("Can't construct registration data without entered code!")
     val e164: String = number.e164Number ?: throw IllegalStateException("Can't construct registration data without E164!")
-    val recoveryPassword = if (currentState.sessionId == null) SignalStore.svr().getRecoveryPassword() else null
+    val recoveryPassword = if (currentState.sessionId == null) SignalStore.svr.getRecoveryPassword() else null
     val fcmToken = RegistrationRepository.getFcmToken(context)
     return RegistrationData(code, e164, password, RegistrationRepository.getRegistrationId(), RegistrationRepository.getProfileKey(e164), fcmToken, RegistrationRepository.getPniRegistrationId(), recoveryPassword)
   }
@@ -533,12 +533,12 @@ class ChangeNumberV2ViewModel : ViewModel() {
   private suspend fun <T> withLockOnSerialExecutor(action: () -> T): T = withContext(serialContext) {
     Log.v(TAG, "withLock()")
     val result = CHANGE_NUMBER_LOCK.withLock {
-      SignalStore.misc().lockChangeNumber()
+      SignalStore.misc.lockChangeNumber()
       Log.v(TAG, "Change number lock acquired.")
       try {
         action()
       } finally {
-        SignalStore.misc().unlockChangeNumber()
+        SignalStore.misc.unlockChangeNumber()
       }
     }
     Log.v(TAG, "Change number lock released.")

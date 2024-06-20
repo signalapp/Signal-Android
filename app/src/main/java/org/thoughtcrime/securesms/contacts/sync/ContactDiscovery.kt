@@ -46,7 +46,7 @@ object ContactDiscovery {
   @Throws(IOException::class)
   @WorkerThread
   fun refreshAll(context: Context, notifyOfNewUsers: Boolean) {
-    if (TextUtils.isEmpty(SignalStore.account().e164)) {
+    if (TextUtils.isEmpty(SignalStore.account.e164)) {
       Log.w(TAG, "Have not yet set our own local number. Skipping.")
       return
     }
@@ -56,8 +56,8 @@ object ContactDiscovery {
       return
     }
 
-    if (!SignalStore.registrationValues().isRegistrationComplete) {
-      if (SignalStore.account().isRegistered && SignalStore.svr().lastPinCreateFailed()) {
+    if (!SignalStore.registration.isRegistrationComplete) {
+      if (SignalStore.account.isRegistered && SignalStore.svr.lastPinCreateFailed()) {
         Log.w(TAG, "Registration isn't complete, but only because PIN creation failed. Allowing CDS to continue.")
       } else {
         Log.w(TAG, "Registration is not yet complete. Skipping, but running a routine to possibly mark it complete.")
@@ -204,7 +204,7 @@ object ContactDiscovery {
   }
 
   private fun notifyNewUsers(context: Context, newUserIds: Collection<RecipientId>) {
-    if (!SignalStore.settings().isNotifyWhenContactJoinsSignal) return
+    if (!SignalStore.settings.isNotifyWhenContactJoinsSignal) return
 
     Recipient.resolvedList(newUserIds)
       .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) && it.hasE164 }
@@ -238,7 +238,7 @@ object ContactDiscovery {
     contactsProvider: () -> ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter(context)) },
     clearInfoForMissingContacts: Boolean
   ) {
-    val localNumber: String = SignalStore.account().e164 ?: ""
+    val localNumber: String = SignalStore.account.e164 ?: ""
     val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts)
     try {
       contactsProvider().use { iterator ->

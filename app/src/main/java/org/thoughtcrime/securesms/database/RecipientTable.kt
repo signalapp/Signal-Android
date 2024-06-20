@@ -2080,7 +2080,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     db.beginTransaction()
     try {
       val id = Recipient.self().id
-      val newId = getAndPossiblyMerge(aci = SignalStore.account().requireAci(), pni = pni, e164 = e164, pniVerified = true, changeSelf = true)
+      val newId = getAndPossiblyMerge(aci = SignalStore.account.requireAci(), pni = pni, e164 = e164, pniVerified = true, changeSelf = true)
 
       if (id == newId) {
         Log.i(TAG, "[updateSelfPhone] Phone updated for self")
@@ -2516,24 +2516,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
                 val record = getRecord(operation.recipientId)
                 Log.e(TAG, "ID: ${record.id}, E164: ${record.e164}, ACI: ${record.aci}, PNI: ${record.pni}, Registered: ${record.registered}", true)
 
-                if (record.aci != null && record.aci == SignalStore.account().aci) {
-                  if (pnisWithSessions.contains(SignalStore.account().pni!!)) {
+                if (record.aci != null && record.aci == SignalStore.account.aci) {
+                  if (pnisWithSessions.contains(SignalStore.account.pni!!)) {
                     throw SseWithSelfAci(e)
                   } else {
                     throw SseWithSelfAciNoSession(e)
                   }
                 }
 
-                if (record.pni != null && record.pni == SignalStore.account().pni) {
-                  if (pnisWithSessions.contains(SignalStore.account().pni!!)) {
+                if (record.pni != null && record.pni == SignalStore.account.pni) {
+                  if (pnisWithSessions.contains(SignalStore.account.pni!!)) {
                     throw SseWithSelfPni(e)
                   } else {
                     throw SseWithSelfPniNoSession(e)
                   }
                 }
 
-                if (record.e164 != null && record.e164 == SignalStore.account().e164) {
-                  if (pnisWithSessions.contains(SignalStore.account().pni!!)) {
+                if (record.e164 != null && record.e164 == SignalStore.account.e164) {
+                  if (pnisWithSessions.contains(SignalStore.account.pni!!)) {
                     throw SseWithSelfE164(e)
                   } else {
                     throw SseWithSelfE164NoSession(e)
@@ -2543,7 +2543,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
                 if (pnisWithSessions.isEmpty()) {
                   throw SseWithNoPniSessionsException(e)
                 } else if (pnisWithSessions.size == 1) {
-                  if (pnisWithSessions.first() == SignalStore.account().pni) {
+                  if (pnisWithSessions.first() == SignalStore.account.pni) {
                     throw SseWithASinglePniSessionForSelfException(e)
                   } else {
                     throw SseWithASinglePniSessionException(e)
@@ -2782,9 +2782,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   private fun notSelf(e164: String?, pni: PNI?, aci: ACI?): Boolean {
-    return (e164 == null || e164 != SignalStore.account().e164) &&
-      (pni == null || pni != SignalStore.account().pni) &&
-      (aci == null || aci != SignalStore.account().aci)
+    return (e164 == null || e164 != SignalStore.account.e164) &&
+      (pni == null || pni != SignalStore.account.pni) &&
+      (aci == null || aci != SignalStore.account.aci)
   }
 
   private fun isSelf(data: PnpDataSet): Boolean {
@@ -2792,9 +2792,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   private fun isSelf(e164: String?, pni: PNI?, aci: ACI?): Boolean {
-    return (e164 != null && e164 == SignalStore.account().e164) ||
-      (pni != null && pni == SignalStore.account().pni) ||
-      (aci != null && aci == SignalStore.account().aci)
+    return (e164 != null && e164 == SignalStore.account.e164) ||
+      (pni != null && pni == SignalStore.account.pni) ||
+      (aci != null && aci == SignalStore.account.aci)
   }
 
   private fun processNonMergePnpUpdate(e164: String?, pni: PNI?, aci: ACI?, pniVerified: Boolean, changeSelf: Boolean, commonId: RecipientId, breadCrumbs: MutableList<String>): PnpChangeSet {

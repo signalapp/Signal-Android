@@ -14,7 +14,7 @@ class StorageServicePlugin : Plugin {
     val rows = mutableListOf<List<String>>()
 
     val manager = AppDependencies.signalServiceAccountManager
-    val storageServiceKey = SignalStore.storageService().orCreateStorageKey
+    val storageServiceKey = SignalStore.storageService.orCreateStorageKey
     val storageManifestVersion = manager.storageManifestVersion
     val manifest = manager.getStorageManifestIfDifferentVersion(storageServiceKey, storageManifestVersion - 1).get()
     val signalStorageRecords = manager.readStorageRecords(storageServiceKey, manifest.storageIds)

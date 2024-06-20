@@ -440,7 +440,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
       if (RemoteConfig.callingFieldTrialAnyAddressPortsKillSwitch()) {
         fieldTrials.put("RingRTC-AnyAddressPortsKillSwitch", "Enabled");
       }
-      if (!SignalStore.internalValues().callingDisableLBRed()) {
+      if (!SignalStore.internal().callingDisableLBRed()) {
         fieldTrials.put("RingRTC-Audio-LBRed-For-Opus", "Enabled,bitrate_pri:22000");
       }
       CallManager.initialize(this, new RingRtcLogger(), fieldTrials);
@@ -461,7 +461,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   }
 
   private void ensureProfileUploaded() {
-    if (SignalStore.account().isRegistered() && !SignalStore.registrationValues().hasUploadedProfile() && !Recipient.self().getProfileName().isEmpty()) {
+    if (SignalStore.account().isRegistered() && !SignalStore.registration().hasUploadedProfile() && !Recipient.self().getProfileName().isEmpty()) {
       Log.w(TAG, "User has a profile, but has not uploaded one. Uploading now.");
       AppDependencies.getJobManager().add(new ProfileUploadJob());
     }

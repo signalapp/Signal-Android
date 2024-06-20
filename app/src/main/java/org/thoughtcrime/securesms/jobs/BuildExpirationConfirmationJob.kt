@@ -41,19 +41,19 @@ class BuildExpirationConfirmationJob private constructor(params: Parameters) : J
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
-    if (Util.getTimeUntilBuildExpiry(SignalStore.misc().estimatedServerTime) > 0) {
+    if (Util.getTimeUntilBuildExpiry(SignalStore.misc.estimatedServerTime) > 0) {
       Log.i(TAG, "Build not expired.", true)
       return Result.success()
     }
 
-    if (SignalStore.misc().isClientDeprecated) {
+    if (SignalStore.misc.isClientDeprecated) {
       Log.i(TAG, "Build already marked expired. Nothing to do.", true)
       return Result.success()
     }
 
-    if (!SignalStore.account().isRegistered) {
+    if (!SignalStore.account.isRegistered) {
       Log.w(TAG, "Not registered. Can't check the server time, so assuming deprecated.", true)
-      SignalStore.misc().isClientDeprecated = true
+      SignalStore.misc.isClientDeprecated = true
       return Result.success()
     }
 
@@ -64,11 +64,11 @@ class BuildExpirationConfirmationJob private constructor(params: Parameters) : J
     return when (result) {
       is NetworkResult.Success -> {
         val serverTimeMs = result.result.serverEpochTimeSeconds.seconds.inWholeMilliseconds
-        SignalStore.misc().setLastKnownServerTime(serverTimeMs, System.currentTimeMillis())
+        SignalStore.misc.setLastKnownServerTime(serverTimeMs, System.currentTimeMillis())
 
         if (Util.getTimeUntilBuildExpiry(serverTimeMs) <= 0) {
           Log.w(TAG, "Build confirmed expired! Server time: $serverTimeMs, Local time: ${System.currentTimeMillis()}, Build time: ${BuildConfig.BUILD_TIMESTAMP}, Time since expiry: ${serverTimeMs - BuildConfig.BUILD_TIMESTAMP}", true)
-          SignalStore.misc().isClientDeprecated = true
+          SignalStore.misc.isClientDeprecated = true
         } else {
           Log.w(TAG, "Build not actually expired! Likely bad local clock. Server time: $serverTimeMs, Local time: ${System.currentTimeMillis()}, Build time: ${BuildConfig.BUILD_TIMESTAMP}")
         }

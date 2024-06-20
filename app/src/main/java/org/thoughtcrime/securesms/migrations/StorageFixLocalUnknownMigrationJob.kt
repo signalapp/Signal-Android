@@ -28,7 +28,7 @@ internal class StorageFixLocalUnknownMigrationJob(
 
   @Suppress("UsePropertyAccessSyntax")
   override fun performMigration() {
-    val localStorageIds = SignalStore.storageService().getManifest().storageIds.toSet()
+    val localStorageIds = SignalStore.storageService.getManifest().storageIds.toSet()
     val unknownLocalIds = SignalDatabase.unknownStorageIds.getAllUnknownIds().toSet()
     val danglingLocalUnknownIds = unknownLocalIds - localStorageIds
 

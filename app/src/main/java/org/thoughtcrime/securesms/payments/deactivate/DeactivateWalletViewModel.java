@@ -17,7 +17,7 @@ public class DeactivateWalletViewModel extends ViewModel {
   private final SingleLiveEvent<Result> deactivatePaymentResults = new SingleLiveEvent<>();
 
   public DeactivateWalletViewModel() {
-    balance = Transformations.map(SignalStore.paymentsValues().liveMobileCoinBalance(), Balance::getFullAmount);
+    balance = Transformations.map(SignalStore.payments().liveMobileCoinBalance(), Balance::getFullAmount);
   }
 
   void deactivateWallet() {

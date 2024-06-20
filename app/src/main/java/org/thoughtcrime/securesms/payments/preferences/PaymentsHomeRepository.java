@@ -23,7 +23,7 @@ public class PaymentsHomeRepository {
 
   public void activatePayments(@NonNull AsynchronousCallback.WorkerThread<Void, Error> callback) {
     SignalExecutors.BOUNDED.execute(() -> {
-      SignalStore.paymentsValues().setMobileCoinPaymentsEnabled(true);
+      SignalStore.payments().setMobileCoinPaymentsEnabled(true);
       try {
         ProfileUtil.uploadProfile(AppDependencies.getApplication());
         AppDependencies.getJobManager()
@@ -32,15 +32,15 @@ public class PaymentsHomeRepository {
                        .enqueue();
         callback.onComplete(null);
       } catch (PaymentsRegionException e) {
-        SignalStore.paymentsValues().setMobileCoinPaymentsEnabled(false);
+        SignalStore.payments().setMobileCoinPaymentsEnabled(false);
         Log.w(TAG, "Problem enabling payments in region", e);
         callback.onError(Error.RegionError);
       } catch (NonSuccessfulResponseCodeException e) {
-        SignalStore.paymentsValues().setMobileCoinPaymentsEnabled(false);
+        SignalStore.payments().setMobileCoinPaymentsEnabled(false);
         Log.w(TAG, "Problem enabling payments", e);
         callback.onError(Error.NetworkError);
       } catch (IOException e) {
-        SignalStore.paymentsValues().setMobileCoinPaymentsEnabled(false);
+        SignalStore.payments().setMobileCoinPaymentsEnabled(false);
         Log.w(TAG, "Problem enabling payments", e);
         tryToRestoreProfile();
         callback.onError(Error.NetworkError);
@@ -59,9 +59,9 @@ public class PaymentsHomeRepository {
 
   public void deactivatePayments(@NonNull Consumer<Boolean> consumer) {
     SignalExecutors.BOUNDED.execute(() -> {
-      SignalStore.paymentsValues().setMobileCoinPaymentsEnabled(false);
+      SignalStore.payments().setMobileCoinPaymentsEnabled(false);
       AppDependencies.getJobManager().add(new ProfileUploadJob());
-      consumer.accept(!SignalStore.paymentsValues().mobileCoinPaymentsEnabled());
+      consumer.accept(!SignalStore.payments().mobileCoinPaymentsEnabled());
     });
   }
 

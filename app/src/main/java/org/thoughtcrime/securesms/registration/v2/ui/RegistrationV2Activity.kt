@@ -62,11 +62,11 @@ class RegistrationV2Activity : BaseActivity() {
   }
 
   private fun handleSuccessfulVerify() {
-    if (SignalStore.misc().hasLinkedDevices) {
-      SignalStore.misc().shouldShowLinkedDevicesReminder = sharedViewModel.isReregister
+    if (SignalStore.misc.hasLinkedDevices) {
+      SignalStore.misc.shouldShowLinkedDevicesReminder = sharedViewModel.isReregister
     }
 
-    if (SignalStore.storageService().needsAccountRestore()) {
+    if (SignalStore.storageService.needsAccountRestore()) {
       Log.i(TAG, "Performing pin restore.")
       startActivity(Intent(this, PinRestoreActivity::class.java))
       finish()
@@ -86,7 +86,7 @@ class RegistrationV2Activity : BaseActivity() {
       val startIntent = MainActivity.clearTop(this).apply {
         if (needsPin) {
           putExtra("next_intent", CreateSvrPinActivity.getIntentForPinCreate(this@RegistrationV2Activity))
-        } else if (!SignalStore.registrationValues().hasSkippedTransferOrRestore() && RemoteConfig.messageBackups) {
+        } else if (!SignalStore.registration.hasSkippedTransferOrRestore() && RemoteConfig.messageBackups) {
           putExtra("next_intent", RemoteRestoreActivity.getIntent(this@RegistrationV2Activity))
         } else if (needsProfile) {
           putExtra("next_intent", CreateProfileActivity.getIntentForUserProfile(this@RegistrationV2Activity))

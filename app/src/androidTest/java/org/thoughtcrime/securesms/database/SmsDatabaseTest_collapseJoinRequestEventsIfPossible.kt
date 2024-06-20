@@ -46,8 +46,8 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
     recipients = SignalDatabase.recipients
     sms = SignalDatabase.messages
 
-    SignalStore.account().setAci(localAci)
-    SignalStore.account().setPni(localPni)
+    SignalStore.account.setAci(localAci)
+    SignalStore.account.setPni(localPni)
 
     alice = recipients.getOrInsertFromServiceId(aliceServiceId)
     bob = recipients.getOrInsertFromServiceId(bobServiceId)
@@ -291,7 +291,7 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
 
     val updateDescription = GV2UpdateDescription(
       gv2ChangeDescription = groupContext,
-      groupChangeUpdate = GroupsV2UpdateMessageConverter.translateDecryptedChangeUpdate(SignalStore.account().getServiceIds(), groupContext)
+      groupChangeUpdate = GroupsV2UpdateMessageConverter.translateDecryptedChangeUpdate(SignalStore.account.getServiceIds(), groupContext)
     )
 
     return IncomingMessage.groupUpdate(

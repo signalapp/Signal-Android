@@ -39,7 +39,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
 
   private val context = context.applicationContext
 
-  fun isReadReceiptsEnabled(): Boolean = SignalStore.storyValues().viewedReceiptsEnabled
+  fun isReadReceiptsEnabled(): Boolean = SignalStore.story.viewedReceiptsEnabled
 
   private fun getStoryRecords(recipientId: RecipientId, isOutgoingOnly: Boolean): Observable<List<MessageRecord>> {
     return Observable.create { emitter ->
@@ -179,7 +179,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
           AppDependencies.databaseObserver.notifyConversationListListeners()
 
           if (storyPost.sender.isReleaseNotes) {
-            SignalStore.storyValues().userHasViewedOnboardingStory = true
+            SignalStore.story.userHasViewedOnboardingStory = true
             Stories.onStorySettingsChanged(Recipient.self().id)
           } else {
             AppDependencies.jobManager.add(

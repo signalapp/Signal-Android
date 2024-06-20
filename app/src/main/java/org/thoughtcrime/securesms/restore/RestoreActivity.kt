@@ -88,7 +88,7 @@ class RestoreActivity : BaseActivity() {
 
     @JvmStatic
     fun getIntentForTransferOrRestore(context: Context): Intent {
-      val tier = SignalStore.backup().backupTier
+      val tier = SignalStore.backup.backupTier
       if (tier == MessageBackupTier.PAID) {
         return Intent(context, RemoteRestoreActivity::class.java)
       }

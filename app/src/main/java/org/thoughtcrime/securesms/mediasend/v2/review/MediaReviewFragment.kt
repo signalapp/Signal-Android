@@ -112,7 +112,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
   private var animatorSet: AnimatorSet? = null
   private var disposables: LifecycleDisposable = LifecycleDisposable()
-  private var sentMediaQuality: SentMediaQuality = SignalStore.settings().sentMediaQuality
+  private var sentMediaQuality: SentMediaQuality = SignalStore.settings.sentMediaQuality
   private var viewOnceToggleState: MediaSelectionState.ViewOnceToggleState = MediaSelectionState.ViewOnceToggleState.default
 
   private var scheduledSendTime: Long? = null
@@ -274,7 +274,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       sharedViewModel.incrementViewOnceState()
     }
 
-    if (!SignalStore.settings().isPreferSystemEmoji) {
+    if (!SignalStore.settings.isPreferSystemEmoji) {
       emojiButton.setOnClickListener {
         AddMessageDialogFragment.show(parentFragmentManager, sharedViewModel.state.value?.message, true)
       }
@@ -663,7 +663,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeEmojiButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && !SignalStore.settings().isPreferSystemEmoji && state.viewOnceToggleState != MediaSelectionState.ViewOnceToggleState.ONCE) {
+    return if (state.isTouchEnabled && !SignalStore.settings.isPreferSystemEmoji && state.viewOnceToggleState != MediaSelectionState.ViewOnceToggleState.ONCE) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(emojiButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(emojiButton))

@@ -458,8 +458,8 @@ open class MessageContentProcessor(private val context: Context) {
 
         val message: CallMessage = content.callMessage!!
 
-        if (message.destinationDeviceId != null && message.destinationDeviceId != SignalStore.account().deviceId) {
-          log(envelope.timestamp!!, "Ignoring call message that is not for this device! intended: ${message.destinationDeviceId}, this: ${SignalStore.account().deviceId}")
+        if (message.destinationDeviceId != null && message.destinationDeviceId != SignalStore.account.deviceId) {
+          log(envelope.timestamp!!, "Ignoring call message that is not for this device! intended: ${message.destinationDeviceId}, this: ${SignalStore.account.deviceId}")
           return
         }
 
@@ -566,7 +566,7 @@ open class MessageContentProcessor(private val context: Context) {
       return
     }
 
-    if (decryptionErrorMessage.deviceId != SignalStore.account().deviceId) {
+    if (decryptionErrorMessage.deviceId != SignalStore.account.deviceId) {
       log(envelope.timestamp!!, "[RetryReceipt] Received a DecryptionErrorMessage targeting a linked device. Ignoring.")
       return
     }

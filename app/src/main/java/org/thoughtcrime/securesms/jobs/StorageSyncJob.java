@@ -185,7 +185,7 @@ public class StorageSyncJob extends BaseJob {
       return;
     }
 
-    if (SignalStore.internalValues().storageServiceDisabled()) {
+    if (SignalStore.internal().storageServiceDisabled()) {
       Log.w(TAG, "Storage service has been manually disabled. Skipping.");
       return;
     }

@@ -186,7 +186,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   @Override
   public void onFailure() {
     if (terminalDonation.error != null) {
-      SignalStore.donationsValues().appendToTerminalDonationQueue(terminalDonation);
+      SignalStore.donations().appendToTerminalDonationQueue(terminalDonation);
     } else {
       Log.w(TAG, "Job is in terminal state without an error on TerminalDonation.");
     }
@@ -242,7 +242,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                              .serialize());
 
       if (donationErrorSource == DonationErrorSource.GIFT) {
-        SignalStore.donationsValues().setPendingOneTimeDonation(null);
+        SignalStore.donations().setPendingOneTimeDonation(null);
       }
     } else {
       Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orElse(null), true);
@@ -261,7 +261,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         .code(Integer.toString(statusCode))
         .build();
 
-    SignalStore.donationsValues().setPendingOneTimeDonationError(
+    SignalStore.donations().setPendingOneTimeDonationError(
        donationErrorValue
     );
 
@@ -301,7 +301,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         .code(code)
         .build();
 
-    SignalStore.donationsValues().setPendingOneTimeDonationError(
+    SignalStore.donations().setPendingOneTimeDonationError(
         donationErrorValue
     );
 

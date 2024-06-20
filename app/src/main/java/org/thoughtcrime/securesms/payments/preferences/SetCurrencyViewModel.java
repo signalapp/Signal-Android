@@ -43,10 +43,10 @@ public final class SetCurrencyViewModel extends ViewModel {
   private final LiveData<CurrencyListState> list;
 
   public SetCurrencyViewModel(@NonNull CurrencyExchangeRepository currencyExchangeRepository) {
-    this.store = new Store<>(new SetCurrencyState(SignalStore.paymentsValues().currentCurrency()));
+    this.store = new Store<>(new SetCurrencyState(SignalStore.payments().currentCurrency()));
     this.list  = Transformations.map(this.store.getStateLiveData(), this::createListState);
 
-    this.store.update(SignalStore.paymentsValues().liveCurrentCurrency(), (currency, state) -> state.updateCurrentCurrency(currency));
+    this.store.update(SignalStore.payments().liveCurrentCurrency(), (currency, state) -> state.updateCurrentCurrency(currency));
 
     currencyExchangeRepository.getCurrencyExchange(new AsynchronousCallback.WorkerThread<CurrencyExchange, Throwable>() {
       @Override
@@ -63,7 +63,7 @@ public final class SetCurrencyViewModel extends ViewModel {
   }
 
   public void select(@NonNull Currency selection) {
-    SignalStore.paymentsValues().setCurrentCurrency(selection);
+    SignalStore.payments().setCurrentCurrency(selection);
   }
 
   public LiveData<CurrencyListState> getCurrencyListState() {

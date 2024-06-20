@@ -114,7 +114,7 @@ object MyStoriesItem {
       presentDateOrStatus(model)
 
       if (model.distributionStory.messageRecord.isSent) {
-        if (SignalStore.storyValues().viewedReceiptsEnabled) {
+        if (SignalStore.story.viewedReceiptsEnabled) {
           viewCount.text = context.resources.getQuantityString(
             R.plurals.MyStories__d_views,
             model.distributionStory.views,

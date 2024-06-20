@@ -5,7 +5,7 @@ import androidx.annotation.VisibleForTesting
 /**
  * Values for managing enable/disable state and corresponding alerts for Notification Profiles.
  */
-internal class NotificationProfileValues(store: KeyValueStore) : SignalStoreValues(store) {
+class NotificationProfileValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   companion object {
     private const val KEY_LAST_PROFILE_POPUP = "np.last_profile_popup"
@@ -22,9 +22,9 @@ internal class NotificationProfileValues(store: KeyValueStore) : SignalStoreValu
     const val KEY_MANUALLY_DISABLED_AT = "np.manually_disabled_at"
   }
 
-  override fun onFirstEverAppLaunch() = Unit
+  public override fun onFirstEverAppLaunch() = Unit
 
-  override fun getKeysToIncludeInBackup(): MutableList<String> {
+  public override fun getKeysToIncludeInBackup(): MutableList<String> {
     return mutableListOf(KEY_SEEN_TOOLTIP)
   }
 

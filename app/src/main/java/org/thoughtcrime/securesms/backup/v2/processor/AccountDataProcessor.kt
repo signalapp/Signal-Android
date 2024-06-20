@@ -35,10 +35,10 @@ object AccountDataProcessor {
   fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
     val context = AppDependencies.application
 
-    val selfId = db.recipientTable.getByAci(SignalStore.account().aci!!).get()
+    val selfId = db.recipientTable.getByAci(SignalStore.account.aci!!).get()
     val selfRecord = db.recipientTable.getRecordForSync(selfId)!!
 
-    val donationCurrency = SignalStore.donationsValues().getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
+    val donationCurrency = SignalStore.donations.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
     val donationSubscriber = SignalDatabase.inAppPaymentSubscribers.getByCurrencyCode(donationCurrency.currencyCode, InAppPaymentSubscriberRecord.Type.DONATION)
 
     emitter.emit(
@@ -50,23 +50,23 @@ object AccountDataProcessor {
           avatarUrlPath = selfRecord.signalProfileAvatar ?: "",
           username = selfRecord.username,
           accountSettings = AccountData.AccountSettings(
-            storyViewReceiptsEnabled = SignalStore.storyValues().viewedReceiptsEnabled,
+            storyViewReceiptsEnabled = SignalStore.story.viewedReceiptsEnabled,
             typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context),
             readReceipts = TextSecurePreferences.isReadReceiptsEnabled(context),
             sealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
-            linkPreviews = SignalStore.settings().isLinkPreviewsEnabled,
-            notDiscoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE,
-            phoneNumberSharingMode = SignalStore.phoneNumberPrivacy().phoneNumberSharingMode.toBackupPhoneNumberSharingMode(),
-            preferContactAvatars = SignalStore.settings().isPreferSystemContactPhotos,
-            universalExpireTimer = SignalStore.settings().universalExpireTimer,
-            preferredReactionEmoji = SignalStore.emojiValues().rawReactions,
-            storiesDisabled = SignalStore.storyValues().isFeatureDisabled,
-            hasViewedOnboardingStory = SignalStore.storyValues().userHasViewedOnboardingStory,
-            hasSetMyStoriesPrivacy = SignalStore.storyValues().userHasBeenNotifiedAboutStories,
-            keepMutedChatsArchived = SignalStore.settings().shouldKeepMutedChatsArchived(),
-            displayBadgesOnProfile = SignalStore.donationsValues().getDisplayBadgesOnProfile(),
-            hasSeenGroupStoryEducationSheet = SignalStore.storyValues().userHasSeenGroupStoryEducationSheet,
-            hasCompletedUsernameOnboarding = SignalStore.uiHints().hasCompletedUsernameOnboarding()
+            linkPreviews = SignalStore.settings.isLinkPreviewsEnabled,
+            notDiscoverableByPhoneNumber = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE,
+            phoneNumberSharingMode = SignalStore.phoneNumberPrivacy.phoneNumberSharingMode.toBackupPhoneNumberSharingMode(),
+            preferContactAvatars = SignalStore.settings.isPreferSystemContactPhotos,
+            universalExpireTimer = SignalStore.settings.universalExpireTimer,
+            preferredReactionEmoji = SignalStore.emoji.rawReactions,
+            storiesDisabled = SignalStore.story.isFeatureDisabled,
+            hasViewedOnboardingStory = SignalStore.story.userHasViewedOnboardingStory,
+            hasSetMyStoriesPrivacy = SignalStore.story.userHasBeenNotifiedAboutStories,
+            keepMutedChatsArchived = SignalStore.settings.shouldKeepMutedChatsArchived(),
+            displayBadgesOnProfile = SignalStore.donations.getDisplayBadgesOnProfile(),
+            hasSeenGroupStoryEducationSheet = SignalStore.story.userHasSeenGroupStoryEducationSheet,
+            hasCompletedUsernameOnboarding = SignalStore.uiHints.hasCompletedUsernameOnboarding()
           ),
           donationSubscriberData = AccountData.SubscriberData(
             subscriberId = donationSubscriber?.subscriberId?.bytes?.toByteString() ?: defaultAccountRecord.subscriberId,
@@ -81,7 +81,7 @@ object AccountDataProcessor {
   fun import(accountData: AccountData, selfId: RecipientId) {
     SignalDatabase.recipients.restoreSelfFromBackup(accountData, selfId)
 
-    SignalStore.account().setRegistered(true)
+    SignalStore.account.setRegistered(true)
 
     val context = AppDependencies.application
     val settings = accountData.accountSettings
@@ -90,19 +90,19 @@ object AccountDataProcessor {
       TextSecurePreferences.setReadReceiptsEnabled(context, settings.readReceipts)
       TextSecurePreferences.setTypingIndicatorsEnabled(context, settings.typingIndicators)
       TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, settings.sealedSenderIndicators)
-      SignalStore.settings().isLinkPreviewsEnabled = settings.linkPreviews
-      SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = if (settings.notDiscoverableByPhoneNumber) PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberDiscoverabilityMode.DISCOVERABLE
-      SignalStore.phoneNumberPrivacy().phoneNumberSharingMode = settings.phoneNumberSharingMode.toLocalPhoneNumberMode()
-      SignalStore.settings().isPreferSystemContactPhotos = settings.preferContactAvatars
-      SignalStore.settings().universalExpireTimer = settings.universalExpireTimer
-      SignalStore.emojiValues().reactions = settings.preferredReactionEmoji
-      SignalStore.donationsValues().setDisplayBadgesOnProfile(settings.displayBadgesOnProfile)
-      SignalStore.settings().setKeepMutedChatsArchived(settings.keepMutedChatsArchived)
-      SignalStore.storyValues().userHasBeenNotifiedAboutStories = settings.hasSetMyStoriesPrivacy
-      SignalStore.storyValues().userHasViewedOnboardingStory = settings.hasViewedOnboardingStory
-      SignalStore.storyValues().isFeatureDisabled = settings.storiesDisabled
-      SignalStore.storyValues().userHasSeenGroupStoryEducationSheet = settings.hasSeenGroupStoryEducationSheet
-      SignalStore.storyValues().viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
+      SignalStore.settings.isLinkPreviewsEnabled = settings.linkPreviews
+      SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (settings.notDiscoverableByPhoneNumber) PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberDiscoverabilityMode.DISCOVERABLE
+      SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = settings.phoneNumberSharingMode.toLocalPhoneNumberMode()
+      SignalStore.settings.isPreferSystemContactPhotos = settings.preferContactAvatars
+      SignalStore.settings.universalExpireTimer = settings.universalExpireTimer
+      SignalStore.emoji.reactions = settings.preferredReactionEmoji
+      SignalStore.donations.setDisplayBadgesOnProfile(settings.displayBadgesOnProfile)
+      SignalStore.settings.setKeepMutedChatsArchived(settings.keepMutedChatsArchived)
+      SignalStore.story.userHasBeenNotifiedAboutStories = settings.hasSetMyStoriesPrivacy
+      SignalStore.story.userHasViewedOnboardingStory = settings.hasViewedOnboardingStory
+      SignalStore.story.isFeatureDisabled = settings.storiesDisabled
+      SignalStore.story.userHasSeenGroupStoryEducationSheet = settings.hasSeenGroupStoryEducationSheet
+      SignalStore.story.viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
 
       if (accountData.donationSubscriberData != null) {
         if (accountData.donationSubscriberData.subscriberId.size > 0) {
@@ -121,7 +121,7 @@ object AccountDataProcessor {
         }
 
         if (accountData.donationSubscriberData.manuallyCancelled) {
-          SignalStore.donationsValues().updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
+          SignalStore.donations.updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
         }
       }
 
@@ -130,19 +130,19 @@ object AccountDataProcessor {
       }
 
       if (accountData.usernameLink != null) {
-        SignalStore.account().usernameLink = UsernameLinkComponents(
+        SignalStore.account.usernameLink = UsernameLinkComponents(
           accountData.usernameLink.entropy.toByteArray(),
           UuidUtil.parseOrThrow(accountData.usernameLink.serverId.toByteArray())
         )
-        SignalStore.misc().usernameQrCodeColorScheme = accountData.usernameLink.color.toLocalUsernameColor()
+        SignalStore.misc.usernameQrCodeColorScheme = accountData.usernameLink.color.toLocalUsernameColor()
       }
 
       if (settings.preferredReactionEmoji.isNotEmpty()) {
-        SignalStore.emojiValues().reactions = settings.preferredReactionEmoji
+        SignalStore.emoji.reactions = settings.preferredReactionEmoji
       }
 
       if (settings.hasCompletedUsernameOnboarding) {
-        SignalStore.uiHints().setHasCompletedUsernameOnboarding(true)
+        SignalStore.uiHints.setHasCompletedUsernameOnboarding(true)
       }
     }
 

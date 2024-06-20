@@ -141,7 +141,7 @@ class RestoreAttachmentThumbnailJob private constructor(
       throw InvalidPartException("empty encrypted key")
     }
 
-    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+    val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
     val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
     return try {
       val key = backupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName())
@@ -218,7 +218,7 @@ class RestoreAttachmentThumbnailJob private constructor(
     Log.w(TAG, "Downloading thumbnail for $attachmentId")
     val stream = messageReceiver
       .retrieveArchivedAttachment(
-        SignalStore.svr().getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(attachment.getThumbnailMediaName()),
+        SignalStore.svr.getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(attachment.getThumbnailMediaName()),
         cdnCredentials,
         thumbnailTransferFile,
         pointer,

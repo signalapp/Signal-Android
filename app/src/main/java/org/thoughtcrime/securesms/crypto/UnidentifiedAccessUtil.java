@@ -92,7 +92,7 @@ public class UnidentifiedAccessUtil {
     }
 
     CertificateType certificateType                  = getUnidentifiedAccessCertificateType();
-    byte[]          ourUnidentifiedAccessCertificate = SignalStore.certificateValues().getUnidentifiedAccessCertificate(certificateType);
+    byte[]          ourUnidentifiedAccessCertificate = SignalStore.certificate().getUnidentifiedAccessCertificate(certificateType);
 
     List<Optional<UnidentifiedAccessPair>> access = recipients.parallelStream().map(recipient -> {
       UnidentifiedAccessPair unidentifiedAccessPair = null;
@@ -157,7 +157,7 @@ public class UnidentifiedAccessUtil {
   }
 
   private static byte[] getUnidentifiedAccessCertificate() {
-    return SignalStore.certificateValues()
+    return SignalStore.certificate()
                       .getUnidentifiedAccessCertificate(getUnidentifiedAccessCertificateType());
   }
 

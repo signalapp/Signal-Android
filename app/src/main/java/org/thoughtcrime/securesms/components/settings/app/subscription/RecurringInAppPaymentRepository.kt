@@ -52,7 +52,7 @@ object RecurringInAppPaymentRepository {
         .subscribeOn(Schedulers.io())
         .flatMap(ServiceResponse<ActiveSubscription>::flattenResult)
         .doOnSuccess { activeSubscription ->
-          if (activeSubscription.isActive && activeSubscription.activeSubscription.endOfCurrentPeriod > SignalStore.donationsValues().getLastEndOfPeriod()) {
+          if (activeSubscription.isActive && activeSubscription.activeSubscription.endOfCurrentPeriod > SignalStore.donations.getLastEndOfPeriod()) {
             InAppPaymentKeepAliveJob.enqueueAndTrackTime(System.currentTimeMillis().milliseconds)
           }
         }
@@ -121,7 +121,7 @@ object RecurringInAppPaymentRepository {
         InAppPaymentsRepository.setSubscriber(
           InAppPaymentSubscriberRecord(
             subscriberId = subscriberId,
-            currency = SignalStore.donationsValues().getSubscriptionCurrency(subscriberType),
+            currency = SignalStore.donations.getSubscriptionCurrency(subscriberType),
             type = subscriberType,
             requiresCancel = false,
             paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN
@@ -141,7 +141,7 @@ object RecurringInAppPaymentRepository {
     serviceResponse.resultOrThrow
 
     Log.d(TAG, "Cancelled active subscription.", true)
-    SignalStore.donationsValues().updateLocalStateForManualCancellation(subscriberType)
+    SignalStore.donations.updateLocalStateForManualCancellation(subscriberType)
     MultiDeviceSubscriptionSyncRequestJob.enqueue()
     InAppPaymentsRepository.scheduleSyncForAccountRecordChange()
   }
@@ -157,7 +157,7 @@ object RecurringInAppPaymentRepository {
     return Single.fromCallable { InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberType) }.flatMapCompletable {
       if (it) {
         cancelActiveSubscription(subscriberType).doOnComplete {
-          SignalStore.donationsValues().updateLocalStateForManualCancellation(subscriberType)
+          SignalStore.donations.updateLocalStateForManualCancellation(subscriberType)
           MultiDeviceSubscriptionSyncRequestJob.enqueue()
         }
       } else {
@@ -212,14 +212,14 @@ object RecurringInAppPaymentRepository {
           .flatMapCompletable {
             if (it.status == 200 || it.status == 204) {
               Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${it.status}", true)
-              SignalStore.donationsValues().updateLocalStateForLocalSubscribe(subscriberType)
+              SignalStore.donations.updateLocalStateForLocalSubscribe(subscriberType)
               syncAccountRecord().subscribe()
               LevelUpdate.updateProcessingState(false)
               Completable.complete()
             } else {
               if (it.applicationError.isPresent) {
                 Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel with response code ${it.status}", it.applicationError.get(), true)
-                SignalStore.donationsValues().clearLevelOperations()
+                SignalStore.donations.clearLevelOperations()
               } else {
                 Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel", it.executionError.orElse(null), true)
               }
@@ -256,14 +256,14 @@ object RecurringInAppPaymentRepository {
 
   fun getOrCreateLevelUpdateOperation(tag: String, subscriptionLevel: String): LevelUpdateOperation {
     Log.d(tag, "Retrieving level update operation for $subscriptionLevel")
-    val levelUpdateOperation = SignalStore.donationsValues().getLevelOperation(subscriptionLevel)
+    val levelUpdateOperation = SignalStore.donations.getLevelOperation(subscriptionLevel)
     return if (levelUpdateOperation == null) {
       val newOperation = LevelUpdateOperation(
         idempotencyKey = IdempotencyKey.generate(),
         level = subscriptionLevel
       )
 
-      SignalStore.donationsValues().setLevelOperation(newOperation)
+      SignalStore.donations.setLevelOperation(newOperation)
       LevelUpdate.updateProcessingState(true)
       Log.d(tag, "Created a new operation for $subscriptionLevel")
       newOperation
@@ -281,7 +281,7 @@ object RecurringInAppPaymentRepository {
   private fun updateLocalSubscriptionStateAndScheduleDataSync(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
     return Completable.fromAction {
       Log.d(TAG, "Marking subscription cancelled...", true)
-      SignalStore.donationsValues().updateLocalStateForManualCancellation(subscriberType)
+      SignalStore.donations.updateLocalStateForManualCancellation(subscriberType)
       MultiDeviceSubscriptionSyncRequestJob.enqueue()
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()

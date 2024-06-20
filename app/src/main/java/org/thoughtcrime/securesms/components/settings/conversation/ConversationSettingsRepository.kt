@@ -84,7 +84,7 @@ class ConversationSettingsRepository(
     }
   }
 
-  fun isInternalRecipientDetailsEnabled(): Boolean = SignalStore.internalValues().recipientDetails()
+  fun isInternalRecipientDetailsEnabled(): Boolean = SignalStore.internal.recipientDetails()
 
   fun hasGroups(consumer: (Boolean) -> Unit) {
     SignalExecutors.BOUNDED.execute { consumer(SignalDatabase.groups.getActiveGroupCount() > 0) }
@@ -92,7 +92,7 @@ class ConversationSettingsRepository(
 
   fun getIdentity(recipientId: RecipientId, consumer: (IdentityRecord?) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      if (SignalStore.account().aci != null && SignalStore.account().pni != null) {
+      if (SignalStore.account.aci != null && SignalStore.account.pni != null) {
         consumer(AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipientId).orElse(null))
       } else {
         consumer(null)

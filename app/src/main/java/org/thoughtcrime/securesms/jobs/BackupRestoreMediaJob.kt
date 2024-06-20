@@ -43,7 +43,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
   override fun onFailure() = Unit
 
   override fun onRun() {
-    if (!SignalStore.account().isRegistered) {
+    if (!SignalStore.account.isRegistered) {
       Log.e(TAG, "Not registered, cannot restore!")
       throw NotPushRegisteredException()
     }
@@ -58,7 +58,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
       val messageMap = SignalDatabase.messages.getMessages(messageIds).associate { it.id to (it as MmsMessageRecord) }
       restoreJobBatch = SignalDatabase.attachments.getRestorableAttachments(batchSize).map { attachment ->
         val message = messageMap[attachment.mmsId]!!
-        if (shouldRestoreFullSize(message, restoreTime, SignalStore.backup().optimizeStorage)) {
+        if (shouldRestoreFullSize(message, restoreTime, SignalStore.backup.optimizeStorage)) {
           RestoreAttachmentJob(
             messageId = attachment.mmsId,
             attachmentId = attachment.attachmentId,

@@ -42,7 +42,7 @@ class TerminalDonationDelegate(
   private val badgeRepository = TerminalDonationRepository()
 
   override fun onResume(owner: LifecycleOwner) {
-    val donations = SignalStore.donationsValues().consumeTerminalDonations()
+    val donations = SignalStore.donations.consumeTerminalDonations()
     for (donation in donations) {
       if (donation.isLongRunningPaymentMethod && (donation.error == null || donation.error.type != DonationErrorValue.Type.REDEMPTION)) {
         TerminalDonationBottomSheet.show(fragmentManager, donation)
@@ -57,7 +57,7 @@ class TerminalDonationDelegate(
       }
     }
 
-    val verifiedMonthlyDonation: Stripe3DSData? = SignalStore.donationsValues().consumeVerifiedSubscription3DSData()
+    val verifiedMonthlyDonation: Stripe3DSData? = SignalStore.donations.consumeVerifiedSubscription3DSData()
     if (verifiedMonthlyDonation != null) {
       DonationPendingBottomSheet().apply {
         arguments = DonationPendingBottomSheetArgs.Builder(verifiedMonthlyDonation.inAppPayment).build().toBundle()
@@ -80,7 +80,7 @@ class TerminalDonationDelegate(
           DonationPendingBottomSheet().apply {
             arguments = DonationPendingBottomSheetArgs.Builder(payment).build().toBundle()
           }.show(fragmentManager, null)
-        } else if (payment.data.error != null && payment.data.cancellation != null && payment.data.cancellation.reason != InAppPaymentData.Cancellation.Reason.MANUAL && SignalStore.donationsValues().showMonthlyDonationCanceledDialog) {
+        } else if (payment.data.error != null && payment.data.cancellation != null && payment.data.cancellation.reason != InAppPaymentData.Cancellation.Reason.MANUAL && SignalStore.donations.showMonthlyDonationCanceledDialog) {
           MonthlyDonationCanceledBottomSheetDialogFragment.show(fragmentManager)
         }
       }

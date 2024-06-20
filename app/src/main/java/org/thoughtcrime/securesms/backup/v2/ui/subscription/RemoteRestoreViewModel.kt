@@ -34,8 +34,8 @@ class RemoteRestoreViewModel : ViewModel() {
 
   private val _state: MutableState<ScreenState> = mutableStateOf(
     ScreenState(
-      backupTier = SignalStore.backup().backupTier,
-      backupTime = SignalStore.backup().lastBackupTime,
+      backupTier = SignalStore.backup.backupTier,
+      backupTime = SignalStore.backup.lastBackupTime,
       importState = ImportState.NONE,
       restoreProgress = null
     )

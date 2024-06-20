@@ -50,11 +50,11 @@ object RemoteConfig {
   @JvmStatic
   @Synchronized
   fun init() {
-    val current = parseStoredConfig(SignalStore.remoteConfigValues().currentConfig)
-    val pending = parseStoredConfig(SignalStore.remoteConfigValues().pendingConfig)
+    val current = parseStoredConfig(SignalStore.remoteConfig.currentConfig)
+    val pending = parseStoredConfig(SignalStore.remoteConfig.pendingConfig)
     val changes = computeChanges(current, pending)
 
-    SignalStore.remoteConfigValues().currentConfig = mapToJson(pending)
+    SignalStore.remoteConfig.currentConfig = mapToJson(pending)
     REMOTE_VALUES.putAll(pending)
     triggerFlagChangeListeners(changes)
 
@@ -63,7 +63,7 @@ object RemoteConfig {
 
   @JvmStatic
   fun refreshIfNecessary() {
-    val timeSinceLastFetch = System.currentTimeMillis() - SignalStore.remoteConfigValues().lastFetchTime
+    val timeSinceLastFetch = System.currentTimeMillis() - SignalStore.remoteConfig.lastFetchTime
 
     if (timeSinceLastFetch < 0 || timeSinceLastFetch > FETCH_INTERVAL.inWholeMilliseconds) {
       Log.i(TAG, "Scheduling remote config refresh.")
@@ -85,7 +85,7 @@ object RemoteConfig {
   @Synchronized
   fun update(config: Map<String, Any?>) {
     val memory: Map<String, Any> = REMOTE_VALUES
-    val disk = parseStoredConfig(SignalStore.remoteConfigValues().pendingConfig)
+    val disk = parseStoredConfig(SignalStore.remoteConfig.pendingConfig)
 
     val remoteCapable: Set<String> = configsByKey.filterValues { it.active }.keys
     val hotSwap: Set<String> = configsByKey.filterValues { it.hotSwappable }.keys
@@ -93,12 +93,12 @@ object RemoteConfig {
 
     val result = updateInternal(config, memory, disk, remoteCapable, hotSwap, sticky)
 
-    SignalStore.remoteConfigValues().pendingConfig = mapToJson(result.disk)
+    SignalStore.remoteConfig.pendingConfig = mapToJson(result.disk)
     REMOTE_VALUES.clear()
     REMOTE_VALUES.putAll(result.memory)
     triggerFlagChangeListeners(result.memoryChanges)
 
-    SignalStore.remoteConfigValues().lastFetchTime = System.currentTimeMillis()
+    SignalStore.remoteConfig.lastFetchTime = System.currentTimeMillis()
 
     Log.i(TAG, "[Memory] Before: $memory")
     Log.i(TAG, "[Memory] After : ${result.memory}")
@@ -116,13 +116,13 @@ object RemoteConfig {
   @JvmStatic
   @get:Synchronized
   val debugDiskValues: Map<String, Any>
-    get() = TreeMap(parseStoredConfig(SignalStore.remoteConfigValues().currentConfig))
+    get() = TreeMap(parseStoredConfig(SignalStore.remoteConfig.currentConfig))
 
   /** Only for rendering debug info.  */
   @JvmStatic
   @get:Synchronized
   val debugPendingDiskValues: Map<String, Any>
-    get() = TreeMap(parseStoredConfig(SignalStore.remoteConfigValues().pendingConfig))
+    get() = TreeMap(parseStoredConfig(SignalStore.remoteConfig.pendingConfig))
 
   @JvmStatic
   @VisibleForTesting

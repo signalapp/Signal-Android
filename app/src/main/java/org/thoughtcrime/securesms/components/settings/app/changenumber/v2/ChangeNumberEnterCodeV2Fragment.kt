@@ -152,7 +152,7 @@ class ChangeNumberEnterCodeV2Fragment : LoggingFragment(R.layout.fragment_change
   }
 
   private fun navigateUp() {
-    if (SignalStore.misc().isChangeNumberLocked) {
+    if (SignalStore.misc.isChangeNumberLocked) {
       Log.d(TAG, "Change number locked, navigateUp")
       startActivity(ChangeNumberLockV2Activity.createIntent(requireContext()))
     } else {

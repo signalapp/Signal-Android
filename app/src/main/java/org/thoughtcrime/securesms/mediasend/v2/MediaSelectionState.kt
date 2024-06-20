@@ -18,7 +18,7 @@ data class MediaSelectionState(
   val selectedMedia: List<Media> = listOf(),
   val focusedMedia: Media? = null,
   val recipient: Recipient? = null,
-  val quality: SentMediaQuality = SignalStore.settings().sentMediaQuality,
+  val quality: SentMediaQuality = SignalStore.settings.sentMediaQuality,
   val message: CharSequence? = null,
   val viewOnceToggleState: ViewOnceToggleState = ViewOnceToggleState.default,
   val isTouchEnabled: Boolean = true,

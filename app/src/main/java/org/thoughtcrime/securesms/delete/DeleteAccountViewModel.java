@@ -47,7 +47,7 @@ public class DeleteAccountViewModel extends ViewModel {
     this.countryDisplayName = Transformations.map(regionCode, repository::getRegionDisplayName);
     this.filteredCountries  = Transformations.map(query, q -> Stream.of(allCountries).filter(country -> isMatch(q, country)).toList());
     this.events             = new SingleLiveEvent<>();
-    this.walletBalance      = Transformations.map(SignalStore.paymentsValues().liveMobileCoinBalance(),
+    this.walletBalance      = Transformations.map(SignalStore.payments().liveMobileCoinBalance(),
                                                   DeleteAccountViewModel::getFormattedWalletBalance);
   }
 

@@ -33,7 +33,7 @@ class PromptBatterySaverDialogFragment : FixedRoundedCornerBottomSheetDialogFrag
         PromptBatterySaverDialogFragment().apply {
           arguments = bundleOf()
         }.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
-        SignalStore.uiHints().lastBatterySaverPrompt = System.currentTimeMillis()
+        SignalStore.uiHints.lastBatterySaverPrompt = System.currentTimeMillis()
       }
     }
   }
@@ -59,7 +59,7 @@ class PromptBatterySaverDialogFragment : FixedRoundedCornerBottomSheetDialogFrag
     }
     binding.dismissButton.setOnClickListener {
       Log.i(TAG, "User denied request to ignore battery optimizations.")
-      SignalStore.uiHints().markDismissedBatterySaverPrompt()
+      SignalStore.uiHints.markDismissedBatterySaverPrompt()
       dismiss()
     }
   }

@@ -65,7 +65,7 @@ class InAppPaymentKeepAliveJob private constructor(
     @JvmStatic
     fun enqueueAndTrackTimeIfNecessary() {
       // TODO -- This should only be enqueued if we are completely drained of old subscription jobs. (No pending, no runnning)
-      val lastKeepAliveTime = SignalStore.donationsValues().getLastKeepAliveLaunchTime().milliseconds
+      val lastKeepAliveTime = SignalStore.donations.getLastKeepAliveLaunchTime().milliseconds
       val now = System.currentTimeMillis().milliseconds
 
       if (lastKeepAliveTime > now) {
@@ -83,7 +83,7 @@ class InAppPaymentKeepAliveJob private constructor(
     fun enqueueAndTrackTime(now: Duration) {
       AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.DONATION))
       AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.BACKUP))
-      SignalStore.donationsValues().setLastKeepAliveLaunchTime(now.inWholeMilliseconds)
+      SignalStore.donations.setLastKeepAliveLaunchTime(now.inWholeMilliseconds)
     }
   }
 
@@ -212,7 +212,7 @@ class InAppPaymentKeepAliveJob private constructor(
 
     return if (current == null) {
       val oldInAppPayment = SignalDatabase.inAppPayments.getByLatestEndOfPeriod(type.inAppPaymentType)
-      val oldEndOfPeriod = oldInAppPayment?.endOfPeriod ?: SignalStore.donationsValues().getLastEndOfPeriod().seconds
+      val oldEndOfPeriod = oldInAppPayment?.endOfPeriod ?: SignalStore.donations.getLastEndOfPeriod().seconds
       if (oldEndOfPeriod > endOfCurrentPeriod) {
         warn(type, "Active subscription returned an old end-of-period. Exiting. (old: $oldEndOfPeriod, new: $endOfCurrentPeriod)")
         return null
@@ -239,7 +239,7 @@ class InAppPaymentKeepAliveJob private constructor(
 
       info(type, "End of period has changed. Requesting receipt refresh. (old: $oldEndOfPeriod, new: $endOfCurrentPeriod)")
       if (type == InAppPaymentSubscriberRecord.Type.DONATION) {
-        SignalStore.donationsValues().setLastEndOfPeriod(endOfCurrentPeriod.inWholeSeconds)
+        SignalStore.donations.setLastEndOfPeriod(endOfCurrentPeriod.inWholeSeconds)
       }
 
       val inAppPaymentId = SignalDatabase.inAppPayments.insert(

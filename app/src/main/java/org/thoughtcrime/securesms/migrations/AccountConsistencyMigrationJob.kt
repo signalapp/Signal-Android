@@ -24,12 +24,12 @@ internal class AccountConsistencyMigrationJob(
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    if (!SignalStore.account().hasAciIdentityKey()) {
+    if (!SignalStore.account.hasAciIdentityKey()) {
       Log.i(TAG, "No identity set yet, skipping.")
       return
     }
 
-    if (!SignalStore.account().isRegistered || SignalStore.account().aci == null) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
       Log.i(TAG, "Not yet registered, skipping.")
       return
     }

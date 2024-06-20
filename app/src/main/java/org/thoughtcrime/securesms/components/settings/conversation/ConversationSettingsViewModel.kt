@@ -50,7 +50,7 @@ sealed class ConversationSettingsViewModel(
   protected val store = Store(
     ConversationSettingsState(
       specificSettingsState = specificSettingsState,
-      isDeprecatedOrUnregistered = SignalStore.misc().isClientDeprecated || TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)
+      isDeprecatedOrUnregistered = SignalStore.misc.isClientDeprecated || TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)
     )
   )
   protected val internalEvents: Subject<ConversationSettingsEvent> = PublishSubject.create()
@@ -296,7 +296,7 @@ sealed class ConversationSettingsViewModel(
             isMuted = recipient.isMuted,
             isMuteAvailable = true,
             isSearchAvailable = callMessageIds.isEmpty(),
-            isAddToStoryAvailable = recipient.isPushV2Group && !recipient.isBlocked && isActive && !SignalStore.storyValues().isFeatureDisabled
+            isAddToStoryAvailable = recipient.isPushV2Group && !recipient.isBlocked && isActive && !SignalStore.story.isFeatureDisabled
           ),
           canModifyBlockedState = RecipientUtil.isBlockable(recipient),
           specificSettingsState = state.requireGroupSettingsState().copy(

@@ -321,7 +321,7 @@ class ConversationRepository(
           GroupsV1MigrationSuggestionsReminder(groupRecord.gv1MigrationSuggestions)
         }
 
-        isInBubble && !SignalStore.tooltips().hasSeenBubbleOptOutTooltip() && Build.VERSION.SDK_INT > 29 -> {
+        isInBubble && !SignalStore.tooltips.hasSeenBubbleOptOutTooltip() && Build.VERSION.SDK_INT > 29 -> {
           BubbleOptOutReminder()
         }
 

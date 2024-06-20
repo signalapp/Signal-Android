@@ -96,7 +96,7 @@ class MonthlyDonationCanceledBottomSheetDialogFragment : ComposeBottomSheetDialo
         dismissAllowingStateLoss()
       },
       onNotNowClicked = {
-        SignalStore.donationsValues().showMonthlyDonationCanceledDialog = false
+        SignalStore.donations.showMonthlyDonationCanceledDialog = false
         dismissAllowingStateLoss()
       }
     )

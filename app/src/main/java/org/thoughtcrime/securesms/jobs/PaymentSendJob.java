@@ -128,7 +128,7 @@ public final class PaymentSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
+    if (!SignalStore.payments().mobileCoinPaymentsEnabled()) {
       Log.w(TAG, "Payments are not enabled");
       return;
     }

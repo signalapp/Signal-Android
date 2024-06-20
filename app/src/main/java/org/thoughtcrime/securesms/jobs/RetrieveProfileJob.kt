@@ -77,7 +77,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
   @Throws(IOException::class, RetryLaterException::class)
   public override fun onRun() {
-    if (!SignalStore.account().isRegistered) {
+    if (!SignalStore.account.isRegistered) {
       Log.w(TAG, "Unregistered. Skipping.")
       return
     }
@@ -593,12 +593,12 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
      */
     @JvmStatic
     fun enqueueRoutineFetchIfNecessary() {
-      if (!SignalStore.registrationValues().isRegistrationComplete || !SignalStore.account().isRegistered || SignalStore.account().aci == null) {
+      if (!SignalStore.registration.isRegistrationComplete || !SignalStore.account.isRegistered || SignalStore.account.aci == null) {
         Log.i(TAG, "Registration not complete. Skipping.")
         return
       }
 
-      val timeSinceRefresh = System.currentTimeMillis() - SignalStore.misc().lastProfileRefreshTime
+      val timeSinceRefresh = System.currentTimeMillis() - SignalStore.misc.lastProfileRefreshTime
       if (timeSinceRefresh < TimeUnit.HOURS.toMillis(12)) {
         Log.i(TAG, "Too soon to refresh. Did the last refresh $timeSinceRefresh ms ago.")
         return
@@ -619,7 +619,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
           Log.i(TAG, "No recipients to refresh.")
         }
 
-        SignalStore.misc().lastProfileRefreshTime = System.currentTimeMillis()
+        SignalStore.misc.lastProfileRefreshTime = System.currentTimeMillis()
       }
     }
   }

@@ -38,7 +38,7 @@ class AndroidCallConnectionService : ConnectionService() {
       isVideoCall = isVideoCall
     ).apply {
       setInitializing()
-      if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact && recipient.e164.isPresent) {
+      if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact && recipient.e164.isPresent) {
         setAddress(Uri.fromParts("tel", recipient.e164.get(), null), TelecomManager.PRESENTATION_ALLOWED)
         setCallerDisplayName(displayName, TelecomManager.PRESENTATION_ALLOWED)
       }

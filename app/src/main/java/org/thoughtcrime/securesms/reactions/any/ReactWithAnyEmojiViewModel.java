@@ -110,7 +110,7 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
 
   void onEmojiSelected(@NonNull String emoji) {
     if (messageId > 0) {
-      SignalStore.emojiValues().setPreferredVariation(emoji);
+      SignalStore.emoji().setPreferredVariation(emoji);
       repository.addEmojiToMessage(emoji, new MessageId(messageId));
     }
   }

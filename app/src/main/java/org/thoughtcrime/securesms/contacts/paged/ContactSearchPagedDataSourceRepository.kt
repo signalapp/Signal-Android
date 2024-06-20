@@ -30,7 +30,7 @@ open class ContactSearchPagedDataSourceRepository(
   private val context = context.applicationContext
 
   open fun getLatestStorySends(activeStoryCutoffDuration: Long): List<StorySend> {
-    return SignalStore.storyValues()
+    return SignalStore.story
       .getLatestActiveStorySendTimestamps(System.currentTimeMillis() - activeStoryCutoffDuration)
   }
 

@@ -71,7 +71,7 @@ class VerifyIdentityFragment : Fragment(R.layout.fragment_container), ScanListen
     VerifyDisplayFragment.create(
       recipientId,
       remoteIdentity,
-      IdentityKeyParcelable(SignalStore.account().aciIdentityKey.publicKey),
+      IdentityKeyParcelable(SignalStore.account.aciIdentityKey.publicKey),
       Recipient.self().requireE164(),
       isVerified
     )

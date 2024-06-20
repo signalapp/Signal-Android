@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.util.livedata.Store
 
 class EditReactionsViewModel : ViewModel() {
 
-  private val emojiValues: EmojiValues = SignalStore.emojiValues()
+  private val emojiValues: EmojiValues = SignalStore.emoji
   private val store: Store<State> = Store(State(reactions = emojiValues.reactions.map { emojiValues.getPreferredVariation(it) }))
 
   val reactions: LiveData<List<String>> = LiveDataUtil.mapDistinct(store.stateLiveData, State::reactions)

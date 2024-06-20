@@ -46,7 +46,7 @@ class ArchiveThumbnailUploadJob private constructor(
     private val TAG = Log.tag(ArchiveThumbnailUploadJob::class.java)
 
     fun enqueueIfNecessary(attachmentId: AttachmentId) {
-      if (SignalStore.backup().backsUpMedia) {
+      if (SignalStore.backup.backsUpMedia) {
         AppDependencies.jobManager.add(ArchiveThumbnailUploadJob(attachmentId))
       }
     }
@@ -87,7 +87,7 @@ class ArchiveThumbnailUploadJob private constructor(
       Log.w(TAG, "Unable to generate a thumbnail result for $attachmentId")
       return Result.success()
     }
-    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+    val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
 
     val resumableUpload = when (val result = BackupRepository.getMediaUploadSpec(secretKey = backupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName()))) {
       is NetworkResult.Success -> {

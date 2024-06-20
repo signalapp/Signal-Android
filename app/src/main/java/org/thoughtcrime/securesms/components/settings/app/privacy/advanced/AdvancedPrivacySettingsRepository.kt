@@ -30,7 +30,7 @@ class AdvancedPrivacySettingsRepository(private val context: Context) {
         } catch (e: AuthorizationFailedException) {
           Log.w(TAG, e)
         }
-        if (SignalStore.account().fcmEnabled) {
+        if (SignalStore.account.fcmEnabled) {
           Tasks.await(FirebaseInstallations.getInstance().delete())
         }
         DisablePushMessagesResult.SUCCESS
@@ -58,7 +58,7 @@ class AdvancedPrivacySettingsRepository(private val context: Context) {
           TextSecurePreferences.isReadReceiptsEnabled(context),
           TextSecurePreferences.isTypingIndicatorsEnabled(context),
           TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
-          SignalStore.settings().isLinkPreviewsEnabled
+          SignalStore.settings.isLinkPreviewsEnabled
         )
       )
     }

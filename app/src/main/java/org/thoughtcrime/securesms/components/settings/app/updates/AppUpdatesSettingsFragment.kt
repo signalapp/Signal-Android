@@ -34,9 +34,9 @@ class AppUpdatesSettingsFragment : DSLSettingsFragment(R.string.preferences_app_
         switchPref(
           title = DSLSettingsText.from("Automatic updates"),
           summary = DSLSettingsText.from("Automatically download and install app updates"),
-          isChecked = SignalStore.apkUpdate().autoUpdate,
+          isChecked = SignalStore.apkUpdate.autoUpdate,
           onClick = {
-            SignalStore.apkUpdate().autoUpdate = !SignalStore.apkUpdate().autoUpdate
+            SignalStore.apkUpdate.autoUpdate = !SignalStore.apkUpdate.autoUpdate
           }
         )
       }
@@ -53,7 +53,7 @@ class AppUpdatesSettingsFragment : DSLSettingsFragment(R.string.preferences_app_
 
   private val lastSuccessfulUpdateString: String
     get() {
-      val lastUpdateTime = SignalStore.apkUpdate().lastSuccessfulCheck
+      val lastUpdateTime = SignalStore.apkUpdate.lastSuccessfulCheck
 
       return if (lastUpdateTime > 0) {
         val dateFormat = SimpleDateFormat("MMMM dd, yyyy 'at' h:mma", Locale.US)

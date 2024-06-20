@@ -230,7 +230,7 @@ public final class Megaphones {
             public void onReminderDismissed(boolean includedFailure) {
               Log.i(TAG, "[PinReminder] onReminderDismissed(" + includedFailure + ")");
               if (includedFailure) {
-                SignalStore.pinValues().onEntrySkipWithWrongGuess();
+                SignalStore.pin().onEntrySkipWithWrongGuess();
               }
             }
 
@@ -238,13 +238,13 @@ public final class Megaphones {
             public void onReminderCompleted(@NonNull String pin, boolean includedFailure) {
               Log.i(TAG, "[PinReminder] onReminderCompleted(" + includedFailure + ")");
               if (includedFailure) {
-                SignalStore.pinValues().onEntrySuccessWithWrongGuess(pin);
+                SignalStore.pin().onEntrySuccessWithWrongGuess(pin);
               } else {
-                SignalStore.pinValues().onEntrySuccess(pin);
+                SignalStore.pin().onEntrySuccess(pin);
               }
 
               controller.onMegaphoneSnooze(Event.PIN_REMINDER);
-              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getReminderString(SignalStore.pinValues().getCurrentInterval())));
+              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getReminderString(SignalStore.pin().getCurrentInterval())));
             }
           });
         })

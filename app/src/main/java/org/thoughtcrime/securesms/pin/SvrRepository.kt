@@ -101,8 +101,8 @@ object SvrRepository {
             Log.i(TAG, "[restoreMasterKeyPreRegistration] Successfully restored master key. $implementation", true)
 
             when (implementation.svrVersion) {
-              SvrVersion.SVR2 -> SignalStore.svr().appendSvr2AuthTokenToList(response.authorization.asBasic())
-              SvrVersion.SVR3 -> SignalStore.svr().appendSvr3AuthTokenToList(response.authorization.asBasic())
+              SvrVersion.SVR2 -> SignalStore.svr.appendSvr2AuthTokenToList(response.authorization.asBasic())
+              SvrVersion.SVR3 -> SignalStore.svr.appendSvr3AuthTokenToList(response.authorization.asBasic())
             }
 
             return response.masterKey
@@ -152,17 +152,17 @@ object SvrRepository {
             Log.i(TAG, "[restoreMasterKeyPostRegistration] Successfully restored master key. $implementation", true)
             stopwatch.split("restore")
 
-            SignalStore.svr().setMasterKey(response.masterKey, userPin)
-            SignalStore.svr().isRegistrationLockEnabled = false
-            SignalStore.pinValues().resetPinReminders()
-            SignalStore.svr().isPinForgottenOrSkipped = false
-            SignalStore.storageService().setNeedsAccountRestore(false)
-            SignalStore.pinValues().keyboardType = pinKeyboardType
-            SignalStore.storageService().setNeedsAccountRestore(false)
+            SignalStore.svr.setMasterKey(response.masterKey, userPin)
+            SignalStore.svr.isRegistrationLockEnabled = false
+            SignalStore.pin.resetPinReminders()
+            SignalStore.svr.isPinForgottenOrSkipped = false
+            SignalStore.storageService.setNeedsAccountRestore(false)
+            SignalStore.pin.keyboardType = pinKeyboardType
+            SignalStore.storageService.setNeedsAccountRestore(false)
 
             when (implementation.svrVersion) {
-              SvrVersion.SVR2 -> SignalStore.svr().appendSvr2AuthTokenToList(response.authorization.asBasic())
-              SvrVersion.SVR3 -> SignalStore.svr().appendSvr3AuthTokenToList(response.authorization.asBasic())
+              SvrVersion.SVR2 -> SignalStore.svr.appendSvr2AuthTokenToList(response.authorization.asBasic())
+              SvrVersion.SVR3 -> SignalStore.svr.appendSvr3AuthTokenToList(response.authorization.asBasic())
             }
 
             AppDependencies.jobManager.add(ResetSvrGuessCountJob())
@@ -225,7 +225,7 @@ object SvrRepository {
   @JvmStatic
   fun setPin(userPin: String, keyboardType: PinKeyboardType): BackupResponse {
     return operationLock.withLock {
-      val masterKey: MasterKey = SignalStore.svr().getOrCreateMasterKey()
+      val masterKey: MasterKey = SignalStore.svr.getOrCreateMasterKey()
 
       val writeTargets = writeImplementations
 
@@ -253,19 +253,19 @@ object SvrRepository {
       if (overallResponse is BackupResponse.Success) {
         Log.i(TAG, "[setPin] Success!", true)
 
-        SignalStore.svr().setMasterKey(masterKey, userPin)
-        SignalStore.svr().isPinForgottenOrSkipped = false
+        SignalStore.svr.setMasterKey(masterKey, userPin)
+        SignalStore.svr.isPinForgottenOrSkipped = false
         responses
           .filterIsInstance<BackupResponse.Success>()
           .forEach {
             when (it.svrVersion) {
-              SvrVersion.SVR2 -> SignalStore.svr().appendSvr2AuthTokenToList(it.authorization.asBasic())
-              SvrVersion.SVR3 -> SignalStore.svr().appendSvr3AuthTokenToList(it.authorization.asBasic())
+              SvrVersion.SVR2 -> SignalStore.svr.appendSvr2AuthTokenToList(it.authorization.asBasic())
+              SvrVersion.SVR3 -> SignalStore.svr.appendSvr3AuthTokenToList(it.authorization.asBasic())
             }
           }
 
-        SignalStore.pinValues().keyboardType = keyboardType
-        SignalStore.pinValues().resetPinReminders()
+        SignalStore.pin.keyboardType = keyboardType
+        SignalStore.pin.resetPinReminders()
 
         AppDependencies.megaphoneRepository.markFinished(Megaphones.Event.PINS_FOR_ALL)
 
@@ -274,7 +274,7 @@ object SvrRepository {
         Log.w(TAG, "[setPin] Failed to set PIN! $overallResponse", true)
 
         if (hasNoRegistrationLock) {
-          SignalStore.svr().onPinCreateFailure()
+          SignalStore.svr.onPinCreateFailure()
         }
       }
 
@@ -302,22 +302,22 @@ object SvrRepository {
       if (masterKey != null && userPin != null) {
         if (setRegistrationLockEnabled) {
           Log.i(TAG, "[onRegistrationComplete] Registration Lock", true)
-          SignalStore.svr().isRegistrationLockEnabled = true
+          SignalStore.svr.isRegistrationLockEnabled = true
         } else {
           Log.i(TAG, "[onRegistrationComplete] ReRegistration Skip SMS", true)
         }
 
-        SignalStore.svr().setMasterKey(masterKey, userPin)
-        SignalStore.pinValues().resetPinReminders()
+        SignalStore.svr.setMasterKey(masterKey, userPin)
+        SignalStore.pin.resetPinReminders()
 
         AppDependencies.jobManager.add(ResetSvrGuessCountJob())
       } else if (hasPinToRestore) {
         Log.i(TAG, "[onRegistrationComplete] Has a PIN to restore.", true)
-        SignalStore.svr().clearRegistrationLockAndPin()
-        SignalStore.storageService().setNeedsAccountRestore(true)
+        SignalStore.svr.clearRegistrationLockAndPin()
+        SignalStore.storageService.setNeedsAccountRestore(true)
       } else {
         Log.i(TAG, "[onRegistrationComplete] No registration lock or PIN at all.", true)
-        SignalStore.svr().clearRegistrationLockAndPin()
+        SignalStore.svr.clearRegistrationLockAndPin()
       }
     }
 
@@ -330,9 +330,9 @@ object SvrRepository {
   @JvmStatic
   fun onPinRestoreForgottenOrSkipped() {
     operationLock.withLock {
-      SignalStore.svr().clearRegistrationLockAndPin()
-      SignalStore.storageService().setNeedsAccountRestore(false)
-      SignalStore.svr().isPinForgottenOrSkipped = true
+      SignalStore.svr.clearRegistrationLockAndPin()
+      SignalStore.storageService.setNeedsAccountRestore(false)
+      SignalStore.svr.isPinForgottenOrSkipped = true
     }
   }
 
@@ -340,7 +340,7 @@ object SvrRepository {
   @WorkerThread
   fun optOutOfPin() {
     operationLock.withLock {
-      SignalStore.svr().optOut()
+      SignalStore.svr.optOut()
 
       AppDependencies.megaphoneRepository.markFinished(Megaphones.Event.PINS_FOR_ALL)
 
@@ -354,11 +354,11 @@ object SvrRepository {
   @Throws(IOException::class)
   fun enableRegistrationLockForUserWithPin() {
     operationLock.withLock {
-      check(SignalStore.svr().hasPin() && !SignalStore.svr().hasOptedOut()) { "Must have a PIN to set a registration lock!" }
+      check(SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to set a registration lock!" }
 
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Enabling registration lock.", true)
-      AppDependencies.signalServiceAccountManager.enableRegistrationLock(SignalStore.svr().getOrCreateMasterKey())
-      SignalStore.svr().isRegistrationLockEnabled = true
+      AppDependencies.signalServiceAccountManager.enableRegistrationLock(SignalStore.svr.getOrCreateMasterKey())
+      SignalStore.svr.isRegistrationLockEnabled = true
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Registration lock successfully enabled.", true)
     }
   }
@@ -368,11 +368,11 @@ object SvrRepository {
   @Throws(IOException::class)
   fun disableRegistrationLockForUserWithPin() {
     operationLock.withLock {
-      check(SignalStore.svr().hasPin() && !SignalStore.svr().hasOptedOut()) { "Must have a PIN to disable registration lock!" }
+      check(SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to disable registration lock!" }
 
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Disabling registration lock.", true)
       AppDependencies.signalServiceAccountManager.disableRegistrationLock()
-      SignalStore.svr().isRegistrationLockEnabled = false
+      SignalStore.svr.isRegistrationLockEnabled = false
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Registration lock successfully disabled.", true)
     }
   }
@@ -386,19 +386,19 @@ object SvrRepository {
     try {
       var newToken = if (Svr3Migration.shouldWriteToSvr3) {
         val credentials: AuthCredentials = svr3.authorization()
-        SignalStore.svr().appendSvr3AuthTokenToList(credentials.asBasic())
+        SignalStore.svr.appendSvr3AuthTokenToList(credentials.asBasic())
       } else {
         false
       }
 
       newToken = newToken || if (Svr3Migration.shouldWriteToSvr2) {
         val credentials: AuthCredentials = svr2.authorization()
-        SignalStore.svr().appendSvr2AuthTokenToList(credentials.asBasic())
+        SignalStore.svr.appendSvr2AuthTokenToList(credentials.asBasic())
       } else {
         false
       }
 
-      if (newToken && SignalStore.svr().hasPin()) {
+      if (newToken && SignalStore.svr.hasPin()) {
         BackupManager(AppDependencies.application).dataChanged()
       }
     } catch (e: Throwable) {
@@ -458,8 +458,8 @@ object SvrRepository {
 
   private val hasNoRegistrationLock: Boolean
     get() {
-      return !SignalStore.svr().isRegistrationLockEnabled &&
-        !SignalStore.svr().hasPin() &&
-        !SignalStore.svr().hasOptedOut()
+      return !SignalStore.svr.isRegistrationLockEnabled &&
+        !SignalStore.svr.hasPin() &&
+        !SignalStore.svr.hasOptedOut()
     }
 }

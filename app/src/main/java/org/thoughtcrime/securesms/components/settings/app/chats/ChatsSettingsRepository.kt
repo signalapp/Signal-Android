@@ -17,7 +17,7 @@ class ChatsSettingsRepository {
 
   fun syncLinkPreviewsState() {
     SignalExecutors.BOUNDED.execute {
-      val isLinkPreviewsEnabled = SignalStore.settings().isLinkPreviewsEnabled
+      val isLinkPreviewsEnabled = SignalStore.settings.isLinkPreviewsEnabled
 
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()

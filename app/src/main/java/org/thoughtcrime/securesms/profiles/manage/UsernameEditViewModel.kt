@@ -44,15 +44,15 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
     defaultValue = State(
       buttonState = ButtonState.SUBMIT_DISABLED,
       usernameStatus = UsernameStatus.NONE,
-      usernameState = SignalStore.account().username?.let { UsernameState.Set(Username(it)) } ?: UsernameState.NoUsername
+      usernameState = SignalStore.account.username?.let { UsernameState.Set(Username(it)) } ?: UsernameState.NoUsername
     ),
     scheduler = Schedulers.computation()
   )
 
   private val stateMachineStore = RxStore<UsernameEditStateMachine.State>(
     defaultValue = UsernameEditStateMachine.NoUserEntry(
-      nickname = SignalStore.account().username?.split(Usernames.DELIMITER)?.first() ?: "",
-      discriminator = SignalStore.account().username?.split(Usernames.DELIMITER)?.last() ?: "",
+      nickname = SignalStore.account.username?.split(Usernames.DELIMITER)?.first() ?: "",
+      discriminator = SignalStore.account.username?.split(Usernames.DELIMITER)?.last() ?: "",
       stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM
     ),
     scheduler = Schedulers.computation()
@@ -68,8 +68,8 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
       .subscribeBy(onNext = this::onUsernameStateUpdateDebounced)
 
     if (mode == UsernameEditMode.RECOVERY) {
-      onNicknameUpdated(SignalStore.account().username?.split(Usernames.DELIMITER)?.first() ?: "")
-      onDiscriminatorUpdated(SignalStore.account().username?.split(Usernames.DELIMITER)?.last() ?: "")
+      onNicknameUpdated(SignalStore.account.username?.split(Usernames.DELIMITER)?.first() ?: "")
+      onDiscriminatorUpdated(SignalStore.account.username?.split(Usernames.DELIMITER)?.last() ?: "")
     }
   }
 
@@ -81,7 +81,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
 
   fun onNicknameUpdated(nickname: String) {
     uiState.update { state: State ->
-      if (nickname.isBlank() && SignalStore.account().username != null) {
+      if (nickname.isBlank() && SignalStore.account.username != null) {
         return@update State(
           buttonState = ButtonState.DELETE,
           usernameStatus = UsernameStatus.NONE,
@@ -103,7 +103,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
 
   fun onDiscriminatorUpdated(discriminator: String) {
     uiState.update { state: State ->
-      if (discriminator.isBlank() && SignalStore.account().username != null) {
+      if (discriminator.isBlank() && SignalStore.account.username != null) {
         return@update State(
           buttonState = ButtonState.DELETE,
           usernameStatus = UsernameStatus.NONE,
@@ -124,7 +124,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
   }
 
   fun onUsernameSkipped() {
-    SignalStore.uiHints().markHasSetOrSkippedUsernameCreation()
+    SignalStore.uiHints.markHasSetOrSkippedUsernameCreation()
     events.onNext(Event.SKIPPED)
   }
 
@@ -132,7 +132,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
     val usernameState = uiState.state.usernameState
     return mode == UsernameEditMode.RECOVERY &&
       usernameState is UsernameState.Reserved &&
-      usernameState.requireUsername().username.lowercase() == SignalStore.account().username?.lowercase()
+      usernameState.requireUsername().username.lowercase() == SignalStore.account.username?.lowercase()
   }
 
   /**
@@ -148,7 +148,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
     val usernameState = uiState.state.usernameState
     val isCaseChange = isCaseChange(editState)
 
-    if (!isCaseChange && SignalStore.account().username.isNotNullOrBlank() && !userConfirmedResetOk) {
+    if (!isCaseChange && SignalStore.account.username.isNotNullOrBlank() && !userConfirmedResetOk) {
       events.onNext(Event.NEEDS_CONFIRM_RESET)
       return
     }
@@ -159,7 +159,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
       return
     }
 
-    if (usernameState.requireUsername().username == SignalStore.account().username && mode != UsernameEditMode.RECOVERY) {
+    if (usernameState.requireUsername().username == SignalStore.account.username && mode != UsernameEditMode.RECOVERY) {
       Log.d(TAG, "Username was submitted, but was identical to the current username. Ignoring.")
       uiState.update { it.copy(buttonState = ButtonState.SUBMIT_DISABLED, usernameStatus = UsernameStatus.NONE) }
       return
@@ -186,7 +186,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
 
       when (result) {
         UsernameSetResult.SUCCESS -> {
-          SignalStore.uiHints().markHasSetOrSkippedUsernameCreation()
+          SignalStore.uiHints.markHasSetOrSkippedUsernameCreation()
           uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, it.usernameState) }
           events.onNext(Event.SUBMIT_SUCCESS)
         }
@@ -252,7 +252,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
     }
 
     val newLower = state.nickname.lowercase()
-    val oldLower = SignalStore.account().username?.split(Usernames.DELIMITER)?.firstOrNull()?.lowercase()
+    val oldLower = SignalStore.account.username?.split(Usernames.DELIMITER)?.firstOrNull()?.lowercase()
 
     return newLower == oldLower
   }
@@ -280,7 +280,7 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
     }
 
     if (isCaseChange(state)) {
-      val discriminator = SignalStore.account().username?.split(Usernames.DELIMITER)?.lastOrNull() ?: error("Unexpected case change, no discriminator!")
+      val discriminator = SignalStore.account.username?.split(Usernames.DELIMITER)?.lastOrNull() ?: error("Unexpected case change, no discriminator!")
       uiState.update {
         State(
           buttonState = ButtonState.SUBMIT,

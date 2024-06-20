@@ -545,7 +545,7 @@ public abstract class PushSendJob extends SendJob {
 
       for (CertificateType certificateType : requiredCertificateTypes) {
 
-        byte[] certificateBytes = SignalStore.certificateValues()
+        byte[] certificateBytes = SignalStore.certificate()
                                              .getUnidentifiedAccessCertificate(certificateType);
 
         if (certificateBytes == null) {

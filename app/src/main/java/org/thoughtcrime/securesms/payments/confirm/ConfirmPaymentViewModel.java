@@ -46,7 +46,7 @@ final class ConfirmPaymentViewModel extends ViewModel {
     this.errorEvents              = new SingleLiveEvent<>();
     this.feeRetry                 = new DefaultValueLiveData<>(true);
 
-    this.store.update(SignalStore.paymentsValues().liveMobileCoinBalance(), (balance, state) -> state.updateBalance(balance.getFullAmount()));
+    this.store.update(SignalStore.payments().liveMobileCoinBalance(), (balance, state) -> state.updateBalance(balance.getFullAmount()));
 
     LiveData<Boolean> longLoadTime = LiveDataUtil.delay(1000, true);
     this.store.update(longLoadTime, (l, s) -> {

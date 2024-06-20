@@ -156,12 +156,12 @@ class ImportExportTest {
 
   @Before
   fun setup() {
-    SignalStore.svr().setMasterKey(MasterKey(MASTER_KEY), "1234")
-    SignalStore.account().setE164(SELF_E164)
-    SignalStore.account().setAci(SELF_ACI)
-    SignalStore.account().setPni(SELF_PNI)
-    SignalStore.account().generateAciIdentityKeyIfNecessary()
-    SignalStore.account().generatePniIdentityKeyIfNecessary()
+    SignalStore.svr.setMasterKey(MasterKey(MASTER_KEY), "1234")
+    SignalStore.account.setE164(SELF_E164)
+    SignalStore.account.setAci(SELF_ACI)
+    SignalStore.account.setPni(SELF_PNI)
+    SignalStore.account.generateAciIdentityKeyIfNecessary()
+    SignalStore.account.generatePniIdentityKeyIfNecessary()
   }
 
   @Test
@@ -1424,8 +1424,8 @@ class ImportExportTest {
   private fun exportFrames(vararg objects: Any): ByteArray {
     val outputStream = ByteArrayOutputStream()
     val writer = EncryptedBackupWriter(
-      key = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey(),
-      aci = SignalStore.account().aci!!,
+      key = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey(),
+      aci = SignalStore.account.aci!!,
       outputStream = outputStream,
       append = { mac -> outputStream.write(mac) }
     )
@@ -1453,7 +1453,7 @@ class ImportExportTest {
 
   private fun validate(importData: ByteArray): MessageBackup.ValidationResult {
     val factory = { ByteArrayInputStream(importData) }
-    val masterKey = SignalStore.svr().getOrCreateMasterKey()
+    val masterKey = SignalStore.svr.getOrCreateMasterKey()
     val key = MessageBackupKey(masterKey.serialize(), org.signal.libsignal.protocol.ServiceId.Aci.parseFromBinary(SELF_ACI.toByteArray()))
 
     return MessageBackup.validate(key, MessageBackup.Purpose.REMOTE_BACKUP, factory, importData.size.toLong())
@@ -1470,8 +1470,8 @@ class ImportExportTest {
   private fun importExport(vararg objects: Any) {
     val outputStream = ByteArrayOutputStream()
     val writer = EncryptedBackupWriter(
-      key = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey(),
-      aci = SignalStore.account().aci!!,
+      key = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey(),
+      aci = SignalStore.account.aci!!,
       outputStream = outputStream,
       append = { mac -> outputStream.write(mac) }
     )
@@ -1613,7 +1613,7 @@ class ImportExportTest {
   private fun readAllFrames(import: ByteArray, selfData: BackupRepository.SelfData): List<Frame> {
     val inputFactory = { ByteArrayInputStream(import) }
     val frameReader = EncryptedBackupReader(
-      key = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey(),
+      key = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey(),
       aci = selfData.aci,
       length = import.size.toLong(),
       dataStream = inputFactory

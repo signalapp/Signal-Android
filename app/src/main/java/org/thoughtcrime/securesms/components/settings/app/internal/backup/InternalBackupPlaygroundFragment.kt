@@ -170,7 +170,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
       },
       mediaContent = { snackbarHostState ->
         MediaList(
-          enabled = SignalStore.backup().backsUpMedia,
+          enabled = SignalStore.backup.backsUpMedia,
           state = mediaState,
           snackbarHostState = snackbarHostState,
           archiveAttachmentMedia = { viewModel.archiveAttachmentMedia(it) },
@@ -215,7 +215,7 @@ fun Tabs(
             }
           },
           actions = {
-            if (tabIndex == 1 && SignalStore.backup().backsUpMedia) {
+            if (tabIndex == 1 && SignalStore.backup.backsUpMedia) {
               TextButton(onClick = onDeleteAllArchivedMedia) {
                 Text(text = "Delete All")
               }
@@ -429,7 +429,7 @@ fun MediaList(
 ) {
   if (!enabled) {
     Text(
-      text = "You do not have read/write to archive cdn enabled via SignalStore.backup()",
+      text = "You do not have read/write to archive cdn enabled via SignalStore.backup",
       modifier = Modifier
         .padding(16.dp)
     )

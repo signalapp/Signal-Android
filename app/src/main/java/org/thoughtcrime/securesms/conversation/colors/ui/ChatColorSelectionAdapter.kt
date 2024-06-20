@@ -89,8 +89,8 @@ class ChatColorSelectionAdapter(
       val mask = model.chatColors.asCircle()
       preview.setImageDrawable(mask.withFixedSize(ViewUtil.dpToPx(56)))
 
-      if (model.isAuto && SignalStore.chatColorsValues().shouldShowAutoTooltip) {
-        SignalStore.chatColorsValues().shouldShowAutoTooltip = false
+      if (model.isAuto && SignalStore.chatColors.shouldShowAutoTooltip) {
+        SignalStore.chatColors.shouldShowAutoTooltip = false
         TooltipPopup.forTarget(itemView)
           .setText(R.string.ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper)
           .setBackgroundTint(ContextCompat.getColor(context, R.color.signal_accent_primary))

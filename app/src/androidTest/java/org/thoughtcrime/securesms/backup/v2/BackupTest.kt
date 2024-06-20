@@ -83,11 +83,11 @@ class BackupTest {
 
   @Before
   fun setup() {
-    SignalStore.account().setE164(SELF_E164)
-    SignalStore.account().setAci(SELF_ACI)
-    SignalStore.account().setPni(SELF_PNI)
-    SignalStore.account().generateAciIdentityKeyIfNecessary()
-    SignalStore.account().generatePniIdentityKeyIfNecessary()
+    SignalStore.account.setE164(SELF_E164)
+    SignalStore.account.setAci(SELF_ACI)
+    SignalStore.account.setPni(SELF_PNI)
+    SignalStore.account.generateAciIdentityKeyIfNecessary()
+    SignalStore.account.generatePniIdentityKeyIfNecessary()
   }
 
   @Ignore("Will likely be removed soon")
@@ -251,34 +251,34 @@ class BackupTest {
       // TODO note-to-self archived
       // TODO note-to-self unread
 
-      SignalStore.account().setAci(SELF_ACI)
-      SignalStore.account().setPni(SELF_PNI)
-      SignalStore.account().setE164(SELF_E164)
-      SignalStore.account().generateAciIdentityKeyIfNecessary()
-      SignalStore.account().generatePniIdentityKeyIfNecessary()
+      SignalStore.account.setAci(SELF_ACI)
+      SignalStore.account.setPni(SELF_PNI)
+      SignalStore.account.setE164(SELF_E164)
+      SignalStore.account.generateAciIdentityKeyIfNecessary()
+      SignalStore.account.generatePniIdentityKeyIfNecessary()
 
       SignalDatabase.recipients.setProfileKey(self.id, ProfileKey(Random.nextBytes(32)))
       SignalDatabase.recipients.setProfileName(self.id, ProfileName.fromParts("Peter", "Parker"))
       SignalDatabase.recipients.setProfileAvatar(self.id, "https://example.com/")
 
       InAppPaymentsRepository.setSubscriber(InAppPaymentSubscriberRecord(SubscriberId.generate(), Currency.getInstance("USD"), InAppPaymentSubscriberRecord.Type.DONATION, false, InAppPaymentData.PaymentMethodType.UNKNOWN))
-      SignalStore.donationsValues().setDisplayBadgesOnProfile(false)
+      SignalStore.donations.setDisplayBadgesOnProfile(false)
 
-      SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
-      SignalStore.phoneNumberPrivacy().phoneNumberSharingMode = PhoneNumberPrivacyValues.PhoneNumberSharingMode.NOBODY
+      SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
+      SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = PhoneNumberPrivacyValues.PhoneNumberSharingMode.NOBODY
 
-      SignalStore.settings().isLinkPreviewsEnabled = false
-      SignalStore.settings().isPreferSystemContactPhotos = true
-      SignalStore.settings().universalExpireTimer = 42
-      SignalStore.settings().setKeepMutedChatsArchived(true)
+      SignalStore.settings.isLinkPreviewsEnabled = false
+      SignalStore.settings.isPreferSystemContactPhotos = true
+      SignalStore.settings.universalExpireTimer = 42
+      SignalStore.settings.setKeepMutedChatsArchived(true)
 
-      SignalStore.storyValues().viewedReceiptsEnabled = false
-      SignalStore.storyValues().userHasViewedOnboardingStory = true
-      SignalStore.storyValues().isFeatureDisabled = false
-      SignalStore.storyValues().userHasBeenNotifiedAboutStories = true
-      SignalStore.storyValues().userHasSeenGroupStoryEducationSheet = true
+      SignalStore.story.viewedReceiptsEnabled = false
+      SignalStore.story.userHasViewedOnboardingStory = true
+      SignalStore.story.isFeatureDisabled = false
+      SignalStore.story.userHasBeenNotifiedAboutStories = true
+      SignalStore.story.userHasSeenGroupStoryEducationSheet = true
 
-      SignalStore.emojiValues().reactions = listOf("a", "b", "c")
+      SignalStore.emoji.reactions = listOf("a", "b", "c")
 
       TextSecurePreferences.setTypingIndicatorsEnabled(context, false)
       TextSecurePreferences.setReadReceiptsEnabled(context, false)

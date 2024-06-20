@@ -33,7 +33,7 @@ public final class Payments {
     if (wallet != null) {
       return wallet;
     }
-    Entropy paymentsEntropy = SignalStore.paymentsValues().getPaymentsEntropy();
+    Entropy paymentsEntropy = SignalStore.payments().getPaymentsEntropy();
     wallet = new Wallet(mobileCoinConfig, Objects.requireNonNull(paymentsEntropy));
     return wallet;
   }

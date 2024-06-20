@@ -130,17 +130,17 @@ object UsernameRepository {
   @WorkerThread
   @JvmStatic
   fun reclaimUsernameIfNecessary(): UsernameReclaimResult {
-    if (!SignalStore.misc().needsUsernameRestore) {
+    if (!SignalStore.misc.needsUsernameRestore) {
       Log.d(TAG, "[reclaimUsernameIfNecessary] No need to restore username. Skipping.")
       return UsernameReclaimResult.SUCCESS
     }
 
-    val username = SignalStore.account().username
-    val link = SignalStore.account().usernameLink
+    val username = SignalStore.account.username
+    val link = SignalStore.account.usernameLink
 
     if (username == null || link == null) {
       Log.d(TAG, "[reclaimUsernameIfNecessary] No username or link to restore. Skipping.")
-      SignalStore.misc().needsUsernameRestore = false
+      SignalStore.misc.needsUsernameRestore = false
       return UsernameReclaimResult.SUCCESS
     }
 
@@ -149,13 +149,13 @@ object UsernameRepository {
     when (result) {
       UsernameReclaimResult.SUCCESS -> {
         Log.i(TAG, "[reclaimUsernameIfNecessary] Successfully reclaimed username and link.")
-        SignalStore.misc().needsUsernameRestore = false
+        SignalStore.misc.needsUsernameRestore = false
       }
 
       UsernameReclaimResult.PERMANENT_ERROR -> {
         Log.w(TAG, "[reclaimUsernameIfNecessary] Permanently failed to reclaim username and link. User will see an error.")
-        SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED
-        SignalStore.misc().needsUsernameRestore = false
+        SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED
+        SignalStore.misc.needsUsernameRestore = false
       }
 
       UsernameReclaimResult.NETWORK_ERROR -> {
@@ -185,7 +185,7 @@ object UsernameRepository {
       return Single.just(UsernameLinkResetResult.NetworkUnavailable)
     }
 
-    val usernameString = SignalStore.account().username
+    val usernameString = SignalStore.account.username
     if (usernameString.isNullOrBlank()) {
       Log.w(TAG, "[createOrResetUsernameLink] No username set! Cannot rotate the link!")
       return Single.just(UsernameLinkResetResult.UnexpectedError)
@@ -201,15 +201,15 @@ object UsernameRepository {
     return Single
       .fromCallable {
         try {
-          SignalStore.account().usernameLink = null
+          SignalStore.account.usernameLink = null
 
           Log.d(TAG, "[createOrResetUsernameLink] Creating username link...")
           val components = accountManager.createUsernameLink(username)
-          SignalStore.account().usernameLink = components
+          SignalStore.account.usernameLink = components
 
-          if (SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.LINK_CORRUPTED) {
-            SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
-            SignalStore.account().usernameSyncErrorCount = 0
+          if (SignalStore.account.usernameSyncState == AccountValues.UsernameSyncState.LINK_CORRUPTED) {
+            SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+            SignalStore.account.usernameSyncErrorCount = 0
           }
 
           SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
@@ -317,39 +317,39 @@ object UsernameRepository {
 
   @JvmStatic
   fun onUsernameConsistencyValidated() {
-    SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+    SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
 
-    if (SignalStore.account().usernameSyncErrorCount > 0) {
-      Log.i(TAG, "Username consistency validated. There were previously ${SignalStore.account().usernameSyncErrorCount} error(s).")
-      SignalStore.account().usernameSyncErrorCount = 0
+    if (SignalStore.account.usernameSyncErrorCount > 0) {
+      Log.i(TAG, "Username consistency validated. There were previously ${SignalStore.account.usernameSyncErrorCount} error(s).")
+      SignalStore.account.usernameSyncErrorCount = 0
     }
   }
 
   @JvmStatic
   fun onUsernameMismatchDetected() {
-    SignalStore.account().usernameSyncErrorCount++
+    SignalStore.account.usernameSyncErrorCount++
 
-    if (SignalStore.account().usernameSyncErrorCount >= USERNAME_SYNC_ERROR_THRESHOLD) {
-      Log.w(TAG, "We've now seen ${SignalStore.account().usernameSyncErrorCount} mismatches in a row. Marking username and link as corrupted.")
-      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED
-      SignalStore.account().usernameSyncErrorCount = 0
+    if (SignalStore.account.usernameSyncErrorCount >= USERNAME_SYNC_ERROR_THRESHOLD) {
+      Log.w(TAG, "We've now seen ${SignalStore.account.usernameSyncErrorCount} mismatches in a row. Marking username and link as corrupted.")
+      SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED
+      SignalStore.account.usernameSyncErrorCount = 0
     } else {
-      Log.w(TAG, "Username mismatch reported. At ${SignalStore.account().usernameSyncErrorCount} / $USERNAME_SYNC_ERROR_THRESHOLD tries.")
+      Log.w(TAG, "Username mismatch reported. At ${SignalStore.account.usernameSyncErrorCount} / $USERNAME_SYNC_ERROR_THRESHOLD tries.")
     }
   }
 
   @JvmStatic
   fun onUsernameLinkMismatchDetected() {
-    SignalStore.account().usernameSyncErrorCount++
+    SignalStore.account.usernameSyncErrorCount++
 
-    if (SignalStore.account().usernameSyncErrorCount >= USERNAME_SYNC_ERROR_THRESHOLD) {
-      Log.w(TAG, "We've now seen ${SignalStore.account().usernameSyncErrorCount} mismatches in a row. Marking link as corrupted.")
-      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.LINK_CORRUPTED
-      SignalStore.account().usernameLink = null
-      SignalStore.account().usernameSyncErrorCount = 0
+    if (SignalStore.account.usernameSyncErrorCount >= USERNAME_SYNC_ERROR_THRESHOLD) {
+      Log.w(TAG, "We've now seen ${SignalStore.account.usernameSyncErrorCount} mismatches in a row. Marking link as corrupted.")
+      SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.LINK_CORRUPTED
+      SignalStore.account.usernameLink = null
+      SignalStore.account.usernameSyncErrorCount = 0
       StorageSyncHelper.scheduleSyncForDataChange()
     } else {
-      Log.w(TAG, "Link mismatch reported. At ${SignalStore.account().usernameSyncErrorCount} / $USERNAME_SYNC_ERROR_THRESHOLD tries.")
+      Log.w(TAG, "Link mismatch reported. At ${SignalStore.account.usernameSyncErrorCount} / $USERNAME_SYNC_ERROR_THRESHOLD tries.")
     }
   }
 
@@ -403,15 +403,15 @@ object UsernameRepository {
     }
 
     return try {
-      val oldUsernameLink = SignalStore.account().usernameLink ?: return UsernameSetResult.USERNAME_INVALID
+      val oldUsernameLink = SignalStore.account.usernameLink ?: return UsernameSetResult.USERNAME_INVALID
       val newUsernameLink = updatedUsername.generateLink(oldUsernameLink.entropy)
       val usernameLinkComponents = accountManager.updateUsernameLink(newUsernameLink)
 
-      SignalStore.account().username = updatedUsername.username
-      SignalStore.account().usernameLink = usernameLinkComponents
+      SignalStore.account.username = updatedUsername.username
+      SignalStore.account.usernameLink = usernameLinkComponents
       SignalDatabase.recipients.setUsername(Recipient.self().id, updatedUsername.username)
-      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
-      SignalStore.account().usernameSyncErrorCount = 0
+      SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+      SignalStore.account.usernameSyncErrorCount = 0
 
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
@@ -436,11 +436,11 @@ object UsernameRepository {
     return try {
       val linkComponents: UsernameLinkComponents = accountManager.confirmUsernameAndCreateNewLink(username)
 
-      SignalStore.account().username = username.username
-      SignalStore.account().usernameLink = linkComponents
+      SignalStore.account.username = username.username
+      SignalStore.account.usernameLink = linkComponents
       SignalDatabase.recipients.setUsername(Recipient.self().id, username.username)
-      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
-      SignalStore.account().usernameSyncErrorCount = 0
+      SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+      SignalStore.account.usernameSyncErrorCount = 0
 
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
@@ -472,10 +472,10 @@ object UsernameRepository {
     return try {
       accountManager.deleteUsername()
       SignalDatabase.recipients.setUsername(Recipient.self().id, null)
-      SignalStore.account().username = null
-      SignalStore.account().usernameLink = null
-      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
-      SignalStore.account().usernameSyncErrorCount = 0
+      SignalStore.account.username = null
+      SignalStore.account.usernameLink = null
+      SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+      SignalStore.account.usernameSyncErrorCount = 0
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
       Log.i(TAG, "[deleteUsername] Successfully deleted the username.")

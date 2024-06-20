@@ -10,7 +10,7 @@ import org.signal.core.util.Result as SignalResult
 internal class PaymentsAddMoneyRepository {
   @MainThread
   fun getWalletAddress(): Single<SignalResult<AddressAndUri, Error>> {
-    if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
+    if (!SignalStore.payments.mobileCoinPaymentsEnabled()) {
       return Single.just(SignalResult.failure(Error.PAYMENTS_NOT_ENABLED))
     }
 

@@ -362,7 +362,7 @@ class StoryGroupReplyFragment :
       performSend(body, mentions, bodyRanges)
     }
 
-    if (SignalStore.uiHints().hasNotSeenTextFormattingAlert() && composer.input.hasStyling()) {
+    if (SignalStore.uiHints.hasNotSeenTextFormattingAlert() && composer.input.hasStyling()) {
       Dialogs.showFormattedTextDialog(requireContext(), send)
     } else {
       send.run()

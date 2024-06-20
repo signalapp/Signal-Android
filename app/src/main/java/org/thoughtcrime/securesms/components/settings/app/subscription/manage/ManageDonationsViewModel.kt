@@ -94,7 +94,7 @@ class ManageDonationsViewModel : ViewModel() {
     }
 
     disposables += Observable.combineLatest(
-      SignalStore.donationsValues().observablePendingOneTimeDonation,
+      SignalStore.donations.observablePendingOneTimeDonation,
       InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.ONE_TIME_DONATION)
     ) { pendingFromStore, pendingFromJob ->
       if (pendingFromStore.isPresent) {

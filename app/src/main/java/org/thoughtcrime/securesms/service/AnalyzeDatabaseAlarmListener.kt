@@ -24,11 +24,11 @@ class AnalyzeDatabaseAlarmListener : PersistentAlarmManagerListener() {
   }
 
   override fun getNextScheduledExecutionTime(context: Context): Long {
-    var nextTime = SignalStore.misc().nextDatabaseAnalysisTime
+    var nextTime = SignalStore.misc.nextDatabaseAnalysisTime
 
     if (nextTime == 0L) {
       nextTime = getNextTime()
-      SignalStore.misc().nextDatabaseAnalysisTime = nextTime
+      SignalStore.misc.nextDatabaseAnalysisTime = nextTime
     }
 
     return nextTime
@@ -38,7 +38,7 @@ class AnalyzeDatabaseAlarmListener : PersistentAlarmManagerListener() {
     AppDependencies.jobManager.add(AnalyzeDatabaseJob())
 
     val nextTime = getNextTime()
-    SignalStore.misc().nextDatabaseAnalysisTime = nextTime
+    SignalStore.misc.nextDatabaseAnalysisTime = nextTime
 
     return nextTime
   }

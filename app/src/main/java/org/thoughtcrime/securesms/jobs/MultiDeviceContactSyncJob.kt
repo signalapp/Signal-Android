@@ -50,7 +50,7 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
       throw NotPushRegisteredException()
     }
 
-    if (SignalStore.account().isPrimaryDevice) {
+    if (SignalStore.account.isPrimaryDevice) {
       Log.i(TAG, "Not linked device, aborting...")
       return
     }

@@ -189,7 +189,7 @@ class StoriesPrivacySettingsFragment :
   }
 
   override fun onGroupStoryClicked() {
-    if (SignalStore.storyValues().userHasSeenGroupStoryEducationSheet) {
+    if (SignalStore.story.userHasSeenGroupStoryEducationSheet) {
       onGroupStoryEducationSheetNext()
     } else {
       GroupStoryEducationSheet().show(childFragmentManager, GroupStoryEducationSheet.KEY)

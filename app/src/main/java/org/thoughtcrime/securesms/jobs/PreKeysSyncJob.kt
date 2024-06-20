@@ -77,17 +77,17 @@ class PreKeysSyncJob private constructor(
 
     @JvmStatic
     fun enqueueIfNeeded() {
-      if (!SignalStore.account().aciPreKeys.isSignedPreKeyRegistered || !SignalStore.account().pniPreKeys.isSignedPreKeyRegistered) {
-        Log.i(TAG, "Some signed/last-resort prekeys aren't registered yet. Enqueuing a job. ACI: ${SignalStore.account().aciPreKeys.isSignedPreKeyRegistered} PNI: ${SignalStore.account().pniPreKeys.isSignedPreKeyRegistered}")
+      if (!SignalStore.account.aciPreKeys.isSignedPreKeyRegistered || !SignalStore.account.pniPreKeys.isSignedPreKeyRegistered) {
+        Log.i(TAG, "Some signed/last-resort prekeys aren't registered yet. Enqueuing a job. ACI: ${SignalStore.account.aciPreKeys.isSignedPreKeyRegistered} PNI: ${SignalStore.account.pniPreKeys.isSignedPreKeyRegistered}")
         AppDependencies.jobManager.add(PreKeysSyncJob())
-      } else if (SignalStore.account().aciPreKeys.activeSignedPreKeyId < 0 || SignalStore.account().pniPreKeys.activeSignedPreKeyId < 0) {
-        Log.i(TAG, "Some signed prekeys aren't active yet. Enqueuing a job. ACI: ${SignalStore.account().aciPreKeys.activeSignedPreKeyId >= 0} PNI: ${SignalStore.account().pniPreKeys.activeSignedPreKeyId >= 0}")
+      } else if (SignalStore.account.aciPreKeys.activeSignedPreKeyId < 0 || SignalStore.account.pniPreKeys.activeSignedPreKeyId < 0) {
+        Log.i(TAG, "Some signed prekeys aren't active yet. Enqueuing a job. ACI: ${SignalStore.account.aciPreKeys.activeSignedPreKeyId >= 0} PNI: ${SignalStore.account.pniPreKeys.activeSignedPreKeyId >= 0}")
         AppDependencies.jobManager.add(PreKeysSyncJob())
-      } else if (SignalStore.account().aciPreKeys.lastResortKyberPreKeyId < 0 || SignalStore.account().pniPreKeys.lastResortKyberPreKeyId < 0) {
-        Log.i(TAG, "Some last-resort kyber prekeys aren't active yet. Enqueuing a job. ACI: ${SignalStore.account().aciPreKeys.lastResortKyberPreKeyId >= 0} PNI: ${SignalStore.account().pniPreKeys.lastResortKyberPreKeyId >= 0}")
+      } else if (SignalStore.account.aciPreKeys.lastResortKyberPreKeyId < 0 || SignalStore.account.pniPreKeys.lastResortKyberPreKeyId < 0) {
+        Log.i(TAG, "Some last-resort kyber prekeys aren't active yet. Enqueuing a job. ACI: ${SignalStore.account.aciPreKeys.lastResortKyberPreKeyId >= 0} PNI: ${SignalStore.account.pniPreKeys.lastResortKyberPreKeyId >= 0}")
         AppDependencies.jobManager.add(PreKeysSyncJob())
       } else {
-        val timeSinceLastFullRefresh = System.currentTimeMillis() - SignalStore.misc().lastFullPrekeyRefreshTime
+        val timeSinceLastFullRefresh = System.currentTimeMillis() - SignalStore.misc.lastFullPrekeyRefreshTime
 
         if (timeSinceLastFullRefresh >= REFRESH_INTERVAL || timeSinceLastFullRefresh < 0) {
           Log.i(TAG, "Scheduling a prekey refresh. Time since last full refresh: $timeSinceLastFullRefresh ms")
@@ -118,25 +118,25 @@ class PreKeysSyncJob private constructor(
   }
 
   override fun onRun() {
-    if (!SignalStore.account().isRegistered || SignalStore.account().aci == null || SignalStore.account().pni == null) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null || SignalStore.account.pni == null) {
       warn(TAG, "Not yet registered")
       return
     }
 
     val forceRotation = if (forceRotationRequested) {
       warn(TAG, "Forced rotation was requested.")
-      warn(TAG, ServiceIdType.ACI, "Active Signed EC: ${SignalStore.account().aciPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account().aciPreKeys.lastResortKyberPreKeyId}")
-      warn(TAG, ServiceIdType.PNI, "Active Signed EC: ${SignalStore.account().pniPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account().pniPreKeys.lastResortKyberPreKeyId}")
+      warn(TAG, ServiceIdType.ACI, "Active Signed EC: ${SignalStore.account.aciPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account.aciPreKeys.lastResortKyberPreKeyId}")
+      warn(TAG, ServiceIdType.PNI, "Active Signed EC: ${SignalStore.account.pniPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account.pniPreKeys.lastResortKyberPreKeyId}")
 
-      if (!checkPreKeyConsistency(ServiceIdType.ACI, AppDependencies.protocolStore.aci(), SignalStore.account().aciPreKeys)) {
+      if (!checkPreKeyConsistency(ServiceIdType.ACI, AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys)) {
         warn(TAG, ServiceIdType.ACI, "Prekey consistency check failed! Must rotate keys!")
         true
-      } else if (!checkPreKeyConsistency(ServiceIdType.PNI, AppDependencies.protocolStore.pni(), SignalStore.account().pniPreKeys)) {
+      } else if (!checkPreKeyConsistency(ServiceIdType.PNI, AppDependencies.protocolStore.pni(), SignalStore.account.pniPreKeys)) {
         warn(TAG, ServiceIdType.PNI, "Prekey consistency check failed! Must rotate keys! (ACI consistency check must have passed)")
         true
       } else {
         warn(TAG, "Forced rotation was requested, but the consistency checks passed!")
-        val timeSinceLastForcedRotation = System.currentTimeMillis() - SignalStore.misc().lastForcedPreKeyRefresh
+        val timeSinceLastForcedRotation = System.currentTimeMillis() - SignalStore.misc.lastForcedPreKeyRefresh
         // We check < 0 in case someone changed their clock and had a bad value set
         timeSinceLastForcedRotation > RemoteConfig.preKeyForceRefreshInterval || timeSinceLastForcedRotation < 0
       }
@@ -147,15 +147,15 @@ class PreKeysSyncJob private constructor(
     if (forceRotation) {
       warn(TAG, "Forcing prekey rotation.")
     } else if (forceRotationRequested) {
-      warn(TAG, "Forced prekey rotation was requested, but we already did a forced refresh ${System.currentTimeMillis() - SignalStore.misc().lastForcedPreKeyRefresh} ms ago. Ignoring.")
+      warn(TAG, "Forced prekey rotation was requested, but we already did a forced refresh ${System.currentTimeMillis() - SignalStore.misc.lastForcedPreKeyRefresh} ms ago. Ignoring.")
     }
 
-    syncPreKeys(ServiceIdType.ACI, SignalStore.account().aci, AppDependencies.protocolStore.aci(), SignalStore.account().aciPreKeys, forceRotation)
-    syncPreKeys(ServiceIdType.PNI, SignalStore.account().pni, AppDependencies.protocolStore.pni(), SignalStore.account().pniPreKeys, forceRotation)
-    SignalStore.misc().lastFullPrekeyRefreshTime = System.currentTimeMillis()
+    syncPreKeys(ServiceIdType.ACI, SignalStore.account.aci, AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys, forceRotation)
+    syncPreKeys(ServiceIdType.PNI, SignalStore.account.pni, AppDependencies.protocolStore.pni(), SignalStore.account.pniPreKeys, forceRotation)
+    SignalStore.misc.lastFullPrekeyRefreshTime = System.currentTimeMillis()
 
     if (forceRotation) {
-      SignalStore.misc().lastForcedPreKeyRefresh = System.currentTimeMillis()
+      SignalStore.misc.lastForcedPreKeyRefresh = System.currentTimeMillis()
     }
   }
 

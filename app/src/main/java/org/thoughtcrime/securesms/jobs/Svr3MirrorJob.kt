@@ -57,9 +57,9 @@ class Svr3MirrorJob private constructor(parameters: Parameters, private var seri
     }
 
     SvrRepository.operationLock.withLock {
-      val pin = SignalStore.svr().pin
+      val pin = SignalStore.svr.pin
 
-      if (SignalStore.svr().hasOptedOut()) {
+      if (SignalStore.svr.hasOptedOut()) {
         Log.w(TAG, "Opted out of SVR! Nothing to migrate.")
         return Result.success()
       }
@@ -72,15 +72,15 @@ class Svr3MirrorJob private constructor(parameters: Parameters, private var seri
       val svr3: SecureValueRecoveryV3 = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork)
 
       val session: PinChangeSession = serializedChangeSession?.let { session ->
-        svr3.resumePinChangeSession(pin, SignalStore.svr().getOrCreateMasterKey(), session)
-      } ?: svr3.setPin(pin, SignalStore.svr().getOrCreateMasterKey())
+        svr3.resumePinChangeSession(pin, SignalStore.svr.getOrCreateMasterKey(), session)
+      } ?: svr3.setPin(pin, SignalStore.svr.getOrCreateMasterKey())
 
       serializedChangeSession = session.serialize()
 
       return when (val response: BackupResponse = session.execute()) {
         is BackupResponse.Success -> {
           Log.i(TAG, "Successfully migrated to SVR3! $svr3")
-          SignalStore.svr().appendSvr3AuthTokenToList(response.authorization.asBasic())
+          SignalStore.svr.appendSvr3AuthTokenToList(response.authorization.asBasic())
           AppDependencies.jobManager.add(RefreshAttributesJob())
           Result.success()
         }

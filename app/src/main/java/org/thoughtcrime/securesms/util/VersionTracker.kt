@@ -25,7 +25,7 @@ object VersionTracker {
 
     if (currentVersionCode != lastVersionCode) {
       Log.i(TAG, "Upgraded from $lastVersionCode to $currentVersionCode. Clearing client deprecation.", true)
-      SignalStore.misc().isClientDeprecated = false
+      SignalStore.misc.isClientDeprecated = false
       val jobChain = listOf(RemoteConfigRefreshJob(), RefreshAttributesJob())
       AppDependencies.jobManager.startChain(jobChain).enqueue()
       RetrieveRemoteAnnouncementsJob.enqueue(true)

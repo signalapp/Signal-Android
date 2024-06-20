@@ -38,7 +38,7 @@ public final class EmojiSearchIndexCheckMigrationJob extends MigrationJob {
   @Override
   public void performMigration() {
     if (SqlUtil.isEmpty(SignalDatabase.getRawDatabase(), EmojiSearchTable.TABLE_NAME)) {
-      SignalStore.emojiValues().clearSearchIndexMetadata();
+      SignalStore.emoji().clearSearchIndexMetadata();
       EmojiSearchIndexDownloadJob.scheduleImmediately();
     }
   }

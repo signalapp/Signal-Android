@@ -63,13 +63,13 @@ class StoryFirstTimeNavigationFragment : DialogFragment(R.layout.story_viewer_fi
   }
 
   override fun userHasSeenFirstNavigationView(): Boolean {
-    return SignalStore.storyValues().userHasSeenFirstNavView
+    return SignalStore.story.userHasSeenFirstNavView
   }
 
   override fun onGotItClicked() {
     dismissAllowingStateLoss()
 
-    SignalStore.storyValues().userHasSeenFirstNavView = true
+    SignalStore.story.userHasSeenFirstNavView = true
     viewModel.setIsDisplayingFirstTimeNavigation(false)
   }
 

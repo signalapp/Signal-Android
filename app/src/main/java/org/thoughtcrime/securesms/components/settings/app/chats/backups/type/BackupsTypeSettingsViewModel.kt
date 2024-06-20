@@ -24,7 +24,7 @@ class BackupsTypeSettingsViewModel : ViewModel() {
 
   fun refresh() {
     viewModelScope.launch {
-      val tier = SignalStore.backup().backupTier
+      val tier = SignalStore.backup.backupTier
       internalState.value = state.value.copy(
         messageBackupsType = if (tier != null) BackupRepository.getBackupsType(tier) else null
       )

@@ -63,7 +63,7 @@ class CustomNotificationsSettingsRepository(context: Context) {
   fun setMessageSound(recipientId: RecipientId, sound: Uri?) {
     executor.execute {
       val recipient: Recipient = Recipient.resolved(recipientId)
-      val defaultValue = SignalStore.settings().messageNotificationSound
+      val defaultValue = SignalStore.settings.messageNotificationSound
       val newValue: Uri? = if (defaultValue == sound) null else sound ?: Uri.EMPTY
 
       SignalDatabase.recipients.setMessageRingtone(recipient.id, newValue)
@@ -73,7 +73,7 @@ class CustomNotificationsSettingsRepository(context: Context) {
 
   fun setCallSound(recipientId: RecipientId, sound: Uri?) {
     executor.execute {
-      val defaultValue = SignalStore.settings().callRingtone
+      val defaultValue = SignalStore.settings.callRingtone
       val newValue: Uri? = if (defaultValue == sound) null else sound ?: Uri.EMPTY
 
       SignalDatabase.recipients.setCallRingtone(recipientId, newValue)

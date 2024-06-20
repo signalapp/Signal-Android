@@ -56,16 +56,16 @@ class UsernameLinkSettingsViewModel : ViewModel() {
   private val _state = mutableStateOf(
     UsernameLinkSettingsState(
       activeTab = ActiveTab.Code,
-      username = SignalStore.account().username!!,
-      usernameLinkState = SignalStore.account().usernameLink?.let { UsernameLinkState.Present(it.toLink()) } ?: UsernameLinkState.NotSet,
+      username = SignalStore.account.username!!,
+      usernameLinkState = SignalStore.account.usernameLink?.let { UsernameLinkState.Present(it.toLink()) } ?: UsernameLinkState.NotSet,
       qrCodeState = QrCodeState.Loading,
-      qrCodeColorScheme = SignalStore.misc().usernameQrCodeColorScheme
+      qrCodeColorScheme = SignalStore.misc.usernameQrCodeColorScheme
     )
   )
   val state: State<UsernameLinkSettingsState> = _state
 
   private val disposable: CompositeDisposable = CompositeDisposable()
-  private val usernameLink: BehaviorSubject<Optional<UsernameLinkComponents>> = BehaviorSubject.createDefault(Optional.ofNullable(SignalStore.account().usernameLink))
+  private val usernameLink: BehaviorSubject<Optional<UsernameLinkComponents>> = BehaviorSubject.createDefault(Optional.ofNullable(SignalStore.account.usernameLink))
 
   private val _linkCopiedEvent: MutableState<UUID?> = mutableStateOf(null)
   val linkCopiedEvent: State<UUID?> get() = _linkCopiedEvent
@@ -82,7 +82,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
         )
       }
 
-    if (SignalStore.account().usernameLink == null) {
+    if (SignalStore.account.usernameLink == null) {
       onUsernameLinkReset()
     }
   }
@@ -93,7 +93,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
 
   fun onResume() {
     _state.value = _state.value.copy(
-      qrCodeColorScheme = SignalStore.misc().usernameQrCodeColorScheme
+      qrCodeColorScheme = SignalStore.misc.usernameQrCodeColorScheme
     )
   }
 

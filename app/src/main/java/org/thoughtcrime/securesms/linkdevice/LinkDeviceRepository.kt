@@ -67,7 +67,7 @@ object LinkDeviceRepository {
         return defaultDevice
       }
 
-      val plaintext = DeviceNameCipher.decryptDeviceName(deviceName, SignalStore.account().aciIdentityKey)
+      val plaintext = DeviceNameCipher.decryptDeviceName(deviceName, SignalStore.account.aciIdentityKey)
       if (plaintext == null) {
         Log.w(TAG, "Failed to decrypt device name.")
         return defaultDevice
@@ -96,11 +96,11 @@ object LinkDeviceRepository {
         val ephemeralId: String? = uri.getQueryParameter("uuid")
         val publicKeyEncoded: String? = uri.getQueryParameter("pub_key")
         val publicKey = Curve.decodePoint(publicKeyEncoded?.let { decode(it) }, 0)
-        val aciIdentityKeyPair = SignalStore.account().aciIdentityKey
-        val pniIdentityKeyPair = SignalStore.account().pniIdentityKey
+        val aciIdentityKeyPair = SignalStore.account.aciIdentityKey
+        val pniIdentityKeyPair = SignalStore.account.pniIdentityKey
         val profileKey = ProfileKeyUtil.getSelfProfileKey()
 
-        accountManager.addDevice(ephemeralId, publicKey, aciIdentityKeyPair, pniIdentityKeyPair, profileKey, SignalStore.svr().getOrCreateMasterKey(), verificationCode)
+        accountManager.addDevice(ephemeralId, publicKey, aciIdentityKeyPair, pniIdentityKeyPair, profileKey, SignalStore.svr.getOrCreateMasterKey(), verificationCode)
         TextSecurePreferences.setMultiDevice(AppDependencies.application, true)
         LinkDeviceResult.SUCCESS
       }

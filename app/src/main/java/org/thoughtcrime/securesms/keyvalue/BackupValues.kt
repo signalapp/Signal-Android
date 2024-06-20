@@ -13,7 +13,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 
-internal class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
+class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {
     val TAG = Log.tag(BackupValues::class.java)
     private const val KEY_CREDENTIALS = "backup.credentials"

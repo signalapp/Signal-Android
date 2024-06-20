@@ -236,24 +236,24 @@ open class SignalServiceNetworkAccess(context: Context) {
     signalSvr2Urls = arrayOf(SignalSvr2Url(BuildConfig.SIGNAL_SVR2_URL, serviceTrustStore)),
     networkInterceptors = interceptors,
     dns = Optional.of(DNS),
-    signalProxy = if (SignalStore.proxy().isProxyEnabled) Optional.ofNullable(SignalStore.proxy().proxy) else Optional.empty(),
+    signalProxy = if (SignalStore.proxy.isProxyEnabled) Optional.ofNullable(SignalStore.proxy.proxy) else Optional.empty(),
     zkGroupServerPublicParams = zkGroupServerPublicParams,
     genericServerPublicParams = genericServerPublicParams,
     backupServerPublicParams = backupServerPublicParams
   )
 
   open fun getConfiguration(): SignalServiceConfiguration {
-    return getConfiguration(SignalStore.account().e164)
+    return getConfiguration(SignalStore.account.e164)
   }
 
   open fun getConfiguration(e164: String?): SignalServiceConfiguration {
-    if (e164 == null || SignalStore.proxy().isProxyEnabled) {
+    if (e164 == null || SignalStore.proxy.isProxyEnabled) {
       return uncensoredConfiguration
     }
 
     val countryCode: Int = PhoneNumberUtil.getInstance().parse(e164, null).countryCode
 
-    return when (SignalStore.settings().censorshipCircumventionEnabled) {
+    return when (SignalStore.settings.censorshipCircumventionEnabled) {
       SettingsValues.CensorshipCircumventionEnabled.ENABLED -> {
         censorshipConfiguration[countryCode] ?: defaultCensoredConfiguration
       }
@@ -271,7 +271,7 @@ open class SignalServiceNetworkAccess(context: Context) {
   }
 
   fun isCensored(): Boolean {
-    return isCensored(SignalStore.account().e164)
+    return isCensored(SignalStore.account.e164)
   }
 
   fun isCensored(number: String?): Boolean {

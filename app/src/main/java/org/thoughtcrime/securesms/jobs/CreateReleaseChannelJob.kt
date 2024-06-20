@@ -45,15 +45,15 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
   override fun onFailure() = Unit
 
   override fun onRun() {
-    if (!SignalStore.account().isRegistered) {
+    if (!SignalStore.account.isRegistered) {
       Log.i(TAG, "Not registered, skipping.")
       return
     }
 
-    if (SignalStore.releaseChannelValues().releaseChannelRecipientId != null) {
-      Log.i(TAG, "Already created Release Channel recipient ${SignalStore.releaseChannelValues().releaseChannelRecipientId}")
+    if (SignalStore.releaseChannel.releaseChannelRecipientId != null) {
+      Log.i(TAG, "Already created Release Channel recipient ${SignalStore.releaseChannel.releaseChannelRecipientId}")
 
-      val recipient = Recipient.resolved(SignalStore.releaseChannelValues().releaseChannelRecipientId!!)
+      val recipient = Recipient.resolved(SignalStore.releaseChannel.releaseChannelRecipientId!!)
       if (recipient.profileAvatar == null || recipient.profileAvatar?.isEmpty() == true) {
         setAvatar(recipient.id)
       }
@@ -61,7 +61,7 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
       val recipients = SignalDatabase.recipients
 
       val releaseChannelId: RecipientId = recipients.insertReleaseChannelRecipient()
-      SignalStore.releaseChannelValues().setReleaseChannelRecipientId(releaseChannelId)
+      SignalStore.releaseChannel.setReleaseChannelRecipientId(releaseChannelId)
 
       recipients.setProfileName(releaseChannelId, ProfileName.asGiven("Signal"))
       recipients.setMuted(releaseChannelId, Long.MAX_VALUE)

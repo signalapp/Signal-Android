@@ -45,7 +45,7 @@ class BadgeRepository(context: Context) {
 
     Log.d(TAG, "[setVisibilityForAllBadgesSync] Uploading profile...", true)
     ProfileUtil.uploadProfileWithBadges(context, badges)
-    SignalStore.donationsValues().setDisplayBadgesOnProfile(displayBadgesOnProfile)
+    SignalStore.donations.setDisplayBadgesOnProfile(displayBadgesOnProfile)
     recipientTable.markNeedsSync(Recipient.self().id)
 
     Log.d(TAG, "[setVisibilityForAllBadgesSync] Requesting data change sync...", true)

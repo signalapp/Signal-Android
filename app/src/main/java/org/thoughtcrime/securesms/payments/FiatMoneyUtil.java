@@ -35,7 +35,7 @@ public final class FiatMoneyUtil {
       try {
         return AppDependencies.getPayments()
                               .getCurrencyExchange(false)
-                              .getExchangeRate(SignalStore.paymentsValues().currentCurrency())
+                              .getExchangeRate(SignalStore.payments().currentCurrency())
                               .exchange(a);
       } catch (IOException e) {
         Log.w(TAG, e);

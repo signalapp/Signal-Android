@@ -59,7 +59,7 @@ class ViewReceivedGiftViewModel(
       .subscribe { badge ->
         val otherBadges = Recipient.self().badges.filterNot { it.id == badge.id }
         val hasOtherBadges = otherBadges.isNotEmpty()
-        val displayingBadges = SignalStore.donationsValues().getDisplayBadgesOnProfile()
+        val displayingBadges = SignalStore.donations.getDisplayBadgesOnProfile()
         val displayingOtherBadges = hasOtherBadges && displayingBadges
 
         store.update {

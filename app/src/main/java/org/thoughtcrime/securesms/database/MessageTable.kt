@@ -990,7 +990,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
 
       val updateDetail = GroupCallUpdateDetailsUtil.parse(message.body)
-      val containsSelf = joinedUuids.contains(SignalStore.account().requireAci().rawUuid)
+      val containsSelf = joinedUuids.contains(SignalStore.account.requireAci().rawUuid)
       val sameEraId = updateDetail.eraId == eraId && !Util.isEmpty(eraId)
       val inCallUuids = if (sameEraId) joinedUuids.map { it.toString() } else emptyList()
       val contentValues = contentValuesOf(
@@ -1031,7 +1031,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       MmsReader(cursor).use { reader ->
         val record = reader.getNext() ?: return@withinTransaction false
         val groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(record.body)
-        val containsSelf = peekJoinedUuids.contains(SignalStore.account().requireAci().rawUuid)
+        val containsSelf = peekJoinedUuids.contains(SignalStore.account.requireAci().rawUuid)
         val sameEraId = groupCallUpdateDetails.eraId == peekGroupCallEraId && !Util.isEmpty(peekGroupCallEraId)
 
         val inCallUuids = if (sameEraId) {
@@ -1374,7 +1374,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun markOnboardingStoryRead() {
-    val recipientId = SignalStore.releaseChannelValues().releaseChannelRecipientId ?: return
+    val recipientId = SignalStore.releaseChannel.releaseChannelRecipientId ?: return
     val where = "$IS_STORY_CLAUSE AND NOT ($outgoingTypeClause) AND $READ = 0 AND $FROM_RECIPIENT_ID = ?"
     val markedMessageInfos = setMessagesRead(where, buildArgs(recipientId))
 
@@ -2314,7 +2314,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   private fun setMessagesRead(where: String, arguments: Array<String>?): List<MarkedMessageInfo> {
-    val releaseChannelId = SignalStore.releaseChannelValues().releaseChannelRecipientId
+    val releaseChannelId = SignalStore.releaseChannel.releaseChannelRecipientId
     return writableDatabase.rawQuery(
       """
           UPDATE $TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID
@@ -2975,7 +2975,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     contentValues.put(EXPIRES_IN, editedMessage?.expiresIn ?: message.expiresIn)
     contentValues.put(VIEW_ONCE, message.isViewOnce)
     contentValues.put(FROM_RECIPIENT_ID, Recipient.self().id.serialize())
-    contentValues.put(FROM_DEVICE_ID, SignalStore.account().deviceId)
+    contentValues.put(FROM_DEVICE_ID, SignalStore.account.deviceId)
     contentValues.put(TO_RECIPIENT_ID, message.threadRecipient.id.serialize())
     contentValues.put(HAS_DELIVERY_RECEIPT, earlyDeliveryReceipts.values.sumOf { it.count })
     contentValues.put(RECEIPT_TIMESTAMP, earlyDeliveryReceipts.values.map { it.timestamp }.maxOrNull() ?: -1L)
@@ -4892,7 +4892,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       return -1L
     }
 
-    val releaseChannelRecipientId = SignalStore.releaseChannelValues().releaseChannelRecipientId ?: return -1L
+    val releaseChannelRecipientId = SignalStore.releaseChannel.releaseChannelRecipientId ?: return -1L
     return threads.getThreadIdFor(releaseChannelRecipientId) ?: return -1L
   }
 

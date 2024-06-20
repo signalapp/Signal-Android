@@ -355,7 +355,7 @@ class MediaSelectionRepository(context: Context) {
       val isStory = contact.isStory || recipient.isDistributionList
 
       if (isStory && !recipient.isMyStory) {
-        SignalStore.storyValues().setLatestStorySend(StorySend.newSend(recipient))
+        SignalStore.story.setLatestStorySend(StorySend.newSend(recipient))
       }
 
       val storyType: StoryType = when {

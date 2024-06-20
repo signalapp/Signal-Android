@@ -78,13 +78,13 @@ object DeleteDialog {
   }
 
   private fun handleDeleteForEveryone(context: Context, messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Pair<Boolean, Boolean>>) {
-    if (SignalStore.uiHints().hasConfirmedDeleteForEveryoneOnce()) {
+    if (SignalStore.uiHints.hasConfirmedDeleteForEveryoneOnce()) {
       deleteForEveryone(messageRecords, emitter)
     } else {
       MaterialAlertDialogBuilder(context)
         .setMessage(R.string.ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation)
         .setPositiveButton(R.string.ConversationFragment_delete_for_everyone) { _, _ ->
-          SignalStore.uiHints().markHasConfirmedDeleteForEveryoneOnce()
+          SignalStore.uiHints.markHasConfirmedDeleteForEveryoneOnce()
           deleteForEveryone(messageRecords, emitter)
         }
         .setNegativeButton(android.R.string.cancel) { _, _ -> emitter.onSuccess(Pair(false, false)) }

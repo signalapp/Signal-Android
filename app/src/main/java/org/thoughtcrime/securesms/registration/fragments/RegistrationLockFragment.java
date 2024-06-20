@@ -43,7 +43,7 @@ public final class RegistrationLockFragment extends BaseRegistrationLockFragment
 
   @Override
   protected void handleSuccessfulPinEntry(@NonNull String pin) {
-    SignalStore.pinValues().setKeyboardType(getPinEntryKeyboardType());
+    SignalStore.pin().setKeyboardType(getPinEntryKeyboardType());
 
     SimpleTask.run(() -> {
       SignalStore.onboarding().clearAll();

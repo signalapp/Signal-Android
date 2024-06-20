@@ -24,7 +24,7 @@ class PaymentsRecoveryPhraseRepository {
   {
     SignalExecutors.BOUNDED.execute(() -> {
       String                             mnemonic = Util.join(words, " ");
-      PaymentsValues.WalletRestoreResult result   = SignalStore.paymentsValues().restoreWallet(mnemonic);
+      PaymentsValues.WalletRestoreResult result   = SignalStore.payments().restoreWallet(mnemonic);
 
       switch (result) {
         case ENTROPY_CHANGED:

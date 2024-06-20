@@ -128,7 +128,7 @@ class RegistrationLockV2Fragment : LoggingFragment(R.layout.fragment_registratio
       return
     }
 
-    SignalStore.pinValues().keyboardType = getPinEntryKeyboardType()
+    SignalStore.pin.keyboardType = getPinEntryKeyboardType()
 
     binding.kbsLockPinConfirm.setSpinning()
 

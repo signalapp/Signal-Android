@@ -210,7 +210,7 @@ public final class MultiShareSender {
       }
 
       if (!recipient.isMyStory()) {
-        SignalStore.storyValues().setLatestStorySend(StorySend.newSend(recipient));
+        SignalStore.story().setLatestStorySend(StorySend.newSend(recipient));
       }
 
       if (multiShareArgs.isTextStory()) {

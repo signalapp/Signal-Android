@@ -64,10 +64,10 @@ object SlowNotificationHeuristics {
 
   @JvmStatic
   fun shouldPromptUserForLogs(): Boolean {
-    if (!LocaleRemoteConfig.isDelayedNotificationPromptEnabled() || SignalStore.uiHints().hasDeclinedToShareNotificationLogs()) {
+    if (!LocaleRemoteConfig.isDelayedNotificationPromptEnabled() || SignalStore.uiHints.hasDeclinedToShareNotificationLogs()) {
       return false
     }
-    if (System.currentTimeMillis() - SignalStore.uiHints().lastNotificationLogsPrompt < TimeUnit.DAYS.toMillis(7)) {
+    if (System.currentTimeMillis() - SignalStore.uiHints.lastNotificationLogsPrompt < TimeUnit.DAYS.toMillis(7)) {
       return false
     }
 
@@ -81,11 +81,11 @@ object SlowNotificationHeuristics {
     }
 
     val remoteEnabled = LocaleRemoteConfig.isBatterySaverPromptEnabled() || LocaleRemoteConfig.isDelayedNotificationPromptEnabled()
-    if (!remoteEnabled || SignalStore.uiHints().hasDismissedBatterySaverPrompt()) {
+    if (!remoteEnabled || SignalStore.uiHints.hasDismissedBatterySaverPrompt()) {
       return false
     }
 
-    if (System.currentTimeMillis() - SignalStore.uiHints().lastBatterySaverPrompt < TimeUnit.DAYS.toMillis(7)) {
+    if (System.currentTimeMillis() - SignalStore.uiHints.lastBatterySaverPrompt < TimeUnit.DAYS.toMillis(7)) {
       return false
     }
 
@@ -95,7 +95,7 @@ object SlowNotificationHeuristics {
   @WorkerThread
   @JvmStatic
   fun isHavingDelayedNotifications(): Boolean {
-    if (!SignalStore.settings().isMessageNotificationsEnabled ||
+    if (!SignalStore.settings.isMessageNotificationsEnabled ||
       !NotificationChannels.getInstance().areNotificationsEnabled()
     ) {
       // If user does not have notifications enabled, we shouldn't bother them about delayed notifications

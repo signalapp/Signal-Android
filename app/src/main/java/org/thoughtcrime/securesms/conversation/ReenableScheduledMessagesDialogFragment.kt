@@ -54,7 +54,7 @@ class ReenableScheduledMessagesDialogFragment : FixedRoundedCornerBottomSheetDia
     fun showIfNeeded(context: Context, fragmentManager: FragmentManager, metricId: String?, scheduledDate: Long): Boolean {
       val hasPermission = Build.VERSION.SDK_INT < 31 || ServiceUtil.getAlarmManager(context).canScheduleExactAlarms()
 
-      val fragment = if (!SignalStore.uiHints().hasSeenScheduledMessagesInfoSheet()) {
+      val fragment = if (!SignalStore.uiHints.hasSeenScheduledMessagesInfoSheet()) {
         ScheduleMessageFtuxBottomSheetDialog()
       } else if (!hasPermission) {
         ReenableScheduledMessagesDialogFragment()

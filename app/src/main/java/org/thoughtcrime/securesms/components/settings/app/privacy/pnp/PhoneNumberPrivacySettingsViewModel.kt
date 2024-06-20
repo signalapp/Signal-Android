@@ -18,8 +18,8 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
 
   private val _state = mutableStateOf(
     PhoneNumberPrivacySettingsState(
-      phoneNumberSharing = SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled,
-      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode != PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
+      phoneNumberSharing = SignalStore.phoneNumberPrivacy.isPhoneNumberSharingEnabled,
+      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode != PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
     )
   )
 
@@ -43,7 +43,7 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
   }
 
   private fun setPhoneNumberSharingEnabled(phoneNumberSharingEnabled: Boolean) {
-    SignalStore.phoneNumberPrivacy().phoneNumberSharingMode = if (phoneNumberSharingEnabled) PhoneNumberSharingMode.EVERYBODY else PhoneNumberSharingMode.NOBODY
+    SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = if (phoneNumberSharingEnabled) PhoneNumberSharingMode.EVERYBODY else PhoneNumberSharingMode.NOBODY
     SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
     StorageSyncHelper.scheduleSyncForDataChange()
     AppDependencies.jobManager.add(ProfileUploadJob())
@@ -51,7 +51,7 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
   }
 
   private fun setDiscoverableByPhoneNumber(discoverable: Boolean) {
-    SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = if (discoverable) PhoneNumberDiscoverabilityMode.DISCOVERABLE else PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
+    SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (discoverable) PhoneNumberDiscoverabilityMode.DISCOVERABLE else PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
     StorageSyncHelper.scheduleSyncForDataChange()
     AppDependencies.jobManager.startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
     refresh()
@@ -59,8 +59,8 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
 
   fun refresh() {
     _state.value = PhoneNumberPrivacySettingsState(
-      phoneNumberSharing = SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled,
-      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode != PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
+      phoneNumberSharing = SignalStore.phoneNumberPrivacy.isPhoneNumberSharingEnabled,
+      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode != PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
     )
   }
 }

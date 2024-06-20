@@ -32,7 +32,7 @@ class SignalStoreRule @JvmOverloads constructor(private val defaultValues: KeyVa
         }
 
         dataSet = KeyValueDataSet()
-        SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
+        SignalStore.testInject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
         defaultValues.invoke(dataSet)
 
         base.evaluate()

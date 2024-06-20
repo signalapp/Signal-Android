@@ -82,7 +82,7 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
       navController.safeNavigate(it)
     }
 
-    SignalStore.settings().onConfigurationSettingChanged.observe(this) { key ->
+    SignalStore.settings.onConfigurationSettingChanged.observe(this) { key ->
       if (key == SettingsValues.THEME) {
         DynamicTheme.setDefaultDayNightMode(this)
         recreate()

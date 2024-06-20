@@ -21,7 +21,7 @@ object NotificationProfiles {
   @JvmStatic
   @JvmOverloads
   fun getActiveProfile(profiles: List<NotificationProfile>, now: Long = System.currentTimeMillis(), zoneId: ZoneId = ZoneId.systemDefault()): NotificationProfile? {
-    val storeValues: NotificationProfileValues = SignalStore.notificationProfileValues()
+    val storeValues: NotificationProfileValues = SignalStore.notificationProfile
     val localNow: LocalDateTime = now.toLocalDateTime(zoneId)
 
     val manualProfile: NotificationProfile? = if (now < storeValues.manuallyEnabledUntil) {
@@ -46,7 +46,7 @@ object NotificationProfiles {
   }
 
   fun getActiveProfileDescription(context: Context, profile: NotificationProfile, now: Long = System.currentTimeMillis()): String {
-    val storeValues: NotificationProfileValues = SignalStore.notificationProfileValues()
+    val storeValues: NotificationProfileValues = SignalStore.notificationProfile
 
     if (profile.id == storeValues.manuallyEnabledProfile) {
       if (storeValues.manuallyEnabledUntil.isForever()) {

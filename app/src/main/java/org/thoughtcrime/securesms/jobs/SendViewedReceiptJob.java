@@ -136,7 +136,7 @@ public class SendViewedReceiptJob extends BaseJob {
   public void onRun() throws IOException, UntrustedIdentityException {
 
     boolean canSendNonStoryReceipts = TextSecurePreferences.isReadReceiptsEnabled(context);
-    boolean canSendStoryReceipts    = SignalStore.storyValues().getViewedReceiptsEnabled();
+    boolean canSendStoryReceipts    = SignalStore.story().getViewedReceiptsEnabled();
 
     List<MessageId> foundMessageIds       = new LinkedList<>();
     List<Long>      messageSentTimestamps = new LinkedList<>();

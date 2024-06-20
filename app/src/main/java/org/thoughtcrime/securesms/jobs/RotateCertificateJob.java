@@ -72,7 +72,7 @@ public final class RotateCertificateJob extends BaseJob {
         }
 
         Log.i(TAG, String.format("Successfully got %s certificate", certificateType));
-        SignalStore.certificateValues()
+        SignalStore.certificate()
                    .setUnidentifiedAccessCertificate(certificateType, certificate);
       }
     }

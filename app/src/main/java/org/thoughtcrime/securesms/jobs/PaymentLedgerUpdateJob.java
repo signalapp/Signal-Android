@@ -57,7 +57,7 @@ public final class PaymentLedgerUpdateJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, RetryLaterException, FogSyncException {
-    if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
+    if (!SignalStore.payments().mobileCoinPaymentsEnabled()) {
       Log.w(TAG, "Payments are not enabled");
       return;
     }
@@ -86,7 +86,7 @@ public final class PaymentLedgerUpdateJob extends BaseJob {
 
     Log.i(TAG, "Ledger fetched successfully");
 
-    SignalStore.paymentsValues()
+    SignalStore.payments()
                .setMobileCoinFullLedger(ledger);
   }
 

@@ -44,7 +44,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
 
   constructor() : this(
     Parameters.Builder()
-      .addConstraint(if (SignalStore.backup().backupWithCellular) NetworkConstraint.KEY else WifiConstraint.KEY)
+      .addConstraint(if (SignalStore.backup.backupWithCellular) NetworkConstraint.KEY else WifiConstraint.KEY)
       .setMaxAttempts(3)
       .setMaxInstancesForFactory(1)
       .setQueue(QUEUE)
@@ -58,7 +58,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
   override fun onFailure() = Unit
 
   private fun archiveAttachments(): Boolean {
-    if (!SignalStore.backup().backsUpMedia) return false
+    if (!SignalStore.backup.backsUpMedia) return false
 
     val batchSize = 100
     var needToBackfill = 0
@@ -121,15 +121,15 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
       BackupRepository.uploadBackupFile(it, tempBackupFile.length())
     }
     val needBackfill = archiveAttachments()
-    SignalStore.backup().lastBackupProtoSize = tempBackupFile.length()
+    SignalStore.backup.lastBackupProtoSize = tempBackupFile.length()
     if (!tempBackupFile.delete()) {
       Log.e(TAG, "Failed to delete temp backup file")
     }
-    SignalStore.backup().lastBackupTime = System.currentTimeMillis()
+    SignalStore.backup.lastBackupTime = System.currentTimeMillis()
     if (!needBackfill) {
       EventBus.getDefault().postSticky(BackupV2Event(BackupV2Event.Type.FINISHED, 0, 0))
       try {
-        SignalStore.backup().usedBackupMediaSpace = (BackupRepository.getRemoteBackupUsedSpace().successOrThrow() ?: 0)
+        SignalStore.backup.usedBackupMediaSpace = (BackupRepository.getRemoteBackupUsedSpace().successOrThrow() ?: 0)
       } catch (e: IOException) {
         Log.e(TAG, "Failed to update used space")
       }

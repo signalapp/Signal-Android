@@ -189,19 +189,19 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private boolean userCanTransferOrRestore() {
-    return !SignalStore.registrationValues().isRegistrationComplete() && RemoteConfig.restoreAfterRegistration() && !SignalStore.registrationValues().hasSkippedTransferOrRestore();
+    return !SignalStore.registration().isRegistrationComplete() && RemoteConfig.restoreAfterRegistration() && !SignalStore.registration().hasSkippedTransferOrRestore();
   }
 
   private boolean userMustCreateSignalPin() {
-    return !SignalStore.registrationValues().isRegistrationComplete() && !SignalStore.svr().hasPin() && !SignalStore.svr().lastPinCreateFailed() && !SignalStore.svr().hasOptedOut();
+    return !SignalStore.registration().isRegistrationComplete() && !SignalStore.svr().hasPin() && !SignalStore.svr().lastPinCreateFailed() && !SignalStore.svr().hasOptedOut();
   }
 
   private boolean userHasSkippedOrForgottenPin() {
-    return !SignalStore.registrationValues().isRegistrationComplete() && !SignalStore.svr().hasPin() && !SignalStore.svr().hasOptedOut() && SignalStore.svr().isPinForgottenOrSkipped();
+    return !SignalStore.registration().isRegistrationComplete() && !SignalStore.svr().hasPin() && !SignalStore.svr().hasOptedOut() && SignalStore.svr().isPinForgottenOrSkipped();
   }
 
   private boolean userMustSetProfileName() {
-    return !SignalStore.registrationValues().isRegistrationComplete() && Recipient.self().getProfileName().isEmpty();
+    return !SignalStore.registration().isRegistrationComplete() && Recipient.self().getProfileName().isEmpty();
   }
 
   private Intent getCreatePassphraseIntent() {

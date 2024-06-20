@@ -21,10 +21,10 @@ import java.util.UUID
  */
 class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalServiceAccountDataStore {
 
-  private val identityStore: BufferedIdentityKeyStore = if (selfServiceId == SignalStore.account().pni) {
-    BufferedIdentityKeyStore(selfServiceId, SignalStore.account().pniIdentityKey, SignalStore.account().pniRegistrationId)
+  private val identityStore: BufferedIdentityKeyStore = if (selfServiceId == SignalStore.account.pni) {
+    BufferedIdentityKeyStore(selfServiceId, SignalStore.account.pniIdentityKey, SignalStore.account.pniRegistrationId)
   } else {
-    BufferedIdentityKeyStore(selfServiceId, SignalStore.account().aciIdentityKey, SignalStore.account().registrationId)
+    BufferedIdentityKeyStore(selfServiceId, SignalStore.account.aciIdentityKey, SignalStore.account.registrationId)
   }
 
   private val oneTimePreKeyStore: BufferedOneTimePreKeyStore = BufferedOneTimePreKeyStore(selfServiceId)

@@ -4,7 +4,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import java.io.IOException
 
-internal class ChatColorsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class ChatColorsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
   companion object {
     private const val KEY_CHAT_COLORS = "chat_colors.chat_colors"
@@ -13,9 +13,9 @@ internal class ChatColorsValues internal constructor(store: KeyValueStore) : Sig
     private const val KEY_CHAT_COLORS_GRADIENT_TOOLTIP = "chat_colors.gradient.tooltip"
   }
 
-  override fun onFirstEverAppLaunch() = Unit
+  public override fun onFirstEverAppLaunch() = Unit
 
-  override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
+  public override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
     KEY_CHAT_COLORS,
     KEY_CHAT_COLORS_ID,
     KEY_CHAT_COLORS_AUTO_TOOLTIP,

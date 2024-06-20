@@ -113,7 +113,7 @@ class IncomingMessageObserver(private val context: Application) {
 
     MessageRetrievalThread().start()
 
-    if (!SignalStore.account().fcmEnabled || SignalStore.internalValues().isWebsocketModeForced) {
+    if (!SignalStore.account.fcmEnabled || SignalStore.internal.isWebsocketModeForced) {
       try {
         ForegroundServiceUtil.start(context, Intent(context, ForegroundService::class.java))
       } catch (e: UnableToStartException) {
@@ -193,11 +193,11 @@ class IncomingMessageObserver(private val context: Application) {
       }.toImmutableSet()
     }
 
-    val registered = SignalStore.account().isRegistered
-    val fcmEnabled = SignalStore.account().fcmEnabled
+    val registered = SignalStore.account.isRegistered
+    val fcmEnabled = SignalStore.account.fcmEnabled
     val hasNetwork = NetworkConstraint.isMet(context)
-    val hasProxy = SignalStore.proxy().isProxyEnabled
-    val forceWebsocket = SignalStore.internalValues().isWebsocketModeForced
+    val hasProxy = SignalStore.proxy.isProxyEnabled
+    val forceWebsocket = SignalStore.internal.isWebsocketModeForced
 
     val lastInteractionString = if (appVisibleSnapshot) "N/A" else timeIdle.toString() + " ms (" + (if (timeIdle < maxBackgroundTime) "within limit" else "over limit") + ")"
     val conclusion = registered &&

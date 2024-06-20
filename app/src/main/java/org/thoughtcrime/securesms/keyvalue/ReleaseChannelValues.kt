@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.keyvalue
 
 import org.thoughtcrime.securesms.recipients.RecipientId
 
-internal class ReleaseChannelValues(store: KeyValueStore) : SignalStoreValues(store) {
+class ReleaseChannelValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   companion object {
     private const val KEY_RELEASE_CHANNEL_RECIPIENT_ID = "releasechannel.recipient_id"
@@ -12,9 +12,9 @@ internal class ReleaseChannelValues(store: KeyValueStore) : SignalStoreValues(st
     private const val KEY_MET_CONVERSATION_REQUIREMENT = "releasechannel.met_conversation_requirement"
   }
 
-  override fun onFirstEverAppLaunch() = Unit
+  public override fun onFirstEverAppLaunch() = Unit
 
-  override fun getKeysToIncludeInBackup(): List<String> = listOf(
+  public override fun getKeysToIncludeInBackup(): List<String> = listOf(
     KEY_RELEASE_CHANNEL_RECIPIENT_ID
   )
 

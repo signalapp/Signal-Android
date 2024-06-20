@@ -210,7 +210,7 @@ fun RecipientTable.restoreContactFromBackup(contact: Contact): RecipientId {
 
 fun RecipientTable.restoreReleaseNotes(): RecipientId {
   val releaseChannelId: RecipientId = insertReleaseChannelRecipient()
-  SignalStore.releaseChannelValues().setReleaseChannelRecipientId(releaseChannelId)
+  SignalStore.releaseChannel.setReleaseChannelRecipientId(releaseChannelId)
 
   setProfileName(releaseChannelId, ProfileName.asGiven("Signal"))
   setMuted(releaseChannelId, Long.MAX_VALUE)

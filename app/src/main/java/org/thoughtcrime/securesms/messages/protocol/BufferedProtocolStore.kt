@@ -38,8 +38,8 @@ class BufferedProtocolStore private constructor(
 
   companion object {
     fun create(): BufferedProtocolStore {
-      val aci = SignalStore.account().requireAci()
-      val pni = SignalStore.account().requirePni()
+      val aci = SignalStore.account.requireAci()
+      val pni = SignalStore.account.requirePni()
 
       return BufferedProtocolStore(
         aciStore = aci to BufferedSignalServiceAccountDataStore(aci),

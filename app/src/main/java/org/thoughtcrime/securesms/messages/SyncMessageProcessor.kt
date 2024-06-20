@@ -247,7 +247,7 @@ object SyncMessageProcessor {
         AppDependencies.messageNotifier.updateNotification(context)
       }
 
-      if (SignalStore.rateLimit().needsRecaptcha()) {
+      if (SignalStore.rateLimit.needsRecaptcha()) {
         log(envelope.timestamp!!, "Got a sent transcript while in reCAPTCHA mode. Assuming we're good to message again.")
         RateLimitUtil.retryAllRateLimitedMessages(context)
       }
@@ -887,7 +887,7 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeRequestMessage(context: Context, message: Request, envelopeTimestamp: Long) {
-    if (SignalStore.account().isPrimaryDevice) {
+    if (SignalStore.account.isPrimaryDevice) {
       log(envelopeTimestamp, "Synchronize request message.")
     } else {
       log(envelopeTimestamp, "Linked device ignoring synchronize request message.")
@@ -903,7 +903,7 @@ object SyncMessageProcessor {
             TextSecurePreferences.isReadReceiptsEnabled(context),
             TextSecurePreferences.isTypingIndicatorsEnabled(context),
             TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
-            SignalStore.settings().isLinkPreviewsEnabled
+            SignalStore.settings.isLinkPreviewsEnabled
           )
         )
         AppDependencies.jobManager.add(MultiDeviceStickerPackSyncJob())
@@ -1055,7 +1055,7 @@ object SyncMessageProcessor {
     }
 
     if (configurationMessage.linkPreviews != null) {
-      SignalStore.settings().isLinkPreviewsEnabled = configurationMessage.linkPreviews!!
+      SignalStore.settings.isLinkPreviewsEnabled = configurationMessage.linkPreviews!!
     }
   }
 
@@ -1194,19 +1194,19 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeKeys(storageKey: ByteString, envelopeTimestamp: Long) {
-    if (SignalStore.account().isLinkedDevice) {
+    if (SignalStore.account.isLinkedDevice) {
       log(envelopeTimestamp, "Synchronize keys.")
     } else {
       log(envelopeTimestamp, "Primary device ignores synchronize keys.")
       return
     }
 
-    SignalStore.storageService().setStorageKeyFromPrimary(StorageKey(storageKey.toByteArray()))
+    SignalStore.storageService.setStorageKeyFromPrimary(StorageKey(storageKey.toByteArray()))
   }
 
   @Throws(IOException::class)
   private fun handleSynchronizeContacts(contactsMessage: SyncMessage.Contacts, envelopeTimestamp: Long) {
-    if (SignalStore.account().isLinkedDevice) {
+    if (SignalStore.account.isLinkedDevice) {
       log(envelopeTimestamp, "Synchronize contacts.")
     } else {
       log(envelopeTimestamp, "Primary device ignores synchronize contacts.")

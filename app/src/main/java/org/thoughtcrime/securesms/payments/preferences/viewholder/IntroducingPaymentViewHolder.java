@@ -44,7 +44,7 @@ public class IntroducingPaymentViewHolder extends MappingViewHolder<IntroducingP
 
     activateButton.setOnClickListener(v -> callbacks.onActivatePayments());
 
-    if (SignalStore.paymentsValues().hasPaymentsEntropy()) {
+    if (SignalStore.payments().hasPaymentsEntropy()) {
       restoreButton.setVisibility(View.GONE);
     } else {
       restoreButton.setVisibility(View.VISIBLE);

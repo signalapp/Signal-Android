@@ -50,7 +50,7 @@ class CallReactionScrubber @JvmOverloads constructor(
   }
 
   fun initialize(fragmentManager: FragmentManager, listener: (String) -> Unit) {
-    val emojis = SignalStore.emojiValues().reactions
+    val emojis = SignalStore.emoji.reactions
     for (i in emojiViews.indices) {
       val view = emojiViews[i]
       val isAtCustomIndex = i == customEmojiIndex
@@ -61,7 +61,7 @@ class CallReactionScrubber @JvmOverloads constructor(
           bottomSheet.show(fragmentManager, CUSTOM_REACTION_BOTTOM_SHEET_TAG)
         }
       } else {
-        val preferredVariation = SignalStore.emojiValues().getPreferredVariation(emojis[i])
+        val preferredVariation = SignalStore.emoji.getPreferredVariation(emojis[i])
         view.setImageEmoji(preferredVariation)
         view.setOnClickListener { listener(preferredVariation) }
       }

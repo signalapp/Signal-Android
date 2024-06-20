@@ -17,7 +17,7 @@ object LocaleUtil {
    */
   fun getLocaleDefaults(): List<Locale> {
     val locales: MutableList<Locale> = mutableListOf()
-    val signalLocale: Locale? = LanguageString.parseLocale(SignalStore.settings().language)
+    val signalLocale: Locale? = LanguageString.parseLocale(SignalStore.settings.language)
     val localeList: LocaleListCompat = LocaleListCompat.getDefault()
 
     if (signalLocale != null) {

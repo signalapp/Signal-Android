@@ -56,7 +56,7 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
     attachmentKeyboardView = view.findViewById(R.id.attachment_keyboard)
     attachmentKeyboardView.apply {
       setCallback(this@AttachmentKeyboardFragment)
-      if (!SignalStore.paymentsValues().paymentsAvailability.isSendAllowed) {
+      if (!SignalStore.payments.paymentsAvailability.isSendAllowed) {
         filterAttachmentKeyboardButtons(removePaymentFilter)
       }
     }
@@ -103,7 +103,7 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
   }
 
   private fun updatePaymentsAvailable(recipient: Recipient) {
-    val paymentsValues = SignalStore.paymentsValues()
+    val paymentsValues = SignalStore.payments
     if (paymentsValues.paymentsAvailability.isSendAllowed &&
       !recipient.isSelf &&
       !recipient.isGroup &&

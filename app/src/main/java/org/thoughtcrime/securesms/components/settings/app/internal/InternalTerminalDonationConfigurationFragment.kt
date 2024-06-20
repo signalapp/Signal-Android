@@ -38,7 +38,7 @@ class InternalTerminalDonationConfigurationFragment : ComposeFragment() {
   override fun FragmentContent() {
     InternalTerminalDonationConfigurationContent(
       onAddClick = {
-        SignalStore.donationsValues().appendToTerminalDonationQueue(it)
+        SignalStore.donations.appendToTerminalDonationQueue(it)
         findNavController().popBackStack()
       }
     )

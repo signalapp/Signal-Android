@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import java.util.Arrays;
 import java.util.List;
 
-public class UiHints extends SignalStoreValues {
+public class UiHintValues extends SignalStoreValues {
 
   private static final int NEVER_DISPLAY_PULL_TO_FILTER_TIP_THRESHOLD = 3;
 
@@ -27,7 +27,7 @@ public class UiHints extends SignalStoreValues {
   private static final String DISMISSED_CONTACTS_PERMISSION_BANNER     = "uihints.dismissed_contacts_permission_banner";
   private static final String HAS_SEEN_DELETE_SYNC_EDUCATION_SHEET     = "uihints.has_seen_delete_sync_education_sheet";
 
-  UiHints(@NonNull KeyValueStore store) {
+  UiHintValues(@NonNull KeyValueStore store) {
     super(store);
   }
 

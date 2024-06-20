@@ -76,7 +76,7 @@ class ChangeNumberRepository(
     fun <T : Any> acquireReleaseChangeNumberLock(upstream: Single<T>): Single<T> {
       return upstream.doOnSubscribe {
         CHANGE_NUMBER_LOCK.lock()
-        SignalStore.misc().lockChangeNumber()
+        SignalStore.misc.lockChangeNumber()
       }
         .subscribeOn(Schedulers.single())
         .observeOn(Schedulers.single())
@@ -127,7 +127,7 @@ class ChangeNumberRepository(
           newE164 = newE164
         )
 
-        SignalStore.misc().setPendingChangeNumberMetadata(metadata)
+        SignalStore.misc.setPendingChangeNumberMetadata(metadata)
 
         changeNumberResponse = accountManager.changeNumber(request)
 
@@ -183,7 +183,7 @@ class ChangeNumberRepository(
           registrationLock = registrationLock
         )
 
-        SignalStore.misc().setPendingChangeNumberMetadata(metadata)
+        SignalStore.misc.setPendingChangeNumberMetadata(metadata)
 
         changeNumberResponse = accountManager.changeNumber(request)
 
@@ -219,7 +219,7 @@ class ChangeNumberRepository(
     SignalDatabase.recipients.updateSelfE164(e164, pni)
     val newStorageId: ByteArray? = Recipient.self().storageId
 
-    if (e164 != SignalStore.account().requireE164() && MessageDigest.isEqual(oldStorageId, newStorageId)) {
+    if (e164 != SignalStore.account.requireE164() && MessageDigest.isEqual(oldStorageId, newStorageId)) {
       Log.w(TAG, "Self storage id was not rotated, attempting to rotate again")
       SignalDatabase.recipients.rotateStorageId(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
@@ -231,13 +231,13 @@ class ChangeNumberRepository(
 
     AppDependencies.recipientCache.clear()
 
-    SignalStore.account().setE164(e164)
-    SignalStore.account().setPni(pni)
+    SignalStore.account.setE164(e164)
+    SignalStore.account.setPni(pni)
     AppDependencies.resetProtocolStores()
 
     AppDependencies.groupsV2Authorization.clear()
 
-    val metadata: PendingChangeNumberMetadata? = SignalStore.misc().pendingChangeNumberMetadata
+    val metadata: PendingChangeNumberMetadata? = SignalStore.misc.pendingChangeNumberMetadata
     if (metadata == null) {
       Log.w(TAG, "No change number metadata, this shouldn't happen")
       throw AssertionError("No change number metadata")
@@ -254,10 +254,10 @@ class ChangeNumberRepository(
       val pniLastResortKyberPreKeyId = metadata.pniLastResortKyberPreKeyId
 
       val pniProtocolStore = AppDependencies.protocolStore.pni()
-      val pniMetadataStore = SignalStore.account().pniPreKeys
+      val pniMetadataStore = SignalStore.account.pniPreKeys
 
-      SignalStore.account().pniRegistrationId = pniRegistrationId
-      SignalStore.account().setPniIdentityKeyAfterChangeNumber(pniIdentityKeyPair)
+      SignalStore.account.pniRegistrationId = pniRegistrationId
+      SignalStore.account.setPniIdentityKeyAfterChangeNumber(pniIdentityKeyPair)
 
       val signedPreKey = pniProtocolStore.loadSignedPreKey(pniSignedPreyKeyId)
       val oneTimeEcPreKeys = PreKeyUtil.generateAndStoreOneTimeEcPreKeys(pniProtocolStore, pniMetadataStore)
@@ -291,7 +291,7 @@ class ChangeNumberRepository(
         true
       )
 
-      SignalStore.misc().hasPniInitializedDevices = true
+      SignalStore.misc.hasPniInitializedDevices = true
       AppDependencies.groupsV2Authorization.clear()
     }
 
@@ -308,7 +308,7 @@ class ChangeNumberRepository(
 
   @Suppress("UsePropertyAccessSyntax")
   private fun rotateCertificates(): Single<Unit> {
-    val certificateTypes = SignalStore.phoneNumberPrivacy().allCertificateTypes
+    val certificateTypes = SignalStore.phoneNumberPrivacy.allCertificateTypes
 
     Log.i(TAG, "Rotating these certificates $certificateTypes")
 
@@ -322,7 +322,7 @@ class ChangeNumberRepository(
 
         Log.i(TAG, "Successfully got $certificateType certificate")
 
-        SignalStore.certificateValues().setUnidentifiedAccessCertificate(certificateType, certificate)
+        SignalStore.certificate.setUnidentifiedAccessCertificate(certificateType, certificate)
       }
     }.subscribeOn(Schedulers.single())
   }
@@ -334,7 +334,7 @@ class ChangeNumberRepository(
     newE164: String,
     registrationLock: String? = null
   ): ChangeNumberRequestData {
-    val selfIdentifier: String = SignalStore.account().requireAci().toString()
+    val selfIdentifier: String = SignalStore.account.requireAci().toString()
     val aciProtocolStore: SignalProtocolStore = AppDependencies.protocolStore.aci()
 
     val pniIdentity: IdentityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
@@ -351,7 +351,7 @@ class ChangeNumberRepository(
       .forEach { deviceId ->
         // Signed Prekeys
         val signedPreKeyRecord: SignedPreKeyRecord = if (deviceId == primaryDeviceId) {
-          PreKeyUtil.generateAndStoreSignedPreKey(AppDependencies.protocolStore.pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
+          PreKeyUtil.generateAndStoreSignedPreKey(AppDependencies.protocolStore.pni(), SignalStore.account.pniPreKeys, pniIdentity.privateKey)
         } else {
           PreKeyUtil.generateSignedPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
@@ -359,7 +359,7 @@ class ChangeNumberRepository(
 
         // Last-resort kyber prekeys
         val lastResortKyberPreKeyRecord: KyberPreKeyRecord = if (deviceId == primaryDeviceId) {
-          PreKeyUtil.generateAndStoreLastResortKyberPreKey(AppDependencies.protocolStore.pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
+          PreKeyUtil.generateAndStoreLastResortKyberPreKey(AppDependencies.protocolStore.pni(), SignalStore.account.pniPreKeys, pniIdentity.privateKey)
         } else {
           PreKeyUtil.generateLastResortKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
@@ -400,7 +400,7 @@ class ChangeNumberRepository(
     )
 
     val metadata = PendingChangeNumberMetadata(
-      previousPni = SignalStore.account().pni!!.toByteString(),
+      previousPni = SignalStore.account.pni!!.toByteString(),
       pniIdentityKeyPair = pniIdentity.serialize().toByteString(),
       pniRegistrationId = pniRegistrationIds[primaryDeviceId]!!,
       pniSignedPreKeyId = devicePniSignedPreKeys[primaryDeviceId]!!.keyId,

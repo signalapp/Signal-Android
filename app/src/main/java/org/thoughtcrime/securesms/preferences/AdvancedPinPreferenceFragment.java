@@ -76,7 +76,7 @@ public class AdvancedPinPreferenceFragment extends ListSummaryPreferenceFragment
                      .setCancelable(true)
                      .setPositiveButton(android.R.string.ok, (d, which) -> d.dismiss())
                      .show();
-    } else if (!enabled && SignalStore.paymentsValues().mobileCoinPaymentsEnabled() && !SignalStore.paymentsValues().getUserConfirmedMnemonic()) {
+    } else if (!enabled && SignalStore.payments().mobileCoinPaymentsEnabled() && !SignalStore.payments().getUserConfirmedMnemonic()) {
       new MaterialAlertDialogBuilder(requireContext())
                      .setTitle(R.string.ApplicationPreferencesActivity_record_payments_recovery_phrase)
                      .setMessage(R.string.ApplicationPreferencesActivity_before_you_can_disable_your_pin)

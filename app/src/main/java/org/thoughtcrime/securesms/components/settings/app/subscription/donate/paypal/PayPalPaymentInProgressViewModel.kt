@@ -106,7 +106,7 @@ class PayPalPaymentInProgressViewModel(
     disposables += RecurringInAppPaymentRepository.cancelActiveSubscription(subscriberType).subscribeBy(
       onComplete = {
         Log.d(TAG, "Cancellation succeeded", true)
-        SignalStore.donationsValues().updateLocalStateForManualCancellation(subscriberType)
+        SignalStore.donations.updateLocalStateForManualCancellation(subscriberType)
         MultiDeviceSubscriptionSyncRequestJob.enqueue()
         RecurringInAppPaymentRepository.syncAccountRecord().subscribe()
         store.update { DonationProcessorStage.COMPLETE }

@@ -276,7 +276,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   private fun allowedToUnarchive(threadId: Long): Boolean {
-    if (!SignalStore.settings().shouldKeepMutedChatsArchived()) {
+    if (!SignalStore.settings.shouldKeepMutedChatsArchived()) {
       return true
     }
 
@@ -325,7 +325,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return
     }
 
-    val syncThreadTrimDeletes = SignalStore.settings().shouldSyncThreadTrimDeletes() && Recipient.self().deleteSyncCapability.isSupported
+    val syncThreadTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes() && Recipient.self().deleteSyncCapability.isSupported
     val threadTrimsToSync = mutableListOf<ThreadDeleteSyncInfo>()
 
     readableDatabase
@@ -809,8 +809,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     where += " AND $ARCHIVED = 0"
     where += " AND ${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED} = 0"
 
-    if (SignalStore.releaseChannelValues().releaseChannelRecipientId != null) {
-      where += " AND $TABLE_NAME.$RECIPIENT_ID != ${SignalStore.releaseChannelValues().releaseChannelRecipientId!!.toLong()}"
+    if (SignalStore.releaseChannel.releaseChannelRecipientId != null) {
+      where += " AND $TABLE_NAME.$RECIPIENT_ID != ${SignalStore.releaseChannel.releaseChannelRecipientId!!.toLong()}"
     }
 
     val query = createQuery(

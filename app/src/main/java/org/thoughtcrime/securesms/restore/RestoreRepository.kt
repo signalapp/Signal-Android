@@ -66,7 +66,7 @@ object RestoreRepository {
 
       if (BackupUtil.canUserAccessBackupDirectory(context)) {
         LocalBackupListener.setNextBackupTimeToIntervalFromNow(context)
-        SignalStore.settings().isBackupEnabled = true
+        SignalStore.settings.isBackupEnabled = true
         LocalBackupListener.schedule(context)
       }
 

@@ -40,7 +40,7 @@ class CrashConfigTest {
       )
     )
 
-    SignalStore.inject(store)
+    SignalStore.testInject(store)
   }
 
   @Test

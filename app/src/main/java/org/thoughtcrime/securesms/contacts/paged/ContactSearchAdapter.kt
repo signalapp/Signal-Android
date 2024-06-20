@@ -121,7 +121,7 @@ open class ContactSearchAdapter(
       return MappingModelList(
         contactSearchData.filterNotNull().map {
           when (it) {
-            is ContactSearchData.Story -> StoryModel(it, selection.contains(it.contactSearchKey), SignalStore.storyValues().userHasBeenNotifiedAboutStories)
+            is ContactSearchData.Story -> StoryModel(it, selection.contains(it.contactSearchKey), SignalStore.story.userHasBeenNotifiedAboutStories)
             is ContactSearchData.KnownRecipient -> RecipientModel(it, selection.contains(it.contactSearchKey), it.shortSummary)
             is ContactSearchData.Expand -> ExpandModel(it)
             is ContactSearchData.Header -> HeaderModel(it)

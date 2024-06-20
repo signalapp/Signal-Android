@@ -43,7 +43,7 @@ class TransferOrRestoreV2Fragment : LoggingFragment(R.layout.fragment_transfer_r
       TransferOrRestoreMoreOptionsDialog.show(fragmentManager = childFragmentManager, skipOnly = true)
     }
 
-    if (SignalStore.backup().backupTier == null) {
+    if (SignalStore.backup.backupTier == null) {
       binding.transferOrRestoreFragmentRestoreRemoteCard.visible = false
     }
 

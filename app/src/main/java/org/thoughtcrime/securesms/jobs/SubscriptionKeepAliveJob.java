@@ -93,17 +93,17 @@ public class SubscriptionKeepAliveJob extends BaseJob {
     }
 
     final long endOfCurrentPeriod = activeSubscription.getActiveSubscription().getEndOfCurrentPeriod();
-    if (endOfCurrentPeriod > SignalStore.donationsValues().getLastEndOfPeriod()) {
+    if (endOfCurrentPeriod > SignalStore.donations().getLastEndOfPeriod()) {
       Log.i(TAG,
             String.format(Locale.US,
                           "Last end of period change. Requesting receipt refresh. (old: %d to new: %d)",
-                          SignalStore.donationsValues().getLastEndOfPeriod(),
+                          SignalStore.donations().getLastEndOfPeriod(),
                           activeSubscription.getActiveSubscription().getEndOfCurrentPeriod()),
             true);
 
-      SignalStore.donationsValues().setLastEndOfPeriod(endOfCurrentPeriod);
-      SignalStore.donationsValues().clearSubscriptionRequestCredential();
-      SignalStore.donationsValues().clearSubscriptionReceiptCredential();
+      SignalStore.donations().setLastEndOfPeriod(endOfCurrentPeriod);
+      SignalStore.donations().clearSubscriptionRequestCredential();
+      SignalStore.donations().clearSubscriptionReceiptCredential();
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
     }
 
@@ -114,22 +114,22 @@ public class SubscriptionKeepAliveJob extends BaseJob {
         ByteString.EMPTY
     );
 
-    if (endOfCurrentPeriod > SignalStore.donationsValues().getSubscriptionEndOfPeriodConversionStarted()) {
+    if (endOfCurrentPeriod > SignalStore.donations().getSubscriptionEndOfPeriodConversionStarted()) {
       Log.i(TAG, "Subscription end of period is after the conversion end of period. Storing it, generating a credential, and enqueuing the continuation job chain.", true);
-      SignalStore.donationsValues().setSubscriptionEndOfPeriodConversionStarted(endOfCurrentPeriod);
-      SignalStore.donationsValues().refreshSubscriptionRequestCredential();
+      SignalStore.donations().setSubscriptionEndOfPeriodConversionStarted(endOfCurrentPeriod);
+      SignalStore.donations().refreshSubscriptionRequestCredential();
 
       SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(true, -1L, terminalDonation).enqueue();
-    } else if (endOfCurrentPeriod > SignalStore.donationsValues().getSubscriptionEndOfPeriodRedemptionStarted()) {
-      if (SignalStore.donationsValues().getSubscriptionRequestCredential() == null) {
+    } else if (endOfCurrentPeriod > SignalStore.donations().getSubscriptionEndOfPeriodRedemptionStarted()) {
+      if (SignalStore.donations().getSubscriptionRequestCredential() == null) {
         Log.i(TAG, "We have not started a redemption, but do not have a request credential. Possible that the subscription changed.", true);
         return;
       }
 
       Log.i(TAG, "We have a request credential and have not yet turned it into a redeemable token.", true);
       SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(true, -1L, terminalDonation).enqueue();
-    } else if (endOfCurrentPeriod > SignalStore.donationsValues().getSubscriptionEndOfPeriodRedeemed()) {
-      if (SignalStore.donationsValues().getSubscriptionReceiptCredential() == null) {
+    } else if (endOfCurrentPeriod > SignalStore.donations().getSubscriptionEndOfPeriodRedeemed()) {
+      if (SignalStore.donations().getSubscriptionReceiptCredential() == null) {
         Log.i(TAG, "We have successfully started redemption but have no stored token. Possible that the subscription changed.", true);
         return;
       }

@@ -218,7 +218,7 @@ class RestoreAttachmentJob private constructor(
         throw MmsException("Attachment too large, failing download")
       }
 
-      useArchiveCdn = if (SignalStore.backup().backsUpMedia && (forceArchiveDownload || attachment.remoteLocation == null)) {
+      useArchiveCdn = if (SignalStore.backup.backsUpMedia && (forceArchiveDownload || attachment.remoteLocation == null)) {
         if (attachment.archiveMediaName.isNullOrEmpty()) {
           throw InvalidPartException("Invalid attachment configuration")
         }
@@ -246,7 +246,7 @@ class RestoreAttachmentJob private constructor(
 
         messageReceiver
           .retrieveArchivedAttachment(
-            SignalStore.svr().getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(MediaName(attachment.archiveMediaName!!)),
+            SignalStore.svr.getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(MediaName(attachment.archiveMediaName!!)),
             cdnCredentials,
             archiveFile,
             pointer,
@@ -279,14 +279,14 @@ class RestoreAttachmentJob private constructor(
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     } catch (e: NonSuccessfulResponseCodeException) {
-      if (SignalStore.backup().backsUpMedia) {
+      if (SignalStore.backup.backsUpMedia) {
         if (e.code == 404 && !useArchiveCdn && attachment.archiveMediaName?.isNotEmpty() == true) {
           Log.i(TAG, "Retrying download from archive CDN")
           forceArchiveDownload = true
           retrieveAttachment(messageId, attachmentId, attachment)
           return
         } else if (e.code == 401 && useArchiveCdn) {
-          SignalStore.backup().cdnReadCredentials = null
+          SignalStore.backup.cdnReadCredentials = null
           throw RetryLaterException(e)
         }
       }
@@ -318,7 +318,7 @@ class RestoreAttachmentJob private constructor(
 
     return try {
       val remoteData: RemoteData = if (useArchiveCdn) {
-        val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+        val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
         val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
 
         RemoteData(
@@ -384,7 +384,7 @@ class RestoreAttachmentJob private constructor(
       throw InvalidPartException("empty encrypted key")
     }
 
-    val backupKey = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey()
+    val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
     val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
     return try {
       val key = backupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName())
@@ -461,7 +461,7 @@ class RestoreAttachmentJob private constructor(
     Log.w(TAG, "Downloading thumbnail for $attachmentId mediaName=${attachment.getThumbnailMediaName()}")
     val stream = messageReceiver
       .retrieveArchivedAttachment(
-        SignalStore.svr().getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(attachment.getThumbnailMediaName()),
+        SignalStore.svr.getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(attachment.getThumbnailMediaName()),
         cdnCredentials,
         thumbnailTransferFile,
         pointer,

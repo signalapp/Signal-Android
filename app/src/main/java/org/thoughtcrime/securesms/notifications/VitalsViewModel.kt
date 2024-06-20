@@ -53,7 +53,7 @@ class VitalsViewModel(private val context: Application) : AndroidViewModel(conte
           state = State.PROMPT_DEBUGLOGS_FOR_NOTIFICATIONS
         }
       } else if (LogDatabase.getInstance(context).crashes.anyMatch(patterns = CrashConfig.patterns, promptThreshold = System.currentTimeMillis() - 14.days.inWholeMilliseconds)) {
-        val timeSinceLastPrompt = System.currentTimeMillis() - SignalStore.uiHints().lastCrashPrompt
+        val timeSinceLastPrompt = System.currentTimeMillis() - SignalStore.uiHints.lastCrashPrompt
 
         if (timeSinceLastPrompt > 1.days.inWholeMilliseconds) {
           state = State.PROMPT_DEBUGLOGS_FOR_CRASH

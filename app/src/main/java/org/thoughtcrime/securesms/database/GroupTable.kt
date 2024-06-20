@@ -1097,7 +1097,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
     fun getMemberRecipientIds(memberSet: MemberSet): List<RecipientId> {
       val includeSelf = memberSet.includeSelf
-      val selfAci = SignalStore.account().requireAci()
+      val selfAci = SignalStore.account.requireAci()
       val recipients: MutableList<RecipientId> = ArrayList(decryptedGroup.members.size + decryptedGroup.pendingMembers.size)
 
       var unknownMembers = 0
@@ -1206,7 +1206,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   private fun gv2GroupActive(decryptedGroup: DecryptedGroup): Boolean {
-    val aci = SignalStore.account().requireAci()
+    val aci = SignalStore.account.requireAci()
 
     return decryptedGroup.members.findMemberByAci(aci).isPresent ||
       DecryptedGroupUtil.findPendingByServiceId(decryptedGroup.pendingMembers, aci).isPresent

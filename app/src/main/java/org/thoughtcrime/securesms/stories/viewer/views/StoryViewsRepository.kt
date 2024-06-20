@@ -21,7 +21,7 @@ class StoryViewsRepository {
     private val TAG = Log.tag(StoryViewsRepository::class.java)
   }
 
-  fun isReadReceiptsEnabled(): Boolean = SignalStore.storyValues().viewedReceiptsEnabled
+  fun isReadReceiptsEnabled(): Boolean = SignalStore.story.viewedReceiptsEnabled
 
   fun getStoryRecipient(storyId: Long): Single<Recipient> {
     return Single.fromCallable {

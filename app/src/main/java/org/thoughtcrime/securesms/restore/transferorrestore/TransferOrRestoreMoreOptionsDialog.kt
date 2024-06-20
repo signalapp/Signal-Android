@@ -73,7 +73,7 @@ class TransferOrRestoreMoreOptionsDialog : FixedRoundedCornerBottomSheetDialogFr
         startActivity(RemoteRestoreActivity.getIntent(requireContext()))
       }
       BackupRestorationType.NONE -> {
-        SignalStore.registrationValues().markSkippedTransferOrRestore()
+        SignalStore.registration.markSkippedTransferOrRestore()
         val startIntent = MainActivity.clearTop(requireContext()).apply {
           putExtra("next_intent", CreateProfileActivity.getIntentForUserProfile(requireContext()))
         }

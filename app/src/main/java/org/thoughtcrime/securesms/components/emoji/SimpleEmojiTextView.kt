@@ -22,7 +22,7 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
   private val spoilerRendererDelegate: SpoilerRendererDelegate
 
   init {
-    isEmojiCompatEnabled = isInEditMode || SignalStore.settings().isPreferSystemEmoji
+    isEmojiCompatEnabled = isInEditMode || SignalStore.settings.isPreferSystemEmoji
     spoilerRendererDelegate = SpoilerRendererDelegate(this)
   }
 
@@ -43,7 +43,7 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
   override fun setText(text: CharSequence?, type: BufferType?) {
     bufferType = type
     val candidates = if (isInEditMode) null else EmojiProvider.getCandidates(text)
-    if (SignalStore.settings().isPreferSystemEmoji || candidates == null || candidates.size() == 0) {
+    if (SignalStore.settings.isPreferSystemEmoji || candidates == null || candidates.size() == 0) {
       super.setText(Optional.ofNullable(text).orElse(""), type)
     } else {
       val startDrawableSize: Int = compoundDrawables[0]?.let { it.intrinsicWidth + compoundDrawablePadding } ?: 0

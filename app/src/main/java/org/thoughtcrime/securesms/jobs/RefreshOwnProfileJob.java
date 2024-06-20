@@ -110,7 +110,7 @@ public class RefreshOwnProfileJob extends BaseJob {
       return;
     }
 
-    if (!SignalStore.registrationValues().hasUploadedProfile() && SignalStore.account().isPrimaryDevice()) {
+    if (!SignalStore.registration().hasUploadedProfile() && SignalStore.account().isPrimaryDevice()) {
       Log.i(TAG, "Registered but haven't uploaded profile yet.");
       return;
     }
@@ -379,7 +379,7 @@ public class RefreshOwnProfileJob extends BaseJob {
                                             .get();
 
       Log.d(TAG, "Marking subscription badge as expired, should notify next time the conversation list is open.", true);
-      SignalStore.donationsValues().setExpiredBadge(mostRecentExpiration);
+      SignalStore.donations().setExpiredBadge(mostRecentExpiration);
 
       if (!InAppPaymentsRepository.isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION)) {
         Log.d(TAG, "Detected an unexpected subscription expiry.", true);
@@ -421,16 +421,16 @@ public class RefreshOwnProfileJob extends BaseJob {
                                             .get();
 
       Log.d(TAG, "Marking boost badge as expired, should notify next time the conversation list is open.", true);
-      SignalStore.donationsValues().setExpiredBadge(mostRecentExpiration);
+      SignalStore.donations().setExpiredBadge(mostRecentExpiration);
     } else {
-      Badge badge = SignalStore.donationsValues().getExpiredBadge();
+      Badge badge = SignalStore.donations().getExpiredBadge();
 
       if (badge != null && badge.isSubscription() && remoteHasSubscriptionBadges) {
         Log.d(TAG, "Remote has subscription badges. Clearing local expired subscription badge.", true);
-        SignalStore.donationsValues().setExpiredBadge(null);
+        SignalStore.donations().setExpiredBadge(null);
       } else if (badge != null && badge.isBoost() && remoteHasBoostBadges) {
         Log.d(TAG, "Remote has boost badges. Clearing local expired boost badge.", true);
-        SignalStore.donationsValues().setExpiredBadge(null);
+        SignalStore.donations().setExpiredBadge(null);
       }
     }
 
@@ -444,10 +444,10 @@ public class RefreshOwnProfileJob extends BaseJob {
                                             .get();
 
       Log.d(TAG, "Marking gift badge as expired, should notify next time the manage donations screen is open.", true);
-      SignalStore.donationsValues().setExpiredGiftBadge(mostRecentExpiration);
+      SignalStore.donations().setExpiredGiftBadge(mostRecentExpiration);
     } else if (remoteHasGiftBadges) {
       Log.d(TAG, "We have remote gift badges. Clearing local expired gift badge.", true);
-      SignalStore.donationsValues().setExpiredGiftBadge(null);
+      SignalStore.donations().setExpiredGiftBadge(null);
     }
 
     boolean userHasVisibleBadges   = badges.stream().anyMatch(SignalServiceProfile.Badge::isVisible);
@@ -456,7 +456,7 @@ public class RefreshOwnProfileJob extends BaseJob {
     List<Badge> appBadges = badges.stream().map(Badges::fromServiceBadge).collect(Collectors.toList());
 
     if (userHasVisibleBadges && userHasInvisibleBadges) {
-      boolean displayBadgesOnProfile = SignalStore.donationsValues().getDisplayBadgesOnProfile();
+      boolean displayBadgesOnProfile = SignalStore.donations().getDisplayBadgesOnProfile();
       Log.d(TAG, "Detected mixed visibility of badges. Telling the server to mark them all " +
                  (displayBadgesOnProfile ? "" : "not") +
                  " visible.", true);

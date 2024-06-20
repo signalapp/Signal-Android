@@ -51,11 +51,11 @@ public class CreatePaymentViewModel extends ViewModel {
 
   private CreatePaymentViewModel(@NonNull PayeeParcelable payee, @Nullable CharSequence note) {
     this.payee            = payee;
-    this.spendableBalance = Transformations.map(SignalStore.paymentsValues().liveMobileCoinBalance(), Balance::getTransferableAmount);
+    this.spendableBalance = Transformations.map(SignalStore.payments().liveMobileCoinBalance(), Balance::getTransferableAmount);
     this.note             = new MutableLiveData<>(note);
     this.inputState       = new Store<>(new InputState());
     this.isValidAmount    = LiveDataUtil.combineLatest(spendableBalance, inputState.getStateLiveData(), (b, s) -> validateAmount(b.requireMobileCoin(), s.getMoney().requireMobileCoin()));
-    this.enclaveFailure   = LiveDataUtil.mapDistinct(SignalStore.paymentsValues().enclaveFailure(), isFailure -> isFailure);
+    this.enclaveFailure   = LiveDataUtil.mapDistinct(SignalStore.payments().enclaveFailure(), isFailure -> isFailure);
 
     if (payee.getPayee().hasRecipientId()) {
       isPaymentsSupportedByPayee = LiveDataUtil.mapAsync(new DefaultValueLiveData<>(payee.getPayee().requireRecipientId()), r -> {
@@ -71,7 +71,7 @@ public class CreatePaymentViewModel extends ViewModel {
       isPaymentsSupportedByPayee = new DefaultValueLiveData<>(true);
     }
 
-    LiveData<Optional<CurrencyExchange.ExchangeRate>> liveExchangeRate = LiveDataUtil.mapAsync(SignalStore.paymentsValues().liveCurrentCurrency(),
+    LiveData<Optional<CurrencyExchange.ExchangeRate>> liveExchangeRate = LiveDataUtil.mapAsync(SignalStore.payments().liveCurrentCurrency(),
                                                                                                currency -> {
                                                                                                  try {
                                                                                                    return Optional.ofNullable(AppDependencies.getPayments()
@@ -145,7 +145,7 @@ public class CreatePaymentViewModel extends ViewModel {
   private @NonNull InputState updateAmount(@NonNull Context context, @NonNull InputState inputState, @NonNull AmountKeyboardGlyph glyph) {
     switch (inputState.getInputTarget()) {
       case FIAT_MONEY:
-        return updateFiatAmount(context, inputState, glyph, SignalStore.paymentsValues().currentCurrency());
+        return updateFiatAmount(context, inputState, glyph, SignalStore.payments().currentCurrency());
       case MONEY:
         return updateMoneyAmount(context, inputState, glyph);
       default:

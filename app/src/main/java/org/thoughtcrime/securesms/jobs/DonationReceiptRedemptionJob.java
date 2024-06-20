@@ -136,14 +136,14 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
     if (isForSubscription()) {
       Log.d(TAG, "Marking subscription failure", true);
-      SignalStore.donationsValues().markSubscriptionRedemptionFailed();
+      SignalStore.donations().markSubscriptionRedemptionFailed();
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
     } else if (giftMessageId != NO_ID) {
       SignalDatabase.messages().markGiftRedemptionFailed(giftMessageId);
     }
 
     if (terminalDonation != null) {
-      SignalStore.donationsValues().appendToTerminalDonationQueue(terminalDonation);
+      SignalStore.donations().appendToTerminalDonationQueue(terminalDonation);
     }
   }
 
@@ -194,7 +194,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     Log.d(TAG, "Attempting to redeem token... isForSubscription: " + isForSubscription(), true);
     ServiceResponse<EmptyResponse> response = AppDependencies.getDonationsService()
                                                              .redeemDonationReceipt(presentation,
-                                                                                    SignalStore.donationsValues().getDisplayBadgesOnProfile(),
+                                                                                    SignalStore.donations().getDisplayBadgesOnProfile(),
                                                                                     makePrimary);
 
     if (response.getApplicationError().isPresent()) {
@@ -211,7 +211,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
               .code(Integer.toString(response.getStatus()))
               .build();
 
-          SignalStore.donationsValues().setPendingOneTimeDonationError(
+          SignalStore.donations().setPendingOneTimeDonationError(
               donationErrorValue
           );
 
@@ -232,12 +232,12 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
     if (isForSubscription()) {
       Log.d(TAG, "Clearing subscription failure", true);
-      SignalStore.donationsValues().clearSubscriptionRedemptionFailed();
+      SignalStore.donations().clearSubscriptionRedemptionFailed();
       Log.i(TAG, "Recording end of period from active subscription", true);
-      SignalStore.donationsValues()
-                 .setSubscriptionEndOfPeriodRedeemed(SignalStore.donationsValues()
+      SignalStore.donations()
+                 .setSubscriptionEndOfPeriodRedeemed(SignalStore.donations()
                                                                 .getSubscriptionEndOfPeriodRedemptionStarted());
-      SignalStore.donationsValues().clearSubscriptionReceiptCredential();
+      SignalStore.donations().clearSubscriptionReceiptCredential();
     } else if (giftMessageId != NO_ID) {
       Log.d(TAG, "Marking gift redemption completed for " + giftMessageId);
       SignalDatabase.messages().markGiftRedemptionCompleted(giftMessageId);
@@ -249,7 +249,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     }
 
     if (isForOneTimeDonation()) {
-      SignalStore.donationsValues().setPendingOneTimeDonation(null);
+      SignalStore.donations().setPendingOneTimeDonation(null);
     }
   }
 
@@ -257,7 +257,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     final ReceiptCredentialPresentation receiptCredentialPresentation;
 
     if (isForSubscription()) {
-      receiptCredentialPresentation = SignalStore.donationsValues().getSubscriptionReceiptCredential();
+      receiptCredentialPresentation = SignalStore.donations().getSubscriptionReceiptCredential();
     } else {
       receiptCredentialPresentation = null;
     }
@@ -325,7 +325,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       return;
     }
 
-    SignalStore.donationsValues().appendToTerminalDonationQueue(terminalDonation);
+    SignalStore.donations().appendToTerminalDonationQueue(terminalDonation);
   }
 
   @Override

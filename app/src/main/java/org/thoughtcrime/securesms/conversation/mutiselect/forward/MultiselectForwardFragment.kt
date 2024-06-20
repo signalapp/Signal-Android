@@ -307,7 +307,7 @@ class MultiselectForwardFragment :
   }
 
   private fun displayFirstSendConfirmation() {
-    SignalStore.tooltips().markMultiForwardDialogSeen()
+    SignalStore.tooltips.markMultiForwardDialogSeen()
 
     val messageCount = getMessageCount()
 
@@ -499,7 +499,7 @@ class MultiselectForwardFragment :
   }
 
   override fun onGroupStoryClicked() {
-    if (SignalStore.storyValues().userHasSeenGroupStoryEducationSheet) {
+    if (SignalStore.story.userHasSeenGroupStoryEducationSheet) {
       onGroupStoryEducationSheetNext()
     } else {
       GroupStoryEducationSheet().show(childFragmentManager, GroupStoryEducationSheet.KEY)

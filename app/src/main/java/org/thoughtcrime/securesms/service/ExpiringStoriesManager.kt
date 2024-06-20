@@ -32,7 +32,7 @@ class ExpiringStoriesManager(
 
   @WorkerThread
   override fun getNextClosestEvent(): Event? {
-    val oldestTimestamp = mmsDatabase.getOldestStorySendTimestamp(SignalStore.storyValues().userHasViewedOnboardingStory) ?: return null
+    val oldestTimestamp = mmsDatabase.getOldestStorySendTimestamp(SignalStore.story.userHasViewedOnboardingStory) ?: return null
 
     val timeSinceSend = System.currentTimeMillis() - oldestTimestamp
     val delay = (STORY_LIFESPAN - timeSinceSend).coerceAtLeast(0)
@@ -44,7 +44,7 @@ class ExpiringStoriesManager(
   @WorkerThread
   override fun executeEvent(event: Event) {
     val threshold = System.currentTimeMillis() - STORY_LIFESPAN
-    val deletes = mmsDatabase.deleteStoriesOlderThan(threshold, SignalStore.storyValues().userHasViewedOnboardingStory)
+    val deletes = mmsDatabase.deleteStoriesOlderThan(threshold, SignalStore.story.userHasViewedOnboardingStory)
     Log.i(TAG, "Deleted $deletes stories before $threshold")
   }
 

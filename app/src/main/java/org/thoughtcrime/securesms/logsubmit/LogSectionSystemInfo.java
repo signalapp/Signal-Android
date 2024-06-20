@@ -72,7 +72,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Memclass          : ").append(getMemoryClass(context)).append("\n");
     builder.append("MemInfo           : ").append(getMemoryInfo(context)).append("\n");
     builder.append("OS Host           : ").append(Build.HOST).append("\n");
-    builder.append("RecipientId       : ").append(SignalStore.registrationValues().isRegistrationComplete() ? Recipient.self().getId() : "N/A").append("\n");
+    builder.append("RecipientId       : ").append(SignalStore.registration().isRegistrationComplete() ? Recipient.self().getId() : "N/A").append("\n");
     builder.append("ACI               : ").append(getCensoredAci(context)).append("\n");
     builder.append("Device ID         : ").append(SignalStore.account().getDeviceId()).append("\n");
     builder.append("Censored          : ").append(AppDependencies.getSignalServiceNetworkAccess().isCensored()).append("\n");

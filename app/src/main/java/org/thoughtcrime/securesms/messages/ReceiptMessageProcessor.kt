@@ -107,7 +107,7 @@ object ReceiptMessageProcessor {
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ) {
     val readReceipts = TextSecurePreferences.isReadReceiptsEnabled(context)
-    val storyViewedReceipts = SignalStore.storyValues().viewedReceiptsEnabled
+    val storyViewedReceipts = SignalStore.story.viewedReceiptsEnabled
 
     if (!readReceipts && !storyViewedReceipts) {
       log(envelope.timestamp!!, "Ignoring viewed receipts for IDs: ${viewedReceipt.timestamp.joinToString(", ")}")

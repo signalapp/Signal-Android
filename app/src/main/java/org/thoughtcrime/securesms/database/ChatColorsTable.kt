@@ -98,8 +98,8 @@ class ChatColorsTable(context: Context, databaseHelper: SignalDatabase) : Databa
       throw IllegalStateException("Failed to update ChatColor in database")
     }
 
-    if (SignalStore.chatColorsValues().chatColors?.id == chatColors.id) {
-      SignalStore.chatColorsValues().chatColors = chatColors
+    if (SignalStore.chatColors.chatColors?.id == chatColors.id) {
+      SignalStore.chatColors.chatColors = chatColors
     }
 
     SignalDatabase.recipients.onUpdatedChatColors(chatColors)
@@ -116,8 +116,8 @@ class ChatColorsTable(context: Context, databaseHelper: SignalDatabase) : Databa
     val db: SQLiteDatabase = databaseHelper.signalWritableDatabase
     db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(chatColors.id.longValue))
 
-    if (SignalStore.chatColorsValues().chatColors?.id == chatColors.id) {
-      SignalStore.chatColorsValues().chatColors = null
+    if (SignalStore.chatColors.chatColors?.id == chatColors.id) {
+      SignalStore.chatColors.chatColors = null
     }
 
     SignalDatabase.recipients.onDeletedChatColors(chatColors)

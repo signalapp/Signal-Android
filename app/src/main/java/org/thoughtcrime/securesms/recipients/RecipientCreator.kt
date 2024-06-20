@@ -26,12 +26,12 @@ object RecipientCreator {
 
   @JvmStatic
   fun forIndividual(context: Context, record: RecipientRecord): Recipient {
-    val isSelf = record.e164 != null && record.e164 == SignalStore.account().e164 || record.aci != null && record.aci == SignalStore.account().aci
-    val isReleaseChannel = record.id == SignalStore.releaseChannelValues().releaseChannelRecipientId
+    val isSelf = record.e164 != null && record.e164 == SignalStore.account.e164 || record.aci != null && record.aci == SignalStore.account.aci
+    val isReleaseChannel = record.id == SignalStore.releaseChannel.releaseChannelRecipientId
     var registeredState = record.registered
 
     if (isSelf) {
-      registeredState = if (SignalStore.account().isRegistered && !TextSecurePreferences.isUnauthorizedReceived(context)) {
+      registeredState = if (SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(context)) {
         RegisteredState.REGISTERED
       } else {
         RegisteredState.NOT_REGISTERED

@@ -80,7 +80,7 @@ class ConversationListViewModel(
         ConversationListDataSource.create(
           it.filter,
           isArchived,
-          SignalStore.uiHints().canDisplayPullToFilterTip() && it.source === ConversationFilterSource.OVERFLOW
+          SignalStore.uiHints.canDisplayPullToFilterTip() && it.source === ConversationFilterSource.OVERFLOW
         )
       }
       .replay(1)

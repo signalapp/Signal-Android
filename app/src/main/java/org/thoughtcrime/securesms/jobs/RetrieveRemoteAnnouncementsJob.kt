@@ -55,12 +55,12 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
     @JvmStatic
     @JvmOverloads
     fun enqueue(force: Boolean = false) {
-      if (!SignalStore.account().isRegistered) {
+      if (!SignalStore.account.isRegistered) {
         Log.i(TAG, "Not registered, skipping.")
         return
       }
 
-      if (!force && System.currentTimeMillis() < SignalStore.releaseChannelValues().nextScheduledCheck) {
+      if (!force && System.currentTimeMillis() < SignalStore.releaseChannel.nextScheduledCheck) {
         Log.i(TAG, "Too soon to check for updated release notes")
         return
       }
@@ -89,12 +89,12 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
   override fun onFailure() = Unit
 
   override fun onRun() {
-    if (!SignalStore.account().isRegistered) {
+    if (!SignalStore.account.isRegistered) {
       Log.i(TAG, "Not registered, skipping.")
       return
     }
 
-    val values = SignalStore.releaseChannelValues()
+    val values = SignalStore.releaseChannel
 
     if (values.releaseChannelRecipientId == null) {
       Log.w(TAG, "Release Channel recipient is null, this shouldn't happen, will try to create on next run")
@@ -143,7 +143,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
   @Suppress("UsePropertyAccessSyntax")
   private fun updateReleaseNotes(announcements: List<ReleaseNote>) {
-    val values = SignalStore.releaseChannelValues()
+    val values = SignalStore.releaseChannel
 
     if (Recipient.resolved(values.releaseChannelRecipientId!!).isBlocked) {
       Log.i(TAG, "Release channel is blocked, do not bother with updates")
@@ -370,8 +370,8 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
     val potentialNoteUrls = mutableListOf<String>()
 
-    if (SignalStore.settings().language != "zz") {
-      potentialNoteUrls += "$this/${SignalStore.settings().language}.json"
+    if (SignalStore.settings.language != "zz") {
+      potentialNoteUrls += "$this/${SignalStore.settings.language}.json"
     }
 
     for (index in 0 until localeList.size()) {

@@ -50,10 +50,10 @@ class SpinnerApplicationContext : ApplicationContext() {
         "Device" to { "${Build.MODEL} (Android ${Build.VERSION.RELEASE}, API ${Build.VERSION.SDK_INT})" },
         "Package" to { "$packageName (${AppSignatureUtil.getAppSignature(this)})" },
         "App Version" to { "${BuildConfig.VERSION_NAME} (${BuildConfig.CANONICAL_VERSION_CODE}, ${BuildConfig.GIT_HASH})" },
-        "Profile Name" to { (if (SignalStore.account().isRegistered) Recipient.self().profileName.toString() else "none") },
-        "E164" to { SignalStore.account().e164 ?: "none" },
-        "ACI" to { SignalStore.account().aci?.toString() ?: "none" },
-        "PNI" to { SignalStore.account().pni?.toString() ?: "none" },
+        "Profile Name" to { (if (SignalStore.account.isRegistered) Recipient.self().profileName.toString() else "none") },
+        "E164" to { SignalStore.account.e164 ?: "none" },
+        "ACI" to { SignalStore.account.aci?.toString() ?: "none" },
+        "PNI" to { SignalStore.account.pni?.toString() ?: "none" },
         Spinner.KEY_ENVIRONMENT to { BuildConfig.FLAVOR_environment.uppercase(Locale.US) }
       ),
       linkedMapOf(

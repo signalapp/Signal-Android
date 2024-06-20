@@ -132,7 +132,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   @Override
   public void onFailure() {
     if (terminalDonation.error != null) {
-      SignalStore.donationsValues().appendToTerminalDonationQueue(terminalDonation);
+      SignalStore.donations().appendToTerminalDonationQueue(terminalDonation);
     } else {
       Log.w(TAG, "Job is in terminal state without an error on TerminalDonation.");
     }
@@ -155,7 +155,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   }
 
   private void doRun() throws Exception {
-    ReceiptCredentialRequestContext requestContext     = SignalStore.donationsValues().getSubscriptionRequestCredential();
+    ReceiptCredentialRequestContext requestContext     = SignalStore.donations().getSubscriptionRequestCredential();
     ActiveSubscription              activeSubscription = getLatestSubscriptionInformation();
     ActiveSubscription.Subscription subscription       = activeSubscription.getActiveSubscription();
 
@@ -203,16 +203,16 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       throw new RetryableException();
     } else {
       Log.i(TAG, "Subscription is valid, proceeding with request for ReceiptCredentialResponse", true);
-      long storedEndOfPeriod = SignalStore.donationsValues().getLastEndOfPeriod();
+      long storedEndOfPeriod = SignalStore.donations().getLastEndOfPeriod();
       if (storedEndOfPeriod < subscription.getEndOfCurrentPeriod()) {
         Log.i(TAG, "Storing lastEndOfPeriod and syncing with linked devices", true);
-        SignalStore.donationsValues().setLastEndOfPeriod(subscription.getEndOfCurrentPeriod());
+        SignalStore.donations().setLastEndOfPeriod(subscription.getEndOfCurrentPeriod());
         MultiDeviceSubscriptionSyncRequestJob.enqueue();
       }
 
-      if (SignalStore.donationsValues().getSubscriptionEndOfPeriodConversionStarted() == 0L) {
+      if (SignalStore.donations().getSubscriptionEndOfPeriodConversionStarted() == 0L) {
         Log.i(TAG, "Marking the start of initial conversion.", true);
-        SignalStore.donationsValues().setSubscriptionEndOfPeriodConversionStarted(subscription.getEndOfCurrentPeriod());
+        SignalStore.donations().setSubscriptionEndOfPeriodConversionStarted(subscription.getEndOfCurrentPeriod());
       }
     }
 
@@ -235,9 +235,9 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       Log.d(TAG, "Validated credential. Recording receipt and handing off to redemption job.", true);
       SignalDatabase.donationReceipts().addReceipt(DonationReceiptRecord.createForSubscription(subscription));
 
-      SignalStore.donationsValues().clearSubscriptionRequestCredential();
-      SignalStore.donationsValues().setSubscriptionReceiptCredential(receiptCredentialPresentation);
-      SignalStore.donationsValues().setSubscriptionEndOfPeriodRedemptionStarted(subscription.getEndOfCurrentPeriod());
+      SignalStore.donations().clearSubscriptionRequestCredential();
+      SignalStore.donations().setSubscriptionReceiptCredential(receiptCredentialPresentation);
+      SignalStore.donations().setSubscriptionEndOfPeriodRedemptionStarted(subscription.getEndOfCurrentPeriod());
 
       setOutputData(new JsonJobData.Builder()
                         .putBlobAsString(DonationReceiptRedemptionJob.INPUT_TERMINAL_DONATION, terminalDonation.encode())
@@ -290,7 +290,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     switch (response.getStatus()) {
       case 204:
         Log.w(TAG, "Payment is still processing. Trying again.", response.getApplicationError().get(), true);
-        SignalStore.donationsValues().clearSubscriptionRedemptionFailed();
+        SignalStore.donations().clearSubscriptionRedemptionFailed();
         throw new RetryableException();
       case 400:
         Log.w(TAG, "Receipt credential request failed to validate.", response.getApplicationError().get(), true);
@@ -359,13 +359,13 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
     if (isForKeepAlive) {
       Log.d(TAG, "Subscription canceled during keep-alive. Setting UnexpectedSubscriptionCancelation state...", true);
-      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(chargeFailure);
-      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(subscription.getStatus());
-      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(subscription.getEndOfCurrentPeriod());
-      SignalStore.donationsValues().setShowMonthlyDonationCanceledDialog(true);
+      SignalStore.donations().setUnexpectedSubscriptionCancelationChargeFailure(chargeFailure);
+      SignalStore.donations().setUnexpectedSubscriptionCancelationReason(subscription.getStatus());
+      SignalStore.donations().setUnexpectedSubscriptionCancelationTimestamp(subscription.getEndOfCurrentPeriod());
+      SignalStore.donations().setShowMonthlyDonationCanceledDialog(true);
 
       AppDependencies.getDonationsService().getDonationsConfiguration(Locale.getDefault()).getResult().ifPresent(config -> {
-        SignalStore.donationsValues().setExpiredBadge(DonationsConfigurationExtensionsKt.getBadge(config, subscription.getLevel()));
+        SignalStore.donations().setExpiredBadge(DonationsConfigurationExtensionsKt.getBadge(config, subscription.getLevel()));
       });
 
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
@@ -375,7 +375,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       StripeDeclineCode               declineCode = StripeDeclineCode.Companion.getFromCode(chargeFailure.getOutcomeNetworkReason());
       StripeFailureCode               failureCode = StripeFailureCode.Companion.getFromCode(chargeFailure.getCode());
       DonationError.PaymentSetupError paymentSetupError;
-      PaymentSourceType               paymentSourceType = SignalStore.donationsValues().getSubscriptionPaymentSourceType();
+      PaymentSourceType               paymentSourceType = SignalStore.donations().getSubscriptionPaymentSourceType();
       boolean                         isStripeSource = paymentSourceType instanceof PaymentSourceType.Stripe;
 
       if (declineCode.isKnown() && isStripeSource) {
@@ -421,7 +421,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
       PayPalDeclineCode               declineCode       = new PayPalDeclineCode(code);
       DonationError.PaymentSetupError paymentSetupError;
-      PaymentSourceType               paymentSourceType = SignalStore.donationsValues().getSubscriptionPaymentSourceType();
+      PaymentSourceType               paymentSourceType = SignalStore.donations().getSubscriptionPaymentSourceType();
       boolean                         isPayPalSource    = paymentSourceType instanceof PaymentSourceType.PayPal;
 
       if (declineCode.getKnownCode() != null && isPayPalSource) {
@@ -518,10 +518,10 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       byte[]       rawTerminalDonation = data.getStringAsBlob(DATA_TERMINAL_DONATION);
 
       ReceiptCredentialRequestContext requestContext;
-      if (requestContextBytes != null && SignalStore.donationsValues().getSubscriptionRequestCredential() == null) {
+      if (requestContextBytes != null && SignalStore.donations().getSubscriptionRequestCredential() == null) {
         try {
           requestContext = new ReceiptCredentialRequestContext(requestContextBytes);
-          SignalStore.donationsValues().setSubscriptionRequestCredential(requestContext);
+          SignalStore.donations().setSubscriptionRequestCredential(requestContext);
         } catch (InvalidInputException e) {
           Log.e(TAG, "Failed to generate request context from bytes", e);
           throw new AssertionError(e);

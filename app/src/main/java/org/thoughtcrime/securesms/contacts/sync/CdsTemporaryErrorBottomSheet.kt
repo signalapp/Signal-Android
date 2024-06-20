@@ -32,7 +32,7 @@ class CdsTemporaryErrorBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    val days: Int = (SignalStore.misc().cdsBlockedUtil - System.currentTimeMillis()).milliseconds.inWholeDays.toInt()
+    val days: Int = (SignalStore.misc.cdsBlockedUtil - System.currentTimeMillis()).milliseconds.inWholeDays.toInt()
     binding.timeText.text = resources.getQuantityString(R.plurals.CdsTemporaryErrorBottomSheet_body1, days, days)
 
     binding.learnMoreButton.setOnClickListener {

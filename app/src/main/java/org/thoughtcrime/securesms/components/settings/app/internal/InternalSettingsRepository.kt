@@ -51,7 +51,7 @@ class InternalSettingsRepository(context: Context) {
       val bodyRangeList = BodyRangeList.Builder()
         .addStyle(BodyRangeList.BodyRange.Style.BOLD, 0, title.length)
 
-      val recipientId = SignalStore.releaseChannelValues().releaseChannelRecipientId!!
+      val recipientId = SignalStore.releaseChannel.releaseChannelRecipientId!!
       val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
 
       val insertResult: MessageTable.InsertResult? = ReleaseChannel.insertReleaseChannelMessage(

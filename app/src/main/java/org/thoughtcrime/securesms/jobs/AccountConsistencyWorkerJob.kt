@@ -24,7 +24,7 @@ class AccountConsistencyWorkerJob private constructor(parameters: Parameters) : 
 
     @JvmStatic
     fun enqueueIfNecessary() {
-      if (System.currentTimeMillis() - SignalStore.misc().lastConsistencyCheckTime > 3.days.inWholeMilliseconds) {
+      if (System.currentTimeMillis() - SignalStore.misc.lastConsistencyCheckTime > 3.days.inWholeMilliseconds) {
         AppDependencies.jobManager.add(AccountConsistencyWorkerJob())
       }
     }
@@ -46,45 +46,45 @@ class AccountConsistencyWorkerJob private constructor(parameters: Parameters) : 
   override fun onFailure() = Unit
 
   override fun onRun() {
-    if (!SignalStore.account().hasAciIdentityKey()) {
+    if (!SignalStore.account.hasAciIdentityKey()) {
       Log.i(TAG, "No identity set yet, skipping.")
       return
     }
 
-    if (!SignalStore.account().isRegistered || SignalStore.account().aci == null) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
       Log.i(TAG, "Not yet registered, skipping.")
       return
     }
 
     val aciProfile: SignalServiceProfile = ProfileUtil.retrieveProfileSync(context, Recipient.self(), SignalServiceProfile.RequestType.PROFILE, false).profile
-    val encodedAciPublicKey = Base64.encodeWithPadding(SignalStore.account().aciIdentityKey.publicKey.serialize())
+    val encodedAciPublicKey = Base64.encodeWithPadding(SignalStore.account.aciIdentityKey.publicKey.serialize())
 
     if (aciProfile.identityKey != encodedAciPublicKey) {
       Log.w(TAG, "ACI identity key on profile differed from the one we have locally! Marking ourselves unregistered.")
 
-      SignalStore.account().setRegistered(false)
-      SignalStore.registrationValues().clearRegistrationComplete()
-      SignalStore.registrationValues().clearHasUploadedProfile()
+      SignalStore.account.setRegistered(false)
+      SignalStore.registration.clearRegistrationComplete()
+      SignalStore.registration.clearHasUploadedProfile()
 
-      SignalStore.misc().lastConsistencyCheckTime = System.currentTimeMillis()
+      SignalStore.misc.lastConsistencyCheckTime = System.currentTimeMillis()
       return
     }
 
-    val pniProfile: SignalServiceProfile = ProfileUtil.retrieveProfileSync(SignalStore.account().pni!!, SignalServiceProfile.RequestType.PROFILE).profile
-    val encodedPniPublicKey = Base64.encodeWithPadding(SignalStore.account().pniIdentityKey.publicKey.serialize())
+    val pniProfile: SignalServiceProfile = ProfileUtil.retrieveProfileSync(SignalStore.account.pni!!, SignalServiceProfile.RequestType.PROFILE).profile
+    val encodedPniPublicKey = Base64.encodeWithPadding(SignalStore.account.pniIdentityKey.publicKey.serialize())
 
     if (pniProfile.identityKey != encodedPniPublicKey) {
       Log.w(TAG, "PNI identity key on profile differed from the one we have locally!")
 
-      SignalStore.account().setRegistered(false)
-      SignalStore.registrationValues().clearRegistrationComplete()
-      SignalStore.registrationValues().clearHasUploadedProfile()
+      SignalStore.account.setRegistered(false)
+      SignalStore.registration.clearRegistrationComplete()
+      SignalStore.registration.clearHasUploadedProfile()
       return
     }
 
     Log.i(TAG, "Everything matched.")
 
-    SignalStore.misc().lastConsistencyCheckTime = System.currentTimeMillis()
+    SignalStore.misc.lastConsistencyCheckTime = System.currentTimeMillis()
   }
 
   override fun onShouldRetry(e: Exception): Boolean {

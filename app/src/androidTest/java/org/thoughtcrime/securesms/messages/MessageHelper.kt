@@ -145,7 +145,7 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
 
     val updateDescription = GV2UpdateDescription.Builder()
       .gv2ChangeDescription(decryptedGroupV2Context)
-      .groupChangeUpdate(GroupsV2UpdateMessageConverter.translateDecryptedChange(SignalStore.account().getServiceIds(), decryptedGroupV2Context))
+      .groupChangeUpdate(GroupsV2UpdateMessageConverter.translateDecryptedChange(SignalStore.account.getServiceIds(), decryptedGroupV2Context))
       .build()
 
     val outgoingMessage = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, startTime)

@@ -120,16 +120,16 @@ class NotificationProfilesRepository {
       val activeProfile = NotificationProfiles.getActiveProfile(profiles, now)
 
       if (profileId == activeProfile?.id) {
-        SignalStore.notificationProfileValues().manuallyEnabledProfile = 0
-        SignalStore.notificationProfileValues().manuallyEnabledUntil = 0
-        SignalStore.notificationProfileValues().manuallyDisabledAt = now
-        SignalStore.notificationProfileValues().lastProfilePopup = 0
-        SignalStore.notificationProfileValues().lastProfilePopupTime = 0
+        SignalStore.notificationProfile.manuallyEnabledProfile = 0
+        SignalStore.notificationProfile.manuallyEnabledUntil = 0
+        SignalStore.notificationProfile.manuallyDisabledAt = now
+        SignalStore.notificationProfile.lastProfilePopup = 0
+        SignalStore.notificationProfile.lastProfilePopupTime = 0
       } else {
         val inScheduledWindow = schedule.isCurrentlyActive(now)
-        SignalStore.notificationProfileValues().manuallyEnabledProfile = profileId
-        SignalStore.notificationProfileValues().manuallyEnabledUntil = if (inScheduledWindow) schedule.endDateTime(now.toLocalDateTime()).toMillis() else Long.MAX_VALUE
-        SignalStore.notificationProfileValues().manuallyDisabledAt = now
+        SignalStore.notificationProfile.manuallyEnabledProfile = profileId
+        SignalStore.notificationProfile.manuallyEnabledUntil = if (inScheduledWindow) schedule.endDateTime(now.toLocalDateTime()).toMillis() else Long.MAX_VALUE
+        SignalStore.notificationProfile.manuallyDisabledAt = now
       }
     }
       .doOnComplete { AppDependencies.databaseObserver.notifyNotificationProfileObservers() }
@@ -138,9 +138,9 @@ class NotificationProfilesRepository {
 
   fun manuallyEnableProfileForDuration(profileId: Long, enableUntil: Long, now: Long = System.currentTimeMillis()): Completable {
     return Completable.fromAction {
-      SignalStore.notificationProfileValues().manuallyEnabledProfile = profileId
-      SignalStore.notificationProfileValues().manuallyEnabledUntil = enableUntil
-      SignalStore.notificationProfileValues().manuallyDisabledAt = now
+      SignalStore.notificationProfile.manuallyEnabledProfile = profileId
+      SignalStore.notificationProfile.manuallyEnabledUntil = enableUntil
+      SignalStore.notificationProfile.manuallyDisabledAt = now
     }
       .doOnComplete { AppDependencies.databaseObserver.notifyNotificationProfileObservers() }
       .subscribeOn(Schedulers.io())
@@ -149,9 +149,9 @@ class NotificationProfilesRepository {
   fun manuallyEnableProfileForSchedule(profileId: Long, schedule: NotificationProfileSchedule, now: Long = System.currentTimeMillis()): Completable {
     return Completable.fromAction {
       val inScheduledWindow = schedule.isCurrentlyActive(now)
-      SignalStore.notificationProfileValues().manuallyEnabledProfile = if (inScheduledWindow) profileId else 0
-      SignalStore.notificationProfileValues().manuallyEnabledUntil = if (inScheduledWindow) schedule.endDateTime(now.toLocalDateTime()).toMillis() else Long.MAX_VALUE
-      SignalStore.notificationProfileValues().manuallyDisabledAt = if (inScheduledWindow) now else 0
+      SignalStore.notificationProfile.manuallyEnabledProfile = if (inScheduledWindow) profileId else 0
+      SignalStore.notificationProfile.manuallyEnabledUntil = if (inScheduledWindow) schedule.endDateTime(now.toLocalDateTime()).toMillis() else Long.MAX_VALUE
+      SignalStore.notificationProfile.manuallyDisabledAt = if (inScheduledWindow) now else 0
     }
       .doOnComplete { AppDependencies.databaseObserver.notifyNotificationProfileObservers() }
       .subscribeOn(Schedulers.io())

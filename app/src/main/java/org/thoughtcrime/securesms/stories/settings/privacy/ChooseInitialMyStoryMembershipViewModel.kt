@@ -48,7 +48,7 @@ class ChooseInitialMyStoryMembershipViewModel @JvmOverloads constructor(
 
   fun save(): Single<RecipientId> {
     return Single.fromCallable<RecipientId> {
-      SignalStore.storyValues().userHasBeenNotifiedAboutStories = true
+      SignalStore.story.userHasBeenNotifiedAboutStories = true
       Stories.onStorySettingsChanged(Recipient.self().id)
       store.state.recipientId!!
     }.observeOn(AndroidSchedulers.mainThread())

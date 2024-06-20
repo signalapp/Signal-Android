@@ -40,7 +40,7 @@ class OptimizeMessageSearchIndexJob private constructor(parameters: Parameters) 
   override fun getNextRunAttemptBackoff(pastAttemptCount: Int, exception: Exception): Long = 30.seconds.inWholeMilliseconds
 
   override fun onRun() {
-    if (!SignalStore.registrationValues().isRegistrationComplete || SignalStore.account().aci == null) {
+    if (!SignalStore.registration.isRegistrationComplete || SignalStore.account.aci == null) {
       Log.w(TAG, "Registration not finished yet! Skipping.")
       return
     }

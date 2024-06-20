@@ -76,7 +76,7 @@ public final class SignalPinReminderDialog {
     ViewUtil.focusAndShowKeyboard(pinEditText);
     ViewCompat.setAutofillHints(pinEditText, HintConstants.AUTOFILL_HINT_PASSWORD);
 
-    switch (SignalStore.pinValues().getKeyboardType()) {
+    switch (SignalStore.pin().getKeyboardType()) {
       case NUMERIC:
         pinEditText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
         break;

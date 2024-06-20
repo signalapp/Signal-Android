@@ -104,7 +104,7 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
                  addUpdateBubbleColorListeners(recipient.getChatColors(), selected.getAutoChatColors());
                });
     } else {
-      addUpdateBubbleColorListeners(SignalStore.chatColorsValues().getChatColors(), selected.getAutoChatColors());
+      addUpdateBubbleColorListeners(SignalStore.chatColors().getChatColors(), selected.getAutoChatColors());
     }
 
     new FullscreenHelper(this).showSystemUI();

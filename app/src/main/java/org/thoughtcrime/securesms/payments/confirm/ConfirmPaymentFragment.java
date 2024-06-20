@@ -217,7 +217,7 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
 
 
   private boolean isPaymentLockEnabled(Context context) {
-    return SignalStore.paymentsValues().isPaymentLockEnabled() && ServiceUtil.getKeyguardManager(context).isKeyguardSecure();
+    return SignalStore.payments().isPaymentLockEnabled() && ServiceUtil.getKeyguardManager(context).isKeyguardSecure();
   }
 
   private class Callbacks implements ConfirmPaymentAdapter.Callbacks {

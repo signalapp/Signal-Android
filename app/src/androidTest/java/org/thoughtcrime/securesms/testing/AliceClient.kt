@@ -30,7 +30,7 @@ class AliceClient(val serviceId: ServiceId, val e164: String, val trustRoot: ECK
     uuid = serviceId.rawUuid,
     e164 = e164,
     deviceId = 1,
-    identityKey = SignalStore.account().aciIdentityKey.publicKey.publicKey,
+    identityKey = SignalStore.account.aciIdentityKey.publicKey.publicKey,
     expires = 31337
   )
 

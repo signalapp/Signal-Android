@@ -657,7 +657,7 @@ class ConversationFragment :
       updateToggleButtonState()
     }
 
-    if (SignalStore.rateLimit().needsRecaptcha()) {
+    if (SignalStore.rateLimit.needsRecaptcha()) {
       RecaptchaProofBottomSheetFragment.show(childFragmentManager)
     }
   }
@@ -1135,7 +1135,7 @@ class ConversationFragment :
   }
 
   private fun presentStoryRing() {
-    if (SignalStore.storyValues().isFeatureDisabled) {
+    if (SignalStore.story.isFeatureDisabled) {
       return
     }
 
@@ -1520,7 +1520,7 @@ class ConversationFragment :
       return
     }
 
-    if (SignalStore.uiHints().hasNotSeenEditMessageBetaAlert()) {
+    if (SignalStore.uiHints.hasNotSeenEditMessageBetaAlert()) {
       Dialogs.showEditMessageBetaDialog(requireContext()) { handleSendEditMessage() }
       return
     }
@@ -1678,7 +1678,7 @@ class ConversationFragment :
   }
 
   private fun initializeMediaKeyboard() {
-    val isSystemEmojiPreferred = SignalStore.settings().isPreferSystemEmoji
+    val isSystemEmojiPreferred = SignalStore.settings.isPreferSystemEmoji
     val keyboardMode: TextSecurePreferences.MediaKeyboardMode = TextSecurePreferences.getMediaKeyboardMode(requireContext())
     val stickerIntro: Boolean = !TextSecurePreferences.hasSeenStickerIntroTooltip(requireContext())
 
@@ -1826,7 +1826,7 @@ class ConversationFragment :
       return
     }
 
-    if (SignalStore.uiHints().hasNotSeenTextFormattingAlert() && bodyRanges != null && bodyRanges.ranges.isNotEmpty()) {
+    if (SignalStore.uiHints.hasNotSeenTextFormattingAlert() && bodyRanges != null && bodyRanges.ranges.isNotEmpty()) {
       Dialogs.showFormattedTextDialog(requireContext()) {
         sendMessage(body, mentions, bodyRanges, messageToEdit, quote, scheduledDate, slideDeck, contacts, clearCompose, linkPreviews, preUploadResults, bypassPreSendSafetyNumberCheck, isViewOnce, afterSendComplete)
       }
@@ -2801,7 +2801,7 @@ class ConversationFragment :
         return
       }
 
-      if (SignalStore.uiHints().hasSeenDoubleTapEditEducationSheet) {
+      if (SignalStore.uiHints.hasSeenDoubleTapEditEducationSheet) {
         onDoubleTapEditEducationSheetNext(conversationMessage)
         return
       }
@@ -3727,7 +3727,7 @@ class ConversationFragment :
 
     @SuppressLint("InlinedApi")
     override fun changeBubbleSettingAction(disableSetting: Boolean) {
-      SignalStore.tooltips().markBubbleOptOutTooltipSeen()
+      SignalStore.tooltips.markBubbleOptOutTooltipSeen()
 
       if (disableSetting) {
         val intent = Intent(Settings.ACTION_APP_NOTIFICATION_BUBBLE_SETTINGS)
@@ -3888,7 +3888,7 @@ class ConversationFragment :
     override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
       if (event.action == KeyEvent.ACTION_DOWN) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-          if (SignalStore.settings().isEnterKeySends || event.isCtrlPressed) {
+          if (SignalStore.settings.isEnterKeySends || event.isCtrlPressed) {
             sendButton.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER))
             sendButton.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER))
             return true

@@ -21,7 +21,7 @@ class ExpireTimerSettingsViewModel(val config: Config, private val repository: E
     if (recipientId != null) {
       store.update(Recipient.live(recipientId).liveData) { r, s -> s.copy(initialTimer = r.expiresInSeconds, isForRecipient = true) }
     } else {
-      store.update { it.copy(initialTimer = config.initialValue ?: SignalStore.settings().universalExpireTimer) }
+      store.update { it.copy(initialTimer = config.initialValue ?: SignalStore.settings.universalExpireTimer) }
     }
   }
 

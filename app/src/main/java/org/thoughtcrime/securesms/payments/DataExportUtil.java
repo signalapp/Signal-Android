@@ -34,7 +34,7 @@ public final class DataExportUtil {
     }
 
     List<PaymentTable.PaymentTransaction> paymentTransactions = SignalDatabase.payments().getAll();
-    MobileCoinLedgerWrapper               ledger              = SignalStore.paymentsValues().liveMobileCoinLedger().getValue();
+    MobileCoinLedgerWrapper               ledger              = SignalStore.payments().liveMobileCoinLedger().getValue();
     List<Payment>                            reconciled          = LedgerReconcile.reconcile(paymentTransactions, Objects.requireNonNull(ledger));
 
     return createTsv(reconciled);

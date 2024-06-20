@@ -10,7 +10,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.reactivex.rxjava3.kotlin.plusAssign
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -59,8 +58,8 @@ class MonthlyDonationCanceledViewModel(
   private fun initializeFromSignalStore() {
     internalState.value = MonthlyDonationCanceledState(
       loadState = MonthlyDonationCanceledState.LoadState.READY,
-      badge = SignalStore.donationsValues().getExpiredBadge(),
-      errorMessage = getErrorMessage(SignalStore.donationsValues().getUnexpectedSubscriptionCancelationChargeFailure())
+      badge = SignalStore.donations.getExpiredBadge(),
+      errorMessage = getErrorMessage(SignalStore.donations.getUnexpectedSubscriptionCancelationChargeFailure())
     )
   }
 

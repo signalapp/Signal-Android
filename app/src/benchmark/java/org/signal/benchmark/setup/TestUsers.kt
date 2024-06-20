@@ -44,8 +44,8 @@ object TestUsers {
     val preferences: SharedPreferences = application.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0)
     preferences.edit().putBoolean("passphrase_initialized", true).commit()
 
-    SignalStore.account().generateAciIdentityKeyIfNecessary()
-    SignalStore.account().generatePniIdentityKeyIfNecessary()
+    SignalStore.account.generateAciIdentityKeyIfNecessary()
+    SignalStore.account.generatePniIdentityKeyIfNecessary()
 
     val registrationRepository = RegistrationRepository(application)
     val registrationData = RegistrationData(
@@ -63,8 +63,8 @@ object TestUsers {
       VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false),
       masterKey = null,
       pin = null,
-      aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account().aciIdentityKey, SignalStore.account().aciPreKeys),
-      pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account().aciIdentityKey, SignalStore.account().pniPreKeys)
+      aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account.aciIdentityKey, SignalStore.account.aciPreKeys),
+      pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account.aciIdentityKey, SignalStore.account.pniPreKeys)
     )
 
     AccountManagerFactory.setInstance(DummyAccountManagerFactory())
@@ -77,7 +77,7 @@ object TestUsers {
 
     ServiceResponseProcessor.DefaultProcessor(response).resultOrThrow
 
-    SignalStore.svr().optOut()
+    SignalStore.svr.optOut()
     RegistrationUtil.maybeMarkRegistrationComplete()
     SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts("Tester", "McTesterson"))
 

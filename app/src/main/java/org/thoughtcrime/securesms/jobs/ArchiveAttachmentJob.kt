@@ -26,7 +26,7 @@ class ArchiveAttachmentJob private constructor(private val attachmentId: Attachm
     const val KEY = "ArchiveAttachmentJob"
 
     fun enqueueIfPossible(attachmentId: AttachmentId) {
-      if (!SignalStore.backup().backsUpMedia) {
+      if (!SignalStore.backup.backsUpMedia) {
         return
       }
 
@@ -48,7 +48,7 @@ class ArchiveAttachmentJob private constructor(private val attachmentId: Attachm
   override fun getFactoryKey(): String = KEY
 
   override fun onRun() {
-    if (!SignalStore.backup().backsUpMedia) {
+    if (!SignalStore.backup.backsUpMedia) {
       Log.w(TAG, "Do not have permission to read/write to archive cdn")
       return
     }
@@ -63,7 +63,7 @@ class ArchiveAttachmentJob private constructor(private val attachmentId: Attachm
     BackupRepository.archiveMedia(attachment).successOrThrow()
     ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
 
-    SignalStore.backup().usedBackupMediaSpace += attachment.size
+    SignalStore.backup.usedBackupMediaSpace += attachment.size
   }
 
   override fun onShouldRetry(e: Exception): Boolean {

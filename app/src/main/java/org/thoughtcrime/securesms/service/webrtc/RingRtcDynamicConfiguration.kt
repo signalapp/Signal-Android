@@ -15,8 +15,8 @@ object RingRtcDynamicConfiguration {
 
   @JvmStatic
   fun getAudioProcessingMethod(): AudioProcessingMethod {
-    if (SignalStore.internalValues().callingAudioProcessingMethod() != AudioProcessingMethod.Default) {
-      return SignalStore.internalValues().callingAudioProcessingMethod()
+    if (SignalStore.internal.callingAudioProcessingMethod() != AudioProcessingMethod.Default) {
+      return SignalStore.internal.callingAudioProcessingMethod()
     }
 
     return when {

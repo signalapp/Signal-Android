@@ -26,7 +26,7 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketShadowingBri
  * [org.whispersystems.signalservice.internal.websocket.ShadowingWebSocketConnection]
  */
 class DefaultWebSocketShadowingBridge(private val context: Application) : WebSocketShadowingBridge {
-  private val store: InternalValues = SignalStore.internalValues()
+  private val store: InternalValues = SignalStore.internal
 
   override fun writeStatsSnapshot(bytes: ByteArray) {
     store.setWebSocketShadowingStats(bytes)

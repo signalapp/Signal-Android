@@ -328,7 +328,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         val decoded: ByteArray = Base64.decode(this.body)
         val context = DecryptedGroupV2Context.ADAPTER.decode(decoded)
         ChatUpdateMessage(
-          groupChange = GroupsV2UpdateMessageConverter.translateDecryptedChange(selfIds = SignalStore.account().getServiceIds(), context)
+          groupChange = GroupsV2UpdateMessageConverter.translateDecryptedChange(selfIds = SignalStore.account.getServiceIds(), context)
         )
       } catch (e: IOException) {
         null

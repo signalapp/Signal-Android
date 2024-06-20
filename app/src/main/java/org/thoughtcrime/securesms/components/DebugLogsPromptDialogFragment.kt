@@ -48,8 +48,8 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
         }.show(activity.supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
 
         when (purpose) {
-          Purpose.NOTIFICATIONS -> SignalStore.uiHints().lastNotificationLogsPrompt = System.currentTimeMillis()
-          Purpose.CRASH -> SignalStore.uiHints().lastCrashPrompt = System.currentTimeMillis()
+          Purpose.NOTIFICATIONS -> SignalStore.uiHints.lastNotificationLogsPrompt = System.currentTimeMillis()
+          Purpose.CRASH -> SignalStore.uiHints.lastCrashPrompt = System.currentTimeMillis()
         }
       }
     }
@@ -102,7 +102,7 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
 
     binding.decline.setOnClickListener {
       if (purpose == Purpose.NOTIFICATIONS) {
-        SignalStore.uiHints().markDeclinedShareNotificationLogs()
+        SignalStore.uiHints.markDeclinedShareNotificationLogs()
       }
 
       dismissAllowingStateLoss()

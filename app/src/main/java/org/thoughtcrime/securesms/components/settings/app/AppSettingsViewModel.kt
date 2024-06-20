@@ -21,10 +21,10 @@ class AppSettingsViewModel : ViewModel() {
     AppSettingsState(
       Recipient.self(),
       0,
-      SignalStore.donationsValues().getExpiredGiftBadge() != null,
-      SignalStore.donationsValues().isLikelyASustainer() || InAppDonations.hasAtLeastOnePaymentMethodAvailable(),
-      TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account().isRegistered,
-      SignalStore.misc().isClientDeprecated
+      SignalStore.donations.getExpiredGiftBadge() != null,
+      SignalStore.donations.isLikelyASustainer() || InAppDonations.hasAtLeastOnePaymentMethodAvailable(),
+      TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account.isRegistered,
+      SignalStore.misc.isClientDeprecated
     )
   )
 
@@ -55,13 +55,13 @@ class AppSettingsViewModel : ViewModel() {
   fun refreshDeprecatedOrUnregistered() {
     store.update {
       it.copy(
-        clientDeprecated = SignalStore.misc().isClientDeprecated,
-        userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account().isRegistered
+        clientDeprecated = SignalStore.misc.isClientDeprecated,
+        userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account.isRegistered
       )
     }
   }
 
   fun refreshExpiredGiftBadge() {
-    store.update { it.copy(hasExpiredGiftBadge = SignalStore.donationsValues().getExpiredGiftBadge() != null) }
+    store.update { it.copy(hasExpiredGiftBadge = SignalStore.donations.getExpiredGiftBadge() != null) }
   }
 }

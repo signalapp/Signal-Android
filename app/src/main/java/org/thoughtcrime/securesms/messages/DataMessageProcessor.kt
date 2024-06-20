@@ -219,11 +219,11 @@ object DataMessageProcessor {
     }
 
     if (insertResult != null && insertResult.threadWasNewlyCreated && !threadRecipient.isGroup && !threadRecipient.isSelf && !senderRecipient.isSystemContact) {
-      val timeSinceLastSync = System.currentTimeMillis() - SignalStore.misc().lastCdsForegroundSyncTime
+      val timeSinceLastSync = System.currentTimeMillis() - SignalStore.misc.lastCdsForegroundSyncTime
       if (timeSinceLastSync > RemoteConfig.cdsForegroundSyncInterval || timeSinceLastSync < 0) {
         log(envelope.timestamp!!, "New 1:1 chat. Scheduling a CDS sync to see if they match someone in our contacts.")
         AppDependencies.jobManager.add(DirectoryRefreshJob(false))
-        SignalStore.misc().lastCdsForegroundSyncTime = System.currentTimeMillis()
+        SignalStore.misc.lastCdsForegroundSyncTime = System.currentTimeMillis()
       } else {
         warn(envelope.timestamp!!, "New 1:1 chat, but performed a CDS sync $timeSinceLastSync ms ago, which is less than our threshold. Skipping CDS sync.")
       }

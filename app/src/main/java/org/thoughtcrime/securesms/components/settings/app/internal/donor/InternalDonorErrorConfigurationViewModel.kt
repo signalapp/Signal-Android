@@ -117,11 +117,11 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   fun clearErrorState(): Completable {
     return Completable.fromAction {
       synchronized(InAppPaymentSubscriberRecord.Type.DONATION) {
-        SignalStore.donationsValues().setExpiredBadge(null)
-        SignalStore.donationsValues().setExpiredGiftBadge(null)
-        SignalStore.donationsValues().unexpectedSubscriptionCancelationReason = null
-        SignalStore.donationsValues().unexpectedSubscriptionCancelationTimestamp = 0L
-        SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(null)
+        SignalStore.donations.setExpiredBadge(null)
+        SignalStore.donations.setExpiredGiftBadge(null)
+        SignalStore.donations.unexpectedSubscriptionCancelationReason = null
+        SignalStore.donations.unexpectedSubscriptionCancelationTimestamp = 0L
+        SignalStore.donations.setUnexpectedSubscriptionCancelationChargeFailure(null)
       }
 
       store.update {
@@ -135,24 +135,24 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   }
 
   private fun handleBoostExpiration(state: InternalDonorErrorConfigurationState) {
-    SignalStore.donationsValues().setExpiredBadge(state.selectedBadge)
+    SignalStore.donations.setExpiredBadge(state.selectedBadge)
   }
 
   private fun handleGiftExpiration(state: InternalDonorErrorConfigurationState) {
-    SignalStore.donationsValues().setExpiredGiftBadge(state.selectedBadge)
+    SignalStore.donations.setExpiredGiftBadge(state.selectedBadge)
   }
 
   private fun handleSubscriptionExpiration(state: InternalDonorErrorConfigurationState) {
-    SignalStore.donationsValues().setExpiredBadge(state.selectedBadge)
-    SignalStore.donationsValues().clearUserManuallyCancelled()
+    SignalStore.donations.setExpiredBadge(state.selectedBadge)
+    SignalStore.donations.clearUserManuallyCancelled()
     handleSubscriptionPaymentFailure(state)
   }
 
   private fun handleSubscriptionPaymentFailure(state: InternalDonorErrorConfigurationState) {
-    SignalStore.donationsValues().unexpectedSubscriptionCancelationReason = state.selectedUnexpectedSubscriptionCancellation?.status
-    SignalStore.donationsValues().unexpectedSubscriptionCancelationTimestamp = System.currentTimeMillis()
-    SignalStore.donationsValues().showMonthlyDonationCanceledDialog = true
-    SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(
+    SignalStore.donations.unexpectedSubscriptionCancelationReason = state.selectedUnexpectedSubscriptionCancellation?.status
+    SignalStore.donations.unexpectedSubscriptionCancelationTimestamp = System.currentTimeMillis()
+    SignalStore.donations.showMonthlyDonationCanceledDialog = true
+    SignalStore.donations.setUnexpectedSubscriptionCancelationChargeFailure(
       state.selectedStripeDeclineCode?.let {
         ActiveSubscription.ChargeFailure(
           it.code,

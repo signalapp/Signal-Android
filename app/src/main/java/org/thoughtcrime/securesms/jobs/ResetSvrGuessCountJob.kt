@@ -71,9 +71,9 @@ class ResetSvrGuessCountJob private constructor(
 
   override fun run(): Result {
     SvrRepository.operationLock.withLock {
-      val pin = SignalStore.svr().pin
+      val pin = SignalStore.svr.pin
 
-      if (SignalStore.svr().hasOptedOut()) {
+      if (SignalStore.svr.hasOptedOut()) {
         Log.w(TAG, "Opted out of SVR! Nothing to migrate.")
         return Result.success()
       }
@@ -83,7 +83,7 @@ class ResetSvrGuessCountJob private constructor(
         return Result.success()
       }
 
-      val masterKey: MasterKey = SignalStore.svr().getOrCreateMasterKey()
+      val masterKey: MasterKey = SignalStore.svr.getOrCreateMasterKey()
 
       val svr3Result = if (svr3Complete) {
         Log.d(TAG, "Already reset guess count on SVR3. Skipping.")
@@ -99,7 +99,7 @@ class ResetSvrGuessCountJob private constructor(
           pin = pin,
           masterKey = masterKey,
           changeSessionSaver = { serializedChangeSessionV3 = it.serialize() },
-          authTokenSaver = { SignalStore.svr().appendSvr3AuthTokenToList(it.asBasic()) }
+          authTokenSaver = { SignalStore.svr.appendSvr3AuthTokenToList(it.asBasic()) }
         )
       }
 
@@ -121,7 +121,7 @@ class ResetSvrGuessCountJob private constructor(
           pin = pin,
           masterKey = masterKey,
           changeSessionSaver = { serializedChangeSessionV2 = it.serialize() },
-          authTokenSaver = { SignalStore.svr().appendSvr2AuthTokenToList(it.asBasic()) }
+          authTokenSaver = { SignalStore.svr.appendSvr2AuthTokenToList(it.asBasic()) }
         )
       }
     }
@@ -138,7 +138,7 @@ class ResetSvrGuessCountJob private constructor(
     authTokenSaver: (AuthCredentials) -> Unit
   ): Result {
     val session: PinChangeSession = if (serializedChangeSession != null) {
-      svr.resumePinChangeSession(pin, SignalStore.svr().getOrCreateMasterKey(), serializedChangeSession)
+      svr.resumePinChangeSession(pin, SignalStore.svr.getOrCreateMasterKey(), serializedChangeSession)
     } else {
       svr.setPin(pin, masterKey)
     }

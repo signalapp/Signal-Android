@@ -31,9 +31,9 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   private val internalState = MutableStateFlow(
     RemoteBackupsSettingsState(
       messageBackupsType = null,
-      lastBackupTimestamp = SignalStore.backup().lastBackupTime,
-      backupSize = SignalStore.backup().totalBackupSize,
-      backupsFrequency = SignalStore.backup().backupFrequency
+      lastBackupTimestamp = SignalStore.backup.lastBackupTime,
+      backupSize = SignalStore.backup.totalBackupSize,
+      backupsFrequency = SignalStore.backup.backupFrequency
     )
   )
 
@@ -44,12 +44,12 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun setCanBackUpUsingCellular(canBackUpUsingCellular: Boolean) {
-    SignalStore.backup().backupWithCellular = canBackUpUsingCellular
+    SignalStore.backup.backupWithCellular = canBackUpUsingCellular
     internalState.update { it.copy(canBackUpUsingCellular = canBackUpUsingCellular) }
   }
 
   fun setBackupsFrequency(backupsFrequency: BackupFrequency) {
-    SignalStore.backup().backupFrequency = backupsFrequency
+    SignalStore.backup.backupFrequency = backupsFrequency
     internalState.update { it.copy(backupsFrequency = backupsFrequency) }
     MessageBackupListener.setNextBackupTimeToIntervalFromNow()
     MessageBackupListener.schedule(AppDependencies.application)
@@ -65,15 +65,15 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   fun refresh() {
     viewModelScope.launch {
-      val tier = SignalStore.backup().backupTier
+      val tier = SignalStore.backup.backupTier
       val backupType = if (tier != null) BackupRepository.getBackupsType(tier) else null
 
       internalState.update {
         it.copy(
           messageBackupsType = backupType,
-          lastBackupTimestamp = SignalStore.backup().lastBackupTime,
-          backupSize = SignalStore.backup().totalBackupSize,
-          backupsFrequency = SignalStore.backup().backupFrequency
+          lastBackupTimestamp = SignalStore.backup.lastBackupTime,
+          backupSize = SignalStore.backup.totalBackupSize,
+          backupsFrequency = SignalStore.backup.backupFrequency
         )
       }
     }
@@ -103,8 +103,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   private fun refreshBackupState() {
     internalState.update {
       it.copy(
-        lastBackupTimestamp = SignalStore.backup().lastBackupTime,
-        backupSize = SignalStore.backup().totalBackupSize
+        lastBackupTimestamp = SignalStore.backup.lastBackupTime,
+        backupSize = SignalStore.backup.totalBackupSize
       )
     }
   }

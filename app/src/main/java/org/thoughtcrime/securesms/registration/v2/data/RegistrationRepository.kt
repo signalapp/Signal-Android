@@ -103,7 +103,7 @@ object RegistrationRepository {
    */
   @JvmStatic
   fun hasPin(): Boolean {
-    return SignalStore.svr().hasPin()
+    return SignalStore.svr.hasPin()
   }
 
   /**
@@ -112,10 +112,10 @@ object RegistrationRepository {
   @JvmStatic
   fun getRegistrationId(): Int {
     // TODO [regv2]: make creation more explicit instead of hiding it in this getter
-    var registrationId = SignalStore.account().registrationId
+    var registrationId = SignalStore.account.registrationId
     if (registrationId == 0) {
       registrationId = KeyHelper.generateRegistrationId(false)
-      SignalStore.account().registrationId = registrationId
+      SignalStore.account.registrationId = registrationId
     }
     return registrationId
   }
@@ -126,10 +126,10 @@ object RegistrationRepository {
   @JvmStatic
   fun getPniRegistrationId(): Int {
     // TODO [regv2]: make creation more explicit instead of hiding it in this getter
-    var pniRegistrationId = SignalStore.account().pniRegistrationId
+    var pniRegistrationId = SignalStore.account.pniRegistrationId
     if (pniRegistrationId == 0) {
       pniRegistrationId = KeyHelper.generateRegistrationId(false)
-      SignalStore.account().pniRegistrationId = pniRegistrationId
+      SignalStore.account.pniRegistrationId = pniRegistrationId
     }
     return pniRegistrationId
   }
@@ -168,8 +168,8 @@ object RegistrationRepository {
       val pni: PNI = PNI.parseOrThrow(response.pni)
       val hasPin: Boolean = response.storageCapable
 
-      SignalStore.account().setAci(aci)
-      SignalStore.account().setPni(pni)
+      SignalStore.account.setAci(aci)
+      SignalStore.account.setPni(pni)
 
       AppDependencies.resetProtocolStores()
 
@@ -178,10 +178,10 @@ object RegistrationRepository {
       SenderKeyUtil.clearAllState()
 
       val aciProtocolStore = AppDependencies.protocolStore.aci()
-      val aciMetadataStore = SignalStore.account().aciPreKeys
+      val aciMetadataStore = SignalStore.account.aciPreKeys
 
       val pniProtocolStore = AppDependencies.protocolStore.pni()
-      val pniMetadataStore = SignalStore.account().pniPreKeys
+      val pniMetadataStore = SignalStore.account.pniPreKeys
 
       storeSignedAndLastResortPreKeys(aciProtocolStore, aciMetadataStore, aciPreKeyCollection)
       storeSignedAndLastResortPreKeys(pniProtocolStore, pniMetadataStore, pniPreKeyCollection)
@@ -196,16 +196,16 @@ object RegistrationRepository {
 
       AppDependencies.recipientCache.clearSelf()
 
-      SignalStore.account().setE164(registrationData.e164)
-      SignalStore.account().fcmToken = registrationData.fcmToken
-      SignalStore.account().fcmEnabled = registrationData.isFcm
+      SignalStore.account.setE164(registrationData.e164)
+      SignalStore.account.fcmToken = registrationData.fcmToken
+      SignalStore.account.fcmEnabled = registrationData.isFcm
 
       val now = System.currentTimeMillis()
       saveOwnIdentityKey(selfId, aci, aciProtocolStore, now)
       saveOwnIdentityKey(selfId, pni, pniProtocolStore, now)
 
-      SignalStore.account().setServicePassword(registrationData.password)
-      SignalStore.account().setRegistered(true)
+      SignalStore.account.setServicePassword(registrationData.password)
+      SignalStore.account.setRegistered(true)
       TextSecurePreferences.setPromptedPushRegistration(context, true)
       TextSecurePreferences.setUnauthorizedReceived(context, false)
       NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID)
@@ -250,13 +250,13 @@ object RegistrationRepository {
   }
 
   fun canUseLocalRecoveryPassword(): Boolean {
-    val recoveryPassword = SignalStore.svr().recoveryPassword
-    val pinHash = SignalStore.svr().localPinHash
+    val recoveryPassword = SignalStore.svr.recoveryPassword
+    val pinHash = SignalStore.svr.localPinHash
     return recoveryPassword != null && pinHash != null
   }
 
   fun doesPinMatchLocalHash(pin: String): Boolean {
-    val pinHash = SignalStore.svr().localPinHash ?: throw IllegalStateException("Local PIN hash is not present!")
+    val pinHash = SignalStore.svr.localPinHash ?: throw IllegalStateException("Local PIN hash is not present!")
     return PinHashUtil.verifyLocalPinHash(pinHash, pin)
   }
 
@@ -264,7 +264,7 @@ object RegistrationRepository {
     withContext(Dispatchers.IO) {
       val credentialSet = SvrAuthCredentialSet(svr2Credentials = svr2Credentials, svr3Credentials = svr3Credentials)
       val masterKey = SvrRepository.restoreMasterKeyPreRegistration(credentialSet, pin)
-      SignalStore.svr().setMasterKey(masterKey, pin)
+      SignalStore.svr.setMasterKey(masterKey, pin)
       return@withContext masterKey
     }
 
@@ -298,8 +298,8 @@ object RegistrationRepository {
       val result = RegistrationSessionCreationResult.from(registrationSessionResult)
       if (result is RegistrationSessionCreationResult.Success) {
         Log.d(TAG, "Updating registration session and E164 in value store.")
-        SignalStore.registrationValues().sessionId = result.getMetadata().body.id
-        SignalStore.registrationValues().sessionE164 = e164
+        SignalStore.registration.sessionId = result.getMetadata().body.id
+        SignalStore.registration.sessionE164 = e164
       }
 
       return@withContext result
@@ -309,8 +309,8 @@ object RegistrationRepository {
    * Validates an existing session, if its ID is provided. If the session is expired/invalid, or none is provided, it will attempt to initiate a new session.
    */
   suspend fun createOrValidateSession(context: Context, sessionId: String?, e164: String, password: String, mcc: String?, mnc: String?): RegistrationSessionResult {
-    val savedSessionId = if (sessionId == null && e164 == SignalStore.registrationValues().sessionE164) {
-      SignalStore.registrationValues().sessionId
+    val savedSessionId = if (sessionId == null && e164 == SignalStore.registration.sessionE164) {
+      SignalStore.registration.sessionId
     } else {
       sessionId
     }
@@ -410,20 +410,20 @@ object RegistrationRepository {
         unidentifiedAccessKey = unidentifiedAccessKey,
         unrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
         capabilities = AppCapabilities.getCapabilities(true),
-        discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode == PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE,
+        discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE,
         name = null,
         pniRegistrationId = registrationData.pniRegistrationId,
         recoveryPassword = registrationData.recoveryPassword
       )
 
-      SignalStore.account().generateAciIdentityKeyIfNecessary()
-      val aciIdentity: IdentityKeyPair = SignalStore.account().aciIdentityKey
+      SignalStore.account.generateAciIdentityKeyIfNecessary()
+      val aciIdentity: IdentityKeyPair = SignalStore.account.aciIdentityKey
 
-      SignalStore.account().generatePniIdentityKeyIfNecessary()
-      val pniIdentity: IdentityKeyPair = SignalStore.account().pniIdentityKey
+      SignalStore.account.generatePniIdentityKeyIfNecessary()
+      val pniIdentity: IdentityKeyPair = SignalStore.account.pniIdentityKey
 
-      val aciPreKeyCollection = org.thoughtcrime.securesms.registration.RegistrationRepository.generateSignedAndLastResortPreKeys(aciIdentity, SignalStore.account().aciPreKeys)
-      val pniPreKeyCollection = org.thoughtcrime.securesms.registration.RegistrationRepository.generateSignedAndLastResortPreKeys(pniIdentity, SignalStore.account().pniPreKeys)
+      val aciPreKeyCollection = org.thoughtcrime.securesms.registration.RegistrationRepository.generateSignedAndLastResortPreKeys(aciIdentity, SignalStore.account.aciPreKeys)
+      val pniPreKeyCollection = org.thoughtcrime.securesms.registration.RegistrationRepository.generateSignedAndLastResortPreKeys(pniIdentity, SignalStore.account.pniPreKeys)
 
       val result: NetworkResult<AccountRegistrationResult> = api.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, aciPreKeyCollection, pniPreKeyCollection, registrationData.fcmToken, true)
         .map { accountRegistrationResponse: VerifyAccountResponse ->
@@ -492,7 +492,7 @@ object RegistrationRepository {
     withContext(Dispatchers.IO) {
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
 
-      val svr3Result = SignalStore.svr().svr3AuthTokens
+      val svr3Result = SignalStore.svr.svr3AuthTokens
         ?.takeIf { Svr3Migration.shouldReadFromSvr3 }
         ?.takeIf { it.isNotEmpty() }
         ?.toSvrCredentials()
@@ -500,7 +500,7 @@ object RegistrationRepository {
           api
             .validateSvr3AuthCredential(e164, authTokens)
             .runIfSuccessful {
-              val removedInvalidTokens = SignalStore.svr().removeSvr3AuthTokens(it.invalid)
+              val removedInvalidTokens = SignalStore.svr.removeSvr3AuthTokens(it.invalid)
               if (removedInvalidTokens) {
                 BackupManager(context).dataChanged()
               }
@@ -515,14 +515,14 @@ object RegistrationRepository {
 
       Log.d(TAG, "No valid SVR3 credentials, looking for SVR2.")
 
-      return@withContext SignalStore.svr().svr2AuthTokens
+      return@withContext SignalStore.svr.svr2AuthTokens
         ?.takeIf { it.isNotEmpty() }
         ?.toSvrCredentials()
         ?.let { authTokens ->
           api
             .validateSvr2AuthCredential(e164, authTokens)
             .runIfSuccessful {
-              val removedInvalidTokens = SignalStore.svr().removeSvr2AuthTokens(it.invalid)
+              val removedInvalidTokens = SignalStore.svr.removeSvr2AuthTokens(it.invalid)
               if (removedInvalidTokens) {
                 BackupManager(context).dataChanged()
               }

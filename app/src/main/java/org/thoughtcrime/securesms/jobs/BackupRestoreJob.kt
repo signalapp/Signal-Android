@@ -49,11 +49,11 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
   override fun onFailure() = Unit
 
   override fun onAdded() {
-    SignalStore.backup().restoreState = RestoreState.PENDING
+    SignalStore.backup.restoreState = RestoreState.PENDING
   }
 
   override fun onRun() {
-    if (!SignalStore.account().isRegistered) {
+    if (!SignalStore.account.isRegistered) {
       Log.e(TAG, "Not registered, cannot restore!")
       throw NotPushRegisteredException()
     }
@@ -64,7 +64,7 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
   }
 
   private fun restore(controller: BackupProgressService.Controller) {
-    SignalStore.backup().restoreState = RestoreState.RESTORING_DB
+    SignalStore.backup.restoreState = RestoreState.RESTORING_DB
 
     val progressListener = object : ProgressListener {
       override fun onAttachmentProgress(total: Long, progress: Long) {
@@ -95,7 +95,7 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
     val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
     BackupRepository.import(length = tempBackupFile.length(), inputStreamFactory = tempBackupFile::inputStream, selfData = selfData, plaintext = false)
 
-    SignalStore.backup().restoreState = RestoreState.RESTORING_MEDIA
+    SignalStore.backup.restoreState = RestoreState.RESTORING_MEDIA
   }
 
   override fun onShouldRetry(e: Exception): Boolean = false

@@ -139,7 +139,7 @@ class AppSettingsFragment : DSLSettingsFragment(
             findNavController().safeNavigate(R.id.action_appSettingsFragment_to_manageProfileActivity)
           },
           onQrButtonClicked = {
-            if (SignalStore.account().username != null) {
+            if (SignalStore.account.username != null) {
               findNavController().safeNavigate(R.id.action_appSettingsFragment_to_usernameLinkSettingsFragment)
             } else {
               findNavController().safeNavigate(R.id.action_appSettingsFragment_to_usernameEducationFragment)
@@ -253,7 +253,7 @@ class AppSettingsFragment : DSLSettingsFragment(
 
       dividerPref()
 
-      if (SignalStore.paymentsValues().paymentsAvailability.showPaymentsMenu()) {
+      if (SignalStore.payments.paymentsAvailability.showPaymentsMenu()) {
         customPref(
           PaymentsPreference(
             unreadCount = state.unreadPaymentsCount
@@ -370,7 +370,7 @@ class AppSettingsFragment : DSLSettingsFragment(
       summaryView.visibility = View.VISIBLE
       avatarView.visibility = View.VISIBLE
 
-      if (SignalStore.account().username.isNotNullOrBlank()) {
+      if (SignalStore.account.username.isNotNullOrBlank()) {
         qrButton.visibility = View.VISIBLE
         qrButton.isClickable = true
         qrButton.setOnClickListener { model.onQrButtonClicked() }

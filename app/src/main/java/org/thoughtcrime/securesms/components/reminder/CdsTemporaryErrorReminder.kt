@@ -28,8 +28,8 @@ class CdsTemporaryErrorReminder : Reminder(R.string.reminder_cds_warning_body) {
   companion object {
     @JvmStatic
     fun isEligible(): Boolean {
-      val timeUntilUnblock = SignalStore.misc().cdsBlockedUtil - System.currentTimeMillis()
-      return SignalStore.misc().isCdsBlocked && timeUntilUnblock < CdsPermanentErrorReminder.PERMANENT_TIME_CUTOFF
+      val timeUntilUnblock = SignalStore.misc.cdsBlockedUtil - System.currentTimeMillis()
+      return SignalStore.misc.isCdsBlocked && timeUntilUnblock < CdsPermanentErrorReminder.PERMANENT_TIME_CUTOFF
     }
   }
 }

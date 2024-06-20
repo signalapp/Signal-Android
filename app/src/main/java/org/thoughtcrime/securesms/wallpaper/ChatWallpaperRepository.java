@@ -37,8 +37,8 @@ class ChatWallpaperRepository {
   @NonNull ChatColors getCurrentChatColors(@Nullable RecipientId recipientId) {
     if (recipientId != null) {
       return Recipient.live(recipientId).get().getChatColors();
-    } else if (SignalStore.chatColorsValues().hasChatColors()) {
-      return Objects.requireNonNull(SignalStore.chatColorsValues().getChatColors());
+    } else if (SignalStore.chatColors().hasChatColors()) {
+      return Objects.requireNonNull(SignalStore.chatColors().getChatColors());
     } else if (SignalStore.wallpaper().hasWallpaperSet()) {
       return Objects.requireNonNull(SignalStore.wallpaper().getWallpaper()).getAutoChatColors();
     } else {
@@ -77,7 +77,7 @@ class ChatWallpaperRepository {
   }
 
   void resetAllChatColors(@NonNull Runnable onColorsReset) {
-    SignalStore.chatColorsValues().setChatColors(null);
+    SignalStore.chatColors().setChatColors(null);
     EXECUTOR.execute(() -> {
       SignalDatabase.recipients().clearAllColors();
       onColorsReset.run();
@@ -107,7 +107,7 @@ class ChatWallpaperRepository {
 
   public void clearChatColor(@Nullable RecipientId recipientId, @NonNull Runnable onChatColorCleared) {
     if (recipientId == null) {
-      SignalStore.chatColorsValues().setChatColors(null);
+      SignalStore.chatColors().setChatColors(null);
       onChatColorCleared.run();
     } else {
       EXECUTOR.execute(() -> {

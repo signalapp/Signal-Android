@@ -16,7 +16,7 @@ class KeyboardPagerViewModel : ViewModel() {
 
   init {
     val startingPages: MutableSet<KeyboardPage> = KeyboardPage.values().toMutableSet()
-    if (SignalStore.settings().isPreferSystemEmoji) {
+    if (SignalStore.settings.isPreferSystemEmoji) {
       startingPages.remove(KeyboardPage.EMOJI)
     }
 

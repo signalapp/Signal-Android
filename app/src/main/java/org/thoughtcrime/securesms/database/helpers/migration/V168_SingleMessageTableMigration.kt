@@ -89,7 +89,7 @@ object V168_SingleMessageTableMigration : SignalDatabaseMigration {
 
     stopwatch.stop(TAG)
 
-    SignalStore.plaintext().smsMigrationIdOffset = nextMmsId
+    SignalStore.plaintext.smsMigrationIdOffset = nextMmsId
   }
 
   private fun copySmsToMms(db: SQLiteDatabase, idOffset: Long) {

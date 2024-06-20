@@ -59,7 +59,7 @@ class InlineQueryViewModel(
 
   companion object {
     fun toMappingModels(emojiWithLabels: List<String>): List<AnyMappingModel> {
-      val emojiValues = SignalStore.emojiValues()
+      val emojiValues = SignalStore.emoji
       return emojiWithLabels
         .distinct()
         .map { emoji ->

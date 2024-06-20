@@ -193,7 +193,7 @@ class GroupsV2StateProcessor private constructor(
     currentLocalState: DecryptedGroup?,
     groupRecord: Optional<GroupRecord>
   ): Boolean {
-    if (SignalStore.internalValues().gv2IgnoreP2PChanges()) {
+    if (SignalStore.internal.gv2IgnoreP2PChanges()) {
       Log.w(TAG, "$logPrefix Ignoring P2P group change by setting")
       return false
     }
@@ -632,7 +632,7 @@ class GroupsV2StateProcessor private constructor(
     fun storeMessage(decryptedGroupV2Context: DecryptedGroupV2Context, timestamp: Long, serverGuid: String?) {
       val editor: Optional<ServiceId> = getEditor(decryptedGroupV2Context)
 
-      val serviceIds = SignalStore.account().getServiceIds()
+      val serviceIds = SignalStore.account.getServiceIds()
       val outgoing = editor.isEmpty || aci == editor.get()
 
       val updateDescription = GV2UpdateDescription(

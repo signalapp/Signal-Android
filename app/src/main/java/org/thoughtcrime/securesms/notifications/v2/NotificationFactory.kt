@@ -308,7 +308,7 @@ object NotificationFactory {
   }
 
   private fun notifyInThread(context: Context, recipient: Recipient, lastAudibleNotification: Long) {
-    if (!SignalStore.settings().isMessageNotificationsInChatSoundsEnabled ||
+    if (!SignalStore.settings.isMessageNotificationsInChatSoundsEnabled ||
       ServiceUtil.getAudioManager(context).ringerMode != AudioManager.RINGER_MODE_NORMAL ||
       (System.currentTimeMillis() - lastAudibleNotification) < DefaultMessageNotifier.MIN_AUDIBLE_PERIOD_MILLIS
     ) {
@@ -318,7 +318,7 @@ object NotificationFactory {
     val uri: Uri = if (NotificationChannels.supported()) {
       NotificationChannels.getInstance().getMessageRingtone(recipient) ?: NotificationChannels.getInstance().messageRingtone
     } else {
-      recipient.messageRingtone ?: SignalStore.settings().messageNotificationSound
+      recipient.messageRingtone ?: SignalStore.settings.messageNotificationSound
     }
 
     if (uri == Uri.EMPTY || uri.toString().isEmpty()) {
@@ -374,7 +374,7 @@ object NotificationFactory {
   fun notifyStoryDeliveryFailed(context: Context, recipient: Recipient, thread: ConversationId) {
     val intent = Intent(context, MyStoriesActivity::class.java).makeUniqueToPreventMerging()
 
-    val contentTitle = if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+    val contentTitle = if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       if (recipient.isGroup) {
         context.getString(R.string.MessageNotifier_group_story_title, recipient.getDisplayName(context))
       } else {
@@ -384,7 +384,7 @@ object NotificationFactory {
       context.getString(R.string.SingleRecipientNotificationBuilder_signal)
     }
 
-    val largeIcon = if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+    val largeIcon = if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       if (recipient.isMyStory) {
         Recipient.self().getContactDrawable(context)
       } else {

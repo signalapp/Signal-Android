@@ -25,7 +25,7 @@ class StoriesPrivacySettingsRepository {
 
   fun setStoriesEnabled(isEnabled: Boolean): Completable {
     return Completable.fromAction {
-      SignalStore.storyValues().isFeatureDisabled = !isEnabled
+      SignalStore.story.isFeatureDisabled = !isEnabled
       Stories.onStorySettingsChanged(Recipient.self().id)
       AppDependencies.resetNetwork()
 

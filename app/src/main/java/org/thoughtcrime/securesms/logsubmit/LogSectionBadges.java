@@ -34,30 +34,30 @@ final class LogSectionBadges implements LogSection {
 
     if (latestRecurringDonation != null) {
       return new StringBuilder().append("Badge Count                     : ").append(Recipient.self().getBadges().size()).append("\n")
-                                .append("ExpiredBadge                    : ").append(SignalStore.donationsValues().getExpiredBadge() != null).append("\n")
-                                .append("LastKeepAliveLaunchTime         : ").append(SignalStore.donationsValues().getLastKeepAliveLaunchTime()).append("\n")
-                                .append("LastEndOfPeriod                 : ").append(SignalStore.donationsValues().getLastEndOfPeriod()).append("\n")
+                                .append("ExpiredBadge                    : ").append(SignalStore.donations().getExpiredBadge() != null).append("\n")
+                                .append("LastKeepAliveLaunchTime         : ").append(SignalStore.donations().getLastKeepAliveLaunchTime()).append("\n")
+                                .append("LastEndOfPeriod                 : ").append(SignalStore.donations().getLastEndOfPeriod()).append("\n")
                                 .append("InAppPayment.State              : ").append(latestRecurringDonation.getState()).append("\n")
                                 .append("InAppPayment.EndOfPeriod        : ").append(latestRecurringDonation.getEndOfPeriodSeconds()).append("\n")
                                 .append("InAppPaymentData.RedemptionState: ").append(getRedemptionStage(latestRecurringDonation.getData())).append("\n")
                                 .append("InAppPaymentData.Error          : ").append(getError(latestRecurringDonation.getData())).append("\n")
                                 .append("InAppPaymentData.Cancellation   : ").append(getCancellation(latestRecurringDonation.getData())).append("\n")
-                                .append("DisplayBadgesOnProfile          : ").append(SignalStore.donationsValues().getDisplayBadgesOnProfile()).append("\n")
+                                .append("DisplayBadgesOnProfile          : ").append(SignalStore.donations().getDisplayBadgesOnProfile()).append("\n")
                                 .append("ShouldCancelBeforeNextAttempt   : ").append(InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)).append("\n");
     } else {
       return new StringBuilder().append("Badge Count                             : ").append(Recipient.self().getBadges().size()).append("\n")
-                                .append("ExpiredBadge                            : ").append(SignalStore.donationsValues().getExpiredBadge() != null).append("\n")
-                                .append("LastKeepAliveLaunchTime                 : ").append(SignalStore.donationsValues().getLastKeepAliveLaunchTime()).append("\n")
-                                .append("LastEndOfPeriod                         : ").append(SignalStore.donationsValues().getLastEndOfPeriod()).append("\n")
-                                .append("SubscriptionEndOfPeriodConversionStarted: ").append(SignalStore.donationsValues().getSubscriptionEndOfPeriodConversionStarted()).append("\n")
-                                .append("SubscriptionEndOfPeriodRedemptionStarted: ").append(SignalStore.donationsValues().getSubscriptionEndOfPeriodRedemptionStarted()).append("\n")
-                                .append("SubscriptionEndOfPeriodRedeemed         : ").append(SignalStore.donationsValues().getSubscriptionEndOfPeriodRedeemed()).append("\n")
-                                .append("IsUserManuallyCancelled                 : ").append(SignalStore.donationsValues().isUserManuallyCancelled()).append("\n")
-                                .append("DisplayBadgesOnProfile                  : ").append(SignalStore.donationsValues().getDisplayBadgesOnProfile()).append("\n")
-                                .append("SubscriptionRedemptionFailed            : ").append(SignalStore.donationsValues().getSubscriptionRedemptionFailed()).append("\n")
-                                .append("ShouldCancelBeforeNextAttempt           : ").append(SignalStore.donationsValues().getShouldCancelSubscriptionBeforeNextSubscribeAttempt()).append("\n")
-                                .append("Has unconverted request context         : ").append(SignalStore.donationsValues().getSubscriptionRequestCredential() != null).append("\n")
-                                .append("Has unredeemed receipt presentation     : ").append(SignalStore.donationsValues().getSubscriptionReceiptCredential() != null).append("\n");
+                                .append("ExpiredBadge                            : ").append(SignalStore.donations().getExpiredBadge() != null).append("\n")
+                                .append("LastKeepAliveLaunchTime                 : ").append(SignalStore.donations().getLastKeepAliveLaunchTime()).append("\n")
+                                .append("LastEndOfPeriod                         : ").append(SignalStore.donations().getLastEndOfPeriod()).append("\n")
+                                .append("SubscriptionEndOfPeriodConversionStarted: ").append(SignalStore.donations().getSubscriptionEndOfPeriodConversionStarted()).append("\n")
+                                .append("SubscriptionEndOfPeriodRedemptionStarted: ").append(SignalStore.donations().getSubscriptionEndOfPeriodRedemptionStarted()).append("\n")
+                                .append("SubscriptionEndOfPeriodRedeemed         : ").append(SignalStore.donations().getSubscriptionEndOfPeriodRedeemed()).append("\n")
+                                .append("IsUserManuallyCancelled                 : ").append(SignalStore.donations().isUserManuallyCancelled()).append("\n")
+                                .append("DisplayBadgesOnProfile                  : ").append(SignalStore.donations().getDisplayBadgesOnProfile()).append("\n")
+                                .append("SubscriptionRedemptionFailed            : ").append(SignalStore.donations().getSubscriptionRedemptionFailed()).append("\n")
+                                .append("ShouldCancelBeforeNextAttempt           : ").append(SignalStore.donations().getShouldCancelSubscriptionBeforeNextSubscribeAttempt()).append("\n")
+                                .append("Has unconverted request context         : ").append(SignalStore.donations().getSubscriptionRequestCredential() != null).append("\n")
+                                .append("Has unredeemed receipt presentation     : ").append(SignalStore.donations().getSubscriptionReceiptCredential() != null).append("\n");
     }
   }
 

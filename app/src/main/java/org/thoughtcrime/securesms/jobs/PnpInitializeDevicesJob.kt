@@ -48,7 +48,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
     @JvmStatic
     fun enqueueIfNecessary() {
-      if (SignalStore.misc().hasPniInitializedDevices || !SignalStore.account().isRegistered || SignalStore.account().aci == null) {
+      if (SignalStore.misc.hasPniInitializedDevices || !SignalStore.account.isRegistered || SignalStore.account.aci == null) {
         return
       }
 
@@ -70,31 +70,31 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
   @Throws(Exception::class)
   public override fun onRun() {
-    if (!SignalStore.account().isRegistered || SignalStore.account().aci == null) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
       Log.w(TAG, "Not registered! Skipping, as it wouldn't do anything.")
       return
     }
 
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...")
-      SignalStore.misc().hasPniInitializedDevices = true
+      SignalStore.misc.hasPniInitializedDevices = true
       return
     }
 
-    if (SignalStore.account().isLinkedDevice) {
+    if (SignalStore.account.isLinkedDevice) {
       Log.i(TAG, "Not primary device, aborting...")
-      SignalStore.misc().hasPniInitializedDevices = true
+      SignalStore.misc.hasPniInitializedDevices = true
       return
     }
 
     ChangeNumberRepository.CHANGE_NUMBER_LOCK.lock()
     try {
-      if (SignalStore.misc().hasPniInitializedDevices) {
+      if (SignalStore.misc.hasPniInitializedDevices) {
         Log.w(TAG, "We found out that things have been initialized after we got the lock! No need to do anything else.")
         return
       }
 
-      val e164 = SignalStore.account().requireE164()
+      val e164 = SignalStore.account.requireE164()
 
       try {
         Log.i(TAG, "Initializing PNI for linked devices")
@@ -110,7 +110,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
         throw t
       }
 
-      SignalStore.misc().hasPniInitializedDevices = true
+      SignalStore.misc.hasPniInitializedDevices = true
     } finally {
       ChangeNumberRepository.CHANGE_NUMBER_LOCK.unlock()
     }
@@ -156,12 +156,12 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
   private fun createInitializeDevicesRequest(
     newE164: String
   ): PniKeyDistributionRequest {
-    val selfIdentifier: String = SignalStore.account().requireAci().toString()
+    val selfIdentifier: String = SignalStore.account.requireAci().toString()
     val aciProtocolStore: SignalProtocolStore = AppDependencies.protocolStore.aci()
     val pniProtocolStore: SignalProtocolStore = AppDependencies.protocolStore.pni()
     val messageSender = AppDependencies.signalServiceMessageSender
 
-    val pniIdentity: IdentityKeyPair = SignalStore.account().pniIdentityKey
+    val pniIdentity: IdentityKeyPair = SignalStore.account.pniIdentityKey
     val deviceMessages = mutableListOf<OutgoingPushMessage>()
     val devicePniSignedPreKeys = mutableMapOf<Int, SignedPreKeyEntity>()
     val devicePniLastResortKyberPreKeys = mutableMapOf<Int, KyberPreKeyEntity>()
@@ -175,7 +175,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
       .forEach { deviceId ->
         // Signed Prekeys
         val signedPreKeyRecord: SignedPreKeyRecord = if (deviceId == primaryDeviceId) {
-          pniProtocolStore.loadSignedPreKey(SignalStore.account().pniPreKeys.activeSignedPreKeyId)
+          pniProtocolStore.loadSignedPreKey(SignalStore.account.pniPreKeys.activeSignedPreKeyId)
         } else {
           PreKeyUtil.generateSignedPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
@@ -183,7 +183,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
         // Last-resort kyber prekeys
         val lastResortKyberPreKeyRecord: KyberPreKeyRecord = if (deviceId == primaryDeviceId) {
-          pniProtocolStore.loadKyberPreKey(SignalStore.account().pniPreKeys.lastResortKyberPreKeyId)
+          pniProtocolStore.loadKyberPreKey(SignalStore.account.pniPreKeys.lastResortKyberPreKeyId)
         } else {
           PreKeyUtil.generateLastResortKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
@@ -191,7 +191,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
         // Registration Ids
         var pniRegistrationId = if (deviceId == primaryDeviceId) {
-          SignalStore.account().pniRegistrationId
+          SignalStore.account.pniRegistrationId
         } else {
           -1
         }

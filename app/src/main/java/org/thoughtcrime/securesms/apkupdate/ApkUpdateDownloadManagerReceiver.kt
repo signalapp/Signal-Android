@@ -32,7 +32,7 @@ class ApkUpdateDownloadManagerReceiver : BroadcastReceiver() {
     }
 
     val downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -2)
-    if (downloadId != SignalStore.apkUpdate().downloadId) {
+    if (downloadId != SignalStore.apkUpdate.downloadId) {
       Log.w(TAG, "downloadId doesn't match the one we're waiting for! Ignoring.")
       return
     }

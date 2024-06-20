@@ -40,18 +40,18 @@ class RegistrationCompleteFragment : LoggingFragment() {
     val activity = requireActivity()
     val viewModel: RegistrationViewModel by viewModels(ownerProducer = { requireActivity() })
 
-    if (SignalStore.misc().hasLinkedDevices) {
-      SignalStore.misc().shouldShowLinkedDevicesReminder = viewModel.isReregister
+    if (SignalStore.misc.hasLinkedDevices) {
+      SignalStore.misc.shouldShowLinkedDevicesReminder = viewModel.isReregister
     }
 
-    if (SignalStore.storageService().needsAccountRestore()) {
+    if (SignalStore.storageService.needsAccountRestore()) {
       Log.i(TAG, "Performing pin restore.")
       activity.startActivity(Intent(activity, PinRestoreActivity::class.java))
     } else {
       val isProfileNameEmpty = Recipient.self().profileName.isEmpty
       val isAvatarEmpty = !AvatarHelper.hasAvatar(activity, Recipient.self().id)
       val needsProfile = isProfileNameEmpty || isAvatarEmpty
-      val needsPin = !SignalStore.svr().hasPin() && !viewModel.isReregister
+      val needsPin = !SignalStore.svr.hasPin() && !viewModel.isReregister
 
       Log.i(TAG, "Pin restore flow not required. Profile name: $isProfileNameEmpty | Profile avatar: $isAvatarEmpty | Needs PIN: $needsPin")
 

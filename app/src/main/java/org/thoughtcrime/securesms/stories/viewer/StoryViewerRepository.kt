@@ -41,7 +41,7 @@ open class StoryViewerRepository {
     return Single.create { emitter ->
       val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
       val myStories = Recipient.resolved(myStoriesId)
-      val releaseChannelId = SignalStore.releaseChannelValues().releaseChannelRecipientId
+      val releaseChannelId = SignalStore.releaseChannel.releaseChannelRecipientId
       val recipientIds = SignalDatabase.messages.getOrderedStoryRecipientsAndIds(isOutgoingOnly).groupBy {
         val recipient = Recipient.resolved(it.recipientId)
         if (recipient.isDistributionList) {

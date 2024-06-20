@@ -243,7 +243,7 @@ class Recipient(
       null
     } else if (groupIdValue != null && groupAvatarId.isPresent) {
       GroupRecordContactPhoto(groupIdValue, groupAvatarId.get())
-    } else if (systemContactPhoto != null && SignalStore.settings().isPreferSystemContactPhotos) {
+    } else if (systemContactPhoto != null && SignalStore.settings.isPreferSystemContactPhotos) {
       SystemContactPhoto(id, systemContactPhoto, 0)
     } else if (profileAvatar != null && profileAvatarFileDetails.hasFile()) {
       ProfileContactPhoto(this)
@@ -335,7 +335,7 @@ class Recipient(
       } else if (isReleaseNotes) {
         null
       } else {
-        SignalStore.wallpaper().getWallpaper()
+        SignalStore.wallpaper.getWallpaper()
       }
     }
 
@@ -344,7 +344,7 @@ class Recipient(
 
   /** A cheap way to check if wallpaper is set without doing any unnecessary proto parsing. */
   val hasWallpaper: Boolean
-    get() = wallpaperValue != null || SignalStore.wallpaper().hasWallpaperSet()
+    get() = wallpaperValue != null || SignalStore.wallpaper.hasWallpaperSet()
 
   /** The color of the chat bubbles to use in a chat with this recipient. */
   val chatColors: ChatColors
@@ -354,7 +354,7 @@ class Recipient(
       } else if (chatColorsValue != null) {
         autoChatColor
       } else {
-        val global = SignalStore.chatColorsValues().chatColors
+        val global = SignalStore.chatColors.chatColors
         if (global != null && global.id !is Auto) {
           global
         } else {

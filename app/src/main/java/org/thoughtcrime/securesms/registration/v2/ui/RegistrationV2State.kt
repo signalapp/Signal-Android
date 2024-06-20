@@ -23,7 +23,7 @@ data class RegistrationV2State(
   val phoneNumber: Phonenumber.PhoneNumber? = fetchExistingE164FromValues(),
   val inProgress: Boolean = false,
   val isReRegister: Boolean = false,
-  val recoveryPassword: String? = SignalStore.svr().getRecoveryPassword(),
+  val recoveryPassword: String? = SignalStore.svr.getRecoveryPassword(),
   val canSkipSms: Boolean = false,
   val svr2AuthCredentials: AuthCredentials? = null,
   val svr3AuthCredentials: Svr3Credentials? = null,
@@ -53,7 +53,7 @@ data class RegistrationV2State(
     private val TAG = Log.tag(RegistrationV2State::class)
 
     private fun fetchExistingE164FromValues(): Phonenumber.PhoneNumber? {
-      val existingE164 = SignalStore.registrationValues().sessionE164
+      val existingE164 = SignalStore.registration.sessionE164
       if (existingE164 != null) {
         try {
           return PhoneNumberUtil.getInstance().parse(existingE164, null)

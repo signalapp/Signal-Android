@@ -43,7 +43,7 @@ object ExpiredGiftSheetConfiguration {
       )
     )
 
-    if (SignalStore.donationsValues().isLikelyASustainer()) {
+    if (SignalStore.donations.isLikelyASustainer()) {
       primaryButton(
         text = DSLSettingsText.from(
           stringId = android.R.string.ok

@@ -103,7 +103,7 @@ class EmojiSource(
     }
 
     private fun loadRemoteBasedEmojis(): EmojiSource? {
-      if (SignalStore.internalValues().forceBuiltInEmoji()) {
+      if (SignalStore.internal.forceBuiltInEmoji()) {
         return null
       }
 

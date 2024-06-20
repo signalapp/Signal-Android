@@ -54,7 +54,7 @@ class VerifySafetyNumberViewModel(
       var aciFingerprint: SafetyNumberFingerprint? = null
 
       if (resolved.aci.isPresent) {
-        val localIdentifier = SignalStore.account().requireAci().toByteArray()
+        val localIdentifier = SignalStore.account.requireAci().toByteArray()
         val remoteIdentifier = resolved.requireAci().toByteArray()
         val version = 2
         aciFingerprint = SafetyNumberFingerprint(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity, generator.createFor(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity))

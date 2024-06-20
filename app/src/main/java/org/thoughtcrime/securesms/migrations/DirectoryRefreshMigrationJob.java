@@ -39,8 +39,8 @@ public final class DirectoryRefreshMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() throws IOException {
-    if (!SignalStore.account().isRegistered()                      ||
-        !SignalStore.registrationValues().isRegistrationComplete() ||
+    if (!SignalStore.account().isRegistered() ||
+        !SignalStore.registration().isRegistrationComplete() ||
         SignalStore.account().getAci() == null)
     {
       Log.w(TAG, "Not registered! Skipping.");
