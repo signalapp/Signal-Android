@@ -2080,14 +2080,14 @@
     <string name="CallOverflowPopupWindow__view">Anzeigen</string>
 
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s raised a hand</string>
+    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s hat die Hand gehoben</string>
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d raised a hand</string>
+    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d haben die Hand gehoben</string>
 
     <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
     <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
     <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s +%2$d</string>
+    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s + %2$d</string>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">»Gehobene Hand«-Ansicht vergrößern</string>
@@ -2228,7 +2228,7 @@
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Vergewissere dich, dass dein Mobiltelefon ein Mobilfunksignal hat, um deine SMS oder deinen Anruf zu empfangen\n • Bestätige, dass du unter dieser Telefonnummer einen Anruf empfangen kannst\n • Überprüfe, ob du deine Telefonnummer richtig eingegeben hast.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Um weitere Informationen zu erhalten, folge bitte %1$s oder wähle %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">diesen Schritten zur Fehlerbehebung</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
@@ -2237,7 +2237,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Registrierungssperre einschalten?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Registrierungssperre ausschalten?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Falls du beim erneuten Registrieren von Signal deine Signal-PIN vergisst, wird dein Konto für sieben Tage gesperrt.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Falls du beim erneuten Registrieren von Signal deine Signal-PIN nicht mehr weißt, wird dein Konto für sieben Tage gesperrt.</string>
     <string name="RegistrationLockV2Dialog_turn_on">Einschalten</string>
     <string name="RegistrationLockV2Dialog_turn_off">Ausschalten</string>
 
@@ -4088,7 +4088,7 @@
     <string name="PhoneNumberPrivacy_nobody">Niemand</string>
     <string name="preferences_app_protection__screen_lock">Bildschirmsperre</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zugriff auf Signal mit Android-Bildschirmsperre oder Fingerabdruck sperren</string>
-    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Autom. Sperre bei Inaktivität</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Automatische Sperre bei Inaktivität</string>
     <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
     <string name="preferences_app_protection__create_a_pin">Erstelle eine PIN</string>
     <string name="preferences_app_protection__change_your_pin">PIN ändern</string>

@@ -2005,9 +2005,9 @@
     <string name="CallOverflowPopupWindow__view">檢視</string>
 
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s raised a hand</string>
+    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s 舉了手</string>
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d raised a hand</string>
+    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d 舉了手</string>
 
     <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
     <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
@@ -2147,7 +2147,7 @@
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• 確保你的手機有行動網路訊號以接收你的 SMS 短訊或電話\n • 確認你可以接到該號碼的電話\n • 檢查你輸入的電話號碼是否正確。</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">要了解更多資訊，請參考 %1$s 或聯絡 %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">這些疑難排解步驟</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->

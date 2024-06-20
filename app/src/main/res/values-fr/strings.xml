@@ -1098,9 +1098,9 @@
     <string name="AddGroupDetailsFragment__sms_contact">Contact texto</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Retirer %1$s de ce groupe ?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal. Les échanges de ce groupe se feront donc par MMS. Le nom personnalisé du groupe, ainsi que les photos, ne seront visibles que par vous.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Le contact sélectionné ne peut pas utiliser les groupes Signal. Les échanges de ce groupe se feront donc par MMS. Vous seul pourrez afficher le nom personnalisé du groupe et ses photos.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de messages MMS. Les noms et les photos des groupes de messages MMS personnalisés ne seront visibles que par vous. La prise en charge des groupes MMS sera bientôt supprimée pour se concentrer sur les messages chiffrés.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Le contact sélectionné ne peut pas utiliser les groupes Signal. Les échanges de ce groupe se feront donc par MMS. Vous seul pourrez afficher le nom personnalisé du groupe et ses photos. Signal ne prendra bientôt plus en charge les groupes MMS, afin de donner la priorité aux messages chiffrés.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Qui peut ajouter de nouveaux membres ?</string>
@@ -1130,7 +1130,7 @@
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ce groupe est un groupe de messages multimédias non sécurisé. Pour converser en toute confidentialité, invitez vos contacts sur Signal.</string>
     <string name="ManageGroupActivity_invite_now">Inviter maintenant</string>
     <string name="ManageGroupActivity_more">plus</string>
-    <string name="ManageGroupActivity_add_group_description">Ajouter une description au groupe…</string>
+    <string name="ManageGroupActivity_add_group_description">Ajouter une description du groupe…</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me signaler les mentions</string>
@@ -1637,7 +1637,7 @@
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Vous avez envoyé une demande d’activation des paiements à %1$s</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s souhaite que vous activiez les paiements. Envoyer des paiements uniquement aux personnes en qui vous avez confiance.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s souhaite que vous activiez les paiements. N’envoyez de paiements qu’aux personnes en qui vous avez confiance.</string>
     <!-- Message to inform user that payments was activated-->
     <string name="MessageRecord_you_activated_payments">Vous avez activé les paiements</string>
     <!-- Message to inform sender that recipient can now accept payments -->
@@ -1762,7 +1762,7 @@
         <item quantity="other">%1$d groupes supplémentaires</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Signaler…</string>
+    <string name="MessageRequestBottomView_report">Signaler</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas.</string>
@@ -2080,14 +2080,14 @@
     <string name="CallOverflowPopupWindow__view">Afficher</string>
 
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s raised a hand</string>
+    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s a levé la main.</string>
     <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d raised a hand</string>
+    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s + %2$d ont levé la main</string>
 
     <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
     <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
     <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s +%2$d</string>
+    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s + %2$d</string>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Agrandir lla liste des personnes ayant levé la main</string>
@@ -2228,7 +2228,7 @@
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Assurez-vous que votre téléphone dispose d’un signal cellulaire pour recevoir votre SMS ou votre appel.\n • Confirmez que vous pouvez recevoir un appel à ce numéro.\n • Vérifiez que vous avez renseigné votre numéro de téléphone correctement.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow %1$s or %2$s</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Pour plus d\'informations, veuillez suivre %1$s ou %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ces étapes de dépannage</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
@@ -2331,7 +2331,7 @@
     <string name="SubmitDebugLogActivity_submit">Envoyer</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Échec d’envoi des journaux</string>
     <string name="SubmitDebugLogActivity_success">C’est réussi !</string>
-    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre relevé d’erreur ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b></string>
+    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre rapport d’erreur ou à votre e-mail de demande d’assistance :\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Partager</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ce journal sera publiquement disponible sur le web, où les contributeurs pourront le consulter. Vous pouvez l’examiner avant de l’importer.</string>
 
@@ -3050,8 +3050,8 @@
     <string name="CreateProfileActivity_first_name_required">Prénom (requis)</string>
     <string name="CreateProfileActivity_last_name_optional">Nom de famille (facultatif)</string>
     <string name="CreateProfileActivity_next">Suivant</string>
-    <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Les noms et les photos des groupes de messages multimédias personnalisés ne seront visibles que par vous.</string>
-    <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Les descriptions de groupe seront visibles aux membres de ce groupe et aux personnes qui ont été invitées.</string>
+    <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Vous seul pouvez afficher le nom personnalisé du groupe MMS et ses photos.</string>
+    <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">La description du groupe sera visible aux membres de ce groupe et aux personnes invitées.</string>
 
     <!-- EditAboutFragment -->
     <string name="EditAboutFragment_about">À propos</string>
@@ -3147,13 +3147,13 @@
     <string name="AndroidManifest_archived_conversations">Conversations archivées</string>
 
     <!-- HelpFragment -->
-    <string name="HelpFragment__have_you_read_our_faq_yet">Avez-vous déjà lu notre FAQ ?</string>
+    <string name="HelpFragment__have_you_read_our_faq_yet">Avez-vous parcouru notre FAQ ?</string>
     <string name="HelpFragment__next">Suivant</string>
     <string name="HelpFragment__contact_us">Nous contacter</string>
-    <string name="HelpFragment__tell_us_whats_going_on">Expliquez-nous ce qu’il se passe</string>
-    <string name="HelpFragment__include_debug_log">Inclure le journal de débogage.</string>
+    <string name="HelpFragment__tell_us_whats_going_on">Que se passe-t-il ? Dites-nous pourquoi vous nous contactez.</string>
+    <string name="HelpFragment__include_debug_log">Joindre le journal de débogage.</string>
     <string name="HelpFragment__whats_this">Qu’est-ce donc ?</string>
-    <string name="HelpFragment__how_do_you_feel">Comment vous sentez-vous ? (facultatif)</string>
+    <string name="HelpFragment__how_do_you_feel">Quel émoji reflète le mieux votre humeur ? (Facultatif)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Dites-nous pourquoi vous nous contactez.</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
@@ -3170,7 +3170,7 @@
     <string-array name="HelpFragment__categories_5">
         <item>Veuillez sélectionner une option</item>
         <item>Quelque chose ne fonctionne pas</item>
-        <item>Demande de fonction</item>
+        <item>Suggestion relative aux fonctionnalités</item>
         <item>Question</item>
         <item>Commentaires</item>
         <item>Autre</item>
@@ -3302,8 +3302,8 @@
     <string name="preferences__mms_proxy_port">Port proxy MMS</string>
     <string name="preferences__mmsc_username">Nom d’utilisateur MMSC</string>
     <string name="preferences__mmsc_password">Mot de passe MMSC</string>
-    <string name="preferences__sms_delivery_reports">Relevés de remise des textos</string>
-    <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un relevé de remise pour chaque texto envoyé</string>
+    <string name="preferences__sms_delivery_reports">Rapports de remise de SMS</string>
+    <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un rapport de remise pour les SMS envoyés</string>
     <string name="preferences__data_and_storage">Données et espace de stockage</string>
     <string name="preferences__storage">Mémoire</string>
     <string name="preferences__payments">Paiements</string>
@@ -4596,7 +4596,7 @@
     <string name="GroupsInCommonMessageRequest__okay">Valider</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Voici un aperçu de la couleur de la conversation.</string>
-    <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">La couleur n’est visible que par vous.</string>
+    <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Vous seul pouvez voir cette couleur.</string>
 
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">Description du groupe</string>
@@ -4629,7 +4629,7 @@
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Données du compte</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Exporter un rapport contenant les données de votre compte Signal. Ce rapport ne contient aucun message ou contenu multimédia. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">Exporter un rapport contenant les données de votre compte Signal. Ce rapport ne contient aucun message ni contenu multimédia. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">En savoir plus</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
@@ -4650,7 +4650,7 @@
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">OK</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Impossible de générer un rapport</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">Impossible de générer le rapport</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
     <string name="ExportAccountDataFragment__check_network">Vérifiez votre connexion et réessayez.</string>
 
@@ -4664,7 +4664,7 @@
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Création du rapport…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Le rapport est généré uniquement lors de l’exportation et n’est pas stocké par Signal sur votre appareil.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Le rapport n’est généré qu’au moment de l’exportation et Signal ne le stocke pas sur votre appareil.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Utilisez cette fonction pour changer votre numéro de téléphone actuel pour un nouveau. Vous ne pouvez pas annuler ce changement.\nAvant de continuer, assurez-vous que votre nouveau numéro puisse recevoir des SMS ou des appels.</string>
@@ -4852,7 +4852,7 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Faire un don à Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal est alimenté par des personnes comme vous. Faites un don mensuel et recevez un macaron.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal dépend de personnes comme vous. Faites un don mensuel et recevez un macaron.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">Faire un don</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4875,7 +4875,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Devenir donateur mensuel</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal est alimenté par des gens comme vous. Faites un don et recevez un macaron.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal dépend de personnes comme vous. Faites un don et recevez un macaron.</string>
     <string name="BecomeASustainerMegaphone__not_now">Plus tard</string>
     <string name="BecomeASustainerMegaphone__donate">Faire un don</string>
 
@@ -5197,13 +5197,13 @@
     <string name="Subscription__expires_s">Expire le %1$s</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal est différent.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Une messagerie pas comme les autres.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Messagerie privée. Aucune publicité, aucun traqueur, aucune surveillance.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Signal est une messagerie (vraiment) privée. Sans publicité, sans cookie de suivi, sans surveillance. </string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal étant financé par des dons, votre vie privée est au centre de nos préoccupations. Signal est construit pour vous et non pour notre profit ou pour que nous puissions collecter vos données.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal est financé par des dons. Autrement dit, la protection de votre vie privée est au cœur de toutes nos actions. Nous avons conçu Signal pour vous. Pas pour collecter vos données, ni pour accumuler des profits.</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Si vous le pouvez, faites un don sans attendre pour que Signal reste un outil amusant, fiable et disponible pour tous.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Si vous le pouvez, faites un don aujourd’hui pour que Signal reste une messagerie conviviale, fiable et disponible pour tous.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Merci pour votre soutien !</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -5241,7 +5241,7 @@
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
     <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Votre don ponctuel de %1$s n\'a pas pu être confirmé. Consultez votre application bancaire pour approuver votre paiement iDEAL.</string>
 
-    <string name="Boost__enter_custom_amount">Saisissez un montant personnalisé</string>
+    <string name="Boost__enter_custom_amount">Saisir un montant personnalisé</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">Le montant minimum que vous pouvez donner est de %1$s</string>
 
@@ -5651,7 +5651,7 @@
     <!-- Displayed in Snackbar after story is hidden -->
     <string name="StoriesLandingFragment__story_hidden">Story masquée</string>
     <!-- Section header for hidden stories -->
-    <string name="StoriesLandingFragment__hidden_stories">Stories cachées</string>
+    <string name="StoriesLandingFragment__hidden_stories">Stories masquées</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
         <item quantity="one">%1$d vue</item>
@@ -5938,8 +5938,8 @@
     <string name="GiftFlowStartFragment__donate_for_a_friend">Faire un don pour un ami</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
-        <item quantity="one">Soutenez Signal en effectuant un don pour un ami ou un membre de votre famille qui utilise Signal. Ils recevront un macaron à afficher sur leur profil pendant %1$d jour.</item>
-        <item quantity="other">Soutenez Signal en effectuant un don pour un ami ou un membre de votre famille qui utilise Signal. Ils recevront un macaron à afficher sur leur profil pendant %1$d jours.</item>
+        <item quantity="one">Un ami ou un membre de votre famille utilise Signal ? Faites un don pour cette personne et elle recevra un macaron à afficher sur son profil pendant %1$d jour.</item>
+        <item quantity="other">Un ami ou un membre de votre famille utilise Signal ? Faites un don pour cette personne et elle recevra un macaron à afficher sur son profil pendant %1$d jours.</item>
     </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Suivant</string>
@@ -6196,7 +6196,7 @@
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Poursuivre</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Une messagerie privée, financée par vous. Aucune publicité, aucun traqueur, aucun compromis. Faites un don pour soutenir Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Une messagerie privée, financée par des personnes comme vous. Aucune publicité, aucun cookie de suivi, zéro compromis. Faites un don pour soutenir Signal.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Un don en attente</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -6215,7 +6215,7 @@
     <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Vous pouvez envoyer jusqu’à %1$s par virement bancaire. Veuillez saisir un autre montant ou choisir une méthode de paiement différente.</string>
 
     <!-- Donation pill toggle monthly text -->
-    <string name="DonationPillToggle__monthly">Mensuel</string>
+    <string name="DonationPillToggle__monthly">Don mensuel</string>
     <!-- Donation pill toggle one-time text -->
     <string name="DonationPillToggle__one_time">Ponctuel</string>
 
@@ -6685,7 +6685,7 @@
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">Modifier le message</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Les modifications apportées aux messages ne seront visibles que par les personnes utilisant les dernières versions de Signal. Elles pourront voir que vous avez modifié un message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Lorsque vous modifiez un message, seules les personnes utilisant les dernières versions de Signal peuvent afficher les modifications. Elles sont aussi informées qu’il s’agit d’un message modifié.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Annuler</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6778,7 +6778,7 @@
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">Souhaite rejoindre l’appel…</string>
+    <string name="PendingParticipantsView__would_like_to_join">voudrait rejoindre l’appel…</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
         <item quantity="one">+%1$d demande</item>
