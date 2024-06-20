@@ -9,6 +9,7 @@ import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.groups.GroupId
@@ -175,7 +176,12 @@ object SignalServiceProtoUtil {
 
   fun AttachmentPointer.toPointer(stickerLocator: StickerLocator? = null): Attachment? {
     return try {
-      PointerAttachment.forPointer(Optional.of(toSignalServiceAttachmentPointer()), stickerLocator).orNull()
+      val pointer = PointerAttachment.forPointer(Optional.of(toSignalServiceAttachmentPointer()), stickerLocator).orNull()
+      if (pointer?.cdn != Cdn.S3) {
+        pointer
+      } else {
+        null
+      }
     } catch (e: InvalidMessageStructureException) {
       null
     }
