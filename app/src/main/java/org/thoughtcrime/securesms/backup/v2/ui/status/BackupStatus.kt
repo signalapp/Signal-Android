@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.status
 
-import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
@@ -27,11 +26,11 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Icons
 import org.signal.core.ui.Previews
+import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
 import kotlin.math.max
@@ -71,13 +70,13 @@ fun BackupStatus(
         .weight(1f)
     ) {
       Text(
-        text = stringResource(id = data.titleRes),
+        text = data.title,
         style = MaterialTheme.typography.bodyMedium
       )
 
       if (data.progress >= 0f) {
         LinearProgressIndicator(
-          progress = data.progress,
+          progress = { data.progress },
           strokeCap = StrokeCap.Round,
           modifier = Modifier
             .fillMaxWidth()
@@ -105,8 +104,7 @@ fun BackupStatus(
   }
 }
 
-@Preview
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@SignalPreview
 @Composable
 fun BackupStatusPreview() {
   Previews.Preview {
@@ -118,7 +116,7 @@ fun BackupStatusPreview() {
       )
 
       BackupStatus(
-        data = BackupStatusData.NotEnoughFreeSpace
+        data = BackupStatusData.NotEnoughFreeSpace("12 GB")
       )
 
       BackupStatus(
@@ -138,8 +136,8 @@ sealed interface BackupStatusData {
   @get:DrawableRes
   val iconRes: Int
 
-  @get:StringRes
-  val titleRes: Int
+  @get:Composable
+  val title: String
 
   val iconColors: BackupsIconColors
 
@@ -154,18 +152,28 @@ sealed interface BackupStatusData {
   /**
    * Generic failure
    */
-  object CouldNotCompleteBackup : BackupStatusData {
+  data object CouldNotCompleteBackup : BackupStatusData {
     override val iconRes: Int = R.drawable.symbol_backup_light
-    override val titleRes: Int = R.string.default_error_msg
+
+    override val title: String
+      @Composable
+      get() = stringResource(R.string.default_error_msg)
+
     override val iconColors: BackupsIconColors = BackupsIconColors.Warning
   }
 
   /**
    * User does not have enough space on their device to complete backup restoration
    */
-  object NotEnoughFreeSpace : BackupStatusData {
+  class NotEnoughFreeSpace(
+    private val requiredSpace: String
+  ) : BackupStatusData {
     override val iconRes: Int = R.drawable.symbol_backup_light
-    override val titleRes: Int = R.string.default_error_msg
+
+    override val title: String
+      @Composable
+      get() = stringResource(R.string.BackupStatus__free_up_s_of_space_to_download_your_media, requiredSpace)
+
     override val iconColors: BackupsIconColors = BackupsIconColors.Warning
     override val actionRes: Int = R.string.registration_activity__skip
   }
@@ -181,13 +189,16 @@ sealed interface BackupStatusData {
     override val iconRes: Int = R.drawable.symbol_backup_light
     override val iconColors: BackupsIconColors = BackupsIconColors.Normal
 
-    override val titleRes: Int = when (status) {
-      Status.NONE -> R.string.default_error_msg
-      Status.LOW_BATTERY -> R.string.default_error_msg
-      Status.WAITING_FOR_INTERNET -> R.string.default_error_msg
-      Status.WAITING_FOR_WIFI -> R.string.default_error_msg
-      Status.FINISHED -> R.string.default_error_msg
-    }
+    override val title: String
+      @Composable get() = stringResource(
+        when (status) {
+          Status.NONE -> R.string.default_error_msg
+          Status.LOW_BATTERY -> R.string.default_error_msg
+          Status.WAITING_FOR_INTERNET -> R.string.default_error_msg
+          Status.WAITING_FOR_WIFI -> R.string.default_error_msg
+          Status.FINISHED -> R.string.default_error_msg
+        }
+      )
 
     override val statusRes: Int = when (status) {
       Status.NONE -> R.string.default_error_msg
