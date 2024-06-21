@@ -86,12 +86,12 @@ public final class MultiShareSender {
     List<MultiShareSendResult> results                           = new ArrayList<>(multiShareArgs.getContactSearchKeys().size());
     Context                    context                           = AppDependencies.getApplication();
     String                     message                           = multiShareArgs.getDraftText();
-    SlideDeck                  slideDeck;
+    SlideDeck                  primarySlideDeck;
     List<OutgoingMessage>      storiesBatch                      = new LinkedList<>();
     ChatColors                 generatedTextStoryBackgroundColor = TextStoryBackgroundColors.getRandomBackgroundColor();
 
     try {
-      slideDeck = buildSlideDeck(context, multiShareArgs);
+      primarySlideDeck = buildSlideDeck(context, multiShareArgs);
     } catch (SlideNotFoundException e) {
       Log.w(TAG, "Could not create slide for media message");
       for (ContactSearchKey.RecipientSearchKey recipientSearchKey : multiShareArgs.getRecipientSearchKeys()) {
@@ -105,11 +105,13 @@ public final class MultiShareSender {
     for (ContactSearchKey.RecipientSearchKey recipientSearchKey : multiShareArgs.getRecipientSearchKeys()) {
       Recipient recipient = Recipient.resolved(recipientSearchKey.getRecipientId());
 
-      long            threadId       = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
-      List<Mention>   mentions       = getValidMentionsForRecipient(recipient, multiShareArgs.getMentions());
-      MessageSendType sendType       = MessageSendType.SignalMessageSendType.INSTANCE;
-      long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
-      List<Contact>   contacts       = multiShareArgs.getSharedContacts();
+      long            threadId  = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
+      List<Mention>   mentions  = getValidMentionsForRecipient(recipient, multiShareArgs.getMentions());
+      MessageSendType sendType  = MessageSendType.SignalMessageSendType.INSTANCE;
+      long            expiresIn = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
+      List<Contact>   contacts  = multiShareArgs.getSharedContacts();
+      SlideDeck       slideDeck = new SlideDeck(primarySlideDeck);
+
       boolean needsSplit = message != null &&
                            message.length() > sendType.calculateCharacters(message).maxPrimaryMessageSize;
       boolean hasMmsMedia = !multiShareArgs.getMedia().isEmpty() ||
