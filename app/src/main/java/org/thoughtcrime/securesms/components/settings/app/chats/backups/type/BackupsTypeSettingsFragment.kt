@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -54,7 +55,7 @@ class BackupsTypeSettingsFragment : ComposeFragment() {
       Callbacks()
     }
 
-    val state by viewModel.state
+    val state by viewModel.state.collectAsState()
 
     BackupsTypeSettingsContent(
       state = state,
@@ -127,7 +128,7 @@ private fun BackupsTypeSettingsContent(
 
       item {
         Rows.TextRow(
-          text = "Payment history", // TODO [message-backups] final copy
+          text = stringResource(id = R.string.BackupsTypeSettingsFragment__payment_history),
           onClick = contentCallbacks::onPaymentHistoryClick
         )
       }
