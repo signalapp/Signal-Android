@@ -16,6 +16,9 @@ import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
 import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver
+import org.thoughtcrime.securesms.util.RemoteConfig.Config
+import org.thoughtcrime.securesms.util.RemoteConfig.remoteBoolean
+import org.thoughtcrime.securesms.util.RemoteConfig.remoteValue
 import java.io.IOException
 import java.util.TreeMap
 import kotlin.math.max
@@ -870,6 +873,14 @@ object RemoteConfig {
   val promptBatterySaver: String by remoteString(
     key = PROMPT_BATTERY_SAVER,
     defaultValue = "*",
+    hotSwappable = true
+  )
+
+  private const val PROMPT_DELAYED_NOTIFICATION_CONFIG: String = "android.delayedNotificationConfig"
+
+  val promptDelayedNotificationConfig: String by remoteString(
+    key = PROMPT_DELAYED_NOTIFICATION_CONFIG,
+    defaultValue = "",
     hotSwappable = true
   )
 

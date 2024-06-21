@@ -46,7 +46,7 @@ class VitalsViewModel(private val context: Application) : AndroidViewModel(conte
   private fun checkHeuristics(): Single<State> {
     return Single.fromCallable {
       var state = State.NONE
-      if (SlowNotificationHeuristics.isHavingDelayedNotifications()) {
+      if (SlowNotificationHeuristics.showPreemptively() || SlowNotificationHeuristics.isHavingDelayedNotifications()) {
         if (SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && SlowNotificationHeuristics.shouldPromptBatterySaver()) {
           state = State.PROMPT_BATTERY_SAVER_DIALOG
         } else if (SlowNotificationHeuristics.shouldPromptUserForLogs()) {

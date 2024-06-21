@@ -143,6 +143,10 @@ object SlowNotificationHeuristics {
     return true
   }
 
+  fun showPreemptively(): Boolean {
+    return DelayedNotificationConfig.currentConfig.showPreemptively
+  }
+
   private fun hasRepeatedFailedServiceStarts(metrics: List<LocalMetricsDatabase.EventMetrics>, minimumEventAgeMs: Long, minimumEventCount: Int, failurePercentage: Float): Boolean {
     if (!haveEnoughData(SignalLocalMetrics.FcmServiceStartSuccess.NAME, minimumEventAgeMs) && !haveEnoughData(SignalLocalMetrics.FcmServiceStartFailure.NAME, minimumEventAgeMs)) {
       Log.d(TAG, "insufficient data for service starts")

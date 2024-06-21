@@ -120,7 +120,7 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
       messagePrivacy = SignalStore.settings.messageNotificationsPrivacy.toString(),
       priority = TextSecurePreferences.getNotificationPriority(AppDependencies.application),
       troubleshootNotifications = if (calculateSlowNotifications) {
-        SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && SlowNotificationHeuristics.isHavingDelayedNotifications()
+        SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && (SlowNotificationHeuristics.isHavingDelayedNotifications() || SlowNotificationHeuristics.showPreemptively())
       } else if (currentState != null) {
         currentState.messageNotificationsState.troubleshootNotifications
       } else {

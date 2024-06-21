@@ -8,6 +8,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
+import org.thoughtcrime.securesms.notifications.DelayedNotificationConfig;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.Arrays;
@@ -74,7 +75,7 @@ public final class LocaleRemoteConfig {
   }
 
   public static boolean isBatterySaverPromptEnabled() {
-    return RemoteConfig.internalUser() || isEnabledPartsPerMillion(RemoteConfig.PROMPT_BATTERY_SAVER, RemoteConfig.promptBatterySaver());
+    return RemoteConfig.internalUser() || isEnabledPartsPerMillion(RemoteConfig.PROMPT_BATTERY_SAVER, DelayedNotificationConfig.INSTANCE.getCurrentConfig().getLocalePercent());
   }
 
   /**
