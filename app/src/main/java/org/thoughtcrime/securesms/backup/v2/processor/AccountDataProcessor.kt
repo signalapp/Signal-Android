@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaym
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
@@ -41,7 +40,6 @@ object AccountDataProcessor {
 
     val donationCurrency = signalStore.donationsValues.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
     val donationSubscriber = db.inAppPaymentSubscriberTable.getByCurrencyCode(donationCurrency.currencyCode, InAppPaymentSubscriberRecord.Type.DONATION)
-    val donationLatestSubscription = db.inAppPaymentTable.getLatestInAppPaymentByType(InAppPaymentSubscriberRecord.Type.DONATION.inAppPaymentType)
 
     emitter.emit(
       Frame(
@@ -73,7 +71,7 @@ object AccountDataProcessor {
           donationSubscriberData = AccountData.SubscriberData(
             subscriberId = donationSubscriber?.subscriberId?.bytes?.toByteString() ?: defaultAccountRecord.subscriberId,
             currencyCode = donationSubscriber?.currency?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
-            manuallyCancelled = donationLatestSubscription?.data?.cancellation?.reason?.let { it == InAppPaymentData.Cancellation.Reason.MANUAL } ?: SignalStore.donations.isUserManuallyCancelled()
+            manuallyCancelled = signalStore.donationsValues.isDonationSubscriptionManuallyCancelled()
           )
         )
       )

@@ -498,14 +498,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     boolean                            isWatermarkPriorToTimestamp        = subscriptionFailureWatermark < subscriptionFailureTimestamp;
 
     if (unexpectedSubscriptionCancellation != null &&
-        !SignalStore.donations().isUserManuallyCancelled() &&
+        !SignalStore.donations().isDonationSubscriptionManuallyCancelled() &&
         SignalStore.donations().showCantProcessDialog() &&
         isWatermarkPriorToTimestamp)
     {
       Log.w(TAG, "Displaying bottom sheet for unexpected cancellation: " + unexpectedSubscriptionCancellation, true);
       MonthlyDonationCanceledBottomSheetDialogFragment.show(getChildFragmentManager());
       SignalStore.donations().setUnexpectedSubscriptionCancelationWatermark(subscriptionFailureTimestamp);
-    } else if (unexpectedSubscriptionCancellation != null && SignalStore.donations().isUserManuallyCancelled()) {
+    } else if (unexpectedSubscriptionCancellation != null && SignalStore.donations().isDonationSubscriptionManuallyCancelled()) {
       Log.w(TAG, "Unexpected cancellation detected but not displaying dialog because user manually cancelled their subscription: " + unexpectedSubscriptionCancellation, true);
       SignalStore.donations().setUnexpectedSubscriptionCancelationWatermark(subscriptionFailureTimestamp);
     } else if (unexpectedSubscriptionCancellation != null && !SignalStore.donations().showCantProcessDialog()) {

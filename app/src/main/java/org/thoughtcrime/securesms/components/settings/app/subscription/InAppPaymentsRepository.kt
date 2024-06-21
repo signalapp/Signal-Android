@@ -53,6 +53,7 @@ import java.util.Optional
 import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Unifies legacy access and new access to in app payment data.
@@ -319,18 +320,30 @@ object InAppPaymentsRepository {
   }
 
   /**
-   * Checks if the latest subscription was manually cancelled by the user. We bias towards what the database tells us and
-   * fall back on the SignalStore value (which is deprecated and will be removed in a future release)
+   * Checks whether the user marked subscriptions of the given type as manually cancelled.
    */
   @JvmStatic
-  @WorkerThread
   fun isUserManuallyCancelled(subscriberType: InAppPaymentSubscriberRecord.Type): Boolean {
-    val latestSubscription = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(subscriberType.inAppPaymentType)
-
-    return if (latestSubscription == null) {
-      SignalStore.donations.isUserManuallyCancelled()
+    return if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
+      SignalStore.donations.isDonationSubscriptionManuallyCancelled()
     } else {
-      latestSubscription.data.cancellation?.reason == InAppPaymentData.Cancellation.Reason.MANUAL
+      SignalStore.donations.isBackupSubscriptionManuallyCancelled()
+    }
+  }
+
+  /**
+   * Returns the last end of period stored in the key-value store for donations, 0 for backups, used by the keep-alive job.
+   *
+   * This is safe because, at worse, we'll end up getting a 409 and skipping redemption for a badge or backups.
+   * During the keep-alive, we will insert a new InAppPayment record that will contain the proper end-of-period from the active
+   * subscription, so the next time it runs calling this method will be avoided entirely.
+   */
+  @JvmStatic
+  fun getFallbackLastEndOfPeriod(subscriberType: InAppPaymentSubscriberRecord.Type): Duration {
+    return if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
+      SignalStore.donations.getLastEndOfPeriod().seconds
+    } else {
+      0.seconds
     }
   }
 

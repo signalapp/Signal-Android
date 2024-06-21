@@ -57,7 +57,8 @@ class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreVa
 
     private const val EXPIRED_BADGE = "donation.expired.badge"
     private const val EXPIRED_GIFT_BADGE = "donation.expired.gift.badge"
-    private const val USER_MANUALLY_CANCELLED = "donation.user.manually.cancelled"
+    private const val USER_MANUALLY_CANCELLED_DONATION = "donation.user.manually.cancelled"
+    private const val USER_MANUALLY_CANCELLED_BACKUPS = "donation.user.manually.cancelled.backups"
     private const val KEY_LEVEL_OPERATION_PREFIX = "donation.level.operation."
     private const val KEY_LEVEL_HISTORY = "donation.level.history"
     private const val DISPLAY_BADGES_ON_PROFILE = "donation.display.badges.on.profile"
@@ -337,6 +338,9 @@ class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreVa
     putLong(KEY_LAST_KEEP_ALIVE_LAUNCH, timestamp)
   }
 
+  /**
+   * Returns the last end-of-period we have tried to redeem for a badge subscription
+   */
   fun getLastEndOfPeriod(): Long {
     return getLong(KEY_LAST_END_OF_PERIOD_SECONDS, 0L)
   }
@@ -353,19 +357,12 @@ class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreVa
     return TimeUnit.SECONDS.toMillis(getLastEndOfPeriod()) > System.currentTimeMillis()
   }
 
-  @Deprecated("Use InAppPaymentsRepository.isUserManuallyCancelled instead.")
-  fun isUserManuallyCancelled(): Boolean {
-    return getBoolean(USER_MANUALLY_CANCELLED, false)
+  fun isDonationSubscriptionManuallyCancelled(): Boolean {
+    return getBoolean(USER_MANUALLY_CANCELLED_DONATION, false)
   }
 
-  @Deprecated("Manual cancellation is stored in InAppPayment records. We should no longer need to set this value.")
-  fun markUserManuallyCancelled() {
-    return putBoolean(USER_MANUALLY_CANCELLED, true)
-  }
-
-  @Deprecated("Manual cancellation is stored in InAppPayment records. We no longer need to clear this value.")
-  fun clearUserManuallyCancelled() {
-    remove(USER_MANUALLY_CANCELLED)
+  fun isBackupSubscriptionManuallyCancelled(): Boolean {
+    return getBoolean(USER_MANUALLY_CANCELLED_BACKUPS, false)
   }
 
   fun setDisplayBadgesOnProfile(enabled: Boolean) {
@@ -448,10 +445,10 @@ class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreVa
   fun updateLocalStateForManualCancellation(subscriberType: InAppPaymentSubscriberRecord.Type) {
     synchronized(subscriberType) {
       Log.d(TAG, "[updateLocalStateForManualCancellation] Clearing donation values.")
+      clearLevelOperations()
 
       if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
         setLastEndOfPeriod(0L)
-        clearLevelOperations()
         setUnexpectedSubscriptionCancelationChargeFailure(null)
         unexpectedSubscriptionCancelationReason = null
         unexpectedSubscriptionCancelationTimestamp = 0L
@@ -464,7 +461,9 @@ class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreVa
           Log.d(TAG, "[updateLocalStateForManualCancellation] Clearing expired badge.")
           setExpiredBadge(null)
         }
-        SignalStore.donations.markUserManuallyCancelled()
+        markDonationManuallyCancelled()
+      } else {
+        markBackupSubscriptionpManuallyCancelled()
       }
 
       val subscriber = InAppPaymentsRepository.getSubscriber(subscriberType)
@@ -486,11 +485,12 @@ class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreVa
   @WorkerThread
   fun updateLocalStateForLocalSubscribe(subscriberType: InAppPaymentSubscriberRecord.Type) {
     synchronized(subscriberType) {
+      clearLevelOperations()
+
       if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
         Log.d(TAG, "[updateLocalStateForLocalSubscribe] Clearing donation values.")
 
-        clearUserManuallyCancelled()
-        clearLevelOperations()
+        clearDonationManuallyCancelled()
         setUnexpectedSubscriptionCancelationChargeFailure(null)
         unexpectedSubscriptionCancelationReason = null
         unexpectedSubscriptionCancelationTimestamp = 0L
@@ -502,6 +502,8 @@ class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreVa
           Log.d(TAG, "[updateLocalStateForLocalSubscribe] Clearing expired badge.")
           setExpiredBadge(null)
         }
+      } else {
+        clearBackupSubscriptionManuallyCancelled()
       }
 
       val subscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
@@ -633,5 +635,21 @@ class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreVa
         remove(VERIFIED_IDEAL_SUBSCRIPTION_3DS_DATA)
       }
     }
+  }
+
+  private fun markBackupSubscriptionpManuallyCancelled() {
+    return putBoolean(USER_MANUALLY_CANCELLED_BACKUPS, true)
+  }
+
+  private fun clearBackupSubscriptionManuallyCancelled() {
+    remove(USER_MANUALLY_CANCELLED_BACKUPS)
+  }
+
+  private fun markDonationManuallyCancelled() {
+    return putBoolean(USER_MANUALLY_CANCELLED_DONATION, true)
+  }
+
+  private fun clearDonationManuallyCancelled() {
+    remove(USER_MANUALLY_CANCELLED_DONATION)
   }
 }

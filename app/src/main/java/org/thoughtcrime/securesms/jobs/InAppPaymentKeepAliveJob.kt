@@ -212,7 +212,7 @@ class InAppPaymentKeepAliveJob private constructor(
 
     return if (current == null) {
       val oldInAppPayment = SignalDatabase.inAppPayments.getByLatestEndOfPeriod(type.inAppPaymentType)
-      val oldEndOfPeriod = oldInAppPayment?.endOfPeriod ?: SignalStore.donations.getLastEndOfPeriod().seconds
+      val oldEndOfPeriod = oldInAppPayment?.endOfPeriod ?: InAppPaymentsRepository.getFallbackLastEndOfPeriod(type)
       if (oldEndOfPeriod > endOfCurrentPeriod) {
         warn(type, "Active subscription returned an old end-of-period. Exiting. (old: $oldEndOfPeriod, new: $endOfCurrentPeriod)")
         return null

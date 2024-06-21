@@ -43,7 +43,9 @@ final class LogSectionBadges implements LogSection {
                                 .append("InAppPaymentData.Error          : ").append(getError(latestRecurringDonation.getData())).append("\n")
                                 .append("InAppPaymentData.Cancellation   : ").append(getCancellation(latestRecurringDonation.getData())).append("\n")
                                 .append("DisplayBadgesOnProfile          : ").append(SignalStore.donations().getDisplayBadgesOnProfile()).append("\n")
-                                .append("ShouldCancelBeforeNextAttempt   : ").append(InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)).append("\n");
+                                .append("ShouldCancelBeforeNextAttempt   : ").append(InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)).append("\n")
+                                .append("IsUserManuallyCancelledDonation : ").append(SignalStore.donations().isDonationSubscriptionManuallyCancelled()).append("\n");
+
     } else {
       return new StringBuilder().append("Badge Count                             : ").append(Recipient.self().getBadges().size()).append("\n")
                                 .append("ExpiredBadge                            : ").append(SignalStore.donations().getExpiredBadge() != null).append("\n")
@@ -52,7 +54,7 @@ final class LogSectionBadges implements LogSection {
                                 .append("SubscriptionEndOfPeriodConversionStarted: ").append(SignalStore.donations().getSubscriptionEndOfPeriodConversionStarted()).append("\n")
                                 .append("SubscriptionEndOfPeriodRedemptionStarted: ").append(SignalStore.donations().getSubscriptionEndOfPeriodRedemptionStarted()).append("\n")
                                 .append("SubscriptionEndOfPeriodRedeemed         : ").append(SignalStore.donations().getSubscriptionEndOfPeriodRedeemed()).append("\n")
-                                .append("IsUserManuallyCancelled                 : ").append(SignalStore.donations().isUserManuallyCancelled()).append("\n")
+                                .append("IsUserManuallyCancelledDonation         : ").append(SignalStore.donations().isDonationSubscriptionManuallyCancelled()).append("\n")
                                 .append("DisplayBadgesOnProfile                  : ").append(SignalStore.donations().getDisplayBadgesOnProfile()).append("\n")
                                 .append("SubscriptionRedemptionFailed            : ").append(SignalStore.donations().getSubscriptionRedemptionFailed()).append("\n")
                                 .append("ShouldCancelBeforeNextAttempt           : ").append(SignalStore.donations().getShouldCancelSubscriptionBeforeNextSubscribeAttempt()).append("\n")

@@ -143,8 +143,8 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   }
 
   private fun handleSubscriptionExpiration(state: InternalDonorErrorConfigurationState) {
+    SignalStore.donations.updateLocalStateForLocalSubscribe(InAppPaymentSubscriberRecord.Type.DONATION)
     SignalStore.donations.setExpiredBadge(state.selectedBadge)
-    SignalStore.donations.clearUserManuallyCancelled()
     handleSubscriptionPaymentFailure(state)
   }
 
