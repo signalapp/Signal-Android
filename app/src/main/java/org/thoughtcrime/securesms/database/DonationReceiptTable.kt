@@ -74,7 +74,7 @@ class DonationReceiptTable(context: Context, databaseHelper: SignalDatabase) : D
     val (where, whereArgs) = if (type != null) {
       "$TYPE = ?" to SqlUtil.buildArgs(type.code)
     } else {
-      null to null
+      "$TYPE != ?" to SqlUtil.buildArgs(DonationReceiptRecord.Type.RECURRING_DONATION)
     }
 
     readableDatabase.query(TABLE_NAME, null, where, whereArgs, null, null, "$DATE DESC").use { cursor ->

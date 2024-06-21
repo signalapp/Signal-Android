@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database.model
 
 import org.signal.core.util.money.FiatMoney
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.util.Currency
 
 data class DonationReceiptRecord(
@@ -12,9 +13,10 @@ data class DonationReceiptRecord(
   val subscriptionLevel: Int
 ) {
   enum class Type(val code: String) {
-    RECURRING("recurring"),
-    BOOST("boost"),
-    GIFT("gift");
+    RECURRING_BACKUP("recurring_backup"),
+    RECURRING_DONATION("recurring"),
+    ONE_TIME_DONATION("boost"),
+    ONE_TIME_GIFT("gift");
 
     companion object {
       fun fromCode(code: String): Type {
@@ -34,7 +36,7 @@ data class DonationReceiptRecord(
         amount = FiatMoney(activeAmount, activeCurrency),
         timestamp = System.currentTimeMillis(),
         subscriptionLevel = subscription.level,
-        type = Type.RECURRING
+        type = if (subscription.level == SubscriptionsConfiguration.BACKUPS_LEVEL) Type.RECURRING_BACKUP else Type.RECURRING_DONATION
       )
     }
 
@@ -44,7 +46,7 @@ data class DonationReceiptRecord(
         amount = amount,
         timestamp = System.currentTimeMillis(),
         subscriptionLevel = -1,
-        type = Type.BOOST
+        type = Type.ONE_TIME_DONATION
       )
     }
 
@@ -54,7 +56,7 @@ data class DonationReceiptRecord(
         amount = amount,
         timestamp = System.currentTimeMillis(),
         subscriptionLevel = -1,
-        type = Type.GIFT
+        type = Type.ONE_TIME_GIFT
       )
     }
   }

@@ -119,7 +119,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onViewPaymentHistory() {
-      // TODO [message-backups] Navigate to payment history
+      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_remoteBackupsPaymentHistoryFragment)
     }
 
     override fun onBackupNowClick() {

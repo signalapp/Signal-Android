@@ -68,9 +68,10 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
     val today: String = DateUtils.formatDateWithDayOfWeek(Locale.getDefault(), System.currentTimeMillis())
     val amount: String = FiatMoneyUtil.format(resources, record.amount)
     val type: String = when (record.type) {
-      DonationReceiptRecord.Type.RECURRING -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
-      DonationReceiptRecord.Type.BOOST -> getString(R.string.DonationReceiptListFragment__one_time)
-      DonationReceiptRecord.Type.GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
+      DonationReceiptRecord.Type.RECURRING_DONATION -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
+      DonationReceiptRecord.Type.ONE_TIME_DONATION -> getString(R.string.DonationReceiptListFragment__one_time)
+      DonationReceiptRecord.Type.ONE_TIME_GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
+      DonationReceiptRecord.Type.RECURRING_BACKUP -> error("Not supported in this fragment")
     }
     val datePaid: String = DateUtils.formatDate(Locale.getDefault(), record.timestamp)
 
@@ -140,9 +141,10 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
         title = DSLSettingsText.from(R.string.DonationReceiptDetailsFragment__donation_type),
         summary = DSLSettingsText.from(
           when (record.type) {
-            DonationReceiptRecord.Type.RECURRING -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
-            DonationReceiptRecord.Type.BOOST -> getString(R.string.DonationReceiptListFragment__one_time)
-            DonationReceiptRecord.Type.GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
+            DonationReceiptRecord.Type.RECURRING_DONATION -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
+            DonationReceiptRecord.Type.ONE_TIME_DONATION -> getString(R.string.DonationReceiptListFragment__one_time)
+            DonationReceiptRecord.Type.ONE_TIME_GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
+            DonationReceiptRecord.Type.RECURRING_BACKUP -> error("Not supported in this fragment.")
           }
         )
       )

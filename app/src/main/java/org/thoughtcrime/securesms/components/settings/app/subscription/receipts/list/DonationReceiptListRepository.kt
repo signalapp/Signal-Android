@@ -17,13 +17,13 @@ class DonationReceiptListRepository {
     }.map { response ->
       if (response.result.isPresent) {
         val config = response.result.get()
-        val boostBadge = DonationReceiptBadge(DonationReceiptRecord.Type.BOOST, -1, config.getBoostBadges().first())
-        val giftBadge = DonationReceiptBadge(DonationReceiptRecord.Type.GIFT, -1, config.getGiftBadges().first())
+        val boostBadge = DonationReceiptBadge(DonationReceiptRecord.Type.ONE_TIME_DONATION, -1, config.getBoostBadges().first())
+        val giftBadge = DonationReceiptBadge(DonationReceiptRecord.Type.ONE_TIME_GIFT, -1, config.getGiftBadges().first())
         val subBadges = config.getSubscriptionLevels().map {
           DonationReceiptBadge(
             level = it.key,
             badge = Badges.fromServiceBadge(it.value.badge),
-            type = DonationReceiptRecord.Type.RECURRING
+            type = DonationReceiptRecord.Type.RECURRING_DONATION
           )
         }
         subBadges + boostBadge + giftBadge

@@ -5,15 +5,12 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.findNavController
@@ -22,6 +19,7 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.compose.Nav
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
@@ -62,13 +60,9 @@ class MessageBackupsFlowFragment : ComposeFragment(), DonationCheckoutDelegate.C
       navController.enableOnBackPressed(true)
     }
 
-    NavHost(
+    Nav.Host(
       navController = navController,
-      startDestination = state.startScreen.name,
-      enterTransition = { slideInHorizontally(initialOffsetX = { it }) },
-      exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) },
-      popEnterTransition = { slideInHorizontally(initialOffsetX = { -it }) },
-      popExitTransition = { slideOutHorizontally(targetOffsetX = { it }) }
+      startDestination = state.startScreen.name
     ) {
       composable(route = MessageBackupsScreen.EDUCATION.name) {
         MessageBackupsEducationScreen(

@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Ch
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
 import java.math.BigDecimal
 import java.util.Currency
@@ -67,7 +68,7 @@ class BackupsTypeSettingsFragment : ComposeFragment() {
     }
 
     override fun onPaymentHistoryClick() {
-      // TODO [message-backups] Navigate to payment history
+      findNavController().safeNavigate(R.id.action_backupsTypeSettingsFragment_to_remoteBackupsPaymentHistoryFragment)
     }
 
     override fun onChangeOrCancelSubscriptionClick() {

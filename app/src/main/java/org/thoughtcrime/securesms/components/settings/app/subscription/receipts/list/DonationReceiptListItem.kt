@@ -42,9 +42,10 @@ object DonationReceiptListItem {
       dateView.text = DateUtils.formatDate(Locale.getDefault(), model.record.timestamp)
       typeView.setText(
         when (model.record.type) {
-          DonationReceiptRecord.Type.RECURRING -> R.string.DonationReceiptListFragment__recurring
-          DonationReceiptRecord.Type.BOOST -> R.string.DonationReceiptListFragment__one_time
-          DonationReceiptRecord.Type.GIFT -> R.string.DonationReceiptListFragment__donation_for_a_friend
+          DonationReceiptRecord.Type.RECURRING_DONATION -> R.string.DonationReceiptListFragment__recurring
+          DonationReceiptRecord.Type.ONE_TIME_DONATION -> R.string.DonationReceiptListFragment__one_time
+          DonationReceiptRecord.Type.ONE_TIME_GIFT -> R.string.DonationReceiptListFragment__donation_for_a_friend
+          DonationReceiptRecord.Type.RECURRING_BACKUP -> error("Not supported in this fragment")
         }
       )
       moneyView.text = FiatMoneyUtil.format(context.resources, model.record.amount)
