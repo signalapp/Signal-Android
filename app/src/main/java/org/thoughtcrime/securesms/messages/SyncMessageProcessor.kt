@@ -1354,16 +1354,20 @@ object SyncMessageProcessor {
 
     val call = SignalDatabase.calls.getCallById(callId, recipientId)
     if (call != null) {
-      val typeMismatch = call.type !== type
-      val directionMismatch = call.direction !== direction
-      val eventDowngrade = call.event === CallTable.Event.ACCEPTED && event !== CallTable.Event.ACCEPTED
+      val typeMismatch = call.type != type
+      val directionMismatch = call.direction != direction
+      val eventDowngrade = call.event == CallTable.Event.ACCEPTED && event != CallTable.Event.ACCEPTED && event != CallTable.Event.DELETE
       val peerMismatch = call.peer != recipientId
 
-      if (typeMismatch || directionMismatch || eventDowngrade || peerMismatch) {
+      if (typeMismatch || directionMismatch || peerMismatch || eventDowngrade) {
         warn(envelopeTimestamp, "Call event sync message is not valid for existing call record, ignoring. type: $type direction: $direction  event: $event peerMismatch: $peerMismatch")
+      } else if (event == CallTable.Event.DELETE) {
+        SignalDatabase.calls.markCallDeletedFromSyncEvent(call)
       } else {
         SignalDatabase.calls.updateOneToOneCall(callId, event)
       }
+    } else if (event == CallTable.Event.DELETE) {
+      SignalDatabase.calls.insertDeletedCallFromSyncEvent(callId, recipientId, type, direction, timestamp)
     } else {
       SignalDatabase.calls.insertOneToOneCall(callId, timestamp, recipientId, type, direction, event)
     }
@@ -1432,7 +1436,7 @@ object SyncMessageProcessor {
         return
       }
       when (event) {
-        CallTable.Event.DELETE -> SignalDatabase.calls.deleteGroupCall(call)
+        CallTable.Event.DELETE -> SignalDatabase.calls.markCallDeletedFromSyncEvent(call)
         CallTable.Event.ACCEPTED -> {
           if (call.timestamp > timestamp) {
             SignalDatabase.calls.setTimestamp(call.callId, recipient.id, timestamp)
@@ -1457,7 +1461,7 @@ object SyncMessageProcessor {
       }
     } else {
       when (event) {
-        CallTable.Event.DELETE -> SignalDatabase.calls.insertDeletedGroupCallFromSyncEvent(callEvent.id!!, recipient.id, direction, timestamp)
+        CallTable.Event.DELETE -> SignalDatabase.calls.insertDeletedCallFromSyncEvent(callEvent.id!!, recipient.id, type, direction, timestamp)
         CallTable.Event.ACCEPTED -> SignalDatabase.calls.insertAcceptedGroupCall(callEvent.id!!, recipient.id, direction, timestamp)
         CallTable.Event.NOT_ACCEPTED -> {
           if (callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING) {

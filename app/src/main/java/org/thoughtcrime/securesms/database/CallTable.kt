@@ -368,10 +368,12 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     AppDependencies.databaseObserver.notifyCallUpdateObservers()
   }
 
-  // region Group / Ad-Hoc Calling
-  fun deleteGroupCall(call: Call) {
-    checkIsGroupOrAdHocCall(call)
-
+  /**
+   * Marks the given call event DELETED. This deletes the associated message, but
+   * keeps the call event around for several hours to ensure out of order messages
+   * do not bring it back.
+   */
+  fun markCallDeletedFromSyncEvent(call: Call) {
     val filter: SqlUtil.Query = getCallSelectionQuery(call.callId, call.peer)
 
     writableDatabase.withinTransaction { db ->
@@ -391,18 +393,21 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
     AppDependencies.messageNotifier.updateNotification(context)
     AppDependencies.databaseObserver.notifyCallUpdateObservers()
-    Log.d(TAG, "Marked group call event for deletion: ${call.callId}")
+    Log.d(TAG, "Marked call event for deletion: ${call.callId}")
   }
 
-  fun insertDeletedGroupCallFromSyncEvent(
+  /**
+   * Inserts a call event in the DELETED state with the corresponding data.
+   * Deleted calls are kept around for several hours to ensure they don't reappear
+   * due to out of order messages.
+   */
+  fun insertDeletedCallFromSyncEvent(
     callId: Long,
     recipientId: RecipientId,
+    type: Type,
     direction: Direction,
     timestamp: Long
   ) {
-    val recipient = Recipient.resolved(recipientId)
-    val type = if (recipient.isCallLink) Type.AD_HOC_CALL else Type.GROUP_CALL
-
     writableDatabase
       .insertInto(TABLE_NAME)
       .values(
@@ -418,7 +423,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .run(SQLiteDatabase.CONFLICT_ABORT)
 
     AppDependencies.deletedCallEventManager.scheduleIfNecessary()
+    Log.d(TAG, "Inserted deleted call event: $callId, $type, $direction, $timestamp")
   }
+
+  // region Group / Ad-Hoc Calling
 
   fun acceptIncomingGroupCall(call: Call) {
     checkIsGroupOrAdHocCall(call)
