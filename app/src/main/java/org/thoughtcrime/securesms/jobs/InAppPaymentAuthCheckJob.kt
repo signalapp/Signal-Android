@@ -39,7 +39,7 @@ import kotlin.time.Duration.Companion.days
  */
 class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : BaseJob(parameters), StripeApi.PaymentIntentFetcher, StripeApi.SetupIntentHelper {
 
-  constructor() : this(
+  private constructor() : this(
     Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
       .setMaxAttempts(Parameters.UNLIMITED)
@@ -51,6 +51,13 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
   companion object {
     private val TAG = Log.tag(InAppPaymentAuthCheckJob::class.java)
     const val KEY = "InAppPaymentAuthCheckJob"
+
+    @JvmStatic
+    fun enqueueIfNeeded() {
+      if (SignalDatabase.inAppPayments.hasWaitingForAuth()) {
+        AppDependencies.jobManager.add(InAppPaymentAuthCheckJob())
+      }
+    }
   }
 
   private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, AppDependencies.okHttpClient)

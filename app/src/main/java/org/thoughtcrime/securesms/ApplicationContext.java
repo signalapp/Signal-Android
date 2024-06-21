@@ -238,11 +238,11 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     AppDependencies.getMegaphoneRepository().onAppForegrounded();
     AppDependencies.getDeadlockDetector().start();
     InAppPaymentKeepAliveJob.enqueueAndTrackTimeIfNecessary();
-    AppDependencies.getJobManager().add(new InAppPaymentAuthCheckJob());
     FcmFetchManager.onForeground(this);
     startAnrDetector();
 
     SignalExecutors.BOUNDED.execute(() -> {
+      InAppPaymentAuthCheckJob.enqueueIfNeeded();
       RemoteConfig.refreshIfNecessary();
       RetrieveProfileJob.enqueueRoutineFetchIfNecessary();
       executePendingContactSync();

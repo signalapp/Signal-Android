@@ -162,6 +162,13 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
     AppDependencies.databaseObserver.notifyInAppPaymentsObservers(inAppPayment)
   }
 
+  fun hasWaitingForAuth(): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$STATE = ?", State.serialize(State.WAITING_FOR_AUTHORIZATION))
+      .run()
+  }
+
   fun getAllWaitingForAuth(): List<InAppPayment> {
     return readableDatabase.select()
       .from(TABLE_NAME)
