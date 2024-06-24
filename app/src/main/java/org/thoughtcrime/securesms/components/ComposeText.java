@@ -169,7 +169,7 @@ public class ComposeText extends EmojiEditText {
   }
 
   public void setDraftText(@Nullable CharSequence draftText) {
-    setText("");
+    setText("", BufferType.EDITABLE);
 
     if (draftText != null) {
       append(draftText);
