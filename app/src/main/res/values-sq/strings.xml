@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2024 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
@@ -545,13 +549,10 @@
     <string name="ConversationFragment_delete_for_everyone">Fshije për të gjithë</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Fshije në këtë pajisje</string>
+    <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
+    <string name="ConversationFragment_delete">Fshiji</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Fshije kudo</string>
-    <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
-    <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">Ky mesazh do të fshihet nga të gjitha pajisjet.</item>
-        <item quantity="other">Këto mesazhe do të fshihen nga të gjitha pajisjet.</item>
-    </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ky mesazh do të fshihet për të gjithë në bisedë, nëse janë të gjithë në të njëjtin version të fundit të Signal. Ata do të mund të shohin që ke fshirë një mesazh.</string>
     <string name="ConversationFragment_quoted_message_not_found">Mesazhi origjinal nuk u gjet</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Mesazhi origjinal nuk është më i disponueshëm</string>
@@ -859,6 +860,61 @@
     <string name="DecryptionFailedDialog_chat_session_refreshed">Sesioni i bisedës u rifreskua</string>
     <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal përdor kodimin nga skaji në skaj dhe ndonjëherë mund t\'i duhet të rifreskojë seancën tënde të bisedës. Kjo nuk ndikon në sigurinë e bisedës, por mund të kesh humbur një mesazh nga ky kontakt dhe mund t\'i kërkosh që ta ridërgojë.</string>
 
+    <!-- LinkDeviceFragment -->
+    <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Përdor Signal në Desktop ose iPad. Mesazhet do të sinkronizohen me pajisjet e lidhura.</string>
+    <!-- Button prompting users to link a new device to their account -->
+    <string name="LinkDeviceFragment__link_a_new_device">Lidh një pajisje të re</string>
+    <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Mesazhet dhe informacionet e bisedës mbrohen nga kodimi skaji më skaj në të gjitha pajisjet</string>
+    <!-- Bottom sheet title explaining how Signal works on a linked device -->
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <!-- Bottom sheet description explaining that messages on linked devices are private -->
+    <string name="LinkDeviceFragment__all_messaging_is_private">Të gjitha mesazhet në pajisjet e lidhura janë private</string>
+    <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Mesazhet e Signal sinkronizohen me Signal në telefonin tënd pasi të jetë lidhur. Historiku i mëparshëm i mesazheve nuk do të shfaqet.</string>
+    <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">Në pajisjen tënde tjetër, vizito %1$s për të instaluar Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
+    <!-- Header title listing out current linked devices -->
+    <string name="LinkDeviceFragment__my_linked_devices">Pajisjet e mia të lidhura</string>
+    <!-- Dialog confirmation to unlink a device -->
+    <string name="LinkDeviceFragment__unlink">Shkëpute</string>
+    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">%1$s u shkëput</string>
+    <!-- Progress dialog message indicating that a device is currently being linked with an account -->
+    <string name="LinkDeviceFragment__linking_device">Pajisja po lidhet…</string>
+    <!-- Toast message shown after a device has been linked -->
+    <string name="LinkDeviceFragment__device_approved">Pajisja u miratua</string>
+    <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
+    <string name="LinkDeviceFragment__loading">Po ngarkohet…</string>
+    <!-- Text message shown when the user has no linked devices -->
+    <string name="LinkDeviceFragment__no_linked_devices">Nuk ka pajisje të lidhura</string>
+    <!-- Title on biometrics prompt explaining what biometrics are being used for -->
+    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+
+    <!-- AddLinkDeviceFragment -->
+    <!-- Description text shown on the QR code scanner when linking a device -->
+    <string name="AddLinkDeviceFragment__scan_the_qr_code">Skano kodin QR të shfaqur te pajisja që do të lidhësh.</string>
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="AddLinkDeviceFragment__scan_qr_code">Skanoni kodin QR</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">Përdor këtë pajisje për të skanuar kodin QR të shfaqur në pajisjen që dëshiron të lidhësh</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="AddLinkDeviceFragment__okay">OK</string>
+    <!-- Dialog text describing the consequences of linking a device -->
+    <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">Kjo pajisje do të jetë në gjendje të shohë grupet dhe kontaktet tuaj, të hyjë në fjalosjet tuaja, dhe të dërgojë mesazhe në emrin tuaj.</string>
+    <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
+    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">Përfundo lidhjen në pajisjen tjetër</string>
+    <!-- Bottom sheet description telling users to complete the linking process -->
+    <string name="AddLinkDeviceFragment__finish_linking_signal">Përfundo lidhjen e Signal në pajisjen tjetër.</string>
+    <!-- Title of dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__linking_device_failed">Lidhja e Pajisjes Dështoi</string>
+    <!-- Text shown in a dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Ky kod QR s’është i vlefshëm. Ju lutemi, sigurohuni se po skanoni kodin QR që shfaqet te pajisja të cilën doni të lidhni.</string>
+    <!-- Button in dialog to retry linking a device with a qr code -->
+    <string name="AddLinkDeviceFragment__retry">Riprovo</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Të shkëputet \'%1$s\'?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Duke e shkëputur këtë pajisje, s\\’do të jetë më në gjendje të dërgojë ose marrë mesazhe.</string>
@@ -1043,7 +1099,8 @@
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Vazhdo</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">Kaloje</string>
+    <string name="PromptBatterySaverBottomSheet__no_thanks">No thanks</string>
+  <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Kërkesa &amp; ftesa</string>
@@ -1328,11 +1385,6 @@
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="one">Kjo do të fshijë përgjithmonë skedarin e zgjedhur. Do të fshihet edhe çdo tekst mesazhi i lidhur me këtë artikull.</item>
         <item quantity="other">Kjo do të fshijë përgjithmonë të gjitha %1$d skedaret e zgjedhura. Do të fshihet edhe çdo tekst mesazhi i lidhur me këtë artikull.</item>
-    </plurals>
-    <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
-    <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">Kjo do të fshijë përgjithmonë skedarin e zgjedhur nga të gjitha pajisjet. Çdo tekst mesazhi i lidhur me këtë artikull do të fshihet gjithashtu.</item>
-        <item quantity="other">Kjo do të fshijë përgjithmonë të gjithë %1$d skedarët e zgjedhur nga të gjitha pajisjet. Çdo tekst mesazhi i lidhur me këto artikuj do të fshihet gjithashtu.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Po fshihet</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Po fshihen mesazhet…</string>
@@ -1894,7 +1946,8 @@
     <string name="RedPhone_ringing">Po i bihet ziles…</string>
     <string name="RedPhone_busy">I zënë</string>
     <string name="RedPhone_recipient_unavailable">Marrësi s\'është në gjendje</string>
-    <string name="RedPhone_network_failed">Dështoi rrjeti!</string>
+    <!-- Error message shown during a call when a fatal network error occurs. -->
+    <string name="RedPhone_network_failed">Dështoi rrjeti! Të lutem, kontrollo lidhjen me rrjetin dhe riprovo.</string>
     <string name="RedPhone_number_not_registered">Numër i paregjistruar!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numri që thirrët nuk mbulon thirrje me zë të sigurta!</string>
     <string name="RedPhone_got_it">E kuptova</string>
@@ -2079,15 +2132,38 @@
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Shihni</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s ngriti dorën</string>
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d ngritën dorën</string>
 
-    <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
-    <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
-    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s +%2$d</string>
+    <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s ngriti dorën</string>
+    <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
+        <item quantity="one">%1$s +%2$d ngritët dorën</item>
+        <item quantity="other">%1$s + %2$d kanë ngritur dorën</item>
+    </plurals>
+
+    <!-- A notification to the user that one participant in the call successfully raised their hand. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">%1$s ngriti dorën</string>
+    <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
+        <item quantity="one">%1$s +%2$d ngritët dorën</item>
+        <item quantity="other">%1$s + %2$d kanë ngritur dorën</item>
+    </plurals>
+
+    <!-- A badge to show the user has their hand raised. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__collapsed_second_person_raised_hand_single">%1$s</string>
+    <!-- A badge to show the user and at least one other participant in the call have their hand raised. The placeholder is a number quantifying how many other hands are also raised, besides the user.  -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_second_person_raised_hands_multiple">
+        <item quantity="one">%1$s</item>
+        <item quantity="other">%1$s +%2$d</item>
+    </plurals>
+
+    <!-- A badge to show how many hands are raised. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_singular">%1$s</string>
+    <!-- A badge to show how many hands are raised. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_multiple">
+        <item quantity="one">%1$s</item>
+        <item quantity="other">%1$s +%2$d</item>
+    </plurals>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Zgjero pamjen e dorës së ngritur</string>
@@ -2519,8 +2595,6 @@
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">S\\’bëhet dot ruajtje në depozitë të jashtme pa leje</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Të fshihet mesazhi?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Kjo do ta fshijë përgjithmonë këtë mesazh.</string>
-    <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">Kjo do ta fshijë përgjithmonë këtë mesazh nga të gjitha pajisjet.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s për %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Ju për %1$s</string>
@@ -2798,6 +2872,8 @@
     <string name="ContactSelectionListFragment_to_find_people">Për të gjetur njerëzit që njeh në Signal:</string>
     <!-- Text on button prompting users to give Signal contact permissions -->
     <string name="ContactSelectionListFragment__allow_access">Lejoje Përdorimin</string>
+    <!-- Text on button to dismiss Signal\'s request for contact permissions -->
+    <string name="ContactSelectionListFragment__no_thanks">Jo, faleminderit</string>
     <!-- Text asking for user\'s contact permission -->
     <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Lejo aksesin te kontaktet. Kontaktet janë të koduara dhe nuk janë të dukshme për shërbimin e Signal.</string>
 
@@ -4140,8 +4216,15 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Ju duhet hyrje te pajisja juaj e vjetër.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Riktheni prej kopjeruajtje</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Riktheni mesazhet tuaja që prej një kopjeruajtjeje vendore. Nëse s\\’i riktheni tani, s\\’do të jeni në gjendje t\\’i riktheni më vonë.</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">Rikthe kopjeruajtjen lokale</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Rikthe kopjeruajtjen Signal</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Rikthe të gjitha mesazhet e tua me tekst + 30 ditët e fundit të medias</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Opsione të tjera</string>
+
+    <string name="TransferOrRestoreFragment__cancel">Anulo</string>
+    <string name="TransferOrRestoreFragment__skip_transfer">Identifikohu pa transferim</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">Vazhdo pa transferuar mesazhet dhe mediat</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Hapni Signal-in në telefonin tuaj të vjetër Android</string>
@@ -5046,9 +5129,6 @@
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">Përzgjidhni një ngjyrë</string>
 
-    <!-- ContactSelectionListItem -->
-    <string name="ContactSelectionListItem__sms">SMS</string>
-
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Ndajeni Me të Tjerë</string>
 
@@ -5082,7 +5162,8 @@
     </plurals>
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Në këtë grup mund të dërgojnë mesazhe vetëm administratorët.</string>
-    <string name="MultiselectForwardFragment__limit_reached">U mbërrit në kufi</string>
+    <!-- Error message shown when users try to choose more than 5 chats to send a message to -->
+    <string name="MultiselectForwardFragment__you_cant_select_more_chats">Nuk mund të përzgjedhësh më tepër se 5 biseda</string>
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
@@ -6910,6 +6991,22 @@
     <!-- Notification title shown while downloading backup restore data -->
     <string name="BackupProgressService_title_downloading">Po shkarkohen të dhënat rezervë…</string>
 
+    <!-- BackupAlertBottomSheet -->
+    <!-- Sheet title when user does not have enough space to download their backup -->
+    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <!-- Clickable text to learn more about the content of this bottom sheet -->
+    <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
+    <!-- Secondary action button text when user does not have enough free space to download their backup. -->
+    <string name="BackupAlertBottomSheet__skip">Skip</string>
+
+    <!-- BackupStatus -->
+    <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Kartë krediti ose debiti</string>
@@ -6923,6 +7020,12 @@
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__unknown">I panjohur</string>
+    <!-- Row title for entering payment history -->
+    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">Kopjeruajtja jote e fundit është bërë më %1$s në %2$s.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -6941,9 +7044,85 @@
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Fshirja u sinkronizua tashmë në të gjitha pajisjet</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Kur fshin mesazhe, media ose biseda, ato do të fshihen nga telefoni yt dhe tek të gjitha pajisjet e lidhura.</string>
+    <string name="DeleteSyncEducation_message">Kur fshin mesazhe ose biseda, ato do të fshihen nga telefoni yt dhe nga të gjitha pajisjet e lidhura.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
+
+    <!-- RemoteBackupsPaymentHistoryFragment -->
+    <!-- Title of the screen for payment history -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Payment history</string>
+    <!-- Description for backup rows -->
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <!-- Title of the screen for payment details -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Payment details</string>
+    <!-- Title of row specifying the type of backup -->
+    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Backup type</string>
+    <!-- Title of row specifying the date the backup was paid on -->
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date paid</string>
+    <!-- Button label to share the receipt -->
+    <string name="RemoteBackupsPaymentHistoryFragment__share">Share</string>
+
+    <!-- RemoteBackupsSettingsFragment -->
+    <!-- Displayed on the title bar -->
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Kopjeruajtjet e Signal</string>
+    <!-- Row label to launch payment history screen -->
+    <string name="RemoteBackupsSettingsFragment__payment_history">Historia e pagesave</string>
+    <!-- Section header for backup information -->
+    <string name="RemoteBackupsSettingsFragment__backup_details">Të dhënat e kopjeruajtjes</string>
+    <!-- Row label for backup size -->
+    <string name="RemoteBackupsSettingsFragment__backup_size">Madhësia kopjeruajtjes</string>
+    <!-- Row label for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency">Frekuenca e kopjeruajtjes</string>
+    <!-- Toggle row label for allowing backups to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Kopjeruaj duke perdorur internetin celular</string>
+    <!-- Row label for cancelling and deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Të çaktivizohen dhe fshihen kopjeruajtjet</string>
+    <!-- Snackbar text displayed when backup has been deleted and turned off -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Kopjeruajtja u fshi dhe u çaktivizua.</string>
+    <!-- Snackbar text displayed when backup type is downgraded -->
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Lloji i kopjeruajtjes u ndryshua dhe abonimi u anulua</string>
+    <!-- Snackbar text displayed when backup subscription is cancelled -->
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Pajtimi u anulua</string>
+    <!-- Snackbar text displayed when backup is successfully downloaded -->
+    <string name="RemoteBackupsSettingsFragment__download_complete">Shkarkimi përfundoi</string>
+    <!-- Title text in row detailing selected backup type -->
+    <string name="RemoteBackupsSettingsFragment__backup_type">Lloji i kopjeruajtjeve</string>
+    <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
+    <string name="RemoteBackupsSettingsFragment__backups_disabled">Kopjeruajtjet u çaktivizuan</string>
+    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/muaj</string>
+    <!-- Button label to enable backups -->
+    <string name="RemoteBackupsSettingsFragment__enable_backups">Aktivizoji kopjeruajtjet</string>
+    <!-- Progress indicator subtext displayed when a backup is in progress -->
+    <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
+    <!-- Title text in row detailing last backup -->
+    <string name="RemoteBackupsSettingsFragment__last_backup">Kopjeruajtja e fundit</string>
+    <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
+    <string name="RemoteBackupsSettingsFragment__s_at_s">%1$s më %2$s</string>
+    <!-- Subtext describing when a backup has never taken place. -->
+    <string name="RemoteBackupsSettingsFragment__never">Kurrë</string>
+    <!-- Button label to perform a backup immediately -->
+    <string name="RemoteBackupsSettingsFragment__back_up_now">Kopjeruaje Tani</string>
+    <!-- Dialog title when confirming whether to turn off and deleting backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Të çaktivizohen dhe fshihen kopjeruajtjet?</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">Nuk do të tarifohesh më. Kopjeruajtjet e tua do të fshihen dhe nuk do të krijohen kopjeruajtje të reja.</string>
+    <!-- Confirmation action on dialog to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Çaktivizo dhe fshij</string>
+    <!-- Text on dialog while user backup is being deleted -->
+    <string name="RemoteBackupsSettingsFragment__deleting_backup">Kopjeruajtja po fshihet…</string>
+    <!-- Text on dialog when user backup is deleted -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted">Kopjeruajtja u fshi</string>
+    <!-- Subtitle for frequency option MANUAL for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"Duke klikuar \"Kopjeruaj tani\""</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__daily">Ditore</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__weekly">Javore</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__monthly">Mujore</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__manually_back_up">Kopjeruajtje manuale</string>
 
     <!-- EOF -->
 </resources>

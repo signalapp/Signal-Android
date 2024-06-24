@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2024 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
@@ -545,13 +549,10 @@
     <string name="ConversationFragment_delete_for_everyone">ప్రతిఒక్కరికీ తొలగించండి</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">ఈ పరికరంపై తొలగించండి</string>
+    <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
+    <string name="ConversationFragment_delete">తొలగించండి</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">ప్రతిచోటా తొలగించండి</string>
-    <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
-    <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">ఈ సందేశం మీ పరికరాలన్నింటి నుండి తొలగించబడుతుంది.</item>
-        <item quantity="other">ఈ సందేశాలు మీ పరికరాలన్నింటి నుండి తొలగించబడతాయి.</item>
-    </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ఒకవేళ వారు Signal యొక్క ఇటీవలి వెర్షన్‌లో ఉంటే చాట్‌లోని ప్రతి ఒక్కరికీ ఈ సందేశం తొలగించబడుతుంది. మీరు సందేశాన్ని తొలగించినట్లుగా వారు చూడగలుగుతారు.</string>
     <string name="ConversationFragment_quoted_message_not_found">అసలు సందేశం కనుగొనబడలేదు</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">అసలు సందేశం ఇకపై అందుబాటులో లేదు</string>
@@ -859,6 +860,61 @@
     <string name="DecryptionFailedDialog_chat_session_refreshed">చాట్ సెషన్ రిఫ్రెష్ చేయబడింది</string>
     <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్షన్‌ను ఉపయోగిస్తుంది మరియు ఇది కొన్నిసార్లు మీ చాట్ సెషన్‌ను రిఫ్రెష్ చేయాల్సి ఉంటుంది. ఇది మీ చాట్ భద్రతను ప్రభావితం చేయదు, కానీ మీరు ఈ పరిచయం నుండి సందేశాన్ని తప్పిపోయి ఉండవచ్చు మరియు దానిని తిరిగి పంపమని మీరు వారిని అడగవచ్చు.</string>
 
+    <!-- LinkDeviceFragment -->
+    <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">డెస్క్‌టాప్ లేదా iPad లో Signal ఉపయోగించండి. మీ సందేశాలు మీ లింక్ చేయబడిన పరికరాలకు సమకాలీకరించబడతాయి.</string>
+    <!-- Button prompting users to link a new device to their account -->
+    <string name="LinkDeviceFragment__link_a_new_device">కొత్త పరికరాన్ని లింక్ చేయండి</string>
+    <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s సందేశాలు మరియు చాట్ సమాచారం అన్ని పరికరాలలో ఎండ్-టు-ఎండ్ గుప్తీకరణ ద్వారా రక్షించబడుతుంది</string>
+    <!-- Bottom sheet title explaining how Signal works on a linked device -->
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <!-- Bottom sheet description explaining that messages on linked devices are private -->
+    <string name="LinkDeviceFragment__all_messaging_is_private">లింక్ చేసిన పరికరాలలో పంపే సందేశాలు అన్ని ప్రైవేట్‌గా ఉంటాయి</string>
+    <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">మీ మొబైల్ ఫోన్ లింక్ అయిన తర్వాత Signal సందేశాలు Signal తో సింక్రనైజ్ చేయబడతాయి. మీ మునుపటి సందేశాల చరిత్ర కనిపించదు.</string>
+    <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">మీ ఇతర పరికరంలో, Signal ను ఇన్‌స్టాల్ చేయడానికి %1$s సందర్శించండి</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
+    <!-- Header title listing out current linked devices -->
+    <string name="LinkDeviceFragment__my_linked_devices">నా లింక్ చేసిన పరికరాలు</string>
+    <!-- Dialog confirmation to unlink a device -->
+    <string name="LinkDeviceFragment__unlink">లింక్ తొలగించు</string>
+    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">%1$s అన్‌లింక్ అయ్యింది</string>
+    <!-- Progress dialog message indicating that a device is currently being linked with an account -->
+    <string name="LinkDeviceFragment__linking_device">పరికరం లింక్ అవుతోంది…</string>
+    <!-- Toast message shown after a device has been linked -->
+    <string name="LinkDeviceFragment__device_approved">పరికరం ఆమోదించబడింది</string>
+    <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
+    <string name="LinkDeviceFragment__loading">లోడ్…</string>
+    <!-- Text message shown when the user has no linked devices -->
+    <string name="LinkDeviceFragment__no_linked_devices">లింక్ చేసిన పరికరాలు ఏవీ లేవు</string>
+    <!-- Title on biometrics prompt explaining what biometrics are being used for -->
+    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+
+    <!-- AddLinkDeviceFragment -->
+    <!-- Description text shown on the QR code scanner when linking a device -->
+    <string name="AddLinkDeviceFragment__scan_the_qr_code">లింక్ చేయడానికి పరికరంపై ప్రదర్శించబడిన QR కోడ్‌ను స్కాన్ చేయండి.</string>
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="AddLinkDeviceFragment__scan_qr_code">QR కోడ్‌ను స్కాన్ చేయండి</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">మీరు లింక్ చేయదలిచిన పరికరంపై ప్రదర్శించబడిన QR కోడ్‌ను స్కాన్ చేయడానికి ఈ పరికరాన్ని ఉపయోగించండి</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="AddLinkDeviceFragment__okay">సరే</string>
+    <!-- Dialog text describing the consequences of linking a device -->
+    <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">ఈ పరికరం మీ సమూహాలను మరియు పరిచయాలను చూడగలదు, మీ మాటామంతీను ప్రవేశ సౌలభ్యం చేయగలదు మరియు మీ పేరు మీద సందేశాలను పంపగలదు.</string>
+    <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
+    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">మీ ఇతర పరికరంలో లింక్ చేయడం పూర్తిచేయండి</string>
+    <!-- Bottom sheet description telling users to complete the linking process -->
+    <string name="AddLinkDeviceFragment__finish_linking_signal">మీ ఇతర పరికరంలో Signal ను లింక్ చేయడం పూర్తిచేయండి.</string>
+    <!-- Title of dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__linking_device_failed">పరికరాన్ని లింక్ చేయడం విఫలమైంది</string>
+    <!-- Text shown in a dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__this_qr_code_not_valid">ఈ QR కోడ్ చెల్లదు. దయచేసి మీరు లింక్ చేయదలిచిన పరికరంలో ప్రదర్శించబడే QR కోడ్‌ను స్కాన్ చేస్తున్నారని నిర్ధారించుకోండి.</string>
+    <!-- Button in dialog to retry linking a device with a qr code -->
+    <string name="AddLinkDeviceFragment__retry">మళ్ళీ ప్రయత్నించు</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">తొలగించరాదనుకుంటే \'%1$s\'?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ఈ పరికరం లింక్ను తీసివేసిన ద్వారా, అది ఇకపై పంపండి లేదా సందేశాలను అందుకుంటారు చెయ్యగలరు.</string>
@@ -1043,7 +1099,8 @@
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">కొనసాగండి</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">రద్దుచేసే</string>
+    <string name="PromptBatterySaverBottomSheet__no_thanks">No thanks</string>
+  <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">అభ్యర్థనలు &amp; ఆహ్వానాలు</string>
@@ -1328,11 +1385,6 @@
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="one">ఇది ఎంచుకున్న ఫైల్‌ను శాశ్వతంగా తొలగిస్తుంది. ఈ అంశంతో కూడి ఉన్న ఏదైనా సందేశం టెక్స్ట్ కూడా తొలగించబడుతుంది.</item>
         <item quantity="other">ఇది ఎంచుకున్న మొత్తం %1$d ఫైళ్ళను శాశ్వతంగా తొలగిస్తుంది. ఈ అంశాలతో కూడి ఉన్న ఏదైనా సందేశం టెక్స్ట్ కూడా తొలగించబడుతుంది.</item>
-    </plurals>
-    <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
-    <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">ఇది ఎంచుకున్న ఫైల్‌ను మీ పరికరాలన్నింటి నుండి శాశ్వతంగా తొలగిస్తుంది. ఈ అంశంతో కూడి ఉన్న ఏదైనా సందేశం టెక్స్ట్ కూడా తొలగించబడుతుంది.</item>
-        <item quantity="other">ఇది ఎంచుకున్న అన్ని %1$d ఫైళ్ళను మీ పరికరాలన్నింటి నుండి శాశ్వతంగా తొలగిస్తుంది. ఈ అంశాలతో కూడి ఉన్న ఏదైనా సందేశం టెక్స్ట్ కూడా తొలగించబడుతుంది.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">తొలగిపోతున్నాయ్</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">సందేశాలను తొలగిస్తోంది …</string>
@@ -1894,7 +1946,8 @@
     <string name="RedPhone_ringing">మోగుతున్నది…</string>
     <string name="RedPhone_busy">పనిలో ఉన్నారు</string>
     <string name="RedPhone_recipient_unavailable">గ్రహీత అందుబాటులోలేరు</string>
-    <string name="RedPhone_network_failed">నెట్వర్క్ విఫలమైంది</string>
+    <!-- Error message shown during a call when a fatal network error occurs. -->
+    <string name="RedPhone_network_failed">నెట్వర్క్ విఫలమైంది దయచేసి నెట్‌వర్క్ కనెక్షన్ తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RedPhone_number_not_registered">నమోదు చేయని సంఖ్య!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">మీరు డయల్ సంఖ్య సురక్షిత గాత్రం మద్దతు లేదు!</string>
     <string name="RedPhone_got_it">అర్థమైంది</string>
@@ -2079,15 +2132,38 @@
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">వీక్షణ</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s చేయి పైకెత్తారు</string>
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s +%2$d చేయి పైకెత్తారు</string>
 
-    <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
-    <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
-    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s +%2$d</string>
+    <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s చేయి పైకెత్తారు</string>
+    <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
+        <item quantity="one">%1$s +%2$d చేయి పైకెత్తారు</item>
+        <item quantity="other">%1$s +%2$d చేయి పైకెత్తారు</item>
+    </plurals>
+
+    <!-- A notification to the user that one participant in the call successfully raised their hand. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">%1$s చేయి పైకెత్తారు</string>
+    <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
+        <item quantity="one">%1$s +%2$d చేయి పైకెత్తారు</item>
+        <item quantity="other">%1$s +%2$d చేయి పైకెత్తారు</item>
+    </plurals>
+
+    <!-- A badge to show the user has their hand raised. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__collapsed_second_person_raised_hand_single">%1$s</string>
+    <!-- A badge to show the user and at least one other participant in the call have their hand raised. The placeholder is a number quantifying how many other hands are also raised, besides the user.  -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_second_person_raised_hands_multiple">
+        <item quantity="one">%1$s</item>
+        <item quantity="other">%1$s +%2$d</item>
+    </plurals>
+
+    <!-- A badge to show how many hands are raised. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_singular">%1$s</string>
+    <!-- A badge to show how many hands are raised. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_multiple">
+        <item quantity="one">%1$s</item>
+        <item quantity="other">%1$s +%2$d</item>
+    </plurals>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">చేయి ఎత్తిన వీక్షణను విస్తరించండి</string>
@@ -2519,8 +2595,6 @@
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">అనుమతులు లేకుండా బాహ్య నిల్వకి భద్రపరచడం సాధ్యపడలేదు</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">సందేశాన్ని తొలగించేదా?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">ఈ సందేశాన్ని ఇది శాశ్వతంగా తొలగిస్తుంది.</string>
-    <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">ఇది మీ పరికరాలన్నింటి నుండి ఈ సందేశాన్నిశాశ్వతంగా తొలగిస్తుంది.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$sకు%2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">మీ నుంచి %1$sకు</string>
@@ -2798,6 +2872,8 @@
     <string name="ContactSelectionListFragment_to_find_people">Signal లో మీకు తెలిసిన వ్యక్తులను కనుగొనడానికి:</string>
     <!-- Text on button prompting users to give Signal contact permissions -->
     <string name="ContactSelectionListFragment__allow_access">ప్రాప్యతను అనుమతించు</string>
+    <!-- Text on button to dismiss Signal\'s request for contact permissions -->
+    <string name="ContactSelectionListFragment__no_thanks">వద్దు ధన్యవాదాలు</string>
     <!-- Text asking for user\'s contact permission -->
     <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">మీ కాంటాక్ట్‌లకు యాక్సెస్‌ను అనుమతించండి. మీ కాంటాక్ట్‌లు గుప్తీకరించబడ్డాయి మరియు Signal సేవకు కనిపించవు.</string>
 
@@ -4140,8 +4216,15 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">మీకు మీ పాత పరికరానికి యాక్సెస్ అవసరం.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">బ్యాకప్ నుంచి పునరుద్ధరించండి</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">స్థానిక బ్యాకప్ నుంచి మీ సందేశాలను పునరుద్ధరించండి. మీరు ఇప్పుడు పునరుద్ధరించలేకపోతే, మీరు తరువాత పునరుద్ధరించలేరు.</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">లోకల్ బ్యాకప్‌ను పునరుద్ధరించండి</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal బ్యాకప్‌ను పునరుద్ధరించండి</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">మీ టెక్స్ట్ సందేశాలు అన్నీ + మీ గత 30 రోజుల మీడియాను పునరుద్ధరించండ</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">మరిన్ని ఎంపికలు</string>
+
+    <string name="TransferOrRestoreFragment__cancel">రద్దు చేయండి</string>
+    <string name="TransferOrRestoreFragment__skip_transfer">బదిలీ చేయకుండానే లాగిన్ చేయండి</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">మీ సందేశాలు అలాగే మీడియాను బదిలీ చేయకుండానే కొనసాగించండి</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">మీ పాత Android పరికరంపై Signal ను తెరవండి</string>
@@ -5046,9 +5129,6 @@
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">ఒక రంగును ఎంచుకోండి</string>
 
-    <!-- ContactSelectionListItem -->
-    <string name="ContactSelectionListItem__sms">ఎస్సెమ్మెస్</string>
-
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">పంచుకోండి</string>
 
@@ -5082,7 +5162,8 @@
     </plurals>
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">అడ్మిన్‌లు మాత్రమే ఈ గ్రూప్‌కు సందేశాలు పంపగలరు.</string>
-    <string name="MultiselectForwardFragment__limit_reached">పరిమితి చేరుకుంది</string>
+    <!-- Error message shown when users try to choose more than 5 chats to send a message to -->
+    <string name="MultiselectForwardFragment__you_cant_select_more_chats">మీరు 5 కంటే ఎక్కువ చాట్‌లు ఎంచుకోలేరు</string>
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
@@ -6910,6 +6991,22 @@
     <!-- Notification title shown while downloading backup restore data -->
     <string name="BackupProgressService_title_downloading">బ్యాకప్ డేటాను డౌన్‌లోడ్ చేస్తోంది…</string>
 
+    <!-- BackupAlertBottomSheet -->
+    <!-- Sheet title when user does not have enough space to download their backup -->
+    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <!-- Clickable text to learn more about the content of this bottom sheet -->
+    <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
+    <!-- Secondary action button text when user does not have enough free space to download their backup. -->
+    <string name="BackupAlertBottomSheet__skip">Skip</string>
+
+    <!-- BackupStatus -->
+    <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">క్రెడిట్ లేదా డెబిట్ కార్డు</string>
@@ -6923,6 +7020,12 @@
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__unknown">తెలియని</string>
+    <!-- Row title for entering payment history -->
+    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">మీ చివరి బ్యాకప్ %1$s న %2$s కు చేయబడింది.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -6941,9 +7044,85 @@
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">తొలగించడం ఇప్పుడు మీ అన్ని పరికరాలలో సింక్ చేయబడింది</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">మీరు సందేశాలు, మీడియా లేదా చాట్‌లను తొలగించినప్పుడు, అవి మీ ఫోన్ మరియు అన్ని లింక్ చేసిన పరికరాల నుండి తొలగించబడతాయి.</string>
+    <string name="DeleteSyncEducation_message">మీరు సందేశాలు లేదా చాట్‌లు తొలగించినప్పుడు, అవి మీ ఫోన్ అలాగే లింక్ చేసిన పరికరాల నుంచి కూడా తొలగించబడతాయి.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">సరే</string>
+
+    <!-- RemoteBackupsPaymentHistoryFragment -->
+    <!-- Title of the screen for payment history -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Payment history</string>
+    <!-- Description for backup rows -->
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <!-- Title of the screen for payment details -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Payment details</string>
+    <!-- Title of row specifying the type of backup -->
+    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Backup type</string>
+    <!-- Title of row specifying the date the backup was paid on -->
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date paid</string>
+    <!-- Button label to share the receipt -->
+    <string name="RemoteBackupsPaymentHistoryFragment__share">Share</string>
+
+    <!-- RemoteBackupsSettingsFragment -->
+    <!-- Displayed on the title bar -->
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal బ్యాకప్‌లు</string>
+    <!-- Row label to launch payment history screen -->
+    <string name="RemoteBackupsSettingsFragment__payment_history">చెల్లింపుల చరిత్ర</string>
+    <!-- Section header for backup information -->
+    <string name="RemoteBackupsSettingsFragment__backup_details">బ్యాకప్ వివరాలు</string>
+    <!-- Row label for backup size -->
+    <string name="RemoteBackupsSettingsFragment__backup_size">బ్యాకప్ పరిమాణం</string>
+    <!-- Row label for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency">బ్యాకప్ తరచుదనం</string>
+    <!-- Toggle row label for allowing backups to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">సెల్యులార్ ఉపయోగించి బ్యాకప్ చేయండి</string>
+    <!-- Row label for cancelling and deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">బ్యాకప్‌ను ఆఫ్ చేసి మరియు తొలగించండి</string>
+    <!-- Snackbar text displayed when backup has been deleted and turned off -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">బ్యాకప్ తొలగించబడింది అలాగే ఆఫ్ చేయబడింది.</string>
+    <!-- Snackbar text displayed when backup type is downgraded -->
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">బ్యాకప్ రకం మారింది, సబ్స్క్రిప్షన్ రద్దు అయ్యింది</string>
+    <!-- Snackbar text displayed when backup subscription is cancelled -->
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">సబ్స్క్రిప్షన్ రద్దు చేయబడింది</string>
+    <!-- Snackbar text displayed when backup is successfully downloaded -->
+    <string name="RemoteBackupsSettingsFragment__download_complete">డౌన్‌లోడ్ పూర్తయింది</string>
+    <!-- Title text in row detailing selected backup type -->
+    <string name="RemoteBackupsSettingsFragment__backup_type">బ్యాకప్ రకం</string>
+    <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
+    <string name="RemoteBackupsSettingsFragment__backups_disabled">బ్యాకప్‌లు నిలిపివేయబడ్డాయి</string>
+    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/నెలకు</string>
+    <!-- Button label to enable backups -->
+    <string name="RemoteBackupsSettingsFragment__enable_backups">ప్రత్యామ్నాయ ప్రారంభించు</string>
+    <!-- Progress indicator subtext displayed when a backup is in progress -->
+    <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
+    <!-- Title text in row detailing last backup -->
+    <string name="RemoteBackupsSettingsFragment__last_backup">చివరి బ్యాకప్</string>
+    <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
+    <string name="RemoteBackupsSettingsFragment__s_at_s">%2$s %1$s గం.లకు</string>
+    <!-- Subtext describing when a backup has never taken place. -->
+    <string name="RemoteBackupsSettingsFragment__never">ఎప్పుడూ</string>
+    <!-- Button label to perform a backup immediately -->
+    <string name="RemoteBackupsSettingsFragment__back_up_now">భద్రపరచు</string>
+    <!-- Dialog title when confirming whether to turn off and deleting backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">బ్యాకప్‌లను ఆఫ్ చేసి మరియు తొలగించేదా?</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">మీకు మళ్ళీ ఛార్జ్ చేయబడదు. మీ బ్యాకప్ తొలగించబడుతుంది మరియు ఎటువంటి కొత్త బ్యాకప్‌లు సృష్టించబడవు.</string>
+    <!-- Confirmation action on dialog to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ఆఫ్ చేయండి మరియు తొలగించండి</string>
+    <!-- Text on dialog while user backup is being deleted -->
+    <string name="RemoteBackupsSettingsFragment__deleting_backup">బ్యాకప్ తొలగించబడుతోంది…</string>
+    <!-- Text on dialog when user backup is deleted -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted">బ్యాకప్ తొలగించబడింది</string>
+    <!-- Subtitle for frequency option MANUAL for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"ఇప్పుడు బ్యాకప్ చేయండిని తట్టడం ద్వారా"</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__daily">ప్రతి రోజు</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__weekly">ప్రతి వారం</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__monthly">నెలవారీ</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__manually_back_up">మాన్యువల్‌గా బ్యాకప్ చేయండి</string>
 
     <!-- EOF -->
 </resources>

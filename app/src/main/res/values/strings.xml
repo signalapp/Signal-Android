@@ -550,7 +550,7 @@
     <string name="ConversationFragment_delete_for_everyone">Delete for everyone</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
-    <!-- Dialog button for deleting one or more note-to-self messages that will be sync'd to other devices -->
+    <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
     <string name="ConversationFragment_delete">Delete</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
@@ -874,7 +874,7 @@
     <string name="LinkDeviceFragment__all_messaging_is_private">All messaging on linked devices is private</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked. Your previous message history will not appear.</string>
-    <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal's website -->
+    <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">On your other device, visit %s to install Signal</string>
     <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string>
     <!-- Header title listing out current linked devices -->
@@ -2876,7 +2876,7 @@
     <string name="ContactSelectionListFragment_to_find_people">To find people you know on Signal:</string>
     <!-- Text on button prompting users to give Signal contact permissions -->
     <string name="ContactSelectionListFragment__allow_access">Allow access</string>
-    <!-- Text on button to dismiss Signal's request for contact permissions -->
+    <!-- Text on button to dismiss Signal\'s request for contact permissions -->
     <string name="ContactSelectionListFragment__no_thanks">No thanks</string>
     <!-- Text asking for user\'s contact permission -->
     <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>

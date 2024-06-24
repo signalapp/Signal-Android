@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2024 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
@@ -563,15 +567,10 @@
     <string name="ConversationFragment_delete_for_everyone">Izbriši za vse</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Izbriši v tej napravi</string>
+    <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
+    <string name="ConversationFragment_delete">Izbriši</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Izbriši povsod</string>
-    <!-- Dialog message when deleting individual messages and you have a linked device that the delete will sync to -->
-    <plurals name="ConversationFragment_delete_on_linked_warning">
-        <item quantity="one">To sporočilo bo izbrisano iz vseh vaših naprav.</item>
-        <item quantity="two">Ti sporočili bosta izbrisani iz vseh vaših naprav.</item>
-        <item quantity="few">Ta sporočila bodo izbrisana iz vseh vaših naprav.</item>
-        <item quantity="other">Ta sporočila bodo izbrisana iz vseh vaših naprav.</item>
-    </plurals>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">To sporočilo bo izbrisano za vse v tem klepetu, če uporabljajo novejšo različico Signala. Sodelujoči bodo lahko videli, da je bilo sporočilo izbrisano.</string>
     <string name="ConversationFragment_quoted_message_not_found">Izvorno sporočilo ni bilo najdeno</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Izvorno sporočilo ni več na voljo</string>
@@ -897,6 +896,61 @@
     <string name="DecryptionFailedDialog_chat_session_refreshed">Seja klepeta je bila osvežena</string>
     <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal uporablja šifriranje od-konca-do-konca, zato je včasih potrebna osvežitev seje klepeta. To ne bo vplivalo na varnost, lahko pa se bo izgubilo kakšno sporočilo s tem stikom in ga_jo boste morali prositi, da ga pošlje znova.</string>
 
+    <!-- LinkDeviceFragment -->
+    <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Uporabite Signal na namiznem računalniku ali iPadu. Sporočila se bodo sinhronizirala s povezanimi napravami.</string>
+    <!-- Button prompting users to link a new device to their account -->
+    <string name="LinkDeviceFragment__link_a_new_device">Poveži z novo napravo</string>
+    <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Sporočila in informacije o klepetu so v vseh napravah zaščitene s šifriranjem od konca do konca</string>
+    <!-- Bottom sheet title explaining how Signal works on a linked device -->
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <!-- Bottom sheet description explaining that messages on linked devices are private -->
+    <string name="LinkDeviceFragment__all_messaging_is_private">Vsa sporočila v povezanih napravah so zasebna</string>
+    <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Sporočila Signal se sinhronizirajo s Signalom v mobilnem telefonu, potem ko je ta povezan. Zgodovina prejšnjih sporočil se ne bo prikazala.</string>
+    <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">V svoji drugi napravi obiščite %1$s in namestite Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
+    <!-- Header title listing out current linked devices -->
+    <string name="LinkDeviceFragment__my_linked_devices">Moje povezane naprave</string>
+    <!-- Dialog confirmation to unlink a device -->
+    <string name="LinkDeviceFragment__unlink">Odklopi povezavo</string>
+    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">Naprava %1$s je nepovezana</string>
+    <!-- Progress dialog message indicating that a device is currently being linked with an account -->
+    <string name="LinkDeviceFragment__linking_device">Povezujem napravo …</string>
+    <!-- Toast message shown after a device has been linked -->
+    <string name="LinkDeviceFragment__device_approved">Naprava je potrjena</string>
+    <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
+    <string name="LinkDeviceFragment__loading">Nalaganje …</string>
+    <!-- Text message shown when the user has no linked devices -->
+    <string name="LinkDeviceFragment__no_linked_devices">Ni povezanih naprav</string>
+    <!-- Title on biometrics prompt explaining what biometrics are being used for -->
+    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+
+    <!-- AddLinkDeviceFragment -->
+    <!-- Description text shown on the QR code scanner when linking a device -->
+    <string name="AddLinkDeviceFragment__scan_the_qr_code">Za povezavo skenirajte QR kodo v napravi.</string>
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="AddLinkDeviceFragment__scan_qr_code">Skeniraj kodo QR</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">S to napravo optično preberite kodo QR, ki je prikazana v napravi, ki jo želite povezati</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="AddLinkDeviceFragment__okay">Okej</string>
+    <!-- Dialog text describing the consequences of linking a device -->
+    <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">Ta naprava bo lahko videla skupine in stike, dostopala do pogovorov in pošiljala sporočila v vašem imenu.</string>
+    <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
+    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">Dokončajte povezovanje v drugi napravi</string>
+    <!-- Bottom sheet description telling users to complete the linking process -->
+    <string name="AddLinkDeviceFragment__finish_linking_signal">Dokončajte povezovanje Signala v drugi napravi.</string>
+    <!-- Title of dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__linking_device_failed">Povezovanje naprav ni bilo uspešno</string>
+    <!-- Text shown in a dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Koda QR ni veljavna. Prosimo prepričajte se, da skenirate kodo QR na napravi, ki jo želite povezati.</string>
+    <!-- Button in dialog to retry linking a device with a qr code -->
+    <string name="AddLinkDeviceFragment__retry">Ponovno</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Odstranim \'%1$s\'?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Z odstranitvijo naprave ta ne bo več mogla pošiljati ali prejemati sporočil.</string>
@@ -1109,7 +1163,8 @@
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Nadaljuj</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">Prekini</string>
+    <string name="PromptBatterySaverBottomSheet__no_thanks">No thanks</string>
+  <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Prošnje in vabila</string>
@@ -1416,13 +1471,6 @@
         <item quantity="two">S tem boste nepovratno izbrisali izbrani datoteki. Vsak tekst, povezan s tema datotekama, bo prav tako izbrisan.</item>
         <item quantity="few">S tem boste nepovratno izbrisali %1$d izbrane datoteke. Vsak tekst, povezan s temi datotekami, bo prav tako izbrisan.</item>
         <item quantity="other">S tem boste nepovratno izbrisali %1$d izbranih datotek. Vsak tekst, povezan s temi datotekami, bo prav tako izbrisan.</item>
-    </plurals>
-    <!-- Dialog message shown when deleting one to many attachments from the media overview screen -->
-    <plurals name="MediaOverviewActivity_Media_delete_confirm_message_linked_device">
-        <item quantity="one">S tem boste izbrano datoteko trajno izbrisali iz vseh naprav. Izbrisana bodo tudi vsa besedila sporočil, povezana s tem elementom.</item>
-        <item quantity="two">S tem boste %1$d izbrani datoteki trajno izbrisali iz vseh naprav. Izbrisana bodo tudi vsa besedila sporočil, povezana s tem elementom.</item>
-        <item quantity="few">S tem boste vse %1$d izbrane datoteke trajno izbrisali iz vseh naprav. Izbrisana bodo tudi vsa besedila sporočil, povezana s tem elementom.</item>
-        <item quantity="other">S tem boste vseh %1$d izbranih datotek trajno izbrisali iz vseh naprav. Izbrisana bodo tudi vsa besedila sporočil, povezana s tem elementom.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Brišem</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Izbris sporočil …</string>
@@ -2022,7 +2070,8 @@
     <string name="RedPhone_ringing">Zvoni…</string>
     <string name="RedPhone_busy">Zasedeno</string>
     <string name="RedPhone_recipient_unavailable">Klicani_a ni dosegljiv_a</string>
-    <string name="RedPhone_network_failed">Napaka omrežja!</string>
+    <!-- Error message shown during a call when a fatal network error occurs. -->
+    <string name="RedPhone_network_failed">Napaka omrežja! Preverite svojo omrežno povezavo in poskusite znova.</string>
     <string name="RedPhone_number_not_registered">Številka ni registrirana!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Številka, ki ste jo klicali, ne podpira varnih klicev!</string>
     <string name="RedPhone_got_it">Razumem</string>
@@ -2229,15 +2278,46 @@
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Ogled</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The placeholder string may either be a name, or "You". -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_singular">%1$s je dvignil_a roko</string>
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <string name="CallRaiseHandSnackbar__raised_a_hand_plural">%1$s + še %2$d so dvignili roko</string>
 
-    <!-- A badge to show how many hands are raised. The placeholder string may either be a name, or "You". -->
-    <string name="CallRaiseHandSnackbar_raised_hands_singular">%1$s</string>
-    <!-- A badge to show how many hands are raised. The first string may either be a name, or "You". The second placeholder is a number quantifying how many other hands are also raised. -->
-    <string name="CallRaiseHandSnackbar_raised_hands_plural">%1$s +%2$d</string>
+    <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s je dvignil_a roko</string>
+    <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
+        <item quantity="one">%1$s + %2$d sta dvignila_i roko</item>
+        <item quantity="two">%1$s + %2$d osebi ste dvignili roko</item>
+        <item quantity="few">%1$s + %2$d osebe ste dvignili roko</item>
+        <item quantity="other">%1$s + %2$d oseb ste dvignili roko</item>
+    </plurals>
+
+    <!-- A notification to the user that one participant in the call successfully raised their hand. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">%1$s je dvignil_a roko</string>
+    <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
+        <item quantity="one">%1$s + %2$d sta dvignila_i roko</item>
+        <item quantity="two">%1$s + %2$d osebi so dvignili roko</item>
+        <item quantity="few">%1$s + %2$d osebe so dvignili roko</item>
+        <item quantity="other">%1$s + %2$d oseb je dvignilo roko</item>
+    </plurals>
+
+    <!-- A badge to show the user has their hand raised. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__collapsed_second_person_raised_hand_single">%1$s</string>
+    <!-- A badge to show the user and at least one other participant in the call have their hand raised. The placeholder is a number quantifying how many other hands are also raised, besides the user.  -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_second_person_raised_hands_multiple">
+        <item quantity="one">%1$s</item>
+        <item quantity="two">%1$s + %2$d</item>
+        <item quantity="few">%1$s + %2$d</item>
+        <item quantity="other">%1$s + %2$d</item>
+    </plurals>
+
+    <!-- A badge to show how many hands are raised. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_singular">%1$s</string>
+    <!-- A badge to show how many hands are raised. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_multiple">
+        <item quantity="one">%1$s</item>
+        <item quantity="two">%1$s + %2$d</item>
+        <item quantity="few">%1$s + %2$d</item>
+        <item quantity="other">%1$s + %2$d</item>
+    </plurals>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Razširite pogled dvignjene roke</string>
@@ -2683,8 +2763,6 @@
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Brez dovoljenja za dostop do shrambe ne morem shranjevati na zunanji pomnilnik naprave.</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Izbrišem sporočilo?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Sporočilo bo nepovratno izbrisano.</string>
-    <!-- Dialog message shown when deleting an attachment and message -->
-    <string name="MediaPreviewActivity_media_delete_confirmation_message_linked_device">To bo trajno izbrisalo to sporočilo iz vseh vaših naprav.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s do %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Vi za uporabnika_co %1$s</string>
@@ -2970,6 +3048,8 @@
     <string name="ContactSelectionListFragment_to_find_people">Za iskanje ljudi, ki jih poznate, v Signalu:</string>
     <!-- Text on button prompting users to give Signal contact permissions -->
     <string name="ContactSelectionListFragment__allow_access">Dovoli dostop</string>
+    <!-- Text on button to dismiss Signal\'s request for contact permissions -->
+    <string name="ContactSelectionListFragment__no_thanks">Ne, hvala!</string>
     <!-- Text asking for user\'s contact permission -->
     <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Dovolite dostop do svojih stikov. Vaši stiki so šifrirani in niso vidni storitvi Signal.</string>
 
@@ -4354,8 +4434,15 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Potrebujete dostop do vaše stare naprave.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Obnovi iz varnostne kopije</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Obnovite svoja sporočila iz lokalne varnostne kopije. Če tega ne storite zdaj, kasneje ne bo več mogoče.</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">Obnovitev lokalne varnostne kopije</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Obnovitev varnostne kopije Signala</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Obnovite vsa svoja besedilna sporočila in medije zadnjih 30 dni</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Več možnosti</string>
+
+    <string name="TransferOrRestoreFragment__cancel">Prekliči</string>
+    <string name="TransferOrRestoreFragment__skip_transfer">Prijava brez prenosa</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">Nadaljujte brez prenosa sporočil in medijev</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Odprite Signal na vaši stari androidni napravi</string>
@@ -5284,9 +5371,6 @@
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">Izberi barvo</string>
 
-    <!-- ContactSelectionListItem -->
-    <string name="ContactSelectionListItem__sms">SMS</string>
-
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Deli</string>
 
@@ -5328,7 +5412,8 @@
     </plurals>
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Tej skupini lahko sporočila pošiljajo zgolj skrbniki.</string>
-    <string name="MultiselectForwardFragment__limit_reached">Dosežen je bil limit</string>
+    <!-- Error message shown when users try to choose more than 5 chats to send a message to -->
+    <string name="MultiselectForwardFragment__you_cant_select_more_chats">Ne morete izbrati več kot 5 klepetov</string>
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
@@ -7214,6 +7299,22 @@
     <!-- Notification title shown while downloading backup restore data -->
     <string name="BackupProgressService_title_downloading">Prenos varnostne kopije …</string>
 
+    <!-- BackupAlertBottomSheet -->
+    <!-- Sheet title when user does not have enough space to download their backup -->
+    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <!-- Clickable text to learn more about the content of this bottom sheet -->
+    <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
+    <!-- Secondary action button text when user does not have enough free space to download their backup. -->
+    <string name="BackupAlertBottomSheet__skip">Skip</string>
+
+    <!-- BackupStatus -->
+    <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Kreditna ali debetna kartica</string>
@@ -7227,6 +7328,12 @@
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__unknown">Neznano</string>
+    <!-- Row title for entering payment history -->
+    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">Vaša zadnja varnostna kopija je bila izdelana dne %1$s ob %2$s.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -7245,9 +7352,85 @@
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Brisanje je zdaj sinhronizirano v vseh napravah</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Ko izbrišete sporočila, medije ali klepete, se izbrišejo iz telefona in vseh povezanih naprav.</string>
+    <string name="DeleteSyncEducation_message">Ko izbrišete sporočila ali klepete, se izbrišejo iz telefona in vseh povezanih naprav.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
+
+    <!-- RemoteBackupsPaymentHistoryFragment -->
+    <!-- Title of the screen for payment history -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Payment history</string>
+    <!-- Description for backup rows -->
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <!-- Title of the screen for payment details -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Payment details</string>
+    <!-- Title of row specifying the type of backup -->
+    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Backup type</string>
+    <!-- Title of row specifying the date the backup was paid on -->
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date paid</string>
+    <!-- Button label to share the receipt -->
+    <string name="RemoteBackupsPaymentHistoryFragment__share">Share</string>
+
+    <!-- RemoteBackupsSettingsFragment -->
+    <!-- Displayed on the title bar -->
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Varnostne kopije Signal</string>
+    <!-- Row label to launch payment history screen -->
+    <string name="RemoteBackupsSettingsFragment__payment_history">Zgodovina plačil</string>
+    <!-- Section header for backup information -->
+    <string name="RemoteBackupsSettingsFragment__backup_details">Podrobnosti o varnostni kopji</string>
+    <!-- Row label for backup size -->
+    <string name="RemoteBackupsSettingsFragment__backup_size">Velikost varnostne kopije</string>
+    <!-- Row label for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency">Pogostost varnostnega kopiranja</string>
+    <!-- Toggle row label for allowing backups to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Varnostno kopiranje z uporabo mobilnega omrežja</string>
+    <!-- Row label for cancelling and deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Izklopi in izbriši varnostno kopiranje</string>
+    <!-- Snackbar text displayed when backup has been deleted and turned off -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Varnostno kopiranje je izbrisano in izklopljeno.</string>
+    <!-- Snackbar text displayed when backup type is downgraded -->
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Spremenjena vrsta varnostne kopije in preklicana naročnina</string>
+    <!-- Snackbar text displayed when backup subscription is cancelled -->
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Naročnina je prekinjena</string>
+    <!-- Snackbar text displayed when backup is successfully downloaded -->
+    <string name="RemoteBackupsSettingsFragment__download_complete">Prenos dokončan</string>
+    <!-- Title text in row detailing selected backup type -->
+    <string name="RemoteBackupsSettingsFragment__backup_type">Vrsta varnostne kopije</string>
+    <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
+    <string name="RemoteBackupsSettingsFragment__backups_disabled">Varnostno kopiranje izklopljeno</string>
+    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/mesec</string>
+    <!-- Button label to enable backups -->
+    <string name="RemoteBackupsSettingsFragment__enable_backups">Dovoli varnostno kopiranje</string>
+    <!-- Progress indicator subtext displayed when a backup is in progress -->
+    <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
+    <!-- Title text in row detailing last backup -->
+    <string name="RemoteBackupsSettingsFragment__last_backup">Zadnja varnostna kopija</string>
+    <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
+    <string name="RemoteBackupsSettingsFragment__s_at_s">%1$s ob %2$s</string>
+    <!-- Subtext describing when a backup has never taken place. -->
+    <string name="RemoteBackupsSettingsFragment__never">Nikoli</string>
+    <!-- Button label to perform a backup immediately -->
+    <string name="RemoteBackupsSettingsFragment__back_up_now">Izdelaj varnostno kopijo</string>
+    <!-- Dialog title when confirming whether to turn off and deleting backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Želite varnostno kopiranje izklopiti in izbrisati?</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">Ne bomo vam več zaračunali. Vaša varnostna kopija bo izbrisana in nove varnostne kopije ne bodo ustvarjene.</string>
+    <!-- Confirmation action on dialog to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Izklopi in izbriši</string>
+    <!-- Text on dialog while user backup is being deleted -->
+    <string name="RemoteBackupsSettingsFragment__deleting_backup">Brisanje varnostne kopije …</string>
+    <!-- Text on dialog when user backup is deleted -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted">Varnostna kopija je izbrisana</string>
+    <!-- Subtitle for frequency option MANUAL for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"Tako, da tapnete Izdelaj varnostno kopijo"</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__daily">Dnevno</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__weekly">Tedensko</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__monthly">Mesečno</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__manually_back_up">Ročno varnostno kopiranje</string>
 
     <!-- EOF -->
 </resources>
