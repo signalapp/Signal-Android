@@ -26,13 +26,15 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
 
   override fun onAlarm(context: Context, scheduledTime: Long): Long {
     if (SignalStore.backup.areBackupsEnabled) {
-      BackupMessagesJob.enqueue()
+      val timeSinceLastSync = System.currentTimeMillis() - SignalStore.backup.lastMediaSyncTime
+      BackupMessagesJob.enqueue(pruneAbandonedRemoteMedia = timeSinceLastSync >= BACKUP_MEDIA_SYNC_INTERVAL || timeSinceLastSync < 0)
     }
     return setNextBackupTimeToIntervalFromNow()
   }
 
   companion object {
     private val BACKUP_JITTER_WINDOW_SECONDS = Math.toIntExact(TimeUnit.MINUTES.toSeconds(10))
+    private val BACKUP_MEDIA_SYNC_INTERVAL = TimeUnit.DAYS.toMillis(7)
 
     @JvmStatic
     fun schedule(context: Context?) {

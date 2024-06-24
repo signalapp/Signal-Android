@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException
 import java.lang.Exception
@@ -75,6 +76,7 @@ class SyncArchivedMediaJob private constructor(
       BackupRepository.deleteAbandonedMediaObjects(attachmentsToDelete)
       Log.i(TAG, "Deleted ${attachmentsToDelete.size} attachments off CDN")
     }
+    SignalStore.backup.lastMediaSyncTime = System.currentTimeMillis()
   }
 
   /**
