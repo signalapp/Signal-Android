@@ -23,15 +23,8 @@ apply(from = "static-ips.gradle.kts")
 
 val canonicalVersionCode = 1428
 val canonicalVersionName = "7.9.6"
-
-val postFixSize = 100
-val abiPostFix: Map<String, Int> = mapOf(
-  "universal" to 0,
-  "armeabi-v7a" to 1,
-  "arm64-v8a" to 2,
-  "x86" to 3,
-  "x86_64" to 4
-)
+val currentHotfixVersion = 0
+val maxHotfixVersions = 100
 
 val keystores: Map<String, Properties?> = mapOf("debug" to loadKeystoreProperties("keystore.debug.properties"))
 
@@ -91,6 +84,8 @@ android {
   flavorDimensions += listOf("distribution", "environment")
   useLibrary("org.apache.http.legacy")
   testBuildType = "instrumentation"
+
+  android.bundle.language.enableSplit = false
 
   kotlinOptions {
     jvmTarget = signalKotlinJvmTarget
@@ -156,7 +151,7 @@ android {
   }
 
   defaultConfig {
-    versionCode = canonicalVersionCode * postFixSize
+    versionCode = (canonicalVersionCode * maxHotfixVersions) + currentHotfixVersion
     versionName = canonicalVersionName
 
     minSdk = signalMinSdkVersion
@@ -405,7 +400,6 @@ android {
       .map { it as com.android.build.gradle.internal.api.ApkVariantOutputImpl }
       .forEach { output ->
         if (output.baseName.contains("nightly")) {
-          output.versionCodeOverride = canonicalVersionCode * postFixSize + 5
           var tag = getCurrentGitTag()
           if (!tag.isNullOrEmpty()) {
             if (tag.startsWith("v")) {
@@ -419,14 +413,9 @@ android {
         } else {
           output.outputFileName = output.outputFileName.replace(".apk", "-$versionName.apk")
 
-          val abiName: String = output.getFilter("ABI") ?: "universal"
-          val postFix: Int = abiPostFix[abiName]!!
-
-          if (postFix >= postFixSize) {
-            throw AssertionError("postFix is too large")
+          if (currentHotfixVersion >= maxHotfixVersions) {
+            throw AssertionError("Hotfix version is too large!")
           }
-
-          output.versionCodeOverride = canonicalVersionCode * postFixSize + postFix
         }
       }
   }
