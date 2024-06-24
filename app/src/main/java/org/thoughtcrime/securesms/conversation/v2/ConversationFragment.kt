@@ -2231,6 +2231,7 @@ class ConversationFragment :
     ConversationDialogs.displayDeleteDialog(requireContext(), recipient) {
       messageRequestViewModel
         .onDelete()
+        .doAfterSuccess { activity?.finish() }
         .subscribeWithShowProgress("delete message request")
     }
   }
