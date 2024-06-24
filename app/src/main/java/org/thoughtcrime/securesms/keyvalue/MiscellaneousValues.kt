@@ -156,7 +156,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
   /**
    * Whether or not we've done the initial "PNP Hello World" dance.
    */
-  var hasPniInitializedDevices by booleanValue(PNI_INITIALIZED_DEVICES, false)
+  var hasPniInitializedDevices by booleanValue(PNI_INITIALIZED_DEVICES, true)
 
   /**
    * Whether or not the user has linked devices.
