@@ -20,6 +20,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.util.Hex
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.logging.SignalProtocolLogger
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
@@ -80,6 +81,7 @@ class GroupManagerV2Test_edit {
     ThreadUtil.enforceAssertions = false
     Log.initialize(SystemOutLogger())
     SignalProtocolLoggerProvider.setProvider(CustomSignalProtocolLogger())
+    SignalProtocolLoggerProvider.initializeLogging(SignalProtocolLogger.INFO)
 
     val clientZkOperations = ClientZkOperations(server.getServerPublicParams())
 
