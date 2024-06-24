@@ -98,8 +98,7 @@ class LinkDeviceViewModel : ViewModel() {
     _state.update {
       val frontCamera = it.showFrontCamera
       it.copy(
-        showFrontCamera = if (frontCamera == null) true else !frontCamera,
-        pendingBiometrics = false
+        showFrontCamera = if (frontCamera == null) true else !frontCamera
       )
     }
   }
@@ -140,29 +139,11 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  fun onQrCodeApproved() {
-    _state.update {
-      it.copy(
-        qrCodeFound = false,
-        qrCodeInvalid = false,
-        pendingBiometrics = true
-      )
-    }
-  }
-
   fun onQrCodeDismissed() {
     _state.update {
       it.copy(
         qrCodeFound = false,
         qrCodeInvalid = false
-      )
-    }
-  }
-
-  fun clearBiometrics() {
-    _state.update {
-      it.copy(
-        pendingBiometrics = false
       )
     }
   }
@@ -173,7 +154,8 @@ class LinkDeviceViewModel : ViewModel() {
       val result = LinkDeviceRepository.addDevice(uri)
       _state.update {
         it.copy(
-          pendingBiometrics = false,
+          qrCodeFound = false,
+          qrCodeInvalid = false,
           linkDeviceResult = result,
           url = ""
         )

@@ -3,6 +3,9 @@ package org.thoughtcrime.securesms.linkdevice
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -59,6 +62,9 @@ import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
+import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.BiometricDeviceAuthentication
+import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.util.DateUtils
@@ -72,12 +78,40 @@ private const val PLACEHOLDER = "__ICON_PLACEHOLDER__"
  */
 class LinkDeviceFragment : ComposeFragment() {
 
+  companion object {
+    private val TAG = Log.tag(LinkDeviceFragment::class)
+  }
+
   private val viewModel: LinkDeviceViewModel by activityViewModels()
+  private lateinit var biometricAuth: BiometricDeviceAuthentication
+  private lateinit var biometricDeviceLockLauncher: ActivityResultLauncher<String>
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
     viewModel.initialize(requireContext())
+
+    biometricDeviceLockLauncher = registerForActivityResult(BiometricDeviceLockContract()) { result: Int ->
+      if (result == BiometricDeviceAuthentication.AUTHENTICATED) {
+        findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
+      }
+    }
+
+    val promptInfo = BiometricPrompt.PromptInfo.Builder()
+      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
+      .setTitle(requireContext().getString(R.string.LinkDeviceFragment__unlock_to_link))
+      .setConfirmationRequired(true)
+      .build()
+    biometricAuth = BiometricDeviceAuthentication(
+      BiometricManager.from(requireActivity()),
+      BiometricPrompt(requireActivity(), BiometricAuthenticationListener()),
+      promptInfo
+    )
+  }
+
+  override fun onPause() {
+    super.onPause()
+    biometricAuth.cancelAuthentication()
   }
 
   @Composable
@@ -110,7 +144,13 @@ class LinkDeviceFragment : ComposeFragment() {
         navController = navController,
         modifier = Modifier.padding(contentPadding),
         onLearnMore = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet) },
-        onLinkDevice = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment) },
+        onLinkDevice = {
+          if (biometricAuth.canAuthenticate()) {
+            biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link)) }
+          } else {
+            navController.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
+          }
+        },
         setDeviceToRemove = { device -> viewModel.setDeviceToRemove(device) },
         onRemoveDevice = { device -> viewModel.removeDevice(requireContext(), device) }
       )
@@ -120,6 +160,22 @@ class LinkDeviceFragment : ComposeFragment() {
   private fun NavController.popOrFinish() {
     if (!popBackStack()) {
       requireActivity().finishAfterTransition()
+    }
+  }
+
+  private inner class BiometricAuthenticationListener : BiometricPrompt.AuthenticationCallback() {
+    override fun onAuthenticationError(errorCode: Int, errorString: CharSequence) {
+      Log.w(TAG, "Authentication error: $errorCode")
+      onAuthenticationFailed()
+    }
+
+    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+      Log.i(TAG, "Authentication succeeded")
+      findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
+    }
+
+    override fun onAuthenticationFailed() {
+      Log.w(TAG, "Unable to authenticate")
     }
   }
 }

@@ -59,16 +59,4 @@ internal class ScannerView19 constructor(
       lifecycleObserver.onResume(it)
     }
   }
-
-  override fun resume() {
-    lifecycleOwner?.let {
-      lifecycleObserver.onResume(it)
-    }
-  }
-
-  override fun destroy() {
-    lifecycleOwner?.let {
-      lifecycleObserver.onPause(it)
-    }
-  }
 }

@@ -2,12 +2,7 @@ package org.thoughtcrime.securesms.linkdevice
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -30,9 +25,6 @@ import com.google.accompanist.permissions.rememberPermissionState
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
-import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.BiometricDeviceAuthentication
-import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -43,42 +35,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
  */
 class AddLinkDeviceFragment : ComposeFragment() {
 
-  companion object {
-    private val TAG = Log.tag(AddLinkDeviceFragment::class)
-  }
-
   private val viewModel: LinkDeviceViewModel by activityViewModels()
-  private lateinit var biometricAuth: BiometricDeviceAuthentication
-  private lateinit var biometricDeviceLockLauncher: ActivityResultLauncher<String>
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-
-    biometricDeviceLockLauncher = registerForActivityResult(BiometricDeviceLockContract()) { result: Int ->
-      if (result == BiometricDeviceAuthentication.AUTHENTICATED) {
-        viewModel.addDevice()
-      } else {
-        viewModel.clearBiometrics()
-      }
-    }
-
-    val promptInfo = BiometricPrompt.PromptInfo.Builder()
-      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
-      .setTitle(requireContext().getString(R.string.BiometricDeviceAuthentication__signal))
-      .setConfirmationRequired(true)
-      .build()
-    biometricAuth = BiometricDeviceAuthentication(
-      BiometricManager.from(requireActivity()),
-      BiometricPrompt(requireActivity(), BiometricAuthenticationListener()),
-      promptInfo
-    )
-  }
-
-  override fun onPause() {
-    super.onPause()
-    viewModel.clearBiometrics()
-    biometricAuth.cancelAuthentication()
-  }
 
   @OptIn(ExperimentalPermissionsApi::class)
   @Composable
@@ -103,14 +60,7 @@ class AddLinkDeviceFragment : ComposeFragment() {
       onRequestPermissions = { askPermissions() },
       onShowFrontCamera = { viewModel.showFrontCamera() },
       onQrCodeScanned = { data -> viewModel.onQrCodeScanned(data) },
-      onQrCodeApproved = {
-        viewModel.onQrCodeApproved()
-        if (biometricAuth.canAuthenticate()) {
-          biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.BiometricDeviceAuthentication__signal)) }
-        } else {
-          viewModel.addDevice()
-        }
-      },
+      onQrCodeApproved = { viewModel.addDevice() },
       onQrCodeDismissed = { viewModel.onQrCodeDismissed() },
       onQrCodeRetry = { viewModel.onQrCodeScanned(state.url) },
       onLinkDeviceSuccess = {
@@ -133,23 +83,6 @@ class AddLinkDeviceFragment : ComposeFragment() {
   @SuppressLint("MissingSuperCall")
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
-  }
-
-  private inner class BiometricAuthenticationListener : BiometricPrompt.AuthenticationCallback() {
-    override fun onAuthenticationError(errorCode: Int, errorString: CharSequence) {
-      Log.w(TAG, "Linked device authentication error: $errorCode")
-      viewModel.clearBiometrics()
-      onAuthenticationFailed()
-    }
-
-    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-      Log.i(TAG, "Linked device authentication succeeded")
-      viewModel.addDevice()
-    }
-
-    override fun onAuthenticationFailed() {
-      Log.w(TAG, "Linked device unable to authenticate")
-    }
   }
 }
 
@@ -188,7 +121,6 @@ private fun MainScreen(
       onQrCodeAccepted = onQrCodeApproved,
       onQrCodeDismissed = onQrCodeDismissed,
       onQrCodeRetry = onQrCodeRetry,
-      pendingBiometrics = state.pendingBiometrics,
       linkDeviceResult = state.linkDeviceResult,
       onLinkDeviceSuccess = onLinkDeviceSuccess,
       onLinkDeviceFailure = onLinkDeviceFailure,

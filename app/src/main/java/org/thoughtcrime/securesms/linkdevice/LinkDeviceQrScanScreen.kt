@@ -33,7 +33,6 @@ fun LinkDeviceQrScanScreen(
   onQrCodeAccepted: () -> Unit,
   onQrCodeDismissed: () -> Unit,
   onQrCodeRetry: () -> Unit,
-  pendingBiometrics: Boolean,
   linkDeviceResult: LinkDeviceRepository.LinkDeviceResult,
   onLinkDeviceSuccess: () -> Unit,
   onLinkDeviceFailure: () -> Unit,
@@ -95,13 +94,9 @@ fun LinkDeviceQrScanScreen(
           view
         },
         update = { view: QrScannerView ->
-          if (pendingBiometrics) {
-            view.destroy()
-          } else {
-            view.start(lifecycleOwner = lifecycleOwner, forceLegacy = CameraXModelBlocklist.isBlocklisted())
-            if (showFrontCamera != null) {
-              view.toggleCamera()
-            }
+          view.start(lifecycleOwner = lifecycleOwner, forceLegacy = CameraXModelBlocklist.isBlocklisted())
+          if (showFrontCamera != null) {
+            view.toggleCamera()
           }
         },
         hasPermission = hasPermission,
