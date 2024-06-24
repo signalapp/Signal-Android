@@ -158,7 +158,7 @@ class GroupsV2StateProcessor private constructor(
     when (serverUpdateResult) {
       InternalUpdateResult.NoUpdateNeeded -> return GroupUpdateResult.CONSISTENT_OR_AHEAD
       is InternalUpdateResult.Updated -> return GroupUpdateResult.updated(serverUpdateResult.updatedLocalState)
-      is InternalUpdateResult.UpdateFailed -> throw serverUpdateResult.throwable
+      is InternalUpdateResult.UpdateFailed,
       is InternalUpdateResult.NotAMember -> Unit
     }
 
@@ -184,7 +184,11 @@ class GroupsV2StateProcessor private constructor(
       profileAndMessageHelper.leaveGroupLocally(serviceIds)
     }
 
-    throw GroupNotAMemberException(serverUpdateResult.exception)
+    throw when (serverUpdateResult) {
+      is InternalUpdateResult.NotAMember -> GroupNotAMemberException(serverUpdateResult.exception)
+      is InternalUpdateResult.UpdateFailed -> throw serverUpdateResult.throwable
+      else -> AssertionError("Should not reach here with ${serverUpdateResult::class.java.simpleName}")
+    }
   }
 
   private fun canApplyP2pChange(
