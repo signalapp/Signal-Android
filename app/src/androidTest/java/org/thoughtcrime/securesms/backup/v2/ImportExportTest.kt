@@ -5,7 +5,10 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import android.Manifest
+import android.app.UiAutomation
 import android.content.Context
+import android.os.Environment
 import androidx.test.platform.app.InstrumentationRegistry
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert
@@ -48,8 +51,10 @@ import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
 import org.thoughtcrime.securesms.backup.v2.proto.StickerPack
 import org.thoughtcrime.securesms.backup.v2.proto.Text
 import org.thoughtcrime.securesms.backup.v2.proto.ThreadMergeChatUpdate
+import org.thoughtcrime.securesms.backup.v2.stream.BackupExportWriter
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
+import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.kbs.MasterKey
@@ -72,6 +77,14 @@ import kotlin.time.Duration.Companion.days
  */
 class ImportExportTest {
   companion object {
+    /**
+     * Output the frames as a plaintext .binproto for sharing tests
+     *
+     * This only seems to work on API 28 emulators, You can find the generated files
+     * at /sdcard/backup-tests/
+     * */
+    val OUTPUT_FILES = false
+
     val SELF_ACI = ServiceId.ACI.from(UUID.fromString("77770000-b477-4f35-a824-d92987a63641"))
     val SELF_PNI = ServiceId.PNI.from(UUID.fromString("77771111-b014-41fb-bf73-05cb2ec52910"))
     const val SELF_E164 = "+10000000000"
@@ -1422,6 +1435,7 @@ class ImportExportTest {
    * any standard frames (e.g. backup header).
    */
   private fun exportFrames(vararg objects: Any): ByteArray {
+    outputBinProto(*objects)
     val outputStream = ByteArrayOutputStream()
     val writer = EncryptedBackupWriter(
       key = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey(),
@@ -1431,18 +1445,7 @@ class ImportExportTest {
     )
 
     writer.use {
-      for (obj in objects) {
-        when (obj) {
-          is BackupInfo -> writer.write(obj)
-          is AccountData -> writer.write(Frame(account = obj))
-          is Recipient -> writer.write(Frame(recipient = obj))
-          is Chat -> writer.write(Frame(chat = obj))
-          is ChatItem -> writer.write(Frame(chatItem = obj))
-          is AdHocCall -> writer.write(Frame(adHocCall = obj))
-          is StickerPack -> writer.write(Frame(stickerPack = obj))
-          else -> Assert.fail("invalid object $obj")
-        }
-      }
+      writer.writeFrames(*objects)
     }
     return outputStream.toByteArray()
   }
@@ -1468,35 +1471,49 @@ class ImportExportTest {
    * 4. Assert that (A) and (B) are identical. Or, in other words, assert that importing and exporting again results in the original backup data.
    */
   private fun importExport(vararg objects: Any) {
-    val outputStream = ByteArrayOutputStream()
-    val writer = EncryptedBackupWriter(
-      key = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey(),
-      aci = SignalStore.account.aci!!,
-      outputStream = outputStream,
-      append = { mac -> outputStream.write(mac) }
-    )
+    val originalBackupData = exportFrames(*objects)
 
-    writer.use {
-      for (obj in objects) {
-        when (obj) {
-          is BackupInfo -> writer.write(obj)
-          is AccountData -> writer.write(Frame(account = obj))
-          is Recipient -> writer.write(Frame(recipient = obj))
-          is Chat -> writer.write(Frame(chat = obj))
-          is ChatItem -> writer.write(Frame(chatItem = obj))
-          is AdHocCall -> writer.write(Frame(adHocCall = obj))
-          is StickerPack -> writer.write(Frame(stickerPack = obj))
-          else -> Assert.fail("invalid object $obj")
-        }
-      }
-    }
-
-    val originalBackupData = outputStream.toByteArray()
-
-    BackupRepository.import(length = originalBackupData.size.toLong(), inputStreamFactory = { ByteArrayInputStream(originalBackupData) }, selfData = BackupRepository.SelfData(SELF_ACI, SELF_PNI, SELF_E164, SELF_PROFILE_KEY))
+    import(originalBackupData)
 
     val generatedBackupData = BackupRepository.export()
     compare(originalBackupData, generatedBackupData)
+  }
+
+  private fun BackupExportWriter.writeFrames(vararg objects: Any) {
+    for (obj in objects) {
+      when (obj) {
+        is BackupInfo -> write(obj)
+        is AccountData -> write(Frame(account = obj))
+        is Recipient -> write(Frame(recipient = obj))
+        is Chat -> write(Frame(chat = obj))
+        is ChatItem -> write(Frame(chatItem = obj))
+        is AdHocCall -> write(Frame(adHocCall = obj))
+        is StickerPack -> write(Frame(stickerPack = obj))
+        else -> Assert.fail("invalid object $obj")
+      }
+    }
+  }
+
+  private fun outputBinProto(vararg objects: Any) {
+    if (!OUTPUT_FILES) return
+
+    val outputStream = ByteArrayOutputStream()
+    val plaintextWriter = PlainTextBackupWriter(
+      outputStream = outputStream
+    )
+
+    plaintextWriter.use {
+      it.writeFrames(*objects)
+    }
+
+    grantPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+    val dir = File(Environment.getExternalStorageDirectory(), "backup-tests")
+    if (dir.mkdirs() || dir.exists()) {
+      FileOutputStream(File(dir, testName.methodName + ".binproto")).use {
+        it.write(outputStream.toByteArray())
+        it.flush()
+      }
+    }
   }
 
   private fun compare(import: ByteArray, export: ByteArray) {
@@ -1626,20 +1643,12 @@ class ImportExportTest {
     return frames
   }
 
-  private fun writeToOutputFile(importBytes: ByteArray, resultBytes: ByteArray? = null) {
-    val dir = File(context.filesDir, "backup-tests")
-    if (dir.mkdirs() || dir.exists()) {
-      FileOutputStream(File(dir, testName.methodName + ".import")).use {
-        it.write(importBytes)
-        it.flush()
-      }
+  private fun grantPermissions(vararg permissions: String?) {
+    if (!OUTPUT_FILES) return
 
-      if (resultBytes != null) {
-        FileOutputStream(File(dir, testName.methodName + ".result")).use {
-          it.write(resultBytes)
-          it.flush()
-        }
-      }
+    val auto: UiAutomation = InstrumentationRegistry.getInstrumentation().uiAutomation
+    for (perm in permissions) {
+      auto.grantRuntimePermissionAsUser(InstrumentationRegistry.getInstrumentation().targetContext.packageName, perm, android.os.Process.myUserHandle())
     }
   }
 }
