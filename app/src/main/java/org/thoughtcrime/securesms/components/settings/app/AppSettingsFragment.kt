@@ -159,13 +159,7 @@ class AppSettingsFragment : DSLSettingsFragment(
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__linked_devices),
         icon = DSLSettingsIcon.from(R.drawable.symbol_devices_24),
-        onClick = {
-          if (RemoteConfig.internalUser) {
-            findNavController().safeNavigate(R.id.action_appSettingsFragment_to_linkDeviceFragment)
-          } else {
-            findNavController().safeNavigate(R.id.action_appSettingsFragment_to_deviceActivity)
-          }
-        },
+        onClick = { findNavController().safeNavigate(R.id.action_appSettingsFragment_to_linkDeviceFragment) },
         isEnabled = state.isRegisteredAndUpToDate()
       )
 
