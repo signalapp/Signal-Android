@@ -158,7 +158,7 @@ import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
+import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
 import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -794,7 +794,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     } else if (reminderActionId == R.id.reminder_action_fix_username_link) {
       startActivity(AppSettingsActivity.usernameLinkSettings(requireContext()));
     } else if (reminderActionId == R.id.reminder_action_re_register) {
-      startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()));
+      startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()));
     }
   }
 

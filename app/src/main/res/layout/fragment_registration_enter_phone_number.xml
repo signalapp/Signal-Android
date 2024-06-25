@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".registration.fragments.EnterPhoneNumberFragment"
-    tools:viewBindingIgnore="true">
+    tools:context="org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -51,6 +50,7 @@
                     android:maxLines="1"
                     android:padding="0dp"
                     android:singleLine="true"
+                    android:textColor="?attr/colorOnSurface"
                     tools:text="+1" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -62,14 +62,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/RegistrationActivity_phone_number_description"
-                app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout">
+                android:theme="@style/Signal.ThemeOverlay.TextInputLayout"
+                app:editTextStyle="@style/Signal.ThemeOverlay.TextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
-                    android:inputType="phone">
+                    android:inputType="phone"
+                    android:textColor="?attr/colorOnSurface">
 
                     <requestFocus />
                 </com.google.android.material.textfield.TextInputEditText>

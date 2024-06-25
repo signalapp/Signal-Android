@@ -37,18 +37,18 @@ public final class NewDeviceTransferFragment extends DeviceTransferFragment {
 
   @Override
   protected void navigateToRestartTransfer() {
-    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_newDeviceTransfer_to_newDeviceTransferInstructions);
+    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), NewDeviceTransferFragmentDirections.actionNewDeviceTransferToNewDeviceTransferInstructions());
   }
 
   @Override
   protected void navigateAwayFromTransfer() {
     EventBus.getDefault().unregister(serverTaskListener);
-    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_restart_to_welcomeFragment);
+    requireActivity().finish();
   }
 
   @Override
   protected void navigateToTransferComplete() {
-    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_newDeviceTransfer_to_newDeviceTransferComplete);
+    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), NewDeviceTransferFragmentDirections.actionNewDeviceTransferToNewDeviceTransferComplete());
   }
 
   private class ServerTaskListener {

@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class UnauthorizedReminder extends Reminder {

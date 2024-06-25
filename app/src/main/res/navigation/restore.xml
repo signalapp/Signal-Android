@@ -28,7 +28,7 @@
             app:destination="@+id/transferOrRestoreMoreOptionsDialog" />
 
         <action
-            android:id="@+id/action_transfer_or_restore_to_restore"
+            android:id="@+id/action_transfer_or_restore_to_local_restore"
             app:destination="@id/choose_local_backup_fragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -38,9 +38,9 @@
 
     <fragment
         android:id="@+id/choose_local_backup_fragment"
-        android:name="org.thoughtcrime.securesms.restore.choosebackup.ChooseBackupV2Fragment"
+        android:name="org.thoughtcrime.securesms.restore.choosebackup.ChooseBackupFragment"
         android:label="choose_local_backup"
-        tools:layout="@layout/fragment_choose_backup_v2">
+        tools:layout="@layout/fragment_choose_backup">
 
         <action
             android:id="@+id/action_choose_local_backup_fragment_to_restore_local_backup_fragment"
@@ -51,17 +51,7 @@
         android:id="@+id/restore_local_backup_fragment"
         android:name="org.thoughtcrime.securesms.restore.restorelocalbackup.RestoreLocalBackupFragment"
         android:label="restore_local_backup"
-        tools:layout="@layout/fragment_restore_local_backup_v2">
-
-        <action
-            android:id="@id/action_backupRestored"
-            app:destination="@id/restoreCompleteFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/restoreBackupV2Fragment"
-            app:popUpToInclusive="true" />
+        tools:layout="@layout/fragment_restore_local_backup">
 
         <action
             android:id="@+id/action_skip"
@@ -144,7 +134,7 @@
     <fragment
         android:id="@+id/newDeviceTransfer"
         android:name="org.thoughtcrime.securesms.devicetransfer.newdevice.NewDeviceTransferFragment"
-        tools:layout="@layout/device_transfer_fragment">
+        tools:layout="@layout/fragment_device_transfer">
 
         <action
             android:id="@+id/action_newDeviceTransfer_to_newDeviceTransferInstructions"
@@ -198,6 +188,6 @@
 
     <fragment
         android:id="@+id/restoreCompleteFragment"
-        android:name="org.thoughtcrime.securesms.restore.restorecomplete.RestoreCompleteV2Fragment" />
+        android:name="org.thoughtcrime.securesms.restore.restorecomplete.RestoreCompleteFragment" />
 
 </navigation>

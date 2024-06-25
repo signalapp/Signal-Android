@@ -1012,16 +1012,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Whether or not to use the V2 refactor of registration.  */
-  @JvmStatic
-  @get:JvmName("registrationV2")
-  val registrationV2: Boolean by remoteBoolean(
-    key = "android.registration.v2",
-    defaultValue = true,
-    hotSwappable = false,
-    active = false
-  )
-
   /** Whether unauthenticated chat web socket is backed by libsignal-net  */
   @JvmStatic
   @get:JvmName("libSignalWebSocketEnabled")

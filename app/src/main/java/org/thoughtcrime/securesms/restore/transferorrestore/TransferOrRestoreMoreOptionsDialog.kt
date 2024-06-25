@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.databinding.TransferOrRestoreOptionsBottomShee
 import org.thoughtcrime.securesms.devicetransfer.newdevice.BackupRestorationType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
-import org.thoughtcrime.securesms.registration.v2.ui.restore.RemoteRestoreActivity
+import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.restore.RestoreActivity
 import org.thoughtcrime.securesms.util.visible
 

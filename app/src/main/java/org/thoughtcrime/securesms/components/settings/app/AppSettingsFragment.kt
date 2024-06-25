@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.events.ReminderUpdateEvent
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
+import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -114,7 +114,7 @@ class AppSettingsFragment : DSLSettingsFragment(
         PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
       }
       R.id.reminder_action_re_register -> {
-        startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()))
+        startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()))
       }
     }
   }

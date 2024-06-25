@@ -42,7 +42,7 @@ public abstract class DeviceTransferFragment extends LoggingFragment {
   protected boolean  transferFinished;
 
   public DeviceTransferFragment() {
-    super(R.layout.device_transfer_fragment);
+    super(R.layout.fragment_device_transfer);
   }
 
   @Override

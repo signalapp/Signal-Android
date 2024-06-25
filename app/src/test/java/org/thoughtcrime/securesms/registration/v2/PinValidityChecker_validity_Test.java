@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.registration.v2;
 
 import org.junit.Test;
 import org.signal.core.util.StreamUtil;
-import org.thoughtcrime.securesms.registration.v2.testdata.PinValidityVector;
+import org.thoughtcrime.securesms.registration.testdata.PinValidityVector;
 import org.whispersystems.signalservice.api.kbs.PinValidityChecker;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 

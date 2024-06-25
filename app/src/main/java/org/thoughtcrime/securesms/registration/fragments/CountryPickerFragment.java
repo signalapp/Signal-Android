@@ -1,3 +1,8 @@
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.registration.fragments;
 
 import android.os.Bundle;
@@ -20,8 +25,8 @@ import androidx.loader.content.Loader;
 import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberViewModel;
 import org.thoughtcrime.securesms.database.loaders.CountryListLoader;
-import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -32,7 +37,7 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
   public static final String KEY_COUNTRY_CODE = "country_code";
 
   private EditText              countryFilter;
-  private RegistrationViewModel model;
+  private ChangeNumberViewModel model;
   private String                resultKey;
 
   @Override
@@ -50,7 +55,7 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
     }
 
     if (resultKey == null) {
-      model = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
+      model = new ViewModelProvider(requireActivity()).get(ChangeNumberViewModel.class);
     }
 
     countryFilter = view.findViewById(R.id.country_search);
@@ -67,7 +72,7 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
     String countryName = item.get("country_name");
 
     if (resultKey == null) {
-      model.onCountrySelected(countryName, countryCode);
+      model.setNewCountry(countryCode, countryName);
     } else {
       Bundle result = new Bundle();
       result.putString(KEY_COUNTRY, countryName);

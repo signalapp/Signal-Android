@@ -23,10 +23,9 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.BackupEvent
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
-import org.thoughtcrime.securesms.databinding.FragmentRestoreLocalBackupV2Binding
+import org.thoughtcrime.securesms.databinding.FragmentRestoreLocalBackupBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
-import org.thoughtcrime.securesms.registration.fragments.RestoreBackupFragment.PassphraseAsYouTypeFormatter
 import org.thoughtcrime.securesms.restore.RestoreActivity
 import org.thoughtcrime.securesms.restore.RestoreRepository
 import org.thoughtcrime.securesms.restore.RestoreViewModel
@@ -41,7 +40,7 @@ import java.util.Locale
 /**
  * This fragment is used to monitor and manage an in-progress backup restore.
  */
-class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_local_backup_v2) {
+class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_local_backup) {
   private val navigationViewModel: RestoreViewModel by activityViewModels()
   private val restoreLocalBackupViewModel: RestoreLocalBackupViewModel by viewModels(
     factoryProducer = ViewModelFactory.factoryProducer {
@@ -49,7 +48,7 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
       RestoreLocalBackupViewModel(fileBackupUri)
     }
   )
-  private val binding: FragmentRestoreLocalBackupV2Binding by ViewBinderDelegate(FragmentRestoreLocalBackupV2Binding::bind)
+  private val binding: FragmentRestoreLocalBackupBinding by ViewBinderDelegate(FragmentRestoreLocalBackupBinding::bind)
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -67,8 +66,6 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
     binding.cancelLocalRestoreButton.setOnClickListener {
       findNavController().navigateUp()
     }
-
-    // TODO [regv2]: check for re-register and skip ahead to phone number entry
 
     if (SignalStore.settings.isBackupEnabled) {
       Log.i(TAG, "Backups enabled, so a backup must have been previously restored.")
@@ -158,7 +155,7 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
   private fun presentProgressEnded() {
     binding.restoreButton.cancelSpinning()
     binding.cancelLocalRestoreButton.visible = true
-    binding.backupProgressText.text = ""
+    binding.backupProgressText.text = null
   }
 
   private fun presentRestoreProgress(backupProgressCount: Long) {

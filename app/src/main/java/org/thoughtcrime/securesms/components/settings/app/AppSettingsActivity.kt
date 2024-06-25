@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.DynamicTheme
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val START_LOCATION = "app.settings.start.location"
@@ -40,8 +39,7 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     if (intent?.hasExtra(ARG_NAV_GRAPH) != true) {
-      val navGraphResId = if (RemoteConfig.registrationV2) R.navigation.app_settings_with_change_number_v2 else R.navigation.app_settings
-      intent?.putExtra(ARG_NAV_GRAPH, navGraphResId)
+      intent?.putExtra(ARG_NAV_GRAPH, R.navigation.app_settings_with_change_number)
     }
 
     super.onCreate(savedInstanceState, ready)
@@ -197,9 +195,8 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
     fun usernameRecovery(context: Context): Intent = getIntentForStartLocation(context, StartLocation.RECOVER_USERNAME)
 
     private fun getIntentForStartLocation(context: Context, startLocation: StartLocation): Intent {
-      val navGraphResId = if (RemoteConfig.registrationV2) R.navigation.app_settings_with_change_number_v2 else R.navigation.app_settings
       return Intent(context, AppSettingsActivity::class.java)
-        .putExtra(ARG_NAV_GRAPH, navGraphResId)
+        .putExtra(ARG_NAV_GRAPH, R.navigation.app_settings_with_change_number)
         .putExtra(START_LOCATION, startLocation.code)
     }
   }

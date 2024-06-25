@@ -63,7 +63,7 @@ public final class TransferOrRestoreFragment extends LoggingFragment {
   private void launchSelection(BackupRestorationType restorationType) {
     switch (restorationType) {
       case DEVICE_TRANSFER -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_new_device_transfer_instructions);
-      case LOCAL_BACKUP -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_choose_backup);
+      case LOCAL_BACKUP -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_transfer_or_restore_to_local_restore);
       case REMOTE_BACKUP -> {}
       default -> throw new IllegalArgumentException();
     }

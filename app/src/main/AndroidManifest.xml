@@ -777,12 +777,6 @@
         android:exported="false"/>
 
     <activity
-        android:name=".components.settings.app.changenumber.v2.ChangeNumberLockV2Activity"
-        android:theme="@style/Signal.DayNight.NoActionBar"
-        android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-        android:exported="false"/>
-
-    <activity
         android:name=".components.settings.conversation.ConversationSettingsActivity"
         android:configChanges="touchscreen|keyboard|keyboardHidden|screenLayout|screenSize"
         android:theme="@style/Signal.DayNight.ConversationSettings"
@@ -822,14 +816,7 @@
         android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
         android:exported="false"/>
 
-    <activity android:name=".registration.RegistrationNavigationActivity"
-              android:launchMode="singleTask"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:windowSoftInputMode="stateHidden"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false"/>
-
-    <activity android:name=".registration.v2.ui.RegistrationV2Activity"
+    <activity android:name=".registration.ui.RegistrationActivity"
               android:launchMode="singleTask"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:windowSoftInputMode="stateHidden"
@@ -974,7 +961,7 @@
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
 
-    <activity android:name=".registration.v2.ui.restore.RemoteRestoreActivity"
+    <activity android:name=".registration.ui.restore.RemoteRestoreActivity"
               android:theme="@style/Signal.DayNight.NoActionBar"
               android:exported="false"/>
 

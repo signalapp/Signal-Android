@@ -7,7 +7,7 @@
     <include layout="@layout/dsl_settings_toolbar" />
 
     <include
-        layout="@layout/fragment_registration_enter_code_v2"
+        layout="@layout/fragment_registration_enter_code"
         android:id="@+id/code_entry_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
