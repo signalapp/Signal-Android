@@ -7,15 +7,19 @@ package org.thoughtcrime.securesms.backup.v2.database
 
 import android.database.Cursor
 import okio.ByteString.Companion.toByteString
+import org.json.JSONArray
+import org.json.JSONException
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireString
+import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.getMediaName
@@ -63,6 +67,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDet
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
@@ -485,6 +490,52 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
+  private fun BackupMessageRecord.parseLinkPreviews(attachments: List<DatabaseAttachment>?): List<LinkPreview> {
+    if (linkPreview.isNullOrEmpty()) {
+      return emptyList()
+    }
+    val attachmentIdMap: Map<AttachmentId, DatabaseAttachment> = attachments?.associateBy { it.attachmentId } ?: emptyMap()
+
+    try {
+      val previews: MutableList<LinkPreview> = LinkedList()
+      val jsonPreviews = JSONArray(linkPreview)
+
+      for (i in 0 until jsonPreviews.length()) {
+        val preview = LinkPreview.deserialize(jsonPreviews.getJSONObject(i).toString())
+
+        if (preview.attachmentId != null) {
+          val attachment = attachmentIdMap[preview.attachmentId]
+
+          if (attachment != null) {
+            previews += LinkPreview(preview.url, preview.title, preview.description, preview.date, attachment)
+          } else {
+            previews += preview
+          }
+        } else {
+          previews += preview
+        }
+      }
+
+      return previews
+    } catch (e: JSONException) {
+      Log.w(TAG, "Failed to parse link preview", e)
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed to parse shared contacts.", e)
+    }
+
+    return emptyList()
+  }
+
+  private fun LinkPreview.toBackupLinkPreview(): org.thoughtcrime.securesms.backup.v2.proto.LinkPreview {
+    return org.thoughtcrime.securesms.backup.v2.proto.LinkPreview(
+      url = url,
+      title = title,
+      image = (thumbnail.orNull() as? DatabaseAttachment)?.toBackupAttachment()?.pointer,
+      description = description,
+      date = date
+    )
+  }
+
   private fun BackupMessageRecord.toStandardMessage(reactionRecords: List<ReactionRecord>?, mentions: List<Mention>?, attachments: List<DatabaseAttachment>?): StandardMessage {
     val text = if (body == null) {
       null
@@ -494,14 +545,15 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         bodyRanges = (this.bodyRanges?.toBackupBodyRanges() ?: emptyList()) + (mentions?.toBackupBodyRanges() ?: emptyList())
       )
     }
-    val quotedAttachments = attachments?.filter { it.quote } ?: emptyList()
-    val messageAttachments = attachments?.filter { !it.quote } ?: emptyList()
+    val linkPreviews = this.parseLinkPreviews(attachments)
+    val linkPreviewAttachments = linkPreviews.mapNotNull { it.thumbnail.orElse(null) }.toSet()
+    val quotedAttachments = attachments?.filter { it.quote && !linkPreviewAttachments.contains(it) } ?: emptyList()
+    val messageAttachments = attachments?.filter { !it.quote && !linkPreviewAttachments.contains(it) } ?: emptyList()
     return StandardMessage(
       quote = this.toQuote(quotedAttachments),
       text = text,
       attachments = messageAttachments.toBackupAttachments(),
-      // TODO [backup] Link previews!
-      linkPreview = emptyList(),
+      linkPreview = linkPreviews.map { it.toBackupLinkPreview() },
       longText = null,
       reactions = reactionRecords.toBackupReactions()
     )
@@ -845,6 +897,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       expireStarted = this.requireLong(MessageTable.EXPIRE_STARTED),
       remoteDeleted = this.requireBoolean(MessageTable.REMOTE_DELETED),
       sealedSender = this.requireBoolean(MessageTable.UNIDENTIFIED),
+      linkPreview = this.requireString(MessageTable.LINK_PREVIEWS),
       quoteTargetSentTimestamp = this.requireLong(MessageTable.QUOTE_ID),
       quoteAuthor = this.requireLong(MessageTable.QUOTE_AUTHOR),
       quoteBody = this.requireString(MessageTable.QUOTE_BODY),
@@ -880,6 +933,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     val expireStarted: Long,
     val remoteDeleted: Boolean,
     val sealedSender: Boolean,
+    val linkPreview: String?,
     val quoteTargetSentTimestamp: Long,
     val quoteAuthor: Long,
     val quoteBody: String?,

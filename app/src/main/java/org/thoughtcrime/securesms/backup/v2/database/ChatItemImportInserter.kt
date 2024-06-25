@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCall
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
+import org.thoughtcrime.securesms.backup.v2.proto.LinkPreview
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.PaymentNotification
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
@@ -335,15 +336,27 @@ class ChatItemImportInserter(
           }
         }
       }
+      val linkPreviews = this.standardMessage.linkPreview.map { it.toLocalLinkPreview() }
+      val linkPreviewAttachments = linkPreviews.mapNotNull { it.thumbnail.orNull() }
       val attachments = this.standardMessage.attachments.mapNotNull { attachment ->
         attachment.toLocalAttachment()
       }
       val quoteAttachments = this.standardMessage.quote?.attachments?.mapNotNull {
         it.toLocalAttachment()
       } ?: emptyList()
-      if (attachments.isNotEmpty()) {
+      if (attachments.isNotEmpty() || linkPreviewAttachments.isNotEmpty() || quoteAttachments.isNotEmpty()) {
         followUp = { messageRowId ->
-          SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments, quoteAttachments)
+          val attachmentMap = SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments + linkPreviewAttachments, quoteAttachments)
+          if (linkPreviews.isNotEmpty()) {
+            db.update(
+              MessageTable.TABLE_NAME,
+              contentValuesOf(
+                MessageTable.LINK_PREVIEWS to SignalDatabase.messages.getSerializedLinkPreviews(attachmentMap, linkPreviews)
+              ),
+              "${MessageTable.ID} = ?",
+              SqlUtil.buildArgs(messageRowId)
+            )
+          }
         }
       }
     }
@@ -927,6 +940,16 @@ class ChatItemImportInserter(
         stickerId = stickerId,
         emoji = emoji
       )
+    )
+  }
+
+  private fun LinkPreview.toLocalLinkPreview(): org.thoughtcrime.securesms.linkpreview.LinkPreview {
+    return org.thoughtcrime.securesms.linkpreview.LinkPreview(
+      this.url,
+      this.title ?: "",
+      this.description ?: "",
+      this.date ?: 0,
+      Optional.ofNullable(this.image?.toLocalAttachment(voiceNote = false, borderless = false, gif = false, wasDownloaded = true))
     )
   }
 

@@ -3373,7 +3373,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return sharedContactJson.toString()
   }
 
-  private fun getSerializedLinkPreviews(insertedAttachmentIds: Map<Attachment, AttachmentId>, previews: List<LinkPreview>): String? {
+  fun getSerializedLinkPreviews(insertedAttachmentIds: Map<Attachment, AttachmentId>, previews: List<LinkPreview>): String? {
     if (previews.isEmpty()) {
       return null
     }
