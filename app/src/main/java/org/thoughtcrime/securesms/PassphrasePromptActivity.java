@@ -44,9 +44,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
@@ -55,6 +58,7 @@ import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicIntroTheme;
@@ -74,7 +78,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private static final String TAG                       = Log.tag(PassphrasePromptActivity.class);
   private static final short  AUTHENTICATE_REQUEST_CODE = 1007;
   private static final String BUNDLE_ALREADY_SHOWN      = "bundle_already_shown";
-  public static final  String FROM_FOREGROUND           = "from_foreground";
+  public  static final String FROM_FOREGROUND           = "from_foreground";
+  private static final int    HELP_COUNT_THRESHOLD      = 3;
 
   private DynamicIntroTheme dynamicTheme    = new DynamicIntroTheme();
   private DynamicLanguage   dynamicLanguage = new DynamicLanguage();
@@ -188,6 +193,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     } else {
       Log.w(TAG, "Authentication failed");
       hadFailure = true;
+      incrementAttemptCountAndShowHelpIfNecessary();
     }
   }
 
@@ -207,6 +213,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       passphraseText.setText("");
       passphraseText.setError(
               getString(R.string.PassphrasePromptActivity_invalid_passphrase_exclamation));
+      incrementAttemptCountAndShowHelpIfNecessary();
     }
   }
 
@@ -216,6 +223,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       
       MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
       setMasterSecret(masterSecret);
+      SignalStore.misc().setLockScreenAttemptCount(0);
     } catch (InvalidPassphraseException e) {
       throw new AssertionError(e);
     }
@@ -272,6 +280,10 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.core_ultramarine), PorterDuff.Mode.SRC_IN);
 
     lockScreenButton.setOnClickListener(v -> resumeScreenLock(true));
+
+    if (SignalStore.misc().getLockScreenAttemptCount() > HELP_COUNT_THRESHOLD) {
+      showHelpDialogAndResetAttemptCount(null);
+    }
   }
 
   private void setLockTypeVisibility() {
@@ -288,6 +300,10 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   private void resumeScreenLock(boolean force) {
+    if (incrementAttemptCountAndShowHelpIfNecessary(() -> resumeScreenLock(force))) {
+      return;
+    }
+
     if (!biometricAuth.authenticate(getApplicationContext(), force, this::showConfirmDeviceCredentialIntent)) {
       handleAuthenticated();
     }
@@ -310,6 +326,33 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
     startActivityForResult(intent, AUTHENTICATE_REQUEST_CODE);
     return Unit.INSTANCE;
+  }
+
+  private boolean incrementAttemptCountAndShowHelpIfNecessary() {
+    return incrementAttemptCountAndShowHelpIfNecessary(null);
+  }
+
+  private boolean incrementAttemptCountAndShowHelpIfNecessary(Runnable onDismissed) {
+    SignalStore.misc().incrementLockScreenAttemptCount();
+
+    if (SignalStore.misc().getLockScreenAttemptCount() > HELP_COUNT_THRESHOLD) {
+      showHelpDialogAndResetAttemptCount(onDismissed);
+      return true;
+    }
+
+    return false;
+  }
+
+  private void showHelpDialogAndResetAttemptCount(@Nullable Runnable onDismissed) {
+    new MaterialAlertDialogBuilder(this)
+        .setMessage(R.string.PassphrasePromptActivity_help_prompt_body)
+        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+          SignalStore.misc().setLockScreenAttemptCount(0);
+          if (onDismissed != null) {
+            onDismissed.run();
+          }
+        })
+        .show();
   }
 
   private class PassphraseActionListener implements TextView.OnEditorActionListener {
@@ -365,6 +408,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     public void onAuthenticationError(int errorCode, @NonNull CharSequence errorString) {
       Log.w(TAG, "Authentication error: " + errorCode);
       hadFailure = true;
+
+      incrementAttemptCountAndShowHelpIfNecessary();
 
       if (errorCode != BiometricPrompt.ERROR_CANCELED && errorCode != BiometricPrompt.ERROR_USER_CANCELED) {
         onAuthenticationFailed();

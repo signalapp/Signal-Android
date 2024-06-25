@@ -7127,6 +7127,8 @@
     <string name="RemoteBackupsSettingsFragment__monthly">Monthly</string>
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Manually back up</string>
+    <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
+    <string name="PassphrasePromptActivity_help_prompt_body">Please enter your device pin, password or pattern.</string>
 
     <!-- EOF -->
 </resources>
