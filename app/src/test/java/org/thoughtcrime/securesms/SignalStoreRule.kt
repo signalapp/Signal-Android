@@ -4,7 +4,7 @@ import androidx.test.core.app.ApplicationProvider
 import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
@@ -27,12 +27,12 @@ class SignalStoreRule @JvmOverloads constructor(private val defaultValues: KeyVa
     return object : Statement() {
       @Throws(Throwable::class)
       override fun evaluate() {
-        if (!ApplicationDependencies.isInitialized()) {
-          ApplicationDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
+        if (!AppDependencies.isInitialized) {
+          AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
         }
 
         dataSet = KeyValueDataSet()
-        SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
+        SignalStore.testInject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
         defaultValues.invoke(dataSet)
 
         base.evaluate()

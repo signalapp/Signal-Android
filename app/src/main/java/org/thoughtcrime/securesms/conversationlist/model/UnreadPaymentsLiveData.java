@@ -8,7 +8,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
 
@@ -36,12 +36,12 @@ public final class UnreadPaymentsLiveData extends LiveData<Optional<UnreadPaymen
   @Override
   protected void onActive() {
     refreshUnreadPayments();
-    ApplicationDependencies.getDatabaseObserver().registerAllPaymentsObserver(observer);
+    AppDependencies.getDatabaseObserver().registerAllPaymentsObserver(observer);
   }
 
   @Override
   protected void onInactive() {
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
+    AppDependencies.getDatabaseObserver().unregisterObserver(observer);
   }
 
   private void refreshUnreadPayments() {

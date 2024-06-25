@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
@@ -26,7 +26,7 @@ public abstract class RecipientMappingModel<T extends RecipientMappingModel<T>> 
 
   @Override
   public boolean areContentsTheSame(@NonNull T newItem) {
-    Context context = ApplicationDependencies.getApplication();
+    Context context = AppDependencies.getApplication();
     return getName(context).equals(newItem.getName(context)) && Objects.equals(getRecipient().getContactPhoto(), newItem.getRecipient().getContactPhoto());
   }
 

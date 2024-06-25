@@ -20,11 +20,11 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.util.logging.Scrubber;
 import org.signal.core.util.tracing.Tracer;
 import org.thoughtcrime.securesms.database.LogDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.core.util.Stopwatch;
 
 import java.io.IOException;
@@ -77,7 +77,7 @@ public class SubmitDebugLogRepository {
     add(new LogSectionCapabilities());
     add(new LogSectionMemory());
     add(new LogSectionLocalMetrics());
-    add(new LogSectionFeatureFlags());
+    add(new LogSectionRemoteConfig());
     add(new LogSectionPin());
     if (Build.VERSION.SDK_INT >= 28) {
       add(new LogSectionPower());
@@ -92,7 +92,7 @@ public class SubmitDebugLogRepository {
     add(new LogSectionTrace());
     add(new LogSectionThreads());
     add(new LogSectionThreadDump());
-    if (FeatureFlags.internalUser()) {
+    if (RemoteConfig.internalUser()) {
       add(new LogSectionSenderKey());
     }
     add(new LogSectionDatabaseSchema());
@@ -106,7 +106,7 @@ public class SubmitDebugLogRepository {
   private final ExecutorService executor;
 
   public SubmitDebugLogRepository() {
-    this.context  = ApplicationDependencies.getApplication();
+    this.context  = AppDependencies.getApplication();
     this.executor = SignalExecutors.SERIAL;
   }
 

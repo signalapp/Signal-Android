@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.scribbles.HSVColorSlider
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.getColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setUpForColor
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
@@ -105,7 +105,7 @@ class TextStoryPostTextEntryFragment : KeyboardEntryDialogFragment(
       backgroundButton
     )
 
-    if (FeatureFlags.storiesTextFunctions()) {
+    if (RemoteConfig.storiesTextFunctions) {
       fadeableViews = fadeableViews + alignmentButton
       alignmentButton.visibility = View.VISIBLE
       scaleBar.visibility = View.VISIBLE

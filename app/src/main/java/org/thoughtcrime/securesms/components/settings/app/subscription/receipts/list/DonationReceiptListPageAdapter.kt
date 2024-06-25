@@ -10,9 +10,9 @@ class DonationReceiptListPageAdapter(fragment: Fragment) : FragmentStateAdapter(
   override fun createFragment(position: Int): Fragment {
     return when (position) {
       0 -> DonationReceiptListPageFragment.create(null)
-      1 -> DonationReceiptListPageFragment.create(DonationReceiptRecord.Type.RECURRING)
-      2 -> DonationReceiptListPageFragment.create(DonationReceiptRecord.Type.BOOST)
-      3 -> DonationReceiptListPageFragment.create(DonationReceiptRecord.Type.GIFT)
+      1 -> DonationReceiptListPageFragment.create(DonationReceiptRecord.Type.RECURRING_DONATION)
+      2 -> DonationReceiptListPageFragment.create(DonationReceiptRecord.Type.ONE_TIME_DONATION)
+      3 -> DonationReceiptListPageFragment.create(DonationReceiptRecord.Type.ONE_TIME_GIFT)
       else -> error("Unsupported position $position")
     }
   }

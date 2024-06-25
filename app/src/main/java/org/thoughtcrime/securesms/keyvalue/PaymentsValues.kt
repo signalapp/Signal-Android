@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.payments.proto.MobileCoinLedger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.payments.Money
 import java.io.IOException
@@ -28,7 +28,7 @@ import java.util.Arrays
 import java.util.Currency
 import java.util.Locale
 
-internal class PaymentsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class PaymentsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
   companion object {
     private val TAG = Log.tag(PaymentsValues::class.java)
@@ -115,17 +115,17 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
    */
   val paymentsAvailability: PaymentsAvailability
     get() {
-      if (!SignalStore.account().isRegistered) {
+      if (!SignalStore.account.isRegistered) {
         return PaymentsAvailability.NOT_IN_REGION
       }
-      return if (FeatureFlags.payments()) {
+      return if (RemoteConfig.payments) {
         if (mobileCoinPaymentsEnabled()) {
-          if (GeographicalRestrictions.e164Allowed(SignalStore.account().e164)) {
+          if (GeographicalRestrictions.e164Allowed(SignalStore.account.e164)) {
             PaymentsAvailability.WITHDRAW_AND_SEND
           } else {
             return PaymentsAvailability.WITHDRAW_ONLY
           }
-        } else if (GeographicalRestrictions.e164Allowed(SignalStore.account().e164)) {
+        } else if (GeographicalRestrictions.e164Allowed(SignalStore.account.e164)) {
           PaymentsAvailability.REGISTRATION_AVAILABLE
         } else {
           PaymentsAvailability.NOT_IN_REGION
@@ -245,8 +245,8 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
 
   fun showUpdatePinInfoCard(): Boolean {
     return if (userHasLargeBalance() &&
-      SignalStore.svr().hasPin() &&
-      !SignalStore.svr().hasOptedOut() && SignalStore.pinValues().keyboardType == PinKeyboardType.NUMERIC
+      SignalStore.svr.hasPin() &&
+      !SignalStore.svr.hasOptedOut() && SignalStore.pin.keyboardType == PinKeyboardType.NUMERIC
     ) {
       store.getBoolean(SHOW_CASHING_OUT_INFO_CARD, true)
     } else {
@@ -303,7 +303,7 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
   }
 
   private fun determineCurrency(): Currency {
-    val localE164: String = SignalStore.account().e164 ?: ""
+    val localE164: String = SignalStore.account.e164 ?: ""
 
     return Util.firstNonNull(
       CurrencyUtil.getCurrencyByE164(localE164),
@@ -358,7 +358,9 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
   }
 
   enum class WalletRestoreResult {
-    ENTROPY_CHANGED, ENTROPY_UNCHANGED, MNEMONIC_ERROR
+    ENTROPY_CHANGED,
+    ENTROPY_UNCHANGED,
+    MNEMONIC_ERROR
   }
 
   private fun userHasLargeBalance(): Boolean {

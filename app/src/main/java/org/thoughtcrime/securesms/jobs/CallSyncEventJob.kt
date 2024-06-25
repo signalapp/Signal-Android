@@ -4,7 +4,7 @@ import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallId
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -40,7 +40,7 @@ class CallSyncEventJob private constructor(
             recipientId = conversationRecipientId.toLong(),
             callId = callId,
             direction = CallTable.Direction.serialize(if (isIncoming) CallTable.Direction.INCOMING else CallTable.Direction.OUTGOING),
-            event = CallTable.Event.serialize(CallTable.Event.ACCEPTED)
+            callEvent = CallSyncEventJobRecord.Event.ACCEPTED
           )
         )
       )
@@ -55,7 +55,22 @@ class CallSyncEventJob private constructor(
             recipientId = conversationRecipientId.toLong(),
             callId = callId,
             direction = CallTable.Direction.serialize(if (isIncoming) CallTable.Direction.INCOMING else CallTable.Direction.OUTGOING),
-            event = CallTable.Event.serialize(CallTable.Event.NOT_ACCEPTED)
+            callEvent = CallSyncEventJobRecord.Event.NOT_ACCEPTED
+          )
+        )
+      )
+    }
+
+    @JvmStatic
+    fun createForObserved(conversationRecipientId: RecipientId, callId: Long): CallSyncEventJob {
+      return CallSyncEventJob(
+        getParameters(),
+        listOf(
+          CallSyncEventJobRecord(
+            recipientId = conversationRecipientId.toLong(),
+            callId = callId,
+            direction = CallTable.Direction.serialize(CallTable.Direction.INCOMING),
+            callEvent = CallSyncEventJobRecord.Event.OBSERVED
           )
         )
       )
@@ -69,7 +84,7 @@ class CallSyncEventJob private constructor(
             recipientId = it.peer.toLong(),
             callId = it.callId,
             direction = CallTable.Direction.serialize(it.direction),
-            event = CallTable.Event.serialize(CallTable.Event.DELETE)
+            callEvent = CallSyncEventJobRecord.Event.DELETE
           )
         }
       )
@@ -77,7 +92,7 @@ class CallSyncEventJob private constructor(
 
     fun enqueueDeleteSyncEvents(deletedCalls: Set<CallTable.Call>) {
       deletedCalls.chunked(50).forEach {
-        ApplicationDependencies.getJobManager().add(
+        AppDependencies.jobManager.add(
           createForDelete(it)
         )
       }
@@ -127,7 +142,7 @@ class CallSyncEventJob private constructor(
     val syncMessage = createSyncMessage(syncTimestamp, callSyncEvent, call.type)
 
     return try {
-      ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forCallEvent(syncMessage), Optional.empty())
+      AppDependencies.signalServiceMessageSender.sendSyncMessage(SignalServiceSyncMessage.forCallEvent(syncMessage), Optional.empty())
       null
     } catch (e: Exception) {
       Log.w(TAG, "Unable to send call event sync message for ${callSyncEvent.callId}", e)
@@ -136,29 +151,36 @@ class CallSyncEventJob private constructor(
   }
 
   private fun createSyncMessage(syncTimestamp: Long, callSyncEvent: CallSyncEventJobRecord, callType: CallTable.Type): SyncMessage.CallEvent {
-    return when (callSyncEvent.deserializeEvent()) {
-      CallTable.Event.ACCEPTED -> CallEventSyncMessageUtil.createAcceptedSyncMessage(
+    return when (callSyncEvent.resolveEvent()) {
+      CallSyncEventJobRecord.Event.ACCEPTED -> CallEventSyncMessageUtil.createAcceptedSyncMessage(
         remotePeer = RemotePeer(callSyncEvent.deserializeRecipientId(), CallId(callSyncEvent.callId)),
         timestamp = syncTimestamp,
         isOutgoing = callSyncEvent.deserializeDirection() == CallTable.Direction.OUTGOING,
         isVideoCall = callType != CallTable.Type.AUDIO_CALL
       )
 
-      CallTable.Event.NOT_ACCEPTED -> CallEventSyncMessageUtil.createNotAcceptedSyncMessage(
+      CallSyncEventJobRecord.Event.NOT_ACCEPTED -> CallEventSyncMessageUtil.createNotAcceptedSyncMessage(
         remotePeer = RemotePeer(callSyncEvent.deserializeRecipientId(), CallId(callSyncEvent.callId)),
         timestamp = syncTimestamp,
         isOutgoing = callSyncEvent.deserializeDirection() == CallTable.Direction.OUTGOING,
         isVideoCall = callType != CallTable.Type.AUDIO_CALL
       )
 
-      CallTable.Event.DELETE -> CallEventSyncMessageUtil.createDeleteCallEvent(
+      CallSyncEventJobRecord.Event.DELETE -> CallEventSyncMessageUtil.createDeleteCallEvent(
         remotePeer = RemotePeer(callSyncEvent.deserializeRecipientId(), CallId(callSyncEvent.callId)),
         timestamp = syncTimestamp,
         isOutgoing = callSyncEvent.deserializeDirection() == CallTable.Direction.OUTGOING,
         isVideoCall = callType != CallTable.Type.AUDIO_CALL
       )
 
-      else -> throw Exception("Unsupported event: ${callSyncEvent.event}")
+      CallSyncEventJobRecord.Event.OBSERVED -> CallEventSyncMessageUtil.createObservedCallEvent(
+        remotePeer = RemotePeer(callSyncEvent.deserializeRecipientId(), CallId(callSyncEvent.callId)),
+        timestamp = syncTimestamp,
+        isOutgoing = false,
+        isVideoCall = callType != CallTable.Type.AUDIO_CALL
+      )
+
+      else -> throw Exception("Unsupported event: ${callSyncEvent.deprecatedEvent}")
     }
   }
 
@@ -166,7 +188,18 @@ class CallSyncEventJob private constructor(
 
   private fun CallSyncEventJobRecord.deserializeDirection(): CallTable.Direction = CallTable.Direction.deserialize(direction)
 
-  private fun CallSyncEventJobRecord.deserializeEvent(): CallTable.Event = CallTable.Event.deserialize(event)
+  private fun CallSyncEventJobRecord.resolveEvent(): CallSyncEventJobRecord.Event {
+    return if (callEvent != CallSyncEventJobRecord.Event.UNKNOWN_ACTION) {
+      callEvent
+    } else {
+      when (CallTable.Event.deserialize(deprecatedEvent)) {
+        CallTable.Event.ACCEPTED -> CallSyncEventJobRecord.Event.ACCEPTED
+        CallTable.Event.NOT_ACCEPTED -> CallSyncEventJobRecord.Event.NOT_ACCEPTED
+        CallTable.Event.DELETE -> CallSyncEventJobRecord.Event.DELETE
+        else -> CallSyncEventJobRecord.Event.UNKNOWN_ACTION
+      }
+    }
+  }
 
   class Factory : Job.Factory<CallSyncEventJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): CallSyncEventJob {

@@ -8,7 +8,7 @@ import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -92,7 +92,7 @@ public final class SendRetryReceiptJob extends BaseJob {
     Optional<byte[]>                 group     = groupId.map(GroupId::getDecodedId);
 
     Log.i(TAG, "Sending retry receipt for " + errorMessage.getTimestamp() + " to " + recipientId + ", device: " + errorMessage.getDeviceId());
-    ApplicationDependencies.getSignalServiceMessageSender().sendRetryReceipt(address, access, group, errorMessage);
+    AppDependencies.getSignalServiceMessageSender().sendRetryReceipt(address, access, group, errorMessage);
   }
 
   @Override
@@ -102,7 +102,7 @@ public final class SendRetryReceiptJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    ApplicationDependencies.getJobManager().add(new AutomaticSessionResetJob(recipientId, errorMessage.getDeviceId(), System.currentTimeMillis()));
+    AppDependencies.getJobManager().add(new AutomaticSessionResetJob(recipientId, errorMessage.getDeviceId(), System.currentTimeMillis()));
   }
 
   public static final class Factory implements Job.Factory<SendRetryReceiptJob> {

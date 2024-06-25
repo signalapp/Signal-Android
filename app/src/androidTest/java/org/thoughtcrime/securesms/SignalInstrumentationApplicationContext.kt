@@ -5,7 +5,7 @@ import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider
 import org.thoughtcrime.securesms.database.LogDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider
 import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
@@ -21,8 +21,8 @@ class SignalInstrumentationApplicationContext : ApplicationContext() {
 
   override fun initializeAppDependencies() {
     val default = ApplicationDependencyProvider(this)
-    ApplicationDependencies.init(this, InstrumentationApplicationDependencyProvider(this, default))
-    ApplicationDependencies.getDeadlockDetector().start()
+    AppDependencies.init(this, InstrumentationApplicationDependencyProvider(this, default))
+    AppDependencies.deadlockDetector.start()
   }
 
   override fun initializeLogging() {

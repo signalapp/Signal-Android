@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 
@@ -38,7 +38,7 @@ public final class ProfileMigrationJob extends MigrationJob {
   @Override
   public void performMigration() {
     Log.i(TAG, "Scheduling profile upload job");
-    ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
+    AppDependencies.getJobManager().add(new ProfileUploadJob());
   }
 
   @Override

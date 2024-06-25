@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -32,9 +32,8 @@ public class EditProxyViewModel extends ViewModel {
     this.uiState   = BehaviorSubject.create();
     this.saveState = BehaviorSubject.createDefault(SaveState.IDLE);
     this.pipeState = SignalStore.account().getE164() == null ? Flowable.empty()
-                                                             : ApplicationDependencies.getSignalWebSocket()
-                                                                                      .getWebSocketState()
-                                                                                      .toFlowable(BackpressureStrategy.LATEST);
+                                                             : AppDependencies.getWebSocketObserver()
+                                                                              .toFlowable(BackpressureStrategy.LATEST);
 
     if (SignalStore.proxy().isProxyEnabled()) {
       uiState.onNext(UiState.ALL_ENABLED);

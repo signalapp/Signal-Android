@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet
 import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit
 
 class ConversationListViewModel(
   private val isArchived: Boolean,
-  private val megaphoneRepository: MegaphoneRepository = ApplicationDependencies.getMegaphoneRepository(),
+  private val megaphoneRepository: MegaphoneRepository = AppDependencies.megaphoneRepository,
   private val notificationProfilesRepository: NotificationProfilesRepository = NotificationProfilesRepository()
 ) : ViewModel() {
 
@@ -64,7 +64,7 @@ class ConversationListViewModel(
   val pinnedCount: Int
     get() = store.state.pinnedCount
   val webSocketState: Observable<WebSocketConnectionState>
-    get() = ApplicationDependencies.getSignalWebSocket().webSocketState.observeOn(AndroidSchedulers.mainThread())
+    get() = AppDependencies.webSocketObserver.observeOn(AndroidSchedulers.mainThread())
 
   @get:JvmName("currentSelectedConversations")
   val currentSelectedConversations: Set<Conversation>
@@ -80,7 +80,7 @@ class ConversationListViewModel(
         ConversationListDataSource.create(
           it.filter,
           isArchived,
-          SignalStore.uiHints().canDisplayPullToFilterTip() && it.source === ConversationFilterSource.OVERFLOW
+          SignalStore.uiHints.canDisplayPullToFilterTip() && it.source === ConversationFilterSource.OVERFLOW
         )
       }
       .replay(1)
@@ -134,7 +134,7 @@ class ConversationListViewModel(
     }
 
     if (!coldStart) {
-      ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
+      AppDependencies.databaseObserver.notifyConversationListListeners()
     }
     coldStart = false
   }

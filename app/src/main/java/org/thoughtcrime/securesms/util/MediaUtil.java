@@ -408,6 +408,11 @@ public class MediaUtil {
   }
 
   @WorkerThread
+  public static @Nullable Bitmap getVideoThumbnail(@NonNull Context context, @Nullable Uri uri) {
+    return getVideoThumbnail(context, uri, 1000);
+  }
+
+  @WorkerThread
   public static @Nullable Bitmap getVideoThumbnail(@NonNull Context context, @Nullable Uri uri, long timeUs) {
     if (uri == null) {
       return null;
@@ -468,9 +473,6 @@ public class MediaUtil {
   }
 
   public static boolean isInstantVideoSupported(Slide slide) {
-    if (!FeatureFlags.instantVideoPlayback()) {
-      return false;
-    }
     final Attachment attachment                        = slide.asAttachment();
     final boolean    isIncremental                     = attachment.getIncrementalDigest() != null;
     final boolean    hasIncrementalMacChunkSizeDefined = attachment.incrementalMacChunkSize > 0;

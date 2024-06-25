@@ -5,6 +5,7 @@ import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.stickers.StickerLocator
+import java.util.UUID
 
 object UriAttachmentBuilder {
   fun build(
@@ -22,23 +23,28 @@ object UriAttachmentBuilder {
     stickerLocator: StickerLocator? = null,
     blurHash: BlurHash? = null,
     audioHash: AudioHash? = null,
-    transformProperties: AttachmentTable.TransformProperties? = null
+    transformProperties: AttachmentTable.TransformProperties? = null,
+    uuid: UUID? = UUID.randomUUID()
   ): UriAttachment {
     return UriAttachment(
-      uri,
-      contentType,
-      transferState,
-      size,
-      fileName,
-      voiceNote,
-      borderless,
-      videoGif,
-      quote,
-      caption,
-      stickerLocator,
-      blurHash,
-      audioHash,
-      transformProperties
+      dataUri = uri,
+      contentType = contentType,
+      transferState = transferState,
+      size = size,
+      width = 0,
+      height = 0,
+      fileName = fileName,
+      fastPreflightId = null,
+      voiceNote = voiceNote,
+      borderless = borderless,
+      videoGif = videoGif,
+      quote = quote,
+      caption = caption,
+      stickerLocator = stickerLocator,
+      blurHash = blurHash,
+      audioHash = audioHash,
+      transformProperties = transformProperties,
+      uuid = uuid
     )
   }
 }

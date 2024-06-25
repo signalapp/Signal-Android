@@ -49,25 +49,16 @@ class RemappedRecords {
     return Optional.ofNullable(threadMap.get(oldId));
   }
 
+  void deleteThread(long oldId) {
+    ensureInTransaction();
+    ensureThreadMapIsPopulated();
+    threadMap.remove(oldId);
+    SignalDatabase.remappedRecords().deleteThreadMapping(oldId);
+  }
+
   boolean areAnyRemapped(@NonNull Collection<RecipientId> recipientIds) {
     ensureRecipientMapIsPopulated();
     return recipientIds.stream().anyMatch(id -> recipientMap.containsKey(id));
-  }
-
-  @NonNull Set<RecipientId> remap(@NonNull Collection<RecipientId> recipientIds) {
-    ensureRecipientMapIsPopulated();
-
-    Set<RecipientId> remapped = new LinkedHashSet<>();
-
-    for (RecipientId original : recipientIds) {
-      if (recipientMap.containsKey(original)) {
-        remapped.add(recipientMap.get(original));
-      } else {
-        remapped.add(original);
-      }
-    }
-
-    return remapped;
   }
 
   @NonNull String buildRemapDescription(@NonNull Collection<RecipientId> recipientIds) {

@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -48,7 +48,7 @@ class ReclaimUsernameAndLinkJob private constructor(parameters: Parameters) : Jo
     return when (UsernameRepository.reclaimUsernameIfNecessary()) {
       UsernameRepository.UsernameReclaimResult.SUCCESS -> Result.success()
       UsernameRepository.UsernameReclaimResult.PERMANENT_ERROR -> Result.success()
-      UsernameRepository.UsernameReclaimResult.NETWORK_ERROR -> Result.retry(BackoffUtil.exponentialBackoff(runAttempt + 1, FeatureFlags.getDefaultMaxBackoff()))
+      UsernameRepository.UsernameReclaimResult.NETWORK_ERROR -> Result.retry(BackoffUtil.exponentialBackoff(runAttempt + 1, RemoteConfig.defaultMaxBackoff))
     }
   }
 

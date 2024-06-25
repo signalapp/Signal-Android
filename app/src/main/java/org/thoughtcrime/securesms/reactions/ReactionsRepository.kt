@@ -8,14 +8,14 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.ReactionRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 
 class ReactionsRepository {
 
   fun getReactions(messageId: MessageId): Observable<List<ReactionDetails>> {
     return Observable.create { emitter: ObservableEmitter<List<ReactionDetails>> ->
-      val databaseObserver: DatabaseObserver = ApplicationDependencies.getDatabaseObserver()
+      val databaseObserver: DatabaseObserver = AppDependencies.databaseObserver
 
       val messageObserver = DatabaseObserver.MessageObserver { reactionMessageId ->
         if (reactionMessageId == messageId) {

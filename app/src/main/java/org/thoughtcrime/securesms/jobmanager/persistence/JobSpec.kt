@@ -47,11 +47,15 @@ data class JobSpec(
     if (serializedData != null) {
       if (other.serializedData == null) return false
       if (!serializedData.contentEquals(other.serializedData)) return false
-    } else if (other.serializedData != null) return false
+    } else if (other.serializedData != null) {
+      return false
+    }
     if (serializedInputData != null) {
       if (other.serializedInputData == null) return false
       if (!serializedInputData.contentEquals(other.serializedInputData)) return false
-    } else if (other.serializedInputData != null) return false
+    } else if (other.serializedInputData != null) {
+      return false
+    }
     if (isRunning != other.isRunning) return false
     if (isMemoryOnly != other.isMemoryOnly) return false
 

@@ -39,13 +39,13 @@ class StoryReactionBar @JvmOverloads constructor(
 
   init {
     if (!isInEditMode) {
-      val emojis = SignalStore.emojiValues().reactions
+      val emojis = SignalStore.emoji.reactions
       emojiViews.forEachIndexed { index, emojiImageView ->
         if (index == emojiViews.lastIndex) {
           emojiImageView.setImageResource(R.drawable.ic_any_emoji_32)
           emojiImageView.setOnClickListener { onOpenReactionPicker() }
         } else {
-          val emoji = SignalStore.emojiValues().getPreferredVariation(emojis[index])
+          val emoji = SignalStore.emoji.getPreferredVariation(emojis[index])
           emojiImageView.setImageEmoji(emoji)
           emojiImageView.setOnClickListener { onEmojiSelected(emoji) }
         }

@@ -28,7 +28,7 @@ class StoriesPrivacySettingsViewModel(
   private val store = RxStore(
     StoriesPrivacySettingsState(
       areStoriesEnabled = Stories.isFeatureEnabled(),
-      areViewReceiptsEnabled = SignalStore.storyValues().viewedReceiptsEnabled
+      areViewReceiptsEnabled = SignalStore.story.viewedReceiptsEnabled
     )
   )
 
@@ -84,8 +84,8 @@ class StoriesPrivacySettingsViewModel(
   }
 
   fun toggleViewReceipts() {
-    SignalStore.storyValues().viewedReceiptsEnabled = !SignalStore.storyValues().viewedReceiptsEnabled
-    store.update { it.copy(areViewReceiptsEnabled = SignalStore.storyValues().viewedReceiptsEnabled) }
+    SignalStore.story.viewedReceiptsEnabled = !SignalStore.story.viewedReceiptsEnabled
+    store.update { it.copy(areViewReceiptsEnabled = SignalStore.story.viewedReceiptsEnabled) }
     repository.onSettingsChanged()
   }
 

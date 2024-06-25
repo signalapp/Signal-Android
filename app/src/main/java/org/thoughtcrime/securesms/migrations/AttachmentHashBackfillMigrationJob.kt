@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.migrations
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.AttachmentHashBackfillJob
 import java.lang.Exception
@@ -26,7 +26,7 @@ internal class AttachmentHashBackfillMigrationJob(parameters: Parameters = Param
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    ApplicationDependencies.getJobManager().add(AttachmentHashBackfillJob())
+    AppDependencies.jobManager.add(AttachmentHashBackfillJob())
   }
 
   override fun shouldRetry(e: Exception): Boolean = false

@@ -20,6 +20,16 @@ class CallReactionScrubber @JvmOverloads constructor(
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
+  companion object {
+    const val CUSTOM_REACTION_BOTTOM_SHEET_TAG = "CallReaction"
+
+    @JvmStatic
+    fun dismissCustomEmojiBottomSheet(fm: FragmentManager) {
+      val bottomSheet = fm.findFragmentByTag(CUSTOM_REACTION_BOTTOM_SHEET_TAG) as? ReactWithAnyEmojiBottomSheetDialogFragment
+
+      bottomSheet?.dismissNow()
+    }
+  }
 
   private val emojiViews: Array<EmojiImageView>
   private var customEmojiIndex = 0
@@ -40,7 +50,7 @@ class CallReactionScrubber @JvmOverloads constructor(
   }
 
   fun initialize(fragmentManager: FragmentManager, listener: (String) -> Unit) {
-    val emojis = SignalStore.emojiValues().reactions
+    val emojis = SignalStore.emoji.reactions
     for (i in emojiViews.indices) {
       val view = emojiViews[i]
       val isAtCustomIndex = i == customEmojiIndex
@@ -48,10 +58,10 @@ class CallReactionScrubber @JvmOverloads constructor(
         view.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_any_emoji_32))
         view.setOnClickListener {
           val bottomSheet = ReactWithAnyEmojiBottomSheetDialogFragment.createForCallingReactions()
-          bottomSheet.show(fragmentManager, "CallReaction")
+          bottomSheet.show(fragmentManager, CUSTOM_REACTION_BOTTOM_SHEET_TAG)
         }
       } else {
-        val preferredVariation = SignalStore.emojiValues().getPreferredVariation(emojis[i])
+        val preferredVariation = SignalStore.emoji.getPreferredVariation(emojis[i])
         view.setImageEmoji(preferredVariation)
         view.setOnClickListener { listener(preferredVariation) }
       }

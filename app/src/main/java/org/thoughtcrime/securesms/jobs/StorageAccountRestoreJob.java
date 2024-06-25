@@ -4,15 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.usernames.BaseUsernameException;
-import org.signal.libsignal.usernames.Username;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -68,7 +65,7 @@ public class StorageAccountRestoreJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
+    SignalServiceAccountManager accountManager    = AppDependencies.getSignalServiceAccountManager();
     StorageKey                  storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
 
     Log.i(TAG, "Retrieving manifest...");
@@ -76,7 +73,7 @@ public class StorageAccountRestoreJob extends BaseJob {
 
     if (!manifest.isPresent()) {
       Log.w(TAG, "Manifest did not exist or was undecryptable (bad key). Not restoring. Force-pushing.");
-      ApplicationDependencies.getJobManager().add(new StorageForcePushJob());
+      AppDependencies.getJobManager().add(new StorageForcePushJob());
       return;
     }
 
@@ -125,7 +122,7 @@ public class StorageAccountRestoreJob extends BaseJob {
       Log.i(TAG, "No username to reclaim.");
     }
 
-    JobManager jobManager = ApplicationDependencies.getJobManager();
+    JobManager jobManager = AppDependencies.getJobManager();
 
     if (accountRecord.getAvatarUrlPath().isPresent()) {
       Log.i(TAG,  "Fetching avatar...");

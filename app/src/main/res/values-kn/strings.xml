@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2024 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
@@ -23,7 +27,7 @@
     <string name="delete">ಅಳಿಸಿ</string>
     <string name="please_wait">ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ…</string>
     <string name="save">ಉಳಿಸಿ</string>
-    <string name="note_to_self">ಸ್ವಯಂ ಟಿಪ್ಪಣಿ</string>
+    <string name="note_to_self">ಸ್ವಯಂ ಬಳಕೆಗೆ ಟಿಪ್ಪಣಿ</string>
 
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
     <string name="app_icon_label_weather">ಹವಾಮಾನ</string>
@@ -42,16 +46,16 @@
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ನೀವು ಇನ್ನೂ ಪಾಸ್‌ಫ್ರೇಸ್ ಹೊಂದಿಸಿಲ್ಲ!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">ಪಾಸ್‌ಫ್ರೇಸ್‌ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">ಪಾಸ್‌ಫ್ರೇಸ್‌ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದೇ?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ಇದು Signal ಮತ್ತು ಸಂದೇಶ ಅಧಿಸೂಚನೆಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅನ್ಲಾಕ್ ಮಾಡುತ್ತದೆ.</string>
     <string name="ApplicationPreferencesActivity_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">ಸರ್ವರ್‌ ಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ನೋಂದಣಿ ಲಾಕ್ ಆಗಿಸಲು PINಗಳು ಬೇಕು. PINಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು, ದಯವಿಟ್ಟು ಮೊದಲು ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">ಪಿನ್ ರಚಿಸಲಾಗಿದೆ.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">ಪಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ಪೇಮೆಂಟ್ಸ್ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
+    <string name="ApplicationPreferencesActivity_pin_created">PIN ರಚಿಸಲಾಗಿದೆ.</string>
+    <string name="ApplicationPreferencesActivity_pin_disabled">PIN ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ಪಾವತಿಗಳನ್ನು ಮರೆಪಡೆಯುವ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
     <string name="ApplicationPreferencesActivity_record_phrase">ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ನಿಮ್ಮ PIN ಅನ್ನು ನೀವು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ‌ ಮೊದಲು, ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ಖಾತೆಯ ರಿಕವರಿ ಮಾಡುವುದನ್ನು ನೀವು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಬೇಕು.</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ನಿಮ್ಮ PIN ಅನ್ನು ನೀವು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ‌ ಮೊದಲು, ನಿಮ್ಮ ಪಾವತಿಗಳನ್ನು ಮರೆಪಡೆಯುವ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ಖಾತೆಯ ರಿಕವರಿ ಮಾಡುವುದನ್ನು ನೀವು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಬೇಕು.</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -80,8 +84,9 @@
     <string name="AttachmentKeyboard_file">ಫೈಲ್</string>
     <string name="AttachmentKeyboard_contact">ಸಂಪರ್ಕ</string>
     <string name="AttachmentKeyboard_location">ಸ್ಥಳ</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">ನಿಮ್ಮ ಫೋಟೋ ಮತ್ತು ವೀಡಿಯೊಗಳನ್ನು ತೋರಿಸಲು Signal ಗೆ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ.</string>
-    <string name="AttachmentKeyboard_give_access">ಪ್ರವೇಶ ಒದಗಿಸಿ</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">ನಿಮ್ಮ ಫೊಟೋ ಮತ್ತು ವೀಡಿಯೊಗಳನ್ನು ತೋರಿಸಲು Signal ಗೆ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">ಪ್ರವೇಶ ಅನುಮತಿಸಿ</string>
     <string name="AttachmentKeyboard_payment">ಪೇಮೆಂಟ್</string>
 
     <!-- AttachmentManager -->
@@ -89,6 +94,22 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ಫೋಟೊಗಳು, ವೀಡಿಯೋಗಳು ಅಥವಾ ಆಡಿಯೋಗಳನ್ನು ಲಗತ್ತಿಸಲು Signal ಗೆ ಸ್ಟೋರೇಜ್ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್ಸ್ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಸ್ಟೋರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಲಗತ್ತಿಸಲು Signal ಸಂಪರ್ಕಗಳ ಅನುಮತಿ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಅಪ್ಲಿಕೇಶನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸಂಪರ್ಕಗಳು\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ಸ್ಥಳ ಮಾಹಿತಿಯನ್ನು ಲಗತ್ತಿಸಲು Signal ಗೆ ಸ್ಥಳ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸ್ಥಳ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+
+    <!-- Dialog title asking users for location permission -->
+    <string name="AttachmentManager_signal_allow_access_location">ನಿಮ್ಮ ಲೊಕೇಶನ್‍ಗೆ ಆಕ್ಸೆಸ್ ಅನುಮತಿಸಿ</string>
+    <!-- Dialog description that will explain the steps needed to give location permission -->
+    <string name="AttachmentManager_signal_to_send_location">ನಿಮ್ಮ ಲೊಕೇಶನ್‍ ಕಳುಹಿಸಲು:</string>
+    <!-- Alert dialog description asking for location permission -->
+    <string name="AttachmentManager_signal_allow_signal_access_location">ನಿಮ್ಮ ಲೊಕೇಶನ್ ಕಳುಹಿಸಲು Signal ಗೆ ಆಕ್ಸೆಸ್‍ ಅನ್ನು ಅನುಮತಿಸಿ.</string>
+    <!-- Toast text explaining Signal\'s need for location access -->
+    <string name="AttachmentManager_signal_needs_location_access">ನಿಮ್ಮ ಲೊಕೇಶನ್ ಕಳುಹಿಸಲು Signal ಗೆ ಲೊಕೇಶನ್ ಆಕ್ಸೆಸ್ ಅಗತ್ಯವಿದೆ.</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">ಸ್ಟೊರೇಜ್‌ಗೆ ಪ್ರವೇಶವನ್ನು ಅನುಮತಿಸಿ</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">ಫೊಟೋ ಮತ್ತು ವೀಡಿಯೊಗಳನ್ನು ತೋರಿಸಲು:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">ನಿಮ್ಮ ಫೊಟೋ ಮತ್ತು ವೀಡಿಯೊಗಳನ್ನು ತೋರಿಸಲು Signal ಗೆ ಸ್ಟೊರೇಜ್‌ ನ ಆಕ್ಸೆಸ್‍ ಅಗತ್ಯವಿದೆ.</string>
+
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s ಅವರು ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿಲ್ಲ </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -126,7 +147,7 @@
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">ಕಾರ್ಡ್ ಸಂಖ್ಯೆ</string>
     <!-- Displayed as a hint in the card expiry text field -->
-    <string name="CreditCardFragment__mm_yy">MM/YY</string>
+    <string name="CreditCardFragment__mm_yy">ತಿತಿ/ವವ</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">CVV</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
@@ -173,7 +194,7 @@
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">ನಿರ್ಬಂಧವು Signal ಅಪ್‌ಡೇಟ್‌ಗಳು ಮತ್ತು ಸುದ್ದಿಯನ್ನು ಪಡೆಯುತ್ತದೆ.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">ಪುನರಾರಂಭವು Signal ಅಪ್‌ಡೇಟ್‌ಗಳು ಮತ್ತು ಸುದ್ದಿಯನ್ನು ಪಡೆಯುತ್ತದೆ.</string>
+    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal ಅಪ್‌ಡೇಟ್‌ಗಳು ಮತ್ತು ಸುದ್ದಿ ಪಡೆಯುವುದನ್ನು ಮತ್ತೆ ಆರಂಭಿಸಿ.</string>
     <string name="BlockUnblockDialog_unblock_s">%1$sನಿರ್ಬಂಧ ತೆಗೆಯಬೇಕೇ?</string>
     <string name="BlockUnblockDialog_block">ನಿರ್ಬಂಧಿಸಿ</string>
     <string name="BlockUnblockDialog_block_and_leave">ನಿರ್ಬಂಧಿಸಿ ಹಾಗು ತೊರೆಯಿರಿ</string>
@@ -208,6 +229,38 @@
     <string name="CameraXFragment_capture_description">ಸೆರೆಹಿಡಿಯಿರಿ</string>
     <string name="CameraXFragment_change_camera_description">ಕ್ಯಾಮರಾ ಬದಲಾಯಿಸಿ</string>
     <string name="CameraXFragment_open_gallery_description">ಗ್ಯಾಲರಿ ತೆರೆಯಿರಿ</string>
+    <!-- Button text asking for access to camera permissions -->
+    <string name="CameraXFragment_allow_access">ಪ್ರವೇಶ ಅನುಮತಿಸಿ</string>
+    <!-- Dialog title asking users for camera and microphone permission -->
+    <string name="CameraXFragment_allow_access_camera_microphone">ನಿಮ್ಮ ಕ್ಯಾಮರಾ ಮತ್ತು ಮೈಕ್ರೋಫೋನ್‌ಗೆ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ</string>
+    <!-- Dialog title asking users for camera permission -->
+    <string name="CameraXFragment_allow_access_camera">ನಿಮ್ಮ ಕ್ಯಾಮರಾಕ್ಕೆ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ</string>
+    <!-- Dialog title asking users for microphone permission -->
+    <string name="CameraXFragment_allow_access_microphone">ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್‌ಗೆ ಆಕ್ಸೆಸ್‍ ಅನ್ನು ಅನುಮತಿಸಿ</string>
+    <!-- Text explaining why Signal needs camera access in order to take photos -->
+    <string name="CameraXFragment_to_capture_photos_allow_camera">ಫೋಟೋಗಳನ್ನು ಸೆರೆಹಿಡಿಯಲು, Signal ಗೆ ಕ್ಯಾಮರಾ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ.</string>
+    <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
+    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">ಫೋಟೋಗಳನ್ನು ಮತ್ತು ವಿಡಿಯೊ ಸೆರೆಹಿಡಿಯಲು, Signal ಗೆ ಕ್ಯಾಮರಾ ಪ್ರವೇಶ ಅನುಮತಿಸಿ.</string>
+    <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
+    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">ಫೋಟೋಗಳು ಮತ್ತು ವೀಡಿಯೊವನ್ನು ಸೆರೆಹಿಡಿಯಲು, Signal ಗೆ ಕ್ಯಾಮರಾ ಮತ್ತು ಮೈಕ್ರೋಫೋನ್ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ.</string>
+    <!-- Text explaining why Signal needs microphone access to take videos -->
+    <string name="CameraXFragment_to_capture_videos_with_sound">ಶಬ್ದದೊಂದಿಗೆ ವೀಡಿಯೊಗಳನ್ನು ಸೆರೆಹಿಡಿಯಲು, Signal ಗೆ ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ.</string>
+    <!-- Text explaining why Signal needs camera access to scan QR codes -->
+    <string name="CameraXFragment_to_scan_qr_code_allow_camera">QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು, Signal ಗೆ ಕ್ಯಾಮರಾ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ.</string>
+    <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
+    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">ಫೋಟೋಗಳನ್ನು ಸೆರೆಹಿಡಿಯಲು Signal ಗೆ ಕ್ಯಾಮರಾ ಆ್ಯಕ್ಸೆಸ್ ಅಗತ್ಯವಿದೆ</string>
+    <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
+    <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">QR ಕೋಡ್‌ಗಳನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು Signal ಗೆ ಕ್ಯಾಮರಾ ಆ್ಯಕ್ಸೆಸ್ ಅಗತ್ಯವಿದೆ</string>
+    <!-- Toast dialog explaining why Signal needs microphone permissions -->
+    <string name="CameraXFragment_signal_needs_microphone_access_video">ವೀಡಿಯೊವನ್ನು ಸೆರೆಹಿಡಿಯಲು Signal ಗೆ ಮೈಕ್ರೋಫೋನ್ ಆ್ಯಕ್ಸೆಸ್ ಅಗತ್ಯವಿದೆ</string>
+    <!-- Dialog description that explains the steps needed to give camera permission -->
+    <string name="CameraXFragment_to_capture_photos">Signal ನಲ್ಲಿ ಫೋಟೋಗಳನ್ನು ಸೆರೆಹಿಡಿಯಲು:</string>
+    <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
+    <string name="CameraXFragment_to_capture_photos_videos">Signal ನಲ್ಲಿ ಫೋಟೋಗಳು ಮತ್ತು ವೀಡಿಯೊಗಳನ್ನು ಸೆರೆಹಿಡಿಯಲು:</string>
+    <!-- Dialog description that explains the steps needed to give microphone permission -->
+    <string name="CameraXFragment_to_capture_videos">ಶಬ್ದದೊಂದಿಗೆ ವೀಡಿಯೊಗಳನ್ನು ಸೆರೆಹಿಡಿಯಲು:</string>
+    <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
+    <string name="CameraXFragment_to_scan_qr_codes">QR ಕೋಡ್‌ಗಳನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು:</string>
 
     <!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">ಇತ್ತೀಚಿನ ಸಂಪರ್ಕಗಳು</string>
@@ -278,7 +331,8 @@
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">ಸಂದೇಶ %1$s</string>
-    <string name="ContactsDatabase_signal_call_s">Signal ಕರೆ %1$s</string>
+    <string name="ContactsDatabase_signal_call_s">Signal ಧ್ವನಿ ಕರೆ %1$s</string>
+    <string name="ContactsDatabase_signal_video_call_s">Signal ವೀಡಿಯೊ ಕರೆ %1$s</string>
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
@@ -386,8 +440,16 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">ಗುಂಪು ಸೇರಲು ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ನಿರ್ವಾಹಕರಿಗೆ ಕಳುಹಿಸಲಾಗಿದೆ. ಅವರು ಕ್ರಮ ಕೈಗೊಂಡಾಗ ನಿಮಗೆ ಸೂಚಿಸಲಾಗುತ್ತದೆ.</string>
     <string name="ConversationActivity_cancel_request">ಕೋರಿಕೆಯನ್ನು ರದ್ದುಮಾಡಿ</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ಆಡಿಯೋ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು, Signal ಗೆ ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್ ಉಪಯೋಗಿಸಲು ಅನುಮತಿ ನೀಡಿ.</string>
+    <!-- Dialog title asking users for microphone permission -->
+    <string name="ConversationActivity_allow_access_microphone">ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್‌ಗೆ ಆಕ್ಸೆಸ್‍ ಅನ್ನು ಅನುಮತಿಸಿ</string>
+    <!-- Dialog description that will explain the steps needed to give microphone permissions -->
+    <string name="ConversationActivity_signal_to_send_audio_messages">ಆಡಿಯೊ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು:</string>
+    <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">ಧ್ವನಿ ಮೆಸೇಜ್‌ಗಳನ್ನು ಕಳುಹಿಸಲು, ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್‌ಗೆ Signal ಆಕ್ಸೆಸ್‍ ಅನ್ನು ಅನುಮತಿಸಿ.</string>
+    <!-- Toast text explaining Signal\'s need for microphone access -->
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">ಧ್ವನಿ ಮೆಸೇಜ್ ಅನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲು Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಆಕ್ಸೆಸ್‍ನ ಅಗತ್ಯವಿದೆ.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ಆಡಿಯೊ ಸಂದೇಶ ಕಳುಹಿಸುವ ಸಲುವಾಗಿ Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಅಪ್ಲಿಕೇಶನ್ ಸಂಯೋಜನೆಗೆ ಮುಂದುವರಿಸಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು \"ಮೈಕ್ರೊಫೋನ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%1$s ಗೆ ಕರೆ ಮಾಡಲು Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಹಾಗೂ ಕ್ಯಾಮರಾ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ, ಆದರೆ ಅವುಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು \"ಮೈಕ್ರೊಫೋನ್\" ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ಫೋಟೋಗಳನ್ನು ಮತ್ತು ವಿಡಿಯೊ ಸೆರೆಹಿಡಿಯಲು, Signal ಗೆ ಕ್ಯಾಮರಾ ಪ್ರವೇಶ ಅನುಮತಿಸಿ.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ಫೋಟೊಗಳು ಅಥವಾ ವೀಡಿಯೊಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
@@ -411,10 +473,17 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">ನೀವು ಈ ಗ್ರೂಪ್ ಅನ್ನು ತೊರೆಯುತ್ತೀರಿ ಮತ್ತು ಇದನ್ನು ನಿಮ್ಮ ಎಲ್ಲ ಸಾಧನಗಳಿಂದಲೂ ಅಳಿಸಲಾಗುವುದು.</string>
     <string name="ConversationActivity_delete">ಅಳಿಸಿ</string>
     <string name="ConversationActivity_delete_and_leave">ಅಳಿಸಿ ಮತ್ತು ತೊರೆಯಿರಿ</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ಗೆ ಕರೆ ಮಾಡಲು, Signal ಗೆ ನಿಮ್ಮ ಮೈಕ್ರೊಫೋನ್ ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.</string>
+
+    <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
+    <string name="ConversationActivity__to_start_call">ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಲು:</string>
+    <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಲು, ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್‌ಗೆ Signal ಆಕ್ಸೆಸ್‍ ಅನ್ನು ಅನುಮತಿಸಿ.</string>
+    <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಲು Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಆಕ್ಸೆಸ್‍ನ ಅಗತ್ಯವಿದೆ.</string>
 
 
     <string name="ConversationActivity_join">ಸೇರು</string>
+    <!-- Button text for an active group call but the call is currently full and unjoinable -->
     <string name="ConversationActivity_full">ಸಂಪೂರ್ಣ</string>
 
     <string name="ConversationActivity_error_sending_media">ಮೀಡಿಯಾ ಕಳುಹಿಸುವಲ್ಲಿ ದೋಷ</string>
@@ -480,6 +549,8 @@
     <string name="ConversationFragment_delete_for_everyone">ಎಲ್ಲರಿಗೂ ಅಳಿಸಿ</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">ಈ ಡಿವೈಸ್‌ನಲ್ಲಿ ಅಳಿಸಿ</string>
+    <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
+    <string name="ConversationFragment_delete">ಅಳಿಸಿ</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">ಎಲ್ಲಾ ಕಡೆ ಅಳಿಸಿ</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ಅವರು Signal ನ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯಲ್ಲಿದ್ದರೆ ಚಾಟ್‌ನಲ್ಲಿರುವ ಪ್ರತಿಯೊಬ್ಬರಿಗೂ ಈ ಮೆಸೇಜ್ ಅನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ. ನೀವು ಮೆಸೇಜ್ ಅನ್ನು ಅಳಿಸಿದ್ದೀರಿ ಎಂಬುದನ್ನು ಅವರು ನೋಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
@@ -582,6 +653,11 @@
         <item quantity="one">ಇದು ಆಯ್ಕೆ ಮಾಡಿದ ಚಾಟ್ ಅನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</item>
         <item quantity="other">ಇದು ಆಯ್ಕೆ ಮಾಡಿದ ಎಲ್ಲಾ %1$d ಚಾಟ್‌ಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</item>
     </plurals>
+    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
+        <item quantity="one">ಆಯ್ಕೆಮಾಡಿದ ಚಾಟ್ ಅನ್ನು ಇದು ನಿಮ್ಮ ಎಲ್ಲಾ ಸಾಧನಗಳಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</item>
+        <item quantity="other">ಆಯ್ಕೆಮಾಡಿದ ಎಲ್ಲಾ %1$d ಚಾಟ್‌ಗಳನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನಗಳಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</item>
+    </plurals>
     <string name="ConversationListFragment_deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
         <item quantity="one">ಆಯ್ಕೆಮಾಡಿದ ಚಾಟ್ ಅನ್ನು ಅಳಿಸುವುದು…</item>
@@ -613,6 +689,7 @@
     <string name="ConversationListFragment_unarchive">ಅನ್ಆ‌ರ್ಕೈವ್</string>
     <string name="ConversationListFragment_delete">ಅಳಿಸಿ</string>
     <string name="ConversationListFragment_select_all">ಎಲ್ಲ ಆಯ್ಕೆಮಾಡಿ</string>
+    <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</item>
         <item quantity="other">%1$d ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</item>
@@ -783,6 +860,61 @@
     <string name="DecryptionFailedDialog_chat_session_refreshed">ಚಾಟ್ ಸೆಷನ್ ರಿಫ್ರೆಶ್ ಮಾಡಲಾಗಿದೆ</string>
     <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal ಎಂಡ್‌-ಟು-ಎಂಡ್‌ ಎನ್‌ಕ್ರಿಪ್ಷನ್ ಅನ್ನು ಬಳಸುತ್ತದೆ ಮತ್ತು ಕೆಲವು ಬಾರಿ ನಿಮ್ಮ ಚಾಟ್ ಸೆಷನ್‌ಗಳನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಬೇಕಾಗಬಹುದು. ಇದರಿಂದ ನಿಮ್ಮ ಚಾಟ್‌ನ ಭದ್ರತೆಗೆ ಯಾವುದೇ ಬಾಧೆಯಾಗುವುದಿಲ್ಲ. ಆದರೆ, ಈ ಸಂಪರ್ಕದಿಂದ ಒಂದು ಸಂದೇಶವನ್ನು ನೀವು ತಪ್ಪಿಸಿಕೊಂಡಿರಬಹುದು ಮತ್ತು ಪುನಃ ಕಳುಹಿಸುವಂತೆ ನೀವು ಅವರನ್ನು ಕೇಳಬಹುದು.</string>
 
+    <!-- LinkDeviceFragment -->
+    <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">ಡೆಸ್ಕ್‌ಟಾಪ್ ಅಥವಾ iPad ನಲ್ಲಿ Signal ಅನ್ನು ಬಳಸಿ. ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗಳನ್ನು ನಿಮ್ಮ ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಗೆ ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
+    <!-- Button prompting users to link a new device to their account -->
+    <string name="LinkDeviceFragment__link_a_new_device">ಹೊಸ ಸಾಧನವನ್ನು ಲಿಂಕ್ ಮಾಡಿ</string>
+    <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s ಎಲ್ಲಾ ಸಾಧನಗಳಲ್ಲಿ ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಶನ್ ಮೂಲಕ ಮೆಸೇಜ್‌ಗಳು ಮತ್ತು ಚಾಟ್ ಮಾಹಿತಿಯನ್ನು ರಕ್ಷಿಸಲಾಗಿದೆ</string>
+    <!-- Bottom sheet title explaining how Signal works on a linked device -->
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <!-- Bottom sheet description explaining that messages on linked devices are private -->
+    <string name="LinkDeviceFragment__all_messaging_is_private">ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಲ್ಲಿನ ಎಲ್ಲಾ ಮೆಸೇಜ್ ಮಾಡುವಿಕೆಯು ಖಾಸಗಿಯಾಗಿರುತ್ತದೆ</string>
+    <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal ಮೆಸೇಜ್‌ಗಳನ್ನು ಲಿಂಕ್ ಮಾಡಿದ ನಂತರ ನಿಮ್ಮ ಮೊಬೈಲ್ ಫೋನ್‌ನಲ್ಲಿ Signal ಜೊತೆಗೆ ಸಿಂಕ್ರೋನೈಸ್ ಮಾಡಲಾಗುತ್ತದೆ. ನಿಮ್ಮ ಹಿಂದಿನ ಮೆಸೇಜ್ ಇತಿಹಾಸ ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
+    <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">ನಿಮ್ಮ ಇತರ ಸಾಧನದಲ್ಲಿ, Signal ಅನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು %1$s ಗೆ ಭೇಟಿಕೊಡಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
+    <!-- Header title listing out current linked devices -->
+    <string name="LinkDeviceFragment__my_linked_devices">ನನ್ನ ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳು</string>
+    <!-- Dialog confirmation to unlink a device -->
+    <string name="LinkDeviceFragment__unlink">ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಿ</string>
+    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">%1$s ಅನ್‌ಲಿಂಕ್ ಮಾಡಲಾಗಿದೆ</string>
+    <!-- Progress dialog message indicating that a device is currently being linked with an account -->
+    <string name="LinkDeviceFragment__linking_device">ಸಾಧನ ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Toast message shown after a device has been linked -->
+    <string name="LinkDeviceFragment__device_approved">ಸಾಧನ ಅನುಮೋದಿಸಲಾಗಿದೆ</string>
+    <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
+    <string name="LinkDeviceFragment__loading">ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Text message shown when the user has no linked devices -->
+    <string name="LinkDeviceFragment__no_linked_devices">ಲಿಂಕ್ ಮಾಡಲಾದ ಯಾವುದೇ ಸಾಧನಗಳಿಲ್ಲ</string>
+    <!-- Title on biometrics prompt explaining what biometrics are being used for -->
+    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+
+    <!-- AddLinkDeviceFragment -->
+    <!-- Description text shown on the QR code scanner when linking a device -->
+    <string name="AddLinkDeviceFragment__scan_the_qr_code">ಲಿಂಕ್ ಮಾಡುವುದಕ್ಕೆ ಸಾಧನದ ಮೇಲೆ ಪ್ರದರ್ಶಿಸಿದ QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ.</string>
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="AddLinkDeviceFragment__scan_qr_code">ಕ್ಯುಆರ್‌ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">ನೀವು ಲಿಂಕ್ ಮಾಡಲು ಬಯಸುವ ಸಾಧನದಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲಾದ QR ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಈ ಸಾಧನವನ್ನು ಬಳಸಿ</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="AddLinkDeviceFragment__okay">ಸರಿ</string>
+    <!-- Dialog text describing the consequences of linking a device -->
+    <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">ಈ ಸಾಧನಕ್ಕೆ ನಿಮ್ಮ ಗುಂಪುಗಳನ್ನು ಮತ್ತು ಸಂಪರ್ಕಗಳನ್ನು ನೋಡಲು, ನಿಮ್ಮ ಚಾಟ್‌ಗಳನ್ನು ಪ್ರವೇಶಿಸಲು ಹಾಗೂ ನಿಮ್ಮ ಹೆಸರಿನಲ್ಲಿ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
+    <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
+    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">ನಿಮ್ಮ ಇತರ ಸಾಧನದಲ್ಲಿ ಲಿಂಕ್ ಮಾಡುವುದನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ</string>
+    <!-- Bottom sheet description telling users to complete the linking process -->
+    <string name="AddLinkDeviceFragment__finish_linking_signal">ನಿಮ್ಮ ಇತರ ಸಾಧನದಲ್ಲಿ Signal ಅನ್ನು ಲಿಂಕ್ ಮಾಡುವುದನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ.</string>
+    <!-- Title of dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__linking_device_failed">ಸಾಧನವನ್ನು ಲಿಂಕ್ ಮಾಡುವುದು ವಿಫಲವಾಗಿದೆ</string>
+    <!-- Text shown in a dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__this_qr_code_not_valid">ಈ ಕ್ಯೂಆರ್‌ ಕೋಡ್ ಮಾನ್ಯವಾಗಿಲ್ಲ. ನೀವು ಲಿಂಕ್ ಮಾಡಲು ಬಯಸುವ ಸಾಧನದಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲಾದ ಕ್ಯುಆರ್‌ ಕೋಡ್ ಅನ್ನು ನೀವು ಸ್ಕ್ಯಾನ್ ಮಾಡುತ್ತಿದ್ದೀರಿ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.</string>
+    <!-- Button in dialog to retry linking a device with a qr code -->
+    <string name="AddLinkDeviceFragment__retry">ಮರುಪ್ರಯತ್ನಿಸಿ</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">%1$sಯನ್ನು ಅನ್‌ಲಿಂಕ್‌ ಮಾಡುವುದೇ?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ಈ ಸಾಧನವನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡುವ ಮೂಲಕ, ಇದು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಥವಾ ಪಡೆಯಲು ಇನ್ನು ಮುಂದೆ ಸಮರ್ಥವಾಗಿರುವುದಿಲ್ಲ.</string>
@@ -864,6 +996,7 @@
         <item quantity="one">ಆಹ್ವಾನವನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ</item>
         <item quantity="other">%1$d ಆಹ್ವಾನಗಳನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ</item>
     </plurals>
+    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
     <string name="GroupManagement_invite_single_user">\"%1$s\" ನೀವು ಈ ಗುಂಪಿಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಅವರನ್ನು ಸೇರಲು ಆಹ್ವಾನಿಸಲಾಗಿದೆ, ಮತ್ತು ಅವರು ಸ್ವೀಕರಿಸುವವರೆಗೂ ಯಾವುದೇ ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ನೋಡುವುದಿಲ್ಲ.</string>
     <string name="GroupManagement_invite_multiple_users">ಈ ಬಳಕೆದಾರರನ್ನು ನೀವು ಈ ಗುಂಪಿಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸೇರಿಸಲಾಗುವುದಿಲ್ಲ. ಅವರನ್ನು ಗುಂಪಿಗೆ ಸೇರಲು ಆಹ್ವಾನಿಸಲಾಗಿದೆ, ಮತ್ತು ಅವರು ಸ್ವೀಕರಿಸುವವರೆಗೆ ಯಾವುದೇ ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ನೋಡುವುದಿಲ್ಲ.</string>
 
@@ -966,10 +1099,11 @@
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">ಮುಂದುವರಿಸಿ</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">ವಜಾಗೊಳಿಸಿ</string>
+    <string name="PromptBatterySaverBottomSheet__no_thanks">No thanks</string>
+  <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">ಬಾಕಿ ಉಳಿದಿರುವ ಗುಂಪು ಆಹ್ವಾನಗಳು</string>
+    <string name="PendingMembersActivity_pending_group_invites">ವಿನಂತಿಗಳು ಮತ್ತು ಆಹ್ವಾನಗಳು</string>
     <string name="PendingMembersActivity_requests">ಕೋರಿಕೆಗಳು</string>
     <string name="PendingMembersActivity_invites">ಆಮಂತ್ರಣಗಳು</string>
     <string name="PendingMembersActivity_people_you_invited">ನೀವು ಆಹ್ವಾನಿಸಿದ ಜನರು</string>
@@ -1044,7 +1178,9 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಎಡಿಟ್ ಮಾಡಿ</string>
     <string name="ManageGroupActivity_legacy_group">ಹಳೆಯ ಗುಂಪು</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">ಇದು ಲೆಗಸಿ ಗ್ರೂಪ್. ಗ್ರೂಪ್‌ ಅಡ್ಮಿನ್‌ಗಳಂತಹ ವೈಶಿಷ್ಟ್ಯಗಳು ಹೊಸ ಗ್ರೂಪ್‌ಗಳಲ್ಲಿ ಮಾತ್ರ ಲಭ್ಯವಿರುತ್ತವೆ.</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">ಇದು ಲೆಗಸಿ ಗ್ರೂಪ್. @mentions ಮತ್ತು ಅಡ್ಮಿನ್‌ಗಳಂತಹ ಹೊಸ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಪ್ರವೇಶಿಸಲು,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">ಈ ಹಳೆಯ ಗ್ರೂಪ್‌ ಅನ್ನು ಹೊಸ ಗ್ರೂಪ್‌ಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಲಾಗದು. ಏಕೆಂದರೆ ಇದು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ. ಗರಿಷ್ಠ ಗ್ರೂಪ್ ಗಾತ್ರವು %1$d.</string>
     <string name="ManageGroupActivity_upgrade_this_group">ಈ ಗುಂಪನ್ನು ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ</string>
@@ -1271,6 +1407,7 @@
         <item quantity="other">ಅಳಿಸಿ</item>
     </plurals>
 
+    <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="one">%1$d ಅವರು (%2$s) ಆಯ್ಕೆ ಮಾಡಿದ್ದಾರೆ</item>
         <item quantity="other">%1$d ಅವರು (%2$s) ಆಯ್ಕೆ ಮಾಡಿದ್ದಾರೆ</item>
@@ -1294,9 +1431,9 @@
     <string name="Megaphones_verify_pin">ಪಿನ್ ದೃಢೀಕರಿಸಿ</string>
     <string name="Megaphones_get_started">ಪ್ರಾರಂಭಿಸಿ</string>
     <string name="Megaphones_new_group">ಹೊಸ ಗುಂಪು</string>
-    <string name="Megaphones_invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
+    <string name="Megaphones_invite_friends">ಇನ್ವೈಟ್ ಫ್ರೆಂಡ್</string>
     <string name="Megaphones_chat_colors">ಚಾಟ್ ಬಣ್ಣಗಳು</string>
-    <string name="Megaphones_add_a_profile_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಸೇರಿಸಿ</string>
+    <string name="Megaphones_add_a_profile_photo">ಪ್ರೊಫೈಲ್ ಫೊಟೋ</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">ಪ್ರತಿಕ್ರಿಯೆಗಳು</string>
@@ -1335,17 +1472,13 @@
     <string name="MessageRecord_left_group">ನೀವು ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದೀರಿ.</string>
     <string name="MessageRecord_you_updated_group">ನೀವು ಗುಂಪನ್ನು ನವೀಕರಿಸಿದ್ದೀರಿ.</string>
     <string name="MessageRecord_the_group_was_updated">ಗ್ರೂಪ್ ಅನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗಿದೆ.</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">ಹೊರಹೋಗುವ ವಾಯ್ಸ್ ಕಾಲ್</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 video call -->
     <string name="MessageRecord_outgoing_video_call">ಹೊರಹೋಗುವ ವೀಡಿಯೊ ಕಾಲ್</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">ಉತ್ತರಿಸದ ವಾಯ್ಸ್ ಕಾಲ್</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">ಉತ್ತರಿಸದ ವೀಡಿಯೊ ಕಾಲ್</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered or ringing -->
     <string name="MessageRecord_incoming_voice_call">ಒಳಬರುವ ವಾಯ್ಸ್ ಕಾಲ್</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
+    <!-- Update message shown when receiving an incoming 1:1 video call and answered or ringing -->
     <string name="MessageRecord_incoming_video_call">ಒಳಬರುವ ವೀಡಿಯೊ ಕಾಲ್</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
     <string name="MessageRecord_missed_voice_call">ಮಿಸ್ಡ್ ವಾಯ್ಸ್ ಕಾಲ್</string>
@@ -1355,10 +1488,6 @@
     <string name="MessageRecord_missed_voice_call_notification_profile">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್ ಆನ್ ಆಗಿರುವಾಗ ತಪ್ಪಿಹೋದ ಧ್ವನಿ ಕರೆ</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
     <string name="MessageRecord_missed_video_call_notification_profile">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್ ಆನ್ ಆಗಿರುವಾಗ ತಪ್ಪಿಹೋದ ವೀಡಿಯೊ ಕರೆ</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">ನೀವು ವಾಯ್ಸ್ ಕಾಲ್ ಅನ್ನು ನಿರಾಕರಿಸಿದ್ದೀರಿ</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">ನೀವು ಒಂದು ವೀಡಿಯೊ ಕಾಲ್ ಅನ್ನು ನಿರಾಕರಿಸಿದ್ದೀರಿ</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s ಗುಂಪನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ.</string>
@@ -1565,30 +1694,63 @@
     <string name="MessageRecord_you_activated_payments">ನೀವು ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದ್ದೀರಿ</string>
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s ಅವರು ಈಗ ಪಾವತಿಗಳನ್ನು ಸ್ವೀಕರಿಸಬಹುದು</string>
+    <!-- Message shown to inform user that a payment is missing details due to restore -->
+    <string name="MessageRecord_payments_restore_tombstone">ಪಾವತಿ ವಿವರಗಳು ಲಭ್ಯವಿಲ್ಲ</string>
+    <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
+    <string name="MessageRecord_payments_restore_tombstone_tap_more">ಹೆಚ್ಚಿನದ್ದಕ್ಕಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
+    <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
+    <string name="PaymentTombstoneLearnMoreDialog_title">ಪಾವತಿ ವಿವರಗಳು ಲಭ್ಯವಿಲ್ಲ</string>
+    <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
+    <string name="PaymentTombstoneLearnMoreDialog_message">ಈ ಪಾವತಿಯ ಈ ವಿವರಗಳು ಲಭ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಈ ಪಾವತಿ ಇತಿಹಾಸವನ್ನು ಹೊಂದಿರದ ಮೂಲದಿಂದ ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗಳನ್ನು ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ. ಇದು ನಿಮ್ಮ ವ್ಯಾಲೆಟ್ ಬ್ಯಾಲೆನ್ಸ್ ಅಥವಾ ಹಿಂದಿನ ಪಾವತಿಗಳ ಸ್ಥಿತಿಯ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರುವುದಿಲ್ಲ.</string>
 
     <!-- Group Calling update messages -->
-    <string name="MessageRecord_s_started_a_group_call_s">%1$s ಅವರು ಗ್ರೂಪ್ ಕಾಲ್ ಆರಂಭಿಸಿದ್ದಾರೆ · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">ನೀವು ಗ್ರೂಪ್ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದೀರಿ · %1$s</string>
-    <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %2$s</string>
-    <string name="MessageRecord_you_are_in_the_group_call_s1">ನೀವು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದೀರಿ · %1$s</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s ಮತ್ತು %2$s ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %3$s</string>
-    <string name="MessageRecord_group_call_s">ಗ್ರೂಪ್ ಕಾಲ್ · %1$s</string>
-
-    <string name="MessageRecord_s_started_a_group_call">%1$s ಅವರು ಗ್ರೂಪ್ ಕಾಲ್ ಆರಂಭಿಸಿದ್ದಾರೆ</string>
-    <string name="MessageRecord_you_started_a_group_call">ನೀವು ಗುಂಪು ಕರೆಯೊಂದನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದೀರಿ</string>
-    <string name="MessageRecord_s_is_in_the_group_call">%1$s ಅವರು ಗ್ರೂಪ್ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ</string>
-    <string name="MessageRecord_you_are_in_the_group_call">ನೀವು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದೀರಿ</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s ಮತ್ತು %2$s ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ</string>
-    <string name="MessageRecord_group_call">ಗ್ರೂಪ್ ಕಾಲ್</string>
+    <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s ಅವರು ಕರೆಯಲ್ಲಿದ್ದಾರೆ · %2$s</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
+    <string name="MessageRecord_you_are_in_the_call_s1">ನೀವು ಕರೆಯಲ್ಲಿದ್ದೀರಿ · %1$s</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s ಮತ್ತು %2$s ಅವರು ಕರೆಯಲ್ಲಿದ್ದಾರೆ · %3$s</string>
+    <!-- Chat log text for an ongoing group call that has one participant -->
+    <string name="MessageRecord_s_is_in_the_call">%1$s ಅವರು ಕರೆಯಲ್ಲಿದ್ದಾರೆ</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined -->
+    <string name="MessageRecord_you_are_in_the_call">ನೀವು ಕರೆಯಲ್ಲಿದ್ದೀರಿ</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s ಮತ್ತು %2$s ಕರೆಯಲ್ಲಿದ್ದಾರೆ</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes -->
+    <string name="MessageRecord__the_video_call_has_ended">ವೀಡಿಯೊ ಕರೆ ಮುಕ್ತಾಯವಾಗಿದೆ</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
+    <string name="MessageRecord__the_video_call_has_ended_s">ವೀಡಿಯೊ ಕರೆ ಮುಕ್ತಾಯವಾಗಿದೆ · %1$s</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
+    <string name="MessageRecord__missed_video_call">ಮಿಸ್ಡ್ ವೀಡಿಯೊ ಕರೆ</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
+    <string name="MessageRecord__missed_video_call_s">ಮಿಸ್ಡ್ ವೀಡಿಯೊ ಕರೆ · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user did not start -->
+    <string name="MessageRecord__incoming_video_call">ಒಳಬರುವ ವೀಡಿಯೊ ಕರೆ</string>
+    <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
+    <string name="MessageRecord__incoming_video_call_s">ಒಳಬರುವ ವೀಡಿಯೊ ಕರೆ · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user started -->
+    <string name="MessageRecord__outgoing_video_call">ಹೊರಹೋಗುವ ವೀಡಿಯೊ ಕರೆ</string>
+    <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__outgoing_video_call_s">ಹೊರಹೋಗುವ ವೀಡಿಯೊ ಕರೆ · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user started -->
+    <string name="MessageRecord__you_started_a_video_call">ನೀವು ವೀಡಿಯೊ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದೀರಿ</string>
+    <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__you_started_a_video_call_s">ನೀವು ವೀಡಿಯೊ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದೀರಿ · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
+    <string name="MessageRecord__s_started_a_video_call">%1$s ಅವರು ವೀಡಿಯೊ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದಾರೆ</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s ಅವರು ವೀಡಿಯೊ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿದ್ದಾರೆ · %2$s</string>
 
     <string name="MessageRecord_you">ನೀವು</string>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
         <item quantity="one">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %4$s</item>
         <item quantity="other">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %4$s</item>
     </plurals>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
         <item quantity="one">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ</item>
         <item quantity="other">%1$s, %2$s ಮತ್ತು %3$d ಇತರರು ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ</item>
     </plurals>
@@ -1599,6 +1761,8 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Signal ನಲ್ಲಿ SMS ಮೆಸೇಜ್ ಗಳನ್ನು ಕಳುಹಿಸಲು ನಿಮಗೆ ಇನ್ನು ಸಾಧ್ಯವಿಲ್ಲ. ಇಲ್ಲಿ ಸಂಭಾಷಣೆಯನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲು %1$s ಅವರನ್ನು Signal ಗೆ ಆಹ್ವಾನಿಸಿ.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">ಪಾವತಿ: %1$s</string>
+    <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
+    <string name="MessageRecord__payment_tombstone">ಪಾವತಿ</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">ಸ್ಪ್ಯಾಮ್ ಎಂದು ವರದಿ ಮಾಡಲಾಗಿದೆ</string>
     <!-- Update message shown in chat after accept a message request -->
@@ -1782,7 +1946,8 @@
     <string name="RedPhone_ringing">ರಿಂಗ್ ಆಗುತ್ತಿದೆ…</string>
     <string name="RedPhone_busy">ನಿರತವಾಗಿದೆ</string>
     <string name="RedPhone_recipient_unavailable">ಸ್ವೀಕರಿಸುವವರು ಲಭ್ಯವಿಲ್ಲ</string>
-    <string name="RedPhone_network_failed">ನೆಟ್‌ವರ್ಕ್‌ ದೋಷ!</string>
+    <!-- Error message shown during a call when a fatal network error occurs. -->
+    <string name="RedPhone_network_failed">ನೆಟ್‌ವರ್ಕ್‌ ದೋಷ! ದಯವಿಟ್ಟು ನಿಮ್ಮ ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="RedPhone_number_not_registered">ಸಂಖ್ಯೆ ನೋಂದಾಯಿಸಲಾಗಿಲ್ಲ!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">ನೀವು ಡಯಲ್ ಮಾಡಿದ ಸಂಖ್ಯೆಗೆ ಸುರಕ್ಷಿತ ಧ್ವನಿ ಬೆಂಬಲವಿಲ್ಲ !</string>
     <string name="RedPhone_got_it">ಅರ್ಥವಾಯಿತು</string>
@@ -1848,6 +2013,26 @@
     <string name="WebRtcCallActivity__removed_from_call">ಕರೆಯಿಂದ ತೆಗೆದುಹಾಕಲಾಗಿದೆ</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">ಕರೆಯಿಂದ ನಿಮ್ಮನ್ನು ಯಾರೋ ತೆಗೆದುಹಾಕಿದ್ದಾರೆ.</string>
+    <!-- Dialog title asking users for camera and microphone permission -->
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">ನಿಮ್ಮ ಕ್ಯಾಮರಾ ಮತ್ತು ಮೈಕ್ರೋಫೋನ್‌ಗೆ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ</string>
+    <!-- Dialog title asking users for microphone permission -->
+    <string name="WebRtcCallActivity__allow_access_microphone">ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್‌ಗೆ ಆಕ್ಸೆಸ್‍ ಅನ್ನು ಅನುಮತಿಸಿ</string>
+    <!-- Dialog title asking users for camera permission -->
+    <string name="WebRtcCallActivity__allow_access_camera">ನಿಮ್ಮ ಕ್ಯಾಮರಾಕ್ಕೆ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ</string>
+    <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಲು ಅಥವಾ ಸೇರಲು, ನಿಮ್ಮ ಕ್ಯಾಮರಾ ಮತ್ತು ಮೈಕ್ರೋಫೋನ್‌ಗೆ Signal ಆಕ್ಸೆಸ್‍ ಅನ್ನು ಅನುಮತಿಸಿ.</string>
+    <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
+    <string name="WebRtcCallActivity__to_start_call_microphone">ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಲು ಅಥವಾ ಸೇರಲು, ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್‌ಗೆ Signal ಆಕ್ಸೆಸ್‍ ಅನ್ನು ಅನುಮತಿಸಿ.</string>
+    <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">ನಿಮ್ಮ ವೀಡಿಯೊವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು, ನಿಮ್ಮ ಕ್ಯಾಮರಾಗೆ Signal ಆಕ್ಸೆಸ್‍ ಅನ್ನು ಅನುಮತಿಸಿ.</string>
+    <!-- Toast describing why microphone permissions are needed to start or join a call -->
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಲು ಅಥವಾ ಸೇರಿಕೊಳ್ಳಲು Signal ಗೆ ಮೈಕ್ರೋಫೋನ್ ಅನುಮತಿಗಳ ಅಗತ್ಯವಿದೆ.</string>
+    <!-- Toast describing why camera permissions are needed to enable a video in a call -->
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">ನಿಮ್ಮ ವೀಡಿಯೊವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು Signal ಗೆ ಕ್ಯಾಮರಾ ಆಕ್ಸೆಸ್‍ ಅಗತ್ಯವಿದೆ</string>
+    <!-- Dialog description that will explain the steps needed to give microphone permissions -->
+    <string name="WebRtcCallActivity__to_start_call">ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಲು ಅಥವಾ ಸೇರಿಕೊಳ್ಳಲು:</string>
+    <!-- Dialog description that will explain the steps needed to give camera permissions -->
+    <string name="WebRtcCallActivity__to_enable_video">ನಿಮ್ಮ ವೀಡಿಯೊವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು:</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal ಕರೆ</string>
@@ -1944,19 +2129,38 @@
     <string name="CallOverflowPopupWindow__lower_hand">ಕೈ ಕೆಳಗಿಳಿಸಿ</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">ರದ್ದುಮಾಡಿ</string>
-    <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">ನೀವು ಕೈ ಎತ್ತಿದ್ದೀರಿ</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">ತೋರಿಸು</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
-    <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">%1$s ಕೈ ಎತ್ತಿದ್ದಾರೆ</item>
+
+    <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s ಕೈ ಎತ್ತಿದ್ದೀರಿ</string>
+    <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
+        <item quantity="one">%1$s +%2$d ಕೈ ಎತ್ತಿದ್ದಾರೆ</item>
         <item quantity="other">%1$s + %2$d ಕೈ ಎತ್ತಿದ್ದಾರೆ</item>
     </plurals>
 
-    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
-    <plurals name="CallRaiseHandSnackbar_raised_hands">
+    <!-- A notification to the user that one participant in the call successfully raised their hand. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">%1$s ಕೈ ಎತ್ತಿದ್ದಾರೆ</string>
+    <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
+        <item quantity="one">%1$s +%2$d ಕೈ ಎತ್ತಿದ್ದಾರೆ</item>
+        <item quantity="other">%1$s + %2$d ಕೈ ಎತ್ತಿದ್ದಾರೆ</item>
+    </plurals>
+
+    <!-- A badge to show the user has their hand raised. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__collapsed_second_person_raised_hand_single">%1$s</string>
+    <!-- A badge to show the user and at least one other participant in the call have their hand raised. The placeholder is a number quantifying how many other hands are also raised, besides the user.  -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_second_person_raised_hands_multiple">
+        <item quantity="one">%1$s</item>
+        <item quantity="other">%1$s +%2$d</item>
+    </plurals>
+
+    <!-- A badge to show how many hands are raised. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_singular">%1$s</string>
+    <!-- A badge to show how many hands are raised. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_multiple">
         <item quantity="one">%1$s</item>
         <item quantity="other">%1$s +%2$d</item>
     </plurals>
@@ -2063,6 +2267,7 @@
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ವಿನಂತಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="RegistrationActivity_non_standard_number_format">ಪ್ರಮಾಣೀಕೃತವಲ್ಲದ ಸಂಖ್ಯಾ ಸ್ವರೂಪ</string>
+    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">ನೀವು ನಮೂದಿಸಿದ ಸಂಖ್ಯೆ (%1$s) ಪ್ರಮಾಣೀಕೃತವಲ್ಲದ ಸ್ವರೂಪದಲ್ಲಿ ಕಾಣಿಸುತ್ತಿದೆ.\n\nನೀವು ಅಂದುಕೊಂಡಿದ್ದು ಇದೇನಾ %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal ಆಂಡ್ರಾಯ್ಡ್ - ಫೋನ್ ಸಂಖ್ಯೆ ಸ್ವರೂಪ</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
@@ -2098,8 +2303,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">ನೋಂದಾಯಿಸುವಲ್ಲಿ ಸಮಸ್ಯೆ ಎದುರಿಸುತ್ತಿದ್ದೀರಾ?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• ನಿಮ್ಮ SMS ಅಥವಾ ಕರೆಯನ್ನು ಸ್ವೀಕರಿಸಲು ನಿಮ್ಮ ಫೋನ್ ಸೆಲ್ಯುಲಾರ್ ಸಿಗ್ನಲ್ ಅನ್ನು ಹೊಂದಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಿ\n • ಈ ಸಂಖ್ಯೆಗೆ ನೀವು ಫೋನ್ ಕರೆಯನ್ನು ಸ್ವೀಕರಿಸಬಹುದು ಎಂದು ಖಚಿತಪಡಿಸಿ\n • ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಸರಿಯಾಗಿ ನಮೂದಿಸಿದ್ದೀರಾ ಎಂದು ಪರಿಶೀಲಿಸಿ.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ, ದಯವಿಟ್ಟು ಈ ಸಮಸ್ಯೆ ಪರಿಹಾರದ ಹಂತಗಳನ್ನು ಅನುಸರಿಸಿ ಅಥವಾ ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ, %1$s ಅಥವಾ %2$s ಅನುಸರಿಸಿ</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ಈ ಸಮಸ್ಯೆ ಪರಿಹಾರದ ಹಂತಗಳನ್ನು</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
@@ -2211,10 +2416,10 @@
     <string name="SupportEmailUtil_filter">ಫಿಲ್ಟರ್:</string>
     <string name="SupportEmailUtil_device_info">ಸಾಧನ ಮಾಹಿತಿ:</string>
     <string name="SupportEmailUtil_android_version">ಆಂಡ್ರಾಯ್ಡ್ ಆವೃತ್ತಿ:</string>
-    <string name="SupportEmailUtil_signal_version">Signal ಆವೃತ್ತಿ:</string>
-    <string name="SupportEmailUtil_signal_package">Signal ಪ್ಯಾಕೇಜ್:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">ರಿಜಿಸ್ಟ್ರೇಶನ್ ಲಾಕ್‌:</string>
-    <string name="SupportEmailUtil_locale">ಭಾಷೆ:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">ಗುಂಪು ನವೀಕರಿಸಲಾಗಿದೆ</string>
@@ -2624,6 +2829,10 @@
     <string name="contact_selection_activity__refresh_contacts">ಸಂಪರ್ಕಗಳನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ</string>
     <!-- Row item description for refreshing contacts -->
     <string name="contact_selection_activity__missing_someone">ಯಾರಾದರೂ ತಪ್ಪಿಹೋದಂತೆ ಅನಿಸುತ್ತಿದೆಯೇ? ರಿಫ್ರೆಶ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ</string>
+    <!-- Row item title for finding people on Signal via your contacts -->
+    <string name="contact_selection_activity__find_people_you_know">ನಿಮಗೆ ಗೊತ್ತಿರುವ ಜನರನ್ನು Signal ನಲ್ಲಿ ಹುಡುಕಿ</string>
+    <!-- Row item description asking users for access to their contacts to find people they know -->
+    <string name="contact_selection_activity__allow_access_to_contacts">ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಿಗೆ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">ಇನ್ನಷ್ಟು</string>
 
@@ -2657,6 +2866,16 @@
     <string name="ContactSelectionListFragment__find_by_phone_number">ಫೋನ್ ನಂಬರ್‌ನಿಂದ ಹುಡುಕಿ</string>
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">ಯೂಸರ್‌ನೇಮ್‌ನಿಂದ ಹುಡುಕಿ</string>
+    <!-- Dialog title asking users for contact permission -->
+    <string name="ContactSelectionListFragment_allow_access_contacts">ಸಂಪರ್ಕಗಳಿಗೆ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ</string>
+    <!-- Dialog description that will explain the steps needed to give contact permissions -->
+    <string name="ContactSelectionListFragment_to_find_people">ನಿಮಗೆ ಗೊತ್ತಿರುವ ಜನರನ್ನು Signal ನಲ್ಲಿ ಹುಡುಕಲು:</string>
+    <!-- Text on button prompting users to give Signal contact permissions -->
+    <string name="ContactSelectionListFragment__allow_access">ಪ್ರವೇಶ ಅನುಮತಿಸಿ</string>
+    <!-- Text on button to dismiss Signal\'s request for contact permissions -->
+    <string name="ContactSelectionListFragment__no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
+    <!-- Text asking for user\'s contact permission -->
+    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಿಗೆ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ. ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ಎನ್ಕ್ರಿಪ್ಟ್ ಆಗಿವೆ ಮತ್ತು Signal ಸೇವೆಗೆ ಗೋಚರಿಸುವುದಿಲ್ಲ.</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal ಗೆ ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲು ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.</string>
@@ -2709,6 +2928,8 @@
     <string name="ConversationUpdateItem_loading">ಲೋಡ್ ಆಗುತ್ತಿದೆ</string>
     <string name="ConversationUpdateItem_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <string name="ConversationUpdateItem_join_call">ಕರೆಗೆ ಸೇರಿ</string>
+    <!-- Action button label for starting a new call in the current conversation -->
+    <string name="ConversationUpdateItem_call_back">ಹಿಂತಿರುಗಿ ಕರೆ ಮಾಡಿ</string>
     <string name="ConversationUpdateItem_return_to_call">ಕರೆಗೆ ಹಿಂತಿರುಗಿ</string>
     <string name="ConversationUpdateItem_call_is_full">ಕರೆ ಭರ್ತಿಯಾಗಿದೆ</string>
     <string name="ConversationUpdateItem_invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
@@ -2773,6 +2994,7 @@
     <string name="safety_number_change_dialog__leave_call">ಕರೆ ಬಿಡಿ</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ಈ ಕೆಳಗಿನ ಜನರು ಸಾಧನಗಳನ್ನು ಪುನಃ ಇನ್‌‌ಸ್ಟಾಲ್ ಮಾಡಿರಬಹುದು ಅಥವಾ ಬದಲಾಯಿಸಿರಬಹುದು. ಗೌಪ್ಯತೆಯನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಲು ಅವರೊಂದಿಗೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಿ.</string>
     <string name="safety_number_change_dialog__view">ತೋರಿಸು</string>
+    <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">ಮೊದಲೇ ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
 
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
@@ -3018,7 +3240,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">ಬೆಂಬಲ ಮಾಹಿತಿ</string>
     <string name="HelpFragment__signal_android_support_request">Signal ಆಂಡ್ರಾಯ್ಡ್ ಬೆಂಬಲ ವಿನಂತಿ</string>
-    <string name="HelpFragment__debug_log">ಡೀಬಗ್ ಲಾಗ್:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">ಲಾಗ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗದು</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">ಸಮಸ್ಯೆಯನ್ನು ಅರ್ಥ ಮಾಡಿಕೊಳ್ಳಲು ನಮಗೆ ಸಹಾಯ ಮಾಡುವುದಕ್ಕಾಗಿ ಸಾಧ್ಯವಾದಷ್ಟೂ ವಿವರಣೆ ನೀಡಿ</string>
     <string-array name="HelpFragment__categories_5">
@@ -3086,6 +3308,7 @@
 
     <string name="arrays__default">ಡೀಫಾಲ್ಟ್</string>
     <string name="arrays__high">ಹೆಚ್ಚು</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">ಗರಿಷ್ಠ</string>
 
     <!-- plurals.xml -->
@@ -3224,7 +3447,8 @@
     <string name="preferences_storage__audio">ಆಡಿಯೊ</string>
     <string name="preferences_storage__review_storage">ಸ್ಟೊರೇಜ್ ಪರಿಶೀಲಿಸಿ</string>
     <string name="preferences_storage__delete_older_messages">ಹಳೆಯ ಮೆಸೇಜ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</string>
-    <string name="preferences_storage__clear_message_history">ಸಂದೇಶ ಇತಿಹಾಸವನ್ನು ತೆರವುಗೊಳಿಸುವುದೇ?</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಅಳಿಸುವುದೇ?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$s ಗಿಂತ ಹಳೆಯದಾಗಿರುವ ಎಲ್ಲಾ ಮೆಸೇಜ್‌ನ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -3232,8 +3456,12 @@
         <item quantity="other">ಇದು ಎಲ್ಲಾ ಚಾಟ್‌ಗಳನ್ನು %1$s ಅತ್ಯಂತ ಇತ್ತೀಚಿನ ಮೆಸೇಜ್‌ಗಳಿಗೆ ಶಾಶ್ವತವಾಗಿ ಟ್ರಿಮ್ ಮಾಡುತ್ತದೆ.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ಎಲ್ಲಾ ಮೆಸೇಜ್‌ಗಳ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತದೆ.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">ಇದು ಈ ಸಾಧನ ಮತ್ತು ಯಾವುದೇ ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಂದ ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸ ಮತ್ತು ಮೀಡಿಯಾವನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ನೀವು ಖಚಿತವಾಗಿ ಅಳಿಸಲು ಬಯಸುವಿರಾ?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ. ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">ಎಲ್ಲಾ ಸಾಧನಗಳಿಂದ ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ. ಈ ಕ್ರಮವನ್ನು ರದ್ದುಪಡಿಸಲಾಗುವುದಿಲ್ಲ.</string>
     <string name="preferences_storage__delete_all_now">ಎಲ್ಲವನ್ನೂ ಈಗಲೇ ಅಳಿಸಿ</string>
     <string name="preferences_storage__forever">ಎಂದೆಂದಿಗೂ</string>
     <string name="preferences_storage__one_year">1 ವರ್ಷ</string>
@@ -3406,6 +3634,14 @@
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">ನಿಮ್ಮ ಸಾಧನದಿಂದ ಫೊಟೋಗಳು, ವೀಡಿಯೊಗಳು ಮತ್ತು ಫೈಲ್‌ಗಳನ್ನು ಕಳುಹಿಸಿ.</string>
 
+    <!-- PermissionDeniedBottomSheet -->
+    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. ಕೆಳಗಿನ “ಸೆಟ್ಟಿಂಗ್‌ಗಳು” ಅನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
+    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s ಅನುಮತಿ ನೀಡಿ</string>
+    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
+    <string name="PermissionDeniedBottomSheet__settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
     <string name="PaymentsSecuritySetupFragment__security_setup">ಭದ್ರತಾ ಸೆಟ್ ಅಪ್</string>
@@ -3446,6 +3682,7 @@
     <string name="PaymentsDetailsFragment__sent_to_s">%1$s ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">ನೀವು %2$s ರಲ್ಲಿ %1$s ಆಗಿದ್ದೀರಿ</string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s ರಂದು %3$s ರಲ್ಲಿ %2$s</string>
+    <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">ಗೆ</string>
     <string name="PaymentsDetailsFragment__from">ಇಂದ</string>
     <string name="PaymentsDetailsFragment__information">ಪಾವತಿ ಮೊತ್ತ ಮತ್ತು ವಹಿವಾಟಿನ ಸಮಯ ಸೇರಿದಂತೆ ವಹಿವಾಟು ವಿವರಗಳು ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ಲೆಡ್ಜರ್‌ನ ಭಾಗವಾಗಿದೆ.</string>
@@ -3508,6 +3745,7 @@
     <string name="ConfirmPayment__confirm_payment">ಪೇಮೆಂಟ್ ದೃಢೀಕರಿಸಿ</string>
     <string name="ConfirmPayment__network_fee">ನೆಟ್‌ವರ್ಕ್‌ ಶುಲ್ಕ</string>
     <string name="ConfirmPayment__estimated_s">ಅಂದಾಜು ಮಾಡಿದ %1$s</string>
+    <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">ಗೆ</string>
     <string name="ConfirmPayment__total_amount">ಒಟ್ಟು ಮೊತ್ತ</string>
     <string name="ConfirmPayment__balance_s">ಬ್ಯಾಲೆನ್ಸ್: %1$s</string>
@@ -3657,6 +3895,14 @@
     <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">ಚಾಟ್</string>
     <string name="conversation_group_options__broadcast">ಪ್ರಸಾರ ಮಾಡಿ</string>
+
+    <!-- DoubleTapEditEducationSheet -->
+    <!-- Displayed as the title of the education bottom sheet -->
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">ಎಡಿಟ್ ಮಾಡಲು ಡಬಲ್ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
+    <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗಳನ್ನು ಎಡಿಟ್ ಮಾಡಲು ಅವುಗಳ ಮೇಲೆ ತ್ವರಿತವಾಗಿ ಎರಡು ಬಾರಿ ಟ್ಯಾಪ್ ಮಾಡಿ. ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗಳನ್ನು ಕಳುಹಿಸಿದ 24 ಗಂಟೆಗಳವರೆಗೂ ನೀವು ಅವುಗಳನ್ನು ಎಡಿಟ್ ಮಾಡಬಹುದು.</string>
+    <!-- Button label to dismiss sheet -->
+    <string name="DoubleTapEditEducationSheet__got_it">ಅರ್ಥವಾಯಿತು</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">ಹೊಸ ಗುಂಪು</string>
@@ -3970,8 +4216,15 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">ನಿಮ್ಮ ಹಳೆಯ ಸಾಧನಕ್ಕೆ ನಿಮಗೆ ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">ಬ್ಯಾಕಪ್‌ನಿಂದ ರಿಸ್ಟೋರ್ ಮಾಡಿ</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ಸ್ಥಳೀಯ ಬ್ಯಾಕಪ್‌ನಿಂದ ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗಳನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಿ. ನೀವು ಈಗ ರಿಸ್ಟೋರ್ ಮಾಡದಿದ್ದರೆ, ನಂತರ ರಿಸ್ಟೋರ್ ಮಾಡಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">ಸ್ಥಳೀಯ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಿ</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಿ</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">ನಿಮ್ಮ ಎಲ್ಲಾ ಟೆಕ್ಸ್ಟ್ ಮೆಸೇಜ್‌ಗಳನ್ನು + ನಿಮ್ಮ ಕೊನೆಯ 30 ದಿನಗಳ ಮೀಡಿಯಾವನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಿ</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">ಇನ್ನಷ್ಟು ಆಯ್ಕೆಗಳು</string>
+
+    <string name="TransferOrRestoreFragment__cancel">ರದ್ದುಮಾಡಿ</string>
+    <string name="TransferOrRestoreFragment__skip_transfer">ವರ್ಗಾವಣೆ ಮಾಡದೆಯೇ ಲಾಗ್ ಇನ್ ಮಾಡಿ</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗಳು ಮತ್ತು ಮೀಡಿಯಾವನ್ನು ವರ್ಗಾಯಿಸದೆಯೇ ಮುಂದುವರಿಸಿ</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">ನಿಮ್ಮ ಹಳೆಯ ಆಂಡ್ರಾಯ್ಡ್‌ ಫೋನ್‌ನಲ್ಲಿ Signal ತೆರೆಯಿರಿ</string>
@@ -4112,6 +4365,7 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
 
     <string name="GroupRecipientListItem_admin">ಅಡ್ಮಿನ್‌‌</string>
+    <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">ಅನುಮತಿಸಿ</string>
     <string name="GroupRecipientListItem_deny_description">ನಿರಾಕರಿಸಿ</string>
 
@@ -4139,6 +4393,7 @@
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
     <string name="VoiceNoteMediaItemFactory__voice_message">ಧ್ವನಿ ಸಂದೇಶ . %1$s</string>
+    <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ಗೆ %2$s</string>
 
     <!-- StorageUtil -->
@@ -4152,8 +4407,16 @@
     <string name="ReviewCardDialogFragment__review_members">ಸದಸ್ಯರನ್ನು ಪರಿಶೀಲಿಸಿ</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">ವಿನಂತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ</string>
-    <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d ಗುಂಪು ಸದಸ್ಯರು ಒಂದೇ ಹೆಸರನ್ನು ಹೊಂದಿದ್ದಾರೆ, ಕೆಳಗಿನ ಸದಸ್ಯರನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಕ್ರಮ ತೆಗೆದುಕೊಳ್ಳಿರಿ.</string>
-    <string name="ReviewCardDialogFragment__if_youre_not_sure">ವಿನಂತಿ ಯಾರೆಂದು ನಿಮಗೆ ಖಚಿತವಿಲ್ಲದಿದ್ದರೆ, ಕೆಳಗಿನ ಸಂಪರ್ಕಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಕ್ರಮ ತೆಗೆದುಕೊಳ್ಳಿರಿ.</string>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
+        <item quantity="one">%1$d ಗುಂಪಿನ ಸದಸ್ಯರು ಅದೇ ಹೆಸರನ್ನು ಹೊಂದಿದ್ದಾರೆ, ಕೆಳಗಿನ ಸದಸ್ಯರನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಕ್ರಮ ತೆಗೆದುಕೊಳ್ಳಿರಿ.</item>
+        <item quantity="other">%1$d ಗುಂಪಿನ ಸದಸ್ಯರು ಅದೇ ಹೆಸರನ್ನು ಹೊಂದಿದ್ದಾರೆ, ಕೆಳಗಿನ ಸದಸ್ಯರನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಕ್ರಮ ತೆಗೆದುಕೊಳ್ಳಿರಿ.</item>
+    </plurals>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
+        <item quantity="one">ವಿನಂತಿ ಯಾರದ್ದು ಎಂದು ನಿಮಗೆ ಖಚಿತವಿಲ್ಲದಿದ್ದರೆ, ಕೆಳಗಿನ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಕ್ರಮ ತೆಗೆದುಕೊಳ್ಳಿರಿ.</item>
+        <item quantity="other">ವಿನಂತಿ ಯಾರದ್ದು ಎಂದು ನಿಮಗೆ ಖಚಿತವಿಲ್ಲದಿದ್ದರೆ, ಕೆಳಗಿನ ಸಂಪರ್ಕಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಕ್ರಮ ತೆಗೆದುಕೊಳ್ಳಿರಿ.</item>
+    </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">ಬೇರೆ ಯಾವುದೇ ಗುಂಪುಗಳು ಸಾಮಾನ್ಯವಾಗಿಲ್ಲ.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">ಯಾವುದೇ ಒಂದೇ ಗುಂಪುಗಳಲ್ಲಿಲ್ಲ.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -4184,11 +4447,20 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s ಸೇರಿಕೊಂಡಿದ್ದಾರೆ</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s ಹಾಗು %2$s ಸೇರಿಕೊಂಡಿದ್ದಾರೆ</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s ಹಾಗು %3$s ಸೇರಿಕೊಂಡಿದ್ದಾರೆ</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s ಹಾಗು %3$d ಇನ್ನಿತರು ಸೇರಿಕೊಂಡಿದ್ದಾರೆ</string>
+    <!-- Toast message shown in group call when 3 or more people join -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
+        <item quantity="one">%1$s, %2$s ಮತ್ತು ಇತರ %3$d ಮಂದಿ ಸೇರಿಕೊಂಡಿದ್ದಾರೆ</item>
+        <item quantity="other">%1$s, %2$s ಮತ್ತು ಇತರ %3$d ಮಂದಿ ಸೇರಿಕೊಂಡಿದ್ದಾರೆ</item>
+    </plurals>
+    <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s ಉಳಿದಿದ್ದಾರೆ</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ಹಾಗು %2$s ಉಳಿದಿದ್ದಾರೆ</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s ಹಾಗು %3$s ಉಳಿದಿದ್ದಾರೆ</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ಹಾಗು %3$d ಇನ್ನಿತರು ಉಳಿದಿದ್ದಾರೆ</string>
+    <!-- Toast message shown in group call when 3 or more people leave -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
+        <item quantity="one">%1$s, %2$s ಮತ್ತು ಇತರ %3$d ಮಂದಿ ತೊರೆದಿದ್ದಾರೆ</item>
+        <item quantity="other">%1$s, %2$s ಮತ್ತು ಇತರ %3$d ಮಂದಿ ತೊರೆದಿದ್ದಾರೆ</item>
+    </plurals>
 
     <string name="CallParticipant__you">ನೀವು</string>
     <string name="CallParticipant__you_on_another_device">ನೀವು (ಮತ್ತೊಂದು ಸಾಧನದಲ್ಲಿ)</string>
@@ -4558,10 +4830,15 @@
 
     <!-- PrivacySettingsFragment -->
     <string name="PrivacySettingsFragment__blocked">ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ</string>
-    <string name="PrivacySettingsFragment__d_contacts">%1$d ಸಂಪರ್ಕಗಳು</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$d ಸಂಪರ್ಕ</item>
+        <item quantity="other">%1$d ಸಂಪರ್ಕಗಳು</item>
+    </plurals>
     <string name="PrivacySettingsFragment__messaging">ಸಂದೇಶ ಕಳುಹಿಸುವಿಕೆ</string>
     <string name="PrivacySettingsFragment__disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
     <string name="PrivacySettingsFragment__app_security">ಆಪ್ ಸುರಕ್ಷತೆ</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ಇತ್ತೀಚಿನ ಪಟ್ಟಿಯಲ್ಲಿ ಮತ್ತು ಆ್ಯಪ್‌ನ ಒಳಗೆ ಸ್ಕ್ರೀನ್‌ಶಾಟ್‌ಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ಮೆಸೇಜ್‌ಗಳು ಮತ್ತು ಕಾಲ್‌ಗಳು, ಎಂದಿಗೂ ಕಾಲ್‌ಗಳನ್ನು ರಿಲೇ ಮಾಡಿ ಮತ್ತು ಸೀಲ್ ಮಾಡಿದ ಕಳುಹಿಸುವವರು</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">ಹೊಸ ಚಾಟ್‌ಗಳಿಗೆ ಡೀಫಾಲ್ಟ್ ಟೈಮರ್</string>
@@ -4618,12 +4895,15 @@
     <string name="DataAndStorageSettingsFragment__media_quality">ಮಾಧ್ಯಮ ಗುಣಮಟ್ಟ</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">ಮಾಧ್ಯಮ ಗುಣಮಟ್ಟವನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ಉನ್ನತ ಗುಣಮಟ್ಟದ ಮಾಧ್ಯಮವನ್ನು ಕಳುಹಿಸುವಿಕೆಯು ಹೆಚ್ಚು ಡೇಟಾವನ್ನು ಬಳಸಲಿದೆ.</string>
+    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">ಹೆಚ್ಚು</string>
+    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">ಪ್ರಮಾಣಿತ</string>
     <string name="DataAndStorageSettingsFragment__calls">ಕರೆಗಳು</string>
 
     <!-- ChatColorSelectionFragment -->
-    <string name="ChatColorSelectionFragment__auto">ಸ್ವಯಂಚಾಲಿತ</string>
+    <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
+    <string name="ChatColorSelectionFragment__auto">ಸ್ವಯಂ</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">ಕಸ್ಟಮ್ ಬಣ್ಣಗಳನ್ನು ಬಳಸಿ</string>
     <string name="ChatColorSelectionFragment__chat_color">ಚಾಟ್ ಬಣ್ಣ</string>
     <string name="ChatColorSelectionFragment__edit">ತಿದ್ದಿ</string>
@@ -4834,6 +5114,7 @@
     <string name="AvatarPickerFragment__take_a_picture">ಚಿತ್ರವನ್ನು ತೆಗೆಯಿರಿ</string>
     <string name="AvatarPickerFragment__choose_a_photo">ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="AvatarPickerFragment__photo">ಫೋಟೋ</string>
+    <!-- Button label during avatar selection/creation that when tapped lets you generate an avatar from typed in text. -->
     <string name="AvatarPickerFragment__text">ಪಠ್ಯ</string>
     <string name="AvatarPickerFragment__save">ಉಳಿಸಿ</string>
     <string name="AvatarPickerFragment__clear_avatar">ಅವತಾರವನ್ನು ತೆಗೆಯಿರಿ</string>
@@ -4847,9 +5128,6 @@
 
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">ಬಣ್ಣವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
-
-    <!-- ContactSelectionListItem -->
-    <string name="ContactSelectionListItem__sms">ಎಸ್‌ಎಂಎಸ್‌</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">ಹಂಚಿಕೊಳ್ಳಿ</string>
@@ -4884,7 +5162,8 @@
     </plurals>
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">ಈ ಗುಂಪಿಗೆ ಅಡ್ಮಿನ್‌ಗಳು ಮಾತ್ರ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಬಹುದು.</string>
-    <string name="MultiselectForwardFragment__limit_reached">ಮಿತಿ ತಲುಪಿದೆ</string>
+    <!-- Error message shown when users try to choose more than 5 chats to send a message to -->
+    <string name="MultiselectForwardFragment__you_cant_select_more_chats">ನಿಮಗೆ 5 ಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ಚಾಟ್‌ಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ</string>
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
@@ -4894,7 +5173,7 @@
     <string name="MediaReviewFragment__add_a_message">ಮೆಸೇಜ್ ಸೇರಿಸಿ</string>
     <string name="MediaReviewFragment__add_a_reply">ಉತ್ತರ ಸೇರಿಸಿ</string>
     <string name="MediaReviewFragment__send_to">ಇವರಿಗೆ ಕಳುಹಿಸಿ</string>
-    <string name="MediaReviewFragment__view_once_message">ಏಕ ವೀಕ್ಷಣೆ ಮೆಸೇಜ್</string>
+    <string name="MediaReviewFragment__view_once_message">ಒಮ್ಮೆ ವೀಕ್ಷಿಸಬಹುದಾದ ಮೀಡಿಯಾ</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ಒಂದು ಅಥವಾ ಹೆಚ್ಚು ಐಟಂಗಳು ತೀರಾ ದೊಡ್ಡದಾಗಿವೆ</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ಒಂದು ಅಥವಾ ಹೆಚ್ಚು ಐಟಂಗಳು ಅಮಾನ್ಯವಾಗಿವೆ</string>
     <string name="MediaReviewFragment__too_many_items_selected">ತುಂಬಾ ಐಟಂಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
@@ -5487,7 +5766,7 @@
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">ನೀವು</string>
-    <!-- Displayed when viewing a post displayed to a group -->
+    <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$s ಗೆ %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">ಉತ್ತರಿಸಿ</string>
@@ -5515,8 +5794,10 @@
     <string name="StoryGroupReplyFragment__no_replies_yet">ಇನ್ನೂ ಯಾವುದೇ ಪ್ರತ್ಯುತ್ತರವಿಲ್ಲ</string>
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">ಈ ಸ್ಟೋರಿಗೆ ನೀವು ಉತ್ತರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಯಾಕೆಂದರೆ ನೀವೀಗ ಈ ಗ್ರೂಪ್ ನ  ಸದಸ್ಯರಾಗಿ ಉಳಿದಿಲ್ಲ.</string>
-    <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ಸ್ಟೋರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಲಾಗಿದೆ</string>
+    <!-- Displayed for when you reacted to a story when viewing replies -->
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">ಸ್ಟೋರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದೀರಿ</string>
+    <!-- Displayed for other users that reacted to a story when viewing replies -->
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">ಸ್ಟೋರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">ವೀಕ್ಷಣೆಗಳು</string>
     <!-- Label for story replies tab -->
@@ -6680,7 +6961,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">ಅಡ್ಡಹೆಸರು</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">ಅಡ್ಡಹೆಸರುಗಳು ಮತ್ತು ಟಿಪ್ಪಣಿಗಳನ್ನು Signal ನಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗಿವೆ. ಅವು ನಿಮಗೆ ಮಾತ್ರ ಗೋಚರಿಸುತ್ತವೆ.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">ಮೊದಲ ಹೆಸರು</string>
     <!-- Content description for first name clear button -->
@@ -6694,15 +6975,154 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">ಉಳಿಸಿ</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <string name="NicknameActivity__delete_nickname">ಅಳಿಸುವುದೇ?</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">ಇದು ನೀವು ಸೆಟ್ ಮಾಡಿದ ಯಾವುದೇ ಅಡ್ಡಹೆಸರು ಮತ್ತು ಟಿಪ್ಪಣಿಯನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">ಟಿಪ್ಪಣಿ</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">ಟಿಪ್ಪಣಿ ಎಡಿಟ್ ಮಾಡಿ</string>
+
+    <!-- BackupProgressService -->
+    <!-- Notification title shown while backup restore job is running -->
+    <string name="BackupProgressService_title">ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Notification title shown while downloading backup restore data -->
+    <string name="BackupProgressService_title_downloading">ಬ್ಯಾಕಪ್ ಡೇಟಾವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
+
+    <!-- BackupAlertBottomSheet -->
+    <!-- Sheet title when user does not have enough space to download their backup -->
+    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <!-- Clickable text to learn more about the content of this bottom sheet -->
+    <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
+    <!-- Secondary action button text when user does not have enough free space to download their backup. -->
+    <string name="BackupAlertBottomSheet__skip">Skip</string>
+
+    <!-- BackupStatus -->
+    <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+
+    <!-- BackupsTypeSettingsFragment -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">ಕ್ರೆಡಿಟ್ ಅಥವಾ ಡೆಬಿಟ್ ಕಾರ್ಡ್</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__bank_transfer">ಬ್ಯಾಂಕ್ ವರ್ಗಾವಣೆ</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__unknown">ತಿಳಿದಿಲ್ಲ</string>
+    <!-- Row title for entering payment history -->
+    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">ನಿಮ್ಮ ಕೊನೆಯ ಬ್ಯಾಕಪ್ ಅನ್ನು %1$s ರಂದು %2$s ಕ್ಕೆ ಮಾಡಲಾಗಿದೆ.</string>
+
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">ಚಾಟ್ ಮಿತಿಗಳು</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಅಳಿಸಿ</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಮಯಕ್ಕಿಂತ ಹಳೆಯದಾದ ಮೆಸೇಜ್‌ಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">ಆಯ್ಕೆ ಮಾಡಲಾದ ಉದ್ದವನ್ನು ಮೀರಿದ ಮೆಸೇಜ್‌ಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಗೆ ಮಿತಿಗಳನ್ನು ಅನ್ವಯಿಸಿ</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ, ಸಂವಹನ ಉದ್ದದ ಮಿತಿಗಳು ಸಹ ನಿಮ್ಮ ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಂದ ಮೆಸೇಜ್‌ಗಳನ್ನು ಅಳಿಸುತ್ತವೆ.</string>
+
+    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
+    <string name="DeleteSyncEducation_title">ಅಳಿಸುವಿಕೆಯನ್ನು ಇದೀಗ ನಿಮ್ಮ ಎಲ್ಲಾ ಸಾಧನಗಳಲ್ಲಿ ಸಿಂಕ್ ಮಾಡಲಾಗಿದೆ</string>
+    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
+    <string name="DeleteSyncEducation_message">ನೀವು ಮೆಸೇಜ್‌ಗಳು ಅಥವಾ ಚಾಟ್‌ಗಳನ್ನು ಅಳಿಸಿದಾಗ, ಅವು ನಿಮ್ಮ ಫೋನ್ ಮತ್ತು ಲಿಂಕ್ ಮಾಡಲಾದ ಎಲ್ಲಾ ಸಾಧನಗಳಿಂದ ಅಳಿಸಿ ಹೋಗುತ್ತವೆ.</string>
+    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
+    <string name="DeleteSyncEducation_acknowledge_button">ಓಕೆ</string>
+
+    <!-- RemoteBackupsPaymentHistoryFragment -->
+    <!-- Title of the screen for payment history -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Payment history</string>
+    <!-- Description for backup rows -->
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <!-- Title of the screen for payment details -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Payment details</string>
+    <!-- Title of row specifying the type of backup -->
+    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Backup type</string>
+    <!-- Title of row specifying the date the backup was paid on -->
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date paid</string>
+    <!-- Button label to share the receipt -->
+    <string name="RemoteBackupsPaymentHistoryFragment__share">Share</string>
+
+    <!-- RemoteBackupsSettingsFragment -->
+    <!-- Displayed on the title bar -->
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal ಬ್ಯಾಕಪ್‌ಗಳು</string>
+    <!-- Row label to launch payment history screen -->
+    <string name="RemoteBackupsSettingsFragment__payment_history">ಪಾವತಿ ಇತಿಹಾಸ</string>
+    <!-- Section header for backup information -->
+    <string name="RemoteBackupsSettingsFragment__backup_details">ಬ್ಯಾಕಪ್ ವಿವರಗಳು</string>
+    <!-- Row label for backup size -->
+    <string name="RemoteBackupsSettingsFragment__backup_size">ಬ್ಯಾಕಪ್ ಗಾತ್ರ</string>
+    <!-- Row label for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency">ಬ್ಯಾಕಪ್ ಆವರ್ತನ</string>
+    <!-- Toggle row label for allowing backups to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">ಸೆಲ್ಯುಲರ್ ಬಳಸಿಕೊಂಡು ಬ್ಯಾಕಪ್ ಮಾಡಿ</string>
+    <!-- Row label for cancelling and deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ಬ್ಯಾಕಪ್ ಆಫ್ ಮಾಡಿ ಮತ್ತು ಅಳಿಸಿ</string>
+    <!-- Snackbar text displayed when backup has been deleted and turned off -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">ಬ್ಯಾಕಪ್ ಅನ್ನು ಅಳಿಸಲಾಗಿದೆ ಮತ್ತು ಆಫ್ ಮಾಡಲಾಗಿದೆ.</string>
+    <!-- Snackbar text displayed when backup type is downgraded -->
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">ಬ್ಯಾಕಪ್ ಪ್ರಕಾರವನ್ನು ಬದಲಾಯಿಸಲಾಗಿದೆ ಮತ್ತು ಚಂದಾದಾರಿಕೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ</string>
+    <!-- Snackbar text displayed when backup subscription is cancelled -->
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">ಚಂದಾದಾರಿಕೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ</string>
+    <!-- Snackbar text displayed when backup is successfully downloaded -->
+    <string name="RemoteBackupsSettingsFragment__download_complete">ಡೌನ್‌ಲೋಡ್ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
+    <!-- Title text in row detailing selected backup type -->
+    <string name="RemoteBackupsSettingsFragment__backup_type">ಬ್ಯಾಕಪ್ ಪ್ರಕಾರ</string>
+    <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
+    <string name="RemoteBackupsSettingsFragment__backups_disabled">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
+    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/ತಿಂಗಳು</string>
+    <!-- Button label to enable backups -->
+    <string name="RemoteBackupsSettingsFragment__enable_backups">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <!-- Progress indicator subtext displayed when a backup is in progress -->
+    <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d/</string>
+    <!-- Title text in row detailing last backup -->
+    <string name="RemoteBackupsSettingsFragment__last_backup">ಕೊನೆಯ ಬ್ಯಾಕಪ್</string>
+    <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
+    <string name="RemoteBackupsSettingsFragment__s_at_s">%2$s ರಲ್ಲಿ %1$s</string>
+    <!-- Subtext describing when a backup has never taken place. -->
+    <string name="RemoteBackupsSettingsFragment__never">ಎಂದಿಗೂ ಇಲ್ಲ</string>
+    <!-- Button label to perform a backup immediately -->
+    <string name="RemoteBackupsSettingsFragment__back_up_now">ಈಗ ಬ್ಯಾಕಪ್‌‌ ಮಾಡಿ</string>
+    <!-- Dialog title when confirming whether to turn off and deleting backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಆಫ್ ಮಾಡಿ ಮತ್ತು ಅಳಿಸಬೇಕೇ?</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">ನಿಮಗೆ ಮತ್ತೆ ಶುಲ್ಕ ವಿಧಿಸಲಾಗುವುದಿಲ್ಲ. ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಅನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಯಾವುದೇ ಹೊಸ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ರಚಿಸಲಾಗುವುದಿಲ್ಲ.</string>
+    <!-- Confirmation action on dialog to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ಆಫ್ ಮಾಡಿ ಮತ್ತು ಅಳಿಸಿ</string>
+    <!-- Text on dialog while user backup is being deleted -->
+    <string name="RemoteBackupsSettingsFragment__deleting_backup">ಬ್ಯಾಕಪ್ ಅನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <!-- Text on dialog when user backup is deleted -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted">ಬ್ಯಾಕಪ್ ಅಳಿಸಲಾಗಿದೆ</string>
+    <!-- Subtitle for frequency option MANUAL for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"ಈಗ ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿ ಎಂಬುದನ್ನು ಟ್ಯಾಪ್ ಮಾಡುವ ಮೂಲಕ"</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__daily">ಪ್ರತಿದಿನ</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__weekly">ವಾರಕ್ಕೊಮ್ಮೆ</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__monthly">ಮಾಸಿಕ</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__manually_back_up">ಹಸ್ತಚಾಲಿತವಾಗಿ ಬ್ಯಾಕಪ್ ಮಾಡಿ</string>
 
     <!-- EOF -->
 </resources>

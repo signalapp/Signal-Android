@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2024 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
@@ -80,8 +84,9 @@
     <string name="AttachmentKeyboard_file">ھۆججەت</string>
     <string name="AttachmentKeyboard_contact">ئالاقەداش</string>
     <string name="AttachmentKeyboard_location">ئورنى</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">رەسىم ۋە سىنلىرىڭىزنى كۆرسىتىش ئۈچۈن Signal ئىجازىتىڭىزگە ئېھتىياجلىق.</string>
-    <string name="AttachmentKeyboard_give_access">ھوقۇق بەر</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">رەسىم ۋە ۋىدېيولىرىڭىزنى كۆرسىتىش ئۈچۈن Signal ئىجازىتىڭىزگە ئېھتىياجلىق</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">ئىشلىتىشكە رۇخسەت</string>
     <string name="AttachmentKeyboard_payment">چىقىم</string>
 
     <!-- AttachmentManager -->
@@ -89,6 +94,22 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal رەسىم ، سىن ياكى ئۈن ھۆججەتلىرىنى قوشۇش ئۈچۈن ساقلىغۇچ ھوقۇقى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكى تىزىملىكىدىن، «ھوقۇقلار» نى تاللاپ ۋە «ساقلىغۇچ» نى قوزغىتىڭ.</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">ئالاقىلىشىش ئۇچۇرلىرىنى چاپلاش ئۈچۈن Signal ئالاقەداشلار ھوقۇقى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكى تىزىملىكىدىن «ھوقۇقلار» نى تاللاپ، «ئالاقەداشلار» نى قوزغىتىڭ.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal ئورۇن بەلگىلەش ئۈچۈن ئورۇن ھوقۇقى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكى تىزىملىكىگە بېرىڭ، «ھوقۇقلار» نى تاللاڭ ۋە «ئورۇن» نى قوزغىتىڭ.</string>
+
+    <!-- Dialog title asking users for location permission -->
+    <string name="AttachmentManager_signal_allow_access_location">ئورنىڭىزغا ئىجازەت بېرىش</string>
+    <!-- Dialog description that will explain the steps needed to give location permission -->
+    <string name="AttachmentManager_signal_to_send_location">ئورنىڭىزنى يوللاش ئۈچۈن:</string>
+    <!-- Alert dialog description asking for location permission -->
+    <string name="AttachmentManager_signal_allow_signal_access_location">ئورنىڭىزنى يوللاش ئۈچۈن Signal غا رۇخسەت قىلىڭ.</string>
+    <!-- Toast text explaining Signal\'s need for location access -->
+    <string name="AttachmentManager_signal_needs_location_access">ئورنىڭىزنى يوللاش ئۈچۈن Signal ئ‍ورۇن ئىجازىتىنى لازىم قىلىدۇ.</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">ساقلاش بوشلۇقىغا ئىجازەت قىلىش</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">رەسىم ۋە ۋىدېيولارنى كۆرسىتىش ئۈچۈن:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">رەسىم ۋە ۋىدېيولىرىڭىزنى كۆرسىتىش ئۈچۈن Signal ساقلاش بوشلۇقى ئىجازىتىنى تەلەپ قىلىدۇ.</string>
+
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s پۇل تۆلەش ئىقتىدارىنى تېخى ئاكتىپلىمىغان </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -208,6 +229,38 @@
     <string name="CameraXFragment_capture_description">ئېكران تۇتۇش</string>
     <string name="CameraXFragment_change_camera_description">كامېرا ئالماشتۇر</string>
     <string name="CameraXFragment_open_gallery_description">سۈرەتداننى ئاچ</string>
+    <!-- Button text asking for access to camera permissions -->
+    <string name="CameraXFragment_allow_access">ئىشلىتىشكە رۇخسەت</string>
+    <!-- Dialog title asking users for camera and microphone permission -->
+    <string name="CameraXFragment_allow_access_camera_microphone">كامېرا ۋە مىكروفونىڭىزغا ئىجازەت قىلىش</string>
+    <!-- Dialog title asking users for camera permission -->
+    <string name="CameraXFragment_allow_access_camera">كامېرا ھوقۇقىغا ئىجازەت قىلىش</string>
+    <!-- Dialog title asking users for microphone permission -->
+    <string name="CameraXFragment_allow_access_microphone">مىكروفوننى ئىشلىتىشكە رۇخسەت قىلىڭ</string>
+    <!-- Text explaining why Signal needs camera access in order to take photos -->
+    <string name="CameraXFragment_to_capture_photos_allow_camera">رەسىم تارتىش ئۈچۈن ، Signal نىڭ كامېرانى زىيارەت قىلىشىغا رۇخسەت قىلىڭ.</string>
+    <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
+    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">رەسىم ۋە سىنغا ئېلىش ئۈچۈن ، Signal نىڭ كامېرانى زىيارەت قىلىشىغا يول قويۇڭ.</string>
+    <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
+    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">رەسىم ۋە سىنغا ئېلىش ئۈچۈن، Signal نىڭ كامېرا ۋە مىكروفوننى زىيارەت قىلىشىغا رۇخسەت قىلىڭ.</string>
+    <!-- Text explaining why Signal needs microphone access to take videos -->
+    <string name="CameraXFragment_to_capture_videos_with_sound">ئاۋازلىق سىنغا ئېلىش ئۈچۈن، Signal نىڭ مىكروفوننى زىيارەت قىلىشىغا رۇخسەت قىلىڭ.</string>
+    <!-- Text explaining why Signal needs camera access to scan QR codes -->
+    <string name="CameraXFragment_to_scan_qr_code_allow_camera">QR كودىنى سايىلەش ئۈچۈن، Signal نىڭ كامېرانى زىيارەت قىلىشىغا رۇخسەت قىلىڭ.</string>
+    <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
+    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">رەسىم تارتىش ئۈچۈن Signal كامېرا ئىجازىتىنى تەلەپ قىلىدۇ</string>
+    <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
+    <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">QR كودىنى سايىلەش ئۈچۈن Signal كامېرا ئىجازىتىنى تەلەپ قىلىدۇ</string>
+    <!-- Toast dialog explaining why Signal needs microphone permissions -->
+    <string name="CameraXFragment_signal_needs_microphone_access_video">سىنغا ئېلىش ئۈچۈن Signal مىكروفون ئىجازىتىنى تەلەپ قىلىدۇ</string>
+    <!-- Dialog description that explains the steps needed to give camera permission -->
+    <string name="CameraXFragment_to_capture_photos">Signal دا رەسىمگە تارتىش:</string>
+    <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
+    <string name="CameraXFragment_to_capture_photos_videos">Signal دا رەسىم تارتىش ۋە سىنغا ئېلىش:</string>
+    <!-- Dialog description that explains the steps needed to give microphone permission -->
+    <string name="CameraXFragment_to_capture_videos">ئاۋازلىق سىنغا ئېلىش:</string>
+    <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
+    <string name="CameraXFragment_to_scan_qr_codes">QR كودىنى سايىلەش:</string>
 
     <!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">يېقىنقى ئالاقەداشلار</string>
@@ -277,7 +330,8 @@
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$s گە ئۇچۇر قىلىش</string>
-    <string name="ContactsDatabase_signal_call_s">%1$s نى Signal دا چاقىرىش</string>
+    <string name="ContactsDatabase_signal_call_s">Signal ئاۋازلىق چاقىرىق %1$s</string>
+    <string name="ContactsDatabase_signal_video_call_s">Signal سىنلىق چاقىرىق %1$s</string>
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
@@ -383,8 +437,16 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">قوشۇلۇش تەلىپىڭىز گۇرۇپپا باشقۇرغۇچىسىغا ئەۋەتىلدى. ئۇلار قارار قىلغاندا سىزگە ئۇقتۇرۇلىدۇ.</string>
     <string name="ConversationActivity_cancel_request">ئىلتىماستىن ۋاز كەچ</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ئۈنلىك ئۇچۇر يوللاش ئۈچۈن، Signal نىڭ مىكروفونىڭىزنى زىيارەت قىلىشىغا رۇخسەت قىلىڭ.</string>
+    <!-- Dialog title asking users for microphone permission -->
+    <string name="ConversationActivity_allow_access_microphone">مىكروفوننى ئىشلىتىشكە رۇخسەت قىلىڭ</string>
+    <!-- Dialog description that will explain the steps needed to give microphone permissions -->
+    <string name="ConversationActivity_signal_to_send_audio_messages">ئاۋازلىق ئۇچۇر يوللاش ئۈچۈن:</string>
+    <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">ئاۋازلىق ئۇچۇر يوللاش ئۈچۈن، Signal نىڭ مىكروفونىڭىزنى زىيارەت قىلىشىغا رۇخسەت قىلىڭ.</string>
+    <!-- Toast text explaining Signal\'s need for microphone access -->
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">ئاۋازلىق ئۇچۇر خاتىرىلەش ئۈچۈن Signal مىكروفون ئىجازىتىنى لازىم قىلىدۇ.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ئۈنلىك ئۇچۇر يوللاش ئۈچۈن Signal مىكروفون ھوقۇقى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكى تىزىملىكىدىن «ھوقۇقلار» نى تاللاپ ۋە «مىكروفون» نى قوزغىتىڭ.</string>
+
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%1$s گە چاقىرىق قىلىش ئۈچۈن Signal مىكروفون ۋە كامېرا ھوقۇقىنى ئىشلىتىشى كېرەك، لېكىن ئۇ ھوقۇقلار مەڭگۈلۈك چەكلەنگەن. ئەپ تەڭشىكىگە كىرىپ، «ھوقۇقلار» نى تاللاپ، «مىكروفون» ۋە «كامېرا» نى قوزغىتىڭ.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">رەسىم ۋە سىنغا ئېلىش ئۈچۈن ، Signal نىڭ كامېرانى زىيارەت قىلىشىغا يول قويۇڭ.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">رەسىم تارتىش ياكى سىنغا ئېلىش ئۈچۈن Signal كامېرا ھوقۇقىغا موھتاج ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشەكلىرىدىن، «ھوقۇقلار» نى تاللاپ ۋە «كامېرا» نى قوزغىتىڭ.</string>
@@ -408,10 +470,17 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">بۇ گۇرۇپپىدىن چېكىنىپ چىقىسىز، شۇنداقلا بۇ گۇرۇپپا بارلىق ئۈسكۈنىلىرىڭىزدىن ئۆچۈرۈلىدۇ.</string>
     <string name="ConversationActivity_delete">ئۆچۈر</string>
     <string name="ConversationActivity_delete_and_leave">ئۆچۈر ۋە ئايرىل</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$sنى چاقىرىش ئۈچۈن Signal مىكروفونىڭىزنى ئىشلىتەلىشى كېرەك</string>
+
+    <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
+    <string name="ConversationActivity__to_start_call">چاقىرىق باشلاش ئ‍ۈچۈن:</string>
+    <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">چاقىرىق باشلاش ئۈچۈن Signal نىڭ مىكروفوننى ئىشلىتىشىگە ئىجازەت قىلىڭ.</string>
+    <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">چاقىرىق باشلاش ئۈچۈن Signal مىكروفوننى ئىشلىتىدۇ.</string>
 
 
     <string name="ConversationActivity_join">قوشۇل</string>
+    <!-- Button text for an active group call but the call is currently full and unjoinable -->
     <string name="ConversationActivity_full">توشتى</string>
 
     <string name="ConversationActivity_error_sending_media">ۋاسىتە ئەۋەتىش خاتالىقى</string>
@@ -471,6 +540,8 @@
     <string name="ConversationFragment_delete_for_everyone">ھەممەيلەن ئۈچۈن ئۆچەر</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">بۇ ئۈسكۈنىدىن ئۆچۈرۈش</string>
+    <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
+    <string name="ConversationFragment_delete">ئۆچۈرۈش</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">ھەممىسىدىن ئ‍ۆچۈرۈش</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ئەگەر پاراڭدىكى كىشىلەر Signal نىڭ يېقىنقى نەشرىنى ئىشلىتىۋاتقان بولسا، بۇ ئۇچۇر پاراڭدىكى ھەممەيلەن ئۈچۈن ئۆچۈرۈلىدۇ. ئۇلار سىزنىڭ بىر ئۇچۇرنى ئۆچۈرگەنلىكىڭىزنى كۆرەلەيدۇ.</string>
@@ -571,6 +642,10 @@
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
         <item quantity="other">بۇ مەشغۇلاتتا تاللىغان %1$d پاراڭنىڭ ھەممىسى مەڭگۈلۈك ئۆچۈرۈلىدۇ.</item>
     </plurals>
+    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
+        <item quantity="other">بۇ مەشغۇلات بارلىق ئۈسكۈنىڭىزدىكى تاللانغان %1$d پاراڭنىڭ ھەممىسىنى مەڭگۈلۈك ئۆچۈرىدۇ.</item>
+    </plurals>
     <string name="ConversationListFragment_deleting">ئۆچۈرۈلۈۋاتىدۇ</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
         <item quantity="other">تاللىغان پاراڭلارنى ئۆچۈرۈش…</item>
@@ -597,6 +672,7 @@
     <string name="ConversationListFragment_unarchive">ئارخىپسىزلاش</string>
     <string name="ConversationListFragment_delete">ئۆچۈرۈش</string>
     <string name="ConversationListFragment_select_all">ھەممىنى تاللاش</string>
+    <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="other">%1$d تاللانغان</item>
     </plurals>
@@ -766,6 +842,61 @@
     <string name="DecryptionFailedDialog_chat_session_refreshed">پاراڭ يېڭىلاندى</string>
     <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal ئۇچتىن-ئۇچقا مەخىپىيلەشتۈرۈش تېخنىكىسىنى قوللانغان بولۇپ، پاراڭلىرىڭىزنى بەزىدە يېڭىلاپ تۇرۇشى مۇمكىن. بۇ پاراڭنىڭ بىخەتەرلىكىگە تەسىر كۆرسەتمەيدۇ، لېكىن بۇ ئالاقىداشتىن كەلگەن بەزى ئۇچۇرلارنى كۆرمەي قېلىشىڭىز مۇمكىن، سىز ئالاقىداشتىن ئۇنى قايتا يوللاشنى سورىسىڭىز بولىدۇ.</string>
 
+    <!-- LinkDeviceFragment -->
+    <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use Signal on desktop or iPad. Your messages will sync to your linked devices.</string>
+    <!-- Button prompting users to link a new device to their account -->
+    <string name="LinkDeviceFragment__link_a_new_device">Link a new device</string>
+    <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <!-- Bottom sheet title explaining how Signal works on a linked device -->
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <!-- Bottom sheet description explaining that messages on linked devices are private -->
+    <string name="LinkDeviceFragment__all_messaging_is_private">All messaging on linked devices is private</string>
+    <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked. Your previous message history will not appear.</string>
+    <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">On your other device, visit %1$s to install Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
+    <!-- Header title listing out current linked devices -->
+    <string name="LinkDeviceFragment__my_linked_devices">My linked devices</string>
+    <!-- Dialog confirmation to unlink a device -->
+    <string name="LinkDeviceFragment__unlink">ئاجرىتىڭ</string>
+    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">%1$s unlinked</string>
+    <!-- Progress dialog message indicating that a device is currently being linked with an account -->
+    <string name="LinkDeviceFragment__linking_device">Linking device…</string>
+    <!-- Toast message shown after a device has been linked -->
+    <string name="LinkDeviceFragment__device_approved">Device approved</string>
+    <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
+    <string name="LinkDeviceFragment__loading">قاچىلىنىۋاتىدۇ…</string>
+    <!-- Text message shown when the user has no linked devices -->
+    <string name="LinkDeviceFragment__no_linked_devices">No linked devices</string>
+    <!-- Title on biometrics prompt explaining what biometrics are being used for -->
+    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+
+    <!-- AddLinkDeviceFragment -->
+    <!-- Description text shown on the QR code scanner when linking a device -->
+    <string name="AddLinkDeviceFragment__scan_the_qr_code">Scan the QR code displayed on the device to link.</string>
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="AddLinkDeviceFragment__scan_qr_code">QR كودى تارا</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">Use this device to scan the QR code displayed on the device you want to link</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="AddLinkDeviceFragment__okay">جەزملە</string>
+    <!-- Dialog text describing the consequences of linking a device -->
+    <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">بۇ ئۈسكۈنە گۇرۇپپا ۋە ئالاقىداشلىرىڭىزنى كۆرەلەيدۇ، سۆھبەتلىرىڭىزنى زىيارەت قىلالايدۇ ۋە سىزنىڭ ئىسمىڭىزدا ئۇچۇر ئەۋەتەلەيدۇ.</string>
+    <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
+    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">Finish linking on your other device</string>
+    <!-- Bottom sheet description telling users to complete the linking process -->
+    <string name="AddLinkDeviceFragment__finish_linking_signal">Finish linking Signal on your other device.</string>
+    <!-- Title of dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__linking_device_failed">ئۈسكۈنە باغلاش مەغلۇب بولدى</string>
+    <!-- Text shown in a dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__this_qr_code_not_valid">بۇ QR كودى ئىناۋەتلىك ئەمەس. باغلىماقچى بولغان ئۈسكۈنىدە كۆرسىتىلگەن QR كودىنى سايىلىگەنلىكىڭىزنى جەزملەشتۈرۈڭ.</string>
+    <!-- Button in dialog to retry linking a device with a qr code -->
+    <string name="AddLinkDeviceFragment__retry">قايتا سىنا</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">«%1$s» نى ئاجرىتامسىز؟</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">بۇ ئۈسكۈنىنى ئاجراتقاندىن كېيىن، ئۇ داۋاملىق ئۇچۇر ئەۋەتەلمەيدۇ ياكى قوبۇل قىلالمايدۇ.</string>
@@ -845,6 +976,7 @@
     <plurals name="GroupManagement_invitation_sent">
         <item quantity="other">%1$d تەكلىپنامە يوللاندى</item>
     </plurals>
+    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
     <string name="GroupManagement_invite_single_user">«%1$s» بۇ گۇرۇپپىغا سىز تەرىپىڭىزدىن ئاپتوماتىك قوشۇلمايدۇ. \n\nئۇلار قاتنىشىشقا تەكلىپ قىلىندى، ۋە ئۇلار تەكلىپنى قوبۇل قىلغۇچە گۇرۇپپا ئۇچۇرلىرىنى كۆرەلمەيدۇ.</string>
     <string name="GroupManagement_invite_multiple_users">بۇ ئەزالار بۇ گۇرۇپپىغا سىز تەرىپىڭىزدىن ئاپتوماتىك قوشۇلمايدۇ. \n\nئۇلار قاتنىشىشقا تەكلىپ قىلىندى، ۋە ئۇلار تەكلىپنى قوبۇل قىلغۇچە گۇرۇپپا ئۇچۇرلىرىنى كۆرەلمەيدۇ.</string>
 
@@ -935,10 +1067,11 @@
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">داۋاملاشتۇرۇش</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">ئېتىش</string>
+    <string name="PromptBatterySaverBottomSheet__no_thanks">No thanks</string>
+  <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">كۈتۈۋاتقان گۇرۇپپا تەكلىپلىرى</string>
+    <string name="PendingMembersActivity_pending_group_invites">ئىلتىماس ۋە تەكلىپلەر</string>
     <string name="PendingMembersActivity_requests">تەلەپلەر</string>
     <string name="PendingMembersActivity_invites">تەكلىپلەر</string>
     <string name="PendingMembersActivity_people_you_invited">سىز تەكلىپ قىلغان كىشىلەر</string>
@@ -1009,7 +1142,9 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">ئات ۋە باش سۈرەت تەھرىر</string>
     <string name="ManageGroupActivity_legacy_group">كونا گۇرۇپپا</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">بۇ كونا گۇرۇپپا، گۇرۇپپا باشقۇرغۇچىلىرىغا ئوخشاش ئىقتىدارلار يېڭى گۇرۇپپىدىلا ئىشلەيدۇ.</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">بۇ كونا گۇرۇپپا. @ئاتاش ۋە باشقۇرغۇچىلارغا ئوخشاش ئىقتىدارنى ئىشلىتىشتە،</string>
     <string name="ManageGroupActivity_legacy_group_too_large">بۇ كونا گۇرۇپپىنى يېڭى گۇرۇپپىغا يۈكسەلتەلمەيدۇ چۈنكى ئادەم بەك كۆپ. يۈكسەلتىشنىڭ ئەزا سان چېكى %1$d .</string>
     <string name="ManageGroupActivity_upgrade_this_group">بۇ گۇرۇپپىنى يۈكسەلتىدۇ.</string>
@@ -1227,6 +1362,7 @@
         <item quantity="other">ئۆچۈرۈش</item>
     </plurals>
 
+    <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="other">%1$d تاللانغان (%2$s)</item>
     </plurals>
@@ -1247,11 +1383,11 @@
     <string name="Megaphones_verify_your_signal_pin">Signal PIN نى دەلىللەڭ</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">ئەستە تۇتۇشىڭىز ئۈچۈن بەزىدە PIN دەلىللىشىڭىزنى سورايمىز.</string>
     <string name="Megaphones_verify_pin">PIN دەلىللەش</string>
-    <string name="Megaphones_get_started">ئىشلىتىشكە باشلاش</string>
+    <string name="Megaphones_get_started">باشلاش</string>
     <string name="Megaphones_new_group">يېڭى گۇرۇپپا</string>
-    <string name="Megaphones_invite_friends">دوستلىرىڭىزنى تەكلىپ قىلىڭ</string>
+    <string name="Megaphones_invite_friends">دوست تەكلىپى</string>
     <string name="Megaphones_chat_colors">پاراڭ رەڭگى</string>
-    <string name="Megaphones_add_a_profile_photo">ئارخىپ باش سۈرىتى قوشۇش</string>
+    <string name="Megaphones_add_a_profile_photo">باش سۈرەت قوشۇش</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">جاۋاب</string>
@@ -1290,17 +1426,13 @@
     <string name="MessageRecord_left_group">سىز گۇرۇپپىدىن ئايرىلدىڭىز.</string>
     <string name="MessageRecord_you_updated_group">گۇرۇپپىنى يېڭىلىدىڭىز.</string>
     <string name="MessageRecord_the_group_was_updated">بۇ گۇرۇپپا يېڭىلاندى.</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">ئۇرۇلغان ئاۋازلىق چاقىرىق</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 video call -->
     <string name="MessageRecord_outgoing_video_call">قوبۇل قىلىنغان ۋىدېيولۇق چاقىرىق</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">جاۋابسىز ئاۋازلىق چاقىرىق</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">جاۋابسىز ۋىدېيولۇق چاقىرىق</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered or ringing -->
     <string name="MessageRecord_incoming_voice_call">كەلگەن ئاۋازلىق چاقىرىق</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
+    <!-- Update message shown when receiving an incoming 1:1 video call and answered or ringing -->
     <string name="MessageRecord_incoming_video_call">كەلگەن ۋىدېيولۇق چاقىرىق</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
     <string name="MessageRecord_missed_voice_call">ئېلىنمىغان ئاۋازلىق چاقىرىق</string>
@@ -1310,10 +1442,6 @@
     <string name="MessageRecord_missed_voice_call_notification_profile">ئۇقتۇرۇش ئارخىپى ئوچۇق ۋاقىتتا رەت قىلىنغان ئاۋازلىق چاقىرىق</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
     <string name="MessageRecord_missed_video_call_notification_profile">ئۇقتۇرۇش ئارخىپى ئوچۇق ۋاقىتتا رەت قىلىنغان ۋىدېيولۇق چاقىرىق</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">بىر ئاۋازلىق چاقىرىقنى رەت قىلدىڭىز</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">بىر ۋىدېيولۇق چاقىرىقنى رەت قىلدىڭىز</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s گۇرۇپپىنى يېڭىلىدى.</string>
@@ -1512,29 +1640,62 @@
     <string name="MessageRecord_you_activated_payments">پۇل تۆلەش ئىقتىدارىنى ئاكتىپلىدىڭىز</string>
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s ئەمدى پۇل قوبۇل قىلالايدۇ</string>
+    <!-- Message shown to inform user that a payment is missing details due to restore -->
+    <string name="MessageRecord_payments_restore_tombstone">پۇل تۆلەش تەپسىلاتى ھازىرچە يوق</string>
+    <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
+    <string name="MessageRecord_payments_restore_tombstone_tap_more">تېخىمۇ كۆپ</string>
+    <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
+    <string name="PaymentTombstoneLearnMoreDialog_title">پۇل تۆلەش تەپسىلاتى يوق</string>
+    <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
+    <string name="PaymentTombstoneLearnMoreDialog_message">سىزنىڭ ئۇچۇرىڭىز بۇ پۇل تۆلەش تارىخىنى ئۆز ئىچىگە ئالمىغان مەنبەدىن ئەسلىگە كەلتۈرۈلگەچكە، بۇ پۇل توغرىسىدىكى تەپسىلاتلار ھازىرچە يوق. بۇ سىزنىڭ ھەميان قالدۇق سوممىڭىزغا ياكى بۇرۇنقى پۇل تۆلەش ھالتىڭىزگە تەسىر كۆرسەتمەيدۇ.</string>
 
     <!-- Group Calling update messages -->
-    <string name="MessageRecord_s_started_a_group_call_s">%1$s گۇرۇپپىغا چاقىرىشىنى باشلىدى. %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">سىز گۇرۇپپا چاقىرىقى باشلىدىڭىز · %1$s</string>
-    <string name="MessageRecord_s_is_in_the_group_call_s">%1$s گۇرۇپپا چاقىرىقىدا. %2$s</string>
-    <string name="MessageRecord_you_are_in_the_group_call_s1">سىز گۇرۇپپا چاقىرىقىدا. %1$s</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s ۋە %2$s گۇرۇپپا چاقىرىقىدا. %3$s</string>
-    <string name="MessageRecord_group_call_s">گۇرۇپپا چاقىرىشى. %1$s</string>
-
-    <string name="MessageRecord_s_started_a_group_call">%1$s گۇرۇپپا چاقىرىقىنى باشلىدى.</string>
-    <string name="MessageRecord_you_started_a_group_call">سىز گۇرۇپپا چاقىرىقىنى باشلىدىڭىز</string>
-    <string name="MessageRecord_s_is_in_the_group_call">%1$s گۇرۇپپا چاقىرىقىدا</string>
-    <string name="MessageRecord_you_are_in_the_group_call">سىز بۇ گۇرۇپپا چاقىرىقىدا</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s ۋە %2$s گۇرۇپپا چاقىرىقىدا.</string>
-    <string name="MessageRecord_group_call">گۇرۇپپا چاقىرىقى</string>
+    <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_is_in_the_call_s">%1$s چاقىرىقتا · %2$s</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
+    <string name="MessageRecord_you_are_in_the_call_s1">سىز چاقىرىقتا · %1$s</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s ۋە %2$s چاقىرىقتا · %3$s</string>
+    <!-- Chat log text for an ongoing group call that has one participant -->
+    <string name="MessageRecord_s_is_in_the_call">%1$s چاقىرىقتا</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined -->
+    <string name="MessageRecord_you_are_in_the_call">سىز چاقىرىقتا</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
+    <string name="MessageRecord_s_and_s_are_in_the_call">%1$s ۋە %2$s چاقىرىقتا</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes -->
+    <string name="MessageRecord__the_video_call_has_ended">ۋىدېيولۇق چاقىرىق ئاخىرلاشتى</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
+    <string name="MessageRecord__the_video_call_has_ended_s">ۋىدېيولۇق چاقىرىق ئاخىرلاشتى · %1$s</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
+    <string name="MessageRecord__missed_video_call">سۆزلەشمىگەن سىن چاقىرىش</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
+    <string name="MessageRecord__missed_video_call_s">سۆزلەشمىگەن سىن چاقىرىش. %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user did not start -->
+    <string name="MessageRecord__incoming_video_call">كەلگەن ۋىدېيولۇق چاقىرىق</string>
+    <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
+    <string name="MessageRecord__incoming_video_call_s">كەلگەن ۋىدېيولۇق چاقىرىق · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user started -->
+    <string name="MessageRecord__outgoing_video_call">قوبۇل قىلىنغان ۋىدېيولۇق چاقىرىق</string>
+    <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__outgoing_video_call_s">ئۇرۇلغان ۋىدېيولۇق چاقىرىق · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user started -->
+    <string name="MessageRecord__you_started_a_video_call">بىر ۋىدېيولۇق چاقىرىق باشلىدىڭىز</string>
+    <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__you_started_a_video_call_s">بىر ۋىدېيولۇق چاقىرىق باشلىدىڭىز · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
+    <string name="MessageRecord__s_started_a_video_call">%1$s ۋىدېيولۇق چاقىرىق باشلىدى</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s ۋىدېيولۇق چاقىرىق باشلىدى · %2$s</string>
 
     <string name="MessageRecord_you">سىز</string>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
         <item quantity="other">%1$s، %2$s ۋە باشقا %3$d ئەزا گۇرۇپپا چاقىرىقى · «%4$s» دا</item>
     </plurals>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
         <item quantity="other">%1$s، %2$s ۋە باشقا %3$d ئەزا گۇرۇپپا چاقىرىقىدا</item>
     </plurals>
 
@@ -1544,6 +1705,8 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Signal دا ئەمدى SMS ئۇچۇرى يوللىيالمايسىز. «%1$s» نى Signal غا تەكلىپ قىلىپ پاراڭنى داۋاملاشتۇرۇڭ.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">چىقىم: %1$s</string>
+    <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
+    <string name="MessageRecord__payment_tombstone">چىقىم</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">ئالدامچى ئۇچۇر دەپ مەلۇم قىلىندى</string>
     <!-- Update message shown in chat after accept a message request -->
@@ -1721,7 +1884,8 @@
     <string name="RedPhone_ringing">جىرىڭلاۋاتىدۇ…</string>
     <string name="RedPhone_busy">ئالدىراش</string>
     <string name="RedPhone_recipient_unavailable">چاقىرىلغۇچى جاۋاب بەرمىدى</string>
-    <string name="RedPhone_network_failed">تور مەغلۇپ بولدى!</string>
+    <!-- Error message shown during a call when a fatal network error occurs. -->
+    <string name="RedPhone_network_failed">تور مەغلۇپ بولدى! تور ئۇلىنىشىنى تەكشۈرۈپ قايتا سىناڭ.</string>
     <string name="RedPhone_number_not_registered">نومۇر تىزىملىتىلمىغان!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">سىز بۇرىغان نومۇر شىفىرلىق ئاۋازنى قوللىمايدۇ!</string>
     <string name="RedPhone_got_it">بىلدىم</string>
@@ -1781,6 +1945,26 @@
     <string name="WebRtcCallActivity__removed_from_call">چاقىرىقتىن چىقىرىۋېتىلدى.</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">بىرەيلەن سىزنى چاقىرىقتىن چىقىرىۋەتتى.</string>
+    <!-- Dialog title asking users for camera and microphone permission -->
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">كامېرا ۋە مىكروفونىڭىزغا ئىجازەت قىلىش</string>
+    <!-- Dialog title asking users for microphone permission -->
+    <string name="WebRtcCallActivity__allow_access_microphone">مىكروفوننى ئىشلىتىشكە رۇخسەت قىلىڭ</string>
+    <!-- Dialog title asking users for camera permission -->
+    <string name="WebRtcCallActivity__allow_access_camera">كامېرا ھوقۇقىغا ئىجازەت قىلىش</string>
+    <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Signal چاقىرىق باشلاش ياكى چاقىرىققا قوشۇلۇش ئۈچۈن كامېرا ۋە مىكروفون ئىجازىتىنى تەلەپ قىلىدۇ.</string>
+    <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
+    <string name="WebRtcCallActivity__to_start_call_microphone">چاقىرىق باشلاش ياكى قوشۇلۇش ئۈچۈن Signal نىڭ مىكروفوننى زىيارەت قىلىشىغا رۇخسەت قىلىڭ.</string>
+    <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">ۋىدېيونى قوزغىتىش ئۈچۈن Signal نىڭ كامېرانى ئىجازەت قىلىشىغا رۇخسەت قىلىشىڭىز كېرەك.</string>
+    <!-- Toast describing why microphone permissions are needed to start or join a call -->
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal چاقىرىق باشلاش ياكى چاقىرىققا قوشۇلۇش ئۈچۈن مىكروفون ئىجازىتىنى تەلەپ قىلىدۇ.</string>
+    <!-- Toast describing why camera permissions are needed to enable a video in a call -->
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">ۋىدېيونى قوزغىتىش ئۈچۈن Signal كامېرا ئىجازىتىنى لازىم قىلىدۇ</string>
+    <!-- Dialog description that will explain the steps needed to give microphone permissions -->
+    <string name="WebRtcCallActivity__to_start_call">چاقىرىق باشلاش ياكى قوشۇلۇش ئۈچۈن:</string>
+    <!-- Dialog description that will explain the steps needed to give camera permissions -->
+    <string name="WebRtcCallActivity__to_enable_video">ۋىدېيونى قوزغىتىش ئۈچۈن:</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">‫Signal چاقىرىقى</string>
@@ -1872,18 +2056,35 @@
     <string name="CallOverflowPopupWindow__lower_hand">قول چۈشۈرۈش</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">بىكار قىلىش</string>
-    <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">قولىڭىزنى كۆتۈردىڭىز</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">كۆرسەت</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
-    <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="other">%1$s + %2$d قول كۆتۈردى</item>
+
+    <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s قول كۆتۈردى</string>
+    <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
+        <item quantity="other">%1$s +%2$d raised a hand</item>
     </plurals>
 
-    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
-    <plurals name="CallRaiseHandSnackbar_raised_hands">
+    <!-- A notification to the user that one participant in the call successfully raised their hand. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">%1$s قول كۆتۈردى</string>
+    <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
+        <item quantity="other">%1$s +%2$d raised a hand</item>
+    </plurals>
+
+    <!-- A badge to show the user has their hand raised. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__collapsed_second_person_raised_hand_single">%1$s</string>
+    <!-- A badge to show the user and at least one other participant in the call have their hand raised. The placeholder is a number quantifying how many other hands are also raised, besides the user.  -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_second_person_raised_hands_multiple">
+        <item quantity="other">%1$s +%2$d</item>
+    </plurals>
+
+    <!-- A badge to show how many hands are raised. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_singular">%1$s</string>
+    <!-- A badge to show how many hands are raised. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_multiple">
         <item quantity="other">%1$s +%2$d</item>
     </plurals>
 
@@ -1984,6 +2185,7 @@
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">دەلىللەش كودى تەلەپ قىلالمىدى. تور ئۇلىنىشىنى تەكشۈرۈپ قايتا سىناڭ.</string>
     <string name="RegistrationActivity_non_standard_number_format">ئۆلچەملىك بولمىغان نومۇر فورماتى</string>
+    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">سىز كىرگۈزگەن سان (%1$s) ئۆلچەملىك بولمىغان فورماتتىكى ساندەك قىلىدۇ.\n\n%2$s دېمەكچىمۇ؟</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - تېلېفون نومۇرى فورماتى</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
@@ -2018,8 +2220,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">تىزىملىتىشتا قىيىنچىلىققا يولۇقتىڭىزمۇ؟</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• SMS ياكى تېلېفون قوبۇل قىلىش ئۈچۈن تېلېفونىڭىزدا كۆچمە تور سىگنالى بار بولۇشىغا كاپالەتلىك قىلىڭ\n • تېلېفون نومۇرىڭىزنىڭ تېلېفون قوبۇل قىلالايدىغانلىقىنى جەزملەشتۈرۈڭ\n • تېلېفون نومۇرىڭىزنى توغرا كىرگۈزگەنلىكىڭىزنى جەزملەشتۈرۈڭ.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">تېخىمۇ كۆپ ئۇچۇرلارغا ئېرىشىش ئۈچۈن تۆۋەندىكى كاشىلا ھەل قىلىش باسقۇچلىرىنى ئىجرا قىلىڭ ياكى ياردەم خادىمى بىلەن ئالاقىلىشىڭ</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">تېخىمۇ كۆپ ئۇچۇرلار ئۈچۈن %1$s ياكى %2$s گە ئەگىشىڭ</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">تۆۋەندىكى كاشىلا ھەل قىلىش باسقۇچلىرى</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
@@ -2131,10 +2333,10 @@
     <string name="SupportEmailUtil_filter">سۈزگۈچ:</string>
     <string name="SupportEmailUtil_device_info">ئۈسكۈنە ئۇچۇرى:</string>
     <string name="SupportEmailUtil_android_version">Android نەشرى</string>
-    <string name="SupportEmailUtil_signal_version">Signal نەشرى:</string>
-    <string name="SupportEmailUtil_signal_package">Signal بوغچا:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">تىزىملاش قۇلۇپى:</string>
-    <string name="SupportEmailUtil_locale">تىل:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">گۇرۇپپا يېڭىلاندى</string>
@@ -2540,6 +2742,10 @@
     <string name="contact_selection_activity__refresh_contacts">ئالاقىداشلارنى يېڭىلاش</string>
     <!-- Row item description for refreshing contacts -->
     <string name="contact_selection_activity__missing_someone">بىرەرسى تېپىلمىدىمۇ؟ يېڭىلاپ سىناپ بېقىڭ</string>
+    <!-- Row item title for finding people on Signal via your contacts -->
+    <string name="contact_selection_activity__find_people_you_know">Signal دا تونۇيدىغان كىشىلەرنى تېپىش</string>
+    <!-- Row item description asking users for access to their contacts to find people they know -->
+    <string name="contact_selection_activity__allow_access_to_contacts">ئالاقىداش ھوقۇقىغا ئىجازەت قىلىڭ</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">تېخىمۇ كۆپ</string>
 
@@ -2572,6 +2778,16 @@
     <string name="ContactSelectionListFragment__find_by_phone_number">تېلېفون نومۇرى بىلەن تېپىڭ</string>
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">ئىشلەتكۈچى نامى بويىچە ئىزدەش</string>
+    <!-- Dialog title asking users for contact permission -->
+    <string name="ContactSelectionListFragment_allow_access_contacts">ئالاقىداش ھوقۇقىغا ئىجازەت قىلىش</string>
+    <!-- Dialog description that will explain the steps needed to give contact permissions -->
+    <string name="ContactSelectionListFragment_to_find_people">Signal دا تونۇيدىغان كىشىلەرنى تېپىش:</string>
+    <!-- Text on button prompting users to give Signal contact permissions -->
+    <string name="ContactSelectionListFragment__allow_access">ئىشلىتىشكە رۇخسەت</string>
+    <!-- Text on button to dismiss Signal\'s request for contact permissions -->
+    <string name="ContactSelectionListFragment__no_thanks">ياق، رەھمەت</string>
+    <!-- Text asking for user\'s contact permission -->
+    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">ئالاقىداش ھوقۇقىغا ئىجازەت قىلىڭ. ئالاقىداشلىرىڭىز مەخپىيلەشتۈرۈلگەن بولۇپ، Signal مۇلازىمىتىگە كۆرۈنمەيدۇ.</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal ئۇلارنى كۆرسىتىش ئۈچۈن ئالاقەداشلىرىڭىزنى زىيارەت قىلىشى كېرەك.</string>
@@ -2622,6 +2838,8 @@
     <string name="ConversationUpdateItem_loading">يۈكلەۋاتىدۇ</string>
     <string name="ConversationUpdateItem_learn_more">كۆپرەك ئۆگىنىش</string>
     <string name="ConversationUpdateItem_join_call">چاقىرىققا قېتىل</string>
+    <!-- Action button label for starting a new call in the current conversation -->
+    <string name="ConversationUpdateItem_call_back">قايتۇرۇپ چاقىر</string>
     <string name="ConversationUpdateItem_return_to_call">چاقىرىققا قايت</string>
     <string name="ConversationUpdateItem_call_is_full">چاقىرىق توشتى</string>
     <string name="ConversationUpdateItem_invite_friends">دوستلىرىڭىزنى تەكلىپ قىلىڭ</string>
@@ -2686,6 +2904,7 @@
     <string name="safety_number_change_dialog__leave_call">چاقىرىقتىن ئايرىل</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">تۆۋەندىكى كىشىلەر قايتا قاچىلىغان ياكى ئۈسكىنىسىنى ئالماشتۇرغاندەك قىلىدۇ. مەخپىيەتلىكنى ساقلاش ئۈچۈن ئۇلار بىلەن ئاراڭدىكى بىخەتەرلىك نومۇرىنى دەلىللە.</string>
     <string name="safety_number_change_dialog__view">كۆرسەت</string>
+    <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">ئىلگىرى دەلىللەنگەن</string>
 
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
@@ -2924,7 +3143,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">قوللاش ئۇچۇرى</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android قوللاش ئىلتىماسى</string>
-    <string name="HelpFragment__debug_log">سازلاش خاتىرىسى:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">خاتىرىنى يۈكلىيەلمىدى</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">ئامالنىڭ بارىچە ئەتراپلىق بايان قىلىپ ۋەقەنى چۈشىنىشىمىزگە ياردەم بېرىڭ.</string>
     <string-array name="HelpFragment__categories_5">
@@ -2992,6 +3211,7 @@
 
     <string name="arrays__default">كۆڭۈلدىكى</string>
     <string name="arrays__high">يۇقىرى</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">ئەڭ يۇقىرى</string>
 
     <!-- plurals.xml -->
@@ -3129,15 +3349,20 @@
     <string name="preferences_storage__audio">ئۈن</string>
     <string name="preferences_storage__review_storage">ساقلىغۇچ تەكشۈرۈش</string>
     <string name="preferences_storage__delete_older_messages">كونا ئۇچۇرلارنى ئۆچۈرەمسىز؟</string>
-    <string name="preferences_storage__clear_message_history">ئۇچۇر تارىخىنى تازىلامسىز؟</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">ئۇچۇر تارىخىنى ئۆچۈرەمسىز؟</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">بۇ ئۈسكۈىڭىزدىكى %1$s دىن بۇرۇنقى بارلىق ئۇچۇر ۋە ۋاسىتەلەرنى مەڭگۈلۈك ئۆچۈرۈۋېتىدۇ.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
         <item quantity="other">بۇ مەشغۇلات بارلىق پاراڭلارنى %1$s ئەڭ يېقىنقى ئۇچۇرلارغا يىغىنچاقلايدۇ.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">بۇ ئۈسكۈنىڭىزدىكى بارلىق ئۇچۇر تارىخى ۋە ۋاسىتەلەرنى مەڭگۈلۈك ئۆچۈرۈۋېتىدۇ.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">بۇ مەشغۇلات بۇ ئۈسكۈنە ۋە باشقا ھەرقانداق ئۇلانغان ئۈسكۈنىلەردىكى بارلىق ئۇچۇر خاتىرىسى ۋە مېدىيانى مەڭگۈلۈك ئۆچۈرىدۇ.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">راستلا بارلىق ئۇچۇر تارىخنى ئۆچۈرىۋېتەمسىز؟</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">بارلىق ئۇچۇر تارىخى مەڭگۈلۈك ئۆچۈرىۋېتىلىدۇ. بۇ ھەرىكەتتىن كەينىگە يېنىۋالالمايسىز.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">بارلىق ئۈسكۈنىلەردىكى بارلىق ئۇچۇر خاتىرىسى مەڭگۈلۈك ئۆچۈرۈلىدۇ. بۇ مەشغۇلاتنى ئەمەلدىن قالدۇرغىلى بولمايدۇ.</string>
     <string name="preferences_storage__delete_all_now">ھازىرلا ھەممىنى ئۆچۈر</string>
     <string name="preferences_storage__forever">مەڭگۈ</string>
     <string name="preferences_storage__one_year">1 يىل</string>
@@ -3309,6 +3534,14 @@
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">ئۈسكۈنىڭىزدىن رەسىم ، سىن ۋە ھۆججەتلەرنى ئەۋەتىڭ.</string>
 
+    <!-- PermissionDeniedBottomSheet -->
+    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. تۆۋەندىكى «تەڭشەكلەر»نى چېكىڭ</string>
+    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s ئىجازەت قىلىش</string>
+    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
+    <string name="PermissionDeniedBottomSheet__settings">تەڭشەكلەر</string>
+
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
     <string name="PaymentsSecuritySetupFragment__security_setup">بىخەتەرلىك تەڭشىكى</string>
@@ -3349,6 +3582,7 @@
     <string name="PaymentsDetailsFragment__sent_to_s">%1$s غا يوللاندى</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">سىز%1$s نىڭ ئۈستىدە%2$s دە</string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">‫%1$s %2$s نىڭ ئۈستىدە %3$s دە</string>
+    <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">كىمگە</string>
     <string name="PaymentsDetailsFragment__from">كىمدىن</string>
     <string name="PaymentsDetailsFragment__information">چىقىم سوممىسى ۋە مۇئامىلە ۋاقتىنى ئۆز ئىچىگە ئالغان مۇئامىلە تەپسىلاتلىرى MobileCoin  ھېسابات دەپتىرىنىڭ بىر قىسمى.</string>
@@ -3411,6 +3645,7 @@
     <string name="ConfirmPayment__confirm_payment">چىقىمنى جەزىملە</string>
     <string name="ConfirmPayment__network_fee">تور ھەققى</string>
     <string name="ConfirmPayment__estimated_s">مۆلچەرلەندى%1$s</string>
+    <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">كىمگە</string>
     <string name="ConfirmPayment__total_amount">جەمئىي سومما</string>
     <string name="ConfirmPayment__balance_s">قالدۇق: %1$s</string>
@@ -3558,6 +3793,14 @@
     <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">پاراڭ</string>
     <string name="conversation_group_options__broadcast">تارقىتىش</string>
+
+    <!-- DoubleTapEditEducationSheet -->
+    <!-- Displayed as the title of the education bottom sheet -->
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">قوش چېكىپ تەھرىرلەش</string>
+    <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">ئۇچۇرلىرىڭىزنى تەھرىرلەش ئۈچۈن قوش چېكىڭ. ئۇچۇرلىرىڭىز يوللىنىپ 24 سائەت ئىچىدە ئۇلارنى تەھرىرلىيەلەيسىز.</string>
+    <!-- Button label to dismiss sheet -->
+    <string name="DoubleTapEditEducationSheet__got_it">بىلدىم</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">يېڭى گۇرۇپپا</string>
@@ -3864,8 +4107,15 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">كونا ئۈسكۈنىڭىزنى زىيارەت قىلالىشىڭىز كېرەك.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">زاپاستىن ئەسلىگە كەلتۈرىدۇ</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ئۇچۇرلىرىڭىزنى يەرلىك زاپاستىن ئەسلىگە كەلتۈرىدۇ. ئەگەر ھازىر ئەسلىگە كەلتۈرمىسىڭىز، كېيىن ئەسلىگە كەلتۈرەلمەيسىز.</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">Restore local backup</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restore Signal backup</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Restore all your text messages + your last 30 days of media</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">تېخىمۇ كۆپ تاللاش</string>
+
+    <string name="TransferOrRestoreFragment__cancel">بىكار قىلىش</string>
+    <string name="TransferOrRestoreFragment__skip_transfer">Log in without transferring</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">Continue without transferring your messages and media</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">كونا Android تېلېفونىڭىزدا Signal نى ئېچىڭ</string>
@@ -4006,6 +4256,7 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">چاپلاش تاختىسىغا كۆچۈردى</string>
 
     <string name="GroupRecipientListItem_admin">باشقۇرغۇچى</string>
+    <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">تەستىقلا</string>
     <string name="GroupRecipientListItem_deny_description">رەت قىلىش</string>
 
@@ -4033,6 +4284,7 @@
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
     <string name="VoiceNoteMediaItemFactory__voice_message">ئاۋازلىق ئۇچۇر· %1$s</string>
+    <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s دىن%2$s غىچە</string>
 
     <!-- StorageUtil -->
@@ -4046,8 +4298,14 @@
     <string name="ReviewCardDialogFragment__review_members">ئەزالارنى تەكشۈر</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">ئىلتىماسنى تەكشۈر</string>
-    <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d گۇرۇپپا ئەزاسىنىڭ ئوخشاش ئىسمى بار ئىكەن. تۆۋەندىكىلەرنى كۆزدىن كەچۈرۈڭ، بىر مەشغۇلات تاللاڭ.</string>
-    <string name="ReviewCardDialogFragment__if_youre_not_sure">ئىلتىماسنىڭ نەدىن كەلگەنلىكىنى جەزملەشتۈرەلمىسىڭىز، ئاستىدىكى ئالاقەداشلارنى كۆزدىن كەچۈرۈڭ ۋە مەشغۇلات قىلىڭ.</string>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
+        <item quantity="other">%1$d گۇرۇپپا ئەزاسىنىڭ نامى ئوخشاش. تۆۋەندىكى ئەزالارنى كۆرۈڭ ياكى مۇناسىپ مەشغۇلاتنى تاللاڭ.</item>
+    </plurals>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
+        <item quantity="other">ئىلتىماسنىڭ نەدىن كەلگەنلىكىنى جەزملەشتۈرەلمىسىڭىز، ئاستىدىكى ئالاقىداشلارنى تەكشۈرۈڭ ۋە مەشغۇلات قىلىڭ.</item>
+    </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">باشقا ئورتاق گۇرۇپپا يوق</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">ئورتاق گۇرۇپپا يوق.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -4076,11 +4334,18 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s قېتىلدى</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s بىلەن%2$s قېتىلدى</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s، %2$s ۋە%3$s قېتىلدى</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s، %2$s ۋە%3$d باشقىلار قېتىلدى</string>
+    <!-- Toast message shown in group call when 3 or more people join -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
+        <item quantity="other">%1$s، %2$s ۋە باشقا %3$d چاقىرىققا قوشۇلدى</item>
+    </plurals>
+    <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s ئايرىلدى</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ۋە%2$s ئايرىلدى</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s، %2$s ۋە%3$s ئايرىلدى</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s، %2$s ۋە%3$d باشقىلار ئايرىلدى</string>
+    <!-- Toast message shown in group call when 3 or more people leave -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
+        <item quantity="other">%1$s، %2$s ۋە باشقا %3$d چاقىرىقتىن ئايرىلدى</item>
+    </plurals>
 
     <string name="CallParticipant__you">سىز</string>
     <string name="CallParticipant__you_on_another_device">سىز (يەنە بىر ئۈسكۈنىدە)</string>
@@ -4448,10 +4713,14 @@
 
     <!-- PrivacySettingsFragment -->
     <string name="PrivacySettingsFragment__blocked">چەكلەندى</string>
-    <string name="PrivacySettingsFragment__d_contacts">%1$d ئالاقەداش</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="other">%1$d ئالاقىداش</item>
+    </plurals>
     <string name="PrivacySettingsFragment__messaging">ئۇچۇرلىشىش</string>
     <string name="PrivacySettingsFragment__disappearing_messages">غايىب ئۇچۇرلار</string>
     <string name="PrivacySettingsFragment__app_security">ئەپ بىخەتەرلىكى</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">خاتىرىلەش تىزىملىكى ۋە ئەپ ئىچىدە ئېكران كەسمە رەسىمگە ئېلىشنى چەكلەيدۇ</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ئۇچۇر ۋە چاقىرىقنى ھەمىشە چاقىرىق ۋە يوشۇرۇن ئەۋەتكۈچىگە ئۇلاپ يەتكۈزىدۇ</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">يېڭى پاراڭلار ئۈچۈن سۈكۈتتىكى ۋاقىت خاتىرىلىگۈچ</string>
@@ -4508,12 +4777,15 @@
     <string name="DataAndStorageSettingsFragment__media_quality">ۋاسىتە سۈپىتى</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">ۋاسىتە سۈپىتىنى ئەۋەت</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">يۇقىرى سۈپەتلىك ۋاسىتە يوللىسىڭىز كۆپرەك مەلۇمات ئىشلىتىسىز</string>
+    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">يۇقىرى</string>
+    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">ئۆلچەملىك</string>
     <string name="DataAndStorageSettingsFragment__calls">چاقىرىشلار</string>
 
     <!-- ChatColorSelectionFragment -->
-    <string name="ChatColorSelectionFragment__auto">ئاپتوماتىك</string>
+    <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
+    <string name="ChatColorSelectionFragment__auto">Auto</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">ئىختىيارىچە رەڭ ئىشلەت</string>
     <string name="ChatColorSelectionFragment__chat_color">پاراڭ رەڭگى</string>
     <string name="ChatColorSelectionFragment__edit">تەھرىر</string>
@@ -4721,6 +4993,7 @@
     <string name="AvatarPickerFragment__take_a_picture">رەسىم تارت</string>
     <string name="AvatarPickerFragment__choose_a_photo">بىر سۈرەت تاللا</string>
     <string name="AvatarPickerFragment__photo">سۈرەت</string>
+    <!-- Button label during avatar selection/creation that when tapped lets you generate an avatar from typed in text. -->
     <string name="AvatarPickerFragment__text">تېكىست</string>
     <string name="AvatarPickerFragment__save">ساقلا</string>
     <string name="AvatarPickerFragment__clear_avatar">سىمانى تازىلا</string>
@@ -4734,9 +5007,6 @@
 
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">بىر رەڭ تاللا</string>
-
-    <!-- ContactSelectionListItem -->
-    <string name="ContactSelectionListItem__sms">قىسقا ئۇچۇر</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">ھەمبەھىرلە</string>
@@ -4767,7 +5037,8 @@
     </plurals>
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">گۇرۇپپىغا پەقەت باشقۇرغۇچىلارلا ئۇچۇر يوللىيالايدۇ.</string>
-    <string name="MultiselectForwardFragment__limit_reached">چەككە يەتتى</string>
+    <!-- Error message shown when users try to choose more than 5 chats to send a message to -->
+    <string name="MultiselectForwardFragment__you_cant_select_more_chats">You can\'t select more than 5 chats</string>
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
@@ -4777,7 +5048,7 @@
     <string name="MediaReviewFragment__add_a_message">بىز ئۇچۇر قوش</string>
     <string name="MediaReviewFragment__add_a_reply">جاۋاپ قوش</string>
     <string name="MediaReviewFragment__send_to">تاپشۇرۇۋالغۇچى</string>
-    <string name="MediaReviewFragment__view_once_message">بىرلا كۆرسەت ئۇچۇر</string>
+    <string name="MediaReviewFragment__view_once_message">بىرلا قېتىم كۆرۈلىدىغان مېدىيا</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">بىر ياكى كۆپ تۈرنىڭ ھەجىمى بەك چوڭ</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">بىر ياكى كۆپ تۈر ئىناۋەتسىز</string>
     <string name="MediaReviewFragment__too_many_items_selected">تاللانغان تۈر زىيادە كۆپ</string>
@@ -5365,7 +5636,7 @@
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">سىز</string>
-    <!-- Displayed when viewing a post displayed to a group -->
+    <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$s دىن%2$s غىچە</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">جاۋاب</string>
@@ -5393,8 +5664,10 @@
     <string name="StoryGroupReplyFragment__no_replies_yet">تېخىچە جاۋاب يوق</string>
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">سىز ئەمدى بۇ گۇرۇپپىنىڭ ئەزاسى بولمىغاچقا بۇ ھېكايىگە ئىنكاس قايتۇرالمايسىز.</string>
-    <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ھېكايىگە ئىنكاس قايتۇردى</string>
+    <!-- Displayed for when you reacted to a story when viewing replies -->
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">ھېكايىگە ئىنكاس قايتۇردى</string>
+    <!-- Displayed for other users that reacted to a story when viewing replies -->
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">ھېكايىگە ئىنكاس قايتۇردى</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">كۆرۈلۈش سانى</string>
     <!-- Label for story replies tab -->
@@ -6534,7 +6807,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">لەقەم</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">لەقەم ۋە خاتىرىلەر Signal ئۇچتىن ئۇچقا مەخپىيلەشتۈرۈلگەن ھالدا ساقلىنىدۇ. ئۇلارنى پەقەت سىز كۆرەلەيسىز.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">ئات</string>
     <!-- Content description for first name clear button -->
@@ -6548,15 +6821,154 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">ساقلاش</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <string name="NicknameActivity__delete_nickname">ئۆچۈرەمسىز؟</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">بۇ مەشغۇلات سىز تەڭشىگەن بارلىق لەقەم ۋە خاتىرىلەرنى مەڭگۈلۈك ئۆچۈرىدۇ.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">خاتىرە</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">خاتىرە تەھرىرلەش</string>
+
+    <!-- BackupProgressService -->
+    <!-- Notification title shown while backup restore job is running -->
+    <string name="BackupProgressService_title">زاپاسنى ئەسلىگە قايتۇرۇۋاتىدۇ…</string>
+    <!-- Notification title shown while downloading backup restore data -->
+    <string name="BackupProgressService_title_downloading">زاپاس سانلىق مەلۇماتنى چۈشۈرۈۋاتىدۇ…</string>
+
+    <!-- BackupAlertBottomSheet -->
+    <!-- Sheet title when user does not have enough space to download their backup -->
+    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <!-- Clickable text to learn more about the content of this bottom sheet -->
+    <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
+    <!-- Secondary action button text when user does not have enough free space to download their backup. -->
+    <string name="BackupAlertBottomSheet__skip">Skip</string>
+
+    <!-- BackupStatus -->
+    <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+
+    <!-- BackupsTypeSettingsFragment -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">ئىناۋەتلىك كارتا ياكى بانكا كارتىسى</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__bank_transfer">بانكىدىن ئاغدۇرۇش</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__unknown">نامەلۇم</string>
+    <!-- Row title for entering payment history -->
+    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">Your last backup was made on %1$s at %2$s.</string>
+
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">پاراڭ چېكى</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">ئۇچۇر تارىخىنى ئۆچۈرۈش</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">تاللانغان ۋاقىتتىن بۇرۇنقى ئۇچۇرلار مەڭگۈلۈك ئۆچۈرۈلىدۇ.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">تاللانغان ئۇزۇنلۇقتىن ئېشىپ كەتكەن ئۇچۇرلار مەڭگۈلۈك ئۆچۈرۈلىدۇ.</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">چەكلىمىنى ئۇلانغان ئۈسكۈنىلەرگە قوللىنىش</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">قوزغىتىلغاندا، پاراڭ چەكلىمىسى ئۇلانغان ئۈسكۈنىلەردىكى ئۇچۇرلارنىمۇ ئۆچۈرىدۇ.</string>
+
+    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
+    <string name="DeleteSyncEducation_title">ئۆچۈرۈش ھازىر بارلىق ئۈسكۈنىلىرىڭىزدە ماسقەدەملىنىدۇ</string>
+    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
+    <string name="DeleteSyncEducation_message">When you delete messages or chats, they will be deleted from your phone and linked devices.</string>
+    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
+    <string name="DeleteSyncEducation_acknowledge_button">بولىدۇ</string>
+
+    <!-- RemoteBackupsPaymentHistoryFragment -->
+    <!-- Title of the screen for payment history -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Payment history</string>
+    <!-- Description for backup rows -->
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <!-- Title of the screen for payment details -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Payment details</string>
+    <!-- Title of row specifying the type of backup -->
+    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Backup type</string>
+    <!-- Title of row specifying the date the backup was paid on -->
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date paid</string>
+    <!-- Button label to share the receipt -->
+    <string name="RemoteBackupsPaymentHistoryFragment__share">Share</string>
+
+    <!-- RemoteBackupsSettingsFragment -->
+    <!-- Displayed on the title bar -->
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Backups</string>
+    <!-- Row label to launch payment history screen -->
+    <string name="RemoteBackupsSettingsFragment__payment_history">Payment history</string>
+    <!-- Section header for backup information -->
+    <string name="RemoteBackupsSettingsFragment__backup_details">Backup details</string>
+    <!-- Row label for backup size -->
+    <string name="RemoteBackupsSettingsFragment__backup_size">Backup size</string>
+    <!-- Row label for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency">Backup frequency</string>
+    <!-- Toggle row label for allowing backups to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Back up using cellular</string>
+    <!-- Row label for cancelling and deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Turn off and delete backup</string>
+    <!-- Snackbar text displayed when backup has been deleted and turned off -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Backup deleted and turned off.</string>
+    <!-- Snackbar text displayed when backup type is downgraded -->
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Backup type changed and subscription cancelled</string>
+    <!-- Snackbar text displayed when backup subscription is cancelled -->
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription cancelled</string>
+    <!-- Snackbar text displayed when backup is successfully downloaded -->
+    <string name="RemoteBackupsSettingsFragment__download_complete">Download complete</string>
+    <!-- Title text in row detailing selected backup type -->
+    <string name="RemoteBackupsSettingsFragment__backup_type">Backup type</string>
+    <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
+    <string name="RemoteBackupsSettingsFragment__backups_disabled">Backups disabled</string>
+    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/month</string>
+    <!-- Button label to enable backups -->
+    <string name="RemoteBackupsSettingsFragment__enable_backups">زاپاسلارنى قوزغات</string>
+    <!-- Progress indicator subtext displayed when a backup is in progress -->
+    <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
+    <!-- Title text in row detailing last backup -->
+    <string name="RemoteBackupsSettingsFragment__last_backup">Last backup</string>
+    <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
+    <string name="RemoteBackupsSettingsFragment__s_at_s">‫%1$s %2$s دە</string>
+    <!-- Subtext describing when a backup has never taken place. -->
+    <string name="RemoteBackupsSettingsFragment__never">ھەرگىز</string>
+    <!-- Button label to perform a backup immediately -->
+    <string name="RemoteBackupsSettingsFragment__back_up_now">ھازىر زاپاسلا</string>
+    <!-- Dialog title when confirming whether to turn off and deleting backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Turn off and delete backups?</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">You will not be charged again. Your backup will be deleted and no new backups will be created.</string>
+    <!-- Confirmation action on dialog to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ئېتىش ۋە ئۆچۈرۈش</string>
+    <!-- Text on dialog while user backup is being deleted -->
+    <string name="RemoteBackupsSettingsFragment__deleting_backup">Deleting backup…</string>
+    <!-- Text on dialog when user backup is deleted -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted">Backup deleted</string>
+    <!-- Subtitle for frequency option MANUAL for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"By tapping Back up now"</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__daily">Daily</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__weekly">Weekly</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__monthly">ئايلىق</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__manually_back_up">Manually back up</string>
 
     <!-- EOF -->
 </resources>

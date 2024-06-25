@@ -5,15 +5,15 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.components.settings.app.subscription.getSubscriptionLevels
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import java.util.Locale
 
 class DonationReceiptDetailRepository {
   fun getSubscriptionLevelName(subscriptionLevel: Int): Single<String> {
     return Single
       .fromCallable {
-        ApplicationDependencies
-          .getDonationsService()
+        AppDependencies
+          .donationsService
           .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }

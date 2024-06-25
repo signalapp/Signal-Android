@@ -5,6 +5,6 @@ package org.thoughtcrime.securesms.conversation.ui.inlinequery
  */
 sealed class InlineQuery(val query: String) {
   object NoQuery : InlineQuery("")
-  class Emoji(query: String, val keywordSearch: Boolean) : InlineQuery(query.replace('_', ' '))
+  class Emoji(query: String) : InlineQuery(query.replace('_', ' '))
   class Mention(query: String) : InlineQuery(query)
 }

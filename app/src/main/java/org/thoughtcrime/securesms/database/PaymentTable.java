@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.payments.CryptoValueUtil;
 import org.thoughtcrime.securesms.payments.Direction;
 import org.thoughtcrime.securesms.payments.FailureReason;
@@ -180,6 +180,28 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
     } catch (SerializationException e) {
       throw new IllegalArgumentException(e);
     }
+  }
+
+  @WorkerThread
+  public UUID restoreFromBackup(@NonNull RecipientId recipientId,
+                                long timestamp,
+                                long blockIndex,
+                                @NonNull String note,
+                                @NonNull Direction direction,
+                                @NonNull State state,
+                                @NonNull Money amount,
+                                @NonNull Money fee,
+                                @Nullable byte[] transaction,
+                                @Nullable byte[] receipt,
+                                @Nullable PaymentMetaData metaData,
+                                boolean seen) {
+    UUID uuid = UUID.randomUUID();
+    try {
+      create(uuid, recipientId, null, timestamp, blockIndex, note, direction, state, amount, fee, transaction, receipt, metaData, seen);
+    } catch (SerializationException | PublicKeyConflictException e) {
+      return null;
+    }
+    return uuid;
   }
 
   @WorkerThread
@@ -439,7 +461,7 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
       if (payment != null && record instanceof MmsMessageRecord) {
         return ((MmsMessageRecord) record).withPayment(payment);
       } else {
-        throw new AssertionError("Payment not found for message");
+        Log.w(TAG, "Payment not found for message");
       }
     }
     return record;
@@ -648,7 +670,7 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
    */
   private void notifyChanged() {
     changeSignal.postValue(new Object());
-    ApplicationDependencies.getDatabaseObserver().notifyAllPaymentsListeners();
+    AppDependencies.getDatabaseObserver().notifyAllPaymentsListeners();
   }
 
   /**
@@ -657,10 +679,10 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
    */
   private void notifyUuidChanged(@Nullable UUID uuid) {
     if (uuid != null) {
-      ApplicationDependencies.getDatabaseObserver().notifyPaymentListeners(uuid);
+      AppDependencies.getDatabaseObserver().notifyPaymentListeners(uuid);
       MessageId messageId = SignalDatabase.messages().getPaymentMessage(uuid);
       if (messageId != null) {
-        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(messageId);
+        AppDependencies.getDatabaseObserver().notifyMessageUpdateObservers(messageId);
       }
     }
   }

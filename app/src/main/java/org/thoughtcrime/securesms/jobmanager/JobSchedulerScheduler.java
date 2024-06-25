@@ -15,7 +15,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.util.List;
 import java.util.Locale;
@@ -69,7 +69,7 @@ public final class JobSchedulerScheduler implements Scheduler {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-      JobManager jobManager = ApplicationDependencies.getJobManager();
+      JobManager jobManager = AppDependencies.getJobManager();
 
       Log.i(TAG, "Waking due to job: " + params.getJobId());
 

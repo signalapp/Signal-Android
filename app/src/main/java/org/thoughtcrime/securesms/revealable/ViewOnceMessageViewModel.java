@@ -10,7 +10,7 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.util.Optional;
 
@@ -28,7 +28,7 @@ class ViewOnceMessageViewModel extends ViewModel {
 
     repository.getMessage(messageId, message -> {
       if (message.isPresent()) {
-        ApplicationDependencies.getDatabaseObserver().registerConversationObserver(message.get().getThreadId(), observer);
+        AppDependencies.getDatabaseObserver().registerConversationObserver(message.get().getThreadId(), observer);
       }
 
       onMessageRetrieved(message);
@@ -41,7 +41,7 @@ class ViewOnceMessageViewModel extends ViewModel {
 
   @Override
   protected void onCleared() {
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
+    AppDependencies.getDatabaseObserver().unregisterObserver(observer);
   }
 
   private void onMessageRetrieved(@NonNull Optional<MmsMessageRecord> optionalMessage) {

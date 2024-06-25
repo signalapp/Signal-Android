@@ -10,16 +10,16 @@ import org.thoughtcrime.securesms.recipients.Recipient
 /**
  * Encapsulate how to replace a query with a user selected result.
  */
-sealed class InlineQueryReplacement(@get:JvmName("isKeywordSearch") val keywordSearch: Boolean = false) {
-  abstract fun toCharSequence(context: Context): CharSequence
+sealed interface InlineQueryReplacement {
+  fun toCharSequence(context: Context): CharSequence
 
-  class Emoji(private val emoji: String, keywordSearch: Boolean) : InlineQueryReplacement(keywordSearch) {
+  class Emoji(private val emoji: String) : InlineQueryReplacement {
     override fun toCharSequence(context: Context): CharSequence {
       return emoji
     }
   }
 
-  class Mention(private val recipient: Recipient, keywordSearch: Boolean) : InlineQueryReplacement(keywordSearch) {
+  class Mention(private val recipient: Recipient) : InlineQueryReplacement {
     override fun toCharSequence(context: Context): CharSequence {
       val builder = SpannableStringBuilder().apply {
         append(MentionUtil.MENTION_STARTER)

@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -51,7 +51,7 @@ public final class SubmitRateLimitPushChallengeJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    ApplicationDependencies.getSignalServiceAccountManager().submitRateLimitPushChallenge(challenge);
+    AppDependencies.getSignalServiceAccountManager().submitRateLimitPushChallenge(challenge);
     SignalStore.rateLimit().onProofAccepted();
     EventBus.getDefault().post(new SuccessEvent());
     RateLimitUtil.retryAllRateLimitedMessages(context);

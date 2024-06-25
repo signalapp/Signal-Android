@@ -15,7 +15,7 @@ import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver
 import org.thoughtcrime.securesms.notifications.MessageNotifier
@@ -55,7 +55,7 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
 
   @Volatile private var previousLockedStatus: Boolean = KeyCachingService.isLocked(context)
 
-  @Volatile private var previousPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
+  @Volatile private var previousPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings.messageNotificationsPrivacy
 
   @Volatile private var previousState: NotificationState = NotificationState.EMPTY
 
@@ -126,7 +126,7 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     NotificationChannels.getInstance().ensureCustomChannelConsistency()
 
     val currentLockStatus: Boolean = KeyCachingService.isLocked(context)
-    val currentPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
+    val currentPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings.messageNotificationsPrivacy
     val notificationConfigurationChanged: Boolean = currentLockStatus != previousLockedStatus || currentPrivacyPreference != previousPrivacyPreference
     previousLockedStatus = currentLockStatus
     previousPrivacyPreference = currentPrivacyPreference
@@ -155,7 +155,7 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
       }
     }
 
-    if (!SignalStore.settings().isMessageNotificationsEnabled) {
+    if (!SignalStore.settings.isMessageNotificationsEnabled) {
       Log.i(TAG, "Marking ${state.conversations.size} conversations as notified to skip notification")
       state.conversations.forEach { conversation ->
         conversation.notificationItems.forEach { item ->
@@ -239,7 +239,7 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
   }
 
   private fun updateReminderTimestamps(context: Context, alertOverrides: Set<ConversationId>, threadsThatAlerted: Set<ConversationId>) {
-    if (SignalStore.settings().messageNotificationsRepeatAlerts == 0) {
+    if (SignalStore.settings.messageNotificationsRepeatAlerts == 0) {
       return
     }
 
@@ -249,7 +249,7 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
       val (id: ConversationId, reminder: Reminder) = entry
       if (alertOverrides.contains(id)) {
         val notifyCount: Int = reminder.count + 1
-        if (notifyCount >= SignalStore.settings().messageNotificationsRepeatAlerts) {
+        if (notifyCount >= SignalStore.settings.messageNotificationsRepeatAlerts) {
           iterator.remove()
         } else {
           entry.setValue(Reminder(lastAudibleNotification, notifyCount))
@@ -395,8 +395,8 @@ private class CancelableExecutor {
       }
       if (!canceled.get()) {
         Log.i(TAG, "Not canceled, notifying...")
-        ApplicationDependencies.getMessageNotifier().cancelDelayedNotifications()
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, thread)
+        AppDependencies.messageNotifier.cancelDelayedNotifications()
+        AppDependencies.messageNotifier.updateNotification(context, thread)
       } else {
         Log.w(TAG, "Canceled, not notifying...")
       }

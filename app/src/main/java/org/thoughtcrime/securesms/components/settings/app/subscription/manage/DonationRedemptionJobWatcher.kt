@@ -2,10 +2,12 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Observable
+import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
 import org.thoughtcrime.securesms.jobs.DonationReceiptRedemptionJob
@@ -16,6 +18,8 @@ import java.util.concurrent.TimeUnit
 
 /**
  * Allows observer to poll for the status of the latest pending, running, or completed redemption job for subscriptions or one time payments.
+ *
+ * @deprecated This object is deprecated and will be removed once we are sure all jobs have drained.
  */
 object DonationRedemptionJobWatcher {
 
@@ -24,7 +28,6 @@ object DonationRedemptionJobWatcher {
     ONE_TIME
   }
 
-  @JvmStatic
   @WorkerThread
   fun hasPendingRedemptionJob(): Boolean {
     return getDonationRedemptionJobStatus(RedemptionType.SUBSCRIPTION).isInProgress() || getDonationRedemptionJobStatus(RedemptionType.ONE_TIME).isInProgress()
@@ -55,8 +58,8 @@ object DonationRedemptionJobWatcher {
       RedemptionType.ONE_TIME -> DonationReceiptRedemptionJob.ONE_TIME_QUEUE
     }
 
-    val donationJobSpecs = ApplicationDependencies
-      .getJobManager()
+    val donationJobSpecs = AppDependencies
+      .jobManager
       .find { it.queueKey?.startsWith(queue) == true }
       .sortedBy { it.createTime }
 
@@ -79,7 +82,7 @@ object DonationRedemptionJobWatcher {
 
     val jobSpec: JobSpec? = externalLaunchJobSpec ?: redemptionJobSpec ?: receiptJobSpec
 
-    return if (redemptionType == RedemptionType.SUBSCRIPTION && jobSpec == null && SignalStore.donationsValues().getSubscriptionRedemptionFailed()) {
+    return if (redemptionType == RedemptionType.SUBSCRIPTION && jobSpec == null && SignalStore.donations.getSubscriptionRedemptionFailed()) {
       DonationRedemptionJobStatus.FailedSubscription
     } else {
       jobSpec?.toDonationRedemptionStatus(redemptionType) ?: DonationRedemptionJobStatus.None
@@ -113,9 +116,9 @@ object DonationRedemptionJobWatcher {
     }
 
     return DonationSerializationHelper.createPendingOneTimeDonationProto(
-      badge = stripe3DSData.gatewayRequest.badge,
+      badge = Badges.fromDatabaseBadge(stripe3DSData.inAppPayment.data.badge!!),
       paymentSourceType = stripe3DSData.paymentSourceType,
-      amount = stripe3DSData.gatewayRequest.fiat
+      amount = stripe3DSData.inAppPayment.data.amount!!.toFiatMoney()
     ).copy(
       timestamp = createTime,
       pendingVerification = true,
@@ -130,8 +133,8 @@ object DonationRedemptionJobWatcher {
 
     return NonVerifiedMonthlyDonation(
       timestamp = createTime,
-      price = stripe3DSData.gatewayRequest.fiat,
-      level = stripe3DSData.gatewayRequest.level.toInt(),
+      price = stripe3DSData.inAppPayment.data.amount!!.toFiatMoney(),
+      level = stripe3DSData.inAppPayment.data.level.toInt(),
       checkedVerification = runAttempt > 0
     )
   }

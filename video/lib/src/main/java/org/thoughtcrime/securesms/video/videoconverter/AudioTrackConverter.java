@@ -398,19 +398,13 @@ final class AudioTrackConverter {
         }
     }
 
-    String dumpState() {
-        return String.format(Locale.US,
-                "A{"
-                        + "extracted:%d(done:%b) "
-                        + "decoded:%d(done:%b) "
-                        + "encoded:%d(done:%b) "
-                        + "pending:%d "
-                        + "muxing:%b(track:%d} )",
-                mAudioExtractedFrameCount, mAudioExtractorDone,
-                mAudioDecodedFrameCount, mAudioDecoderDone,
-                mAudioEncodedFrameCount, mAudioEncoderDone,
-                mPendingAudioDecoderOutputBufferIndex,
-                mMuxer != null, mOutputAudioTrack);
+    AudioTrackConverterState dumpState() {
+        return new AudioTrackConverterState(
+            mAudioExtractedFrameCount, mAudioExtractorDone,
+            mAudioDecodedFrameCount, mAudioDecoderDone,
+            mAudioEncodedFrameCount, mAudioEncoderDone,
+            mPendingAudioDecoderOutputBufferIndex,
+            mMuxer != null, mOutputAudioTrack);
     }
 
     void verifyEndState() {

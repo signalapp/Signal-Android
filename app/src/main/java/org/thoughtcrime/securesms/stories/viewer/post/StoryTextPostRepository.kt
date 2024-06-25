@@ -7,7 +7,7 @@ import org.signal.core.util.Base64
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.fonts.TextToScript
 import org.thoughtcrime.securesms.fonts.TypefaceCache
@@ -25,7 +25,7 @@ class StoryTextPostRepository {
       val textFont = TextFont.fromStyle(model.style)
       val script = TextToScript.guessScript(model.body)
 
-      TypefaceCache.get(ApplicationDependencies.getApplication(), textFont, script)
+      TypefaceCache.get(AppDependencies.application, textFont, script)
     }
   }
 }

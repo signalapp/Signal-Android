@@ -7,7 +7,7 @@ import androidx.navigation.Navigation;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob;
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
@@ -43,17 +43,17 @@ public final class RegistrationLockFragment extends BaseRegistrationLockFragment
 
   @Override
   protected void handleSuccessfulPinEntry(@NonNull String pin) {
-    SignalStore.pinValues().setKeyboardType(getPinEntryKeyboardType());
+    SignalStore.pin().setKeyboardType(getPinEntryKeyboardType());
 
     SimpleTask.run(() -> {
       SignalStore.onboarding().clearAll();
 
       Stopwatch stopwatch = new Stopwatch("RegistrationLockRestore");
 
-      ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
+      AppDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
       stopwatch.split("AccountRestore");
 
-      ApplicationDependencies
+      AppDependencies
           .getJobManager()
           .startChain(new StorageSyncJob())
           .then(new ReclaimUsernameAndLinkJob())
@@ -61,11 +61,11 @@ public final class RegistrationLockFragment extends BaseRegistrationLockFragment
       stopwatch.split("ContactRestore");
 
       try {
-        FeatureFlags.refreshSync();
+        RemoteConfig.refreshSync();
       } catch (IOException e) {
         Log.w(TAG, "Failed to refresh flags.", e);
       }
-      stopwatch.split("FeatureFlags");
+      stopwatch.split("RemoteConfig");
 
       stopwatch.stop(TAG);
 

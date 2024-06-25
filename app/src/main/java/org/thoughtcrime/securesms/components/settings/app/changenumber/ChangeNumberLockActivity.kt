@@ -55,11 +55,11 @@ class ChangeNumberLockActivity : PassphraseRequiredActivity() {
     disposables += changeNumberRepository
       .whoAmI()
       .flatMap { whoAmI ->
-        if (Objects.equals(whoAmI.number, SignalStore.account().e164)) {
+        if (Objects.equals(whoAmI.number, SignalStore.account.e164)) {
           Log.i(TAG, "Local and remote numbers match, nothing needs to be done.")
           Single.just(false)
         } else {
-          Log.i(TAG, "Local (${SignalStore.account().e164}) and remote (${whoAmI.number}) numbers do not match, updating local.")
+          Log.i(TAG, "Local (${SignalStore.account.e164}) and remote (${whoAmI.number}) numbers do not match, updating local.")
           Single
             .just(true)
             .flatMap { changeNumberRepository.changeLocalNumber(whoAmI.number, PNI.parseOrThrow(whoAmI.pni)) }
@@ -72,12 +72,12 @@ class ChangeNumberLockActivity : PassphraseRequiredActivity() {
   }
 
   private fun onChangeStatusConfirmed() {
-    SignalStore.misc().unlockChangeNumber()
-    SignalStore.misc().clearPendingChangeNumberMetadata()
+    SignalStore.misc.unlockChangeNumber()
+    SignalStore.misc.clearPendingChangeNumberMetadata()
 
     MaterialAlertDialogBuilder(this)
       .setTitle(R.string.ChangeNumberLockActivity__change_status_confirmed)
-      .setMessage(getString(R.string.ChangeNumberLockActivity__your_number_has_been_confirmed_as_s, PhoneNumberFormatter.prettyPrint(SignalStore.account().e164!!)))
+      .setMessage(getString(R.string.ChangeNumberLockActivity__your_number_has_been_confirmed_as_s, PhoneNumberFormatter.prettyPrint(SignalStore.account.e164!!)))
       .setPositiveButton(android.R.string.ok) { _, _ ->
         startActivity(MainActivity.clearTop(this))
         finish()

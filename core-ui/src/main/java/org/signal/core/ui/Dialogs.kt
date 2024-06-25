@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -86,8 +87,8 @@ object Dialogs {
       text = { Text(text = body) },
       confirmButton = {
         TextButton(onClick = {
-          onConfirm()
           onDismiss()
+          onConfirm()
         }) {
           Text(text = confirm, color = confirmColor)
         }
@@ -125,6 +126,33 @@ object Dialogs {
       },
       modifier = Modifier
         .size(100.dp)
+    )
+  }
+
+  /**
+   * Customizable progress spinner that shows [message] below the spinner to let users know
+   * an action is completing
+   */
+  @Composable
+  fun IndeterminateProgressDialog(message: String) {
+    androidx.compose.material3.AlertDialog(
+      onDismissRequest = {},
+      confirmButton = {},
+      dismissButton = {},
+      text = {
+        Column(
+          verticalArrangement = Arrangement.Center,
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier.fillMaxWidth().fillMaxHeight()
+        ) {
+          Spacer(modifier = Modifier.size(24.dp))
+          CircularProgressIndicator()
+          Spacer(modifier = Modifier.size(20.dp))
+          Text(message)
+        }
+      },
+      modifier = Modifier
+        .size(200.dp)
     )
   }
 
@@ -236,4 +264,10 @@ private fun MessageDialogPreview() {
 @Composable
 private fun IndeterminateProgressDialogPreview() {
   Dialogs.IndeterminateProgressDialog()
+}
+
+@Preview
+@Composable
+private fun IndeterminateProgressDialogMessagePreview() {
+  Dialogs.IndeterminateProgressDialog("Completing...")
 }

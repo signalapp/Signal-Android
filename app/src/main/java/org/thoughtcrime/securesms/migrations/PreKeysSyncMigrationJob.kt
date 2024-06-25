@@ -22,7 +22,7 @@ internal class PreKeysSyncMigrationJob(
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    SignalStore.misc().lastFullPrekeyRefreshTime = 0
+    SignalStore.misc.lastFullPrekeyRefreshTime = 0
     PreKeysSyncJob.enqueue()
   }
 

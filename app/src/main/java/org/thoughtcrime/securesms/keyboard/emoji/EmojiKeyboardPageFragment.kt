@@ -128,7 +128,7 @@ class EmojiKeyboardPageFragment : Fragment(), EmojiEventListener, EmojiPageViewG
   }
 
   override fun onEmojiSelected(emoji: String) {
-    SignalStore.emojiValues().setPreferredVariation(emoji)
+    SignalStore.emoji.setPreferredVariation(emoji)
     eventListener.onEmojiSelected(emoji)
   }
 

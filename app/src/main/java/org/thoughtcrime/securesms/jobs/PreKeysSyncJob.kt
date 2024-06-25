@@ -9,12 +9,12 @@ import org.signal.libsignal.protocol.state.SignalProtocolStore
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.PreKeysSyncJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.account.PreKeyUpload
@@ -72,26 +72,26 @@ class PreKeysSyncJob private constructor(
 
     @JvmStatic
     fun enqueue() {
-      ApplicationDependencies.getJobManager().add(create())
+      AppDependencies.jobManager.add(create())
     }
 
     @JvmStatic
     fun enqueueIfNeeded() {
-      if (!SignalStore.account().aciPreKeys.isSignedPreKeyRegistered || !SignalStore.account().pniPreKeys.isSignedPreKeyRegistered) {
-        Log.i(TAG, "Some signed/last-resort prekeys aren't registered yet. Enqueuing a job. ACI: ${SignalStore.account().aciPreKeys.isSignedPreKeyRegistered} PNI: ${SignalStore.account().pniPreKeys.isSignedPreKeyRegistered}")
-        ApplicationDependencies.getJobManager().add(PreKeysSyncJob())
-      } else if (SignalStore.account().aciPreKeys.activeSignedPreKeyId < 0 || SignalStore.account().pniPreKeys.activeSignedPreKeyId < 0) {
-        Log.i(TAG, "Some signed prekeys aren't active yet. Enqueuing a job. ACI: ${SignalStore.account().aciPreKeys.activeSignedPreKeyId >= 0} PNI: ${SignalStore.account().pniPreKeys.activeSignedPreKeyId >= 0}")
-        ApplicationDependencies.getJobManager().add(PreKeysSyncJob())
-      } else if (SignalStore.account().aciPreKeys.lastResortKyberPreKeyId < 0 || SignalStore.account().pniPreKeys.lastResortKyberPreKeyId < 0) {
-        Log.i(TAG, "Some last-resort kyber prekeys aren't active yet. Enqueuing a job. ACI: ${SignalStore.account().aciPreKeys.lastResortKyberPreKeyId >= 0} PNI: ${SignalStore.account().pniPreKeys.lastResortKyberPreKeyId >= 0}")
-        ApplicationDependencies.getJobManager().add(PreKeysSyncJob())
+      if (!SignalStore.account.aciPreKeys.isSignedPreKeyRegistered || !SignalStore.account.pniPreKeys.isSignedPreKeyRegistered) {
+        Log.i(TAG, "Some signed/last-resort prekeys aren't registered yet. Enqueuing a job. ACI: ${SignalStore.account.aciPreKeys.isSignedPreKeyRegistered} PNI: ${SignalStore.account.pniPreKeys.isSignedPreKeyRegistered}")
+        AppDependencies.jobManager.add(PreKeysSyncJob())
+      } else if (SignalStore.account.aciPreKeys.activeSignedPreKeyId < 0 || SignalStore.account.pniPreKeys.activeSignedPreKeyId < 0) {
+        Log.i(TAG, "Some signed prekeys aren't active yet. Enqueuing a job. ACI: ${SignalStore.account.aciPreKeys.activeSignedPreKeyId >= 0} PNI: ${SignalStore.account.pniPreKeys.activeSignedPreKeyId >= 0}")
+        AppDependencies.jobManager.add(PreKeysSyncJob())
+      } else if (SignalStore.account.aciPreKeys.lastResortKyberPreKeyId < 0 || SignalStore.account.pniPreKeys.lastResortKyberPreKeyId < 0) {
+        Log.i(TAG, "Some last-resort kyber prekeys aren't active yet. Enqueuing a job. ACI: ${SignalStore.account.aciPreKeys.lastResortKyberPreKeyId >= 0} PNI: ${SignalStore.account.pniPreKeys.lastResortKyberPreKeyId >= 0}")
+        AppDependencies.jobManager.add(PreKeysSyncJob())
       } else {
-        val timeSinceLastFullRefresh = System.currentTimeMillis() - SignalStore.misc().lastFullPrekeyRefreshTime
+        val timeSinceLastFullRefresh = System.currentTimeMillis() - SignalStore.misc.lastFullPrekeyRefreshTime
 
         if (timeSinceLastFullRefresh >= REFRESH_INTERVAL || timeSinceLastFullRefresh < 0) {
           Log.i(TAG, "Scheduling a prekey refresh. Time since last full refresh: $timeSinceLastFullRefresh ms")
-          ApplicationDependencies.getJobManager().add(PreKeysSyncJob())
+          AppDependencies.jobManager.add(PreKeysSyncJob())
         } else {
           Log.d(TAG, "No prekey job needed. Time since last full refresh: $timeSinceLastFullRefresh ms")
         }
@@ -118,27 +118,27 @@ class PreKeysSyncJob private constructor(
   }
 
   override fun onRun() {
-    if (!SignalStore.account().isRegistered || SignalStore.account().aci == null || SignalStore.account().pni == null) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null || SignalStore.account.pni == null) {
       warn(TAG, "Not yet registered")
       return
     }
 
     val forceRotation = if (forceRotationRequested) {
       warn(TAG, "Forced rotation was requested.")
-      warn(TAG, ServiceIdType.ACI, "Active Signed EC: ${SignalStore.account().aciPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account().aciPreKeys.lastResortKyberPreKeyId}")
-      warn(TAG, ServiceIdType.PNI, "Active Signed EC: ${SignalStore.account().pniPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account().pniPreKeys.lastResortKyberPreKeyId}")
+      warn(TAG, ServiceIdType.ACI, "Active Signed EC: ${SignalStore.account.aciPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account.aciPreKeys.lastResortKyberPreKeyId}")
+      warn(TAG, ServiceIdType.PNI, "Active Signed EC: ${SignalStore.account.pniPreKeys.activeSignedPreKeyId}, Last Resort Kyber: ${SignalStore.account.pniPreKeys.lastResortKyberPreKeyId}")
 
-      if (!checkPreKeyConsistency(ServiceIdType.ACI, ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys)) {
+      if (!checkPreKeyConsistency(ServiceIdType.ACI, AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys)) {
         warn(TAG, ServiceIdType.ACI, "Prekey consistency check failed! Must rotate keys!")
         true
-      } else if (!checkPreKeyConsistency(ServiceIdType.PNI, ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys)) {
+      } else if (!checkPreKeyConsistency(ServiceIdType.PNI, AppDependencies.protocolStore.pni(), SignalStore.account.pniPreKeys)) {
         warn(TAG, ServiceIdType.PNI, "Prekey consistency check failed! Must rotate keys! (ACI consistency check must have passed)")
         true
       } else {
         warn(TAG, "Forced rotation was requested, but the consistency checks passed!")
-        val timeSinceLastForcedRotation = System.currentTimeMillis() - SignalStore.misc().lastForcedPreKeyRefresh
+        val timeSinceLastForcedRotation = System.currentTimeMillis() - SignalStore.misc.lastForcedPreKeyRefresh
         // We check < 0 in case someone changed their clock and had a bad value set
-        timeSinceLastForcedRotation > FeatureFlags.preKeyForceRefreshInterval() || timeSinceLastForcedRotation < 0
+        timeSinceLastForcedRotation > RemoteConfig.preKeyForceRefreshInterval || timeSinceLastForcedRotation < 0
       }
     } else {
       false
@@ -147,15 +147,15 @@ class PreKeysSyncJob private constructor(
     if (forceRotation) {
       warn(TAG, "Forcing prekey rotation.")
     } else if (forceRotationRequested) {
-      warn(TAG, "Forced prekey rotation was requested, but we already did a forced refresh ${System.currentTimeMillis() - SignalStore.misc().lastForcedPreKeyRefresh} ms ago. Ignoring.")
+      warn(TAG, "Forced prekey rotation was requested, but we already did a forced refresh ${System.currentTimeMillis() - SignalStore.misc.lastForcedPreKeyRefresh} ms ago. Ignoring.")
     }
 
-    syncPreKeys(ServiceIdType.ACI, SignalStore.account().aci, ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys, forceRotation)
-    syncPreKeys(ServiceIdType.PNI, SignalStore.account().pni, ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys, forceRotation)
-    SignalStore.misc().lastFullPrekeyRefreshTime = System.currentTimeMillis()
+    syncPreKeys(ServiceIdType.ACI, SignalStore.account.aci, AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys, forceRotation)
+    syncPreKeys(ServiceIdType.PNI, SignalStore.account.pni, AppDependencies.protocolStore.pni(), SignalStore.account.pniPreKeys, forceRotation)
+    SignalStore.misc.lastFullPrekeyRefreshTime = System.currentTimeMillis()
 
     if (forceRotation) {
-      SignalStore.misc().lastForcedPreKeyRefresh = System.currentTimeMillis()
+      SignalStore.misc.lastForcedPreKeyRefresh = System.currentTimeMillis()
     }
   }
 
@@ -165,7 +165,7 @@ class PreKeysSyncJob private constructor(
       return
     }
 
-    val accountManager = ApplicationDependencies.getSignalServiceAccountManager()
+    val accountManager = AppDependencies.signalServiceAccountManager
     val availablePreKeyCounts: OneTimePreKeyCounts = accountManager.getPreKeyCounts(serviceIdType)
 
     val signedPreKeyToUpload: SignedPreKeyRecord? = signedPreKeyUploadIfNeeded(serviceIdType, protocolStore, metadataStore, forceRotation)
@@ -258,7 +258,7 @@ class PreKeysSyncJob private constructor(
 
   @Throws(IOException::class)
   private fun checkPreKeyConsistency(serviceIdType: ServiceIdType, protocolStore: SignalServiceAccountDataStore, metadataStore: PreKeyMetadataStore): Boolean {
-    val result: NetworkResult<Unit> = ApplicationDependencies.getSignalServiceAccountManager().keysApi.checkRepeatedUseKeys(
+    val result: NetworkResult<Unit> = AppDependencies.signalServiceAccountManager.keysApi.checkRepeatedUseKeys(
       serviceIdType = serviceIdType,
       identityKey = protocolStore.identityKeyPair.publicKey,
       signedPreKeyId = metadataStore.activeSignedPreKeyId,
@@ -269,7 +269,7 @@ class PreKeysSyncJob private constructor(
 
     return when (result) {
       is NetworkResult.Success -> true
-      is NetworkResult.NetworkError -> throw result.throwable ?: PushNetworkException("Network error")
+      is NetworkResult.NetworkError -> throw result.exception ?: PushNetworkException("Network error")
       is NetworkResult.ApplicationError -> throw result.throwable
       is NetworkResult.StatusCodeError -> if (result.code == 409) {
         false
@@ -289,7 +289,7 @@ class PreKeysSyncJob private constructor(
 
   override fun onFailure() {
     Log.w(TAG, "Failed to sync prekeys. Enqueuing an account consistency check.")
-    ApplicationDependencies.getJobManager().add(AccountConsistencyWorkerJob())
+    AppDependencies.jobManager.add(AccountConsistencyWorkerJob())
   }
 
   private fun log(serviceIdType: ServiceIdType, message: String) {

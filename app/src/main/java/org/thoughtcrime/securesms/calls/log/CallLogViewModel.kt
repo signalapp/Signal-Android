@@ -15,8 +15,8 @@ import org.signal.paging.ObservablePagedData
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.concurrent.TimeUnit
 
@@ -24,7 +24,8 @@ import java.util.concurrent.TimeUnit
  * ViewModel for call log management.
  */
 class CallLogViewModel(
-  private val callLogRepository: CallLogRepository = CallLogRepository()
+  val callLogPeekHelper: CallLogPeekHelper = CallLogPeekHelper(),
+  private val callLogRepository: CallLogRepository = CallLogRepository(callLogPeekHelper = callLogPeekHelper)
 ) : ViewModel() {
   private val callLogStore = RxStore(CallLogState())
 
@@ -77,21 +78,23 @@ class CallLogViewModel(
     }
 
     disposables += callLogRepository.listenForChanges().subscribe {
+      callLogPeekHelper.onDataSetInvalidated()
       controller.onDataInvalidated()
     }
 
-    if (FeatureFlags.adHocCalling()) {
+    if (RemoteConfig.adHocCalling) {
       disposables += Observable
         .interval(30, TimeUnit.SECONDS, Schedulers.computation())
         .flatMapCompletable { callLogRepository.peekCallLinks() }
         .subscribe()
 
-      disposables += ApplicationDependencies
-        .getSignalCallManager()
+      disposables += AppDependencies
+        .signalCallManager
         .peekInfoCache
         .observeOn(Schedulers.computation())
         .distinctUntilChanged()
         .subscribe {
+          callLogPeekHelper.onDataSetInvalidated()
           controller.onDataInvalidated()
         }
     }

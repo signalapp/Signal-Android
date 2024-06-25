@@ -31,7 +31,6 @@ import java.util.concurrent.TimeUnit
  * @param fixedContacts Contacts which are "pre-selected" (for example, already a member of a group we're adding to)
  * @param selectionLimits [SelectionLimits] describing how large the result set can be.
  * @param displayCheckBox Whether or not to display checkboxes on items.
- * @param displaySmsTag   Whether or not to display the SMS tag on items.
  * @param displaySecondaryInformation Whether or not to display phone numbers on known contacts.
  * @param mapStateToConfiguration Maps a [ContactSearchState] to a [ContactSearchConfiguration]
  * @param callbacks Hooks to help process, filter, and react to selection
@@ -171,7 +170,7 @@ class ContactSearchMediator(
   }
 
   private fun toggleStorySelection(view: View, contactSearchData: ContactSearchData.Story, isSelected: Boolean) {
-    if (contactSearchData.recipient.isMyStory && !SignalStore.storyValues().userHasBeenNotifiedAboutStories) {
+    if (contactSearchData.recipient.isMyStory && !SignalStore.story.userHasBeenNotifiedAboutStories) {
       ChooseInitialMyStoryMembershipBottomSheetDialogFragment.show(fragment.childFragmentManager)
     } else {
       toggleSelection(view, contactSearchData, isSelected)

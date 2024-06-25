@@ -66,7 +66,8 @@ object MessageConstraintsUtil {
       targetMessage.revisionNumber < MAX_EDIT_COUNT &&
       !targetMessage.isViewOnceMessage() &&
       !targetMessage.hasAudio() &&
-      !targetMessage.hasSharedContact()
+      !targetMessage.hasSharedContact() &&
+      !targetMessage.hasSticker()
   }
 
   /**
@@ -85,6 +86,7 @@ object MessageConstraintsUtil {
       !message.isRemoteDelete &&
       !message.hasGiftBadge() &&
       !message.isPaymentNotification &&
+      !message.isPaymentTombstone &&
       (currentTime - message.dateSent < SEND_THRESHOLD || message.toRecipient.isSelf)
   }
 

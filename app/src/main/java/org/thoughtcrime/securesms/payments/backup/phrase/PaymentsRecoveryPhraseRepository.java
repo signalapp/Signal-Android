@@ -6,7 +6,7 @@ import androidx.core.util.Consumer;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.keyvalue.PaymentsValues;
@@ -24,13 +24,13 @@ class PaymentsRecoveryPhraseRepository {
   {
     SignalExecutors.BOUNDED.execute(() -> {
       String                             mnemonic = Util.join(words, " ");
-      PaymentsValues.WalletRestoreResult result   = SignalStore.paymentsValues().restoreWallet(mnemonic);
+      PaymentsValues.WalletRestoreResult result   = SignalStore.payments().restoreWallet(mnemonic);
 
       switch (result) {
         case ENTROPY_CHANGED:
           Log.i(TAG, "restoreMnemonic: mnemonic resulted in entropy mismatch, flushing cached values");
           SignalDatabase.payments().deleteAll();
-          ApplicationDependencies.getPayments().closeWallet();
+          AppDependencies.getPayments().closeWallet();
           updateProfileAndFetchLedger();
           break;
         case ENTROPY_UNCHANGED:
@@ -47,9 +47,9 @@ class PaymentsRecoveryPhraseRepository {
   }
 
   private void updateProfileAndFetchLedger() {
-    ApplicationDependencies.getJobManager()
-                           .startChain(new ProfileUploadJob())
-                           .then(PaymentLedgerUpdateJob.updateLedger())
-                           .enqueue();
+    AppDependencies.getJobManager()
+                   .startChain(new ProfileUploadJob())
+                   .then(PaymentLedgerUpdateJob.updateLedger())
+                   .enqueue();
   }
 }

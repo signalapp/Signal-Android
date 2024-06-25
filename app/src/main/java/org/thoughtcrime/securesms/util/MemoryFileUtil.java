@@ -7,7 +7,7 @@ import android.os.ParcelFileDescriptor;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -23,7 +23,7 @@ public final class MemoryFileUtil {
       throws IOException
   {
     if (Build.VERSION.SDK_INT >= 26) {
-      return MemoryFileDescriptorProxy.create(ApplicationDependencies.getApplication(), file);
+      return MemoryFileDescriptorProxy.create(AppDependencies.getApplication(), file);
     } else {
       return getParcelFileDescriptorLegacy(file);
     }

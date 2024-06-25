@@ -8,10 +8,11 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.s
 import io.reactivex.rxjava3.core.Single
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 
 fun interface StripeNextActionHandler {
   fun handle(
     action: StripeApi.Secure3DSAction,
-    stripe3DSData: Stripe3DSData
+    inAppPayment: InAppPaymentTable.InAppPayment
   ): Single<StripeIntentAccessor>
 }

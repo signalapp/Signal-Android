@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -79,10 +79,10 @@ public final class PaymentSendJob extends BaseJob {
                                      amount,
                                      totalFee);
 
-    JobManager.Chain chain = ApplicationDependencies.getJobManager()
-                                                    .startChain(sendJob)
-                                                    .then(new PaymentTransactionCheckJob(uuid, QUEUE))
-                                                    .then(new MultiDeviceOutgoingPaymentSyncJob(uuid));
+    JobManager.Chain chain = AppDependencies.getJobManager()
+                                            .startChain(sendJob)
+                                            .then(new PaymentTransactionCheckJob(uuid, QUEUE))
+                                            .then(new MultiDeviceOutgoingPaymentSyncJob(uuid));
 
     if (recipientId != null) {
       chain.then(PaymentNotificationSendJob.create(recipientId, uuid, recipientId.toQueueKey(true)));
@@ -128,14 +128,14 @@ public final class PaymentSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
+    if (!SignalStore.payments().mobileCoinPaymentsEnabled()) {
       Log.w(TAG, "Payments are not enabled");
       return;
     }
 
     Stopwatch stopwatch = new Stopwatch("Payment submission");
 
-    Wallet       wallet          = ApplicationDependencies.getPayments().getWallet();
+    Wallet       wallet          = AppDependencies.getPayments().getWallet();
     PaymentTable paymentDatabase = SignalDatabase.payments();
 
     paymentDatabase.createOutgoingPayment(uuid,
@@ -165,10 +165,10 @@ public final class PaymentSendJob extends BaseJob {
                                        mobileCoinTransaction.getFee(),
                                        mobileCoinTransaction.getTransaction(), mobileCoinTransaction.getReceipt());
           Log.i(TAG, "Defrag entered with id " + defragUuid);
-          ApplicationDependencies.getJobManager()
-                                 .startChain(new PaymentTransactionCheckJob(defragUuid, QUEUE))
-                                 .then(new MultiDeviceOutgoingPaymentSyncJob(defragUuid))
-                                 .enqueue();
+          AppDependencies.getJobManager()
+                         .startChain(new PaymentTransactionCheckJob(defragUuid, QUEUE))
+                         .then(new MultiDeviceOutgoingPaymentSyncJob(defragUuid))
+                         .enqueue();
         }
         stopwatch.split("Defrag");
       }

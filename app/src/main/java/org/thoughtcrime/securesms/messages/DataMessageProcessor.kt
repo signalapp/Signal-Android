@@ -42,7 +42,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.toBodyRangeList
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
@@ -89,10 +89,10 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LinkUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isStory
@@ -192,15 +192,15 @@ object DataMessageProcessor {
     }
 
     if (metadata.sealedSender && messageId != null) {
-      SignalExecutors.BOUNDED.execute { ApplicationDependencies.getJobManager().add(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, messageId)) }
+      SignalExecutors.BOUNDED.execute { AppDependencies.jobManager.add(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, messageId)) }
     } else if (!metadata.sealedSender) {
       if (RecipientUtil.shouldHaveProfileKey(threadRecipient)) {
         Log.w(MessageContentProcessor.TAG, "Received an unsealed sender message from " + senderRecipient.id + ", but they should already have our profile key. Correcting.")
 
         if (groupId != null) {
           Log.i(MessageContentProcessor.TAG, "Message was to a GV2 group. Ensuring our group profile keys are up to date.")
-          ApplicationDependencies
-            .getJobManager()
+          AppDependencies
+            .jobManager
             .startChain(RefreshAttributesJob(false))
             .then(GroupV2UpdateSelfProfileKeyJob.withQueueLimits(groupId))
             .enqueue()
@@ -208,8 +208,8 @@ object DataMessageProcessor {
           Log.i(MessageContentProcessor.TAG, "Message was to a 1:1. Ensuring this user has our profile key.")
           val profileSendJob = ProfileKeySendJob.create(SignalDatabase.threads.getOrCreateThreadIdFor(threadRecipient), true)
           if (profileSendJob != null) {
-            ApplicationDependencies
-              .getJobManager()
+            AppDependencies
+              .jobManager
               .startChain(RefreshAttributesJob(false))
               .then(profileSendJob)
               .enqueue()
@@ -219,11 +219,11 @@ object DataMessageProcessor {
     }
 
     if (insertResult != null && insertResult.threadWasNewlyCreated && !threadRecipient.isGroup && !threadRecipient.isSelf && !senderRecipient.isSystemContact) {
-      val timeSinceLastSync = System.currentTimeMillis() - SignalStore.misc().lastCdsForegroundSyncTime
-      if (timeSinceLastSync > FeatureFlags.cdsForegroundSyncInterval() || timeSinceLastSync < 0) {
+      val timeSinceLastSync = System.currentTimeMillis() - SignalStore.misc.lastCdsForegroundSyncTime
+      if (timeSinceLastSync > RemoteConfig.cdsForegroundSyncInterval || timeSinceLastSync < 0) {
         log(envelope.timestamp!!, "New 1:1 chat. Scheduling a CDS sync to see if they match someone in our contacts.")
-        ApplicationDependencies.getJobManager().add(DirectoryRefreshJob(false))
-        SignalStore.misc().lastCdsForegroundSyncTime = System.currentTimeMillis()
+        AppDependencies.jobManager.add(DirectoryRefreshJob(false))
+        SignalStore.misc.lastCdsForegroundSyncTime = System.currentTimeMillis()
       } else {
         warn(envelope.timestamp!!, "New 1:1 chat, but performed a CDS sync $timeSinceLastSync ms ago, which is less than our threshold. Skipping CDS sync.")
       }
@@ -278,7 +278,7 @@ object DataMessageProcessor {
     val insertResult: InsertResult? = insertPlaceholder(sender, timestamp, groupId)
     if (insertResult != null) {
       SignalDatabase.messages.markAsInvalidMessage(insertResult.messageId)
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+      AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
     }
   }
 
@@ -303,9 +303,9 @@ object DataMessageProcessor {
     val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(incomingMessage).orNull()
 
     return if (insertResult != null) {
-      ApplicationDependencies.getProtocolStore().aci().deleteAllSessions(metadata.sourceServiceId.toString())
+      AppDependencies.protocolStore.aci().deleteAllSessions(metadata.sourceServiceId.toString())
       SecurityEvent.broadcastSecurityUpdateEvent(context)
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+      AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
       insertResult
     } else {
       null
@@ -460,9 +460,9 @@ object DataMessageProcessor {
         SignalDatabase.messages.setTransactionSuccessful()
 
         if (parentStoryId.isGroupReply()) {
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromThreadAndReply(insertResult.threadId, parentStoryId as GroupReply))
+          AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromThreadAndReply(insertResult.threadId, parentStoryId as GroupReply))
         } else {
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+          AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
           TrimThreadJob.enqueueAsync(insertResult.threadId)
         }
 
@@ -514,7 +514,7 @@ object DataMessageProcessor {
     if (targetMessage == null) {
       warn(envelope.timestamp!!, "[handleReaction] Could not find matching message! Putting it in the early message cache. timestamp: " + targetSentTimestamp + "  author: " + targetAuthor.id)
       if (earlyMessageCacheEntry != null) {
-        ApplicationDependencies.getEarlyMessageCache().store(targetAuthor.id, targetSentTimestamp, earlyMessageCacheEntry)
+        AppDependencies.earlyMessageCache.store(targetAuthor.id, targetSentTimestamp, earlyMessageCacheEntry)
         PushProcessEarlyMessagesJob.enqueue()
       }
       return null
@@ -547,11 +547,11 @@ object DataMessageProcessor {
 
     if (isRemove) {
       SignalDatabase.reactions.deleteReaction(targetMessageId, senderRecipientId)
-      ApplicationDependencies.getMessageNotifier().updateNotification(context)
+      AppDependencies.messageNotifier.updateNotification(context)
     } else {
       val reactionRecord = ReactionRecord(emoji!!, senderRecipientId, message.timestamp!!, System.currentTimeMillis())
       SignalDatabase.reactions.addReaction(targetMessageId, reactionRecord)
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
+      AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
     }
 
     return targetMessageId
@@ -571,13 +571,13 @@ object DataMessageProcessor {
         SignalDatabase.messages.deleteRemotelyDeletedStory(targetMessage.id)
       }
 
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
+      AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
 
       MessageId(targetMessage.id)
     } else if (targetMessage == null) {
       warn(envelope.timestamp!!, "[handleRemoteDelete] Could not find matching message! timestamp: $targetSentTimestamp  author: $senderRecipientId")
       if (earlyMessageCacheEntry != null) {
-        ApplicationDependencies.getEarlyMessageCache().store(senderRecipientId, targetSentTimestamp, earlyMessageCacheEntry)
+        AppDependencies.earlyMessageCache.store(senderRecipientId, targetSentTimestamp, earlyMessageCacheEntry)
         PushProcessEarlyMessagesJob.enqueue()
       }
 
@@ -671,7 +671,7 @@ object DataMessageProcessor {
 
       val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
       if (insertResult != null) {
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+        AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
         return insertResult
       }
     } catch (e: PublicKeyConflictException) {
@@ -682,7 +682,7 @@ object DataMessageProcessor {
       throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
     } finally {
       SignalDatabase.runPostSuccessfulTransaction {
-        ApplicationDependencies.getJobManager()
+        AppDependencies.jobManager
           .startChain(PaymentTransactionCheckJob(uuid, queue))
           .then(PaymentLedgerUpdateJob.updateLedger())
           .enqueue()
@@ -790,9 +790,9 @@ object DataMessageProcessor {
         SignalDatabase.messages.setTransactionSuccessful()
 
         if (parentStoryId.isGroupReply()) {
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromThreadAndReply(insertResult.threadId, parentStoryId as GroupReply))
+          AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromThreadAndReply(insertResult.threadId, parentStoryId as GroupReply))
         } else {
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+          AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
           TrimThreadJob.enqueueAsync(insertResult.threadId)
         }
 
@@ -855,7 +855,7 @@ object DataMessageProcessor {
     }
 
     return if (insertResult != null) {
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+      AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
       TrimThreadJob.enqueueAsync(insertResult.threadId)
       insertResult
     } else {
@@ -938,14 +938,14 @@ object DataMessageProcessor {
               AttachmentDownloadJob(insertResult.messageId, attachmentId, false)
             }
           }
-          ApplicationDependencies.getJobManager().addAll(downloadJobs)
+          AppDependencies.jobManager.addAll(downloadJobs)
         }
 
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+        AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
         TrimThreadJob.enqueueAsync(insertResult.threadId)
 
         if (message.isViewOnce == true) {
-          ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary()
+          AppDependencies.viewOnceMessageManager.scheduleIfNecessary()
         }
       }
 
@@ -992,7 +992,7 @@ object DataMessageProcessor {
     localMetrics?.onInsertedTextMessage()
 
     return if (insertResult != null) {
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+      AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
       insertResult
     } else {
       null
@@ -1031,7 +1031,7 @@ object DataMessageProcessor {
 
     if (threadId > 0 && TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
       debug("Typing stopped on thread $threadId due to an incoming message.")
-      ApplicationDependencies.getTypingStatusRepository().onTypingStopped(threadId, senderRecipient, device, true)
+      AppDependencies.typingStatusRepository.onTypingStopped(threadId, senderRecipient, device, true)
     }
   }
 

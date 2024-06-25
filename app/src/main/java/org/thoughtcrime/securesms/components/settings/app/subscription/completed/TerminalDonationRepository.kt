@@ -10,12 +10,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.whispersystems.signalservice.api.services.DonationsService
 import java.util.Locale
 
 class TerminalDonationRepository(
-  private val donationsService: DonationsService = ApplicationDependencies.getDonationsService()
+  private val donationsService: DonationsService = AppDependencies.donationsService
 ) {
   fun getBadge(terminalDonation: TerminalDonationQueue.TerminalDonation): Single<Badge> {
     return Single

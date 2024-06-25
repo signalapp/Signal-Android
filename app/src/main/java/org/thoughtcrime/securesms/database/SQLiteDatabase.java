@@ -110,6 +110,10 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
 
     tracer.start(methodName, params);
     E result = returnable.run();
+    if (result instanceof Cursor) {
+      // Triggers filling the window (which is about to be done anyway), but lets us capture that time inside the trace
+      ((Cursor) result).getCount();
+    }
     tracer.end(methodName);
 
     if (locked) {
@@ -313,13 +317,11 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
   public void endTransaction() {
     trace("endTransaction()", wrapped::endTransaction);
     traceLockEnd();
-    if (!wrapped.inTransaction()) {
-      Set<Runnable> tasks = getPostSuccessfulTransactionTasks();
-      for (Runnable r : new HashSet<>(tasks)) {
-        r.run();
-      }
-      tasks.clear();
+    Set<Runnable> tasks = getPostSuccessfulTransactionTasks();
+    for (Runnable r : new HashSet<>(tasks)) {
+      r.run();
     }
+    tasks.clear();
   }
 
   public void setTransactionSuccessful() {

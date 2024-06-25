@@ -51,7 +51,6 @@
         android:layout_marginEnd="16dp"
         android:gravity="center"
         android:textSize="22dp"
-        app:emoji_forceCustom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

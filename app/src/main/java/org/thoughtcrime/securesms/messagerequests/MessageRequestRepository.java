@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
@@ -200,7 +200,7 @@ public final class MessageRequestRepository {
         MessageSender.sendProfileKey(threadId);
 
         List<MessageTable.MarkedMessageInfo> messageIds = SignalDatabase.threads().setEntireThreadRead(threadId);
-        ApplicationDependencies.getMessageNotifier().updateNotification(context);
+        AppDependencies.getMessageNotifier().updateNotification(context);
         MarkReadReceiver.process(messageIds);
 
         List<MessageTable.MarkedMessageInfo> viewedInfos = SignalDatabase.messages().getViewedIncomingMessages(threadId);
@@ -208,7 +208,7 @@ public final class MessageRequestRepository {
         SendViewedReceiptJob.enqueue(threadId, recipientId, viewedInfos);
 
         if (TextSecurePreferences.isMultiDevice(context)) {
-          ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipientId));
+          AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipientId));
         }
 
         insertMessageRequestAccept(recipient, threadId);
@@ -270,11 +270,11 @@ public final class MessageRequestRepository {
       }
 
       if (TextSecurePreferences.isMultiDevice(context)) {
-        ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forDelete(recipientId));
+        AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forDelete(recipientId));
       }
 
       ThreadTable threadTable = SignalDatabase.threads();
-      threadTable.deleteConversation(threadId);
+      threadTable.deleteConversation(threadId, false);
 
       onMessageRequestDeleted.run();
     });
@@ -308,7 +308,7 @@ public final class MessageRequestRepository {
       Recipient.live(recipientId).refresh();
 
       if (TextSecurePreferences.isMultiDevice(context)) {
-        ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forBlock(recipientId));
+        AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forBlock(recipientId));
       }
 
       onMessageRequestBlocked.run();
@@ -365,10 +365,10 @@ public final class MessageRequestRepository {
 
       Recipient.live(recipientId).refresh();
 
-      ApplicationDependencies.getJobManager().add(new ReportSpamJob(threadId, System.currentTimeMillis()));
+      AppDependencies.getJobManager().add(new ReportSpamJob(threadId, System.currentTimeMillis()));
 
       if (TextSecurePreferences.isMultiDevice(context)) {
-        ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forBlockAndReportSpam(recipientId));
+        AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forBlockAndReportSpam(recipientId));
       }
 
       onMessageRequestBlocked.run();
@@ -392,10 +392,10 @@ public final class MessageRequestRepository {
         Log.w(TAG, "Unable to insert report spam message", e);
       }
 
-      ApplicationDependencies.getJobManager().add(new ReportSpamJob(threadId, System.currentTimeMillis()));
+      AppDependencies.getJobManager().add(new ReportSpamJob(threadId, System.currentTimeMillis()));
 
       if (TextSecurePreferences.isMultiDevice(context)) {
-        ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forReportSpam(recipientId));
+        AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forReportSpam(recipientId));
       }
 
       onReported.run();
@@ -420,7 +420,7 @@ public final class MessageRequestRepository {
       RecipientUtil.unblock(recipient);
 
       if (TextSecurePreferences.isMultiDevice(context)) {
-        ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipientId));
+        AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipientId));
       }
 
       onMessageRequestUnblocked.run();

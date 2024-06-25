@@ -57,9 +57,11 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/attachment_keyboard_permission_button"
             style="@style/Signal.Widget.Button.Large.Primary"
+            app:backgroundTint="@color/signal_colorPrimaryContainer"
+            android:textColor="@color/signal_colorOnPrimaryContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/AttachmentKeyboard_give_access"
+            android:text="@string/AttachmentKeyboard_allow_access"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/attachment_keyboard_button_list"
             app:layout_constraintEnd_toEndOf="parent"

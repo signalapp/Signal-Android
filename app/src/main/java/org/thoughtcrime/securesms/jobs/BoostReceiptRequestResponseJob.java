@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
@@ -43,7 +43,10 @@ import okio.ByteString;
 /**
  * Job responsible for submitting ReceiptCredentialRequest objects to the server until
  * we get a response.
+ *
+ * @deprecated Replaced with InAppPaymentOneTimeContextJob
  */
+@Deprecated
 public class BoostReceiptRequestResponseJob extends BaseJob {
 
   private static final String TAG = Log.tag(BoostReceiptRequestResponseJob.class);
@@ -116,11 +119,11 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     RefreshOwnProfileJob               refreshOwnProfileJob               = RefreshOwnProfileJob.forBoost();
     MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
 
-    return ApplicationDependencies.getJobManager()
-                                  .startChain(requestReceiptJob)
-                                  .then(redeemReceiptJob)
-                                  .then(refreshOwnProfileJob)
-                                  .then(multiDeviceProfileContentUpdateJob);
+    return AppDependencies.getJobManager()
+                          .startChain(requestReceiptJob)
+                          .then(redeemReceiptJob)
+                          .then(refreshOwnProfileJob)
+                          .then(multiDeviceProfileContentUpdateJob);
   }
 
   public static JobManager.Chain createJobChainForGift(@NonNull String paymentIntentId,
@@ -135,9 +138,9 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     GiftSendJob                    giftSendJob       = new GiftSendJob(recipientId, additionalMessage);
 
 
-    return ApplicationDependencies.getJobManager()
-                                  .startChain(requestReceiptJob)
-                                  .then(giftSendJob);
+    return AppDependencies.getJobManager()
+                          .startChain(requestReceiptJob)
+                          .then(giftSendJob);
   }
 
   private BoostReceiptRequestResponseJob(@NonNull Parameters parameters,
@@ -183,7 +186,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   @Override
   public void onFailure() {
     if (terminalDonation.error != null) {
-      SignalStore.donationsValues().appendToTerminalDonationQueue(terminalDonation);
+      SignalStore.donations().appendToTerminalDonationQueue(terminalDonation);
     } else {
       Log.w(TAG, "Job is in terminal state without an error on TerminalDonation.");
     }
@@ -209,7 +212,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
       secureRandom.nextBytes(randomBytes);
 
       ReceiptSerial             receiptSerial = new ReceiptSerial(randomBytes);
-      ClientZkReceiptOperations operations    = ApplicationDependencies.getClientZkReceiptOperations();
+      ClientZkReceiptOperations operations    = AppDependencies.getClientZkReceiptOperations();
 
       requestContext = operations.createReceiptCredentialRequestContext(secureRandom, receiptSerial);
     } else {
@@ -217,8 +220,8 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     }
 
     Log.d(TAG, "Submitting credential to server", true);
-    ServiceResponse<ReceiptCredentialResponse> response = ApplicationDependencies.getDonationsService()
-                                                                                 .submitBoostReceiptCredentialRequestSync(paymentIntentId, requestContext.getRequest(), donationProcessor);
+    ServiceResponse<ReceiptCredentialResponse> response = AppDependencies.getDonationsService()
+                                                                         .submitBoostReceiptCredentialRequestSync(paymentIntentId, requestContext.getRequest(), donationProcessor);
 
     if (response.getApplicationError().isPresent()) {
       handleApplicationError(context, response, donationErrorSource);
@@ -226,7 +229,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
       ReceiptCredential receiptCredential = getReceiptCredential(response.getResult().get());
 
       if (!isCredentialValid(receiptCredential)) {
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.badgeCredentialVerificationFailure(donationErrorSource));
+        DonationError.routeBackgroundError(context, DonationError.badgeCredentialVerificationFailure(donationErrorSource));
         setPendingOneTimeDonationGenericRedemptionError(-1);
         throw new IOException("Could not validate receipt credential");
       }
@@ -239,7 +242,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                              .serialize());
 
       if (donationErrorSource == DonationErrorSource.GIFT) {
-        SignalStore.donationsValues().setPendingOneTimeDonation(null);
+        SignalStore.donations().setPendingOneTimeDonation(null);
       }
     } else {
       Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orElse(null), true);
@@ -258,7 +261,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         .code(Integer.toString(statusCode))
         .build();
 
-    SignalStore.donationsValues().setPendingOneTimeDonationError(
+    SignalStore.donations().setPendingOneTimeDonationError(
        donationErrorValue
     );
 
@@ -298,7 +301,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         .code(code)
         .build();
 
-    SignalStore.donationsValues().setPendingOneTimeDonationError(
+    SignalStore.donations().setPendingOneTimeDonationError(
         donationErrorValue
     );
 
@@ -315,12 +318,12 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         throw new RetryableException();
       case 400:
         Log.w(TAG, "Receipt credential request failed to validate.", applicationException, true);
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(donationErrorSource));
+        DonationError.routeBackgroundError(context, DonationError.genericBadgeRedemptionFailure(donationErrorSource));
         setPendingOneTimeDonationGenericRedemptionError(response.getStatus());
         throw new Exception(applicationException);
       case 402:
         Log.w(TAG, "User payment failed.", applicationException, true);
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericPaymentFailure(donationErrorSource), terminalDonation.isLongRunningPaymentMethod);
+        DonationError.routeBackgroundError(context, DonationError.genericPaymentFailure(donationErrorSource), terminalDonation.isLongRunningPaymentMethod);
 
         if (applicationException instanceof DonationReceiptCredentialError) {
           setPendingOneTimeDonationChargeFailureError(((DonationReceiptCredentialError) applicationException).getChargeFailure());
@@ -331,7 +334,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         throw new Exception(applicationException);
       case 409:
         Log.w(TAG, "Receipt already redeemed with a different request credential.", response.getApplicationError().get(), true);
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(donationErrorSource));
+        DonationError.routeBackgroundError(context, DonationError.genericBadgeRedemptionFailure(donationErrorSource));
         setPendingOneTimeDonationGenericRedemptionError(response.getStatus());
         throw new Exception(applicationException);
       default:
@@ -341,7 +344,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   }
 
   private ReceiptCredentialPresentation getReceiptCredentialPresentation(@NonNull ReceiptCredential receiptCredential) throws RetryableException {
-    ClientZkReceiptOperations operations = ApplicationDependencies.getClientZkReceiptOperations();
+    ClientZkReceiptOperations operations = AppDependencies.getClientZkReceiptOperations();
 
     try {
       return operations.createReceiptCredentialPresentation(receiptCredential);
@@ -353,7 +356,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   }
 
   private ReceiptCredential getReceiptCredential(@NonNull ReceiptCredentialResponse response) throws RetryableException {
-    ClientZkReceiptOperations operations = ApplicationDependencies.getClientZkReceiptOperations();
+    ClientZkReceiptOperations operations = AppDependencies.getClientZkReceiptOperations();
 
     try {
       return operations.receiveReceiptCredential(requestContext, response);

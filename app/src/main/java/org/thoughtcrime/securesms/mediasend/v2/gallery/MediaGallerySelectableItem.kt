@@ -43,6 +43,16 @@ object MediaGallerySelectableItem {
   ) {
     mappingAdapter.registerFactory(FolderModel::class.java, LayoutFactory({ FolderViewHolder(it, onMediaFolderClicked) }, R.layout.v2_media_gallery_folder_item))
     mappingAdapter.registerFactory(FileModel::class.java, LayoutFactory({ FileViewHolder(it, onMediaClicked) }, if (isMultiselectEnabled) R.layout.v2_media_gallery_item else R.layout.v2_media_gallery_item_no_check))
+    mappingAdapter.registerFactory(PlaceholderModel::class.java, LayoutFactory({ PlaceholderViewHolder(it) }, R.layout.v2_media_gallery_placeholder_item))
+  }
+
+  class PlaceholderViewHolder(itemView: View) : BaseViewHolder<PlaceholderModel>(itemView) {
+    override fun bind(model: PlaceholderModel) = Unit
+  }
+
+  class PlaceholderModel : MappingModel<PlaceholderModel> {
+    override fun areItemsTheSame(newItem: PlaceholderModel): Boolean = true
+    override fun areContentsTheSame(newItem: PlaceholderModel): Boolean = true
   }
 
   class FolderModel(val mediaFolder: MediaFolder) : MappingModel<FolderModel> {
@@ -58,7 +68,7 @@ object MediaGallerySelectableItem {
 
   abstract class BaseViewHolder<T : MappingModel<T>>(itemView: View) : MappingViewHolder<T>(itemView) {
     protected val imageView: ShapeableImageView = itemView.findViewById(R.id.media_gallery_image)
-    protected val playOverlay: ImageView = itemView.findViewById(R.id.media_gallery_play_overlay)
+    protected val playOverlay: ImageView? = itemView.findViewById(R.id.media_gallery_play_overlay)
     protected val checkView: TextView? = itemView.findViewById(R.id.media_gallery_check)
     protected val title: TextView? = itemView.findViewById(R.id.media_gallery_title)
   }
@@ -69,7 +79,7 @@ object MediaGallerySelectableItem {
         .load(DecryptableStreamUriLoader.DecryptableUri(model.mediaFolder.thumbnailUri))
         .into(imageView)
 
-      playOverlay.visible = false
+      playOverlay?.visible = false
       itemView.setOnClickListener { onMediaFolderClicked(model.mediaFolder) }
       title?.text = model.mediaFolder.title
       title?.visible = true
@@ -105,7 +115,7 @@ object MediaGallerySelectableItem {
       checkView?.visible = model.isSelected
       checkView?.text = "${model.selectionOneBasedIndex}"
       itemView.setOnClickListener { onMediaClicked(model.media, model.isSelected) }
-      playOverlay.visible = MediaUtil.isVideo(model.media.mimeType) && !model.media.isVideoGif
+      playOverlay?.visible = MediaUtil.isVideo(model.media.mimeType) && !model.media.isVideoGif
       title?.visible = false
 
       if (PAYLOAD_INDEX_CHANGED in payload) {

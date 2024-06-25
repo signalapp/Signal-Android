@@ -7,7 +7,7 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
@@ -176,7 +176,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
                                                                                              false);
 
     if (includesSelf) {
-      results.add(ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));
+      results.add(AppDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));
       syncTimestamp = dataMessage.getTimestamp();
     }
 

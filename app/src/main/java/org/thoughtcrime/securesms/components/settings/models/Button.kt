@@ -24,6 +24,7 @@ object Button {
     title: DSLSettingsText?,
     icon: DSLSettingsIcon?,
     isEnabled: Boolean,
+    val disableOnClick: Boolean,
     val onClick: () -> Unit
   ) : PreferenceModel<T>(
     title = title,
@@ -37,8 +38,9 @@ object Button {
       title: DSLSettingsText?,
       icon: DSLSettingsIcon?,
       isEnabled: Boolean,
+      disableOnClick: Boolean,
       onClick: () -> Unit
-    ) : Model<Primary>(title, icon, isEnabled, onClick)
+    ) : Model<Primary>(title, icon, isEnabled, disableOnClick, onClick)
 
     /**
      * Large primary button with width set to wrap_content
@@ -47,29 +49,33 @@ object Button {
       title: DSLSettingsText?,
       icon: DSLSettingsIcon?,
       isEnabled: Boolean,
+      disableOnClick: Boolean,
       onClick: () -> Unit
-    ) : Model<PrimaryWrapped>(title, icon, isEnabled, onClick)
+    ) : Model<PrimaryWrapped>(title, icon, isEnabled, disableOnClick, onClick)
 
     class Tonal(
       title: DSLSettingsText?,
       icon: DSLSettingsIcon?,
       isEnabled: Boolean,
+      disableOnClick: Boolean,
       onClick: () -> Unit
-    ) : Model<Tonal>(title, icon, isEnabled, onClick)
+    ) : Model<Tonal>(title, icon, isEnabled, disableOnClick, onClick)
 
     class TonalWrapped(
       title: DSLSettingsText?,
       icon: DSLSettingsIcon?,
       isEnabled: Boolean,
+      disableOnClick: Boolean,
       onClick: () -> Unit
-    ) : Model<TonalWrapped>(title, icon, isEnabled, onClick)
+    ) : Model<TonalWrapped>(title, icon, isEnabled, disableOnClick, onClick)
 
     class SecondaryNoOutline(
       title: DSLSettingsText?,
       icon: DSLSettingsIcon?,
       isEnabled: Boolean,
+      disableOnClick: Boolean,
       onClick: () -> Unit
-    ) : Model<SecondaryNoOutline>(title, icon, isEnabled, onClick)
+    ) : Model<SecondaryNoOutline>(title, icon, isEnabled, disableOnClick, onClick)
   }
 
   class ViewHolder<T : Model<T>>(itemView: View) : MappingViewHolder<T>(itemView) {
@@ -79,6 +85,7 @@ object Button {
     override fun bind(model: T) {
       button.text = model.title?.resolve(context)
       button.setOnClickListener {
+        button.isEnabled = model.isEnabled && !model.disableOnClick
         model.onClick()
       }
       button.icon = model.icon?.resolve(context)

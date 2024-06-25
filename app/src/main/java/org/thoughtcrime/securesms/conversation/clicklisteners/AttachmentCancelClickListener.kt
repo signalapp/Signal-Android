@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.conversation.clicklisteners
 import android.view.View
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.mms.SlidesClickedListener
 internal class AttachmentCancelClickListener : SlidesClickedListener {
   override fun onClick(v: View, slides: List<Slide>) {
     Log.i(TAG, "Canceling compression/upload/download jobs for ${slides.size} items")
-    val jobManager = ApplicationDependencies.getJobManager()
+    val jobManager = AppDependencies.jobManager
     var cancelCount = 0
     for (slide in slides) {
       val attachmentId = (slide.asAttachment() as DatabaseAttachment).attachmentId

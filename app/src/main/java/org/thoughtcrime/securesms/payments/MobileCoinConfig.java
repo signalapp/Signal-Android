@@ -7,7 +7,7 @@ import androidx.annotation.RawRes;
 
 import com.mobilecoin.lib.ClientConfig;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 
@@ -45,7 +45,7 @@ public abstract class MobileCoinConfig {
   }
 
   protected static Set<X509Certificate> getTrustRoots(@RawRes int pemResource) {
-    try (InputStream inputStream = ApplicationDependencies.getApplication().getResources().openRawResource(pemResource)) {
+    try (InputStream inputStream = AppDependencies.getApplication().getResources().openRawResource(pemResource)) {
       Collection<? extends Certificate> certificates = CertificateFactory.getInstance("X.509")
                                                                          .generateCertificates(inputStream);
 

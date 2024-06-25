@@ -40,7 +40,7 @@ class ScheduleMessageFtuxBottomSheetDialog : FixedRoundedCornerBottomSheetDialog
       }
 
       binding.enableScheduledMessagesGoToSettings.setOnClickListener {
-        SignalStore.uiHints().markHasSeenScheduledMessagesInfoSheet()
+        SignalStore.uiHints.markHasSeenScheduledMessagesInfoSheet()
         launcher.launch(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.parse("package:" + requireContext().packageName)))
       }
     } else {
@@ -51,7 +51,7 @@ class ScheduleMessageFtuxBottomSheetDialog : FixedRoundedCornerBottomSheetDialog
   }
 
   private fun proceedWithScheduledSend() {
-    SignalStore.uiHints().markHasSeenScheduledMessagesInfoSheet()
+    SignalStore.uiHints.markHasSeenScheduledMessagesInfoSheet()
     findListener<ScheduleMessageDialogCallback>()?.onSchedulePermissionsGranted(
       requireArguments().getString(ScheduleMessageDialogCallback.ARGUMENT_METRIC_ID),
       requireArguments().getLong(ScheduleMessageDialogCallback.ARGUMENT_SCHEDULED_DATE)

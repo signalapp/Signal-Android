@@ -260,10 +260,10 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
   protected @NonNull WebRtcServiceState handleGroupCallRaisedHand(@NonNull WebRtcServiceState currentState, List<Long> raisedHands) {
     Log.i(TAG, "handleGroupCallRaisedHand():");
 
-    boolean                                        playSound    = !raisedHands.isEmpty();
-    long                                           now          = System.currentTimeMillis();
-    WebRtcServiceStateBuilder.CallInfoStateBuilder builder      = currentState.builder().changeCallInfoState();
-    Long                                           localDemuxId = currentState.getCallInfoState().requireGroupCall().getLocalDeviceState().getDemuxId();
+    boolean                                        playSound       = !raisedHands.isEmpty();
+    long                                           now             = System.currentTimeMillis();
+    WebRtcServiceStateBuilder.CallInfoStateBuilder callInfoBuilder = currentState.builder().changeCallInfoState();
+    Long                                           localDemuxId    = currentState.getCallInfoState().requireGroupCall().getLocalDeviceState().getDemuxId();
 
     List<CallParticipant> participants = currentState.getCallInfoState().getRemoteCallParticipants();
 
@@ -276,31 +276,25 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
       }
       
       if (raisedHandIndex >= 0 && !wasHandAlreadyRaised) {
-        builder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(now + raisedHandIndex));
+        callInfoBuilder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(now + raisedHandIndex));
       } else if (raisedHandIndex < 0 && wasHandAlreadyRaised) {
-        builder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(CallParticipant.HAND_LOWERED));
+        callInfoBuilder.putParticipant(updatedParticipant.getCallParticipantId(), updatedParticipant.withHandRaisedTimestamp(CallParticipant.HAND_LOWERED));
       }
     }
 
+    currentState = callInfoBuilder.build();
+
     if (localDemuxId != null) {
-      if (raisedHands.contains(localDemuxId)) {
-        builder.setLocalParticipant(CallParticipant.createLocal(currentState.getLocalDeviceState().getCameraState(),
-                                                                currentState.getVideoState().requireLocalSink(),
-                                                                currentState.getLocalDeviceState().isMicrophoneEnabled(),
-                                                                now,
-                                                                new CallParticipantId(localDemuxId, Recipient.self().getId())));
-      } else {
-        builder.setLocalParticipant(CallParticipant.createLocal(currentState.getLocalDeviceState().getCameraState(),
-                                                                currentState.getVideoState().requireLocalSink(),
-                                                                currentState.getLocalDeviceState().isMicrophoneEnabled(),
-                                                                CallParticipant.HAND_LOWERED,
-                                                                new CallParticipantId(localDemuxId, Recipient.self().getId())));
-      }
+      currentState = currentState.builder()
+                                 .changeLocalDeviceState()
+                                 .setHandRaisedTimestamp(raisedHands.contains(localDemuxId) ? now : CallParticipant.HAND_LOWERED)
+                                 .build();
     }
+
     if (playSound) {
       webRtcInteractor.playStateChangeUp();
     }
 
-    return builder.build();
+    return currentState;
   }
 }

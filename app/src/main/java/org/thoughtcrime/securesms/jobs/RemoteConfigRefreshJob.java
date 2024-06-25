@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.RemoteConfigResult;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -51,8 +51,8 @@ public class RemoteConfigRefreshJob extends BaseJob {
       return;
     }
 
-    RemoteConfigResult result = ApplicationDependencies.getSignalServiceAccountManager().getRemoteConfig();
-    FeatureFlags.update(result.getConfig());
+    RemoteConfigResult result = AppDependencies.getSignalServiceAccountManager().getRemoteConfig();
+    RemoteConfig.update(result.getConfig());
     SignalStore.misc().setLastKnownServerTime(TimeUnit.SECONDS.toMillis(result.getServerEpochTimeSeconds()), System.currentTimeMillis());
   }
 

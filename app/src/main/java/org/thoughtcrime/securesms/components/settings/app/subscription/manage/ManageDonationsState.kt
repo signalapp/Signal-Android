@@ -13,6 +13,7 @@ data class ManageDonationsState(
   val availableSubscriptions: List<Subscription> = emptyList(),
   val pendingOneTimeDonation: PendingOneTimeDonation? = null,
   val nonVerifiedMonthlyDonation: NonVerifiedMonthlyDonation? = null,
+  val subscriberRequiresCancel: Boolean = false,
   private val subscriptionRedemptionState: RedemptionState = RedemptionState.NONE
 ) {
 

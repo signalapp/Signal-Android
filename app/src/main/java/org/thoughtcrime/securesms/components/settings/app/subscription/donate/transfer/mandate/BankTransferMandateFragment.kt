@@ -58,9 +58,9 @@ import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.StatusBarColorAnimator
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
@@ -112,13 +112,13 @@ class BankTransferMandateFragment : ComposeFragment() {
   }
 
   private fun onContinueClick() {
-    if (args.response.gateway == GatewayResponse.Gateway.SEPA_DEBIT) {
+    if (args.inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.SEPA_DEBIT) {
       findNavController().safeNavigate(
-        BankTransferMandateFragmentDirections.actionBankTransferMandateFragmentToBankTransferDetailsFragment(args.response.request)
+        BankTransferMandateFragmentDirections.actionBankTransferMandateFragmentToBankTransferDetailsFragment(args.inAppPayment)
       )
     } else {
       findNavController().safeNavigate(
-        BankTransferMandateFragmentDirections.actionBankTransferMandateFragmentToIdealTransferDetailsFragment(args.response.request)
+        BankTransferMandateFragmentDirections.actionBankTransferMandateFragmentToIdealTransferDetailsFragment(args.inAppPayment)
       )
     }
   }

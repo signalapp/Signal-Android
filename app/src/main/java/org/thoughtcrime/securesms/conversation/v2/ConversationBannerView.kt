@@ -120,6 +120,7 @@ class ConversationBannerView @JvmOverloads constructor(
 
       setOnHideListener {
         clearRequestReview()
+        listener?.onDismissReview()
         true
       }
     }
@@ -194,5 +195,6 @@ class ConversationBannerView @JvmOverloads constructor(
     fun onUnverifiedBannerDismissed(unverifiedIdentities: List<IdentityRecord>)
     fun onRequestReviewIndividual(recipientId: RecipientId)
     fun onReviewGroupMembers(groupId: GroupId.V2)
+    fun onDismissReview()
   }
 }

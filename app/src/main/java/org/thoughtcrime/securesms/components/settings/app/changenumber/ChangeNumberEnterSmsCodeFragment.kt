@@ -42,7 +42,7 @@ class ChangeNumberEnterSmsCodeFragment : BaseEnterSmsCodeFragment<ChangeNumberVi
   }
 
   private fun navigateUp() {
-    if (SignalStore.misc().isChangeNumberLocked) {
+    if (SignalStore.misc.isChangeNumberLocked) {
       Log.d(TAG, "Change number locked, navigateUp")
       startActivity(ChangeNumberLockActivity.createIntent(requireContext()))
     } else {

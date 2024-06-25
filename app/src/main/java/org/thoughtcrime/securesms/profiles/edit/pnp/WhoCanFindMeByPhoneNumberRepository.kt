@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.profiles.edit.pnp
 
 import io.reactivex.rxjava3.core.Completable
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 class WhoCanFindMeByPhoneNumberRepository {
 
   fun getCurrentState(): WhoCanFindMeByPhoneNumberState {
-    return when (SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode) {
+    return when (SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode) {
       PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE -> WhoCanFindMeByPhoneNumberState.EVERYONE
       PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE -> WhoCanFindMeByPhoneNumberState.NOBODY
       PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.UNDECIDED -> WhoCanFindMeByPhoneNumberState.EVERYONE
@@ -25,17 +25,17 @@ class WhoCanFindMeByPhoneNumberRepository {
     return Completable.fromAction {
       when (whoCanFindMeByPhoneNumberState) {
         WhoCanFindMeByPhoneNumberState.EVERYONE -> {
-          SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE
+          SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE
         }
         WhoCanFindMeByPhoneNumberState.NOBODY -> {
-          SignalStore.phoneNumberPrivacy().phoneNumberSharingMode = PhoneNumberPrivacyValues.PhoneNumberSharingMode.NOBODY
-          SignalStore.phoneNumberPrivacy().phoneNumberDiscoverabilityMode = PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
+          SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = PhoneNumberPrivacyValues.PhoneNumberSharingMode.NOBODY
+          SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
         }
       }
 
-      ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+      AppDependencies.jobManager.add(RefreshAttributesJob())
       StorageSyncHelper.scheduleSyncForDataChange()
-      ApplicationDependencies.getJobManager().add(ProfileUploadJob())
+      AppDependencies.jobManager.add(ProfileUploadJob())
     }
   }
 }

@@ -45,6 +45,10 @@ public class SlideDeck {
     if (slide != null) slides.add(slide);
   }
 
+  public SlideDeck(SlideDeck otherSlideDeck) {
+    slides.addAll(otherSlideDeck.slides);
+  }
+
   public SlideDeck() {
   }
 

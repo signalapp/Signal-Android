@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.messages.protocol
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.push.ServiceId
 
@@ -32,14 +32,14 @@ class BufferedProtocolStore private constructor(
    * Writes any buffered data to disk. You can continue to use the same buffered store afterwards.
    */
   fun flushToDisk() {
-    aciStore.second.flushToDisk(ApplicationDependencies.getProtocolStore().aci())
-    pniStore.second.flushToDisk(ApplicationDependencies.getProtocolStore().pni())
+    aciStore.second.flushToDisk(AppDependencies.protocolStore.aci())
+    pniStore.second.flushToDisk(AppDependencies.protocolStore.pni())
   }
 
   companion object {
     fun create(): BufferedProtocolStore {
-      val aci = SignalStore.account().requireAci()
-      val pni = SignalStore.account().requirePni()
+      val aci = SignalStore.account.requireAci()
+      val pni = SignalStore.account.requirePni()
 
       return BufferedProtocolStore(
         aciStore = aci to BufferedSignalServiceAccountDataStore(aci),

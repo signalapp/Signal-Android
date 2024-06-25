@@ -5,7 +5,7 @@ import android.util.DisplayMetrics;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -54,7 +54,7 @@ public final class ScreenDensity {
   }
 
   public static @NonNull String getBestDensityBucketForDevice() {
-    ScreenDensity density = get(ApplicationDependencies.getApplication());
+    ScreenDensity density = get(AppDependencies.getApplication());
 
     if (density.isKnownDensity()) {
       return density.bucket;

@@ -45,7 +45,8 @@ class MediaPreviewPlayerControlView @JvmOverloads constructor(
   private val forwardButton: ImageButton = findViewById(R.id.exo_forward)
 
   enum class MediaMode {
-    IMAGE, VIDEO;
+    IMAGE,
+    VIDEO;
 
     companion object {
       @JvmStatic

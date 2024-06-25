@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.ParcelUtil
+import org.whispersystems.signalservice.api.util.UuidUtil
+import java.util.UUID
 
 /**
  * Note: We have to use our own Parcelable implementation because we need to do custom stuff to preserve
@@ -29,7 +31,7 @@ abstract class Attachment(
   @JvmField
   val fileName: String?,
   @JvmField
-  val cdnNumber: Int,
+  val cdn: Cdn,
   @JvmField
   val remoteLocation: String?,
   @JvmField
@@ -65,18 +67,23 @@ abstract class Attachment(
   @JvmField
   val audioHash: AudioHash?,
   @JvmField
-  val transformProperties: TransformProperties?
+  val transformProperties: TransformProperties?,
+  @JvmField
+  val uuid: UUID?
 ) : Parcelable {
 
   abstract val uri: Uri?
   abstract val publicUri: Uri?
+  abstract val thumbnailUri: Uri?
+  val displayUri: Uri?
+    get() = uri ?: thumbnailUri
 
   protected constructor(parcel: Parcel) : this(
     contentType = parcel.readString()!!,
     transferState = parcel.readInt(),
     size = parcel.readLong(),
     fileName = parcel.readString(),
-    cdnNumber = parcel.readInt(),
+    cdn = Cdn.deserialize(parcel.readInt()),
     remoteLocation = parcel.readString(),
     remoteKey = parcel.readString(),
     remoteDigest = ParcelUtil.readByteArray(parcel),
@@ -94,7 +101,8 @@ abstract class Attachment(
     stickerLocator = ParcelCompat.readParcelable(parcel, StickerLocator::class.java.classLoader, StickerLocator::class.java),
     blurHash = ParcelCompat.readParcelable(parcel, BlurHash::class.java.classLoader, BlurHash::class.java),
     audioHash = ParcelCompat.readParcelable(parcel, AudioHash::class.java.classLoader, AudioHash::class.java),
-    transformProperties = ParcelCompat.readParcelable(parcel, TransformProperties::class.java.classLoader, TransformProperties::class.java)
+    transformProperties = ParcelCompat.readParcelable(parcel, TransformProperties::class.java.classLoader, TransformProperties::class.java),
+    uuid = UuidUtil.parseOrNull(parcel.readString())
   )
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -103,7 +111,7 @@ abstract class Attachment(
     dest.writeInt(transferState)
     dest.writeLong(size)
     dest.writeString(fileName)
-    dest.writeInt(cdnNumber)
+    dest.writeInt(cdn.serialize())
     dest.writeString(remoteLocation)
     dest.writeString(remoteKey)
     ParcelUtil.writeByteArray(dest, remoteDigest)
@@ -122,6 +130,7 @@ abstract class Attachment(
     dest.writeParcelable(blurHash, 0)
     dest.writeParcelable(audioHash, 0)
     dest.writeParcelable(transformProperties, 0)
+    dest.writeString(uuid?.toString())
   }
 
   override fun describeContents(): Int {
@@ -129,7 +138,7 @@ abstract class Attachment(
   }
 
   val isInProgress: Boolean
-    get() = transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && transferState != AttachmentTable.TRANSFER_PROGRESS_FAILED && transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE
+    get() = transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && transferState != AttachmentTable.TRANSFER_PROGRESS_FAILED && transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE && transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED
 
   val isPermanentlyFailed: Boolean
     get() = transferState == AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE

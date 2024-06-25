@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
@@ -43,6 +43,7 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.profiles.AvatarUploadParams;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.StreamDetails;
@@ -80,12 +81,12 @@ public final class ProfileUtil {
 
     Log.w(TAG, "[handleSelfProfileKeyChange] Scheduling jobs, including " + gv2UpdateJobs.size() + " group update jobs.");
 
-    ApplicationDependencies.getJobManager()
-                           .startChain(new RefreshAttributesJob())
-                           .then(new ProfileUploadJob())
-                           .then(new MultiDeviceProfileKeyUpdateJob())
-                           .then(gv2UpdateJobs)
-                           .enqueue();
+    AppDependencies.getJobManager()
+                   .startChain(new RefreshAttributesJob())
+                   .then(new ProfileUploadJob())
+                   .then(new MultiDeviceProfileKeyUpdateJob())
+                   .then(gv2UpdateJobs)
+                   .enqueue();
   }
 
   @WorkerThread
@@ -108,6 +109,22 @@ public final class ProfileUtil {
     return new ProfileService.ProfileResponseProcessor(response.second()).getResultOrThrow();
   }
 
+  @WorkerThread
+  public static @NonNull ProfileAndCredential retrieveProfileSync(@NonNull ServiceId.PNI pni,
+                                                                  @NonNull SignalServiceProfile.RequestType requestType)
+      throws IOException
+  {
+    ProfileService               profileService     = AppDependencies.getProfileService();
+
+    ServiceResponse<ProfileAndCredential> response = Single
+        .fromCallable(() -> new SignalServiceAddress(pni))
+        .flatMap(address -> profileService.getProfile(address, Optional.empty(), Optional.empty(), requestType, Locale.getDefault()))
+        .onErrorReturn(t -> ServiceResponse.forUnknownError(t))
+        .blockingGet();
+
+    return new ProfileService.ProfileResponseProcessor(response).getResultOrThrow();
+  }
+
   public static Single<Pair<Recipient, ServiceResponse<ProfileAndCredential>>> retrieveProfile(@NonNull Context context,
                                                                                                @NonNull Recipient recipient,
                                                                                                @NonNull SignalServiceProfile.RequestType requestType)
@@ -120,7 +137,7 @@ public final class ProfileUtil {
                                                                                                 @NonNull SignalServiceProfile.RequestType requestType,
                                                                                                 boolean allowUnidentifiedAccess)
   {
-    ProfileService               profileService     = ApplicationDependencies.getProfileService();
+    ProfileService               profileService     = AppDependencies.getProfileService();
     Optional<UnidentifiedAccess> unidentifiedAccess = allowUnidentifiedAccess ? getUnidentifiedAccess(context, recipient) : Optional.empty();
     Optional<ProfileKey>         profileKey         = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
 
@@ -172,7 +189,7 @@ public final class ProfileUtil {
       Log.w(TAG, "Profile key not available for " + recipient.getId());
       throw new PaymentsAddressException(PaymentsAddressException.Code.NO_PROFILE_KEY);
     }
-    ProfileAndCredential profileAndCredential     = ProfileUtil.retrieveProfileSync(ApplicationDependencies.getApplication(), recipient, SignalServiceProfile.RequestType.PROFILE);
+    ProfileAndCredential profileAndCredential     = ProfileUtil.retrieveProfileSync(AppDependencies.getApplication(), recipient, SignalServiceProfile.RequestType.PROFILE);
     SignalServiceProfile profile                  = profileAndCredential.getProfile();
     byte[]               encryptedPaymentsAddress = profile.getPaymentAddress();
 
@@ -306,8 +323,8 @@ public final class ProfileUtil {
     if (profileKey != null) {
       Log.i(TAG, String.format("Updating profile key credential on recipient %s, fetching", recipient.getId()));
 
-      Optional<ExpiringProfileKeyCredential> profileKeyCredentialOptional = ApplicationDependencies.getSignalServiceAccountManager()
-                                                                                                   .resolveProfileKeyCredential(recipient.requireAci(), profileKey, Locale.getDefault());
+      Optional<ExpiringProfileKeyCredential> profileKeyCredentialOptional = AppDependencies.getSignalServiceAccountManager()
+                                                                                           .resolveProfileKeyCredential(recipient.requireAci(), profileKey, Locale.getDefault());
 
       if (profileKeyCredentialOptional.isPresent()) {
         boolean updatedProfileKey = SignalDatabase.recipients().setProfileKeyCredential(recipient.getId(), profileKey, profileKeyCredentialOptional.get());
@@ -350,7 +367,7 @@ public final class ProfileUtil {
     }
 
     ProfileKey                  profileKey     = ProfileKeyUtil.getSelfProfileKey();
-    SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+    SignalServiceAccountManager accountManager = AppDependencies.getSignalServiceAccountManager();
     String                      avatarPath     = accountManager.setVersionedProfile(SignalStore.account().requireAci(),
                                                                                     profileKey,
                                                                                     profileName.serialize(),
@@ -360,21 +377,21 @@ public final class ProfileUtil {
                                                                                     avatar,
                                                                                     badgeIds,
                                                                                     SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled()).orElse(null);
-    SignalStore.registrationValues().markHasUploadedProfile();
+    SignalStore.registration().markHasUploadedProfile();
     if (!avatar.keepTheSame) {
       SignalDatabase.recipients().setProfileAvatar(Recipient.self().getId(), avatarPath);
     }
-    ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
+    AppDependencies.getJobManager().add(new RefreshOwnProfileJob());
   }
 
   private static @Nullable PaymentAddress getSelfPaymentsAddressProtobuf() {
-    if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
+    if (!SignalStore.payments().mobileCoinPaymentsEnabled()) {
       return null;
     } else {
       IdentityKeyPair         identityKeyPair = SignalStore.account().getAciIdentityKey();
-      MobileCoinPublicAddress publicAddress   = ApplicationDependencies.getPayments()
-                                                                       .getWallet()
-                                                                       .getMobileCoinPublicAddress();
+      MobileCoinPublicAddress publicAddress   = AppDependencies.getPayments()
+                                                               .getWallet()
+                                                               .getMobileCoinPublicAddress();
 
       return MobileCoinPublicAddressProfileUtil.signPaymentsAddress(publicAddress.serialize(), identityKeyPair);
     }

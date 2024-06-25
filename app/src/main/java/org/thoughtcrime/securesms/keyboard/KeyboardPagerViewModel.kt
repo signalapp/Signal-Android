@@ -7,7 +7,7 @@ import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 class KeyboardPagerViewModel : ViewModel() {
 
@@ -16,11 +16,11 @@ class KeyboardPagerViewModel : ViewModel() {
 
   init {
     val startingPages: MutableSet<KeyboardPage> = KeyboardPage.values().toMutableSet()
-    if (SignalStore.settings().isPreferSystemEmoji) {
+    if (SignalStore.settings.isPreferSystemEmoji) {
       startingPages.remove(KeyboardPage.EMOJI)
     }
 
-    if (!FeatureFlags.gifSearchAvailable()) {
+    if (!RemoteConfig.gifSearchAvailable) {
       startingPages.remove(KeyboardPage.GIF)
     }
 

@@ -79,7 +79,6 @@
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
         android:textDirection="ltr"
-        app:emoji_forceCustom="true"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/label"
@@ -105,24 +104,9 @@
         tools:ignore="RtlSymmetry"
         tools:text="· Mobile" />
 
-    <TextView
-        android:id="@+id/sms_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="20dp"
-        android:text="@string/ContactSelectionListItem__sms"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
-        android:textColor="@color/signal_text_secondary"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/check_box"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_goneMarginEnd="0dp"
-        tools:visibility="visible" />
-
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/button_barrier"
-        app:constraint_referenced_ids="start_audio,start_video,sms_tag"
+        app:constraint_referenced_ids="start_audio,start_video"
         app:barrierDirection="start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

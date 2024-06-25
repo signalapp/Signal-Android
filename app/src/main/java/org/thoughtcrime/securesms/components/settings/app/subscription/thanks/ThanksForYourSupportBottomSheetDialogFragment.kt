@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
+import androidx.core.text.method.LinkMovementMethodCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.google.android.material.button.MaterialButton
@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.visible
 
 class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
@@ -67,6 +68,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
       if (Recipient.self().badges.any { !it.isBoost() }) {
         subhead.setText(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge)
       } else {
+        subhead.movementMethod = LinkMovementMethodCompat.getInstance()
         subhead.text = SpannableStringBuilder(getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge))
           .append(" ")
           .append(getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also))
@@ -87,7 +89,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
 
     val otherBadges = Recipient.self().badges.filterNot { it.id == args.badge.id }
     val hasOtherBadges = otherBadges.isNotEmpty()
-    val displayingBadges = SignalStore.donationsValues().getDisplayBadgesOnProfile()
+    val displayingBadges = SignalStore.donations.getDisplayBadgesOnProfile()
 
     if (hasOtherBadges && displayingBadges) {
       switch.isChecked = false
@@ -106,7 +108,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
       controlState = ControlState.DISPLAY
     }
 
-    if (args.isBoost) {
+    if (args.badge.isBoost()) {
       badgeView.visibility = View.INVISIBLE
       lottie.visible = true
       lottie.playAnimation()
@@ -146,15 +148,19 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
       )
     }
 
-    if (args.isBoost) {
-      findNavController().popBackStack()
-    } else {
+    if (args.badge.isSubscription()) {
       requireActivity().finish()
       requireActivity().startActivity(AppSettingsActivity.manageSubscriptions(requireContext()))
+    } else {
+      findListener<Callback>()?.onBoostThanksSheetDismissed()
     }
   }
 
   companion object {
     private val TAG = Log.tag(ThanksForYourSupportBottomSheetDialogFragment::class.java)
+  }
+
+  interface Callback {
+    fun onBoostThanksSheetDismissed()
   }
 }

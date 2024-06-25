@@ -210,14 +210,8 @@ class ContactSearchPagedDataSource(
   }
 
   private fun getNonGroupSearchIterator(section: ContactSearchConfiguration.Section.Individuals, query: String?): ContactSearchIterator<Cursor> {
-    return when (section.transportType) {
-      ContactSearchConfiguration.TransportType.PUSH -> {
-        val searchQuery = RecipientTable.ContactSearchQuery(query ?: "", section.includeSelf, section.pushSearchResultsSortOrder)
-        CursorSearchIterator(wrapRecipientCursor(contactSearchPagedDataSourceRepository.querySignalContacts(searchQuery)))
-      }
-      ContactSearchConfiguration.TransportType.SMS -> CursorSearchIterator(wrapRecipientCursor(contactSearchPagedDataSourceRepository.queryNonSignalContacts(query)))
-      ContactSearchConfiguration.TransportType.ALL -> CursorSearchIterator(wrapRecipientCursor(contactSearchPagedDataSourceRepository.queryNonGroupContacts(query, section.includeSelf)))
-    }
+    val searchQuery = RecipientTable.ContactSearchQuery(query ?: "", section.includeSelf, section.pushSearchResultsSortOrder)
+    return CursorSearchIterator(wrapRecipientCursor(contactSearchPagedDataSourceRepository.querySignalContacts(searchQuery)))
   }
 
   private fun wrapRecipientCursor(cursor: Cursor?): Cursor? {

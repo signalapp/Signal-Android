@@ -7,37 +7,39 @@ package org.thoughtcrime.securesms.jobs
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
 import org.signal.donations.json.StripeIntentStatus
+import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper
-import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.Companion.toDonationErrorValue
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.util.Environment
 import org.whispersystems.signalservice.internal.ServiceResponse
-import org.whispersystems.signalservice.internal.push.DonationProcessor
-import kotlin.time.Duration.Companion.days
 
 /**
  * Proceeds with an externally approved (say, in a bank app) donation
  * and continues to process it.
  */
+@Deprecated("Replaced with InAppPaymentAuthCheckJob")
 class ExternalLaunchDonationJob private constructor(
   private val stripe3DSData: Stripe3DSData,
   parameters: Parameters
@@ -50,69 +52,13 @@ class ExternalLaunchDonationJob private constructor(
 
     private val TAG = Log.tag(ExternalLaunchDonationJob::class.java)
 
-    @JvmStatic
-    fun enqueueIfNecessary() {
-      val stripe3DSData = SignalStore.donationsValues().consumePending3DSData(-1L) ?: return
-
-      Log.i(TAG, "Consumed 3DS data")
-
-      val jobChain = when (stripe3DSData.gatewayRequest.donateToSignalType) {
-        DonateToSignalType.ONE_TIME -> BoostReceiptRequestResponseJob.createJobChainForBoost(
-          stripe3DSData.stripeIntentAccessor.intentId,
-          DonationProcessor.STRIPE,
-          -1L,
-          TerminalDonationQueue.TerminalDonation(
-            level = stripe3DSData.gatewayRequest.level,
-            isLongRunningPaymentMethod = stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.SEPADebit
-          )
-        )
-
-        DonateToSignalType.MONTHLY -> SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(
-          -1L,
-          TerminalDonationQueue.TerminalDonation(
-            level = stripe3DSData.gatewayRequest.level,
-            isLongRunningPaymentMethod = stripe3DSData.paymentSourceType.isBankTransfer
-          )
-        )
-
-        DonateToSignalType.GIFT -> BoostReceiptRequestResponseJob.createJobChainForGift(
-          stripe3DSData.stripeIntentAccessor.intentId,
-          stripe3DSData.gatewayRequest.recipientId,
-          stripe3DSData.gatewayRequest.additionalMessage,
-          stripe3DSData.gatewayRequest.level,
-          DonationProcessor.STRIPE,
-          -1L,
-          TerminalDonationQueue.TerminalDonation(
-            level = stripe3DSData.gatewayRequest.level,
-            isLongRunningPaymentMethod = stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.SEPADebit
-          )
-        )
-      }
-
-      val checkJob = ExternalLaunchDonationJob(
-        stripe3DSData,
-        Parameters.Builder()
-          .setQueue(if (stripe3DSData.gatewayRequest.donateToSignalType == DonateToSignalType.MONTHLY) DonationReceiptRedemptionJob.SUBSCRIPTION_QUEUE else DonationReceiptRedemptionJob.ONE_TIME_QUEUE)
-          .addConstraint(NetworkConstraint.KEY)
-          .setMaxAttempts(Parameters.UNLIMITED)
-          .setLifespan(1.days.inWholeMilliseconds)
-          .build()
-      )
-
-      jobChain.after(checkJob).enqueue()
-    }
-
     private fun createDonationError(stripe3DSData: Stripe3DSData, throwable: Throwable): DonationError {
-      val source = when (stripe3DSData.gatewayRequest.donateToSignalType) {
-        DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
-        DonateToSignalType.MONTHLY -> DonationErrorSource.MONTHLY
-        DonateToSignalType.GIFT -> DonationErrorSource.GIFT
-      }
+      val source = stripe3DSData.inAppPayment.type.toErrorSource()
       return DonationError.PaymentSetupError.GenericError(source, throwable)
     }
   }
 
-  private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
+  private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, AppDependencies.okHttpClient)
 
   override fun serialize(): ByteArray {
     return stripe3DSData.toProtoBytes()
@@ -122,30 +68,30 @@ class ExternalLaunchDonationJob private constructor(
 
   override fun onFailure() {
     if (donationError != null) {
-      when (stripe3DSData.gatewayRequest.donateToSignalType) {
-        DonateToSignalType.ONE_TIME -> {
-          SignalStore.donationsValues().setPendingOneTimeDonation(
+      when (stripe3DSData.inAppPayment.type) {
+        InAppPaymentType.ONE_TIME_DONATION -> {
+          SignalStore.donations.setPendingOneTimeDonation(
             DonationSerializationHelper.createPendingOneTimeDonationProto(
-              stripe3DSData.gatewayRequest.badge,
+              Badges.fromDatabaseBadge(stripe3DSData.inAppPayment.data.badge!!),
               stripe3DSData.paymentSourceType,
-              stripe3DSData.gatewayRequest.fiat
+              stripe3DSData.inAppPayment.data.amount!!.toFiatMoney()
             ).copy(
               error = donationError?.toDonationErrorValue()
             )
           )
         }
 
-        DonateToSignalType.MONTHLY -> {
-          SignalStore.donationsValues().appendToTerminalDonationQueue(
+        InAppPaymentType.RECURRING_DONATION -> {
+          SignalStore.donations.appendToTerminalDonationQueue(
             TerminalDonationQueue.TerminalDonation(
-              level = stripe3DSData.gatewayRequest.level,
+              level = stripe3DSData.inAppPayment.data.level,
               isLongRunningPaymentMethod = stripe3DSData.isLongRunning,
               error = donationError?.toDonationErrorValue()
             )
           )
         }
 
-        else -> Log.w(TAG, "Job failed with donation error for type: ${stripe3DSData.gatewayRequest.donateToSignalType}")
+        else -> Log.w(TAG, "Job failed with donation error for type: ${stripe3DSData.inAppPayment.type}")
       }
     }
   }
@@ -168,20 +114,20 @@ class ExternalLaunchDonationJob private constructor(
     checkIntentStatus(stripePaymentIntent.status)
 
     Log.i(TAG, "Creating and inserting donation receipt record.", true)
-    val donationReceiptRecord = if (stripe3DSData.gatewayRequest.donateToSignalType == DonateToSignalType.ONE_TIME) {
-      DonationReceiptRecord.createForBoost(stripe3DSData.gatewayRequest.fiat)
+    val donationReceiptRecord = if (stripe3DSData.inAppPayment.type == InAppPaymentType.ONE_TIME_DONATION) {
+      DonationReceiptRecord.createForBoost(stripe3DSData.inAppPayment.data.amount!!.toFiatMoney())
     } else {
-      DonationReceiptRecord.createForGift(stripe3DSData.gatewayRequest.fiat)
+      DonationReceiptRecord.createForGift(stripe3DSData.inAppPayment.data.amount!!.toFiatMoney())
     }
 
     SignalDatabase.donationReceipts.addReceipt(donationReceiptRecord)
 
     Log.i(TAG, "Creating and inserting one-time pending donation.", true)
-    SignalStore.donationsValues().setPendingOneTimeDonation(
+    SignalStore.donations.setPendingOneTimeDonation(
       DonationSerializationHelper.createPendingOneTimeDonationProto(
-        stripe3DSData.gatewayRequest.badge,
+        Badges.fromDatabaseBadge(stripe3DSData.inAppPayment.data.badge!!),
         stripe3DSData.paymentSourceType,
-        stripe3DSData.gatewayRequest.fiat
+        stripe3DSData.inAppPayment.data.amount.toFiatMoney()
       )
     )
 
@@ -193,14 +139,14 @@ class ExternalLaunchDonationJob private constructor(
     val stripeSetupIntent = stripeApi.getSetupIntent(stripe3DSData.stripeIntentAccessor)
     checkIntentStatus(stripeSetupIntent.status)
 
-    val subscriber = SignalStore.donationsValues().requireSubscriber()
+    val subscriber = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
 
     Log.i(TAG, "Setting default payment method...", true)
     val setPaymentMethodResponse = if (stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
-      ApplicationDependencies.getDonationsService()
+      AppDependencies.donationsService
         .setDefaultIdealPaymentMethod(subscriber.subscriberId, stripeSetupIntent.id)
     } else {
-      ApplicationDependencies.getDonationsService()
+      AppDependencies.donationsService
         .setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethod!!)
     }
 
@@ -208,30 +154,30 @@ class ExternalLaunchDonationJob private constructor(
 
     Log.i(TAG, "Set default payment method via Signal service!", true)
     Log.i(TAG, "Storing the subscription payment source type locally.", true)
-    SignalStore.donationsValues().setSubscriptionPaymentSourceType(stripe3DSData.paymentSourceType)
+    SignalStore.donations.setSubscriptionPaymentSourceType(stripe3DSData.paymentSourceType)
 
-    val subscriptionLevel = stripe3DSData.gatewayRequest.level.toString()
+    val subscriptionLevel = stripe3DSData.inAppPayment.data.level.toString()
 
     try {
-      val levelUpdateOperation = MonthlyDonationRepository.getOrCreateLevelUpdateOperation(TAG, subscriptionLevel)
+      val levelUpdateOperation = RecurringInAppPaymentRepository.getOrCreateLevelUpdateOperation(TAG, subscriptionLevel)
       Log.d(TAG, "Attempting to set user subscription level to $subscriptionLevel", true)
 
-      val updateSubscriptionLevelResponse = ApplicationDependencies.getDonationsService().updateSubscriptionLevel(
+      val updateSubscriptionLevelResponse = AppDependencies.donationsService.updateSubscriptionLevel(
         subscriber.subscriberId,
         subscriptionLevel,
-        subscriber.currencyCode,
+        subscriber.currency.currencyCode,
         levelUpdateOperation.idempotencyKey.serialize(),
-        SubscriptionReceiptRequestResponseJob.MUTEX
+        subscriber.type
       )
 
       getResultOrThrow(updateSubscriptionLevelResponse, doOnApplicationError = {
-        SignalStore.donationsValues().clearLevelOperations()
+        SignalStore.donations.clearLevelOperations()
       })
 
       if (updateSubscriptionLevelResponse.status in listOf(200, 204)) {
         Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${updateSubscriptionLevelResponse.status}", true)
-        SignalStore.donationsValues().updateLocalStateForLocalSubscribe()
-        SignalStore.donationsValues().setVerifiedSubscription3DSData(stripe3DSData)
+        SignalStore.donations.updateLocalStateForLocalSubscribe(subscriber.type)
+        SignalStore.donations.setVerifiedSubscription3DSData(stripe3DSData)
         SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
         StorageSyncHelper.scheduleSyncForDataChange()
       } else {
@@ -277,9 +223,9 @@ class ExternalLaunchDonationJob private constructor(
       Log.w(TAG, "An application error was present. ${serviceResponse.status}", serviceResponse.applicationError.get(), true)
       doOnApplicationError()
 
-      SignalStore.donationsValues().appendToTerminalDonationQueue(
+      SignalStore.donations.appendToTerminalDonationQueue(
         TerminalDonationQueue.TerminalDonation(
-          level = stripe3DSData.gatewayRequest.level,
+          level = stripe3DSData.inAppPayment.data.level,
           isLongRunningPaymentMethod = stripe3DSData.isLongRunning,
           error = DonationErrorValue(
             DonationErrorValue.Type.PAYMENT,
@@ -316,7 +262,7 @@ class ExternalLaunchDonationJob private constructor(
 
     companion object {
       fun parseSerializedData(serializedData: ByteArray): Stripe3DSData {
-        return Stripe3DSData.fromProtoBytes(serializedData, -1L)
+        return Stripe3DSData.fromProtoBytes(serializedData)
       }
     }
   }
@@ -325,7 +271,7 @@ class ExternalLaunchDonationJob private constructor(
     error("Not needed, this job should not be creating intents.")
   }
 
-  override fun fetchSetupIntent(sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
+  override fun fetchSetupIntent(inAppPaymentType: InAppPaymentType, sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
     error("Not needed, this job should not be creating intents.")
   }
 }

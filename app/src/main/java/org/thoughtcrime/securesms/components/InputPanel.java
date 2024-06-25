@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -105,11 +106,13 @@ public class InputPanel extends ConstraintLayout
   private View            editMessageCancel;
   private ImageView       editMessageThumbnail;
   private View            editMessageTitle;
+  private FrameLayout     composeTextContainer;
 
   private MicrophoneRecorderView microphoneRecorderView;
   private SlideToCancel          slideToCancel;
   private RecordTime             recordTime;
   private ValueAnimator          quoteAnimator;
+  private ValueAnimator          editMessageAnimator;
   private VoiceNoteDraftView     voiceNoteDraftView;
 
   private @Nullable Listener listener;
@@ -148,6 +151,7 @@ public class InputPanel extends ConstraintLayout
     this.linkPreview            = findViewById(R.id.link_preview);
     this.mediaKeyboard          = findViewById(R.id.emoji_toggle);
     this.composeText            = findViewById(R.id.embedded_text_editor);
+    this.composeTextContainer   = findViewById(R.id.embedded_text_editor_container);
     this.quickCameraToggle      = findViewById(R.id.quick_camera_toggle);
     this.quickAudioToggle       = findViewById(R.id.quick_audio_toggle);
     this.buttonToggle           = findViewById(R.id.button_toggle);
@@ -405,6 +409,7 @@ public class InputPanel extends ConstraintLayout
   }
 
   public void enterEditMessageMode(@NonNull RequestManager requestManager, @NonNull ConversationMessage conversationMessageToEdit, boolean fromDraft) {
+    int originalHeight         = composeTextContainer.getMeasuredHeight();
     SpannableString textToEdit = conversationMessageToEdit.getDisplayBody(getContext());
     if (!fromDraft) {
       MessageStyler.convertSpoilersToComposeMode(textToEdit);
@@ -419,7 +424,28 @@ public class InputPanel extends ConstraintLayout
     }
     this.messageToEdit = conversationMessageToEdit.getMessageRecord();
     updateEditModeThumbnail(requestManager);
-    updateEditModeUi();
+
+    int maxWidth = composeContainer.getWidth();
+    if (composeContainer.getLayoutParams() instanceof MarginLayoutParams) {
+      MarginLayoutParams layoutParams = (MarginLayoutParams) composeContainer.getLayoutParams();
+      maxWidth -= layoutParams.leftMargin + layoutParams.rightMargin;
+    }
+    composeTextContainer.measure(MeasureSpec.makeMeasureSpec(maxWidth, MeasureSpec.AT_MOST), MeasureSpec.UNSPECIFIED);
+    int finalHeight = (inEditMessageMode()) ? composeTextContainer.getMeasuredHeight() : composeTextContainer.getMeasuredHeight() + editMessageTitle.getMeasuredHeight();
+
+    if (editMessageAnimator != null) {
+     editMessageAnimator.cancel();
+    }
+    editMessageAnimator = createHeightAnimator(composeTextContainer, originalHeight, finalHeight, new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        ViewGroup.LayoutParams params = composeTextContainer.getLayoutParams();
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        composeTextContainer.setLayoutParams(params);
+        updateEditModeUi();
+      }
+    });
+    editMessageAnimator.start();
   }
 
   private void updateEditModeThumbnail(@NonNull RequestManager requestManager) {
@@ -443,12 +469,29 @@ public class InputPanel extends ConstraintLayout
   }
 
   public void exitEditMessageMode() {
+    int originalHeight = composeTextContainer.getMeasuredHeight();
     if (messageToEdit != null) {
       composeText.setText("");
       messageToEdit = null;
       quoteView.setMessageType(QuoteView.MessageType.PREVIEW);
+      clearQuote();
     }
     updateEditModeUi();
+
+    composeTextContainer.measure(0, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+
+    if (editMessageAnimator != null) {
+     editMessageAnimator.cancel();
+    }
+    editMessageAnimator = createHeightAnimator(composeTextContainer, originalHeight, composeTextContainer.getMeasuredHeight(), new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        ViewGroup.LayoutParams params = composeTextContainer.getLayoutParams();
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        composeTextContainer.setLayoutParams(params);
+      }
+    });
+    editMessageAnimator.start();
   }
 
   private void updateEditModeUi() {

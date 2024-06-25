@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.collections.immutable.persistentListOf
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
 
@@ -24,7 +24,7 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
 
   private val _state: MutableState<InternalSvrPlaygroundState> = mutableStateOf(
     InternalSvrPlaygroundState(
-      options = persistentListOf(SvrImplementation.SVR2)
+      options = persistentListOf(SvrImplementation.SVR2, SvrImplementation.SVR3)
     )
   )
   val state: State<InternalSvrPlaygroundState> = _state
@@ -52,7 +52,7 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
     disposables += Single
       .fromCallable {
         _state.value.selected.toImplementation()
-          .setPin(_state.value.userPin, SignalStore.svr().getOrCreateMasterKey())
+          .setPin(_state.value.userPin, SignalStore.svr.getOrCreateMasterKey())
           .execute()
       }
       .subscribeOn(Schedulers.io())
@@ -103,7 +103,8 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
 
   private fun SvrImplementation.toImplementation(): SecureValueRecovery {
     return when (this) {
-      SvrImplementation.SVR2 -> ApplicationDependencies.getSignalServiceAccountManager().getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
+      SvrImplementation.SVR2 -> AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
+      SvrImplementation.SVR3 -> AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork)
     }
   }
 }

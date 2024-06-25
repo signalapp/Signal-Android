@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.releasechannel
 
+import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageType
@@ -20,8 +21,6 @@ import java.util.UUID
  */
 object ReleaseChannel {
 
-  const val CDN_NUMBER = -1
-
   fun insertReleaseChannelMessage(
     recipientId: RecipientId,
     body: String,
@@ -30,14 +29,14 @@ object ReleaseChannel {
     mediaWidth: Int = 0,
     mediaHeight: Int = 0,
     mediaType: String = "image/webp",
-    serverUuid: String? = UUID.randomUUID().toString(),
+    mediaAttachmentUuid: UUID? = UUID.randomUUID(),
     messageRanges: BodyRangeList? = null,
     storyType: StoryType = StoryType.NONE
   ): MessageTable.InsertResult? {
     val attachments: Optional<List<SignalServiceAttachment>> = if (media != null) {
       val attachment = SignalServiceAttachmentPointer(
-        CDN_NUMBER,
-        SignalServiceAttachmentRemoteId.from(""),
+        Cdn.S3.cdnNumber,
+        SignalServiceAttachmentRemoteId.S3,
         mediaType,
         null,
         Optional.empty(),
@@ -53,7 +52,8 @@ object ReleaseChannel {
         MediaUtil.isVideo(mediaType),
         Optional.empty(),
         Optional.empty(),
-        System.currentTimeMillis()
+        System.currentTimeMillis(),
+        mediaAttachmentUuid
       )
 
       Optional.of(listOf(attachment))
@@ -69,7 +69,7 @@ object ReleaseChannel {
       receivedTimeMillis = System.currentTimeMillis(),
       body = body,
       attachments = PointerAttachment.forPointers(attachments),
-      serverGuid = serverUuid,
+      serverGuid = UUID.randomUUID().toString(),
       messageRanges = messageRanges,
       storyType = storyType
     )

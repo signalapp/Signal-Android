@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
@@ -13,8 +14,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.InputAwareLayout
@@ -23,24 +26,24 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewaySelectorBottomSheet
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
 import org.thoughtcrime.securesms.components.settings.models.TextInput
 import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
+import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import java.math.BigDecimal
 
 /**
  * Allows the user to confirm details about a gift, add a message, and finally make a payment.
@@ -71,7 +74,6 @@ class GiftFlowConfirmationFragment :
   private lateinit var emojiKeyboard: MediaKeyboard
 
   private val lifecycleDisposable = LifecycleDisposable()
-  private var donationCheckoutDelegate: DonationCheckoutDelegate? = null
   private lateinit var processingDonationPaymentDialog: AlertDialog
   private lateinit var verifyingRecipientDonationPaymentDialog: AlertDialog
   private lateinit var textInputViewHolder: TextInput.MultilineViewHolder
@@ -83,9 +85,9 @@ class GiftFlowConfirmationFragment :
     RecipientPreference.register(adapter)
     GiftRowItem.register(adapter)
 
-    keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
+    val checkoutDelegate = DonationCheckoutDelegate(this, this, viewModel.state.filter { it.inAppPaymentId != null }.map { it.inAppPaymentId!! })
 
-    donationCheckoutDelegate = DonationCheckoutDelegate(this, this, viewModel.uiSessionKey, DonationErrorSource.GIFT)
+    keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)
@@ -102,25 +104,24 @@ class GiftFlowConfirmationFragment :
 
     emojiKeyboard.setFragmentManager(childFragmentManager)
 
+    setFragmentResultListener(GatewaySelectorBottomSheet.REQUEST_KEY) { _, bundle ->
+      if (bundle.containsKey(GatewaySelectorBottomSheet.FAILURE_KEY)) {
+        showSepaEuroMaximumDialog(FiatMoney(bundle.getSerializable(GatewaySelectorBottomSheet.SEPA_EURO_MAX) as BigDecimal, CurrencyUtil.EURO))
+      } else {
+        val inAppPayment: InAppPaymentTable.InAppPayment = bundle.getParcelableCompat(GatewaySelectorBottomSheet.REQUEST_KEY, InAppPaymentTable.InAppPayment::class.java)!!
+        checkoutDelegate.handleGatewaySelectionResponse(inAppPayment)
+      }
+    }
+
     val continueButton = requireView().findViewById<MaterialButton>(R.id.continue_button)
     continueButton.setOnClickListener {
-      findNavController().safeNavigate(
-        GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToGatewaySelectorBottomSheet(
-          with(viewModel.snapshot) {
-            GatewayRequest(
-              uiSessionKey = viewModel.uiSessionKey,
-              donateToSignalType = DonateToSignalType.GIFT,
-              badge = giftBadge!!,
-              label = getString(R.string.preferences__one_time),
-              price = giftPrices[currency]!!.amount,
-              currencyCode = currency.currencyCode,
-              level = giftLevel!!,
-              recipientId = recipient!!.id,
-              additionalMessage = additionalMessage?.toString()
-            )
-          }
+      lifecycleDisposable += viewModel.insertInAppPayment(requireContext()).subscribe { inAppPayment ->
+        findNavController().safeNavigate(
+          GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToGatewaySelectorBottomSheet(
+            inAppPayment
+          )
         )
-      )
+      }
     }
 
     val textInput = requireView().findViewById<FrameLayout>(R.id.text_input)
@@ -199,7 +200,6 @@ class GiftFlowConfirmationFragment :
     processingDonationPaymentDialog.dismiss()
     debouncer.clear()
     verifyingRecipientDonationPaymentDialog.dismiss()
-    donationCheckoutDelegate = null
   }
 
   private fun getConfiguration(giftFlowState: GiftFlowState): DSLConfiguration {
@@ -253,27 +253,46 @@ class GiftFlowConfirmationFragment :
     }
   }
 
-  override fun navigateToStripePaymentInProgress(gatewayRequest: GatewayRequest) {
-    findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToStripePaymentInProgressFragment(DonationProcessorAction.PROCESS_NEW_DONATION, gatewayRequest))
+  private fun showSepaEuroMaximumDialog(sepaEuroMaximum: FiatMoney) {
+    val max = FiatMoneyUtil.format(resources, sepaEuroMaximum, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.DonateToSignal__donation_amount_too_high)
+      .setMessage(getString(R.string.DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer, max))
+      .setPositiveButton(android.R.string.ok, null)
+      .show()
   }
 
-  override fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest) {
-    findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToPaypalPaymentInProgressFragment(DonationProcessorAction.PROCESS_NEW_DONATION, gatewayRequest))
+  override fun navigateToStripePaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment) {
+    findNavController().safeNavigate(
+      GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToStripePaymentInProgressFragment(
+        DonationProcessorAction.PROCESS_NEW_DONATION,
+        inAppPayment,
+        inAppPayment.type
+      )
+    )
   }
 
-  override fun navigateToCreditCardForm(gatewayRequest: GatewayRequest) {
-    findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToCreditCardFragment(gatewayRequest))
+  override fun navigateToPayPalPaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment) {
+    findNavController().safeNavigate(
+      GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToPaypalPaymentInProgressFragment(
+        DonationProcessorAction.PROCESS_NEW_DONATION,
+        inAppPayment,
+        inAppPayment.type
+      )
+    )
   }
 
-  override fun navigateToIdealDetailsFragment(gatewayRequest: GatewayRequest) {
-    error("Unsupported operation")
+  override fun navigateToCreditCardForm(inAppPayment: InAppPaymentTable.InAppPayment) {
+    findNavController().safeNavigate(
+      GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToCreditCardFragment(inAppPayment)
+    )
   }
 
-  override fun navigateToBankTransferMandate(gatewayResponse: GatewayResponse) {
-    error("Unsupported operation")
-  }
+  override fun navigateToIdealDetailsFragment(inAppPayment: InAppPaymentTable.InAppPayment) = error("iDEAL transfer isn't supported for gifts.")
 
-  override fun onPaymentComplete(gatewayRequest: GatewayRequest) {
+  override fun navigateToBankTransferMandate(inAppPayment: InAppPaymentTable.InAppPayment) = error("Bank transfer isn't supported for gifts.")
+
+  override fun onPaymentComplete(inAppPayment: InAppPaymentTable.InAppPayment) {
     val mainActivityIntent = MainActivity.clearTop(requireContext())
 
     lifecycleDisposable += ConversationIntents
@@ -285,11 +304,13 @@ class GiftFlowConfirmationFragment :
       }
   }
 
-  override fun onProcessorActionProcessed() = Unit
+  override fun onSubscriptionCancelled(inAppPaymentType: InAppPaymentType) = error("Not supported for gifts")
 
-  override fun showSepaEuroMaximumDialog(sepaEuroMaximum: FiatMoney) = error("Unsupported operation")
+  override fun onProcessorActionProcessed() {
+    // TODO [alex] -- what do?
+  }
 
-  override fun onUserLaunchedAnExternalApplication() = Unit
+  override fun onUserLaunchedAnExternalApplication() = error("Not supported for gifts.")
 
-  override fun navigateToDonationPending(gatewayRequest: GatewayRequest) = error("Unsupported operation")
+  override fun navigateToDonationPending(inAppPayment: InAppPaymentTable.InAppPayment) = error("Not supported for gifts")
 }

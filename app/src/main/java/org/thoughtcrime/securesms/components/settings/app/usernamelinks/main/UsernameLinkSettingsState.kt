@@ -17,6 +17,7 @@ data class UsernameLinkSettingsState(
   val indeterminateProgress: Boolean = false
 ) {
   enum class ActiveTab {
-    Code, Scan
+    Code,
+    Scan
   }
 }

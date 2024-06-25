@@ -11,7 +11,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.emoji.EmojiData;
 import org.thoughtcrime.securesms.emoji.EmojiDownloader;
 import org.thoughtcrime.securesms.emoji.EmojiFiles;
@@ -56,11 +56,11 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
   private EmojiFiles.Version targetVersion;
 
   public static void scheduleIfNecessary(@NonNull Context context) {
-    long nextScheduledCheck = SignalStore.emojiValues().getNextScheduledImageCheck();
+    long nextScheduledCheck = SignalStore.emoji().getNextScheduledImageCheck();
 
     if (nextScheduledCheck <= System.currentTimeMillis()) {
       Log.i(TAG, "Scheduling DownloadLatestEmojiDataJob.");
-      ApplicationDependencies.getJobManager().add(new DownloadLatestEmojiDataJob(false));
+      AppDependencies.getJobManager().add(new DownloadLatestEmojiDataJob(false));
 
       EmojiFiles.Version version = EmojiFiles.Version.readVersion(context);
 
@@ -71,7 +71,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
         interval = INTERVAL_WITHOUT_REMOTE_DOWNLOAD;
       }
 
-      SignalStore.emojiValues().setNextScheduledImageCheck(System.currentTimeMillis() + interval);
+      SignalStore.emoji().setNextScheduledImageCheck(System.currentTimeMillis() + interval);
     }
   }
 
@@ -353,7 +353,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
     EmojiPageCache.INSTANCE.clear();
 
     if (version != null) {
-      SignalStore.emojiValues().clearJumboEmojiSheets(version.getVersion());
+      SignalStore.emoji().clearJumboEmojiSheets(version.getVersion());
     }
   }
 

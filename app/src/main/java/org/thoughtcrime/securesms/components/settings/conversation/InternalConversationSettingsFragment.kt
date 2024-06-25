@@ -11,28 +11,32 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.isAbsent
+import org.signal.core.util.roundedString
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.RecipientRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Objects
+import kotlin.time.Duration.Companion.nanoseconds
+import kotlin.time.DurationUnit
 
 /**
  * Shows internal details about a recipient that you can view from the conversation settings.
@@ -151,6 +155,17 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
         )
       }
 
+      clickPref(
+        title = DSLSettingsText.from("Trigger Thread Update"),
+        summary = DSLSettingsText.from("Triggers a thread update. Useful for testing perf."),
+        onClick = {
+          val startTimeNanos = System.nanoTime()
+          SignalDatabase.threads.update(state.threadId ?: -1, true)
+          val endTimeNanos = System.nanoTime()
+          Toast.makeText(context, "Thread update took ${(endTimeNanos - startTimeNanos).nanoseconds.toDouble(DurationUnit.MILLISECONDS).roundedString(2)} ms", Toast.LENGTH_SHORT).show()
+        }
+      )
+
       if (!recipient.isGroup) {
         sectionHeaderPref(DSLSettingsText.from("Actions"))
 
@@ -175,10 +190,10 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
               .setPositiveButton(android.R.string.ok) { _, _ ->
                 if (recipient.hasAci) {
-                  SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requireAci().toString())
+                  SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account.requireAci(), addressName = recipient.requireAci().toString())
                 }
                 if (recipient.hasPni) {
-                  SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requirePni().toString())
+                  SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account.requireAci(), addressName = recipient.requirePni().toString())
                 }
               }
               .show()
@@ -202,15 +217,15 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               }
 
               if (recipient.hasAci) {
-                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requireAci().toString())
-                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requirePni(), addressName = recipient.requireAci().toString())
-                ApplicationDependencies.getProtocolStore().aci().identities().delete(recipient.requireAci().toString())
+                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account.requireAci(), addressName = recipient.requireAci().toString())
+                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account.requirePni(), addressName = recipient.requireAci().toString())
+                AppDependencies.protocolStore.aci().identities().delete(recipient.requireAci().toString())
               }
 
               if (recipient.hasPni) {
-                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requirePni().toString())
-                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requirePni(), addressName = recipient.requirePni().toString())
-                ApplicationDependencies.getProtocolStore().aci().identities().delete(recipient.requirePni().toString())
+                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account.requireAci(), addressName = recipient.requirePni().toString())
+                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account.requirePni(), addressName = recipient.requirePni().toString())
+                AppDependencies.protocolStore.aci().identities().delete(recipient.requirePni().toString())
               }
 
               startActivity(MainActivity.clearTop(requireContext()))
@@ -222,9 +237,10 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       if (recipient.isSelf) {
         sectionHeaderPref(DSLSettingsText.from("Donations"))
 
-        val subscriber: Subscriber? = SignalStore.donationsValues().getSubscriber()
+        // TODO [alex] - DB on main thread!
+        val subscriber: InAppPaymentSubscriberRecord? = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
         val summary = if (subscriber != null) {
-          """currency code: ${subscriber.currencyCode}
+          """currency code: ${subscriber.currency.currencyCode}
             |subscriber id: ${subscriber.subscriberId.serialize()}
           """.trimMargin()
         } else {
@@ -325,7 +341,9 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
     return if (capabilities != null) {
       TextUtils.concat(
-        colorize("PaymentActivation", capabilities.paymentActivation)
+        colorize("PaymentActivation", capabilities.paymentActivation),
+        ", ",
+        colorize("DeleteSync", capabilities.deleteSync)
       )
     } else {
       "Recipient not found!"

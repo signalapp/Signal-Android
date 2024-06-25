@@ -10,7 +10,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.Hex
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
+import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
 import org.thoughtcrime.securesms.database.model.databaseprotos.addMember
 import org.thoughtcrime.securesms.database.model.databaseprotos.addRequestingMember
 import org.thoughtcrime.securesms.database.model.databaseprotos.deleteRequestingMember
@@ -44,8 +46,8 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
     recipients = SignalDatabase.recipients
     sms = SignalDatabase.messages
 
-    SignalStore.account().setAci(localAci)
-    SignalStore.account().setPni(localPni)
+    SignalStore.account.setAci(localAci)
+    SignalStore.account.setPni(localPni)
 
     alice = recipients.getOrInsertFromServiceId(aliceServiceId)
     bob = recipients.getOrInsertFromServiceId(bobServiceId)
@@ -286,11 +288,18 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
 
   private fun groupUpdateMessage(sender: RecipientId, groupContext: DecryptedGroupV2Context): IncomingMessage {
     wallClock++
+
+    val updateDescription = GV2UpdateDescription(
+      gv2ChangeDescription = groupContext,
+      groupChangeUpdate = GroupsV2UpdateMessageConverter.translateDecryptedChangeUpdate(SignalStore.account.getServiceIds(), groupContext)
+    )
+
     return IncomingMessage.groupUpdate(
       from = sender,
       timestamp = wallClock,
       groupId = groupId,
-      groupContext = groupContext,
+      update = updateDescription,
+      isGroupAdd = false,
       serverGuid = null
     )
   }

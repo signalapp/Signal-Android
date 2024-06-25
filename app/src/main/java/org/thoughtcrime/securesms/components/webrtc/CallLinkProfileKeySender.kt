@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.components.webrtc
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ProfileKeySendJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -34,7 +34,7 @@ object CallLinkProfileKeySender {
     if (toSendMessagesTo.isNotEmpty()) {
       Log.i(TAG, "Sending profile key to $toSendMessagesTo users.")
       val job = ProfileKeySendJob.createForCallLinks(toSendMessagesTo.toList())
-      ApplicationDependencies.getJobManager().add(job)
+      AppDependencies.jobManager.add(job)
     } else {
       Log.i(TAG, "No users to send profile key to.")
     }
@@ -46,8 +46,8 @@ object CallLinkProfileKeySender {
   fun onRecipientsUpdated(recipients: Set<Recipient>) {
     val nonBlockedNonSelfRecipients: List<Recipient> = recipients.filterNot { it.isBlocked || it.isSelf }
 
-    val identityRecords: IdentityRecordList = ApplicationDependencies
-      .getProtocolStore()
+    val identityRecords: IdentityRecordList = AppDependencies
+      .protocolStore
       .aci()
       .identities()
       .getIdentityRecords(nonBlockedNonSelfRecipients)

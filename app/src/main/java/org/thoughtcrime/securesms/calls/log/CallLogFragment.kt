@@ -55,14 +55,14 @@ import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFi
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterLerp
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterPullState
 import org.thoughtcrime.securesms.databinding.CallLogFragmentBinding
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.SearchBinder
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -122,6 +122,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     initializeSharedElementTransition()
 
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
+    viewLifecycleOwner.lifecycle.addObserver(viewModel.callLogPeekHelper)
 
     val callLogAdapter = CallLogAdapter(this)
     disposables.bindTo(viewLifecycleOwner)
@@ -211,7 +212,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   override fun onResume() {
     super.onResume()
     initializeSearchAction()
-    ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
+    AppDependencies.deletedCallEventManager.scheduleIfNecessary()
     viewModel.markAllCallEventsRead()
   }
 
@@ -252,7 +253,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, count, count))
       .setMessage(
-        if (FeatureFlags.adHocCalling()) {
+        if (RemoteConfig.adHocCalling) {
           getString(R.string.CallLogFragment__call_links_youve_created)
         } else {
           null
@@ -304,7 +305,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
         }
 
         FilterPullState.OPEN_APEX -> if (source === ConversationFilterSource.DRAG) {
-          // TODO[alex] -- hint here? SignalStore.uiHints().incrementNeverDisplayPullToFilterTip()
+          // TODO[alex] -- hint here? SignalStore.uiHints.incrementNeverDisplayPullToFilterTip()
         }
 
         FilterPullState.CLOSE_APEX -> ViewUtil.setMinimumHeight(collapsingToolbarLayout, 0)
@@ -402,7 +403,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, 1, 1))
       .setMessage(
-        if (FeatureFlags.adHocCalling()) {
+        if (RemoteConfig.adHocCalling) {
           getString(R.string.CallLogFragment__call_links_youve_created)
         } else {
           null

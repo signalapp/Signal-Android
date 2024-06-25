@@ -9,11 +9,21 @@ option java_multiple_files = true;
 
 
 message CallSyncEventJobRecord {
-  uint64 recipientId = 1;
-  reserved             2;
-  uint64 callId      = 3;
-  uint32 direction   = 4;
-  uint32 event       = 5;
+
+  enum Event {
+    UNKNOWN_ACTION = 0;
+    ACCEPTED       = 1;
+    NOT_ACCEPTED   = 2;
+    DELETE         = 3;
+    OBSERVED       = 4;
+  }
+
+  uint64 recipientId     = 1;
+  reserved                 2;
+  uint64 callId          = 3;
+  uint32 direction       = 4;
+  uint32 deprecatedEvent = 5; // Deprecated for callEvent.
+  Event  callEvent       = 6;
 }
 
 message CallSyncEventJobData {
@@ -46,4 +56,59 @@ message AttachmentUploadJobData {
 
 message PreKeysSyncJobData {
   bool forceRefreshRequested = 1;
+}
+
+message ArchiveAttachmentJobData {
+  uint64 attachmentId = 1;
+}
+
+message ArchiveAttachmentBackfillJobData {
+  optional uint64 attachmentId = 1;
+  ResumableUpload uploadSpec = 2;
+  optional uint32 count = 3;
+  optional uint32 totalCount = 4;
+}
+
+message ArchiveThumbnailUploadJobData {
+  uint64 attachmentId = 1;
+}
+
+message InAppPaymentRedemptionJobData {
+  oneof id {
+    uint64 inAppPaymentId = 1;
+    uint64 giftMessageId  = 2;
+  }
+
+  bool makePrimary = 3;
+}
+
+message DeleteSyncJobData {
+  message AddressableMessage {
+    uint64 threadRecipientId = 1;
+    uint64 sentTimestamp = 2;
+    uint64 authorRecipientId = 3;
+  }
+
+  message AttachmentDelete {
+    AddressableMessage targetMessage = 1;
+    optional bytes uuid = 2;
+    optional bytes digest = 3;
+    optional bytes plaintextHash = 4;
+  }
+
+  message ThreadDelete {
+    uint64 threadRecipientId = 1;
+    repeated AddressableMessage messages = 2;
+    bool isFullDelete = 3;
+    repeated AddressableMessage nonExpiringMessages = 4;
+  }
+
+  repeated AddressableMessage messageDeletes = 1;
+  repeated ThreadDelete threadDeletes = 2;
+  repeated ThreadDelete localOnlyThreadDeletes = 3;
+  repeated AttachmentDelete attachmentDeletes = 4;
+}
+
+message Svr3MirrorJobData {
+  optional string serializedChangeSession = 1;
 }

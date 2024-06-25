@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
+import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
@@ -30,7 +31,7 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
     const val NEW_ID = "new_id"
   }
 
-  private object Recipients {
+  object Recipients {
     const val TABLE_NAME = "remapped_recipients"
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
@@ -41,7 +42,7 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
     """
   }
 
-  private object Threads {
+  object Threads {
     const val TABLE_NAME = "remapped_threads"
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
@@ -56,6 +57,9 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
     val recipientMap: MutableMap<RecipientId, RecipientId> = HashMap()
 
     readableDatabase.withinTransaction { db ->
+      trimInvalidRecipientEntries(db)
+      trimInvalidThreadEntries(db)
+
       val mappings = getAllMappings(db, Recipients.TABLE_NAME)
       for (mapping in mappings) {
         val oldId = RecipientId.from(mapping.oldId)
@@ -100,6 +104,32 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
       .select()
       .from(Threads.TABLE_NAME)
       .run()
+  }
+
+  fun deleteThreadMapping(oldId: Long) {
+    writableDatabase.delete(Threads.TABLE_NAME)
+      .where("$OLD_ID = ?", oldId)
+      .run()
+  }
+
+  private fun trimInvalidRecipientEntries(db: SQLiteDatabase) {
+    val count = db.delete(Recipients.TABLE_NAME)
+      .where("$OLD_ID IN (SELECT $ID FROM ${RecipientTable.TABLE_NAME})")
+      .run()
+
+    if (count > 0) {
+      Log.w(TAG, "Trimmed $count invalid recipient entries.", true)
+    }
+  }
+
+  private fun trimInvalidThreadEntries(db: SQLiteDatabase) {
+    val count = db.delete(Threads.TABLE_NAME)
+      .where("$OLD_ID IN (SELECT $ID FROM ${ThreadTable.TABLE_NAME})")
+      .run()
+
+    if (count > 0) {
+      Log.w(TAG, "Trimmed $count invalid thread entries.", true)
+    }
   }
 
   private fun getAllMappings(db: SQLiteDatabase, table: String): List<Mapping> {

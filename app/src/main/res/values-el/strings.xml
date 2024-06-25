@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2024 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
@@ -80,8 +84,9 @@
     <string name="AttachmentKeyboard_file">Αρχείο</string>
     <string name="AttachmentKeyboard_contact">Επαφή</string>
     <string name="AttachmentKeyboard_location">Τοποθεσία</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Το Signal χρειάζεται άδεια για να εμφανίσει τις φωτογραφίες και τα βίντεό σου.</string>
-    <string name="AttachmentKeyboard_give_access">Να δοθεί πρόσβαση</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Το Signal χρειάζεται άδεια για να εμφανίσει τις φωτογραφίες και τα βίντεό σου</string>
+    <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
+    <string name="AttachmentKeyboard_allow_access">Να δοθεί πρόσβαση</string>
     <string name="AttachmentKeyboard_payment">Πληρωμή</string>
 
     <!-- AttachmentManager -->
@@ -89,6 +94,22 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Το Signal χρειάζεται τα δικαιώματα Αποθηκευτικού Χώρου για την επισύναψη φωτογραφιών, βίντεο ή κομματιών ήχου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα «Δικαιώματα», και ενεργοποίησε τον «Αποθηκευτικό Χώρο».</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Το Signal χρειάζεται τα δικαιώματα Επαφών για την επισύναψη πληροφοριών επαφών, αλλά αυτά δεν έχουν δοθεί μόνιμα. Πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα «Δικαιώματα», και ενεργοποίησε τις «Επαφές».</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Το Signal χρειάζεται τα δικαιώματα Τοποθεσίας για την επισύναψη τοποθεσιών, αλλά αυτά δεν έχουν δοθεί μόνιμα. Πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα «Δικαιώματα», και ενεργοποίησε την «Τοποθεσία».</string>
+
+    <!-- Dialog title asking users for location permission -->
+    <string name="AttachmentManager_signal_allow_access_location">Να δοθεί πρόσβαση στην τοποθεσία σου</string>
+    <!-- Dialog description that will explain the steps needed to give location permission -->
+    <string name="AttachmentManager_signal_to_send_location">Για να στείλεις την τοποθεσία σου:</string>
+    <!-- Alert dialog description asking for location permission -->
+    <string name="AttachmentManager_signal_allow_signal_access_location">Να δοθεί πρόσβαση στο Singal για αποστολή της τοποθεσίας σου.</string>
+    <!-- Toast text explaining Signal\'s need for location access -->
+    <string name="AttachmentManager_signal_needs_location_access">Το Signal χρειάζεται πρόσβαση στην τοποθεσία σου για να στείλει την τοποθεσία σου.</string>
+    <!-- Dialog title asking users for gallery storage permission -->
+    <string name="AttachmentManager_signal_allow_storage">Να δοθεί πρόσβαση στον αποθηκευτικό χώρο</string>
+    <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
+    <string name="AttachmentManager_signal_to_show_photos">Για την προβολή φωτογραφιών και βίντεο:</string>
+    <!-- Toast text explaining Signal\'s need for storage access -->
+    <string name="AttachmentManager_signal_needs_storage_access">Το Signal χρειάζεται πρόσβαση στον αποθηκευτικό χώρο για να εμφανίσει τις φωτογραφίες και τα βίντεό σου.</string>
+
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">Ο χρήστης %1$s δεν έχει ενεργοποιήσει τις πληρωμές </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -208,6 +229,38 @@
     <string name="CameraXFragment_capture_description">Λήψη</string>
     <string name="CameraXFragment_change_camera_description">Αλλαγή κάμερας</string>
     <string name="CameraXFragment_open_gallery_description">Άνοιγμα συλλογής</string>
+    <!-- Button text asking for access to camera permissions -->
+    <string name="CameraXFragment_allow_access">Να δοθεί πρόσβαση</string>
+    <!-- Dialog title asking users for camera and microphone permission -->
+    <string name="CameraXFragment_allow_access_camera_microphone">Να δοθεί πρόσβαση στην κάμερα και στο μικρόφωνο</string>
+    <!-- Dialog title asking users for camera permission -->
+    <string name="CameraXFragment_allow_access_camera">Να δοθεί πρόσβαση στην κάμερα</string>
+    <!-- Dialog title asking users for microphone permission -->
+    <string name="CameraXFragment_allow_access_microphone">Να δοθεί πρόσβαση στο μικρόφωνο</string>
+    <!-- Text explaining why Signal needs camera access in order to take photos -->
+    <string name="CameraXFragment_to_capture_photos_allow_camera">Για να τραβήξεις φωτογραφίες, δώσε στο Signal πρόσβαση στην κάμερα.</string>
+    <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
+    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">Για να τραβήξεις φωτογραφίες και βίντεο, δώσε στο Signal πρόσβαση στην κάμερα.</string>
+    <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
+    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">Για να τραβήξεις φωτογραφίες και βίντεο, δώσε στο Signal πρόσβαση στην κάμερα και στο μικρόφωνο.</string>
+    <!-- Text explaining why Signal needs microphone access to take videos -->
+    <string name="CameraXFragment_to_capture_videos_with_sound">Για να τραβήξεις βίντεο με ήχο, δώσε στο Signal πρόσβαση στο μικρόφωνο.</string>
+    <!-- Text explaining why Signal needs camera access to scan QR codes -->
+    <string name="CameraXFragment_to_scan_qr_code_allow_camera">Για να σαρώσεις έναν κωδικό QR, δώσε στο Signal πρόσβαση στην κάμερά.</string>
+    <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
+    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">Το Signal χρειάζεται πρόσβαση στην κάμερα για τη λήψη φωτογραφιών</string>
+    <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
+    <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">Το Signal χρειάζεται πρόσβαση στην κάμερα για τη σάρωση κωδικών QR</string>
+    <!-- Toast dialog explaining why Signal needs microphone permissions -->
+    <string name="CameraXFragment_signal_needs_microphone_access_video">Το Signal χρειάζεται πρόσβαση στο μικρόφωνο για τη λήψη βίντεο</string>
+    <!-- Dialog description that explains the steps needed to give camera permission -->
+    <string name="CameraXFragment_to_capture_photos">Για τη λήψη φωτογραφιών στο Signal:</string>
+    <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
+    <string name="CameraXFragment_to_capture_photos_videos">Για τη λήψη φωτογραφιών και βίντεο στο Signal:</string>
+    <!-- Dialog description that explains the steps needed to give microphone permission -->
+    <string name="CameraXFragment_to_capture_videos">Για τη λήψη βίντεο με ήχο:</string>
+    <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
+    <string name="CameraXFragment_to_scan_qr_codes">Για τη σάρωση κωδικών QR:</string>
 
     <!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">Πρόσφατες επαφές</string>
@@ -278,7 +331,8 @@
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Μήνυμα %1$s</string>
-    <string name="ContactsDatabase_signal_call_s">Κλήση Signal %1$s</string>
+    <string name="ContactsDatabase_signal_call_s">Φωνητική κλήση Signal %1$s</string>
+    <string name="ContactsDatabase_signal_video_call_s">Βιντεοκλήση Signal %1$s</string>
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
@@ -386,8 +440,16 @@
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Το αίτημά σου για να μπεις στην ομάδα στάλθηκε στον διαχειριστή/τρια της ομάδας. Θα ενημερωθείς όταν λάβει απόφαση.</string>
     <string name="ConversationActivity_cancel_request">Ακύρωση αιτήματος</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Για να στείλεις μηνύματα ήχου, δώσε στο Signal πρόσβαση στο μικρόφωνο.</string>
+    <!-- Dialog title asking users for microphone permission -->
+    <string name="ConversationActivity_allow_access_microphone">Να δοθεί πρόσβαση στο μικρόφωνο</string>
+    <!-- Dialog description that will explain the steps needed to give microphone permissions -->
+    <string name="ConversationActivity_signal_to_send_audio_messages">Για να στείλεις ηχητικά μηνύματα:</string>
+    <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Για να στείλεις φωνητικά μηνύματα, δώσε στο Signal πρόσβαση στο μικρόφωνο.</string>
+    <!-- Toast text explaining Signal\'s need for microphone access -->
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Το Signal χρειάζεται πρόσβαση στο μικρόφωνο για ηχογράφηση φωνητικού μηνύματος.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Το Signal χρειάζεται τα δικαιώματα μικροφώνου για την αποστολή μηνυμάτων ήχου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Πήγαινε στις ρυθμίσεις εφαρμογών, επίλεξε τα «Δικαιώματα», και ενεργοποίησε το «Μικρόφωνο».</string>
+
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Το Signal χρειάζεται τα δικαιώματα μικροφώνου και κάμερας για να καλέσεις τον/την %1$s, αλλά αυτά δεν έχουν δοθεί μόνιμα. Πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα «Δικαιώματα», και ενεργοποίησε το «Μικρόφωνο» και «Κάμερα».</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Για να τραβήξεις φωτογραφίες και βίντεο, δώσε στο Signal πρόσβαση στην κάμερα.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Το Signal χρειάζεται τα δικαιώματα κάμερας για τη λήψη φωτογραφίων και βίντεο, αλλά αυτά δεν έχουν δοθεί μόνιμα. Πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα «Δικαιώματα», και ενεργοποίησε την «Κάμερα».</string>
@@ -411,10 +473,17 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Θα αποχωρήσεις από αυτή την ομάδα και θα διαγραφεί από όλες τις συσκευές σου.</string>
     <string name="ConversationActivity_delete">Διαγραφή</string>
     <string name="ConversationActivity_delete_and_leave">Διαγραφή και αποχώρηση</string>
-    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Για να καλέσεις τον/την %1$s, το Signal χρειάζεται πρόσβαση στο μικρόφωνό σου.</string>
+
+    <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
+    <string name="ConversationActivity__to_start_call">Για να ξεκινήσεις μία κλήση:</string>
+    <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Για να ξεκινήσεις μια κλήση, δώσε στο Signal την πρόσβαση στο μικρόφωνο.</string>
+    <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Το Signal χρειάζεται πρόσβαση στο μικρόφωνο για να ξεκινήσει μια κλήση.</string>
 
 
     <string name="ConversationActivity_join">Μπες στην κλήση</string>
+    <!-- Button text for an active group call but the call is currently full and unjoinable -->
     <string name="ConversationActivity_full">Γεμάτο</string>
 
     <string name="ConversationActivity_error_sending_media">Σφάλμα στην αποστολή πολυμέσων</string>
@@ -480,6 +549,8 @@
     <string name="ConversationFragment_delete_for_everyone">Διαγραφή για όλους</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Διαγραφή από αυτή τη συσκευή</string>
+    <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
+    <string name="ConversationFragment_delete">Διαγραφή</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Διαγραφή από όλες τις συσκευές</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Αυτό το μήνυμα θα διαγραφεί για όλα τα άτομα στη συνομιλία, αν έχουν μια πρόσφατη έκδοση του Signal. Θα μπορούν να δουν ότι διέγραψες ένα μήνυμα.</string>
@@ -582,6 +653,11 @@
         <item quantity="one">Η επιλεγμένη συνομιλία θα διαγραφεί οριστικά.</item>
         <item quantity="other">Και οι %1$d επιλεγμένες συνομιλίες θα διαγραφούν οριστικά.</item>
     </plurals>
+    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
+        <item quantity="one">Αυτή η ενέργεια θα διαγράψει οριστικά και την επιλεγμένη συνομιλία από όλες σου τις συσκευές.</item>
+        <item quantity="other">Αυτή η ενέργεια θα διαγράψει οριστικά όλες τις %1$d επιλεγμένες συνομιλίες από όλες σου τις συσκευές.</item>
+    </plurals>
     <string name="ConversationListFragment_deleting">Γίνεται διαγραφή</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
         <item quantity="one">Διαγραφή επιλεγμένης συνομιλίας…</item>
@@ -613,6 +689,7 @@
     <string name="ConversationListFragment_unarchive">Επαναφορά</string>
     <string name="ConversationListFragment_delete">Διαγραφή</string>
     <string name="ConversationListFragment_select_all">Επιλογή όλων</string>
+    <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d επιλεγμένο</item>
         <item quantity="other">%1$d επιλεγμένα</item>
@@ -783,6 +860,61 @@
     <string name="DecryptionFailedDialog_chat_session_refreshed">Η συνομιλία ανανεώθηκε</string>
     <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Το Signal χρησιμοποιεί κρυπτογράφηση από άκρο σε άκρο και ίσως χρειάζεται να ανανεώσει τη συνέδρια της συνομιλίας σου μερικές φορές. Αυτό δεν επηρεάζει την ασφάλεια της συνομιλίας, αλλά ίσως χάσεις κάποιο μήνυμα από αυτή την επαφή, οπότε μπορείς να του/της ζητήσεις να το ξαναστείλει.</string>
 
+    <!-- LinkDeviceFragment -->
+    <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use Signal on desktop or iPad. Your messages will sync to your linked devices.</string>
+    <!-- Button prompting users to link a new device to their account -->
+    <string name="LinkDeviceFragment__link_a_new_device">Link a new device</string>
+    <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <!-- Bottom sheet title explaining how Signal works on a linked device -->
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <!-- Bottom sheet description explaining that messages on linked devices are private -->
+    <string name="LinkDeviceFragment__all_messaging_is_private">All messaging on linked devices is private</string>
+    <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked. Your previous message history will not appear.</string>
+    <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">On your other device, visit %1$s to install Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
+    <!-- Header title listing out current linked devices -->
+    <string name="LinkDeviceFragment__my_linked_devices">My linked devices</string>
+    <!-- Dialog confirmation to unlink a device -->
+    <string name="LinkDeviceFragment__unlink">Αποσύνδεση</string>
+    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">%1$s unlinked</string>
+    <!-- Progress dialog message indicating that a device is currently being linked with an account -->
+    <string name="LinkDeviceFragment__linking_device">Linking device…</string>
+    <!-- Toast message shown after a device has been linked -->
+    <string name="LinkDeviceFragment__device_approved">Device approved</string>
+    <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
+    <string name="LinkDeviceFragment__loading">Φόρτωση…</string>
+    <!-- Text message shown when the user has no linked devices -->
+    <string name="LinkDeviceFragment__no_linked_devices">No linked devices</string>
+    <!-- Title on biometrics prompt explaining what biometrics are being used for -->
+    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+
+    <!-- AddLinkDeviceFragment -->
+    <!-- Description text shown on the QR code scanner when linking a device -->
+    <string name="AddLinkDeviceFragment__scan_the_qr_code">Scan the QR code displayed on the device to link.</string>
+    <!-- Bottom sheet title telling users to scan a qr code -->
+    <string name="AddLinkDeviceFragment__scan_qr_code">Σκανάρισμα κωδικού QR</string>
+    <!-- Bottom sheet description telling users how to scan a qr code -->
+    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">Use this device to scan the QR code displayed on the device you want to link</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog -->
+    <string name="AddLinkDeviceFragment__okay">Εντάξει</string>
+    <!-- Dialog text describing the consequences of linking a device -->
+    <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">Αυτή η συσκευή θα μπορεί να βλέπει τις ομάδες και τις επαφές σου, να έχει πρόσβαση στις συνομιλίες σου και να στέλνει μηνύματα σαν να είναι εσύ.</string>
+    <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
+    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">Finish linking on your other device</string>
+    <!-- Bottom sheet description telling users to complete the linking process -->
+    <string name="AddLinkDeviceFragment__finish_linking_signal">Finish linking Signal on your other device.</string>
+    <!-- Title of dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__linking_device_failed">Αποτυχία σύνδεσης συσκευής</string>
+    <!-- Text shown in a dialog when the QR code being scanned is invalid -->
+    <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Αυτός ο κωδικός QR δεν είναι έγκυρος. Βεβαιώσου ότι σκανάρεις τον κωδικό QR που εμφανίζεται στη συσκευή που θέλεις να συνδέσεις.</string>
+    <!-- Button in dialog to retry linking a device with a qr code -->
+    <string name="AddLinkDeviceFragment__retry">Επανάληψη</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Αποσύνδεση του \'%1$s\';</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Άν αποσυνδεθεί η συσκευή, δε θα μπορεί πλέον να λάβει ή να στείλει μηνύματα.</string>
@@ -864,6 +996,7 @@
         <item quantity="one">Στάλθηκε πρόσκληση</item>
         <item quantity="other">Στάλθηκαν %1$d προσκλήσεις</item>
     </plurals>
+    <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
     <string name="GroupManagement_invite_single_user">Δεν μπορείς να προσθέσεις τον/την \"%1$s\" αυτόματα στην ομάδα.\n\nΈχει λάβει πρόσκληση, και δεν θα βλέπει τα μηνύματα της ομάδας μέχρι να την αποδεχτεί.</string>
     <string name="GroupManagement_invite_multiple_users">Δεν μπορείς να προσθέσεις αυτόματα αυτούς τους χρήστες στην ομάδα.\n\nΈχουν λάβει πρ΄σκληση, και δεν θα βλέπουν τα μηνύματα της ομάδας μέχρι να την αποδεχτούν.</string>
 
@@ -966,10 +1099,11 @@
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Συνέχεια</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">Απόρριψη</string>
+    <string name="PromptBatterySaverBottomSheet__no_thanks">No thanks</string>
+  <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string>
+    <string name="PendingMembersActivity_pending_group_invites">Αιτήματα &amp; προσκλήσεις</string>
     <string name="PendingMembersActivity_requests">Αιτήματα</string>
     <string name="PendingMembersActivity_invites">Προσκλήσεις</string>
     <string name="PendingMembersActivity_people_you_invited">Άτομα που έχεις προσκαλέσει</string>
@@ -1044,7 +1178,9 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">Επεξεργασία ονόματος και φωτογραφίας</string>
     <string name="ManageGroupActivity_legacy_group">Ομάδα παλαιού τύπου</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">Αυτή είναι ομάδα παλαιού τύπου. Δυνατότητες όπως οι διαχειριστές ομάδας είναι διαθέσιμα μόνο στις ομάδες νέου τύπου.</string>
+    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">Αυτή είναι μια ομάδα παλαιού τύπου. Για πρόσβαση σε δυνατότητες όπως οι @αναφορές και οι διαχειριστές ομάδας,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">Αυτή η ομάδα παλαιού τύπου δεν μπορεί να αναβαθμιστεί σε Ομάδα νέου τύπου επειδή είναι πολύ μεγάλη. Το μέγιστο μέγεθος της ομάδας είναι %1$d.</string>
     <string name="ManageGroupActivity_upgrade_this_group">αναβάθμισε την ομάδα.</string>
@@ -1271,6 +1407,7 @@
         <item quantity="other">Διαγραφή</item>
     </plurals>
 
+    <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="one">%1$d επιλεγμένο (%2$s)</item>
         <item quantity="other">%1$d επιλεγμένα (%2$s)</item>
@@ -1292,11 +1429,11 @@
     <string name="Megaphones_verify_your_signal_pin">Επιβεβαίωσε το PIN του Signal σου</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Θα σου ζητάμε κάθε τόσο να επιβεβαιώσεις το PIN σου, για να το θυμάσαι.</string>
     <string name="Megaphones_verify_pin">Επιβεβαίωση PIN</string>
-    <string name="Megaphones_get_started">Ξεκινήστε</string>
+    <string name="Megaphones_get_started">Ξεκίνα</string>
     <string name="Megaphones_new_group">Νέα ομάδα</string>
-    <string name="Megaphones_invite_friends">Πρόσκληση φίλων</string>
-    <string name="Megaphones_chat_colors">Χρώματα συνομιλίας</string>
-    <string name="Megaphones_add_a_profile_photo">Προσθήκη φωτογραφίας προφίλ</string>
+    <string name="Megaphones_invite_friends">Φώναξε φίλους</string>
+    <string name="Megaphones_chat_colors">Χρώμα συνομιλίας</string>
+    <string name="Megaphones_add_a_profile_photo">Βάλε φώτο προφίλ</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Απαντήσεις</string>
@@ -1335,17 +1472,13 @@
     <string name="MessageRecord_left_group">Αποχώρησες απ\' την ομάδα.</string>
     <string name="MessageRecord_you_updated_group">Ενημέρωσες την ομάδα</string>
     <string name="MessageRecord_the_group_was_updated">Η ομάδα ανανεώθηκε.</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">Εξερχόμενη κλήση</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
+    <!-- Update message shown when placing an outgoing 1:1 video call -->
     <string name="MessageRecord_outgoing_video_call">Εξερχόμενη βιντεοκλήση</string>
-    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Αναπάντητη κλήση</string>
-    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">Αναπάντητη βιντεοκλήση</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered or ringing -->
     <string name="MessageRecord_incoming_voice_call">Εισερχόμενη κλήση</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
+    <!-- Update message shown when receiving an incoming 1:1 video call and answered or ringing -->
     <string name="MessageRecord_incoming_video_call">Εισερχόμενη βιντεοκλήση</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
     <string name="MessageRecord_missed_voice_call">Αναπάντητη κλήση</string>
@@ -1355,10 +1488,6 @@
     <string name="MessageRecord_missed_voice_call_notification_profile">Αναπάντητη φωνητική κλήση ενώ είναι ενεργό το προφίλ ειδοποιήσεων</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
     <string name="MessageRecord_missed_video_call_notification_profile">Αναπάντητη βιντεοκλήση ενώ είναι ενεργό το προφίλ ειδοποιήσεων</string>
-    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">Απέρριψες μια κλήση</string>
-    <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">Απέρριψες μια βιντεοκλήση</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">Ο/Η %1$s ενημέρωσε την ομάδα.</string>
@@ -1565,30 +1694,63 @@
     <string name="MessageRecord_you_activated_payments">Ενεργοποίησες τις πληρωμές</string>
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">Ο χρήστης %1$s μπορεί να αποδεχτεί πληρωμές</string>
+    <!-- Message shown to inform user that a payment is missing details due to restore -->
+    <string name="MessageRecord_payments_restore_tombstone">Τα στοιχεία πληρωμής δεν είναι διαθέσιμα</string>
+    <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
+    <string name="MessageRecord_payments_restore_tombstone_tap_more">Πάτα για περισσότερα</string>
+    <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
+    <string name="PaymentTombstoneLearnMoreDialog_title">Τα στοιχεία πληρωμής δεν είναι διαθέσιμα</string>
+    <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
+    <string name="PaymentTombstoneLearnMoreDialog_message">Τα στοιχεία αυτής της πληρωμής δεν είναι διαθέσιμα, επειδή τα μηνύματά σου αποκαταστάθηκαν από μια πηγή που δεν περιείχε αυτό το ιστορικό πληρωμών. Αυτό δεν επηρεάζει το υπόλοιπο του πορτοφολιού σου ή την κατάσταση των προηγούμενων πληρωμών.</string>
 
     <!-- Group Calling update messages -->
-    <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">Ξεκίνησες μια ομαδική κλήση · %1$s</string>
-    <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
-    <string name="MessageRecord_you_are_in_the_group_call_s1">Είσαι στην ομαδική κλήση · %1$s</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">Οι %1$s και %2$s είναι στην ομαδική κλήση · %3$s</string>
-    <string name="MessageRecord_group_call_s">Ομαδική κλήση · %1$s</string>
-
-    <string name="MessageRecord_s_started_a_group_call">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση</string>
-    <string name="MessageRecord_you_started_a_group_call">Ξεκίνησες μια ομαδική κλήση</string>
-    <string name="MessageRecord_s_is_in_the_group_call">Ο/Η %1$s είναι στην ομαδική κλήση</string>
-    <string name="MessageRecord_you_are_in_the_group_call">Είσαι στην ομαδική κλήση</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call">Οι %1$s και %2$s είναι στην ομαδική κλήση</string>
-    <string name="MessageRecord_group_call">Ομαδική κλήση</string>
+    <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_is_in_the_call_s">Ο/Η %1$s είναι στην κλήση · %2$s</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
+    <string name="MessageRecord_you_are_in_the_call_s1">Είσαι στην κλήση · %1$s</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
+    <string name="MessageRecord_s_and_s_are_in_the_call_s1">Οι %1$s και %2$s είναι στην κλήση · %3$s</string>
+    <!-- Chat log text for an ongoing group call that has one participant -->
+    <string name="MessageRecord_s_is_in_the_call">Ο/Η %1$s είναι στην κλήση</string>
+    <!-- Chat log text for an ongoing group call only the local user has joined -->
+    <string name="MessageRecord_you_are_in_the_call">Είσαι στην κλήση</string>
+    <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
+    <string name="MessageRecord_s_and_s_are_in_the_call">Οι %1$s και %2$s είναι στην κλήση</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes -->
+    <string name="MessageRecord__the_video_call_has_ended">Η βιντεοκλήση τελείωσε</string>
+    <!-- Chat log text for a group call that ended within the last 5 minutes with a placeholder for formatted time -->
+    <string name="MessageRecord__the_video_call_has_ended_s">Η βιντεοκλήση τελείωσε · %1$s</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
+    <string name="MessageRecord__missed_video_call">Αναπάντητη βιντεοκλήση</string>
+    <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
+    <string name="MessageRecord__missed_video_call_s">Αναπάντητη βιντεοκλήση · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user did not start -->
+    <string name="MessageRecord__incoming_video_call">Εισερχόμενη βιντεοκλήση</string>
+    <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
+    <string name="MessageRecord__incoming_video_call_s">Εισερχόμενη βιντεοκλήση · %1$s</string>
+    <!-- Chat log text for a group call that ended that the local user started -->
+    <string name="MessageRecord__outgoing_video_call">Εξερχόμενη βιντεοκλήση</string>
+    <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__outgoing_video_call_s">Εξερχόμενη βιντεοκλήση · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user started -->
+    <string name="MessageRecord__you_started_a_video_call">Ξεκίνησες μια βιντεοκλήση</string>
+    <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
+    <string name="MessageRecord__you_started_a_video_call_s">Ξεκίνησες μια βιντεοκλήση · %1$s</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
+    <string name="MessageRecord__s_started_a_video_call">Ο/Η %1$s ξεκίνησε μια βιντεοκλήση</string>
+    <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
+    <string name="MessageRecord__s_started_a_video_call_s">Ο/Η %1$s ξεκίνησε μια βιντεοκλήση · %2$s</string>
 
     <string name="MessageRecord_you">Εσύ</string>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
         <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση · %4$s</item>
         <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα είναι στην ομαδική κλήση · %4$s</item>
     </plurals>
 
-    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
         <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα είναι στην ομαδική κλήση</item>
         <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα είναι στην ομαδική κλήση</item>
     </plurals>
@@ -1599,6 +1761,8 @@
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Δεν θα μπορείς πια να στείλεις μηνύματα SMS στο Signal. Προσκάλεσε τον χρήστη %1$s στο Signal για να κρατήσεις εδώ τη συνομιλία.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Πληρωμή: %1$s</string>
+    <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
+    <string name="MessageRecord__payment_tombstone">Πληρωμή</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Έγινε αναφορά ως ανεπιθύμητο</string>
     <!-- Update message shown in chat after accept a message request -->
@@ -1782,7 +1946,8 @@
     <string name="RedPhone_ringing">Χτυπάει…</string>
     <string name="RedPhone_busy">Απασχολημένος/η</string>
     <string name="RedPhone_recipient_unavailable">Μη διαθέσιμος αποδέκτης</string>
-    <string name="RedPhone_network_failed">Αποτυχία δικτύου!</string>
+    <!-- Error message shown during a call when a fatal network error occurs. -->
+    <string name="RedPhone_network_failed">Αποτυχία δικτύου! Έλεγξε τη σύνδεση στο δίκτυο και προσπάθησε ξανά.</string>
     <string name="RedPhone_number_not_registered">Ο αριθμός δεν είναι εγγεγραμμένος!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Ο αριθμός που κάλεσες δεν υποστηρίζει ασφαλή φωνή!</string>
     <string name="RedPhone_got_it">Εντάξει</string>
@@ -1848,6 +2013,26 @@
     <string name="WebRtcCallActivity__removed_from_call">Αφαιρέθηκε από την κλήση</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Κάποιος σε αφαίρεσε από την κλήση.</string>
+    <!-- Dialog title asking users for camera and microphone permission -->
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">Να δοθεί πρόσβαση στην κάμερα και στο μικρόφωνο</string>
+    <!-- Dialog title asking users for microphone permission -->
+    <string name="WebRtcCallActivity__allow_access_microphone">Να δοθεί πρόσβαση στο μικρόφωνο</string>
+    <!-- Dialog title asking users for camera permission -->
+    <string name="WebRtcCallActivity__allow_access_camera">Να δοθεί πρόσβαση στην κάμερα</string>
+    <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Για να ξεκινήσεις ή να μπεις σε μια κλήση, δώσε στο Signal πρόσβαση στην κάμερα και στο μικρόφωνό σου.</string>
+    <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
+    <string name="WebRtcCallActivity__to_start_call_microphone">Για να ξεκινήσεις ή να μπεις σε μια κλήση, δώσε στο Signal πρόσβαση στο μικρόφωνό σου.</string>
+    <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">Για να ενεργοποιήσεις το βίντεο, δώσε στο Signal πρόσβαση στην κάμερά σου.</string>
+    <!-- Toast describing why microphone permissions are needed to start or join a call -->
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Το Signal χρειάζεται τα δικαιώματα μικροφώνου για να ξεκινήσεις ή να μπεις σε μία συνομιλία.</string>
+    <!-- Toast describing why camera permissions are needed to enable a video in a call -->
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Το Signal χρειάζεται πρόσβαση στην κάμερα για ενεργοποίηση του βίντεο</string>
+    <!-- Dialog description that will explain the steps needed to give microphone permissions -->
+    <string name="WebRtcCallActivity__to_start_call">Για να ξεκινήσεις ή να μπεις σε μία κλήση:</string>
+    <!-- Dialog description that will explain the steps needed to give camera permissions -->
+    <string name="WebRtcCallActivity__to_enable_video">Για να ενεργοποιήσεις το βίντεο:</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Κλήση Signal</string>
@@ -1944,19 +2129,38 @@
     <string name="CallOverflowPopupWindow__lower_hand">Κατέβασε το χέρι σου</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Ακύρωση</string>
-    <!-- A notification to the user that they successfully raised their hand -->
-    <string name="CallOverflowPopupWindow__you_raised_your_hand">Σήκωσες το χέρι σου</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Εμφάνιση</string>
 
-    <!-- A notification to the user that one or more participants in the call successfully raised their hand. In the singular case, it is a name. In the plural case, it is a name or "You" -->
-    <plurals name="CallOverflowPopupWindow__raised_a_hand">
-        <item quantity="one">Ο χρήστης %1$s σήκωσε χέρι</item>
-        <item quantity="other">Οι χρήστες %1$s + %2$d σήκωσαν χέρι</item>
+
+    <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">Ο χρήστης %1$s σήκωσε το χέρι του</string>
+    <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
+        <item quantity="one">%1$s +%2$d raised a hand</item>
+        <item quantity="other">%1$s +%2$d raised a hand</item>
     </plurals>
 
-    <!-- A badge to show how many hands are raised. The first string may be a name or "You" -->
-    <plurals name="CallRaiseHandSnackbar_raised_hands">
+    <!-- A notification to the user that one participant in the call successfully raised their hand. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">Ο χρήστης %1$s σήκωσε το χέρι του</string>
+    <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
+        <item quantity="one">%1$s +%2$d raised a hand</item>
+        <item quantity="other">%1$s +%2$d raised a hand</item>
+    </plurals>
+
+    <!-- A badge to show the user has their hand raised. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
+    <string name="CallRaiseHandSnackbar__collapsed_second_person_raised_hand_single">%1$s</string>
+    <!-- A badge to show the user and at least one other participant in the call have their hand raised. The placeholder is a number quantifying how many other hands are also raised, besides the user.  -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_second_person_raised_hands_multiple">
+        <item quantity="one">%1$s</item>
+        <item quantity="other">%1$s +%2$d</item>
+    </plurals>
+
+    <!-- A badge to show how many hands are raised. The placeholder string is a name. -->
+    <string name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_singular">%1$s</string>
+    <!-- A badge to show how many hands are raised. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
+    <plurals name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_multiple">
         <item quantity="one">%1$s</item>
         <item quantity="other">%1$s +%2$d</item>
     </plurals>
@@ -2063,6 +2267,7 @@
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Αδυναμία αίτησης κωδικού επαλήθευσης. Έλεγξε τη σύνδεση στο δίκτυο και προσπάθησε ξανά.</string>
     <string name="RegistrationActivity_non_standard_number_format">Μη-τυπική μορφή αριθμού</string>
+    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Ο αριθμός που έγραψες (%1$s) φαίνεται να μην έχει μια τυπική μορφή.n\nΜήπως εννοούσες %2$s;</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Μορφή αριθμού τηλεφώνου</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
@@ -2098,8 +2303,8 @@
     <string name="RegistrationActivity_support_bottom_sheet_title">Αντιμετωπίζεις προβλήματα με την εγγραφή;</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Βεβαιώσου ότι το τηλέφωνό σου διαθέτει σήμα κινητής τηλεφωνίας για να λάβεις το SMS ή την κλήση σου \n • Επιβεβαίωσε ότι μπορείς να δεχτείς τηλεφωνικές κλήσεις στον αριθμό \n • Έλεγξε ότι έχεις εισαγάγει σωστά τον αριθμό τηλεφώνου σου.</string>
-    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Για περισσότερες πληροφορίες, ακολούθησε αυτά τα βήματα αντιμετώπισης προβλημάτων ή Επικοινώνησε με την Υποστήριξη</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Για περισσότερες πληροφορίες, ακολούθησε τα εξής: %1$s ή %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">αυτά τα βήματα αντιμετώπισης προβλημάτων</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
@@ -2211,10 +2416,10 @@
     <string name="SupportEmailUtil_filter">Φίλτρο:</string>
     <string name="SupportEmailUtil_device_info">Πληροφορίες συσκευής:</string>
     <string name="SupportEmailUtil_android_version">Έκδοση Android:</string>
-    <string name="SupportEmailUtil_signal_version">Έκδοση Signal:</string>
-    <string name="SupportEmailUtil_signal_package">Πακέτο Signal:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Κλείδωμα εγγραφής:</string>
-    <string name="SupportEmailUtil_locale">Τοπικές ρυθμίσεις:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Η ομάδα ενημερώθηκε</string>
@@ -2624,6 +2829,10 @@
     <string name="contact_selection_activity__refresh_contacts">Ανανέωση επαφών</string>
     <!-- Row item description for refreshing contacts -->
     <string name="contact_selection_activity__missing_someone">Λείπει κάποια επαφή; Κάνε ανανέωση</string>
+    <!-- Row item title for finding people on Signal via your contacts -->
+    <string name="contact_selection_activity__find_people_you_know">Βρες άτομα που γνωρίζεις στο Signal</string>
+    <!-- Row item description asking users for access to their contacts to find people they know -->
+    <string name="contact_selection_activity__allow_access_to_contacts">Να δοθεί πρόσβαση στις επαφές</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">Περισσότερα</string>
 
@@ -2657,6 +2866,16 @@
     <string name="ContactSelectionListFragment__find_by_phone_number">Αναζήτηση ως αριθμό τηλεφώνου</string>
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">Αναζήτηση ως όνομα χρήστη</string>
+    <!-- Dialog title asking users for contact permission -->
+    <string name="ContactSelectionListFragment_allow_access_contacts">Να δοθεί πρόσβαση στις επαφές</string>
+    <!-- Dialog description that will explain the steps needed to give contact permissions -->
+    <string name="ContactSelectionListFragment_to_find_people">Για να βρεις άτομα που γνωρίζεις στο Signal:</string>
+    <!-- Text on button prompting users to give Signal contact permissions -->
+    <string name="ContactSelectionListFragment__allow_access">Να δοθεί πρόσβαση</string>
+    <!-- Text on button to dismiss Signal\'s request for contact permissions -->
+    <string name="ContactSelectionListFragment__no_thanks">Όχι, ευχαριστώ</string>
+    <!-- Text asking for user\'s contact permission -->
+    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Να δοθεί πρόσβαση στις επαφές σου. Οι επαφές σου είναι κρυπτογραφημένες και δεν είναι ορατές στην υπηρεσία Signal.</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Το Signal χρειάζεται πρόσβαση στις επαφές σου για να μπορέσει να τις εμφανίσει.</string>
@@ -2709,6 +2928,8 @@
     <string name="ConversationUpdateItem_loading">Φορτώνει</string>
     <string name="ConversationUpdateItem_learn_more">Μάθε περισσότερα</string>
     <string name="ConversationUpdateItem_join_call">Είσοδος στην κλήση</string>
+    <!-- Action button label for starting a new call in the current conversation -->
+    <string name="ConversationUpdateItem_call_back">Επανάκληση</string>
     <string name="ConversationUpdateItem_return_to_call">Επιστροφή στην κλήση</string>
     <string name="ConversationUpdateItem_call_is_full">Η κλήση είναι γεμάτη</string>
     <string name="ConversationUpdateItem_invite_friends">Πρόσκληση φίλων</string>
@@ -2773,6 +2994,7 @@
     <string name="safety_number_change_dialog__leave_call">Αποχώρηση από την κλήση</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Τα παρακάτω άτομα ίσως επανεγκατεστησαν το Signal ή άλλαξαν συσκευή. Επιβεβαίωσε τους αριθμούς ασφαλείας με αυτά, για να διασφαλίσεις την ιδιωτικότητα.</string>
     <string name="safety_number_change_dialog__view">Εμφάνιση</string>
+    <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">Προηγουμένως επιβεβαιωμένοι</string>
 
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
@@ -3018,7 +3240,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Πληροφορίες υποστήριξης</string>
     <string name="HelpFragment__signal_android_support_request">Αίτημα υποστήριξης Signal Android</string>
-    <string name="HelpFragment__debug_log">Αρχείο εντοπισμού σφαλμάτων:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Δεν μπόρεσαν να ανέβουν τα αρχεία καταγραφής</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Παρακαλούμε να είσαι όσο γίνεται πιο περιγραφικός/ή για να μας βοηθήσεις να καταλάβουμε το πρόβλημα.</string>
     <string-array name="HelpFragment__categories_5">
@@ -3086,6 +3308,7 @@
 
     <string name="arrays__default">Προκαθορισμένη</string>
     <string name="arrays__high">Υψηλή</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">Μέγιστη</string>
 
     <!-- plurals.xml -->
@@ -3224,7 +3447,8 @@
     <string name="preferences_storage__audio">Ήχος</string>
     <string name="preferences_storage__review_storage">Ανασκόπηση χώρου</string>
     <string name="preferences_storage__delete_older_messages">Διαγραφή παλαιότερων μηνυμάτων;</string>
-    <string name="preferences_storage__clear_message_history">Εκκαθάριση του ιστορικού μηνυμάτων;</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Διαγραφή ιστορικού μηνυμάτων;</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Με αυτή την ενέργεια, θα διαγραφεί μόνιμα όλο το ιστορικό μηνυμάτων και τα πολυμέσα από τη συσκευή σου, τα οποία είναι παλαιότερα από %1$s.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -3232,8 +3456,12 @@
         <item quantity="other">Περιορίζει όλες τις συνομιλίες στα %1$s πιο πρόσφατα μηνύματα.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Με αυτή την ενέργεια, θα διαγραφεί μόνιμα όλο το ιστορικό μηνυμάτων και τα πολυμέσα από τη συσκευή σου.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Αυτό θα διαγράψει μόνιμα όλο το ιστορικό μηνυμάτων και τα πολυμέσα από τη συσκευή σου και τυχόν συνδεδεμένες συσκευές.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Θέλεις σίγουρα να διαγράψεις όλο το ιστορικό των μηνυμάτων;</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Όλο το ιστορικό των μηνυμάτων θα αφαιρεθεί μόνιμα. Δεν θα έχεις τη δυνατότητα να αναιρέσεις την ενέργεια.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Όλο το ιστορικό των μηνυμάτων θα αφαιρεθεί μόνιμα από όλες τις συσκευές. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.</string>
     <string name="preferences_storage__delete_all_now">Διαγραφή όλων τώρα</string>
     <string name="preferences_storage__forever">Για πάντα</string>
     <string name="preferences_storage__one_year">1 έτος</string>
@@ -3406,6 +3634,14 @@
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Στείλε φωτογραφίες, βίντεο και αρχεία από τη συσκευή σου.</string>
 
+    <!-- PermissionDeniedBottomSheet -->
+    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Πάτα \"Ρυθμίσεις\" παρακάτω</string>
+    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Να δοθούν δικαιώματα</string>
+    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
+    <string name="PermissionDeniedBottomSheet__settings">Ρυθμίσεις</string>
+
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
     <string name="PaymentsSecuritySetupFragment__security_setup">Ρύθμιση ασφάλειας</string>
@@ -3446,6 +3682,7 @@
     <string name="PaymentsDetailsFragment__sent_to_s">Στάλθηκε σε %1$s</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">Εσείς στις %1$s στις %2$s</string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s στις %2$s στις %3$s</string>
+    <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">Προς</string>
     <string name="PaymentsDetailsFragment__from">Από</string>
     <string name="PaymentsDetailsFragment__information">Τα στοιχεία της συναλλαγής, συμπεριλαμβανομένου του ποσού πληρωμής και του χρόνου συναλλαγής, αποτελούν μέρος του MobileCoin Ledger.</string>
@@ -3508,6 +3745,7 @@
     <string name="ConfirmPayment__confirm_payment">Επιβεβαίωση πληρωμής</string>
     <string name="ConfirmPayment__network_fee">Χρέωση δικτύου</string>
     <string name="ConfirmPayment__estimated_s">Εκτιμώμενο %1$s</string>
+    <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">Προς</string>
     <string name="ConfirmPayment__total_amount">Συνολικό ποσό</string>
     <string name="ConfirmPayment__balance_s">Υπόλοιπο: %1$s</string>
@@ -3657,6 +3895,14 @@
     <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">Συνομιλία</string>
     <string name="conversation_group_options__broadcast">Αποστολή σε όλους/ες</string>
+
+    <!-- DoubleTapEditEducationSheet -->
+    <!-- Displayed as the title of the education bottom sheet -->
+    <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Πάτα δύο φορές για επεξεργασία</string>
+    <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">Πάτα γρήγορα δύο φορές στα μηνύματά σου για να τα επεξεργαστείς. Μπορείς να επεξεργαστείς τα μηνύματά σου έως και 24 ώρες μετά την αποστολή τους.</string>
+    <!-- Button label to dismiss sheet -->
+    <string name="DoubleTapEditEducationSheet__got_it">Εντάξει</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">Νέα ομάδα</string>
@@ -3970,8 +4216,15 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Χρειάζεται να έχεις πρόσβαση στη παλιά σου συσκευή.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Επαναφορά από αντίγραφο ασφαλείας</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Επανάφερε τα μηνύματά σου από ένα τοπικό αντίγραφο ασφαλείας. Αν δεν τα επαναφέρεις τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα.</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">Restore local backup</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restore Signal backup</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Restore all your text messages + your last 30 days of media</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Περισσότερες επιλογές</string>
+
+    <string name="TransferOrRestoreFragment__cancel">Ακύρωση</string>
+    <string name="TransferOrRestoreFragment__skip_transfer">Log in without transferring</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">Continue without transferring your messages and media</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Άνοιξε το Signal στη παλιά σου συσκευή Android</string>
@@ -4112,6 +4365,7 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
 
     <string name="GroupRecipientListItem_admin">Διαχειριστής/τρια</string>
+    <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">Έγκριση</string>
     <string name="GroupRecipientListItem_deny_description">Απόρριψη</string>
 
@@ -4139,6 +4393,7 @@
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
     <string name="VoiceNoteMediaItemFactory__voice_message">Μήνυμα φωνής · %1$s</string>
+    <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s προς %2$s</string>
 
     <!-- StorageUtil -->
@@ -4152,8 +4407,16 @@
     <string name="ReviewCardDialogFragment__review_members">Ανασκόπηση μελών</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <string name="ReviewCardDialogFragment__review_request">Εξέταση αιτήματος</string>
-    <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d μέλη της ομάδας έχουν το ίδιο όνομα, εξέτασε τα παρακάτω μέλη, και διάλεξε τί ενέργεια να κάνεις.</string>
-    <string name="ReviewCardDialogFragment__if_youre_not_sure">Αν δεν είσαι σίγουρος/η από ποιόν είναι το αίτημα, εξέτασε τις παρακάτω επαφές, και κάνε κάποια ενέργεια.</string>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
+        <item quantity="one">%1$d μέλος της ομάδας έχει το ίδιο όνομα. Έλεγξε το μέλος παρακάτω ή επίλεξε ενέργεια.</item>
+        <item quantity="other">%1$d από τα μέλη της ομάδας έχουν το ίδιο όνομα. Έλεγξε τα μέλη παρακάτω ή επίλεξε ενέργεια.</item>
+    </plurals>
+    <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
+    <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
+        <item quantity="one">Αν δεν είσαι σίγουρος/η από ποιόν είναι το αίτημα, εξέτασε την παρακάτω επαφή, και κάνε κάποια ενέργεια.</item>
+        <item quantity="other">Αν δεν είσαι σίγουρος/η από ποιόν είναι το αίτημα, εξέτασε τις παρακάτω επαφές, και κάνε κάποια ενέργεια.</item>
+    </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Καμμία άλλη κοινή ομάδα</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Καμμία κοινή ομάδα.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -4184,11 +4447,20 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">Ο/Η %1$s μπήκε</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">Οι %1$s και %2$s μπήκαν</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">Οι %1$s, %2$s και %3$s μπήκαν</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">Οι %1$s, %2$s και %3$d ακόμα μπήκαν</string>
+    <!-- Toast message shown in group call when 3 or more people join -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
+        <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα μπήκαν στην κλήση</item>
+        <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα μπήκαν στην κλήση</item>
+    </plurals>
+    <!-- Toast/popup text shown when someone leaves a group call -->
     <string name="CallParticipantsListUpdatePopupWindow__s_left">Ο/Η %1$s έφυγε</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">Οι %1$s και %2$s έφυγαν</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">Οι %1$s, %2$s και %3$s έφυγαν</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Οι %1$s, %2$s και %3$d ακόμα έφυγαν</string>
+    <!-- Toast message shown in group call when 3 or more people leave -->
+    <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
+        <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα έφυγαν από την κλήση</item>
+        <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα έφυγαν από την κλήση</item>
+    </plurals>
 
     <string name="CallParticipant__you">Εσύ</string>
     <string name="CallParticipant__you_on_another_device">Εσύ (από άλλη συσκευή)</string>
@@ -4558,10 +4830,15 @@
 
     <!-- PrivacySettingsFragment -->
     <string name="PrivacySettingsFragment__blocked">Λίστα αποκλεισμού</string>
-    <string name="PrivacySettingsFragment__d_contacts">%1$d επαφές</string>
+    <!-- Settings label that shows the number blocked contacts -->
+    <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one">%1$d επαφή</item>
+        <item quantity="other">%1$d επαφές</item>
+    </plurals>
     <string name="PrivacySettingsFragment__messaging">Συνομιλίες</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Μηνύματα που εξαφανίζονται</string>
     <string name="PrivacySettingsFragment__app_security">Ασφάλεια εφαρμογής</string>
+    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Να μην επιτρέπονται τα στιγμιότυπα οθόνης (screenshots) στη λίστα με τα πρόσφατα και μέσα στην εφαρμογή</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Κλήσεις και μηνύματα Signal, κλήσεις που πάντα αναμεταδίδονται, και προστατευμένος αποστολέας</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Προκαθορισμένο χρονόμετρο για νέες συνομιλίες</string>
@@ -4618,12 +4895,15 @@
     <string name="DataAndStorageSettingsFragment__media_quality">Ποιότητα πολυμέσων</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Ποιότητα απεσταλμένων πολυμέσων</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Η αποστολή πολυμέσων υψηλής ποιότητας θα καταναλώνει περισσότερα δεδομένα.</string>
+    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">Υψηλή</string>
+    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Κανονική</string>
     <string name="DataAndStorageSettingsFragment__calls">Κλήσεις</string>
 
     <!-- ChatColorSelectionFragment -->
-    <string name="ChatColorSelectionFragment__auto">Αυτόματο</string>
+    <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
+    <string name="ChatColorSelectionFragment__auto">Αυτ.</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Χρήση προσαρμοσένων χρωμάτων</string>
     <string name="ChatColorSelectionFragment__chat_color">Χρώμα συνομιλίας</string>
     <string name="ChatColorSelectionFragment__edit">Eπεξεργασία</string>
@@ -4834,6 +5114,7 @@
     <string name="AvatarPickerFragment__take_a_picture">Λήψη φωτογραφίας</string>
     <string name="AvatarPickerFragment__choose_a_photo">Επιλογή φωτογραφίας</string>
     <string name="AvatarPickerFragment__photo">Φωτογραφία</string>
+    <!-- Button label during avatar selection/creation that when tapped lets you generate an avatar from typed in text. -->
     <string name="AvatarPickerFragment__text">Κείμενο</string>
     <string name="AvatarPickerFragment__save">Αποθήκευση</string>
     <string name="AvatarPickerFragment__clear_avatar">Εκκαθάριση εικόνας προφίλ</string>
@@ -4847,9 +5128,6 @@
 
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">Επιλογή χρώματος</string>
-
-    <!-- ContactSelectionListItem -->
-    <string name="ContactSelectionListItem__sms">SMS</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Μοιράσου</string>
@@ -4884,7 +5162,8 @@
     </plurals>
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Μόνο οι διαχειριστές μπορούν να στέλνουν μηνύματα σε αυτή την ομάδα.</string>
-    <string name="MultiselectForwardFragment__limit_reached">Το όριο ξεπεράστηκε</string>
+    <!-- Error message shown when users try to choose more than 5 chats to send a message to -->
+    <string name="MultiselectForwardFragment__you_cant_select_more_chats">You can\'t select more than 5 chats</string>
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
@@ -4894,7 +5173,7 @@
     <string name="MediaReviewFragment__add_a_message">Προσθήκη μηνύματος</string>
     <string name="MediaReviewFragment__add_a_reply">Προσθήκη απάντησης</string>
     <string name="MediaReviewFragment__send_to">Αποστολή σε</string>
-    <string name="MediaReviewFragment__view_once_message">Μήνυμα μιας μόνο προβολής</string>
+    <string name="MediaReviewFragment__view_once_message">Πολυμέσα μιας μόνο προβολής</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ένα ή περισσότερα αντικείμενα ήταν πολύ μεγάλα</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Ένα ή περισσότερα αντικείμενα δεν ήταν έγκυρα</string>
     <string name="MediaReviewFragment__too_many_items_selected">Επιλέχθηκαν πάρα πολλά αντικείμενα</string>
@@ -5487,7 +5766,7 @@
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">Εσύ</string>
-    <!-- Displayed when viewing a post displayed to a group -->
+    <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$s έως %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Απάντηση</string>
@@ -5515,8 +5794,10 @@
     <string name="StoryGroupReplyFragment__no_replies_yet">Καμία απάντηση ακόμα</string>
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Δεν μπορείς να απαντήσεις σε αυτήν την ιστορία γιατί δεν είσαι πια μέλος της ομάδας.</string>
-    <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Αντέδρασε στην ιστορία</string>
+    <!-- Displayed for when you reacted to a story when viewing replies -->
+    <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">Αντέδρασες στην ιστορία</string>
+    <!-- Displayed for other users that reacted to a story when viewing replies -->
+    <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Αντέδρασε στην ιστορία</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Προβολές</string>
     <!-- Label for story replies tab -->
@@ -6680,7 +6961,7 @@
     <!-- Title displayed at the top of the screen -->
     <string name="NicknameActivity__nickname">Ψευδώνυμο</string>
     <!-- Subtitle displayed under title -->
-    <string name="NicknameActivity__nicknames_amp_notes">Nicknames &amp; notes are stored with Signal and end-to-end encrypted. They are only visible to you.</string>
+    <string name="NicknameActivity__nicknames_amp_notes">Τα ψευδώνυμα και οι σημειώσεις αποθηκεύονται χρησιμοποιώντας την υπηρεσία κρυπτογραφημένης αποθήκευσης από άκρο σε άκρο του Signal. Είναι ορατά μόνο σε εσένα.</string>
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">Όνομα</string>
     <!-- Content description for first name clear button -->
@@ -6694,15 +6975,154 @@
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Αποθήκευση</string>
     <!-- Dialog title for note and name deletion -->
-    <string name="NicknameActivity__delete_nickname">Delete?</string>
+    <string name="NicknameActivity__delete_nickname">Διαγραφή;</string>
     <!-- Dialog message for note and name deletion -->
-    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">This will permanently delete any nickname and note you’ve set.</string>
+    <string name="NicknameActivity__this_will_permanently_delete_this_nickname_and_note">Αυτή η επιλογή θα διαγράψει οριστικά οποιοδήποτε ψευδώνυμο και σημείωση έχεις ορίσει.</string>
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
     <string name="ViewNoteSheet__note">Σημείωση</string>
     <!-- Content description for opening the note editor -->
     <string name="ViewNoteSheet__edit_note">Επεξεργασία σημείωσης</string>
+
+    <!-- BackupProgressService -->
+    <!-- Notification title shown while backup restore job is running -->
+    <string name="BackupProgressService_title">Επαναφορά αντίγραφου ασφαλείας…</string>
+    <!-- Notification title shown while downloading backup restore data -->
+    <string name="BackupProgressService_title_downloading">Λήψη δεδομένων αντιγράφου ασφαλείας…</string>
+
+    <!-- BackupAlertBottomSheet -->
+    <!-- Sheet title when user does not have enough space to download their backup -->
+    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <!-- Clickable text to learn more about the content of this bottom sheet -->
+    <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
+    <!-- Secondary action button text when user does not have enough free space to download their backup. -->
+    <string name="BackupAlertBottomSheet__skip">Skip</string>
+
+    <!-- BackupStatus -->
+    <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+
+    <!-- BackupsTypeSettingsFragment -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Πιστωτική ή χρεωστική κάρτα</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__bank_transfer">Τραπεζική μεταφορά</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__unknown">Άγνωστο</string>
+    <!-- Row title for entering payment history -->
+    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">Your last backup was made on %1$s at %2$s.</string>
+
+    <!-- ManageStorageSettingsFragment -->
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Όρια συνομιλίας</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Διαγραφή ιστορικού μηνυμάτων</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Τα μηνύματα που είναι παλαιότερα από τον επιλεγμένο χρόνο θα διαγραφούν οριστικά.</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Τα μηνύματα που υπερβαίνουν το επιλεγμένο μέγεθος θα διαγραφούν οριστικά.</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Εφαρμογή ορίων σε συνδεδεμένες συσκευές</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Όταν η επιλογή είναι ενεργοποιημένη, τα όρια συνομιλίας θα διαγράφουν επίσης μηνύματα από τις συνδεδεμένες συσκευές σου.</string>
+
+    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
+    <string name="DeleteSyncEducation_title">Η διαγραφή έχει συγχρονιστεί με όλες τις συσκευές σου</string>
+    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
+    <string name="DeleteSyncEducation_message">When you delete messages or chats, they will be deleted from your phone and linked devices.</string>
+    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
+    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
+
+    <!-- RemoteBackupsPaymentHistoryFragment -->
+    <!-- Title of the screen for payment history -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Payment history</string>
+    <!-- Description for backup rows -->
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <!-- Title of the screen for payment details -->
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Payment details</string>
+    <!-- Title of row specifying the type of backup -->
+    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Backup type</string>
+    <!-- Title of row specifying the date the backup was paid on -->
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date paid</string>
+    <!-- Button label to share the receipt -->
+    <string name="RemoteBackupsPaymentHistoryFragment__share">Share</string>
+
+    <!-- RemoteBackupsSettingsFragment -->
+    <!-- Displayed on the title bar -->
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Backups</string>
+    <!-- Row label to launch payment history screen -->
+    <string name="RemoteBackupsSettingsFragment__payment_history">Payment history</string>
+    <!-- Section header for backup information -->
+    <string name="RemoteBackupsSettingsFragment__backup_details">Backup details</string>
+    <!-- Row label for backup size -->
+    <string name="RemoteBackupsSettingsFragment__backup_size">Backup size</string>
+    <!-- Row label for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency">Backup frequency</string>
+    <!-- Toggle row label for allowing backups to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Back up using cellular</string>
+    <!-- Row label for cancelling and deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Turn off and delete backup</string>
+    <!-- Snackbar text displayed when backup has been deleted and turned off -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Backup deleted and turned off.</string>
+    <!-- Snackbar text displayed when backup type is downgraded -->
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Backup type changed and subscription cancelled</string>
+    <!-- Snackbar text displayed when backup subscription is cancelled -->
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Η συνδρομή ακυρώθηκε</string>
+    <!-- Snackbar text displayed when backup is successfully downloaded -->
+    <string name="RemoteBackupsSettingsFragment__download_complete">Download complete</string>
+    <!-- Title text in row detailing selected backup type -->
+    <string name="RemoteBackupsSettingsFragment__backup_type">Backup type</string>
+    <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
+    <string name="RemoteBackupsSettingsFragment__backups_disabled">Backups disabled</string>
+    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/month</string>
+    <!-- Button label to enable backups -->
+    <string name="RemoteBackupsSettingsFragment__enable_backups">Ενεργοποίηση αντίγραφων ασφαλείας</string>
+    <!-- Progress indicator subtext displayed when a backup is in progress -->
+    <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
+    <!-- Title text in row detailing last backup -->
+    <string name="RemoteBackupsSettingsFragment__last_backup">Last backup</string>
+    <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
+    <string name="RemoteBackupsSettingsFragment__s_at_s">%1$s στις %2$s</string>
+    <!-- Subtext describing when a backup has never taken place. -->
+    <string name="RemoteBackupsSettingsFragment__never">Ποτέ</string>
+    <!-- Button label to perform a backup immediately -->
+    <string name="RemoteBackupsSettingsFragment__back_up_now">Δημιουργία αντίγραφου τώρα</string>
+    <!-- Dialog title when confirming whether to turn off and deleting backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Turn off and delete backups?</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">You will not be charged again. Your backup will be deleted and no new backups will be created.</string>
+    <!-- Confirmation action on dialog to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Απενεργοποίηση και διαγραφή</string>
+    <!-- Text on dialog while user backup is being deleted -->
+    <string name="RemoteBackupsSettingsFragment__deleting_backup">Deleting backup…</string>
+    <!-- Text on dialog when user backup is deleted -->
+    <string name="RemoteBackupsSettingsFragment__backup_deleted">Backup deleted</string>
+    <!-- Subtitle for frequency option MANUAL for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"By tapping Back up now"</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__daily">Daily</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__weekly">Weekly</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__monthly">Μηνιαία</string>
+    <!-- Title for frequency option DAILY for backup frequency -->
+    <string name="RemoteBackupsSettingsFragment__manually_back_up">Manually back up</string>
 
     <!-- EOF -->
 </resources>

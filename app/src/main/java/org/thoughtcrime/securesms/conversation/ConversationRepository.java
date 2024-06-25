@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -41,7 +41,7 @@ public class ConversationRepository {
   private final Context  context;
 
   public ConversationRepository() {
-    this.context = ApplicationDependencies.getApplication();
+    this.context = AppDependencies.getApplication();
   }
 
   @WorkerThread

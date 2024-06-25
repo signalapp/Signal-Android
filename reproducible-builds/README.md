@@ -1,262 +1,244 @@
 # Reproducible Builds
 
+Signal has supported reproducible builds since Signal Android version 3.15.0, which was first released in March 2016. This process lets you verify that the version of the app that was downloaded from the Play Store matches the source code in our public repository.
 
-## TL;DR
+This is achieved by replicating the build environment as a Docker image. You'll need to build the Docker image, run an instance of that container, compile Signal inside the container, and finally compare the compiled app bundle to the APKs that are installed on your device.
 
-```bash
-# Clone the Signal Android source repository
-git clone https://github.com/signalapp/Signal-Android.git && cd Signal-Android
+The command-line instructions in this guide are written for Linux, but you can adapt them to run on macOS and Windows with some small modifications.
 
-# Check out the release tag for the version you'd like to compare
-git checkout v[the version number]
+In the following sections, we will use Signal version `7.7.0` as the reference example. Simply replace all occurrences of `7.7.0` with the version number you are about to verify.
 
-# Build the Docker image
-cd reproducible-builds
-docker build -t signal-android .
+## Overview of the process
+Completing the reproducible build process verifies that the code in our public repository is exactly the same code that's running on your device.
 
-# Go back up to the root of the project
-cd ..
+Signal is built using [app bundles](https://developer.android.com/guide/app-bundle), which means that the Play Store builds a set of APKs that only include the resources that are needed for your specific device. This adds a couple of extra steps, but overall the process is still relatively straightforward:
 
-# Build using the Docker environment
-docker run --rm -v $(pwd):/project -w /project signal-android ./gradlew clean assemblePlayProdRelease
+1. Check out the source code for the version of Signal you're running.
+1. Build the source to generate an app bundle.
+1. Use [bundletool](https://github.com/google/bundletool/releases) to generate the set of APKs that the Play Store should have installed on your device.
+1. Pull the Signal APKs that are installed on your device.
+1. Use our `apkdiff.py` script to compare the two sets of APKs to make sure they match.
 
-# Verify the APKs
-python3 apkdiff/apkdiff.py app/build/outputs/apks/project-release-unsigned.apk path/to/SignalFromPlay.apk
-```
+> Note: If you're using the APK from our website instead, please read all of the instructions to understand the process, and then read [this section](#verifying-the-website-apk) that includes additional information and specific instructions for the website build.
 
-***
+With that in mind, let's begin!
 
 
-## Introduction
+## Step-by-step instructions
 
-Since version 3.15.0 Signal for Android has supported reproducible builds. The instructions were then updated for version 5.0.0. This is achieved by replicating the build environment as a Docker image. You'll need to build the image, run a container instance of it, compile Signal inside the container and finally compare the resulted APK to the APK that is distributed in the Google Play Store.
+### 0. Prerequisites
+Before you begin, ensure you have the following installed:
+- `git`
+- `docker`
+- `python` (version 3.x)
+- `adb` ([link](https://developer.android.com/tools/adb))
+- `bundletool` ([link](https://github.com/google/bundletool/releases))
 
-The command line parts in this guide are written for Linux but with some little modifications you can adapt them to macOS (OS X) and Windows. In the following sections we will use `3.15.2` as an example Signal version. You'll just need to replace all occurrences of `3.15.2` with the version number you are about to verify.
+You will also need to have Developer Options and USB Debugging enabled on your Android device. You can find instructions to do so [here](https://developer.android.com/studio/debug/dev-options). After the prerequisites are installed and the dev options are enabled, you can connect your Android device to your computer and run the `adb devices` command in your terminal. If everything has been set up correctly, your Android device will show up in the list.
 
-
-## Setting up directories
-
-First let's create a new directory for this whole reproducible builds project. In your home folder (`~`), create a new directory called `reproducible-signal`.
+### 1. Setting up directories
+First, let's create a new directory for our reproducible builds. In your home directory (`~`), create a new directory called `reproducible-signal`:
 
 ```bash
 mkdir ~/reproducible-signal
 ```
 
-Next create another directory inside `reproducible-signal` called `apk-from-google-play-store`.
+Next, we'll create two directories inside the `reproducible-signal` directory where we'll store all of the APKs that we're going to compare:
 
 ```bash
-mkdir ~/reproducible-signal/apk-from-google-play-store
+mkdir ~/reproducible-signal/apks-from-device
+mkdir ~/reproducible-signal/apks-i-built
 ```
 
-We will use this directory to share APKs between the host OS and the Docker container.
+Now we're ready to build our own copy of Signal.
 
+### 2. Building Signal
 
-## Getting the Google Play Store version of Signal APK
+First, find the version of Signal that is running on your device by going to `Settings > Help` in the Signal app. You should see a 'Version' field like `7.7.0`.
 
-To compare the APKs we of course need a version of Signal from the Google Play Store.
-
-First make sure that the Signal version you want to verify is installed on your Android device. You'll need `adb` for this part.
-
-Plug your device to your computer and run this command to pull the APK from the device:
+Next, use `git` to clone that specific version. The tag consists of the version name prefixed with a `v` (e.g. `v7.7.0`):
 
 ```bash
-adb pull $(adb shell pm path org.thoughtcrime.securesms | grep /base.apk | awk -F':' '{print $2}') ~/reproducible-signal/apk-from-google-play-store/Signal-$(adb shell dumpsys package org.thoughtcrime.securesms | grep versionName | awk -F'=' '{print $2}').apk
+git clone --depth 1 --branch v7.7.0 https://github.com/signalapp/Signal-Android.git
 ```
 
-This will pull a file into `~/reproducible-signal/apk-from-google-play-store/` with the name `Signal-<version>.apk`
+You can also download an archive of the source code for a specific tag [here](https://github.com/signalapp/Signal-Android/tags).
 
-Alternatively, you can do this step-by-step:
+Now we can switch to the `reproducible-builds` directory in the Signal repo we just cloned and build the Docker image that we'll use to build Signal in a reproducible manner. Building the Docker image might take a while depending on your network connection.
+
+> Note: Although the names may look similar at first, the `reproducible-builds` directory in the Signal git repository that is specified below is different than the `reproducible-signal` directory that we created in step 1 to store the APKs.
 
 ```bash
-adb shell pm path org.thoughtcrime.securesms
-```
+# Move into the right directory
+cd Signal-Android/reproducible-builds
 
-This will output something like:
-
-```bash
-package:/data/app/org.thoughtcrime.securesms-aWRzcGlzcG9wZA==/base.apk
-```
-
-The output will tell you where the Signal APK is located in your device. (In this example the path is `/data/app/org.thoughtcrime.securesms-aWRzcGlzcG9wZA==/base.apk`)
-
-Now using this information, pull the APK from your device to the `reproducible-signal/apk-from-google-play-store` directory you created before:
-
-```bash
-adb pull \
-  /data/app/org.thoughtcrime.securesms-aWRzcGlzcG9wZA==/base.apk \
-  ~/reproducible-signal/apk-from-google-play-store/Signal-3.15.2.apk
-```
-
-We will use this APK in the final part when we compare it with the self-built APK from GitHub.
-
-## Identifying the ABI
-
-Since v4.37.0, the APKs have been split by ABI, the CPU architecture of the target device. Google Play will serve the correct one to you for your device.
-
-To identify which ABIs the google play APK supports, we can look inside the APK, which is just a zip file:
-
-```bash
-unzip -l ~/reproducible-signal/apk-from-google-play-store/Signal-*.apk | grep lib/
-```
-
-Example:
-
-```
-  1214348  00-00-1980 00:00   lib/armeabi-v7a/libconscrypt_jni.so
-   151980  00-00-1980 00:00   lib/armeabi-v7a/libcurve25519.so
-  4164320  00-00-1980 00:00   lib/armeabi-v7a/libjingle_peerconnection_so.so
-    13948  00-00-1980 00:00   lib/armeabi-v7a/libnative-utils.so
-  2357812  00-00-1980 00:00   lib/armeabi-v7a/libsqlcipher.so
-```
-
-As there is just one sub directory of `lib/` called `armeabi-v7a`, that is your ABI. Make a note of that for later. If you see more than one subdirectory of `lib/`:
-
-```
-  1214348  00-00-1980 00:00   lib/armeabi-v7a/libconscrypt_jni.so
-   151980  00-00-1980 00:00   lib/armeabi-v7a/libcurve25519.so
-  4164320  00-00-1980 00:00   lib/armeabi-v7a/libjingle_peerconnection_so.so
-    13948  00-00-1980 00:00   lib/armeabi-v7a/libnative-utils.so
-  2357812  00-00-1980 00:00   lib/armeabi-v7a/libsqlcipher.so
-  2111376  00-00-1980 00:00   lib/x86/libconscrypt_jni.so
-   201056  00-00-1980 00:00   lib/x86/libcurve25519.so
-  7303888  00-00-1980 00:00   lib/x86/libjingle_peerconnection_so.so
-     5596  00-00-1980 00:00   lib/x86/libnative-utils.so
-  3977636  00-00-1980 00:00   lib/x86/libsqlcipher.so
-```
-
-Then that means you have the `universal` APK.
-
-## Installing Docker
-
-Install Docker by following the instructions for your platform at https://docs.docker.com/engine/installation/
-
-Your platform might also have its own preferred way of installing Docker. E.g. Ubuntu has its own Docker package (`docker.io`) if you do not want to follow Docker's instructions.
-
-In the following sections we will assume that your Docker installation works without issues. So after installing, please make sure that everything is running smoothly before continuing.
-
-### Configuring Docker runtime memory
-
-Docker seems to require at least 5GB runtime memory to be able to build the APK successfully. Docker behaves differently on each platform - please consult Docker documentation for the platform of choice to configure the runtime memory settings.
-
- * https://docs.docker.com/config/containers/resource_constraints/
- * OS X https://docs.docker.com/docker-for-mac/#resources
- * Windows https://docs.docker.com/docker-for-windows/#resources
-
-## Building a Docker image for Signal
-First, you need to pull down the source for Signal-Android, which contains everything you need to build the project, including the `Dockerfile`. The `Dockerfile` contains instructions on how to automatically build a Docker image for Signal. It's located in the `reproducible-builds` directory of the repository. To get it, clone the project:
-
-```
-git clone https://github.com/signalapp/Signal-Android.git signal-source
-```
-
-Then, checkout the specific version you're trying to build:
-
-```
-git checkout --quiet v5.0.0
-```
-
-Then, to build it, go into the `reproducible-builds` directory:
-
-```
-cd ~/reproducible-signal/signal-source/reproducible-builds
-```
-
-...and run the docker build command:
-
-```
+# Build the Docker image
 docker build -t signal-android .
 ```
 
-(Note that there is a dot at the end of that command!)
-
-Wait a few years for the build to finish... :construction_worker:
-
-(Depending on your computer and network connection, this may take several minutes.)
-
-:calendar: :sleeping:
-
-After the build has finished, you may wish to list all your Docker images to see that it's really there:
-
-```
-docker images
-```
-
-Output should look something like this:
-
-```
-REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-signal-android      latest              c6b84450b896        46 seconds ago      2.94 GB
-```
-
-
-## Compiling Signal inside a container
-
-Next we compile Signal.
-
-First go to the directory where the source code is: `reproducible-signal/signal-source`:
-
-```
-cd ~/reproducible-signal/signal-source
-```
-
-To build with the docker image you just built (`signal-android`), run:
-
-```
-docker run --rm -v $(pwd):/project -w /project signal-android ./gradlew clean assemblePlayProdRelease
-```
-
-This will take a few minutes :sleeping:
-
-
-### Checking if the APKs match
-
-So now we can compare the APKs using the `apkdiff.py` tool.
-
-The above build step produced several APKs, one for each supported ABI and one universal one. You will need to determine the correct APK to compare.
-
-Currently, the most common ABI is `armeabi-v7a`. Other options at this time include `x86` and `universal`. In the future it will also include 64-bit options, such as `x86_64` and `arm64-v8a`.
-
-See [Identifying the ABI](#identifying-the-abi) above if you don't know the ABI of your play store APK.
-
-Once you have determined the ABI, add an `abi` environment variable. For example, suppose we determine that `armeabi-v7a` is the ABI google play has served:
+Now we are ready to start building the Signal Android app bundle. The following commands will invoke the `bundlePlayProdRelease` Gradle task in a container that uses the Docker image we just built. Again, this may take a while depending on your network connection and CPU.
 
 ```bash
-export abi=armeabi-v7a
+# Move back to the root of the repository
+cd ..
+
+# Build the app
+docker run --rm -v "$(pwd)":/project -w /project --user "$(id -u):$(id -g)" signal-android ./gradlew bundlePlayProdRelease
 ```
 
-And run the diff script to compare (updating the filenames for your specific version):
+After that's done, you have your app bundle! It's located in `app/build/outputs/bundle/playProdRelease`. Let's copy it into the directory we set up in the first step:
 
 ```bash
-python3 reproducible-builds/apkdiff/apkdiff.py \
-        app/build/outputs/apk/playProd/release/*play-prod-$abi-release-unsigned*.apk \
-        ../apk-from-google-play-store/Signal-5.0.0.apk
+cp app/build/outputs/bundle/playProdRelease/Signal-Android-play-prod-release.aab ~/reproducible-signal/apks-i-built/bundle.aab
 ```
 
-Output:
+Now let's switch from the git repo and use `bundletool` to generate the set of APKs that should be installed on your device.
+
+While your Android device is connected to your computer, run the following command to generate the APKs for that device:
+
+```bash
+# Move to the directory where we copied the app bundle
+cd ~/reproducible-signal/apks-i-built
+
+# Generate a set of APKs in an output directory
+bundletool build-apks --bundle=bundle.aab --output-format=DIRECTORY --output=apks --connected-device
+```
+
+Afterwards, your project directory should now look something like this:
 
 ```
-APKs match!
+reproducible-signal
+|_apks-from-device
+|_apks-i-built
+  |_bundle.aab
+  |_apks
+    |_toc.pb
+    |_splits
+      |_base-master.apk
+      |_base-arm64-v8a.apk
+      |_base-xxhdpi.apk
 ```
 
-If you get `APKs match!`, you have successfully verified that the Google Play release matches with your own self-built version of Signal. Congratulations! Your APKs are a match made in heaven! :sparkles:
+> Note: The filenames in the example above that include `arm64-v8` and `xxhdpi` may be different depending on your device. This is because the APKs contain code that's specific to your device's CPU architecture and screen density, and the files are named accordingly.
 
-If you get `APKs don't match!`, you did something wrong in the previous steps. See the [Troubleshooting section](#troubleshooting) for more info.
+At this point, we recommend cleaning things up a bit and deleting the stuff you no longer need. The remaining instructions will assume you have a directory structure and file layout that looks like this:
 
+```
+reproducible-signal
+|_apks-from-device
+|_apks-i-built
+  |_base-master.apk
+  |_base-arm64-v8a.apk
+  |_base-xxhdpi.apk
+```
 
-## Comparing next time
+Now that we have fresh APKs that were built from Signal's source code, let's retrieve the APKs that are installed on your device and compare them!
 
-If the build environment (i.e. `Dockerfile`) has not changed, you don't need to build the image again to verify a newer APK. You can just [run the container again](#compiling-signal-inside-a-container).
+### 3. Pulling the APKs from your device
 
+Compared to the previous steps, this one is pretty easy. With your Android device connected to your computer, run the following commands to pull all of Signal's APKs and store them in the `apks-from-device` directory:
+
+```bash
+# Move to the right directory
+cd ~/reproducible-signal
+
+# Pull the APKs from the device
+adb shell pm path org.thoughtcrime.securesms | sed 's/package://' | xargs -I{} adb pull {} apks-from-device/
+```
+
+If everything went well, your directory structure should now look something like this:
+
+```
+reproducible-signal
+|_apks-from-device
+  |_base.apk
+  |_split_config.arm64-v8a.apk
+  |_split_config.xxhdpi.apk
+|_apks-i-built
+  |_base-master.apk
+  |_base-arm64-v8a.apk
+  |_base-xxhdpi.apk
+```
+
+(Once again, please note that the `arm64-v8a` and `xxhdpi` filenames may be different based on the device you are using.)
+
+You'll notice that the names of the APKs in each directory are very similar, but they aren't exactly the same. This is because `bundletool` and Android have slightly different naming conventions. However, it should still be clear which APKs will pair up with each other for comparison purposes.
+
+### 4. Checking if the APKs match
+
+Finally, it's time for the moment of truth! Let's compare the APKs that were pulled from your device with the APKs that were compiled from the Signal source code. The [`apkdiff.py`](./apkdiff/apkdiff.py) utility that is provided in the Signal repo makes this step easy.
+
+The code for the `apkdiff.py` script is short and easy to examine, and it simply extracts the zipped APKs and automates the comparison process. Using this script to check the APKs is helpful because APKs are compressed archives that can't easily be compared with a tool like `diff`. The script also knows how to skip files that are unrelated to any of the app's code or functionality (like signing information).
+
+Let's copy the script to our working directory and ensure that it's executable:
+
+```bash
+cp ~/Signal-Android/reproducible-builds/apkdiff/apkdiff.py ~/reproducible-signal
+
+chmod +x ~/reproducible-signal/apkdiff.py
+```
+
+The script expects two APK filenames as arguments. In order to verify all of the APKs, simply run the script for each pair of APKs as follows. Be sure to update the filenames for your specific device (e.g. replacing `arm64-v8a` or `xxhdpi` if necessary):
+
+```bash
+./apkdiff.py apks-i-built/base-master.apk    apks-from-device/base.apk
+./apkdiff.py apks-i-built/base-arm64-v8a.apk apks-from-device/split_config.arm64-v8a.apk
+./apkdiff.py apks-i-built/base-xxhdpi.apk    apks-from-device/split_config.xxhdpi.apk
+```
+
+If each step says `APKs match!`, you're good to go! You've successfully verified that your device is running exactly the same code that is in the Signal Android git repository.
+
+If you get `APKs don't match!`, it means something went wrong. Please see the [Troubleshooting section](#troubleshooting) for more information.
+
+## Verifying the website APK
+
+For people without access to the Play Store, we provide a version of our app via [our website](https://signal.org/android/apk/). Unlike our Play Store build, the website APK is a larger "universal" APK so that it's easy to install on a wide variety of devices.
+
+This actually ends up making things a bit easier because you will only have one pair of APKs to compare. The only other difference is the Gradle command to build the release has a different argument (`assembleWebsiteProdRelease` instead of `bundlePlayProdRelease`):
+
+```bash
+# Make website build (output to app/build/outputs/apk/websiteProdRelease)
+docker run --rm -v "$(pwd)":/project -w /project --user "$(id -u):$(id -g)" signal-android ./gradlew assembleWebsiteProdRelease
+```
+
+Otherwise, all of the steps above will still apply, and you will only need to compare the APK you downloaded from the website (or pulled from your device) with the one you built above.
 
 ## Troubleshooting
 
-If you cannot get things to work, please do not open an issue or comment on an existing issue at GitHub. Instead, ask for help at https://community.signalusers.org/c/development
+If you're able to successfully build and retrieve all of the APKs yet some of them are failing to verify, please check the following:
 
-Some common issues why things may not work:
-- the Android packages in the Docker image are outdated and compiling Signal fails
-- you built the Docker image with a wrong version of the `Dockerfile`
-- you didn't checkout the correct Signal version tag with Git before compiling
-- the ABI you selected is not the correct ABI, particularly if you see an error along the lines of `Sorted manifests don't match, lib/x86/libcurve25519.so vs lib/armeabi-v7a/libcurve25519.so`.
-- this guide is outdated
-- you are in a dream
-- if you run into this issue: https://issuetracker.google.com/issues/110237303 try to add `resources.arsc` to the list of ignored files and compare again
+- Are you sure you're building the exact same version? Make sure you pulled the git tag that corresponds exactly with the version of Signal you have installed on your device.
+- Are you comparing the right APKs? Multiple APKs are present with app bundles, so make sure you're comparing base-to-base, density-to-density, and ABI-to-ABI. The wrong filename in the wrong place will cause the `apkdiff.py` script to report a mismatch.
+- Are you using the latest version of the Docker image? The Dockerfile can change on a version-by-version basis, and you should be re-building the image each time to make sure it hasn't changed.
+
+We have a daily automated task that tests the reproducible build process, but bugs are still possible.
+
+If you're having trouble even after building and pulling all the APKs correctly and trying the troubleshooting steps above, please [open an issue](https://github.com/signalapp/Signal-Android/issues/new/choose).
+
+If you're having difficulty getting things to build at all, the [community forum](https://community.signalusers.org/c/development) is a great place to ask for advice or get help.
+
+## Extra credit: Code Transparency verification
+
+As part of the release of app bundles, Google also added a new [Code Transparency](https://developer.android.com/guide/app-bundle/code-transparency) mechanism. This is a process by which we can sign certain parts of the APK with a private key, allowing users to verify that the APK from the Play Store has not been modified after it was submitted by Signal.
+
+This is labeled as "extra credit" because it is, by definition, a weaker check than the above reproducible build verification process. For one, the Code Transparency signature does not cover the contents of the entire APK — media assets and other auxiliary files are excluded. Also, it only verifies that the code Signal submitted matches the code in the APK — it does _not_ verify that the code that was submitted matches the public git repository. In contrast, the reproducible build steps above cover all of these scenarios.
+
+That said, the code transparency check does verify many important things, and the steps are much easier! So without further ado, let's go.
+
+While your device is connected to your computer, run the following command to check the "code transparency" status for Signal Android:
+
+```bash
+bundletool check-transparency \
+  --mode=connected_device \
+  --package-name="org.thoughtcrime.securesms"
+```
+
+(For other ways of verifying the code transparency fingerprint, you can check out the [official guide](https://developer.android.com/guide/app-bundle/code-transparency#verify_apk) on the Android Developers site.)
+
+The command above will output the code transparency results, including a certificate fingerprint. You can verify that this matches the code transparency fingerprint:
+
+```
+57 24 B1 15 23 8C 7B 03 E2 6A D9 01 34 FC 77 C5 7B 69 E7 ED DE 3B 70 C2 A7 8E C7 A5 58 3E FC 8E
+```
+
+Thanks for using (and reproducibly building) Signal!

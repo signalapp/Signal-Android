@@ -28,7 +28,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.UnableToStartException
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -81,12 +81,12 @@ class ActiveCallManager(
 
     @JvmStatic
     fun denyCall() {
-      ApplicationDependencies.getSignalCallManager().denyCall()
+      AppDependencies.signalCallManager.denyCall()
     }
 
     @JvmStatic
     fun hangup() {
-      ApplicationDependencies.getSignalCallManager().localHangup()
+      AppDependencies.signalCallManager.localHangup()
     }
 
     @JvmStatic
@@ -132,7 +132,7 @@ class ActiveCallManager(
     }
   }
 
-  private val callManager = ApplicationDependencies.getSignalCallManager()
+  private val callManager = AppDependencies.signalCallManager
 
   private var networkReceiver: NetworkReceiver? = null
   private var powerButtonReceiver: PowerButtonReceiver? = null
@@ -357,7 +357,7 @@ class ActiveCallManager(
       }
 
       private fun hangup() {
-        ApplicationDependencies.getSignalCallManager().localHangup()
+        AppDependencies.signalCallManager.localHangup()
       }
     }
   }
@@ -372,8 +372,8 @@ class ActiveCallManager(
     override fun onReceive(context: Context?, intent: Intent?) {
       Log.d(TAG, "action: ${intent?.action}")
       when (intent?.action) {
-        ACTION_DENY -> ApplicationDependencies.getSignalCallManager().denyCall()
-        ACTION_HANGUP -> ApplicationDependencies.getSignalCallManager().localHangup()
+        ACTION_DENY -> AppDependencies.signalCallManager.denyCall()
+        ACTION_HANGUP -> AppDependencies.signalCallManager.localHangup()
       }
     }
   }
@@ -402,13 +402,13 @@ class ActiveCallManager(
     fun stop() {
       keepRunning = false
       ThreadUtil.cancelRunnableOnMain(this)
-      ApplicationDependencies.getIncomingMessageObserver().removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
+      AppDependencies.incomingMessageObserver.removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
     }
 
     @MainThread
     override fun run() {
       if (keepRunning) {
-        ApplicationDependencies.getIncomingMessageObserver().registerKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
+        AppDependencies.incomingMessageObserver.registerKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
         ThreadUtil.runOnMainDelayed(this, REQUEST_WEBSOCKET_STAY_OPEN_DELAY.inWholeMilliseconds)
       }
     }
@@ -419,7 +419,7 @@ class ActiveCallManager(
       val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
       val activeNetworkInfo = connectivityManager.activeNetworkInfo
 
-      ApplicationDependencies.getSignalCallManager().apply {
+      AppDependencies.signalCallManager.apply {
         networkChange(activeNetworkInfo != null && activeNetworkInfo.isConnected)
         dataModeUpdate()
       }
@@ -429,7 +429,7 @@ class ActiveCallManager(
   private class PowerButtonReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
       if (Intent.ACTION_SCREEN_OFF == intent.action) {
-        ApplicationDependencies.getSignalCallManager().screenOff()
+        AppDependencies.signalCallManager.screenOff()
       }
     }
   }

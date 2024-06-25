@@ -10,7 +10,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/signal_background_tertiary"
         android:gravity="center"
         android:paddingStart="16dp"
         android:paddingTop="8dp"

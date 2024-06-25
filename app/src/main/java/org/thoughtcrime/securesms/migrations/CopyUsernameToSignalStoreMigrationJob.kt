@@ -25,7 +25,7 @@ internal class CopyUsernameToSignalStoreMigrationJob(
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    if (SignalStore.account().aci == null || SignalStore.account().pni == null) {
+    if (SignalStore.account.aci == null || SignalStore.account.pni == null) {
       Log.i(TAG, "ACI/PNI are unset, skipping.")
       return
     }
@@ -37,7 +37,7 @@ internal class CopyUsernameToSignalStoreMigrationJob(
       return
     }
 
-    SignalStore.account().username = self.username.get()
+    SignalStore.account.username = self.username.get()
 
     // New fields in storage service, so we trigger a sync
     SignalDatabase.recipients.markNeedsSync(self.id)

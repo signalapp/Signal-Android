@@ -8,11 +8,11 @@ import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.reconciliation.LedgerReconcile;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +25,7 @@ public final class DataExportUtil {
   private DataExportUtil() {}
 
   public static @NonNull String createTsv() {
-    if (!FeatureFlags.internalUser()) {
+    if (!RemoteConfig.internalUser()) {
       throw new AssertionError("This is intended for internal use only");
     }
 
@@ -34,7 +34,7 @@ public final class DataExportUtil {
     }
 
     List<PaymentTable.PaymentTransaction> paymentTransactions = SignalDatabase.payments().getAll();
-    MobileCoinLedgerWrapper               ledger              = SignalStore.paymentsValues().liveMobileCoinLedger().getValue();
+    MobileCoinLedgerWrapper               ledger              = SignalStore.payments().liveMobileCoinLedger().getValue();
     List<Payment>                            reconciled          = LedgerReconcile.reconcile(paymentTransactions, Objects.requireNonNull(ledger));
 
     return createTsv(reconciled);
@@ -42,7 +42,7 @@ public final class DataExportUtil {
 
   @RequiresApi(api = 26)
   private static @NonNull String createTsv(@NonNull List<Payment> payments) {
-    Context       context = ApplicationDependencies.getApplication();
+    Context       context = AppDependencies.getApplication();
     StringBuilder sb      = new StringBuilder();
 
     sb.append(String.format(Locale.US, "%s\t%s\t%s\t%s\t%s%n", "Date Time", "From", "To", "Amount", "Fee"));

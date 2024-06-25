@@ -115,7 +115,7 @@ class SenderKeyTable internal constructor(context: Context?, databaseHelper: Sig
     return readableDatabase
       .select(ID, DISTRIBUTION_ID, CREATED_AT)
       .from(TABLE_NAME)
-      .where("$ADDRESS = ?", SignalStore.account().requireAci())
+      .where("$ADDRESS = ?", SignalStore.account.requireAci())
       .orderBy("$CREATED_AT DESC")
       .run()
   }

@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
  */
 object InlineQueryEmojiResult {
 
-  class Model(val canonicalEmoji: String, val preferredEmoji: String, val keywordSearch: Boolean) : MappingModel<Model> {
+  class Model(val canonicalEmoji: String, val preferredEmoji: String) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean {
       return canonicalEmoji == newItem.canonicalEmoji
     }

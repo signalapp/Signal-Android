@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.components.settings.app.data
 import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 
 class DataAndStorageSettingsRepository {
 
-  private val context: Context = ApplicationDependencies.getApplication()
+  private val context: Context = AppDependencies.application
 
   fun getTotalStorageUse(consumer: (Long) -> Unit) {
     SignalExecutors.BOUNDED.execute {

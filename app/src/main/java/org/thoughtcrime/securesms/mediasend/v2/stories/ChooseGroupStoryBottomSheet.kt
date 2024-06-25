@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.ShareContact
 import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.sharing.ShareSelectionMappingModel
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
 
@@ -65,10 +65,9 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
     val contactRecycler: RecyclerView = view.findViewById(R.id.contact_recycler)
     mediator = ContactSearchMediator(
       fragment = this,
-      selectionLimits = FeatureFlags.shareSelectionLimit(),
+      selectionLimits = RemoteConfig.shareSelectionLimit,
       displayOptions = ContactSearchAdapter.DisplayOptions(
         displayCheckBox = true,
-        displaySmsTag = ContactSearchAdapter.DisplaySmsTag.DEFAULT,
         displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER
       ),
       mapStateToConfiguration = { state ->

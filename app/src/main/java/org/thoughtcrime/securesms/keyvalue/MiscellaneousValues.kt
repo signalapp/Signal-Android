@@ -5,7 +5,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNum
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver
 import org.thoughtcrime.securesms.keyvalue.protos.LeastActiveLinkedDevice
 
-internal class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {
     private const val LAST_PREKEY_REFRESH_TIME = "last_prekey_refresh_time"
     private const val MESSAGE_REQUEST_ENABLE_TIME = "message_request_enable_time"
@@ -156,7 +156,7 @@ internal class MiscellaneousValues internal constructor(store: KeyValueStore) : 
   /**
    * Whether or not we've done the initial "PNP Hello World" dance.
    */
-  var hasPniInitializedDevices by booleanValue(PNI_INITIALIZED_DEVICES, false)
+  var hasPniInitializedDevices by booleanValue(PNI_INITIALIZED_DEVICES, true)
 
   /**
    * Whether or not the user has linked devices.
@@ -198,9 +198,15 @@ internal class MiscellaneousValues internal constructor(store: KeyValueStore) : 
   /**
    * The last-known offset between our local clock and the server. To get an estimate of the server time, take your current time and subtract this offset. e.g.
    *
-   * estimatedServerTime = System.currentTimeMillis() - SignalStore.misc().getLastKnownServerTimeOffset()
+   * estimatedServerTime = System.currentTimeMillis() - SignalStore.misc.getLastKnownServerTimeOffset()
    */
   val lastKnownServerTimeOffset by longValue(SERVER_TIME_OFFSET, 0)
+
+  /**
+   * An estimate of the server time, based on the last-known server time offset.
+   */
+  val estimatedServerTime: Long
+    get() = System.currentTimeMillis() - lastKnownServerTimeOffset
 
   /**
    * The last time (using our local clock) we updated the server time offset returned by [.getLastKnownServerTimeOffset]}.

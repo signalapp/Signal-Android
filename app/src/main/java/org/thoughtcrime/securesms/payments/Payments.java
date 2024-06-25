@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.currency.CurrencyExchange;
 import org.whispersystems.signalservice.api.payments.CurrencyConversion;
@@ -33,7 +33,7 @@ public final class Payments {
     if (wallet != null) {
       return wallet;
     }
-    Entropy paymentsEntropy = SignalStore.paymentsValues().getPaymentsEntropy();
+    Entropy paymentsEntropy = SignalStore.payments().getPaymentsEntropy();
     wallet = new Wallet(mobileCoinConfig, Objects.requireNonNull(paymentsEntropy));
     return wallet;
   }
@@ -46,7 +46,7 @@ public final class Payments {
   public synchronized @NonNull CurrencyExchange getCurrencyExchange(boolean refreshIfAble) throws IOException {
     if (currencyConversions == null || shouldRefresh(refreshIfAble, currencyConversions.getTimestamp())) {
       Log.i(TAG, "Currency conversion data is unavailable or a refresh was requested and available");
-      CurrencyConversions newCurrencyConversions = ApplicationDependencies.getSignalServiceAccountManager().getCurrencyConversions();
+      CurrencyConversions newCurrencyConversions = AppDependencies.getSignalServiceAccountManager().getCurrencyConversions();
       if (currencyConversions == null || (newCurrencyConversions != null && newCurrencyConversions.getTimestamp() > currencyConversions.getTimestamp())) {
         currencyConversions = newCurrencyConversions;
       }

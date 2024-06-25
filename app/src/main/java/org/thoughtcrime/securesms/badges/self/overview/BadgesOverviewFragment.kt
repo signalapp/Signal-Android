@@ -13,9 +13,7 @@ import org.thoughtcrime.securesms.badges.view.ViewBadgeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -31,7 +29,7 @@ class BadgesOverviewFragment : DSLSettingsFragment(
   private val lifecycleDisposable = LifecycleDisposable()
   private val viewModel: BadgesOverviewViewModel by viewModels(
     factoryProducer = {
-      BadgesOverviewViewModel.Factory(BadgeRepository(requireContext()), MonthlyDonationRepository(ApplicationDependencies.getDonationsService()))
+      BadgesOverviewViewModel.Factory(BadgeRepository(requireContext()))
     }
   )
 

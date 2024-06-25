@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewState
+import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryBackgroundColors
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryScale
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryTextWatcher
@@ -131,7 +132,7 @@ class StoryTextPostView @JvmOverloads constructor(
     linkPreviewView.visible = false
 
     val font: TextFont = TextFont.fromStyle(storyTextPost.style)
-    setPostBackground(ChatColors.forChatColor(ChatColors.Id.NotSet, storyTextPost.background!!).chatBubbleMask)
+    setPostBackground(ChatColors.forChatColor(ChatColors.Id.NotSet, storyTextPost.background ?: TextStoryBackgroundColors.getInitialBackgroundColor().serialize()).chatBubbleMask)
 
     if (font.isAllCaps) {
       setText(storyTextPost.body.uppercase(Locale.getDefault()), false)

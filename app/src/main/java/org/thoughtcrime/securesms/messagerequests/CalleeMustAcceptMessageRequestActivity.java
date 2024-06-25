@@ -19,9 +19,6 @@ import com.bumptech.glide.Glide;
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.concurrent.TimeUnit;
@@ -62,7 +59,6 @@ public class CalleeMustAcceptMessageRequestActivity extends BaseActivity {
     avatar      = findViewById(R.id.avatar);
     okay        = findViewById(R.id.okay);
 
-    avatar.setFallbackPhotoProvider(new FallbackPhotoProvider());
     okay.setOnClickListener(v -> finish());
 
     RecipientId                                     recipientId = getIntent().getParcelableExtra(RECIPIENT_ID_EXTRA);
@@ -87,12 +83,5 @@ public class CalleeMustAcceptMessageRequestActivity extends BaseActivity {
     super.onPause();
 
     handler.removeCallbacks(finisher);
-  }
-
-  private static class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {
-    @Override
-    public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
-      return new ResourceContactPhoto(R.drawable.ic_profile_80);
-    }
   }
 }

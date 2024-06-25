@@ -10,14 +10,14 @@ import kotlinx.parcelize.Parcelize
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 @Parcelize
 data class TextStoryPostCreationState(
   val body: CharSequence = "",
   val textColor: Int = HSVColorSlider.getLastColor(),
   val textColorStyle: TextColorStyle = TextColorStyle.NO_BACKGROUND,
-  val textAlignment: TextAlignment = if (FeatureFlags.storiesTextFunctions()) TextAlignment.START else TextAlignment.CENTER,
+  val textAlignment: TextAlignment = if (RemoteConfig.storiesTextFunctions) TextAlignment.START else TextAlignment.CENTER,
   val textFont: TextFont = TextFont.REGULAR,
   @IntRange(from = 0, to = 100) val textScale: Int = 50,
   val backgroundColor: ChatColors = TextStoryBackgroundColors.getInitialBackgroundColor(),

@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.database.EmojiSearchTable;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.SearchTable;
 import org.thoughtcrime.securesms.database.StickerTable;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -98,7 +98,7 @@ public class FullBackupImporter extends FullBackupBase {
   {
     int count = 0;
 
-    SQLiteDatabase keyValueDatabase = KeyValueDatabase.getInstance(ApplicationDependencies.getApplication()).getSqlCipherDatabase();
+    SQLiteDatabase keyValueDatabase = KeyValueDatabase.getInstance(AppDependencies.getApplication()).getSqlCipherDatabase();
 
     db.setForeignKeyConstraintsEnabled(false);
     db.beginTransaction();
@@ -287,7 +287,7 @@ public class FullBackupImporter extends FullBackupBase {
       return;
     }
 
-    KeyValueDatabase.getInstance(ApplicationDependencies.getApplication()).writeDataSet(dataSet, Collections.emptyList());
+    KeyValueDatabase.getInstance(AppDependencies.getApplication()).writeDataSet(dataSet, Collections.emptyList());
   }
 
   @SuppressLint("ApplySharedPref")

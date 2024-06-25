@@ -2,6 +2,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
@@ -56,11 +57,9 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.isGranted
-import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.permissions.rememberPermissionState
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineScope
@@ -76,7 +75,7 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeSt
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.permissions.PermissionCompat
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.CommunicationActions
 import java.io.ByteArrayOutputStream
@@ -93,7 +92,7 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    galleryLauncher = registerForActivityResult(UsernameQrImageSelectionActivity.Contract()) { uri ->
+    galleryLauncher = registerForActivityResult(QrImageSelectionActivity.Contract()) { uri ->
       if (uri != null) {
         viewModel.scanImage(requireContext(), uri)
       }
@@ -116,16 +115,8 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
     val linkCopiedEvent: UUID? by viewModel.linkCopiedEvent
     val helpText = stringResource(id = R.string.UsernameLinkSettings_scan_this_qr_code)
 
-    val cameraPermissionState: PermissionState = rememberPermissionState(permission = android.Manifest.permission.CAMERA) {
+    val cameraPermissionState: PermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA) {
       viewModel.onTabSelected(ActiveTab.Scan)
-    }
-
-    val galleryPermissionState: MultiplePermissionsState = rememberMultiplePermissionsState(permissions = PermissionCompat.forImages().toList()) { grants ->
-      if (grants.values.all { it }) {
-        galleryLauncher.launch(Unit)
-      } else {
-        Toast.makeText(requireContext(), R.string.ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission, Toast.LENGTH_SHORT).show()
-      }
     }
 
     MainScreen(
@@ -140,17 +131,16 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
       onShareBadge = { shareQrBadge(requireActivity(), viewModel.generateQrCodeImage(helpText)) },
       onQrCodeScanned = { data -> viewModel.onQrCodeScanned(data) },
       onQrResultHandled = { viewModel.onQrResultHandled() },
-      onOpenGalleryClicked = {
-        if (galleryPermissionState.allPermissionsGranted) {
-          galleryLauncher.launch(Unit)
-        } else {
-          galleryPermissionState.launchMultiplePermissionRequest()
-        }
-      },
+      onOpenCameraClicked = { askCameraPermissions() },
+      onOpenGalleryClicked = { galleryLauncher.launch(Unit) },
       onLinkReset = { viewModel.onUsernameLinkReset() },
       onBackNavigationPressed = { requireActivity().onBackPressed() },
       linkCopiedEvent = linkCopiedEvent
     )
+  }
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -160,6 +150,15 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
   override fun onResume() {
     super.onResume()
     viewModel.onResume()
+  }
+
+  private fun askCameraPermissions() {
+    Permissions.with(this)
+      .request(Manifest.permission.CAMERA)
+      .ifNecessary()
+      .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_scan_qr_code), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_scan_qr_codes, parentFragmentManager)
+      .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_scan_qr_code, Toast.LENGTH_LONG).show() }
+      .execute()
   }
 }
 
@@ -177,6 +176,7 @@ private fun MainScreen(
   onShareBadge: () -> Unit = {},
   onQrCodeScanned: (String) -> Unit = {},
   onQrResultHandled: () -> Unit = {},
+  onOpenCameraClicked: () -> Unit = {},
   onOpenGalleryClicked: () -> Unit = {},
   onLinkReset: () -> Unit = {},
   onBackNavigationPressed: () -> Unit = {},
@@ -205,7 +205,6 @@ private fun MainScreen(
         scrollBehavior = scrollBehavior,
         onCodeTabSelected = onCodeTabSelected,
         onScanTabSelected = onScanTabSelected,
-        cameraPermissionState = cameraPermissionState,
         onBackNavigationPressed = onBackNavigationPressed
       )
     },
@@ -244,7 +243,9 @@ private fun MainScreen(
         qrScanResult = state.qrScanResult,
         onQrCodeScanned = onQrCodeScanned,
         onQrResultHandled = onQrResultHandled,
+        onOpenCameraClicked = onOpenCameraClicked,
         onOpenGalleryClicked = onOpenGalleryClicked,
+        hasCameraPermission = cameraPermissionState.status.isGranted,
         modifier = Modifier.padding(contentPadding),
         onRecipientFound = { recipient ->
           val taskStack = TaskStackBuilder
@@ -274,7 +275,6 @@ private fun TopAppBarContent(
   scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(),
   onCodeTabSelected: () -> Unit = {},
   onScanTabSelected: () -> Unit = {},
-  cameraPermissionState: PermissionState = previewPermissionState(),
   onBackNavigationPressed: () -> Unit = {}
 ) {
   CenterAlignedTopAppBar(
@@ -296,13 +296,7 @@ private fun TopAppBarContent(
         TabButton(
           label = stringResource(R.string.UsernameLinkSettings_scan_tab_name),
           active = activeTab == ActiveTab.Scan,
-          onClick = {
-            if (cameraPermissionState.status.isGranted) {
-              onScanTabSelected()
-            } else {
-              cameraPermissionState.launchPermissionRequest()
-            }
-          },
+          onClick = { onScanTabSelected() },
           modifier = Modifier.padding(end = 8.dp)
         )
       }

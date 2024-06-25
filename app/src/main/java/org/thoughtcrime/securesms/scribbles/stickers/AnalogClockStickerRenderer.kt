@@ -8,7 +8,7 @@ import org.signal.imageeditor.core.Bounds
 import org.signal.imageeditor.core.RendererContext
 import org.signal.imageeditor.core.SelectableRenderer
 import org.signal.imageeditor.core.renderers.InvalidateableRenderer
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 
 /**
  * Analog clock sticker renderer for the image editor.
@@ -19,7 +19,7 @@ class AnalogClockStickerRenderer
   val style: AnalogClockStickerDrawable.Style = AnalogClockStickerDrawable.Style.STANDARD
 ) : InvalidateableRenderer(), SelectableRenderer, TappableRenderer {
 
-  private val clockStickerDrawable = AnalogClockStickerDrawable(ApplicationDependencies.getApplication())
+  private val clockStickerDrawable = AnalogClockStickerDrawable(AppDependencies.application)
   private val insetBounds = Rect(
     Bounds.FULL_BOUNDS.left.toInt(),
     Bounds.FULL_BOUNDS.top.toInt(),

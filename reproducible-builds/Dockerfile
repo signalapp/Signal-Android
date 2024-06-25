@@ -32,3 +32,5 @@ RUN yes | sdkmanager --sdk_root="${ANDROID_HOME}" "platforms;${ANDROID_API_LEVEL
 RUN yes | sdkmanager --licenses --sdk_root="${ANDROID_HOME}"
 
 RUN rm -rf ${ANDROID_HOME}/tools
+
+RUN git config --global --add safe.directory /project

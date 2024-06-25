@@ -12,7 +12,7 @@ object ChangeNumberConstraint : Constraint {
   const val KEY = "ChangeNumberConstraint"
 
   override fun isMet(): Boolean {
-    return !SignalStore.misc().isChangeNumberLocked
+    return !SignalStore.misc.isChangeNumberLocked
   }
 
   override fun getFactoryKey(): String = KEY

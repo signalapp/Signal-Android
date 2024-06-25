@@ -6,7 +6,7 @@ dependencyResolutionManagement {
     create("libs") {
       version("androidx-appcompat", "1.6.1")
       version("androidx-activity", "1.8.2")
-      version("androidx-camera", "1.3.2")
+      version("androidx-camera", "1.3.4")
       version("androidx-fragment", "1.6.2")
       version("androidx-lifecycle", "2.7.0")
       version("androidx-media3", "1.2.1")
@@ -14,10 +14,10 @@ dependencyResolutionManagement {
       version("androidx-window", "1.2.0")
       version("exoplayer", "2.19.0")
       version("glide", "4.15.1")
-      version("kotlin", "1.8.10")
-      version("libsignal-client", "0.44.0")
+      version("kotlin", "1.9.20")
+      version("libsignal-client", "0.51.1")
       version("mp4parser", "1.9.39")
-      version("android-gradle-plugin", "8.0.2")
+      version("android-gradle-plugin", "8.4.0")
       version("accompanist", "0.28.0")
       version("nanohttpd", "2.3.1")
 
@@ -26,7 +26,7 @@ dependencyResolutionManagement {
       library("android-application", "com.android.application", "com.android.application.gradle.plugin").versionRef("android-gradle-plugin")
 
       // Compose
-      library("androidx-compose-bom", "androidx.compose:compose-bom:2023.09.01")
+      library("androidx-compose-bom", "androidx.compose:compose-bom:2023.10.01")
       library("androidx-compose-material3", "androidx.compose.material3", "material3").withoutVersion()
       library("androidx-compose-ui-tooling-preview", "androidx.compose.ui", "ui-tooling-preview").withoutVersion()
       library("androidx-compose-ui-tooling-core", "androidx.compose.ui", "ui-tooling").withoutVersion()
@@ -39,13 +39,14 @@ dependencyResolutionManagement {
       library("accompanist-permissions", "com.google.accompanist", "accompanist-permissions").versionRef("accompanist")
 
       // Desugaring
-      library("android-tools-desugar", "com.android.tools:desugar_jdk_libs:1.1.5")
+      library("android-tools-desugar", "com.android.tools:desugar_jdk_libs:1.1.6")
 
       // Kotlin
       library("kotlin-stdlib-jdk8", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8").versionRef("kotlin")
       library("kotlin-reflect", "org.jetbrains.kotlin", "kotlin-reflect").versionRef("kotlin")
       library("kotlin-gradle-plugin", "org.jetbrains.kotlin", "kotlin-gradle-plugin").versionRef("kotlin")
-      library("ktlint", "org.jlleitschuh.gradle:ktlint-gradle:11.4.2")
+      library("ktlint", "org.jlleitschuh.gradle:ktlint-gradle:12.1.1")
+      library("kotlinx-coroutines-play-services", "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
 
       // Android X
       library("androidx-activity-ktx", "androidx.activity", "activity-ktx").versionRef("androidx-activity")
@@ -94,6 +95,7 @@ dependencyResolutionManagement {
       library("androidx-profileinstaller", "androidx.profileinstaller:profileinstaller:1.2.2")
       library("androidx-asynclayoutinflater", "androidx.asynclayoutinflater:asynclayoutinflater:1.1.0-alpha01")
       library("androidx-asynclayoutinflater-appcompat", "androidx.asynclayoutinflater:asynclayoutinflater-appcompat:1.1.0-alpha01")
+      library("androidx-emoji2", "androidx.emoji2:emoji2:1.4.0")
 
       // Material
       library("material-material", "com.google.android.material:material:1.8.0")
@@ -120,15 +122,15 @@ dependencyResolutionManagement {
       library("libsignal-client", "org.signal", "libsignal-client").versionRef("libsignal-client")
       library("libsignal-android", "org.signal", "libsignal-android").versionRef("libsignal-client")
       library("signal-aesgcmprovider", "org.signal:aesgcmprovider:0.0.3")
-      library("signal-ringrtc", "org.signal:ringrtc-android:2.39.3")
+      library("signal-ringrtc", "org.signal:ringrtc-android:2.44.0")
       library("signal-android-database-sqlcipher", "org.signal:sqlcipher-android:4.5.4-S2")
 
       // Third Party
       library("greenrobot-eventbus", "org.greenrobot:eventbus:3.0.0")
       library("jackson-core", "com.fasterxml.jackson.core:jackson-databind:2.9.9.2")
       library("jackson-module-kotlin", "com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0")
-      library("square-okhttp3", "com.squareup.okhttp3:okhttp:3.12.13")
-      library("square-okio", "com.squareup.okio:okio:3.0.0")
+      library("square-okhttp3", "com.squareup.okhttp3:okhttp:4.12.0")
+      library("square-okio", "com.squareup.okio:okio:3.6.0")
       library("square-leakcanary", "com.squareup.leakcanary:leakcanary-android:2.7")
       library("rxjava3-rxjava", "io.reactivex.rxjava3:rxjava:3.0.13")
       library("rxjava3-rxandroid", "io.reactivex.rxjava3:rxandroid:3.0.0")
@@ -147,6 +149,7 @@ dependencyResolutionManagement {
       library("android-tooltips", "com.tomergoldst.android:tooltips:1.0.6")
       library("stream", "com.annimon:stream:1.1.8")
       library("lottie", "com.airbnb.android:lottie:5.2.0")
+      library("lottie-compose", "com.airbnb.android:lottie-compose:6.4.0")
       library("dnsjava", "dnsjava:dnsjava:2.1.9")
       library("nanohttpd-webserver", "org.nanohttpd", "nanohttpd-webserver").versionRef("nanohttpd")
       library("nanohttpd-websocket", "org.nanohttpd", "nanohttpd-websocket").versionRef("nanohttpd")
@@ -196,7 +199,7 @@ dependencyResolutionManagement {
       library("bouncycastle-bcpkix-jdk15on", "org.bouncycastle:bcpkix-jdk15on:1.70")
       library("hamcrest-hamcrest", "org.hamcrest:hamcrest:2.2")
       library("assertj-core", "org.assertj:assertj-core:3.11.1")
-      library("square-okhttp-mockserver", "com.squareup.okhttp3:mockwebserver:3.12.13")
+      library("square-okhttp-mockserver", "com.squareup.okhttp3:mockwebserver:4.12.0")
       library("mockk", "io.mockk:mockk:1.13.2")
       library("mockk-android", "io.mockk:mockk-android:1.13.2")
 

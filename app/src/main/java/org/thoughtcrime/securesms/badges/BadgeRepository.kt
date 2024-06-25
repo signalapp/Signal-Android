@@ -8,7 +8,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -45,7 +45,7 @@ class BadgeRepository(context: Context) {
 
     Log.d(TAG, "[setVisibilityForAllBadgesSync] Uploading profile...", true)
     ProfileUtil.uploadProfileWithBadges(context, badges)
-    SignalStore.donationsValues().setDisplayBadgesOnProfile(displayBadgesOnProfile)
+    SignalStore.donations.setDisplayBadgesOnProfile(displayBadgesOnProfile)
     recipientTable.markNeedsSync(Recipient.self().id)
 
     Log.d(TAG, "[setVisibilityForAllBadgesSync] Requesting data change sync...", true)
@@ -61,7 +61,7 @@ class BadgeRepository(context: Context) {
     setVisibilityForAllBadgesSync(displayBadgesOnProfile, selfBadges)
 
     Log.d(TAG, "[setVisibilityForAllBadges] Enqueueing profile refresh...", true)
-    ApplicationDependencies.getJobManager()
+    AppDependencies.jobManager
       .startChain(RefreshOwnProfileJob())
       .then(MultiDeviceProfileContentUpdateJob())
       .enqueue()
@@ -75,7 +75,7 @@ class BadgeRepository(context: Context) {
     ProfileUtil.uploadProfileWithBadges(context, reOrderedBadges)
 
     Log.d(TAG, "[setFeaturedBadge] Enqueueing profile refresh...", true)
-    ApplicationDependencies.getJobManager()
+    AppDependencies.jobManager
       .startChain(RefreshOwnProfileJob())
       .then(MultiDeviceProfileContentUpdateJob())
       .enqueue()

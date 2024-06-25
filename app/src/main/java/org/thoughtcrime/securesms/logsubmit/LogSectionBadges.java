@@ -4,6 +4,12 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.donations.InAppPaymentType;
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository;
+import org.thoughtcrime.securesms.database.InAppPaymentTable;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -24,18 +30,60 @@ final class LogSectionBadges implements LogSection {
       return "Self not yet available!";
     }
 
-    return new StringBuilder().append("Badge Count                             : ").append(Recipient.self().getBadges().size()).append("\n")
-                              .append("ExpiredBadge                            : ").append(SignalStore.donationsValues().getExpiredBadge() != null).append("\n")
-                              .append("LastKeepAliveLaunchTime                 : ").append(SignalStore.donationsValues().getLastKeepAliveLaunchTime()).append("\n")
-                              .append("LastEndOfPeriod                         : ").append(SignalStore.donationsValues().getLastEndOfPeriod()).append("\n")
-                              .append("SubscriptionEndOfPeriodConversionStarted: ").append(SignalStore.donationsValues().getSubscriptionEndOfPeriodConversionStarted()).append("\n")
-                              .append("SubscriptionEndOfPeriodRedemptionStarted: ").append(SignalStore.donationsValues().getSubscriptionEndOfPeriodRedemptionStarted()).append("\n")
-                              .append("SubscriptionEndOfPeriodRedeemed         : ").append(SignalStore.donationsValues().getSubscriptionEndOfPeriodRedeemed()).append("\n")
-                              .append("IsUserManuallyCancelled                 : ").append(SignalStore.donationsValues().isUserManuallyCancelled()).append("\n")
-                              .append("DisplayBadgesOnProfile                  : ").append(SignalStore.donationsValues().getDisplayBadgesOnProfile()).append("\n")
-                              .append("SubscriptionRedemptionFailed            : ").append(SignalStore.donationsValues().getSubscriptionRedemptionFailed()).append("\n")
-                              .append("ShouldCancelBeforeNextAttempt           : ").append(SignalStore.donationsValues().getShouldCancelSubscriptionBeforeNextSubscribeAttempt()).append("\n")
-                              .append("Has unconverted request context         : ").append(SignalStore.donationsValues().getSubscriptionRequestCredential() != null).append("\n")
-                              .append("Has unredeemed receipt presentation     : ").append(SignalStore.donationsValues().getSubscriptionReceiptCredential() != null).append("\n");
+    InAppPaymentTable.InAppPayment latestRecurringDonation = SignalDatabase.inAppPayments().getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION);
+
+    if (latestRecurringDonation != null) {
+      return new StringBuilder().append("Badge Count                     : ").append(Recipient.self().getBadges().size()).append("\n")
+                                .append("ExpiredBadge                    : ").append(SignalStore.donations().getExpiredBadge() != null).append("\n")
+                                .append("LastKeepAliveLaunchTime         : ").append(SignalStore.donations().getLastKeepAliveLaunchTime()).append("\n")
+                                .append("LastEndOfPeriod                 : ").append(SignalStore.donations().getLastEndOfPeriod()).append("\n")
+                                .append("InAppPayment.State              : ").append(latestRecurringDonation.getState()).append("\n")
+                                .append("InAppPayment.EndOfPeriod        : ").append(latestRecurringDonation.getEndOfPeriodSeconds()).append("\n")
+                                .append("InAppPaymentData.RedemptionState: ").append(getRedemptionStage(latestRecurringDonation.getData())).append("\n")
+                                .append("InAppPaymentData.Error          : ").append(getError(latestRecurringDonation.getData())).append("\n")
+                                .append("InAppPaymentData.Cancellation   : ").append(getCancellation(latestRecurringDonation.getData())).append("\n")
+                                .append("DisplayBadgesOnProfile          : ").append(SignalStore.donations().getDisplayBadgesOnProfile()).append("\n")
+                                .append("ShouldCancelBeforeNextAttempt   : ").append(InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)).append("\n")
+                                .append("IsUserManuallyCancelledDonation : ").append(SignalStore.donations().isDonationSubscriptionManuallyCancelled()).append("\n");
+
+    } else {
+      return new StringBuilder().append("Badge Count                             : ").append(Recipient.self().getBadges().size()).append("\n")
+                                .append("ExpiredBadge                            : ").append(SignalStore.donations().getExpiredBadge() != null).append("\n")
+                                .append("LastKeepAliveLaunchTime                 : ").append(SignalStore.donations().getLastKeepAliveLaunchTime()).append("\n")
+                                .append("LastEndOfPeriod                         : ").append(SignalStore.donations().getLastEndOfPeriod()).append("\n")
+                                .append("SubscriptionEndOfPeriodConversionStarted: ").append(SignalStore.donations().getSubscriptionEndOfPeriodConversionStarted()).append("\n")
+                                .append("SubscriptionEndOfPeriodRedemptionStarted: ").append(SignalStore.donations().getSubscriptionEndOfPeriodRedemptionStarted()).append("\n")
+                                .append("SubscriptionEndOfPeriodRedeemed         : ").append(SignalStore.donations().getSubscriptionEndOfPeriodRedeemed()).append("\n")
+                                .append("IsUserManuallyCancelledDonation         : ").append(SignalStore.donations().isDonationSubscriptionManuallyCancelled()).append("\n")
+                                .append("DisplayBadgesOnProfile                  : ").append(SignalStore.donations().getDisplayBadgesOnProfile()).append("\n")
+                                .append("SubscriptionRedemptionFailed            : ").append(SignalStore.donations().getSubscriptionRedemptionFailed()).append("\n")
+                                .append("ShouldCancelBeforeNextAttempt           : ").append(SignalStore.donations().getShouldCancelSubscriptionBeforeNextSubscribeAttempt()).append("\n")
+                                .append("Has unconverted request context         : ").append(SignalStore.donations().getSubscriptionRequestCredential() != null).append("\n")
+                                .append("Has unredeemed receipt presentation     : ").append(SignalStore.donations().getSubscriptionReceiptCredential() != null).append("\n");
+    }
+  }
+
+  private @NonNull String getRedemptionStage(@NonNull InAppPaymentData inAppPaymentData) {
+    if (inAppPaymentData.redemption == null) {
+      return "null";
+    } else {
+      return inAppPaymentData.redemption.stage.name();
+    }
+  }
+
+  private @NonNull String getError(@NonNull InAppPaymentData inAppPaymentData) {
+    if (inAppPaymentData.error == null) {
+      return "none";
+    } else {
+      return inAppPaymentData.error.toString();
+    }
+  }
+
+  private @NonNull String getCancellation(@NonNull InAppPaymentData inAppPaymentData) {
+    if (inAppPaymentData.cancellation == null) {
+      return "none";
+    } else {
+      return inAppPaymentData.cancellation.reason.name();
+    }
   }
 }

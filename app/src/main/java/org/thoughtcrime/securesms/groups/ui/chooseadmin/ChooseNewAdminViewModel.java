@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeResult;
@@ -65,7 +65,7 @@ final class ChooseNewAdminViewModel extends ViewModel {
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new ChooseNewAdminViewModel(groupId, new ChooseNewAdminRepository(ApplicationDependencies.getApplication())));
+      return modelClass.cast(new ChooseNewAdminViewModel(groupId, new ChooseNewAdminRepository(AppDependencies.getApplication())));
     }
   }
 }

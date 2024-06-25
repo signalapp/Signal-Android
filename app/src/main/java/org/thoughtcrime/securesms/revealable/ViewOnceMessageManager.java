@@ -14,7 +14,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.service.TimedEventManager;
 
 /**
@@ -79,7 +79,7 @@ public class ViewOnceMessageManager extends TimedEventManager<ViewOnceExpiration
     @Override
     public void onReceive(Context context, Intent intent) {
       Log.d(TAG, "onReceive()");
-      ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
+      AppDependencies.getViewOnceMessageManager().scheduleIfNecessary();
     }
   }
 }

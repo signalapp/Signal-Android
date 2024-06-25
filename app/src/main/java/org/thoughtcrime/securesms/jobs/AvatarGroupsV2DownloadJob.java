@@ -12,7 +12,7 @@ import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -115,7 +115,7 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
     File              attachment        = File.createTempFile("avatar", "gv2", context.getCacheDir());
     attachment.deleteOnExit();
 
-    SignalServiceMessageReceiver receiver      = ApplicationDependencies.getSignalServiceMessageReceiver();
+    SignalServiceMessageReceiver receiver      = AppDependencies.getSignalServiceMessageReceiver();
     byte[]                       encryptedData;
 
     try (FileInputStream inputStream = receiver.retrieveGroupsV2ProfileAvatar(cdnKey, attachment, AVATAR_DOWNLOAD_FAIL_SAFE_MAX_SIZE)) {
@@ -123,7 +123,7 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
 
       StreamUtil.readFully(inputStream, encryptedData);
 
-      GroupsV2Operations                 operations      = ApplicationDependencies.getGroupsV2Operations();
+      GroupsV2Operations                 operations      = AppDependencies.getGroupsV2Operations();
       GroupsV2Operations.GroupOperations groupOperations = operations.forGroup(groupSecretParams);
 
       return groupOperations.decryptAvatar(encryptedData);

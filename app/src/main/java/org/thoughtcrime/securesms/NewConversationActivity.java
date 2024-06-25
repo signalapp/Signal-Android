@@ -334,13 +334,7 @@ public class NewConversationActivity extends ContactSelectionActivity
         R.drawable.ic_minus_circle_20, // TODO [alex] -- correct asset
         getString(R.string.NewConversationActivity__remove),
         R.color.signal_colorOnSurface,
-        () -> {
-          if (recipient.isSystemContact()) {
-            displayIsInSystemContactsDialog(recipient);
-          } else {
-            displayRemovalDialog(recipient);
-          }
-        }
+        () -> displayRemovalDialog(recipient)
     );
   }
 

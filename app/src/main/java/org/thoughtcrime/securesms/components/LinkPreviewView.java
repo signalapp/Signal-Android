@@ -20,13 +20,14 @@ import com.bumptech.glide.RequestManager;
 
 import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
 import org.thoughtcrime.securesms.calls.links.CallLinks;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
@@ -224,10 +225,10 @@ public class LinkPreviewView extends FrameLayout {
       thumbnailState.applyState(thumbnail);
       thumbnail.get().setImageDrawable(
           requestManager,
-          Recipient.DEFAULT_FALLBACK_PHOTO_PROVIDER
-                   .getPhotoForCallLink()
-                   .asDrawable(getContext(),
-                               AvatarColorHash.forCallLink(callLinkRootKey.getKeyBytes()))
+          new FallbackAvatarDrawable(
+              getContext(),
+              new FallbackAvatar.Resource.CallLink(AvatarColorHash.forCallLink(callLinkRootKey.getKeyBytes()))
+          )
       );
       thumbnail.get().showSecondaryText(false);
     } else {

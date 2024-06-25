@@ -9,6 +9,9 @@ package org.whispersystems.signalservice.api.messages;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 
 import java.util.Optional;
+import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a received SignalServiceAttachment "handle."  This
@@ -36,6 +39,7 @@ public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
   private final Optional<String>                caption;
   private final Optional<String>                blurHash;
   private final long                            uploadTimestamp;
+  private final UUID                            uuid;
 
   public SignalServiceAttachmentPointer(int cdnNumber,
                                         SignalServiceAttachmentRemoteId remoteId,
@@ -54,7 +58,8 @@ public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
                                         boolean gif,
                                         Optional<String> caption,
                                         Optional<String> blurHash,
-                                        long uploadTimestamp)
+                                        long uploadTimestamp,
+                                        @Nullable UUID uuid)
   {
     super(contentType);
     this.cdnNumber               = cdnNumber;
@@ -74,6 +79,7 @@ public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
     this.blurHash                = blurHash;
     this.uploadTimestamp         = uploadTimestamp;
     this.gif                     = gif;
+    this.uuid                    = uuid;
   }
 
   public int getCdnNumber() {
@@ -152,5 +158,9 @@ public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
 
   public long getUploadTimestamp() {
     return uploadTimestamp;
+  }
+
+  public @Nullable UUID getUuid() {
+    return uuid;
   }
 }

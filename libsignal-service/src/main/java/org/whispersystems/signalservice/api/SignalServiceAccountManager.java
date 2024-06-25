@@ -13,7 +13,6 @@ import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.protocol.logging.Log;
-import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.usernames.BaseUsernameException;
 import org.signal.libsignal.usernames.Username;
 import org.signal.libsignal.usernames.Username.UsernameLink;
@@ -47,6 +46,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.registration.RegistrationApi;
 import org.whispersystems.signalservice.api.services.CdsiV2Service;
 import org.whispersystems.signalservice.api.storage.SignalStorageCipher;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
@@ -56,6 +56,8 @@ import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.api.storage.StorageManifestKey;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2;
+import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3;
+import org.whispersystems.signalservice.api.svr.SvrApi;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -63,7 +65,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.push.BackupAuthCheckRequest;
-import org.whispersystems.signalservice.internal.push.BackupAuthCheckResponse;
+import org.whispersystems.signalservice.internal.push.BackupV2AuthCheckResponse;
 import org.whispersystems.signalservice.internal.push.CdsiAuthResponse;
 import org.whispersystems.signalservice.internal.push.OneTimePreKeyCounts;
 import org.whispersystems.signalservice.internal.push.PaymentAddress;
@@ -182,6 +184,10 @@ public class SignalServiceAccountManager {
     return new SecureValueRecoveryV2(configuration, mrEnclave, pushServiceSocket);
   }
 
+  public SecureValueRecoveryV3 getSecureValueRecoveryV3(Network network) {
+    return new SecureValueRecoveryV3(network, pushServiceSocket);
+  }
+
   public WhoAmIResponse getWhoAmI() throws IOException {
     return this.pushServiceSocket.getWhoAmI();
   }
@@ -200,9 +206,9 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public Single<ServiceResponse<BackupAuthCheckResponse>> checkBackupAuthCredentials(@Nonnull String e164, @Nonnull List<String> usernamePasswords) {
+  public Single<ServiceResponse<BackupV2AuthCheckResponse>> checkBackupAuthCredentials(@Nonnull String e164, @Nonnull List<String> usernamePasswords) {
 
-    return pushServiceSocket.checkBackupAuthCredentials(new BackupAuthCheckRequest(e164, usernamePasswords), DefaultResponseMapper.getDefault(BackupAuthCheckResponse.class));
+    return pushServiceSocket.checkSvr2AuthCredentials(new BackupAuthCheckRequest(e164, usernamePasswords), DefaultResponseMapper.getDefault(BackupV2AuthCheckResponse.class));
   }
 
   /**
@@ -219,7 +225,7 @@ public class SignalServiceAccountManager {
 
   public ServiceResponse<RegistrationSessionMetadataResponse> createRegistrationSession(@Nullable String fcmToken, @Nullable String mcc, @Nullable String mnc) {
     try {
-      final RegistrationSessionMetadataResponse response =  pushServiceSocket.createVerificationSession(fcmToken, mcc, mnc);
+      final RegistrationSessionMetadataResponse response = pushServiceSocket.createVerificationSession(fcmToken, mcc, mnc);
       return ServiceResponse.forResult(response, 200, null);
     } catch (IOException e) {
       return ServiceResponse.forUnknownError(e);
@@ -868,6 +874,14 @@ public class SignalServiceAccountManager {
 
   public KeysApi getKeysApi() {
     return KeysApi.create(pushServiceSocket);
+  }
+
+  public RegistrationApi getRegistrationApi() {
+    return new RegistrationApi(pushServiceSocket);
+  }
+
+  public SvrApi getSvrApi() {
+    return new SvrApi(pushServiceSocket);
   }
 
   public AuthCredentials getPaymentsAuthorization() throws IOException {

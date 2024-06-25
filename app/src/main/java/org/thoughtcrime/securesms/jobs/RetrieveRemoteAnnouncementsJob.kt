@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.model.addButton
 import org.thoughtcrime.securesms.database.model.addLink
 import org.thoughtcrime.securesms.database.model.addStyle
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -29,7 +29,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.s3.S3
 import org.thoughtcrime.securesms.transport.RetryLaterException
-import org.thoughtcrime.securesms.util.LocaleFeatureFlags
+import org.thoughtcrime.securesms.util.LocaleRemoteConfig
+import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.io.IOException
 import java.lang.Integer.max
@@ -54,12 +55,12 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
     @JvmStatic
     @JvmOverloads
     fun enqueue(force: Boolean = false) {
-      if (!SignalStore.account().isRegistered) {
+      if (!SignalStore.account.isRegistered) {
         Log.i(TAG, "Not registered, skipping.")
         return
       }
 
-      if (!force && System.currentTimeMillis() < SignalStore.releaseChannelValues().nextScheduledCheck) {
+      if (!force && System.currentTimeMillis() < SignalStore.releaseChannel.nextScheduledCheck) {
         Log.i(TAG, "Too soon to check for updated release notes")
         return
       }
@@ -74,7 +75,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
           .build()
       )
 
-      ApplicationDependencies.getJobManager()
+      AppDependencies.jobManager
         .startChain(CreateReleaseChannelJob.create())
         .then(job)
         .enqueue()
@@ -88,12 +89,12 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
   override fun onFailure() = Unit
 
   override fun onRun() {
-    if (!SignalStore.account().isRegistered) {
+    if (!SignalStore.account.isRegistered) {
       Log.i(TAG, "Not registered, skipping.")
       return
     }
 
-    val values = SignalStore.releaseChannelValues()
+    val values = SignalStore.releaseChannel
 
     if (values.releaseChannelRecipientId == null) {
       Log.w(TAG, "Release Channel recipient is null, this shouldn't happen, will try to create on next run")
@@ -142,7 +143,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
   @Suppress("UsePropertyAccessSyntax")
   private fun updateReleaseNotes(announcements: List<ReleaseNote>) {
-    val values = SignalStore.releaseChannelValues()
+    val values = SignalStore.releaseChannel
 
     if (Recipient.resolved(values.releaseChannelRecipientId!!).isBlocked) {
       Log.i(TAG, "Release channel is blocked, do not bother with updates")
@@ -170,7 +171,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
           false
         }
       }
-      .filter { it.countries == null || LocaleFeatureFlags.shouldShowReleaseNote(it.uuid, it.countries) }
+      .filter { it.countries == null || LocaleRemoteConfig.shouldShowReleaseNote(it.uuid, it.countries) }
       .sortedBy { it.androidMinVersion!!.toInt() }
       .map { resolveReleaseNote(it) }
       .toList()
@@ -232,15 +233,16 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
           media = note.translation.media,
           mediaWidth = note.translation.mediaWidth?.toIntOrNull() ?: 0,
           mediaHeight = note.translation.mediaHeight?.toIntOrNull() ?: 0,
-          mediaType = note.translation.mediaContentType ?: "image/webp"
+          mediaType = note.translation.mediaContentType ?: "image/webp",
+          mediaAttachmentUuid = UuidUtil.parseOrNull(note.releaseNote.uuid)
         )
 
         if (insertResult != null) {
           addedNewNotes = addedNewNotes || (note.releaseNote.includeBoostMessage ?: true)
           SignalDatabase.attachments.getAttachmentsForMessage(insertResult.messageId)
-            .forEach { ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, false)) }
+            .forEach { AppDependencies.jobManager.add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, false)) }
 
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+          AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
           TrimThreadJob.enqueueAsync(insertResult.threadId)
 
           highestVersion = max(highestVersion, note.releaseNote.androidMinVersion!!.toInt())
@@ -309,7 +311,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
           SignalDatabase.remoteMegaphones.insert(record)
 
           if (record.imageUrl != null) {
-            ApplicationDependencies.getJobManager().add(FetchRemoteMegaphoneImageJob(record.uuid, record.imageUrl))
+            AppDependencies.jobManager.add(FetchRemoteMegaphoneImageJob(record.uuid, record.imageUrl))
           }
         }
       }
@@ -368,8 +370,8 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
     val potentialNoteUrls = mutableListOf<String>()
 
-    if (SignalStore.settings().language != "zz") {
-      potentialNoteUrls += "$this/${SignalStore.settings().language}.json"
+    if (SignalStore.settings.language != "zz") {
+      potentialNoteUrls += "$this/${SignalStore.settings.language}.json"
     }
 
     for (index in 0 until localeList.size()) {

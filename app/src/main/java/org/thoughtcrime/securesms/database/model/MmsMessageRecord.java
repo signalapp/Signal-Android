@@ -25,16 +25,20 @@ import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
+import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.payments.CryptoValueUtil;
 import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
+import org.whispersystems.signalservice.api.payments.Money;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -219,6 +223,18 @@ public class MmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     } else if (isPaymentNotification() && payment != null) {
       return new SpannableString(context.getString(R.string.MessageRecord__payment_s, payment.getAmount().toString(FormatterOptions.defaults())));
+    } else if (isPaymentTombstone() || isPaymentNotification()) {
+      MessageExtras extras = getMessageExtras();
+
+      Money amount = null;
+      if (extras != null && extras.paymentTombstone != null && extras.paymentTombstone.amount != null) {
+        amount = CryptoValueUtil.cryptoValueToMoney(extras.paymentTombstone.amount);
+      }
+      if (amount == null) {
+        return new SpannableString(context.getString(R.string.MessageRecord__payment_tombstone));
+      } else {
+        return new SpannableString(context.getString(R.string.MessageRecord__payment_s, amount.toString(FormatterOptions.defaults())));
+      }
     }
 
     return super.getDisplayBody(context);
@@ -232,21 +248,20 @@ public class MmsMessageRecord extends MessageRecord {
 
       if (call.getDirection() == CallTable.Direction.OUTGOING) {
         if (call.getType() == CallTable.Type.AUDIO_CALL) {
-          int updateString = accepted ? R.string.MessageRecord_outgoing_voice_call : R.string.MessageRecord_unanswered_voice_call;
+          int updateString = R.string.MessageRecord_outgoing_voice_call;
           return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), R.drawable.ic_update_audio_call_outgoing_16);
         } else {
-          int updateString = accepted ? R.string.MessageRecord_outgoing_video_call : R.string.MessageRecord_unanswered_video_call;
+          int updateString = R.string.MessageRecord_outgoing_video_call;
           return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), R.drawable.ic_update_video_call_outgoing_16);
         }
       } else {
         boolean isVideoCall = call.getType() == CallTable.Type.VIDEO_CALL;
-        boolean isMissed    = call.getEvent().isMissedCall();
 
-        if (accepted) {
+        if (accepted || !call.isDisplayedAsMissedCallInUi()) {
           int updateString = isVideoCall ? R.string.MessageRecord_incoming_video_call : R.string.MessageRecord_incoming_voice_call;
           int icon         = isVideoCall ? R.drawable.ic_update_video_call_incoming_16 : R.drawable.ic_update_audio_call_incoming_16;
           return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), icon);
-        } else if (isMissed) {
+        } else {
           int icon = isVideoCall ? R.drawable.ic_update_video_call_missed_16 : R.drawable.ic_update_audio_call_missed_16;
           int message;
           if (call.getEvent() == CallTable.Event.MISSED_NOTIFICATION_PROFILE) {
@@ -261,9 +276,6 @@ public class MmsMessageRecord extends MessageRecord {
                                          icon,
                                          ContextCompat.getColor(context, R.color.core_red_shade),
                                          ContextCompat.getColor(context, R.color.core_red));
-        } else {
-          return isVideoCall ? staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_you_declined_a_video_call), callDateString), R.drawable.ic_update_video_call_incoming_16)
-                             : staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_you_declined_a_voice_call), callDateString), R.drawable.ic_update_audio_call_incoming_16);
         }
       }
     }
@@ -294,6 +306,19 @@ public class MmsMessageRecord extends MessageRecord {
 
   public @Nullable MessageId getLatestRevisionId() {
     return latestRevisionId;
+  }
+
+  @Override
+  public boolean canDeleteSync() {
+    return (isSent() || MessageTypes.isInboxType(type)) &&
+           (isSecure() || isPush()) &&
+           (type & MessageTypes.GROUP_MASK) == 0 &&
+           (type & MessageTypes.KEY_EXCHANGE_MASK) == 0 &&
+           !isReportedSpam() &&
+           !isMessageRequestAccepted() &&
+           storyType == StoryType.NONE &&
+           getDateSent() > 0 &&
+           (parentStoryId == null || parentStoryId.isDirectReply());
   }
 
   public @NonNull MmsMessageRecord withReactions(@NonNull List<ReactionRecord> reactions) {

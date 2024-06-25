@@ -7,7 +7,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -116,8 +116,8 @@ public final class MultiDeviceOutgoingPaymentSyncJob extends BaseJob {
                                                                                txoIdentification.keyImages);
 
 
-    ApplicationDependencies.getSignalServiceMessageSender()
-                           .sendSyncMessage(SignalServiceSyncMessage.forOutgoingPayment(outgoingPaymentMessage),
+    AppDependencies.getSignalServiceMessageSender()
+                   .sendSyncMessage(SignalServiceSyncMessage.forOutgoingPayment(outgoingPaymentMessage),
                                             UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

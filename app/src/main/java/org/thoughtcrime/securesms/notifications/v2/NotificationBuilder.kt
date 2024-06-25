@@ -46,7 +46,7 @@ private const val BIG_PICTURE_DIMEN = 500
  */
 sealed class NotificationBuilder(protected val context: Context) {
 
-  private val privacy: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
+  private val privacy: NotificationPrivacyPreference = SignalStore.settings.messageNotificationsPrivacy
   private val isNotLocked: Boolean = !KeyCachingService.isLocked(context)
 
   abstract fun setSmallIcon(@DrawableRes drawable: Int)
@@ -160,10 +160,10 @@ sealed class NotificationBuilder(protected val context: Context) {
   }
 
   fun setLights() {
-    val ledColor: String = SignalStore.settings().messageLedColor
+    val ledColor: String = SignalStore.settings.messageLedColor
 
     if (ledColor != "none") {
-      var blinkPattern = SignalStore.settings().messageLedBlinkPattern
+      var blinkPattern = SignalStore.settings.messageLedBlinkPattern
       if (blinkPattern == "custom") {
         blinkPattern = TextSecurePreferences.getNotificationLedPatternCustom(context)
       }
@@ -333,8 +333,8 @@ sealed class NotificationBuilder(protected val context: Context) {
       val ringtone: Uri? = recipient?.messageRingtone
       val vibrate = recipient?.messageVibrate
 
-      val defaultRingtone: Uri = SignalStore.settings().messageNotificationSound
-      val defaultVibrate: Boolean = SignalStore.settings().isMessageVibrateEnabled
+      val defaultRingtone: Uri = SignalStore.settings.messageNotificationSound
+      val defaultVibrate: Boolean = SignalStore.settings.isMessageVibrateEnabled
 
       if (ringtone == null && !TextUtils.isEmpty(defaultRingtone.toString())) {
         builder.setSound(defaultRingtone)

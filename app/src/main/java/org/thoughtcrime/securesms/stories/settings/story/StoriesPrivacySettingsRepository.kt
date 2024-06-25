@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -25,9 +25,9 @@ class StoriesPrivacySettingsRepository {
 
   fun setStoriesEnabled(isEnabled: Boolean): Completable {
     return Completable.fromAction {
-      SignalStore.storyValues().isFeatureDisabled = !isEnabled
+      SignalStore.story.isFeatureDisabled = !isEnabled
       Stories.onStorySettingsChanged(Recipient.self().id)
-      ApplicationDependencies.resetAllNetworkConnections()
+      AppDependencies.resetNetwork()
 
       SignalDatabase.messages.getAllOutgoingStories(false, -1).use { reader ->
         reader.map { record -> record.id }

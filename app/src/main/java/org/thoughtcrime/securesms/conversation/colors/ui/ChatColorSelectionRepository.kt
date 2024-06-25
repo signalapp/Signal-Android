@@ -40,12 +40,12 @@ sealed class ChatColorSelectionRepository(context: Context) {
 
   private class Global(context: Context) : ChatColorSelectionRepository(context) {
     override fun getWallpaper(consumer: (ChatWallpaper?) -> Unit) {
-      consumer(SignalStore.wallpaper().wallpaper)
+      consumer(SignalStore.wallpaper.wallpaper)
     }
 
     override fun getChatColors(consumer: (ChatColors) -> Unit) {
-      if (SignalStore.chatColorsValues().hasChatColors) {
-        consumer(requireNotNull(SignalStore.chatColorsValues().chatColors))
+      if (SignalStore.chatColors.hasChatColors) {
+        consumer(requireNotNull(SignalStore.chatColors.chatColors))
       } else {
         getWallpaper { wallpaper ->
           if (wallpaper != null) {
@@ -59,9 +59,9 @@ sealed class ChatColorSelectionRepository(context: Context) {
 
     override fun save(chatColors: ChatColors, onSaved: () -> Unit) {
       if (chatColors.id == ChatColors.Id.Auto) {
-        SignalStore.chatColorsValues().chatColors = null
+        SignalStore.chatColors.chatColors = null
       } else {
-        SignalStore.chatColorsValues().chatColors = chatColors
+        SignalStore.chatColors.chatColors = chatColors
       }
       onSaved()
     }

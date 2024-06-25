@@ -23,7 +23,7 @@ class CustomChatColorCreatorRepository(private val context: Context) {
         val recipient = Recipient.resolved(recipientId)
         consumer(recipient.wallpaper)
       } else {
-        consumer(SignalStore.wallpaper().wallpaper)
+        consumer(SignalStore.wallpaper.wallpaper)
       }
     }
   }

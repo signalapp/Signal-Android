@@ -19,7 +19,7 @@ import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.signal.paging.ProxyPagingController;
 import org.thoughtcrime.securesms.database.LogDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 
 import java.util.ArrayList;
@@ -54,9 +54,9 @@ public class SubmitDebugLogViewModel extends ViewModel {
       this.staticLines.addAll(staticLines);
 
       Log.blockUntilAllWritesFinished();
-      LogDatabase.getInstance(ApplicationDependencies.getApplication()).logs().trimToSize();
+      LogDatabase.getInstance(AppDependencies.getApplication()).logs().trimToSize();
 
-      LogDataSource dataSource = new LogDataSource(ApplicationDependencies.getApplication(), staticLines, firstViewTime);
+      LogDataSource dataSource = new LogDataSource(AppDependencies.getApplication(), staticLines, firstViewTime);
       PagingConfig  config     = new PagingConfig.Builder().setPageSize(100)
                                                            .setBufferPages(3)
                                                            .setStartIndex(0)

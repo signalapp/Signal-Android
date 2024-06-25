@@ -83,12 +83,15 @@ class JobRunner extends Thread {
 
     try {
       wakeLock = WakeLockUtil.acquire(application, PowerManager.PARTIAL_WAKE_LOCK, WAKE_LOCK_TIMEOUT, job.getId());
-      result = job.run();
+      result   = job.run();
 
       if (job.isCanceled()) {
         Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing because the job was canceled."));
         result = Job.Result.failure();
       }
+    } catch (RuntimeException e) {
+      Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing fatally due to an unexpected runtime exception."), e);
+      return Job.Result.fatalFailure(e);
     } catch (Exception e) {
       Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing due to an unexpected exception."), e);
       return Job.Result.failure();

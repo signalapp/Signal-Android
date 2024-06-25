@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
-final class RegistrationConstants {
+public final class RegistrationConstants {
 
   private RegistrationConstants() {
   }
 
-  static final String TERMS_AND_CONDITIONS_URL = "https://signal.org/legal";
-  static final String SIGNAL_CAPTCHA_SCHEME    = "signalcaptcha://";
+  public static final String TERMS_AND_CONDITIONS_URL = "https://signal.org/legal";
+  public static final String SIGNAL_CAPTCHA_SCHEME    = "signalcaptcha://";
 
 }

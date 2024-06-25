@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -21,7 +21,7 @@ class StoryViewsRepository {
     private val TAG = Log.tag(StoryViewsRepository::class.java)
   }
 
-  fun isReadReceiptsEnabled(): Boolean = SignalStore.storyValues().viewedReceiptsEnabled
+  fun isReadReceiptsEnabled(): Boolean = SignalStore.story.viewedReceiptsEnabled
 
   fun getStoryRecipient(storyId: Long): Single<Recipient> {
     return Single.fromCallable {
@@ -56,9 +56,9 @@ class StoryViewsRepository {
 
       val observer = DatabaseObserver.MessageObserver { refresh() }
 
-      ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(observer)
+      AppDependencies.databaseObserver.registerMessageUpdateObserver(observer)
       emitter.setCancellable {
-        ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer)
+        AppDependencies.databaseObserver.unregisterObserver(observer)
       }
 
       refresh()

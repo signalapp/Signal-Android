@@ -7,7 +7,7 @@ import android.content.Intent
 import androidx.annotation.WorkerThread
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.util.concurrent.TimeUnit
 
@@ -32,7 +32,7 @@ class ExpiringStoriesManager(
 
   @WorkerThread
   override fun getNextClosestEvent(): Event? {
-    val oldestTimestamp = mmsDatabase.getOldestStorySendTimestamp(SignalStore.storyValues().userHasViewedOnboardingStory) ?: return null
+    val oldestTimestamp = mmsDatabase.getOldestStorySendTimestamp(SignalStore.story.userHasViewedOnboardingStory) ?: return null
 
     val timeSinceSend = System.currentTimeMillis() - oldestTimestamp
     val delay = (STORY_LIFESPAN - timeSinceSend).coerceAtLeast(0)
@@ -44,7 +44,7 @@ class ExpiringStoriesManager(
   @WorkerThread
   override fun executeEvent(event: Event) {
     val threshold = System.currentTimeMillis() - STORY_LIFESPAN
-    val deletes = mmsDatabase.deleteStoriesOlderThan(threshold, SignalStore.storyValues().userHasViewedOnboardingStory)
+    val deletes = mmsDatabase.deleteStoriesOlderThan(threshold, SignalStore.story.userHasViewedOnboardingStory)
     Log.i(TAG, "Deleted $deletes stories before $threshold")
   }
 
@@ -66,7 +66,7 @@ class ExpiringStoriesManager(
 
     override fun onReceive(context: Context?, intent: Intent?) {
       Log.d(TAG, "onReceive()")
-      ApplicationDependencies.getExpireStoriesManager().scheduleIfNecessary()
+      AppDependencies.expireStoriesManager.scheduleIfNecessary()
     }
   }
 }

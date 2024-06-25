@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.messages.WebSocketDrainer;
@@ -125,7 +125,7 @@ public final class MessageFetchJob extends BaseJob {
 
     @Override
     public void close() {
-      ApplicationDependencies.getAppForegroundObserver().removeListener(this);
+      AppDependencies.getAppForegroundObserver().removeListener(this);
       closeNotificationController();
     }
 
@@ -157,7 +157,7 @@ public final class MessageFetchJob extends BaseJob {
 
     static ForegroundServiceController create(@NonNull Context context) {
       ForegroundServiceController instance = new ForegroundServiceController(context);
-      ApplicationDependencies.getAppForegroundObserver().addListener(instance);
+      AppDependencies.getAppForegroundObserver().addListener(instance);
 
       return instance;
     }

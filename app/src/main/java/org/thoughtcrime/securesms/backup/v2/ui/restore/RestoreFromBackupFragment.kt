@@ -32,8 +32,8 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.v2.ui.MessageBackupsTypeFeature
-import org.thoughtcrime.securesms.backup.v2.ui.MessageBackupsTypeFeatureRow
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFeature
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFeatureRow
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.devicetransfer.moreoptions.MoreTransferOrRestoreOptionsMode
 import org.thoughtcrime.securesms.util.navigation.safeNavigate

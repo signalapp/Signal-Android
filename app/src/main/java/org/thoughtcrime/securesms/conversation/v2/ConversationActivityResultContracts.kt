@@ -28,8 +28,8 @@ import org.thoughtcrime.securesms.giph.ui.GiphyActivity
 import org.thoughtcrime.securesms.maps.PlacePickerActivity
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
-import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -71,27 +71,26 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
   }
 
   fun launchGallery(recipientId: RecipientId, text: CharSequence?, isReply: Boolean) {
-    Permissions
-      .with(fragment)
-      .request(*PermissionCompat.forImagesAndVideos())
-      .ifNecessary()
-      .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
-      .onAllGranted { mediaGalleryLauncher.launch(MediaSelectionInput(emptyList(), recipientId, text, isReply)) }
-      .execute()
+    mediaGalleryLauncher.launch(MediaSelectionInput(emptyList(), recipientId, text, isReply))
   }
 
   fun launchCamera(recipientId: RecipientId, isReply: Boolean) {
-    Permissions.with(fragment)
-      .request(Manifest.permission.CAMERA)
-      .ifNecessary()
-      .withRationaleDialog(fragment.getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.symbol_camera_24)
-      .withPermanentDenialDialog(fragment.getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
-      .onAllGranted {
-        cameraLauncher.launch(MediaSelectionInput(emptyList(), recipientId, null, isReply))
-        fragment.requireActivity().overridePendingTransition(R.anim.camera_slide_from_bottom, R.anim.stationary)
-      }
-      .onAnyDenied { Toast.makeText(fragment.requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show() }
-      .execute()
+    if (CameraXUtil.isSupported()) {
+      cameraLauncher.launch(MediaSelectionInput(emptyList(), recipientId, null, isReply))
+      fragment.requireActivity().overridePendingTransition(R.anim.camera_slide_from_bottom, R.anim.stationary)
+    } else {
+      Permissions.with(fragment)
+        .request(Manifest.permission.CAMERA)
+        .ifNecessary()
+        .withRationaleDialog(fragment.getString(R.string.CameraXFragment_allow_access_camera), fragment.getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.symbol_camera_24)
+        .withPermanentDenialDialog(fragment.getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos_videos, fragment.parentFragmentManager)
+        .onAllGranted {
+          cameraLauncher.launch(MediaSelectionInput(emptyList(), recipientId, null, isReply))
+          fragment.requireActivity().overridePendingTransition(R.anim.camera_slide_from_bottom, R.anim.stationary)
+        }
+        .onAnyDenied { Toast.makeText(fragment.requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
+        .execute()
+    }
   }
 
   fun launchMediaEditor(mediaList: List<Media>, recipientId: RecipientId, text: CharSequence?) {
@@ -109,7 +108,9 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
       Permissions.with(fragment)
         .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
         .ifNecessary()
-        .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location))
+        .withRationaleDialog(fragment.getString(R.string.AttachmentManager_signal_allow_access_location), fragment.getString(R.string.AttachmentManager_signal_allow_signal_access_location), R.drawable.symbol_location_white_24)
+        .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location), null, R.string.AttachmentManager_signal_allow_access_location, R.string.AttachmentManager_signal_to_send_location, fragment.parentFragmentManager)
+        .onAnyDenied { Toast.makeText(fragment.requireContext(), R.string.AttachmentManager_signal_needs_location_access, Toast.LENGTH_LONG).show() }
         .onSomeGranted { selectLocationLauncher.launch(chatColors) }
         .execute()
     }

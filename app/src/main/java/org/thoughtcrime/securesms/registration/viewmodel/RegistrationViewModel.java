@@ -11,7 +11,7 @@ import androidx.savedstate.SavedStateRegistryOwner;
 
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob;
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.registration.VerifyResponse;
 import org.thoughtcrime.securesms.registration.VerifyResponseProcessor;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLockProcessor;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SvrNoDataException;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
@@ -353,7 +353,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
   }
 
   private Single<Boolean> checkForValidSvrAuthCredentials() {
-    final List<String> svrAuthTokenList = SignalStore.svr().getAuthTokenList();
+    final List<String> svrAuthTokenList = SignalStore.svr().getSvr2AuthTokens();
     List<String> usernamePasswords = svrAuthTokenList
         .stream()
         .limit(10)
@@ -376,7 +376,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                  .flatMap(p -> {
                                    if (p.hasValidSvr2AuthCredential()) {
                                      Log.d(TAG, "Saving valid SVR2 auth credential.");
-                                     setSvrAuthCredentials(new SvrAuthCredentialSet(null, p.requireSvr2AuthCredential()));
+                                     setSvrAuthCredentials(new SvrAuthCredentialSet(p.requireSvr2AuthCredential(), null));
                                      return Single.just(true);
                                    } else {
                                      Log.d(TAG, "SVR2 response contained no valid SVR2 auth credentials.");
@@ -396,10 +396,10 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
 
     Stopwatch stopwatch = new Stopwatch("ReRegisterRestore");
 
-    ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
+    AppDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
     stopwatch.split("AccountRestore");
 
-    ApplicationDependencies
+    AppDependencies
         .getJobManager()
         .startChain(new StorageSyncJob())
         .then(new ReclaimUsernameAndLinkJob())
@@ -407,11 +407,11 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
     stopwatch.split("ContactRestore");
 
     try {
-      FeatureFlags.refreshSync();
+      RemoteConfig.refreshSync();
     } catch (IOException e) {
       Log.w(TAG, "Failed to refresh flags.", e);
     }
-    stopwatch.split("FeatureFlags");
+    stopwatch.split("RemoteConfig");
 
     stopwatch.stop(TAG);
   }
@@ -451,8 +451,8 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
       //noinspection ConstantConditions
       return modelClass.cast(new RegistrationViewModel(handle,
                                                        isReregister,
-                                                       new VerifyAccountRepository(ApplicationDependencies.getApplication()),
-                                                       new RegistrationRepository(ApplicationDependencies.getApplication())));
+                                                       new VerifyAccountRepository(AppDependencies.getApplication()),
+                                                       new RegistrationRepository(AppDependencies.getApplication())));
     }
   }
 }

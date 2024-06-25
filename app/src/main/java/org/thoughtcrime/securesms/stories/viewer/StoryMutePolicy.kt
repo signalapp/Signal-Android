@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.stories.viewer
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.AppForegroundObserver
 
 /**
@@ -11,7 +11,7 @@ object StoryMutePolicy : AppForegroundObserver.Listener {
   var isContentMuted: Boolean = true
 
   fun initialize() {
-    ApplicationDependencies.getAppForegroundObserver().addListener(this)
+    AppDependencies.appForegroundObserver.addListener(this)
   }
 
   override fun onBackground() {

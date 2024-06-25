@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;
@@ -157,7 +157,7 @@ public class MediaUploadRepository {
   }
 
   private void cancelUploadInternal(@NonNull Media media) {
-    JobManager      jobManager = ApplicationDependencies.getJobManager();
+    JobManager      jobManager = AppDependencies.getJobManager();
     PreUploadResult result     = uploadResults.get(media);
 
     if (result != null) {

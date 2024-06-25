@@ -9,7 +9,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -128,7 +128,7 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
         if (selfMember != null && !selfMember.profileKey.equals(selfProfileKey)) {
           Log.w(TAG, "Profile key mismatch for group " + id + " -- enqueueing job");
           foundMismatch = true;
-          ApplicationDependencies.getJobManager().add(GroupV2UpdateSelfProfileKeyJob.withQueueLimits(id));
+          AppDependencies.getJobManager().add(GroupV2UpdateSelfProfileKeyJob.withQueueLimits(id));
         }
       }
 

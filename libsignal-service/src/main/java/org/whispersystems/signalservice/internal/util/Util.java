@@ -75,7 +75,7 @@ public class Util {
     return secret;
   }
 
-  public static byte[] getRandomLengthBytes(int maxSize) {
+  public static byte[] getRandomLengthSecretBytes(int maxSize) {
     SecureRandom secureRandom = new SecureRandom();
     byte[]       result       = new byte[secureRandom.nextInt(maxSize) + 1];
     secureRandom.nextBytes(result);

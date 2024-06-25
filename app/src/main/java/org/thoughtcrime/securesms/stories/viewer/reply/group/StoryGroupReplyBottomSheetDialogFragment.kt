@@ -122,7 +122,7 @@ class StoryGroupReplyBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDi
   }
 
   override fun onReactionEmojiSelected(emoji: String) {
-    reactionView.playForEmoji(emoji)
+    reactionView.playForEmoji(listOf(emoji))
   }
 
   companion object {

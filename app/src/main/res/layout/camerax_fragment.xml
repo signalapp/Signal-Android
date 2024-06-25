@@ -39,4 +39,43 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/camerax_camera_parent" />
 
+    <LinearLayout
+        android:id="@+id/missing_permissions_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-50dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/permission_camera" />
+
+        <TextView
+            android:id="@+id/missing_permissions_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            style="@style/Signal.Text.Body"
+            android:text="@string/CameraXFragment_to_capture_photos_and_video_allow_camera" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/allow_access_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            style="@style/Signal.Widget.Button.Large.Tonal"
+            android:text="@string/CameraXFragment_allow_access" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

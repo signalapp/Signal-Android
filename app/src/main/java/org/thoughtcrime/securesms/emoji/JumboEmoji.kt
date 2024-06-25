@@ -52,7 +52,7 @@ object JumboEmoji {
 
       if (EmojiFiles.getLatestEmojiData(context, version)?.format != null) {
         currentVersion = version.version
-        ThreadUtil.runOnMain { downloadedJumbos.addAll(SignalStore.emojiValues().getJumboEmojiSheets(version.version)) }
+        ThreadUtil.runOnMain { downloadedJumbos.addAll(SignalStore.emoji.getJumboEmojiSheets(version.version)) }
       }
     }
   }
@@ -129,7 +129,7 @@ object JumboEmoji {
           }
         }
 
-        SignalStore.emojiValues().addJumboEmojiSheet(version.version, drawInfo.jumboSheet)
+        SignalStore.emoji.addJumboEmojiSheet(version.version, drawInfo.jumboSheet)
       }
 
       EmojiFiles.openForReadingJumbo(applicationContext, version, jumbos, emojiName).use { BitmapFactory.decodeStream(it, null, BitmapFactory.Options()) }

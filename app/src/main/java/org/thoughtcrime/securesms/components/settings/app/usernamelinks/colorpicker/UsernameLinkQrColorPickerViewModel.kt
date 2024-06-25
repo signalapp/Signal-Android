@@ -23,10 +23,10 @@ class UsernameLinkQrColorPickerViewModel : ViewModel() {
 
   private val _state = mutableStateOf(
     UsernameLinkQrColorPickerState(
-      username = SignalStore.account().username!!,
+      username = SignalStore.account.username!!,
       qrCodeData = QrCodeState.Loading,
       colorSchemes = UsernameQrCodeColorScheme.values().asList().toImmutableList(),
-      selectedColorScheme = SignalStore.misc().usernameQrCodeColorScheme
+      selectedColorScheme = SignalStore.misc.usernameQrCodeColorScheme
     )
   )
 
@@ -35,7 +35,7 @@ class UsernameLinkQrColorPickerViewModel : ViewModel() {
   private val disposable: CompositeDisposable = CompositeDisposable()
 
   init {
-    val usernameLink = SignalStore.account().usernameLink
+    val usernameLink = SignalStore.account.usernameLink
 
     if (usernameLink != null) {
       disposable += Single
@@ -59,7 +59,7 @@ class UsernameLinkQrColorPickerViewModel : ViewModel() {
   }
 
   fun onColorSelected(color: UsernameQrCodeColorScheme) {
-    SignalStore.misc().usernameQrCodeColorScheme = color
+    SignalStore.misc.usernameQrCodeColorScheme = color
     SignalExecutors.BOUNDED.run {
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()

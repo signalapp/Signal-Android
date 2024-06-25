@@ -5,11 +5,12 @@ import android.os.Parcel
 import androidx.core.os.ParcelCompat
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.blurhash.BlurHash
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.stickers.StickerLocator
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ParcelUtil
+import java.util.UUID
 
 class DatabaseAttachment : Attachment {
 
@@ -25,6 +26,22 @@ class DatabaseAttachment : Attachment {
   @JvmField
   val dataHash: String?
 
+  @JvmField
+  val archiveCdn: Int
+
+  @JvmField
+  val archiveThumbnailCdn: Int
+
+  @JvmField
+  val archiveMediaName: String?
+
+  @JvmField
+  val archiveMediaId: String?
+
+  @JvmField
+  val thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState
+
+  private val hasArchiveThumbnail: Boolean
   private val hasThumbnail: Boolean
   val displayOrder: Int
 
@@ -33,11 +50,12 @@ class DatabaseAttachment : Attachment {
     mmsId: Long,
     hasData: Boolean,
     hasThumbnail: Boolean,
+    hasArchiveThumbnail: Boolean,
     contentType: String?,
     transferProgress: Int,
     size: Long,
     fileName: String?,
-    cdnNumber: Int,
+    cdn: Cdn,
     location: String?,
     key: String?,
     digest: ByteArray?,
@@ -57,13 +75,19 @@ class DatabaseAttachment : Attachment {
     transformProperties: TransformProperties?,
     displayOrder: Int,
     uploadTimestamp: Long,
-    dataHash: String?
+    dataHash: String?,
+    archiveCdn: Int,
+    archiveThumbnailCdn: Int,
+    archiveMediaName: String?,
+    archiveMediaId: String?,
+    thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState,
+    uuid: UUID?
   ) : super(
     contentType = contentType!!,
     transferState = transferProgress,
     size = size,
     fileName = fileName,
-    cdnNumber = cdnNumber,
+    cdn = cdn,
     remoteLocation = location,
     remoteKey = key,
     remoteDigest = digest,
@@ -80,14 +104,21 @@ class DatabaseAttachment : Attachment {
     stickerLocator = stickerLocator,
     blurHash = blurHash,
     audioHash = audioHash,
-    transformProperties = transformProperties
+    transformProperties = transformProperties,
+    uuid = uuid
   ) {
     this.attachmentId = attachmentId
     this.mmsId = mmsId
     this.hasData = hasData
     this.dataHash = dataHash
     this.hasThumbnail = hasThumbnail
+    this.hasArchiveThumbnail = hasArchiveThumbnail
     this.displayOrder = displayOrder
+    this.archiveCdn = archiveCdn
+    this.archiveThumbnailCdn = archiveThumbnailCdn
+    this.archiveMediaName = archiveMediaName
+    this.archiveMediaId = archiveMediaId
+    this.thumbnailRestoreState = thumbnailRestoreState
   }
 
   constructor(parcel: Parcel) : super(parcel) {
@@ -97,6 +128,12 @@ class DatabaseAttachment : Attachment {
     hasThumbnail = ParcelUtil.readBoolean(parcel)
     mmsId = parcel.readLong()
     displayOrder = parcel.readInt()
+    archiveCdn = parcel.readInt()
+    archiveThumbnailCdn = parcel.readInt()
+    archiveMediaName = parcel.readString()
+    archiveMediaId = parcel.readString()
+    hasArchiveThumbnail = ParcelUtil.readBoolean(parcel)
+    thumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.deserialize(parcel.readInt())
   }
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -107,10 +144,16 @@ class DatabaseAttachment : Attachment {
     ParcelUtil.writeBoolean(dest, hasThumbnail)
     dest.writeLong(mmsId)
     dest.writeInt(displayOrder)
+    dest.writeInt(archiveCdn)
+    dest.writeInt(archiveThumbnailCdn)
+    dest.writeString(archiveMediaName)
+    dest.writeString(archiveMediaId)
+    ParcelUtil.writeBoolean(dest, hasArchiveThumbnail)
+    dest.writeInt(thumbnailRestoreState.value)
   }
 
   override val uri: Uri?
-    get() = if (hasData || FeatureFlags.instantVideoPlayback() && getIncrementalDigest() != null) {
+    get() = if (hasData || getIncrementalDigest() != null) {
       PartAuthority.getAttachmentDataUri(attachmentId)
     } else {
       null
@@ -123,9 +166,16 @@ class DatabaseAttachment : Attachment {
       null
     }
 
+  override val thumbnailUri: Uri?
+    get() = if (hasArchiveThumbnail) {
+      PartAuthority.getAttachmentThumbnailUri(attachmentId)
+    } else {
+      null
+    }
+
   override fun equals(other: Any?): Boolean {
     return other != null &&
-      other is DatabaseAttachment && other.attachmentId == attachmentId
+      other is DatabaseAttachment && other.attachmentId == attachmentId && other.uri == uri
   }
 
   override fun hashCode(): Int {

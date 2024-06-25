@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.concurrent.safeBlockingGet
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
@@ -45,7 +45,7 @@ class RefreshCallLinkDetailsJob private constructor(
   override fun onFailure() = Unit
 
   override fun onRun() {
-    val manager: SignalCallLinkManager = ApplicationDependencies.getSignalCallManager().callLinkManager
+    val manager: SignalCallLinkManager = AppDependencies.signalCallManager.callLinkManager
     val credentials = CallLinkCredentials(
       linkKeyBytes = callLinkUpdate.rootKey!!.toByteArray(),
       adminPassBytes = callLinkUpdate.adminPassKey?.toByteArray()

@@ -386,7 +386,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
           val messageSoundUri: Uri? = if (messageSound != null) Uri.parse(messageSound) else null
           val vibrateState: Int = cursor.getInt(cursor.getColumnIndexOrThrow("vibrate"))
           var displayName: String? = NotificationChannels.getInstance().getChannelDisplayNameFor(systemName, profileName, null, address)
-          val vibrateEnabled: Boolean = if (vibrateState == 0) SignalStore.settings().isMessageVibrateEnabled else vibrateState == 1
+          val vibrateEnabled: Boolean = if (vibrateState == 0) SignalStore.settings.isMessageVibrateEnabled else vibrateState == 1
           if (GroupId.isEncodedGroup(address)) {
             db.rawQuery("SELECT title FROM groups WHERE group_id = ?", arrayOf(address)).use { groupCursor ->
               if (groupCursor != null && groupCursor.moveToFirst()) {

@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.util.CommunicationActions
 
@@ -12,6 +13,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions
  * Donation Error Dialogs.
  */
 object DonationErrorDialogs {
+
   /**
    * Displays a dialog, and returns a handle to it for dismissal.
    */
@@ -21,6 +23,30 @@ object DonationErrorDialogs {
     builder.setOnDismissListener { callback.onDialogDismissed() }
 
     val params = DonationErrorParams.create(context, throwable, callback)
+
+    builder.setTitle(params.title)
+      .setMessage(params.message)
+
+    if (params.positiveAction != null) {
+      builder.setPositiveButton(params.positiveAction.label) { _, _ -> params.positiveAction.action() }
+    }
+
+    if (params.negativeAction != null) {
+      builder.setNegativeButton(params.negativeAction.label) { _, _ -> params.negativeAction.action() }
+    }
+
+    return builder.show()
+  }
+
+  /**
+   * Displays a dialog, and returns a handle to it for dismissal.
+   */
+  fun show(context: Context, inAppPayment: InAppPaymentTable.InAppPayment, callback: DialogCallback): DialogInterface {
+    val builder = MaterialAlertDialogBuilder(context)
+
+    builder.setOnDismissListener { callback.onDialogDismissed() }
+
+    val params = DonationErrorParams.create(context, inAppPayment, callback)
 
     builder.setTitle(params.title)
       .setMessage(params.message)

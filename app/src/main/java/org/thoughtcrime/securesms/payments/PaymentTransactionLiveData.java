@@ -7,7 +7,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
 
 import java.util.UUID;
@@ -30,12 +30,12 @@ public final class PaymentTransactionLiveData extends LiveData<PaymentTable.Paym
   @Override
   protected void onActive() {
     getPaymentTransaction();
-    ApplicationDependencies.getDatabaseObserver().registerPaymentObserver(paymentId, observer);
+    AppDependencies.getDatabaseObserver().registerPaymentObserver(paymentId, observer);
   }
 
   @Override
   protected void onInactive() {
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
+    AppDependencies.getDatabaseObserver().unregisterObserver(observer);
   }
 
   private void getPaymentTransaction() {

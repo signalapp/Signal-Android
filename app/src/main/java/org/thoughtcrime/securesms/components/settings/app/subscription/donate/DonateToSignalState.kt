@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
 import org.signal.core.util.money.FiatMoney
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.NonVerifiedMonthlyDonation
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.database.model.isLongRunning
 import org.thoughtcrime.securesms.database.model.isPending
@@ -16,72 +18,72 @@ import java.util.Currency
 import java.util.concurrent.TimeUnit
 
 data class DonateToSignalState(
-  val donateToSignalType: DonateToSignalType,
+  val inAppPaymentType: InAppPaymentType,
   val oneTimeDonationState: OneTimeDonationState = OneTimeDonationState(),
   val monthlyDonationState: MonthlyDonationState = MonthlyDonationState()
 ) {
 
   val areFieldsEnabled: Boolean
-    get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> oneTimeDonationState.donationStage == DonationStage.READY
-      DonateToSignalType.MONTHLY -> monthlyDonationState.donationStage == DonationStage.READY
-      DonateToSignalType.GIFT -> error("This flow does not support gifts")
+    get() = when (inAppPaymentType) {
+      InAppPaymentType.ONE_TIME_DONATION -> oneTimeDonationState.donationStage == DonationStage.READY
+      InAppPaymentType.RECURRING_DONATION -> monthlyDonationState.donationStage == DonationStage.READY
+      else -> error("This flow does not support $inAppPaymentType")
     }
 
   val badge: Badge?
-    get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> oneTimeDonationState.badge
-      DonateToSignalType.MONTHLY -> monthlyDonationState.selectedSubscription?.badge
-      DonateToSignalType.GIFT -> error("This flow does not support gifts")
+    get() = when (inAppPaymentType) {
+      InAppPaymentType.ONE_TIME_DONATION -> oneTimeDonationState.badge
+      InAppPaymentType.RECURRING_DONATION -> monthlyDonationState.selectedSubscription?.badge
+      else -> error("This flow does not support $inAppPaymentType")
     }
 
   val canSetCurrency: Boolean
-    get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> areFieldsEnabled && !oneTimeDonationState.isOneTimeDonationPending
-      DonateToSignalType.MONTHLY -> areFieldsEnabled && !monthlyDonationState.isSubscriptionActive
-      DonateToSignalType.GIFT -> error("This flow does not support gifts")
+    get() = when (inAppPaymentType) {
+      InAppPaymentType.ONE_TIME_DONATION -> areFieldsEnabled && !oneTimeDonationState.isOneTimeDonationPending
+      InAppPaymentType.RECURRING_DONATION -> areFieldsEnabled && !monthlyDonationState.isSubscriptionActive
+      else -> error("This flow does not support $inAppPaymentType")
     }
 
   val selectedCurrency: Currency
-    get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> oneTimeDonationState.selectedCurrency
-      DonateToSignalType.MONTHLY -> monthlyDonationState.selectedCurrency
-      DonateToSignalType.GIFT -> error("This flow does not support gifts")
+    get() = when (inAppPaymentType) {
+      InAppPaymentType.ONE_TIME_DONATION -> oneTimeDonationState.selectedCurrency
+      InAppPaymentType.RECURRING_DONATION -> monthlyDonationState.selectedCurrency
+      else -> error("This flow does not support $inAppPaymentType")
     }
 
   val selectableCurrencyCodes: List<String>
-    get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> oneTimeDonationState.selectableCurrencyCodes
-      DonateToSignalType.MONTHLY -> monthlyDonationState.selectableCurrencyCodes
-      DonateToSignalType.GIFT -> error("This flow does not support gifts")
+    get() = when (inAppPaymentType) {
+      InAppPaymentType.ONE_TIME_DONATION -> oneTimeDonationState.selectableCurrencyCodes
+      InAppPaymentType.RECURRING_DONATION -> monthlyDonationState.selectableCurrencyCodes
+      else -> error("This flow does not support $inAppPaymentType")
     }
 
   val level: Int
-    get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> 1
-      DonateToSignalType.MONTHLY -> monthlyDonationState.selectedSubscription!!.level
-      DonateToSignalType.GIFT -> error("This flow does not support gifts")
+    get() = when (inAppPaymentType) {
+      InAppPaymentType.ONE_TIME_DONATION -> 1
+      InAppPaymentType.RECURRING_DONATION -> monthlyDonationState.selectedSubscription!!.level
+      else -> error("This flow does not support $inAppPaymentType")
     }
 
   val continueEnabled: Boolean
-    get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> areFieldsEnabled && oneTimeDonationState.isSelectionValid && InAppDonations.hasAtLeastOnePaymentMethodAvailable()
-      DonateToSignalType.MONTHLY -> areFieldsEnabled && monthlyDonationState.isSelectionValid && InAppDonations.hasAtLeastOnePaymentMethodAvailable()
-      DonateToSignalType.GIFT -> error("This flow does not support gifts")
+    get() = when (inAppPaymentType) {
+      InAppPaymentType.ONE_TIME_DONATION -> areFieldsEnabled && oneTimeDonationState.isSelectionValid && InAppDonations.hasAtLeastOnePaymentMethodAvailable()
+      InAppPaymentType.RECURRING_DONATION -> areFieldsEnabled && monthlyDonationState.isSelectionValid && InAppDonations.hasAtLeastOnePaymentMethodAvailable()
+      else -> error("This flow does not support $inAppPaymentType")
     }
 
   val canContinue: Boolean
-    get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> continueEnabled && !oneTimeDonationState.isOneTimeDonationPending
-      DonateToSignalType.MONTHLY -> continueEnabled && !monthlyDonationState.isSubscriptionActive && !monthlyDonationState.transactionState.isInProgress
-      DonateToSignalType.GIFT -> error("This flow does not support gifts")
+    get() = when (inAppPaymentType) {
+      InAppPaymentType.ONE_TIME_DONATION -> continueEnabled && !oneTimeDonationState.isOneTimeDonationPending
+      InAppPaymentType.RECURRING_DONATION -> continueEnabled && !monthlyDonationState.isSubscriptionActive && !monthlyDonationState.transactionState.isInProgress
+      else -> error("This flow does not support $inAppPaymentType")
     }
 
   val canUpdate: Boolean
-    get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> false
-      DonateToSignalType.MONTHLY -> areFieldsEnabled && monthlyDonationState.isSelectionValid
-      DonateToSignalType.GIFT -> error("This flow does not support gifts")
+    get() = when (inAppPaymentType) {
+      InAppPaymentType.ONE_TIME_DONATION -> false
+      InAppPaymentType.RECURRING_DONATION -> areFieldsEnabled && monthlyDonationState.isSelectionValid
+      else -> error("This flow does not support $inAppPaymentType")
     }
 
   val isUpdateLongRunning: Boolean
@@ -89,7 +91,7 @@ data class DonateToSignalState(
 
   data class OneTimeDonationState(
     val badge: Badge? = null,
-    val selectedCurrency: Currency = SignalStore.donationsValues().getOneTimeCurrency(),
+    val selectedCurrency: Currency = SignalStore.donations.getOneTimeCurrency(),
     val boosts: List<Boost> = emptyList(),
     val selectedBoost: Boost? = null,
     val customAmount: FiatMoney = FiatMoney(BigDecimal.ZERO, selectedCurrency),
@@ -112,7 +114,7 @@ data class DonateToSignalState(
   }
 
   data class MonthlyDonationState(
-    val selectedCurrency: Currency = SignalStore.donationsValues().getSubscriptionCurrency(),
+    val selectedCurrency: Currency = SignalStore.donations.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION),
     val subscriptions: List<Subscription> = emptyList(),
     private val _activeSubscription: ActiveSubscription? = null,
     val selectedSubscription: Subscription? = null,

@@ -15,7 +15,7 @@ import org.signal.libsignal.protocol.util.Pair
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.DatabaseObserver
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
 import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener
@@ -98,14 +98,14 @@ open class StickerKeyboardPageFragment :
 
     view.findViewById<View>(R.id.sticker_manage).setOnClickListener { findListener<StickerEventListener>()?.onStickerManagementClicked() }
 
-    ApplicationDependencies.getDatabaseObserver().registerStickerObserver(this)
-    ApplicationDependencies.getDatabaseObserver().registerStickerPackObserver(this)
+    AppDependencies.databaseObserver.registerStickerObserver(this)
+    AppDependencies.databaseObserver.registerStickerPackObserver(this)
 
     view.addOnLayoutChangeListener(this)
   }
 
   override fun onDestroyView() {
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(this)
+    AppDependencies.databaseObserver.unregisterObserver(this)
     requireView().removeOnLayoutChangeListener(this)
     super.onDestroyView()
   }

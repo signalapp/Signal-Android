@@ -17,19 +17,19 @@ object SvrAuthTokens : AndroidBackupItem {
   }
 
   override fun getDataForBackup(): ByteArray {
-    val proto = SvrAuthToken(tokens = SignalStore.svr().authTokenList)
+    val proto = SvrAuthToken(svr2Tokens = SignalStore.svr.svr2AuthTokens)
     return proto.encode()
   }
 
   override fun restoreData(data: ByteArray) {
-    if (SignalStore.svr().authTokenList.isNotEmpty()) {
+    if (SignalStore.svr.svr2AuthTokens.isNotEmpty()) {
       return
     }
 
     try {
       val proto = SvrAuthToken.ADAPTER.decode(data)
 
-      SignalStore.svr().putAuthTokenList(proto.tokens)
+      SignalStore.svr.putSvr2AuthTokens(proto.svr2Tokens)
     } catch (e: IOException) {
       Log.w(TAG, "Cannot restore KbsAuthToken from backup service.")
     }

@@ -57,7 +57,6 @@ public class EmojiTextView extends AppCompatTextView {
   private static final char  ELLIPSIS        = '…';
   private static final float JUMBOMOJI_SCALE = 0.8f;
 
-  private boolean                forceCustom;
   private CharSequence           previousText;
   private BufferType             previousBufferType;
   private TransformationMethod   previousTransformationMethod;
@@ -93,7 +92,6 @@ public class EmojiTextView extends AppCompatTextView {
     TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EmojiTextView, 0, 0);
     scaleEmojis     = a.getBoolean(R.styleable.EmojiTextView_scaleEmojis, false);
     maxLength       = a.getInteger(R.styleable.EmojiTextView_emoji_maxLength, -1);
-    forceCustom     = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
     renderMentions  = a.getBoolean(R.styleable.EmojiTextView_emoji_renderMentions, true);
     measureLastLine = a.getBoolean(R.styleable.EmojiTextView_measureLastLine, false);
     forceJumboEmoji = a.getBoolean(R.styleable.EmojiTextView_emoji_forceJumbo, false);
@@ -445,7 +443,7 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   private boolean useSystemEmoji() {
-    return isInEditMode() || (!forceCustom && SignalStore.settings().isPreferSystemEmoji());
+    return isInEditMode() || SignalStore.settings().isPreferSystemEmoji();
   }
 
   @Override

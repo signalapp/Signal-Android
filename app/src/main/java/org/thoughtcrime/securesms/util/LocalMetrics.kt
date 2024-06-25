@@ -7,7 +7,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.database.model.LocalMetricsEvent
 import org.thoughtcrime.securesms.database.model.LocalMetricsSplit
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
 
@@ -33,7 +33,7 @@ object LocalMetrics {
   private val lastSplitTimeById: MutableMap<String, Long> = LRUCache(200)
 
   private val executor: Executor = SignalExecutors.newCachedSingleThreadExecutor("signal-LocalMetrics", ThreadUtil.PRIORITY_BACKGROUND_THREAD)
-  private val db: LocalMetricsDatabase by lazy { LocalMetricsDatabase.getInstance(ApplicationDependencies.getApplication()) }
+  private val db: LocalMetricsDatabase by lazy { LocalMetricsDatabase.getInstance(AppDependencies.application) }
 
   @JvmStatic
   fun getInstance(): LocalMetrics {
@@ -56,7 +56,7 @@ object LocalMetrics {
         eventId = id,
         eventName = name,
         splits = mutableListOf(),
-        timeunit = timeunit
+        timeUnit = timeunit
       )
       lastSplitTimeById[id] = time
     }
@@ -76,8 +76,17 @@ object LocalMetrics {
       val splitDoesNotExist: Boolean = eventsById[id]?.splits?.none { it.name == split } ?: true
       if (lastTime != null && splitDoesNotExist) {
         val event = eventsById[id]
-        event?.splits?.add(LocalMetricsSplit(split, time - lastTime, event.timeunit))
+        event?.splits?.add(LocalMetricsSplit(split, time - lastTime, event.timeUnit))
         lastSplitTimeById[id] = time
+      }
+    }
+  }
+
+  fun setLabel(id: String, label: String) {
+    executor.execute {
+      val event = eventsById[id]
+      if (event != null) {
+        eventsById[id] = event.copy(extraLabel = label)
       }
     }
   }

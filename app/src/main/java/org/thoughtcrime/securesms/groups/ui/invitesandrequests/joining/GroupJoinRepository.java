@@ -60,12 +60,16 @@ final class GroupJoinRepository {
 
         callback.onComplete(new JoinGroupSuccess(groupActionResult.getGroupRecipient(), groupActionResult.getThreadId()));
       } catch (IOException e) {
+        Log.w(TAG, "Network error", e);
         callback.onError(JoinGroupError.NETWORK_ERROR);
       } catch (GroupChangeBusyException e) {
+        Log.w(TAG, "Change error", e);
         callback.onError(JoinGroupError.BUSY);
       } catch (GroupLinkNotActiveException e) {
+        Log.w(TAG, "Inactive group error", e);
         callback.onError(e.getReason() == GroupLinkNotActiveException.Reason.BANNED ? JoinGroupError.BANNED : JoinGroupError.GROUP_LINK_NOT_ACTIVE);
       } catch (GroupChangeFailedException | MembershipNotSuitableForV2Exception e) {
+        Log.w(TAG, "Change failed", e);
         callback.onError(JoinGroupError.FAILED);
       }
     });

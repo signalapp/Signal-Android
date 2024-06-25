@@ -13,7 +13,7 @@ import org.signal.libsignal.zkgroup.calllinks.CallLinkSecretParams
 import org.signal.ringrtc.CallException
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.callLinks
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
@@ -46,17 +46,17 @@ class CallLinkPreJoinActionProcessor(
       val callLinkRootKey = CallLinkRootKey(callLink.credentials.linkKeyBytes)
       val callLinkSecretParams = CallLinkSecretParams.deriveFromRootKey(callLink.credentials.linkKeyBytes)
       val genericServerPublicParams = GenericServerPublicParams(
-        ApplicationDependencies.getSignalServiceNetworkAccess()
+        AppDependencies.signalServiceNetworkAccess
           .getConfiguration()
           .genericServerPublicParams
       )
 
-      val callLinkAuthCredentialPresentation = ApplicationDependencies
-        .getGroupsV2Authorization()
+      val callLinkAuthCredentialPresentation = AppDependencies
+        .groupsV2Authorization
         .getCallLinkAuthorizationForToday(genericServerPublicParams, callLinkSecretParams)
 
       webRtcInteractor.callManager.createCallLinkCall(
-        SignalStore.internalValues().groupCallingServer(),
+        SignalStore.internal.groupCallingServer(),
         callLinkAuthCredentialPresentation.serialize(),
         callLinkRootKey,
         callLink.credentials.adminPassBytes,
@@ -85,7 +85,7 @@ class CallLinkPreJoinActionProcessor(
       return groupCallFailure(currentState, "Unable to connect to call link", e)
     }
 
-    SignalStore.tooltips().markGroupCallingLobbyEntered()
+    SignalStore.tooltips.markGroupCallingLobbyEntered()
     return currentState.builder()
       .changeCallSetupState(RemotePeer.GROUP_CALL_ID)
       .setRingGroup(false)

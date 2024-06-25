@@ -72,8 +72,17 @@ message ProfileChangeDetails {
         string newValue = 2;
     }
 
-    StringChange profileNameChange = 1;
-    StringChange learnedProfileName = 2;
+    message LearnedProfileName {
+        oneof PreviouslyKnownAs {
+            string e164 = 1;
+            string username = 2;
+        }
+    }
+
+    StringChange       profileNameChange            = 1;
+    // Deprecated - Use learnedProfileName instead
+    StringChange       deprecatedLearnedProfileName = 2;
+    LearnedProfileName learnedProfileName           = 3;
 }
 
 message BodyRangeList {
@@ -116,11 +125,14 @@ message CryptoValue {
 }
 
 message GroupCallUpdateDetails {
-             string eraId                = 1;
-             string startedCallUuid      = 2;
-             int64  startedCallTimestamp = 3;
-    repeated string inCallUuids          = 4;
-             bool   isCallFull           = 5;
+             string eraId                  = 1;
+             string startedCallUuid        = 2;
+             int64  startedCallTimestamp   = 3;
+    repeated string inCallUuids            = 4;
+             bool   isCallFull             = 5;
+             bool   localUserJoined        = 6;
+             int64  endedCallTimestamp     = 7;
+             bool   isRingingOnLocalDevice = 8;
 }
 
 message ExpiringProfileKeyCredentialColumnData {
@@ -289,6 +301,7 @@ message FiatValue {
     uint64       timestamp     = 3;
 }
 
+// DEPRECATED -- Replaced with InAppPaymentData.Error message.
 message DonationErrorValue {
     enum Type {
         PROCESSOR_CODE = 0; // Generic processor error (e.g. Stripe returned an error code)
@@ -296,12 +309,115 @@ message DonationErrorValue {
         FAILURE_CODE   = 2; // Stripe bank transfer failure code
         REDEMPTION     = 3; // Generic redemption error (status is HTTP code)
         PAYMENT        = 4; // Generic payment error (status is HTTP code)
+        VALIDATION     = 5; // Failed while trying to validate the ReceiptCredential returned from the service.
     }
 
     Type   type = 1;
     string code = 2;
 }
 
+/**
+ * Contains all the extra information required to appropriately
+ * manage the lifecycle of transactions.
+ */
+message InAppPaymentData {
+
+    enum PaymentMethodType {
+        UNKNOWN    = 0;
+        GOOGLE_PAY = 1;
+        CARD       = 2;
+        SEPA_DEBIT = 3;
+        IDEAL      = 4;
+        PAYPAL     = 5;
+    }
+
+    /**
+     * This mirrors ActiveSubscription.ChargeFailure
+     */
+    message ChargeFailure {
+        string code                 = 1;
+        string message              = 2;
+        string outcomeNetworkStatus = 3;
+        string outcomeNetworkReason = 4;
+        string outcomeType          = 5;
+    }
+
+    message Cancellation {
+        enum Reason {
+            UNKNOWN           = 0;
+            MANUAL            = 1;
+            PAST_DUE          = 2;
+            CANCELED          = 3;
+            UNPAID            = 4;
+            USER_WAS_INACTIVE = 5;
+        }
+
+                 Reason        reason            = 1; // Why the cancellation happened
+        optional ChargeFailure chargeFailure     = 2; // A charge failure, if available.
+    }
+
+    message WaitingForAuthorizationState {
+        string stripeIntentId      = 1;
+        string stripeClientSecret  = 2;
+        bool   checkedVerification = 3;
+    }
+
+    message RedemptionState {
+        enum Stage {
+            INIT               = 0;
+            CONVERSION_STARTED = 1;
+            REDEMPTION_STARTED = 2;
+            REDEEMED           = 3;
+        }
+
+                 Stage  stage                           = 1;
+        optional string paymentIntentId                 = 2; // Only present for one-time donations.
+        optional bool   keepAlive                       = 3; // Only present for recurring donations, specifies this redemption started from a keep-alive
+        optional bytes  receiptCredentialRequestContext = 4; // Reusable context for retrieving a presentation
+        optional bytes  receiptCredentialPresentation   = 5; // Redeemable presentation
+    }
+
+    message Error {
+        enum Type {
+            UNKNOWN                        = 0;  // A generic, untyped error. Check log for details.
+            GOOGLE_PAY_REQUEST_TOKEN       = 1;  // Google pay failed to give us a request token.
+            INVALID_GIFT_RECIPIENT         = 2;  // Selected recipient for gift is invalid.
+            ONE_TIME_AMOUNT_TOO_SMALL      = 3;  // One-time payment amount is below minimum
+            ONE_TIME_AMOUNT_TOO_LARGE      = 4;  // One-time payment amount is too large
+            INVALID_CURRENCY               = 5;  // One-time payment currency is invalid
+            PAYMENT_SETUP                  = 6;  // A generic payment setup error (prior to charging the user)
+            STRIPE_CODED_ERROR             = 7;  // Stripe error containing a stripe error code in data.
+            STRIPE_DECLINED_ERROR          = 8; // Stripe error containing a decline error code in data.
+            STRIPE_FAILURE                 = 9; // Stripe error containing a failure error code in data.
+            PAYPAL_CODED_ERROR             = 10; // PayPal error containing a paypal error code in data.
+            PAYPAL_DECLINED_ERROR          = 11; // PayPal error containing a paypal decline code in data.
+            PAYMENT_PROCESSING             = 12; // Generic payment error containing an HTTP status code in data.
+            CREDENTIAL_VALIDATION          = 13; // Failed to validate credential returned from service.
+            REDEMPTION                     = 14; // Failed during badge redemption containing an HTTP status code in data if available.
+        }
+
+                 Type   type = 1;
+        optional string data = 2;
+    }
+
+    optional BadgeList.Badge   badge             = 1; // The badge. Not present for backups transactions
+             FiatValue         amount            = 2; // The amount the user paid for the transaction
+    optional Error             error             = 3; // An error, if present.
+             int64             level             = 4; // The transaction "level" given to us by the server
+    optional Cancellation      cancellation      = 5; // The transaction was cancelled. This notes why.
+             string            label             = 6; // Descriptive text about the token
+    optional string            recipientId       = 7; // The target recipient the token is to be sent to (only used for gifts)
+    optional string            additionalMessage = 8; // The additional message to send the target recipient (only used for gifts)
+             PaymentMethodType paymentMethodType = 9; // The method through which this in app payment was made
+
+    oneof redemptionState {
+        WaitingForAuthorizationState waitForAuth = 10;   // Waiting on user authorization from an external source (3DS, iDEAL)
+        RedemptionState              redemption  = 11;  // Waiting on processing of token
+    }
+
+}
+
+// DEPRECATED -- Move to TokenTransactionData
 message PendingOneTimeDonation {
     enum PaymentMethodType {
         CARD       = 0;
@@ -325,6 +441,7 @@ message PendingOneTimeDonation {
  * the same way that it is used in Rx, where we simply mean that, regardless
  * of outcome, a donation has completed processing.
  */
+// DEPRECATED -- Move to TokenTransactionData
 message TerminalDonationQueue {
     message TerminalDonation {
                  int64              level                      = 1;
@@ -341,6 +458,7 @@ message TerminalDonationQueue {
  * scenarios where the application dies while the user is confirming
  * a transaction in their bank app.
  */
+// DEPRECATED -- Move to TokenTransactionData
 message ExternalLaunchTransactionState {
 
     message StripeIntentAccessor {
@@ -355,20 +473,21 @@ message ExternalLaunchTransactionState {
     }
 
     message GatewayRequest {
-        enum DonateToSignalType {
-            MONTHLY  = 0;
-            ONE_TIME = 1;
-            GIFT     = 2;
+        enum InAppPaymentType {
+            RECURRING_DONATION = 0;
+            ONE_TIME_DONATION  = 1;
+            ONE_TIME_GIFT      = 2;
+            RECURRING_BACKUPS  = 3;
         }
 
-        DonateToSignalType donateToSignalType = 1;
-        BadgeList.Badge    badge              = 2;
-        string             label              = 3;
-        DecimalValue       price              = 4;
-        string             currencyCode       = 5;
-        int64              level              = 6;
-        int64              recipient_id       = 7;
-        string             additionalMessage  = 8;
+        InAppPaymentType inAppPaymentType  = 1;
+        BadgeList.Badge  badge             = 2;
+        string           label             = 3;
+        DecimalValue     price             = 4;
+        string           currencyCode      = 5;
+        int64            level             = 6;
+        int64            recipient_id      = 7;
+        string           additionalMessage = 8;
     }
 
     StripeIntentAccessor stripeIntentAccessor = 1;
@@ -381,10 +500,17 @@ message MessageExtras {
         GV2UpdateDescription gv2UpdateDescription = 1;
         signalservice.GroupContext gv1Context = 2;
         ProfileChangeDetails profileChangeDetails = 3;
+        PaymentTombstone paymentTombstone = 4;
     }
 }
 
 message GV2UpdateDescription {
     optional DecryptedGroupV2Context gv2ChangeDescription = 1;
     backup.GroupChangeChatUpdate groupChangeUpdate = 2;
+}
+
+message PaymentTombstone {
+    optional string note = 1;
+    CryptoValue amount = 2;
+    CryptoValue fee = 3;
 }

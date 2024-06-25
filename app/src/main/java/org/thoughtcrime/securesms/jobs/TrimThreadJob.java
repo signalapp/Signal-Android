@@ -23,11 +23,12 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 public class TrimThreadJob extends BaseJob {
 
@@ -41,7 +42,7 @@ public class TrimThreadJob extends BaseJob {
 
   public static void enqueueAsync(long threadId) {
     if (SignalStore.settings().getKeepMessagesDuration() != KeepMessagesDuration.FOREVER || SignalStore.settings().isTrimByLengthEnabled()) {
-      SignalExecutors.BOUNDED.execute(() -> ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId)));
+      SignalExecutors.BOUNDED.execute(() -> AppDependencies.getJobManager().add(new TrimThreadJob(threadId)));
     }
   }
 
@@ -77,7 +78,7 @@ public class TrimThreadJob extends BaseJob {
     long trimBeforeDate = keepMessagesDuration != KeepMessagesDuration.FOREVER ? System.currentTimeMillis() - keepMessagesDuration.getDuration()
                                                                                : ThreadTable.NO_TRIM_BEFORE_DATE_SET;
 
-    SignalDatabase.threads().trimThread(threadId, trimLength, trimBeforeDate);
+    SignalDatabase.threads().trimThread(threadId, SignalStore.settings().shouldSyncThreadTrimDeletes() && Recipient.self().getDeleteSyncCapability().isSupported(), trimLength, trimBeforeDate, false);
   }
 
   @Override

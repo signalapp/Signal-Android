@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -76,7 +76,7 @@ public class TypingStatusSender {
   }
 
   private void sendTyping(long threadId, boolean typingStarted) {
-    ApplicationDependencies.getJobManager().add(new TypingSendJob(threadId, typingStarted));
+    AppDependencies.getJobManager().add(new TypingSendJob(threadId, typingStarted));
   }
 
   private class StartRunnable implements Runnable {

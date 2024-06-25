@@ -35,8 +35,8 @@ public final class AttachmentPointerUtil {
                                               ((pointer.flags != null ? pointer.flags : 0) & FlagUtil.toBinaryFlag(AttachmentPointer.Flags.GIF.getValue())) != 0,
                                               pointer.caption != null ? Optional.of(pointer.caption) : Optional.empty(),
                                               pointer.blurHash != null ? Optional.of(pointer.blurHash) : Optional.empty(),
-                                              pointer.uploadTimestamp != null ? pointer.uploadTimestamp : 0);
-
+                                              pointer.uploadTimestamp != null ? pointer.uploadTimestamp : 0,
+                                              UuidUtil.fromByteStringOrNull(pointer.uuid));
   }
 
   public static AttachmentPointer createAttachmentPointer(SignalServiceAttachmentPointer attachment) {
@@ -56,12 +56,12 @@ public final class AttachmentPointerUtil {
       builder.incrementalMacChunkSize(attachment.getIncrementalMacChunkSize());
     }
 
-    if (attachment.getRemoteId().getV2().isPresent()) {
-      builder.cdnId(attachment.getRemoteId().getV2().get());
+    if (attachment.getRemoteId() instanceof SignalServiceAttachmentRemoteId.V2) {
+      builder.cdnId(((SignalServiceAttachmentRemoteId.V2) attachment.getRemoteId()).getCdnId());
     }
 
-    if (attachment.getRemoteId().getV3().isPresent()) {
-      builder.cdnKey(attachment.getRemoteId().getV3().get());
+    if (attachment.getRemoteId() instanceof SignalServiceAttachmentRemoteId.V4) {
+      builder.cdnKey(((SignalServiceAttachmentRemoteId.V4) attachment.getRemoteId()).getCdnKey());
     }
 
     if (attachment.getFileName().isPresent()) {
@@ -102,6 +102,10 @@ public final class AttachmentPointerUtil {
 
     if (attachment.getBlurHash().isPresent()) {
       builder.blurHash(attachment.getBlurHash().get());
+    }
+
+    if (attachment.getUuid() != null) {
+      builder.uuid(UuidUtil.toByteString(attachment.getUuid()));
     }
 
     return builder.build();

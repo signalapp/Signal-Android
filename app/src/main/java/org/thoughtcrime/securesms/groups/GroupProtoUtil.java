@@ -11,15 +11,12 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupChangeChatUpdate;
-import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription;
-import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.signalservice.api.groupsv2.PartialDecryptedGroup;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.internal.push.GroupContextV2;
@@ -31,24 +28,6 @@ import okio.ByteString;
 public final class GroupProtoUtil {
 
   private GroupProtoUtil() {
-  }
-
-  public static int findRevisionWeWereAdded(@NonNull PartialDecryptedGroup partialDecryptedGroup, @NonNull ACI self)
-      throws GroupNotAMemberException
-  {
-    ByteString bytes = self.toByteString();
-    for (DecryptedMember decryptedMember : partialDecryptedGroup.getMembersList()) {
-      if (decryptedMember.aciBytes.equals(bytes)) {
-        return decryptedMember.joinedAtRevision;
-      }
-    }
-    for (DecryptedPendingMember decryptedMember : partialDecryptedGroup.getPendingMembersList()) {
-      if (decryptedMember.serviceIdBytes.equals(bytes)) {
-        // Assume latest, we don't have any information about when pending members were invited
-        return partialDecryptedGroup.getRevision();
-      }
-    }
-    throw new GroupNotAMemberException();
   }
 
   public static GV2UpdateDescription createOutgoingGroupV2UpdateDescription(@NonNull GroupMasterKey masterKey,

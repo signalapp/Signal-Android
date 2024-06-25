@@ -16,6 +16,86 @@
     tools:layout_height="match_parent"
     tools:layout_width="match_parent">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/call_controls_floating_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="org.thoughtcrime.securesms.components.webrtc.SlideUpWithCallControlsBehavior">
+
+        <org.thoughtcrime.securesms.components.recyclerview.NoTouchingRecyclerView
+            android:id="@+id/call_screen_reactions_feed"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="false"
+            android:orientation="vertical"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_raise_hand_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:reverseLayout="true"
+            tools:itemCount="2"
+            tools:listitem="@layout/webrtc_call_reaction_recycler_item" />
+
+        <org.thoughtcrime.securesms.stories.viewer.reply.reaction.MultiReactionBurstLayout
+            android:id="@+id/call_screen_reactions_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="false"
+            android:focusable="false"
+            app:layout_constraintBottom_toBottomOf="@id/call_screen_reactions_feed"
+            app:layout_constraintEnd_toEndOf="@id/call_screen_reactions_feed"
+            app:layout_constraintStart_toStartOf="@id/call_screen_reactions_feed"
+            app:layout_constraintTop_toTopOf="@id/call_screen_reactions_feed" />
+
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/call_screen_raise_hand_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_pending_recipients"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ViewStub
+            android:id="@+id/call_screen_pending_recipients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="32dp"
+            android:inflatedId="@+id/call_screen_pending_recipients"
+            android:layout="@layout/call_screen_pending_participants_view"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_camera_direction_toggle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/call_screen_camera_direction_toggle"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="false"
+            android:contentDescription="@string/WebRtcCallView__toggle_camera_direction"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/webrtc_call_screen_camera_toggle"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/call_screen_above_controls_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="call_screen_camera_direction_toggle,call_screen_pending_recipients,call_screen_raise_hand_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <FrameLayout
         android:id="@+id/call_controls_info_parent"
         android:layout_width="match_parent"

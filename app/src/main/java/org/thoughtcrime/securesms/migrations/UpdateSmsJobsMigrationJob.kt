@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.migrations
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
@@ -31,10 +31,10 @@ internal class UpdateSmsJobsMigrationJob(
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    val idOffset = SignalStore.plaintext().smsMigrationIdOffset
+    val idOffset = SignalStore.plaintext.smsMigrationIdOffset
     check(idOffset >= 0) { "Invalid ID offset of $idOffset -- this shouldn't be possible!" }
 
-    ApplicationDependencies.getJobManager().update { jobSpec ->
+    AppDependencies.jobManager.update { jobSpec ->
       when (jobSpec.factoryKey) {
         "PushTextSendJob" -> jobSpec.updateAndSerialize("message_id", null, idOffset)
         "ReactionSendJob" -> jobSpec.updateAndSerialize("message_id", "is_mms", idOffset)

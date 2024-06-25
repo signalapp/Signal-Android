@@ -121,14 +121,6 @@ public class KeyValueDataSetTest {
     assertEquals(Integer.class, subject.getType("key"));
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void getInteger_negative() {
-    KeyValueDataSet subject = new KeyValueDataSet();
-    subject.putInteger("key", 1);
-
-    subject.getLong("key", 0);
-  }
-
   @Test
   public void getInteger_default() {
     KeyValueDataSet subject = new KeyValueDataSet();
@@ -144,17 +136,30 @@ public class KeyValueDataSetTest {
     assertEquals(Long.class, subject.getType("key"));
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void getLong_negative() {
-    KeyValueDataSet subject = new KeyValueDataSet();
-    subject.putLong("key", 1L);
-
-    subject.getInteger("key", 0);
-  }
-
   @Test
   public void getLong_default() {
     KeyValueDataSet subject = new KeyValueDataSet();
+    assertEquals(1, subject.getLong("key", 1));
+  }
+
+  @Test
+  public void getInteger_storedAsLong() {
+    KeyValueDataSet subject = new KeyValueDataSet();
+    subject.putLong("key", 1);
+    assertEquals(1, subject.getInteger("key", 1));
+  }
+
+  @Test(expected = ArithmeticException.class)
+  public void getInteger_storedAsLongAndTooLargeForInt() {
+    KeyValueDataSet subject = new KeyValueDataSet();
+    subject.putLong("key", Long.MAX_VALUE);
+    subject.getInteger("key", 1);
+  }
+
+  @Test
+  public void getLong_storedAsInt() {
+    KeyValueDataSet subject = new KeyValueDataSet();
+    subject.putInteger("key", 1);
     assertEquals(1, subject.getLong("key", 1));
   }
 

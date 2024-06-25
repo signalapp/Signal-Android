@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
@@ -124,7 +124,7 @@ public final class PushGroupSendJob extends PushSendJob {
         if (!filterAddresses.isEmpty()) {
           throw new MmsException("Cannot schedule a group message with filter addresses!");
         }
-        ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary();
+        AppDependencies.getScheduledMessageManager().scheduleIfNecessary();
         return;
       }
 
@@ -186,7 +186,9 @@ public final class PushGroupSendJob extends PushSendJob {
     Set<NetworkFailure>      existingNetworkFailures    = new HashSet<>(message.getNetworkFailures());
     Set<IdentityKeyMismatch> existingIdentityMismatches = new HashSet<>(message.getIdentityKeyMismatches());
 
-    ApplicationDependencies.getJobManager().cancelAllInQueue(TypingSendJob.getQueue(threadId));
+    SignalLocalMetrics.GroupMessageSend.setSentTimestamp(messageId, message.getSentTimeMillis());
+
+    AppDependencies.getJobManager().cancelAllInQueue(TypingSendJob.getQueue(threadId));
 
     if (database.isSent(messageId)) {
       log(TAG, String.valueOf(message.getSentTimeMillis()), "Message " + messageId + " was already sent. Ignoring.");
@@ -468,8 +470,8 @@ public final class PushGroupSendJob extends PushSendJob {
 
       if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
         database.markExpireStarted(messageId);
-        ApplicationDependencies.getExpiringMessageManager()
-                               .scheduleDeletion(messageId, true, message.getExpiresIn());
+        AppDependencies.getExpiringMessageManager()
+                       .scheduleDeletion(messageId, true, message.getExpiresIn());
       }
 
       if (message.isViewOnce()) {
@@ -477,7 +479,7 @@ public final class PushGroupSendJob extends PushSendJob {
       }
 
       if (message.getStoryType().isStory()) {
-        ApplicationDependencies.getExpireStoriesManager().scheduleIfNecessary();
+        AppDependencies.getExpireStoriesManager().scheduleIfNecessary();
       }
     } else if (!existingIdentityMismatches.isEmpty()) {
       Log.w(TAG, "Failing because there were " + existingIdentityMismatches.size() + " identity mismatches.");

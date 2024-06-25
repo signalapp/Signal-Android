@@ -80,21 +80,15 @@
         app:layout_constraintStart_toEndOf="@+id/legend_audio"
         app:layout_constraintTop_toTopOf="@+id/legend_audio" />
 
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/free_up_space"
-        android:layout_width="match_parent"
+        style="@style/Signal.Widget.Button.Large.Tonal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?selectableItemBackground"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:gravity="center"
+        android:layout_marginTop="16dp"
         android:text="@string/preferences_storage__review_storage"
-        android:textAllCaps="true"
-        android:textColor="@color/core_ultramarine"
-        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/legend_photos" />
 

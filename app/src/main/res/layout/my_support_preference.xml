@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/active_subscription_gutter_start"
-    android:layout_marginEnd="@dimen/dsl_settings_gutter">
+    android:background="?selectableItemBackground"
+    android:paddingStart="@dimen/active_subscription_gutter_start"
+    android:paddingEnd="@dimen/dsl_settings_gutter">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

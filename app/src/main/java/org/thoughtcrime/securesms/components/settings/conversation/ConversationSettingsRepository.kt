@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupProtoUtil
 import org.thoughtcrime.securesms.groups.LiveGroup
@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.IOException
 
 private val TAG = Log.tag(ConversationSettingsRepository::class.java)
@@ -84,7 +84,7 @@ class ConversationSettingsRepository(
     }
   }
 
-  fun isInternalRecipientDetailsEnabled(): Boolean = SignalStore.internalValues().recipientDetails()
+  fun isInternalRecipientDetailsEnabled(): Boolean = SignalStore.internal.recipientDetails()
 
   fun hasGroups(consumer: (Boolean) -> Unit) {
     SignalExecutors.BOUNDED.execute { consumer(SignalDatabase.groups.getActiveGroupCount() > 0) }
@@ -92,8 +92,8 @@ class ConversationSettingsRepository(
 
   fun getIdentity(recipientId: RecipientId, consumer: (IdentityRecord?) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      if (SignalStore.account().aci != null && SignalStore.account().pni != null) {
-        consumer(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId).orElse(null))
+      if (SignalStore.account.aci != null && SignalStore.account.pni != null) {
+        consumer(AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipientId).orElse(null))
       } else {
         consumer(null)
       }
@@ -159,9 +159,9 @@ class ConversationSettingsRepository(
           members.addAll(groupRecord.members)
           members.addAll(pendingMembers)
 
-          GroupCapacityResult(Recipient.self().id, members, FeatureFlags.groupLimits(), groupRecord.isAnnouncementGroup)
+          GroupCapacityResult(Recipient.self().id, members, RemoteConfig.groupLimits, groupRecord.isAnnouncementGroup)
         } else {
-          GroupCapacityResult(Recipient.self().id, groupRecord.members, FeatureFlags.groupLimits(), false)
+          GroupCapacityResult(Recipient.self().id, groupRecord.members, RemoteConfig.groupLimits, false)
         }
       )
     }

@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -116,7 +116,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
 
     avatar.setOnClickListener(v -> showAvatarPicker());
     members.setRecipientClickListener(this::handleRecipientClick);
-    EditTextUtil.addGraphemeClusterLimitFilter(name, FeatureFlags.getMaxGroupNameGraphemeLength());
+    EditTextUtil.addGraphemeClusterLimitFilter(name, RemoteConfig.getMaxGroupNameGraphemeLength());
     name.addTextChangedListener(new AfterTextChanged(editable -> viewModel.setName(editable.toString())));
     toolbar.setNavigationOnClickListener(unused -> callback.onNavigationButtonPressed());
     create.setOnClickListener(v -> handleCreateClicked());

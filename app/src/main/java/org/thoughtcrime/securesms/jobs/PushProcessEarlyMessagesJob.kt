@@ -4,7 +4,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.ServiceMessageId
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.messages.MessageContentProcessor
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
@@ -33,7 +33,7 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
   }
 
   override fun onRun() {
-    val earlyIds: List<ServiceMessageId> = ApplicationDependencies.getEarlyMessageCache().allReferencedIds
+    val earlyIds: List<ServiceMessageId> = AppDependencies.earlyMessageCache.allReferencedIds
       .filter { SignalDatabase.messages.getMessageFor(it.sentTimestamp, it.sender) != null }
       .sortedBy { it.sentTimestamp }
 
@@ -41,7 +41,7 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
       Log.i(TAG, "There are ${earlyIds.size} items in the early message cache with matches.")
 
       for (id: ServiceMessageId in earlyIds) {
-        val earlyEntries: List<EarlyMessageCacheEntry>? = ApplicationDependencies.getEarlyMessageCache().retrieve(id.sender, id.sentTimestamp).orNull()
+        val earlyEntries: List<EarlyMessageCacheEntry>? = AppDependencies.earlyMessageCache.retrieve(id.sender, id.sentTimestamp).orNull()
 
         if (earlyEntries != null) {
           for (entry in earlyEntries) {
@@ -80,7 +80,7 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
      */
     @JvmStatic
     fun enqueue() {
-      val jobManger = ApplicationDependencies.getJobManager()
+      val jobManger = AppDependencies.jobManager
 
       val youngestProcessJobId: String? = jobManger.find { it.factoryKey == PushProcessMessageJob.KEY }
         .maxByOrNull { it.createTime }

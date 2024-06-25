@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.database.IdentityTable;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
@@ -42,9 +42,9 @@ public class UnverifiedSendDialog extends AlertDialog.Builder implements DialogI
     SimpleTask.run(() -> {
       try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
         for (IdentityRecord identityRecord : untrustedRecords) {
-          ApplicationDependencies.getProtocolStore().aci().identities().setVerified(identityRecord.getRecipientId(),
-                                                                                    identityRecord.getIdentityKey(),
-                                                                                    IdentityTable.VerifiedStatus.DEFAULT);
+          AppDependencies.getProtocolStore().aci().identities().setVerified(identityRecord.getRecipientId(),
+                                                                            identityRecord.getIdentityKey(),
+                                                                            IdentityTable.VerifiedStatus.DEFAULT);
         }
       }
       return null;

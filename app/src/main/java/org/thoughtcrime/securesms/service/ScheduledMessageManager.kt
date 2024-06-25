@@ -11,7 +11,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.IndividualSendJob
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -57,9 +57,9 @@ class ScheduledMessageManager(
       val expiresIn = SignalDatabase.recipients.getExpiresInSeconds(record.toRecipient.id)
       if (messagesTable.clearScheduledStatus(record.threadId, record.id, expiresIn.seconds.inWholeMilliseconds)) {
         if (record.toRecipient.isPushGroup) {
-          PushGroupSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.toRecipient.id, emptySet(), true)
+          PushGroupSendJob.enqueue(application, AppDependencies.jobManager, record.id, record.toRecipient.id, emptySet(), true)
         } else {
-          IndividualSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.toRecipient, true)
+          IndividualSendJob.enqueue(application, AppDependencies.jobManager, record.id, record.toRecipient, true)
         }
       } else {
         Log.i(TAG, "messageId=${record.id} was not a scheduled message, ignoring")
@@ -92,7 +92,7 @@ class ScheduledMessageManager(
 
     override fun onReceive(context: Context?, intent: Intent?) {
       Log.d(TAG, "onReceive()")
-      ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary()
+      AppDependencies.scheduledMessageManager.scheduleIfNecessary()
     }
   }
 }

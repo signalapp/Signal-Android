@@ -12,12 +12,12 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MessageFetchJob
 import org.thoughtcrime.securesms.messages.WebSocketDrainer
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
 import kotlin.time.Duration.Companion.minutes
@@ -71,7 +71,7 @@ object FcmFetchManager {
   }
 
   private fun postMayHaveMessagesNotification(context: Context) {
-    if (FeatureFlags.fcmMayHaveMessagesNotificationKillSwitch()) {
+    if (RemoteConfig.fcmMayHaveMessagesNotificationKillSwitch) {
       Log.w(TAG, "May have messages notification kill switch")
       return
     }
@@ -152,7 +152,7 @@ object FcmFetchManager {
         FcmJobService.schedule(context)
       } else {
         Log.w(TAG, "[API ${Build.VERSION.SDK_INT}] Failed to retrieve messages. Scheduling on JobManager (API " + Build.VERSION.SDK_INT + ").")
-        ApplicationDependencies.getJobManager().add(MessageFetchJob())
+        AppDependencies.jobManager.add(MessageFetchJob())
       }
     }
 

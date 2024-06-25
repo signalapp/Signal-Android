@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.migrations
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.IdentityTable
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.AccountConsistencyWorkerJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -26,42 +26,42 @@ internal class IdentityTableCleanupMigrationJob(
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    if (SignalStore.account().aci == null || SignalStore.account().pni == null) {
+    if (SignalStore.account.aci == null || SignalStore.account.pni == null) {
       Log.i(TAG, "ACI/PNI are unset, skipping.")
       return
     }
 
-    if (!SignalStore.account().hasAciIdentityKey()) {
+    if (!SignalStore.account.hasAciIdentityKey()) {
       Log.i(TAG, "No ACI identity set yet, skipping.")
       return
     }
 
-    if (!SignalStore.account().hasPniIdentityKey()) {
+    if (!SignalStore.account.hasPniIdentityKey()) {
       Log.i(TAG, "No PNI identity set yet, skipping.")
       return
     }
 
-    ApplicationDependencies.getProtocolStore().aci().identities().saveIdentityWithoutSideEffects(
+    AppDependencies.protocolStore.aci().identities().saveIdentityWithoutSideEffects(
       Recipient.self().id,
-      SignalStore.account().aci!!,
-      SignalStore.account().aciIdentityKey.publicKey,
+      SignalStore.account.aci!!,
+      SignalStore.account.aciIdentityKey.publicKey,
       IdentityTable.VerifiedStatus.VERIFIED,
       true,
       System.currentTimeMillis(),
       true
     )
 
-    ApplicationDependencies.getProtocolStore().pni().identities().saveIdentityWithoutSideEffects(
+    AppDependencies.protocolStore.pni().identities().saveIdentityWithoutSideEffects(
       Recipient.self().id,
-      SignalStore.account().pni!!,
-      SignalStore.account().pniIdentityKey.publicKey,
+      SignalStore.account.pni!!,
+      SignalStore.account.pniIdentityKey.publicKey,
       IdentityTable.VerifiedStatus.VERIFIED,
       true,
       System.currentTimeMillis(),
       true
     )
 
-    ApplicationDependencies.getJobManager().add(AccountConsistencyWorkerJob())
+    AppDependencies.jobManager.add(AccountConsistencyWorkerJob())
   }
 
   override fun shouldRetry(e: Exception): Boolean = false

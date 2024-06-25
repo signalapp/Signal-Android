@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.BadgeDisplay112
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
@@ -43,14 +44,14 @@ class PayPalCompleteOrderBottomSheet : DSLSettingsBottomSheetFragment() {
     return configure {
       customPref(
         BadgeDisplay112.Model(
-          badge = args.request.badge,
+          badge = Badges.fromDatabaseBadge(args.inAppPayment.data.badge!!),
           withDisplayText = false
         )
       )
 
       space(12.dp)
 
-      presentTitleAndSubtitle(requireContext(), args.request)
+      presentTitleAndSubtitle(requireContext(), args.inAppPayment)
 
       space(24.dp)
 

@@ -18,11 +18,14 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 object ChatItemBackupProcessor {
   val TAG = Log.tag(ChatItemBackupProcessor::class.java)
 
-  fun export(exportState: ExportState, emitter: BackupFrameEmitter) {
-    SignalDatabase.messages.getMessagesForBackup(exportState.backupTime).use { chatItems ->
-      for (chatItem in chatItems) {
-        if (exportState.threadIds.contains(chatItem.chatId)) {
-          emitter.emit(Frame(chatItem = chatItem))
+  fun export(db: SignalDatabase, exportState: ExportState, emitter: BackupFrameEmitter) {
+    db.messageTable.getMessagesForBackup(exportState.backupTime, exportState.allowMediaBackup).use { chatItems ->
+      while (chatItems.hasNext()) {
+        val chatItem = chatItems.next()
+        if (chatItem != null) {
+          if (exportState.threadIds.contains(chatItem.chatId)) {
+            emitter.emit(Frame(chatItem = chatItem))
+          }
         }
       }
     }

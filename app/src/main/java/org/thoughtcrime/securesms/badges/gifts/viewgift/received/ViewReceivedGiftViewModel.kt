@@ -10,14 +10,19 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.gifts.viewgift.ViewGiftRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.BadgeRedemptionError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
-import org.thoughtcrime.securesms.jobmanager.JobTracker
-import org.thoughtcrime.securesms.jobs.DonationReceiptRedemptionJob
+import org.thoughtcrime.securesms.database.DatabaseObserver.MessageObserver
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.InAppPaymentRedemptionJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.requireGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
-import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
 class ViewReceivedGiftViewModel(
@@ -54,7 +59,7 @@ class ViewReceivedGiftViewModel(
       .subscribe { badge ->
         val otherBadges = Recipient.self().badges.filterNot { it.id == badge.id }
         val hasOtherBadges = otherBadges.isNotEmpty()
-        val displayingBadges = SignalStore.donationsValues().getDisplayBadgesOnProfile()
+        val displayingBadges = SignalStore.donations.getDisplayBadgesOnProfile()
         val displayingOtherBadges = hasOtherBadges && displayingBadges
 
         store.update {
@@ -98,44 +103,22 @@ class ViewReceivedGiftViewModel(
   }
 
   private fun awaitRedemptionCompletion(setAsPrimary: Boolean): Completable {
-    return Completable.create {
-      Log.i(TAG, "Enqueuing gift redemption and awaiting result...", true)
-
-      var finalJobState: JobTracker.JobState? = null
-      val countDownLatch = CountDownLatch(1)
-
-      DonationReceiptRedemptionJob.createJobChainForGift(messageId, setAsPrimary).enqueue { _, state ->
-        if (state.isComplete) {
-          finalJobState = state
-          countDownLatch.countDown()
+    return Completable.create { emitter ->
+      val messageObserver = MessageObserver { messageId ->
+        val message = SignalDatabase.messages.getMessageRecord(messageId.id)
+        when (message.requireGiftBadge().redemptionState) {
+          GiftBadge.RedemptionState.REDEEMED -> emitter.onComplete()
+          GiftBadge.RedemptionState.FAILED -> emitter.onError(DonationError.genericBadgeRedemptionFailure(DonationErrorSource.GIFT_REDEMPTION))
+          else -> Unit
         }
       }
 
-      try {
-        if (countDownLatch.await(10, TimeUnit.SECONDS)) {
-          when (finalJobState) {
-            JobTracker.JobState.SUCCESS -> {
-              Log.d(TAG, "Gift redemption job chain succeeded.", true)
-              it.onComplete()
-            }
-            JobTracker.JobState.FAILURE -> {
-              Log.d(TAG, "Gift redemption job chain failed permanently.", true)
-              it.onError(DonationError.genericBadgeRedemptionFailure(DonationErrorSource.GIFT_REDEMPTION))
-            }
-            else -> {
-              Log.w(TAG, "Gift redemption job chain ignored due to in-progress jobs.", true)
-              it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.GIFT_REDEMPTION))
-            }
-          }
-        } else {
-          Log.w(TAG, "Timeout awaiting for gift token redemption and profile refresh", true)
-          it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.GIFT_REDEMPTION))
-        }
-      } catch (e: InterruptedException) {
-        Log.w(TAG, "Interrupted awaiting for gift token redemption and profile refresh", true)
-        it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.GIFT_REDEMPTION))
+      AppDependencies.jobManager.add(InAppPaymentRedemptionJob.create(MessageId(messageId), setAsPrimary))
+      AppDependencies.databaseObserver.registerMessageUpdateObserver(messageObserver)
+      emitter.setCancellable {
+        AppDependencies.databaseObserver.unregisterObserver(messageObserver)
       }
-    }
+    }.timeout(10, TimeUnit.SECONDS, Completable.error(BadgeRedemptionError.TimeoutWaitingForTokenError(DonationErrorSource.GIFT_REDEMPTION)))
   }
 
   class Factory(

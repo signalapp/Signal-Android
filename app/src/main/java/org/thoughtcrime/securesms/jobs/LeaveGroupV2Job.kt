@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
@@ -34,7 +34,7 @@ class LeaveGroupV2Job(parameters: Parameters, private val groupId: GroupId.V2) :
   }
 
   override fun onRun() {
-    ApplicationDependencies.getJobManager().add(LeaveGroupV2WorkerJob(groupId))
+    AppDependencies.jobManager.add(LeaveGroupV2WorkerJob(groupId))
   }
 
   override fun onShouldRetry(e: Exception): Boolean = false

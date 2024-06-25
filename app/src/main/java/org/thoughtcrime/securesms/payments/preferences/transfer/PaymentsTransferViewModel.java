@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 
 final class PaymentsTransferViewModel extends ViewModel {
@@ -16,7 +16,7 @@ final class PaymentsTransferViewModel extends ViewModel {
   private final MobileCoinPublicAddress ownAddress;
 
   PaymentsTransferViewModel() {
-    ownAddress = ApplicationDependencies.getPayments().getWallet().getMobileCoinPublicAddress();
+    ownAddress = AppDependencies.getPayments().getWallet().getMobileCoinPublicAddress();
   }
 
   LiveData<String> getAddress() {

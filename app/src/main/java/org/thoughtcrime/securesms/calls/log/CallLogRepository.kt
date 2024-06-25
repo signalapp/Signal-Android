@@ -10,14 +10,15 @@ import org.thoughtcrime.securesms.calls.links.UpdateCallLinkRepository
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.CallLinkPeekJob
 import org.thoughtcrime.securesms.jobs.CallLogEventSendJob
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 
 class CallLogRepository(
-  private val updateCallLinkRepository: UpdateCallLinkRepository = UpdateCallLinkRepository()
+  private val updateCallLinkRepository: UpdateCallLinkRepository = UpdateCallLinkRepository(),
+  private val callLogPeekHelper: CallLogPeekHelper
 ) : CallLogPagedDataSource.CallRepository {
   override fun getCallsCount(query: String?, filter: CallLogFilter): Int {
     return SignalDatabase.calls.getCallsCount(query, filter)
@@ -41,11 +42,17 @@ class CallLogRepository(
     }
   }
 
+  override fun onCallTabPageLoaded(pageData: List<CallLogRow>) {
+    SignalExecutors.BOUNDED_IO.execute {
+      callLogPeekHelper.onPageLoaded(pageData)
+    }
+  }
+
   fun markAllCallEventsRead() {
     SignalExecutors.BOUNDED_IO.execute {
       val latestCall = SignalDatabase.calls.getLatestCall() ?: return@execute
       SignalDatabase.calls.markAllCallEventsRead()
-      ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forMarkedAsRead(latestCall))
+      AppDependencies.jobManager.add(CallLogEventSendJob.forMarkedAsRead(latestCall))
     }
   }
 
@@ -59,11 +66,11 @@ class CallLogRepository(
         refresh()
       }
 
-      ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(databaseObserver)
-      ApplicationDependencies.getDatabaseObserver().registerCallUpdateObserver(databaseObserver)
+      AppDependencies.databaseObserver.registerConversationListObserver(databaseObserver)
+      AppDependencies.databaseObserver.registerCallUpdateObserver(databaseObserver)
 
       emitter.setCancellable {
-        ApplicationDependencies.getDatabaseObserver().unregisterObserver(databaseObserver)
+        AppDependencies.databaseObserver.unregisterObserver(databaseObserver)
       }
     }
   }
@@ -99,7 +106,7 @@ class CallLogRepository(
         val latestCall = SignalDatabase.calls.getLatestCall() ?: return@withinTransaction
         SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(latestCall.timestamp)
         SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(latestCall.timestamp)
-        ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forClearHistory(latestCall))
+        AppDependencies.jobManager.add(CallLogEventSendJob.forClearHistory(latestCall))
       }
 
       SignalDatabase.callLinks.getAllAdminCallLinksExcept(emptySet())
@@ -173,7 +180,7 @@ class CallLogRepository(
         CallLinkPeekJob(it.id)
       }
 
-      ApplicationDependencies.getJobManager().addAll(jobs)
+      AppDependencies.jobManager.addAll(jobs)
     }.subscribeOn(Schedulers.io())
   }
 }

@@ -13,9 +13,9 @@ class LogSectionNotificationProfiles : LogSection {
 
     val output = StringBuilder()
 
-    output.append("Manually enabled profile: ${SignalStore.notificationProfileValues().manuallyEnabledProfile}\n")
-    output.append("Manually enabled until  : ${SignalStore.notificationProfileValues().manuallyEnabledUntil}\n")
-    output.append("Manually disabled at    : ${SignalStore.notificationProfileValues().manuallyDisabledAt}\n")
+    output.append("Manually enabled profile: ${SignalStore.notificationProfile.manuallyEnabledProfile}\n")
+    output.append("Manually enabled until  : ${SignalStore.notificationProfile.manuallyEnabledUntil}\n")
+    output.append("Manually disabled at    : ${SignalStore.notificationProfile.manuallyDisabledAt}\n")
     output.append("Now                     : ${System.currentTimeMillis()}\n\n")
 
     output.append("Profiles:\n")

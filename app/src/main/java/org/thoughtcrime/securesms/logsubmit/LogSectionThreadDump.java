@@ -4,8 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.signal.core.util.concurrent.DeadlockDetector;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,8 +22,8 @@ public class LogSectionThreadDump implements LogSection {
 
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
-    Map<Thread, StackTraceElement[]> traces = ApplicationDependencies.getDeadlockDetector().getLastThreadDump();
-    long                             time   = ApplicationDependencies.getDeadlockDetector().getLastThreadDumpTime();
+    Map<Thread, StackTraceElement[]> traces = AppDependencies.getDeadlockDetector().getLastThreadDump();
+    long                             time   = AppDependencies.getDeadlockDetector().getLastThreadDumpTime();
 
     if (traces == null) {
       return "None";

@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.messages
 
 import org.signal.ringrtc.CallId
 import org.thoughtcrime.securesms.database.model.IdentityRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.log
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.warn
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -57,9 +57,9 @@ object CallMessageProcessor {
     }
 
     val remotePeer = RemotePeer(senderRecipientId, CallId(offerId))
-    val remoteIdentityKey = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(senderRecipientId).map { (_, identityKey): IdentityRecord -> identityKey.serialize() }.get()
+    val remoteIdentityKey = AppDependencies.protocolStore.aci().identities().getIdentityRecord(senderRecipientId).map { (_, identityKey): IdentityRecord -> identityKey.serialize() }.get()
 
-    ApplicationDependencies.getSignalCallManager()
+    AppDependencies.signalCallManager
       .receivedOffer(
         CallMetadata(remotePeer, metadata.sourceDeviceId),
         OfferMetadata(offer.opaque?.toByteArray(), OfferMessage.Type.fromProto(offer.type!!)),
@@ -87,9 +87,9 @@ object CallMessageProcessor {
     }
 
     val remotePeer = RemotePeer(senderRecipientId, CallId(answerId))
-    val remoteIdentityKey = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(senderRecipientId).map { (_, identityKey): IdentityRecord -> identityKey.serialize() }.get()
+    val remoteIdentityKey = AppDependencies.protocolStore.aci().identities().getIdentityRecord(senderRecipientId).map { (_, identityKey): IdentityRecord -> identityKey.serialize() }.get()
 
-    ApplicationDependencies.getSignalCallManager()
+    AppDependencies.signalCallManager
       .receivedAnswer(
         CallMetadata(remotePeer, metadata.sourceDeviceId),
         AnswerMetadata(answer.opaque?.toByteArray()),
@@ -117,7 +117,7 @@ object CallMessageProcessor {
 
     if (iceCandidates.isNotEmpty()) {
       val remotePeer = RemotePeer(senderRecipientId, CallId(callId))
-      ApplicationDependencies.getSignalCallManager()
+      AppDependencies.signalCallManager
         .receivedIceCandidates(
           CallMetadata(remotePeer, metadata.sourceDeviceId),
           iceCandidates
@@ -143,7 +143,7 @@ object CallMessageProcessor {
     }
 
     val remotePeer = RemotePeer(senderRecipientId, CallId(hangupId))
-    ApplicationDependencies.getSignalCallManager()
+    AppDependencies.signalCallManager
       .receivedCallHangup(
         CallMetadata(remotePeer, metadata.sourceDeviceId),
         HangupMetadata(HangupMessage.Type.fromProto(hangup.type), hangupDeviceId ?: 0)
@@ -161,7 +161,7 @@ object CallMessageProcessor {
     }
 
     val remotePeer = RemotePeer(senderRecipientId, CallId(busyId))
-    ApplicationDependencies.getSignalCallManager().receivedCallBusy(CallMetadata(remotePeer, metadata.sourceDeviceId))
+    AppDependencies.signalCallManager.receivedCallBusy(CallMetadata(remotePeer, metadata.sourceDeviceId))
   }
 
   private fun handleCallOpaqueMessage(envelope: Envelope, metadata: EnvelopeMetadata, opaque: Opaque, senderServiceId: ServiceId, serverDeliveredTimestamp: Long) {
@@ -179,7 +179,7 @@ object CallMessageProcessor {
       messageAgeSeconds = (serverDeliveredTimestamp - envelope.serverTimestamp!!).milliseconds.inWholeSeconds
     }
 
-    ApplicationDependencies.getSignalCallManager()
+    AppDependencies.signalCallManager
       .receivedOpaqueMessage(
         OpaqueMessageMetadata(
           senderServiceId.rawUuid,

@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Constraint;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.util.Util;
@@ -23,7 +23,7 @@ final class LogSectionConstraints implements LogSection {
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
     StringBuilder                   output    = new StringBuilder();
-    Map<String, Constraint.Factory> factories = JobManagerFactories.getConstraintFactories(ApplicationDependencies.getApplication());
+    Map<String, Constraint.Factory> factories = JobManagerFactories.getConstraintFactories(AppDependencies.getApplication());
     int                             keyLength = Stream.of(factories.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
 
     for (Map.Entry<String, Constraint.Factory> entry : factories.entrySet()) {

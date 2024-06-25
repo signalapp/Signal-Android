@@ -41,7 +41,7 @@ import org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanFindMeByPhoneNumberFra
 import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -166,7 +166,7 @@ public class CreateProfileFragment extends LoggingFragment {
     binding.mmsGroupHint.setVisibility(isEditingGroup && groupId.isMms() ? View.VISIBLE : View.GONE);
 
     if (isEditingGroup) {
-      EditTextUtil.addGraphemeClusterLimitFilter(binding.givenName, FeatureFlags.getMaxGroupNameGraphemeLength());
+      EditTextUtil.addGraphemeClusterLimitFilter(binding.givenName, RemoteConfig.getMaxGroupNameGraphemeLength());
       binding.profileDescriptionText.setVisibility(View.GONE);
       binding.whoCanFindMeContainer.setVisibility(View.GONE);
       binding.givenName.addTextChangedListener(new AfterTextChanged(s -> viewModel.setGivenName(s.toString())));

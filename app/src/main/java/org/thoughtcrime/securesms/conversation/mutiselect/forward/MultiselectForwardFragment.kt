@@ -57,8 +57,8 @@ import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogF
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
 import org.thoughtcrime.securesms.stories.settings.privacy.ChooseInitialMyStoryMembershipBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -124,10 +124,9 @@ class MultiselectForwardFragment :
     contactSearchMediator = ContactSearchMediator(
       this,
       emptySet(),
-      FeatureFlags.shareSelectionLimit(),
+      RemoteConfig.shareSelectionLimit,
       ContactSearchAdapter.DisplayOptions(
         displayCheckBox = !args.selectSingleRecipient,
-        displaySmsTag = ContactSearchAdapter.DisplaySmsTag.DEFAULT,
         displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
         displayStoryRing = true
       ),
@@ -231,7 +230,7 @@ class MultiselectForwardFragment :
         val message: Int = when (it) {
           ContactSearchError.CONTACT_NOT_SELECTABLE -> R.string.MultiselectForwardFragment__only_admins_can_send_messages_to_this_group
           ContactSearchError.RECOMMENDED_LIMIT_REACHED -> R.string.ContactSelectionListFragment_recommended_member_limit_reached
-          ContactSearchError.HARD_LIMIT_REACHED -> R.string.MultiselectForwardFragment__limit_reached
+          ContactSearchError.HARD_LIMIT_REACHED -> R.string.MultiselectForwardFragment__you_cant_select_more_chats
         }
 
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
@@ -308,7 +307,7 @@ class MultiselectForwardFragment :
   }
 
   private fun displayFirstSendConfirmation() {
-    SignalStore.tooltips().markMultiForwardDialogSeen()
+    SignalStore.tooltips.markMultiForwardDialogSeen()
 
     val messageCount = getMessageCount()
 
@@ -500,7 +499,7 @@ class MultiselectForwardFragment :
   }
 
   override fun onGroupStoryClicked() {
-    if (SignalStore.storyValues().userHasSeenGroupStoryEducationSheet) {
+    if (SignalStore.story.userHasSeenGroupStoryEducationSheet) {
       onGroupStoryEducationSheetNext()
     } else {
       GroupStoryEducationSheet().show(childFragmentManager, GroupStoryEducationSheet.KEY)

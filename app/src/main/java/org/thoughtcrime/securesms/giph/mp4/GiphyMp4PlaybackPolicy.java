@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.giph.mp4;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.DeviceProperties;
 
 import java.util.concurrent.TimeUnit;
@@ -13,7 +13,7 @@ public final class GiphyMp4PlaybackPolicy {
   private GiphyMp4PlaybackPolicy() { }
 
   public static boolean autoplay() {
-    return !DeviceProperties.isLowMemoryDevice(ApplicationDependencies.getApplication());
+    return !DeviceProperties.isLowMemoryDevice(AppDependencies.getApplication());
   }
 
   public static int maxRepeatsOfSinglePlayback() {
@@ -25,10 +25,10 @@ public final class GiphyMp4PlaybackPolicy {
   }
 
   public static int maxSimultaneousPlaybackInSearchResults() {
-    return ApplicationDependencies.getExoPlayerPool().getPoolStats().getMaxUnreserved();
+    return AppDependencies.getExoPlayerPool().getPoolStats().getMaxUnreserved();
   }
 
   public static int maxSimultaneousPlaybackInConversation() {
-    return ApplicationDependencies.getExoPlayerPool().getPoolStats().getMaxUnreserved() / 3;
+    return AppDependencies.getExoPlayerPool().getPoolStats().getMaxUnreserved() / 3;
   }
 }

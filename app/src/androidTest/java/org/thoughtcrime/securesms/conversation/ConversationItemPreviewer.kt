@@ -7,6 +7,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.ThreadUtil
+import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivity
 import org.thoughtcrime.securesms.database.MessageType
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
@@ -137,7 +137,7 @@ class ConversationItemPreviewer {
 
   private fun attachment(): SignalServiceAttachmentPointer {
     return SignalServiceAttachmentPointer(
-      ReleaseChannel.CDN_NUMBER,
+      Cdn.CDN_3.cdnNumber,
       SignalServiceAttachmentRemoteId.from(""),
       "image/webp",
       null,
@@ -154,7 +154,8 @@ class ConversationItemPreviewer {
       false,
       Optional.empty(),
       Optional.empty(),
-      System.currentTimeMillis()
+      System.currentTimeMillis(),
+      null
     )
   }
 }

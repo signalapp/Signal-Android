@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc;
 
+import android.Manifest;
 import android.content.Context;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -25,10 +26,10 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.compose.ui.platform.ComposeView;
-import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.constraintlayout.widget.Guideline;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.util.Consumer;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -54,6 +55,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
@@ -70,6 +72,7 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class WebRtcCallView extends InsetAwareConstraintLayout {
@@ -96,6 +99,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private RecipientId                   recipientId;
   private ImageView                     answer;
   private TextView                      answerWithoutVideoLabel;
+  private ImageView                     cameraDirectionToggle;
   private AccessibleToggleButton        ringToggle;
   private PictureInPictureGestureHelper pictureInPictureGestureHelper;
   private ImageView                     overflow;
@@ -125,9 +129,8 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private RecyclerView                  groupReactionsFeed;
   private MultiReactionBurstLayout      reactionViews;
   private ComposeView                   raiseHandSnackbar;
-  private Barrier                       pipBottomBoundaryBarrier;
-
-
+  private View                          missingPermissionContainer;
+  private MaterialButton                allowAccessButton;
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
   private WebRtcCallParticipantsRecyclerAdapter recyclerAdapter;
@@ -177,6 +180,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     incomingRingStatus            = findViewById(R.id.call_screen_incoming_ring_status);
     answer                        = findViewById(R.id.call_screen_answer_call);
     answerWithoutVideoLabel       = findViewById(R.id.call_screen_answer_without_video_label);
+    cameraDirectionToggle         = findViewById(R.id.call_screen_camera_direction_toggle);
     ringToggle                    = findViewById(R.id.call_screen_audio_ring_toggle);
     overflow                      = findViewById(R.id.call_screen_overflow_button);
     hangup                        = findViewById(R.id.call_screen_end_call);
@@ -204,7 +208,8 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     groupReactionsFeed            = findViewById(R.id.call_screen_reactions_feed);
     reactionViews                 = findViewById(R.id.call_screen_reactions_container);
     raiseHandSnackbar             = findViewById(R.id.call_screen_raise_hand_view);
-    pipBottomBoundaryBarrier      = findViewById(R.id.pip_bottom_boundary_barrier);
+    missingPermissionContainer    = findViewById(R.id.missing_permissions_container);
+    allowAccessButton             = findViewById(R.id.allow_access_button);
 
     View decline      = findViewById(R.id.call_screen_decline_call);
     View answerLabel  = findViewById(R.id.call_screen_answer_call_label);
@@ -260,10 +265,16 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     });
 
     videoToggle.setOnCheckedChangeListener((v, isOn) -> {
+      if (!hasCameraPermission()) {
+        videoToggle.setChecked(false);
+      }
       runIfNonNull(controlsListener, listener -> listener.onVideoChanged(isOn));
     });
 
     micToggle.setOnCheckedChangeListener((v, isOn) -> {
+      if (!hasAudioPermission()) {
+        micToggle.setChecked(false);
+      }
       runIfNonNull(controlsListener, listener -> listener.onMicChanged(isOn));
     });
 
@@ -271,6 +282,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       runIfNonNull(controlsListener, listener -> listener.onRingGroupChanged(isOn, ringToggle.isActivated()));
     });
 
+    cameraDirectionToggle.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
     smallLocalRender.findViewById(R.id.call_participant_switch_camera).setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
 
     overflow.setOnClickListener(v -> {
@@ -298,10 +310,13 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     ViewUtil.setBottomMargin(smallLocalAudioIndicator, audioIndicatorMargin);
 
     startCall.setOnClickListener(v -> {
-      if (controlsListener != null) {
-        startCall.setEnabled(false);
-        controlsListener.onStartCall(videoToggle.isChecked());
-      }
+      Runnable onGranted = () -> {
+        if (controlsListener != null) {
+          startCall.setEnabled(false);
+          controlsListener.onStartCall(videoToggle.isChecked());
+        }
+      };
+      runIfNonNull(controlsListener, listener -> listener.onAudioPermissionsRequested(onGranted));
     });
 
     ColorMatrix greyScaleMatrix = new ColorMatrix();
@@ -352,14 +367,21 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     rotatableControls.add(audioToggle);
     rotatableControls.add(micToggle);
     rotatableControls.add(videoToggle);
+    rotatableControls.add(cameraDirectionToggle);
     rotatableControls.add(decline);
     rotatableControls.add(smallLocalAudioIndicator);
     rotatableControls.add(ringToggle);
 
-    pipBottomBoundaryBarrier.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-      if (bottom != oldBottom) {
-        onBarrierBottomChanged(bottom);
-      }
+    missingPermissionContainer.setVisibility(hasCameraPermission() ? View.GONE : View.VISIBLE);
+
+    allowAccessButton.setOnClickListener(v -> {
+      runIfNonNull(controlsListener, listener -> listener.onVideoChanged(videoToggle.isEnabled()));
+    });
+
+    ConstraintLayout aboveControls = findViewById(R.id.call_controls_floating_parent);
+    SlideUpWithCallControlsBehavior behavior = (SlideUpWithCallControlsBehavior) ((CoordinatorLayout.LayoutParams) aboveControls.getLayoutParams()).getBehavior();
+    Objects.requireNonNull(behavior).setOnTopOfControlsChangedListener(topOfControls -> {
+      pictureInPictureGestureHelper.setBottomVerticalBoundary(topOfControls);
     });
   }
 
@@ -401,7 +423,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   public void setMicEnabled(boolean isMicEnabled) {
-    micToggle.setChecked(isMicEnabled, false);
+    micToggle.setChecked(hasAudioPermission() && isMicEnabled, false);
   }
 
   public void setPendingParticipantsViewListener(@Nullable PendingParticipantsView.Listener listener) {
@@ -420,6 +442,14 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     }
   }
 
+  private boolean hasCameraPermission() {
+    return Permissions.hasAll(getContext(), Manifest.permission.CAMERA);
+  }
+
+  private boolean hasAudioPermission() {
+    return Permissions.hasAll(getContext(), Manifest.permission.RECORD_AUDIO);
+  }
+
   public void updateCallParticipants(@NonNull CallParticipantsViewState callParticipantsViewState) {
     lastState = callParticipantsViewState;
 
@@ -428,12 +458,14 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     boolean                          isLandscapeEnabled = callParticipantsViewState.isLandscapeEnabled();
     List<WebRtcCallParticipantsPage> pages              = new ArrayList<>(2);
 
-    if (!state.getGridParticipants().isEmpty()) {
-      pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.getFocusedParticipant(), state.isInPipMode(), isPortrait, isLandscapeEnabled, state.getHideAvatar(), navBarBottomInset));
-    }
+    if (!state.getCallState().isErrorState()) {
+      if (!state.getGridParticipants().isEmpty()) {
+        pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.getFocusedParticipant(), state.isInPipMode(), isPortrait, isLandscapeEnabled, state.getHideAvatar(), navBarBottomInset));
+      }
 
-    if (state.getFocusedParticipant() != CallParticipant.EMPTY && state.getAllRemoteParticipants().size() > 1) {
-      pages.add(WebRtcCallParticipantsPage.forSingleParticipant(state.getFocusedParticipant(), state.isInPipMode(), isPortrait, isLandscapeEnabled));
+      if (state.getFocusedParticipant() != CallParticipant.EMPTY && state.getAllRemoteParticipants().size() > 1) {
+        pages.add(WebRtcCallParticipantsPage.forSingleParticipant(state.getFocusedParticipant(), state.isInPipMode(), isPortrait, isLandscapeEnabled));
+      }
     }
 
     if (state.getGroupCallState().isNotIdle()) {
@@ -499,7 +531,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     });
 
 
-    videoToggle.setChecked(localCallParticipant.isVideoEnabled(), false);
+    videoToggle.setChecked(hasCameraPermission() && localCallParticipant.isVideoEnabled(), false);
     smallLocalRender.setRenderInPip(true);
     smallLocalRender.setCallParticipant(localCallParticipant);
     smallLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
@@ -917,6 +949,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   private void updateButtonStateForLargeButtons() {
+    cameraDirectionToggle.setImageResource(R.drawable.webrtc_call_screen_camera_toggle);
     hangup.setImageResource(R.drawable.webrtc_call_screen_hangup);
     overflow.setImageResource(R.drawable.webrtc_call_screen_overflow_menu);
     micToggle.setBackgroundResource(R.drawable.webrtc_call_screen_mic_toggle);
@@ -927,6 +960,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   private void updateButtonStateForSmallButtons() {
+    cameraDirectionToggle.setImageResource(R.drawable.webrtc_call_screen_camera_toggle_small);
     hangup.setImageResource(R.drawable.webrtc_call_screen_hangup_small);
     overflow.setImageResource(R.drawable.webrtc_call_screen_overflow_menu_small);
     micToggle.setBackgroundResource(R.drawable.webrtc_call_screen_mic_toggle_small);
@@ -951,11 +985,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   public void onControlTopChanged() {
-    onBarrierBottomChanged(pipBottomBoundaryBarrier.getBottom());
-  }
-
-  private void onBarrierBottomChanged(int barrierBottom) {
-    pictureInPictureGestureHelper.setBottomVerticalBoundary(barrierBottom);
   }
 
   public interface ControlsListener {
@@ -978,5 +1007,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     void onCallInfoClicked();
     void onNavigateUpClicked();
     void toggleControls();
+    void onAudioPermissionsRequested(Runnable onGranted);
   }
 }

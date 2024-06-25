@@ -87,8 +87,8 @@ class AvatarView @JvmOverloads constructor(
     avatar.setRecipient(recipient)
   }
 
-  fun setFallbackPhotoProvider(fallbackPhotoProvider: Recipient.FallbackPhotoProvider) {
-    avatar.setFallbackPhotoProvider(fallbackPhotoProvider)
+  fun setFallbackAvatarProvider(fallbackAvatarProvider: AvatarImageView.FallbackAvatarProvider?) {
+    avatar.setFallbackAvatarProvider(fallbackAvatarProvider)
   }
 
   fun disableQuickContact() {

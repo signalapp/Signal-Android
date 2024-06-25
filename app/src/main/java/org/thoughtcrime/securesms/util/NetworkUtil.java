@@ -43,8 +43,8 @@ public final class NetworkUtil {
   }
 
   public static @NonNull CallManager.DataMode getCallingDataMode(@NonNull Context context, @NonNull PeerConnection.AdapterType networkAdapter) {
-    if (SignalStore.internalValues().callingDataMode() != CallManager.DataMode.NORMAL) {
-      return SignalStore.internalValues().callingDataMode();
+    if (SignalStore.internal().callingDataMode() != CallManager.DataMode.NORMAL) {
+      return SignalStore.internal().callingDataMode();
     }
 
     return useLowDataCalling(context, networkAdapter) ? CallManager.DataMode.LOW : CallManager.DataMode.NORMAL;

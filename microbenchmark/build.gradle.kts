@@ -19,6 +19,7 @@ android {
   compileSdkVersion = signalCompileSdkVersion
 
   compileOptions {
+    isCoreLibraryDesugaringEnabled = true
     sourceCompatibility = signalJavaVersion
     targetCompatibility = signalJavaVersion
   }
@@ -49,6 +50,7 @@ android {
 }
 
 dependencies {
+  coreLibraryDesugaring(libs.android.tools.desugar)
   lintChecks(project(":lintchecks"))
 
   implementation(project(":core-util"))

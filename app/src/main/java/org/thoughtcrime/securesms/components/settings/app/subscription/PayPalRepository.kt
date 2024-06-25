@@ -7,7 +7,9 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.paypal.PayPalConfirmationResult
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.subscriptions.PayPalConfirmPaymentIntentResponse
@@ -29,8 +31,6 @@ class PayPalRepository(private val donationsService: DonationsService) {
     private val TAG = Log.tag(PayPalRepository::class.java)
   }
 
-  private val monthlyDonationRepository = MonthlyDonationRepository(donationsService)
-
   fun createOneTimePaymentIntent(
     amount: FiatMoney,
     badgeRecipient: RecipientId,
@@ -48,7 +48,7 @@ class PayPalRepository(private val donationsService: DonationsService) {
         )
     }
       .flatMap { it.flattenResult() }
-      .onErrorResumeNext { OneTimeDonationRepository.handleCreatePaymentIntentError(it, badgeRecipient, PaymentSourceType.PayPal) }
+      .onErrorResumeNext { OneTimeInAppPaymentRepository.handleCreatePaymentIntentError(it, badgeRecipient, PaymentSourceType.PayPal) }
       .subscribeOn(Schedulers.io())
   }
 
@@ -76,34 +76,42 @@ class PayPalRepository(private val donationsService: DonationsService) {
    * it means that the PaymentMethod is already tied to a Stripe account. We can retry in this
    * situation by simply deleting the old subscriber id on the service and replacing it.
    */
-  fun createPaymentMethod(retryOn409: Boolean = true): Single<PayPalCreatePaymentMethodResponse> {
+  fun createPaymentMethod(subscriberType: InAppPaymentSubscriberRecord.Type, retryOn409: Boolean = true): Single<PayPalCreatePaymentMethodResponse> {
     return Single.fromCallable {
       donationsService.createPayPalPaymentMethod(
         Locale.getDefault(),
-        SignalStore.donationsValues().requireSubscriber().subscriberId,
+        InAppPaymentsRepository.requireSubscriber(subscriberType).subscriberId,
         MONTHLY_RETURN_URL,
         CANCEL_URL
       )
     }.flatMap { serviceResponse ->
       if (retryOn409 && serviceResponse.status == 409) {
-        monthlyDonationRepository.rotateSubscriberId().andThen(createPaymentMethod(retryOn409 = false))
+        RecurringInAppPaymentRepository.rotateSubscriberId(subscriberType).andThen(createPaymentMethod(subscriberType, retryOn409 = false))
       } else {
         serviceResponse.flattenResult()
       }
     }.subscribeOn(Schedulers.io())
   }
 
-  fun setDefaultPaymentMethod(paymentMethodId: String): Completable {
-    return Single.fromCallable {
-      Log.d(TAG, "Setting default payment method...", true)
-      donationsService.setDefaultPayPalPaymentMethod(
-        SignalStore.donationsValues().requireSubscriber().subscriberId,
-        paymentMethodId
-      )
-    }.flatMap { it.flattenResult() }.ignoreElement().doOnComplete {
-      Log.d(TAG, "Set default payment method.", true)
-      Log.d(TAG, "Storing the subscription payment source type locally.", true)
-      SignalStore.donationsValues().setSubscriptionPaymentSourceType(PaymentSourceType.PayPal)
-    }.subscribeOn(Schedulers.io())
+  fun setDefaultPaymentMethod(subscriberType: InAppPaymentSubscriberRecord.Type, paymentMethodId: String): Completable {
+    return Single
+      .fromCallable { InAppPaymentsRepository.requireSubscriber(subscriberType) }
+      .flatMapCompletable { subscriberRecord ->
+        Single.fromCallable {
+          Log.d(TAG, "Setting default payment method...", true)
+          donationsService.setDefaultPayPalPaymentMethod(
+            subscriberRecord.subscriberId,
+            paymentMethodId
+          )
+        }.flatMap { it.flattenResult() }.ignoreElement().doOnComplete {
+          Log.d(TAG, "Set default payment method.", true)
+          Log.d(TAG, "Storing the subscription payment source type locally.", true)
+
+          SignalDatabase.inAppPaymentSubscribers.setPaymentMethod(
+            subscriberRecord.subscriberId,
+            InAppPaymentData.PaymentMethodType.PAYPAL
+          )
+        }
+      }.subscribeOn(Schedulers.io())
   }
 }

@@ -20,7 +20,7 @@ import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
-import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
@@ -94,7 +93,7 @@ public class WebRtcCallViewModel extends ViewModel {
   private boolean               switchOnFirstScreenShare              = true;
   private boolean               showScreenShareTip                    = true;
 
-  private final WebRtcCallRepository repository = new WebRtcCallRepository(ApplicationDependencies.getApplication());
+  private final WebRtcCallRepository repository = new WebRtcCallRepository(AppDependencies.getApplication());
 
   private WebRtcCallViewModel(@NonNull DeviceOrientationMonitor deviceOrientationMonitor) {
     orientation      = deviceOrientationMonitor.getOrientation();
@@ -342,7 +341,7 @@ public class WebRtcCallViewModel extends ViewModel {
       events.setValue(new Event.ShowVideoTooltip());
     }
 
-    if (canDisplayPopupIfNeeded && webRtcViewModel.isCellularConnection() && NetworkUtil.isConnectedWifi(ApplicationDependencies.getApplication())) {
+    if (canDisplayPopupIfNeeded && webRtcViewModel.isCellularConnection() && NetworkUtil.isConnectedWifi(AppDependencies.getApplication())) {
       canDisplayPopupIfNeeded = false;
       events.setValue(new Event.ShowWifiToCellularPopup());
     } else if (!webRtcViewModel.isCellularConnection()) {

@@ -8,7 +8,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
@@ -26,7 +26,7 @@ class DatabaseObserverTest {
   @Before
   fun setup() {
     db = SignalDatabase.instance!!.signalWritableDatabase
-    observer = ApplicationDependencies.getDatabaseObserver()
+    observer = AppDependencies.databaseObserver
   }
 
   @Test

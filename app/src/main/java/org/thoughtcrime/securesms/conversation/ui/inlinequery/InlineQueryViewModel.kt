@@ -5,7 +5,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -17,8 +17,8 @@ import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
  * the results.
  */
 class InlineQueryViewModel(
-  private val emojiSearchRepository: EmojiSearchRepository = EmojiSearchRepository(ApplicationDependencies.getApplication()),
-  private val recentEmojis: RecentEmojiPageModel = RecentEmojiPageModel(ApplicationDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY)
+  private val emojiSearchRepository: EmojiSearchRepository = EmojiSearchRepository(AppDependencies.application),
+  private val recentEmojis: RecentEmojiPageModel = RecentEmojiPageModel(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY)
 ) : ViewModel() {
 
   private val querySubject: PublishSubject<InlineQuery> = PublishSubject.create()
@@ -44,7 +44,7 @@ class InlineQueryViewModel(
   private fun queryEmoji(query: InlineQuery.Emoji): Observable<List<AnyMappingModel>> {
     return emojiSearchRepository
       .submitQuery(query.query)
-      .map { r -> toMappingModels(r, query.keywordSearch) }
+      .map { r -> toMappingModels(r) }
       .toObservable()
   }
 
@@ -52,21 +52,20 @@ class InlineQueryViewModel(
     when (model) {
       is InlineQueryEmojiResult.Model -> {
         recentEmojis.onCodePointSelected(model.preferredEmoji)
-        selectionSubject.onNext(InlineQueryReplacement.Emoji(model.preferredEmoji, model.keywordSearch))
+        selectionSubject.onNext(InlineQueryReplacement.Emoji(model.preferredEmoji))
       }
     }
   }
 
   companion object {
-    fun toMappingModels(emojiWithLabels: List<String>, keywordSearch: Boolean): List<AnyMappingModel> {
-      val emojiValues = SignalStore.emojiValues()
+    fun toMappingModels(emojiWithLabels: List<String>): List<AnyMappingModel> {
+      val emojiValues = SignalStore.emoji
       return emojiWithLabels
         .distinct()
         .map { emoji ->
           InlineQueryEmojiResult.Model(
             canonicalEmoji = emoji,
-            preferredEmoji = emojiValues.getPreferredVariation(emoji),
-            keywordSearch = keywordSearch
+            preferredEmoji = emojiValues.getPreferredVariation(emoji)
           )
         }
     }

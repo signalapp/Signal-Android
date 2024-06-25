@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -55,7 +55,7 @@ final class RecipientDialogRepository {
 
   void getIdentity(@NonNull Consumer<IdentityRecord> callback) {
     SignalExecutors.BOUNDED.execute(
-      () -> callback.accept(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId).orElse(null)));
+      () -> callback.accept(AppDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId).orElse(null)));
   }
 
   void getRecipient(@NonNull RecipientCallback recipientCallback) {

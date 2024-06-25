@@ -92,7 +92,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
 
     binding.content.addAMessageInput.setText(requireArguments().getCharSequence(ARG_INITIAL_TEXT))
 
-    if (SignalStore.settings().isPreferSystemEmoji) {
+    if (SignalStore.settings.isPreferSystemEmoji) {
       binding.content.emojiToggle.visible = false
     } else {
       binding.content.emojiToggle.setOnClickListener { onEmojiToggleClicked() }

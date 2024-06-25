@@ -10,7 +10,7 @@ import android.content.Context;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ApkUpdateJob;
 import org.thoughtcrime.securesms.service.PersistentAlarmManagerListener;
 import org.thoughtcrime.securesms.util.Environment;
@@ -35,7 +35,7 @@ public class ApkUpdateRefreshListener extends PersistentAlarmManagerListener {
 
     if (scheduledTime != 0 && BuildConfig.MANAGES_APP_UPDATES) {
       Log.i(TAG, "Queueing APK update job...");
-      ApplicationDependencies.getJobManager().add(new ApkUpdateJob());
+      AppDependencies.getJobManager().add(new ApkUpdateJob());
     }
 
     long newTime = System.currentTimeMillis() + INTERVAL;

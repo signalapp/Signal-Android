@@ -35,7 +35,7 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.IdentityStoreRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -173,7 +173,7 @@ class IdentityTable internal constructor(context: Context?, databaseHelper: Sign
         EventBus.getDefault().post(record.get())
       }
 
-      ApplicationDependencies.getProtocolStore().aci().identities().invalidate(addressName)
+      AppDependencies.protocolStore.aci().identities().invalidate(addressName)
     }
 
     if (hadEntry && !keyMatches) {
@@ -244,7 +244,9 @@ class IdentityTable internal constructor(context: Context?, databaseHelper: Sign
   }
 
   enum class VerifiedStatus {
-    DEFAULT, VERIFIED, UNVERIFIED;
+    DEFAULT,
+    VERIFIED,
+    UNVERIFIED;
 
     fun toInt(): Int {
       return when (this) {

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.database.DatabaseObserver;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository.StickerManifestResult;
 
 import java.util.Optional;
@@ -41,7 +41,7 @@ final class StickerPackPreviewViewModel extends ViewModel {
       }
     };
 
-    ApplicationDependencies.getDatabaseObserver().registerStickerPackObserver(packObserver);
+    AppDependencies.getDatabaseObserver().registerStickerPackObserver(packObserver);
   }
 
   LiveData<Optional<StickerManifestResult>> getStickerManifest(@NonNull String packId, @NonNull String packKey) {
@@ -63,7 +63,7 @@ final class StickerPackPreviewViewModel extends ViewModel {
 
   @Override
   protected void onCleared() {
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(packObserver);
+    AppDependencies.getDatabaseObserver().unregisterObserver(packObserver);
   }
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {

@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.databinding.MySupportPreferenceBinding
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.DateUtils
@@ -33,8 +32,10 @@ object ActiveSubscriptionPreference {
     val renewalTimestamp: Long = -1L,
     val redemptionState: ManageDonationsState.RedemptionState,
     val activeSubscription: ActiveSubscription.Subscription?,
+    val subscriberRequiresCancel: Boolean,
     val onContactSupport: () -> Unit,
-    val onPendingClick: (FiatMoney) -> Unit
+    val onPendingClick: (FiatMoney) -> Unit,
+    val onRowClick: (ManageDonationsState.RedemptionState) -> Unit
   ) : PreferenceModel<Model>() {
     override fun areItemsTheSame(newItem: Model): Boolean {
       return subscription.id == newItem.subscription.id
@@ -73,6 +74,9 @@ object ActiveSubscriptionPreference {
 
       expiry.movementMethod = LinkMovementMethod.getInstance()
 
+      itemView.setOnClickListener { model.onRowClick(model.redemptionState) }
+      itemView.isClickable = model.redemptionState != ManageDonationsState.RedemptionState.IN_PROGRESS
+
       when (model.redemptionState) {
         ManageDonationsState.RedemptionState.NONE -> presentRenewalState(model)
         ManageDonationsState.RedemptionState.IS_PENDING_BANK_TRANSFER -> presentPendingBankTransferState(model)
@@ -104,7 +108,7 @@ object ActiveSubscriptionPreference {
     }
 
     private fun presentFailureState(model: Model) {
-      if (model.activeSubscription?.isFailedPayment == true || SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt) {
+      if (model.activeSubscription?.isFailedPayment == true || model.subscriberRequiresCancel) {
         presentPaymentFailureState(model)
       } else {
         presentRedemptionFailureState(model)

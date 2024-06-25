@@ -74,6 +74,7 @@ import static org.mp4parser.tools.CastUtils.l2i;
 final class Mp4Writer extends DefaultBoxes implements SampleSink {
 
   private static final String TAG = "Mp4Writer";
+  private static final Long UInt32_MAX = (1L << 32) - 1;
 
   private final WritableByteChannel  sink;
   private final List<StreamingTrack> source;
@@ -165,14 +166,24 @@ final class Mp4Writer extends DefaultBoxes implements SampleSink {
       final MediaHeaderBox mdhd = Path.getPath(tb, "mdia[0]/mdhd[0]");
       mdhd.setCreationTime(creationTime);
       mdhd.setModificationTime(creationTime);
-      mdhd.setDuration(Objects.requireNonNull(nextSampleStartTime.get(streamingTrack)));
+      final Long mediaHeaderDuration = Objects.requireNonNull(nextSampleStartTime.get(streamingTrack));
+      if (mediaHeaderDuration >= UInt32_MAX) {
+        mdhd.setVersion(1);
+      }
+      mdhd.setDuration(mediaHeaderDuration);
       mdhd.setTimescale(streamingTrack.getTimescale());
       mdhd.setLanguage(streamingTrack.getLanguage());
       movieBox.addBox(tb);
 
       final TrackHeaderBox tkhd     = Path.getPath(tb, "tkhd[0]");
-      final double         duration = (double) Objects.requireNonNull(nextSampleStartTime.get(streamingTrack)) / streamingTrack.getTimescale();
-      tkhd.setDuration((long) (mvhd.getTimescale() * duration));
+      final double         duration = (double) mediaHeaderDuration / streamingTrack.getTimescale();
+      tkhd.setCreationTime(creationTime);
+      tkhd.setModificationTime(creationTime);
+      final long trackHeaderDuration = (long) (mvhd.getTimescale() * duration);
+      if (trackHeaderDuration >= UInt32_MAX) {
+        tkhd.setVersion(1);
+      }
+      tkhd.setDuration(trackHeaderDuration);
     }
 
     // metadata here

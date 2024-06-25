@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 class AboutSheetRepository {
@@ -21,7 +21,7 @@ class AboutSheetRepository {
 
   fun getVerified(recipientId: RecipientId): Single<Boolean> {
     return Single.fromCallable {
-      val identityRecord = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId)
+      val identityRecord = AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipientId)
       identityRecord.isPresent && identityRecord.get().verifiedStatus == IdentityTable.VerifiedStatus.VERIFIED
     }.subscribeOn(Schedulers.io())
   }

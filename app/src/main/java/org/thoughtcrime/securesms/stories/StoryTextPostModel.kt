@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.fonts.TextToScript
 import org.thoughtcrime.securesms.fonts.TypefaceCache
@@ -125,14 +125,14 @@ data class StoryTextPostModel(
           this
         }
       }
-      val view = StoryTextPostView(ContextThemeWrapper(ApplicationDependencies.getApplication(), R.style.TextSecure_DarkNoActionBar))
+      val view = StoryTextPostView(ContextThemeWrapper(AppDependencies.application, R.style.TextSecure_DarkNoActionBar))
       val typeface = TypefaceCache.get(
-        ApplicationDependencies.getApplication(),
+        AppDependencies.application,
         TextFont.fromStyle(source.storyTextPost.style),
         TextToScript.guessScript(source.storyTextPost.body)
       ).safeBlockingGet()
 
-      val displayWidth: Int = ApplicationDependencies.getApplication().resources.displayMetrics.widthPixels
+      val displayWidth: Int = AppDependencies.application.resources.displayMetrics.widthPixels
       val arHeight: Int = (RENDER_HW_AR * displayWidth).toInt()
 
       val linkPreview = (message as? MmsMessageRecord)?.linkPreviews?.firstOrNull()

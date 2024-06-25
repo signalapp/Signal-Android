@@ -48,7 +48,7 @@ class ExpireTimerSettingsRepository(val context: Context) {
 
   fun setUniversalExpireTimerSeconds(newExpirationTime: Int, onDone: () -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      SignalStore.settings().universalExpireTimer = newExpirationTime
+      SignalStore.settings.universalExpireTimer = newExpirationTime
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
       onDone.invoke()

@@ -7,7 +7,6 @@ data class InternalSettingsState(
   val seeMoreUserDetails: Boolean,
   val shakeToReport: Boolean,
   val gv2forceInvites: Boolean,
-  val gv2ignoreServerChanges: Boolean,
   val gv2ignoreP2PChanges: Boolean,
   val allowCensorshipSetting: Boolean,
   val forceWebsocketMode: Boolean,

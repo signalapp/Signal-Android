@@ -14,7 +14,7 @@ import org.signal.core.util.PendingIntentFlags;
 import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.devicetransfer.DeviceTransferSetupFragment;
 import org.thoughtcrime.securesms.devicetransfer.SetupStep;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
@@ -33,7 +33,7 @@ public final class OldDeviceTransferSetupFragment extends DeviceTransferSetupFra
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    ApplicationDependencies.getJobManager().cancelAllInQueue(LocalBackupJob.QUEUE);
+    AppDependencies.getJobManager().cancelAllInQueue(LocalBackupJob.QUEUE);
   }
 
   @Override

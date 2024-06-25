@@ -9,10 +9,10 @@ import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil
 import org.whispersystems.signalservice.internal.push.DataMessage
 import java.util.Optional
+import java.util.UUID
 
 class PointerAttachment : Attachment {
   @VisibleForTesting
@@ -21,7 +21,7 @@ class PointerAttachment : Attachment {
     transferState: Int,
     size: Long,
     fileName: String?,
-    cdnNumber: Int,
+    cdn: Cdn,
     location: String,
     key: String?,
     digest: ByteArray?,
@@ -36,13 +36,14 @@ class PointerAttachment : Attachment {
     uploadTimestamp: Long,
     caption: String?,
     stickerLocator: StickerLocator?,
-    blurHash: BlurHash?
+    blurHash: BlurHash?,
+    uuid: UUID?
   ) : super(
     contentType = contentType,
     transferState = transferState,
     size = size,
     fileName = fileName,
-    cdnNumber = cdnNumber,
+    cdn = cdn,
     remoteLocation = location,
     remoteKey = key,
     remoteDigest = digest,
@@ -60,13 +61,15 @@ class PointerAttachment : Attachment {
     stickerLocator = stickerLocator,
     blurHash = blurHash,
     audioHash = null,
-    transformProperties = null
+    transformProperties = null,
+    uuid = uuid
   )
 
   constructor(parcel: Parcel) : super(parcel)
 
   override val uri: Uri? = null
   override val publicUri: Uri? = null
+  override val thumbnailUri: Uri? = null
 
   companion object {
     @JvmStatic
@@ -83,7 +86,7 @@ class PointerAttachment : Attachment {
 
     @JvmStatic
     @JvmOverloads
-    fun forPointer(pointer: Optional<SignalServiceAttachment>, stickerLocator: StickerLocator? = null, fastPreflightId: String? = null): Optional<Attachment> {
+    fun forPointer(pointer: Optional<SignalServiceAttachment>, stickerLocator: StickerLocator? = null, fastPreflightId: String? = null, transferState: Int = AttachmentTable.TRANSFER_PROGRESS_PENDING): Optional<Attachment> {
       if (!pointer.isPresent || !pointer.get().isPointer) {
         return Optional.empty()
       }
@@ -97,10 +100,10 @@ class PointerAttachment : Attachment {
       return Optional.of(
         PointerAttachment(
           contentType = pointer.get().contentType,
-          transferState = AttachmentTable.TRANSFER_PROGRESS_PENDING,
+          transferState = transferState,
           size = pointer.get().asPointer().size.orElse(0).toLong(),
           fileName = pointer.get().asPointer().fileName.orElse(null),
-          cdnNumber = pointer.get().asPointer().cdnNumber,
+          cdn = Cdn.fromCdnNumber(pointer.get().asPointer().cdnNumber),
           location = pointer.get().asPointer().remoteId.toString(),
           key = encodedKey,
           digest = pointer.get().asPointer().digest.orElse(null),
@@ -115,36 +118,8 @@ class PointerAttachment : Attachment {
           uploadTimestamp = pointer.get().asPointer().uploadTimestamp,
           caption = pointer.get().asPointer().caption.orElse(null),
           stickerLocator = stickerLocator,
-          blurHash = BlurHash.parseOrNull(pointer.get().asPointer().blurHash.orElse(null))
-        )
-      )
-    }
-
-    fun forPointer(pointer: SignalServiceDataMessage.Quote.QuotedAttachment): Optional<Attachment> {
-      val thumbnail = pointer.thumbnail
-
-      return Optional.of(
-        PointerAttachment(
-          contentType = pointer.contentType,
-          transferState = AttachmentTable.TRANSFER_PROGRESS_PENDING,
-          size = (if (thumbnail != null) thumbnail.asPointer().size.orElse(0) else 0).toLong(),
-          fileName = pointer.fileName,
-          cdnNumber = thumbnail?.asPointer()?.cdnNumber ?: 0,
-          location = thumbnail?.asPointer()?.remoteId?.toString() ?: "0",
-          key = if (thumbnail != null && thumbnail.asPointer().key != null) encodeWithPadding(thumbnail.asPointer().key) else null,
-          digest = thumbnail?.asPointer()?.digest?.orElse(null),
-          incrementalDigest = thumbnail?.asPointer()?.incrementalDigest?.orElse(null),
-          incrementalMacChunkSize = thumbnail?.asPointer()?.incrementalMacChunkSize ?: 0,
-          fastPreflightId = null,
-          voiceNote = false,
-          borderless = false,
-          videoGif = false,
-          width = thumbnail?.asPointer()?.width ?: 0,
-          height = thumbnail?.asPointer()?.height ?: 0,
-          uploadTimestamp = thumbnail?.asPointer()?.uploadTimestamp ?: 0,
-          caption = thumbnail?.asPointer()?.caption?.orElse(null),
-          stickerLocator = null,
-          blurHash = null
+          blurHash = BlurHash.parseOrNull(pointer.get().asPointer().blurHash.orElse(null)),
+          uuid = pointer.get().asPointer().uuid
         )
       )
     }
@@ -166,7 +141,7 @@ class PointerAttachment : Attachment {
           transferState = AttachmentTable.TRANSFER_PROGRESS_PENDING,
           size = (if (thumbnail != null) thumbnail.asPointer().size.orElse(0) else 0).toLong(),
           fileName = quotedAttachment.fileName,
-          cdnNumber = thumbnail?.asPointer()?.cdnNumber ?: 0,
+          cdn = Cdn.fromCdnNumber(thumbnail?.asPointer()?.cdnNumber ?: 0),
           location = thumbnail?.asPointer()?.remoteId?.toString() ?: "0",
           key = if (thumbnail != null && thumbnail.asPointer().key != null) encodeWithPadding(thumbnail.asPointer().key) else null,
           digest = thumbnail?.asPointer()?.digest?.orElse(null),
@@ -181,7 +156,8 @@ class PointerAttachment : Attachment {
           uploadTimestamp = thumbnail?.asPointer()?.uploadTimestamp ?: 0,
           caption = thumbnail?.asPointer()?.caption?.orElse(null),
           stickerLocator = null,
-          blurHash = null
+          blurHash = null,
+          uuid = thumbnail?.asPointer()?.uuid
         )
       )
     }

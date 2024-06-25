@@ -23,7 +23,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
       store.update { it.copy(emojiVersion = version) }
     }
 
-    val pendingOneTimeDonation: Observable<Boolean> = SignalStore.donationsValues().observablePendingOneTimeDonation
+    val pendingOneTimeDonation: Observable<Boolean> = SignalStore.donations.observablePendingOneTimeDonation
       .distinctUntilChanged()
       .map { it.isPresent }
 
@@ -54,11 +54,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setGv2IgnoreServerChanges(enabled: Boolean) {
-    preferenceDataStore.putBoolean(InternalValues.GV2_IGNORE_SERVER_CHANGES, enabled)
-    refresh()
-  }
-
   fun setGv2IgnoreP2PChanges(enabled: Boolean) {
     preferenceDataStore.putBoolean(InternalValues.GV2_IGNORE_P2P_CHANGES, enabled)
     refresh()
@@ -75,7 +70,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
   }
 
   fun resetPnpInitializedState() {
-    SignalStore.misc().hasPniInitializedDevices = false
+    SignalStore.misc.hasPniInitializedDevices = false
     refresh()
   }
 
@@ -120,7 +115,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
   }
 
   fun setUseConversationItemV2Media(enabled: Boolean) {
-    SignalStore.internalValues().setUseConversationItemV2Media(enabled)
+    SignalStore.internal.setUseConversationItemV2Media(enabled)
     refresh()
   }
 
@@ -136,37 +131,40 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     repository.addRemoteMegaphone(RemoteMegaphoneRecord.ActionId.DONATE_FOR_FRIEND)
   }
 
+  fun enqueueSubscriptionRedemption() {
+    repository.enqueueSubscriptionRedemption()
+  }
+
   fun refresh() {
     store.update { getState().copy(emojiVersion = it.emojiVersion) }
   }
 
   private fun getState() = InternalSettingsState(
-    seeMoreUserDetails = SignalStore.internalValues().recipientDetails(),
-    shakeToReport = SignalStore.internalValues().shakeToReport(),
-    gv2forceInvites = SignalStore.internalValues().gv2ForceInvites(),
-    gv2ignoreServerChanges = SignalStore.internalValues().gv2IgnoreServerChanges(),
-    gv2ignoreP2PChanges = SignalStore.internalValues().gv2IgnoreP2PChanges(),
-    allowCensorshipSetting = SignalStore.internalValues().allowChangingCensorshipSetting(),
-    forceWebsocketMode = SignalStore.internalValues().isWebsocketModeForced,
-    callingServer = SignalStore.internalValues().groupCallingServer(),
-    callingAudioProcessingMethod = SignalStore.internalValues().callingAudioProcessingMethod(),
-    callingDataMode = SignalStore.internalValues().callingDataMode(),
-    callingDisableTelecom = SignalStore.internalValues().callingDisableTelecom(),
-    callingDisableLBRed = SignalStore.internalValues().callingDisableLBRed(),
-    useBuiltInEmojiSet = SignalStore.internalValues().forceBuiltInEmoji(),
+    seeMoreUserDetails = SignalStore.internal.recipientDetails(),
+    shakeToReport = SignalStore.internal.shakeToReport(),
+    gv2forceInvites = SignalStore.internal.gv2ForceInvites(),
+    gv2ignoreP2PChanges = SignalStore.internal.gv2IgnoreP2PChanges(),
+    allowCensorshipSetting = SignalStore.internal.allowChangingCensorshipSetting(),
+    forceWebsocketMode = SignalStore.internal.isWebsocketModeForced,
+    callingServer = SignalStore.internal.groupCallingServer(),
+    callingAudioProcessingMethod = SignalStore.internal.callingAudioProcessingMethod(),
+    callingDataMode = SignalStore.internal.callingDataMode(),
+    callingDisableTelecom = SignalStore.internal.callingDisableTelecom(),
+    callingDisableLBRed = SignalStore.internal.callingDisableLBRed(),
+    useBuiltInEmojiSet = SignalStore.internal.forceBuiltInEmoji(),
     emojiVersion = null,
-    removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum(),
-    delayResends = SignalStore.internalValues().delayResends(),
-    disableStorageService = SignalStore.internalValues().storageServiceDisabled(),
-    canClearOnboardingState = SignalStore.storyValues().hasDownloadedOnboardingStory && Stories.isFeatureEnabled(),
-    pnpInitialized = SignalStore.misc().hasPniInitializedDevices,
-    useConversationItemV2ForMedia = SignalStore.internalValues().useConversationItemV2Media(),
-    hasPendingOneTimeDonation = SignalStore.donationsValues().getPendingOneTimeDonation() != null
+    removeSenderKeyMinimium = SignalStore.internal.removeSenderKeyMinimum(),
+    delayResends = SignalStore.internal.delayResends(),
+    disableStorageService = SignalStore.internal.storageServiceDisabled(),
+    canClearOnboardingState = SignalStore.story.hasDownloadedOnboardingStory && Stories.isFeatureEnabled(),
+    pnpInitialized = SignalStore.misc.hasPniInitializedDevices,
+    useConversationItemV2ForMedia = SignalStore.internal.useConversationItemV2Media(),
+    hasPendingOneTimeDonation = SignalStore.donations.getPendingOneTimeDonation() != null
   )
 
   fun onClearOnboardingState() {
-    SignalStore.storyValues().hasDownloadedOnboardingStory = false
-    SignalStore.storyValues().userHasViewedOnboardingStory = false
+    SignalStore.story.hasDownloadedOnboardingStory = false
+    SignalStore.story.userHasViewedOnboardingStory = false
     Stories.onStorySettingsChanged(Recipient.self().id)
     refresh()
     StoryOnboardingDownloadJob.enqueueIfNeeded()

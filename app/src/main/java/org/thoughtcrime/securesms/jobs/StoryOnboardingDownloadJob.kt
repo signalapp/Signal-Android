@@ -8,7 +8,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -49,12 +49,12 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
     }
 
     fun enqueueIfNeeded() {
-      if (SignalStore.storyValues().hasDownloadedOnboardingStory) {
+      if (SignalStore.story.hasDownloadedOnboardingStory) {
         return
       }
 
       Log.d(TAG, "Attempting to enqueue StoryOnboardingDownloadJob...")
-      ApplicationDependencies.getJobManager()
+      AppDependencies.jobManager
         .startChain(CreateReleaseChannelJob.create())
         .then(create())
         .enqueue()
@@ -66,12 +66,12 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
   override fun onFailure() = Unit
 
   override fun onRun() {
-    if (SignalStore.storyValues().hasDownloadedOnboardingStory) {
+    if (SignalStore.story.hasDownloadedOnboardingStory) {
       Log.i(TAG, "Already downloaded onboarding story. Exiting.")
       return
     }
 
-    val releaseChannelRecipientId = SignalStore.releaseChannelValues().releaseChannelRecipientId
+    val releaseChannelRecipientId = SignalStore.releaseChannel.releaseChannelRecipientId
     if (releaseChannelRecipientId == null) {
       Log.w(TAG, "Cannot create story onboarding without release channel recipient.")
       throw Exception("No release channel recipient.")
@@ -150,12 +150,12 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
     }
 
     Log.d(TAG, "Marking onboarding story downloaded.")
-    SignalStore.storyValues().hasDownloadedOnboardingStory = true
+    SignalStore.story.hasDownloadedOnboardingStory = true
 
     Log.i(TAG, "Enqueueing download jobs...")
     insertResults.forEach { insertResult ->
       SignalDatabase.attachments.getAttachmentsForMessage(insertResult.messageId).forEach {
-        ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, true))
+        AppDependencies.jobManager.add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, true))
       }
     }
   }
@@ -167,8 +167,8 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
 
     val potentialOnboardingUrlLanguages = mutableListOf<String>()
 
-    if (SignalStore.settings().language != "zz") {
-      potentialOnboardingUrlLanguages += SignalStore.settings().language
+    if (SignalStore.settings.language != "zz") {
+      potentialOnboardingUrlLanguages += SignalStore.settings.language
     }
 
     for (index in 0 until localeList.size()) {

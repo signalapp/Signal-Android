@@ -32,7 +32,9 @@ data class CallLinkCredentials(
     if (adminPassBytes != null) {
       if (other.adminPassBytes == null) return false
       if (!adminPassBytes.contentEquals(other.adminPassBytes)) return false
-    } else if (other.adminPassBytes != null) return false
+    } else if (other.adminPassBytes != null) {
+      return false
+    }
 
     return true
   }

@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.keyvalue
 
 import org.signal.core.util.logging.Log
 
-internal class ApkUpdateValues(store: KeyValueStore) : SignalStoreValues(store) {
+class ApkUpdateValues(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {
     private val TAG = Log.tag(ApkUpdateValues::class.java)
 

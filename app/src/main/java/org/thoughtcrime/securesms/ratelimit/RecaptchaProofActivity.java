@@ -16,7 +16,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.Util;
@@ -100,7 +100,7 @@ public class RecaptchaProofActivity extends PassphraseRequiredActivity {
       try {
         for (int i = 0; i < 3; i++) {
           try {
-            ApplicationDependencies.getSignalServiceAccountManager().submitRateLimitRecaptchaChallenge(challenge, token);
+            AppDependencies.getSignalServiceAccountManager().submitRateLimitRecaptchaChallenge(challenge, token);
             RateLimitUtil.retryAllRateLimitedMessages(this);
             Log.i(TAG, "Successfully completed reCAPTCHA.");
             return new TokenResult(true, true);

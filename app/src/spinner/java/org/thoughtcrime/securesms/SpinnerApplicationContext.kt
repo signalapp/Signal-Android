@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logging.PersistentLogger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.AppSignatureUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.Locale
 
 class SpinnerApplicationContext : ApplicationContext() {
@@ -50,10 +50,10 @@ class SpinnerApplicationContext : ApplicationContext() {
         "Device" to { "${Build.MODEL} (Android ${Build.VERSION.RELEASE}, API ${Build.VERSION.SDK_INT})" },
         "Package" to { "$packageName (${AppSignatureUtil.getAppSignature(this)})" },
         "App Version" to { "${BuildConfig.VERSION_NAME} (${BuildConfig.CANONICAL_VERSION_CODE}, ${BuildConfig.GIT_HASH})" },
-        "Profile Name" to { (if (SignalStore.account().isRegistered) Recipient.self().profileName.toString() else "none") },
-        "E164" to { SignalStore.account().e164 ?: "none" },
-        "ACI" to { SignalStore.account().aci?.toString() ?: "none" },
-        "PNI" to { SignalStore.account().pni?.toString() ?: "none" },
+        "Profile Name" to { (if (SignalStore.account.isRegistered) Recipient.self().profileName.toString() else "none") },
+        "E164" to { SignalStore.account.e164 ?: "none" },
+        "ACI" to { SignalStore.account.aci?.toString() ?: "none" },
+        "PNI" to { SignalStore.account.pni?.toString() ?: "none" },
         Spinner.KEY_ENVIRONMENT to { BuildConfig.FLAVOR_environment.uppercase(Locale.US) }
       ),
       linkedMapOf(
@@ -86,7 +86,7 @@ class SpinnerApplicationContext : ApplicationContext() {
       )
     )
 
-    Log.initialize({ FeatureFlags.internalUser() }, AndroidLogger(), PersistentLogger(this), SpinnerLogger())
+    Log.initialize({ RemoteConfig.internalUser }, AndroidLogger(), PersistentLogger(this), SpinnerLogger())
 
     DatabaseMonitor.initialize(object : QueryMonitor {
       override fun onSql(sql: String, args: Array<Any>?) {

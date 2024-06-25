@@ -12,12 +12,12 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
 import org.signal.core.util.updateAll
 import org.thoughtcrime.securesms.crash.CrashConfig
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.testing.assertIs
 
 class LogDatabaseTest {
 
-  private val db: LogDatabase = LogDatabase.getInstance(ApplicationDependencies.getApplication())
+  private val db: LogDatabase = LogDatabase.getInstance(AppDependencies.application)
 
   @Test
   fun crashTable_matchesNamePattern() {

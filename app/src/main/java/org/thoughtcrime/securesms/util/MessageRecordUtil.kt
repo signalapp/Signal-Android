@@ -139,7 +139,8 @@ fun MessageRecord.isTextOnly(context: Context): Boolean {
         !hasSticker() &&
         !isCaptionlessMms(context) &&
         !hasGiftBadge() &&
-        !isPaymentNotification()
+        !isPaymentNotification &&
+        !isPaymentTombstone
       )
 }
 

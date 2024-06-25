@@ -7,6 +7,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -119,7 +120,30 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
       .subscribe { processor ->
         if (processor.hasResult()) {
           Log.i(TAG, "Successfully re-registered via skip flow")
-          findNavController().safeNavigate(R.id.action_reRegisterWithPinFragment_to_registrationCompletePlaceHolderFragment)
+          try {
+            findNavController().safeNavigate(R.id.action_reRegisterWithPinFragment_to_registrationCompletePlaceHolderFragment)
+            return@subscribe
+          } catch (ise: IllegalStateException) {
+            Log.w(TAG, "Could not get parent activity fragment manager!")
+          }
+
+          try {
+            val hostActivity = activity
+            if (hostActivity != null) {
+              Navigation.findNavController(hostActivity, R.id.nav_host_fragment).safeNavigate(R.id.action_reRegisterWithPinFragment_to_registrationCompletePlaceHolderFragment)
+              return@subscribe
+            } else {
+              Log.w(TAG, "Could not get parent activity!")
+            }
+          } catch (ise: IllegalStateException) {
+            Log.w(TAG, "Could not find navigation host fragment!")
+          }
+
+          activity?.let {
+            Log.w(TAG, "Could not navigate to registration complete. Finishing activity gracefully.")
+            it.finish()
+          }
+
           return@subscribe
         }
 

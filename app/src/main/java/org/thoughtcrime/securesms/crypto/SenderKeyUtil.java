@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.push.DistributionId;
@@ -17,7 +17,7 @@ public final class SenderKeyUtil {
    */
   public static void rotateOurKey(@NonNull DistributionId distributionId) {
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
-      ApplicationDependencies.getProtocolStore().aci().senderKeys().deleteAllFor(SignalStore.account().requireAci().toString(), distributionId);
+      AppDependencies.getProtocolStore().aci().senderKeys().deleteAllFor(SignalStore.account().requireAci().toString(), distributionId);
       SignalDatabase.senderKeyShared().deleteAllFor(distributionId);
     }
   }
@@ -35,7 +35,7 @@ public final class SenderKeyUtil {
    */
   public static void clearAllState() {
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
-      ApplicationDependencies.getProtocolStore().aci().senderKeys().deleteAll();
+      AppDependencies.getProtocolStore().aci().senderKeys().deleteAll();
       SignalDatabase.senderKeyShared().deleteAll();
     }
   }

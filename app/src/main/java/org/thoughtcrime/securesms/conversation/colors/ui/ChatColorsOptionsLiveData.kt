@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.database.ChatColorsTable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
 import java.util.concurrent.Executor
 
@@ -18,11 +18,11 @@ class ChatColorsOptionsLiveData : LiveData<List<ChatColors>>() {
 
   override fun onActive() {
     refreshChatColors()
-    ApplicationDependencies.getDatabaseObserver().registerChatColorsObserver(observer)
+    AppDependencies.databaseObserver.registerChatColorsObserver(observer)
   }
 
   override fun onInactive() {
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer)
+    AppDependencies.databaseObserver.unregisterObserver(observer)
   }
 
   private fun refreshChatColors() {

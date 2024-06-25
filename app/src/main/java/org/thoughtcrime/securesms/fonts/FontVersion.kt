@@ -35,7 +35,7 @@ data class FontVersion(val id: Long, val path: String) {
     @WorkerThread
     fun get(context: Context): FontVersion {
       val fromDisk = fromDisk(context)
-      val version: FontVersion = if (System.currentTimeMillis() - SignalStore.storyValues().lastFontVersionCheck > VERSION_CHECK_INTERVAL) {
+      val version: FontVersion = if (System.currentTimeMillis() - SignalStore.story.lastFontVersionCheck > VERSION_CHECK_INTERVAL) {
         Log.i(TAG, "Timeout interval exceeded, checking network for new font version.")
 
         val fromNetwork = fromNetwork()
@@ -51,7 +51,7 @@ data class FontVersion(val id: Long, val path: String) {
             writeVersionToDisk(context, fromNetwork) ?: NONE
           } else {
             Log.i(TAG, "Network version is the same as our local version.")
-            SignalStore.storyValues().lastFontVersionCheck = System.currentTimeMillis()
+            SignalStore.story.lastFontVersionCheck = System.currentTimeMillis()
             fromDisk
           }
         } else {
@@ -82,7 +82,7 @@ data class FontVersion(val id: Long, val path: String) {
         File(Fonts.getDirectory(context), fontVersion.path).mkdir()
 
         Log.i(TAG, "Wrote version ${fontVersion.id} to disk.")
-        SignalStore.storyValues().lastFontVersionCheck = System.currentTimeMillis()
+        SignalStore.story.lastFontVersionCheck = System.currentTimeMillis()
         fontVersion
       } catch (e: Exception) {
         Log.e(TAG, "Failed to write new font version to disk", e)

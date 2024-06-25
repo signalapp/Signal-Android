@@ -28,7 +28,7 @@ import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
@@ -91,18 +91,22 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
 
   fun insertCallLink(
     callLink: CallLink
-  ) {
-    writableDatabase.withinTransaction { db ->
+  ): RecipientId {
+    val recipientId: RecipientId = writableDatabase.withinTransaction { db ->
       val recipientId = SignalDatabase.recipients.getOrInsertFromCallLinkRoomId(callLink.roomId)
 
       db
         .insertInto(TABLE_NAME)
         .values(CallLinkSerializer.serialize(callLink.copy(recipientId = recipientId)))
         .run()
+
+      recipientId
     }
 
-    ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(callLink.roomId)
-    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
+    AppDependencies.databaseObserver.notifyCallLinkObservers(callLink.roomId)
+    AppDependencies.databaseObserver.notifyCallUpdateObservers()
+
+    return recipientId!!
   }
 
   fun updateCallLinkCredentials(
@@ -120,8 +124,8 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       .where("$ROOM_ID = ?", roomId.serialize())
       .run()
 
-    ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(roomId)
-    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
+    AppDependencies.databaseObserver.notifyCallLinkObservers(roomId)
+    AppDependencies.databaseObserver.notifyCallUpdateObservers()
   }
 
   fun updateCallLinkState(
@@ -147,8 +151,8 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     }
 
     Recipient.live(recipientId).refresh()
-    ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(roomId)
-    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
+    AppDependencies.databaseObserver.notifyCallLinkObservers(roomId)
+    AppDependencies.databaseObserver.notifyCallUpdateObservers()
   }
 
   fun callLinkExists(
@@ -226,7 +230,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         record = callLink,
         recipient = peer,
         searchQuery = query,
-        callLinkPeekInfo = ApplicationDependencies.getSignalCallManager().peekInfoSnapshot[peer.id]
+        callLinkPeekInfo = AppDependencies.signalCallManager.peekInfoSnapshot[peer.id]
       )
     }
   }
@@ -377,7 +381,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     val statement = """
       SELECT $projection
       FROM $TABLE_NAME
-      WHERE $noCallEvent AND NOT $REVOKED ${searchFilter?.where ?: ""}
+      WHERE $noCallEvent AND NOT $REVOKED ${searchFilter?.where ?: ""} AND $ROOT_KEY IS NOT NULL
       ORDER BY $ID DESC
       $limitOffset
     """.trimIndent()
@@ -402,7 +406,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     }
   }
 
-  private object CallLinkDeserializer : Serializer<CallLink, Cursor> {
+  object CallLinkDeserializer : Serializer<CallLink, Cursor> {
     override fun serialize(data: CallLink): Cursor {
       throw UnsupportedOperationException()
     }
@@ -411,10 +415,12 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       return CallLink(
         recipientId = data.requireLong(RECIPIENT_ID).let { if (it > 0) RecipientId.from(it) else RecipientId.UNKNOWN },
         roomId = CallLinkRoomId.DatabaseSerializer.deserialize(data.requireNonNullString(ROOM_ID)),
-        credentials = CallLinkCredentials(
-          linkKeyBytes = data.requireNonNullBlob(ROOT_KEY),
-          adminPassBytes = data.requireBlob(ADMIN_KEY)
-        ),
+        credentials = data.requireBlob(ROOT_KEY)?.let { linkKey ->
+          CallLinkCredentials(
+            linkKeyBytes = linkKey,
+            adminPassBytes = data.requireBlob(ADMIN_KEY)
+          )
+        },
         state = SignalCallLinkState(
           name = data.requireNonNullString(NAME),
           restrictions = data.requireInt(RESTRICTIONS).mapToRestrictions(),

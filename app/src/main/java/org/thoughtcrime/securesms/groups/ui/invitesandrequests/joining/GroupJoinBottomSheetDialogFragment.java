@@ -23,14 +23,11 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog;
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -87,7 +84,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
 
     groupCancelButton.setOnClickListener(v -> dismiss());
 
-    avatar.setImageBytesForGroup(null, new FallbackPhotoProvider(), AvatarColor.UNKNOWN);
+    avatar.setImageBytesForGroup(null, AvatarColor.UNKNOWN);
 
     return view;
   }
@@ -118,7 +115,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
       });
       groupJoinButton.setVisibility(View.VISIBLE);
 
-      avatar.setImageBytesForGroup(details.getAvatarBytes(), new FallbackPhotoProvider(), AvatarColor.UNKNOWN);
+      avatar.setImageBytesForGroup(details.getAvatarBytes(), AvatarColor.UNKNOWN);
 
       groupCancelButton.setVisibility(View.VISIBLE);
     });
@@ -204,10 +201,4 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
     BottomSheetUtil.show(manager, tag, this);
   }
 
-  private static final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {
-    @Override
-    public @NonNull FallbackContactPhoto getPhotoForGroup() {
-      return new ResourceContactPhoto(R.drawable.ic_group_outline_48);
-    }
-  }
 }

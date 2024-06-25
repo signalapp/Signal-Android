@@ -6,13 +6,16 @@
 
 package org.whispersystems.signalservice.api;
 
+import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.FutureTransformers;
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
+import org.whispersystems.signalservice.api.backup.BackupKey;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
@@ -27,6 +30,7 @@ import org.whispersystems.signalservice.api.push.exceptions.MissingConfiguration
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.internal.push.IdentityCheckRequest;
 import org.whispersystems.signalservice.internal.push.IdentityCheckResponse;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
@@ -36,14 +40,19 @@ import org.whispersystems.signalservice.internal.websocket.ResponseMapper;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import io.reactivex.rxjava3.core.Single;
 
@@ -159,8 +168,65 @@ public class SignalServiceMessageReceiver {
       throws IOException, InvalidMessageException, MissingConfigurationException {
     if (!pointer.getDigest().isPresent()) throw new InvalidMessageException("No attachment digest!");
 
-    socket.retrieveAttachment(pointer.getCdnNumber(), pointer.getRemoteId(), destination, maxSizeBytes, listener);
+    socket.retrieveAttachment(pointer.getCdnNumber(), Collections.emptyMap(), pointer.getRemoteId(), destination, maxSizeBytes, listener);
     return AttachmentCipherInputStream.createForAttachment(destination, pointer.getSize().orElse(0), pointer.getKey(), pointer.getDigest().get(), null, 0);
+  }
+
+  /**
+   * Retrieves an archived media attachment.
+   *
+   * @param archivedMediaKeyMaterial Decryption key material for decrypting outer layer of archived media.
+   * @param readCredentialHeaders Headers to pass to the backup CDN to authorize the download
+   * @param archiveDestination The download destination for archived attachment. If this file exists, download will resume.
+   * @param pointer The {@link SignalServiceAttachmentPointer} received in a {@link SignalServiceDataMessage}.
+   * @param attachmentDestination The download destination for this attachment. If this file exists, it is assumed that this is previously-downloaded content that can be resumed.
+   * @param listener An optional listener (may be null) to receive callbacks on download progress.
+   *
+   * @return An InputStream that streams the plaintext attachment contents.
+   */
+  public InputStream retrieveArchivedAttachment(@Nonnull BackupKey.MediaKeyMaterial archivedMediaKeyMaterial,
+                                                @Nonnull Map<String, String> readCredentialHeaders,
+                                                @Nonnull File archiveDestination,
+                                                @Nonnull SignalServiceAttachmentPointer pointer,
+                                                @Nonnull File attachmentDestination,
+                                                long maxSizeBytes,
+                                                boolean ignoreDigest,
+                                                @Nullable ProgressListener listener)
+      throws IOException, InvalidMessageException, MissingConfigurationException
+  {
+    if (!ignoreDigest && pointer.getDigest().isEmpty()) {
+      throw new InvalidMessageException("No attachment digest!");
+    }
+
+    socket.retrieveAttachment(pointer.getCdnNumber(), readCredentialHeaders, pointer.getRemoteId(), archiveDestination, maxSizeBytes, listener);
+
+    long originalCipherLength = pointer.getSize()
+                                       .filter(s -> s > 0)
+                                       .map(s -> AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(s)))
+                                       .orElse(0L);
+
+    try (InputStream backupDecrypted = AttachmentCipherInputStream.createForArchivedMedia(archivedMediaKeyMaterial, archiveDestination, originalCipherLength)) {
+      try (FileOutputStream fos = new FileOutputStream(attachmentDestination)) {
+        StreamUtil.copy(backupDecrypted, fos);
+      }
+    }
+
+    return AttachmentCipherInputStream.createForAttachment(attachmentDestination,
+                                                           pointer.getSize().orElse(0),
+                                                           pointer.getKey(),
+                                                           ignoreDigest ? null : pointer.getDigest().get(),
+                                                           null,
+                                                           0,
+                                                           ignoreDigest);
+  }
+
+  public void retrieveBackup(int cdnNumber, Map<String, String> headers, String cdnPath, File destination, ProgressListener listener) throws MissingConfigurationException, IOException {
+    socket.retrieveBackup(cdnNumber, headers, cdnPath, destination, 1_000_000_000L, listener);
+  }
+
+  @Nullable
+  public ZonedDateTime getCdnLastModifiedTime(int cdnNumber, Map<String, String> headers, String cdnPath) throws MissingConfigurationException, IOException {
+    return socket.getCdnLastModifiedTime(cdnNumber, headers, cdnPath);
   }
 
   public InputStream retrieveSticker(byte[] packId, byte[] packKey, int stickerId)

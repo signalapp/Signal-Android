@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.mediasend.v2.gallery
 
+import android.Manifest
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.WindowInsetsCompat
@@ -18,6 +20,9 @@ import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.databinding.V2MediaGalleryFragmentBinding
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaRepository
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
+import org.thoughtcrime.securesms.permissions.PermissionCompat
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -39,6 +44,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
   private lateinit var callbacks: Callbacks
 
   private var selectedMediaTouchHelper: ItemTouchHelper? = null
+  private var shouldEnableScrolling: Boolean = true
 
   private val galleryAdapter = MappingAdapter()
   private val selectedAdapter = MappingAdapter()
@@ -65,6 +71,10 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
       height = ViewUtil.getStatusBarHeight(view)
     }
 
+    binding.mediaGalleryGrid.layoutManager = object : GridLayoutManager(requireContext(), 4) {
+      override fun canScrollVertically() = shouldEnableScrolling
+    }
+
     (binding.mediaGalleryGrid.layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
       override fun getSpanSize(position: Int): Int {
         val isFolder: Boolean = (binding.mediaGalleryGrid.adapter as MappingAdapter).getModel(position).map { it is MediaGallerySelectableItem.FolderModel }.orElse(false)
@@ -86,7 +96,18 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     if (callbacks.isCameraEnabled()) {
       binding.mediaGalleryToolbar.setOnMenuItemClickListener { item ->
         if (item.itemId == R.id.action_camera) {
-          callbacks.onNavigateToCamera()
+          if (CameraXUtil.isSupported()) {
+            callbacks.onNavigateToCamera()
+          } else {
+            Permissions.with(this)
+              .request(Manifest.permission.CAMERA)
+              .ifNecessary()
+              .onAllGranted { callbacks.onNavigateToCamera() }
+              .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.ic_camera_24)
+              .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos_videos, getParentFragmentManager())
+              .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
+              .execute()
+          }
           true
         } else {
           false
@@ -143,6 +164,8 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
       binding.mediaGalleryToolbar.title = state.bucketTitle ?: requireContext().getString(R.string.AttachmentKeyboard_gallery)
     }
 
+    binding.mediaGalleryAllowAccess.setOnClickListener { requestRequiredPermissions() }
+
     val galleryItemsWithSelection = LiveDataUtil.combineLatest(
       viewModel.state.map { it.items },
       viewStateLiveData.map { it.selectedMedia }
@@ -157,10 +180,37 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     }
 
     galleryItemsWithSelection.observe(viewLifecycleOwner) {
-      galleryAdapter.submitList(it)
+      if (!Permissions.hasAll(requireContext(), *PermissionCompat.forImagesAndVideos())) {
+        binding.mediaGalleryMissingPermissions.visibility = View.VISIBLE
+        shouldEnableScrolling = false
+        galleryAdapter.submitList((1..100).map { MediaGallerySelectableItem.PlaceholderModel() })
+      } else {
+        binding.mediaGalleryMissingPermissions.visibility = View.GONE
+        shouldEnableScrolling = true
+        galleryAdapter.submitList(it)
+      }
     }
 
     requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+  }
+
+  private fun refreshMediaGallery() {
+    viewModel.refreshMediaGallery()
+  }
+
+  @Deprecated("Deprecated in Java")
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
+
+  private fun requestRequiredPermissions() {
+    Permissions.with(this)
+      .request(*PermissionCompat.forImagesAndVideos())
+      .ifNecessary()
+      .onAllGranted { refreshMediaGallery() }
+      .withPermanentDenialDialog(getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio), null, R.string.AttachmentManager_signal_allow_storage, R.string.AttachmentManager_signal_to_show_photos, parentFragmentManager)
+      .onAnyDenied { Toast.makeText(requireContext(), R.string.AttachmentManager_signal_needs_storage_access, Toast.LENGTH_LONG).show() }
+      .execute()
   }
 
   fun onBack() {

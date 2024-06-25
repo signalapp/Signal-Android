@@ -131,7 +131,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
 
       clickPref(
         title = DSLSettingsText.from(R.string.PrivacySettingsFragment__blocked),
-        summary = DSLSettingsText.from(getString(R.string.PrivacySettingsFragment__d_contacts, state.blockedCount)),
+        summary = DSLSettingsText.from(resources.getQuantityString(R.plurals.PrivacySettingsFragment__d_contacts, state.blockedCount, state.blockedCount)),
         onClick = {
           Navigation.findNavController(requireView())
             .safeNavigate(R.id.action_privacySettingsFragment_to_blockedUsersActivity)

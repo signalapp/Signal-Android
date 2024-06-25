@@ -23,8 +23,16 @@ public final class RemoteDeprecation {
    * @return The amount of time (in milliseconds) until this client version expires, or -1 if
    *         there's no pending expiration.
    */
+  public static long getTimeUntilDeprecation(long currentTime) {
+    return getTimeUntilDeprecation(RemoteConfig.clientExpiration(), currentTime, BuildConfig.VERSION_NAME);
+  }
+
+  /**
+   * @return The amount of time (in milliseconds) until this client version expires, or -1 if
+   *         there's no pending expiration.
+   */
   public static long getTimeUntilDeprecation() {
-    return getTimeUntilDeprecation(FeatureFlags.clientExpiration(), System.currentTimeMillis(), BuildConfig.VERSION_NAME);
+    return getTimeUntilDeprecation(System.currentTimeMillis());
   }
 
   /**

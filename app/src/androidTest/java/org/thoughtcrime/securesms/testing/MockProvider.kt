@@ -31,7 +31,7 @@ object MockProvider {
 
   val lockedFailure = PushServiceSocket.RegistrationLockFailure().apply {
     svr1Credentials = AuthCredentials.create("username", "password")
-    svr2Credentials = null
+    svr2Credentials = AuthCredentials.create("username", "password")
   }
 
   val primaryOnlyDeviceList = DeviceInfoList().apply {
@@ -68,7 +68,7 @@ object MockProvider {
     }
   }
 
-  fun createPreKeyResponse(identity: IdentityKeyPair = SignalStore.account().aciIdentityKey, deviceId: Int): PreKeyResponse {
+  fun createPreKeyResponse(identity: IdentityKeyPair = SignalStore.account.aciIdentityKey, deviceId: Int): PreKeyResponse {
     val signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), identity.privateKey)
     val oneTimePreKey = PreKeyRecord(SecureRandom().nextInt(Medium.MAX_VALUE), Curve.generateKeyPair())
 

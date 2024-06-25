@@ -28,7 +28,7 @@ import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.qr.kitkat.ScanListener;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -131,14 +131,15 @@ public class DeviceActivity extends PassphraseRequiredActivity
     Permissions.with(this)
                .request(Manifest.permission.CAMERA)
                .ifNecessary()
-               .withPermanentDenialDialog(getString(R.string.DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code))
+               .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_scan_qr_code_allow_camera), R.drawable.symbol_camera_24)
+               .withPermanentDenialDialog(getString(R.string.DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_scan_qr_codes, getSupportFragmentManager())
                .onAllGranted(() -> {
                  getSupportFragmentManager().beginTransaction()
                                             .replace(R.id.fragment_container, deviceAddFragment)
                                             .addToBackStack(null)
                                             .commitAllowingStateLoss();
                })
-               .onAnyDenied(() -> Toast.makeText(this, R.string.DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission, Toast.LENGTH_LONG).show())
+               .onAnyDenied(() -> Toast.makeText(this, R.string.CameraXFragment_signal_needs_camera_access_scan_qr_code, Toast.LENGTH_LONG).show())
                .execute();
   }
 
@@ -190,7 +191,7 @@ public class DeviceActivity extends PassphraseRequiredActivity
 
         try {
           Context                     context          = DeviceActivity.this;
-          SignalServiceAccountManager accountManager   = ApplicationDependencies.getSignalServiceAccountManager();
+          SignalServiceAccountManager accountManager   = AppDependencies.getSignalServiceAccountManager();
           String                      verificationCode = accountManager.getNewDeviceVerificationCode();
           String                      ephemeralId      = uri.getQueryParameter("uuid");
           String                      publicKeyEncoded = uri.getQueryParameter("pub_key");

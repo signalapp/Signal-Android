@@ -263,7 +263,7 @@ class VoiceNoteMediaNotificationProvider(val context: Context) : MediaNotificati
    * OR it will set a callback to update the notification once the bitmap is fetched by [AvatarUtil]
    */
   private fun addLargeIcon(builder: NotificationCompat.Builder, extras: Bundle?, callback: MediaNotification.Provider.Callback) {
-    if (extras == null || !SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+    if (extras == null || !SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       cachedBitmap = null
       cachedRecipientId = null
       return

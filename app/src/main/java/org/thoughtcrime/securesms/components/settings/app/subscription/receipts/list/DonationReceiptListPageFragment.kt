@@ -73,8 +73,8 @@ class DonationReceiptListPageFragment : Fragment(R.layout.donation_receipt_list_
 
   private fun getBadgeForRecord(record: DonationReceiptRecord, badges: List<DonationReceiptBadge>): Badge? {
     return when (record.type) {
-      DonationReceiptRecord.Type.BOOST -> badges.firstOrNull { it.type == DonationReceiptRecord.Type.BOOST }?.badge
-      DonationReceiptRecord.Type.GIFT -> badges.firstOrNull { it.type == DonationReceiptRecord.Type.GIFT }?.badge
+      DonationReceiptRecord.Type.ONE_TIME_DONATION -> badges.firstOrNull { it.type == DonationReceiptRecord.Type.ONE_TIME_DONATION }?.badge
+      DonationReceiptRecord.Type.ONE_TIME_GIFT -> badges.firstOrNull { it.type == DonationReceiptRecord.Type.ONE_TIME_GIFT }?.badge
       else -> badges.firstOrNull { it.level == record.subscriptionLevel }?.badge
     }
   }

@@ -13,7 +13,7 @@ import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
@@ -140,10 +140,10 @@ public class EditSelfProfileRepository implements EditProfileRepository {
         }
       }
 
-      ApplicationDependencies.getJobManager()
-                             .startChain(new ProfileUploadJob())
-                             .then(Arrays.asList(new MultiDeviceProfileKeyUpdateJob(), new MultiDeviceProfileContentUpdateJob()))
-                             .enqueue();
+      AppDependencies.getJobManager()
+                     .startChain(new ProfileUploadJob())
+                     .then(Arrays.asList(new MultiDeviceProfileKeyUpdateJob(), new MultiDeviceProfileContentUpdateJob()))
+                     .enqueue();
 
       RegistrationUtil.maybeMarkRegistrationComplete();
 

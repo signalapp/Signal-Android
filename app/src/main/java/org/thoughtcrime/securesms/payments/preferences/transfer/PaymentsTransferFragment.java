@@ -96,20 +96,11 @@ public final class PaymentsTransferFragment extends LoggingFragment {
     Permissions.with(this)
                .request(Manifest.permission.CAMERA)
                .ifNecessary()
-               .withRationaleDialog(getString(R.string.PaymentsTransferFragment__to_scan_a_qr_code_signal_needs), R.drawable.ic_camera_24)
-               .onAnyPermanentlyDenied(this::onCameraPermissionPermanentlyDenied)
+               .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.PaymentsTransferFragment__to_scan_a_qr_code_signal_needs), R.drawable.ic_camera_24)
+               .withPermanentDenialDialog(getString(R.string.PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_scan_qr_codes, getParentFragmentManager())
                .onAllGranted(() -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_paymentsTransfer_to_paymentsScanQr))
                .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera, Toast.LENGTH_LONG).show())
                .execute();
-  }
-
-  private void onCameraPermissionPermanentlyDenied() {
-    new MaterialAlertDialogBuilder(requireContext())
-                   .setTitle(R.string.Permissions_permission_required)
-                   .setMessage(R.string.PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings)
-                   .setPositiveButton(R.string.PaymentsTransferFragment__settings, (dialog, which) -> requireActivity().startActivity(Permissions.getApplicationSettingsIntent(requireContext())))
-                   .setNegativeButton(android.R.string.cancel, null)
-                   .show();
   }
 
   @Override

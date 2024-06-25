@@ -32,7 +32,7 @@ class SendPaymentsActivatedJob(parameters: Parameters) : BaseJob(parameters) {
       throw NotPushRegisteredException()
     }
 
-    if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
+    if (!SignalStore.payments.mobileCoinPaymentsEnabled()) {
       Log.w(TAG, "Payments aren't enabled, not going to attempt to send activation messages.")
       return
     }

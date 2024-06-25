@@ -84,7 +84,8 @@ data class CallParticipant(
   }
 
   enum class DeviceOrdinal {
-    PRIMARY, SECONDARY
+    PRIMARY,
+    SECONDARY
   }
 
   enum class AudioLevel {

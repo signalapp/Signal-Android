@@ -42,7 +42,7 @@ class FetchRemoteMegaphoneImageJob(parameters: Parameters, private val uuid: Str
   override fun onRun() {
     try {
       S3.getObject(imageUrl).use { response ->
-        val body: ResponseBody? = response.body()
+        val body: ResponseBody? = response.body
         if (body != null) {
           val uri = BlobProvider.getInstance()
             .forData(body.byteStream(), body.contentLength())

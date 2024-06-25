@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.net.Uri;
+import android.view.GestureDetector;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -57,6 +58,10 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
   @NonNull ConversationMessage getConversationMessage();
 
   void setEventListener(@Nullable EventListener listener);
+
+  default void setGestureDetector(@Nullable GestureDetector gestureDetector) {
+    // Intentionally Blank.
+  }
 
   default void setParentScrolling(boolean isParentScrolling) {
     // Intentionally Blank.
@@ -120,11 +125,13 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onViewGiftBadgeClicked(@NonNull MessageRecord messageRecord);
     void onGiftBadgeRevealed(@NonNull MessageRecord messageRecord);
     void goToMediaPreview(ConversationItem parent, View sharedElement, MediaIntentFactory.MediaPreviewArgs args);
-    void onEditedIndicatorClicked(@NonNull MessageRecord messageRecord);
+    void onEditedIndicatorClicked(@NonNull ConversationMessage conversationMessage);
     void onShowGroupDescriptionClicked(@NonNull String groupName, @NonNull String description, boolean shouldLinkifyWebLinks);
     void onJoinCallLink(@NonNull CallLinkRootKey callLinkRootKey);
     void onShowSafetyTips(boolean forGroup);
     void onReportSpamLearnMoreClicked();
     void onMessageRequestAcceptOptionsClicked();
+    void onItemDoubleClick(MultiselectPart multiselectPart);
+    void onPaymentTombstoneClicked();
   }
 }

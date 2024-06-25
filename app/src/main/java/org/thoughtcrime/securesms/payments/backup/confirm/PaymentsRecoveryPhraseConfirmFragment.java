@@ -67,7 +67,7 @@ public class PaymentsRecoveryPhraseConfirmFragment extends Fragment {
     word2.addTextChangedListener(new AfterTextChanged(e -> viewModel.validateWord2(e.toString())));
     seePhraseAgain.setOnClickListener(v -> Navigation.findNavController(requireView()).popBackStack());
     done.setOnClickListener(v -> {
-      SignalStore.paymentsValues().confirmMnemonic(true);
+      SignalStore.payments().confirmMnemonic(true);
       ViewUtil.hideKeyboard(requireContext(), view);
       Toast.makeText(requireContext(), R.string.PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed, Toast.LENGTH_SHORT).show();
 

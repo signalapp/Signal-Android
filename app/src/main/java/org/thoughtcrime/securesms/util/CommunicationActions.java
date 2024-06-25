@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.TaskStackBuilder;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -26,8 +27,6 @@ import org.signal.core.util.concurrent.RxExtensions;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.usernames.BaseUsernameException;
-import org.signal.libsignal.usernames.Username;
 import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
@@ -37,23 +36,20 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.CallLinkTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinUpdateRequiredBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
-import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameAciFetchResult;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameLinkConversionResult;
 import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
-import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -74,7 +70,7 @@ public class CommunicationActions {
   /**
    * Start a voice call. Assumes that permission request results will be routed to a handler on the Activity.
    */
-  public static void startVoiceCall(@NonNull Activity activity, @NonNull Recipient recipient) {
+  public static void startVoiceCall(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
     startVoiceCall(new ActivityCallContext(activity), recipient);
   }
 
@@ -88,7 +84,7 @@ public class CommunicationActions {
     }
 
     if (recipient.isRegistered()) {
-      ApplicationDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
+      AppDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
           if (resultCode == 1) {
@@ -118,7 +114,7 @@ public class CommunicationActions {
   /**
    * Start a video call. Assumes that permission request results will be routed to a handler on the Activity.
    */
-  public static void startVideoCall(@NonNull Activity activity, @NonNull Recipient recipient) {
+  public static void startVideoCall(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
     startVideoCall(new ActivityCallContext(activity), recipient, false);
   }
 
@@ -131,7 +127,7 @@ public class CommunicationActions {
       return;
     }
 
-    ApplicationDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
+    AppDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
       @Override
       protected void onReceiveResult(int resultCode, Bundle resultData) {
         startCallInternal(callContext, recipient, resultCode != 1, fromCallLink);
@@ -172,7 +168,7 @@ public class CommunicationActions {
     }.execute();
   }
 
-  public static void startInsecureCall(@NonNull Activity activity, @NonNull Recipient recipient) {
+  public static void startInsecureCall(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
     startInsecureCall(new ActivityCallContext(activity), recipient);
   }
 
@@ -314,7 +310,7 @@ public class CommunicationActions {
       return;
     }
 
-    if (!FeatureFlags.adHocCalling()) {
+    if (!RemoteConfig.adHocCalling()) {
       Toast.makeText(activity, R.string.CommunicationActions_cant_join_call, Toast.LENGTH_SHORT).show();
       return;
     }
@@ -344,7 +340,7 @@ public class CommunicationActions {
   }
 
   private static void startVideoCall(@NonNull CallContext callContext, @NonNull CallLinkRootKey rootKey) {
-    if (!FeatureFlags.adHocCalling()) {
+    if (!RemoteConfig.adHocCalling()) {
       Toast.makeText(callContext.getContext(), R.string.CommunicationActions_cant_join_call, Toast.LENGTH_SHORT).show();
       return;
     }
@@ -392,11 +388,11 @@ public class CommunicationActions {
     callContext.getPermissionsBuilder()
                .request(Manifest.permission.RECORD_AUDIO)
                .ifNecessary()
-               .withRationaleDialog(callContext.getContext().getString(R.string.ConversationActivity__to_call_s_signal_needs_access_to_your_microphone, recipient.getDisplayName(callContext.getContext())),
-                   R.drawable.ic_mic_solid_24)
-               .withPermanentDenialDialog(callContext.getContext().getString(R.string.ConversationActivity__to_call_s_signal_needs_access_to_your_microphone, recipient.getDisplayName(callContext.getContext())))
+               .withRationaleDialog(callContext.getContext().getString(R.string.ConversationActivity_allow_access_microphone), callContext.getContext().getString(R.string.ConversationActivity__to_call_signal_needs_access_to_your_microphone), R.drawable.symbol_phone_24)
+               .withPermanentDenialDialog(callContext.getContext().getString(R.string.ConversationActivity__to_call_signal_needs_access_to_your_microphone), null, R.string.ConversationActivity_allow_access_microphone, R.string.ConversationActivity__to_start_call, callContext.getFragmentManager())
+               .onAnyDenied(() -> Toast.makeText(callContext.getContext(), R.string.ConversationActivity_signal_needs_microphone_access_voice_call, Toast.LENGTH_LONG).show())
                .onAllGranted(() -> {
-                 ApplicationDependencies.getSignalCallManager().startOutgoingAudioCall(recipient);
+                 AppDependencies.getSignalCallManager().startOutgoingAudioCall(recipient);
 
                  MessageSender.onMessageSent();
 
@@ -410,25 +406,15 @@ public class CommunicationActions {
   }
 
   private static void startVideoCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean fromCallLink) {
-    callContext.getPermissionsBuilder()
-               .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
-               .ifNecessary()
-               .withRationaleDialog(callContext.getContext().getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(callContext.getContext())),
-                                    R.drawable.ic_mic_solid_24,
-                                    R.drawable.ic_video_solid_24_tinted)
-               .withPermanentDenialDialog(callContext.getContext().getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(callContext.getContext())))
-               .onAllGranted(() -> {
-                 ApplicationDependencies.getSignalCallManager().startPreJoinCall(recipient);
+    AppDependencies.getSignalCallManager().startPreJoinCall(recipient);
 
-                 Intent activityIntent = new Intent(callContext.getContext(), WebRtcCallActivity.class);
+    Intent activityIntent = new Intent(callContext.getContext(), WebRtcCallActivity.class);
 
-                 activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                     .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true)
-                     .putExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_CALL_LINK, fromCallLink);
+    activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                  .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true)
+                  .putExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_CALL_LINK, fromCallLink);
 
-                 callContext.startActivity(activityIntent);
-               })
-               .execute();
+    callContext.startActivity(activityIntent);
   }
 
   private static void handleE164Link(Activity activity, String e164) {
@@ -496,12 +482,13 @@ public class CommunicationActions {
     @NonNull Permissions.PermissionsBuilder getPermissionsBuilder();
     void startActivity(@NonNull Intent intent);
     @NonNull Context getContext();
+    @NonNull FragmentManager getFragmentManager();
   }
 
   private static class ActivityCallContext implements CallContext {
-    private final Activity activity;
+    private final FragmentActivity activity;
 
-    private ActivityCallContext(Activity activity) {
+    private ActivityCallContext(FragmentActivity activity) {
       this.activity = activity;
     }
 
@@ -518,6 +505,11 @@ public class CommunicationActions {
     @Override
     public @NonNull Context getContext() {
       return activity;
+    }
+
+    @Override
+    public @NonNull FragmentManager getFragmentManager() {
+      return activity.getSupportFragmentManager();
     }
   }
 
@@ -541,6 +533,11 @@ public class CommunicationActions {
     @Override
     public @NonNull Context getContext() {
       return fragment.requireContext();
+    }
+
+    @Override
+    public @NonNull FragmentManager getFragmentManager() {
+      return fragment.getParentFragmentManager();
     }
   }
 }

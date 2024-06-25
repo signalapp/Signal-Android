@@ -4,7 +4,7 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -30,14 +30,14 @@ class AliceClient(val serviceId: ServiceId, val e164: String, val trustRoot: ECK
     uuid = serviceId.rawUuid,
     e164 = e164,
     deviceId = 1,
-    identityKey = SignalStore.account().aciIdentityKey.publicKey.publicKey,
+    identityKey = SignalStore.account.aciIdentityKey.publicKey.publicKey,
     expires = 31337
   )
 
   fun process(envelope: Envelope, serverDeliveredTimestamp: Long) {
     val start = System.currentTimeMillis()
     val bufferedStore = BufferedProtocolStore.create()
-    ApplicationDependencies.getIncomingMessageObserver()
+    AppDependencies.incomingMessageObserver
       .processEnvelope(bufferedStore, envelope, serverDeliveredTimestamp)
       ?.mapNotNull { it.run() }
       ?.forEach { it.enqueue() }
@@ -48,7 +48,7 @@ class AliceClient(val serviceId: ServiceId, val e164: String, val trustRoot: ECK
   }
 
   fun encrypt(now: Long, destination: Recipient): Envelope {
-    return ApplicationDependencies.getSignalServiceMessageSender().getEncryptedMessage(
+    return AppDependencies.signalServiceMessageSender.getEncryptedMessage(
       SignalServiceAddress(destination.requireServiceId(), destination.requireE164()),
       FakeClientHelpers.getTargetUnidentifiedAccess(ProfileKeyUtil.getSelfProfileKey(), ProfileKey(destination.profileKey), aliceSenderCertificate),
       1,

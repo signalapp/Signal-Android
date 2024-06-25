@@ -28,7 +28,7 @@ class ChooseNavigationBarStyleFragment : DialogFragment(R.layout.choose_navigati
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    presentToggleState(SignalStore.settings().useCompactNavigationBar)
+    presentToggleState(SignalStore.settings.useCompactNavigationBar)
 
     binding.toggle.addOnButtonCheckedListener { group, checkedId, isChecked ->
       if (isChecked) {
@@ -38,7 +38,7 @@ class ChooseNavigationBarStyleFragment : DialogFragment(R.layout.choose_navigati
 
     binding.ok.setOnClickListener {
       val isCompact = binding.toggle.checkedButtonId == R.id.compact
-      SignalStore.settings().useCompactNavigationBar = isCompact
+      SignalStore.settings.useCompactNavigationBar = isCompact
       dismissAllowingStateLoss()
       setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to true))
     }

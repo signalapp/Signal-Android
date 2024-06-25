@@ -12,7 +12,7 @@ import org.mockito.junit.MockitoRule;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.IdDifferenceResult;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
@@ -60,7 +60,7 @@ public final class StorageSyncHelperTest {
   private MockedStatic<Recipient> recipientMockedStatic;
 
   @Mock
-  private MockedStatic<FeatureFlags> featureFlagsMockedStatic;
+  private MockedStatic<RemoteConfig> remoteConfigMockedStatic;
 
   @Before
   public void setup() {

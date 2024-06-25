@@ -14,7 +14,7 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.database.KeyValueDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 
@@ -274,7 +274,7 @@ object V188_FixMessageRecipientsAndEditMessageMigration : SignalDatabaseMigratio
   }
 
   private fun getSelfId(db: SQLiteDatabase): RecipientId? {
-    val idByAci: RecipientId? = getLocalAci(ApplicationDependencies.getApplication())?.let { aci ->
+    val idByAci: RecipientId? = getLocalAci(AppDependencies.application)?.let { aci ->
       db.rawQuery("SELECT _id FROM recipient WHERE uuid = ?", SqlUtil.buildArgs(aci))
         .readToSingleObject { RecipientId.from(it.requireLong("_id")) }
     }
@@ -285,7 +285,7 @@ object V188_FixMessageRecipientsAndEditMessageMigration : SignalDatabaseMigratio
 
     Log.w(TAG, "Failed to find by ACI! Will try by E164.")
 
-    val idByE164: RecipientId? = getLocalE164(ApplicationDependencies.getApplication())?.let { e164 ->
+    val idByE164: RecipientId? = getLocalE164(AppDependencies.application)?.let { e164 ->
       db.rawQuery("SELECT _id FROM recipient WHERE phone = ?", SqlUtil.buildArgs(e164))
         .readToSingleObject { RecipientId.from(it.requireLong("_id")) }
     }

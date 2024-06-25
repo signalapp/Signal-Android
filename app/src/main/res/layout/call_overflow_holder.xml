@@ -7,15 +7,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="bottom">
 
     <org.thoughtcrime.securesms.components.webrtc.CallReactionScrubber
         android:id="@+id/reaction_scrubber"
         android:layout_width="match_parent"
         android:layout_height="@dimen/calling_reaction_emoji_height"
         android:background="@drawable/conversation_reaction_overlay_background"
-        android:elevation="4dp"
-        android:visibility="gone" />
+        android:elevation="4dp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/raise_hand_layout_parent"

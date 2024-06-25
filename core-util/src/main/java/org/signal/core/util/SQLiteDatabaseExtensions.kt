@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.core.content.contentValuesOf
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteQueryBuilder
-import org.intellij.lang.annotations.Language
 
 /**
  * Begins a transaction on the `this` database, runs the provided [block] providing the `this` value as it's argument
@@ -90,6 +89,33 @@ fun SupportSQLiteDatabase.areForeignKeyConstraintsEnabled(): Boolean {
   }
 }
 
+/**
+ * Does a full WAL checkpoint (TRUNCATE mode, where the log is for sure flushed and the log is zero'd out).
+ * Will try up to [maxAttempts] times. Can technically fail if the database is too active and the checkpoint
+ * can't complete in a reasonable amount of time.
+ *
+ * See: https://www.sqlite.org/pragma.html#pragma_wal_checkpoint
+ */
+fun SupportSQLiteDatabase.fullWalCheckpoint(maxAttempts: Int = 3): Boolean {
+  var attempts = 0
+
+  while (attempts < maxAttempts) {
+    if (this.walCheckpoint()) {
+      return true
+    }
+
+    attempts++
+  }
+
+  return false
+}
+
+private fun SupportSQLiteDatabase.walCheckpoint(): Boolean {
+  return this.query("PRAGMA wal_checkpoint(TRUNCATE)").use { cursor ->
+    cursor.moveToFirst() && cursor.getInt(0) == 0
+  }
+}
+
 fun SupportSQLiteDatabase.getIndexes(): List<Index> {
   return this.query("SELECT name, tbl_name FROM sqlite_master WHERE type='index' ORDER BY name ASC").readToList { cursor ->
     val indexName = cursor.requireNonNullString("name")
@@ -147,7 +173,7 @@ fun SupportSQLiteDatabase.delete(tableName: String): DeleteBuilderPart1 {
  * Deletes all data in the table.
  */
 fun SupportSQLiteDatabase.deleteAll(tableName: String): Int {
-  return this.delete(tableName, null, null)
+  return this.delete(tableName, null, arrayOfNulls<String>(0))
 }
 
 fun SupportSQLiteDatabase.insertInto(tableName: String): InsertBuilderPart1 {
@@ -168,7 +194,7 @@ class SelectBuilderPart2(
   private val columns: Array<String>,
   private val tableName: String
 ) {
-  fun where(@Language("sql") where: String, vararg whereArgs: Any): SelectBuilderPart3 {
+  fun where(where: String, vararg whereArgs: Any): SelectBuilderPart3 {
     return SelectBuilderPart3(db, columns, tableName, where, SqlUtil.buildArgs(*whereArgs))
   }
 
@@ -316,12 +342,12 @@ class UpdateBuilderPart2(
   private val tableName: String,
   private val values: ContentValues
 ) {
-  fun where(@Language("sql") where: String, vararg whereArgs: Any): UpdateBuilderPart3 {
+  fun where(where: String, vararg whereArgs: Any): UpdateBuilderPart3 {
     require(where.isNotBlank())
     return UpdateBuilderPart3(db, tableName, values, where, SqlUtil.buildArgs(*whereArgs))
   }
 
-  fun where(@Language("sql") where: String, whereArgs: Array<String>): UpdateBuilderPart3 {
+  fun where(where: String, whereArgs: Array<String>): UpdateBuilderPart3 {
     require(where.isNotBlank())
     return UpdateBuilderPart3(db, tableName, values, where, whereArgs)
   }
@@ -368,12 +394,12 @@ class DeleteBuilderPart1(
   private val db: SupportSQLiteDatabase,
   private val tableName: String
 ) {
-  fun where(@Language("sql") where: String, vararg whereArgs: Any): DeleteBuilderPart2 {
+  fun where(where: String, vararg whereArgs: Any): DeleteBuilderPart2 {
     require(where.isNotBlank())
     return DeleteBuilderPart2(db, tableName, where, SqlUtil.buildArgs(*whereArgs))
   }
 
-  fun where(@Language("sql") where: String, whereArgs: Array<String>): DeleteBuilderPart2 {
+  fun where(where: String, whereArgs: Array<String>): DeleteBuilderPart2 {
     require(where.isNotBlank())
     return DeleteBuilderPart2(db, tableName, where, whereArgs)
   }
@@ -395,11 +421,11 @@ class ExistsBuilderPart1(
   private val tableName: String
 ) {
 
-  fun where(@Language("sql") where: String, vararg whereArgs: Any): ExistsBuilderPart2 {
+  fun where(where: String, vararg whereArgs: Any): ExistsBuilderPart2 {
     return ExistsBuilderPart2(db, tableName, where, SqlUtil.buildArgs(*whereArgs))
   }
 
-  fun where(@Language("sql") where: String, whereArgs: Array<String>): ExistsBuilderPart2 {
+  fun where(where: String, whereArgs: Array<String>): ExistsBuilderPart2 {
     return ExistsBuilderPart2(db, tableName, where, whereArgs)
   }
 

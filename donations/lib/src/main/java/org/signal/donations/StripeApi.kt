@@ -62,9 +62,9 @@ class StripeApi(
     data class Failure(val reason: Throwable) : CreatePaymentSourceFromCardDataResult()
   }
 
-  fun createSetupIntent(sourceType: PaymentSourceType.Stripe): Single<CreateSetupIntentResult> {
+  fun createSetupIntent(inAppPaymentType: InAppPaymentType, sourceType: PaymentSourceType.Stripe): Single<CreateSetupIntentResult> {
     return setupIntentHelper
-      .fetchSetupIntent(sourceType)
+      .fetchSetupIntent(inAppPaymentType, sourceType)
       .map { CreateSetupIntentResult(it) }
       .subscribeOn(Schedulers.io())
   }
@@ -146,7 +146,7 @@ class StripeApi(
   fun getSetupIntent(stripeIntentAccessor: StripeIntentAccessor): StripeSetupIntent {
     return when (stripeIntentAccessor.objectType) {
       StripeIntentAccessor.ObjectType.SETUP_INTENT -> get("setup_intents/${stripeIntentAccessor.intentId}?client_secret=${stripeIntentAccessor.intentClientSecret}&expand[0]=latest_attempt").use {
-        val body = it.body()?.string()
+        val body = it.body?.string()
         try {
           objectMapper.readValue(body!!)
         } catch (e: InvalidDefinitionException) {
@@ -168,7 +168,7 @@ class StripeApi(
   fun getPaymentIntent(stripeIntentAccessor: StripeIntentAccessor): StripePaymentIntent {
     return when (stripeIntentAccessor.objectType) {
       StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> get("payment_intents/${stripeIntentAccessor.intentId}?client_secret=${stripeIntentAccessor.intentClientSecret}").use {
-        val body = it.body()?.string()
+        val body = it.body?.string()
         try {
           Log.d(TAG, "Reading StripePaymentIntent from JSON")
           objectMapper.readValue(body!!)
@@ -186,7 +186,7 @@ class StripeApi(
   }
 
   private fun getNextAction(response: Response): Pair<Uri, Uri> {
-    val responseBody = response.body()?.string()
+    val responseBody = response.body?.string()
     val bodyJson = responseBody?.let { JSONObject(it) }
     return if (bodyJson?.has("next_action") == true && !bodyJson.isNull("next_action")) {
       val nextAction = bodyJson.getJSONObject("next_action")
@@ -230,12 +230,8 @@ class StripeApi(
     )
 
     postForm("tokens", parameters).use { response ->
-      val body = response.body()
-      if (body != null) {
-        return CreditCardPaymentSource(JSONObject(body.string()))
-      } else {
-        throw StripeError.FailedToCreatePaymentSourceFromCardData
-      }
+      val body = response.body ?: throw StripeError.FailedToCreatePaymentSourceFromCardData
+      return CreditCardPaymentSource(JSONObject(body.string()))
     }
   }
 
@@ -247,13 +243,9 @@ class StripeApi(
     }
 
     return paymentMethodResponse.use { response ->
-      val body = response.body()
-      if (body != null) {
-        val paymentMethodObject = body.string().replace("\n", "").let { JSONObject(it) }
-        paymentMethodObject.getString("id")
-      } else {
-        throw StripeError.FailedToParsePaymentMethodResponseError
-      }
+      val body = response.body ?: throw StripeError.FailedToParsePaymentMethodResponseError
+      val paymentMethodObject = body.string().replace("\n", "").let { JSONObject(it) }
+      paymentMethodObject.getString("id")
     }
   }
 
@@ -320,18 +312,18 @@ class StripeApi(
     if (response.isSuccessful) {
       return response
     } else {
-      val body = response.body()?.string()
+      val body = response.body?.string()
 
       val errorCode = parseErrorCode(body)
       val declineCode = parseDeclineCode(body) ?: StripeDeclineCode.getFromCode(errorCode)
       val failureCode = parseFailureCode(body) ?: StripeFailureCode.getFromCode(errorCode)
 
       if (failureCode is StripeFailureCode.Known) {
-        throw StripeError.PostError.Failed(response.code(), failureCode)
+        throw StripeError.PostError.Failed(response.code, failureCode)
       } else if (declineCode is StripeDeclineCode.Known) {
-        throw StripeError.PostError.Declined(response.code(), declineCode)
+        throw StripeError.PostError.Declined(response.code, declineCode)
       } else {
-        throw StripeError.PostError.Generic(response.code(), errorCode)
+        throw StripeError.PostError.Generic(response.code, errorCode)
       }
     }
   }
@@ -588,6 +580,7 @@ class StripeApi(
 
   interface SetupIntentHelper {
     fun fetchSetupIntent(
+      inAppPaymentType: InAppPaymentType,
       sourceType: PaymentSourceType.Stripe
     ): Single<StripeIntentAccessor>
   }

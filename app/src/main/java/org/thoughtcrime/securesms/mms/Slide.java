@@ -50,8 +50,18 @@ public abstract class Slide {
   }
 
   @Nullable
+  public Uri getThumbnailUri() {
+    return attachment.getThumbnailUri();
+  }
+
+  @Nullable
   public Uri getUri() {
     return attachment.getUri();
+  }
+
+  @Nullable
+  public Uri getDisplayUri() {
+    return attachment.getDisplayUri();
   }
 
   public @Nullable Uri getPublicUri() {
@@ -132,7 +142,8 @@ public abstract class Slide {
 
   public boolean isPendingDownload() {
     return getTransferState() == AttachmentTable.TRANSFER_PROGRESS_FAILED ||
-           getTransferState() == AttachmentTable.TRANSFER_PROGRESS_PENDING;
+           getTransferState() == AttachmentTable.TRANSFER_PROGRESS_PENDING ||
+           getTransferState() == AttachmentTable.TRANSFER_RESTORE_OFFLOADED;
   }
 
   public int getTransferState() {
@@ -149,6 +160,10 @@ public abstract class Slide {
 
   public boolean hasPlaceholder() {
     return false;
+  }
+
+  public boolean hasThumbnail() {
+    return attachment.getThumbnailUri() != null;
   }
 
   public boolean hasPlayOverlay() {

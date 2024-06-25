@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListRecord;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
@@ -126,14 +126,14 @@ public class ResendMessageJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    if (SignalStore.internalValues().delayResends()) {
+    if (SignalStore.internal().delayResends()) {
       Log.w(TAG, "Delaying resend by 10 sec because of an internal preference.");
       ThreadUtil.sleep(10000);
     }
 
     Log.i(TAG, "[" + sentTimestamp + " ] Resending message to " + recipientId + " (urgent: " + urgent + ", contentHint: " + contentHint.name() + ", groupId: " + groupId + ", distributionId: " + distributionId + ")");
 
-    SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
+    SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
     Recipient                  recipient     = Recipient.resolved(recipientId);
 
     if (recipient.isUnregistered()) {
@@ -182,10 +182,10 @@ public class ResendMessageJob extends BaseJob {
       result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId), urgent);
     } catch (IllegalStateException e) {
       Log.w(TAG, "Failed to resend content. Archiving session and trying again.", e);
-      ApplicationDependencies.getProtocolStore().aci().sessions().archiveSessions(recipientId, SignalServiceAddress.DEFAULT_DEVICE_ID);
-      ApplicationDependencies.getProtocolStore().aci().sessions().archiveSiblingSessions(recipient.requireServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
-      ApplicationDependencies.getProtocolStore().pni().sessions().archiveSessions(recipientId, SignalServiceAddress.DEFAULT_DEVICE_ID);
-      ApplicationDependencies.getProtocolStore().pni().sessions().archiveSiblingSessions(recipient.requireServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
+      AppDependencies.getProtocolStore().aci().sessions().archiveSessions(recipientId, SignalServiceAddress.DEFAULT_DEVICE_ID);
+      AppDependencies.getProtocolStore().aci().sessions().archiveSiblingSessions(recipient.requireServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
+      AppDependencies.getProtocolStore().pni().sessions().archiveSessions(recipientId, SignalServiceAddress.DEFAULT_DEVICE_ID);
+      AppDependencies.getProtocolStore().pni().sessions().archiveSiblingSessions(recipient.requireServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
       SignalDatabase.senderKeyShared().deleteAllFor(recipientId);
 
       result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId), urgent);
@@ -198,7 +198,7 @@ public class ResendMessageJob extends BaseJob {
                                                     .map(device -> recipient.requireServiceId().toProtocolAddress(device))
                                                     .collect(Collectors.toList());
 
-      ApplicationDependencies.getProtocolStore().aci().markSenderKeySharedWith(distributionId, addresses);
+      AppDependencies.getProtocolStore().aci().markSenderKeySharedWith(distributionId, addresses);
     }
   }
 

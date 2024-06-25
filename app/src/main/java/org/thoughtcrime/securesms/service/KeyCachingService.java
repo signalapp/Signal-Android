@@ -41,7 +41,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -124,7 +124,7 @@ public class KeyCachingService extends Service {
         @Override
         protected Void doInBackground(Void... params) {
           if (!ApplicationMigrations.isUpdate(KeyCachingService.this)) {
-            ApplicationDependencies.getMessageNotifier().updateNotification(KeyCachingService.this);
+            AppDependencies.getMessageNotifier().updateNotification(KeyCachingService.this);
           }
           return null;
         }
@@ -197,7 +197,7 @@ public class KeyCachingService extends Service {
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        ApplicationDependencies.getMessageNotifier().updateNotification(KeyCachingService.this);
+        AppDependencies.getMessageNotifier().updateNotification(KeyCachingService.this);
         return null;
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -228,7 +228,7 @@ public class KeyCachingService extends Service {
   }
 
   private static void startTimeoutIfAppropriate(@NonNull Context context) {
-    boolean appVisible       = ApplicationDependencies.getAppForegroundObserver().isForegrounded();
+    boolean appVisible       = AppDependencies.getAppForegroundObserver().isForegrounded();
     boolean secretSet        = KeyCachingService.masterSecret != null;
 
     boolean timeoutEnabled   = TextSecurePreferences.isPassphraseTimeoutEnabled(context);

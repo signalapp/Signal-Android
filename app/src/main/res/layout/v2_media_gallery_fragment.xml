@@ -34,6 +34,44 @@
         tools:itemCount="36"
         tools:listitem="@layout/v2_media_gallery_item" />
 
+    <LinearLayout
+        android:id="@+id/media_gallery_missing_permissions"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/media_gallery_bottom_bar_barrier"
+        app:layout_constraintTop_toBottomOf="@id/media_gallery_toolbar" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/permission_gallery" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="30dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/media_gallery_allow_access"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Signal.Widget.Button.Large.Primary"
+            app:backgroundTint="@color/signal_colorPrimaryContainer"
+            android:textColor="@color/signal_colorOnPrimaryContainer"
+            android:layout_marginTop="20dp"
+            android:text="@string/AttachmentKeyboard_allow_access" />
+
+    </LinearLayout>
+
     <View
         android:id="@+id/bottom_bar_shade"
         android:layout_width="match_parent"

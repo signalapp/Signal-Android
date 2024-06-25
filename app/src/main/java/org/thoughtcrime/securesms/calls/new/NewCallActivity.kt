@@ -42,7 +42,7 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
       launch(Recipient.resolved(recipientId.get()))
     } else {
       Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.")
-      if (SignalStore.account().isRegistered) {
+      if (SignalStore.account.isRegistered) {
         Log.i(TAG, "[onContactSelected] Doing contact refresh.")
 
         val progress = SimpleProgressDialog.show(this)

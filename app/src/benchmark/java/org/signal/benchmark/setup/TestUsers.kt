@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -35,7 +35,7 @@ object TestUsers {
   private var generatedOthers: Int = 0
 
   fun setupSelf(): Recipient {
-    val application: Application = ApplicationDependencies.getApplication()
+    val application: Application = AppDependencies.application
     DeviceTransferBlockingInterceptor.getInstance().blockNetwork()
 
     PreferenceManager.getDefaultSharedPreferences(application).edit().putBoolean("pref_prompted_push_registration", true).commit()
@@ -44,8 +44,8 @@ object TestUsers {
     val preferences: SharedPreferences = application.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0)
     preferences.edit().putBoolean("passphrase_initialized", true).commit()
 
-    SignalStore.account().generateAciIdentityKeyIfNecessary()
-    SignalStore.account().generatePniIdentityKeyIfNecessary()
+    SignalStore.account.generateAciIdentityKeyIfNecessary()
+    SignalStore.account.generatePniIdentityKeyIfNecessary()
 
     val registrationRepository = RegistrationRepository(application)
     val registrationData = RegistrationData(
@@ -63,8 +63,8 @@ object TestUsers {
       VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false),
       masterKey = null,
       pin = null,
-      aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account().aciIdentityKey, SignalStore.account().aciPreKeys),
-      pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account().aciIdentityKey, SignalStore.account().pniPreKeys)
+      aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account.aciIdentityKey, SignalStore.account.aciPreKeys),
+      pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account.aciIdentityKey, SignalStore.account.pniPreKeys)
     )
 
     AccountManagerFactory.setInstance(DummyAccountManagerFactory())
@@ -77,7 +77,7 @@ object TestUsers {
 
     ServiceResponseProcessor.DefaultProcessor(response).resultOrThrow
 
-    SignalStore.svr().optOut()
+    SignalStore.svr.optOut()
     RegistrationUtil.maybeMarkRegistrationComplete()
     SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts("Tester", "McTesterson"))
 
@@ -104,7 +104,7 @@ object TestUsers {
         SignalDatabase.recipients.setProfileSharing(recipientId, true)
         SignalDatabase.recipients.markRegistered(recipientId, aci)
         val otherIdentity = IdentityKeyUtil.generateIdentityKeyPair()
-        ApplicationDependencies.getProtocolStore().aci().saveIdentity(SignalProtocolAddress(aci.toString(), 0), otherIdentity.publicKey)
+        AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(aci.toString(), 0), otherIdentity.publicKey)
 
         others += recipientId
       }

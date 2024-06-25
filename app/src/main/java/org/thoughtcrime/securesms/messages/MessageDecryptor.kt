@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.JobManager
@@ -49,8 +49,8 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LRUCache
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.asChain
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
 import org.whispersystems.signalservice.api.crypto.ContentHint
@@ -93,8 +93,8 @@ object MessageDecryptor {
     envelope: Envelope,
     serverDeliveredTimestamp: Long
   ): Result {
-    val selfAci: ACI = SignalStore.account().requireAci()
-    val selfPni: PNI = SignalStore.account().requirePni()
+    val selfAci: ACI = SignalStore.account.requireAci()
+    val selfPni: PNI = SignalStore.account.requirePni()
 
     val destination: ServiceId? = ServiceId.parseOrNull(envelope.destinationServiceId)
 
@@ -136,8 +136,8 @@ object MessageDecryptor {
     }
 
     val bufferedStore = bufferedProtocolStore.get(destination)
-    val localAddress = SignalServiceAddress(selfAci, SignalStore.account().e164)
-    val cipher = SignalServiceCipher(localAddress, SignalStore.account().deviceId, bufferedStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator())
+    val localAddress = SignalServiceAddress(selfAci, SignalStore.account.e164)
+    val cipher = SignalServiceCipher(localAddress, SignalStore.account.deviceId, bufferedStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator())
 
     return try {
       val startTimeNanos = System.nanoTime()
@@ -156,7 +156,7 @@ object MessageDecryptor {
       if (validationResult is EnvelopeContentValidator.Result.Invalid) {
         Log.w(TAG, "${logPrefix(envelope, cipherResult)} Invalid content! ${validationResult.reason}", validationResult.throwable)
 
-        if (FeatureFlags.internalUser()) {
+        if (RemoteConfig.internalUser) {
           postInvalidMessageNotification(context, validationResult.reason)
         }
 
@@ -213,11 +213,11 @@ object MessageDecryptor {
           check(e is ProtocolException)
           Log.w(TAG, "${logPrefix(envelope, e)} Decryption error!", e, true)
 
-          if (FeatureFlags.internalUser()) {
+          if (RemoteConfig.internalUser) {
             postDecryptionErrorNotification(context)
           }
 
-          if (FeatureFlags.retryReceipts()) {
+          if (RemoteConfig.retryReceipts) {
             buildResultForDecryptionError(context, envelope, serverDeliveredTimestamp, followUpOperations, e)
           } else {
             Log.w(TAG, "${logPrefix(envelope, e)} Retry receipts disabled! Enqueuing a session reset job, which will also insert an error message.", e, true)
@@ -273,7 +273,7 @@ object MessageDecryptor {
     followUpOperations: MutableList<FollowUpOperation>,
     protocolException: ProtocolException
   ): Result {
-    if (ServiceId.parseOrNull(envelope.destinationServiceId) == SignalStore.account().pni) {
+    if (ServiceId.parseOrNull(envelope.destinationServiceId) == SignalStore.account.pni) {
       Log.w(TAG, "${logPrefix(envelope)} Decryption error for message sent to our PNI! Ignoring.")
       return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
     }
@@ -296,7 +296,7 @@ object MessageDecryptor {
 
     val errorCount: DecryptionErrorCount = decryptionErrorCounts.getOrPut(sender.id) { DecryptionErrorCount(count = 0, lastReceivedTime = 0) }
     val timeSinceLastError = receivedTimestamp - errorCount.lastReceivedTime
-    if (timeSinceLastError > FeatureFlags.retryReceiptMaxCountResetAge() && errorCount.count > 0) {
+    if (timeSinceLastError > RemoteConfig.retryReceiptMaxCountResetAge && errorCount.count > 0) {
       Log.i(TAG, "${logPrefix(envelope, senderServiceId)} Resetting decryption error count for ${sender.id} because it has been $timeSinceLastError ms since the last error.", true)
       errorCount.count = 0
     }
@@ -304,8 +304,8 @@ object MessageDecryptor {
     errorCount.count++
     errorCount.lastReceivedTime = receivedTimestamp
 
-    if (errorCount.count > FeatureFlags.retryReceiptMaxCount()) {
-      Log.w(TAG, "${logPrefix(envelope, senderServiceId)} This is error number ${errorCount.count} from ${sender.id}, which is greater than the maximum of ${FeatureFlags.retryReceiptMaxCount()}. Ignoring.", true)
+    if (errorCount.count > RemoteConfig.retryReceiptMaxCount) {
+      Log.w(TAG, "${logPrefix(envelope, senderServiceId)} This is error number ${errorCount.count} from ${sender.id}, which is greater than the maximum of ${RemoteConfig.retryReceiptMaxCount}. Ignoring.", true)
 
       if (contentHint == ContentHint.IMPLICIT) {
         Log.w(TAG, "${logPrefix(envelope, senderServiceId)} The content hint is $contentHint, so no error message is needed.", true)
@@ -360,8 +360,8 @@ object MessageDecryptor {
             return@FollowUpOperation null
           }
 
-          ApplicationDependencies.getPendingRetryReceiptCache().insert(sender.id, senderDevice, envelope.timestamp!!, receivedTimestamp, threadId)
-          ApplicationDependencies.getPendingRetryReceiptManager().scheduleIfNecessary()
+          AppDependencies.pendingRetryReceiptCache.insert(sender.id, senderDevice, envelope.timestamp!!, receivedTimestamp, threadId)
+          AppDependencies.pendingRetryReceiptManager.scheduleIfNecessary()
           null
         }
 

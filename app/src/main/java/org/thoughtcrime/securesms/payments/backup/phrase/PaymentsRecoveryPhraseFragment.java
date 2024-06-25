@@ -61,7 +61,7 @@ public class PaymentsRecoveryPhraseFragment extends Fragment {
 
       setUpForConfirmation(message, next, edit, copy, words);
     } else {
-      Mnemonic mnemonic = SignalStore.paymentsValues().getPaymentsMnemonic();
+      Mnemonic mnemonic = SignalStore.payments().getPaymentsMnemonic();
 
       words = mnemonic.getWords();
 

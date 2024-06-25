@@ -124,7 +124,8 @@ object RecipientDatabaseTestUtils {
       unidentifiedAccessMode = unidentifiedAccessMode,
       capabilities = RecipientRecord.Capabilities(
         rawBits = capabilities,
-        paymentActivation = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.PAYMENT_ACTIVATION, RecipientTable.Capabilities.BIT_LENGTH).toInt())
+        paymentActivation = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.PAYMENT_ACTIVATION, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
+        deleteSync = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.DELETE_SYNC, RecipientTable.Capabilities.BIT_LENGTH).toInt())
       ),
       storageId = storageId,
       mentionSetting = mentionSetting,

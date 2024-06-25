@@ -67,7 +67,7 @@ class TextStoryPostSendRepository {
         val isStory = contact.requireRecipientSearchKey().isStory || recipient.isDistributionList
 
         if (isStory && !recipient.isMyStory) {
-          SignalStore.storyValues().setLatestStorySend(StorySend.newSend(recipient))
+          SignalStore.story.setLatestStorySend(StorySend.newSend(recipient))
         }
 
         val storyType: StoryType = when {

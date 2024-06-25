@@ -56,7 +56,7 @@ class CallTableTest {
     )
 
     val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
-    SignalDatabase.calls.deleteGroupCall(call!!)
+    SignalDatabase.calls.markCallDeletedFromSyncEvent(call!!)
 
     val deletedCall = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     val oldestDeletionTimestamp = SignalDatabase.calls.getOldestDeletionTimestamp()
@@ -69,9 +69,10 @@ class CallTableTest {
   @Test
   fun givenNoPreExistingEvent_whenIDeleteGroupCall_thenIInsertAndMarkCallDeleted() {
     val callId = 1L
-    SignalDatabase.calls.insertDeletedGroupCallFromSyncEvent(
+    SignalDatabase.calls.insertDeletedCallFromSyncEvent(
       callId,
       groupRecipientId,
+      CallTable.Type.GROUP_CALL,
       CallTable.Direction.OUTGOING,
       System.currentTimeMillis()
     )
@@ -438,11 +439,12 @@ class CallTableTest {
   @Test
   fun givenADeletedCallEvent_whenIReceiveARingUpdate_thenIIgnoreTheRingUpdate() {
     val callId = 1L
-    SignalDatabase.calls.insertDeletedGroupCallFromSyncEvent(
+    SignalDatabase.calls.insertDeletedCallFromSyncEvent(
       callId = callId,
       recipientId = groupRecipientId,
       direction = CallTable.Direction.INCOMING,
-      timestamp = System.currentTimeMillis()
+      timestamp = System.currentTimeMillis(),
+      type = CallTable.Type.GROUP_CALL
     )
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(

@@ -12,7 +12,8 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.BadgeRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
@@ -22,8 +23,7 @@ import java.util.Optional
 private val TAG = Log.tag(BadgesOverviewViewModel::class.java)
 
 class BadgesOverviewViewModel(
-  private val badgeRepository: BadgeRepository,
-  private val subscriptionsRepository: MonthlyDonationRepository
+  private val badgeRepository: BadgeRepository
 ) : ViewModel() {
   private val store = Store(BadgesOverviewState())
   private val eventSubject = PublishSubject.create<BadgesOverviewEvent>()
@@ -38,7 +38,7 @@ class BadgesOverviewViewModel(
       state.copy(
         stage = if (state.stage == BadgesOverviewState.Stage.INIT) BadgesOverviewState.Stage.READY else state.stage,
         allUnlockedBadges = recipient.badges,
-        displayBadgesOnProfile = SignalStore.donationsValues().getDisplayBadgesOnProfile(),
+        displayBadgesOnProfile = SignalStore.donations.getDisplayBadgesOnProfile(),
         featuredBadge = recipient.featuredBadge
       )
     }
@@ -50,8 +50,8 @@ class BadgesOverviewViewModel(
       }
 
     disposables += Single.zip(
-      subscriptionsRepository.getActiveSubscription(),
-      subscriptionsRepository.getSubscriptions()
+      RecurringInAppPaymentRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION),
+      RecurringInAppPaymentRepository.getSubscriptions()
     ) { active, all ->
       if (!active.isActive && active.activeSubscription?.willCancelAtPeriodEnd() == true) {
         Optional.ofNullable<String>(all.firstOrNull { it.level == active.activeSubscription?.level }?.badge?.id)
@@ -88,11 +88,10 @@ class BadgesOverviewViewModel(
   }
 
   class Factory(
-    private val badgeRepository: BadgeRepository,
-    private val subscriptionsRepository: MonthlyDonationRepository
+    private val badgeRepository: BadgeRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(BadgesOverviewViewModel(badgeRepository, subscriptionsRepository)))
+      return requireNotNull(modelClass.cast(BadgesOverviewViewModel(badgeRepository)))
     }
   }
 

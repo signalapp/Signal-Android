@@ -19,7 +19,7 @@ import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.push.BankMandate;
 import org.whispersystems.signalservice.internal.push.DonationProcessor;
-import org.whispersystems.signalservice.internal.push.DonationsConfiguration;
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 
 import java.io.IOException;
@@ -42,8 +42,8 @@ public class DonationsService {
 
   private final PushServiceSocket pushServiceSocket;
 
-  private final AtomicReference<CacheEntry<DonationsConfiguration>> donationsConfigurationCache = new AtomicReference<>(null);
-  private final AtomicReference<CacheEntry<BankMandate>>            sepaBankMandateCache        = new AtomicReference<>(null);
+  private final AtomicReference<CacheEntry<SubscriptionsConfiguration>> donationsConfigurationCache = new AtomicReference<>(null);
+  private final AtomicReference<CacheEntry<BankMandate>>                sepaBankMandateCache        = new AtomicReference<>(null);
 
   private static class CacheEntry<T> {
     private final T      cachedValue;
@@ -80,9 +80,23 @@ public class DonationsService {
    * @param visible                       Whether the badge will be visible on the user's profile immediately after redemption
    * @param primary                       Whether the badge will be made primary immediately after redemption
    */
-  public ServiceResponse<EmptyResponse> redeemReceipt(ReceiptCredentialPresentation receiptCredentialPresentation, boolean visible, boolean primary) {
+  public ServiceResponse<EmptyResponse> redeemDonationReceipt(ReceiptCredentialPresentation receiptCredentialPresentation, boolean visible, boolean primary) {
     try {
       pushServiceSocket.redeemDonationReceipt(receiptCredentialPresentation, visible, primary);
+      return ServiceResponse.forResult(EmptyResponse.INSTANCE, 200, null);
+    } catch (Exception e) {
+      return ServiceResponse.<EmptyResponse>forUnknownError(e);
+    }
+  }
+
+  /**
+   * Allows a user to redeem a given receipt they were given after submitting a donation successfully.
+   *
+   * @param receiptCredentialPresentation Receipt
+   */
+  public ServiceResponse<EmptyResponse> redeemArchivesReceipt(ReceiptCredentialPresentation receiptCredentialPresentation) {
+    try {
+      pushServiceSocket.redeemArchivesReceipt(receiptCredentialPresentation);
       return ServiceResponse.forResult(EmptyResponse.INSTANCE, 200, null);
     } catch (Exception e) {
       return ServiceResponse.<EmptyResponse>forUnknownError(e);
@@ -111,7 +125,7 @@ public class DonationsService {
     return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.submitBoostReceiptCredentials(paymentIntentId, receiptCredentialRequest, processor), 200));
   }
 
-  public ServiceResponse<DonationsConfiguration> getDonationsConfiguration(Locale locale) {
+  public ServiceResponse<SubscriptionsConfiguration> getDonationsConfiguration(Locale locale) {
     return getCachedValue(
         locale,
         donationsConfigurationCache,

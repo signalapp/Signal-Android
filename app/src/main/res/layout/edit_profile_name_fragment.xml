@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="personGivenName"
-            android:inputType="textPersonName"
+            android:inputType="textCapWords|textPersonName"
             android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="personFamilyName"
-            android:inputType="textPersonName"
+            android:inputType="textCapWords|textPersonName"
             android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>

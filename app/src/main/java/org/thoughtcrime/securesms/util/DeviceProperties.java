@@ -30,11 +30,11 @@ public final class DeviceProperties {
       return false;
     }
 
-    if (memoryMb < FeatureFlags.animatedStickerMinimumTotalMemoryMb()) {
+    if (memoryMb < RemoteConfig.animatedStickerMinimumTotalMemoryMb()) {
       return false;
     }
 
-    if (getMemoryClass(context) < FeatureFlags.animatedStickerMinimumMemoryClass()) {
+    if (getMemoryClass(context) < RemoteConfig.animatedStickerMinimumMemoryClass()) {
       return false;
     }
 

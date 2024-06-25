@@ -749,13 +749,6 @@
         android:exported="false"/>
 
     <activity
-        android:name=".backup.v2.ui.MessageBackupsFlowActivity"
-        android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-        android:exported="false"
-        android:theme="@style/Signal.DayNight.NoActionBar"
-        android:windowSoftInputMode="adjustResize" />
-
-    <activity
         android:name=".stories.settings.StorySettingsActivity"
         android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
         android:theme="@style/Signal.DayNight.NoActionBar"
@@ -784,6 +777,12 @@
         android:exported="false"/>
 
     <activity
+        android:name=".components.settings.app.changenumber.v2.ChangeNumberLockV2Activity"
+        android:theme="@style/Signal.DayNight.NoActionBar"
+        android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+        android:exported="false"/>
+
+    <activity
         android:name=".components.settings.conversation.ConversationSettingsActivity"
         android:configChanges="touchscreen|keyboard|keyboardHidden|screenLayout|screenSize"
         android:theme="@style/Signal.DayNight.ConversationSettings"
@@ -792,13 +791,6 @@
 
     <activity
         android:name=".components.settings.conversation.CallInfoActivity"
-        android:configChanges="touchscreen|keyboard|keyboardHidden|screenLayout|screenSize"
-        android:theme="@style/Signal.DayNight.NoActionBar"
-        android:windowSoftInputMode="stateAlwaysHidden"
-        android:exported="false"/>
-
-    <activity
-        android:name=".badges.gifts.flow.GiftFlowActivity"
         android:configChanges="touchscreen|keyboard|keyboardHidden|screenLayout|screenSize"
         android:theme="@style/Signal.DayNight.NoActionBar"
         android:windowSoftInputMode="stateAlwaysHidden"
@@ -831,6 +823,20 @@
         android:exported="false"/>
 
     <activity android:name=".registration.RegistrationNavigationActivity"
+              android:launchMode="singleTask"
+              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+              android:windowSoftInputMode="stateHidden"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:exported="false"/>
+
+    <activity android:name=".registration.v2.ui.RegistrationV2Activity"
+              android:launchMode="singleTask"
+              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+              android:windowSoftInputMode="stateHidden"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:exported="false"/>
+
+    <activity android:name=".restore.RestoreActivity"
               android:launchMode="singleTask"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:windowSoftInputMode="stateHidden"
@@ -933,10 +939,16 @@
         android:launchMode="singleTask"
         android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
 
-        <intent-filter>
+        <intent-filter tools:ignore="AppLinkUrlError">
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
             <data android:mimeType="vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call" />
+        </intent-filter>
+
+        <intent-filter tools:ignore="AppLinkUrlError">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:mimeType="vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.videocall" />
         </intent-filter>
 
     </activity>
@@ -962,8 +974,8 @@
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
 
-    <activity android:name=".backup.v2.ui.MessageBackupsTestRestoreActivity"
-              android:theme="@style/TextSecure.LightRegistrationTheme"
+    <activity android:name=".registration.v2.ui.restore.RemoteRestoreActivity"
+              android:theme="@style/Signal.DayNight.NoActionBar"
               android:exported="false"/>
 
     <activity android:name=".profiles.manage.EditProfileActivity"
@@ -1079,7 +1091,7 @@
               android:theme="@style/Theme.Signal.WallpaperCropper"
               android:exported="false"/>
 
-    <activity android:name=".components.settings.app.usernamelinks.main.UsernameQrImageSelectionActivity"
+    <activity android:name=".components.settings.app.usernamelinks.main.QrImageSelectionActivity"
         android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
         android:theme="@style/TextSecure.DarkNoActionBar"
         android:exported="false"/>
@@ -1094,10 +1106,16 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
-    <activity android:name=".components.settings.app.subscription.donate.DonateToSignalActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false"/>
+    <activity android:name=".components.settings.app.subscription.donate.CheckoutFlowActivity"
+            android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:exported="false"/>
+
+    <service
+        android:enabled="true"
+        android:name=".service.webrtc.WebRtcCallService"
+        android:foregroundServiceType="camera|microphone"
+        android:exported="false"/>
 
     <service
         android:enabled="true"
@@ -1160,6 +1178,10 @@
 
     <service
         android:name=".service.AttachmentProgressService"
+        android:exported="false"/>
+
+    <service
+        android:name=".service.BackupProgressService"
         android:exported="false"/>
 
     <service

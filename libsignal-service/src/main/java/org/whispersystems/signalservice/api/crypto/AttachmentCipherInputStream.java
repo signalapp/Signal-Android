@@ -6,11 +6,11 @@
 
 package org.whispersystems.signalservice.api.crypto;
 
-import org.signal.libsignal.protocol.InvalidMacException;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream;
-import org.signal.libsignal.protocol.kdf.HKDFv3;
+import org.signal.libsignal.protocol.kdf.HKDF;
+import org.whispersystems.signalservice.api.backup.BackupKey;
 import org.whispersystems.signalservice.internal.util.ContentLengthInputStream;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -26,6 +26,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -47,9 +49,10 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   private static final int CIPHER_KEY_SIZE = 32;
   private static final int MAC_KEY_SIZE    = 32;
 
-  private Cipher  cipher;
+  private final Cipher cipher;
+  private final long   totalDataSize;
+
   private boolean done;
-  private long    totalDataSize;
   private long    totalRead;
   private byte[]  overflowBuffer;
 
@@ -57,74 +60,137 @@ public class AttachmentCipherInputStream extends FilterInputStream {
    * Passing in a null incrementalDigest and/or 0 for the chunk size at the call site disables incremental mac validation.
    */
   public static InputStream createForAttachment(File file, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest, int incrementalMacChunkSize)
+      throws InvalidMessageException, IOException {
+    return createForAttachment(file, plaintextLength, combinedKeyMaterial, digest, incrementalDigest, incrementalMacChunkSize, false);
+  }
+
+  /**
+   * Passing in a null incrementalDigest and/or 0 for the chunk size at the call site disables incremental mac validation.
+   *
+   * Passing in true for ignoreDigest DOES NOT VERIFY THE DIGEST
+   */
+  public static InputStream createForAttachment(File file, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest, int incrementalMacChunkSize, boolean ignoreDigest)
       throws InvalidMessageException, IOException
   {
-    try {
-      byte[][] parts = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
-      Mac      mac   = Mac.getInstance("HmacSHA256");
-      mac.init(new SecretKeySpec(parts[1], "HmacSHA256"));
+    byte[][] parts = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
+    Mac      mac   = initMac(parts[1]);
 
-      if (file.length() <= BLOCK_SIZE + mac.getMacLength()) {
-        throw new InvalidMessageException("Message shorter than crypto overhead!");
-      }
-
-      if (digest == null) {
-        throw new InvalidMacException("Missing digest!");
-      }
-
-
-      final InputStream wrappedStream;
-      final boolean     hasIncrementalMac = incrementalDigest != null && incrementalDigest.length > 0 && incrementalMacChunkSize > 0;
-
-      if (!hasIncrementalMac) {
-        try (FileInputStream macVerificationStream = new FileInputStream(file)) {
-          verifyMac(macVerificationStream, file.length(), mac, digest);
-        }
-        wrappedStream = new FileInputStream(file);
-      } else {
-        wrappedStream = new IncrementalMacInputStream(
-            new FileInputStream(file),
-            parts[1],
-            ChunkSizeChoice.everyNthByte(incrementalMacChunkSize),
-            incrementalDigest);
-      }
-      InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
-
-      if (plaintextLength != 0) {
-        inputStream = new ContentLengthInputStream(inputStream, plaintextLength);
-      }
-
-      return inputStream;
-    } catch (NoSuchAlgorithmException | InvalidKeyException e) {
-      throw new AssertionError(e);
-    } catch (InvalidMacException e) {
-      throw new InvalidMessageException(e);
+    if (file.length() <= BLOCK_SIZE + mac.getMacLength()) {
+      throw new InvalidMessageException("Message shorter than crypto overhead!");
     }
+
+    if (!ignoreDigest && digest == null) {
+      throw new InvalidMessageException("Missing digest!");
+    }
+
+
+    final InputStream wrappedStream;
+    final boolean     hasIncrementalMac = incrementalDigest != null && incrementalDigest.length > 0 && incrementalMacChunkSize > 0;
+
+    if (!hasIncrementalMac) {
+      try (FileInputStream macVerificationStream = new FileInputStream(file)) {
+        verifyMac(macVerificationStream, file.length(), mac, digest);
+      }
+      wrappedStream = new FileInputStream(file);
+    } else {
+      wrappedStream = new IncrementalMacInputStream(
+          new IncrementalMacAdditionalValidationsInputStream(
+              new FileInputStream(file),
+              file.length(),
+              mac,
+              digest
+          ),
+          parts[1],
+          ChunkSizeChoice.everyNthByte(incrementalMacChunkSize),
+          incrementalDigest);
+    }
+    InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
+
+    if (plaintextLength != 0) {
+      inputStream = new ContentLengthInputStream(inputStream, plaintextLength);
+    }
+
+    return inputStream;
+  }
+
+  /**
+   * Decrypt archived media to it's original attachment encrypted blob.
+   */
+  public static InputStream createForArchivedMedia(BackupKey.MediaKeyMaterial archivedMediaKeyMaterial, File file, long originalCipherTextLength)
+      throws InvalidMessageException, IOException
+  {
+    Mac mac = initMac(archivedMediaKeyMaterial.getMacKey());
+
+    if (file.length() <= BLOCK_SIZE + mac.getMacLength()) {
+      throw new InvalidMessageException("Message shorter than crypto overhead!");
+    }
+
+    try (FileInputStream macVerificationStream = new FileInputStream(file)) {
+      verifyMac(macVerificationStream, file.length(), mac, null);
+    }
+
+    InputStream inputStream = new AttachmentCipherInputStream(new FileInputStream(file), archivedMediaKeyMaterial.getCipherKey(), file.length() - BLOCK_SIZE - mac.getMacLength());
+
+    if (originalCipherTextLength != 0) {
+      inputStream = new ContentLengthInputStream(inputStream, originalCipherTextLength);
+    }
+
+    return inputStream;
+  }
+
+  public static InputStream createStreamingForArchivedAttachment(BackupKey.MediaKeyMaterial archivedMediaKeyMaterial, File file, long originalCipherTextLength, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest, int incrementalMacChunkSize)
+      throws InvalidMessageException, IOException
+  {
+    final InputStream archiveStream = createForArchivedMedia(archivedMediaKeyMaterial, file, originalCipherTextLength);
+
+    byte[][] parts = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
+    Mac      mac   = initMac(parts[1]);
+
+    if (originalCipherTextLength <= BLOCK_SIZE + mac.getMacLength()) {
+      throw new InvalidMessageException("Message shorter than crypto overhead!");
+    }
+
+    if (digest == null) {
+      throw new InvalidMessageException("Missing digest!");
+    }
+
+    final InputStream wrappedStream;
+      wrappedStream = new IncrementalMacInputStream(
+          new IncrementalMacAdditionalValidationsInputStream(
+              archiveStream,
+              file.length(),
+              mac,
+              digest
+          ),
+          parts[1],
+          ChunkSizeChoice.everyNthByte(incrementalMacChunkSize),
+          incrementalDigest);
+
+    InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
+
+    if (plaintextLength != 0) {
+      inputStream = new ContentLengthInputStream(inputStream, plaintextLength);
+    }
+
+    return inputStream;
   }
 
   public static InputStream createForStickerData(byte[] data, byte[] packKey)
       throws InvalidMessageException, IOException
   {
-    try {
-      byte[]   combinedKeyMaterial = new HKDFv3().deriveSecrets(packKey, "Sticker Pack".getBytes(), 64);
-      byte[][] parts               = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
-      Mac      mac                 = Mac.getInstance("HmacSHA256");
-      mac.init(new SecretKeySpec(parts[1], "HmacSHA256"));
+    byte[]   combinedKeyMaterial = HKDF.deriveSecrets(packKey, "Sticker Pack".getBytes(), 64);
+    byte[][] parts               = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
+    Mac      mac                 = initMac(parts[1]);
 
-      if (data.length <= BLOCK_SIZE + mac.getMacLength()) {
-        throw new InvalidMessageException("Message shorter than crypto overhead!");
-      }
-
-      try (InputStream inputStream = new ByteArrayInputStream(data)) {
-        verifyMac(inputStream, data.length, mac, null);
-      }
-
-      return new AttachmentCipherInputStream(new ByteArrayInputStream(data), parts[0], data.length - BLOCK_SIZE - mac.getMacLength());
-    } catch (NoSuchAlgorithmException | InvalidKeyException e) {
-      throw new AssertionError(e);
-    } catch (InvalidMacException e) {
-      throw new InvalidMessageException(e);
+    if (data.length <= BLOCK_SIZE + mac.getMacLength()) {
+      throw new InvalidMessageException("Message shorter than crypto overhead!");
     }
+
+    try (InputStream inputStream = new ByteArrayInputStream(data)) {
+      verifyMac(inputStream, data.length, mac, null);
+    }
+
+    return new AttachmentCipherInputStream(new ByteArrayInputStream(data), parts[0], data.length - BLOCK_SIZE - mac.getMacLength());
   }
 
   private AttachmentCipherInputStream(InputStream inputStream, byte[] cipherKey, long totalDataSize)
@@ -159,12 +225,12 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   }
 
   @Override
-  public int read(byte[] buffer) throws IOException {
+  public int read(@Nonnull byte[] buffer) throws IOException {
     return read(buffer, 0, buffer.length);
   }
 
   @Override
-  public int read(byte[] buffer, int offset, int length) throws IOException {
+  public int read(@Nonnull byte[] buffer, int offset, int length) throws IOException {
     if (totalRead != totalDataSize) {
       return readIncremental(buffer, offset, length);
     } else if (!done) {
@@ -256,8 +322,18 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     }
   }
 
-  private static void verifyMac(InputStream inputStream, long length, Mac mac, byte[] theirDigest)
-      throws InvalidMacException
+  private static Mac initMac(byte[] key) {
+    try {
+      Mac mac = Mac.getInstance("HmacSHA256");
+      mac.init(new SecretKeySpec(key, "HmacSHA256"));
+      return mac;
+    } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  private static void verifyMac(@Nonnull InputStream inputStream, long length, @Nonnull Mac mac, @Nullable byte[] theirDigest)
+      throws InvalidMessageException
   {
     try {
       MessageDigest digest        = MessageDigest.getInstance("SHA256");
@@ -276,17 +352,17 @@ public class AttachmentCipherInputStream extends FilterInputStream {
       Util.readFully(inputStream, theirMac);
 
       if (!MessageDigest.isEqual(ourMac, theirMac)) {
-        throw new InvalidMacException("MAC doesn't match!");
+        throw new InvalidMessageException("MAC doesn't match!");
       }
 
       byte[] ourDigest = digest.digest(theirMac);
 
       if (theirDigest != null && !MessageDigest.isEqual(ourDigest, theirDigest)) {
-        throw new InvalidMacException("Digest doesn't match!");
+        throw new InvalidMessageException("Digest doesn't match!");
       }
 
     } catch (IOException | ArithmeticException e1) {
-      throw new InvalidMacException(e1);
+      throw new InvalidMessageException(e1);
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }

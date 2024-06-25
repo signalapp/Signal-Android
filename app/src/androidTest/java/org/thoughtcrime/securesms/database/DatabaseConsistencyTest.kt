@@ -15,7 +15,7 @@ import org.signal.core.util.getIndexes
 import org.signal.core.util.readToList
 import org.signal.core.util.requireNonNullString
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 
 /**
@@ -30,7 +30,7 @@ class DatabaseConsistencyTest {
   @Test
   fun testUpgradeConsistency() {
     val currentVersionStatements = SignalDatabase.rawDatabase.getAllCreateStatements()
-    val testHelper = InMemoryTestHelper(ApplicationDependencies.getApplication()).also {
+    val testHelper = InMemoryTestHelper(AppDependencies.application).also {
       it.onUpgrade(it.writableDatabase, 181, SignalDatabaseMigrations.DATABASE_VERSION)
     }
 

@@ -16,7 +16,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.AudioManager
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.safeUnregisterReceiver
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioHandler
 import java.util.concurrent.TimeUnit
@@ -49,7 +49,7 @@ class SignalBluetoothManager(
   private var bluetoothHeadset: BluetoothHeadset? = null
   private var scoConnectionAttempts = 0
 
-  private val androidAudioManager = ApplicationDependencies.getAndroidCallAudioManager()
+  private val androidAudioManager = AppDependencies.androidCallAudioManager
   private val bluetoothListener = BluetoothServiceListener()
   private var bluetoothReceiver: BluetoothHeadsetBroadcastReceiver? = null
 

@@ -7,7 +7,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.state.SignalProtocolStore;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
@@ -38,8 +38,8 @@ public class CleanPreKeysJob extends BaseJob {
 
   @Override
   public void onRun() {
-    PreKeyUtil.cleanSignedPreKeys(ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys());
-    PreKeyUtil.cleanSignedPreKeys(ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys());
+    PreKeyUtil.cleanSignedPreKeys(AppDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys());
+    PreKeyUtil.cleanSignedPreKeys(AppDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys());
   }
 
   @Override

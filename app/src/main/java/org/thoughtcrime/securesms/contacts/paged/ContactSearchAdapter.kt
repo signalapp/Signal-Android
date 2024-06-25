@@ -13,8 +13,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
 import org.signal.core.util.BreakIteratorCompat
-import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
 import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
@@ -24,8 +24,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -123,7 +121,7 @@ open class ContactSearchAdapter(
       return MappingModelList(
         contactSearchData.filterNotNull().map {
           when (it) {
-            is ContactSearchData.Story -> StoryModel(it, selection.contains(it.contactSearchKey), SignalStore.storyValues().userHasBeenNotifiedAboutStories)
+            is ContactSearchData.Story -> StoryModel(it, selection.contains(it.contactSearchKey), SignalStore.story.userHasBeenNotifiedAboutStories)
             is ContactSearchData.KnownRecipient -> RecipientModel(it, selection.contains(it.contactSearchKey), it.shortSummary)
             is ContactSearchData.Expand -> ExpandModel(it)
             is ContactSearchData.Header -> HeaderModel(it)
@@ -243,10 +241,10 @@ open class ContactSearchAdapter(
 
     fun bindAvatar(model: StoryModel) {
       if (model.story.recipient.isMyStory) {
-        avatar.setFallbackPhotoProvider(MyStoryFallbackPhotoProvider(Recipient.self().getDisplayName(context), 40.dp))
+        avatar.setFallbackAvatarProvider(MyStoryFallbackAvatarProvider)
         avatar.displayProfileAvatar(Recipient.self())
       } else {
-        avatar.setFallbackPhotoProvider(Recipient.DEFAULT_FALLBACK_PHOTO_PROVIDER)
+        avatar.setFallbackAvatarProvider(null)
         avatar.displayChatAvatar(getRecipient(model))
       }
       groupStoryIndicator.visible = showStoryRing && model.story.recipient.isGroup
@@ -308,9 +306,14 @@ open class ContactSearchAdapter(
       }
     }
 
-    private class MyStoryFallbackPhotoProvider(private val name: String, private val targetSize: Int) : Recipient.FallbackPhotoProvider() {
-      override val photoForLocalNumber: FallbackContactPhoto
-        get() = GeneratedContactPhoto(name, R.drawable.symbol_person_40, targetSize)
+    private object MyStoryFallbackAvatarProvider : AvatarImageView.FallbackAvatarProvider {
+      override fun getFallbackAvatar(recipient: Recipient): FallbackAvatar {
+        if (recipient.isSelf) {
+          return FallbackAvatar.Resource.Person(recipient.avatarColor)
+        }
+
+        return super.getFallbackAvatar(recipient)
+      }
     }
 
     override fun onAttachedToWindow() {
@@ -507,7 +510,6 @@ open class ContactSearchAdapter(
     protected val name: FromTextView = itemView.findViewById(R.id.name)
     protected val number: TextView = itemView.findViewById(R.id.number)
     protected val label: TextView = itemView.findViewById(R.id.label)
-    protected val smsTag: View = itemView.findViewById(R.id.sms_tag)
     private val startAudio: View = itemView.findViewById(R.id.start_audio)
     private val startVideo: View = itemView.findViewById(R.id.start_video)
 
@@ -543,7 +545,6 @@ open class ContactSearchAdapter(
       bindAvatar(model)
       bindNumberField(model)
       bindLabelField(model)
-      bindSmsTagField(model)
       bindCallButtons(model)
     }
 
@@ -578,14 +579,6 @@ open class ContactSearchAdapter(
       label.visible = false
     }
 
-    protected open fun bindSmsTagField(model: T) {
-      smsTag.visible = when (displayOptions.displaySmsTag) {
-        DisplaySmsTag.DEFAULT -> isSmsContact(model)
-        DisplaySmsTag.IF_NOT_REGISTERED -> isNotRegistered(model)
-        DisplaySmsTag.NEVER -> false
-      }
-    }
-
     protected open fun bindLongPress(model: T) = Unit
 
     private fun bindCallButtons(model: T) {
@@ -605,14 +598,6 @@ open class ContactSearchAdapter(
         startVideo.visible = false
         startAudio.visible = false
       }
-    }
-
-    private fun isSmsContact(model: T): Boolean {
-      return getRecipient(model).isUnregistered && !getRecipient(model).isDistributionList
-    }
-
-    private fun isNotRegistered(model: T): Boolean {
-      return getRecipient(model).isUnregistered && !getRecipient(model).isDistributionList
     }
 
     abstract fun isSelected(model: T): Boolean
@@ -732,7 +717,13 @@ open class ContactSearchAdapter(
       val isLeftSelf = lhs?.isSelf == true
       val isRightSelf = rhs?.isSelf == true
 
-      return if (isLeftSelf == isRightSelf) 0 else if (isLeftSelf) 1 else -1
+      return if (isLeftSelf == isRightSelf) {
+        0
+      } else if (isLeftSelf) {
+        1
+      } else {
+        -1
+      }
     }
   }
 
@@ -740,12 +731,6 @@ open class ContactSearchAdapter(
     fun onOpenStorySettings(story: ContactSearchData.Story)
     fun onRemoveGroupStory(story: ContactSearchData.Story, isSelected: Boolean)
     fun onDeletePrivateStory(story: ContactSearchData.Story, isSelected: Boolean)
-  }
-
-  enum class DisplaySmsTag {
-    DEFAULT,
-    IF_NOT_REGISTERED,
-    NEVER
   }
 
   /**
@@ -759,7 +744,6 @@ open class ContactSearchAdapter(
 
   data class DisplayOptions(
     val displayCheckBox: Boolean = false,
-    val displaySmsTag: DisplaySmsTag = DisplaySmsTag.NEVER,
     val displaySecondaryInformation: DisplaySecondaryInformation = DisplaySecondaryInformation.NEVER,
     val displayCallButtons: Boolean = false,
     val displayStoryRing: Boolean = false

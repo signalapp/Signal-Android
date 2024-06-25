@@ -5,7 +5,7 @@ import android.os.Build
 import androidx.camera.view.CameraController
 import org.signal.core.util.asListContains
 import org.thoughtcrime.securesms.mms.MediaConstraints
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.video.VideoUtil
 
 /**
@@ -15,7 +15,17 @@ sealed class CameraXModePolicy {
 
   abstract val isVideoSupported: Boolean
 
+  abstract val isQrScanEnabled: Boolean
+
   abstract fun initialize(cameraController: CameraXController)
+
+  open fun initialize(cameraController: CameraXController, useCaseFlags: Int) {
+    if (isQrScanEnabled) {
+      cameraController.setEnabledUseCases(useCaseFlags or CameraController.IMAGE_ANALYSIS)
+    } else {
+      cameraController.setEnabledUseCases(useCaseFlags)
+    }
+  }
 
   open fun setToImage(cameraController: CameraXController) = Unit
 
@@ -24,19 +34,19 @@ sealed class CameraXModePolicy {
   /**
    * The device supports having Image and Video enabled at the same time
    */
-  object Mixed : CameraXModePolicy() {
+  data class Mixed(override val isQrScanEnabled: Boolean) : CameraXModePolicy() {
 
     override val isVideoSupported: Boolean = true
 
     override fun initialize(cameraController: CameraXController) {
-      cameraController.setEnabledUseCases(CameraController.IMAGE_CAPTURE or CameraController.VIDEO_CAPTURE)
+      super.initialize(cameraController, CameraController.IMAGE_CAPTURE or CameraController.VIDEO_CAPTURE)
     }
   }
 
   /**
    * The device supports image and video, but only one mode at a time.
    */
-  object Single : CameraXModePolicy() {
+  data class Single(override val isQrScanEnabled: Boolean) : CameraXModePolicy() {
 
     override val isVideoSupported: Boolean = true
 
@@ -45,29 +55,29 @@ sealed class CameraXModePolicy {
     }
 
     override fun setToImage(cameraController: CameraXController) {
-      cameraController.setEnabledUseCases(CameraController.IMAGE_CAPTURE)
+      super.initialize(cameraController, CameraController.IMAGE_CAPTURE)
     }
 
     override fun setToVideo(cameraController: CameraXController) {
-      cameraController.setEnabledUseCases(CameraController.VIDEO_CAPTURE)
+      super.initialize(cameraController, CameraController.VIDEO_CAPTURE)
     }
   }
 
   /**
    * The device supports taking images only.
    */
-  object ImageOnly : CameraXModePolicy() {
+  data class ImageOnly(override val isQrScanEnabled: Boolean) : CameraXModePolicy() {
 
     override val isVideoSupported: Boolean = false
 
     override fun initialize(cameraController: CameraXController) {
-      cameraController.setEnabledUseCases(CameraController.IMAGE_CAPTURE)
+      super.initialize(cameraController, CameraController.IMAGE_CAPTURE)
     }
   }
 
   companion object {
     @JvmStatic
-    fun acquire(context: Context, mediaConstraints: MediaConstraints, isVideoEnabled: Boolean): CameraXModePolicy {
+    fun acquire(context: Context, mediaConstraints: MediaConstraints, isVideoEnabled: Boolean, isQrScanEnabled: Boolean): CameraXModePolicy {
       val isVideoSupported = Build.VERSION.SDK_INT >= 26 &&
         isVideoEnabled &&
         MediaConstraints.isVideoTranscodeAvailable() &&
@@ -76,12 +86,12 @@ sealed class CameraXModePolicy {
       val isMixedModeSupported = isVideoSupported &&
         Build.VERSION.SDK_INT >= 26 &&
         CameraXUtil.isMixedModeSupported(context) &&
-        !FeatureFlags.cameraXMixedModelBlocklist().asListContains(Build.MODEL)
+        !RemoteConfig.cameraXMixedModelBlocklist.asListContains(Build.MODEL)
 
       return when {
-        isMixedModeSupported -> Mixed
-        isVideoSupported -> Single
-        else -> ImageOnly
+        isMixedModeSupported -> Mixed(isQrScanEnabled)
+        isVideoSupported -> Single(isQrScanEnabled)
+        else -> ImageOnly(isQrScanEnabled)
       }
     }
   }

@@ -38,7 +38,7 @@ public class PaymentsRepository {
     paymentDatabase = SignalDatabase.payments();
 
     LiveData<List<PaymentTable.PaymentTransaction>> localPayments = paymentDatabase.getAllLive();
-    LiveData<MobileCoinLedgerWrapper>               ledger        = SignalStore.paymentsValues().liveMobileCoinLedger();
+    LiveData<MobileCoinLedgerWrapper>               ledger        = SignalStore.payments().liveMobileCoinLedger();
 
     //noinspection NullableProblems
     this.recentPayments         = LiveDataUtil.mapAsync(LiveDataUtil.combineLatest(localPayments, ledger, Pair::create), p -> reconcile(p.first, p.second));

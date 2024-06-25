@@ -10,8 +10,9 @@ import androidx.core.app.TaskStackBuilder
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
 import org.thoughtcrime.securesms.contacts.TurnOffContactJoinedNotificationsActivity
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.Util
-import java.lang.NullPointerException
 
 /**
  * Encapsulate all the notifications for a given conversation (thread) and the top
@@ -46,7 +46,7 @@ data class NotificationConversation(
   val isOnlyContactJoinedEvent: Boolean = messageCount == 1 && mostRecentNotification.isJoined
 
   fun getContentTitle(context: Context): CharSequence {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       getDisplayName(context)
     } else {
       context.getString(R.string.SingleRecipientNotificationBuilder_signal)
@@ -54,15 +54,15 @@ data class NotificationConversation(
   }
 
   fun getContactLargeIcon(context: Context): Drawable? {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       recipient.getContactDrawable(context)
     } else {
-      GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, AvatarColor.UNKNOWN)
+      FallbackAvatarDrawable(context, FallbackAvatar.forTextOrDefault("Unknown", AvatarColor.UNKNOWN)).circleCrop()
     }
   }
 
   fun getSlideBigPictureUri(context: Context): Uri? {
-    return if (notificationItems.size == 1 && SignalStore.settings().messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
+    return if (notificationItems.size == 1 && SignalStore.settings.messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
       mostRecentNotification.getBigPictureUri()
     } else {
       null
@@ -70,7 +70,7 @@ data class NotificationConversation(
   }
 
   fun getContentText(context: Context): CharSequence? {
-    val privacy: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
+    val privacy: NotificationPrivacyPreference = SignalStore.settings.messageNotificationsPrivacy
     val stringBuilder = SpannableStringBuilder()
 
     if (privacy.isDisplayContact && recipient.isGroup) {
@@ -85,7 +85,7 @@ data class NotificationConversation(
   }
 
   fun getConversationTitle(context: Context): CharSequence? {
-    if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+    if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       return if (isGroup) getDisplayName(context) else null
     }
     return context.getString(R.string.SingleRecipientNotificationBuilder_signal)

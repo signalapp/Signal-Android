@@ -134,26 +134,35 @@
         app:layout_constraintBottom_toBottomOf="@id/compose_bubble"
         app:layout_constraintStart_toStartOf="@id/compose_bubble"
         app:layout_constraintTop_toBottomOf="@id/compose_bubble_top_elements"
+        app:layout_constraintVertical_bias="1.0"
         app:tint="@color/signal_colorOnSurfaceVariant" />
 
-    <org.thoughtcrime.securesms.components.ComposeText
-        android:id="@+id/embedded_text_editor"
-        style="@style/ComposeEditText"
+    <FrameLayout
+        android:id="@+id/embedded_text_editor_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:minHeight="@dimen/conversation_compose_height"
-        android:nextFocusRight="@+id/send_button"
-        android:nextFocusForward="@+id/send_button"
-        android:paddingVertical="8dp"
         app:layout_constraintBottom_toBottomOf="@id/compose_bubble"
         app:layout_constraintEnd_toStartOf="@id/attachment_barrier"
         app:layout_constraintStart_toEndOf="@id/emoji_toggle"
-        app:layout_constraintTop_toBottomOf="@id/compose_bubble_top_elements"
-        tools:hint="Send TextSecure message">
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/compose_bubble_top_elements">
 
-        <requestFocus />
-    </org.thoughtcrime.securesms.components.ComposeText>
+        <org.thoughtcrime.securesms.components.ComposeText
+            android:id="@+id/embedded_text_editor"
+            style="@style/ComposeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:minHeight="@dimen/conversation_compose_height"
+            android:nextFocusRight="@+id/send_button"
+            android:nextFocusForward="@+id/send_button"
+            android:paddingVertical="8dp"
+            tools:hint="Send TextSecure message">
+
+            <requestFocus />
+        </org.thoughtcrime.securesms.components.ComposeText>
+
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/attachment_barrier"

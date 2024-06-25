@@ -29,6 +29,10 @@ class MediaGalleryViewModel(bucketId: String?, bucketTitle: String?, private val
     loadItemsForBucket(mediaFolder.bucketId, mediaFolder.title)
   }
 
+  fun refreshMediaGallery() {
+    loadItemsForBucket(null, null)
+  }
+
   private fun loadItemsForBucket(bucketId: String?, bucketTitle: String?) {
     if (bucketId == null) {
       repository.getFolders { folders ->

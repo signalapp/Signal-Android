@@ -14,6 +14,9 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
+import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a local SignalServiceAttachment to be sent.
@@ -36,6 +39,7 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment imple
   private final Optional<String>              caption;
   private final Optional<String>              blurHash;
   private final Optional<ResumableUploadSpec> resumableUploadSpec;
+  private final UUID                          uuid;
 
   public SignalServiceAttachmentStream(InputStream inputStream,
                                        String contentType,
@@ -48,7 +52,7 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment imple
                                        ProgressListener listener,
                                        CancelationSignal cancelationSignal)
   {
-    this(inputStream, contentType, length, fileName, voiceNote, borderless, gif, faststart, Optional.empty(), 0, 0, System.currentTimeMillis(), Optional.empty(), Optional.empty(), listener, cancelationSignal, Optional.empty());
+    this(inputStream, contentType, length, fileName, voiceNote, borderless, gif, faststart, Optional.empty(), 0, 0, System.currentTimeMillis(), Optional.empty(), Optional.empty(), listener, cancelationSignal, Optional.empty(), UUID.randomUUID());
   }
 
   public SignalServiceAttachmentStream(InputStream inputStream,
@@ -67,7 +71,8 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment imple
                                        Optional<String> blurHash,
                                        ProgressListener listener,
                                        CancelationSignal cancelationSignal,
-                                       Optional<ResumableUploadSpec> resumableUploadSpec)
+                                       Optional<ResumableUploadSpec> resumableUploadSpec,
+                                       @Nullable UUID uuid)
   {
     super(contentType);
     this.inputStream         = inputStream;
@@ -86,6 +91,7 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment imple
     this.blurHash            = blurHash;
     this.cancelationSignal   = cancelationSignal;
     this.resumableUploadSpec = resumableUploadSpec;
+    this.uuid                = uuid;
   }
 
   @Override
@@ -160,6 +166,10 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment imple
 
   public Optional<ResumableUploadSpec> getResumableUploadSpec() {
     return resumableUploadSpec;
+  }
+
+  public @Nullable UUID getUuid() {
+    return uuid;
   }
 
   @Override

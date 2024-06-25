@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.database.documents;
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -8,8 +7,7 @@ import androidx.annotation.NonNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -36,7 +34,7 @@ public class NetworkFailure {
     if (!TextUtils.isEmpty(recipientId)) {
       return RecipientId.from(recipientId);
     } else {
-      return Recipient.external(ApplicationDependencies.getApplication(), address).getId();
+      return Recipient.external(AppDependencies.getApplication(), address).getId();
     }
   }
 

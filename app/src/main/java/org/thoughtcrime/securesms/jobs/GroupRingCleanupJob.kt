@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import java.util.concurrent.TimeUnit
@@ -21,7 +21,7 @@ class GroupRingCleanupJob private constructor(parameters: Parameters) : BaseJob(
 
     @JvmStatic
     fun enqueue() {
-      ApplicationDependencies.getJobManager().add(
+      AppDependencies.jobManager.add(
         GroupRingCleanupJob(
           Parameters.Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -42,7 +42,7 @@ class GroupRingCleanupJob private constructor(parameters: Parameters) : BaseJob(
 
   override fun onRun() {
     SignalDatabase.calls.getLatestRingingCalls().forEach {
-      ApplicationDependencies.getSignalCallManager().peekGroupCall(it.peer)
+      AppDependencies.signalCallManager.peekGroupCall(it.peer)
     }
 
     SignalDatabase.calls.markRingingCallsAsMissed()

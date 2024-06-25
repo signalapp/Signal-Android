@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class MyStorySettingsViewModel @JvmOverloads constructor(private val repository: MyStorySettingsRepository = MyStorySettingsRepository()) : ViewModel() {
-  private val store = Store(MyStorySettingsState(hasUserPerformedManualSelection = SignalStore.storyValues().userHasBeenNotifiedAboutStories))
+  private val store = Store(MyStorySettingsState(hasUserPerformedManualSelection = SignalStore.story.userHasBeenNotifiedAboutStories))
   private val disposables = CompositeDisposable()
 
   val state: LiveData<MyStorySettingsState> = store.stateLiveData
@@ -44,7 +44,7 @@ class MyStorySettingsViewModel @JvmOverloads constructor(private val repository:
       state.copy(hasUserPerformedManualSelection = true)
     }
 
-    SignalStore.storyValues().userHasBeenNotifiedAboutStories = true
+    SignalStore.story.userHasBeenNotifiedAboutStories = true
 
     return if (privacyMode == state.value!!.myStoryPrivacyState.privacyMode) {
       Completable.fromAction {

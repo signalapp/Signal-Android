@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.io.File
 
-open class SignalDatabase(private val context: Application, databaseSecret: DatabaseSecret, attachmentSecret: AttachmentSecret) :
+open class SignalDatabase(private val context: Application, databaseSecret: DatabaseSecret, attachmentSecret: AttachmentSecret, private val name: String = DATABASE_NAME) :
   SQLiteOpenHelper(
     context,
     DATABASE_NAME,
@@ -73,6 +73,9 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val callTable: CallTable = CallTable(context, this)
   val kyberPreKeyTable: KyberPreKeyTable = KyberPreKeyTable(context, this)
   val callLinkTable: CallLinkTable = CallLinkTable(context, this)
+  val nameCollisionTables: NameCollisionTables = NameCollisionTables(context, this)
+  val inAppPaymentTable: InAppPaymentTable = InAppPaymentTable(context, this)
+  val inAppPaymentSubscriberTable: InAppPaymentSubscriberTable = InAppPaymentSubscriberTable(context, this)
 
   override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.setForeignKeyConstraintsEnabled(true)
@@ -109,6 +112,9 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     db.execSQL(CallLinkTable.CREATE_TABLE)
     db.execSQL(CallTable.CREATE_TABLE)
     db.execSQL(KyberPreKeyTable.CREATE_TABLE)
+    NameCollisionTables.createTables(db)
+    db.execSQL(InAppPaymentTable.CREATE_TABLE)
+    db.execSQL(InAppPaymentSubscriberTable.CREATE_TABLE)
     executeStatements(db, SearchTable.CREATE_TABLE)
     executeStatements(db, RemappedRecordTables.CREATE_TABLE)
     executeStatements(db, MessageSendLogTables.CREATE_TABLE)
@@ -138,6 +144,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     executeStatements(db, SearchTable.CREATE_TRIGGERS)
     executeStatements(db, MessageSendLogTables.CREATE_TRIGGERS)
+
+    NameCollisionTables.createIndexes(db)
 
     DistributionListTables.insertInitialDistributionListAtCreationTime(db)
 
@@ -211,7 +219,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
   companion object {
     private val TAG = Log.tag(SignalDatabase::class.java)
-    private const val DATABASE_NAME = "signal.db"
+    const val DATABASE_NAME = "signal.db"
 
     @JvmStatic
     @Volatile
@@ -526,5 +534,20 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("callLinks")
     val callLinks: CallLinkTable
       get() = instance!!.callLinkTable
+
+    @get:JvmStatic
+    @get:JvmName("nameCollisions")
+    val nameCollisions: NameCollisionTables
+      get() = instance!!.nameCollisionTables
+
+    @get:JvmStatic
+    @get:JvmName("inAppPayments")
+    val inAppPayments: InAppPaymentTable
+      get() = instance!!.inAppPaymentTable
+
+    @get:JvmStatic
+    @get:JvmName("inAppPaymentSubscribers")
+    val inAppPaymentSubscribers: InAppPaymentSubscriberTable
+      get() = instance!!.inAppPaymentSubscriberTable
   }
 }

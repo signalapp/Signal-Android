@@ -232,7 +232,7 @@ public final class LiveRecipientCache {
 
       stopwatch.split("thread");
 
-      if (SignalStore.registrationValues().isRegistrationComplete() && SignalStore.account().getAci() != null) {
+      if (SignalStore.registration().isRegistrationComplete() && SignalStore.account().getAci() != null) {
         try (Cursor cursor = SignalDatabase.recipients().getNonGroupContacts(false)) {
           int count = 0;
           while (cursor != null && cursor.moveToNext() && count < CONTACT_CACHE_WARM_MAX) {

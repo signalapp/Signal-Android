@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.payments.FailureReason;
 import org.thoughtcrime.securesms.payments.PaymentTransactionId;
 import org.thoughtcrime.securesms.payments.Payments;
 import org.thoughtcrime.securesms.payments.Wallet;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.IOException;
@@ -62,7 +62,7 @@ public final class PaymentTransactionCheckJob extends BaseJob {
       return;
     }
 
-    Payments payments = ApplicationDependencies.getPayments();
+    Payments payments = AppDependencies.getPayments();
 
     switch (payment.getDirection()) {
       case SENT: {
@@ -118,7 +118,7 @@ public final class PaymentTransactionCheckJob extends BaseJob {
   public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
     if (exception instanceof NonSuccessfulResponseCodeException) {
       if (((NonSuccessfulResponseCodeException) exception).is5xx()) {
-        return BackoffUtil.exponentialBackoff(pastAttemptCount, FeatureFlags.getServerErrorMaxBackoff());
+        return BackoffUtil.exponentialBackoff(pastAttemptCount, RemoteConfig.getServerErrorMaxBackoff());
       }
     }
 

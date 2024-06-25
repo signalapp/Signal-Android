@@ -1,7 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 buildscript {
-  rootProject.extra["kotlin_version"] = "1.8.10"
+  rootProject.extra["kotlin_version"] = "1.9.20"
   repositories {
     google()
     mavenCentral()
@@ -14,7 +12,7 @@ buildscript {
   }
 
   dependencies {
-    classpath("com.android.tools.build:gradle:8.0.2")
+    classpath("com.android.tools.build:gradle:8.4.1")
     classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
     classpath("com.google.protobuf:protobuf-gradle-plugin:0.9.0")
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${rootProject.extra["kotlin_version"] as String}")
@@ -29,7 +27,7 @@ buildscript {
     }
     classpath("androidx.benchmark:benchmark-gradle-plugin:1.1.0-beta04")
     classpath(files("$rootDir/wire-handler/wire-handler-1.0.0.jar"))
-    classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.8.10-1.0.9")
+    classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.9.20-1.0.14")
   }
 }
 

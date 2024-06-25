@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="32dp"
+        android:paddingTop="@dimen/transfer_top_padding"
+        android:paddingEnd="32dp"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:id="@+id/transfer_or_restore_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="@string/TransferOrRestoreFragment__transfer_or_restore_account"
+            android:textAppearance="@style/Signal.Text.HeadlineMedium" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/transfer_item_spacing"
+            android:gravity="center"
+            android:text="@string/TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="@color/signal_colorOnSurfaceVariant" />
+
+        <org.thoughtcrime.securesms.components.ClippedCardView
+            android:id="@+id/transfer_or_restore_fragment_transfer_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/signal_colorSurface2"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/transfer_option_stroke_color_selector"
+            app:strokeWidth="2dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/transfer_or_restore_fragment_transfer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/transfer_or_restore_fragment_transfer_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_transfer_phone_48"
+                    app:tint="@color/signal_colorPrimary" />
+
+                <TextView
+                    android:id="@+id/transfer_or_restore_fragment_transfer_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/TransferOrRestoreFragment__transfer_from_android_device"
+                    android:textAppearance="@style/Signal.Text.Body"
+                    app:layout_constraintBottom_toTopOf="@+id/transfer_or_restore_fragment_transfer_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/transfer_or_restore_fragment_transfer_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/transfer_or_restore_fragment_transfer_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/signal_colorOnSurfaceVariant"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@+id/transfer_or_restore_fragment_transfer_header"
+                    app:layout_constraintTop_toBottomOf="@+id/transfer_or_restore_fragment_transfer_header"
+                    tools:text="@string/TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </org.thoughtcrime.securesms.components.ClippedCardView>
+
+        <org.thoughtcrime.securesms.components.ClippedCardView
+            android:id="@+id/transfer_or_restore_fragment_restore_remote_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/signal_colorSurface2"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/transfer_option_stroke_color_selector"
+            app:strokeWidth="2dp"
+            tools:visibility="visible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/transfer_or_restore_fragment_restore_remote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/transfer_or_restore_fragment_restore_remote_icon"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/symbol_backup_light"
+                    app:tint="@color/signal_colorPrimary" />
+
+                <TextView
+                    android:id="@+id/transfer_or_restore_fragment_restore_remote_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/TransferOrRestoreFragment__restore_from_backup"
+                    android:textAppearance="@style/Signal.Text.Body"
+                    app:layout_constraintBottom_toTopOf="@+id/transfer_or_restore_fragment_restore_remote_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/transfer_or_restore_fragment_restore_remote_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/transfer_or_restore_fragment_restore_remote_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/TransferOrRestoreFragment__restore_your_messages_from_a_local_backup"
+                    android:textColor="@color/signal_colorOnSurfaceVariant"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@+id/transfer_or_restore_fragment_restore_remote_header"
+                    app:layout_constraintTop_toBottomOf="@+id/transfer_or_restore_fragment_restore_remote_header" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </org.thoughtcrime.securesms.components.ClippedCardView>
+
+        <org.thoughtcrime.securesms.components.ClippedCardView
+            android:id="@+id/transfer_or_restore_fragment_restore_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/signal_colorSurface2"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/transfer_option_stroke_color_selector"
+            app:strokeWidth="2dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/transfer_or_restore_fragment_restore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/transfer_or_restore_fragment_restore_icon"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/symbol_backup_light"
+                    app:tint="@color/signal_colorPrimary" />
+
+                <TextView
+                    android:id="@+id/transfer_or_restore_fragment_restore_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/TransferOrRestoreFragment__restore_from_backup"
+                    android:textAppearance="@style/Signal.Text.Body"
+                    app:layout_constraintBottom_toTopOf="@+id/transfer_or_restore_fragment_restore_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/transfer_or_restore_fragment_restore_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/transfer_or_restore_fragment_restore_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/TransferOrRestoreFragment__restore_your_messages_from_a_local_backup"
+                    android:textColor="@color/signal_colorOnSurfaceVariant"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@+id/transfer_or_restore_fragment_restore_header"
+                    app:layout_constraintTop_toBottomOf="@+id/transfer_or_restore_fragment_restore_header" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </org.thoughtcrime.securesms.components.ClippedCardView>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/transfer_or_restore_fragment_more_options"
+                style="@style/Widget.Signal.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TransferOrRestoreFragment__more_options"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/transfer_or_restore_fragment_next"
+                style="@style/Signal.Widget.Button.Large.Tonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/RegistrationActivity_next" />
+        </FrameLayout>
+    </LinearLayout>
+
+</ScrollView>

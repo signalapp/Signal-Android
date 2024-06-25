@@ -11,22 +11,23 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.google.android.gms.wallet.PaymentData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
-import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.CreditCardFragment
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewaySelectorBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.paypal.PayPalPaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
@@ -34,12 +35,10 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.tr
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorDialogs
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorParams
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
+import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.util.fragments.requireListener
-import java.math.BigDecimal
-import java.util.Currency
 
 /**
  * Abstracts out some common UI-level interactions between gift flow and normal donate flow.
@@ -47,45 +46,32 @@ import java.util.Currency
 class DonationCheckoutDelegate(
   private val fragment: Fragment,
   private val callback: Callback,
-  private val uiSessionKey: Long,
-  errorSource: DonationErrorSource,
-  vararg additionalSources: DonationErrorSource
+  inAppPaymentIdSource: Flowable<InAppPaymentTable.InAppPaymentId>
 ) : DefaultLifecycleObserver {
 
   companion object {
     private val TAG = Log.tag(DonationCheckoutDelegate::class.java)
   }
 
-  private lateinit var donationPaymentComponent: DonationPaymentComponent
+  private val inAppPaymentComponent: InAppPaymentComponent by lazy { fragment.requireListener() }
   private val disposables = LifecycleDisposable()
   private val viewModel: DonationCheckoutViewModel by fragment.viewModels()
 
   private val stripePaymentViewModel: StripePaymentInProgressViewModel by fragment.navGraphViewModels(
-    R.id.donate_to_signal,
+    R.id.checkout_flow,
     factoryProducer = {
-      donationPaymentComponent = fragment.requireListener()
-      StripePaymentInProgressViewModel.Factory(donationPaymentComponent.stripeRepository)
+      StripePaymentInProgressViewModel.Factory(inAppPaymentComponent.stripeRepository)
     }
   )
 
   init {
     fragment.viewLifecycleOwner.lifecycle.addObserver(this)
-    ErrorHandler().attach(fragment, callback, uiSessionKey, errorSource, *additionalSources)
+    ErrorHandler().attach(fragment, callback, inAppPaymentIdSource)
   }
 
   override fun onCreate(owner: LifecycleOwner) {
     disposables.bindTo(fragment.viewLifecycleOwner)
-    donationPaymentComponent = fragment.requireListener()
     registerGooglePayCallback()
-
-    fragment.setFragmentResultListener(GatewaySelectorBottomSheet.REQUEST_KEY) { _, bundle ->
-      if (bundle.containsKey(GatewaySelectorBottomSheet.FAILURE_KEY)) {
-        callback.showSepaEuroMaximumDialog(FiatMoney(bundle.getSerializable(GatewaySelectorBottomSheet.SEPA_EURO_MAX) as BigDecimal, CurrencyUtil.EURO))
-      } else {
-        val response: GatewayResponse = bundle.getParcelableCompat(GatewaySelectorBottomSheet.REQUEST_KEY, GatewayResponse::class.java)!!
-        handleGatewaySelectionResponse(response)
-      }
-    }
 
     fragment.setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
       val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
@@ -103,8 +89,8 @@ class DonationCheckoutDelegate(
     }
 
     fragment.setFragmentResultListener(BankTransferRequestKeys.PENDING_KEY) { _, bundle ->
-      val request: GatewayRequest = bundle.getParcelableCompat(BankTransferRequestKeys.PENDING_KEY, GatewayRequest::class.java)!!
-      callback.navigateToDonationPending(gatewayRequest = request)
+      val request: InAppPaymentTable.InAppPayment = bundle.getParcelableCompat(BankTransferRequestKeys.PENDING_KEY, InAppPaymentTable.InAppPayment::class.java)!!
+      callback.navigateToDonationPending(inAppPayment = request)
     }
 
     fragment.setFragmentResultListener(PayPalPaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
@@ -113,17 +99,18 @@ class DonationCheckoutDelegate(
     }
   }
 
-  private fun handleGatewaySelectionResponse(gatewayResponse: GatewayResponse) {
-    if (InAppDonations.isPaymentSourceAvailable(gatewayResponse.gateway.toPaymentSourceType(), gatewayResponse.request.donateToSignalType)) {
-      when (gatewayResponse.gateway) {
-        GatewayResponse.Gateway.GOOGLE_PAY -> launchGooglePay(gatewayResponse)
-        GatewayResponse.Gateway.PAYPAL -> launchPayPal(gatewayResponse)
-        GatewayResponse.Gateway.CREDIT_CARD -> launchCreditCard(gatewayResponse)
-        GatewayResponse.Gateway.SEPA_DEBIT -> launchBankTransfer(gatewayResponse)
-        GatewayResponse.Gateway.IDEAL -> launchBankTransfer(gatewayResponse)
+  fun handleGatewaySelectionResponse(inAppPayment: InAppPaymentTable.InAppPayment) {
+    if (InAppDonations.isPaymentSourceAvailable(inAppPayment.data.paymentMethodType.toPaymentSourceType(), inAppPayment.type)) {
+      when (inAppPayment.data.paymentMethodType) {
+        InAppPaymentData.PaymentMethodType.GOOGLE_PAY -> launchGooglePay(inAppPayment)
+        InAppPaymentData.PaymentMethodType.PAYPAL -> launchPayPal(inAppPayment)
+        InAppPaymentData.PaymentMethodType.CARD -> launchCreditCard(inAppPayment)
+        InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> launchBankTransfer(inAppPayment)
+        InAppPaymentData.PaymentMethodType.IDEAL -> launchBankTransfer(inAppPayment)
+        else -> error("Unsupported payment method type")
       }
     } else {
-      error("Unsupported combination! ${gatewayResponse.gateway} ${gatewayResponse.request.donateToSignalType}")
+      error("Unsupported combination! ${inAppPayment.data.paymentMethodType} ${inAppPayment.type}")
     }
   }
 
@@ -138,10 +125,9 @@ class DonationCheckoutDelegate(
 
   private fun handleSuccessfulDonationProcessorActionResult(result: DonationProcessorActionResult) {
     if (result.action == DonationProcessorAction.CANCEL_SUBSCRIPTION) {
-      Snackbar.make(fragment.requireView(), R.string.SubscribeFragment__your_subscription_has_been_cancelled, Snackbar.LENGTH_LONG).show()
+      callback.onSubscriptionCancelled(result.inAppPaymentType)
     } else {
-      SignalStore.donationsValues().removeTerminalDonation(result.request.level)
-      callback.onPaymentComplete(result.request)
+      callback.onPaymentComplete(result.inAppPayment!!)
     }
   }
 
@@ -151,7 +137,7 @@ class DonationCheckoutDelegate(
         .setTitle(R.string.DonationsErrors__failed_to_cancel_subscription)
         .setMessage(R.string.DonationsErrors__subscription_cancellation_requires_an_internet_connection)
         .setPositiveButton(android.R.string.ok) { _, _ ->
-          fragment.findNavController().popBackStack()
+          fragment.findNavController().popBackStack(R.id.checkout_flow, true)
         }
         .show()
     } else {
@@ -159,36 +145,36 @@ class DonationCheckoutDelegate(
     }
   }
 
-  private fun launchPayPal(gatewayResponse: GatewayResponse) {
-    callback.navigateToPayPalPaymentInProgress(gatewayResponse.request)
+  private fun launchPayPal(inAppPayment: InAppPaymentTable.InAppPayment) {
+    callback.navigateToPayPalPaymentInProgress(inAppPayment)
   }
 
-  private fun launchGooglePay(gatewayResponse: GatewayResponse) {
-    viewModel.provideGatewayRequestForGooglePay(gatewayResponse.request)
-    donationPaymentComponent.stripeRepository.requestTokenFromGooglePay(
-      price = FiatMoney(gatewayResponse.request.price, Currency.getInstance(gatewayResponse.request.currencyCode)),
-      label = gatewayResponse.request.label,
-      requestCode = gatewayResponse.request.donateToSignalType.requestCode.toInt()
+  private fun launchGooglePay(inAppPayment: InAppPaymentTable.InAppPayment) {
+    viewModel.provideGatewayRequestForGooglePay(inAppPayment)
+    inAppPaymentComponent.stripeRepository.requestTokenFromGooglePay(
+      price = inAppPayment.data.amount!!.toFiatMoney(),
+      label = inAppPayment.data.label,
+      requestCode = InAppPaymentsRepository.getGooglePayRequestCode(inAppPayment.type)
     )
   }
 
-  private fun launchCreditCard(gatewayResponse: GatewayResponse) {
-    callback.navigateToCreditCardForm(gatewayResponse.request)
+  private fun launchCreditCard(inAppPayment: InAppPaymentTable.InAppPayment) {
+    callback.navigateToCreditCardForm(inAppPayment)
   }
 
-  private fun launchBankTransfer(gatewayResponse: GatewayResponse) {
-    if (gatewayResponse.request.donateToSignalType != DonateToSignalType.MONTHLY && gatewayResponse.gateway == GatewayResponse.Gateway.IDEAL) {
-      callback.navigateToIdealDetailsFragment(gatewayResponse.request)
+  private fun launchBankTransfer(inAppPayment: InAppPaymentTable.InAppPayment) {
+    if (!inAppPayment.type.recurring && inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
+      callback.navigateToIdealDetailsFragment(inAppPayment)
     } else {
-      callback.navigateToBankTransferMandate(gatewayResponse)
+      callback.navigateToBankTransferMandate(inAppPayment)
     }
   }
 
   private fun registerGooglePayCallback() {
-    disposables += donationPaymentComponent.googlePayResultPublisher.subscribeBy(
+    disposables += inAppPaymentComponent.googlePayResultPublisher.subscribeBy(
       onNext = { paymentResult ->
         viewModel.consumeGatewayRequestForGooglePay()?.let {
-          donationPaymentComponent.stripeRepository.onActivityResult(
+          inAppPaymentComponent.stripeRepository.onActivityResult(
             paymentResult.requestCode,
             paymentResult.resultCode,
             paymentResult.data,
@@ -200,26 +186,26 @@ class DonationCheckoutDelegate(
     )
   }
 
-  inner class GooglePayRequestCallback(private val request: GatewayRequest) : GooglePayApi.PaymentRequestCallback {
+  inner class GooglePayRequestCallback(private val inAppPayment: InAppPaymentTable.InAppPayment) : GooglePayApi.PaymentRequestCallback {
     override fun onSuccess(paymentData: PaymentData) {
       Log.d(TAG, "Successfully retrieved payment data from Google Pay", true)
       stripePaymentViewModel.providePaymentData(paymentData)
-      callback.navigateToStripePaymentInProgress(request)
+      callback.navigateToStripePaymentInProgress(inAppPayment)
     }
 
     override fun onError(googlePayException: GooglePayApi.GooglePayException) {
       Log.w(TAG, "Failed to retrieve payment data from Google Pay", googlePayException, true)
 
-      val error = DonationError.getGooglePayRequestTokenError(
-        source = when (request.donateToSignalType) {
-          DonateToSignalType.MONTHLY -> DonationErrorSource.MONTHLY
-          DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
-          DonateToSignalType.GIFT -> DonationErrorSource.GIFT
-        },
-        throwable = googlePayException
-      )
-
-      DonationError.routeDonationError(fragment.requireContext(), error)
+      InAppPaymentsRepository.updateInAppPayment(
+        inAppPayment.copy(
+          notified = false,
+          data = inAppPayment.data.copy(
+            error = InAppPaymentData.Error(
+              type = InAppPaymentData.Error.Type.GOOGLE_PAY_REQUEST_TOKEN
+            )
+          )
+        )
+      ).subscribe()
     }
 
     override fun onCancelled() {
@@ -236,7 +222,19 @@ class DonationCheckoutDelegate(
     private var errorDialog: DialogInterface? = null
     private var errorHandlerCallback: ErrorHandlerCallback? = null
 
-    fun attach(fragment: Fragment, errorHandlerCallback: ErrorHandlerCallback?, uiSessionKey: Long, errorSource: DonationErrorSource, vararg additionalSources: DonationErrorSource) {
+    fun attach(
+      fragment: Fragment,
+      errorHandlerCallback: ErrorHandlerCallback?,
+      inAppPaymentId: InAppPaymentTable.InAppPaymentId
+    ) {
+      attach(fragment, errorHandlerCallback, Flowable.just(inAppPaymentId))
+    }
+
+    fun attach(
+      fragment: Fragment,
+      errorHandlerCallback: ErrorHandlerCallback?,
+      inAppPaymentIdSource: Flowable<InAppPaymentTable.InAppPaymentId>
+    ) {
       this.fragment = fragment
       this.errorHandlerCallback = errorHandlerCallback
 
@@ -244,12 +242,26 @@ class DonationCheckoutDelegate(
       fragment.viewLifecycleOwner.lifecycle.addObserver(this)
 
       disposables.bindTo(fragment.viewLifecycleOwner)
-      disposables += registerErrorSource(errorSource)
-      additionalSources.forEach { source ->
-        disposables += registerErrorSource(source)
-      }
+      disposables += inAppPaymentIdSource
+        .switchMap { filterUnnotifiedErrors(it) }
+        .doOnNext {
+          SignalDatabase.inAppPayments.update(it.copy(notified = true))
+        }
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeBy {
+          showErrorDialog(it)
+        }
 
-      disposables += registerUiSession(uiSessionKey)
+      disposables += inAppPaymentIdSource
+        .switchMap { InAppPaymentsRepository.observeTemporaryErrors(it) }
+        .onBackpressureLatest()
+        .concatMapSingle { (id, err) -> Single.fromCallable { SignalDatabase.inAppPayments.getById(id)!! to err } }
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeBy { (inAppPayment, error) ->
+          handleTemporaryError(inAppPayment, error)
+        }
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
@@ -258,96 +270,106 @@ class DonationCheckoutDelegate(
       errorHandlerCallback = null
     }
 
-    private fun registerErrorSource(errorSource: DonationErrorSource): Disposable {
-      return DonationError.getErrorsForSource(errorSource)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { error ->
-          showErrorDialog(error)
+    private fun filterUnnotifiedErrors(inAppPaymentId: InAppPaymentTable.InAppPaymentId): Flowable<InAppPaymentTable.InAppPayment> {
+      return InAppPaymentsRepository.observeUpdates(inAppPaymentId)
+        .subscribeOn(Schedulers.io())
+        .filter {
+          !it.notified && it.data.error != null
         }
     }
 
-    private fun registerUiSession(uiSessionKey: Long): Disposable {
-      return DonationError.getErrorsForUiSessionKey(uiSessionKey)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe {
-          showErrorDialog(it)
+    private fun handleTemporaryError(inAppPayment: InAppPaymentTable.InAppPayment, throwable: Throwable) {
+      when (throwable) {
+        is DonationError.UserCancelledPaymentError -> {
+          Log.d(TAG, "User cancelled out of payment flow.", true)
         }
+        is DonationError.BadgeRedemptionError.DonationPending -> {
+          Log.d(TAG, "User launched an external application.", true)
+          errorHandlerCallback?.onUserLaunchedAnExternalApplication()
+        }
+        is DonationError.UserLaunchedExternalApplication -> {
+          Log.d(TAG, "Long-running donation is still pending.", true)
+          errorHandlerCallback?.navigateToDonationPending(inAppPayment)
+        }
+        else -> {
+          Log.d(TAG, "Displaying donation error dialog.", true)
+          errorDialog = DonationErrorDialogs.show(
+            fragment!!.requireContext(),
+            throwable,
+            DialogHandler()
+          )
+        }
+      }
     }
 
-    private fun showErrorDialog(throwable: Throwable) {
+    private fun showErrorDialog(inAppPayment: InAppPaymentTable.InAppPayment) {
       if (errorDialog != null) {
-        Log.d(TAG, "Already displaying an error dialog. Skipping.", throwable, true)
+        Log.d(TAG, "Already displaying an error dialog. Skipping. ${inAppPayment.data.error}", true)
         return
       }
 
-      if (throwable is DonationError.UserCancelledPaymentError) {
-        Log.d(TAG, "User cancelled out of payment flow.", true)
-
+      val error = inAppPayment.data.error
+      if (error == null) {
+        Log.d(TAG, "InAppPayment does not contain an error. Skipping.", true)
         return
       }
 
-      if (throwable is DonationError.UserLaunchedExternalApplication) {
-        Log.d(TAG, "User launched an external application.", true)
-        errorHandlerCallback?.onUserLaunchedAnExternalApplication()
-        return
-      }
-
-      if (throwable is DonationError.BadgeRedemptionError.DonationPending) {
-        Log.d(TAG, "Long-running donation is still pending.", true)
-        errorHandlerCallback?.navigateToDonationPending(throwable.gatewayRequest)
-        return
-      }
-
-      Log.d(TAG, "Displaying donation error dialog.", true)
-      errorDialog = DonationErrorDialogs.show(
-        fragment!!.requireContext(),
-        throwable,
-        object : DonationErrorDialogs.DialogCallback() {
-          var tryAgain = false
-
-          override fun onTryCreditCardAgain(context: Context): DonationErrorParams.ErrorAction<Unit> {
-            return DonationErrorParams.ErrorAction(
-              label = R.string.DeclineCode__try,
-              action = {
-                tryAgain = true
-              }
-            )
-          }
-
-          override fun onTryBankTransferAgain(context: Context): DonationErrorParams.ErrorAction<Unit> {
-            return DonationErrorParams.ErrorAction(
-              label = R.string.DeclineCode__try,
-              action = {
-                tryAgain = true
-              }
-            )
-          }
-
-          override fun onDialogDismissed() {
-            errorDialog = null
-            if (!tryAgain) {
-              tryAgain = false
-              fragment?.findNavController()?.popBackStack()
-            }
-          }
+      when (error.type) {
+        else -> {
+          Log.d(TAG, "Displaying donation error dialog.", true)
+          errorDialog = DonationErrorDialogs.show(
+            fragment!!.requireContext(),
+            inAppPayment,
+            DialogHandler()
+          )
         }
-      )
+      }
+    }
+
+    private inner class DialogHandler : DonationErrorDialogs.DialogCallback() {
+      var tryAgain = false
+
+      override fun onTryCreditCardAgain(context: Context): DonationErrorParams.ErrorAction<Unit> {
+        return DonationErrorParams.ErrorAction(
+          label = R.string.DeclineCode__try,
+          action = {
+            tryAgain = true
+          }
+        )
+      }
+
+      override fun onTryBankTransferAgain(context: Context): DonationErrorParams.ErrorAction<Unit> {
+        return DonationErrorParams.ErrorAction(
+          label = R.string.DeclineCode__try,
+          action = {
+            tryAgain = true
+          }
+        )
+      }
+
+      override fun onDialogDismissed() {
+        errorDialog = null
+        if (!tryAgain) {
+          tryAgain = false
+          fragment?.findNavController()?.popBackStack(R.id.checkout_flow, true)
+        }
+      }
     }
   }
 
   interface ErrorHandlerCallback {
     fun onUserLaunchedAnExternalApplication()
-    fun navigateToDonationPending(gatewayRequest: GatewayRequest)
+    fun navigateToDonationPending(inAppPayment: InAppPaymentTable.InAppPayment)
   }
 
   interface Callback : ErrorHandlerCallback {
-    fun navigateToStripePaymentInProgress(gatewayRequest: GatewayRequest)
-    fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest)
-    fun navigateToCreditCardForm(gatewayRequest: GatewayRequest)
-    fun navigateToIdealDetailsFragment(gatewayRequest: GatewayRequest)
-    fun navigateToBankTransferMandate(gatewayResponse: GatewayResponse)
-    fun onPaymentComplete(gatewayRequest: GatewayRequest)
+    fun navigateToStripePaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment)
+    fun navigateToPayPalPaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment)
+    fun navigateToCreditCardForm(inAppPayment: InAppPaymentTable.InAppPayment)
+    fun navigateToIdealDetailsFragment(inAppPayment: InAppPaymentTable.InAppPayment)
+    fun navigateToBankTransferMandate(inAppPayment: InAppPaymentTable.InAppPayment)
+    fun onPaymentComplete(inAppPayment: InAppPaymentTable.InAppPayment)
+    fun onSubscriptionCancelled(inAppPaymentType: InAppPaymentType)
     fun onProcessorActionProcessed()
-    fun showSepaEuroMaximumDialog(sepaEuroMaximum: FiatMoney)
   }
 }

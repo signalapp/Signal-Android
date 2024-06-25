@@ -13,7 +13,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -186,7 +186,7 @@ public final class NotificationCancellationHelper {
     }
 
     Long                     threadId            = SignalDatabase.threads().getThreadIdFor(recipientId);
-    Optional<ConversationId> focusedThread       = ApplicationDependencies.getMessageNotifier().getVisibleThread();
+    Optional<ConversationId> focusedThread       = AppDependencies.getMessageNotifier().getVisibleThread();
     Long                     focusedThreadId     = focusedThread.map(ConversationId::getThreadId).orElse(null);
     Long                     focusedGroupStoryId = focusedThread.map(ConversationId::getGroupStoryId).orElse(null);
 

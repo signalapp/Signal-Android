@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.net.Uri
 import android.view.View
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.bumptech.glide.RequestManager
 import io.mockk.mockk
@@ -203,8 +204,8 @@ class V2ConversationItemShapeTest {
 
     private val colorizer = Colorizer()
 
+    override val lifecycleOwner: LifecycleOwner = mockk(relaxed = true)
     override val displayMode: ConversationItemDisplayMode = ConversationItemDisplayMode.Standard
-
     override val clickListener: ConversationAdapter.ItemClickListener = FakeConversationItemClickListener
     override val selectedItems: Set<MultiselectPart> = emptySet()
     override val isMessageRequestAccepted: Boolean = true
@@ -313,7 +314,7 @@ class V2ConversationItemShapeTest {
 
     override fun goToMediaPreview(parent: ConversationItem?, sharedElement: View?, args: MediaIntentFactory.MediaPreviewArgs?) = Unit
 
-    override fun onEditedIndicatorClicked(messageRecord: MessageRecord) = Unit
+    override fun onEditedIndicatorClicked(conversationMessage: ConversationMessage) = Unit
 
     override fun onShowGroupDescriptionClicked(groupName: String, description: String, shouldLinkifyWebLinks: Boolean) = Unit
 
@@ -328,5 +329,8 @@ class V2ConversationItemShapeTest {
     override fun onReportSpamLearnMoreClicked() = Unit
 
     override fun onMessageRequestAcceptOptionsClicked() = Unit
+
+    override fun onItemDoubleClick(item: MultiselectPart) = Unit
+    override fun onPaymentTombstoneClicked() = Unit
   }
 }

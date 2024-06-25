@@ -164,7 +164,7 @@ class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences
 
   private fun getPushToggleSummary(isPushEnabled: Boolean): String {
     return if (isPushEnabled) {
-      PhoneNumberFormatter.prettyPrint(SignalStore.account().e164!!)
+      PhoneNumberFormatter.prettyPrint(SignalStore.account.e164!!)
     } else {
       getString(R.string.preferences__free_private_messages_and_calls)
     }

@@ -17,8 +17,10 @@ class ContactLinkConfiguration(
   val appName: String,
   val messagePrompt: (String) -> String,
   val callPrompt: (String) -> String,
+  val videoCallPrompt: (String) -> String,
   val e164Formatter: (String) -> String,
   val messageMimetype: String,
   val callMimetype: String,
+  val videoCallMimetype: String,
   val syncTag: String
 )

@@ -4,8 +4,8 @@ import io.reactivex.rxjava3.core.Single
 import org.whispersystems.signalservice.api.SignalWebSocket
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
+import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.AttachmentV2UploadAttributes
-import org.whispersystems.signalservice.internal.push.AttachmentV4UploadAttributes
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
@@ -29,7 +29,7 @@ class AttachmentService(private val signalWebSocket: SignalWebSocket) {
       .onErrorReturn { throwable: Throwable? -> ServiceResponse.forUnknownError(throwable) }
   }
 
-  fun getAttachmentV4UploadAttributes(): Single<ServiceResponse<AttachmentV4UploadAttributes>> {
+  fun getAttachmentV4UploadAttributes(): Single<ServiceResponse<AttachmentUploadForm>> {
     val requestMessage = WebSocketRequestMessage(
       id = SecureRandom().nextLong(),
       verb = "GET",
@@ -37,7 +37,7 @@ class AttachmentService(private val signalWebSocket: SignalWebSocket) {
     )
 
     return signalWebSocket.request(requestMessage)
-      .map { response: WebsocketResponse? -> DefaultResponseMapper.getDefault(AttachmentV4UploadAttributes::class.java).map(response) }
+      .map { response: WebsocketResponse? -> DefaultResponseMapper.getDefault(AttachmentUploadForm::class.java).map(response) }
       .onErrorReturn { throwable: Throwable? -> ServiceResponse.forUnknownError(throwable) }
   }
 

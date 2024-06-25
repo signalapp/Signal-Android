@@ -8,7 +8,7 @@ import net.zetetic.database.DatabaseErrorHandler;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.signal.core.util.CursorUtil;
 
 /**
@@ -48,9 +48,11 @@ public final class SqlCipherDeletingErrorHandler implements DatabaseErrorHandler
       } catch (Throwable t) {
         Log.e(TAG, "Failed to do cipher_integrity_check!", t);
       }
+    } catch (Throwable t) {
+      Log.e(TAG, "Failed to run diagnostics!", t);
     } finally {
       Log.w(TAG, "Deleting database " + databaseName);
-      ApplicationDependencies.getApplication().deleteDatabase(databaseName);
+      AppDependencies.getApplication().deleteDatabase(databaseName);
     }
   }
 }

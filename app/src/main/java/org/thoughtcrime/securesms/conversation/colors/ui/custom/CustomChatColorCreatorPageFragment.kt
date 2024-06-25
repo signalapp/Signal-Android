@@ -202,9 +202,9 @@ class CustomChatColorCreatorPageFragment :
       }
     }
 
-    if (page == 1 && SignalStore.chatColorsValues().shouldShowGradientTooltip) {
+    if (page == 1 && SignalStore.chatColors.shouldShowGradientTooltip) {
       view.post {
-        SignalStore.chatColorsValues().shouldShowGradientTooltip = false
+        SignalStore.chatColors.shouldShowGradientTooltip = false
         val contentView = layoutInflater.inflate(R.layout.gradient_tool_tooltip, view as ViewGroup, false)
         val popupWindow = PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 

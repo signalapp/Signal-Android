@@ -614,6 +614,7 @@ message SyncMessage {
       ACCEPTED       = 1;
       NOT_ACCEPTED   = 2;
       DELETE         = 3;
+      OBSERVED       = 4;
     }
 
     optional bytes     conversationId = 1;
@@ -637,8 +638,9 @@ message SyncMessage {
 
   message CallLogEvent {
     enum Type {
-      CLEAR          = 0;
-      MARKED_AS_READ = 1;
+      CLEAR                          = 0;
+      MARKED_AS_READ                 = 1;
+      MARKED_AS_READ_IN_CONVERSATION = 2;
     }
 
     optional Type   type          = 1;
@@ -650,6 +652,53 @@ message SyncMessage {
     /* An identifier for a call. Generated directly for 1:1, or derived from
      * the era ID for group and ad-hoc calls. See also `CallEvent/callId`. */
     optional uint64 callId        = 4;
+  }
+
+  message DeleteForMe {
+    message ConversationIdentifier {
+      oneof identifier {
+        string threadServiceId = 1;
+        bytes threadGroupId = 2;
+        string threadE164 = 3;
+      }
+    }
+
+    message AddressableMessage {
+      oneof author {
+        string authorServiceId = 1;
+        string authorE164 = 2;
+      }
+      optional uint64 sentTimestamp = 3;
+    }
+
+    message MessageDeletes {
+      optional ConversationIdentifier conversation = 1;
+      repeated AddressableMessage messages = 2;
+    }
+
+    message AttachmentDelete {
+      optional ConversationIdentifier conversation = 1;
+      optional AddressableMessage targetMessage = 2;
+      optional bytes uuid = 3; // The `uuid` from the `Attachment`.
+      optional bytes fallbackDigest = 4;
+      optional bytes fallbackPlaintextHash = 5;
+    }
+
+    message ConversationDelete {
+      optional ConversationIdentifier conversation = 1;
+      repeated AddressableMessage mostRecentMessages = 2;
+      repeated AddressableMessage mostRecentNonExpiringMessages = 4;
+      optional bool isFullDelete = 3;
+    }
+
+    message LocalOnlyConversationDelete {
+      optional ConversationIdentifier conversation = 1;
+    }
+
+    repeated MessageDeletes messageDeletes = 1;
+    repeated ConversationDelete conversationDeletes = 2;
+    repeated LocalOnlyConversationDelete localOnlyConversationDeletes = 3;
+    repeated AttachmentDelete attachmentDeletes = 4;
   }
 
   optional Sent                   sent                   = 1;
@@ -673,6 +722,7 @@ message SyncMessage {
   optional CallEvent              callEvent              = 19;
   optional CallLinkUpdate         callLinkUpdate         = 20;
   optional CallLogEvent           callLogEvent           = 21;
+  optional DeleteForMe            deleteForMe            = 22;
 }
 
 message AttachmentPointer {
@@ -704,7 +754,8 @@ message AttachmentPointer {
   optional string  blurHash                = 12;
   optional uint64  uploadTimestamp         = 13;
   optional uint32  cdnNumber               = 14;
-  // Next ID: 19
+  optional bytes   uuid                    = 20;
+  // Next ID: 21
 }
 
 message GroupContext {

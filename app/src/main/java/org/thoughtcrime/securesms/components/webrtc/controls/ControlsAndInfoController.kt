@@ -52,7 +52,7 @@ import org.thoughtcrime.securesms.components.webrtc.CallOverflowPopupWindow
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 import org.thoughtcrime.securesms.util.padding
@@ -94,6 +94,8 @@ class ControlsAndInfoController(
   private val aboveControlsGuideline: Guideline
   private val bottomSheetVisibilityListeners = mutableSetOf<BottomSheetVisibilityListener>()
   private val scheduleHideControlsRunnable: Runnable = Runnable { onScheduledHide() }
+  private val toggleCameraDirectionView: View
+
   private val handler: Handler?
     get() = webRtcCallView.handler
 
@@ -110,6 +112,7 @@ class ControlsAndInfoController(
     callControls = webRtcCallView.findViewById(R.id.call_controls_constraint_layout)
     raiseHandComposeView = webRtcCallView.findViewById(R.id.call_screen_raise_hand_view)
     aboveControlsGuideline = webRtcCallView.findViewById(R.id.call_screen_above_controls_guideline)
+    toggleCameraDirectionView = webRtcCallView.findViewById(R.id.call_screen_camera_direction_toggle)
 
     callInfoComposeView.apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
@@ -209,7 +212,7 @@ class ControlsAndInfoController(
       }
   }
 
-  private fun onControlTopChanged() {
+  fun onControlTopChanged() {
     val guidelineTop = max(frame.top, coordinator.height - behavior.peekHeight)
     aboveControlsGuideline.setGuidelineBegin(guidelineTop)
     webRtcCallView.onControlTopChanged()
@@ -235,7 +238,7 @@ class ControlsAndInfoController(
 
   private fun hide(delay: Long = 0L) {
     if (delay == 0L) {
-      if (controlState.isFadeOutEnabled || controlState == WebRtcControls.PIP) {
+      if (controlState.isFadeOutEnabled || controlState == WebRtcControls.PIP || controlState.displayErrorControls()) {
         behavior.isHideable = true
         behavior.state = BottomSheetBehavior.STATE_HIDDEN
 
@@ -280,7 +283,7 @@ class ControlsAndInfoController(
   }
 
   private fun showOrHideControlsOnUpdate(previousState: WebRtcControls) {
-    if (controlState == WebRtcControls.PIP) {
+    if (controlState == WebRtcControls.PIP || controlState.displayErrorControls()) {
       hide()
       return
     }
@@ -329,6 +332,8 @@ class ControlsAndInfoController(
     }
 
     constraints.applyTo(callControls)
+
+    toggleCameraDirectionView.visible = controlState.displayCameraToggle()
   }
 
   private fun onScheduledHide() {
@@ -406,10 +411,10 @@ class ControlsAndInfoController(
       .setNegativeButton(android.R.string.cancel, null)
       .setMessage(webRtcCallView.resources.getString(R.string.CallLinkInfoSheet__remove_s_from_the_call, callParticipant.recipient.getShortDisplayName(webRtcCallActivity)))
       .setPositiveButton(R.string.CallLinkInfoSheet__remove) { _, _ ->
-        ApplicationDependencies.getSignalCallManager().removeFromCallLink(callParticipant)
+        AppDependencies.signalCallManager.removeFromCallLink(callParticipant)
       }
       .setNeutralButton(R.string.CallLinkInfoSheet__block_from_call) { _, _ ->
-        ApplicationDependencies.getSignalCallManager().blockFromCallLink(callParticipant)
+        AppDependencies.signalCallManager.blockFromCallLink(callParticipant)
       }
       .show()
   }

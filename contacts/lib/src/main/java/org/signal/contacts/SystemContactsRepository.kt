@@ -526,6 +526,16 @@ object SystemContactsRepository {
         .withYieldAllowed(true)
         .build(),
 
+      // Data entry for making a video call
+      ContentProviderOperation.newInsert(dataUri)
+        .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, operationIndex)
+        .withValue(ContactsContract.Data.MIMETYPE, linkConfig.videoCallMimetype)
+        .withValue(ContactsContract.Data.DATA1, systemContactInfo.displayPhone)
+        .withValue(ContactsContract.Data.DATA2, linkConfig.appName)
+        .withValue(ContactsContract.Data.DATA3, linkConfig.videoCallPrompt(systemContactInfo.displayPhone))
+        .withYieldAllowed(true)
+        .build(),
+
       // Ensures that this RawContact entry is shown next to another RawContact entry we found for this contact
       ContentProviderOperation.newUpdate(ContactsContract.AggregationExceptions.CONTENT_URI)
         .withValue(ContactsContract.AggregationExceptions.RAW_CONTACT_ID1, systemContactInfo.siblingRawContactId)

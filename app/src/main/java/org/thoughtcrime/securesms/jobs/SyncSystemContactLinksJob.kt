@@ -11,10 +11,12 @@ import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import java.lang.Exception
 
 /**
@@ -71,25 +73,17 @@ class SyncSystemContactLinksJob private constructor(parameters: Parameters) : Ba
       )
       stopwatch.split("add-links")
 
+      // Adding links changes how certain structured name records are stored, so we need to re-sync to make sure we get the latest structured name
+      ContactDiscovery.syncRecipientInfoWithSystemContacts(context)
+      StorageSyncHelper.scheduleSyncForDataChange()
+      stopwatch.split("sync-contact-info")
+
       stopwatch.stop(TAG)
     } catch (e: RemoteException) {
       Log.w(TAG, "[addSystemContactLinks] Failed to add links to contacts.", e)
     } catch (e: OperationApplicationException) {
       Log.w(TAG, "[addSystemContactLinks] Failed to add links to contacts.", e)
     }
-  }
-
-  private fun buildContactLinkConfiguration(context: Context, account: Account): ContactLinkConfiguration {
-    return ContactLinkConfiguration(
-      account = account,
-      appName = context.getString(R.string.app_name),
-      messagePrompt = { e164 -> context.getString(R.string.ContactsDatabase_message_s, e164) },
-      callPrompt = { e164 -> context.getString(R.string.ContactsDatabase_signal_call_s, e164) },
-      e164Formatter = { number -> PhoneNumberFormatter.get(context).format(number) },
-      messageMimetype = MESSAGE_MIMETYPE,
-      callMimetype = CALL_MIMETYPE,
-      syncTag = CONTACT_TAG
-    )
   }
 
   class Factory : Job.Factory<SyncSystemContactLinksJob> {
@@ -103,6 +97,22 @@ class SyncSystemContactLinksJob private constructor(parameters: Parameters) : Ba
 
     private const val MESSAGE_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact"
     private const val CALL_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call"
+    private const val VIDEO_CALL_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.videocall"
     private const val CONTACT_TAG = "__TS"
+
+    fun buildContactLinkConfiguration(context: Context, account: Account): ContactLinkConfiguration {
+      return ContactLinkConfiguration(
+        account = account,
+        appName = context.getString(R.string.app_name),
+        messagePrompt = { e164 -> context.getString(R.string.ContactsDatabase_message_s, e164) },
+        callPrompt = { e164 -> context.getString(R.string.ContactsDatabase_signal_call_s, e164) },
+        videoCallPrompt = { e164 -> context.getString(R.string.ContactsDatabase_signal_video_call_s, e164) },
+        e164Formatter = { number -> PhoneNumberFormatter.get(context).format(number) },
+        messageMimetype = MESSAGE_MIMETYPE,
+        callMimetype = CALL_MIMETYPE,
+        videoCallMimetype = VIDEO_CALL_MIMETYPE,
+        syncTag = CONTACT_TAG
+      )
+    }
   }
 }

@@ -16,7 +16,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.signal.core.util.FontUtil;
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.NetworkUtil;
+import org.thoughtcrime.securesms.util.PowerManagerCompat;
 import org.thoughtcrime.securesms.util.ScreenDensity;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -71,15 +72,13 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Memclass          : ").append(getMemoryClass(context)).append("\n");
     builder.append("MemInfo           : ").append(getMemoryInfo(context)).append("\n");
     builder.append("OS Host           : ").append(Build.HOST).append("\n");
-    builder.append("RecipientId       : ").append(SignalStore.registrationValues().isRegistrationComplete() ? Recipient.self().getId() : "N/A").append("\n");
+    builder.append("RecipientId       : ").append(SignalStore.registration().isRegistrationComplete() ? Recipient.self().getId() : "N/A").append("\n");
     builder.append("ACI               : ").append(getCensoredAci(context)).append("\n");
     builder.append("Device ID         : ").append(SignalStore.account().getDeviceId()).append("\n");
-    builder.append("Censored          : ").append(ApplicationDependencies.getSignalServiceNetworkAccess().isCensored()).append("\n");
+    builder.append("Censored          : ").append(AppDependencies.getSignalServiceNetworkAccess().isCensored()).append("\n");
     builder.append("Network Status    : ").append(NetworkUtil.getNetworkStatus(context)).append("\n");
-    builder.append("Data Saver        : ").append(DeviceProperties.getDataSaverState(context)).append("\n");
     builder.append("Play Services     : ").append(getPlayServicesString(context)).append("\n");
     builder.append("FCM               : ").append(SignalStore.account().isFcmEnabled()).append("\n");
-    builder.append("BkgRestricted     : ").append(Build.VERSION.SDK_INT >= 28 ? DeviceProperties.isBackgroundRestricted(context) : "N/A").append("\n");
     builder.append("Locale            : ").append(Locale.getDefault()).append("\n");
     builder.append("Linked Devices    : ").append(TextSecurePreferences.isMultiDevice(context)).append("\n");
     builder.append("First Version     : ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
@@ -92,7 +91,9 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Telecom           : ").append(AndroidTelecomUtil.getTelecomSupported()).append("\n");
     builder.append("User-Agent        : ").append(StandardUserAgentInterceptor.USER_AGENT).append("\n");
     builder.append("SlowNotifications : ").append(SlowNotificationHeuristics.isHavingDelayedNotifications()).append("\n");
-    builder.append("PotentiallyBattery: ").append(SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations()).append("\n");
+    builder.append("IgnoringBatteryOpt: ").append(PowerManagerCompat.isIgnoringBatteryOptimizations(context)).append("\n");
+    builder.append("BkgRestricted     : ").append(Build.VERSION.SDK_INT >= 28 ? DeviceProperties.isBackgroundRestricted(context) : "N/A").append("\n");
+    builder.append("Data Saver        : ").append(DeviceProperties.getDataSaverState(context)).append("\n");
     builder.append("APNG Animation    : ").append(DeviceProperties.shouldAllowApngStickerAnimation(context)).append("\n");
     if (BuildConfig.MANAGES_APP_UPDATES) {
       builder.append("ApkManifestUrl    : ").append(BuildConfig.APK_UPDATE_MANIFEST_URL).append("\n");

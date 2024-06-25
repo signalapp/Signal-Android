@@ -80,7 +80,7 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
 
     /** Parses a ServiceId serialized as a ByteString. Returns null if the ServiceId is invalid. */
     @JvmStatic
-    fun parseOrNull(bytes: okio.ByteString): ServiceId? = parseOrNull(bytes.toByteArray())
+    fun parseOrNull(bytes: okio.ByteString?): ServiceId? = parseOrNull(bytes?.toByteArray())
 
     /** Parses a ServiceId serialized as a string. Crashes if the ServiceId is invalid. */
     @JvmStatic

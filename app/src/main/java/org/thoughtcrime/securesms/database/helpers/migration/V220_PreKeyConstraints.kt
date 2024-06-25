@@ -101,5 +101,6 @@ object V220_PreKeyConstraints : SignalDatabaseMigration {
 
     db.execSQL("DROP TABLE one_time_prekeys")
 
-    db.execSQL("ALTER TABLE one_time_prekeys_temp RENAME TO one_time_prekeys") }
+    db.execSQL("ALTER TABLE one_time_prekeys_temp RENAME TO one_time_prekeys")
+  }
 }

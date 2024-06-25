@@ -7,11 +7,8 @@ import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
-import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
@@ -43,9 +40,7 @@ object AvatarPreference {
   }
 
   private class ViewHolder(itemView: View) : MappingViewHolder<Model>(itemView) {
-    private val avatar: AvatarView = itemView.findViewById<AvatarView>(R.id.bio_preference_avatar).apply {
-      setFallbackPhotoProvider(AvatarPreferenceFallbackPhotoProvider())
-    }
+    private val avatar: AvatarView = itemView.findViewById<AvatarView>(R.id.bio_preference_avatar)
 
     private val badge: BadgeImageView = itemView.findViewById(R.id.bio_preference_badge)
 
@@ -72,10 +67,5 @@ object AvatarPreference {
       avatar.disableQuickContact()
       avatar.setOnClickListener { model.onAvatarClick(avatar) }
     }
-  }
-
-  private class AvatarPreferenceFallbackPhotoProvider : Recipient.FallbackPhotoProvider() {
-    override val photoForGroup: FallbackContactPhoto
-      get() = FallbackPhoto(R.drawable.ic_group_outline_40, ViewUtil.dpToPx(8))
   }
 }

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.View
@@ -11,9 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.dp
 import org.signal.core.util.money.FiatMoney
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.gifts.ExpiredGiftSheet
-import org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowActivity
 import org.thoughtcrime.securesms.badges.models.BadgePreview
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -21,15 +20,12 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
-import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.TerminalDonationDelegate
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -68,11 +64,7 @@ class ManageDonationsFragment :
       )
   }
 
-  private val viewModel: ManageDonationsViewModel by viewModels(
-    factoryProducer = {
-      ManageDonationsViewModel.Factory(MonthlyDonationRepository(ApplicationDependencies.getDonationsService()))
-    }
-  )
+  private val viewModel: ManageDonationsViewModel by viewModels()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     viewLifecycleOwner.lifecycle.addObserver(TerminalDonationDelegate(childFragmentManager, viewLifecycleOwner))
@@ -91,9 +83,9 @@ class ManageDonationsFragment :
     BadgePreview.register(adapter)
     NetworkFailure.register(adapter)
 
-    val expiredGiftBadge = SignalStore.donationsValues().getExpiredGiftBadge()
+    val expiredGiftBadge = SignalStore.donations.getExpiredGiftBadge()
     if (expiredGiftBadge != null) {
-      SignalStore.donationsValues().setExpiredGiftBadge(null)
+      SignalStore.donations.setExpiredGiftBadge(null)
       ExpiredGiftSheet.show(childFragmentManager, expiredGiftBadge)
     }
 
@@ -167,7 +159,7 @@ class ManageDonationsFragment :
       primaryWrappedButton(
         text = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_to_signal),
         onClick = {
-          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(DonateToSignalType.ONE_TIME))
+          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.ONE_TIME_DONATION))
         }
       )
 
@@ -235,7 +227,7 @@ class ManageDonationsFragment :
   }
 
   private fun DSLConfiguration.presentNetworkFailureSettings(state: ManageDonationsState, hasReceipts: Boolean) {
-    if (SignalStore.donationsValues().isLikelyASustainer()) {
+    if (SignalStore.donations.isLikelyASustainer()) {
       presentSubscriptionSettingsWithNetworkError(state)
     } else {
       presentNotADonorSettings(hasReceipts)
@@ -274,6 +266,12 @@ class ManageDonationsFragment :
             requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
           },
           activeSubscription = activeSubscription,
+          subscriberRequiresCancel = state.subscriberRequiresCancel,
+          onRowClick = {
+            if (it != ManageDonationsState.RedemptionState.IN_PROGRESS) {
+              findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.RECURRING_DONATION))
+            }
+          },
           onPendingClick = {
             displayPendingDialog(it)
           }
@@ -295,7 +293,9 @@ class ManageDonationsFragment :
           redemptionState = ManageDonationsState.RedemptionState.IN_PROGRESS,
           onContactSupport = {},
           activeSubscription = null,
-          onPendingClick = {}
+          subscriberRequiresCancel = state.subscriberRequiresCancel,
+          onPendingClick = {},
+          onRowClick = {}
         )
       )
     }
@@ -312,15 +312,6 @@ class ManageDonationsFragment :
     subscriptionBlock()
 
     presentPendingOrProcessingOneTimeDonationState(state)
-
-    clickPref(
-      title = DSLSettingsText.from(R.string.ManageDonationsFragment__manage_subscription),
-      icon = DSLSettingsIcon.from(R.drawable.symbol_person_24),
-      isEnabled = state.getMonthlyDonorRedemptionState() != ManageDonationsState.RedemptionState.IN_PROGRESS,
-      onClick = {
-        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(DonateToSignalType.MONTHLY))
-      }
-    )
 
     presentBadges()
 
@@ -346,7 +337,7 @@ class ManageDonationsFragment :
       title = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_for_a_friend),
       icon = DSLSettingsIcon.from(R.drawable.symbol_gift_24),
       onClick = {
-        startActivity(Intent(requireContext(), GiftFlowActivity::class.java))
+        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.ONE_TIME_GIFT))
       }
     )
   }
@@ -418,10 +409,11 @@ class ManageDonationsFragment :
             startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
           }
           .setOnDismissListener {
-            SignalStore.donationsValues().setPendingOneTimeDonation(null)
+            SignalStore.donations.setPendingOneTimeDonation(null)
           }
           .show()
       }
+
       else -> {
         val message = if (isIdeal) {
           R.string.DonationsErrors__your_ideal_couldnt_be_processed
@@ -437,7 +429,7 @@ class ManageDonationsFragment :
           }
           .setPositiveButton(android.R.string.ok, null)
           .setOnDismissListener {
-            SignalStore.donationsValues().setPendingOneTimeDonation(null)
+            SignalStore.donations.setPendingOneTimeDonation(null)
           }
           .show()
       }
@@ -445,6 +437,6 @@ class ManageDonationsFragment :
   }
 
   override fun onMakeAMonthlyDonation() {
-    findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(DonateToSignalType.MONTHLY))
+    findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.RECURRING_DONATION))
   }
 }

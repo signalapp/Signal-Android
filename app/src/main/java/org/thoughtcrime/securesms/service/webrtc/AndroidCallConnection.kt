@@ -7,7 +7,7 @@ import android.telecom.Connection
 import androidx.annotation.RequiresApi
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.WebRtcCallActivity
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder
@@ -38,7 +38,7 @@ class AndroidCallConnection(
 
   override fun onShowIncomingCallUi() {
     Log.i(TAG, "onShowIncomingCallUi()")
-    ActiveCallManager.update(context, CallNotificationBuilder.TYPE_INCOMING_CONNECTING, recipientId, isVideoCall)
+    WebRtcCallService.update(context, CallNotificationBuilder.TYPE_INCOMING_CONNECTING, recipientId, isVideoCall)
     setRinging()
   }
 
@@ -48,7 +48,7 @@ class AndroidCallConnection(
     val activeDevice = state.route.toDevices().firstOrNull() ?: SignalAudioManager.AudioDevice.EARPIECE
     val availableDevices = state.supportedRouteMask.toDevices()
 
-    ApplicationDependencies.getSignalCallManager().onAudioDeviceChanged(activeDevice, availableDevices)
+    AppDependencies.signalCallManager.onAudioDeviceChanged(activeDevice, availableDevices)
 
     if (needToResetAudioRoute) {
       if (initialAudioRoute == null) {
@@ -64,7 +64,7 @@ class AndroidCallConnection(
   override fun onAnswer(videoState: Int) {
     Log.i(TAG, "onAnswer($videoState)")
     if (Permissions.hasAll(context, android.Manifest.permission.RECORD_AUDIO)) {
-      ApplicationDependencies.getSignalCallManager().acceptCall(false)
+      AppDependencies.signalCallManager.acceptCall(false)
     } else {
       val intent = Intent(context, WebRtcCallActivity::class.java)
       intent.action = if (isVideoCall) WebRtcCallActivity.ANSWER_VIDEO_ACTION else WebRtcCallActivity.ANSWER_ACTION
@@ -74,17 +74,17 @@ class AndroidCallConnection(
   }
 
   override fun onSilence() {
-    ActiveCallManager.sendAudioManagerCommand(context, AudioManagerCommand.SilenceIncomingRinger())
+    WebRtcCallService.sendAudioManagerCommand(context, AudioManagerCommand.SilenceIncomingRinger())
   }
 
   override fun onReject() {
     Log.i(TAG, "onReject()")
-    ActiveCallManager.denyCall()
+    WebRtcCallService.denyCall(context)
   }
 
   override fun onDisconnect() {
     Log.i(TAG, "onDisconnect()")
-    ActiveCallManager.hangup()
+    WebRtcCallService.hangup(context)
   }
 
   companion object {

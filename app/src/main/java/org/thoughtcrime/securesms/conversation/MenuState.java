@@ -135,7 +135,7 @@ public final class MenuState {
         hasGift = true;
       }
 
-      if (messageRecord.isPaymentNotification()) {
+      if (messageRecord.isPaymentNotification() || messageRecord.isPaymentTombstone()) {
         hasPayment = true;
       }
     }

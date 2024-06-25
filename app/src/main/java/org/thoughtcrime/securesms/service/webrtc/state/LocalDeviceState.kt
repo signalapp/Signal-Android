@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.service.webrtc.state
 
 import org.thoughtcrime.securesms.components.sensors.Orientation
+import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.ringrtc.CameraState
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 import org.webrtc.PeerConnection
@@ -8,7 +9,7 @@ import org.webrtc.PeerConnection
 /**
  * Local device specific state.
  */
-data class LocalDeviceState constructor(
+data class LocalDeviceState(
   var cameraState: CameraState = CameraState.UNKNOWN,
   var isMicrophoneEnabled: Boolean = true,
   var orientation: Orientation = Orientation.PORTRAIT_BOTTOM_EDGE,
@@ -17,7 +18,8 @@ data class LocalDeviceState constructor(
   var activeDevice: SignalAudioManager.AudioDevice = SignalAudioManager.AudioDevice.NONE,
   var availableDevices: Set<SignalAudioManager.AudioDevice> = emptySet(),
   var bluetoothPermissionDenied: Boolean = false,
-  var networkConnectionType: PeerConnection.AdapterType = PeerConnection.AdapterType.UNKNOWN
+  var networkConnectionType: PeerConnection.AdapterType = PeerConnection.AdapterType.UNKNOWN,
+  var handRaisedTimestamp: Long = CallParticipant.HAND_LOWERED
 ) {
 
   fun duplicate(): LocalDeviceState {

@@ -32,6 +32,7 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="24dp"
         android:text="@string/PromptBatterySaverBottomSheet__title"
         />
 
@@ -42,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginHorizontal="24dp"
         android:text="@string/PromptBatterySaverBottomSheet__message"
         />
@@ -51,9 +52,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:minWidth="320dp"
+        android:minWidth="340dp"
         android:gravity="center_horizontal"
-        android:layout_marginHorizontal="34dp">
+        android:layout_marginHorizontal="24dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/dismiss_button"
@@ -63,11 +64,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
-            android:minWidth="160dp"
+            android:minWidth="170dp"
             android:layout_weight="1"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
-            android:text="@string/PromptBatterySaverBottomSheet__dismiss"/>
+            android:layout_marginEnd="12dp"
+            android:text="@string/PromptBatterySaverBottomSheet__no_thanks"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/continue_button"
@@ -77,10 +77,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
-            android:minWidth="160dp"
+            android:minWidth="170dp"
             android:layout_weight="1"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
+            android:layout_marginStart="12dp"
             android:text="@string/PromptBatterySaverBottomSheet__continue"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

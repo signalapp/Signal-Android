@@ -1,3 +1,8 @@
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -43,7 +48,7 @@ afterEvaluate {
 }
 
 ktlint {
-  version.set("0.49.1")
+  version.set("1.2.1")
 
   filter {
     exclude { entry ->
@@ -95,6 +100,7 @@ dependencies {
   testImplementation(testLibs.assertj.core)
   testImplementation(testLibs.conscrypt.openjdk.uber)
   testImplementation(testLibs.mockito.core)
+  testImplementation(testLibs.mockk)
 
   testFixturesImplementation(libs.libsignal.client)
   testFixturesImplementation(testLibs.junit.junit)

@@ -11,7 +11,7 @@ import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob;
 import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsFragmentArgs;
 import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsParcelable;
@@ -58,7 +58,7 @@ public class PaymentsActivity extends PassphraseRequiredActivity {
 
     dynamicTheme.onResume(this);
 
-    ApplicationDependencies.getJobManager()
-                           .add(PaymentLedgerUpdateJob.updateLedger());
+    AppDependencies.getJobManager()
+                   .add(PaymentLedgerUpdateJob.updateLedger());
   }
 }

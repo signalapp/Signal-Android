@@ -55,12 +55,11 @@ data class CallParticipantsState(
     get() {
       val results = allRemoteParticipants.asSequence()
         .filter { it.isHandRaised }
-        .distinctBy { it.recipient }
-        .map { GroupCallRaiseHandEvent(it.recipient, it.handRaisedTimestamp) }
+        .map { GroupCallRaiseHandEvent(it, it.handRaisedTimestamp) }
         .sortedBy { it.timestamp }
         .toMutableList()
       if (localParticipant.isHandRaised) {
-        results.add(GroupCallRaiseHandEvent(localParticipant.recipient, localParticipant.handRaisedTimestamp))
+        results.add(GroupCallRaiseHandEvent(localParticipant, localParticipant.handRaisedTimestamp))
       }
       return results.toImmutableList()
     }
@@ -375,6 +374,7 @@ data class CallParticipantsState(
   }
 
   enum class SelectedPage {
-    GRID, FOCUSED
+    GRID,
+    FOCUSED
   }
 }

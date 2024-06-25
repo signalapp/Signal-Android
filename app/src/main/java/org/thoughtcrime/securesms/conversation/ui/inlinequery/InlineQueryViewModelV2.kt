@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionViewState
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerRepositoryV2
 import org.thoughtcrime.securesms.conversation.v2.ConversationRecipientRepository
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -23,8 +23,8 @@ import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
 class InlineQueryViewModelV2(
   private val recipientRepository: ConversationRecipientRepository,
   private val mentionsPickerRepository: MentionsPickerRepositoryV2 = MentionsPickerRepositoryV2(),
-  private val emojiSearchRepository: EmojiSearchRepository = EmojiSearchRepository(ApplicationDependencies.getApplication()),
-  private val recentEmojis: RecentEmojiPageModel = RecentEmojiPageModel(ApplicationDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY)
+  private val emojiSearchRepository: EmojiSearchRepository = EmojiSearchRepository(AppDependencies.application),
+  private val recentEmojis: RecentEmojiPageModel = RecentEmojiPageModel(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY)
 ) : ViewModel() {
 
   private val querySubject: PublishSubject<InlineQuery> = PublishSubject.create()
@@ -54,7 +54,7 @@ class InlineQueryViewModelV2(
   private fun queryEmoji(query: InlineQuery.Emoji): Observable<Results> {
     return emojiSearchRepository
       .submitQuery(query.query)
-      .map { r -> if (r.isEmpty()) None else EmojiResults(toMappingModels(r, query.keywordSearch)) }
+      .map { r -> if (r.isEmpty()) None else EmojiResults(toMappingModels(r)) }
       .toObservable()
   }
 
@@ -77,10 +77,10 @@ class InlineQueryViewModelV2(
     when (model) {
       is InlineQueryEmojiResult.Model -> {
         recentEmojis.onCodePointSelected(model.preferredEmoji)
-        selectionSubject.onNext(InlineQueryReplacement.Emoji(model.preferredEmoji, model.keywordSearch))
+        selectionSubject.onNext(InlineQueryReplacement.Emoji(model.preferredEmoji))
       }
       is MentionViewState -> {
-        selectionSubject.onNext(InlineQueryReplacement.Mention(model.recipient, false))
+        selectionSubject.onNext(InlineQueryReplacement.Mention(model.recipient))
       }
     }
   }
@@ -90,15 +90,14 @@ class InlineQueryViewModelV2(
   }
 
   companion object {
-    fun toMappingModels(emojiWithLabels: List<String>, keywordSearch: Boolean): List<AnyMappingModel> {
-      val emojiValues = SignalStore.emojiValues()
+    fun toMappingModels(emojiWithLabels: List<String>): List<AnyMappingModel> {
+      val emojiValues = SignalStore.emoji
       return emojiWithLabels
         .distinct()
         .map { emoji ->
           InlineQueryEmojiResult.Model(
             canonicalEmoji = emoji,
-            preferredEmoji = emojiValues.getPreferredVariation(emoji),
-            keywordSearch = keywordSearch
+            preferredEmoji = emojiValues.getPreferredVariation(emoji)
           )
         }
     }

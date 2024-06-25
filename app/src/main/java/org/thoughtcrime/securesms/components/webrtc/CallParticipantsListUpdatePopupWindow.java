@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
@@ -141,7 +142,7 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
         description = context.getString(getThreeMemberDescriptionResourceId(isAdded), getNextDisplayName(iterator), getNextDisplayName(iterator), getNextDisplayName(iterator));
         break;
       default:
-        description = context.getString(getManyMemberDescriptionResourceId(isAdded), getNextDisplayName(iterator), getNextDisplayName(iterator), recipients.size() - 2);
+        description = context.getResources().getQuantityString(getManyMemberDescriptionResourceId(isAdded), recipients.size() - 2, getNextDisplayName(iterator), getNextDisplayName(iterator), recipients.size() - 2);
     }
 
     descriptionTextView.setText(description);
@@ -181,11 +182,11 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
     }
   }
 
-  private static @StringRes int getManyMemberDescriptionResourceId(boolean isAdded) {
+  private static @PluralsRes int getManyMemberDescriptionResourceId(boolean isAdded) {
     if (isAdded) {
-      return R.string.CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined;
+      return R.plurals.CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined;
     } else {
-      return R.string.CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left;
+      return R.plurals.CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left;
     }
   }
 }

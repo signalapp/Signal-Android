@@ -35,8 +35,8 @@ class CdsPermanentErrorReminder : Reminder(R.string.reminder_cds_permanent_error
 
     @JvmStatic
     fun isEligible(): Boolean {
-      val timeUntilUnblock = SignalStore.misc().cdsBlockedUtil - System.currentTimeMillis()
-      return SignalStore.misc().isCdsBlocked && timeUntilUnblock >= PERMANENT_TIME_CUTOFF
+      val timeUntilUnblock = SignalStore.misc.cdsBlockedUtil - System.currentTimeMillis()
+      return SignalStore.misc.isCdsBlocked && timeUntilUnblock >= PERMANENT_TIME_CUTOFF
     }
   }
 }

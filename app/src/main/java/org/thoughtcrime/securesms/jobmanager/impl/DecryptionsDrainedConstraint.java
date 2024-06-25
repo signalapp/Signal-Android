@@ -5,7 +5,7 @@ import android.app.job.JobInfo;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Constraint;
 
 /**
@@ -21,7 +21,7 @@ public final class DecryptionsDrainedConstraint implements Constraint {
 
   @Override
   public boolean isMet() {
-    return ApplicationDependencies.getIncomingMessageObserver().getDecryptionDrained();
+    return AppDependencies.getIncomingMessageObserver().getDecryptionDrained();
   }
 
   @Override

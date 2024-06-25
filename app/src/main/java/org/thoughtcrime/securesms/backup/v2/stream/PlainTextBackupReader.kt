@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.stream
 
+import com.google.common.io.CountingInputStream
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.readVarInt32
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
@@ -15,12 +16,14 @@ import java.io.InputStream
 /**
  * Reads a plaintext backup import stream one frame at a time.
  */
-class PlainTextBackupReader(val inputStream: InputStream) : BackupImportReader {
+class PlainTextBackupReader(val dataStream: InputStream, val length: Long) : BackupImportReader {
 
   val backupInfo: BackupInfo?
   var next: Frame? = null
+  val inputStream: CountingInputStream
 
   init {
+    inputStream = CountingInputStream(dataStream)
     backupInfo = readHeader()
     next = read()
   }
@@ -28,6 +31,10 @@ class PlainTextBackupReader(val inputStream: InputStream) : BackupImportReader {
   override fun getHeader(): BackupInfo? {
     return backupInfo
   }
+
+  override fun getBytesRead() = inputStream.count
+
+  override fun getStreamLength() = length
 
   override fun hasNext(): Boolean {
     return next != null

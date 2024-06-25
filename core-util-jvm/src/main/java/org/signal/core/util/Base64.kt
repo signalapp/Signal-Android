@@ -72,6 +72,23 @@ object Base64 {
   }
 
   /**
+   * The same as [decode], except that instead of requiring you to handle an exception, this will return null
+   * if the input is null or cannot be decoded.
+   */
+  @JvmStatic
+  fun decodeOrNull(value: String?): ByteArray? {
+    if (value == null) {
+      return null
+    }
+
+    return try {
+      decode(value)
+    } catch (e: IOException) {
+      null
+    }
+  }
+
+  /**
    * The same as [decode], except that instead of requiring you to handle an exception, this will just crash on invalid base64 strings.
    * Should only be used if the value is definitely a valid base64 string.
    */

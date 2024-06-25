@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -34,7 +34,7 @@ final class GroupCallPeekWorkerJob extends BaseJob {
 
   @Override
   protected void onRun() {
-    ApplicationDependencies.getSignalCallManager().peekGroupCall(groupRecipientId);
+    AppDependencies.getSignalCallManager().peekGroupCall(groupRecipientId);
   }
 
   @Override

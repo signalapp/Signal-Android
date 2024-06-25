@@ -20,14 +20,18 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.button.MaterialButton
-import org.signal.donations.PaymentSourceType
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationWebViewOnBackPressedCallback
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.databinding.DonationWebviewFragmentBinding
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -50,6 +54,8 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
 
   var result: Bundle? = null
 
+  private val lifecycleDisposable = LifecycleDisposable()
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_FullScreen)
@@ -57,6 +63,8 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
 
   @SuppressLint("SetJavaScriptEnabled", "SetTextI18n")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
+
     dialog!!.window!!.setFlags(
       WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
       WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED
@@ -76,7 +84,7 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
       )
     )
 
-    if (FeatureFlags.internalUser() && args.stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
+    if (RemoteConfig.internalUser && args.inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
       val openApp = MaterialButton(requireContext()).apply {
         text = "Open App"
         layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
@@ -98,14 +106,20 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
   }
 
   private fun handleLaunchExternal(intent: Intent) {
-    SignalStore.donationsValues().setPending3DSData(args.stripe3DSData)
+    lifecycleDisposable += Completable
+      .fromAction {
+        SignalDatabase.inAppPayments.update(args.inAppPayment)
+      }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe {
+        result = bundleOf(
+          LAUNCHED_EXTERNAL to true
+        )
 
-    result = bundleOf(
-      LAUNCHED_EXTERNAL to true
-    )
-
-    startActivity(intent)
-    dismissAllowingStateLoss()
+        startActivity(intent)
+        dismissAllowingStateLoss()
+      }
   }
 
   private inner class Stripe3DSWebClient : WebViewClient() {

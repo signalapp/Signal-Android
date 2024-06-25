@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 class ArchiveGetMediaItemsResponse(
   @JsonProperty val storedMediaObjects: List<StoredMediaObject>,
+  @JsonProperty val backupDir: String?,
+  @JsonProperty val mediaDir: String?,
   @JsonProperty val cursor: String?
 ) {
   class StoredMediaObject(

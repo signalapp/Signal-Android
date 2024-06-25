@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.api.services;
 import org.signal.cdsi.proto.ClientRequest;
 import org.signal.cdsi.proto.ClientResponse;
 import org.signal.libsignal.attest.AttestationDataException;
+import org.signal.libsignal.attest.AttestationFailedException;
 import org.signal.libsignal.cds2.Cds2Client;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
@@ -165,7 +166,7 @@ final class CdsiSocket {
                 webSocket.close(1000, "OK");
                 break;
             }
-          } catch (IOException | AttestationDataException | SgxCommunicationFailureException e) {
+          } catch (IOException | AttestationDataException | AttestationFailedException | SgxCommunicationFailureException e) {
             Log.w(TAG, e);
             webSocket.close(1000, "OK");
             emitter.tryOnError(e);

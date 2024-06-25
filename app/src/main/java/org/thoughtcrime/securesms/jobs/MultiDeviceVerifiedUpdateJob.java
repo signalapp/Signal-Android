@@ -9,7 +9,7 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -104,7 +104,7 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob {
         return;
       }
 
-      SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
+      SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
       Recipient                  recipient     = Recipient.resolved(destination);
 
       if (recipient.isUnregistered()) {

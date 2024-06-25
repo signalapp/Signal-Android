@@ -10,10 +10,6 @@ import androidx.core.graphics.drawable.DrawableCompat;
 
 public final class DrawableUtil {
 
-  private static final int SHORTCUT_INFO_BITMAP_SIZE  = ViewUtil.dpToPx(108);
-  public  static final int SHORTCUT_INFO_WRAPPED_SIZE = ViewUtil.dpToPx(72);
-  private static final int SHORTCUT_INFO_PADDING      = (SHORTCUT_INFO_BITMAP_SIZE - SHORTCUT_INFO_WRAPPED_SIZE) / 2;
-
   private DrawableUtil() {}
 
   public static @NonNull Bitmap toBitmap(@NonNull Drawable drawable, int width, int height) {
@@ -27,11 +23,11 @@ public final class DrawableUtil {
   }
 
   public static @NonNull Bitmap wrapBitmapForShortcutInfo(@NonNull Bitmap toWrap) {
-    Bitmap bitmap = Bitmap.createBitmap(SHORTCUT_INFO_BITMAP_SIZE, SHORTCUT_INFO_BITMAP_SIZE, Bitmap.Config.ARGB_8888);
-    Bitmap scaled = Bitmap.createScaledBitmap(toWrap, SHORTCUT_INFO_WRAPPED_SIZE, SHORTCUT_INFO_WRAPPED_SIZE, true);
+    Bitmap bitmap = Bitmap.createBitmap(AdaptiveBitmapMetrics.getOuterWidth(), AdaptiveBitmapMetrics.getOuterWidth(), Bitmap.Config.ARGB_8888);
+    Bitmap scaled = Bitmap.createScaledBitmap(toWrap, AdaptiveBitmapMetrics.getInnerWidth(), AdaptiveBitmapMetrics.getInnerWidth(), true);
 
     Canvas canvas = new Canvas(bitmap);
-    canvas.drawBitmap(scaled, SHORTCUT_INFO_PADDING, SHORTCUT_INFO_PADDING, null);
+    canvas.drawBitmap(scaled, AdaptiveBitmapMetrics.getPadding(), AdaptiveBitmapMetrics.getPadding(), null);
 
     return bitmap;
   }

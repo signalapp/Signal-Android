@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms
 
 import org.signal.spinner.Plugin
 import org.signal.spinner.PluginResult
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 class StorageServicePlugin : Plugin {
@@ -13,8 +13,8 @@ class StorageServicePlugin : Plugin {
     val columns = listOf("Type", "Data")
     val rows = mutableListOf<List<String>>()
 
-    val manager = ApplicationDependencies.getSignalServiceAccountManager()
-    val storageServiceKey = SignalStore.storageService().orCreateStorageKey
+    val manager = AppDependencies.signalServiceAccountManager
+    val storageServiceKey = SignalStore.storageService.orCreateStorageKey
     val storageManifestVersion = manager.storageManifestVersion
     val manifest = manager.getStorageManifestIfDifferentVersion(storageServiceKey, storageManifestVersion - 1).get()
     val signalStorageRecords = manager.readStorageRecords(storageServiceKey, manifest.storageIds)

@@ -30,7 +30,7 @@ class CustomNotificationsSettingsViewModel(
         messageSound = recipient.messageRingtone,
         messageVibrateState = recipient.messageVibrate,
         messageVibrateEnabled = when (recipient.messageVibrate) {
-          RecipientTable.VibrateState.DEFAULT -> SignalStore.settings().isMessageVibrateEnabled
+          RecipientTable.VibrateState.DEFAULT -> SignalStore.settings.isMessageVibrateEnabled
           RecipientTable.VibrateState.ENABLED -> true
           RecipientTable.VibrateState.DISABLED -> false
         },

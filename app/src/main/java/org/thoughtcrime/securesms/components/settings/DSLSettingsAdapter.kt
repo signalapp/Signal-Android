@@ -117,7 +117,7 @@ class ClickPreferenceViewHolder(itemView: View) : PreferenceViewHolder<ClickPref
 class LongClickPreferenceViewHolder(itemView: View) : PreferenceViewHolder<LongClickPreference>(itemView) {
   override fun bind(model: LongClickPreference) {
     super.bind(model)
-    itemView.setOnLongClickListener() {
+    itemView.setOnLongClickListener {
       model.onLongClick()
       true
     }

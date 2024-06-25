@@ -11,5 +11,6 @@ package signal;
 option java_package = "org.thoughtcrime.securesms.absbackup.protos";
 
 message SvrAuthToken {
-  repeated string tokens = 1;
+  repeated string svr2Tokens = 1;
+  repeated string svr3Tokens = 2;
 }

@@ -47,13 +47,13 @@ class MultiReactionBurstLayout @JvmOverloads constructor(
       .filter { it.value.groupBy { event -> event.sender }.size >= REACTION_COUNT_THRESHOLD }
       .values
       .map { it.sortedBy { event -> event.timestamp } }
-      .map { it[REACTION_COUNT_THRESHOLD - 1] }
-      .sortedBy { it.timestamp }
+      .sortedBy { it.last().timestamp }
       .take(MAX_SIMULTANEOUS_REACTIONS - cooldownTimes.filter { it.value > System.currentTimeMillis() }.size)
       .forEach {
         val reactionView = getNextReactionView()
-        reactionView.playForEmoji(it.reaction)
-        cooldownTimes[EmojiUtil.getCanonicalRepresentation(it.reaction)] = it.timestamp + cooldownDuration.inWholeMilliseconds
+        reactionView.playForEmoji(it.map { event -> event.reaction })
+        val lastEvent = it.last()
+        cooldownTimes[EmojiUtil.getCanonicalRepresentation(lastEvent.reaction)] = lastEvent.timestamp + cooldownDuration.inWholeMilliseconds
       }
   }
 

@@ -16,8 +16,11 @@ import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse.StoredMediaObject
 import org.whispersystems.signalservice.api.backup.BackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.InputStream
+import java.time.Instant
 
 /**
  * Class to interact with various archive-related endpoints.
@@ -55,6 +58,15 @@ class ArchiveApi(
     }
   }
 
+  fun getCdnReadCredentials(cdnNumber: Int, backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<GetArchiveCdnCredentialsResponse> {
+    return NetworkResult.fromFetch {
+      val zkCredential = getZkCredential(backupKey, serviceCredential)
+      val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
+
+      pushServiceSocket.getArchiveCdnReadCredentials(cdnNumber, presentationData.toArchiveCredentialPresentation())
+    }
+  }
+
   /**
    * Ensures that you reserve a backupId on the service. This must be done before any other
    * backup-related calls. You only need to do it once, but repeated calls are safe.
@@ -82,7 +94,7 @@ class ArchiveApi(
   /**
    * Fetches an upload form you can use to upload your main message backup file to cloud storage.
    */
-  fun getMessageBackupUploadForm(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<ArchiveMessageBackupUploadFormResponse> {
+  fun getMessageBackupUploadForm(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<AttachmentUploadForm> {
     return NetworkResult.fromFetch {
       val zkCredential = getZkCredential(backupKey, serviceCredential)
       val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
@@ -104,20 +116,53 @@ class ArchiveApi(
   }
 
   /**
-   * Retrieves a resumable upload URL you can use to upload your main message backup file to cloud storage.
+   * Lists the media objects in the backup
    */
-  fun getBackupResumableUploadUrl(archiveFormResponse: ArchiveMessageBackupUploadFormResponse): NetworkResult<String> {
+  fun listMediaObjects(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential, limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {
     return NetworkResult.fromFetch {
-      pushServiceSocket.getResumableUploadUrl(archiveFormResponse)
+      val zkCredential = getZkCredential(backupKey, serviceCredential)
+      val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
+      pushServiceSocket.getArchiveMediaItemsPage(presentationData.toArchiveCredentialPresentation(), limit, cursor)
+    }
+  }
+
+  /**
+   * Retrieves a resumable upload URL you can use to upload your main message backup file or an arbitrary media file to cloud storage.
+   */
+  fun getBackupResumableUploadUrl(uploadForm: AttachmentUploadForm): NetworkResult<String> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.getResumableUploadUrl(uploadForm)
     }
   }
 
   /**
    * Uploads your main backup file to cloud storage.
    */
-  fun uploadBackupFile(archiveFormResponse: ArchiveMessageBackupUploadFormResponse, resumableUploadUrl: String, data: InputStream, dataLength: Long): NetworkResult<Unit> {
+  fun uploadBackupFile(uploadForm: AttachmentUploadForm, resumableUploadUrl: String, data: InputStream, dataLength: Long): NetworkResult<Unit> {
     return NetworkResult.fromFetch {
-      pushServiceSocket.uploadBackupFile(archiveFormResponse, resumableUploadUrl, data, dataLength)
+      pushServiceSocket.uploadBackupFile(uploadForm, resumableUploadUrl, data, dataLength)
+    }
+  }
+
+  /**
+   * Retrieves an [AttachmentUploadForm] that can be used to upload pre-existing media to the archive.
+   * After uploading, the media still needs to be copied via [archiveAttachmentMedia].
+   */
+  fun getMediaUploadForm(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<AttachmentUploadForm> {
+    return NetworkResult.fromFetch {
+      val zkCredential = getZkCredential(backupKey, serviceCredential)
+      val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
+      pushServiceSocket.getArchiveMediaUploadForm(presentationData.toArchiveCredentialPresentation())
+    }
+  }
+
+  fun getResumableUploadSpec(uploadForm: AttachmentUploadForm, secretKey: ByteArray?): NetworkResult<ResumableUploadSpec> {
+    return NetworkResult.fromFetch {
+      if (secretKey == null) {
+        pushServiceSocket.getResumableUploadSpec(uploadForm)
+      } else {
+        pushServiceSocket.getResumableUploadSpecWithKey(uploadForm, secretKey)
+      }
     }
   }
 
@@ -127,15 +172,11 @@ class ArchiveApi(
    */
   fun debugGetUploadedMediaItemMetadata(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): NetworkResult<List<StoredMediaObject>> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(backupKey, serviceCredential)
-      val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
-      val credentialPresentation = presentationData.toArchiveCredentialPresentation()
-
       val mediaObjects: MutableList<StoredMediaObject> = ArrayList()
 
       var cursor: String? = null
       do {
-        val response: ArchiveGetMediaItemsResponse = pushServiceSocket.getArchiveMediaItemsPage(credentialPresentation, 512, cursor)
+        val response: ArchiveGetMediaItemsResponse = getArchiveMediaItemsPage(backupKey, serviceCredential, 512, cursor).successOrThrow()
         mediaObjects += response.storedMediaObjects
         cursor = response.cursor
       } while (cursor != null)
@@ -149,7 +190,7 @@ class ArchiveApi(
    * @param limit The maximum number of items to return.
    * @param cursor A token that can be read from your previous response, telling the server where to start the next page.
    */
-  fun getArchiveMediaItemsPage(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential, limit: Int, cursor: String): NetworkResult<ArchiveGetMediaItemsResponse> {
+  fun getArchiveMediaItemsPage(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential, limit: Int, cursor: String?): NetworkResult<ArchiveGetMediaItemsResponse> {
     return NetworkResult.fromFetch {
       val zkCredential = getZkCredential(backupKey, serviceCredential)
       val presentationData = CredentialPresentationData.from(backupKey, zkCredential, backupServerPublicParams)
@@ -160,6 +201,13 @@ class ArchiveApi(
 
   /**
    * Copy and re-encrypt media from the attachments cdn into the backup cdn.
+   *
+   * Possible errors:
+   *   400: Bad arguments, or made on an authenticated channel
+   *   401: Invalid presentation or signature
+   *   403: Insufficient permissions
+   *   413: No media space remaining
+   *   429: Rate-limited
    */
   fun archiveAttachmentMedia(
     backupKey: BackupKey,
@@ -209,14 +257,14 @@ class ArchiveApi(
     }
   }
 
-  private fun getZkCredential(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): BackupAuthCredential {
+  fun getZkCredential(backupKey: BackupKey, serviceCredential: ArchiveServiceCredential): BackupAuthCredential {
     val backupAuthResponse = BackupAuthCredentialResponse(serviceCredential.credential)
     val backupRequestContext = BackupAuthCredentialRequestContext.create(backupKey.value, aci.rawUuid)
 
     return backupRequestContext.receiveResponse(
       backupAuthResponse,
-      backupServerPublicParams,
-      20
+      Instant.ofEpochSecond(serviceCredential.redemptionTime),
+      backupServerPublicParams
     )
   }
 

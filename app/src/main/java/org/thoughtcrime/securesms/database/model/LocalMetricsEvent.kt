@@ -10,10 +10,12 @@ data class LocalMetricsEvent(
   val eventId: String,
   val eventName: String,
   val splits: MutableList<LocalMetricsSplit>,
-  val timeunit: TimeUnit
+  val timeUnit: TimeUnit,
+  val extraLabel: String? = null
 ) {
   override fun toString(): String {
-    return "[$eventName] total: ${splits.sumOf { it.duration }.fractionalMillis(timeunit)} | ${splits.map { it.toString() }.joinToString(", ")}"
+    val extra = extraLabel?.let { "[$extraLabel]" } ?: ""
+    return "[$eventName]$extra total: ${splits.sumOf { it.duration }.fractionalMillis(timeUnit)} | ${splits.map { it.toString() }.joinToString(", ")}"
   }
 
   private fun Long.fractionalMillis(timeunit: TimeUnit): String {

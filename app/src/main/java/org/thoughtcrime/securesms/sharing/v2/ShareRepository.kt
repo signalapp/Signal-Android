@@ -11,8 +11,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.providers.BlobProvider
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.UriUtil
 import java.io.IOException
 import java.io.InputStream
@@ -82,7 +82,7 @@ class ShareRepository(context: Context) {
     }
 
     val media: List<Media> = mimeTypes.toList()
-      .take(FeatureFlags.maxAttachmentCount())
+      .take(RemoteConfig.maxAttachmentCount)
       .map { (uri, mimeType) ->
         val stream: InputStream = try {
           appContext.contentResolver.openInputStream(uri)

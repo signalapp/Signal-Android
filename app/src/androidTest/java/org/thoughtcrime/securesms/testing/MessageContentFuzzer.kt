@@ -2,12 +2,15 @@ package org.thoughtcrime.securesms.testing
 
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Base64
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.buildWith
 import org.thoughtcrime.securesms.messages.TestMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
+import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
@@ -61,13 +64,13 @@ object MessageContentFuzzer {
    * - An expire timer value
    * - Bold style body ranges
    */
-  fun fuzzTextMessage(sentTimestamp: Long? = null, groupContextV2: GroupContextV2? = null): Content {
+  fun fuzzTextMessage(sentTimestamp: Long? = null, groupContextV2: GroupContextV2? = null, allowExpireTimeChanges: Boolean = true): Content {
     return Content.Builder()
       .dataMessage(
         DataMessage.Builder().buildWith {
           timestamp = sentTimestamp
           body = string()
-          if (random.nextBoolean()) {
+          if (allowExpireTimeChanges && random.nextBoolean()) {
             expireTimer = random.nextInt(0..28.days.inWholeSeconds.toInt())
           }
           if (random.nextBoolean()) {
@@ -147,6 +150,121 @@ object MessageContentFuzzer {
             }
           }
         }
+      ).build()
+  }
+
+  fun syncDeleteForMeMessage(allDeletes: List<DeleteForMeSync>): Content {
+    return Content
+      .Builder()
+      .syncMessage(
+        SyncMessage(
+          deleteForMe = SyncMessage.DeleteForMe(
+            messageDeletes = allDeletes.map { (conversationId, conversationDeletes) ->
+              val conversation = Recipient.resolved(conversationId)
+              SyncMessage.DeleteForMe.MessageDeletes(
+                conversation = if (conversation.isGroup) {
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
+                } else {
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                },
+
+                messages = conversationDeletes.map { (author, timestamp) ->
+                  SyncMessage.DeleteForMe.AddressableMessage(
+                    authorServiceId = Recipient.resolved(author).requireAci().toString(),
+                    sentTimestamp = timestamp
+                  )
+                }
+              )
+            }
+          )
+        )
+      ).build()
+  }
+
+  fun syncDeleteForMeConversation(allDeletes: List<DeleteForMeSync>): Content {
+    return Content
+      .Builder()
+      .syncMessage(
+        SyncMessage(
+          deleteForMe = SyncMessage.DeleteForMe(
+            conversationDeletes = allDeletes.map { delete ->
+              val conversation = Recipient.resolved(delete.conversationId)
+              SyncMessage.DeleteForMe.ConversationDelete(
+                conversation = if (conversation.isGroup) {
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
+                } else {
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                },
+
+                mostRecentMessages = delete.messages.map { (author, timestamp) ->
+                  SyncMessage.DeleteForMe.AddressableMessage(
+                    authorServiceId = Recipient.resolved(author).requireAci().toString(),
+                    sentTimestamp = timestamp
+                  )
+                },
+
+                mostRecentNonExpiringMessages = delete.nonExpiringMessages.map { (author, timestamp) ->
+                  SyncMessage.DeleteForMe.AddressableMessage(
+                    authorServiceId = Recipient.resolved(author).requireAci().toString(),
+                    sentTimestamp = timestamp
+                  )
+                },
+
+                isFullDelete = delete.isFullDelete
+              )
+            }
+          )
+        )
+      ).build()
+  }
+
+  fun syncDeleteForMeLocalOnlyConversation(conversations: List<RecipientId>): Content {
+    return Content
+      .Builder()
+      .syncMessage(
+        SyncMessage(
+          deleteForMe = SyncMessage.DeleteForMe(
+            localOnlyConversationDeletes = conversations.map { conversationId ->
+              val conversation = Recipient.resolved(conversationId)
+              SyncMessage.DeleteForMe.LocalOnlyConversationDelete(
+                conversation = if (conversation.isGroup) {
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
+                } else {
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                }
+              )
+            }
+          )
+        )
+      ).build()
+  }
+
+  fun syncDeleteForMeAttachment(conversationId: RecipientId, message: Pair<RecipientId, Long>, uuid: UUID?, digest: ByteArray?, plainTextHash: String?): Content {
+    val conversation = Recipient.resolved(conversationId)
+
+    return Content
+      .Builder()
+      .syncMessage(
+        SyncMessage(
+          deleteForMe = SyncMessage.DeleteForMe(
+            attachmentDeletes = listOf(
+              SyncMessage.DeleteForMe.AttachmentDelete(
+                conversation = if (conversation.isGroup) {
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
+                } else {
+                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                },
+                targetMessage = SyncMessage.DeleteForMe.AddressableMessage(
+                  authorServiceId = Recipient.resolved(message.first).requireAci().toString(),
+                  sentTimestamp = message.second
+                ),
+                uuid = uuid?.let { UuidUtil.toByteString(it) },
+                fallbackDigest = digest?.toByteString(),
+                fallbackPlaintextHash = plainTextHash?.let { Base64.decodeOrNull(it)?.toByteString() }
+              )
+            )
+          )
+        )
       ).build()
   }
 
@@ -278,7 +396,7 @@ object MessageContentFuzzer {
       caption = string(allowNullString = true)
       blurHash = string()
       uploadTimestamp = random.nextLong()
-      cdnNumber = 1
+      cdnNumber = 2
 
       build()
     }
@@ -289,5 +407,15 @@ object MessageContentFuzzer {
    */
   fun fuzzServerDeliveredTimestamp(envelopeTimestamp: Long): Long {
     return envelopeTimestamp + 10
+  }
+
+  data class DeleteForMeSync(
+    val conversationId: RecipientId,
+    val messages: List<Pair<RecipientId, Long>>,
+    val nonExpiringMessages: List<Pair<RecipientId, Long>> = emptyList(),
+    val isFullDelete: Boolean = true,
+    val attachments: List<Pair<Long, AttachmentTable.SyncAttachmentId>> = emptyList()
+  ) {
+    constructor(conversationId: RecipientId, vararg messages: Pair<RecipientId, Long>) : this(conversationId, messages.toList())
   }
 }

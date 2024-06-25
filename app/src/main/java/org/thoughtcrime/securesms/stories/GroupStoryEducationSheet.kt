@@ -28,7 +28,7 @@ class GroupStoryEducationSheet : FixedRoundedCornerBottomSheetDialogFragment() {
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    SignalStore.storyValues().userHasSeenGroupStoryEducationSheet = true
+    SignalStore.story.userHasSeenGroupStoryEducationSheet = true
     SignalExecutors.BOUNDED_IO.execute { Stories.onStorySettingsChanged(Recipient.self().id) }
 
     view.findViewById<MaterialButton>(R.id.next).setOnClickListener {

@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.PassphrasePromptActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicRegistrationTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -20,7 +20,7 @@ public class SvrMigrationActivity extends BaseActivity {
   private final DynamicTheme dynamicTheme = new DynamicRegistrationTheme();
 
   public static Intent createIntent() {
-    return new Intent(ApplicationDependencies.getApplication(), SvrMigrationActivity.class);
+    return new Intent(AppDependencies.getApplication(), SvrMigrationActivity.class);
   }
 
   @Override

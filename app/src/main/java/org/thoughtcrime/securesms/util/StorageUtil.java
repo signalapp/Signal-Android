@@ -16,7 +16,7 @@ import androidx.annotation.RequiresApi;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.permissions.PermissionCompat;
 import org.thoughtcrime.securesms.permissions.Permissions;
 
@@ -107,11 +107,11 @@ public class StorageUtil {
 
   public static boolean canWriteToMediaStore() {
     return Build.VERSION.SDK_INT > 28 ||
-           Permissions.hasAll(ApplicationDependencies.getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+           Permissions.hasAll(AppDependencies.getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
   }
 
   public static boolean canReadFromMediaStore() {
-    return Permissions.hasAny(ApplicationDependencies.getApplication(), PermissionCompat.forImagesAndVideos());
+    return Permissions.hasAny(AppDependencies.getApplication(), PermissionCompat.forImagesAndVideos());
   }
 
   public static @NonNull Uri getVideoUri() {

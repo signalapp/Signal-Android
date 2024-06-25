@@ -256,7 +256,6 @@ object StoryGroupReplyItem {
       reaction.visible = true
       bubble.visibility = View.INVISIBLE
       itemView.padding(bottom = 0)
-      body.setText(R.string.StoryGroupReactionReplyItem__reacted_to_the_story)
       body.updateLayoutParams<ViewGroup.MarginLayoutParams> {
         marginEnd = 0
       }
@@ -269,6 +268,7 @@ object StoryGroupReplyItem {
     override fun bind(model: ReactionModel) {
       super.bind(model)
       reaction.setImageEmoji(model.reaction.emoji)
+      body.setText(if (model.replyBody.sender.isSelf) R.string.StoryGroupReactionReplyItem__you_reacted_to_the_story else R.string.StoryGroupReactionReplyItem__someone_reacted_to_the_story)
     }
   }
 

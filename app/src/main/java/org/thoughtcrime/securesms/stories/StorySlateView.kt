@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.blurhash.BlurHash
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.visible
@@ -96,7 +96,7 @@ class StorySlateView @JvmOverloads constructor(
     unavailableText.visible = false
     errorText.visible = true
 
-    if (NetworkConstraint.isMet(ApplicationDependencies.getApplication())) {
+    if (NetworkConstraint.isMet(AppDependencies.application)) {
       errorText.setText(R.string.StorySlateView__couldnt_load_content)
     } else {
       errorText.setText(R.string.StorySlateView__no_internet_connection)

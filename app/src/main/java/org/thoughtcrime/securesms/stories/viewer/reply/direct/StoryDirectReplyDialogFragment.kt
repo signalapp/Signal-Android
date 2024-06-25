@@ -84,7 +84,7 @@ class StoryDirectReplyDialogFragment :
             }
         }
 
-        if (SignalStore.uiHints().hasNotSeenTextFormattingAlert() && composer.input.hasStyling()) {
+        if (SignalStore.uiHints.hasNotSeenTextFormattingAlert() && composer.input.hasStyling()) {
           Dialogs.showFormattedTextDialog(requireContext(), sendReply)
         } else {
           sendReply.run()

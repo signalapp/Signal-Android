@@ -8,11 +8,10 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.AppCapabilities;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
 import org.thoughtcrime.securesms.keyvalue.SvrValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -87,12 +86,12 @@ public class RefreshAttributesJob extends BaseJob {
     }
 
     int       registrationId              = SignalStore.account().getRegistrationId();
-    boolean   fetchesMessages             = !SignalStore.account().isFcmEnabled() || SignalStore.internalValues().isWebsocketModeForced();
+    boolean   fetchesMessages             = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced();
     byte[]    unidentifiedAccessKey       = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
     boolean   universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
     String    registrationLockV2          = null;
     SvrValues svrValues                   = SignalStore.svr();
-    int       pniRegistrationId           = new RegistrationRepository(ApplicationDependencies.getApplication()).getPniRegistrationId();
+    int       pniRegistrationId           = new RegistrationRepository(AppDependencies.getApplication()).getPniRegistrationId();
     String    recoveryPassword            = svrValues.getRecoveryPassword();
 
     if (svrValues.isRegistrationLockEnabled()) {
@@ -125,7 +124,7 @@ public class RefreshAttributesJob extends BaseJob {
         recoveryPassword
     );
 
-    ApplicationDependencies.getSignalServiceAccountManager().setAccountAttributes(accountAttributes);
+    AppDependencies.getSignalServiceAccountManager().setAccountAttributes(accountAttributes);
 
     hasRefreshedThisAppCycle = true;
   }

@@ -90,6 +90,7 @@ public interface MessageTypes {
   long PUSH_MESSAGE_BIT   = 0x200000;
 
   // Group Message Information
+  long GROUP_MASK                  = 0xF0000;
   long GROUP_UPDATE_BIT            = 0x10000;
   // Note: Leave bit was previous QUIT bit for GV1, now also general member leave for GV2
   long GROUP_LEAVE_BIT             = 0x20000;
@@ -116,6 +117,7 @@ public interface MessageTypes {
   long SPECIAL_TYPE_REPORTED_SPAM             = 0x500000000L;
   long SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED  = 0x600000000L;
   long SPECIAL_TYPE_PAYMENTS_ACTIVATED        = 0x800000000L;
+  long SPECIAL_TYPE_PAYMENTS_TOMBSTONE        = 0x900000000L;
 
   long IGNORABLE_TYPESMASK_WHEN_COUNTING = END_SESSION_BIT | KEY_EXCHANGE_IDENTITY_UPDATE_BIT | KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
 
@@ -129,6 +131,10 @@ public interface MessageTypes {
 
   static boolean isPaymentsNotification(long type) {
     return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_PAYMENTS_NOTIFICATION;
+  }
+
+  static boolean isPaymentTombstone(long type) {
+    return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_PAYMENTS_TOMBSTONE;
   }
 
   static boolean isPaymentsRequestToActivate(long type) {

@@ -7,7 +7,7 @@ import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 class ChatColorsTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
@@ -98,8 +98,8 @@ class ChatColorsTable(context: Context, databaseHelper: SignalDatabase) : Databa
       throw IllegalStateException("Failed to update ChatColor in database")
     }
 
-    if (SignalStore.chatColorsValues().chatColors?.id == chatColors.id) {
-      SignalStore.chatColorsValues().chatColors = chatColors
+    if (SignalStore.chatColors.chatColors?.id == chatColors.id) {
+      SignalStore.chatColors.chatColors = chatColors
     }
 
     SignalDatabase.recipients.onUpdatedChatColors(chatColors)
@@ -116,8 +116,8 @@ class ChatColorsTable(context: Context, databaseHelper: SignalDatabase) : Databa
     val db: SQLiteDatabase = databaseHelper.signalWritableDatabase
     db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(chatColors.id.longValue))
 
-    if (SignalStore.chatColorsValues().chatColors?.id == chatColors.id) {
-      SignalStore.chatColorsValues().chatColors = null
+    if (SignalStore.chatColors.chatColors?.id == chatColors.id) {
+      SignalStore.chatColors.chatColors = null
     }
 
     SignalDatabase.recipients.onDeletedChatColors(chatColors)
@@ -125,7 +125,7 @@ class ChatColorsTable(context: Context, databaseHelper: SignalDatabase) : Databa
   }
 
   private fun notifyListeners() {
-    ApplicationDependencies.getDatabaseObserver().notifyChatColorsListeners()
+    AppDependencies.databaseObserver.notifyChatColorsListeners()
   }
 
   private fun Cursor.getId(): Long = CursorUtil.requireLong(this, ID)

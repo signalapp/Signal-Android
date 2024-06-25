@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SqlUtil;
@@ -89,7 +89,7 @@ public final class PendingRetryReceiptTable extends DatabaseTable implements Rec
     values.put(AUTHOR, toId.serialize());
     getWritableDatabase().update(TABLE_NAME, values, AUTHOR + " = ?", SqlUtil.buildArgs(fromId));
     
-    ApplicationDependencies.getPendingRetryReceiptCache().clear();
+    AppDependencies.getPendingRetryReceiptCache().clear();
   }
 
   @Override
@@ -98,6 +98,6 @@ public final class PendingRetryReceiptTable extends DatabaseTable implements Rec
     values.put(THREAD_ID, toId);
     getWritableDatabase().update(TABLE_NAME, values, THREAD_ID + " = ?", SqlUtil.buildArgs(fromId));
 
-    ApplicationDependencies.getPendingRetryReceiptCache().clear();
+    AppDependencies.getPendingRetryReceiptCache().clear();
   }
 }

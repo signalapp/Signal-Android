@@ -40,7 +40,7 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeDa
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.drawQr
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.toLink
@@ -56,16 +56,16 @@ class UsernameLinkSettingsViewModel : ViewModel() {
   private val _state = mutableStateOf(
     UsernameLinkSettingsState(
       activeTab = ActiveTab.Code,
-      username = SignalStore.account().username!!,
-      usernameLinkState = SignalStore.account().usernameLink?.let { UsernameLinkState.Present(it.toLink()) } ?: UsernameLinkState.NotSet,
+      username = SignalStore.account.username!!,
+      usernameLinkState = SignalStore.account.usernameLink?.let { UsernameLinkState.Present(it.toLink()) } ?: UsernameLinkState.NotSet,
       qrCodeState = QrCodeState.Loading,
-      qrCodeColorScheme = SignalStore.misc().usernameQrCodeColorScheme
+      qrCodeColorScheme = SignalStore.misc.usernameQrCodeColorScheme
     )
   )
   val state: State<UsernameLinkSettingsState> = _state
 
   private val disposable: CompositeDisposable = CompositeDisposable()
-  private val usernameLink: BehaviorSubject<Optional<UsernameLinkComponents>> = BehaviorSubject.createDefault(Optional.ofNullable(SignalStore.account().usernameLink))
+  private val usernameLink: BehaviorSubject<Optional<UsernameLinkComponents>> = BehaviorSubject.createDefault(Optional.ofNullable(SignalStore.account.usernameLink))
 
   private val _linkCopiedEvent: MutableState<UUID?> = mutableStateOf(null)
   val linkCopiedEvent: State<UUID?> get() = _linkCopiedEvent
@@ -82,7 +82,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
         )
       }
 
-    if (SignalStore.account().usernameLink == null) {
+    if (SignalStore.account.usernameLink == null) {
       onUsernameLinkReset()
     }
   }
@@ -93,7 +93,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
 
   fun onResume() {
     _state.value = _state.value.copy(
-      qrCodeColorScheme = SignalStore.misc().usernameQrCodeColorScheme
+      qrCodeColorScheme = SignalStore.misc.usernameQrCodeColorScheme
     )
   }
 
@@ -104,7 +104,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
   }
 
   fun onUsernameLinkReset() {
-    if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
+    if (!NetworkUtil.isConnected(AppDependencies.application)) {
       _state.value = _state.value.copy(
         usernameLinkResetResult = UsernameLinkResetResult.NetworkUnavailable
       )
@@ -298,7 +298,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
     }
 
     // Draw the signal logo -- unfortunately can't have the normal QR code drawing handle it because it requires a composable ImageBitmap
-    BitmapFactory.decodeResource(ApplicationDependencies.getApplication().resources, R.drawable.qrcode_logo).also { logoBitmap ->
+    BitmapFactory.decodeResource(AppDependencies.application.resources, R.drawable.qrcode_logo).also { logoBitmap ->
       val tintedPaint = Paint().apply {
         colorFilter = PorterDuffColorFilter(state.qrCodeColorScheme.foregroundColor.toArgb(), PorterDuff.Mode.SRC_IN)
       }

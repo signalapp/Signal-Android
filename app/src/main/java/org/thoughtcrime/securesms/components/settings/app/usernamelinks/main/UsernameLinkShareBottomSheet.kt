@@ -55,7 +55,7 @@ class UsernameLinkShareBottomSheet : ComposeBottomSheetDialogFragment() {
   @Composable
   override fun SheetContent() {
     Content(
-      usernameLink = SignalStore.account().usernameLink?.toLink() ?: "",
+      usernameLink = SignalStore.account.usernameLink?.toLink() ?: "",
       dismissDialog = { didCopy ->
         setFragmentResult(REQUEST_KEY, bundleOf(KEY_COPY to didCopy))
         dismiss()

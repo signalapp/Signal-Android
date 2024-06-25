@@ -4,20 +4,17 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
-
-import static androidx.annotation.VisibleForTesting.PACKAGE_PRIVATE;
 
 /**
  * A durable unit of work.
@@ -107,7 +104,7 @@ public abstract class Job {
 
   /** Provides a default exponential backoff given the current run attempt. */
   protected final long defaultBackoff() {
-    return BackoffUtil.exponentialBackoff(runAttempt + 1, FeatureFlags.getDefaultMaxBackoff());
+    return BackoffUtil.exponentialBackoff(runAttempt + 1, RemoteConfig.getDefaultMaxBackoff());
   }
 
 
@@ -218,12 +215,10 @@ public abstract class Job {
       return resultType == ResultType.SUCCESS;
     }
 
-    @VisibleForTesting(otherwise = PACKAGE_PRIVATE)
     public boolean isRetry() {
       return resultType == ResultType.RETRY;
     }
 
-    @VisibleForTesting(otherwise = PACKAGE_PRIVATE)
     public boolean isFailure() {
       return resultType == ResultType.FAILURE;
     }

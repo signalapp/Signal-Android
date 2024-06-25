@@ -13,7 +13,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.SettingHeader;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.PaymentsAvailability;
 import org.thoughtcrime.securesms.keyvalue.PaymentsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -66,17 +66,17 @@ public class PaymentsHomeViewModel extends ViewModel {
     this.currencyExchangeRepository = currencyExchangeRepository;
     this.unreadPaymentsRepository   = new UnreadPaymentsRepository();
     this.store                      = new Store<>(new PaymentsHomeState(getPaymentsState()));
-    this.balance                    = LiveDataUtil.mapDistinct(SignalStore.paymentsValues().liveMobileCoinBalance(), Balance::getFullAmount);
+    this.balance                    = LiveDataUtil.mapDistinct(SignalStore.payments().liveMobileCoinBalance(), Balance::getFullAmount);
     this.list                       = Transformations.map(store.getStateLiveData(), this::createList);
     this.paymentsEnabled            = LiveDataUtil.mapDistinct(store.getStateLiveData(), state -> state.getPaymentsState() == PaymentsHomeState.PaymentsState.ACTIVATED);
     this.exchange                   = LiveDataUtil.mapDistinct(store.getStateLiveData(), PaymentsHomeState::getExchangeAmount);
     this.exchangeLoadState          = LiveDataUtil.mapDistinct(store.getStateLiveData(), PaymentsHomeState::getExchangeRateLoadState);
     this.paymentStateEvents         = new SingleLiveEvent<>();
     this.errorEnablingPayments      = new SingleLiveEvent<>();
-    this.enclaveFailure             = LiveDataUtil.mapDistinct(SignalStore.paymentsValues().enclaveFailure(), isFailure -> isFailure);
+    this.enclaveFailure             = LiveDataUtil.mapDistinct(SignalStore.payments().enclaveFailure(), isFailure -> isFailure);
     this.store.update(paymentsRepository.getRecentPayments(), this::updateRecentPayments);
 
-    LiveData<CurrencyExchange.ExchangeRate> liveExchangeRate = LiveDataUtil.combineLatest(SignalStore.paymentsValues().liveCurrentCurrency(),
+    LiveData<CurrencyExchange.ExchangeRate> liveExchangeRate = LiveDataUtil.combineLatest(SignalStore.payments().liveCurrentCurrency(),
                                                                                           LiveDataUtil.mapDistinct(store.getStateLiveData(), PaymentsHomeState::getCurrencyExchange),
                                                                                           (currency, exchange) -> exchange.getExchangeRate(currency));
 
@@ -95,7 +95,7 @@ public class PaymentsHomeViewModel extends ViewModel {
   }
 
   private static PaymentsHomeState.PaymentsState getPaymentsState() {
-    PaymentsValues paymentsValues = SignalStore.paymentsValues();
+    PaymentsValues paymentsValues = SignalStore.payments();
 
     PaymentsAvailability paymentsAvailability = paymentsValues.getPaymentsAvailability();
 
@@ -150,7 +150,7 @@ public class PaymentsHomeViewModel extends ViewModel {
 
   void checkPaymentActivationState() {
     PaymentsHomeState.PaymentsState storedState     = store.getState().getPaymentsState();
-    boolean                         paymentsEnabled = SignalStore.paymentsValues().mobileCoinPaymentsEnabled();
+    boolean                         paymentsEnabled = SignalStore.payments().mobileCoinPaymentsEnabled();
 
     if (storedState.equals(PaymentsHomeState.PaymentsState.ACTIVATED) && !paymentsEnabled) {
       store.update(s -> s.updatePaymentsEnabled(PaymentsHomeState.PaymentsState.NOT_ACTIVATED));
@@ -284,7 +284,7 @@ public class PaymentsHomeViewModel extends ViewModel {
       //noinspection ConstantConditions
       return modelClass.cast(new PaymentsHomeViewModel(new PaymentsHomeRepository(),
                                                        new PaymentsRepository(),
-                                                       new CurrencyExchangeRepository(ApplicationDependencies.getPayments())));
+                                                       new CurrencyExchangeRepository(AppDependencies.getPayments())));
     }
   }
 

@@ -48,6 +48,7 @@ public class DatabaseObserver {
 
   private static final String KEY_CALL_UPDATES          = "CallUpdates";
   private static final String KEY_CALL_LINK_UPDATES     = "CallLinkUpdates";
+  private static final String KEY_IN_APP_PAYMENTS       = "InAppPayments";
 
   private final Application application;
   private final Executor    executor;
@@ -69,6 +70,7 @@ public class DatabaseObserver {
   private final Map<RecipientId, Set<Observer>>    storyObservers;
   private final Set<Observer>                      callUpdateObservers;
   private final Map<CallLinkRoomId, Set<Observer>> callLinkObservers;
+  private final Set<InAppPaymentObserver>          inAppPaymentObservers;
 
   public DatabaseObserver(Application application) {
     this.application                  = application;
@@ -90,6 +92,7 @@ public class DatabaseObserver {
     this.scheduledMessageObservers    = new HashMap<>();
     this.callUpdateObservers          = new HashSet<>();
     this.callLinkObservers            = new HashMap<>();
+    this.inAppPaymentObservers        = new HashSet<>();
   }
 
   public void registerConversationListObserver(@NonNull Observer listener) {
@@ -195,6 +198,10 @@ public class DatabaseObserver {
     });
   }
 
+  public void registerInAppPaymentObserver(@NonNull InAppPaymentObserver observer) {
+    executor.execute(() -> inAppPaymentObservers.add(observer));
+  }
+
   public void unregisterObserver(@NonNull Observer listener) {
     executor.execute(() -> {
       conversationListObservers.remove(listener);
@@ -218,6 +225,12 @@ public class DatabaseObserver {
     executor.execute(() -> {
       messageUpdateObservers.remove(listener);
       unregisterMapped(messageInsertObservers, listener);
+    });
+  }
+
+  public void unregisterObserver(@NonNull InAppPaymentObserver listener) {
+    executor.execute(() -> {
+      inAppPaymentObservers.remove(listener);
     });
   }
 
@@ -356,6 +369,12 @@ public class DatabaseObserver {
     runPostSuccessfulTransaction(KEY_CALL_LINK_UPDATES, () -> notifyMapped(callLinkObservers, callLinkRoomId));
   }
 
+  public void notifyInAppPaymentsObservers(@NonNull InAppPaymentTable.InAppPayment inAppPayment) {
+    runPostSuccessfulTransaction(KEY_IN_APP_PAYMENTS, () -> {
+      inAppPaymentObservers.forEach(item -> item.onInAppPaymentChanged(inAppPayment));
+    });
+  }
+
   private void runPostSuccessfulTransaction(@NonNull String dedupeKey, @NonNull Runnable runnable) {
     SignalDatabase.runPostSuccessfulTransaction(dedupeKey, () -> {
       executor.execute(runnable);
@@ -420,5 +439,9 @@ public class DatabaseObserver {
 
   public interface MessageObserver {
     void onMessageChanged(@NonNull MessageId messageId);
+  }
+
+  public interface InAppPaymentObserver {
+    void onInAppPaymentChanged(@NonNull InAppPaymentTable.InAppPayment inAppPayment);
   }
 }

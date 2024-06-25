@@ -565,7 +565,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private void setupSelectedEmoji() {
-    final List<String> emojis   = SignalStore.emojiValues().getReactions();
+    final List<String> emojis   = SignalStore.emoji().getReactions();
     final String       oldEmoji = getOldEmoji(messageRecord);
 
     if (oldEmoji == null) {
@@ -603,13 +603,13 @@ public final class ConversationReactionOverlay extends FrameLayout {
           view.setImageEmoji(oldEmoji);
           view.setTag(oldEmoji);
         } else {
-          view.setImageEmoji(SignalStore.emojiValues().getPreferredVariation(emojis.get(i)));
+          view.setImageEmoji(SignalStore.emoji().getPreferredVariation(emojis.get(i)));
         }
       } else if (isAtCustomIndex) {
         view.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_any_emoji_32));
         view.setTag(null);
       } else {
-        view.setImageEmoji(SignalStore.emojiValues().getPreferredVariation(emojis.get(i)));
+        view.setImageEmoji(SignalStore.emoji().getPreferredVariation(emojis.get(i)));
       }
     }
   }
@@ -675,7 +675,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
       if (selected == customEmojiIndex) {
         onReactionSelectedListener.onCustomReactionSelected(messageRecord, emojiViews[selected].getTag() != null);
       } else {
-        onReactionSelectedListener.onReactionSelected(messageRecord, SignalStore.emojiValues().getPreferredVariation(SignalStore.emojiValues().getReactions().get(selected)));
+        onReactionSelectedListener.onReactionSelected(messageRecord, SignalStore.emoji().getPreferredVariation(SignalStore.emoji().getReactions().get(selected)));
       }
     } else {
       hide();

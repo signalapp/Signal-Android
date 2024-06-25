@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.getQuote
 
 class MessageQuotesRepository {
@@ -35,7 +35,7 @@ class MessageQuotesRepository {
         return@create
       }
 
-      val databaseObserver: DatabaseObserver = ApplicationDependencies.getDatabaseObserver()
+      val databaseObserver: DatabaseObserver = AppDependencies.databaseObserver
       val observer = DatabaseObserver.Observer { emitter.onNext(getMessagesInQuoteChainSync(application, messageId)) }
 
       databaseObserver.registerConversationObserver(threadId, observer)
@@ -68,7 +68,7 @@ class MessageQuotesRepository {
     attachmentHelper.fetchAttachments()
 
     replyRecords = reactionHelper.buildUpdatedModels(replyRecords)
-    replyRecords = attachmentHelper.buildUpdatedModels(ApplicationDependencies.getApplication(), replyRecords)
+    replyRecords = attachmentHelper.buildUpdatedModels(AppDependencies.application, replyRecords)
 
     val replies: List<ConversationMessage> = replyRecords
       .map { replyRecord ->
@@ -98,7 +98,7 @@ class MessageQuotesRepository {
         add(originalRecord)
         fetchAttachments()
       }
-      .buildUpdatedModels(ApplicationDependencies.getApplication(), listOf(originalRecord))
+      .buildUpdatedModels(AppDependencies.application, listOf(originalRecord))
       .get(0)
 
     val originalMessage: ConversationMessage = ConversationMessageFactory.createWithUnresolvedData(application, originalRecord, false, threadRecipient)

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.s3
 
 import android.content.Context
+import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import okhttp3.Request
 import okhttp3.Response
@@ -8,7 +9,7 @@ import okio.HashingSink
 import okio.sink
 import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.EncryptedStreamUtils
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
@@ -20,6 +21,9 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
+import java.net.URI
+import java.net.URISyntaxException
+import java.net.URL
 import java.nio.charset.Charset
 import java.security.MessageDigest
 import java.util.regex.Matcher
@@ -31,9 +35,8 @@ import java.util.regex.Pattern
 object S3 {
   private val TAG = Log.tag(S3::class.java)
 
-  private val okHttpClient = ApplicationDependencies.getSignalOkHttpClient()
+  private val okHttpClient by lazy { AppDependencies.signalOkHttpClient }
 
-  private const val S3_BASE = "https://updates2.signal.org"
   const val DYNAMIC_PATH = "/dynamic"
   const val STATIC_PATH = "/static"
 
@@ -50,10 +53,10 @@ object S3 {
   fun getString(endpoint: String): String {
     getObject(endpoint).use { response ->
       if (!response.isSuccessful) {
-        throw NonSuccessfulResponseCodeException(response.code())
+        throw NonSuccessfulResponseCodeException(response.code)
       }
 
-      return response.body()?.string()?.trim() ?: throw IOException()
+      return response.body?.string()?.trim() ?: throw IOException()
     }
   }
 
@@ -78,6 +81,8 @@ object S3 {
 
   /**
    * Retrieves an S3 object from the given endpoint.
+   *
+   * @param endpoint Must be an absolute path to the resource
    */
   @WorkerThread
   @JvmStatic
@@ -85,7 +90,7 @@ object S3 {
   fun getObject(endpoint: String): Response {
     val request = Request.Builder()
       .get()
-      .url("$S3_BASE$endpoint")
+      .url(s3Url(endpoint))
       .build()
 
     return okHttpClient.newCall(request).execute()
@@ -105,13 +110,13 @@ object S3 {
       getObject(endpoint).use { response ->
         if (!response.isSuccessful) {
           return ServiceResponse.forApplicationError(
-            DefaultErrorMapper.getDefault().parseError(response.code()),
-            response.code(),
+            DefaultErrorMapper.getDefault().parseError(response.code),
+            response.code,
             ""
           )
         }
 
-        val source = response.body()?.source()
+        val source = response.body?.source()
 
         val outputStream = ByteArrayOutputStream()
 
@@ -161,7 +166,7 @@ object S3 {
       }
 
       getObject(objectPathOnNetwork).use { response ->
-        val source = response.body()?.source()
+        val source = response.body?.source()
 
         val outputStream: OutputStream = if (doNotEncrypt) {
           FileOutputStream(objectFileOnDisk)
@@ -191,12 +196,14 @@ object S3 {
 
   /**
    * Downloads and parses the ETAG from an S3 object, utilizing a HEAD request.
+   *
+   * @param endpoint Must be an absolute path to the resource
    */
   @WorkerThread
   fun getObjectMD5(endpoint: String): ByteArray? {
     val request = Request.Builder()
       .head()
-      .url("$S3_BASE$endpoint")
+      .url(s3Url(endpoint))
       .build()
 
     try {
@@ -226,6 +233,16 @@ object S3 {
       matcher.group(1)
     } else {
       null
+    }
+  }
+
+  @Throws(IOException::class)
+  @VisibleForTesting
+  fun s3Url(path: String): URL {
+    try {
+      return URI("https", "updates2.signal.org", path, null).toURL()
+    } catch (e: URISyntaxException) {
+      throw IOException(e)
     }
   }
 

@@ -9,7 +9,7 @@ import androidx.preference.PreferenceManager
  * Usually, it's because the value your storing is _related to_ the database. Regardless, this is just a normal
  * shared-prefs-backed class. Do not put anything in here that you wouldn't be comfortable storing in plain text.
  *
- * A good rule of thumb might be: if you're not comforable logging it, then you shouldn't be comfortable putting
+ * A good rule of thumb might be: if you're not comfortable logging it, then you shouldn't be comfortable putting
  * it in here.
  */
 class PlainTextSharedPrefsDataStore(private val context: Context) {

@@ -52,7 +52,7 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -199,14 +199,14 @@ class ConversationViewModel(
           controller.onDataInvalidated()
         }
 
-        ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageUpdateObserver)
-        ApplicationDependencies.getDatabaseObserver().registerMessageInsertObserver(threadId, messageInsertObserver)
-        ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, conversationObserver)
+        AppDependencies.databaseObserver.registerMessageUpdateObserver(messageUpdateObserver)
+        AppDependencies.databaseObserver.registerMessageInsertObserver(threadId, messageInsertObserver)
+        AppDependencies.databaseObserver.registerConversationObserver(threadId, conversationObserver)
 
         emitter.setCancellable {
-          ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageUpdateObserver)
-          ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageInsertObserver)
-          ApplicationDependencies.getDatabaseObserver().unregisterObserver(conversationObserver)
+          AppDependencies.databaseObserver.unregisterObserver(messageUpdateObserver)
+          AppDependencies.databaseObserver.unregisterObserver(messageInsertObserver)
+          AppDependencies.databaseObserver.unregisterObserver(conversationObserver)
         }
       }
     }.subscribeOn(Schedulers.io()).subscribe()
@@ -240,8 +240,8 @@ class ConversationViewModel(
         conversationRecipient = recipient,
         messageRequestState = messageRequestRepository.getMessageRequestState(recipient, threadId),
         groupRecord = groupRecord.orNull(),
-        isClientExpired = SignalStore.misc().isClientDeprecated,
-        isUnauthorized = TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication()),
+        isClientExpired = SignalStore.misc.isClientDeprecated,
+        isUnauthorized = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
         threadContainsSms = !recipient.isRegistered && !recipient.isPushGroup && !recipient.isSelf && messageRequestRepository.threadContainsSms(threadId)
       )
     }.doOnNext {
@@ -289,6 +289,11 @@ class ConversationViewModel(
 
   fun refreshReminder() {
     refreshReminder.onNext(Unit)
+  }
+
+  fun onDismissReview() {
+    val recipientId = recipientSnapshot?.id ?: return
+    repository.dismissRequestReviewState(recipientId)
   }
 
   override fun onCleared() {
@@ -516,9 +521,9 @@ class ConversationViewModel(
     _jumpToDateValidator
   }
 
-  fun getEarliestMessageDate(): Single<Long> {
+  fun getEarliestMessageSentDate(): Single<Long> {
     return repository
-      .getEarliestMessageDate(threadId)
+      .getEarliestMessageSentDate(threadId)
       .observeOn(AndroidSchedulers.mainThread())
   }
 }

@@ -9,16 +9,20 @@ import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeDeclineCode
 import org.signal.donations.StripeError
 import org.signal.donations.StripeFailureCode
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 
+/**
+ * @deprecated Replaced with InAppDonationData.Error
+ *
+ * This needs to remain until all the old jobs are through people's systems (90 days from release + timeout)
+ */
 sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : Exception(cause) {
 
   /**
    * Google Pay errors, which happen well before a user would ever be charged.
    */
   sealed class GooglePayError(source: DonationErrorSource, cause: Throwable) : DonationError(source, cause) {
-    class NotAvailableError(source: DonationErrorSource, cause: Throwable) : GooglePayError(source, cause)
     class RequestTokenError(source: DonationErrorSource, cause: Throwable) : GooglePayError(source, cause)
   }
 
@@ -38,8 +42,6 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
    */
   sealed class GiftRecipientVerificationError(cause: Throwable) : DonationError(DonationErrorSource.GIFT, cause) {
     object SelectedRecipientIsInvalid : GiftRecipientVerificationError(Exception("Selected recipient is invalid."))
-    object SelectedRecipientDoesNotSupportGifts : GiftRecipientVerificationError(Exception("Selected recipient does not support gifts."))
-    class FailedToFetchProfile(cause: Throwable) : GiftRecipientVerificationError(Exception("Failed to fetch recipient profile.", cause))
   }
 
   /**
@@ -106,7 +108,7 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
      * Timeout elapsed while the user was waiting for badge redemption to complete for a long-running payment.
      * This is not an indication that redemption failed, just that it could take a few days to process the payment.
      */
-    class DonationPending(source: DonationErrorSource, val gatewayRequest: GatewayRequest) : BadgeRedemptionError(source, Exception("Long-running donation is still pending."))
+    class DonationPending(source: DonationErrorSource, val inAppPayment: InAppPaymentTable.InAppPayment) : BadgeRedemptionError(source, Exception("Long-running donation is still pending."))
 
     /**
      * Timeout elapsed while the user was waiting for badge redemption to complete. This is not an indication that
@@ -133,18 +135,9 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
       source to PublishSubject.create()
     }
 
-    private val donationErrorsSubjectUiSessionMap: MutableMap<Long, Subject<DonationError>> = mutableMapOf()
-
     @JvmStatic
     fun getErrorsForSource(donationErrorSource: DonationErrorSource): Observable<DonationError> {
       return donationErrorSubjectSourceMap[donationErrorSource]!!
-    }
-
-    fun getErrorsForUiSessionKey(uiSessionKey: Long): Observable<DonationError> {
-      val subject: Subject<DonationError> = donationErrorsSubjectUiSessionMap[uiSessionKey] ?: PublishSubject.create()
-      donationErrorsSubjectUiSessionMap[uiSessionKey] = subject
-
-      return subject
     }
 
     @JvmStatic
@@ -182,7 +175,6 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
     @JvmOverloads
     fun routeBackgroundError(
       context: Context,
-      uiSessionKey: Long,
       error: DonationError,
       suppressNotification: Boolean = true
     ) {
@@ -191,17 +183,12 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
         return
       }
 
-      val subject: Subject<DonationError>? = donationErrorsSubjectUiSessionMap[uiSessionKey]
       when {
-        subject != null && subject.hasObservers() -> {
-          Log.i(TAG, "Routing background donation error to uiSessionKey $uiSessionKey dialog", error)
-          subject.onNext(error)
-        }
         suppressNotification -> {
           Log.i(TAG, "Suppressing notification for error.", error)
         }
         else -> {
-          Log.i(TAG, "Routing background donation error to uiSessionKey $uiSessionKey notification", error)
+          Log.i(TAG, "Routing background donation error to notification", error)
           DonationErrorNotifications.displayErrorNotification(context, error)
         }
       }
@@ -211,8 +198,7 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
      * Route a given donation error, which will either pipe it out to an appropriate subject
      * or, if the subject has no observers, post it as a notification.
      */
-    @JvmStatic
-    fun routeDonationError(context: Context, error: DonationError) {
+    private fun routeDonationError(context: Context, error: DonationError) {
       val subject: Subject<DonationError> = donationErrorSubjectSourceMap[error.source]!!
       when {
         subject.hasObservers() -> {
@@ -224,11 +210,6 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
           DonationErrorNotifications.displayErrorNotification(context, error)
         }
       }
-    }
-
-    @JvmStatic
-    fun getGooglePayRequestTokenError(source: DonationErrorSource, throwable: Throwable): DonationError {
-      return GooglePayError.RequestTokenError(source, throwable)
     }
 
     /**
@@ -259,21 +240,6 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
         }
       }
     }
-
-    @JvmStatic
-    fun oneTimeDonationAmountTooSmall(source: DonationErrorSource): DonationError = OneTimeDonationError.AmountTooSmallError(source)
-
-    @JvmStatic
-    fun oneTimeDonationAmountTooLarge(source: DonationErrorSource): DonationError = OneTimeDonationError.AmountTooLargeError(source)
-
-    @JvmStatic
-    fun invalidCurrencyForOneTimeDonation(source: DonationErrorSource): DonationError = OneTimeDonationError.InvalidCurrencyError(source)
-
-    @JvmStatic
-    fun timeoutWaitingForToken(source: DonationErrorSource): DonationError = BadgeRedemptionError.TimeoutWaitingForTokenError(source)
-
-    @JvmStatic
-    fun donationPending(source: DonationErrorSource, gatewayRequest: GatewayRequest) = BadgeRedemptionError.DonationPending(source, gatewayRequest)
 
     @JvmStatic
     fun genericBadgeRedemptionFailure(source: DonationErrorSource): DonationError = BadgeRedemptionError.GenericError(source)

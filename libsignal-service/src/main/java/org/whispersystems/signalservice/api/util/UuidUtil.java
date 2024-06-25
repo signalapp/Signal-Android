@@ -8,6 +8,9 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import okio.ByteString;
 
 public final class UuidUtil {
@@ -23,7 +26,7 @@ public final class UuidUtil {
     return Optional.ofNullable(parseOrNull(uuid));
   }
 
-  public static UUID parseOrNull(String uuid) {
+  public static UUID parseOrNull(@Nullable String uuid) {
     return isUuid(uuid) ? parseOrThrow(uuid) : null;
   }
 
@@ -47,7 +50,7 @@ public final class UuidUtil {
     return uuid != null && UUID_PATTERN.matcher(uuid).matches();
   }
 
-  public static byte[] toByteArray(UUID uuid) {
+  public static byte[] toByteArray(@Nonnull UUID uuid) {
     ByteBuffer buffer = ByteBuffer.wrap(new byte[16]);
     buffer.putLong(uuid.getMostSignificantBits());
     buffer.putLong(uuid.getLeastSignificantBits());
@@ -55,7 +58,7 @@ public final class UuidUtil {
     return buffer.array();
   }
 
-  public static ByteString toByteString(UUID uuid) {
+  public static ByteString toByteString(@Nonnull UUID uuid) {
     return ByteString.of(toByteArray(uuid));
   }
 
@@ -63,7 +66,11 @@ public final class UuidUtil {
     return parseOrThrow(bytes.toByteArray());
   }
 
-  public static UUID fromByteStringOrNull(ByteString bytes) {
+  public static @Nullable UUID fromByteStringOrNull(@Nullable ByteString bytes) {
+    if (bytes == null) {
+      return null;
+    }
+
     return parseOrNull(bytes.toByteArray());
   }
 

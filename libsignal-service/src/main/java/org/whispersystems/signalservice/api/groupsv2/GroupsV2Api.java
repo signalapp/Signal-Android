@@ -19,6 +19,7 @@ import org.signal.storageservice.protos.groups.GroupJoinInfo;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
+import org.whispersystems.signalservice.api.NetworkResult;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
@@ -31,6 +32,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.annotation.Nonnull;
 
 import okio.ByteString;
 
@@ -87,14 +90,8 @@ public class GroupsV2Api {
     socket.putNewGroupsV2Group(group, authorization);
   }
 
-  public PartialDecryptedGroup getPartialDecryptedGroup(GroupSecretParams groupSecretParams,
-                                                        GroupsV2AuthorizationString authorization)
-      throws IOException, InvalidGroupStateException, VerificationFailedException
-  {
-    Group group = socket.getGroupsV2Group(authorization);
-
-    return groupsOperations.forGroup(groupSecretParams)
-                           .partialDecryptGroup(group);
+  public NetworkResult<DecryptedGroup> getGroupAsResult(GroupSecretParams groupSecretParams, GroupsV2AuthorizationString authorization) {
+    return NetworkResult.fromFetch(() -> getGroup(groupSecretParams, authorization));
   }
 
   public DecryptedGroup getGroup(GroupSecretParams groupSecretParams,
@@ -114,17 +111,21 @@ public class GroupsV2Api {
       throws IOException, InvalidGroupStateException, VerificationFailedException
   {
     PushServiceSocket.GroupHistory     group           = socket.getGroupsV2GroupHistory(fromRevision, authorization, GroupsV2Operations.HIGHEST_KNOWN_EPOCH, includeFirstState);
-    List<DecryptedGroupHistoryEntry>   result          = new ArrayList<>(group.getGroupChanges().groupChanges.size());
+    List<DecryptedGroupChangeLog>      result          = new ArrayList<>(group.getGroupChanges().groupChanges.size());
     GroupsV2Operations.GroupOperations groupOperations = groupsOperations.forGroup(groupSecretParams);
 
     for (GroupChanges.GroupChangeState change : group.getGroupChanges().groupChanges) {
-      Optional<DecryptedGroup>       decryptedGroup  = change.groupState != null ? Optional.of(groupOperations.decryptGroup(change.groupState)) : Optional.empty();
-      Optional<DecryptedGroupChange> decryptedChange = change.groupChange != null ? groupOperations.decryptChange(change.groupChange, false) : Optional.empty();
+      DecryptedGroup       decryptedGroup  = change.groupState != null ? groupOperations.decryptGroup(change.groupState) : null;
+      DecryptedGroupChange decryptedChange = change.groupChange != null ? groupOperations.decryptChange(change.groupChange, false).orElse(null) : null;
 
-      result.add(new DecryptedGroupHistoryEntry(decryptedGroup, decryptedChange));
+      result.add(new DecryptedGroupChangeLog(decryptedGroup, decryptedChange));
     }
 
-    return new GroupHistoryPage(result, GroupHistoryPage.PagingData.fromGroup(group));
+    return new GroupHistoryPage(result, GroupHistoryPage.PagingData.forGroupHistory(group));
+  }
+
+  public NetworkResult<Integer> getGroupJoinedAt(@Nonnull GroupsV2AuthorizationString authorization) {
+    return NetworkResult.fromFetch(() -> socket.getGroupJoinedAtRevision(authorization));
   }
 
   public DecryptedGroupJoinInfo getGroupJoinInfo(GroupSecretParams groupSecretParams,

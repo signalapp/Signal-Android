@@ -178,7 +178,7 @@ class StoryReplyComposer @JvmOverloads constructor(
   }
 
   private fun getReactionEmojis(): List<MappingModel<*>> {
-    val reactionDisplayEmoji: List<Emoji> = SignalStore.emojiValues().reactions.map { Emoji(it) }
+    val reactionDisplayEmoji: List<Emoji> = SignalStore.emoji.reactions.map { Emoji(it) }
     val canonicalReactionEmoji: List<String> = reactionDisplayEmoji.map { EmojiSource.latest.variationsToCanonical[it.value] ?: it.value }
     val canonicalRecentReactionEmoji: Set<String> = LinkedHashSet(RecentEmojiPageModel(context, ReactWithAnyEmojiBottomSheetDialogFragment.REACTION_STORAGE_KEY).emoji) - canonicalReactionEmoji.toSet()
 

@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -43,7 +43,7 @@ class PrivacySettingsViewModel(
   }
 
   fun setScreenLockTimeout(seconds: Long) {
-    TextSecurePreferences.setScreenLockTimeout(ApplicationDependencies.getApplication(), seconds)
+    TextSecurePreferences.setScreenLockTimeout(AppDependencies.application, seconds)
     refresh()
   }
 
@@ -58,7 +58,7 @@ class PrivacySettingsViewModel(
   }
 
   fun togglePaymentLock(enable: Boolean) {
-    SignalStore.paymentsValues().paymentLock = enable
+    SignalStore.payments.paymentLock = enable
     refresh()
   }
 
@@ -68,7 +68,7 @@ class PrivacySettingsViewModel(
   }
 
   fun setObsoletePasswordTimeout(minutes: Int) {
-    TextSecurePreferences.setPassphraseTimeoutInterval(ApplicationDependencies.getApplication(), minutes)
+    TextSecurePreferences.setPassphraseTimeoutInterval(AppDependencies.application, minutes)
     refresh()
   }
 
@@ -79,17 +79,17 @@ class PrivacySettingsViewModel(
   private fun getState(): PrivacySettingsState {
     return PrivacySettingsState(
       blockedCount = 0,
-      readReceipts = TextSecurePreferences.isReadReceiptsEnabled(ApplicationDependencies.getApplication()),
-      typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(ApplicationDependencies.getApplication()),
-      screenLock = TextSecurePreferences.isScreenLockEnabled(ApplicationDependencies.getApplication()),
-      screenLockActivityTimeout = TextSecurePreferences.getScreenLockTimeout(ApplicationDependencies.getApplication()),
-      screenSecurity = TextSecurePreferences.isScreenSecurityEnabled(ApplicationDependencies.getApplication()),
-      incognitoKeyboard = TextSecurePreferences.isIncognitoKeyboardEnabled(ApplicationDependencies.getApplication()),
-      paymentLock = SignalStore.paymentsValues().paymentLock,
-      isObsoletePasswordEnabled = !TextSecurePreferences.isPasswordDisabled(ApplicationDependencies.getApplication()),
-      isObsoletePasswordTimeoutEnabled = TextSecurePreferences.isPassphraseTimeoutEnabled(ApplicationDependencies.getApplication()),
-      obsoletePasswordTimeout = TextSecurePreferences.getPassphraseTimeoutInterval(ApplicationDependencies.getApplication()),
-      universalExpireTimer = SignalStore.settings().universalExpireTimer
+      readReceipts = TextSecurePreferences.isReadReceiptsEnabled(AppDependencies.application),
+      typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(AppDependencies.application),
+      screenLock = TextSecurePreferences.isScreenLockEnabled(AppDependencies.application),
+      screenLockActivityTimeout = TextSecurePreferences.getScreenLockTimeout(AppDependencies.application),
+      screenSecurity = TextSecurePreferences.isScreenSecurityEnabled(AppDependencies.application),
+      incognitoKeyboard = TextSecurePreferences.isIncognitoKeyboardEnabled(AppDependencies.application),
+      paymentLock = SignalStore.payments.paymentLock,
+      isObsoletePasswordEnabled = !TextSecurePreferences.isPasswordDisabled(AppDependencies.application),
+      isObsoletePasswordTimeoutEnabled = TextSecurePreferences.isPassphraseTimeoutEnabled(AppDependencies.application),
+      obsoletePasswordTimeout = TextSecurePreferences.getPassphraseTimeoutInterval(AppDependencies.application),
+      universalExpireTimer = SignalStore.settings.universalExpireTimer
     )
   }
 

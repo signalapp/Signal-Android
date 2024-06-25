@@ -137,6 +137,11 @@ public class WebRtcServiceStateBuilder {
       toBuild.setNetworkConnectionType(type);
       return this;
     }
+
+    public @NonNull LocalDeviceStateBuilder setHandRaisedTimestamp(long handRaisedTimestamp) {
+      toBuild.setHandRaisedTimestamp(handRaisedTimestamp);
+      return this;
+    }
   }
 
   public class CallSetupStateBuilder {
@@ -362,11 +367,6 @@ public class WebRtcServiceStateBuilder {
 
     public @NonNull CallInfoStateBuilder setCallLinkDisconnectReason(@Nullable CallLinkDisconnectReason callLinkDisconnectReason) {
       toBuild.setCallLinkDisconnectReason(callLinkDisconnectReason);
-      return this;
-    }
-
-    public @NonNull CallInfoStateBuilder setLocalParticipant(@NonNull CallParticipant callParticipant) {
-      toBuild.setLocalParticipant(callParticipant);
       return this;
     }
   }

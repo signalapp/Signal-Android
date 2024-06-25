@@ -16,6 +16,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
@@ -27,65 +29,77 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
-import org.signal.donations.StripeDeclineCode
-import org.signal.donations.StripeFailureCode
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImage112
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.mapToErrorStringResource
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.ManageDonationsFragment
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import org.thoughtcrime.securesms.util.viewModel
 
 class MonthlyDonationCanceledBottomSheetDialogFragment : ComposeBottomSheetDialogFragment() {
 
+  companion object {
+
+    private const val ARG_IN_APP_PAYMENT_ID = "arg.inAppPaymentId"
+
+    @JvmStatic
+    @JvmOverloads
+    fun show(fragmentManager: FragmentManager, inAppPaymentId: InAppPaymentTable.InAppPaymentId? = null) {
+      val fragment = MonthlyDonationCanceledBottomSheetDialogFragment()
+      fragment.arguments = bundleOf(
+        ARG_IN_APP_PAYMENT_ID to inAppPaymentId
+      )
+      fragment.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+    }
+  }
+
   override val peekHeightPercentage: Float = 1f
+
+  private val viewModel by viewModel {
+    MonthlyDonationCanceledViewModel(arguments?.getParcelableCompat(ARG_IN_APP_PAYMENT_ID, InAppPaymentTable.InAppPaymentId::class.java))
+  }
 
   @Composable
   override fun SheetContent() {
-    val chargeFailure: ActiveSubscription.ChargeFailure? = SignalStore.donationsValues().getUnexpectedSubscriptionCancelationChargeFailure()
-    val declineCode: StripeDeclineCode = StripeDeclineCode.getFromCode(chargeFailure?.outcomeNetworkReason)
-    val failureCode: StripeFailureCode = StripeFailureCode.getFromCode(chargeFailure?.code)
+    val state by viewModel.state
 
-    val errorMessage = if (declineCode.isKnown()) {
-      declineCode.mapToErrorStringResource()
-    } else if (failureCode.isKnown) {
-      failureCode.mapToErrorStringResource()
-    } else {
-      declineCode.mapToErrorStringResource()
+    if (state.loadState == MonthlyDonationCanceledState.LoadState.LOADING) {
+      return
+    }
+
+    if (state.loadState == MonthlyDonationCanceledState.LoadState.FAILED) {
+      LaunchedEffect(Unit) {
+        dismissAllowingStateLoss()
+      }
+
+      return
     }
 
     MonthlyDonationCanceled(
-      badge = SignalStore.donationsValues().getExpiredBadge(),
-      errorMessageRes = errorMessage,
+      badge = state.badge,
+      errorMessageRes = state.errorMessage,
       onRenewClicked = {
         startActivity(AppSettingsActivity.subscriptions(requireContext()))
         dismissAllowingStateLoss()
       },
       onNotNowClicked = {
-        SignalStore.donationsValues().showMonthlyDonationCanceledDialog = false
+        SignalStore.donations.showMonthlyDonationCanceledDialog = false
         dismissAllowingStateLoss()
       }
     )
-  }
-
-  companion object {
-    @JvmStatic
-    fun show(fragmentManager: FragmentManager) {
-      val fragment = MonthlyDonationCanceledBottomSheetDialogFragment()
-
-      fragment.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
-    }
   }
 }
 

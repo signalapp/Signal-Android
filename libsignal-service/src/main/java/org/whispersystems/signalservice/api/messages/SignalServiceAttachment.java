@@ -12,6 +12,9 @@ import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Optional;
+import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 public abstract class SignalServiceAttachment {
 
@@ -40,10 +43,6 @@ public abstract class SignalServiceAttachment {
     return new Builder();
   }
 
-  public static SignalServiceAttachmentStream emptyStream(String contentType) {
-    return new SignalServiceAttachmentStream(new ByteArrayInputStream(new byte[0]), contentType, 0, Optional.empty(), false, false, false, false, null, null);
-  }
-
   public static class Builder {
 
     private InputStream             inputStream;
@@ -62,6 +61,7 @@ public abstract class SignalServiceAttachment {
     private String                  blurHash;
     private long                    uploadTimestamp;
     private ResumableUploadSpec     resumableUploadSpec;
+    private UUID                    uuid;
 
     private Builder() {}
 
@@ -145,6 +145,11 @@ public abstract class SignalServiceAttachment {
       return this;
     }
 
+    public Builder withUuid(@Nullable UUID uuid) {
+      this.uuid = uuid;
+      return this;
+    }
+
     public SignalServiceAttachmentStream build() {
       if (inputStream == null) throw new IllegalArgumentException("Must specify stream!");
       if (contentType == null) throw new IllegalArgumentException("No content type specified!");
@@ -166,7 +171,8 @@ public abstract class SignalServiceAttachment {
                                                Optional.ofNullable(blurHash),
                                                listener,
                                                cancelationSignal,
-                                               Optional.ofNullable(resumableUploadSpec));
+                                               Optional.ofNullable(resumableUploadSpec),
+                                               uuid);
     }
   }
 

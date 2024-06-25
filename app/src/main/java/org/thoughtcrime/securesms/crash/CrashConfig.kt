@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BucketingUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.IOException
 
@@ -26,14 +26,14 @@ object CrashConfig {
 
   @VisibleForTesting
   fun computePatterns(): List<CrashPattern> {
-    val aci: ServiceId.ACI = SignalStore.account().aci ?: return emptyList()
+    val aci: ServiceId.ACI = SignalStore.account.aci ?: return emptyList()
 
-    val serialized = FeatureFlags.crashPromptConfig()
+    val serialized = RemoteConfig.crashPromptConfig
     if (serialized.isNullOrBlank()) {
       return emptyList()
     }
 
-    if (SignalStore.account().aci == null) {
+    if (SignalStore.account.aci == null) {
       return emptyList()
     }
 
@@ -113,7 +113,7 @@ object CrashConfig {
       }
 
       val partsPerMillion = (1_000_000 * percent).toInt()
-      val bucket = BucketingUtil.bucket(FeatureFlags.CRASH_PROMPT_CONFIG, aci.rawUuid, 1_000_000)
+      val bucket = BucketingUtil.bucket(RemoteConfig.CRASH_PROMPT_CONFIG, aci.rawUuid, 1_000_000)
       return partsPerMillion > bucket
     }
   }

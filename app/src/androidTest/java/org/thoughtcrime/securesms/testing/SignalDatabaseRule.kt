@@ -26,8 +26,8 @@ class SignalDatabaseRule(
   override fun starting(description: Description?) {
     deleteAllThreads()
 
-    SignalStore.account().setAci(localAci)
-    SignalStore.account().setPni(localPni)
+    SignalStore.account.setAci(localAci)
+    SignalStore.account.setPni(localPni)
   }
 
   override fun finished(description: Description?) {

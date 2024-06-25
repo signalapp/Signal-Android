@@ -19,7 +19,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.audio.AudioDeviceUpdatedListener
 import org.thoughtcrime.securesms.audio.SignalBluetoothManager
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.safeUnregisterReceiver
 import org.whispersystems.signalservice.api.util.Preconditions
@@ -33,7 +33,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
 
   protected var state: State = State.UNINITIALIZED
 
-  protected val androidAudioManager = ApplicationDependencies.getAndroidCallAudioManager()
+  protected val androidAudioManager = AppDependencies.androidCallAudioManager
 
   protected var selectedAudioDevice: AudioDevice = AudioDevice.NONE
 
@@ -103,11 +103,17 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   }
 
   enum class AudioDevice {
-    SPEAKER_PHONE, WIRED_HEADSET, EARPIECE, BLUETOOTH, NONE
+    SPEAKER_PHONE,
+    WIRED_HEADSET,
+    EARPIECE,
+    BLUETOOTH,
+    NONE
   }
 
   enum class State {
-    UNINITIALIZED, PREINITIALIZED, RUNNING
+    UNINITIALIZED,
+    PREINITIALIZED,
+    RUNNING
   }
 
   /**

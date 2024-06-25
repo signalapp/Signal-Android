@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -90,7 +90,7 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob {
       default:      throw new AssertionError("No matching type?");
     }
 
-    SignalServiceMessageSender  messageSender        = ApplicationDependencies.getSignalServiceMessageSender();
+    SignalServiceMessageSender  messageSender        = AppDependencies.getSignalServiceMessageSender();
     StickerPackOperationMessage stickerPackOperation = new StickerPackOperationMessage(packIdBytes, packKeyBytes, remoteType);
 
     messageSender.sendSyncMessage(SignalServiceSyncMessage.forStickerPackOperations(Collections.singletonList(stickerPackOperation)),

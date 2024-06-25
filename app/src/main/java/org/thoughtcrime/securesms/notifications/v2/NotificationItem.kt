@@ -89,7 +89,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
   }
 
   fun getStyledPrimaryText(context: Context, trimmed: Boolean = false): CharSequence {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayNothing) {
+    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayNothing) {
       context.getString(R.string.SingleRecipientNotificationBuilder_new_message)
     } else {
       SpannableStringBuilder().apply {
@@ -104,7 +104,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
   }
 
   fun getPersonName(context: Context): CharSequence {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       authorRecipient.getDisplayName(context)
     } else {
       context.getString(R.string.SingleRecipientNotificationBuilder_signal)
@@ -116,7 +116,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
   }
 
   fun getPersonUri(): String? {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact && authorRecipient.isSystemContact) {
+    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact && authorRecipient.isSystemContact) {
       authorRecipient.contactUri.toString()
     } else {
       null
@@ -124,7 +124,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
   }
 
   fun getPersonIcon(context: Context): IconCompat? {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       AvatarUtil.getIconCompat(context, authorRecipient)
     } else {
       null
@@ -132,7 +132,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
   }
 
   fun getPrimaryText(context: Context): CharSequence {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayMessage) {
+    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayMessage) {
       if (RecipientUtil.isMessageRequestAccepted(context, thread.threadId)) {
         getPrimaryTextActual(context)
       } else {
@@ -145,7 +145,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
 
   fun getInboxLine(context: Context): CharSequence? {
     return when {
-      SignalStore.settings().messageNotificationsPrivacy.isDisplayNothing -> null
+      SignalStore.settings.messageNotificationsPrivacy.isDisplayNothing -> null
       else -> getStyledPrimaryText(context, true)
     }
   }
@@ -232,7 +232,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
       ThreadBodyUtil.getFormattedBodyForNotification(context, record, null)
     } else if (record.isStoryReaction()) {
       ThreadBodyUtil.getFormattedBodyForNotification(context, record, null)
-    } else if (record.isPaymentNotification) {
+    } else if (record.isPaymentNotification || record.isPaymentTombstone) {
       ThreadBodyUtil.getFormattedBodyForNotification(context, record, null)
     } else {
       getBodyWithMentionsAndStyles(context, record)
@@ -266,7 +266,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
   }
 
   override fun getThumbnailInfo(context: Context): ThumbnailInfo {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
+    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
       if (thumbnailInfo.needsShrinking) {
         thumbnailInfo = NotificationThumbnails.get(context, this)
       }
@@ -342,7 +342,7 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
       context.getString(R.string.MessageNotifier_reacted_s_to_your_sticker, EMOJI_REPLACEMENT_STRING)
     } else if (record.isMms && record.isViewOnce) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_view_once_media, EMOJI_REPLACEMENT_STRING)
-    } else if (record.isPaymentNotification) {
+    } else if (record.isPaymentNotification || record.isPaymentTombstone) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_payment, EMOJI_REPLACEMENT_STRING)
     } else if (!bodyIsEmpty) {
       context.getString(R.string.MessageNotifier_reacted_s_to_s, EMOJI_REPLACEMENT_STRING, body)

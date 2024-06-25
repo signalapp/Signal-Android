@@ -34,12 +34,11 @@ import androidx.compose.runtime.rxjava3.subscribeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -54,7 +53,7 @@ import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
@@ -131,7 +130,7 @@ private fun CallInfoPreview() {
     Surface {
       val remoteParticipants = listOf(CallParticipant(recipient = Recipient.UNKNOWN))
       CallInfo(
-        participantsState = ParticipantsState(remoteParticipants = remoteParticipants, raisedHands = remoteParticipants.map { GroupCallRaiseHandEvent(it.recipient, System.currentTimeMillis()) }),
+        participantsState = ParticipantsState(remoteParticipants = remoteParticipants, raisedHands = remoteParticipants.map { GroupCallRaiseHandEvent(it, System.currentTimeMillis()) }),
         controlAndInfoState = ControlAndInfoState(),
         onShareLinkClicked = { },
         onEditNameClicked = { },
@@ -183,7 +182,7 @@ private fun CallInfo(
       item {
         Rows.TextRow(
           text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
-          icon = ImageVector.vectorResource(id = R.drawable.symbol_link_24),
+          icon = painterResource(id = R.drawable.symbol_link_24),
           iconModifier = Modifier
             .background(
               color = MaterialTheme.colorScheme.surfaceVariant,
@@ -217,11 +216,13 @@ private fun CallInfo(
       }
 
       items(
-        items = participantsState.raisedHands,
-        key = { it.sender.id },
-        contentType = { null }
+        items = participantsState.raisedHands.map { it.sender },
+        key = {
+          val key: Long = it.callParticipantId.demuxId // Due to a bug in how the Compose toolchain inlines saveable states, this Long needs to be set into its own variable within the lambda before being returned.
+          key
+        }
       ) {
-        HandRaisedRow(recipient = it.sender)
+        HandRaisedRow(recipient = it.recipient, it.getShortRecipientDisplayName(LocalContext.current), it.isSelf && it.isPrimary)
       }
 
       item {
@@ -347,7 +348,7 @@ private fun CallParticipantRowPreview() {
 private fun HandRaisedRowPreview() {
   SignalTheme(isDarkMode = true) {
     Surface {
-      HandRaisedRow(Recipient.UNKNOWN, canLowerHand = true)
+      HandRaisedRow(Recipient.UNKNOWN, "Peter Parker", canLowerHand = true)
     }
   }
 }
@@ -372,10 +373,10 @@ private fun CallParticipantRow(
 }
 
 @Composable
-private fun HandRaisedRow(recipient: Recipient, canLowerHand: Boolean = recipient.isSelf) {
+private fun HandRaisedRow(recipient: Recipient, name: String, canLowerHand: Boolean) {
   CallParticipantRow(
     initialRecipient = recipient,
-    name = recipient.getShortDisplayName(LocalContext.current),
+    name = name,
     showIcons = true,
     isVideoEnabled = true,
     isMicrophoneEnabled = true,
@@ -446,7 +447,7 @@ private fun CallParticipantRow(
 
     if (showIcons && showHandRaised) {
       Icon(
-        imageVector = ImageVector.vectorResource(id = R.drawable.symbol_raise_hand_24),
+        painter = painterResource(id = R.drawable.symbol_raise_hand_24),
         contentDescription = null,
         modifier = Modifier.align(Alignment.CenterVertically)
       )
@@ -454,7 +455,7 @@ private fun CallParticipantRow(
 
     if (showIcons && !isVideoEnabled) {
       Icon(
-        imageVector = ImageVector.vectorResource(id = R.drawable.symbol_video_slash_24),
+        painter = painterResource(id = R.drawable.symbol_video_slash_24),
         contentDescription = null,
         modifier = Modifier.align(Alignment.CenterVertically)
       )
@@ -466,7 +467,7 @@ private fun CallParticipantRow(
       }
 
       Icon(
-        imageVector = ImageVector.vectorResource(id = R.drawable.symbol_mic_slash_24),
+        painter = painterResource(id = R.drawable.symbol_mic_slash_24),
         contentDescription = null,
         modifier = Modifier.align(Alignment.CenterVertically)
       )
@@ -478,7 +479,7 @@ private fun CallParticipantRow(
       }
 
       Icon(
-        imageVector = ImageVector.vectorResource(id = R.drawable.symbol_minus_circle_24),
+        painter = painterResource(id = R.drawable.symbol_minus_circle_24),
         contentDescription = null,
         modifier = Modifier
           .clickable(onClick = onBlockClicked)
@@ -493,7 +494,7 @@ private fun showLowerHandDialog(context: Context) {
     .setTitle(R.string.CallOverflowPopupWindow__lower_your_hand)
     .setPositiveButton(
       R.string.CallOverflowPopupWindow__lower_hand
-    ) { _, _ -> ApplicationDependencies.getSignalCallManager().raiseHand(false) }
+    ) { _, _ -> AppDependencies.signalCallManager.raiseHand(false) }
     .setNegativeButton(R.string.CallOverflowPopupWindow__cancel, null)
     .show()
 }

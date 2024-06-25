@@ -9,7 +9,7 @@ import android.telecom.PhoneAccountHandle
 import android.telecom.TelecomManager
 import androidx.annotation.RequiresApi
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -38,7 +38,7 @@ class AndroidCallConnectionService : ConnectionService() {
       isVideoCall = isVideoCall
     ).apply {
       setInitializing()
-      if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact && recipient.e164.isPresent) {
+      if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact && recipient.e164.isPresent) {
         setAddress(Uri.fromParts("tel", recipient.e164.get(), null), TelecomManager.PRESENTATION_ALLOWED)
         setCallerDisplayName(displayName, TelecomManager.PRESENTATION_ALLOWED)
       }
@@ -47,7 +47,7 @@ class AndroidCallConnectionService : ConnectionService() {
       setRinging()
     }
     AndroidTelecomUtil.connections[recipientId] = connection
-    ApplicationDependencies.getSignalCallManager().setTelecomApproved(callId, recipientId)
+    AppDependencies.signalCallManager.setTelecomApproved(callId, recipientId)
 
     return connection
   }
@@ -59,7 +59,7 @@ class AndroidCallConnectionService : ConnectionService() {
     val (recipientId: RecipientId, callId: Long) = request.getOurExtras()
 
     Log.i(TAG, "onCreateIncomingConnectionFailed($recipientId)")
-    ApplicationDependencies.getSignalCallManager().dropCall(callId)
+    AppDependencies.signalCallManager.dropCall(callId)
   }
 
   override fun onCreateOutgoingConnection(
@@ -80,7 +80,7 @@ class AndroidCallConnectionService : ConnectionService() {
       setDialing()
     }
     AndroidTelecomUtil.connections[recipientId] = connection
-    ApplicationDependencies.getSignalCallManager().setTelecomApproved(callId, recipientId)
+    AppDependencies.signalCallManager.setTelecomApproved(callId, recipientId)
 
     return connection
   }
@@ -92,7 +92,7 @@ class AndroidCallConnectionService : ConnectionService() {
     val (recipientId: RecipientId, callId: Long) = request.getOurExtras()
 
     Log.i(TAG, "onCreateOutgoingConnectionFailed($recipientId)")
-    ApplicationDependencies.getSignalCallManager().dropCall(callId)
+    AppDependencies.signalCallManager.dropCall(callId)
   }
 
   companion object {

@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -38,7 +38,7 @@ public class UnarchivedConversationListDataSourceTest {
   public MockitoRule rule = MockitoJUnit.rule();
 
   @Mock
-  private MockedStatic<ApplicationDependencies> applicationDependenciesMockedStatic;
+  private MockedStatic<AppDependencies> applicationDependenciesMockedStatic;
 
   @Mock
   private MockedStatic<SignalDatabase> signalDatabaseMockedStatic;
@@ -52,7 +52,7 @@ public class UnarchivedConversationListDataSourceTest {
     threadTable = mock(ThreadTable.class);
 
     when(SignalDatabase.threads()).thenReturn(threadTable);
-    when(ApplicationDependencies.getDatabaseObserver()).thenReturn(mock(DatabaseObserver.class));
+    when(AppDependencies.getDatabaseObserver()).thenReturn(mock(DatabaseObserver.class));
 
     testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(ConversationFilter.OFF, false);
   }

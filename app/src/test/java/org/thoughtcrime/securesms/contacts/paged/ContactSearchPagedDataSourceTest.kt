@@ -203,6 +203,7 @@ class ContactSearchPagedDataSourceTest {
 
     whenever(repository.getRecents(recents)).thenReturn(cursor)
     whenever(repository.queryNonGroupContacts(isNull(), any())).thenReturn(cursor)
+    whenever(repository.querySignalContacts(any())).thenReturn(cursor)
     whenever(cursor.count).thenReturn(10)
 
     return ContactSearchPagedDataSource(configuration, repository)

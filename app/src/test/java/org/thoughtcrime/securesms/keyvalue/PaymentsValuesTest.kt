@@ -2,38 +2,29 @@ package org.thoughtcrime.securesms.keyvalue
 
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
+import io.mockk.every
+import io.mockk.mockkObject
 import org.junit.Assert.assertEquals
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.MockedStatic
-import org.mockito.Mockito.`when`
-import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class PaymentsValuesTest {
 
-  @Rule
-  @JvmField
-  val mockitoRule: MockitoRule = MockitoJUnit.rule()
-
-  @Mock
-  private lateinit var featureFlags: MockedStatic<FeatureFlags>
-
   @Before
   fun setup() {
-    if (!ApplicationDependencies.isInitialized()) {
-      ApplicationDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
+    if (!AppDependencies.isInitialized) {
+      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
     }
+
+    mockkObject(RemoteConfig)
   }
 
   @Test
@@ -44,7 +35,7 @@ class PaymentsValuesTest {
       }
     )
 
-    assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -57,10 +48,10 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(false)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    every { RemoteConfig.payments } returns false
+    every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
-    assertEquals(PaymentsAvailability.DISABLED_REMOTELY, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.DISABLED_REMOTELY, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -73,10 +64,10 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(false)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    every { RemoteConfig.payments } returns false
+    every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
-    assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -89,10 +80,10 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(true)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    every { RemoteConfig.payments } returns true
+    every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
-    assertEquals(PaymentsAvailability.REGISTRATION_AVAILABLE, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.REGISTRATION_AVAILABLE, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -105,10 +96,10 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(true)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    every { RemoteConfig.payments } returns true
+    every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
-    assertEquals(PaymentsAvailability.WITHDRAW_AND_SEND, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.WITHDRAW_AND_SEND, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -121,10 +112,10 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(true)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("1")
+    every { RemoteConfig.payments } returns true
+    every { RemoteConfig.paymentsCountryBlocklist } returns "1"
 
-    assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
@@ -137,10 +128,10 @@ class PaymentsValuesTest {
       }
     )
 
-    `when`(FeatureFlags.payments()).thenReturn(true)
-    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("1")
+    every { RemoteConfig.payments } returns true
+    every { RemoteConfig.paymentsCountryBlocklist } returns "1"
 
-    assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.paymentsValues().paymentsAvailability)
+    assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.payments.paymentsAvailability)
   }
 
   /**
@@ -154,6 +145,6 @@ class PaymentsValuesTest {
         }
       )
     )
-    SignalStore.inject(store)
+    SignalStore.testInject(store)
   }
 }

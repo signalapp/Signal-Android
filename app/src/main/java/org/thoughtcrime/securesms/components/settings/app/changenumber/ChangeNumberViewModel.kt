@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.RegistrationSessionProcessor
 import org.thoughtcrime.securesms.registration.SmsRetrieverReceiver
@@ -40,7 +40,7 @@ class ChangeNumberViewModel(
   savedState: SavedStateHandle,
   password: String,
   verifyAccountRepository: VerifyAccountRepository,
-  private val smsRetrieverReceiver: SmsRetrieverReceiver = SmsRetrieverReceiver(ApplicationDependencies.getApplication())
+  private val smsRetrieverReceiver: SmsRetrieverReceiver = SmsRetrieverReceiver(AppDependencies.application)
 ) : BaseRegistrationViewModel(savedState, verifyAccountRepository, password) {
 
   var oldNumberState: NumberViewState = NumberViewState.Builder().build()
@@ -136,16 +136,16 @@ class ChangeNumberViewModel(
 
   private fun <T : VerifyResponseProcessor> attemptToUnlockChangeNumber(processor: T): Single<T> {
     return if (processor.hasResult() || processor.isServerSentError()) {
-      SignalStore.misc().unlockChangeNumber()
-      SignalStore.misc().clearPendingChangeNumberMetadata()
+      SignalStore.misc.unlockChangeNumber()
+      SignalStore.misc.clearPendingChangeNumberMetadata()
       Single.just(processor)
     } else {
       changeNumberRepository.whoAmI()
         .map { whoAmI ->
           if (Objects.equals(whoAmI.number, localNumber)) {
             Log.i(TAG, "Local and remote numbers match, we can unlock.")
-            SignalStore.misc().unlockChangeNumber()
-            SignalStore.misc().clearPendingChangeNumberMetadata()
+            SignalStore.misc.unlockChangeNumber()
+            SignalStore.misc.clearPendingChangeNumberMetadata()
           }
           processor
         }
@@ -202,9 +202,9 @@ class ChangeNumberViewModel(
   }
 
   fun changeNumberWithRecoveryPassword(): Single<Boolean> {
-    val recoveryPassword = SignalStore.svr().recoveryPassword
+    val recoveryPassword = SignalStore.svr.recoveryPassword
 
-    return if (SignalStore.svr().hasPin() && recoveryPassword != null) {
+    return if (SignalStore.svr.hasPin() && recoveryPassword != null) {
       changeNumberRepository.changeNumber(recoveryPassword = recoveryPassword, newE164 = number.e164Number)
         .map { r -> VerifyResponseWithoutKbs(r) }
         .flatMap { p ->
@@ -222,9 +222,9 @@ class ChangeNumberViewModel(
   class Factory(owner: SavedStateRegistryOwner) : AbstractSavedStateViewModelFactory(owner, null) {
 
     override fun <T : ViewModel> create(key: String, modelClass: Class<T>, handle: SavedStateHandle): T {
-      val context: Application = ApplicationDependencies.getApplication()
-      val localNumber: String = SignalStore.account().e164!!
-      val password: String = SignalStore.account().servicePassword!!
+      val context: Application = AppDependencies.application
+      val localNumber: String = SignalStore.account.e164!!
+      val password: String = SignalStore.account.servicePassword!!
 
       val viewModel = ChangeNumberViewModel(
         localNumber = localNumber,

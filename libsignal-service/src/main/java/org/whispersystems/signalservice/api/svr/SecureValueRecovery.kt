@@ -11,6 +11,12 @@ import java.io.IOException
 import kotlin.jvm.Throws
 
 interface SecureValueRecovery {
+
+  /**
+   * Which version of SVR this is running against.
+   */
+  val svrVersion: SvrVersion
+
   /**
    * Begins a PIN change.
    *
@@ -38,12 +44,14 @@ interface SecureValueRecovery {
    * Currently, this will only happen during a reglock challenge. When in this state, the user is not registered, and will instead
    * be provided credentials in a service response to give the user an opportunity to restore SVR data and generate the reglock proof.
    *
-   * If the user is already registered, use [restoreDataPostRegistration]
+   * If the user is already registered, use [restoreDataPostRegistration].
+   *
+   * @param shareSet Only used for SVR3, where the value is required. For SVR2, this should be null.
    */
-  fun restoreDataPreRegistration(authorization: AuthCredentials, userPin: String): RestoreResponse
+  fun restoreDataPreRegistration(authorization: AuthCredentials, shareSet: ByteArray?, userPin: String): RestoreResponse
 
   /**
-   * Restores data from SVR. Only intended to be called if the user is already registered. If the user is not yet registered, use [restoreDataPreRegistration]
+   * Restores data from SVR. Only intended to be called if the user is already registered. If the user is not yet registered, use [restoreDataPreRegistration].
    */
   fun restoreDataPostRegistration(userPin: String): RestoreResponse
 
@@ -66,7 +74,7 @@ interface SecureValueRecovery {
   /** Response for setting a PIN. */
   sealed class BackupResponse {
     /** Operation completed successfully. */
-    data class Success(val masterKey: MasterKey, val authorization: AuthCredentials) : BackupResponse()
+    data class Success(val masterKey: MasterKey, val authorization: AuthCredentials, val svrVersion: SvrVersion) : BackupResponse()
 
     /** The operation failed because the server was unable to expose the backup data we created. There is no further action that can be taken besides logging the error and treating it as a success. */
     object ExposeFailure : BackupResponse()
@@ -122,4 +130,9 @@ interface SecureValueRecovery {
 
   /** Exception indicating that we received a response from the service that our request was invalid. */
   class InvalidRequestException(message: String) : Exception(message)
+
+  enum class SvrVersion {
+    SVR2,
+    SVR3
+  }
 }

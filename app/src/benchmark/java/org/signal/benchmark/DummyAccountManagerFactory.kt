@@ -2,9 +2,9 @@ package org.signal.benchmark
 
 import android.content.Context
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.push.AccountManagerFactory
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.account.PreKeyUpload
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -16,15 +16,15 @@ import java.util.Optional
 class DummyAccountManagerFactory : AccountManagerFactory() {
   override fun createAuthenticated(context: Context, aci: ACI, pni: PNI, number: String, deviceId: Int, password: String): SignalServiceAccountManager {
     return DummyAccountManager(
-      ApplicationDependencies.getSignalServiceNetworkAccess().getConfiguration(number),
+      AppDependencies.signalServiceNetworkAccess.getConfiguration(number),
       aci,
       pni,
       number,
       deviceId,
       password,
       BuildConfig.SIGNAL_AGENT,
-      FeatureFlags.okHttpAutomaticRetry(),
-      FeatureFlags.groupLimits().hardLimit
+      RemoteConfig.okHttpAutomaticRetry(),
+      RemoteConfig.groupLimits().hardLimit
     )
   }
 

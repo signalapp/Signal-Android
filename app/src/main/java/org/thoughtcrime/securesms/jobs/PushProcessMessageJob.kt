@@ -4,7 +4,7 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint
@@ -156,7 +156,7 @@ class PushProcessMessageJob private constructor(
       if (!isGroup && empty1to1QueueCache.contains(queueName)) {
         return true
       }
-      val queueEmpty = ApplicationDependencies.getJobManager().isQueueEmpty(queueName)
+      val queueEmpty = AppDependencies.jobManager.isQueueEmpty(queueName)
       if (!isGroup && queueEmpty) {
         empty1to1QueueCache.add(queueName)
       }

@@ -44,8 +44,8 @@ class MultiselectForwardViewModel(
   }
 
   fun send(additionalMessage: String, selectedContacts: Set<ContactSearchKey>) {
-    if (SignalStore.tooltips().showMultiForwardDialog()) {
-      SignalStore.tooltips().markMultiForwardDialogSeen()
+    if (SignalStore.tooltips.showMultiForwardDialog()) {
+      SignalStore.tooltips.markMultiForwardDialogSeen()
       store.update { it.copy(stage = MultiselectForwardState.Stage.FirstConfirmation) }
     } else {
       store.update { it.copy(stage = MultiselectForwardState.Stage.LoadingIdentities) }

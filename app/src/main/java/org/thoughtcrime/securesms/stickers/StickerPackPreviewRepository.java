@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerTable;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.signal.core.util.Hex;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
@@ -33,7 +33,7 @@ public final class StickerPackPreviewRepository {
   private final SignalServiceMessageReceiver receiver;
 
   public StickerPackPreviewRepository(@NonNull Context context) {
-    this.receiver        = ApplicationDependencies.getSignalServiceMessageReceiver();
+    this.receiver        = AppDependencies.getSignalServiceMessageReceiver();
     this.stickerDatabase = SignalDatabase.stickers();
   }
 

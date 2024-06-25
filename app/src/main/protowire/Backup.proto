@@ -9,14 +9,26 @@ message BackupInfo {
   uint64 backupTimeMs = 2;
 }
 
+// Frames must follow in the following ordering rules:
+//
+// 1. There is exactly one AccountData and it is the first frame.
+// 2. A frame referenced by ID must come before the referencing frame.
+//    e.g. a Recipient must come before any Chat referencing it.
+// 3. All ChatItems must appear in global Chat rendering order.
+//    (The order in which they were received by the client.)
+//
+// Recipients, Chats, StickerPacks, and AdHocCalls can be in any order.
+// (But must respect rule 2.)
+// For example, Chats may all be together at the beginning,
+// or may each immediately precede its first ChatItem.
 message Frame {
   oneof item {
     AccountData account = 1;
     Recipient recipient = 2;
     Chat chat = 3;
     ChatItem chatItem = 4;
-    Call call = 5;
-    StickerPack stickerPack = 6;
+    StickerPack stickerPack = 5;
+    AdHocCall adHocCall = 6;
   }
 }
 
@@ -62,6 +74,13 @@ message AccountData {
     bool hasSeenGroupStoryEducationSheet = 15;
     bool hasCompletedUsernameOnboarding = 16;
     PhoneNumberSharingMode phoneNumberSharingMode = 17;
+    ChatStyle defaultChatStyle = 18;
+  }
+
+  message SubscriberData {
+    bytes subscriberId = 1;
+    string currencyCode = 2;
+    bool manuallyCancelled = 3;
   }
 
   bytes profileKey = 1;
@@ -70,10 +89,9 @@ message AccountData {
   string givenName = 4;
   string familyName = 5;
   string avatarUrlPath = 6;
-  bytes subscriberId = 7;
-  string subscriberCurrencyCode = 8;
-  bool subscriptionManuallyCancelled = 9;
-  AccountSettings accountSettings = 10;
+  SubscriberData donationSubscriberData = 7;
+  SubscriberData backupsSubscriberData = 8;
+  AccountSettings accountSettings = 9;
 }
 
 message Recipient {
@@ -81,17 +99,23 @@ message Recipient {
   oneof destination {
     Contact contact = 2;
     Group group = 3;
-    DistributionList distributionList = 4;
+    DistributionListItem distributionList = 4;
     Self self = 5;
     ReleaseNotes releaseNotes = 6;
+    CallLink callLink = 7;
   }
 }
 
 message Contact {
-  enum Registered {
-    UNKNOWN = 0;
-    REGISTERED = 1;
-    NOT_REGISTERED = 2;
+  message Registered { }
+  message NotRegistered {
+    uint64 unregisteredTimestamp = 1;
+  }
+
+  enum Visibility {
+    VISIBLE = 0;
+    HIDDEN = 1;
+    HIDDEN_MESSAGE_REQUEST = 2;
   }
 
   optional bytes aci = 1; // should be 16 bytes
@@ -99,9 +123,13 @@ message Contact {
   optional string username = 3;
   optional uint64 e164 = 4;
   bool blocked = 5;
-  bool hidden = 6;
-  Registered registered = 7;
-  uint64 unregisteredTimestamp = 8;
+  Visibility visibility = 6;
+
+  oneof registration {
+    Registered registered = 7;
+    NotRegistered notRegistered = 8;
+  }
+
   optional bytes profileKey = 9;
   bool profileSharing = 10;
   optional string profileGivenName = 11;
@@ -120,7 +148,83 @@ message Group {
   bool whitelisted = 2;
   bool hideStory = 3;
   StorySendMode storySendMode = 4;
-  string name = 5;
+  GroupSnapshot snapshot = 5;
+
+  // These are simply plaintext copies of the groups proto from Groups.proto.
+  // They should be kept completely in-sync with Groups.proto.
+  // These exist to allow us to have the latest snapshot of a group during restoration without having to hit the network.
+  // We would use Groups.proto if we could, but we want a plaintext version to improve export readability.
+  // For documentation, defer to Groups.proto. The only name change is Group -> GroupSnapshot to avoid the naming conflict.
+  message GroupSnapshot {
+    bytes publicKey = 1;
+    GroupAttributeBlob title = 2;
+    GroupAttributeBlob description = 11;
+    string avatarUrl = 3;
+    GroupAttributeBlob disappearingMessagesTimer = 4;
+    AccessControl accessControl = 5;
+    uint32 version = 6;
+    repeated Member members = 7;
+    repeated MemberPendingProfileKey membersPendingProfileKey = 8;
+    repeated MemberPendingAdminApproval membersPendingAdminApproval = 9;
+    bytes inviteLinkPassword = 10;
+    bool announcements_only = 12;
+    repeated MemberBanned members_banned = 13;
+  }
+
+  message GroupAttributeBlob {
+    oneof content {
+      string title = 1;
+      bytes  avatar = 2;
+      uint32 disappearingMessagesDuration = 3;
+      string descriptionText = 4;
+    }
+  }
+
+  message Member {
+    enum Role {
+      UNKNOWN = 0;
+      DEFAULT = 1;
+      ADMINISTRATOR = 2;
+    }
+
+    bytes userId = 1;
+    Role role = 2;
+    bytes profileKey = 3;
+    reserved /*presentation*/ 4; // The field is deprecated in the context of static group state
+    uint32 joinedAtVersion = 5;
+  }
+
+  message MemberPendingProfileKey {
+    Member member = 1;
+    bytes addedByUserId = 2;
+    uint64 timestamp = 3;
+  }
+
+  message MemberPendingAdminApproval {
+    bytes userId = 1;
+    bytes profileKey = 2;
+    reserved /*presentation*/ 3; // The field is deprecated in the context of static group state
+    uint64 timestamp = 4;
+  }
+
+  message MemberBanned {
+    bytes userId = 1;
+    uint64 timestamp = 2;
+  }
+
+  message AccessControl {
+    enum AccessRequired {
+      UNKNOWN = 0;
+      ANY = 1;
+      MEMBER = 2;
+      ADMINISTRATOR = 3;
+      UNSATISFIABLE = 4;
+    }
+
+    AccessRequired attributes = 1;
+    AccessRequired members = 2;
+    AccessRequired addFromInviteLink = 3;
+  }
 }
 
 message Self {}
@@ -136,7 +240,51 @@ message Chat {
   uint64 muteUntilMs = 6;
   bool markedUnread = 7;
   bool dontNotifyForMentionsIfMuted = 8;
-  FilePointer wallpaper = 9;
+  ChatStyle style = 9;
+}
+
+/**
+ * Call Links have some associated data including a call, but unlike other recipients
+ * are not tied to threads because they do not have messages associated with them.
+ *
+ * note:
+ * - room id can be derived from the root key
+ * - the presence of an admin key means this user is a call admin
+ */
+message CallLink {
+  enum Restrictions {
+    UNKNOWN = 0;
+    NONE = 1;
+    ADMIN_APPROVAL = 2;
+  }
+
+  bytes rootKey = 1;
+  optional bytes adminKey = 2; // Only present if the user is an admin
+  string name = 3;
+  Restrictions restrictions = 4;
+  uint64 expirationMs = 5;
+}
+
+message AdHocCall {
+  enum State {
+    UNKNOWN_STATE = 0;
+    GENERIC = 1;
+  }
+
+  uint64 callId = 1;
+  // Refers to a `CallLink` recipient.
+  uint64 recipientId = 2;
+  State state = 3;
+  uint64 callTimestamp = 4;
+}
+
+message DistributionListItem {
+  bytes distributionId = 1; // distribution list ids are uuids
+
+  oneof item {
+    uint64 deletionTimestamp = 2;
+    DistributionList distributionList = 3;
+  }
 }
 
 message DistributionList {
@@ -148,46 +296,9 @@ message DistributionList {
   }
 
   string name = 1;
-  bytes distributionId = 2; // distribution list ids are uuids
-  bool allowReplies = 3;
-  uint64 deletionTimestamp = 4;
-  PrivacyMode privacyMode = 5;
-  repeated uint64 memberRecipientIds = 6; // generated recipient id
-}
-
-message Identity {
-  bytes serviceId = 1;
-  bytes identityKey = 2;
-  uint64 timestamp = 3;
-  bool firstUse = 4;
-  bool verified = 5;
-  bool nonblockingApproval = 6;
-}
-
-message Call {
-  enum Type {
-    UNKNOWN_TYPE = 0;
-    AUDIO_CALL = 1;
-    VIDEO_CALL = 2;
-    GROUP_CALL = 3;
-    AD_HOC_CALL = 4;
-  }
-
-  enum State {
-    UNKNOWN_EVENT = 0;
-    COMPLETED = 1; // A call that was successfully completed or was accepted and in-progress at the time of the backup.
-    DECLINED_BY_USER = 2; // An incoming call that was manually declined by the user.
-    DECLINED_BY_NOTIFICATION_PROFILE = 3; // An incoming call that was automatically declined by an active notification profile.
-    MISSED = 4; // An incoming call that either expired, was cancelled by the sender, or was auto-rejected due to already being in a different call.
-  }
-
-  uint64 callId = 1;
-  uint64 conversationRecipientId = 2;
-  Type type = 3;
-  bool outgoing = 4;
-  uint64 timestamp = 5;
-  optional uint64 ringerRecipientId = 6;
-  State state = 7;
+  bool allowReplies = 2;
+  PrivacyMode privacyMode = 3;
+  repeated uint64 memberRecipientIds = 4; // generated recipient id
 }
 
 message ChatItem {
@@ -208,8 +319,8 @@ message ChatItem {
   uint64 chatId = 1;   // conversation id
   uint64 authorId = 2; // recipient id
   uint64 dateSent = 3;
-  optional uint64 expireStartDate = 4; // timestamp of when expiration timer started ticking down
-  optional uint64 expiresInMs = 5; // how long timer of message is (ms)
+  uint64 expireStartDate = 4; // timestamp of when expiration timer started ticking down
+  uint64 expiresInMs = 5; // how long timer of message is (ms)
   repeated ChatItem revisions = 6; // ordered from oldest to newest
   bool sms = 7;
 
@@ -225,6 +336,8 @@ message ChatItem {
     StickerMessage stickerMessage = 13;
     RemoteDeletedMessage remoteDeletedMessage = 14;
     ChatUpdateMessage updateMessage = 15;
+    PaymentNotification paymentNotification = 16;
+    GiftBadge giftBadge = 17;
   }
 }
 
@@ -265,6 +378,66 @@ message StandardMessage {
 message ContactMessage {
   repeated ContactAttachment contact = 1;
   repeated Reaction reactions = 2;
+}
+
+message PaymentNotification {
+  message TransactionDetails {
+    message MobileCoinTxoIdentification { // Used to map to payments on the ledger
+      repeated bytes publicKey = 1; // for received transactions
+      repeated bytes keyImages = 2; // for sent transactions
+    }
+
+    message FailedTransaction { // Failed payments can't be synced from the ledger
+      enum FailureReason {
+        GENERIC = 0;
+        NETWORK = 1;
+        INSUFFICIENT_FUNDS = 2;
+      }
+      FailureReason reason = 1;
+    }
+
+    message Transaction {
+      enum Status {
+        INITIAL = 0;
+        SUBMITTED = 1;
+        SUCCESSFUL = 2;
+      }
+      Status status = 1;
+
+      // This identification is used to map the payment table to the ledger
+      // and is likely required otherwise we may have issues reconciling with
+      // the ledger
+      MobileCoinTxoIdentification mobileCoinIdentification = 2;
+      optional uint64 timestamp = 3;
+      optional uint64 blockIndex = 4;
+      optional uint64 blockTimestamp = 5;
+      optional bytes transaction = 6; // mobile coin blobs
+      optional bytes receipt = 7; // mobile coin blobs
+    }
+
+    oneof payment {
+      Transaction transaction = 1;
+      FailedTransaction failedTransaction = 2;
+    }
+  }
+
+  optional string amountMob = 1; // stored as a decimal string, e.g. 1.00001
+  optional string feeMob = 2; // stored as a decimal string, e.g. 1.00001
+  optional string note = 3;
+  TransactionDetails transactionDetails = 4;
+
+}
+
+message GiftBadge {
+  enum State {
+    UNOPENED = 0;
+    OPENED = 1;
+    REDEEMED = 2;
+    FAILED = 3;
+  }
+
+  bytes receiptCredentialPresentation = 1;
+  State state = 2;
 }
 
 message ContactAttachment {
@@ -328,14 +501,8 @@ message ContactAttachment {
   repeated Phone number = 3;
   repeated Email email = 4;
   repeated PostalAddress address = 5;
-  optional string avatarUrlPath = 6;
+  optional FilePointer avatar = 6;
   optional string organization = 7;
-}
-
-message DocumentMessage {
-  Text text = 1;
-  FilePointer document = 2;
-  repeated Reaction reactions = 3;
 }
 
 message StickerMessage {
@@ -381,13 +548,26 @@ message MessageAttachment {
 
   FilePointer pointer = 1;
   Flag flag = 2;
+  bool wasDownloaded = 3;
+  // Cross-client identifier for this attachment among all attachments on the
+  // owning message. See: SignalService.AttachmentPointer.clientUuid.
+  optional bytes clientUuid = 4;
 }
 
 message FilePointer {
   // References attachments in the backup (media) storage tier.
   message BackupLocator {
     string mediaName = 1;
-    uint32 cdnNumber = 2;
+    // If present, the cdn number of the succesful upload.
+    // If empty/0, may still have been uploaded, and clients
+    // can discover the cdn number via the list endpoint.
+    optional uint32 cdnNumber = 2;
+    bytes key = 3;
+    bytes digest = 4;
+    uint32 size = 5;
+    // Fallback in case backup tier upload failed.
+    optional string transitCdnKey = 6;
+    optional uint32 transitCdnNumber = 7;
   }
 
   // References attachments in the transit storage tier.
@@ -398,37 +578,33 @@ message FilePointer {
     string cdnKey = 1;
     uint32 cdnNumber = 2;
     uint64 uploadTimestamp = 3;
+    bytes key = 4;
+    bytes digest = 5;
+    uint32 size = 6;
   }
 
-  // An attachment that was copied from the transit storage tier
-  // to the backup (media) storage tier up without being downloaded.
-  // Its MediaName should be generated as “{sender_aci}_{cdn_attachment_key}”,
-  // but should eventually transition to a BackupLocator with mediaName
-  // being the content hash once it is downloaded.
-  message UndownloadedBackupLocator {
-    bytes senderAci = 1;
-    string cdnKey = 2;
-    uint32 cdnNumber = 3;
+  // References attachments that are invalid in such a way where download
+  // cannot be attempted. Could range from missing digests to missing
+  // CDN keys or anything else that makes download attempts impossible.
+  // This serves as a 'tombstone' so that the UX can show that an attachment
+  // did exist, but for whatever reason it's not retrievable.
+  message InvalidAttachmentLocator {
   }
 
   oneof locator {
     BackupLocator backupLocator = 1;
     AttachmentLocator attachmentLocator= 2;
-    UndownloadedBackupLocator undownloadedBackupLocator = 3;
+    InvalidAttachmentLocator invalidAttachmentLocator = 3;
   }
 
-  optional bytes key = 5;
-  optional string contentType = 6;
-  // Size of fullsize decrypted media blob in bytes.
-  // Can be ignored if unset/unavailable.
-  optional uint32 size = 7;
-  optional bytes incrementalMac = 8;
-  optional uint32 incrementalMacChunkSize = 9;
-  optional string fileName = 10;
-  optional uint32 width = 11;
-  optional uint32 height = 12;
-  optional string caption = 13;
-  optional string blurHash = 14;
+  optional string contentType = 4;
+  optional bytes incrementalMac = 5;
+  optional uint32 incrementalMacChunkSize = 6;
+  optional string fileName = 7;
+  optional uint32 width = 8;
+  optional uint32 height = 9;
+  optional string caption = 10;
+  optional string blurHash = 11;
 }
 
 message Quote {
@@ -487,38 +663,73 @@ message ChatUpdateMessage {
     ProfileChangeChatUpdate profileChange = 4;
     ThreadMergeChatUpdate threadMerge = 5;
     SessionSwitchoverChatUpdate sessionSwitchover = 6;
-    CallChatUpdate callingMessage = 7;
+    IndividualCall individualCall = 7;
+    GroupCall groupCall = 8;
+    LearnedProfileChatUpdate learnedProfileChange = 9;
   }
 }
 
-message CallChatUpdate{
-  oneof call {
-    uint64 callId = 1; // maps to id of Call from call log
-    IndividualCallChatUpdate callMessage = 2;
-    GroupCallChatUpdate groupCall = 3;
-  }
-}
-
-message IndividualCallChatUpdate {
+message IndividualCall {
   enum Type {
-    UNKNOWN = 0;
-    INCOMING_AUDIO_CALL = 1;
-    INCOMING_VIDEO_CALL = 2;
-    OUTGOING_AUDIO_CALL = 3;
-    OUTGOING_VIDEO_CALL = 4;
-    MISSED_INCOMING_AUDIO_CALL = 5;
-    MISSED_INCOMING_VIDEO_CALL = 6;
-    UNANSWERED_OUTGOING_AUDIO_CALL = 7;
-    UNANSWERED_OUTGOING_VIDEO_CALL = 8;
+    UNKNOWN_TYPE = 0;
+    AUDIO_CALL = 1;
+    VIDEO_CALL = 2;
   }
 
-  Type type = 1;
+  enum Direction {
+    UNKNOWN_DIRECTION = 0;
+    INCOMING = 1;
+    OUTGOING = 2;
+  }
+
+  enum State {
+    UNKNOWN_STATE = 0;
+    ACCEPTED = 1;
+    NOT_ACCEPTED = 2;
+    // An incoming call that is no longer ongoing, which we neither accepted
+    // not actively declined. For example, it expired, was canceled by the
+    // sender, or was rejected due to being in another call.
+    MISSED = 3;
+    // We auto-declined an incoming call due to a notification profile.
+    MISSED_NOTIFICATION_PROFILE = 4;
+  }
+
+  optional uint64 callId = 1;
+  Type type = 2;
+  Direction direction = 3;
+  State state = 4;
+  uint64 startedCallTimestamp = 5;
 }
 
-message GroupCallChatUpdate {
-  optional bytes startedCallAci = 1;
-  uint64 startedCallTimestamp = 2;
-  repeated bytes inCallAcis = 3;
+message GroupCall {
+  enum State {
+    UNKNOWN_STATE = 0;
+    // A group call was started without ringing.
+    GENERIC = 1;
+    // We joined a group call that was started without ringing.
+    JOINED = 2;
+    // An incoming group call is actively ringing.
+    RINGING = 3;
+    // We accepted an incoming group ring.
+    ACCEPTED = 4;
+    // We declined an incoming group ring.
+    DECLINED = 5;
+    // We missed an incoming group ring, for example because it expired.
+    MISSED = 6;
+    // We auto-declined an incoming group ring due to a notification profile.
+    MISSED_NOTIFICATION_PROFILE = 7;
+    // An outgoing ring was started. We don't track any state for outgoing rings
+    // beyond that they started.
+    OUTGOING_RING = 8;
+  }
+
+  optional uint64 callId = 1;
+  State state = 2;
+  optional uint64 ringerRecipientId = 3;
+  optional uint64 startedCallRecipientId = 4;
+  uint64 startedCallTimestamp = 5;
+  // The time the call ended. 0 indicates an unknown time.
+  uint64 endedCallTimestamp = 6;
 }
 
 message SimpleChatUpdate {
@@ -535,6 +746,7 @@ message SimpleChatUpdate {
     BAD_DECRYPT = 9;
     PAYMENTS_ACTIVATED = 10;
     PAYMENT_ACTIVATION_REQUEST = 11;
+    UNSUPPORTED_PROTOCOL_MESSAGE = 12;
   }
 
   Type type = 1;
@@ -549,6 +761,13 @@ message ExpirationTimerChatUpdate {
 message ProfileChangeChatUpdate {
   string previousName = 1;
   string newName = 2;
+}
+
+message LearnedProfileChatUpdate {
+  oneof previousName {
+    uint64 e164 = 1;
+    string username = 2;
+  }
 }
 
 message ThreadMergeChatUpdate {
@@ -809,12 +1028,79 @@ message GroupExpirationTimerUpdate {
 message StickerPack {
   bytes packId = 1;
   bytes packKey = 2;
-  string title = 3;
-  string author = 4;
-  repeated StickerPackSticker stickers = 5; // First one should be cover sticker.
 }
 
-message StickerPackSticker {
-  string emoji = 1;
-  uint32 id = 2;
+message ChatStyle {
+  message Gradient {
+    uint32 angle = 1; // degrees
+    repeated uint32 colors = 2;
+    repeated float positions = 3; // percent from 0 to 1
+  }
+
+  message AutomaticBubbleColor {
+  }
+
+  enum WallpaperPreset {
+    UNKNOWN_WALLPAPER_PRESET = 0;
+    SOLID_BLUSH = 1;
+    SOLID_COPPER = 2;
+    SOLID_DUST = 3;
+    SOLID_CELADON = 4;
+    SOLID_RAINFOREST = 5;
+    SOLID_PACIFIC = 6;
+    SOLID_FROST = 7;
+    SOLID_NAVY = 8;
+    SOLID_LILAC = 9;
+    SOLID_PINK = 10;
+    SOLID_EGGPLANT = 11;
+    SOLID_SILVER = 12;
+    GRADIENT_SUNSET = 13;
+    GRADIENT_NOIR = 14;
+    GRADIENT_HEATMAP = 15;
+    GRADIENT_AQUA = 16;
+    GRADIENT_IRIDESCENT = 17;
+    GRADIENT_MONSTERA = 18;
+    GRADIENT_BLISS = 19;
+    GRADIENT_SKY = 20;
+    GRADIENT_PEACH = 21;
+  }
+
+  enum BubbleColorPreset {
+    UNKNOWN_BUBBLE_COLOR_PRESET = 0;
+    SOLID_ULTRAMARINE = 1;
+    SOLID_CRIMSON = 2;
+    SOLID_VERMILION = 3;
+    SOLID_BURLAP = 4;
+    SOLID_FOREST = 5;
+    SOLID_WINTERGREEN = 6;
+    SOLID_TEAL = 7;
+    SOLID_BLUE = 8;
+    SOLID_INDIGO = 9;
+    SOLID_VIOLET = 10;
+    SOLID_PLUM = 11;
+    SOLID_TAUPE = 12;
+    SOLID_STEEL = 13;
+    GRADIENT_EMBER = 14;
+    GRADIENT_MIDNIGHT = 15;
+    GRADIENT_INFRARED = 16;
+    GRADIENT_LAGOON = 17;
+    GRADIENT_FLUORESCENT = 18;
+    GRADIENT_BASIL = 19;
+    GRADIENT_SUBLIME = 20;
+    GRADIENT_SEA = 21;
+    GRADIENT_TANGERINE = 22;
+  }
+
+  oneof wallpaper {
+    WallpaperPreset wallpaperPreset = 1;
+    FilePointer wallpaperPhoto = 2;
+  }
+
+  oneof bubbleColor {
+    BubbleColorPreset bubbleColorPreset = 3;
+    Gradient bubbleGradient = 4;
+    uint32 bubbleSolidColor = 5;
+    // Bubble setting is automatically determined based on the wallpaper setting.
+    AutomaticBubbleColor autoBubbleColor = 6;
+  }
 }

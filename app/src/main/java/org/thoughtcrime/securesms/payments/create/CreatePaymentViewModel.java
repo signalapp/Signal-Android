@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.money.FiatMoney;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.Balance;
 import org.thoughtcrime.securesms.payments.CreatePaymentDetails;
@@ -51,11 +51,11 @@ public class CreatePaymentViewModel extends ViewModel {
 
   private CreatePaymentViewModel(@NonNull PayeeParcelable payee, @Nullable CharSequence note) {
     this.payee            = payee;
-    this.spendableBalance = Transformations.map(SignalStore.paymentsValues().liveMobileCoinBalance(), Balance::getTransferableAmount);
+    this.spendableBalance = Transformations.map(SignalStore.payments().liveMobileCoinBalance(), Balance::getTransferableAmount);
     this.note             = new MutableLiveData<>(note);
     this.inputState       = new Store<>(new InputState());
     this.isValidAmount    = LiveDataUtil.combineLatest(spendableBalance, inputState.getStateLiveData(), (b, s) -> validateAmount(b.requireMobileCoin(), s.getMoney().requireMobileCoin()));
-    this.enclaveFailure   = LiveDataUtil.mapDistinct(SignalStore.paymentsValues().enclaveFailure(), isFailure -> isFailure);
+    this.enclaveFailure   = LiveDataUtil.mapDistinct(SignalStore.payments().enclaveFailure(), isFailure -> isFailure);
 
     if (payee.getPayee().hasRecipientId()) {
       isPaymentsSupportedByPayee = LiveDataUtil.mapAsync(new DefaultValueLiveData<>(payee.getPayee().requireRecipientId()), r -> {
@@ -71,18 +71,18 @@ public class CreatePaymentViewModel extends ViewModel {
       isPaymentsSupportedByPayee = new DefaultValueLiveData<>(true);
     }
 
-    LiveData<Optional<CurrencyExchange.ExchangeRate>> liveExchangeRate = LiveDataUtil.mapAsync(SignalStore.paymentsValues().liveCurrentCurrency(),
+    LiveData<Optional<CurrencyExchange.ExchangeRate>> liveExchangeRate = LiveDataUtil.mapAsync(SignalStore.payments().liveCurrentCurrency(),
                                                                                                currency -> {
                                                                                                  try {
-                                                                                                   return Optional.ofNullable(ApplicationDependencies.getPayments()
-                                                                                                                                                       .getCurrencyExchange(true)
-                                                                                                                                                       .getExchangeRate(currency));
+                                                                                                   return Optional.ofNullable(AppDependencies.getPayments()
+                                                                                                                                             .getCurrencyExchange(true)
+                                                                                                                                             .getExchangeRate(currency));
                                                                                                  } catch (IOException e1) {
                                                                                                    Log.w(TAG, "Unable to get fresh exchange data, falling back to cached", e1);
                                                                                                    try {
-                                                                                                     return Optional.ofNullable(ApplicationDependencies.getPayments()
-                                                                                                                                                         .getCurrencyExchange(false)
-                                                                                                                                                         .getExchangeRate(currency));
+                                                                                                     return Optional.ofNullable(AppDependencies.getPayments()
+                                                                                                                                               .getCurrencyExchange(false)
+                                                                                                                                               .getExchangeRate(currency));
                                                                                                    } catch (IOException e2) {
                                                                                                      Log.w(TAG, "Unable to get any exchange data", e2);
                                                                                                      return Optional.empty();
@@ -90,7 +90,7 @@ public class CreatePaymentViewModel extends ViewModel {
                                                                                                  }
                                                                                                });
 
-    inputState.update(liveExchangeRate, (rate, state) -> updateAmount(ApplicationDependencies.getApplication(), state.updateExchangeRate(rate), AmountKeyboardGlyph.NONE));
+    inputState.update(liveExchangeRate, (rate, state) -> updateAmount(AppDependencies.getApplication(), state.updateExchangeRate(rate), AmountKeyboardGlyph.NONE));
   }
 
   @NonNull LiveData<Boolean> getEnclaveFailure() {
@@ -145,7 +145,7 @@ public class CreatePaymentViewModel extends ViewModel {
   private @NonNull InputState updateAmount(@NonNull Context context, @NonNull InputState inputState, @NonNull AmountKeyboardGlyph glyph) {
     switch (inputState.getInputTarget()) {
       case FIAT_MONEY:
-        return updateFiatAmount(context, inputState, glyph, SignalStore.paymentsValues().currentCurrency());
+        return updateFiatAmount(context, inputState, glyph, SignalStore.payments().currentCurrency());
       case MONEY:
         return updateMoneyAmount(context, inputState, glyph);
       default:

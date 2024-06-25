@@ -12,7 +12,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.MediaTable;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.CalendarDateOnly;
 
 import java.text.SimpleDateFormat;
@@ -59,7 +59,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
 
   @Override
   protected void onAbandon() {
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
+    AppDependencies.getDatabaseObserver().unregisterObserver(observer);
   }
 
   @Override
@@ -71,7 +71,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
 
     PopulatedGroupedThreadMedia mediaGrouping = new PopulatedGroupedThreadMedia(groupingMethod);
 
-    ApplicationDependencies.getDatabaseObserver().registerAttachmentObserver(observer);
+    AppDependencies.getDatabaseObserver().registerAttachmentObserver(observer);
 
     try (Cursor cursor = ThreadMediaLoader.createThreadMediaCursor(context, threadId, mediaType, sorting)) {
       while (cursor != null && cursor.moveToNext()) {

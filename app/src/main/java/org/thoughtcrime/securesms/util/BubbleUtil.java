@@ -16,7 +16,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.notifications.v2.NotificationFactory;
@@ -120,7 +120,7 @@ public final class BubbleUtil {
                                                                    .orElse(null);
 
           if (activeThreadNotification != null && activeThreadNotification.deleteIntent != null) {
-            ApplicationDependencies.getMessageNotifier().forceBubbleNotification(context, conversationId);
+            AppDependencies.getMessageNotifier().forceBubbleNotification(context, conversationId);
           } else {
             Recipient recipient = Recipient.resolved(recipientId);
             NotificationFactory.notifyToBubbleConversation(context, recipient, threadId);

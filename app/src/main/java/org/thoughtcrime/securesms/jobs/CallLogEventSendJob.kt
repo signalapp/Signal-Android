@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.jobs
 import androidx.annotation.WorkerThread
 import okio.ByteString.Companion.toByteString
 import org.thoughtcrime.securesms.database.CallTable
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.CallLogEventSendJobData
@@ -66,6 +66,25 @@ class CallLogEventSendJob private constructor(
         type = SyncMessage.CallLogEvent.Type.MARKED_AS_READ
       )
     )
+
+    @JvmStatic
+    @WorkerThread
+    fun forMarkedAsReadInConversation(
+      call: CallTable.Call
+    ) = CallLogEventSendJob(
+      Parameters.Builder()
+        .setQueue("CallLogEventSendJob")
+        .setLifespan(TimeUnit.DAYS.toMillis(1))
+        .setMaxAttempts(Parameters.UNLIMITED)
+        .addConstraint(NetworkConstraint.KEY)
+        .build(),
+      SyncMessage.CallLogEvent(
+        timestamp = call.timestamp,
+        callId = call.callId,
+        conversationId = Recipient.resolved(call.peer).requireCallConversationId().toByteString(),
+        type = SyncMessage.CallLogEvent.Type.MARKED_AS_READ_IN_CONVERSATION
+      )
+    )
   }
 
   override fun serialize(): ByteArray = CallLogEventSendJobData.Builder()
@@ -78,7 +97,7 @@ class CallLogEventSendJob private constructor(
   override fun onFailure() = Unit
 
   override fun onRun() {
-    ApplicationDependencies.getSignalServiceMessageSender()
+    AppDependencies.signalServiceMessageSender
       .sendSyncMessage(
         SignalServiceSyncMessage.forCallLogEvent(callLogEvent),
         Optional.empty()

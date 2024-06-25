@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms.util.views;
 
+import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.AnyThread;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
@@ -15,8 +18,9 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * Helper class to show a fullscreen blocking indeterminate progress dialog.
+ * @deprecated  Replaced by {@link org.thoughtcrime.securesms.components.SignalProgressDialog}
  */
+@Deprecated
 public final class SimpleProgressDialog {
 
   private static final String TAG = Log.tag(SimpleProgressDialog.class);
@@ -61,6 +65,11 @@ public final class SimpleProgressDialog {
     AtomicLong                   shownAt               = new AtomicLong();
 
     Runnable showRunnable = () -> {
+      if (!isContextValid(context)) {
+        Log.w(TAG, "Context is no longer valid. Not showing dialog.");
+        return;
+      }
+
       Log.i(TAG, "Taking some time. Showing a progress dialog.");
       shownAt.set(System.currentTimeMillis());
       dialogAtomicReference.set(show(context));
@@ -73,13 +82,25 @@ public final class SimpleProgressDialog {
       public void dismiss() {
         ThreadUtil.cancelRunnableOnMain(showRunnable);
         ThreadUtil.runOnMain(() -> {
+          if (!isContextValid(context)) {
+            Log.w(TAG, "Context is no longer valid. Not dismissing dialog.");
+            return;
+          }
+
           AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
           if (alertDialog != null) {
             long beenShowingForMs = System.currentTimeMillis() - shownAt.get();
             long remainingTimeMs  = minimumShowTimeMs - beenShowingForMs;
 
             if (remainingTimeMs > 0) {
-              ThreadUtil.runOnMainDelayed(alertDialog::dismiss, remainingTimeMs);
+              ThreadUtil.runOnMainDelayed(() -> {
+                if (!isContextValid(context)) {
+                  Log.w(TAG, "Context is no longer valid. Not dismissing dialog.");
+                  return;
+                }
+
+                alertDialog.dismiss();
+              }, remainingTimeMs);
             } else {
               alertDialog.dismiss();
             }
@@ -98,6 +119,18 @@ public final class SimpleProgressDialog {
         });
       }
     };
+  }
+
+  private static boolean isContextValid(@NonNull Context context) {
+    if (context instanceof AppCompatActivity) {
+      AppCompatActivity activity = (AppCompatActivity) context;
+      return !activity.isFinishing() && !activity.isDestroyed() && activity.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED);
+    } else if (context instanceof Activity) {
+      Activity activity = (Activity) context;
+      return !activity.isFinishing() && !activity.isDestroyed();
+    } else {
+      return true;
+    }
   }
 
   public interface DismissibleDialog {

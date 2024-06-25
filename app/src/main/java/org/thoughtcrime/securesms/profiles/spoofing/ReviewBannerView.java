@@ -8,12 +8,8 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto20dp;
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
+import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
+import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.databinding.ReviewBannerViewBinding;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -39,10 +35,10 @@ public class ReviewBannerView extends FrameLayout {
 
     binding = ReviewBannerViewBinding.bind(this);
 
-    FallbackPhotoProvider provider = new FallbackPhotoProvider();
+    FallbackAvatarProvider provider = new FallbackAvatarProvider();
 
-    binding.bannerBottomRightAvatar.setFallbackPhotoProvider(provider);
-    binding.bannerTopLeftAvatar.setFallbackPhotoProvider(provider);
+    binding.bannerBottomRightAvatar.setFallbackAvatarProvider(provider);
+    binding.bannerTopLeftAvatar.setFallbackAvatarProvider(provider);
 
     binding.bannerClose.setOnClickListener(v -> {
       if (onHideListener != null && onHideListener.onHide()) {
@@ -86,44 +82,14 @@ public class ReviewBannerView extends FrameLayout {
     binding.bannerTapToReview.setOnClickListener(l);
   }
 
-  private static final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {
+  private static final class FallbackAvatarProvider implements AvatarImageView.FallbackAvatarProvider {
     @Override
-    public @NonNull
-    FallbackContactPhoto getPhotoForGroup() {
-      throw new UnsupportedOperationException("This provider does not support groups");
-    }
+    public @NonNull FallbackAvatar getFallbackAvatar(@NonNull Recipient recipient) {
+      if (recipient.isIndividual() && !recipient.isSelf()) {
+        return new FallbackAvatar.Resource.Person(recipient.getAvatarColor());
+      }
 
-    @Override
-    public @NonNull FallbackContactPhoto getPhotoForResolvingRecipient() {
-      throw new UnsupportedOperationException("This provider does not support resolving recipients");
-    }
-
-    @Override
-    public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-      return new ResourceContactPhoto(R.drawable.symbol_note_light_24, R.drawable.symbol_note_light_24);
-    }
-
-    @NonNull
-    @Override
-    public FallbackContactPhoto getPhotoForRecipientWithName(String name, int targetSize) {
-      return new FixedSizeGeneratedContactPhoto(name, R.drawable.ic_profile_outline_20);
-    }
-
-    @NonNull
-    @Override
-    public FallbackContactPhoto getPhotoForRecipientWithoutName() {
-      return new FallbackPhoto20dp(R.drawable.ic_profile_outline_20);
-    }
-  }
-
-  private static final class FixedSizeGeneratedContactPhoto extends GeneratedContactPhoto {
-    public FixedSizeGeneratedContactPhoto(@NonNull String name, int fallbackResId) {
-      super(name, fallbackResId);
-    }
-
-    @Override
-    protected Drawable newFallbackDrawable(@NonNull Context context, @NonNull AvatarColor color, boolean inverted) {
-      return new FallbackPhoto20dp(getFallbackResId()).asDrawable(context, color, inverted);
+      return recipient.getFallbackAvatar();
     }
   }
 

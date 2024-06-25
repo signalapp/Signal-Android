@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.notifications
 
 import android.app.Application
-import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -16,7 +15,6 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.thoughtcrime.securesms.crash.CrashConfig
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.LocaleFeatureFlags
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
 
@@ -48,19 +46,14 @@ class VitalsViewModel(private val context: Application) : AndroidViewModel(conte
   private fun checkHeuristics(): Single<State> {
     return Single.fromCallable {
       var state = State.NONE
-      if (SlowNotificationHeuristics.isHavingDelayedNotifications()) {
-        if (LocaleFeatureFlags.isBatterySaverPromptEnabled() &&
-          SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() &&
-          Build.VERSION.SDK_INT >= 23
-        ) {
-          if (SlowNotificationHeuristics.shouldPromptBatterySaver()) {
-            state = State.PROMPT_BATTERY_SAVER_DIALOG
-          }
+      if (SlowNotificationHeuristics.showPreemptively() || SlowNotificationHeuristics.isHavingDelayedNotifications()) {
+        if (SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && SlowNotificationHeuristics.shouldPromptBatterySaver()) {
+          state = State.PROMPT_BATTERY_SAVER_DIALOG
         } else if (SlowNotificationHeuristics.shouldPromptUserForLogs()) {
           state = State.PROMPT_DEBUGLOGS_FOR_NOTIFICATIONS
         }
       } else if (LogDatabase.getInstance(context).crashes.anyMatch(patterns = CrashConfig.patterns, promptThreshold = System.currentTimeMillis() - 14.days.inWholeMilliseconds)) {
-        val timeSinceLastPrompt = System.currentTimeMillis() - SignalStore.uiHints().lastCrashPrompt
+        val timeSinceLastPrompt = System.currentTimeMillis() - SignalStore.uiHints.lastCrashPrompt
 
         if (timeSinceLastPrompt > 1.days.inWholeMilliseconds) {
           state = State.PROMPT_DEBUGLOGS_FOR_CRASH

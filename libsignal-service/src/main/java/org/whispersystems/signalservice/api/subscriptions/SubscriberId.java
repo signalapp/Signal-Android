@@ -4,6 +4,7 @@ package org.whispersystems.signalservice.api.subscriptions;
 import org.signal.core.util.Base64;
 import org.whispersystems.signalservice.api.util.Preconditions;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Arrays;
 
@@ -28,6 +29,12 @@ public final class SubscriberId {
 
   public @NonNull String serialize() {
     return Base64.encodeUrlSafeWithPadding(bytes);
+  }
+
+  public static @NonNull SubscriberId deserialize(@NonNull String serialized) throws IOException {
+    byte[] bytes = Base64.decode(serialized);
+
+    return fromBytes(bytes);
   }
 
   public static SubscriberId fromBytes(byte[] bytes) {

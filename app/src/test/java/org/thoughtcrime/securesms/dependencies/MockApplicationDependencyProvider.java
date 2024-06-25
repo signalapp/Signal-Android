@@ -49,7 +49,7 @@ import java.util.function.Supplier;
 import static org.mockito.Mockito.mock;
 
 @SuppressWarnings("ConstantConditions")
-public class MockApplicationDependencyProvider implements ApplicationDependencies.Provider {
+public class MockApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull GroupsV2Operations provideGroupsV2Operations(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
     return null;
@@ -82,7 +82,7 @@ public class MockApplicationDependencyProvider implements ApplicationDependencie
 
   @Override
   public @NonNull JobManager provideJobManager() {
-    return mock(JobManager.class);
+    return null;
   }
 
   @Override
@@ -181,7 +181,7 @@ public class MockApplicationDependencyProvider implements ApplicationDependencie
   }
 
   @Override
-  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier) {
+  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier) {
     return null;
   }
 
@@ -235,7 +235,7 @@ public class MockApplicationDependencyProvider implements ApplicationDependencie
   }
 
   @Override
-  public @NonNull Network provideLibsignalNetwork() {
+  public @NonNull Network provideLibsignalNetwork(@NonNull SignalServiceConfiguration config) {
     return null;
   }
 }

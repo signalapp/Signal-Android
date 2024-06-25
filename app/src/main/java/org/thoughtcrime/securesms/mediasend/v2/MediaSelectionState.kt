@@ -9,8 +9,8 @@ import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.video.TranscodingPreset
 
 data class MediaSelectionState(
@@ -18,7 +18,7 @@ data class MediaSelectionState(
   val selectedMedia: List<Media> = listOf(),
   val focusedMedia: Media? = null,
   val recipient: Recipient? = null,
-  val quality: SentMediaQuality = SignalStore.settings().sentMediaQuality,
+  val quality: SentMediaQuality = SignalStore.settings.sentMediaQuality,
   val message: CharSequence? = null,
   val viewOnceToggleState: ViewOnceToggleState = ViewOnceToggleState.default,
   val isTouchEnabled: Boolean = true,
@@ -36,7 +36,7 @@ data class MediaSelectionState(
 
   val transcodingPreset: TranscodingPreset = MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(quality.code)).videoTranscodingSettings
 
-  val maxSelection = FeatureFlags.maxAttachmentCount()
+  val maxSelection = RemoteConfig.maxAttachmentCount
 
   val canSend = !isSent && selectedMedia.isNotEmpty()
 
@@ -45,7 +45,8 @@ data class MediaSelectionState(
   }
 
   enum class ViewOnceToggleState(val code: Int) {
-    INFINITE(0), ONCE(1);
+    INFINITE(0),
+    ONCE(1);
 
     fun next(): ViewOnceToggleState {
       return when (this) {

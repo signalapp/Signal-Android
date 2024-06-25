@@ -16,10 +16,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.PopupWindowCompat
 import androidx.fragment.app.FragmentActivity
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -30,38 +28,21 @@ class CallOverflowPopupWindow(private val activity: FragmentActivity, parentView
   LayoutInflater.from(activity).inflate(R.layout.call_overflow_holder, parentViewGroup, false),
   activity.resources.getDimension(R.dimen.calling_reaction_popup_menu_width).toInt(),
   activity.resources.getDimension(R.dimen.calling_reaction_popup_menu_height).toInt()
-
 ) {
   private val raiseHandLabel: TextView = (contentView as LinearLayout).findViewById(R.id.raise_hand_label)
 
   init {
     val root = (contentView as LinearLayout)
-    if (FeatureFlags.groupCallReactions()) {
-      val reactionScrubber = root.findViewById<CallReactionScrubber>(R.id.reaction_scrubber)
-      reactionScrubber.visible = true
-      reactionScrubber.initialize(activity.supportFragmentManager) {
-        ApplicationDependencies.getSignalCallManager().react(it)
-        dismiss()
-      }
+    val reactionScrubber = root.findViewById<CallReactionScrubber>(R.id.reaction_scrubber)
+    reactionScrubber.initialize(activity.supportFragmentManager) {
+      AppDependencies.signalCallManager.react(it)
+      dismiss()
     }
-    if (FeatureFlags.groupCallRaiseHand()) {
-      val raiseHand = root.findViewById<ConstraintLayout>(R.id.raise_hand_layout_parent)
-      raiseHand.visible = true
-      raiseHand.setOnClickListener {
-        if (raisedHandDelegate.isSelfHandRaised()) {
-          MaterialAlertDialogBuilder(activity)
-            .setTitle(R.string.CallOverflowPopupWindow__lower_your_hand)
-            .setPositiveButton(R.string.CallOverflowPopupWindow__lower_hand) { _, _ ->
-              ApplicationDependencies.getSignalCallManager().raiseHand(false)
-              this@CallOverflowPopupWindow.dismiss()
-            }
-            .setNegativeButton(R.string.CallOverflowPopupWindow__cancel, null)
-            .show()
-        } else {
-          ApplicationDependencies.getSignalCallManager().raiseHand(true)
-          dismiss()
-        }
-      }
+    val raiseHand = root.findViewById<ConstraintLayout>(R.id.raise_hand_layout_parent)
+    raiseHand.visible = true
+    raiseHand.setOnClickListener {
+      AppDependencies.signalCallManager.raiseHand(!raisedHandDelegate.isSelfHandRaised())
+      dismiss()
     }
   }
 

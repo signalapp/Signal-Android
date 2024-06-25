@@ -48,7 +48,8 @@ class StoryDirectReplyRepository(context: Context) {
           parentStoryId = ParentStoryId.DirectReply(storyId),
           isStoryReaction = isReaction,
           outgoingQuote = QuoteModel(message.dateSent, quoteAuthor.id, message.body, false, message.slideDeck.asAttachments(), null, QuoteModel.Type.NORMAL, message.messageRanges),
-          bodyRanges = bodyRangeList
+          bodyRanges = bodyRangeList,
+          isSecure = true
         ),
         threadId,
         MessageSender.SendType.SIGNAL,

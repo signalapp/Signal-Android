@@ -6,6 +6,9 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.text.TextUtils
+import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
@@ -63,7 +66,7 @@ import java.util.Locale
 import java.util.Optional
 
 class ConversationAdapterV2(
-  private val lifecycleOwner: LifecycleOwner,
+  override val lifecycleOwner: LifecycleOwner,
   override val requestManager: RequestManager,
   override val clickListener: ItemClickListener,
   private var hasWallpaper: Boolean,
@@ -104,7 +107,7 @@ class ConversationAdapterV2(
       ConversationUpdateViewHolder(view)
     }
 
-    if (SignalStore.internalValues().useConversationItemV2Media()) {
+    if (SignalStore.internal.useConversationItemV2Media()) {
       registerFactory(OutgoingMedia::class.java) { parent ->
         val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_media_outgoing, parent, false)
         V2ConversationItemMediaViewHolder(V2ConversationItemMediaOutgoingBinding.bind(view).bridge(), this)
@@ -353,65 +356,10 @@ class ConversationAdapterV2(
     }
   }
 
-  private inner class OutgoingTextOnlyViewHolder(itemView: View) : ConversationViewHolder<OutgoingTextOnly>(itemView) {
-    override fun bind(model: OutgoingTextOnly) {
-      bindable.setEventListener(clickListener)
-
-      if (bindPayloadsIfAvailable()) {
-        return
-      }
-
-      bindable.bind(
-        lifecycleOwner,
-        model.conversationMessage,
-        previousMessage,
-        nextMessage,
-        requestManager,
-        Locale.getDefault(),
-        _selected,
-        model.conversationMessage.threadRecipient,
-        searchQuery,
-        false,
-        hasWallpaper && displayMode.displayWallpaper(),
-        isMessageRequestAccepted,
-        model.conversationMessage == inlineContent,
-        colorizer,
-        displayMode
-      )
-    }
-  }
-
   private inner class OutgoingMediaViewHolder(itemView: View) : ConversationViewHolder<OutgoingMedia>(itemView) {
     override fun bind(model: OutgoingMedia) {
       bindable.setEventListener(clickListener)
-
-      if (bindPayloadsIfAvailable()) {
-        return
-      }
-
-      bindable.bind(
-        lifecycleOwner,
-        model.conversationMessage,
-        previousMessage,
-        nextMessage,
-        requestManager,
-        Locale.getDefault(),
-        _selected,
-        model.conversationMessage.threadRecipient,
-        searchQuery,
-        false,
-        hasWallpaper && displayMode.displayWallpaper(),
-        isMessageRequestAccepted,
-        model.conversationMessage == inlineContent,
-        colorizer,
-        displayMode
-      )
-    }
-  }
-
-  private inner class IncomingTextOnlyViewHolder(itemView: View) : ConversationViewHolder<IncomingTextOnly>(itemView) {
-    override fun bind(model: IncomingTextOnly) {
-      bindable.setEventListener(clickListener)
+      bindable.setGestureDetector(gestureDetector)
 
       if (bindPayloadsIfAvailable()) {
         return
@@ -469,6 +417,19 @@ class ConversationAdapterV2(
     val bindable: BindableConversationItem
       get() = itemView as BindableConversationItem
 
+    val gestureDetector = GestureDetector(
+      context,
+      object : SimpleOnGestureListener() {
+        override fun onDoubleTap(e: MotionEvent): Boolean {
+          if (clickListener != null && selectedItems.isEmpty()) {
+            clickListener.onItemDoubleClick(getMultiselectPartForLatestTouch())
+            return true
+          }
+          return false
+        }
+      }
+    )
+
     override val root: ViewGroup = bindable.root
 
     protected val previousMessage: Optional<MessageRecord>
@@ -495,6 +456,8 @@ class ConversationAdapterV2(
         )
         true
       }
+
+      itemView.setOnTouchListener { _, event: MotionEvent -> gestureDetector.onTouchEvent(event) }
     }
 
     fun bindPayloadsIfAvailable(): Boolean {

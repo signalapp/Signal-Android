@@ -36,7 +36,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable
 import org.thoughtcrime.securesms.databinding.VerifyDisplayFragmentBinding
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
@@ -116,7 +116,7 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
 
       if (fingerprints.isEmpty()) {
         val resolved = viewModel.recipient.resolve()
-        Log.w(TAG, String.format(Locale.ENGLISH, "Could not show proper verification! verifyV2: %s, hasUuid: %s, hasE164: %s", FeatureFlags.verifyV2(), resolved.serviceId.isPresent, resolved.e164.isPresent))
+        Log.w(TAG, String.format(Locale.ENGLISH, "Could not show proper verification! verifyV2: %s, hasUuid: %s, hasE164: %s", RemoteConfig.verifyV2, resolved.serviceId.isPresent, resolved.e164.isPresent))
         MaterialAlertDialogBuilder(requireContext())
           .setMessage(getString(R.string.VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view, resolved.getDisplayName(requireContext())))
           .setPositiveButton(android.R.string.ok) { dialog: DialogInterface?, which: Int -> requireActivity().finish() }

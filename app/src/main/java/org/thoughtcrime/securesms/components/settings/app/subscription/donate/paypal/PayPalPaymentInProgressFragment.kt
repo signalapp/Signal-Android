@@ -22,10 +22,12 @@ import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorStage
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.databinding.DonationInProgressFragmentBinding
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse
@@ -43,7 +45,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
   private val binding by ViewBinderDelegate(DonationInProgressFragmentBinding::bind)
   private val args: PayPalPaymentInProgressFragmentArgs by navArgs()
 
-  private val viewModel: PayPalPaymentInProgressViewModel by navGraphViewModels(R.id.donate_to_signal, factoryProducer = {
+  private val viewModel: PayPalPaymentInProgressViewModel by navGraphViewModels(R.id.checkout_flow, factoryProducer = {
     PayPalPaymentInProgressViewModel.Factory()
   })
 
@@ -59,15 +61,16 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
       viewModel.onBeginNewAction()
       when (args.action) {
         DonationProcessorAction.PROCESS_NEW_DONATION -> {
-          viewModel.processNewDonation(args.request, this::oneTimeConfirmationPipeline, this::monthlyConfirmationPipeline)
+          viewModel.processNewDonation(args.inAppPayment!!, this::oneTimeConfirmationPipeline, this::monthlyConfirmationPipeline)
         }
+
         DonationProcessorAction.UPDATE_SUBSCRIPTION -> {
-          viewModel.updateSubscription(args.request)
+          viewModel.updateSubscription(args.inAppPayment!!)
         }
+
         DonationProcessorAction.CANCEL_SUBSCRIPTION -> {
-          viewModel.cancelSubscription()
+          viewModel.cancelSubscription(InAppPaymentSubscriberRecord.Type.DONATION) // TODO [message-backups] Remove hardcode
         }
-        else -> error("Unsupported action: ${args.action}")
       }
     }
 
@@ -89,12 +92,14 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           bundleOf(
             REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
-              request = args.request,
+              inAppPayment = args.inAppPayment,
+              inAppPaymentType = args.inAppPaymentType,
               status = DonationProcessorActionResult.Status.FAILURE
             )
           )
         )
       }
+
       DonationProcessorStage.COMPLETE -> {
         viewModel.onEndAction()
         findNavController().popBackStack()
@@ -103,12 +108,14 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           bundleOf(
             REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
-              request = args.request,
+              inAppPayment = args.inAppPayment,
+              inAppPaymentType = args.inAppPaymentType,
               status = DonationProcessorActionResult.Status.SUCCESS
             )
           )
         )
       }
+
       DonationProcessorStage.CANCELLING -> binding.progressCardStatus.setText(R.string.StripePaymentInProgressFragment__cancelling)
     }
   }
@@ -128,7 +135,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         if (result != null) {
           emitter.onSuccess(result.copy(paymentId = createPaymentIntentResponse.paymentId))
         } else {
-          emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+          emitter.onError(DonationError.UserCancelledPaymentError(args.inAppPaymentType.toErrorSource()))
         }
       }
 
@@ -156,7 +163,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         if (result) {
           emitter.onSuccess(PayPalPaymentMethodId(createPaymentIntentResponse.token))
         } else {
-          emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+          emitter.onError(DonationError.UserCancelledPaymentError(args.inAppPaymentType.toErrorSource()))
         }
       }
 

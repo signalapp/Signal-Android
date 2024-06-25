@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 
@@ -39,7 +39,7 @@ public final class ThreadUpdateJob extends BaseJob {
 
   public static void enqueue(long threadId) {
     SignalDatabase.runPostSuccessfulTransaction(KEY + threadId, () -> {
-      ApplicationDependencies.getJobManager().add(new ThreadUpdateJob(threadId));
+      AppDependencies.getJobManager().add(new ThreadUpdateJob(threadId));
     });
   }
 
@@ -55,8 +55,8 @@ public final class ThreadUpdateJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    SignalDatabase.threads().update(threadId, true);
-    if (!ApplicationDependencies.getIncomingMessageObserver().getDecryptionDrained()) {
+    SignalDatabase.threads().update(threadId, true, true);
+    if (!AppDependencies.getIncomingMessageObserver().getDecryptionDrained()) {
       ThreadUtil.sleep(DEBOUNCE_INTERVAL_WITH_BACKLOG);
     }
   }

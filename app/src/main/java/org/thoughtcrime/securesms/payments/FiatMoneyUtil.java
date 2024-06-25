@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
@@ -33,10 +33,10 @@ public final class FiatMoneyUtil {
   public static @NonNull LiveData<Optional<FiatMoney>> getExchange(@NonNull LiveData<Money> amount) {
     return LiveDataUtil.mapAsync(amount, a -> {
       try {
-        return ApplicationDependencies.getPayments()
-                                      .getCurrencyExchange(false)
-                                      .getExchangeRate(SignalStore.paymentsValues().currentCurrency())
-                                      .exchange(a);
+        return AppDependencies.getPayments()
+                              .getCurrencyExchange(false)
+                              .getExchangeRate(SignalStore.payments().currentCurrency())
+                              .exchange(a);
       } catch (IOException e) {
         Log.w(TAG, e);
         return Optional.empty();
@@ -68,7 +68,7 @@ public final class FiatMoneyUtil {
     if (amount.getTimestamp() > 0 && options.displayTime) {
       return resources.getString(R.string.CurrencyAmountFormatter_s_at_s,
                                  formattedAmount,
-                                 DateUtils.getTimeString(ApplicationDependencies.getApplication(), Locale.getDefault(), amount.getTimestamp()));
+                                 DateUtils.getTimeString(AppDependencies.getApplication(), Locale.getDefault(), amount.getTimestamp()));
     }
     return formattedAmount;
   }

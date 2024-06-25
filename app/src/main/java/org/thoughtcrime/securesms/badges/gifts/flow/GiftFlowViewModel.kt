@@ -1,9 +1,12 @@
 package org.thoughtcrime.securesms.badges.gifts.flow
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -14,6 +17,7 @@ import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
@@ -29,7 +33,7 @@ class GiftFlowViewModel(
 
   private val store = RxStore(
     GiftFlowState(
-      currency = SignalStore.donationsValues().getOneTimeCurrency()
+      currency = SignalStore.donations.getOneTimeCurrency()
     )
   )
   private val disposables = CompositeDisposable()
@@ -39,7 +43,6 @@ class GiftFlowViewModel(
   val state: Flowable<GiftFlowState> = store.stateFlowable
   val events: Observable<DonationEvent> = eventPublisher
   val snapshot: GiftFlowState get() = store.state
-  val uiSessionKey: Long = System.currentTimeMillis()
 
   init {
     refresh()
@@ -63,7 +66,7 @@ class GiftFlowViewModel(
 
   fun refresh() {
     disposables.clear()
-    disposables += SignalStore.donationsValues().observableOneTimeCurrency.subscribe { currency ->
+    disposables += SignalStore.donations.observableOneTimeCurrency.subscribe { currency ->
       store.update {
         it.copy(
           currency = currency
@@ -99,6 +102,15 @@ class GiftFlowViewModel(
         }
       }
     )
+  }
+
+  fun insertInAppPayment(context: Context): Single<InAppPaymentTable.InAppPayment> {
+    val giftSnapshot = snapshot
+    return giftFlowRepository.insertInAppPayment(context, giftSnapshot)
+      .doOnSuccess { inAppPayment ->
+        store.update { it.copy(inAppPaymentId = inAppPayment.id) }
+      }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   override fun onCleared() {

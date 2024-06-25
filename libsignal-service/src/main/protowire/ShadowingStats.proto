@@ -1,0 +1,18 @@
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+syntax = "proto3";
+
+package signalservice;
+
+option java_package = "org.whispersystems.signalservice.internal.websocket";
+option java_outer_classname = "ShadowingStats";
+
+message Snapshot {
+  int32 requestsCompared = 1;
+  int32 failures = 2;
+  int32 badStatuses = 3;
+  int32 reconnects = 4;
+  int64 lastNotified = 5;
+}

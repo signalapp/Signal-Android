@@ -25,7 +25,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.devicelist.Device;
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -60,7 +60,7 @@ public class DeviceListFragment extends ListFragment
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
-    this.accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+    this.accountManager = AppDependencies.getSignalServiceAccountManager();
   }
 
   @Override

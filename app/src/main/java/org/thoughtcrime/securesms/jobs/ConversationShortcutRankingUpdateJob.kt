@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import android.os.Build
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -33,14 +33,14 @@ class ConversationShortcutRankingUpdateJob private constructor(
     @JvmStatic
     fun enqueueForOutgoingIfNecessary(recipient: Recipient) {
       if (Build.VERSION.SDK_INT >= 34) {
-        ApplicationDependencies.getJobManager().add(ConversationShortcutRankingUpdateJob(recipient, Direction.OUTGOING))
+        AppDependencies.jobManager.add(ConversationShortcutRankingUpdateJob(recipient, Direction.OUTGOING))
       }
     }
 
     @JvmStatic
     fun enqueueForIncomingIfNecessary(recipient: Recipient) {
       if (Build.VERSION.SDK_INT >= 34) {
-        ApplicationDependencies.getJobManager().add(ConversationShortcutRankingUpdateJob(recipient, Direction.INCOMING))
+        AppDependencies.jobManager.add(ConversationShortcutRankingUpdateJob(recipient, Direction.INCOMING))
       }
     }
   }

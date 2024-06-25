@@ -80,7 +80,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
   }
 
   private fun getAliceServiceId(): ServiceId {
-    return SignalStore.account().requireAci()
+    return SignalStore.account.requireAci()
   }
 
   private fun getAlicePreKeyBundle(): PreKeyBundle {
@@ -103,7 +103,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     val selfSignedPreKeyRecord = SignalDatabase.signedPreKeys.get(getAliceServiceId(), selfSignedPreKeyId)!!
 
     return PreKeyBundle(
-      SignalStore.account().registrationId,
+      SignalStore.account.registrationId,
       1,
       selfPreKeyId,
       selfPreKeyRecord.keyPair.publicKey,
@@ -115,11 +115,11 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
   }
 
   private fun getAliceProtocolAddress(): SignalProtocolAddress {
-    return SignalProtocolAddress(SignalStore.account().requireAci().toString(), 1)
+    return SignalProtocolAddress(SignalStore.account.requireAci().toString(), 1)
   }
 
   private fun getAlicePublicKey(): IdentityKey {
-    return SignalStore.account().aciIdentityKey.publicKey
+    return SignalStore.account.aciIdentityKey.publicKey
   }
 
   private fun getAliceProfileKey(): ProfileKey {
@@ -139,10 +139,12 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     override fun isTrustedIdentity(address: SignalProtocolAddress?, identityKey: IdentityKey?, direction: IdentityKeyStore.Direction?): Boolean = true
     override fun loadSession(address: SignalProtocolAddress?): SessionRecord = aliceSessionRecord ?: SessionRecord()
     override fun saveIdentity(address: SignalProtocolAddress?, identityKey: IdentityKey?): Boolean = false
-    override fun storeSession(address: SignalProtocolAddress?, record: SessionRecord?) { aliceSessionRecord = record }
+    override fun storeSession(address: SignalProtocolAddress?, record: SessionRecord?) {
+      aliceSessionRecord = record
+    }
     override fun getSubDeviceSessions(name: String?): List<Int> = emptyList()
     override fun containsSession(address: SignalProtocolAddress?): Boolean = aliceSessionRecord != null
-    override fun getIdentity(address: SignalProtocolAddress?): IdentityKey = SignalStore.account().aciIdentityKey.publicKey
+    override fun getIdentity(address: SignalProtocolAddress?): IdentityKey = SignalStore.account.aciIdentityKey.publicKey
     override fun loadPreKey(preKeyId: Int): PreKeyRecord = throw UnsupportedOperationException()
     override fun storePreKey(preKeyId: Int, record: PreKeyRecord?) = throw UnsupportedOperationException()
     override fun containsPreKey(preKeyId: Int): Boolean = throw UnsupportedOperationException()

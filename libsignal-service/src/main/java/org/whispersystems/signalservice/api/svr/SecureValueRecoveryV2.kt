@@ -20,13 +20,13 @@ import org.whispersystems.signalservice.api.svr.SecureValueRecovery.DeleteRespon
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.InvalidRequestException
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSession
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
+import org.whispersystems.signalservice.api.svr.SecureValueRecovery.SvrVersion
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.Hex
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.IOException
-import kotlin.jvm.Throws
 import org.signal.svr2.proto.BackupResponse as ProtoBackupResponse
 import org.signal.svr2.proto.ExposeResponse as ProtoExposeResponse
 import org.signal.svr2.proto.RestoreResponse as ProtoRestoreResponse
@@ -44,6 +44,8 @@ class SecureValueRecoveryV2(
     private val TAG = SecureValueRecoveryV2::class.java.simpleName
   }
 
+  override val svrVersion: SvrVersion = SvrVersion.SVR2
+
   override fun setPin(userPin: String, masterKey: MasterKey): PinChangeSession {
     return Svr2PinChangeSession(userPin, masterKey)
   }
@@ -58,7 +60,7 @@ class SecureValueRecoveryV2(
     }
   }
 
-  override fun restoreDataPreRegistration(authorization: AuthCredentials, userPin: String): RestoreResponse {
+  override fun restoreDataPreRegistration(authorization: AuthCredentials, shareSet: ByteArray?, userPin: String): RestoreResponse {
     return restoreData({ authorization }, userPin)
   }
 
@@ -250,7 +252,7 @@ class SecureValueRecoveryV2(
         .let { response ->
           when (response.expose?.status) {
             ProtoExposeResponse.Status.OK -> {
-              BackupResponse.Success(masterKey, authorization)
+              BackupResponse.Success(masterKey, authorization, SvrVersion.SVR2)
             }
             ProtoExposeResponse.Status.ERROR -> {
               BackupResponse.ExposeFailure

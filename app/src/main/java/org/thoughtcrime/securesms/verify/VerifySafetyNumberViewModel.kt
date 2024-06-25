@@ -17,7 +17,7 @@ import org.signal.libsignal.protocol.fingerprint.Fingerprint
 import org.signal.libsignal.protocol.fingerprint.NumericFingerprintGenerator
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.IdentityTable
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.LiveRecipient
@@ -54,7 +54,7 @@ class VerifySafetyNumberViewModel(
       var aciFingerprint: SafetyNumberFingerprint? = null
 
       if (resolved.aci.isPresent) {
-        val localIdentifier = SignalStore.account().requireAci().toByteArray()
+        val localIdentifier = SignalStore.account.requireAci().toByteArray()
         val remoteIdentifier = resolved.requireAci().toByteArray()
         val version = 2
         aciFingerprint = SafetyNumberFingerprint(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity, generator.createFor(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity))
@@ -74,13 +74,13 @@ class VerifySafetyNumberViewModel(
 
   fun updateSafetyNumberVerification(verified: Boolean) {
     val recipientId: RecipientId = recipientId
-    val context: Context = ApplicationDependencies.getApplication()
+    val context: Context = AppDependencies.application
 
     SignalExecutors.BOUNDED.execute {
       ReentrantSessionLock.INSTANCE.acquire().use { _ ->
         if (verified) {
           Log.i(TAG, "Saving identity: $recipientId")
-          ApplicationDependencies.getProtocolStore().aci().identities()
+          AppDependencies.protocolStore.aci().identities()
             .saveIdentityWithoutSideEffects(
               recipientId,
               recipient.resolve().requireAci(),
@@ -91,9 +91,9 @@ class VerifySafetyNumberViewModel(
               true
             )
         } else {
-          ApplicationDependencies.getProtocolStore().aci().identities().setVerified(recipientId, remoteIdentity, IdentityTable.VerifiedStatus.DEFAULT)
+          AppDependencies.protocolStore.aci().identities().setVerified(recipientId, remoteIdentity, IdentityTable.VerifiedStatus.DEFAULT)
         }
-        ApplicationDependencies.getJobManager()
+        AppDependencies.jobManager
           .add(
             MultiDeviceVerifiedUpdateJob(
               recipientId,
@@ -136,12 +136,16 @@ data class SafetyNumberFingerprint(
     if (localStableIdentifier != null) {
       if (other.localStableIdentifier == null) return false
       if (!localStableIdentifier.contentEquals(other.localStableIdentifier)) return false
-    } else if (other.localStableIdentifier != null) return false
+    } else if (other.localStableIdentifier != null) {
+      return false
+    }
     if (localIdentityKey != other.localIdentityKey) return false
     if (remoteStableIdentifier != null) {
       if (other.remoteStableIdentifier == null) return false
       if (!remoteStableIdentifier.contentEquals(other.remoteStableIdentifier)) return false
-    } else if (other.remoteStableIdentifier != null) return false
+    } else if (other.remoteStableIdentifier != null) {
+      return false
+    }
     if (remoteIdentityKey != other.remoteIdentityKey) return false
     if (fingerprint != other.fingerprint) return false
 

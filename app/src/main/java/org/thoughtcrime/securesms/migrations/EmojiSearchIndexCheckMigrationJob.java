@@ -6,9 +6,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.SqlUtil;
 import org.thoughtcrime.securesms.database.EmojiSearchTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
@@ -40,7 +38,7 @@ public final class EmojiSearchIndexCheckMigrationJob extends MigrationJob {
   @Override
   public void performMigration() {
     if (SqlUtil.isEmpty(SignalDatabase.getRawDatabase(), EmojiSearchTable.TABLE_NAME)) {
-      SignalStore.emojiValues().clearSearchIndexMetadata();
+      SignalStore.emoji().clearSearchIndexMetadata();
       EmojiSearchIndexDownloadJob.scheduleImmediately();
     }
   }

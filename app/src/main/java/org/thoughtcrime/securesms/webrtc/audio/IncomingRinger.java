@@ -8,6 +8,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
+import android.os.VibrationAttributes;
+import android.os.VibrationEffect;
 import android.os.Vibrator;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,10 @@ public class IncomingRinger {
 
   private MediaPlayer player;
 
+  private final AudioAttributes audioAttributes = new AudioAttributes.Builder()
+      .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
+      .build();
+
   IncomingRinger(Context context) {
     this.context  = context.getApplicationContext();
     this.vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
@@ -49,7 +55,7 @@ public class IncomingRinger {
 
     if (shouldVibrate(context, player, ringerMode, vibrate)) {
       Log.i(TAG, "Starting vibration");
-      vibrator.vibrate(VIBRATE_PATTERN, 1);
+      startVibrate();
     } else {
       Log.i(TAG, "Skipping vibration");
     }
@@ -81,6 +87,17 @@ public class IncomingRinger {
 
     Log.i(TAG, "Cancelling vibrator");
     vibrator.cancel();
+  }
+
+  private void startVibrate() {
+    if (Build.VERSION.SDK_INT >= 33) {
+      vibrator.vibrate(
+          VibrationEffect.createWaveform(VIBRATE_PATTERN, 1),
+          VibrationAttributes.createForUsage(VibrationAttributes.USAGE_RINGTONE)
+      );
+    } else {
+      vibrator.vibrate(VIBRATE_PATTERN, 1, audioAttributes);
+    }
   }
 
   /**

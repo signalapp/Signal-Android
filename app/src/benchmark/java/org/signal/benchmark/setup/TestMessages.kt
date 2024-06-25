@@ -1,5 +1,6 @@
 package org.signal.benchmark.setup
 
+import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.MessageType
@@ -9,7 +10,6 @@ import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
@@ -144,7 +144,7 @@ object TestMessages {
   }
   private fun imageAttachment(): SignalServiceAttachmentPointer {
     return SignalServiceAttachmentPointer(
-      ReleaseChannel.CDN_NUMBER,
+      Cdn.S3.cdnNumber,
       SignalServiceAttachmentRemoteId.from(""),
       "image/webp",
       null,
@@ -167,7 +167,7 @@ object TestMessages {
 
   private fun voiceAttachment(): SignalServiceAttachmentPointer {
     return SignalServiceAttachmentPointer(
-      ReleaseChannel.CDN_NUMBER,
+      Cdn.S3.cdnNumber,
       SignalServiceAttachmentRemoteId.from(""),
       "audio/aac",
       null,

@@ -14,7 +14,7 @@ import androidx.annotation.RequiresApi
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioHandler
 
 internal const val TAG = "BluetoothVoiceNoteUtil"
@@ -34,7 +34,7 @@ sealed interface BluetoothVoiceNoteUtil {
 @RequiresApi(31)
 private class BluetoothVoiceNoteUtil31(val listener: (Boolean) -> Unit) : BluetoothVoiceNoteUtil {
   override fun connectBluetoothScoConnection() {
-    val audioManager = ApplicationDependencies.getAndroidCallAudioManager()
+    val audioManager = AppDependencies.androidCallAudioManager
     val device: AudioDeviceInfo? = audioManager.connectedBluetoothDevice
     if (device != null) {
       val result: Boolean = audioManager.setCommunicationDevice(device)
@@ -53,7 +53,7 @@ private class BluetoothVoiceNoteUtil31(val listener: (Boolean) -> Unit) : Blueto
 
   override fun disconnectBluetoothScoConnection() {
     Log.d(TAG, "Clearing call manager communication device.")
-    ApplicationDependencies.getAndroidCallAudioManager().clearCommunicationDevice()
+    AppDependencies.androidCallAudioManager.clearCommunicationDevice()
   }
 
   override fun destroy() = Unit
