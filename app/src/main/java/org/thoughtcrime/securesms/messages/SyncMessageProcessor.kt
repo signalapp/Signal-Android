@@ -322,7 +322,7 @@ object SyncMessageProcessor {
       }
 
       if (message.isMediaMessage) {
-        handleSynchronizeSentEditMediaMessage(context, targetMessage, toRecipient, sent, message, envelope.timestamp!!)
+        handleSynchronizeSentEditMediaMessage(targetMessage, toRecipient, sent, message, envelope.timestamp!!)
       } else {
         handleSynchronizeSentEditTextMessage(targetMessage, toRecipient, sent, message, envelope.timestamp!!)
       }
@@ -388,7 +388,6 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeSentEditMediaMessage(
-    context: Context,
     targetMessage: MessageRecord,
     toRecipient: Recipient,
     sent: Sent,
@@ -397,7 +396,22 @@ object SyncMessageProcessor {
   ) {
     log(envelopeTimestamp, "Synchronize sent edit media message for: ${targetMessage.id}")
 
-    val quote: QuoteModel? = DataMessageProcessor.getValidatedQuote(context, envelopeTimestamp, message)
+    val targetQuote = (targetMessage as? MmsMessageRecord)?.quote
+    val quote: QuoteModel? = if (targetQuote != null && message.quote != null) {
+      QuoteModel(
+        targetQuote.id,
+        targetQuote.author,
+        targetQuote.displayText.toString(),
+        targetQuote.isOriginalMissing,
+        emptyList(),
+        null,
+        targetQuote.quoteType,
+        null
+      )
+    } else {
+      null
+    }
+
     val sharedContacts: List<Contact> = DataMessageProcessor.getContacts(message)
     val previews: List<LinkPreview> = DataMessageProcessor.getLinkPreviews(message.preview, message.body ?: "", false)
     val mentions: List<Mention> = DataMessageProcessor.getMentions(message.bodyRanges)
