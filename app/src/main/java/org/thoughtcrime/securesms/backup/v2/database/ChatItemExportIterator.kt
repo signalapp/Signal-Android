@@ -25,6 +25,8 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.getMediaName
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
+import org.thoughtcrime.securesms.backup.v2.proto.ContactAttachment
+import org.thoughtcrime.securesms.backup.v2.proto.ContactMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCall
@@ -44,6 +46,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.Sticker
 import org.thoughtcrime.securesms.backup.v2.proto.StickerMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Text
 import org.thoughtcrime.securesms.backup.v2.proto.ThreadMergeChatUpdate
+import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
@@ -197,6 +200,9 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         }
         MessageTypes.isGiftBadge(record.type) -> {
           builder.giftBadge = record.toGiftBadgeUpdate()
+        }
+        !record.sharedContacts.isNullOrEmpty() -> {
+          builder.contactMessage = record.toContactMessage(reactionsById[id], attachmentsById[id])
         }
         else -> {
           if (record.body == null && !attachmentsById.containsKey(record.id)) {
@@ -490,6 +496,45 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
+  private fun BackupMessageRecord.parseSharedContacts(attachments: List<DatabaseAttachment>?): List<Contact> {
+    if (this.sharedContacts.isNullOrEmpty()) {
+      return emptyList()
+    }
+
+    val attachmentIdMap: Map<AttachmentId, DatabaseAttachment> = attachments?.associateBy { it.attachmentId } ?: emptyMap()
+
+    try {
+      val contacts: MutableList<Contact> = LinkedList()
+      val jsonContacts = JSONArray(sharedContacts)
+
+      for (i in 0 until jsonContacts.length()) {
+        val contact: Contact = Contact.deserialize(jsonContacts.getJSONObject(i).toString())
+
+        if (contact.avatar != null && contact.avatar!!.attachmentId != null) {
+          val attachment = attachmentIdMap[contact.avatar!!.attachmentId]
+
+          val updatedAvatar = Contact.Avatar(
+            contact.avatar!!.attachmentId,
+            attachment,
+            contact.avatar!!.isProfile
+          )
+
+          contacts += Contact(contact, updatedAvatar)
+        } else {
+          contacts += contact
+        }
+      }
+
+      return contacts
+    } catch (e: JSONException) {
+      Log.w(TAG, "Failed to parse shared contacts.", e)
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed to parse shared contacts.", e)
+    }
+
+    return emptyList()
+  }
+
   private fun BackupMessageRecord.parseLinkPreviews(attachments: List<DatabaseAttachment>?): List<LinkPreview> {
     if (linkPreview.isNullOrEmpty()) {
       return emptyList()
@@ -536,6 +581,86 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     )
   }
 
+  private fun BackupMessageRecord.toContactMessage(reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): ContactMessage {
+    val sharedContacts = parseSharedContacts(attachments)
+
+    val contacts = sharedContacts.map {
+      ContactAttachment(
+        name = it.name.toBackup(),
+        avatar = (it.avatar?.attachment as? DatabaseAttachment)?.toBackupAttachment()?.pointer,
+        organization = it.organization,
+        number = it.phoneNumbers.map { phone ->
+          ContactAttachment.Phone(
+            value_ = phone.number,
+            type = phone.type.toBackup(),
+            label = phone.label
+          )
+        },
+        email = it.emails.map { email ->
+          ContactAttachment.Email(
+            value_ = email.email,
+            label = email.label,
+            type = email.type.toBackup()
+          )
+        },
+        address = it.postalAddresses.map { address ->
+          ContactAttachment.PostalAddress(
+            type = address.type.toBackup(),
+            label = address.label,
+            street = address.street,
+            pobox = address.poBox,
+            neighborhood = address.neighborhood,
+            city = address.city,
+            region = address.region,
+            postcode = address.postalCode,
+            country = address.country
+          )
+        }
+      )
+    }
+    return ContactMessage(
+      contact = contacts,
+      reactions = reactionRecords.toBackupReactions()
+    )
+  }
+
+  private fun Contact.Name.toBackup(): ContactAttachment.Name {
+    return ContactAttachment.Name(
+      givenName = givenName,
+      familyName = familyName,
+      prefix = prefix,
+      suffix = suffix,
+      middleName = middleName,
+      displayName = displayName
+    )
+  }
+
+  private fun Contact.Phone.Type.toBackup(): ContactAttachment.Phone.Type {
+    return when (this) {
+      Contact.Phone.Type.HOME -> ContactAttachment.Phone.Type.HOME
+      Contact.Phone.Type.MOBILE -> ContactAttachment.Phone.Type.MOBILE
+      Contact.Phone.Type.WORK -> ContactAttachment.Phone.Type.WORK
+      Contact.Phone.Type.CUSTOM -> ContactAttachment.Phone.Type.CUSTOM
+    }
+  }
+
+  private fun Contact.Email.Type.toBackup(): ContactAttachment.Email.Type {
+    return when (this) {
+      Contact.Email.Type.HOME -> ContactAttachment.Email.Type.HOME
+      Contact.Email.Type.MOBILE -> ContactAttachment.Email.Type.MOBILE
+      Contact.Email.Type.WORK -> ContactAttachment.Email.Type.WORK
+      Contact.Email.Type.CUSTOM -> ContactAttachment.Email.Type.CUSTOM
+    }
+  }
+
+  private fun Contact.PostalAddress.Type.toBackup(): ContactAttachment.PostalAddress.Type {
+    return when (this) {
+      Contact.PostalAddress.Type.HOME -> ContactAttachment.PostalAddress.Type.HOME
+      Contact.PostalAddress.Type.WORK -> ContactAttachment.PostalAddress.Type.WORK
+      Contact.PostalAddress.Type.CUSTOM -> ContactAttachment.PostalAddress.Type.CUSTOM
+    }
+  }
+
   private fun BackupMessageRecord.toStandardMessage(reactionRecords: List<ReactionRecord>?, mentions: List<Mention>?, attachments: List<DatabaseAttachment>?): StandardMessage {
     val text = if (body == null) {
       null
@@ -545,10 +670,13 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         bodyRanges = (this.bodyRanges?.toBackupBodyRanges() ?: emptyList()) + (mentions?.toBackupBodyRanges() ?: emptyList())
       )
     }
-    val linkPreviews = this.parseLinkPreviews(attachments)
+    val linkPreviews = parseLinkPreviews(attachments)
     val linkPreviewAttachments = linkPreviews.mapNotNull { it.thumbnail.orElse(null) }.toSet()
-    val quotedAttachments = attachments?.filter { it.quote && !linkPreviewAttachments.contains(it) } ?: emptyList()
-    val messageAttachments = attachments?.filter { !it.quote && !linkPreviewAttachments.contains(it) } ?: emptyList()
+    val quotedAttachments = attachments?.filter { it.quote } ?: emptyList()
+    val messageAttachments = attachments
+      ?.filterNot { it.quote }
+      ?.filterNot { linkPreviewAttachments.contains(it) }
+      ?: emptyList()
     return StandardMessage(
       quote = this.toQuote(quotedAttachments),
       text = text,
@@ -898,6 +1026,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       remoteDeleted = this.requireBoolean(MessageTable.REMOTE_DELETED),
       sealedSender = this.requireBoolean(MessageTable.UNIDENTIFIED),
       linkPreview = this.requireString(MessageTable.LINK_PREVIEWS),
+      sharedContacts = this.requireString(MessageTable.SHARED_CONTACTS),
       quoteTargetSentTimestamp = this.requireLong(MessageTable.QUOTE_ID),
       quoteAuthor = this.requireLong(MessageTable.QUOTE_AUTHOR),
       quoteBody = this.requireString(MessageTable.QUOTE_BODY),
@@ -934,6 +1063,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     val remoteDeleted: Boolean,
     val sealedSender: Boolean,
     val linkPreview: String?,
+    val sharedContacts: String?,
     val quoteTargetSentTimestamp: Long,
     val quoteAuthor: Long,
     val quoteBody: String?,
