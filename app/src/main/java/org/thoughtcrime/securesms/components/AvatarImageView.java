@@ -12,6 +12,7 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
@@ -54,7 +55,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class AvatarImageView extends ShapeableImageView {
+public final class AvatarImageView extends AppCompatImageView {
 
   private static final int SIZE_LARGE = 1;
   private static final int SIZE_SMALL = 2;
@@ -77,12 +78,15 @@ public final class AvatarImageView extends ShapeableImageView {
 
 
   public AvatarImageView(Context context) {
-    super(context);
-    initialize(context, null);
+    this(context, null);
   }
 
   public AvatarImageView(Context context, AttributeSet attrs) {
-    super(context, attrs);
+    this(context, attrs, 0);
+  }
+
+  public AvatarImageView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
     initialize(context, attrs);
   }
 
@@ -96,16 +100,9 @@ public final class AvatarImageView extends ShapeableImageView {
       typedArray.recycle();
     }
 
-    unknownRecipientDrawable = new FallbackAvatarDrawable(context, new FallbackAvatar.Resource.Person(AvatarColor.UNKNOWN));
+    unknownRecipientDrawable = new FallbackAvatarDrawable(context, new FallbackAvatar.Resource.Person(AvatarColor.UNKNOWN)).circleCrop();
     blurred                  = false;
     chatColors               = null;
-
-    setShapeAppearanceModel(ShapeAppearanceModel.builder().setAllCorners(new RoundedCornerTreatment()).setAllCornerSizes(new RelativeCornerSize(0.5f)).build());
-  }
-
-  @Override
-  public void setClipBounds(Rect clipBounds) {
-    super.setClipBounds(clipBounds);
   }
 
   @Override
@@ -198,7 +195,7 @@ public final class AvatarImageView extends ShapeableImageView {
           };
         }
 
-        Drawable fallback = new FallbackAvatarDrawable(getContext(), activeFallbackPhotoProvider.getFallbackAvatar(recipient));
+        Drawable fallback = new FallbackAvatarDrawable(getContext(), activeFallbackPhotoProvider.getFallbackAvatar(recipient)).circleCrop();
 
         if (fixedSizeTarget != null) {
           requestManager.clear(fixedSizeTarget);
@@ -267,7 +264,7 @@ public final class AvatarImageView extends ShapeableImageView {
 
   public void setImageBytesForGroup(@Nullable byte[] avatarBytes, @NonNull AvatarColor color)
   {
-    Drawable fallback = new FallbackAvatarDrawable(getContext(), new FallbackAvatar.Resource.Group(color));
+    Drawable fallback = new FallbackAvatarDrawable(getContext(), new FallbackAvatar.Resource.Group(color)).circleCrop();
 
     Glide.with(this)
             .load(avatarBytes)
