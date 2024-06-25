@@ -28,7 +28,6 @@ import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
-import org.signal.core.util.updateAll
 import org.signal.core.util.withinTransaction
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
@@ -177,15 +176,41 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .readToList { InAppPayment.deserialize(it) }
   }
 
-  fun consumeInAppPaymentsToNotifyUser(): List<InAppPayment> {
+  /**
+   * Retrieves all InAppPayment objects for donations that have been marked NOTIFIED = 0, and then marks them
+   * all as notified.
+   */
+  fun consumeDonationPaymentsToNotifyUser(): List<InAppPayment> {
     return writableDatabase.withinTransaction { db ->
       val payments = db.select()
         .from(TABLE_NAME)
-        .where("$NOTIFIED = ?", 0)
+        .where("$NOTIFIED = ? AND $TYPE != ?", 0, InAppPaymentType.serialize(InAppPaymentType.RECURRING_BACKUP))
         .run()
         .readToList(mapper = { InAppPayment.deserialize(it) })
 
-      db.updateAll(TABLE_NAME).values(NOTIFIED to 1).run()
+      db.update(TABLE_NAME).values(NOTIFIED to 1)
+        .where("$TYPE != ?", InAppPaymentType.serialize(InAppPaymentType.RECURRING_BACKUP))
+        .run()
+
+      payments
+    }
+  }
+
+  /**
+   * Retrieves all InAppPayment objects for backups that have been marked NOTIFIED = 0, and then marks them
+   * all as notified.
+   */
+  fun consumeBackupPaymentsToNotifyUser(): List<InAppPayment> {
+    return writableDatabase.withinTransaction { db ->
+      val payments = db.select()
+        .from(TABLE_NAME)
+        .where("$NOTIFIED = ? AND $TYPE = ?", 0, InAppPaymentType.serialize(InAppPaymentType.RECURRING_BACKUP))
+        .run()
+        .readToList(mapper = { InAppPayment.deserialize(it) })
+
+      db.update(TABLE_NAME).values(NOTIFIED to 1)
+        .where("$TYPE = ?", InAppPaymentType.serialize(InAppPaymentType.RECURRING_BACKUP))
+        .run()
 
       payments
     }

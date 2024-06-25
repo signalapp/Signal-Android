@@ -69,7 +69,7 @@ class TerminalDonationDelegate(
 
   private fun handleInAppPaymentSheets() {
     lifecycleDisposable += Single.fromCallable {
-      SignalDatabase.inAppPayments.consumeInAppPaymentsToNotifyUser()
+      SignalDatabase.inAppPayments.consumeDonationPaymentsToNotifyUser()
     }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeBy { inAppPayments ->
       for (payment in inAppPayments) {
         if (payment.data.error == null && payment.state == InAppPaymentTable.State.END) {
