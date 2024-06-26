@@ -862,52 +862,52 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use Signal on desktop or iPad. Your messages will sync to your linked devices.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use o Signal no desktop ou iPad. As suas mensagens irão sincronizar-se com os seus dispositivos conectados.</string>
     <!-- Button prompting users to link a new device to their account -->
-    <string name="LinkDeviceFragment__link_a_new_device">Link a new device</string>
+    <string name="LinkDeviceFragment__link_a_new_device">Associe um novo dispositivo</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
-    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s As informações das mensagens e chats estão protegidas por encriptação de ponta a ponta em todos os dispositivos</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
     <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
-    <string name="LinkDeviceFragment__all_messaging_is_private">All messaging on linked devices is private</string>
+    <string name="LinkDeviceFragment__all_messaging_is_private">Todas as mensagens em dispositivos conectados são privadas</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked. Your previous message history will not appear.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">As mensagens do Signal são sincronizadas com o Signal no seu telemóvel depois de este ser associado. O seu histórico de mensagens anteriores não será apresentado.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">On your other device, visit %1$s to install Signal</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">No seu outro dispositivo, visite %1$s para instalar o Signal</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
-    <string name="LinkDeviceFragment__my_linked_devices">My linked devices</string>
+    <string name="LinkDeviceFragment__my_linked_devices">Os meus dispositivos conectados</string>
     <!-- Dialog confirmation to unlink a device -->
     <string name="LinkDeviceFragment__unlink">Desassociar</string>
     <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_unlinked">%1$s unlinked</string>
+    <string name="LinkDeviceFragment__s_unlinked">%1$s desassociado</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
-    <string name="LinkDeviceFragment__linking_device">Linking device…</string>
+    <string name="LinkDeviceFragment__linking_device">A associar dispositivo…</string>
     <!-- Toast message shown after a device has been linked -->
-    <string name="LinkDeviceFragment__device_approved">Device approved</string>
+    <string name="LinkDeviceFragment__device_approved">Dispositivo aprovado</string>
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
     <string name="LinkDeviceFragment__loading">A carregar…</string>
     <!-- Text message shown when the user has no linked devices -->
-    <string name="LinkDeviceFragment__no_linked_devices">No linked devices</string>
+    <string name="LinkDeviceFragment__no_linked_devices">Não há dispositivos conectados</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
-    <string name="AddLinkDeviceFragment__scan_the_qr_code">Scan the QR code displayed on the device to link.</string>
+    <string name="AddLinkDeviceFragment__scan_the_qr_code">Leia o código QR apresentado no dispositivo que deseja conectar.</string>
     <!-- Bottom sheet title telling users to scan a qr code -->
     <string name="AddLinkDeviceFragment__scan_qr_code">Ler código QR</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
-    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">Use this device to scan the QR code displayed on the device you want to link</string>
+    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">Utilize este dispositivo para ler o código QR apresentado no dispositivo que pretende conectar</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="AddLinkDeviceFragment__okay">Ok</string>
     <!-- Dialog text describing the consequences of linking a device -->
     <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">Este dispositivo conseguirá ver os seu grupos e contactos, aceder aos seus chats e enviar mensagens em seu nome.</string>
     <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
-    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">Finish linking on your other device</string>
+    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">Terminou a associação ao seu outro dispositivo</string>
     <!-- Bottom sheet description telling users to complete the linking process -->
-    <string name="AddLinkDeviceFragment__finish_linking_signal">Finish linking Signal on your other device.</string>
+    <string name="AddLinkDeviceFragment__finish_linking_signal">Terminou de associar o Signal ao seu outro dispositivo.</string>
     <!-- Title of dialog when the QR code being scanned is invalid -->
     <string name="AddLinkDeviceFragment__linking_device_failed">Falha na associação do dispositivo</string>
     <!-- Text shown in a dialog when the QR code being scanned is invalid -->
@@ -2137,16 +2137,16 @@
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s levantou a mão</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
     <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
-        <item quantity="one">%1$s +%2$d raised a hand</item>
-        <item quantity="other">%1$s +%2$d raised a hand</item>
+        <item quantity="one">%1$s +%2$d levantaram a mão</item>
+        <item quantity="other">%1$s +%2$d levantaram a mão</item>
     </plurals>
 
     <!-- A notification to the user that one participant in the call successfully raised their hand. The placeholder string is a name. -->
     <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">%1$s levantou a mão</string>
     <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
     <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
-        <item quantity="one">%1$s +%2$d raised a hand</item>
-        <item quantity="other">%1$s +%2$d raised a hand</item>
+        <item quantity="one">%1$s +%2$d levantaram a mão</item>
+        <item quantity="other">%1$s +%2$d levantaram a mão</item>
     </plurals>
 
     <!-- A badge to show the user has their hand raised. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
@@ -4216,15 +4216,15 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Você necessita de ter acesso ao seu dispositivo antigo.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Restaurar a partir da cópia de segurança</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restore as suas mensagens a partir de uma cópia de segurança local. Se não as restaurar agora, não as poderá restaurar mais tarde.</string>
-    <string name="TransferOrRestoreFragment__restore_from_local_backup">Restore local backup</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restore Signal backup</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Restore all your text messages + your last 30 days of media</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">Restaurar cópia de segurança local</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restaurar a cópia de segurança do Signal</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Restaure todas as suas mensagens de texto + os seus últimos 30 dias de ficheiros</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Mais opções</string>
 
     <string name="TransferOrRestoreFragment__cancel">Cancelar</string>
-    <string name="TransferOrRestoreFragment__skip_transfer">Log in without transferring</string>
-    <string name="TransferOrRestoreFragment__skip_transfer_description">Continue without transferring your messages and media</string>
+    <string name="TransferOrRestoreFragment__skip_transfer">Iniciar sessão sem transferir</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">Continuar sem transferir as suas mensagens ou ficheiros</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Abra o Signal no seu telemóvel Android antigo</string>
@@ -5163,7 +5163,7 @@
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Apenas os administradores podem enviar mensagens para este grupo.</string>
     <!-- Error message shown when users try to choose more than 5 chats to send a message to -->
-    <string name="MultiselectForwardFragment__you_cant_select_more_chats">You can\'t select more than 5 chats</string>
+    <string name="MultiselectForwardFragment__you_cant_select_more_chats">Não pode selecionar mais do que 5 chats</string>
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
@@ -6414,8 +6414,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">Escolha o seu banco</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirme o seu donativo com %1$s</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Para configurar o seu donativo recorrente, toque em continuar para confirmar um débito de 0,01 € junto do seu banco. Este montante será automaticamente reembolsado e permitirá que o seu donativo de 5 €/mês seja debitado da sua conta.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Continuar</string>
 
@@ -7025,7 +7025,7 @@
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Your last backup was made on %1$s at %2$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at">A sua última cópia de segurança foi feita a %1$s às %2$s.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -7044,7 +7044,7 @@
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">A eliminação está agora sincronizada entre todos os seus dispositivos</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages or chats, they will be deleted from your phone and linked devices.</string>
+    <string name="DeleteSyncEducation_message">Ao eliminar mensagens ou chats, eles também serão eliminados do seu telemóvel e todos os dispositivos conectados.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
@@ -7064,39 +7064,39 @@
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Backups</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Cópias de segurança do Signal</string>
     <!-- Row label to launch payment history screen -->
-    <string name="RemoteBackupsSettingsFragment__payment_history">Payment history</string>
+    <string name="RemoteBackupsSettingsFragment__payment_history">Histórico de pagamentos</string>
     <!-- Section header for backup information -->
-    <string name="RemoteBackupsSettingsFragment__backup_details">Backup details</string>
+    <string name="RemoteBackupsSettingsFragment__backup_details">Detalhes da cópia de segurança</string>
     <!-- Row label for backup size -->
-    <string name="RemoteBackupsSettingsFragment__backup_size">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__backup_size">Tamanho da cópia de segurança</string>
     <!-- Row label for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__backup_frequency">Backup frequency</string>
+    <string name="RemoteBackupsSettingsFragment__backup_frequency">Frequência da cópia de segurança</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Back up using cellular</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Fazer cópia de segurança utilizando ligação móvel</string>
     <!-- Row label for cancelling and deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Turn off and delete backup</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Desative e elimine a cópia de segurança</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Backup deleted and turned off.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Cópia de segurança eliminada e desativada.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
-    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Backup type changed and subscription cancelled</string>
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Tipo de cópia de segurança alterado e subscrição cancelada</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
     <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscrição cancelada</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
-    <string name="RemoteBackupsSettingsFragment__download_complete">Download complete</string>
+    <string name="RemoteBackupsSettingsFragment__download_complete">Download completo</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_type">Backup type</string>
+    <string name="RemoteBackupsSettingsFragment__backup_type">Tipo de cópia de segurança</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
-    <string name="RemoteBackupsSettingsFragment__backups_disabled">Backups disabled</string>
+    <string name="RemoteBackupsSettingsFragment__backups_disabled">Cópias de segurança desativadas</string>
     <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/month</string>
+    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/mês</string>
     <!-- Button label to enable backups -->
     <string name="RemoteBackupsSettingsFragment__enable_backups">Ativar cópias de segurança</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
-    <string name="RemoteBackupsSettingsFragment__last_backup">Last backup</string>
+    <string name="RemoteBackupsSettingsFragment__last_backup">Última cópia de segurança</string>
     <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
     <string name="RemoteBackupsSettingsFragment__s_at_s">%1$s às %2$s</string>
     <!-- Subtext describing when a backup has never taken place. -->
@@ -7104,25 +7104,25 @@
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">Efetuar cópia de segurança agora</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Turn off and delete backups?</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Desativar e eliminar cópias de segurança?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">You will not be charged again. Your backup will be deleted and no new backups will be created.</string>
+    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">Não voltará a ser cobrado. A sua cópia de segurança será eliminada e não serão criadas novas cópias de segurança.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Desativar e eliminar</string>
     <!-- Text on dialog while user backup is being deleted -->
-    <string name="RemoteBackupsSettingsFragment__deleting_backup">Deleting backup…</string>
+    <string name="RemoteBackupsSettingsFragment__deleting_backup">A eliminar cópia de segurança…</string>
     <!-- Text on dialog when user backup is deleted -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted">Backup deleted</string>
+    <string name="RemoteBackupsSettingsFragment__backup_deleted">Cópia de segurança eliminada</string>
     <!-- Subtitle for frequency option MANUAL for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"By tapping Back up now"</string>
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"Ao clicar em Efetuar cópia de segurança agora"</string>
     <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__daily">Daily</string>
+    <string name="RemoteBackupsSettingsFragment__daily">Diariamente</string>
     <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__weekly">Weekly</string>
+    <string name="RemoteBackupsSettingsFragment__weekly">Semanalmente</string>
     <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__monthly">Mensal</string>
+    <string name="RemoteBackupsSettingsFragment__monthly">Mensalmente</string>
     <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__manually_back_up">Manually back up</string>
+    <string name="RemoteBackupsSettingsFragment__manually_back_up">Cópia de segurança manual</string>
 
     <!-- EOF -->
 </resources>

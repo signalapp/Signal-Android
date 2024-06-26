@@ -6708,8 +6708,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">Wybierz swój bank</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Potwierdź darowiznę za pośrednictwem %1$s</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Aby skonfigurować darowiznę cykliczną, kliknij Dalej i potwierdź w banku obciążenie konta w wysokości 0,01 euro. Kwota zostanie automatycznie zwrócona i pozwoli na pobieranie z Twojego konta darowizny w wysokości 5 euro miesięcznie.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Kontynuuj</string>
 

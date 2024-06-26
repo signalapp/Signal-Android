@@ -2134,7 +2134,7 @@
 
 
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
-    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s је подигао/ла руку</string>
+    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s си подигао/ла руку</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
     <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
         <item quantity="one">%1$s +%2$d сте подигли руку</item>
@@ -6414,8 +6414,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">Изаберите банку</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Потврдите своју донацију са банком %1$s</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Да бисте подесили периодичну донацију, додирните „Настави“ да потврдите наплату од 0,01 € у банци. Тај износ ће вам аутоматски бити враћен и тиме ће се омогућити да се ваша донација од 5 € месечно наплати са вашег рачуна.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Настави</string>
 

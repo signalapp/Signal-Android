@@ -6267,8 +6267,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">เลือกธนาคาร</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">ยืนยันการบริจาคผ่าน %1$s ของคุณ</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">แตะดำเนินการต่อเพื่อตั้งการบริจาครายเดือนของคุณ โดยคุณจะถูกเรียกเก็บเงิน €0,01 จากทางธนาคาร ซึ่งยอดดังกล่าวจะถูกโอนกลับคืนเข้าบัญชีโดยอัตโนมัติ และการบริจาคจำนวน €5/เดือนจะถูกหักจากบัญชีของคุณ</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">ดำเนินการต่อ</string>
 

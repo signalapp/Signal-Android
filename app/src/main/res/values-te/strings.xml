@@ -6414,8 +6414,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">మీ బ్యాంక్‌ను ఎంచుకోండి</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s తో మీ విరాళాన్ని నిర్ధారించండి</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">మీ పునరావృత విరాళాన్ని సెటప్ చేయడానికి, మీ బ్యాంక్‌తో €0,01 ఛార్జీని నిర్ధారించేందుకు కొనసాగించండిని తట్టండి. ఇది ఆటోమేటిక్‌గా రీఫండ్ చేయబడుతుంది మరియు మీ ఖాతా నుండి మీ నెలకు €5 విరాళాన్ని డెబిట్ చేయడానికి అనుమతిస్తుంది.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">కొనసాగండి</string>
 

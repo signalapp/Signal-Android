@@ -6414,8 +6414,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">ਆਪਣਾ ਬੈਂਕ ਚੁਣੋ</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s ਨਾਲ ਆਪਣੇ ਦਾਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">ਆਪਣੇ ਵਾਰ-ਵਾਰ ਦਿੱਤੇ ਜਾਣ ਵਾਲੇ ਦਾਨ ਨੂੰ ਸੈੱਟਅੱਪ ਕਰਨ ਲਈ, ਆਪਣੇ ਬੈਂਕ ਤੋਂ €0,01 ਦਾ ਖਰਚਾ ਲੈਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਜਾਰੀ ਰੱਖੋ \'ਤੇ ਟੈਪ ਕਰੋ। ਇਹ ਰਕਮ ਆਪਣੇ-ਆਪ ਰਿਫੰਡ ਕਰ ਦਿੱਤੀ ਜਾਵੇਗੀ ਅਤੇ ਇਸ ਨਾਲ ਤੁਹਾਡੇ ਖਾਤੇ ਵਿੱਚੋਂ €5/ਮਹੀਨੇ ਦਾ ਦਾਨ ਡੈਬਿਟ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿੱਤੀ ਜਾਂਦੀ ਹੈ।</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">ਜਾਰੀ ਰੱਖੋ</string>
 

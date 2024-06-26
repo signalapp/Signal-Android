@@ -881,7 +881,7 @@
     <!-- Dialog confirmation to unlink a device -->
     <string name="LinkDeviceFragment__unlink">Ontkoppelen</string>
     <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_unlinked">%1$s unlinked</string>
+    <string name="LinkDeviceFragment__s_unlinked">%1$s is ontkoppeld</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">Apparaat aan het koppelen…</string>
     <!-- Toast message shown after a device has been linked -->
@@ -2161,7 +2161,7 @@
     <string name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_singular">%1$s</string>
     <!-- A badge to show how many hands are raised. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
     <plurals name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_multiple">
-        <item quantity="one">%1$s</item>
+        <item quantity="one">%1$s + %2$d</item>
         <item quantity="other">%1$s + %2$d</item>
     </plurals>
 
@@ -4217,8 +4217,8 @@
     <string name="TransferOrRestoreFragment__restore_from_backup">Gegevens vanuit een back-up terugzetten</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Herstel je berichten en media vanuit een lokale back-up. Herstellen vanuit een back-up kan alleen tijdens deze stap en kun je op een later moment niet alsnog doen.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Lokale back-upgegevens terugzetten</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restore Signal backup</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Restore all your text messages + your last 30 days of media</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal back-upgegevens terugzetten</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Herstel al je tekstberichten + je media van de laatste 30 dagen</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Meer opties</string>
 
@@ -6414,8 +6414,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">Kies je bank</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Bevestig je donatie via %1$s</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Om je maandelijkse donatie in te stellen, tik op doorgaan om dit met een afschrijving van € 0,01 bij je bank te bevestigen. Dit bedrag wordt automatisch teruggestort en maakt het mogelijk om je donatie van € 5/maand van je rekening af te schrijven.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Doorgaan</string>
 
@@ -7044,7 +7044,7 @@
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Verwijderen wordt vanaf nu gesynchroniseerd op al je apparaten</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages or chats, they will be deleted from your phone and linked devices.</string>
+    <string name="DeleteSyncEducation_message">Wanneer je berichten of chats verwijdert, worden deze verwijderd van je telefoon en al je gekoppelde apparaten.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">Begrepen</string>
 
@@ -7064,7 +7064,7 @@
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Backups</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal back-ups</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Betalingsgeschiedenis</string>
     <!-- Section header for backup information -->
@@ -7076,9 +7076,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Back-up maken via mobiel netwerk</string>
     <!-- Row label for cancelling and deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Turn off and delete backup</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Back-ups uitschakelen en verwijderen</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Backup deleted and turned off.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Back-up verwijderd en uitgeschakeld.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Back-uptype gewijzigd en abonnement geannuleerd</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
@@ -7088,7 +7088,7 @@
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_type">Back-uptype</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
-    <string name="RemoteBackupsSettingsFragment__backups_disabled">Backups disabled</string>
+    <string name="RemoteBackupsSettingsFragment__backups_disabled">Back-ups uitgeschakeld</string>
     <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/maand</string>
     <!-- Button label to enable backups -->
@@ -7104,9 +7104,9 @@
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">Nu back-up maken</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Turn off and delete backups?</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Back-ups uitschakelen en verwijderen?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">You will not be charged again. Your backup will be deleted and no new backups will be created.</string>
+    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">Er worden niet opnieuw kosten in rekening gebracht. Je back-up wordt verwijderd en er worden geen nieuwe back-ups gemaakt.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Uitschakelen en verwijderen</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -7114,7 +7114,7 @@
     <!-- Text on dialog when user backup is deleted -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted">Back-up verwijderd</string>
     <!-- Subtitle for frequency option MANUAL for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"By tapping Back up now"</string>
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"Door op ‘Nu back-up maken’ te tikken"</string>
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__daily">Dagelijks</string>
     <!-- Title for frequency option DAILY for backup frequency -->
@@ -7122,7 +7122,7 @@
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__monthly">Maandelijks</string>
     <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__manually_back_up">Manually back up</string>
+    <string name="RemoteBackupsSettingsFragment__manually_back_up">Handmatig back-ups maken</string>
 
     <!-- EOF -->
 </resources>

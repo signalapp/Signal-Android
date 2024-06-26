@@ -844,52 +844,52 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use Signal on desktop or iPad. Your messages will sync to your linked devices.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Signal نى ئۈستەليۈزى ياكى iPad دە ئىشلىتىڭ. ئۇچۇرلىرىڭىز ئۇلانغان ئۈسكۈنىلىرىڭىزگە ماسقەدەملىنىدۇ.</string>
     <!-- Button prompting users to link a new device to their account -->
-    <string name="LinkDeviceFragment__link_a_new_device">Link a new device</string>
+    <string name="LinkDeviceFragment__link_a_new_device">يېڭى ئۈسكۈنە باغلاش</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
-    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s ئۇچۇر ۋە پاراڭ ئۇچۇرى بارلىق ئۈسكۈنىلەردە ئۇچتىن ئۇچقىچە مەخپىيلەشتۈرۈلگەن</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
     <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
-    <string name="LinkDeviceFragment__all_messaging_is_private">All messaging on linked devices is private</string>
+    <string name="LinkDeviceFragment__all_messaging_is_private">بارلىق باغلانغان ئۈسكۈنىلەردە ئۇچۇرلىشىش مەخپىيەتلىككە كاپالەتلىك قىلىنغان ئاساسدا ئېلىپ بېرىلىدۇ</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked. Your previous message history will not appear.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal ئۇچۇرلىرى تېلېفونىڭىز باغلانغاندىن كېيىن تېلېفونىڭىزدىكى Signal بىلەن ماسقەدەملىنىدۇ. بۇرۇنقى ئۇچۇر تارىخىڭىز كۆرۈنمەيدۇ.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">On your other device, visit %1$s to install Signal</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">باشقا ئۈسكۈنىلىرىڭىزدە Signal نى ئورنىتىش ئۈچۈن %1$s نى زىيارەت قىلىڭ</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
-    <string name="LinkDeviceFragment__my_linked_devices">My linked devices</string>
+    <string name="LinkDeviceFragment__my_linked_devices">باغلانغان ئۈسكۈنىلىرىم</string>
     <!-- Dialog confirmation to unlink a device -->
     <string name="LinkDeviceFragment__unlink">ئاجرىتىڭ</string>
     <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_unlinked">%1$s unlinked</string>
+    <string name="LinkDeviceFragment__s_unlinked">%1$s ئۇلانمىغان</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
-    <string name="LinkDeviceFragment__linking_device">Linking device…</string>
+    <string name="LinkDeviceFragment__linking_device">ئۈسكۈنىنى باغلاۋاتىدۇ…</string>
     <!-- Toast message shown after a device has been linked -->
-    <string name="LinkDeviceFragment__device_approved">Device approved</string>
+    <string name="LinkDeviceFragment__device_approved">ئۈسكۈنە تەستىقلاندى</string>
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
     <string name="LinkDeviceFragment__loading">قاچىلىنىۋاتىدۇ…</string>
     <!-- Text message shown when the user has no linked devices -->
-    <string name="LinkDeviceFragment__no_linked_devices">No linked devices</string>
+    <string name="LinkDeviceFragment__no_linked_devices">باغلانغان ئۈسكۈنە يوق</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
-    <string name="AddLinkDeviceFragment__scan_the_qr_code">Scan the QR code displayed on the device to link.</string>
+    <string name="AddLinkDeviceFragment__scan_the_qr_code">باغلىنىش ئۈچۈن ئۈسكىنىدە كۆرۈنگەن QR كودىنى سايىلەڭ.</string>
     <!-- Bottom sheet title telling users to scan a qr code -->
     <string name="AddLinkDeviceFragment__scan_qr_code">QR كودى تارا</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
-    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">Use this device to scan the QR code displayed on the device you want to link</string>
+    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">بۇ ئۈسكۈنىنى ئىشلىتىپ باغلىماقچى بولغان ئۈسكۈنىدىكى QR كودىنى سايىلەڭ</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="AddLinkDeviceFragment__okay">جەزملە</string>
     <!-- Dialog text describing the consequences of linking a device -->
     <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">بۇ ئۈسكۈنە گۇرۇپپا ۋە ئالاقىداشلىرىڭىزنى كۆرەلەيدۇ، سۆھبەتلىرىڭىزنى زىيارەت قىلالايدۇ ۋە سىزنىڭ ئىسمىڭىزدا ئۇچۇر ئەۋەتەلەيدۇ.</string>
     <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
-    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">Finish linking on your other device</string>
+    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">باشقا ئۈسكۈنىلەردە ئۇلاشنى تاماملاش</string>
     <!-- Bottom sheet description telling users to complete the linking process -->
-    <string name="AddLinkDeviceFragment__finish_linking_signal">Finish linking Signal on your other device.</string>
+    <string name="AddLinkDeviceFragment__finish_linking_signal">باشقا ئۈسكۈنىلەردىكى Signal نى ئۇلاشنى تاماملاش</string>
     <!-- Title of dialog when the QR code being scanned is invalid -->
     <string name="AddLinkDeviceFragment__linking_device_failed">ئۈسكۈنە باغلاش مەغلۇب بولدى</string>
     <!-- Text shown in a dialog when the QR code being scanned is invalid -->
@@ -2064,14 +2064,14 @@
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s قول كۆتۈردى</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
     <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
-        <item quantity="other">%1$s +%2$d raised a hand</item>
+        <item quantity="other">%1$s + %2$d قول كۆتۈردى</item>
     </plurals>
 
     <!-- A notification to the user that one participant in the call successfully raised their hand. The placeholder string is a name. -->
     <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">%1$s قول كۆتۈردى</string>
     <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
     <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
-        <item quantity="other">%1$s +%2$d raised a hand</item>
+        <item quantity="other">%1$s + %2$d قول كۆتۈردى</item>
     </plurals>
 
     <!-- A badge to show the user has their hand raised. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
@@ -4107,15 +4107,15 @@
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">كونا ئۈسكۈنىڭىزنى زىيارەت قىلالىشىڭىز كېرەك.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">زاپاستىن ئەسلىگە كەلتۈرىدۇ</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ئۇچۇرلىرىڭىزنى يەرلىك زاپاستىن ئەسلىگە كەلتۈرىدۇ. ئەگەر ھازىر ئەسلىگە كەلتۈرمىسىڭىز، كېيىن ئەسلىگە كەلتۈرەلمەيسىز.</string>
-    <string name="TransferOrRestoreFragment__restore_from_local_backup">Restore local backup</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restore Signal backup</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Restore all your text messages + your last 30 days of media</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">يەرلىك زاپاسلاشنى ئەسلىگە كەلتۈرۈش</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal نى زاپاستىن ئەسلىگە كەلتۈرۈش</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">بارلىق ئۇچۇرلىرىڭىز ۋە ئالدىنقى 30 كۈندىكى مېدىيالىرىڭىزنى ئەسلىگە كەلتۈرەلەيسىز</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">تېخىمۇ كۆپ تاللاش</string>
 
     <string name="TransferOrRestoreFragment__cancel">بىكار قىلىش</string>
-    <string name="TransferOrRestoreFragment__skip_transfer">Log in without transferring</string>
-    <string name="TransferOrRestoreFragment__skip_transfer_description">Continue without transferring your messages and media</string>
+    <string name="TransferOrRestoreFragment__skip_transfer">يۆتكىمەي تۇرۇپلا تىزىملاپ كىرىش</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">ئۇچۇر ۋە مېدىيالارنى يۆتكىمەي تۇرۇپلا داۋاملاشتۇرۇش</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">كونا Android تېلېفونىڭىزدا Signal نى ئېچىڭ</string>
@@ -5038,7 +5038,7 @@
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">گۇرۇپپىغا پەقەت باشقۇرغۇچىلارلا ئۇچۇر يوللىيالايدۇ.</string>
     <!-- Error message shown when users try to choose more than 5 chats to send a message to -->
-    <string name="MultiselectForwardFragment__you_cant_select_more_chats">You can\'t select more than 5 chats</string>
+    <string name="MultiselectForwardFragment__you_cant_select_more_chats">كۆپ بولغاندا 5 پاراڭ تاللىيالايسىز</string>
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
@@ -6267,8 +6267,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">بانكىڭىزنى تاللاڭ</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s بىلەن قىلغان ئىئانىڭىزنى جەزملەشتۈرۈڭ</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">تەكرار ئىئانە قىلىشنى تەڭشەشتىن بۇرۇن، چېكىپ بانكا بىلەن €0,01 ھەقنى جەزملەشتۈرۈڭ. بۇ سومما ئاپتوماتىك قايتۇرۇلىدۇ ۋە ئايلىق €5 ئىئانىڭىزنى بانكا ھېساباتىڭىزدىن تۇتىدۇ.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">داۋاملاشتۇرۇش</string>
 
@@ -6871,7 +6871,7 @@
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Your last backup was made on %1$s at %2$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at">ئاخىرقى قېتىملىق زاپاسلاش %1$s %2$s دە ئېلىپ بېرىلغان.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -6890,7 +6890,7 @@
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">ئۆچۈرۈش ھازىر بارلىق ئۈسكۈنىلىرىڭىزدە ماسقەدەملىنىدۇ</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">When you delete messages or chats, they will be deleted from your phone and linked devices.</string>
+    <string name="DeleteSyncEducation_message">ئۇچۇر ياكى پاراڭلارنى ئ‍ۆچۈرسىڭىز، ئۇلار تېلېفونىڭىزدىن ۋە  ئۇلانغان ئۈسكۈنىلەردىن ئ‍ۆچۈرۈلىدۇ.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">بولىدۇ</string>
 
@@ -6910,39 +6910,39 @@
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Backups</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal زاپاسلانمىسى</string>
     <!-- Row label to launch payment history screen -->
-    <string name="RemoteBackupsSettingsFragment__payment_history">Payment history</string>
+    <string name="RemoteBackupsSettingsFragment__payment_history">پۇل تۆلەش تارىخى</string>
     <!-- Section header for backup information -->
-    <string name="RemoteBackupsSettingsFragment__backup_details">Backup details</string>
+    <string name="RemoteBackupsSettingsFragment__backup_details">زاپاسلاش تەپسىلاتى</string>
     <!-- Row label for backup size -->
-    <string name="RemoteBackupsSettingsFragment__backup_size">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__backup_size">زاپاسلانما چوڭلۇقى</string>
     <!-- Row label for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__backup_frequency">Backup frequency</string>
+    <string name="RemoteBackupsSettingsFragment__backup_frequency">زاپاسلاش چاستوتىسى</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Back up using cellular</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">كۆچمە ئېقىم ئىشلىتىپ زاپاسلاش</string>
     <!-- Row label for cancelling and deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Turn off and delete backup</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ئېتىپ زاپاسلانمىنى ئۆچۈرۈش</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Backup deleted and turned off.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">زاپاسلانما ئ‍ۆچۈرۈلدى ۋە ئېتىلدى.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
-    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Backup type changed and subscription cancelled</string>
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">زاپاسلاش تىپى ئۆزگەرگەن، مۇشتەرىلىك بىكار قىلىندى</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription cancelled</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">مۇشتەرىلىك بىكار قىلىندى</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
-    <string name="RemoteBackupsSettingsFragment__download_complete">Download complete</string>
+    <string name="RemoteBackupsSettingsFragment__download_complete">چۈشۈرۈلدى</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_type">Backup type</string>
+    <string name="RemoteBackupsSettingsFragment__backup_type">زاپاسلاش تىپى</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
-    <string name="RemoteBackupsSettingsFragment__backups_disabled">Backups disabled</string>
+    <string name="RemoteBackupsSettingsFragment__backups_disabled">زاپاسلاش چەكلەنگەن</string>
     <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/month</string>
+    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s·%2$s/ئايلىق</string>
     <!-- Button label to enable backups -->
     <string name="RemoteBackupsSettingsFragment__enable_backups">زاپاسلارنى قوزغات</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
-    <string name="RemoteBackupsSettingsFragment__last_backup">Last backup</string>
+    <string name="RemoteBackupsSettingsFragment__last_backup">ئالدىنقى قېتىملىق زاپاسلاش</string>
     <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
     <string name="RemoteBackupsSettingsFragment__s_at_s">‫%1$s %2$s دە</string>
     <!-- Subtext describing when a backup has never taken place. -->
@@ -6950,25 +6950,25 @@
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">ھازىر زاپاسلا</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Turn off and delete backups?</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">ئېتىپ زاپاسلانمىنى ئۆچۈرەمسىز؟</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">You will not be charged again. Your backup will be deleted and no new backups will be created.</string>
+    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">سىزدىن قايتا ھەق تۇتۇلمايدۇ. زاپاسلانمىڭىز ئۆچۈرۈلىدۇ ۋە يېڭى زاپاسلانما قۇرۇلىدۇ.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ئېتىش ۋە ئۆچۈرۈش</string>
     <!-- Text on dialog while user backup is being deleted -->
-    <string name="RemoteBackupsSettingsFragment__deleting_backup">Deleting backup…</string>
+    <string name="RemoteBackupsSettingsFragment__deleting_backup">زاپاسلانمىنى ئۆچۈرۈۋاتىدۇ…</string>
     <!-- Text on dialog when user backup is deleted -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted">Backup deleted</string>
+    <string name="RemoteBackupsSettingsFragment__backup_deleted">زاپاسلانما ئۆچۈرۈلدى</string>
     <!-- Subtitle for frequency option MANUAL for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"By tapping Back up now"</string>
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"دەرھال چېكىپ زاپاسلاش"</string>
     <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__daily">Daily</string>
+    <string name="RemoteBackupsSettingsFragment__daily">كۈنلۈك</string>
     <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__weekly">Weekly</string>
+    <string name="RemoteBackupsSettingsFragment__weekly">ھەپتىلىك</string>
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__monthly">ئايلىق</string>
     <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__manually_back_up">Manually back up</string>
+    <string name="RemoteBackupsSettingsFragment__manually_back_up">قولدا زاپاسلاش</string>
 
     <!-- EOF -->
 </resources>

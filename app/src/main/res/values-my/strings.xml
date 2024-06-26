@@ -6267,8 +6267,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">သင့်ဘဏ်ကို ရွေးချယ်ပါ</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s ဖြင့် သင်၏ လှူဒါန်းမှုကို အတည်ပြုပါ</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">သင်၏ ထပ်တလဲလဲလှူဒါန်းမှုကို သတ်မှတ်ရန်အတွက် သင့်ဘဏ်တွင် €0,01 ကောက်ခံမှုကို အတည်ပြုရန် ဆက်လုပ်မည်ကို နှိပ်ပါ။ ၎င်းကို အလိုအလျောက် ပြန်အမ်းပေးမည်ဖြစ်ပြီး သင်၏ တစ်လလျှင် €5 လှူဒါန်းမှုကို သင့်အကောင့်မှ ထုတ်ယူခွင့်ပြုပါမည်။</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">ဆက်လုပ်ရန်</string>
 

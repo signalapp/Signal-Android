@@ -6414,8 +6414,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಆರಿಸಿ</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s ನೊಂದಿಗೆ ನಿಮ್ಮ ದೇಣಿಗೆಯನ್ನು ದೃಢೀಕರಿಸಿ</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">ನಿಮ್ಮ ಮರುಕಳಿಸುವ ದೇಣಿಗೆಯನ್ನು ಸೆಟಪ್ ಮಾಡಲು ನಿಮ್ಮ ಬ್ಯಾಂಕ್‌ನೊಂದಿಗೆ €0,01 ಶುಲ್ಕವನ್ನು ಖಚಿತಪಡಿಸಲು ಮುಂದುವರಿಸಿ. ಇದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರುಪಾವತಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ €5/ತಿಂಗಳ ದೇಣಿಗೆಯನ್ನು ನಿಮ್ಮ ಖಾತೆಯಿಂದ ಡೆಬಿಟ್ ಮಾಡಲು ಅನುಮತಿಸುತ್ತದೆ.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">ಮುಂದುವರಿಸಿ</string>
 

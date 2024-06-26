@@ -6708,8 +6708,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">Vyberte svou banku</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Potvrďte svůj příspěvek u banky %1$s</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Chcete-li nastavit svůj pravidelný příspěvek, klepněte na pokračovat a potvrďte poplatek 0,01 € u své banky. Ten vám bude automaticky vrácen a umožní, aby se z vašeho účtu odečítal příspěvek ve výši 5 € měsíčně.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Pokračovat</string>
 

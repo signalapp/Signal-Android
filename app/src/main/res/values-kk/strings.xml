@@ -6414,8 +6414,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">Банкіңізді таңдаңыз</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s арқылы жасаған демеушілігіңізді растаңыз</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Мерзімді түрде демеушілік жасағыңыз келсе, банктегі шотыңыздан алынған 0,01 еуроны растаңыз. Бұл сома автоматты түрде қайтарылады және шотыңыздан ай сайын 5 еуро алуға мүмкіндік береді.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Жалғастыру</string>
 
@@ -7110,7 +7110,7 @@
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Өшіру және жою</string>
     <!-- Text on dialog while user backup is being deleted -->
-    <string name="RemoteBackupsSettingsFragment__deleting_backup">Deleting backup…</string>
+    <string name="RemoteBackupsSettingsFragment__deleting_backup">Резервтік көшірме жойылып жатыр…</string>
     <!-- Text on dialog when user backup is deleted -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted">Резервтік көшірме жойылды</string>
     <!-- Subtitle for frequency option MANUAL for backup frequency -->

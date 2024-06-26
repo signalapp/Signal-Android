@@ -7002,8 +7002,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">اختر مصرفك</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">تأكيد التبرّع عبر %1$s</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">لإعداد تبرّعك المُتكرر، انقر على مواصلة لتأكيد خصم €0,01 مع بنكك. سَيتم استرداد هذه القيمة تلقائيًا وسيسمح هذا بخصم تبرّعك بقيمة €5/الشهر من حسابك.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">مواصلة</string>
 
