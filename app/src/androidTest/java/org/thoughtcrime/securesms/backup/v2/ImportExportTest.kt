@@ -29,6 +29,8 @@ import org.thoughtcrime.securesms.backup.v2.proto.Chat
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Contact
+import org.thoughtcrime.securesms.backup.v2.proto.ContactAttachment
+import org.thoughtcrime.securesms.backup.v2.proto.ContactMessage
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionListItem
 import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
@@ -37,6 +39,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge
 import org.thoughtcrime.securesms.backup.v2.proto.Group
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
+import org.thoughtcrime.securesms.backup.v2.proto.LinkPreview
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.ProfileChangeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
@@ -1063,6 +1066,175 @@ class ImportExportTest {
                 incrementalMacChunkSize = 0
               ),
               wasDownloaded = false
+            )
+          )
+        )
+      )
+    )
+  }
+
+  @Test
+  fun linkPreviewMessages() {
+    var dateSent = System.currentTimeMillis()
+    val sendStatuses = enumerateSendStatuses(alice.id)
+    val incomingMessageDetails = enumerateIncomingMessageDetails(dateSent + 200)
+    val outgoingMessages = ArrayList<ChatItem>()
+    val incomingMessages = ArrayList<ChatItem>()
+    for (sendStatus in sendStatuses) {
+      outgoingMessages.add(
+        ChatItem(
+          chatId = 1,
+          authorId = selfRecipient.id,
+          dateSent = dateSent++,
+          expireStartDate = dateSent + 1000,
+          expiresInMs = TimeUnit.DAYS.toMillis(2),
+          sms = false,
+          outgoing = ChatItem.OutgoingMessageDetails(
+            sendStatus = listOf(sendStatus)
+          ),
+          standardMessage = StandardMessage(
+            text = Text(
+              body = "Text only body"
+            ),
+            linkPreview = listOf(
+              LinkPreview(
+                url = "https://signal.org/",
+                title = "Signal Messenger: Speak Freely",
+                description = "Say \"hello\" to a different messaging experience. An unexpected focus on privacy, combined with all the features you expect.",
+                date = System.currentTimeMillis(),
+                image = FilePointer(
+                  invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator(),
+                  contentType = "image/png",
+                  width = 100,
+                  height = 200,
+                  caption = "Love this cool picture! Too bad u cant download it",
+                  incrementalMacChunkSize = 0
+                )
+              )
+            )
+          )
+        )
+      )
+    }
+    dateSent++
+    for (incomingDetail in incomingMessageDetails) {
+      incomingMessages.add(
+        ChatItem(
+          chatId = 1,
+          authorId = alice.id,
+          dateSent = dateSent++,
+          expireStartDate = dateSent + 1000,
+          expiresInMs = TimeUnit.DAYS.toMillis(2),
+          sms = false,
+          incoming = incomingDetail,
+          standardMessage = StandardMessage(
+            text = Text(
+              body = "Text only body"
+            ),
+            linkPreview = listOf(
+              LinkPreview(
+                url = "https://signal.org/",
+                title = "Signal Messenger: Speak Freely",
+                description = "Say \"hello\" to a different messaging experience. An unexpected focus on privacy, combined with all the features you expect.",
+                date = System.currentTimeMillis(),
+                image = FilePointer(
+                  invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator(),
+                  contentType = "image/png",
+                  width = 100,
+                  height = 200,
+                  caption = "Love this cool picture! Too bad u cant download it",
+                  incrementalMacChunkSize = 0
+                )
+              )
+            )
+          )
+        )
+      )
+    }
+
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      *outgoingMessages.toArray(),
+      *incomingMessages.toArray()
+    )
+  }
+
+  @Test
+  fun contactMessageWithAllFields() {
+    importExport(
+      *standardFrames,
+      alice,
+      buildChat(alice, 1),
+      ChatItem(
+        chatId = 1,
+        authorId = selfRecipient.id,
+        dateSent = 150L,
+        sms = false,
+        outgoing = ChatItem.OutgoingMessageDetails(
+          sendStatus = listOf(SendStatus(alice.id, deliveryStatus = SendStatus.Status.READ, lastStatusUpdateTimestamp = -1))
+        ),
+        contactMessage = ContactMessage(
+          contact = listOf(
+            ContactAttachment(
+              name = ContactAttachment.Name(
+                givenName = "Given",
+                familyName = "Family",
+                prefix = "Prefix",
+                suffix = "Suffix",
+                middleName = "Middle",
+                displayName = "Display Name"
+              ),
+              organization = "Organization",
+              email = listOf(
+                ContactAttachment.Email(
+                  value_ = "coolemail@gmail.com",
+                  label = "Label",
+                  type = ContactAttachment.Email.Type.HOME
+                ),
+                ContactAttachment.Email(
+                  value_ = "coolemail2@gmail.com",
+                  label = "Label2",
+                  type = ContactAttachment.Email.Type.MOBILE
+                )
+              ),
+              address = listOf(
+                ContactAttachment.PostalAddress(
+                  type = ContactAttachment.PostalAddress.Type.HOME,
+                  label = "Label",
+                  street = "Street",
+                  pobox = "POBOX",
+                  neighborhood = "Neighborhood",
+                  city = "City",
+                  region = "Region",
+                  postcode = "15213",
+                  country = "United States"
+                )
+              ),
+              number = listOf(
+                ContactAttachment.Phone(
+                  value_ = "+14155551234",
+                  type = ContactAttachment.Phone.Type.CUSTOM,
+                  label = "Label"
+                )
+              ),
+              avatar = FilePointer(
+                attachmentLocator = FilePointer.AttachmentLocator(
+                  cdnKey = "coolCdnKey",
+                  cdnNumber = 2,
+                  uploadTimestamp = System.currentTimeMillis(),
+                  key = (1..32).map { it.toByte() }.toByteArray().toByteString(),
+                  size = 12345,
+                  digest = (1..32).map { it.toByte() }.toByteArray().toByteString()
+                ),
+                contentType = "image/png",
+                fileName = "very_cool_picture.png",
+                width = 100,
+                height = 200,
+                caption = "Love this cool picture!",
+                incrementalMacChunkSize = 0
+              )
             )
           )
         )
