@@ -161,7 +161,8 @@ object TestMessages {
       false,
       Optional.empty(),
       Optional.empty(),
-      System.currentTimeMillis()
+      System.currentTimeMillis(),
+      null
     )
   }
 
@@ -184,7 +185,8 @@ object TestMessages {
       false,
       Optional.empty(),
       Optional.empty(),
-      System.currentTimeMillis()
+      System.currentTimeMillis(),
+      null
     )
   }
 

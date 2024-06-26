@@ -23,8 +23,8 @@ class DummyAccountManagerFactory : AccountManagerFactory() {
       deviceId,
       password,
       BuildConfig.SIGNAL_AGENT,
-      RemoteConfig.okHttpAutomaticRetry(),
-      RemoteConfig.groupLimits().hardLimit
+      RemoteConfig.okHttpAutomaticRetry,
+      RemoteConfig.groupLimits.hardLimit
     )
   }
 
