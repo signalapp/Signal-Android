@@ -2921,7 +2921,7 @@ public class PushServiceSocket {
                                                 GROUPSV2_JOINED_AT,
                                                 "GET",
                                                 null,
-                                                NO_HANDLER))
+                                                GROUPS_V2_GET_CURRENT_HANDLER))
     {
       return Member.ADAPTER.decode(readBodyBytes(response)).joinedAtRevision;
     }
