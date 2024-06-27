@@ -444,7 +444,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       if (deletes > 0) {
         Log.i(TAG, "Trimming deleted $deletes messages thread: $threadId")
         setLastScrolled(threadId, 0)
-        val threadDeleted = update(threadId, false)
+        val threadDeleted = update(threadId = threadId, unarchive = false, syncThreadDelete = syncThreadTrimDeletes)
         notifyConversationListeners(threadId)
         SignalDatabase.calls.updateCallEventDeletionTimestamps()
 
