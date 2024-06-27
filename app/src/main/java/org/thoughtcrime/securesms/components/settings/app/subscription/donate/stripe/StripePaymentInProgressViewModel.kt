@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaym
 import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorStage
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorStage
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.toDonationError
@@ -48,8 +48,8 @@ class StripePaymentInProgressViewModel(
     private val TAG = Log.tag(StripePaymentInProgressViewModel::class.java)
   }
 
-  private val store = RxStore(DonationProcessorStage.INIT)
-  val state: Flowable<DonationProcessorStage> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
+  private val store = RxStore(InAppPaymentProcessorStage.INIT)
+  val state: Flowable<InAppPaymentProcessorStage> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
 
   private val disposables = CompositeDisposable()
   private var stripePaymentData: StripePaymentData? = null
@@ -71,7 +71,7 @@ class StripePaymentInProgressViewModel(
     Preconditions.checkState(store.state.isTerminal)
 
     Log.d(TAG, "Ending current state. Clearing state and setting stage to INIT", true)
-    store.update { DonationProcessorStage.INIT }
+    store.update { InAppPaymentProcessorStage.INIT }
     disposables.clear()
   }
 
@@ -151,7 +151,7 @@ class StripePaymentInProgressViewModel(
     val setLevel: Completable = RecurringInAppPaymentRepository.setSubscriptionLevel(inAppPayment, paymentSourceProvider.paymentSourceType)
 
     Log.d(TAG, "Starting subscription payment pipeline...", true)
-    store.update { DonationProcessorStage.PAYMENT_PIPELINE }
+    store.update { InAppPaymentProcessorStage.PAYMENT_PIPELINE }
 
     val setup: Completable = ensureSubscriberId
       .andThen(RecurringInAppPaymentRepository.cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType()))
@@ -183,12 +183,12 @@ class StripePaymentInProgressViewModel(
     disposables += setup.andThen(setLevel).subscribeBy(
       onError = { throwable ->
         Log.w(TAG, "Failure in subscription payment pipeline...", throwable, true)
-        store.update { DonationProcessorStage.FAILED }
+        store.update { InAppPaymentProcessorStage.FAILED }
         InAppPaymentsRepository.handlePipelineError(inAppPayment.id, DonationErrorSource.MONTHLY, paymentSourceProvider.paymentSourceType, throwable)
       },
       onComplete = {
         Log.d(TAG, "Finished subscription payment pipeline...", true)
-        store.update { DonationProcessorStage.COMPLETE }
+        store.update { InAppPaymentProcessorStage.COMPLETE }
       }
     )
   }
@@ -240,12 +240,12 @@ class StripePaymentInProgressViewModel(
     }.subscribeBy(
       onError = { throwable ->
         Log.w(TAG, "Failure in one-time payment pipeline...", throwable, true)
-        store.update { DonationProcessorStage.FAILED }
+        store.update { InAppPaymentProcessorStage.FAILED }
         InAppPaymentsRepository.handlePipelineError(inAppPayment.id, DonationErrorSource.ONE_TIME, paymentSourceProvider.paymentSourceType, throwable)
       },
       onComplete = {
         Log.w(TAG, "Completed one-time payment pipeline...", true)
-        store.update { DonationProcessorStage.COMPLETE }
+        store.update { InAppPaymentProcessorStage.COMPLETE }
       }
     )
   }
@@ -253,22 +253,22 @@ class StripePaymentInProgressViewModel(
   fun cancelSubscription(subscriberType: InAppPaymentSubscriberRecord.Type) {
     Log.d(TAG, "Beginning cancellation...", true)
 
-    store.update { DonationProcessorStage.CANCELLING }
+    store.update { InAppPaymentProcessorStage.CANCELLING }
     disposables += RecurringInAppPaymentRepository.cancelActiveSubscription(subscriberType).subscribeBy(
       onComplete = {
         Log.d(TAG, "Cancellation succeeded", true)
-        store.update { DonationProcessorStage.COMPLETE }
+        store.update { InAppPaymentProcessorStage.COMPLETE }
       },
       onError = { throwable ->
         Log.w(TAG, "Cancellation failed", throwable, true)
-        store.update { DonationProcessorStage.FAILED }
+        store.update { InAppPaymentProcessorStage.FAILED }
       }
     )
   }
 
   fun updateSubscription(inAppPayment: InAppPaymentTable.InAppPayment) {
     Log.d(TAG, "Beginning subscription update...", true)
-    store.update { DonationProcessorStage.PAYMENT_PIPELINE }
+    store.update { InAppPaymentProcessorStage.PAYMENT_PIPELINE }
     disposables += RecurringInAppPaymentRepository
       .cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType())
       .andThen(RecurringInAppPaymentRepository.getPaymentSourceTypeOfLatestSubscription(inAppPayment.type.requireSubscriberType()))
@@ -276,11 +276,11 @@ class StripePaymentInProgressViewModel(
       .subscribeBy(
         onComplete = {
           Log.w(TAG, "Completed subscription update", true)
-          store.update { DonationProcessorStage.COMPLETE }
+          store.update { InAppPaymentProcessorStage.COMPLETE }
         },
         onError = { throwable ->
           Log.w(TAG, "Failed to update subscription", throwable, true)
-          store.update { DonationProcessorStage.FAILED }
+          store.update { InAppPaymentProcessorStage.FAILED }
           SignalExecutors.BOUNDED_IO.execute {
             val paymentSourceType = InAppPaymentsRepository.getLatestPaymentMethodType(inAppPayment.type.requireSubscriberType()).toPaymentSourceType()
             InAppPaymentsRepository.handlePipelineError(inAppPayment.id, DonationErrorSource.MONTHLY, paymentSourceType, throwable)

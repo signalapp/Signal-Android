@@ -57,9 +57,9 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.BankTransferRequestKeys
@@ -74,7 +74,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 /**
  * Collects SEPA Debit bank transfer details from the user to proceed with donation.
  */
-class BankTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate.ErrorHandlerCallback {
+class BankTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDelegate.ErrorHandlerCallback {
 
   private val args: BankTransferDetailsFragmentArgs by navArgs()
   private val viewModel: BankTransferDetailsViewModel by viewModels()
@@ -89,11 +89,11 @@ class BankTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate.
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this)
 
-    DonationCheckoutDelegate.ErrorHandler().attach(this, this, args.inAppPayment.id)
+    InAppPaymentCheckoutDelegate.ErrorHandler().attach(this, this, args.inAppPayment.id)
 
     setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
-      val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
-      if (result.status == DonationProcessorActionResult.Status.SUCCESS) {
+      val result: InAppPaymentProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, InAppPaymentProcessorActionResult::class.java)!!
+      if (result.status == InAppPaymentProcessorActionResult.Status.SUCCESS) {
         findNavController().popBackStack(R.id.donateToSignalFragment, false)
         setFragmentResult(BankTransferRequestKeys.REQUEST_KEY, bundle)
       }
@@ -146,7 +146,7 @@ class BankTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate.
     stripePaymentViewModel.provideSEPADebitData(viewModel.state.value.asSEPADebitData())
     findNavController().safeNavigate(
       BankTransferDetailsFragmentDirections.actionBankTransferDetailsFragmentToStripePaymentInProgressFragment(
-        DonationProcessorAction.PROCESS_NEW_DONATION,
+        InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
         args.inAppPayment,
         args.inAppPayment.type
       )

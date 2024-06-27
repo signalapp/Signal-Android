@@ -4,8 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-enum class DonationProcessorAction : Parcelable {
-  PROCESS_NEW_DONATION,
+enum class InAppPaymentProcessorAction : Parcelable {
+  PROCESS_NEW_IN_APP_PAYMENT,
   UPDATE_SUBSCRIPTION,
   CANCEL_SUBSCRIPTION
 }

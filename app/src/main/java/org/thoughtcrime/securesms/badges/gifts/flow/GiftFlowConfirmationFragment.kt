@@ -26,8 +26,8 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewaySelectorBottomSheet
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
@@ -56,7 +56,7 @@ class GiftFlowConfirmationFragment :
   EmojiKeyboardPageFragment.Callback,
   EmojiEventListener,
   EmojiSearchFragment.Callback,
-  DonationCheckoutDelegate.Callback {
+  InAppPaymentCheckoutDelegate.Callback {
 
   companion object {
     private val TAG = Log.tag(GiftFlowConfirmationFragment::class.java)
@@ -85,7 +85,7 @@ class GiftFlowConfirmationFragment :
     RecipientPreference.register(adapter)
     GiftRowItem.register(adapter)
 
-    val checkoutDelegate = DonationCheckoutDelegate(this, this, viewModel.state.filter { it.inAppPaymentId != null }.map { it.inAppPaymentId!! })
+    val checkoutDelegate = InAppPaymentCheckoutDelegate(this, this, viewModel.state.filter { it.inAppPaymentId != null }.map { it.inAppPaymentId!! })
 
     keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
 
@@ -265,7 +265,7 @@ class GiftFlowConfirmationFragment :
   override fun navigateToStripePaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment) {
     findNavController().safeNavigate(
       GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToStripePaymentInProgressFragment(
-        DonationProcessorAction.PROCESS_NEW_DONATION,
+        InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
         inAppPayment,
         inAppPayment.type
       )
@@ -275,7 +275,7 @@ class GiftFlowConfirmationFragment :
   override fun navigateToPayPalPaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment) {
     findNavController().safeNavigate(
       GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToPaypalPaymentInProgressFragment(
-        DonationProcessorAction.PROCESS_NEW_DONATION,
+        InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
         inAppPayment,
         inAppPayment.type
       )

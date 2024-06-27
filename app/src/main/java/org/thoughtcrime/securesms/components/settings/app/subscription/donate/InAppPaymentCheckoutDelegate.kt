@@ -43,14 +43,14 @@ import org.thoughtcrime.securesms.util.fragments.requireListener
 /**
  * Abstracts out some common UI-level interactions between gift flow and normal donate flow.
  */
-class DonationCheckoutDelegate(
+class InAppPaymentCheckoutDelegate(
   private val fragment: Fragment,
   private val callback: Callback,
   inAppPaymentIdSource: Flowable<InAppPaymentTable.InAppPaymentId>
 ) : DefaultLifecycleObserver {
 
   companion object {
-    private val TAG = Log.tag(DonationCheckoutDelegate::class.java)
+    private val TAG = Log.tag(InAppPaymentCheckoutDelegate::class.java)
   }
 
   private val inAppPaymentComponent: InAppPaymentComponent by lazy { fragment.requireListener() }
@@ -74,17 +74,17 @@ class DonationCheckoutDelegate(
     registerGooglePayCallback()
 
     fragment.setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
-      val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
+      val result: InAppPaymentProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, InAppPaymentProcessorActionResult::class.java)!!
       handleDonationProcessorActionResult(result)
     }
 
     fragment.setFragmentResultListener(CreditCardFragment.REQUEST_KEY) { _, bundle ->
-      val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
+      val result: InAppPaymentProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, InAppPaymentProcessorActionResult::class.java)!!
       handleDonationProcessorActionResult(result)
     }
 
     fragment.setFragmentResultListener(BankTransferRequestKeys.REQUEST_KEY) { _, bundle ->
-      val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
+      val result: InAppPaymentProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, InAppPaymentProcessorActionResult::class.java)!!
       handleDonationProcessorActionResult(result)
     }
 
@@ -94,7 +94,7 @@ class DonationCheckoutDelegate(
     }
 
     fragment.setFragmentResultListener(PayPalPaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
-      val result: DonationProcessorActionResult = bundle.getParcelableCompat(PayPalPaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
+      val result: InAppPaymentProcessorActionResult = bundle.getParcelableCompat(PayPalPaymentInProgressFragment.REQUEST_KEY, InAppPaymentProcessorActionResult::class.java)!!
       handleDonationProcessorActionResult(result)
     }
   }
@@ -114,25 +114,25 @@ class DonationCheckoutDelegate(
     }
   }
 
-  private fun handleDonationProcessorActionResult(result: DonationProcessorActionResult) {
+  private fun handleDonationProcessorActionResult(result: InAppPaymentProcessorActionResult) {
     when (result.status) {
-      DonationProcessorActionResult.Status.SUCCESS -> handleSuccessfulDonationProcessorActionResult(result)
-      DonationProcessorActionResult.Status.FAILURE -> handleFailedDonationProcessorActionResult(result)
+      InAppPaymentProcessorActionResult.Status.SUCCESS -> handleSuccessfulDonationProcessorActionResult(result)
+      InAppPaymentProcessorActionResult.Status.FAILURE -> handleFailedDonationProcessorActionResult(result)
     }
 
     callback.onProcessorActionProcessed()
   }
 
-  private fun handleSuccessfulDonationProcessorActionResult(result: DonationProcessorActionResult) {
-    if (result.action == DonationProcessorAction.CANCEL_SUBSCRIPTION) {
+  private fun handleSuccessfulDonationProcessorActionResult(result: InAppPaymentProcessorActionResult) {
+    if (result.action == InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION) {
       callback.onSubscriptionCancelled(result.inAppPaymentType)
     } else {
       callback.onPaymentComplete(result.inAppPayment!!)
     }
   }
 
-  private fun handleFailedDonationProcessorActionResult(result: DonationProcessorActionResult) {
-    if (result.action == DonationProcessorAction.CANCEL_SUBSCRIPTION) {
+  private fun handleFailedDonationProcessorActionResult(result: InAppPaymentProcessorActionResult) {
+    if (result.action == InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION) {
       MaterialAlertDialogBuilder(fragment.requireContext())
         .setTitle(R.string.DonationsErrors__failed_to_cancel_subscription)
         .setMessage(R.string.DonationsErrors__subscription_cancellation_requires_an_internet_connection)

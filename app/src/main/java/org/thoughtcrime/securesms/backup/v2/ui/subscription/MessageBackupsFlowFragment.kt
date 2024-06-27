@@ -17,8 +17,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.processors.PublishProcessor
 import org.signal.donations.InAppPaymentType
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.Nav
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.util.viewModel
 /**
  * Handles the selection, payment, and changing of a user's backup tier.
  */
-class MessageBackupsFlowFragment : ComposeFragment(), DonationCheckoutDelegate.Callback {
+class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelegate.Callback {
 
   private val viewModel: MessageBackupsFlowViewModel by viewModel { MessageBackupsFlowViewModel() }
 
@@ -41,7 +41,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), DonationCheckoutDelegate.C
     val navController = rememberNavController()
 
     val checkoutDelegate = remember {
-      DonationCheckoutDelegate(this, this, inAppPaymentIdProcessor)
+      InAppPaymentCheckoutDelegate(this, this, inAppPaymentIdProcessor)
     }
 
     LaunchedEffect(state.inAppPayment?.id) {
@@ -184,7 +184,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), DonationCheckoutDelegate.C
   private fun cancelSubscription() {
     findNavController().safeNavigate(
       MessageBackupsFlowFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
-        DonationProcessorAction.CANCEL_SUBSCRIPTION,
+        InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION,
         null,
         InAppPaymentType.RECURRING_BACKUP
       )
@@ -194,7 +194,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), DonationCheckoutDelegate.C
   override fun navigateToStripePaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment) {
     findNavController().safeNavigate(
       MessageBackupsFlowFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
-        DonationProcessorAction.PROCESS_NEW_DONATION,
+        InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
         inAppPayment,
         inAppPayment.type
       )
@@ -204,7 +204,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), DonationCheckoutDelegate.C
   override fun navigateToPayPalPaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment) {
     findNavController().safeNavigate(
       MessageBackupsFlowFragmentDirections.actionDonateToSignalFragmentToPaypalPaymentInProgressFragment(
-        DonationProcessorAction.PROCESS_NEW_DONATION,
+        InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
         inAppPayment,
         inAppPayment.type
       )

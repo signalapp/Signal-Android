@@ -6,8 +6,8 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 
 @Parcelize
-class DonationProcessorActionResult(
-  val action: DonationProcessorAction,
+class InAppPaymentProcessorActionResult(
+  val action: InAppPaymentProcessorAction,
   val inAppPayment: InAppPaymentTable.InAppPayment?,
   val inAppPaymentType: InAppPaymentType,
   val status: Status

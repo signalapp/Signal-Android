@@ -61,7 +61,7 @@ class DonateToSignalFragment :
     layoutId = R.layout.donate_to_signal_fragment
   ),
   ThanksForYourSupportBottomSheetDialogFragment.Callback,
-  DonationCheckoutDelegate.Callback {
+  InAppPaymentCheckoutDelegate.Callback {
 
   companion object {
     private val TAG = Log.tag(DonateToSignalFragment::class.java)
@@ -118,7 +118,7 @@ class DonateToSignalFragment :
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {
-    val checkoutDelegate = DonationCheckoutDelegate(this, this, viewModel.inAppPaymentId)
+    val checkoutDelegate = InAppPaymentCheckoutDelegate(this, this, viewModel.inAppPaymentId)
 
     val recyclerView = this.recyclerView!!
     recyclerView.overScrollMode = RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS
@@ -172,7 +172,7 @@ class DonateToSignalFragment :
 
         is DonateToSignalAction.CancelSubscription -> {
           DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
-            DonationProcessorAction.CANCEL_SUBSCRIPTION,
+            InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION,
             null,
             InAppPaymentType.RECURRING_DONATION
           )
@@ -181,13 +181,13 @@ class DonateToSignalFragment :
         is DonateToSignalAction.UpdateSubscription -> {
           if (action.inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.PAYPAL) {
             DonateToSignalFragmentDirections.actionDonateToSignalFragmentToPaypalPaymentInProgressFragment(
-              DonationProcessorAction.UPDATE_SUBSCRIPTION,
+              InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION,
               action.inAppPayment,
               action.inAppPayment.type
             )
           } else {
             DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
-              DonationProcessorAction.UPDATE_SUBSCRIPTION,
+              InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION,
               action.inAppPayment,
               action.inAppPayment.type
             )
@@ -473,7 +473,7 @@ class DonateToSignalFragment :
   override fun navigateToStripePaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment) {
     findNavController().safeNavigate(
       DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
-        DonationProcessorAction.PROCESS_NEW_DONATION,
+        InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
         inAppPayment,
         inAppPayment.type
       )
@@ -483,7 +483,7 @@ class DonateToSignalFragment :
   override fun navigateToPayPalPaymentInProgress(inAppPayment: InAppPaymentTable.InAppPayment) {
     findNavController().safeNavigate(
       DonateToSignalFragmentDirections.actionDonateToSignalFragmentToPaypalPaymentInProgressFragment(
-        DonationProcessorAction.PROCESS_NEW_DONATION,
+        InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
         inAppPayment,
         inAppPayment.type
       )
