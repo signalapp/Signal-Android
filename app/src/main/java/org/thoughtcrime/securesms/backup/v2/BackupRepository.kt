@@ -782,7 +782,7 @@ object BackupRepository {
   }
 
   suspend fun getBackupsType(tier: MessageBackupTier): MessageBackupsType {
-    val backupCurrency = SignalStore.donations.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.BACKUP)
+    val backupCurrency = SignalStore.inAppPayments.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.BACKUP)
     return when (tier) {
       MessageBackupTier.FREE -> getFreeType(backupCurrency)
       MessageBackupTier.PAID -> getPaidType(backupCurrency)

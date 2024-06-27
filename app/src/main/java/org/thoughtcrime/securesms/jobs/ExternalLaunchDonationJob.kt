@@ -70,7 +70,7 @@ class ExternalLaunchDonationJob private constructor(
     if (donationError != null) {
       when (stripe3DSData.inAppPayment.type) {
         InAppPaymentType.ONE_TIME_DONATION -> {
-          SignalStore.donations.setPendingOneTimeDonation(
+          SignalStore.inAppPayments.setPendingOneTimeDonation(
             DonationSerializationHelper.createPendingOneTimeDonationProto(
               Badges.fromDatabaseBadge(stripe3DSData.inAppPayment.data.badge!!),
               stripe3DSData.paymentSourceType,
@@ -82,7 +82,7 @@ class ExternalLaunchDonationJob private constructor(
         }
 
         InAppPaymentType.RECURRING_DONATION -> {
-          SignalStore.donations.appendToTerminalDonationQueue(
+          SignalStore.inAppPayments.appendToTerminalDonationQueue(
             TerminalDonationQueue.TerminalDonation(
               level = stripe3DSData.inAppPayment.data.level,
               isLongRunningPaymentMethod = stripe3DSData.isLongRunning,
@@ -123,7 +123,7 @@ class ExternalLaunchDonationJob private constructor(
     SignalDatabase.donationReceipts.addReceipt(donationReceiptRecord)
 
     Log.i(TAG, "Creating and inserting one-time pending donation.", true)
-    SignalStore.donations.setPendingOneTimeDonation(
+    SignalStore.inAppPayments.setPendingOneTimeDonation(
       DonationSerializationHelper.createPendingOneTimeDonationProto(
         Badges.fromDatabaseBadge(stripe3DSData.inAppPayment.data.badge!!),
         stripe3DSData.paymentSourceType,
@@ -154,7 +154,7 @@ class ExternalLaunchDonationJob private constructor(
 
     Log.i(TAG, "Set default payment method via Signal service!", true)
     Log.i(TAG, "Storing the subscription payment source type locally.", true)
-    SignalStore.donations.setSubscriptionPaymentSourceType(stripe3DSData.paymentSourceType)
+    SignalStore.inAppPayments.setSubscriptionPaymentSourceType(stripe3DSData.paymentSourceType)
 
     val subscriptionLevel = stripe3DSData.inAppPayment.data.level.toString()
 
@@ -171,13 +171,13 @@ class ExternalLaunchDonationJob private constructor(
       )
 
       getResultOrThrow(updateSubscriptionLevelResponse, doOnApplicationError = {
-        SignalStore.donations.clearLevelOperations()
+        SignalStore.inAppPayments.clearLevelOperations()
       })
 
       if (updateSubscriptionLevelResponse.status in listOf(200, 204)) {
         Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${updateSubscriptionLevelResponse.status}", true)
-        SignalStore.donations.updateLocalStateForLocalSubscribe(subscriber.type)
-        SignalStore.donations.setVerifiedSubscription3DSData(stripe3DSData)
+        SignalStore.inAppPayments.updateLocalStateForLocalSubscribe(subscriber.type)
+        SignalStore.inAppPayments.setVerifiedSubscription3DSData(stripe3DSData)
         SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
         StorageSyncHelper.scheduleSyncForDataChange()
       } else {
@@ -223,7 +223,7 @@ class ExternalLaunchDonationJob private constructor(
       Log.w(TAG, "An application error was present. ${serviceResponse.status}", serviceResponse.applicationError.get(), true)
       doOnApplicationError()
 
-      SignalStore.donations.appendToTerminalDonationQueue(
+      SignalStore.inAppPayments.appendToTerminalDonationQueue(
         TerminalDonationQueue.TerminalDonation(
           level = stripe3DSData.inAppPayment.data.level,
           isLongRunningPaymentMethod = stripe3DSData.isLongRunning,

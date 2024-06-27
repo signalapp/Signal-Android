@@ -157,7 +157,7 @@ public final class StorageSyncHelper {
                                                                  .setUniversalExpireTimer(SignalStore.settings().getUniversalExpireTimer())
                                                                  .setDefaultReactions(SignalStore.emoji().getReactions())
                                                                  .setSubscriber(StorageSyncModels.localToRemoteSubscriber(InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)))
-                                                                 .setDisplayBadgesOnProfile(SignalStore.donations().getDisplayBadgesOnProfile())
+                                                                 .setDisplayBadgesOnProfile(SignalStore.inAppPayments().getDisplayBadgesOnProfile())
                                                                  .setSubscriptionManuallyCancelled(InAppPaymentsRepository.isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION))
                                                                  .setKeepMutedChatsArchived(SignalStore.settings().shouldKeepMutedChatsArchived())
                                                                  .setHasSetMyStoriesPrivacy(SignalStore.story().getUserHasBeenNotifiedAboutStories())
@@ -200,7 +200,7 @@ public final class StorageSyncHelper {
     SignalStore.payments().setEnabledAndEntropy(update.getNew().getPayments().isEnabled(), Entropy.fromBytes(update.getNew().getPayments().getEntropy().orElse(null)));
     SignalStore.settings().setUniversalExpireTimer(update.getNew().getUniversalExpireTimer());
     SignalStore.emoji().setReactions(update.getNew().getDefaultReactions());
-    SignalStore.donations().setDisplayBadgesOnProfile(update.getNew().isDisplayBadgesOnProfile());
+    SignalStore.inAppPayments().setDisplayBadgesOnProfile(update.getNew().isDisplayBadgesOnProfile());
     SignalStore.settings().setKeepMutedChatsArchived(update.getNew().isKeepMutedChatsArchived());
     SignalStore.story().setUserHasBeenNotifiedAboutStories(update.getNew().hasSetMyStoriesPrivacy());
     SignalStore.story().setUserHasViewedOnboardingStory(update.getNew().hasViewedOnboardingStory());
@@ -226,7 +226,7 @@ public final class StorageSyncHelper {
     }
 
     if (update.getNew().isSubscriptionManuallyCancelled() && !update.getOld().isSubscriptionManuallyCancelled()) {
-      SignalStore.donations().updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION);
+      SignalStore.inAppPayments().updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION);
     }
 
     if (fetchProfile && update.getNew().getAvatarUrlPath().isPresent()) {

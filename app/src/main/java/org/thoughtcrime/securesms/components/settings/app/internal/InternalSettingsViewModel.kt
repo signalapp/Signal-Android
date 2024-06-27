@@ -23,7 +23,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
       store.update { it.copy(emojiVersion = version) }
     }
 
-    val pendingOneTimeDonation: Observable<Boolean> = SignalStore.donations.observablePendingOneTimeDonation
+    val pendingOneTimeDonation: Observable<Boolean> = SignalStore.inAppPayments.observablePendingOneTimeDonation
       .distinctUntilChanged()
       .map { it.isPresent }
 
@@ -159,7 +159,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     canClearOnboardingState = SignalStore.story.hasDownloadedOnboardingStory && Stories.isFeatureEnabled(),
     pnpInitialized = SignalStore.misc.hasPniInitializedDevices,
     useConversationItemV2ForMedia = SignalStore.internal.useConversationItemV2Media(),
-    hasPendingOneTimeDonation = SignalStore.donations.getPendingOneTimeDonation() != null
+    hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null
   )
 
   fun onClearOnboardingState() {

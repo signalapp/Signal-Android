@@ -38,7 +38,7 @@ object AccountDataProcessor {
     val selfId = db.recipientTable.getByAci(signalStore.accountValues.aci!!).get()
     val selfRecord = db.recipientTable.getRecordForSync(selfId)!!
 
-    val donationCurrency = signalStore.donationsValues.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
+    val donationCurrency = signalStore.inAppPaymentValues.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
     val donationSubscriber = db.inAppPaymentSubscriberTable.getByCurrencyCode(donationCurrency.currencyCode, InAppPaymentSubscriberRecord.Type.DONATION)
 
     emitter.emit(
@@ -64,14 +64,14 @@ object AccountDataProcessor {
             hasViewedOnboardingStory = signalStore.storyValues.userHasViewedOnboardingStory,
             hasSetMyStoriesPrivacy = signalStore.storyValues.userHasBeenNotifiedAboutStories,
             keepMutedChatsArchived = signalStore.settingsValues.shouldKeepMutedChatsArchived(),
-            displayBadgesOnProfile = signalStore.donationsValues.getDisplayBadgesOnProfile(),
+            displayBadgesOnProfile = signalStore.inAppPaymentValues.getDisplayBadgesOnProfile(),
             hasSeenGroupStoryEducationSheet = signalStore.storyValues.userHasSeenGroupStoryEducationSheet,
             hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding()
           ),
           donationSubscriberData = AccountData.SubscriberData(
             subscriberId = donationSubscriber?.subscriberId?.bytes?.toByteString() ?: defaultAccountRecord.subscriberId,
             currencyCode = donationSubscriber?.currency?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
-            manuallyCancelled = signalStore.donationsValues.isDonationSubscriptionManuallyCancelled()
+            manuallyCancelled = signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled()
           )
         )
       )
@@ -96,7 +96,7 @@ object AccountDataProcessor {
       SignalStore.settings.isPreferSystemContactPhotos = settings.preferContactAvatars
       SignalStore.settings.universalExpireTimer = settings.universalExpireTimer
       SignalStore.emoji.reactions = settings.preferredReactionEmoji
-      SignalStore.donations.setDisplayBadgesOnProfile(settings.displayBadgesOnProfile)
+      SignalStore.inAppPayments.setDisplayBadgesOnProfile(settings.displayBadgesOnProfile)
       SignalStore.settings.setKeepMutedChatsArchived(settings.keepMutedChatsArchived)
       SignalStore.story.userHasBeenNotifiedAboutStories = settings.hasSetMyStoriesPrivacy
       SignalStore.story.userHasViewedOnboardingStory = settings.hasViewedOnboardingStory
@@ -121,7 +121,7 @@ object AccountDataProcessor {
         }
 
         if (accountData.donationSubscriberData.manuallyCancelled) {
-          SignalStore.donations.updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
+          SignalStore.inAppPayments.updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
         }
       }
 

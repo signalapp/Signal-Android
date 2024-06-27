@@ -91,7 +91,7 @@ data class DonateToSignalState(
 
   data class OneTimeDonationState(
     val badge: Badge? = null,
-    val selectedCurrency: Currency = SignalStore.donations.getOneTimeCurrency(),
+    val selectedCurrency: Currency = SignalStore.inAppPayments.getOneTimeCurrency(),
     val boosts: List<Boost> = emptyList(),
     val selectedBoost: Boost? = null,
     val customAmount: FiatMoney = FiatMoney(BigDecimal.ZERO, selectedCurrency),
@@ -114,7 +114,7 @@ data class DonateToSignalState(
   }
 
   data class MonthlyDonationState(
-    val selectedCurrency: Currency = SignalStore.donations.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION),
+    val selectedCurrency: Currency = SignalStore.inAppPayments.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION),
     val subscriptions: List<Subscription> = emptyList(),
     private val _activeSubscription: ActiveSubscription? = null,
     val selectedSubscription: Subscription? = null,

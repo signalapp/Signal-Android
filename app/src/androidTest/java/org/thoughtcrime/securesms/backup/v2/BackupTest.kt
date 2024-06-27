@@ -262,7 +262,7 @@ class BackupTest {
       SignalDatabase.recipients.setProfileAvatar(self.id, "https://example.com/")
 
       InAppPaymentsRepository.setSubscriber(InAppPaymentSubscriberRecord(SubscriberId.generate(), Currency.getInstance("USD"), InAppPaymentSubscriberRecord.Type.DONATION, false, InAppPaymentData.PaymentMethodType.UNKNOWN))
-      SignalStore.donations.setDisplayBadgesOnProfile(false)
+      SignalStore.inAppPayments.setDisplayBadgesOnProfile(false)
 
       SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
       SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = PhoneNumberPrivacyValues.PhoneNumberSharingMode.NOBODY

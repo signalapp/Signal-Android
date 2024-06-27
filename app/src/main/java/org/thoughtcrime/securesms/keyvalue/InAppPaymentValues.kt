@@ -34,13 +34,13 @@ import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 /**
- * Key-Value store for donation related values. Note that most of this file will be deprecated after the release of
+ * Key-Value store for in app payment related values. Note that most of this file will be deprecated after the release of
  * InAppPayments (90day rollout window + 30day max job lifespan window)
  */
-class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
   companion object {
-    private val TAG = Log.tag(DonationsValues::class.java)
+    private val TAG = Log.tag(InAppPaymentValues::class.java)
 
     private const val KEY_DONATION_SUBSCRIPTION_CURRENCY_CODE = "donation.currency.code"
     private const val KEY_BACKUPS_SUBSCRIPTION_CURRENCY_CODE = "donation.backups.currency.code"

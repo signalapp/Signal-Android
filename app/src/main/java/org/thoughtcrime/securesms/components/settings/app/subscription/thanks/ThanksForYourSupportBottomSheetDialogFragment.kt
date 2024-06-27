@@ -89,7 +89,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
 
     val otherBadges = Recipient.self().badges.filterNot { it.id == args.badge.id }
     val hasOtherBadges = otherBadges.isNotEmpty()
-    val displayingBadges = SignalStore.donations.getDisplayBadgesOnProfile()
+    val displayingBadges = SignalStore.inAppPayments.getDisplayBadgesOnProfile()
 
     if (hasOtherBadges && displayingBadges) {
       switch.isChecked = false

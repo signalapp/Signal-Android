@@ -104,7 +104,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
   }
 
   private fun migrateLegacyData() {
-    val pending3DSData = SignalStore.donations.consumePending3DSData()
+    val pending3DSData = SignalStore.inAppPayments.consumePending3DSData()
     if (pending3DSData != null) {
       Log.i(TAG, "Found legacy data. Performing migration.", true)
 
@@ -249,7 +249,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
 
       val updateLevelResult = checkResult(updateLevelResponse)
       if (updateLevelResult is CheckResult.Failure) {
-        SignalStore.donations.clearLevelOperations()
+        SignalStore.inAppPayments.clearLevelOperations()
         return CheckResult.Failure(updateLevelResult.errorData)
       }
 

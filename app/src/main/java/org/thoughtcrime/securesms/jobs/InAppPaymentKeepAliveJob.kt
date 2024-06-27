@@ -65,7 +65,7 @@ class InAppPaymentKeepAliveJob private constructor(
     @JvmStatic
     fun enqueueAndTrackTimeIfNecessary() {
       // TODO -- This should only be enqueued if we are completely drained of old subscription jobs. (No pending, no runnning)
-      val lastKeepAliveTime = SignalStore.donations.getLastKeepAliveLaunchTime().milliseconds
+      val lastKeepAliveTime = SignalStore.inAppPayments.getLastKeepAliveLaunchTime().milliseconds
       val now = System.currentTimeMillis().milliseconds
 
       if (lastKeepAliveTime > now) {
@@ -83,7 +83,7 @@ class InAppPaymentKeepAliveJob private constructor(
     fun enqueueAndTrackTime(now: Duration) {
       AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.DONATION))
       AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.BACKUP))
-      SignalStore.donations.setLastKeepAliveLaunchTime(now.inWholeMilliseconds)
+      SignalStore.inAppPayments.setLastKeepAliveLaunchTime(now.inWholeMilliseconds)
     }
   }
 
@@ -239,7 +239,7 @@ class InAppPaymentKeepAliveJob private constructor(
 
       info(type, "End of period has changed. Requesting receipt refresh. (old: $oldEndOfPeriod, new: $endOfCurrentPeriod)")
       if (type == InAppPaymentSubscriberRecord.Type.DONATION) {
-        SignalStore.donations.setLastEndOfPeriod(endOfCurrentPeriod.inWholeSeconds)
+        SignalStore.inAppPayments.setLastEndOfPeriod(endOfCurrentPeriod.inWholeSeconds)
       }
 
       val inAppPaymentId = SignalDatabase.inAppPayments.insert(

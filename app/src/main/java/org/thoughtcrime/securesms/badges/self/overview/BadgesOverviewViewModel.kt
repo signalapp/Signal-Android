@@ -38,7 +38,7 @@ class BadgesOverviewViewModel(
       state.copy(
         stage = if (state.stage == BadgesOverviewState.Stage.INIT) BadgesOverviewState.Stage.READY else state.stage,
         allUnlockedBadges = recipient.badges,
-        displayBadgesOnProfile = SignalStore.donations.getDisplayBadgesOnProfile(),
+        displayBadgesOnProfile = SignalStore.inAppPayments.getDisplayBadgesOnProfile(),
         featuredBadge = recipient.featuredBadge
       )
     }

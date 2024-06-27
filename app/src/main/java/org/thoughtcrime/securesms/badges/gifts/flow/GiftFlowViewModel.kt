@@ -33,7 +33,7 @@ class GiftFlowViewModel(
 
   private val store = RxStore(
     GiftFlowState(
-      currency = SignalStore.donations.getOneTimeCurrency()
+      currency = SignalStore.inAppPayments.getOneTimeCurrency()
     )
   )
   private val disposables = CompositeDisposable()
@@ -66,7 +66,7 @@ class GiftFlowViewModel(
 
   fun refresh() {
     disposables.clear()
-    disposables += SignalStore.donations.observableOneTimeCurrency.subscribe { currency ->
+    disposables += SignalStore.inAppPayments.observableOneTimeCurrency.subscribe { currency ->
       store.update {
         it.copy(
           currency = currency

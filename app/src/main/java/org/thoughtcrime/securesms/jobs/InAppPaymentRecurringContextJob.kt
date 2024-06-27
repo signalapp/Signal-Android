@@ -142,7 +142,7 @@ class InAppPaymentRecurringContextJob private constructor(
 
       if (inAppPayment.type.requireSubscriberType() == InAppPaymentSubscriberRecord.Type.DONATION) {
         info("Recording last end of period.")
-        SignalStore.donations.setLastEndOfPeriod(subscription.endOfCurrentPeriod)
+        SignalStore.inAppPayments.setLastEndOfPeriod(subscription.endOfCurrentPeriod)
       }
 
       SignalDatabase.inAppPayments.update(

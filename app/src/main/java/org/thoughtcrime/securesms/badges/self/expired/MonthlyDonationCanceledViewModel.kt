@@ -58,8 +58,8 @@ class MonthlyDonationCanceledViewModel(
   private fun initializeFromSignalStore() {
     internalState.value = MonthlyDonationCanceledState(
       loadState = MonthlyDonationCanceledState.LoadState.READY,
-      badge = SignalStore.donations.getExpiredBadge(),
-      errorMessage = getErrorMessage(SignalStore.donations.getUnexpectedSubscriptionCancelationChargeFailure())
+      badge = SignalStore.inAppPayments.getExpiredBadge(),
+      errorMessage = getErrorMessage(SignalStore.inAppPayments.getUnexpectedSubscriptionCancelationChargeFailure())
     )
   }
 
