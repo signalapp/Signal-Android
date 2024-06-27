@@ -101,6 +101,7 @@ private fun SheetContent(
 
   MessageBackupsTypeBlock(
     messageBackupsType = messageBackupsType,
+    isCurrent = false,
     isSelected = false,
     onSelected = {},
     enabled = false,
