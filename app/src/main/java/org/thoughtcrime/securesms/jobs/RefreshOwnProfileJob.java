@@ -216,6 +216,11 @@ public class RefreshOwnProfileJob extends BaseJob {
       return;
     }
 
+    if (!Recipient.self().getDeleteSyncCapability().isSupported() && capabilities.isDeleteSync()) {
+      Log.d(TAG, "Transitioned to delete sync capable, notify linked devices in case we were the last one");
+      AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
+    }
+
     SignalDatabase.recipients().setCapabilities(Recipient.self().getId(), capabilities);
   }
 
