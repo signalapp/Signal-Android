@@ -81,6 +81,10 @@ object LinkDeviceRepository {
   }
 
   fun isValidQr(uri: Uri): Boolean {
+    if (!uri.isHierarchical) {
+      return false
+    }
+
     val ephemeralId: String? = uri.getQueryParameter("uuid")
     val publicKeyEncoded: String? = uri.getQueryParameter("pub_key")
     return ephemeralId.isNotNullOrBlank() && publicKeyEncoded.isNotNullOrBlank()
