@@ -16,17 +16,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:paddingBottom="88dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingBottom="88dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+            
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator"
@@ -34,8 +42,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -56,9 +66,9 @@
                 android:focusable="true"
                 android:theme="@style/Widget.Material3.FloatingActionButton.Secondary"
                 android:transitionName="camera_fab"
-                app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
                 app:backgroundTint="@color/signal_colorSurfaceVariant"
                 app:elevation="0dp"
+                app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
                 app:srcCompat="@drawable/ic_camera_outline_24"
                 app:tint="@color/signal_colorOnSurface" />
 
@@ -74,8 +84,8 @@
                 android:focusable="true"
                 android:theme="@style/Widget.Material3.FloatingActionButton.Primary"
                 android:transitionName="new_convo_fab"
-                app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
                 app:backgroundTint="@color/signal_colorPrimaryContainer"
+                app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
                 app:srcCompat="@drawable/ic_camera_outline_24"
                 app:tint="@color/signal_colorOnSurface" />
 
