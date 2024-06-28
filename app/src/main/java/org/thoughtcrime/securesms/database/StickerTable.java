@@ -166,6 +166,14 @@ public class StickerTable extends DatabaseTable {
     return databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, args, null, null, PACK_ORDER + " ASC", limit);
   }
 
+  public @Nullable Cursor getStickerPacksByTitle(@NonNull String title) {
+    String   textQuery = SqlUtil.buildCaseInsensitiveGlobPattern(title);
+    String   query     = PACK_TITLE + " GLOB ? AND " + COVER + " = ?";
+    String[] args      = new String[] { textQuery, "1" };
+
+    return databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, args, null, null, PACK_ORDER + " ASC");
+  }
+
   public @Nullable Cursor getStickersForPack(@NonNull String packId) {
     SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
     String         selection = PACK_ID + " = ? AND " + COVER + " = ?";

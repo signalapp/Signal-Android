@@ -48,7 +48,7 @@ class StickerSearchDialogFragment : DialogFragment(), KeyboardStickerListAdapter
     noResults = view.findViewById(R.id.sticker_search_no_results)
 
     adapter = KeyboardStickerListAdapter(Glide.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()))
-    layoutManager = GridLayoutManager(requireContext(), 2)
+    layoutManager = adapter.createLayoutManager(requireContext())
 
     list.layoutManager = layoutManager
     list.adapter = adapter
