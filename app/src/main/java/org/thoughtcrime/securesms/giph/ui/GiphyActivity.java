@@ -126,7 +126,7 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
       mimeType = mediaType.toFallbackMimeType();
     }
 
-    Media media = new Media(success.getBlobUri(), mimeType, 0, success.getWidth(), success.getHeight(), 0, 0, false, true, Optional.empty(), Optional.empty(), Optional.empty());
+    Media media = new Media(success.getBlobUri(), mimeType, 0, success.getWidth(), success.getHeight(), 0, 0, false, true, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     startActivityForResult(MediaSelectionActivity.editor(this, sendType, Collections.singletonList(media), recipientId, text), MEDIA_SENDER);
   }
 

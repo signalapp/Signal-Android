@@ -116,7 +116,8 @@ class MediaRepositoryTest {
     videoGif: Boolean = false,
     bucketId: Optional<String> = Optional.empty(),
     caption: Optional<String> = Optional.empty(),
-    transformProperties: Optional<TransformProperties> = Optional.empty()
+    transformProperties: Optional<TransformProperties> = Optional.empty(),
+    fileName: Optional<String> = Optional.empty()
   ): Media {
     return Media(
       uri,
@@ -130,7 +131,8 @@ class MediaRepositoryTest {
       videoGif,
       bucketId,
       caption,
-      transformProperties
+      transformProperties,
+      fileName
     )
   }
 }

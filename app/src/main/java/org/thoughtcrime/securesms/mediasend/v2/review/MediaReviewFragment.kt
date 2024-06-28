@@ -655,7 +655,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeViewOnceButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && state.selectedMedia.size == 1 && !state.isStory) {
+    return if (state.isTouchEnabled && state.selectedMedia.size == 1 && !state.isStory && !MediaUtil.isDocumentType(state.focusedMedia?.mimeType)) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(viewOnceButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(viewOnceButton))
@@ -672,7 +672,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
   private fun computeAddMediaButtonsAnimators(state: MediaSelectionState): List<Animator> {
     return when {
-      !state.isTouchEnabled || state.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE -> {
+      !state.isTouchEnabled || state.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE || MediaUtil.isDocumentType(state.focusedMedia?.mimeType) -> {
         listOf(
           MediaReviewAnimatorController.getFadeOutAnimator(addMediaButton),
           MediaReviewAnimatorController.getFadeOutAnimator(selectionRecycler)
@@ -706,7 +706,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeSaveButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && !MediaUtil.isVideo(state.focusedMedia?.mimeType)) {
+    return if (state.isTouchEnabled && !MediaUtil.isVideo(state.focusedMedia?.mimeType) && !MediaUtil.isDocumentType(state.focusedMedia?.mimeType)) {
       listOf(
         MediaReviewAnimatorController.getFadeInAnimator(saveButton)
       )
@@ -718,7 +718,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeQualityButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && !state.isStory) {
+    return if (state.isTouchEnabled && !state.isStory && !MediaUtil.isDocumentType(state.focusedMedia?.mimeType)) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(qualityButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(qualityButton))

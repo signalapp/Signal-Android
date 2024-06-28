@@ -151,6 +151,21 @@ class MediaSelectionRepository(context: Context) {
           scheduleMessages(sendType, contacts.map { it.recipientId }, trimmedBody, updatedMedia, trimmedMentions, trimmedBodyRanges, isViewOnce, scheduledTime)
           emitter.onComplete()
         }
+      } else if (MediaUtil.isDocumentType(selectedMedia.first().mimeType)) {
+        Log.i(TAG, "Document. Skipping pre-upload.")
+        emitter.onSuccess(
+          MediaSendActivityResult(
+            recipientId = singleRecipient!!.id,
+            nonUploadedMedia = updatedMedia,
+            body = trimmedBody,
+            messageSendType = sendType,
+            isViewOnce = isViewOnce,
+            mentions = trimmedMentions,
+            bodyRanges = trimmedBodyRanges,
+            storyType = StoryType.NONE,
+            scheduledTime = scheduledTime
+          )
+        )
       } else {
         val splitMessage = MessageUtil.getSplitMessage(context, trimmedBody, sendType.calculateCharacters(trimmedBody).maxPrimaryMessageSize)
         val splitBody = splitMessage.body

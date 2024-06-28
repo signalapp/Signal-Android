@@ -249,6 +249,7 @@ import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.mms.AttachmentManager
 import org.thoughtcrime.securesms.mms.AudioSlide
+import org.thoughtcrime.securesms.mms.DocumentSlide
 import org.thoughtcrime.securesms.mms.GifSlide
 import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.MediaConstraints
@@ -1206,7 +1207,7 @@ class ConversationFragment :
 
     if (mediaType == SlideFactory.MediaType.VCARD) {
       conversationActivityResultContracts.launchContactShareEditor(uri, viewModel.recipientSnapshot!!.chatColors)
-    } else if (mediaType == SlideFactory.MediaType.IMAGE || mediaType == SlideFactory.MediaType.GIF || mediaType == SlideFactory.MediaType.VIDEO) {
+    } else {
       val mimeType = MediaUtil.getMimeType(requireContext(), uri) ?: mediaType.toFallbackMimeType()
       val media = Media(
         uri,
@@ -1220,11 +1221,10 @@ class ConversationFragment :
         videoGif,
         Optional.empty(),
         Optional.empty(),
+        Optional.empty(),
         Optional.empty()
       )
       conversationActivityResultContracts.launchMediaEditor(listOf(media), recipientId, composeText.textTrimmed)
-    } else {
-      attachmentManager.setMedia(Glide.with(this), uri, mediaType, MediaConstraints.getPushMediaConstraints(), width, height)
     }
   }
 
@@ -3614,6 +3614,7 @@ class ConversationFragment :
           MediaUtil.isVideoType(it.mimeType) -> VideoSlide(requireContext(), it.uri, it.size, it.isVideoGif, it.width, it.height, it.caption.orNull(), it.transformProperties.orNull())
           MediaUtil.isGif(it.mimeType) -> GifSlide(requireContext(), it.uri, it.size, it.width, it.height, it.isBorderless, it.caption.orNull())
           MediaUtil.isImageType(it.mimeType) -> ImageSlide(requireContext(), it.uri, it.mimeType, it.size, it.width, it.height, it.isBorderless, it.caption.orNull(), null, it.transformProperties.orNull())
+          MediaUtil.isDocumentType(it.mimeType) -> { DocumentSlide(requireContext(), it.uri, it.mimeType, it.size, it.fileName.orNull()) }
           else -> {
             Log.w(TAG, "Asked to send an unexpected mimeType: '${it.mimeType}'. Skipping.")
             null

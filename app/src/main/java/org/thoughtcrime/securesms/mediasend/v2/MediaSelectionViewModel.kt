@@ -421,7 +421,7 @@ class MediaSelectionViewModel(
     }
 
     val filteredPreUploadMedia = if (destination is MediaSelectionDestination.SingleRecipient || !Stories.isFeatureEnabled()) {
-      media
+      media.filter { !MediaUtil.isDocumentType(it.mimeType) }
     } else {
       media.filter { Stories.MediaTransform.canPreUploadMedia(it) }
     }

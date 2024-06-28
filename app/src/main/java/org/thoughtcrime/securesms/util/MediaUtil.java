@@ -51,6 +51,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLConnection;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 public class MediaUtil {
@@ -135,6 +136,35 @@ public class MediaUtil {
     }
 
     return getCorrectedMimeType(type);
+  }
+
+  public static @NonNull Optional<String> getFileType(@NonNull Context context, Optional<String> fileName, Uri uri) {
+    if (fileName.isPresent()) {
+      String fileType = getFileType(fileName);
+      if (!fileType.isEmpty()) {
+        return Optional.of(fileType);
+      }
+    }
+
+    return Optional.ofNullable(MediaUtil.getExtension(context, uri));
+  }
+
+  private static @NonNull String getFileType(Optional<String> fileName) {
+    if (!fileName.isPresent()) return "";
+
+    String[] parts = fileName.get().split("\\.");
+
+    if (parts.length < 2) {
+      return "";
+    }
+
+    String suffix = parts[parts.length - 1];
+
+    if (suffix.length() <= 3) {
+      return suffix;
+    }
+
+    return "";
   }
 
   public static @Nullable String getExtension(@NonNull Context context, @Nullable Uri uri) {
@@ -382,6 +412,10 @@ public class MediaUtil {
 
   public static boolean isOctetStream(@Nullable String contentType) {
     return OCTET.equals(contentType);
+  }
+
+  public static boolean isDocumentType(String contentType) {
+    return !isImageOrVideoType(contentType) && !isGif(contentType) && !isLongTextType(contentType) && !isViewOnceType(contentType);
   }
 
   public static boolean hasVideoThumbnail(@NonNull Context context, @Nullable Uri uri) {

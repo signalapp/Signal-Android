@@ -31,9 +31,10 @@ public class Media implements Parcelable {
   private final boolean borderless;
   private final boolean videoGif;
 
-  private Optional<String>                                 bucketId;
+  private Optional<String>                              bucketId;
   private Optional<String>                              caption;
   private Optional<AttachmentTable.TransformProperties> transformProperties;
+  private Optional<String>                              fileName;
 
   public Media(@NonNull Uri uri,
                @NonNull String mimeType,
@@ -46,7 +47,8 @@ public class Media implements Parcelable {
                boolean videoGif,
                Optional<String> bucketId,
                Optional<String> caption,
-               Optional<AttachmentTable.TransformProperties> transformProperties)
+               Optional<AttachmentTable.TransformProperties> transformProperties,
+               Optional<String> fileName)
   {
     this.uri                 = uri;
     this.mimeType            = mimeType;
@@ -60,6 +62,7 @@ public class Media implements Parcelable {
     this.bucketId            = bucketId;
     this.caption             = caption;
     this.transformProperties = transformProperties;
+    this.fileName            = fileName;
   }
 
   protected Media(Parcel in) {
@@ -80,6 +83,7 @@ public class Media implements Parcelable {
     } catch (IOException e) {
       throw new AssertionError(e);
     }
+    fileName   = Optional.ofNullable(in.readString());
   }
 
   public Uri getUri() {
@@ -130,6 +134,14 @@ public class Media implements Parcelable {
     this.caption = Optional.ofNullable(caption);
   }
 
+  public Optional<String> getFileName() {
+    return fileName;
+  }
+
+  public void setFileName(String name) {
+    this.fileName = Optional.ofNullable(name);
+  }
+
   public Optional<AttachmentTable.TransformProperties> getTransformProperties() {
     return transformProperties;
   }
@@ -153,6 +165,7 @@ public class Media implements Parcelable {
     dest.writeString(bucketId.orElse(null));
     dest.writeString(caption.orElse(null));
     dest.writeString(transformProperties.map(JsonUtil::toJson).orElse(null));
+    dest.writeString(fileName.orElse(null));
   }
 
   public static final Creator<Media> CREATOR = new Creator<Media>() {
@@ -194,7 +207,8 @@ public class Media implements Parcelable {
                      media.isVideoGif(),
                      media.getBucketId(),
                      media.getCaption(),
-                     media.getTransformProperties());
+                     media.getTransformProperties(),
+                     media.getFileName());
   }
 
   public static @NonNull Media stripTransform(@NonNull Media media) {
@@ -211,6 +225,7 @@ public class Media implements Parcelable {
                      media.isVideoGif(),
                      media.getBucketId(),
                      media.getCaption(),
-                     Optional.empty());
+                     Optional.empty(),
+                     media.getFileName());
   }
 }

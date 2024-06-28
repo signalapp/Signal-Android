@@ -359,7 +359,8 @@ object Stories {
         media.isVideoGif,
         media.bucketId,
         media.caption,
-        Optional.of(transformProperties)
+        Optional.of(transformProperties),
+        media.fileName
       )
     }
 
@@ -398,6 +399,7 @@ object Stories {
         videoSlide.isVideoGif,
         Optional.empty(),
         videoSlide.caption,
+        Optional.empty(),
         Optional.empty()
       )
     }

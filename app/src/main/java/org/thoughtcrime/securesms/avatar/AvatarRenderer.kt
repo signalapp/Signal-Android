@@ -134,6 +134,6 @@ object AvatarRenderer {
   }
 
   private fun createMedia(uri: Uri, size: Long): Media {
-    return Media(uri, MediaUtil.IMAGE_JPEG, System.currentTimeMillis(), DIMENSIONS, DIMENSIONS, size, 0, false, false, Optional.empty(), Optional.empty(), Optional.empty())
+    return Media(uri, MediaUtil.IMAGE_JPEG, System.currentTimeMillis(), DIMENSIONS, DIMENSIONS, size, 0, false, false, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty())
   }
 }

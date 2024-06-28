@@ -286,6 +286,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
           false,
           Optional.empty(),
           Optional.empty(),
+          Optional.empty(),
           Optional.empty()
         )
       )

@@ -199,7 +199,8 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
         videoGif,
         Optional.empty(),
         Optional.ofNullable(caption),
-        Optional.ofNullable(transformProperties)
+        Optional.ofNullable(transformProperties),
+        Optional.ofNullable(fileName)
       )
     }
   }
