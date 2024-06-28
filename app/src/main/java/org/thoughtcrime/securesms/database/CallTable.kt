@@ -719,19 +719,19 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
     val didInsert = writableDatabase.withinTransaction { db ->
       val exists = db.exists(TABLE_NAME)
-        .where("$PEER = ? AND $CALL_ID = ?", callLinkRecipient.id.serialize(), callId)
+        .where("$PEER = ? AND $CALL_ID = ?", callLinkRecipient.id.serialize(), callId.longValue())
         .run()
 
       if (exists && !skipTimestampUpdate) {
         db.update(TABLE_NAME)
           .values(TIMESTAMP to timestamp)
-          .where("$PEER = ? AND $CALL_ID = ? AND $TIMESTAMP < ?", callLinkRecipient.id.serialize(), callId, timestamp)
+          .where("$PEER = ? AND $CALL_ID = ? AND $TIMESTAMP < ?", callLinkRecipient.id.serialize(), callId.longValue(), timestamp)
           .run()
         false
       } else if (!exists) {
         db.insertInto(TABLE_NAME)
           .values(
-            CALL_ID to callId,
+            CALL_ID to callId.longValue(),
             MESSAGE_ID to null,
             PEER to callLinkRecipient.id.toLong(),
             EVENT to Event.serialize(Event.GENERIC_GROUP_CALL),
