@@ -19,7 +19,7 @@ import io.reactivex.rxjava3.core.Flowable;
 
 public interface CameraFragment {
 
-  float PORTRAIT_ASPECT_RATIO = 9 / 16f;
+  
 
   @SuppressLint({ "RestrictedApi", "UnsafeOptInUsageError" })
   static Fragment newInstance(boolean qrScanEnabled) {
@@ -39,17 +39,23 @@ public interface CameraFragment {
     }
   }
 
-  static float getAspectRatioForOrientation(int orientation) {
-    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-      return PORTRAIT_ASPECT_RATIO;
-    } else {
-      return 1f / PORTRAIT_ASPECT_RATIO;
+  static float getAspectRatioForOrientation(int orientation, @NonNull CameraFragment.AspectRatioPreference preference) {
+    switch (preference) {
+      case NORMAL_4_3:
+        return 4f / 3f;
+      case NORMAL_16_9:
+        return 16f / 9f;
+      case PORTRAIT:  // Maintain existing portrait mode behavior
+        return orientation == Configuration.ORIENTATION_PORTRAIT ? 9f / 16f : 16f / 9f;
+      default:
+        return 16f / 9f; // Default to 16:9 if preference is unknown
     }
   }
 
-  static void toastVideoRecordingNotAvailable(@NonNull Context context) {
-    Toast.makeText(context, R.string.CameraFragment__video_recording_is_not_supported_on_your_device, Toast.LENGTH_SHORT)
-         .show();
+  enum AspectRatioPreference {
+    NORMAL_4_3,
+    NORMAL_16_9,
+    PORTRAIT
   }
 
   void presentHud(int selectedMediaCount);
@@ -67,5 +73,6 @@ public interface CameraFragment {
     @NonNull Flowable<Optional<Media>> getMostRecentMediaItem();
     @NonNull MediaConstraints getMediaConstraints();
     int getMaxVideoDuration();
+    @NonNull CameraFragment.AspectRatioPreference getAspectRatioPreference();
   }
 }
