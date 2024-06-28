@@ -6999,7 +6999,10 @@
     <!-- Sheet title when media backups have been disabled -->
     <string name="BackupAlertBottomSheet__media_backups_are_off">Media backups are off</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</string>
+    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
+        <item quantity="one">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d day to download any media stored in your backup. After %1$d day, the media in your backup will be deleted.</item>
+        <item quantity="other">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
+    </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">You can begin paying for backups again at any time to continue backing up all your media. </string>
     <!-- Sheet title when user's media will be deleted today -->
@@ -7011,7 +7014,10 @@
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
+        <item quantity="one">If you choose \"Skip\" the media in your backup will be deleted in %1$d day.</item>
+        <item quantity="other">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
+    </plurals>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__cant_process_backup_payment">Can\'t process backup payment</string>
     <!-- Sheet body when user payment failed to process -->

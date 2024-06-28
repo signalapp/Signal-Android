@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -199,7 +200,7 @@ private fun MediaBackupsAreOffBody(
   daysUntilDeletion: Long
 ) {
   Text(
-    text = stringResource(id = R.string.BackupAlertBottomSheet__your_signal_media_backup_plan, daysUntilDeletion),
+    text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__your_signal_media_backup_plan, daysUntilDeletion.toInt(), daysUntilDeletion),
     textAlign = TextAlign.Center,
     modifier = Modifier.padding(bottom = 24.dp)
   )
@@ -238,7 +239,7 @@ private fun DiskFullBody(
   )
 
   Text(
-    text = stringResource(id = R.string.BackupAlertBottomSheet__if_you_choose_skip, daysUntilDeletion), // TODO [message-backups] Learn More link
+    text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__if_you_choose_skip, daysUntilDeletion.toInt(), daysUntilDeletion), // TODO [message-backups] Learn More link
     textAlign = TextAlign.Center,
     modifier = Modifier.padding(bottom = 36.dp)
   )
