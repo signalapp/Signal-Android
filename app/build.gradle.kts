@@ -78,6 +78,10 @@ ktlint {
 android {
   namespace = "org.thoughtcrime.securesms"
 
+  androidResources {
+    generateLocaleConfig = true
+  }
+
   buildToolsVersion = signalBuildToolsVersion
   compileSdkVersion = signalCompileSdkVersion
 
