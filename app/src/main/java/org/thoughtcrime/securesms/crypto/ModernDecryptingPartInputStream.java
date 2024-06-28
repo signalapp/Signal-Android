@@ -51,8 +51,11 @@ public class ModernDecryptingPartInputStream {
       Conversions.longTo4ByteArray(iv, 12, offset / 16);
 
       byte[] key    = mac.doFinal(random);
-      Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding");
-      cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
+
+     
+      Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+      cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new GCMParameterSpec(128, iv));
+
 
       long skipped = inputStream.skip(offset - remainder);
 
