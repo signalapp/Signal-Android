@@ -580,6 +580,14 @@ public final class ConversationUpdateItem extends FrameLayout
           eventListener.onReportSpamLearnMoreClicked();
         }
       });
+    } else if (conversationMessage.getMessageRecord().isProfileChange() && !conversationMessage.getMessageRecord().getFromRecipient().isSelf()) {
+      actionButton.setText(R.string.ConversationUpdateItem_update);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onChangeProfileNameUpdateContact(conversationMessage.getMessageRecord().getFromRecipient());
+        }
+      });
     } else if (conversationMessage.getMessageRecord().isMessageRequestAccepted()) {
       actionButton.setText(R.string.ConversationUpdateItem_options);
       actionButton.setVisibility(VISIBLE);
@@ -588,7 +596,7 @@ public final class ConversationUpdateItem extends FrameLayout
           eventListener.onMessageRequestAcceptOptionsClicked();
         }
       });
-    } else{
+    } else {
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);
     }

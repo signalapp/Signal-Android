@@ -22,6 +22,7 @@ import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Browser
+import android.provider.ContactsContract
 import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
@@ -259,6 +260,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.mms.SlideFactory
 import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.mms.VideoSlide
+import org.thoughtcrime.securesms.nicknames.NicknameActivity
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -2917,6 +2919,18 @@ class ConversationFragment :
 
     override fun onChangeNumberUpdateContact(recipient: Recipient) {
       startActivity(RecipientExporter.export(recipient).asAddContactIntent())
+    }
+
+    override fun onChangeProfileNameUpdateContact(recipient: Recipient) {
+      if (recipient.isSystemContact) {
+        startActivity(
+          Intent(Intent.ACTION_EDIT).apply {
+            setDataAndType(recipient.contactUri, ContactsContract.Contacts.CONTENT_ITEM_TYPE)
+          }
+        )
+      } else {
+        registerForActivityResult(NicknameActivity.Contract()) {}.launch(NicknameActivity.Args(recipientId = recipient.id, focusNoteFirst = false))
+      }
     }
 
     override fun onCallToAction(action: String) {

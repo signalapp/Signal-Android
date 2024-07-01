@@ -112,6 +112,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onInMemoryMessageClicked(@NonNull InMemoryMessageRecord messageRecord);
     void onViewGroupDescriptionChange(@Nullable GroupId groupId, @NonNull String description, boolean isMessageRequestAccepted);
     void onChangeNumberUpdateContact(@NonNull Recipient recipient);
+    void onChangeProfileNameUpdateContact(@NonNull Recipient recipient);
     void onCallToAction(@NonNull String action);
     void onDonateClicked();
     void onBlockJoinRequest(@NonNull Recipient recipient);
