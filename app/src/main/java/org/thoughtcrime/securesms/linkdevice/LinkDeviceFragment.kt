@@ -200,8 +200,9 @@ fun DeviceDescriptionScreen(
   }
   if (state.deviceToRemove != null) {
     val device: Device = state.deviceToRemove
+    val name = if (device.name.isNullOrEmpty()) stringResource(R.string.DeviceListItem_unnamed_device) else device.name
     Dialogs.SimpleAlertDialog(
-      title = stringResource(id = R.string.DeviceListActivity_unlink_s, device.name),
+      title = stringResource(id = R.string.DeviceListActivity_unlink_s, name),
       body = stringResource(id = R.string.DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive),
       confirm = stringResource(R.string.LinkDeviceFragment__unlink),
       dismiss = stringResource(android.R.string.cancel),
@@ -312,7 +313,7 @@ fun DeviceDescriptionScreen(
 
 @Composable
 fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit) {
-  val titleString = device.name.ifEmpty { stringResource(R.string.DeviceListItem_unnamed_device) }
+  val titleString = if (device.name.isNullOrEmpty()) stringResource(R.string.DeviceListItem_unnamed_device) else device.name
   val linkedDate = DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.createdMillis)
   val lastActive = DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.lastSeenMillis)
 
