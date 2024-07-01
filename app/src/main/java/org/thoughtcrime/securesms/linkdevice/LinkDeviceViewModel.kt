@@ -73,7 +73,8 @@ class LinkDeviceViewModel : ViewModel() {
     }
     _state.value = _state.value.copy(
       progressDialogMessage = if (isPotentialNewDevice) R.string.LinkDeviceFragment__linking_device else R.string.LinkDeviceFragment__loading,
-      pendingNewDevice = if (isPotentialNewDevice) false else _state.value.pendingNewDevice
+      pendingNewDevice = if (isPotentialNewDevice) false else _state.value.pendingNewDevice,
+      showFrontCamera = null
     )
     viewModelScope.launch(Dispatchers.IO) {
       val devices = LinkDeviceRepository.loadDevices()
