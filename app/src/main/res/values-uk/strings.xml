@@ -55,7 +55,7 @@
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN вимкнений.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Записати кодову фразу для платежів</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Записати кодову фразу</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Перед вимкненням PIN-коду ви маєте створити кодову фразу, щоб упевнитись, що ви зможете відновити ваш платіжний обліковий запис.</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Перед вимкненням PIN-коду ви маєте створити кодову фразу, щоб упевнитись, що ви зможете відновити свій платіжний профіль.</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -141,7 +141,7 @@
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
-    <string name="CreditCardFragment__credit_or_debit_card">Кредитна або дебетова картка</string>
+    <string name="CreditCardFragment__credit_or_debit_card">Кредитна / Дебетова картка</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">Введіть дані банківської картки. Signal не збирає і не зберігає вашу особисту інформацію.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -173,7 +173,7 @@
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
-    <string name="OneTimeDonationPreference__one_time_s">%1$s одноразово</string>
+    <string name="OneTimeDonationPreference__one_time_s">%1$s разово</string>
     <!-- Preference subtitle when donation is pending -->
     <string name="OneTimeDonationPreference__donation_pending">Ваш донат ще не надійшов</string>
     <!-- Preference subtitle when donation is processing -->
@@ -904,7 +904,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Повідомлення й інформацію про чати захищено наскрізним шифруванням на всіх пристроях</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal на комп\'ютері чи iPad</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Обмін повідомленнями на зв\'язаних пристроях завжди конфіденційний</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -927,7 +927,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">Зв\'язаних пристроїв немає</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">Розблокуйте, щоб зв\'язати пристрій</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -3753,7 +3753,7 @@
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Використовуйте Signal для переказу та отримання MobileCoin, нової цифрової валюти, націленої на безпеку. Увімкніть, щоб почати.</string>
     <string name="PaymentsHomeFragment__activate_payments">Увімкнути платежі</string>
     <string name="PaymentsHomeFragment__activating_payments">Вмикаємо платежі…</string>
-    <string name="PaymentsHomeFragment__restore_payments_account">Відновити платіжний обліковий запис</string>
+    <string name="PaymentsHomeFragment__restore_payments_account">Відновити платіжний профіль</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Жодної активності останнім часом</string>
     <string name="PaymentsHomeFragment__recent_activity">Недавня активність</string>
     <string name="PaymentsHomeFragment__see_all">Показати решту</string>
@@ -4706,7 +4706,7 @@
     <string name="DeleteAccountFragment__delete_account">Видалити акаунт</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Видалення ваших облікових даних і фото профілю</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Видалення всіх ваших повідомлень</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Видаліть %1$s зі свого платіжного рахунку</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Видаліть %1$s з вашого платіжного профілю</string>
     <string name="DeleteAccountFragment__no_country_code">Код країни не вказано</string>
     <string name="DeleteAccountFragment__no_number">Номер не вказано</string>
     <string name="DeleteAccountFragment__the_phone_number">Наданий номер телефону не належить до вашого акаунту.</string>
@@ -4806,7 +4806,7 @@
     <string name="payment_info_card_hide">Сховати</string>
     <!-- Title of save recovery phrase card -->
     <string name="payment_info_card_save_recovery_phrase">Зберегти кодову фразу</string>
-    <string name="payment_info_card_your_recovery_phrase_gives_you">Кодова фраза надає ще один спосіб відновлення вашого платіжного облікового запису.</string>
+    <string name="payment_info_card_your_recovery_phrase_gives_you">Кодова фраза надає ще один спосіб відновлення вашого платіжного профілю.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">Збережіть свою фразу</string>
     <string name="payment_info_card_update_your_pin">Оновити PIN-код</string>
@@ -4875,7 +4875,7 @@
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Запишіть наступні %1$d слова одне за одним. Зберігайте записане у надійному місці.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Переконайтесь, що ви правильно ввели фразу.</string>
     <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Не робіть знімків екрану та не відправляйте електронною поштою.</string>
-    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Обліковий запис платежів відновлено.</string>
+    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Платіжний профіль відновлено.</string>
     <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Неправильна кодова фраза</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Переконайтесь, що ви ввели правильно фразу і повторіть спробу.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Копіювати до буферу обміну?</string>
@@ -5562,9 +5562,9 @@
     <string name="ManageDonationsFragment__my_support">Моя підтримка</string>
     <string name="ManageDonationsFragment__manage_subscription">Керувати передплатою</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Квитанція внеску</string>
+    <string name="ManageDonationsFragment__donation_receipts">Підтвердження ваших донатів</string>
     <string name="ManageDonationsFragment__badges">Значки</string>
-    <string name="ManageDonationsFragment__subscription_faq">Поширені запитання про передплату</string>
+    <string name="ManageDonationsFragment__subscription_faq">Поширені запитання про підписку</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Інші способи підтримки</string>
     <!-- Preference label to launch badge gifting -->
@@ -5913,9 +5913,9 @@
     <!-- Donation receipts recurring tab label -->
     <string name="DonationReceiptListFragment__recurring">Поточні</string>
     <!-- Donation receipts one-time tab label -->
-    <string name="DonationReceiptListFragment__one_time">Одноразово</string>
+    <string name="DonationReceiptListFragment__one_time">Разові донати</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">Для друга</string>
+    <string name="DonationReceiptListFragment__for_a_friend">За друга</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Донат за друга</string>
     <!-- Donation receipts donation type heading -->
@@ -5923,19 +5923,19 @@
     <!-- Donation receipts date paid heading -->
     <string name="DonationReceiptDetailsFragment__date_paid">Дата оплати</string>
     <!-- Donation receipts share PNG -->
-    <string name="DonationReceiptDetailsFragment__share_receipt">Поділитись квитанцією</string>
+    <string name="DonationReceiptDetailsFragment__share_receipt">Поділитися</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Якщо ви перевстановлювали Signal, квитанції попередніх донатів не будуть доступні.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Якщо ви перевстановлювали Signal, підтвердження попередніх донатів будуть недоступні.</string>
     <!-- Donation receipts document title -->
-    <string name="DonationReceiptDetailsFragment__donation_receipt">Квитанція про донат</string>
+    <string name="DonationReceiptDetailsFragment__donation_receipt">Підтвердження донату</string>
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Сума</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Дякуємо за підтримку Signal. Ваш внесок допомагає підтримувати місію розробки технології конфіденційності з відкритим кодом, яка захищає вільне висловлювання та забезпечує безпечне спілкування для мільйонів людей у всьому світі. Якщо ви є резидентом Сполучених Штатів, збережіть цю квитанцію для податкового обліку. Signal Technology Foundation – відповідно до розділу 501c3 Податкового кодексу це звільнена від податків некомерційна організація в Сполучених Штатах. Наш федеральний податковий номер: 82–4506840.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Дякуємо за підтримку Signal. Ваш внесок допомагає реалізувати нашу місію: розробляти технологію конфіденційного обміну повідомленнями з відкритим кодом, яка захищає свободу слова й робить можливим безпечне спілкування для мільйонів людей у всьому світі. Якщо ви резидент Сполучених Штатів Америки, збережіть це підтвердження для звітування в податкові органи. Signal Technology Foundation — звільнена від оподаткування неприбуткова організація, створена відповідно до розділу 501c3 податкового кодексу США. Наш федеральний податковий номер: 82–4506840.</string>
     <!-- Donation receipt type -->
     <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
-    <string name="DonationReceiptListFragment__no_receipts">Квитанцій немає</string>
+    <string name="DonationReceiptListFragment__no_receipts">Підтверджень немає</string>
 
     <!-- region "Stories Tab" -->
 
@@ -6590,7 +6590,7 @@
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Щомісяця</string>
     <!-- Donation pill toggle one-time text -->
-    <string name="DonationPillToggle__one_time">Одноразово</string>
+    <string name="DonationPillToggle__one_time">Разово</string>
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
@@ -6609,7 +6609,7 @@
     <!-- Button label for paying with a bank transfer -->
     <string name="GatewaySelectorBottomSheet__bank_transfer">Банківський переказ</string>
     <!-- Button label for paying with a credit card -->
-    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Кредитна або дебетова картка</string>
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Кредитна / Дебетова картка</string>
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Донат за друга</string>
     <!-- Button label for paying with iDEAL -->
@@ -6709,7 +6709,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Підтвердьте ваш донат через %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
-    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Щоб оформити регулярний благодійний платіж, виберіть «Продовжити» й підтвердьте списання 0,01€ у своєму банку. Цю суму буде автоматично повернуто. Ця операція потрібна, щоб активувати списання %1$s/місяць з вашого рахунку.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Продовжити</string>
 
@@ -7301,11 +7301,11 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">Неможливо завершити завантаження</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">На пристрої недостатньо місця. Звільніть %1$s, щоб завантажити медіафайли з резервної копії.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">Якщо вибрати «Пропустити», медіафайли з резервної копії буде видалено через %1$d днів.</string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Дізнатися більше</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
@@ -7313,11 +7313,11 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Звільніть %1$s, щоб завантажити свої медіафайли.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Кредитна або дебетова картка</string>
+    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Кредитна / Дебетова картка</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7360,7 +7360,7 @@
     <!-- Title of the screen for payment history -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Історія платежів</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Текстові повідомлення та всі медіафайли</string>
     <!-- Title of the screen for payment details -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Платіжні дані</string>
     <!-- Title of row specifying the type of backup -->

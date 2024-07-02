@@ -873,7 +873,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">无链接设备</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">解锁以链接设备</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -6268,7 +6268,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">与 %1$s 确认您的捐款</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
-    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">如要设置您的定期捐款，请点击“继续”以便与您的银行确认扣除一笔 0.01 欧元的费用。这笔费用将会自动退还，并允许每月从您的账户中扣除 %1$s 用于捐款。</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">继续</string>
 
@@ -6839,11 +6839,11 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">无法完成下载</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">您的设备没有足够的可用空间。请至少释放 %1$s 的空间，以下载存储在备份中的媒体。</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">如果您选择“跳过”，备份中的媒体将会在 %1$d 后删除。</string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">了解详情</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
@@ -6851,7 +6851,7 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">至少释放 %1$s 的空间以下载媒体。</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -6898,7 +6898,7 @@
     <!-- Title of the screen for payment history -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_history">付款历史</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">文本和所有媒体备份</string>
     <!-- Title of the screen for payment details -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_details">付款详情</string>
     <!-- Title of row specifying the type of backup -->

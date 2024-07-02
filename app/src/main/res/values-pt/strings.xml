@@ -868,7 +868,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s As informações das mensagens e chats estão protegidas por encriptação de ponta a ponta em todos os dispositivos</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal no Desktop ou iPad</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Todas as mensagens em dispositivos conectados são privadas</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -891,7 +891,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">Não há dispositivos conectados</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">Desbloqueie para vincular um dispositivo</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -6415,7 +6415,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirme o seu donativo com %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
-    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Para configurar o seu donativo recorrente, toque em continuar para confirmar um débito de 0,01 € junto do seu banco. Este montante será automaticamente reembolsado e permitirá que o seu donativo de %1$s/mês seja debitado da sua conta.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Continuar</string>
 
@@ -6993,11 +6993,11 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">Não é possível concluir a transferência</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">O seu dispositivo não tem espaço livre suficiente. Liberte até %1$s de espaço para transferir os ficheiros guardados na sua cópia de segurança.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">Se escolher \"Ignorar\", os ficheiros na sua cópia de segurança serão eliminados dentro de %1$d dias.</string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Saber mais</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
@@ -7005,7 +7005,7 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Liberte %1$s de espaço para transferir o ficheiro.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7052,7 +7052,7 @@
     <!-- Title of the screen for payment history -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Histórico de pagamentos</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Cópia de segurança de texto e todos os ficheiros</string>
     <!-- Title of the screen for payment details -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Detalhes do pagamento</string>
     <!-- Title of row specifying the type of backup -->

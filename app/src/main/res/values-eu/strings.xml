@@ -891,7 +891,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">Ez dago lotutako gailurik</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">Desblokeatu gailu bat lotzeko</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -6415,7 +6415,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Berretsi dohaintza %1$s bidez</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
-    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Dohaintza errepikaria konfiguratzeko, sakatu \"Jarraitu\" eta berretsi banku-kontuan 0,01€ kargatzea. Zenbateko hori automatikoki itzuliko zaizu, eta dohaintza (%1$s/hil) zure kontutik kobratzeko aukera izango duzu.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Jarraitu</string>
 
@@ -6993,11 +6993,11 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">Ezin da deskarga osatu</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Zure gailuak ez du leku libre nahikoa. Babeskopian gordetako multimedia-edukia deskargatzeko, utzi %1$s libre.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">\"Saltatu\" aukeratzen baduzu, babeskopiako multimedia-edukia %1$d egunen buruan ezabatuko da.</string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Informazio gehiago</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
@@ -7005,7 +7005,7 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Utzi %1$s libre multimedia-edukia deskargatzeko.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7052,7 +7052,7 @@
     <!-- Title of the screen for payment history -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Ordainketen historia</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Testuaren eta mutimediaren babeskopia</string>
     <!-- Title of the screen for payment details -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Ordainketaren xehetasunak</string>
     <!-- Title of row specifying the type of backup -->

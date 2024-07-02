@@ -91,9 +91,9 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el archivo seleccionado.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Para adjuntar fotos, vídeos o audio, Signal necesita acceso al almacenamiento de tu teléfono. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Almacenamiento &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Para añadir información de tus contactos, Signal necesita acceso a los contactos de tu teléfono. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Contactos &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Para añadir una ubicación geográfica, Signal necesita acceso a tu ubicación. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Ubicación &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal necesita acceso al almacenamiento de tu teléfono para adjuntar fotos, vídeos o audio. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Almacenamiento &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal necesita acceso a los contactos de tu teléfono para añadir información de tus contactos. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Contactos &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal necesita acceso a tu ubicación para añadir una ubicación geográfica. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Ubicación &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
 
     <!-- Dialog title asking users for location permission -->
     <string name="AttachmentManager_signal_allow_access_location">Permitir acceso a tu ubicación</string>
@@ -240,9 +240,9 @@
     <!-- Text explaining why Signal needs camera access in order to take photos -->
     <string name="CameraXFragment_to_capture_photos_allow_camera">Para hacer fotos, permite que Signal acceda a la cámara.</string>
     <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
-    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">Para hacer fotos y vídeos, permite que Signal acceda a la cámara.</string>
+    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">Para hacer fotos y grabar vídeos, permite que Signal acceda a la cámara.</string>
     <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
-    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">Para hacer fotos y vídeos, permite que Signal acceda a la cámara y al micrófono.</string>
+    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">Para hacer fotos y grabar vídeos, permite que Signal acceda a la cámara y al micrófono.</string>
     <!-- Text explaining why Signal needs microphone access to take videos -->
     <string name="CameraXFragment_to_capture_videos_with_sound">Para grabar vídeos con sonido, permite que Signal acceda a tu micrófono.</string>
     <!-- Text explaining why Signal needs camera access to scan QR codes -->
@@ -256,7 +256,7 @@
     <!-- Dialog description that explains the steps needed to give camera permission -->
     <string name="CameraXFragment_to_capture_photos">Para hacer fotos en Signal:</string>
     <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
-    <string name="CameraXFragment_to_capture_photos_videos">Para hacer fotos y vídeos en Signal:</string>
+    <string name="CameraXFragment_to_capture_photos_videos">Para hacer fotos y grabar vídeos en Signal:</string>
     <!-- Dialog description that explains the steps needed to give microphone permission -->
     <string name="CameraXFragment_to_capture_videos">Para grabar vídeos con sonido:</string>
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
@@ -275,7 +275,7 @@
     <string name="CameraContacts_no_signal_contacts">No hay contactos de Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Puedes usar el botón de la cámara solo para enviar fotos a personas en Signal. </string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">¿No encuentras a quien que buscas?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Invita a una persona a usar Signal.</string>
+    <string name="CameraContacts_invite_a_contact_to_join_signal">Invita a una persona a usar Signal</string>
     <string name="CameraContacts__menu_search">Buscar</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -400,8 +400,8 @@
     <string name="ConversationActivity_send_edit">Enviar versión editada</string>
     <string name="ConversationActivity_compose_message">Escribir mensaje</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">No se ha podido adjuntar el archivo.</string>
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El destinatario no tiene un número de teléfono móvil o una dirección de correo electrónico válidos</string>
-    <string name="ConversationActivity_message_is_empty_exclamation">El mensaje está vacío</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El destinatario no tiene un número de teléfono móvil o una dirección de correo electrónico válidos.</string>
+    <string name="ConversationActivity_message_is_empty_exclamation">El mensaje está vacío.</string>
     <string name="ConversationActivity_group_members">Participantes del grupo</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
@@ -448,15 +448,15 @@
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Para enviar mensajes de voz y hacer llamadas, permite que Signal acceda al micrófono.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
     <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal necesita acceso al micrófono para grabar un mensaje de voz.</string>
-    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Para enviar mensajes de voz, Signal necesita acceso al micrófono. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Micrófono &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal necesita acceso al micrófono para enviar mensajes de voz. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Micrófono &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
 
-    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Para llamar a %1$s, Signal necesita acceso al micrófono y a la cámara. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación, y activa el acceso al micrófono y a la cámara. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal necesita acceso al micrófono y a la cámara para llamar a %1$s. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación, y activa el acceso al micrófono y a la cámara. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para hacer fotos y grabar vídeos, permite el acceso de Signal a la cámara.</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Para hacer fotos o grabar vídeos, Signal necesita acceso a la cámara. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
-    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Para hacer fotos o grabar vídeos, Signal necesita acceso a la cámara.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita acceso a la cámara para hacer fotos o grabar vídeos. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal necesita acceso a la cámara para hacer fotos o grabar vídeos.</string>
     <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Activa el acceso al micrófono para grabar vídeos con sonido.</string>
-    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Para grabar vídeos, Signal necesita acceso al micrófono. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación, y activa el acceso al micrófono y a la cámara. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
-    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Para grabar vídeos, Signal necesita acceso al micrófono.</string>
+    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal necesita acceso al micrófono para grabar vídeos. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación, y activa el acceso al micrófono y a la cámara. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal necesita acceso al micrófono para grabar vídeos.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_no">No</string>
@@ -464,7 +464,7 @@
     <string name="ConversationActivity_no_results">No hay resultados</string>
 
     <string name="ConversationActivity_sticker_pack_installed">Paquete de stickers instalado</string>
-    <string name="ConversationActivity_new_say_it_with_stickers">¡Novedad! Ahora di lo que quieras con stickers</string>
+    <string name="ConversationActivity_new_say_it_with_stickers">¡Nuevo! Ahora di lo que quieras con stickers</string>
 
     <string name="ConversationActivity_cancel">Cancelar</string>
     <string name="ConversationActivity_delete_conversation">¿Eliminar chat?</string>
@@ -516,7 +516,7 @@
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
-    <string name="ConversationFragment__contacts_app_not_found">No se han encontrado contactos en la app.</string>
+    <string name="ConversationFragment__contacts_app_not_found">No se han encontrado contactos en la aplicación.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">¿Eliminar el mensaje seleccionado?</item>
         <item quantity="other">¿Eliminar los mensajes seleccionados?</item>
@@ -791,7 +791,7 @@
     <string name="BackupsPreferenceFragment__d_so_far">%1$d completado…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s %% completado…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Para crear copias de seguridad, Signal necesita acceso al almacenamiento. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Almacenamiento &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesita acceso al almacenamiento para crear copias de seguridad. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Almacenamiento &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
     <string name="BackupsPreferenceFragment__set_backup_time">Establecer hora para la copia de seguridad</string>
 
@@ -868,7 +868,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Los mensajes y la información del chat están protegidos por cifrado de extremo a extremo en todos los dispositivos</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal para escritorio o iPad</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Todos los mensajes de los dispositivos vinculados son privados</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -891,7 +891,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">No hay dispositivos vinculados</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">Desbloquear para vincular un dispositivo</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -905,9 +905,9 @@
     <!-- Dialog text describing the consequences of linking a device -->
     <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">Desde este dispositivo podrás ver tus grupos y contactos, leer todos tus mensajes y enviar mensajes en tu nombre.</string>
     <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
-    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">Terminar de vincular tu otro dispositivo</string>
+    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">Termina de vincular tu otro dispositivo</string>
     <!-- Bottom sheet description telling users to complete the linking process -->
-    <string name="AddLinkDeviceFragment__finish_linking_signal">Terminar de vincular Signal en tu otro dispositivo.</string>
+    <string name="AddLinkDeviceFragment__finish_linking_signal">Termina de vincular Signal en tu otro dispositivo.</string>
     <!-- Title of dialog when the QR code being scanned is invalid -->
     <string name="AddLinkDeviceFragment__linking_device_failed">No se ha podido vincular el dispositivo</string>
     <!-- Text shown in a dialog when the QR code being scanned is invalid -->
@@ -978,7 +978,7 @@
 
     <!-- GV2 access levels -->
     <string name="GroupManagement_access_level_anyone">Cualquiera</string>
-    <string name="GroupManagement_access_level_all_members">Todos los miembros</string>
+    <string name="GroupManagement_access_level_all_members">Todos los participantes</string>
     <string name="GroupManagement_access_level_only_admins">Solo admins</string>
     <string name="GroupManagement_access_level_no_one">Nadie</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
@@ -1055,7 +1055,7 @@
         <item quantity="other">Añadir participantes</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
-        <item quantity="one">No se han podido añadir participantes. Inténtalo de nuevo más tarde.</item>
+        <item quantity="one">No se ha podido añadir participante. Inténtalo de nuevo más tarde.</item>
         <item quantity="other">No se han podido añadir participantes. Inténtalo de nuevo más tarde.</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
@@ -1169,8 +1169,8 @@
     </plurals>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">No dispones de permisos para hacerlo</string>
-    <string name="ManageGroupActivity_not_capable">Alguien a quien has añadido no tiene una versión compatible con el nuevo sistema de grupos y debe actualizar Signal.</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Alguien a quien has añadido no tiene una versión compatible con el nuevo sistema de grupos de difusión y debe actualizar Signal.</string>
+    <string name="ManageGroupActivity_not_capable">Alguien a quien has añadido no tiene una versión compatible con el nuevo sistema de grupos y debe actualizar Signal</string>
+    <string name="ManageGroupActivity_not_announcement_capable">Alguien a quien has añadido no tiene una versión compatible con el nuevo sistema de grupos de difusión y debe actualizar Signal</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">No se ha podido actualizar el grupo</string>
     <string name="ManageGroupActivity_youre_not_a_member_of_the_group">No participas en el grupo</string>
     <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">No se ha podido actualizar el grupo. Inténtalo de nuevo más tarde.</string>
@@ -1333,7 +1333,7 @@
 
     <!-- ImageEditorHud -->
     <string name="ImageEditorHud_blur_faces">Difuminar caras</string>
-    <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nuevo: Difumina caras o zonas de la foto.</string>
+    <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nuevo: Difumina caras o zonas de la foto</string>
     <string name="ImageEditorHud_draw_anywhere_to_blur">Toca sobre la foto para difuminar</string>
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Toca sobre la foto para difuminar más caras o zonas</string>
 
@@ -1520,7 +1520,7 @@
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Has creado el grupo.</string>
     <string name="MessageRecord_group_updated">Grupo actualizado.</string>
-    <string name="MessageRecord_invite_friends_to_this_group">Invita amistades a participar en ese grupo vía enlace</string>
+    <string name="MessageRecord_invite_friends_to_this_group">Comparte el enlace a este grupo para invitar a quien quieras</string>
 
     <!-- GV2 member additions -->
     <string name="MessageRecord_you_added_s">Has añadido a %1$s.</string>
@@ -1539,9 +1539,9 @@
     <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ya no participa en el grupo.</string>
 
     <!-- GV2 role change -->
-    <string name="MessageRecord_you_made_s_an_admin">Has promovido a %1$s a admin.</string>
-    <string name="MessageRecord_s_made_s_an_admin">%1$s ha promovido a %2$s a admin.</string>
-    <string name="MessageRecord_s_made_you_an_admin">%1$s te ha promovido a admin.</string>
+    <string name="MessageRecord_you_made_s_an_admin">Has designado a %1$s como admin.</string>
+    <string name="MessageRecord_s_made_s_an_admin">%1$s ha designado a %2$s como admin.</string>
+    <string name="MessageRecord_s_made_you_an_admin">%1$s te ha designado como admin.</string>
     <string name="MessageRecord_you_revoked_admin_privileges_from_s">Has retirado los permisos de admin a %1$s.</string>
     <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s te ha retirado los permisos de admin.</string>
     <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ha retirado los permisos de admin a %2$s.</string>
@@ -1560,65 +1560,65 @@
     <string name="MessageRecord_you_were_invited_to_the_group">Te han invitado al grupo.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
         <item quantity="one">Se ha invitado a 1 persona al grupo.</item>
-        <item quantity="other">Se han invitado a %1$d personas al grupo.</item>
+        <item quantity="other">Se ha invitado a %1$d personas al grupo.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">Has retirado la invitación para el grupo.</item>
-        <item quantity="other">Has retirado %1$d invitaciones para el grupo.</item>
+        <item quantity="one">Has retirado la invitación a unirse al grupo.</item>
+        <item quantity="other">Has retirado %1$d invitaciones a unirse al grupo.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s ha retirado la invitación para el grupo.</item>
-        <item quantity="other">%1$s ha retirado %2$d invitaciones para el grupo.</item>
+        <item quantity="one">%1$s ha retirado la invitación a unirse al grupo.</item>
+        <item quantity="other">%1$s ha retirado %2$d invitaciones a unirse al grupo.</item>
     </plurals>
-    <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguien ha rechazado la invitación a participar en el grupo.</string>
-    <string name="MessageRecord_you_declined_the_invitation_to_the_group">Has rechazado la invitación a participar en el grupo.</string>
-    <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s retiró tu invitación del grupo.</string>
-    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un admin retiró tu invitavión del grupo.</string>
+    <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguien ha rechazado la invitación a unirse al grupo.</string>
+    <string name="MessageRecord_you_declined_the_invitation_to_the_group">Has rechazado la invitación a unirte al grupo.</string>
+    <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s retiró tu invitación a unirse al grupo.</string>
+    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un admin retiró tu invitación a unirse al grupo.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">Se ha retirado la invitación para el grupo.</item>
-        <item quantity="other">Se han retirado %1$d invitaciones para el grupo.</item>
+        <item quantity="one">Se ha retirado 1 invitación a unirse al grupo.</item>
+        <item quantity="other">Se han retirado %1$d invitaciones a unirse al grupo.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
-    <string name="MessageRecord_you_accepted_invite">Has aceptado la invitación para participar en el grupo.</string>
-    <string name="MessageRecord_s_accepted_invite">%1$s ha aceptado la invitación para el grupo.</string>
+    <string name="MessageRecord_you_accepted_invite">Has aceptado la invitación a unirte al grupo.</string>
+    <string name="MessageRecord_s_accepted_invite">%1$s ha aceptado la invitación a unirse al grupo.</string>
     <string name="MessageRecord_you_added_invited_member_s">Has añadido a %1$s.</string>
     <string name="MessageRecord_s_added_invited_member_s">%1$s ha añadido a %2$s.</string>
 
     <!-- GV2 title change -->
-    <string name="MessageRecord_you_changed_the_group_name_to_s">Has modificado el nombre del grupo a «%1$s».</string>
-    <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ha modificado el nombre del grupo a «%2$s».</string>
+    <string name="MessageRecord_you_changed_the_group_name_to_s">Has cambiado el nombre del grupo a «%1$s».</string>
+    <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ha cambiado el nombre del grupo a «%2$s».</string>
     <string name="MessageRecord_the_group_name_has_changed_to_s">El nombre del grupo ha cambiado a «%1$s».</string>
 
     <!-- GV2 description change -->
-    <string name="MessageRecord_you_changed_the_group_description">Has actualizado la descripción del grupo</string>
-    <string name="MessageRecord_s_changed_the_group_description">%1$s ha actualizado la descripción del grupo.</string>
-    <string name="MessageRecord_the_group_description_has_changed">Se ha actualizado la descripción del grupo.</string>
+    <string name="MessageRecord_you_changed_the_group_description">Has cambiado la descripción del grupo.</string>
+    <string name="MessageRecord_s_changed_the_group_description">%1$s ha cambiado la descripción del grupo.</string>
+    <string name="MessageRecord_the_group_description_has_changed">Se ha cambiado la descripción del grupo.</string>
 
     <!-- GV2 avatar change -->
-    <string name="MessageRecord_you_changed_the_group_avatar">Has modificado la imagen del grupo.</string>
-    <string name="MessageRecord_s_changed_the_group_avatar">%1$s ha modificado la imagen del grupo.</string>
-    <string name="MessageRecord_the_group_group_avatar_has_been_changed">La imagen del grupo ha cambiado.</string>
+    <string name="MessageRecord_you_changed_the_group_avatar">Has cambiado la imagen del grupo.</string>
+    <string name="MessageRecord_s_changed_the_group_avatar">%1$s ha cambiado la imagen del grupo.</string>
+    <string name="MessageRecord_the_group_group_avatar_has_been_changed">Se ha cambiado la imagen del grupo.</string>
 
     <!-- GV2 attribute access level change -->
-    <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Has actualizado quien puede editar los detalles del grupo a «%1$s».</string>
-    <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ha actualizado quien puede editar los detalles del grupo a «%2$s».</string>
-    <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Se ha modificado quien puede editar los detalles del grupo a «%1$s».</string>
+    <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Has cambiado quién puede editar los detalles del grupo a «%1$s».</string>
+    <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ha cambiado quién puede editar los detalles del grupo a «%2$s».</string>
+    <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Se ha cambiado quién puede editar los detalles del grupo a «%1$s».</string>
 
     <!-- GV2 membership access level change -->
-    <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Has actualizado quien puede añadir participantes al grupo a «%1$s».</string>
-    <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha actualizado quien puede añadir participantes al grupo a «%2$s».</string>
-    <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ahora, «%1$s» pueden añadir participantes al grupo.</string>
+    <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Has cambiado quién puede editar la lista de participantes del grupo a «%1$s».</string>
+    <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha cambiado quién puede editar la lista de participantes del grupo a «%2$s».</string>
+    <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Se ha cambiado quién puede editar la lista de participantes del grupo a «%1$s».</string>
 
     <!-- GV2 announcement group change -->
-    <string name="MessageRecord_you_allow_all_members_to_send">Has modificado los ajustes del grupo para permitir a cualquiera enviar mensajes.</string>
-    <string name="MessageRecord_you_allow_only_admins_to_send">Has modificado los ajustes del grupo para permitir solo a admins enviar mensajes.</string>
-    <string name="MessageRecord_s_allow_all_members_to_send">%1$s ha modificado los ajustes del grupo para permitir a cualquiera enviar mensajes.</string>
-    <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ha modificado los ajustes del grupo para permitir solo a admins enviar mensajes.</string>
-    <string name="MessageRecord_allow_all_members_to_send">Los ajustes del grupo han cambiado para permitir a cualquiera enviar mensajes.</string>
-    <string name="MessageRecord_allow_only_admins_to_send">Se han modificado los ajustes del grupo para permitir a cualquiera enviar mensajes.</string>
+    <string name="MessageRecord_you_allow_all_members_to_send">Has cambiado los ajustes del grupo para que cualquiera pueda enviar mensajes.</string>
+    <string name="MessageRecord_you_allow_only_admins_to_send">Has cambiado los ajustes del grupo para que solo admins puedan enviar mensajes.</string>
+    <string name="MessageRecord_s_allow_all_members_to_send">%1$s ha cambiado los ajustes del grupo para que cualquiera pueda enviar mensajes.</string>
+    <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ha cambiado los ajustes del grupo para que solo admins puedan enviar mensajes.</string>
+    <string name="MessageRecord_allow_all_members_to_send">Se han cambiado los ajustes del grupo para que cualquiera pueda enviar mensajes.</string>
+    <string name="MessageRecord_allow_only_admins_to_send">Se han cambiado los ajustes del grupo para que solo admins puedan enviar mensajes.</string>
 
     <!-- GV2 group link invite access level change -->
     <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Has activado el enlace para unirse al grupo sin confirmación de admin.</string>
@@ -1630,12 +1630,12 @@
     <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Se ha activado el enlace para unirse al grupo sin confirmación de admin.</string>
     <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Se ha activado el enlace para unirse al grupo tras confirmación de admin.</string>
     <string name="MessageRecord_the_group_link_has_been_turned_off">Se ha desactivado el enlace para unirse al grupo.</string>
-    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Has desactivado la confirmación de admin para unirse al grupo vía enlace.</string>
-    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ha desactivado la confirmación de admin para unirse al grupo vía enlace.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Se a confirmación de admin para unirse al grupo vía enlace.</string>
-    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Has activado la confirmación de admin para unirse al grupo vía enlace.</string>
-    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ha activado la confirmación de admin para unirse al grupo vía enlace.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Se ha activado la confirmación de admin para unirse al grupo vía enlace.</string>
+    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Has desactivado la confirmación de admin para unirse al grupo mediante enlace.</string>
+    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ha desactivado la confirmación de admin para unirse al grupo mediante enlace.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Se ha desactivado la confirmación de admin para unirse al grupo mediante enlace.</string>
+    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Has activado la confirmación de admin para unirse al grupo mediante enlace.</string>
+    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ha activado la confirmación de admin para unirse al grupo mediante enlace.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Se ha activado la confirmación de admin para unirse al grupo mediante enlace.</string>
 
     <!-- GV2 group link reset -->
     <string name="MessageRecord_you_reset_the_group_link">Has restablecido el enlace para unirse al grupo.</string>
@@ -1643,16 +1643,16 @@
     <string name="MessageRecord_the_group_link_has_been_reset">Se ha restablecido el enlace para unirse al grupo.</string>
 
     <!-- GV2 group link joins -->
-    <string name="MessageRecord_you_joined_the_group_via_the_group_link">Te has unido al grupo vía enlace.</string>
-    <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se ha unido al grupo vía enlace.</string>
+    <string name="MessageRecord_you_joined_the_group_via_the_group_link">Te has unido al grupo mediante enlace.</string>
+    <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se ha unido al grupo mediante enlace.</string>
 
     <!-- GV2 group link requests -->
     <string name="MessageRecord_you_sent_a_request_to_join_the_group">Has enviado una solicitud para unirte al grupo.</string>
-    <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ha solicitado unirse al grupo vía enlace.</string>
+    <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ha solicitado unirse al grupo mediante enlace.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s ha solicitado y cancelado su solicitud para participar en el grupo vía enlace.</item>
-        <item quantity="other">%1$s ha solicitado y cancelado %2$d veces participar en el grupo vía enlace.</item>
+        <item quantity="one">%1$s ha solicitado y cancelado su solicitud para participar en el grupo mediante enlace.</item>
+        <item quantity="other">%1$s ha solicitado y cancelado %2$d veces participar en el grupo mediante enlace.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1666,15 +1666,15 @@
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Un admin ha denegado tu solicitud para unirte al grupo.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ha denegado la solicitud de %2$s para unirse al grupo.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Se ha denegado la solicitud de %1$s para unirse al grupo.</string>
-    <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Has retirado tu solicitud para unirte al grupo.</string>
-    <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s ha retirado su solicitud para unirse al grupo.</string>
+    <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Has cancelado tu solicitud para unirte al grupo.</string>
+    <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s ha cancelado su solicitud para unirse al grupo.</string>
 
     <!-- End of GV2 specific update messages -->
 
     <string name="MessageRecord_your_safety_number_with_s_has_changed">Tu número de seguridad con %1$s ha cambiado.</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Has marcado tu número de seguridad con %1$s como verificado</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Has marcado tu número de seguridad con %1$s como verificado desde otro dispositivo</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Has retirado la marca de verificación de tu número de seguridad con %1$s.</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Has retirado la marca de verificación de tu número de seguridad con %1$s</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Has retirado la marca de verificación de tu número de seguridad con %1$s desde otro dispositivo</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">No se pudo recibir un mensaje de %1$s</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s ha cambiado su número de teléfono.</string>
@@ -1770,13 +1770,13 @@
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Aceptar</string>
-    <string name="MessageRequestBottomView_continue">Adelante</string>
+    <string name="MessageRequestBottomView_continue">Continuar</string>
     <string name="MessageRequestBottomView_delete">Eliminar</string>
     <string name="MessageRequestBottomView_block">Bloquear</string>
     <string name="MessageRequestBottomView_unblock">Desbloquear</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">¿Quieres compartir tu nombre y foto con %1$s y permitir que te mande un mensaje? En el pasado, eliminaste a esta persona.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas que %1$s te envíe mensajes y compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas permitir que %1$s te envíe mensajes y compartir tu nombre y foto con esta persona? No sabrá que has visto sus mensajes hasta que aceptes.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta lx desbloquees.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -1784,10 +1784,10 @@
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">¿Deseas recibir noticias y novedades de %1$s? No recibirás ninguna hasta que desbloquees a esta persona.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">¿Deseas chatear con este grupo y compartir tu nombre y foto con sus participantes?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Este es un grupo antiguo y ya no puede usarse. Crea un nuevo grupo para activar funciones nuevas como @menciones y admins.</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este grupo antiguo no es válido porque es demasiado grande. El tamaño máximo de grupo es de %1$d participantes.</string>
+    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este grupo del sistema antiguo no es válido porque es demasiado grande. Se permite un máximo de %1$d participantes.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">¿Deseas seguir chateando con %1$s y compartir tu nombre y foto con esta persona?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo y compartir tu nombre y foto con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">¿Deseas unirte a este grupo y compartir tu nombre y foto con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">¿Deseas unirte a este grupo y compartir tu nombre y foto con sus participantes? No podrás ver sus mensajes hasta que aceptes.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo? Sus participantes no sabrán que has visto sus mensajes hasta que aceptes.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -1817,9 +1817,9 @@
     <string name="MessageRequestBottomView_report">Denunciar</string>
 
     <!-- PassphraseChangeActivity -->
-    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves no coinciden!</string>
-    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Clave de acceso antigua incorrecta!</string>
-    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">¡Introduce una nueva clave de acceso!</string>
+    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Las claves no coinciden.</string>
+    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Clave de acceso antigua incorrecta.</string>
+    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Introduce una nueva clave de acceso.</string>
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">¿Enlazar este dispositivo?</string>
@@ -1840,7 +1840,7 @@
     <string name="DeviceProvisioningActivity_link_a_signal_device">¿Enlazar un dispositivo Signal?</string>
     <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que estás intentando enlazar un dispositivo Signal usando una aplicación de escáner desconocida. Para tu protección, escanea el código otra vez desde Signal.</string>
 
-    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Para escanear el código QR, Signal necesita acceso a la cámara. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal necesita acceso a la cámara para escanear el código QR. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">No se puede escanear un código QR sin acceso a la cámara.</string>
 
     <!-- OutdatedBuildReminder -->
@@ -1947,7 +1947,7 @@
     <string name="RedPhone_busy">Ocupado</string>
     <string name="RedPhone_recipient_unavailable">Persona no disponible</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
-    <string name="RedPhone_network_failed">¡Fallo de red! Comprueba tu conexión y vuelve a intentarlo.</string>
+    <string name="RedPhone_network_failed">Fallo de red. Comprueba tu conexión y vuelve a intentarlo.</string>
     <string name="RedPhone_number_not_registered">¡Número no registrado!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">¡El número marcado no admite llamadas seguras!</string>
     <string name="RedPhone_got_it">Entendido</string>
@@ -2026,7 +2026,7 @@
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
     <string name="WebRtcCallActivity__to_enable_video_allow_camera">Para habilitar el vídeo, permite a Signal el acceso a la cámara.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Para iniciar o unirte a una llamada, Signal necesita permisos de micrófono.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal necesita permisos de micrófono para iniciar o unirte a una llamada.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
     <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal necesita acceso a la cámara para habilitar tu vídeo</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
@@ -2286,7 +2286,7 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">Cancelar</string>
     <string name="RegistrationActivity_next">Siguiente</string>
-    <string name="RegistrationActivity_continue">Adelante</string>
+    <string name="RegistrationActivity_continue">Continuar</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Lleva la privacidad contigo.\nSé tú en cada mensaje.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Número de teléfono</string>
@@ -2534,7 +2534,7 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Recuperar tu alias restablecerá tu código QR y tu enlace. ¿Quieres hacerlo de todos modos? ¿Quieres hacerlo de todos modos?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Si cambias tu alias se restablecerán tu código QR y tu enlace. ¿Deseas cambiarlo de todos modos?</string>
+    <string name="UsernameEditFragment_change_confirmation_message">Si cambias tu alias, se restablecerá tu código QR y tu enlace. ¿Deseas cambiarlo de todos modos?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
     <string name="UsernameEditFragment_continue">Continuar</string>
 
@@ -2554,7 +2554,7 @@
     <string name="VerifyIdentityActivity_our_signal_safety_number">Nuestro número de seguridad de Signal:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no tiene ninguna aplicación con la que compartir.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No se encontró ningún número de seguridad para comparar en el portapapeles</string>
-    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Para escanear el código QR, Signal necesita acceso a la cámara. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal necesita acceso a la cámara para escanear el código QR. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">No se puede escanear un código QR sin acceso a la cámara</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Tienes que intercambiar mensajes con %1$s para poder ver su número de seguridad.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
@@ -2591,7 +2591,7 @@
     <string name="MediaPreviewActivity_you">Tú</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido incompatible</string>
     <string name="MediaPreviewActivity_draft">Borrador</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Para guardar archivos en el almacenamiento externo, Signal necesita acceso al almacenamiento del teléfono. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Almacenamiento&gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita acceso al almacenamiento del teléfono para guardar archivos en el almacenamiento externo. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Almacenamiento&gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No se puede guardar en una unidad de almacenamiento externo si Signal no tiene acceso</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">¿Eliminar mensaje?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Este mensaje se eliminará permanentemente.</string>
@@ -2778,7 +2778,7 @@
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Para atender la llamada, permite a Signal el acceso al micrófono.</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Para atender la videollamada, permite a Signal el acceso al micrófono y a la cámara.</string>
-    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Para hacer o atender llamadas, Signal necesita acceso al micrófono y a la cámara. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación, y activa el acceso al micrófono y a la cámara. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal necesita acceso al micrófono y a la cámara para hacer o atender llamadas. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación, y activa el acceso al micrófono y a la cámara. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Atendida en dispositivo enlazado.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Rechazada en dispositivo enlazado.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Ocupado en dispositivo enlazado.</string>
@@ -2849,7 +2849,7 @@
     <string name="SingleContactSelectionActivity_contact_photo">Foto del contacto</string>
 
     <!-- ContactSelectionListFragment-->
-    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Para mostrar tus contactos, Signal necesita acceso a los contactos en tu teléfono. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Contactos &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal necesita acceso a los contactos en tu teléfono para mostrar tus contactos. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Contactos &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fallo al comprobar contactos, comprueba la conexión a la red.</string>
     <string name="ContactSelectionListFragment_username_not_found">Alias no encontrado</string>
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no usa Signal. Asegúrate de introducir el alias correcto."</string>
@@ -3578,7 +3578,7 @@
     <string name="PaymentsHomeFragment__deactivate_payments_question">¿Desactivar pagos?</string>
     <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">No podrás enviar o recibir más MobileCoin a través de Signal si desactivas los pagos.</string>
     <string name="PaymentsHomeFragment__deactivate">Desactivar</string>
-    <string name="PaymentsHomeFragment__continue">Adelante</string>
+    <string name="PaymentsHomeFragment__continue">Continuar</string>
     <string name="PaymentsHomeFragment__balance_is_not_currently_available">El balance no está disponible en este momento.</string>
     <string name="PaymentsHomeFragment__payments_deactivated">Pagos desactivados.</string>
     <string name="PaymentsHomeFragment__payment_failed">Fallo en el pago</string>
@@ -3706,7 +3706,7 @@
     <string name="PaymentsTransferFragment__check_the_wallet_address">Comprueba de nuevo la dirección de la cartera a la que estás intentando hacer el pago e inténtalo de nuevo.</string>
     <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">No puedes enviar pagos a tu propia cartera de Signal. Introduce la dirección de tu cartera en un «exchange» que soporte MobileCoin.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Para escanear el código QR, Signal necesita acceso a la cámara.</string>
-    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Para leer el código QR, Signal necesita acceso a la cámara. Ve a «Ajustes» y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
+    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal necesita acceso a la cámara para leer un código QR. Ve a «Ajustes» y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Para escanear el código QR, Signal necesita acceso a la cámara.</string>
     <string name="PaymentsTransferFragment__settings">Ajustes</string>
 
@@ -4071,7 +4071,7 @@
     <string name="ConversationListFragment_loading">Cargando…</string>
     <string name="CallNotificationBuilder_connecting">Conectando…</string>
     <string name="Permissions_permission_required">Permiso necesario</string>
-    <string name="Permissions_continue">Adelante</string>
+    <string name="Permissions_continue">Continuar</string>
     <string name="Permissions_not_now">Ahora no</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrar base de datos de Signal</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Clave de la copia de seguridad</string>
@@ -4141,7 +4141,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Quién puede ver mi número</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Tu número de teléfono será visible para las personas y los grupos a quienes envíes mensajes.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Tu número de teléfono será visible para las personas y los grupos a los que envíes mensajes.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Tu número de teléfono no será visible para nadie a menos que lo tenga guardado en los contactos de su teléfono.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
@@ -4228,13 +4228,13 @@
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Abre Signal en tu dispositivo Android antiguo</string>
-    <string name="NewDeviceTransferInstructions__continue">Adelante</string>
+    <string name="NewDeviceTransferInstructions__continue">Continuar</string>
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
     <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toca sobre tu foto de perfil en la parte superior izquierda para abrir los ajustes</string>
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
     <string name="NewDeviceTransferInstructions__tap_on_account">"Toca en «Cuenta»"</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Toca en «Transferir cuenta» y en «Adelante» en ambos dispositivos"</string>
+    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Toca en «Transferir cuenta» y en «Continuar» en ambos dispositivos"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Preparando la conexión con tu dispositivo Android antiguo…</string>
@@ -4265,9 +4265,9 @@
     <string name="DeviceTransferSetup__retry">Reintentar</string>
     <string name="DeviceTransferSetup__submit_debug_logs">Enviar registro de depuración</string>
     <string name="DeviceTransferSetup__verify_code">Verificar código</string>
-    <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verifica que el código de debajo coincide en ambos dispositivos. Si es así, toca «Adelante».</string>
+    <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verifica que el código de debajo coincide en ambos dispositivos. Si es así, toca «Continuar».</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">Los números no coinciden</string>
-    <string name="DeviceTransferSetup__continue">Adelante</string>
+    <string name="DeviceTransferSetup__continue">Continuar</string>
     <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Si los números en ambos dispositivos no coinciden, es posible que no te hayas conectado al dispositivo correcto. Para solucionarlo, detén la transferencia e inténtalo de nuevo. Mantén ambos dispositivos cerca.</string>
     <string name="DeviceTransferSetup__stop_transfer">Detener transferencia</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">Imposible encontrar dispositivo antiguo</string>
@@ -4283,8 +4283,8 @@
     <string name="DeviceTransferSetup__go_to_support_page">Ve a la página de soporte</string>
     <string name="DeviceTransferSetup__try_again">Inténtalo de nuevo</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Esperando por el otro dispositivo</string>
-    <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Toca «Adelante» en tu otro dispositivo para comenzar con la transferencia.</string>
-    <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Toca «Adelante» en tu otro dispositivo…</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Toca «Continuar» en tu otro dispositivo para comenzar con la transferencia.</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Toca «Continuar» en tu otro dispositivo…</string>
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">No se puede transferir desde una versión más nueva de Signal</string>
@@ -4311,8 +4311,8 @@
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
     <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Toca en «Transferir o restaurar cuenta»"</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Selecciona «Transferir desde dispositivo Android» y después en «Adelante». Mantén ambos dispositivos cerca."</string>
-    <string name="OldDeviceTransferInstructions__continue">Adelante</string>
+    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Selecciona «Transferir desde dispositivo Android» y después en «Continuar». Mantén ambos dispositivos cerca."</string>
+    <string name="OldDeviceTransferInstructions__continue">Continuar</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Comprueba tu dispositivo nuevo</string>
@@ -4751,7 +4751,7 @@
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Esta opción te permite cambiar tu número de teléfono actual en Signal a un número de teléfono nuevo. Este cambio no se puede deshacer.\n\n Antes de continuar, asegúrate que tu número nuevo puede recibir SMS o llamadas.</string>
-    <string name="ChangeNumberFragment__continue">Adelante</string>
+    <string name="ChangeNumberFragment__continue">Continuar</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
     <string name="ChangeNumber__your_phone_number_has_changed_to_s">Tu número de teléfono ha cambiado a %1$s</string>
     <!-- Confirmation button to dismiss number changed dialog -->
@@ -6146,7 +6146,7 @@
     <!-- Title of safety number changes bottom sheet when showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Cambios en el número de seguridad</string>
     <!-- Message of safety number changes bottom sheet when showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__the_following_people">Las siguientes personas pueden haber reinstalado Signal o cambiado de dispositivo. Toca sobre un destinatario para confirmar su nuevo número de seguridad. Esto es opcional.</string>
+    <string name="SafetyNumberBottomSheetFragment__the_following_people">Es posible que las siguientes personas hayan reinstalado Signal o cambiado de dispositivo. Toca sobre un destinatario para confirmar su nuevo número de seguridad. Esta acción es opcional.</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Revisión del número de seguridad</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
@@ -6155,8 +6155,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Se han revisado todos los contactos. Toca enviar para continuar.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">%1$d contacto puede haber reinstalado Signal o cambiado de dispositivo. Revisa su número de seguridad o continua con el envío.</item>
-        <item quantity="other">%1$d contactos pueden haber reinstalado Signal o cambiado de dispositivo. Revisa sus números de seguridad o continua con el envío.</item>
+        <item quantity="one">Es posible que %1$d contacto haya reinstalado Signal o cambiado de dispositivo. Revisa su número de seguridad o continua con el envío.</item>
+        <item quantity="other">Es posible que %1$d contactos hayan reinstalado Signal o cambiado de dispositivo. Revisa sus números de seguridad o continua con el envío.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verificar número de seguridad</string>
@@ -6174,8 +6174,8 @@
     <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Cambios en el número de seguridad</string>
     <!-- Message of safety number review fragment -->
     <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
-        <item quantity="one">%1$d destinatario puede haber reinstalado Signal o cambiado de dispositivo. Toca sobre un destinatario para confirmar su nuevo número de seguridad. Esto es opcional.</item>
-        <item quantity="other">%1$d destinatarios pueden haber reinstalado Signal o cambiado de dispositivo. Toca sobre un destinatario para confirmar su nuevo número de seguridad. Esto es opcional.</item>
+        <item quantity="one">Es posible que %1$d destinatario haya reinstalado Signal o cambiado de dispositivo. Toca sobre un destinatario para confirmar su nuevo número de seguridad. Esta acción es opcional.</item>
+        <item quantity="other">Es posible que %1$d destinatarios hayan reinstalado Signal o cambiado de dispositivo. Toca sobre un destinatario para confirmar su nuevo número de seguridad. Esta acción es opcional.</item>
     </plurals>
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Personas</string>
@@ -6415,7 +6415,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirma tu donación con %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
-    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Si quieres configurar tu donación recurrente, toca «Continuar» para confirmar un cargo de 0,01 € con tu banco. Esto se reembolsará automáticamente y permitirá que tu donación de %1$s/mes se cargue a tu cuenta.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Continuar</string>
 
@@ -6993,11 +6993,11 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">No se puede completar la descarga</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Tu dispositivo no tiene suficiente espacio libre. Libera hasta %1$s de espacio para descargar los archivos multimedia de tu copia de seguridad.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">Si eliges «Omitir», los archivos multimedia de tu copia de seguridad se eliminarán en %1$d días.</string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Más información</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
@@ -7005,7 +7005,7 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Libera %1$s de espacio para descargar tus archivos.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7052,7 +7052,7 @@
     <!-- Title of the screen for payment history -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Historial de pagos</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Copia de seguridad de mensajes texto y de todos los archivos multimedia</string>
     <!-- Title of the screen for payment details -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Detalles de pago</string>
     <!-- Title of row specifying the type of backup -->
@@ -7076,7 +7076,7 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Copia de seguridad usando una conexión móvil</string>
     <!-- Row label for cancelling and deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Desactivar y eliminar las copias de seguridad</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Desactivar y eliminar copias de seguridad</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Copia de seguridad eliminada y desactivada.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
@@ -7104,7 +7104,7 @@
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">Iniciar copia</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">¿Desactivar y eliminar las copias de seguridad?</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">¿Desactivar y eliminar copias de seguridad?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">No se te volverá a cobrar. Se eliminará tu copia de seguridad y no se crearán nuevas copias de seguridad.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->

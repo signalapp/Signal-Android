@@ -891,7 +891,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">Geen gekoppelde apparaten</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">Ontgrendel om een apparaat te koppelen</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -5233,7 +5233,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Apparaat koppelen?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">Het lijkt erop dat je een Signal-apparaat probeert te koppelen. Tik op doorgaan en scan de code opnieuw om het apparaat te koppelen.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">Het lijkt erop dat je een Signal-apparaat probeert te koppelen. Tik op Doorgaan en scan de code opnieuw om het apparaat te koppelen.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Doorgaan</string>
 
@@ -6415,7 +6415,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Bevestig je donatie via %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
-    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Om je maandelijkse donatie in te stellen, tik op Doorgaan om dit met een afschrijving van € 0,01 bij je bank te bevestigen. Dit bedrag wordt automatisch teruggestort en maakt het mogelijk om je donatie van %1$s/maand van je rekening af te schrijven.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Doorgaan</string>
 
@@ -6993,11 +6993,11 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">Kan download niet voltooien</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Je apparaat heeft niet genoeg vrije ruimte. Maak %1$s ruimte vrij om de media te downloaden die in je back-up zijn opgeslagen.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">Als je ‘Overslaan’ kiest, worden de media in je back-up over %1$d dagen verwijderd.</string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Meer lezen</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
@@ -7005,7 +7005,7 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Maak %1$s ruimte vrij om je media te kunnen downloaden.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7052,7 +7052,7 @@
     <!-- Title of the screen for payment history -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Betalingsgeschiedenis</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Back-up van tekst en alle media</string>
     <!-- Title of the screen for payment details -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Betalingsdetails</string>
     <!-- Title of row specifying the type of backup -->
@@ -7060,7 +7060,7 @@
     <!-- Title of row specifying the date the backup was paid on -->
     <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Datum van betaling</string>
     <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">Proxyadres delen</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__share">Delen</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
