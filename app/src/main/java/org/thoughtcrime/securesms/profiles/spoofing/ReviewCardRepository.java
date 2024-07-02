@@ -60,10 +60,6 @@ class ReviewCardRepository {
   }
 
   void block(@NonNull ReviewCard reviewCard, @NonNull Runnable onActionCompleteListener) {
-    if (recipientId == null) {
-      throw new UnsupportedOperationException();
-    }
-
     SignalExecutors.BOUNDED.execute(() -> {
       RecipientUtil.blockNonGroup(context, reviewCard.getReviewRecipient());
       onActionCompleteListener.run();
