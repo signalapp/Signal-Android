@@ -891,7 +891,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">ಲಿಂಕ್ ಮಾಡಲಾದ ಯಾವುದೇ ಸಾಧನಗಳಿಲ್ಲ</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">ಸಾಧನವನ್ನು ಲಿಂಕ್ ಮಾಡಲು ಅನ್‌ಲಾಕ್ ಮಾಡಿ</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -6415,7 +6415,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s ನೊಂದಿಗೆ ನಿಮ್ಮ ದೇಣಿಗೆಯನ್ನು ದೃಢೀಕರಿಸಿ</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
-    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">ನಿಮ್ಮ ಮರುಕಳಿಸುವ ದೇಣಿಗೆಯನ್ನು ಸೆಟಪ್ ಮಾಡಲು ನಿಮ್ಮ ಬ್ಯಾಂಕ್‌ನೊಂದಿಗೆ €0,01 ಶುಲ್ಕವನ್ನು ಖಚಿತಪಡಿಸಲು ಮುಂದುವರಿಸಿ. ಇದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರುಪಾವತಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ %1$s/ತಿಂಗಳ ದೇಣಿಗೆಯನ್ನು ನಿಮ್ಮ ಖಾತೆಯಿಂದ ಡೆಬಿಟ್ ಮಾಡಲು ಅನುಮತಿಸುತ್ತದೆ.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">ಮುಂದುವರಿಸಿ</string>
 
@@ -6993,11 +6993,11 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">ಡೌನ್‌ಲೋಡ್ ಪೂರ್ಣಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">ನಿಮ್ಮ ಸಾಧನವು ಸಾಕಷ್ಟು ಸ್ಥಳಾವಕಾಶವನ್ನು ಹೊಂದಿಲ್ಲ. ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ನಲ್ಲಿ ಸಂಗ್ರಹವಾಗಿರುವ ಮೀಡಿಯಾವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು %1$s ಸ್ಥಳಾವಕಾಶವನ್ನು ಮುಕ್ತಗೊಳಿಸಿ.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <string name="BackupAlertBottomSheet__if_you_choose_skip">ನೀವು \"ಸ್ಕಿಪ್\" ಅನ್ನು ಆರಿಸಿದರೆ, ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ನಲ್ಲಿರುವ ಮೀಡಿಯಾವನ್ನು %1$d ದಿನಗಳಲ್ಲಿ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
@@ -7005,7 +7005,7 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">ನಿಮ್ಮ ಮೀಡಿಯಾವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು %1$s ಸ್ಥಳಾವಕಾಶವನ್ನು ಮುಕ್ತಗೊಳಿಸಿ.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7052,7 +7052,7 @@
     <!-- Title of the screen for payment history -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_history">ಪಾವತಿ ಇತಿಹಾಸ</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">ಪಠ್ಯ ಮತ್ತು ಎಲ್ಲಾ ಮೀಡಿಯಾ ಬ್ಯಾಕಪ್</string>
     <!-- Title of the screen for payment details -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_details">ಪಾವತಿ ವಿವರಗಳು</string>
     <!-- Title of row specifying the type of backup -->
