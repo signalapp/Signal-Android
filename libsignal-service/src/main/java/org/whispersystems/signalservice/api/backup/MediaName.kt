@@ -5,7 +5,7 @@
 
 package org.whispersystems.signalservice.api.backup
 
-import org.signal.core.util.Base64
+import org.signal.core.util.Hex
 
 /**
  * Represent a media name for the various types of media that can be archived.
@@ -14,8 +14,8 @@ import org.signal.core.util.Base64
 value class MediaName(val name: String) {
 
   companion object {
-    fun fromDigest(digest: ByteArray) = MediaName(Base64.encodeWithoutPadding(digest))
-    fun fromDigestForThumbnail(digest: ByteArray) = MediaName("${Base64.encodeWithoutPadding(digest)}_thumbnail")
+    fun fromDigest(digest: ByteArray) = MediaName(Hex.toStringCondensed(digest))
+    fun fromDigestForThumbnail(digest: ByteArray) = MediaName("${Hex.toStringCondensed(digest)}_thumbnail")
     fun forThumbnailFromMediaName(mediaName: String) = MediaName("${mediaName}_thumbnail")
   }
 
