@@ -14,8 +14,7 @@ import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialResponse
  * Response body for CreateCallLinkAuthResponse
  */
 data class CreateCallLinkAuthResponse @JsonCreator constructor(
-  @JsonProperty("credential") val credential: String,
-  @JsonProperty("redemptionTime") val redemptionTime: Long
+  @JsonProperty("credential") val credential: String
 ) {
   val createCallLinkCredentialResponse: CreateCallLinkCredentialResponse
     get() = CreateCallLinkCredentialResponse(Base64.decode(credential))
