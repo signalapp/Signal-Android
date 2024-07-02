@@ -341,7 +341,6 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
     return if (capabilities != null) {
       TextUtils.concat(
-        colorize("PaymentActivation", capabilities.paymentActivation),
         ", ",
         colorize("DeleteSync", capabilities.deleteSync)
       )

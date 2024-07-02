@@ -55,13 +55,6 @@ class AccountAttributes @JsonCreator constructor(
 
   data class Capabilities @JsonCreator constructor(
     @JsonProperty val storage: Boolean,
-    @JsonProperty val senderKey: Boolean,
-    @JsonProperty val announcementGroup: Boolean,
-    @JsonProperty val changeNumber: Boolean,
-    @JsonProperty val stories: Boolean,
-    @JsonProperty val giftBadges: Boolean,
-    @JsonProperty val pni: Boolean,
-    @JsonProperty val paymentActivation: Boolean,
     @JsonProperty val deleteSync: Boolean
   )
 }
