@@ -581,6 +581,7 @@ class ConversationFragment :
     presentWallpaper(args.wallpaper)
     presentChatColors(args.chatColors)
     presentConversationTitle(viewModel.recipientSnapshot)
+    presentGroupConversationSubtitle(createGroupSubtitleString(viewModel.titleViewParticipantsSnapshot))
     presentActionBarMenu()
     presentStoryRing()
 
@@ -865,6 +866,10 @@ class ConversationFragment :
 
   //endregion
 
+  private fun createGroupSubtitleString(members: List<Recipient>): String {
+    return members.joinToString(", ") { r -> if (r.isSelf) getString(R.string.ConversationTitleView_you) else r.getDisplayName(requireContext()) }
+  }
+
   private fun observeConversationThread() {
     var firstRender = true
     disposables += viewModel
@@ -923,6 +928,12 @@ class ConversationFragment :
       .observeOn(AndroidSchedulers.mainThread())
       .distinctUntilChanged { r1, r2 -> r1 === r2 || r1.hasSameContent(r2) }
       .subscribeBy(onNext = this::onRecipientChanged)
+
+    disposables += viewModel.titleViewParticipants
+      .map { createGroupSubtitleString(it) }
+      .distinctUntilChanged()
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(onNext = this::presentGroupConversationSubtitle)
 
     disposables += viewModel.scrollButtonState
       .subscribeBy(onNext = this::presentScrollButtons)
@@ -1315,6 +1326,17 @@ class ConversationFragment :
     }
   }
 
+  private fun presentGroupConversationSubtitle(subtitle: String) {
+    val titleView = binding.conversationTitleView.root
+
+    if (subtitle.isBlank()) {
+      titleView.setGroupRecipientSubtitle(null)
+      return
+    }
+
+    titleView.setGroupRecipientSubtitle(subtitle)
+  }
+
   private fun presentConversationTitle(recipient: Recipient?) {
     if (recipient == null) {
       return
@@ -1323,6 +1345,7 @@ class ConversationFragment :
     val titleView = binding.conversationTitleView.root
 
     titleView.setTitle(Glide.with(this), recipient)
+
     if (recipient.expiresInSeconds > 0) {
       titleView.showExpiring(recipient)
     } else {
