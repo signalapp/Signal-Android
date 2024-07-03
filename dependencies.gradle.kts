@@ -9,7 +9,7 @@ dependencyResolutionManagement {
       version("androidx-camera", "1.3.4")
       version("androidx-fragment", "1.6.2")
       version("androidx-lifecycle", "2.7.0")
-      version("androidx-media3", "1.2.1")
+      version("androidx-media3", "1.3.1")
       version("androidx-navigation", "2.7.6")
       version("androidx-window", "1.2.0")
       version("exoplayer", "2.19.0")
