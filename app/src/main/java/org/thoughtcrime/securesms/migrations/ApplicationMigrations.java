@@ -12,6 +12,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.migrations.RetrieveProfileJobMigration;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -148,9 +149,10 @@ public class ApplicationMigrations {
     static final int ATTACHMENT_HASH_BACKFILL      = 104;
     static final int SUBSCRIBER_ID                 = 105;
     static final int CONTACT_LINK_REBUILD          = 106;
+    static final int DELETE_SYNC_CAPABILITY        = 107;
   }
 
-  public static final int CURRENT_VERSION = 106;
+  public static final int CURRENT_VERSION = 107;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -675,6 +677,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.CONTACT_LINK_REBUILD) {
       jobs.put(Version.CONTACT_LINK_REBUILD, new ContactLinkRebuildMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DELETE_SYNC_CAPABILITY) {
+      jobs.put(Version.DELETE_SYNC_CAPABILITY, new AttributesMigrationJob());
     }
 
     return jobs;
