@@ -60,10 +60,9 @@ object DeleteDialog {
         }.executeOnExecutor(SignalExecutors.BOUNDED)
       }
 
-      val canDeleteForEveryone = MessageConstraintsUtil.isValidRemoteDeleteSend(messageRecords, System.currentTimeMillis()) && !isNoteToSelfDelete
       val canDeleteForEveryoneInNoteToSelf = isNoteToSelfDelete && TextSecurePreferences.isMultiDevice(context) && !deleteSyncEnabled
 
-      if (canDeleteForEveryone || canDeleteForEveryoneInNoteToSelf) {
+      if (MessageConstraintsUtil.isValidRemoteDeleteSend(messageRecords, System.currentTimeMillis()) && (!isNoteToSelfDelete || canDeleteForEveryoneInNoteToSelf)) {
         builder.setNeutralButton(if (isNoteToSelfDelete) R.string.ConversationFragment_delete_everywhere else R.string.ConversationFragment_delete_for_everyone) { _, _ -> handleDeleteForEveryone(context, messageRecords, emitter) }
       }
     }
