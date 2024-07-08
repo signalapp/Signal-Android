@@ -1532,12 +1532,6 @@ class ConversationFragment :
       return
     }
 
-    if (!MessageConstraintsUtil.isWithinMaxEdits(editMessage)) {
-      Log.i(TAG, "Too many edits to the message")
-      Dialogs.showAlertDialog(requireContext(), null, resources.getQuantityString(R.plurals.ConversationActivity_edit_message_too_many_edits, MessageConstraintsUtil.MAX_EDIT_COUNT, MessageConstraintsUtil.MAX_EDIT_COUNT))
-      return
-    }
-
     if (!isValidEditMessageSend(editMessage, System.currentTimeMillis())) {
       Log.i(TAG, "Edit message no longer valid")
       val editDurationHours = getEditMessageThresholdHours()
@@ -2000,7 +1994,7 @@ class ConversationFragment :
     if (menuState.shouldShowEditAction()) {
       items.add(
         ActionItem(R.drawable.symbol_edit_24, resources.getString(R.string.conversation_selection__menu_edit)) {
-          handleEditMessage(getSelectedConversationMessage())
+          tryEditMessage(getSelectedConversationMessage())
           actionMode?.finish()
         }
       )
@@ -2494,6 +2488,15 @@ class ConversationFragment :
   private fun scrollToNextMention() {
     disposables += viewModel.getNextMentionPosition().subscribeBy {
       moveToPosition(it)
+    }
+  }
+
+  private fun tryEditMessage(conversationMessage: ConversationMessage) {
+    if (!MessageConstraintsUtil.isWithinMaxEdits(conversationMessage.messageRecord)) {
+      Log.i(TAG, "Too many edits to the message")
+      Dialogs.showAlertDialog(requireContext(), null, resources.getQuantityString(R.plurals.ConversationActivity_edit_message_too_many_edits, MessageConstraintsUtil.MAX_EDIT_COUNT, MessageConstraintsUtil.MAX_EDIT_COUNT))
+    } else {
+      handleEditMessage(conversationMessage)
     }
   }
 
@@ -3534,7 +3537,7 @@ class ConversationFragment :
     override fun onActionSelected(action: ConversationReactionOverlay.Action) {
       when (action) {
         ConversationReactionOverlay.Action.REPLY -> handleReplyToMessage(conversationMessage)
-        ConversationReactionOverlay.Action.EDIT -> handleEditMessage(conversationMessage)
+        ConversationReactionOverlay.Action.EDIT -> tryEditMessage(conversationMessage)
         ConversationReactionOverlay.Action.FORWARD -> handleForwardMessageParts(conversationMessage.multiselectCollection.toSet())
         ConversationReactionOverlay.Action.RESEND -> handleResend(conversationMessage)
         ConversationReactionOverlay.Action.DOWNLOAD -> handleSaveAttachment(conversationMessage.messageRecord as MmsMessageRecord)
