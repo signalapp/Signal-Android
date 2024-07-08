@@ -63,6 +63,7 @@ class CallLinkPreJoinActionProcessor(
         ByteArray(0),
         AUDIO_LEVELS_INTERVAL,
         getAudioProcessingMethod(),
+        SignalStore.internal.callingEnableOboeAdm(),
         webRtcInteractor.groupCallObserver
       )
     } catch (e: InvalidInputException) {

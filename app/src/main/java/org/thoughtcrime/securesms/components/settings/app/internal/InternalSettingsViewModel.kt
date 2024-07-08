@@ -109,8 +109,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setInternalCallingDisableLBRed(enabled: Boolean) {
-    preferenceDataStore.putBoolean(InternalValues.CALLING_DISABLE_LBRED, enabled)
+  fun setInternalCallingEnableOboeAdm(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_ENABLE_OBOE_ADM, enabled)
     refresh()
   }
 
@@ -150,7 +150,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     callingAudioProcessingMethod = SignalStore.internal.callingAudioProcessingMethod(),
     callingDataMode = SignalStore.internal.callingDataMode(),
     callingDisableTelecom = SignalStore.internal.callingDisableTelecom(),
-    callingDisableLBRed = SignalStore.internal.callingDisableLBRed(),
+    callingEnableOboeAdm = SignalStore.internal.callingEnableOboeAdm(),
     useBuiltInEmojiSet = SignalStore.internal.forceBuiltInEmoji(),
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internal.removeSenderKeyMinimum(),

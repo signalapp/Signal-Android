@@ -24,7 +24,7 @@ public final class InternalValues extends SignalStoreValues {
   public static final String CALLING_AUDIO_PROCESSING_METHOD      = "internal.calling_audio_processing_method";
   public static final String CALLING_DATA_MODE                    = "internal.calling_bandwidth_mode";
   public static final String CALLING_DISABLE_TELECOM              = "internal.calling_disable_telecom";
-  public static final String CALLING_DISABLE_LBRED                = "internal.calling_disable_lbred";
+  public static final String CALLING_ENABLE_OBOE_ADM              = "internal.calling_enable_oboe_adm";
   public static final String SHAKE_TO_REPORT                      = "internal.shake_to_report";
   public static final String DISABLE_STORAGE_SERVICE              = "internal.disable_storage_service";
   public static final String FORCE_WEBSOCKET_MODE                 = "internal.force_websocket_mode";
@@ -162,13 +162,13 @@ public final class InternalValues extends SignalStoreValues {
   }
 
   /**
-   * Whether or not LBRed for Opus is manually disabled.
+   * Whether or not the Oboe ADM is used.
    */
-  public synchronized boolean callingDisableLBRed() {
+  public synchronized boolean callingEnableOboeAdm() {
     if (RemoteConfig.internalUser()) {
-      return getBoolean(CALLING_DISABLE_LBRED, false);
+      return getBoolean(CALLING_ENABLE_OBOE_ADM, true);
     } else {
-      return true;
+      return false;
     }
   }
 

@@ -520,10 +520,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from("Disable LBRed"),
-        isChecked = state.callingDisableLBRed,
+        title = DSLSettingsText.from("Enable Oboe ADM"),
+        isChecked = state.callingEnableOboeAdm,
         onClick = {
-          viewModel.setInternalCallingDisableLBRed(!state.callingDisableLBRed)
+          viewModel.setInternalCallingEnableOboeAdm(!state.callingEnableOboeAdm)
         }
       )
 
