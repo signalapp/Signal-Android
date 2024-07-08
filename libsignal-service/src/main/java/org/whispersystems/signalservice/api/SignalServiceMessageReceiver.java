@@ -17,7 +17,7 @@ import org.whispersystems.signalservice.api.backup.BackupKey;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
+import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -98,7 +98,7 @@ public class SignalServiceMessageReceiver {
 
   public ListenableFuture<ProfileAndCredential> retrieveProfile(SignalServiceAddress address,
                                                                 Optional<ProfileKey> profileKey,
-                                                                Optional<UnidentifiedAccess> unidentifiedAccess,
+                                                                @Nullable SealedSenderAccess sealedSenderAccess,
                                                                 SignalServiceProfile.RequestType requestType,
                                                                 Locale locale)
   {
@@ -115,16 +115,16 @@ public class SignalServiceMessageReceiver {
       }
 
       if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        return socket.retrieveVersionedProfileAndCredential(aci, profileKey.get(), unidentifiedAccess, locale);
+        return socket.retrieveVersionedProfileAndCredential(aci, profileKey.get(), sealedSenderAccess, locale);
       } else {
-        return FutureTransformers.map(socket.retrieveVersionedProfile(aci, profileKey.get(), unidentifiedAccess, locale), profile -> {
+        return FutureTransformers.map(socket.retrieveVersionedProfile(aci, profileKey.get(), sealedSenderAccess, locale), profile -> {
           return new ProfileAndCredential(profile,
                                           SignalServiceProfile.RequestType.PROFILE,
                                           Optional.empty());
         });
       }
     } else {
-      return FutureTransformers.map(socket.retrieveProfile(address, unidentifiedAccess, locale), profile -> {
+      return FutureTransformers.map(socket.retrieveProfile(address, sealedSenderAccess, locale), profile -> {
         return new ProfileAndCredential(profile,
                                         SignalServiceProfile.RequestType.PROFILE,
                                         Optional.empty());
@@ -146,8 +146,8 @@ public class SignalServiceMessageReceiver {
     return new FileInputStream(destination);
   }
 
-  public Single<ServiceResponse<IdentityCheckResponse>> performIdentityCheck(@Nonnull IdentityCheckRequest request, @Nonnull Optional<UnidentifiedAccess> unidentifiedAccess, @Nonnull ResponseMapper<IdentityCheckResponse> responseMapper) {
-    return socket.performIdentityCheck(request, unidentifiedAccess, responseMapper);
+  public Single<ServiceResponse<IdentityCheckResponse>> performIdentityCheck(@Nonnull IdentityCheckRequest request, @Nonnull ResponseMapper<IdentityCheckResponse> responseMapper) {
+    return socket.performIdentityCheck(request, responseMapper);
   }
 
   /**

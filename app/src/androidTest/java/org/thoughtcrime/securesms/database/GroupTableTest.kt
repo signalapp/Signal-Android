@@ -314,7 +314,7 @@ class GroupTableTest {
       .revision(0)
       .build()
 
-    return groupTable.create(groupMasterKey, decryptedGroupState)!!
+    return groupTable.create(groupMasterKey, decryptedGroupState, null)!!
   }
 
   private fun insertPushGroupWithSelfAndOthers(others: List<RecipientId>): GroupId {
@@ -339,6 +339,6 @@ class GroupTableTest {
       .revision(0)
       .build()
 
-    return groupTable.create(groupMasterKey, decryptedGroupState)!!
+    return groupTable.create(groupMasterKey, decryptedGroupState, null)!!
   }
 }

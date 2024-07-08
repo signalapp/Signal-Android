@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -98,7 +97,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
 
     SignalServiceSyncMessage      syncMessage      = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));
 
-    messageSender.sendSyncMessage(syncMessage, UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(syncMessage);
   }
 
   @Override

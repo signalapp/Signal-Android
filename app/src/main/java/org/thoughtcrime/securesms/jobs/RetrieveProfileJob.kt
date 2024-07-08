@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTable.Companion.maskCapabilitiesToLong
 import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
-import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode
+import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -222,7 +222,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       unrestrictedUnidentifiedAccess = remoteProfile.isUnrestrictedUnidentifiedAccess
     )
 
-    if (localRecipientRecord.unidentifiedAccessMode != accessMode) {
+    if (localRecipientRecord.sealedSenderAccessMode != accessMode) {
       return true
     }
 
@@ -322,8 +322,8 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     val profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.profileKey)
     val newMode = deriveUnidentifiedAccessMode(profileKey, unidentifiedAccessVerifier, unrestrictedUnidentifiedAccess)
 
-    if (recipient.unidentifiedAccessMode !== newMode) {
-      if (newMode === UnidentifiedAccessMode.UNRESTRICTED) {
+    if (recipient.sealedSenderAccessMode !== newMode) {
+      if (newMode === SealedSenderAccessMode.UNRESTRICTED) {
         Log.i(TAG, "Marking recipient UD status as unrestricted.")
       } else if (profileKey == null || unidentifiedAccessVerifier == null) {
         Log.i(TAG, "Marking recipient UD status as disabled.")
@@ -331,15 +331,15 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
         Log.i(TAG, "Marking recipient UD status as " + newMode.name + " after verification.")
       }
 
-      SignalDatabase.recipients.setUnidentifiedAccessMode(recipient.id, newMode)
+      SignalDatabase.recipients.setSealedSenderAccessMode(recipient.id, newMode)
     }
   }
 
-  private fun deriveUnidentifiedAccessMode(profileKey: ProfileKey?, unidentifiedAccessVerifier: String?, unrestrictedUnidentifiedAccess: Boolean): UnidentifiedAccessMode {
+  private fun deriveUnidentifiedAccessMode(profileKey: ProfileKey?, unidentifiedAccessVerifier: String?, unrestrictedUnidentifiedAccess: Boolean): SealedSenderAccessMode {
     return if (unrestrictedUnidentifiedAccess && unidentifiedAccessVerifier != null) {
-      UnidentifiedAccessMode.UNRESTRICTED
+      SealedSenderAccessMode.UNRESTRICTED
     } else if (profileKey == null || unidentifiedAccessVerifier == null) {
-      UnidentifiedAccessMode.DISABLED
+      SealedSenderAccessMode.DISABLED
     } else {
       val profileCipher = ProfileCipher(profileKey)
       val verifiedUnidentifiedAccess: Boolean = try {
@@ -350,9 +350,9 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       }
 
       if (verifiedUnidentifiedAccess) {
-        UnidentifiedAccessMode.ENABLED
+        SealedSenderAccessMode.ENABLED
       } else {
-        UnidentifiedAccessMode.DISABLED
+        SealedSenderAccessMode.DISABLED
       }
     }
   }

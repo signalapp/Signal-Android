@@ -7,7 +7,7 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListRecord;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
+import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -141,9 +141,9 @@ public class ResendMessageJob extends BaseJob {
       return;
     }
 
-    SignalServiceAddress             address       = RecipientUtil.toSignalServiceAddress(context, recipient);
-    Optional<UnidentifiedAccessPair> access        = UnidentifiedAccessUtil.getAccessFor(context, recipient);
-    Content                          contentToSend = content;
+    SignalServiceAddress                    address              = RecipientUtil.toSignalServiceAddress(context, recipient);
+    Content                                 contentToSend        = content;
+    SealedSenderAccess.CreateGroupSendToken createGroupSendToken = null;
 
     if (distributionId != null) {
       if (groupId != null) {
@@ -157,6 +157,8 @@ public class ResendMessageJob extends BaseJob {
           Log.w(TAG, "The target user is no longer in the group! Skipping message send.");
           return;
         }
+
+        createGroupSendToken = () -> SignalDatabase.groups().getGroupSendFullToken(groupId, recipientId);
       } else {
         Log.d(TAG, "GroupId is not present. Assuming this is a message for a distribution list.");
         DistributionListRecord listRecord = SignalDatabase.distributionLists().getListByDistributionId(distributionId);
@@ -177,6 +179,8 @@ public class ResendMessageJob extends BaseJob {
     }
 
     SendMessageResult result;
+
+    SealedSenderAccess access = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient, createGroupSendToken);
 
     try {
       result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId), urgent);

@@ -173,6 +173,16 @@ public final class GroupManager {
   }
 
   @WorkerThread
+  public static void updateGroupSendEndorsements(@NonNull Context context,
+                                                 @NonNull GroupMasterKey groupMasterKey)
+      throws GroupChangeBusyException, IOException, GroupNotAMemberException
+  {
+    try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
+      updater.updateGroupSendEndorsements();
+    }
+  }
+
+  @WorkerThread
   public static void setMemberAdmin(@NonNull Context context,
                                     @NonNull GroupId.V2 groupId,
                                     @NonNull RecipientId recipientId,

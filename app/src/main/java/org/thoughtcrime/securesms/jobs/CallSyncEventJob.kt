@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer
 import org.thoughtcrime.securesms.service.webrtc.CallEventSyncMessageUtil
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
-import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 /**
@@ -142,7 +141,7 @@ class CallSyncEventJob private constructor(
     val syncMessage = createSyncMessage(syncTimestamp, callSyncEvent, call.type)
 
     return try {
-      AppDependencies.signalServiceMessageSender.sendSyncMessage(SignalServiceSyncMessage.forCallEvent(syncMessage), Optional.empty())
+      AppDependencies.signalServiceMessageSender.sendSyncMessage(SignalServiceSyncMessage.forCallEvent(syncMessage))
       null
     } catch (e: Exception) {
       Log.w(TAG, "Unable to send call event sync message for ${callSyncEvent.callId}", e)

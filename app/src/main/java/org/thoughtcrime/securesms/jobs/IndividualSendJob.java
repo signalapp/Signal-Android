@@ -10,11 +10,11 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PaymentTable;
-import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
+import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -37,7 +37,6 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -160,7 +159,7 @@ public class IndividualSendJob extends PushSendJob {
 
       Recipient              recipient  = message.getThreadRecipient().fresh();
       byte[]                 profileKey = recipient.getProfileKey();
-      UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
+      SealedSenderAccessMode accessMode = recipient.getSealedSenderAccessMode();
 
       boolean unidentified = deliver(message, originalEditedMessage);
 
@@ -177,15 +176,15 @@ public class IndividualSendJob extends PushSendJob {
         SignalDatabase.messages().incrementViewedReceiptCount(message.getSentTimeMillis(), recipient.getId(), System.currentTimeMillis());
       }
 
-      if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
+      if (unidentified && accessMode == SealedSenderAccessMode.UNKNOWN && profileKey == null) {
         log(TAG, String.valueOf(message.getSentTimeMillis()), "Marking recipient as UD-unrestricted following a UD send.");
-        SignalDatabase.recipients().setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.UNRESTRICTED);
-      } else if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN) {
+        SignalDatabase.recipients().setSealedSenderAccessMode(recipient.getId(), SealedSenderAccessMode.UNRESTRICTED);
+      } else if (unidentified && accessMode == SealedSenderAccessMode.UNKNOWN) {
         log(TAG, String.valueOf(message.getSentTimeMillis()), "Marking recipient as UD-enabled following a UD send.");
-        SignalDatabase.recipients().setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.ENABLED);
-      } else if (!unidentified && accessMode != UnidentifiedAccessMode.DISABLED) {
+        SignalDatabase.recipients().setSealedSenderAccessMode(recipient.getId(), SealedSenderAccessMode.ENABLED);
+      } else if (!unidentified && accessMode != SealedSenderAccessMode.DISABLED) {
         log(TAG, String.valueOf(message.getSentTimeMillis()), "Marking recipient as UD-disabled following a non-UD send.");
-        SignalDatabase.recipients().setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.DISABLED);
+        SignalDatabase.recipients().setSealedSenderAccessMode(recipient.getId(), SealedSenderAccessMode.DISABLED);
       }
 
       if (originalEditedMessage != null && originalEditedMessage.getExpireStarted() > 0) {
@@ -306,25 +305,35 @@ public class IndividualSendJob extends PushSendJob {
 
       if (originalEditedMessage != null) {
         if (Util.equals(SignalStore.account().getAci(), address.getServiceId())) {
-          Optional<UnidentifiedAccessPair> syncAccess = UnidentifiedAccessUtil.getAccessForSync(context);
           SendMessageResult                result     = messageSender.sendSelfSyncEditMessage(new SignalServiceEditMessage(originalEditedMessage.getDateSent(), mediaMessage));
           SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), false);
 
-          return syncAccess.isPresent();
+          return SealedSenderAccessUtil.getSealedSenderCertificate() != null;
         } else {
-          SendMessageResult result = messageSender.sendEditMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, IndividualSendEvents.EMPTY, message.isUrgent(), originalEditedMessage.getDateSent());
+          SendMessageResult result = messageSender.sendEditMessage(address,
+                                                                   SealedSenderAccessUtil.getSealedSenderAccessFor(messageRecipient),
+                                                                   ContentHint.RESENDABLE,
+                                                                   mediaMessage,
+                                                                   IndividualSendEvents.EMPTY,
+                                                                   message.isUrgent(),
+                                                                   originalEditedMessage.getDateSent());
           SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), false);
 
           return result.getSuccess().isUnidentified();
         }
       } else if (Util.equals(SignalStore.account().getAci(), address.getServiceId())) {
-        Optional<UnidentifiedAccessPair> syncAccess = UnidentifiedAccessUtil.getAccessForSync(context);
         SendMessageResult                result     = messageSender.sendSyncMessage(mediaMessage);
         SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), false);
-        return syncAccess.isPresent();
+        return SealedSenderAccessUtil.getSealedSenderCertificate() != null;
       } else {
         SignalLocalMetrics.IndividualMessageSend.onDeliveryStarted(messageId, message.getSentTimeMillis());
-        SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, new MetricEventListener(messageId), message.isUrgent(), messageRecipient.getNeedsPniSignature());
+        SendMessageResult result = messageSender.sendDataMessage(address,
+                                                                 SealedSenderAccessUtil.getSealedSenderAccessFor(messageRecipient),
+                                                                 ContentHint.RESENDABLE,
+                                                                 mediaMessage,
+                                                                 new MetricEventListener(messageId),
+                                                                 message.isUrgent(),
+                                                                 messageRecipient.getNeedsPniSignature());
 
         SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), message.isUrgent());
 

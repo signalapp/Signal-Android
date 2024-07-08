@@ -14,8 +14,8 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.buildWith
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
+import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
@@ -46,11 +46,10 @@ object FakeClientHelpers {
     }
   }
 
-  fun getTargetUnidentifiedAccess(myProfileKey: ProfileKey, theirProfileKey: ProfileKey, senderCertificate: SenderCertificate): Optional<UnidentifiedAccess> {
-    val selfUnidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(myProfileKey)
-    val themUnidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey)
+  fun getSealedSenderAccess(theirProfileKey: ProfileKey, senderCertificate: SenderCertificate): SealedSenderAccess? {
+    val themUnidentifiedAccessKey = UnidentifiedAccess(UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey), senderCertificate.serialized, false)
 
-    return UnidentifiedAccessPair(UnidentifiedAccess(selfUnidentifiedAccessKey, senderCertificate.serialized, false), UnidentifiedAccess(themUnidentifiedAccessKey, senderCertificate.serialized, false)).targetUnidentifiedAccess
+    return SealedSenderAccess.forIndividual(themUnidentifiedAccessKey)
   }
 
   fun encryptedTextMessage(now: Long, message: String = "Test body message"): EnvelopeContent {

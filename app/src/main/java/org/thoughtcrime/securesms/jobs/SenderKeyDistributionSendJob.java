@@ -6,19 +6,19 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
+import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -85,12 +85,14 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
       return;
     }
 
-    GroupId.V2     groupId;
-    DistributionId distributionId;
+    GroupId.V2                              groupId;
+    DistributionId                          distributionId;
+    SealedSenderAccess.CreateGroupSendToken createGroupSendFullToken = null;
 
     if (threadRecipient.isPushV2Group()) {
-      groupId = threadRecipient.requireGroupId().requireV2();
-      distributionId = SignalDatabase.groups().getOrCreateDistributionId(groupId);
+      groupId                  = threadRecipient.requireGroupId().requireV2();
+      distributionId           = SignalDatabase.groups().getOrCreateDistributionId(groupId);
+      createGroupSendFullToken = () -> SignalDatabase.groups().getGroupSendFullToken(groupId, targetRecipientId);
     } else if (threadRecipient.isDistributionList()) {
       groupId        = null;
       distributionId = SignalDatabase.distributionLists().getDistributionId(threadRecipientId);
@@ -116,10 +118,10 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
       }
     }
 
-    SignalServiceMessageSender             messageSender  = AppDependencies.getSignalServiceMessageSender();
-    List<SignalServiceAddress>             address        = Collections.singletonList(RecipientUtil.toSignalServiceAddress(context, targetRecipient));
-    SenderKeyDistributionMessage           message        = messageSender.getOrCreateNewGroupSession(distributionId);
-    List<Optional<UnidentifiedAccessPair>> access         = UnidentifiedAccessUtil.getAccessFor(context, Collections.singletonList(targetRecipient));
+    SignalServiceMessageSender   messageSender = AppDependencies.getSignalServiceMessageSender();
+    List<SignalServiceAddress>   address       = Collections.singletonList(RecipientUtil.toSignalServiceAddress(context, targetRecipient));
+    SenderKeyDistributionMessage message       = messageSender.getOrCreateNewGroupSession(distributionId);
+    List<SealedSenderAccess>     access        = Collections.singletonList(SealedSenderAccessUtil.getSealedSenderAccessFor(targetRecipient, createGroupSendFullToken));
 
     SendMessageResult result = messageSender.sendSenderKeyDistributionMessage(distributionId, address, access, message, Optional.ofNullable(groupId).map(GroupId::getDecodedId), false, false).get(0);
 

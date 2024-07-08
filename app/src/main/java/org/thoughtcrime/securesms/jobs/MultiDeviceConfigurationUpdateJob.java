@@ -5,10 +5,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
@@ -106,8 +105,8 @@ public class MultiDeviceConfigurationUpdateJob extends BaseJob {
     messageSender.sendSyncMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled),
                                                                                                      Optional.of(unidentifiedDeliveryIndicatorsEnabled),
                                                                                                      Optional.of(typingIndicatorsEnabled),
-                                                                                                     Optional.of(linkPreviewsEnabled))),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+                                                                                                     Optional.of(linkPreviewsEnabled)))
+    );
   }
 
   @Override

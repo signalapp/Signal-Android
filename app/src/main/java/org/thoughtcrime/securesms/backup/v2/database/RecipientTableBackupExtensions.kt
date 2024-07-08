@@ -241,7 +241,7 @@ fun RecipientTable.restoreGroupFromBackup(group: Group): RecipientId {
   }
 
   val recipientId = writableDatabase.insert(RecipientTable.TABLE_NAME, null, values)
-  val restoredId = SignalDatabase.groups.create(masterKey, decryptedState)
+  val restoredId = SignalDatabase.groups.create(masterKey, decryptedState, groupSendEndorsements = null)
   if (restoredId != null) {
     SignalDatabase.groups.setShowAsStoryState(restoredId, group.storySendMode.toGroupShowAsStoryState())
   }

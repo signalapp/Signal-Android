@@ -958,10 +958,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     Log.i(TAG, "Creating restore placeholder for $groupId")
     val createdId = groups.create(
-      masterKey,
-      DecryptedGroup.Builder()
-        .revision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
-        .build()
+      groupMasterKey = masterKey,
+      groupState = DecryptedGroup(revision = GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION),
+      groupSendEndorsements = null
     )
 
     if (createdId == null) {
@@ -1469,9 +1468,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun setUnidentifiedAccessMode(id: RecipientId, unidentifiedAccessMode: UnidentifiedAccessMode) {
+  fun setSealedSenderAccessMode(id: RecipientId, sealedSenderAccessMode: SealedSenderAccessMode) {
     val values = ContentValues(1).apply {
-      put(SEALED_SENDER_MODE, unidentifiedAccessMode.mode)
+      put(SEALED_SENDER_MODE, sealedSenderAccessMode.mode)
     }
     if (update(id, values)) {
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
@@ -1554,7 +1553,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val valuesToSet = ContentValues(3).apply {
       put(PROFILE_KEY, encodedProfileKey)
       putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
-      put(SEALED_SENDER_MODE, UnidentifiedAccessMode.UNKNOWN.mode)
+      put(SEALED_SENDER_MODE, SealedSenderAccessMode.UNKNOWN.mode)
     }
 
     val updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, valuesToCompare)
@@ -1586,7 +1585,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val valuesToSet = ContentValues(3).apply {
       put(PROFILE_KEY, Base64.encodeWithPadding(profileKey.serialize()))
       putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
-      put(SEALED_SENDER_MODE, UnidentifiedAccessMode.UNKNOWN.mode)
+      put(SEALED_SENDER_MODE, SealedSenderAccessMode.UNKNOWN.mode)
     }
 
     if (writableDatabase.update(TABLE_NAME, valuesToSet, selection, args) > 0) {
@@ -4610,14 +4609,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  enum class UnidentifiedAccessMode(val mode: Int) {
+  enum class SealedSenderAccessMode(val mode: Int) {
     UNKNOWN(0),
     DISABLED(1),
     ENABLED(2),
     UNRESTRICTED(3);
 
     companion object {
-      fun fromMode(mode: Int): UnidentifiedAccessMode {
+      fun fromMode(mode: Int): SealedSenderAccessMode {
         return values()[mode]
       }
     }

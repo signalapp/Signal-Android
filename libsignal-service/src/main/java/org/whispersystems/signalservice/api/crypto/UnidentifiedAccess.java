@@ -65,7 +65,6 @@ public class UnidentifiedAccess {
     }
   }
 
-
   private static byte[] createEmptyByteArray(int length) {
     return new byte[length];
   }

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.RecipientTable.RecipientReader;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -88,8 +87,8 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
       }
 
       SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
-      messageSender.sendSyncMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)),
-                                    UnidentifiedAccessUtil.getAccessForSync(context));
+      messageSender.sendSyncMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups))
+      );
     }
   }
 

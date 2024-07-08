@@ -213,13 +213,24 @@ message GroupChange {
   uint32 changeEpoch     = 3;
 }
 
+message GroupResponse {
+  Group group                         = 1;
+  bytes groupSendEndorsementsResponse = 2;
+}
+
 message GroupChanges {
   message GroupChangeState {
     GroupChange groupChange = 1;
     Group       groupState  = 2;
   }
 
-  repeated GroupChangeState groupChanges = 1;
+  repeated GroupChangeState groupChanges                  = 1;
+           bytes            groupSendEndorsementsResponse = 2;
+}
+
+message GroupChangeResponse {
+  GroupChange groupChange                   = 1;
+  bytes       groupSendEndorsementsResponse = 2;
 }
 
 message GroupAttributeBlob {

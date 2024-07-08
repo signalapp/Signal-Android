@@ -10,6 +10,7 @@ import org.signal.libsignal.zkgroup.groups.ClientZkGroupCipher;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groups.ProfileKeyCiphertext;
 import org.signal.libsignal.zkgroup.groups.UuidCiphertext;
+import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsementsResponse;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
@@ -52,6 +53,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import okio.ByteString;
 
@@ -154,7 +158,7 @@ public final class GroupsV2Operations {
     private final GroupSecretParams   groupSecretParams;
     private final ClientZkGroupCipher clientZkGroupCipher;
 
-    private GroupOperations(GroupSecretParams groupSecretParams) {
+    public GroupOperations(GroupSecretParams groupSecretParams) {
       this.groupSecretParams   = groupSecretParams;
       this.clientZkGroupCipher = new ClientZkGroupCipher(groupSecretParams);
     }
@@ -423,6 +427,15 @@ public final class GroupsV2Operations {
                                           .build();
 
       return new PendingMember.Builder().member(member);
+    }
+
+    public @Nonnull DecryptedGroupResponse decryptGroup(@Nonnull Group group, @Nonnull byte[] groupSendEndorsementsBytes)
+        throws VerificationFailedException, InvalidGroupStateException, InvalidInputException
+    {
+      DecryptedGroup                decryptedGroup                = decryptGroup(group);
+      GroupSendEndorsementsResponse groupSendEndorsementsResponse = groupSendEndorsementsBytes.length > 0 ? new GroupSendEndorsementsResponse(groupSendEndorsementsBytes) : null;
+
+      return new DecryptedGroupResponse(decryptedGroup, groupSendEndorsementsResponse);
     }
 
     public DecryptedGroup decryptGroup(Group group)
@@ -1019,6 +1032,46 @@ public final class GroupsV2Operations {
       return ids;
     }
 
+    public @Nullable ReceivedGroupSendEndorsements receiveGroupSendEndorsements(@Nonnull ACI selfAci,
+                                                                                @Nonnull DecryptedGroup decryptedGroup,
+                                                                                @Nullable ByteString groupSendEndorsementsResponse)
+    {
+      if (groupSendEndorsementsResponse != null && groupSendEndorsementsResponse.size() > 0) {
+        try {
+          return receiveGroupSendEndorsements(selfAci, decryptedGroup, new GroupSendEndorsementsResponse(groupSendEndorsementsResponse.toByteArray()));
+        } catch (InvalidInputException e) {
+          Log.w(TAG, "Unable to parse send endorsements response", e);
+        }
+      }
+
+      return null;
+    }
+
+    public @Nullable ReceivedGroupSendEndorsements receiveGroupSendEndorsements(@Nonnull ACI selfAci,
+                                                                                @Nonnull DecryptedGroup decryptedGroup,
+                                                                                @Nullable GroupSendEndorsementsResponse groupSendEndorsementsResponse)
+    {
+      if (groupSendEndorsementsResponse == null) {
+        return null;
+      }
+
+      List<ACI> members = decryptedGroup.members.stream().map(m -> ACI.parseOrThrow(m.aciBytes)).collect(Collectors.toList());
+
+      GroupSendEndorsementsResponse.ReceivedEndorsements endorsements = null;
+      try {
+        endorsements = groupSendEndorsementsResponse.receive(
+            members.stream().map(ACI::getLibSignalAci).collect(Collectors.toList()),
+            selfAci.getLibSignalAci(),
+            groupSecretParams,
+            serverPublicParams
+        );
+      } catch (VerificationFailedException e) {
+        Log.w(TAG, "Unable to receive send endorsements for group", e);
+      }
+
+      return endorsements != null ? new ReceivedGroupSendEndorsements(groupSendEndorsementsResponse.getExpiration(), members, endorsements)
+                                  : null;
+    }
   }
 
   public static class NewGroup {

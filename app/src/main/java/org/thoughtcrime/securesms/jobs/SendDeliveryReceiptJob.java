@@ -5,12 +5,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken;
+import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -123,13 +124,26 @@ public class SendDeliveryReceiptJob extends BaseJob {
                                                                                  timestamp);
 
     SendMessageResult result = messageSender.sendReceipt(remoteAddress,
-                                                         UnidentifiedAccessUtil.getAccessFor(context, recipient),
+                                                         SealedSenderAccessUtil.getSealedSenderAccessFor(recipient, this::getGroupSendFullToken),
                                                          receiptMessage,
                                                          recipient.getNeedsPniSignature());
 
     if (messageId != null) {
       SignalDatabase.messageLog().insertIfPossible(recipientId, timestamp, result, ContentHint.IMPLICIT, messageId, false);
     }
+  }
+
+  private @Nullable GroupSendFullToken getGroupSendFullToken() {
+    if (messageId == null) {
+      return null;
+    }
+
+    long threadId = SignalDatabase.messages().getThreadIdForMessage(messageId.getId());
+    if (threadId == -1) {
+      return null;
+    }
+
+    return SignalDatabase.groups().getGroupSendFullToken(threadId, recipientId);
   }
 
   @Override
