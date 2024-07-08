@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequ
 import org.thoughtcrime.securesms.registration.fragments.ContactSupportBottomSheetFragment
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
 import org.thoughtcrime.securesms.registration.fragments.SignalStrengthPhoneStateListener
-import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
@@ -42,6 +41,7 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
 
   companion object {
     private val TAG: String = Log.tag(ChangeNumberEnterCodeFragment::class.java)
+    private const val BOTTOM_SHEET_TAG = "support_bottom_sheet"
   }
 
   private val viewModel by activityViewModels<ChangeNumberViewModel>()
@@ -95,7 +95,7 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
     }
 
     binding.codeEntryLayout.havingTroubleButton.setOnClickListener {
-      bottomSheet.show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+      bottomSheet.showSafely(childFragmentManager, BOTTOM_SHEET_TAG)
     }
 
     binding.codeEntryLayout.callMeCountDown.apply {
@@ -291,7 +291,7 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
 
   private inner class PhoneStateCallback : SignalStrengthPhoneStateListener.Callback {
     override fun onNoCellSignalPresent() {
-      bottomSheet.show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+      bottomSheet.showSafely(childFragmentManager, BOTTOM_SHEET_TAG)
     }
 
     override fun onCellSignalPresent() {

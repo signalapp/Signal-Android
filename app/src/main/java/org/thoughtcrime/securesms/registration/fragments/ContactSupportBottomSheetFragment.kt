@@ -19,6 +19,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.fragment.app.FragmentManager
 import org.signal.core.ui.BottomSheets
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
@@ -156,6 +157,12 @@ class ContactSupportBottomSheetFragment : ComposeBottomSheetDialogFragment() {
       getString(R.string.RegistrationActivity_code_support_subject),
       body
     )
+  }
+
+  fun showSafely(fm: FragmentManager, tag: String) {
+    if (!isAdded) {
+      show(fm, tag)
+    }
   }
 
   companion object {

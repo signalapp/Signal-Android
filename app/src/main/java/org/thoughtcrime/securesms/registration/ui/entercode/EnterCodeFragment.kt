@@ -80,7 +80,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     }
 
     binding.havingTroubleButton.setOnClickListener {
-      bottomSheet.show(childFragmentManager, BOTTOM_SHEET_TAG)
+      bottomSheet.showSafely(childFragmentManager, BOTTOM_SHEET_TAG)
     }
 
     binding.callMeCountDown.apply {
@@ -263,7 +263,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
 
   private inner class PhoneStateCallback : SignalStrengthPhoneStateListener.Callback {
     override fun onNoCellSignalPresent() {
-      bottomSheet.show(childFragmentManager, BOTTOM_SHEET_TAG)
+      bottomSheet.showSafely(childFragmentManager, BOTTOM_SHEET_TAG)
     }
 
     override fun onCellSignalPresent() {
