@@ -1496,7 +1496,7 @@ class ConversationFragment :
       is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(data.location, MediaConstraints.getPushMediaConstraints())
       is ShareOrDraftData.SetEditMessage -> {
         composeText.setDraftText(data.draftText)
-        inputPanel.enterEditMessageMode(Glide.with(this), data.messageEdit, true)
+        inputPanel.enterEditMessageMode(Glide.with(this), data.messageEdit, true, data.clearQuote)
       }
 
       is ShareOrDraftData.SetMedia -> {
@@ -2326,7 +2326,7 @@ class ConversationFragment :
 
     viewModel.resolveMessageToEdit(conversationMessage)
       .subscribeBy { updatedMessage ->
-        inputPanel.enterEditMessageMode(Glide.with(this), updatedMessage, false)
+        inputPanel.enterEditMessageMode(Glide.with(this), updatedMessage, false, false)
       }
       .addTo(disposables)
   }

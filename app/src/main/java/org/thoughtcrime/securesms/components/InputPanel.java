@@ -408,20 +408,23 @@ public class InputPanel extends ConstraintLayout
     quoteView.setWallpaperEnabled(enabled);
   }
 
-  public void enterEditMessageMode(@NonNull RequestManager requestManager, @NonNull ConversationMessage conversationMessageToEdit, boolean fromDraft) {
+  public void enterEditMessageMode(@NonNull RequestManager requestManager, @NonNull ConversationMessage conversationMessageToEdit, boolean fromDraft, boolean clearQuote) {
     int originalHeight         = composeTextContainer.getMeasuredHeight();
     SpannableString textToEdit = conversationMessageToEdit.getDisplayBody(getContext());
+
     if (!fromDraft) {
       MessageStyler.convertSpoilersToComposeMode(textToEdit);
       composeText.setText(textToEdit);
       composeText.setSelection(textToEdit.length());
     }
+
     Quote quote = MessageRecordUtil.getQuote(conversationMessageToEdit.getMessageRecord());
-    if (quote == null) {
+    if (quote == null || clearQuote) {
       clearQuote();
     } else {
       setQuote(requestManager, quote.getId(), Recipient.resolved(quote.getAuthor()), quote.getDisplayText(), quote.getAttachment(), quote.getQuoteType());
     }
+
     this.messageToEdit = conversationMessageToEdit.getMessageRecord();
     updateEditModeThumbnail(requestManager);
 
