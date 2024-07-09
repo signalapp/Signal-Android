@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util
 
+import androidx.annotation.GuardedBy
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import org.json.JSONException
@@ -19,6 +20,8 @@ import org.thoughtcrime.securesms.util.RemoteConfig.remoteBoolean
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteValue
 import java.io.IOException
 import java.util.TreeMap
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.reflect.KProperty
@@ -48,18 +51,27 @@ object RemoteConfig {
   @VisibleForTesting
   val configsByKey: MutableMap<String, Config<*>> = mutableMapOf()
 
+  @GuardedBy("initLock")
+  @Volatile
+  @VisibleForTesting
+  var initialized: Boolean = false
+  private val initLock: ReentrantLock = ReentrantLock()
+
   @JvmStatic
-  @Synchronized
   fun init() {
-    val current = parseStoredConfig(SignalStore.remoteConfig.currentConfig)
-    val pending = parseStoredConfig(SignalStore.remoteConfig.pendingConfig)
-    val changes = computeChanges(current, pending)
+    initLock.withLock {
+      val current = parseStoredConfig(SignalStore.remoteConfig.currentConfig)
+      val pending = parseStoredConfig(SignalStore.remoteConfig.pendingConfig)
+      val changes = computeChanges(current, pending)
 
-    SignalStore.remoteConfig.currentConfig = mapToJson(pending)
-    REMOTE_VALUES.putAll(pending)
-    triggerFlagChangeListeners(changes)
+      SignalStore.remoteConfig.currentConfig = mapToJson(pending)
+      REMOTE_VALUES.putAll(pending)
+      triggerFlagChangeListeners(changes)
 
-    Log.i(TAG, "init() $REMOTE_VALUES")
+      Log.i(TAG, "init() $REMOTE_VALUES")
+
+      initialized = true
+    }
   }
 
   @JvmStatic
@@ -347,6 +359,15 @@ object RemoteConfig {
     val transformer: (Any?) -> T
   ) {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+      if (!initialized) {
+        Log.w(TAG, "Tried to read $key before initialization. Initializing now.")
+        initLock.withLock {
+          if (!initialized) {
+            init()
+          }
+        }
+      }
+
       return transformer(REMOTE_VALUES[key])
     }
   }

@@ -145,10 +145,6 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
     long startTime = System.currentTimeMillis();
 
-    if (RemoteConfig.internalUser()) {
-      Tracer.getInstance().setMaxBufferSize(35_000);
-    }
-
     super.onCreate();
 
     AppStartup.getInstance().addBlocking("sqlcipher-init", () -> {
@@ -183,6 +179,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addBlocking("remote-config", RemoteConfig::init)
                             .addBlocking("ring-rtc", this::initializeRingRtc)
                             .addBlocking("glide", () -> SignalGlideModule.setRegisterGlideComponents(new SignalGlideComponents()))
+                            .addBlocking("tracer", this::initializeTracer)
                             .addNonBlocking(() -> RegistrationUtil.maybeMarkRegistrationComplete())
                             .addNonBlocking(() -> Glide.get(this))
                             .addNonBlocking(this::cleanAvatarStorage)
@@ -420,6 +417,12 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     KeepMessagesDuration keepMessagesDuration = SignalStore.settings().getKeepMessagesDuration();
     if (keepMessagesDuration != KeepMessagesDuration.FOREVER) {
       AppDependencies.getTrimThreadsByDateManager().scheduleIfNecessary();
+    }
+  }
+
+  private void initializeTracer() {
+    if (RemoteConfig.internalUser()) {
+      Tracer.getInstance().setMaxBufferSize(35_000);
     }
   }
 

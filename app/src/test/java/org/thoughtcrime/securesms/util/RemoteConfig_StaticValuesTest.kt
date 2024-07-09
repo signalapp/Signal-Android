@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util
 
+import org.junit.Before
 import org.junit.Test
 import kotlin.reflect.KProperty1
 import kotlin.reflect.KVisibility
@@ -9,6 +10,11 @@ import kotlin.reflect.full.memberProperties
  * Ensures we don't release with forced values which is intended for local development only.
  */
 class RemoteConfig_StaticValuesTest {
+
+  @Before
+  fun setup() {
+    RemoteConfig.initialized = true
+  }
 
   /**
    * This test cycles the REMOTE_VALUES through a bunch of different inputs, then looks at all of the public getters and checks to see if they return different
@@ -34,6 +40,7 @@ class RemoteConfig_StaticValuesTest {
     val configKeys = RemoteConfig.configsByKey.keys
 
     val ignoreList = setOf(
+      "initialized",
       "REMOTE_VALUES",
       "configsByKey",
       "debugMemoryValues",
