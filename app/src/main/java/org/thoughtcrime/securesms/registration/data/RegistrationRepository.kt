@@ -442,7 +442,7 @@ object RegistrationRepository {
       return@withContext RegisterAccountResult.from(result)
     }
 
-  suspend fun createSessionAndBlockForPushChallenge(accountManager: RegistrationApi, fcmToken: String, mcc: String?, mnc: String?): NetworkResult<RegistrationSessionMetadataResponse> =
+  private suspend fun createSessionAndBlockForPushChallenge(accountManager: RegistrationApi, fcmToken: String, mcc: String?, mnc: String?): NetworkResult<RegistrationSessionMetadataResponse> =
     withContext(Dispatchers.IO) {
       // TODO [regv2]: do not use event bus nor latch
       val subscriber = PushTokenChallengeSubscriber()

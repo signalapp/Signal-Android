@@ -332,8 +332,14 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       is VerificationCodeRequestResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
       is VerificationCodeRequestResult.MustRetry -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
       is VerificationCodeRequestResult.NonNormalizedNumber -> handleNonNormalizedNumberError(result.originalNumber, result.normalizedNumber, fragmentViewModel.mode)
-      is RegistrationSessionCreationResult.RateLimited -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
-      is VerificationCodeRequestResult.RateLimited -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
+      is RegistrationSessionCreationResult.RateLimited -> {
+        Log.i(TAG, "Session creation rate limited! Next attempt: ${result.timeRemaining.milliseconds}")
+        presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
+      }
+      is VerificationCodeRequestResult.RateLimited -> {
+        Log.i(TAG, "Code request rate limited! Next attempt: ${result.timeRemaining.milliseconds}")
+        presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
+      }
       is VerificationCodeRequestResult.TokenNotAccepted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human)) { _, _ -> moveToCaptcha() }
       else -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
     }
