@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegat
 import org.thoughtcrime.securesms.registration.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.ui.RegistrationState
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
+import org.thoughtcrime.securesms.registration.ui.isBindingInvalid
 import org.thoughtcrime.securesms.registration.ui.toE164
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -299,6 +300,11 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
   }
 
   private fun handleErrorResponse(result: RegistrationResult) {
+    if (isBindingInvalid()) {
+      Log.w(TAG, "Binding not valid, aborting! Result: $result")
+      result.logCause()
+      return
+    }
     if (!result.isSuccess()) {
       Log.i(TAG, "Handling error response.", result.getCause())
     }

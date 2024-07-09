@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegat
 import org.thoughtcrime.securesms.registration.fragments.SignalStrengthPhoneStateListener
 import org.thoughtcrime.securesms.registration.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
+import org.thoughtcrime.securesms.registration.ui.isBindingInvalid
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
@@ -128,11 +129,16 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     super.onResume()
     sharedViewModel.phoneNumber?.let {
       val formatted = PhoneNumberUtil.getInstance().format(it, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
-      binding.verificationSubheader.setText(requireContext().getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, formatted))
+      binding.verificationSubheader.text = requireContext().getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, formatted)
     }
   }
 
   private fun handleSessionErrorResponse(result: RegistrationResult) {
+    if (isBindingInvalid()) {
+      Log.w(TAG, "Binding not valid, aborting! Result: $result")
+      result.logCause()
+      return
+    }
     when (result) {
       is VerificationCodeRequestResult.Success -> binding.keyboard.displaySuccess()
       is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
@@ -143,6 +149,11 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
   }
 
   private fun handleRegistrationErrorResponse(result: RegisterAccountResult) {
+    if (isBindingInvalid()) {
+      Log.w(TAG, "Binding not valid, aborting! Result: $result")
+      result.logCause()
+      return
+    }
     when (result) {
       is RegisterAccountResult.Success -> binding.keyboard.displaySuccess()
       is RegisterAccountResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
@@ -199,11 +210,17 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     sharedViewModel.incrementIncorrectCodeAttempts()
 
     Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_code, Toast.LENGTH_LONG).show()
+
+    if (isBindingInvalid()) {
+      Log.w(TAG, "Binding not valid, aborting updating keyboard!")
+      return
+    }
+
     binding.keyboard.displayFailure().addListener(object : AssertedSuccessListener<Boolean?>() {
       override fun onSuccess(result: Boolean?) {
-        binding.callMeCountDown.setVisibility(View.VISIBLE)
-        binding.resendSmsCountDown.setVisibility(View.VISIBLE)
-        binding.wrongNumber.setVisibility(View.VISIBLE)
+        binding.callMeCountDown.visibility = View.VISIBLE
+        binding.resendSmsCountDown.visibility = View.VISIBLE
+        binding.wrongNumber.visibility = View.VISIBLE
         binding.code.clear()
         binding.keyboard.displayKeyboard()
       }

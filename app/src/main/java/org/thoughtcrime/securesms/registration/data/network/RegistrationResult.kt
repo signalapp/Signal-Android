@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.registration.data.network
 
+import org.signal.core.util.logging.Log
+
 /**
  * This is a merging of the NetworkResult pattern and the Processor pattern of registration v1.
  * The goal is to enumerate all possible responses as sealed classes, which means the consumer will be able to handle them in an exhaustive when clause
@@ -23,5 +25,11 @@ abstract class RegistrationResult(private val errorCause: Throwable?) {
     }
 
     return errorCause
+  }
+
+  fun logCause() {
+    errorCause?.let {
+      Log.w(Log.tag(this::class), "Cause:", it)
+    }
   }
 }
