@@ -41,7 +41,8 @@ class RemoteConfig_StaticValuesTest {
       "debugPendingDiskValues",
       "CRASH_PROMPT_CONFIG",
       "PROMPT_BATTERY_SAVER",
-      "PROMPT_FOR_NOTIFICATION_LOGS"
+      "PROMPT_FOR_NOTIFICATION_LOGS",
+      "DEVICE_SPECIFIC_NOTIFICATION_CONFIG"
     )
 
     val publicVals: List<KProperty1<*, *>> = RemoteConfig::class.memberProperties

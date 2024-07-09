@@ -874,10 +874,10 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  private const val PROMPT_DELAYED_NOTIFICATION_CONFIG: String = "android.delayedNotificationConfig"
+  const val DEVICE_SPECIFIC_NOTIFICATION_CONFIG: String = "android.deviceSpecificNotificationConfig"
 
-  val promptDelayedNotificationConfig: String by remoteString(
-    key = PROMPT_DELAYED_NOTIFICATION_CONFIG,
+  val deviceSpecificNotificationConfig: String by remoteString(
+    key = DEVICE_SPECIFIC_NOTIFICATION_CONFIG,
     defaultValue = "",
     hotSwappable = true
   )

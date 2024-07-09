@@ -26,6 +26,7 @@ public class UiHintValues extends SignalStoreValues {
   private static final String HAS_SEEN_DOUBLE_TAP_EDIT_EDUCATION_SHEET = "uihints.has_seen_double_tap_edit_education_sheet";
   private static final String DISMISSED_CONTACTS_PERMISSION_BANNER     = "uihints.dismissed_contacts_permission_banner";
   private static final String HAS_SEEN_DELETE_SYNC_EDUCATION_SHEET     = "uihints.has_seen_delete_sync_education_sheet";
+  private static final String LAST_SUPPORT_VERSION_SEEN                = "uihints.last_support_version_seen";
 
   UiHintValues(@NonNull KeyValueStore store) {
     super(store);
@@ -184,5 +185,19 @@ public class UiHintValues extends SignalStoreValues {
 
   public boolean getHasSeenDeleteSyncEducationSheet() {
     return getBoolean(HAS_SEEN_DELETE_SYNC_EDUCATION_SHEET, false);
+  }
+
+  /**
+   * @return the last version of the support article for delayed notifications that users have seen. Versions are increased in a remote config.
+   */
+  public int getLastSupportVersionSeen() {
+    return getInteger(LAST_SUPPORT_VERSION_SEEN, 0);
+  }
+
+  /**
+   * Sets the version number of the support article that users see if they have device-specific notifications issues
+   */
+  public void setLastSupportVersionSeen(int version) {
+    putLong(LAST_SUPPORT_VERSION_SEEN, version);
   }
 }

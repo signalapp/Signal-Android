@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.notifications.DeviceSpecificNotificationConfig
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference
@@ -120,7 +121,8 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
       messagePrivacy = SignalStore.settings.messageNotificationsPrivacy.toString(),
       priority = TextSecurePreferences.getNotificationPriority(AppDependencies.application),
       troubleshootNotifications = if (calculateSlowNotifications) {
-        SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && (SlowNotificationHeuristics.isHavingDelayedNotifications() || SlowNotificationHeuristics.showPreemptively())
+        (SlowNotificationHeuristics.isBatteryOptimizationsOn() && SlowNotificationHeuristics.isHavingDelayedNotifications()) ||
+          SlowNotificationHeuristics.showCondition() == DeviceSpecificNotificationConfig.ShowCondition.ALWAYS
       } else if (currentState != null) {
         currentState.messageNotificationsState.troubleshootNotifications
       } else {

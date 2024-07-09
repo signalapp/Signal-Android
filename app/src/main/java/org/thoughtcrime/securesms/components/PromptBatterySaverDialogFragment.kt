@@ -18,7 +18,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.PromptBatterySaverBottomSheetBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.notifications.DelayedNotificationConfig
+import org.thoughtcrime.securesms.notifications.DeviceSpecificNotificationConfig
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.LocalMetrics
 import org.thoughtcrime.securesms.util.PowerManagerCompat
@@ -35,7 +35,7 @@ class PromptBatterySaverDialogFragment : FixedRoundedCornerBottomSheetDialogFrag
       if (fragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG) == null) {
         PromptBatterySaverDialogFragment().apply {
           arguments = bundleOf(
-            ARG_LEARN_MORE_LINK to DelayedNotificationConfig.currentConfig.link
+            ARG_LEARN_MORE_LINK to DeviceSpecificNotificationConfig.currentConfig.link
           )
         }.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
         SignalStore.uiHints.lastBatterySaverPrompt = System.currentTimeMillis()
