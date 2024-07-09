@@ -160,7 +160,7 @@ class ContactSupportBottomSheetFragment : ComposeBottomSheetDialogFragment() {
   }
 
   fun showSafely(fm: FragmentManager, tag: String) {
-    if (!isAdded) {
+    if (!isAdded && !fm.isStateSaved) {
       show(fm, tag)
     }
   }
