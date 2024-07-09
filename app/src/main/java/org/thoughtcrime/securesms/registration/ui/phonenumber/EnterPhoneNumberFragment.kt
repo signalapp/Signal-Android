@@ -516,7 +516,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
   }
 
   private fun moveToEnterPinScreen() {
-    findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.actionReRegisterWithPinV2Fragment())
+    findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.actionReRegisterWithPinFragment())
     sharedViewModel.setInProgress(false)
   }
 

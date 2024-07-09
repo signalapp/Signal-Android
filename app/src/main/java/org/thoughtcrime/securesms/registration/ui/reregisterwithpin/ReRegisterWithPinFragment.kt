@@ -83,7 +83,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
     if (state.networkError != null) {
       genericErrorDialog()
     } else if (!state.canSkipSms) {
-      findNavController().safeNavigate(ReRegisterWithPinFragmentDirections.actionReRegisterWithPinFragmentToEnterPhoneNumberV2Fragment())
+      findNavController().safeNavigate(ReRegisterWithPinFragmentDirections.actionReRegisterWithPinFragmentToEnterPhoneNumberFragment())
     } else if (state.isRegistrationLockEnabled && state.svrTriesRemaining == 0) {
       Log.w(TAG, "Unable to continue skip flow, KBS is locked")
       onAccountLocked()
@@ -263,7 +263,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
 
       is RegisterAccountResult.IncorrectRecoveryPassword -> {
         registrationViewModel.setUserSkippedReRegisterFlow(true)
-        findNavController().safeNavigate(ReRegisterWithPinFragmentDirections.actionReRegisterWithPinFragmentToEnterPhoneNumberV2Fragment())
+        findNavController().safeNavigate(ReRegisterWithPinFragmentDirections.actionReRegisterWithPinFragmentToEnterPhoneNumberFragment())
       }
 
       is RegisterAccountResult.AttemptsExhausted,
