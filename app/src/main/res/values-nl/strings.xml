@@ -1097,13 +1097,13 @@
     <string name="PromptBatterySaverBottomSheet__message">Je kunt batterij-optimalisaties uitschakelen zodat Signal ervoor kan zorgen dat berichtmeldingen niet worden vertraagd.</string>
 
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
-    <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Notifications may be delayed due to battery optimizations</string>
+    <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Meldingen zijn mogelijk vertraagd vanwege batterij-optimalisaties</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
     <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Disable battery optimizations for Signal to ensure that message notifications will not be delayed. Tap “Continue” to see device-specific instructions.</string>
     <!-- Button to dismiss notification help prompt -->
-    <string name="DeviceSpecificNotificationBottomSheet__no_thanks">No thanks</string>
+    <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Nee bedankt</string>
     <!-- Button to continue and go to Signal support website -->
-    <string name="DeviceSpecificNotificationBottomSheet__continue">Continue</string>
+    <string name="DeviceSpecificNotificationBottomSheet__continue">Doorgaan</string>
 
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Doorgaan</string>
@@ -2094,7 +2094,7 @@
 
     <string name="WebRtcCallView__no_one_else_is_here">Er is niemand hier</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s is in deze oproep aanwezig</string>
-    <string name="WebRtcCallView__s_are_in_this_call">%1$s zijn in deze oproep aanwezig</string>
+    <string name="WebRtcCallView__s_are_in_this_call">%1$s bent in deze oproep aanwezig</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s en %2$s zijn in deze oproep aanwezig</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -2135,7 +2135,7 @@
     <!-- A dialog prompt to confirm you want to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_your_hand">Hand omlaag doen?</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
-    <string name="CallOverflowPopupWindow__lower_hand">Lower</string>
+    <string name="CallOverflowPopupWindow__lower_hand">Omlaag doen</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Annuleren</string>
     <!-- A button to take you to a list of participants with raised hands -->
@@ -2143,19 +2143,19 @@
 
 
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
-    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s steekt een hand op</string>
+    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s steekt je hand op</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
     <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
-        <item quantity="one">%1$s + %2$d steken een hand op</item>
-        <item quantity="other">%1$s + %2$d steken een hand op</item>
+        <item quantity="one">%1$s + %2$d ander steken een hand op</item>
+        <item quantity="other">%1$s + %2$d anderen steken een hand op</item>
     </plurals>
 
     <!-- A notification to the user that one participant in the call successfully raised their hand. The placeholder string is a name. -->
     <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">%1$s steekt een hand op</string>
     <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
     <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
-        <item quantity="one">%1$s + %2$d steken een hand op</item>
-        <item quantity="other">%1$s + %2$d steken een hand op</item>
+        <item quantity="one">%1$s + %2$d ander steken een hand op</item>
+        <item quantity="other">%1$s + %2$d anderen steken een hand op</item>
     </plurals>
 
     <!-- A badge to show the user has their hand raised. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
@@ -2961,7 +2961,7 @@
     <!-- Update item button text shown for the accepted message request update message -->
     <string name="ConversationUpdateItem_options">Opties</string>
     <!-- Update item button text shown for a profile name change. -->
-    <string name="ConversationUpdateItem_update">Update</string>
+    <string name="ConversationUpdateItem_update">Bijwerken</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
