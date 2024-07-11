@@ -475,6 +475,7 @@ class ConversationFragment :
   private val textDraftSaveDebouncer = Debouncer(500)
   private val doubleTapToEditDebouncer = DoubleClickDebouncer(200)
   private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY) }
+  private val nicknameEditActivityLauncher = registerForActivityResult(NicknameActivity.Contract()) {}
 
   private lateinit var layoutManager: ConversationLayoutManager
   private lateinit var markReadHelper: MarkReadHelper
@@ -2953,7 +2954,7 @@ class ConversationFragment :
           }
         )
       } else {
-        registerForActivityResult(NicknameActivity.Contract()) {}.launch(NicknameActivity.Args(recipientId = recipient.id, focusNoteFirst = false))
+        nicknameEditActivityLauncher.launch(NicknameActivity.Args(recipientId = recipient.id, focusNoteFirst = false))
       }
     }
 
