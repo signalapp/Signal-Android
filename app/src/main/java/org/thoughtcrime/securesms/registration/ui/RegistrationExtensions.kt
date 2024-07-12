@@ -15,5 +15,9 @@ fun PhoneNumber.toE164(): String {
 }
 
 fun Fragment.isBindingInvalid(): Boolean {
+  if (view == null) {
+    return false
+  }
+
   return viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)
 }
