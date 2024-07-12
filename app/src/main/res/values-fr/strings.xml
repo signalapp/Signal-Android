@@ -4229,13 +4229,13 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restaurez vos messages depuis une sauvegarde locale. Si vous ne les restaurez pas maintenant, vous ne pourrez pas le faire plus tard.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Récupérer une sauvegarde locale</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Récupérer une sauvegarde Signal</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Récupérer tous vos messages + vos fichiers multimédias des 30 derniers jours</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Récupérer tous vos messages + vos médias des 30 derniers jours</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Plus d’options</string>
 
     <string name="TransferOrRestoreFragment__cancel">Annuler</string>
     <string name="TransferOrRestoreFragment__skip_transfer">Se connecter sans transfert</string>
-    <string name="TransferOrRestoreFragment__skip_transfer_description">Continuer sans transférer vos messages et fichiers multimédias</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">Continuer sans transférer vos messages et médias</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Ouvrez Signal sur votre ancien téléphone Android</string>
@@ -6426,7 +6426,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirmez votre don %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
-    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Pour configurer votre don mensuel, appuyez sur &lt;strong&gt;Continuer&lt;/strong&gt;. Vous confirmez ainsi le prélèvement de 0,01 € auprès de votre banque. Cette somme sera automatiquement remboursée et permettra de confirmer le prélèvement de la somme mensuelle de %1$s sur votre compte.</string>
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Pour mettre en place votre don mensuel, appuyez sur &lt;strong&gt;Continuer&lt;/strong&gt;. Vous confirmez ainsi le prélèvement de 0,01 € auprès de votre banque. Cette somme sera automatiquement remboursée et permettra de confirmer le prélèvement de la somme mensuelle de %1$s sur votre compte.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Poursuivre</string>
 
@@ -6732,9 +6732,9 @@
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Rejoindre</string>
     <!-- Option to open a full screen dialog to add a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Ajouter un libellé d’appel</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Nommer l’appel</string>
     <!-- Option to open a full screen dialog to edit a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Modifier le libellé de l’appel</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Renommer l’appel</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Approuver tous les membres</string>
     <!-- Row label to share the link via Signal -->
@@ -6758,11 +6758,11 @@
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
-    <string name="EditCallLinkNameDialogFragment__edit_call_name">Modifier le libellé de l’appel</string>
+    <string name="EditCallLinkNameDialogFragment__edit_call_name">Renommer l’appel</string>
     <!-- Text on button to confirm edit -->
     <string name="EditCallLinkNameDialogFragment__save">Enregistrer</string>
     <!-- Placeholder text on input field when editing call name -->
-    <string name="EditCallLinkNameDialogFragment__call_name">Libellé de l’appel</string>
+    <string name="EditCallLinkNameDialogFragment__call_name">Nom de l’appel</string>
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
@@ -6788,9 +6788,9 @@
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Détails de l’appel</string>
     <!-- Displayed in a text row, allowing the user to click and edit a call name -->
-    <string name="CallLinkDetailsFragment__edit_call_name">Modifier le libellé de l’appel</string>
+    <string name="CallLinkDetailsFragment__edit_call_name">Renommer l’appel</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Ajouter un libellé d’appel</string>
+    <string name="CallLinkDetailsFragment__add_call_name">Nommer l’appel</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
     <string name="CallLinkDetailsFragment__approve_all_members">Approuver tous les membres</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
@@ -7017,9 +7017,9 @@
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Your Signal media backup plan has been canceled because we couldn\'t process your payment. This is your last chance to download the media in your backup before it is deleted.</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Impossible d’effectuer le téléchargement</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">Téléchargement impossible</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Votre appareil ne dispose pas d’assez d’espace libre. Libérez %1$s d’espace pour télécharger les fichiers multimédias stockés dans votre sauvegarde.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">L’espace libre disponible sur votre appareil est insuffisant. Pour télécharger les médias stockés dans votre sauvegarde, libérez %1$s d’espace.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
         <item quantity="one">If you choose \"Skip\" the media in your backup will be deleted in %1$d day.</item>
@@ -7046,7 +7046,7 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Libérez %1$s d’espace pour télécharger vos fichiers multimédias.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Libérez %1$s d’espace pour télécharger vos médias.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7062,7 +7062,7 @@
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__unknown">Inconnu</string>
     <!-- Row title for entering payment history -->
-    <string name="BackupsTypeSettingsFragment__payment_history">Historique de paiements</string>
+    <string name="BackupsTypeSettingsFragment__payment_history">Historique des paiements</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7091,15 +7091,15 @@
 
     <!-- RemoteBackupsPaymentHistoryFragment -->
     <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Historique de paiements</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Historique des paiements</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Sauvegarde des messages et de tous les fichiers multimédias</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Sauvegarde des messages et de tous les médias</string>
     <!-- Title of the screen for payment details -->
     <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Détails des paiements</string>
     <!-- Title of row specifying the type of backup -->
     <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Type de sauvegarde</string>
     <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date du paiement</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date de paiement</string>
     <!-- Button label to share the receipt -->
     <string name="RemoteBackupsPaymentHistoryFragment__share">Partager</string>
 

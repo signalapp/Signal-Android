@@ -574,7 +574,7 @@
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">Verzoek blokkeren?</string>
     <!-- Dialog message for block group link join requests -->
-    <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s zal niet langer via de groepslink lid kunnen worden van deze groep en ook niet kunnen verzoeken om lid te worden van de groep. Deze persoon kan dan nog wel lid worden via een uitnodiging.</string>
+    <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s zal niet langer via de groepslink lid kunnen worden of kunnen verzoeken om lid te worden van deze groep. Deze persoon kan nog wel handmatig aan de groep worden toegevoegd.</string>
     <!-- Dialog confirm block request button -->
     <string name="ConversationFragment__block_request_button">Verzoek blokkeren</string>
     <!-- Dialog cancel block request button -->
@@ -1536,7 +1536,7 @@
     <string name="MessageRecord_s_added_s">%1$s heeft %2$s toegevoegd aan de groep.</string>
     <string name="MessageRecord_s_added_you">%1$s heeft je toegevoegd aan de groep.</string>
     <string name="MessageRecord_you_joined_the_group">Je bent lid geworden van de groep.</string>
-    <string name="MessageRecord_s_joined_the_group">%1$s zijn toegevoegd aan de groep.</string>
+    <string name="MessageRecord_s_joined_the_group">%1$s is lid geworden van de groep.</string>
 
     <!-- GV2 member removals -->
     <string name="MessageRecord_you_removed_s">Je hebt %1$s verwijderd.</string>
@@ -3116,8 +3116,8 @@
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
-        <item quantity="one">%1$s is toegevoegd aan de groep.</item>
-        <item quantity="other">%1$s zijn toegevoegd aan de groep.</item>
+        <item quantity="one">%1$s is lid geworden van de groep.</item>
+        <item quantity="other">%1$s zijn lid geworden van de groep.</item>
     </plurals>
     <string name="GroupUtil_group_name_is_now">De groepsnaam is vanaf nu ‘%1$s’.</string>
 
@@ -5402,7 +5402,7 @@
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Fout bij het verwerken van donatie</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
-    <string name="DonationsErrors__try_another_payment_method">Probeer het via een andere betalingsmethode of neem contact op met je bank om hen om meer informatie te vragen.</string>
+    <string name="DonationsErrors__try_another_payment_method">Probeer het via een andere betalingsmethode of neem contact op met je bank voor meer informatie.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Meer lezen</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
@@ -5449,7 +5449,7 @@
 
 
     <!-- Stripe decline code generic_failure -->
-    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Probeer het via een andere betalingsmethode of neem contact op met je bank om hen om meer informatie te vragen.</string>
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Probeer het via een andere betalingsmethode of neem contact op met je bank voor meer informatie.</string>
     <!-- PayPal decline code for payment declined -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">Probeer het via een andere betalingsmethode of neem contact op met je bank voor meer informatie. Als dit een PayPal-transactie was, neem dan contact op met PayPal.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
@@ -5461,21 +5461,21 @@
     <!-- Stripe decline code purchase not supported -->
     <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Je betaalkaart ondersteunt dit type betaling niet. Probeer het via een andere betalingsmethode opnieuw.</string>
     <!-- Stripe decline code your card has expired -->
-    <string name="DeclineCode__your_card_has_expired">Je betaalkaart is verlopen. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+    <string name="DeclineCode__your_card_has_expired">Je betaalkaart is verlopen. Werk eerst je betalingsinformatie bij in Google Pay en probeer het daarna opnieuw.</string>
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Google Pay openen</string>
     <!-- Stripe decline code try credit card again action label -->
     <string name="DeclineCode__try">Opnieuw proberen</string>
     <!-- Stripe decline code incorrect card number -->
-    <string name="DeclineCode__your_card_number_is_incorrect">Je betaalkaartnummer is niet juist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+    <string name="DeclineCode__your_card_number_is_incorrect">Je betaalkaartnummer is niet juist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het daarna opnieuw.</string>
     <!-- Stripe decline code incorrect cvc -->
-    <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Je betaalkaart-verificatiecode is niet juist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+    <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Het CVC-nummer van je betaalkaart is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het daarna opnieuw.</string>
     <!-- Stripe decline code insufficient funds -->
     <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Er staat onvoldoende krediet op je betaalkaart om te doneren. Probeer het via een andere betalingsmethode opnieuw.</string>
     <!-- Stripe decline code incorrect expiration month -->
-    <string name="DeclineCode__the_expiration_month">De maand waarop je betalingsmethode verloopt is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+    <string name="DeclineCode__the_expiration_month">De maand waarop je betalingsmethode verloopt is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het daarna opnieuw.</string>
     <!-- Stripe decline code incorrect expiration year -->
-    <string name="DeclineCode__the_expiration_year">Het jaar waarop je betalingsmethode verloopt is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+    <string name="DeclineCode__the_expiration_year">Het jaar waarop je betalingsmethode verloopt is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het daarna opnieuw.</string>
     <!-- Stripe decline code issuer not available -->
     <string name="DeclineCode__try_completing_the_payment_again">Probeer opnieuw de betaling te voltooien of neem contact op met je bank voor meer informatie.</string>
     <!-- Stripe decline code processing error -->
@@ -6143,9 +6143,9 @@
     <!-- Label indicating that a user can tap to advance to the next post in a story -->
     <string name="StoryFirstTimeNavigationView__tap_to_advance">Tik om door te gaan</string>
     <!-- Label indicating swipe direction to skip current story -->
-    <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Swipe omhoog om over te slaan</string>
+    <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Veeg omhoog om over te slaan</string>
     <!-- Label indicating swipe direction to exit story viewer -->
-    <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Swipe naar rechts om terug te gaan</string>
+    <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Veeg naar rechts om terug te gaan</string>
     <!-- Button label to confirm understanding of story navigation -->
     <string name="StoryFirstTimeNagivationView__got_it">Begrepen</string>
     <!-- Content description for vertical context menu button in safety number sheet rows -->

@@ -5874,7 +5874,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">In deinen Telefonkontakten gespeichert</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Deine Verbindungen können deinen Namen und dein Foto sowie Beiträge unter »Meine Story« sehen, es sei denn, du verbirgst sie vor ihnen."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Deine Kontakte können deinen Namen und dein Foto sowie Beiträge unter »Meine Story« sehen, es sei denn, du verbirgst sie vor ihnen."</string>
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Betrachter hinzufügen</string>
     <!-- Clickable option to delete a custom story -->
@@ -6163,7 +6163,7 @@
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Prüfung der Sicherheitsnummer abgeschlossen</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
-    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alle Verbindungen wurden geprüft, tippe auf »Senden«, um fortzufahren.</string>
+    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alle Kontakte wurden geprüft, tippe auf »Senden«, um fortzufahren.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
         <item quantity="one">%1$d Kontakt hat Signal möglicherweise erneut installiert oder das Gerät gewechselt. Optional kannst du dessen Sicherheitsnummer vor dem Senden überprüfen.</item>
@@ -6176,7 +6176,7 @@
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">Trotzdem versenden</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
-    <string name="SafetyNumberBottomSheetFragment__review_connections">Verbindungen prüfen</string>
+    <string name="SafetyNumberBottomSheetFragment__review_connections">Kontakte prüfen</string>
     <!-- Empty state copy for SafetyNumberBottomSheetFragment -->
     <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Keine weiteren Empfänger vorhanden</string>
     <!-- Done button on safety number review fragment -->

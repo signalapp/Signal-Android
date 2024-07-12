@@ -1581,18 +1581,18 @@
         <item quantity="one">%1$s ha retirado la invitación a unirse al grupo.</item>
         <item quantity="other">%1$s ha retirado %2$d invitaciones a unirse al grupo.</item>
     </plurals>
-    <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguien ha rechazado la invitación a unirse al grupo.</string>
-    <string name="MessageRecord_you_declined_the_invitation_to_the_group">Has rechazado la invitación a unirte al grupo.</string>
-    <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s retiró tu invitación a unirse al grupo.</string>
-    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un admin retiró tu invitación a unirse al grupo.</string>
+    <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguien ha rechazado la invitación al grupo.</string>
+    <string name="MessageRecord_you_declined_the_invitation_to_the_group">Has rechazado la invitación al grupo.</string>
+    <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s ha retirado tu invitación al grupo.</string>
+    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un admin ha retirado tu invitación al grupo.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
         <item quantity="one">Se ha retirado 1 invitación a unirse al grupo.</item>
         <item quantity="other">Se han retirado %1$d invitaciones a unirse al grupo.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
-    <string name="MessageRecord_you_accepted_invite">Has aceptado la invitación a unirte al grupo.</string>
-    <string name="MessageRecord_s_accepted_invite">%1$s ha aceptado la invitación a unirse al grupo.</string>
+    <string name="MessageRecord_you_accepted_invite">Has aceptado la invitación al grupo.</string>
+    <string name="MessageRecord_s_accepted_invite">%1$s ha aceptado la invitación al grupo.</string>
     <string name="MessageRecord_you_added_invited_member_s">Has añadido a %1$s.</string>
     <string name="MessageRecord_s_added_invited_member_s">%1$s ha añadido a %2$s.</string>
 
