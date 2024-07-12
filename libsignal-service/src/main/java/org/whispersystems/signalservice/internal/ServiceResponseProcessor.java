@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.internal;
 
 
+import org.signal.libsignal.net.ChatServiceException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.Preconditions;
@@ -48,7 +49,7 @@ public abstract class ServiceResponseProcessor<T> {
       throw (IOException) error;
     } else if (error instanceof RuntimeException) {
       throw (RuntimeException) error;
-    } else if (error instanceof InterruptedException || error instanceof TimeoutException) {
+    } else if (error instanceof InterruptedException || error instanceof TimeoutException || error instanceof ChatServiceException) {
       throw new IOException(error);
     } else {
       throw new IllegalStateException("Unexpected error type for response processor", error);
