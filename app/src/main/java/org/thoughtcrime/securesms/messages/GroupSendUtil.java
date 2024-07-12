@@ -471,7 +471,7 @@ public final class GroupSendUtil {
       List<SignalServiceAddress> legacyTargetAddresses = legacyTargets.stream().map(r -> recipients.getAddress(r.getId())).collect(Collectors.toList());
       List<UnidentifiedAccess>   legacyTargetAccesses  = legacyTargets.stream().map(r -> recipients.getAccess(r.getId())).collect(Collectors.toList());
       List<GroupSendFullToken>   groupSendTokens       = null;
-      boolean                    recipientUpdate       = isRecipientUpdate || allResults.isEmpty();
+      boolean                    recipientUpdate       = isRecipientUpdate || allResults.size() > 0;
 
       if (useGroupSendEndorsements) {
         Instant           expiration        = Instant.ofEpochMilli(groupSendEndorsementExpiration);
