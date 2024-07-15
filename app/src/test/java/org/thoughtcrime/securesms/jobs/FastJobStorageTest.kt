@@ -453,6 +453,133 @@ class FastJobStorageTest {
   }
 
   @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after deleted, no longer is in eligible list`() {
+    val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs true
+
+    subject.deleteJobs(listOf("id1"))
+
+    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs false
+  }
+
+  @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after marked running, no longer is in eligible list`() {
+    val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs true
+
+    subject.markJobAsRunning("id1", 1)
+
+    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs false
+  }
+
+  @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after updateJobAfterRetry to be invalid, no longer is in eligible list`() {
+    val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs true
+
+    subject.updateJobAfterRetry("id1", 1, 1000, 1_000_000, null)
+
+    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs false
+  }
+
+  @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after invalid then marked pending, is in eligible list`() {
+    val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    subject.markJobAsRunning("id1", 1)
+    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs false
+
+    subject.updateAllJobsToBePending()
+
+    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.filter { it.id == DataSet1.JOB_1.id }.size assertIs 1 // The last run attempt time changes, so some fields will be different
+  }
+
+  @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after updateJobs to be invalid, no longer is in eligible list`() {
+    val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs true
+
+    subject.updateJobs(listOf(DataSet1.JOB_1.copy(isRunning = true)))
+
+    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs false
+  }
+
+  @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - newly-inserted higher-priority job in queue replaces old`() {
+    val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs true
+
+    val higherPriorityJob = DataSet1.JOB_1.copy(id = "id-bigboi", priority = Job.Parameters.PRIORITY_HIGH)
+    subject.insertJobs(listOf(FullSpec(jobSpec = higherPriorityJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())))
+
+    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs false
+    jobs.contains(higherPriorityJob) assertIs true
+  }
+
+  @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - updating job to have a higher priority replaces lower priority in queue`() {
+    val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    val lowerPriorityJob = DataSet1.JOB_1.copy(id = "id-bigboi", priority = Job.Parameters.PRIORITY_LOW)
+    subject.insertJobs(listOf(FullSpec(jobSpec = lowerPriorityJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())))
+
+    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs true
+    jobs.contains(lowerPriorityJob) assertIs false
+
+    val higherPriorityJob = lowerPriorityJob.copy(priority = Job.Parameters.PRIORITY_HIGH)
+    subject.updateJobs(listOf(higherPriorityJob))
+
+    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs false
+    jobs.contains(higherPriorityJob) assertIs true
+  }
+
+  @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - updating job to have an older createTime replaces newer in queue`() {
+    val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    val newerJob = DataSet1.JOB_1.copy(id = "id-bigboi", createTime = 1000)
+    subject.insertJobs(listOf(FullSpec(jobSpec = newerJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())))
+
+    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs true
+    jobs.contains(newerJob) assertIs false
+
+    val olderJob = newerJob.copy(createTime = 0)
+    subject.updateJobs(listOf(olderJob))
+
+    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.contains(DataSet1.JOB_1) assertIs false
+    jobs.contains(olderJob) assertIs true
+  }
+
+  @Test
   fun `deleteJobs - writes to database`() {
     val database = fixedDataDatabase(DataSet1.FULL_SPECS)
     val ids: List<String> = listOf("id1", "id2")
