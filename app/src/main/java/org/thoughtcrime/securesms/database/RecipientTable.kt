@@ -852,6 +852,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     if (id < 0) {
       Log.w(TAG, "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.")
       recipientId = getAndPossiblyMerge(aci = insert.aci.orNull(), pni = insert.pni.orNull(), e164 = insert.number.orNull(), pniVerified = insert.isPniSignatureVerified)
+      resolvePotentialUsernameConflicts(values.getAsString(USERNAME), recipientId)
+
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     } else {
       recipientId = RecipientId.from(id)
@@ -892,6 +894,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       recipientId = getAndPossiblyMerge(aci = update.new.aci.orElse(null), pni = update.new.pni.orElse(null), e164 = update.new.number.orElse(null), pniVerified = update.new.isPniSignatureVerified)
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Merged into $recipientId")
+      resolvePotentialUsernameConflicts(values.getAsString(USERNAME), recipientId)
+
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     }
 
@@ -926,6 +930,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     threads.applyStorageSyncUpdate(recipientId, update.new)
     AppDependencies.databaseObserver.notifyRecipientChanged(recipientId)
+  }
+
+  private fun resolvePotentialUsernameConflicts(username: String?, recipientId: RecipientId) {
+    if (username != null) {
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(USERNAME to null)
+        .where("$USERNAME = ? AND $ID != ?", username, recipientId.serialize())
+        .run()
+    }
   }
 
   fun applyStorageSyncGroupV1Insert(insert: SignalGroupV1Record) {
