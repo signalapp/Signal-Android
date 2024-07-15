@@ -869,6 +869,15 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** Maximum input size when opening a video to send in bytes  */
+  @JvmStatic
+  @get:JvmName("maxSourceTranscodeVideoSizeBytes")
+  val maxSourceTranscodeVideoSizeBytes: Long by remoteLong(
+    key = "android.media.sourceTranscodeVideo.maxBytes",
+    defaultValue = 500L.mebiBytes.inWholeBytes,
+    hotSwappable = true
+  )
+
   const val PROMPT_FOR_NOTIFICATION_LOGS: String = "android.logs.promptNotifications"
 
   @JvmStatic

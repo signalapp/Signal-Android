@@ -12,6 +12,7 @@ public abstract class DigestingOutputStream extends FilterOutputStream {
   private final MessageDigest runningDigest;
 
   private byte[] digest;
+  private long   totalBytesWritten = 0;
 
   public DigestingOutputStream(OutputStream outputStream) {
     super(outputStream);
@@ -27,16 +28,19 @@ public abstract class DigestingOutputStream extends FilterOutputStream {
   public void write(byte[] buffer) throws IOException {
     runningDigest.update(buffer, 0, buffer.length);
     out.write(buffer, 0, buffer.length);
+    totalBytesWritten += buffer.length;
   }
 
   public void write(byte[] buffer, int offset, int length) throws IOException {
     runningDigest.update(buffer, offset, length);
     out.write(buffer, offset, length);
+    totalBytesWritten += length;
   }
 
   public void write(int b) throws IOException {
     runningDigest.update((byte)b);
     out.write(b);
+    totalBytesWritten++;
   }
 
   public void flush() throws IOException {
@@ -52,4 +56,7 @@ public abstract class DigestingOutputStream extends FilterOutputStream {
     return digest;
   }
 
+  public long getTotalBytesWritten() {
+    return totalBytesWritten;
+  }
 }

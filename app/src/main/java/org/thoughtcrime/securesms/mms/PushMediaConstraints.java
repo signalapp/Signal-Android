@@ -62,7 +62,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public long getUncompressedVideoMaxSize(Context context) {
-    return isVideoTranscodeAvailable() ? 500 * MB
+    return isVideoTranscodeAvailable() ? RemoteConfig.maxSourceTranscodeVideoSizeBytes()
                                        : getVideoMaxSize(context);
   }
 

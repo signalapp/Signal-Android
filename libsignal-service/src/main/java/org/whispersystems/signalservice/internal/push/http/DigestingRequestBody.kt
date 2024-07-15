@@ -52,22 +52,20 @@ class DigestingRequestBody(
 
     val buffer = ByteArray(8192)
     var read: Int
-    var total: Long = 0
 
     while (inputStream.read(buffer, 0, buffer.size).also { read = it } != -1) {
       if (cancelationSignal?.isCanceled == true) {
         throw IOException("Canceled!")
       }
       outputStream.write(buffer, 0, read)
-      total += read.toLong()
-      progressListener?.onAttachmentProgress(contentLength, total)
+      progressListener?.onAttachmentProgress(contentLength, outputStream.totalBytesWritten)
     }
 
     outputStream.flush()
 
     val incrementalDigest: ByteArray = if (isIncremental) {
-      if (contentLength != total) {
-        Log.w(TAG, "Content uploaded ${logMessage(total, contentLength)} bytes compared to expected!")
+      if (contentLength != outputStream.totalBytesWritten) {
+        Log.w(TAG, "Content uploaded ${logMessage(outputStream.totalBytesWritten, contentLength)} bytes compared to expected!")
       } else {
         Log.d(TAG, "Wrote the expected number of bytes.")
       }
