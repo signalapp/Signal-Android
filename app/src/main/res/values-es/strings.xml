@@ -100,7 +100,7 @@
     <!-- Dialog description that will explain the steps needed to give location permission -->
     <string name="AttachmentManager_signal_to_send_location">Para enviar tu ubicación:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">Permitir a Signal acceso para enviar tu ubicación.</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">Permite a Signal acceso para enviar tu ubicación.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
     <string name="AttachmentManager_signal_needs_location_access">Signal necesita acceso a tu localización para enviar tu ubicación.</string>
     <!-- Dialog title asking users for gallery storage permission -->
@@ -186,9 +186,9 @@
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Los participantes del grupo no podrán añadirte de nuevo.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Los participantes del grupo podrán añadirte de nuevo.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podréis chatear y llamaros mutuamente. Tu nombre y foto se compartirán con esta persona.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podrás chatear y hablar por teléfono, y tu nombre y foto se compartirán con esta persona.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Podréis chatear y llamaros mutuamente.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Podrás chatear y hablar por teléfono con esta persona.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Las personas bloqueadas no podrán llamarte o enviarte mensajes.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Las personas bloqueadas no podrán llamarte ni enviarte mensajes.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
@@ -282,7 +282,7 @@
     <!-- Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
     <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">¿Desactivar la opción Evitar censura?</string>
     <!-- Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
-    <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Ahora puedes conectarte a Signal directamente sin necesidad de usar la opción Evitar censura.</string>
+    <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Ahora puedes conectarte a Signal directamente sin necesidad de activar la opción Evitar censura.</string>
     <!-- Action to prompt the user to disable circumvention since it is no longer needed -->
     <string name="CensorshipCircumventionMegaphone_turn_off">Desactivar</string>
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
@@ -331,13 +331,13 @@
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Enviar mensaje a %1$s</string>
-    <string name="ContactsDatabase_signal_call_s">Llamada de voz de Signal de %1$s</string>
+    <string name="ContactsDatabase_signal_call_s">Llamada de Signal de %1$s</string>
     <string name="ContactsDatabase_signal_video_call_s">Videollamada de Signal de %1$s</string>
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
     <string name="ContactNameEditActivity_given_name">Nombre</string>
-    <string name="ContactNameEditActivity_family_name">Apellido(s)</string>
+    <string name="ContactNameEditActivity_family_name">Apellido</string>
     <string name="ContactNameEditActivity_prefix">Prefijo</string>
     <string name="ContactNameEditActivity_suffix">Sufijo</string>
     <string name="ContactNameEditActivity_middle_name">Segundo nombre</string>
@@ -345,10 +345,10 @@
     <!-- ContactShareEditActivity -->
     <!-- ContactShareEditActivity toolbar title -->
     <string name="ContactShareEditActivity__send_contact">Enviar contacto</string>
-    <string name="ContactShareEditActivity_type_home">Casa</string>
-    <string name="ContactShareEditActivity_type_mobile">Móvil</string>
-    <string name="ContactShareEditActivity_type_work">Trabajo</string>
-    <string name="ContactShareEditActivity_type_missing">Otro</string>
+    <string name="ContactShareEditActivity_type_home">casa</string>
+    <string name="ContactShareEditActivity_type_mobile">móvil</string>
+    <string name="ContactShareEditActivity_type_work">trabajo</string>
+    <string name="ContactShareEditActivity_type_missing">otro</string>
     <string name="ContactShareEditActivity_invalid_contact">El contacto que has seleccionado no es válido</string>
     <!-- Content descrption for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">Editar nombre</string>
@@ -398,7 +398,7 @@
     <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Enviar versión editada</string>
-    <string name="ConversationActivity_compose_message">Escribir mensaje</string>
+    <string name="ConversationActivity_compose_message">Redactar mensaje</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">No se ha podido adjuntar el archivo.</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El destinatario no tiene un número de teléfono móvil o una dirección de correo electrónico válidos.</string>
     <string name="ConversationActivity_message_is_empty_exclamation">El mensaje está vacío.</string>
@@ -426,9 +426,9 @@
     <string name="ConversationActivity_transport_signal">Mensaje de Signal</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">Enviar mensaje</string>
-    <string name="ConversationActivity_lets_switch_to_signal">Pasémonos a Signal: %1$s</string>
+    <string name="ConversationActivity_lets_switch_to_signal">Pasémonos a Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Selecciona un contacto</string>
-    <string name="ConversationActivity_attachment_exceeds_size_limits">El archivo adjunto excede los límites de tamaño para el tipo de mensaje que intentas enviar.</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">El archivo adjunto excede el límite de tamaño para el tipo de mensaje que intentas enviar.</string>
     <string name="ConversationActivity_unable_to_record_audio">No se ha podido grabar el mensaje de voz</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">No puedes enviar mensajes porque ya no formas parte de este grupo.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Solo %1$s pueden enviar mensajes.</string>
@@ -445,13 +445,13 @@
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
     <string name="ConversationActivity_signal_to_send_audio_messages">Para enviar mensajes de voz:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
-    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Para enviar mensajes de voz y hacer llamadas, permite que Signal acceda al micrófono.</string>
+    <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Para enviar mensajes de voz y hacer llamadas, permite a Signal acceso al micrófono.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
     <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal necesita acceso al micrófono para grabar un mensaje de voz.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal necesita acceso al micrófono para enviar mensajes de voz. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Micrófono &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal necesita acceso al micrófono y a la cámara para llamar a %1$s. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación, y activa el acceso al micrófono y a la cámara. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
-    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para hacer fotos y grabar vídeos, permite el acceso de Signal a la cámara.</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para hacer fotos y grabar vídeos, permite a Signal acceso a la cámara.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita acceso a la cámara para hacer fotos o grabar vídeos. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal necesita acceso a la cámara para hacer fotos o grabar vídeos.</string>
     <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Activa el acceso al micrófono para grabar vídeos con sonido.</string>
@@ -477,7 +477,7 @@
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
     <string name="ConversationActivity__to_start_call">Para iniciar una llamada:</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Para iniciar una llamada, permite que Signal acceda al micrófono.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Para iniciar una llamada, permite a Signal acceso al micrófono.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
     <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal necesita acceso al micrófono para iniciar una llamada.</string>
 
@@ -493,7 +493,7 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Los mensajes SMS ya no son compatibles con Signal. Invita a %1$s a Signal para mantener aquí tu conversación.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
-    <string name="ConversationActivity__this_person_is_no_longer_using_signal">Esta persona ya no usa Signal. Invítala a Signal para seguir charlando aquí.</string>
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">Esta persona ya no usa Signal. Invítala a Signal para seguir chateando aquí.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Invitar a Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -635,7 +635,7 @@
     <!-- Title of tip 3 -->
     <string name="SafetyTips_tip3_title">Mensajes con enlaces</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Ten cuidado con los mensajes de personas que no conoces y que tienen enlaces a sitios web. Nunca abras enlaces de personas en las que no confíes.</string>
+    <string name="SafetyTips_tip3_message">Ten cuidado con los mensajes de personas que no conoces y que tienen enlaces a sitios web. Nunca abras enlaces de personas en las que no confías.</string>
     <!-- Title of tip 4 -->
     <string name="SafetyTips_tip4_title">Empresas e instituciones falsas</string>
     <!-- Message of tip 4 -->
@@ -700,7 +700,7 @@
     <!-- Tooltip shown after you have created your first notification profile -->
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Activa o desactiva tu perfil de notificaciones aquí.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
-    <string name="ConversationListFragment__s_on">«%1$s» en línea</string>
+    <string name="ConversationListFragment__s_on">%1$s en línea</string>
     <!-- -->
     <string name="ConversationListFragment_username_recovered_toast">Tu código QR y tu enlace se han restablecido y tu alias es %1$s</string>
 
@@ -749,7 +749,7 @@
     <!-- Description for radio item stating anyone can see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Cualquiera que tenga tu número de teléfono verá que estás en Signal y podrá iniciar chats contigo.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Nadie podrá ver que estás en Signal a menos que les envíes un mensaje o tengas un chat con esta persona en concreto.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Nadie podrá ver que estás en Signal a menos que les envíes un mensaje o ya tengas un chat con esta persona en concreto.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">¿Restaurar desde copia de seguridad?</string>
@@ -862,7 +862,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Usar Signal para escritorio o iPad. Tus mensajes se sincronizarán en todos tus dispositivos vinculados.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Usa Signal para escritorio o iPad. Tus mensajes se sincronizarán en todos tus dispositivos vinculados.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Vincular un nuevo dispositivo</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -917,7 +917,7 @@
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">¿Desvincular «%1$s»?</string>
-    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Si se desvincula este dispositivo, ya no podrás enviar ni recibir mensajes.</string>
+    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Si se desvincula este dispositivo, ya no podrás enviar ni recibir mensajes allí.</string>
     <string name="DeviceListActivity_network_connection_failed">Error en la conexión de red</string>
     <string name="DeviceListActivity_try_again">Inténtalo de nuevo</string>
     <string name="DeviceListActivity_unlinking_device">Desvinculando dispositivo…</string>
@@ -960,8 +960,8 @@
 
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">¿Añadir participante?</string>
-    <string name="AddToGroupActivity_add_s_to_s">¿Añadir a «%1$s» a «%2$s»?</string>
-    <string name="AddToGroupActivity_s_added_to_s">Se ha añadido a «%1$s» a «%2$s».</string>
+    <string name="AddToGroupActivity_add_s_to_s">¿Añadir a %1$s a «%2$s»?</string>
+    <string name="AddToGroupActivity_s_added_to_s">Se ha añadido a %1$s a «%2$s».</string>
     <string name="AddToGroupActivity_add_to_group">Añadir al grupo</string>
     <string name="AddToGroupActivity_add_to_groups">Añadir a grupos</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">No se puede añadir a esta persona a grupos del sistema antiguo.</string>
@@ -997,7 +997,7 @@
         <item quantity="other">%1$d invitaciones enviadas</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
-    <string name="GroupManagement_invite_single_user">No se puede añadir automáticamente a «%1$s» al grupo.\n\nHa recibido una invitación y no podrá ver ningún mensaje hasta que la acepte.</string>
+    <string name="GroupManagement_invite_single_user">No se puede añadir automáticamente a %1$s al grupo.\n\nEsta persona ha recibido una invitación y no podrá ver ningún mensaje hasta que la acepte.</string>
     <string name="GroupManagement_invite_multiple_users">No se puede añadir automáticamente a estas personas al grupo.\n\nHan recibido una invitación y no podrán ver ningún mensaje hasta que la acepten.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
@@ -1099,7 +1099,7 @@
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Las notificaciones pueden retrasarse debido a los procesos de optimización de la batería</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
-    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Disable battery optimizations for Signal to ensure that message notifications will not be delayed. Tap “Continue” to see device-specific instructions.</string>
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Deshabilita las opciones de optimización de batería para Signal para asegurarte de que las notificaciones de mensajes no se retrasen. Toca «Continuar» para ver las instrucciones específicas del dispositivo.</string>
     <!-- Button to dismiss notification help prompt -->
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">No, gracias</string>
     <!-- Button to continue and go to Signal support website -->
@@ -1119,7 +1119,7 @@
     <string name="PendingMembersActivity_you_have_no_pending_invites">No tienes invitaciones pendientes.</string>
     <string name="PendingMembersActivity_invites_by_other_group_members">Personas invitadas por otros participantes</string>
     <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No hay invitaciones pendientes de otros participantes.</string>
-    <string name="PendingMembersActivity_missing_detail_explanation">No se muestra la información de las personas invitadas por otros participantes. Su información se mostrarán a partir del momento en que decidan participar en el grupo. También verán los mensajes del grupo a partir de ese momento.</string>
+    <string name="PendingMembersActivity_missing_detail_explanation">No se muestra la información de las personas invitadas por otros participantes. Su información se mostrarán a partir del momento en que decidan formar parte del grupo. También verán los mensajes del grupo a partir de ese momento.</string>
 
     <string name="PendingMembersActivity_revoke_invite">Retirar invitación</string>
     <string name="PendingMembersActivity_revoke_invites">Retirar invitaciones</string>
@@ -1135,7 +1135,7 @@
     <!-- RequestingMembersFragment -->
     <string name="RequestingMembersFragment_pending_member_requests">Solicitudes pendientes</string>
     <string name="RequestingMembersFragment_no_member_requests_to_show">No hay solicitudes que mostrar.</string>
-    <string name="RequestingMembersFragment_explanation">Las personas en esta lista han solicitado unirse al grupo mediante enlace.</string>
+    <string name="RequestingMembersFragment_explanation">Las personas de esta lista han solicitado unirse al grupo mediante enlace.</string>
     <string name="RequestingMembersFragment_added_s">"Se ha añadido a %1$s"</string>
     <string name="RequestingMembersFragment_denied_s">"Se ha rechazado a %1$s"</string>
 
@@ -1321,7 +1321,7 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Enlace al grupo no válido</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Invitar participantes</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Invitar personas</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Comparte el enlace con las personas que quieras que se unan a este grupo.</string>
 
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Activar y compartir enlace</string>
@@ -1333,16 +1333,16 @@
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">No formas parte de este grupo.</string>
 
     <!-- GV2 Request confirmation dialog -->
-    <string name="RequestConfirmationDialog_add_s_to_the_group">¿Añadir a «%1$s» al grupo?</string>
-    <string name="RequestConfirmationDialog_deny_request_from_s">¿Denegar la solicitud de «%1$s»?</string>
+    <string name="RequestConfirmationDialog_add_s_to_the_group">¿Añadir a %1$s al grupo?</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s">¿Denegar la solicitud de %1$s?</string>
     <!-- Confirm dialog message shown when deny a group link join request and group link is enabled. -->
-    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">¿Denegar solicitudes de «%1$s»? Esta persona ya no podrá solicitar mediante enlace que la añadan al grupo.</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">¿Denegar solicitudes de %1$s? Esta persona ya no podrá solicitar mediante enlace que la añadan al grupo.</string>
     <string name="RequestConfirmationDialog_add">Añadir</string>
     <string name="RequestConfirmationDialog_deny">Denegar</string>
 
     <!-- ImageEditorHud -->
     <string name="ImageEditorHud_blur_faces">Difuminar caras</string>
-    <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nuevo: Difumina caras o zonas de la foto</string>
+    <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">¡Nuevo! Difumina caras o zonas de la foto</string>
     <string name="ImageEditorHud_draw_anywhere_to_blur">Toca sobre la foto para difuminar</string>
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Toca sobre la foto para difuminar más caras o zonas</string>
 
@@ -1383,7 +1383,7 @@
     <string name="MessageRetrievalService_background_connection_enabled">Conexión en segundo plano activada</string>
 
     <!-- MediaOverviewActivity -->
-    <string name="MediaOverviewActivity_Media">Multimedia</string>
+    <string name="MediaOverviewActivity_Media">Archivos multimedia</string>
     <string name="MediaOverviewActivity_Files">Archivos</string>
     <string name="MediaOverviewActivity_Audio">Audio</string>
     <string name="MediaOverviewActivity_All">Todos</string>
@@ -1442,7 +1442,7 @@
     <string name="Megaphones_new_group">Nuevo grupo</string>
     <string name="Megaphones_invite_friends">Invitar personas</string>
     <string name="Megaphones_chat_colors">Colores del chat</string>
-    <string name="Megaphones_add_a_profile_photo">Foto de perfil</string>
+    <string name="Megaphones_add_a_profile_photo">Añadir una foto de perfil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Respuestas</string>
@@ -1480,7 +1480,7 @@
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Has recibido un mensaje cifrado con una versión de Signal antigua que ya no está disponible. Pide a esta persona que actualice a la versión más reciente y reenvíe el mensaje.</string>
     <string name="MessageRecord_left_group">Has abandonado el grupo.</string>
     <string name="MessageRecord_you_updated_group">Has actualizado el grupo.</string>
-    <string name="MessageRecord_the_group_was_updated">Se actualizó el grupo.</string>
+    <string name="MessageRecord_the_group_was_updated">Se ha actualizado el grupo.</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">Llamada realizada</string>
     <!-- Update message shown when placing an outgoing 1:1 video call -->
@@ -1520,9 +1520,9 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s ha cambiado su nombre de perfil a %2$s.</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ha cambiado su nombre de perfil de %2$s a %3$s.</string>
-    <string name="MessageRecord_changed_their_profile">%1$s ha cambiado su nombre.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s ha cambiado su nombre de perfil a «%2$s».</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ha cambiado su nombre de perfil de «%2$s» a «%3$s».</string>
+    <string name="MessageRecord_changed_their_profile">%1$s ha cambiado su perfil.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
     <string name="MessageRecord_started_this_chat">Iniciaste este chat con %1$s.</string>
 
@@ -1660,8 +1660,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ha solicitado unirse al grupo mediante enlace.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s ha solicitado y cancelado su solicitud para participar en el grupo mediante enlace.</item>
-        <item quantity="other">%1$s ha solicitado y cancelado %2$d veces participar en el grupo mediante enlace.</item>
+        <item quantity="one">%1$s ha solicitado y cancelado su solicitud para unirse al grupo mediante enlace.</item>
+        <item quantity="other">%1$s ha solicitado y cancelado %2$d veces unirse al grupo mediante enlace.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1742,13 +1742,13 @@
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
     <string name="MessageRecord__outgoing_video_call_s">Videollamada saliente · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
-    <string name="MessageRecord__you_started_a_video_call">Iniciaste una videollamada</string>
+    <string name="MessageRecord__you_started_a_video_call">Has iniciado una videollamada</string>
     <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__you_started_a_video_call_s">Iniciaste una videollamada · %1$s</string>
+    <string name="MessageRecord__you_started_a_video_call_s">Has iniciado una videollamada · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
-    <string name="MessageRecord__s_started_a_video_call">%1$s inició una videollamada</string>
+    <string name="MessageRecord__s_started_a_video_call">%1$s ha iniciado una videollamada</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
-    <string name="MessageRecord__s_started_a_video_call_s">%1$s inició una videollamada · %2$s</string>
+    <string name="MessageRecord__s_started_a_video_call_s">%1$s ha iniciado una videollamada · %2$s</string>
 
     <string name="MessageRecord_you">Tú</string>
 
@@ -1785,7 +1785,7 @@
     <string name="MessageRequestBottomView_unblock">Desbloquear</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">¿Quieres compartir tu nombre y foto con %1$s y permitir que te mande un mensaje? En el pasado, eliminaste a esta persona.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas permitir que %1$s te envíe mensajes y compartir tu nombre y foto con esta persona? No sabrá que has visto sus mensajes hasta que aceptes.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Permitir que %1$s te envíe mensajes y compartir tu nombre y foto con esta persona? No sabrá que has visto sus mensajes hasta que aceptes.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta lx desbloquees.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -1795,15 +1795,15 @@
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Este es un grupo antiguo y ya no puede usarse. Crea un nuevo grupo para activar funciones nuevas como @menciones y admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este grupo del sistema antiguo no es válido porque es demasiado grande. Se permite un máximo de %1$d participantes.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">¿Deseas seguir chateando con %1$s y compartir tu nombre y foto con esta persona?</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo y compartir tu nombre y foto con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">¿Deseas unirte a este grupo y compartir tu nombre y foto con sus participantes? No podrás ver sus mensajes hasta que aceptes.</string>
-    <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo? Sus participantes no sabrán que has visto sus mensajes hasta que aceptes.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Unirte a este grupo y compartir tu nombre y foto con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">¿Unirte a este grupo y compartir tu nombre y foto con sus participantes? No podrás ver sus mensajes hasta que aceptes.</string>
+    <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Unirte a este grupo? Sus participantes no sabrán que has visto sus mensajes hasta que aceptes.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Ver</string>
-    <string name="MessageRequestProfileView_member_of_one_group">Participa en %1$s</string>
-    <string name="MessageRequestProfileView_member_of_two_groups">Participa en %1$s y %2$s</string>
-    <string name="MessageRequestProfileView_member_of_many_groups">Participa en %1$s, %2$s y %3$s</string>
+    <string name="MessageRequestProfileView_member_of_one_group">Está en %1$s</string>
+    <string name="MessageRequestProfileView_member_of_two_groups">Está en %1$s y %2$s</string>
+    <string name="MessageRequestProfileView_member_of_many_groups">Está en %1$s, %2$s y %3$s</string>
     <plurals name="MessageRequestProfileView_members">
         <item quantity="one">%1$d participante</item>
         <item quantity="other">%1$d participantes</item>
@@ -1861,7 +1861,7 @@
     </plurals>
 
     <!-- PassphrasePromptActivity -->
-    <string name="PassphrasePromptActivity_enter_passphrase">Introduce clave de acceso</string>
+    <string name="PassphrasePromptActivity_enter_passphrase">Introducir clave de acceso</string>
     <string name="PassphrasePromptActivity_watermark_content_description">Icono de Signal</string>
     <string name="PassphrasePromptActivity_ok_button_content_description">Enviar clave de acceso</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Clave de acceso no válida.</string>
@@ -1934,7 +1934,7 @@
     <!-- RecaptchaRequiredBottomSheetFragment -->
     <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verificar para continuar chateando</string>
     <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Para ayudar a prevenir spam en Signal, completa la verificación.</string>
-    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Tras la verificación, podrás seguir enviando mensajes y se enviarán todos los mensajes pausados.</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Tras la verificación, podrás seguir chateando y se enviarán todos los mensajes pausados.</string>
 
     <!-- Recipient -->
     <string name="Recipient_you">Tú</string>
@@ -1950,13 +1950,13 @@
     <!-- RecipientProvider -->
 
     <!-- RedPhone -->
-    <string name="RedPhone_answering">Respondiendo…</string>
+    <string name="RedPhone_answering">Atendiendo…</string>
     <string name="RedPhone_ending_call">Finalizando llamada…</string>
     <string name="RedPhone_ringing">Llamando…</string>
     <string name="RedPhone_busy">No disponible</string>
     <string name="RedPhone_recipient_unavailable">Persona no disponible</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
-    <string name="RedPhone_network_failed">Fallo de red. Comprueba tu conexión y vuelve a intentarlo.</string>
+    <string name="RedPhone_network_failed">Fallo de red. Comprueba tu conexión e inténtalo de nuevo.</string>
     <string name="RedPhone_number_not_registered">Número no registrado</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">El número que has marcado no admite llamadas seguras</string>
     <string name="RedPhone_got_it">Entendido</string>
@@ -1968,12 +1968,12 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toca aquí para activar tu cámara</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Para llamar a %1$s, Signal necesita acceder a tu cámara</string>
-    <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+    <string name="WebRtcCallActivity__signal_s">Llamada de Signal: %1$s</string>
     <string name="WebRtcCallActivity__calling">Llamando…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">Reconectando…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
-    <string name="WebRtcCallActivity__bluetooth_permission_denied">Permiso de acceso a Bluetooth denegado</string>
+    <string name="WebRtcCallActivity__bluetooth_permission_denied">Acceso a Bluetooth denegado</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
     <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Permite el acceso a «dispositivos cercanos» para usar Bluetooth durante una llamada.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
@@ -2029,11 +2029,11 @@
     <!-- Dialog title asking users for camera permission -->
     <string name="WebRtcCallActivity__allow_access_camera">Permite acceso a tu cámara</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Para iniciar o unirte a una llamada, permite a Signal el acceso a la cámara y al micrófono.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">Para iniciar o unirte a una llamada, permite a Signal acceso a la cámara y al micrófono.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">Para iniciar o unirte a una llamada, permite a Signal el acceso al micrófono.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">Para iniciar o unirte a una llamada, permite a Signal acceso al micrófono.</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">Para habilitar el vídeo, permite a Signal el acceso a la cámara.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">Para habilitar el vídeo, permite a Signal acceso a la cámara.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal necesita permisos de micrófono para iniciar o unirte a una llamada.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
@@ -2093,13 +2093,13 @@
     </plurals>
 
     <string name="WebRtcCallView__no_one_else_is_here">No hay nadie más</string>
-    <string name="WebRtcCallView__s_is_in_this_call">%1$s participa en esta llamada</string>
-    <string name="WebRtcCallView__s_are_in_this_call">%1$s participan en esta llamada</string>
-    <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s y %2$s participan en esta llamada</string>
+    <string name="WebRtcCallView__s_is_in_this_call">%1$s está en esta llamada</string>
+    <string name="WebRtcCallView__s_are_in_this_call">%1$s están en esta llamada</string>
+    <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s y %2$s están en esta llamada</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-        <item quantity="one">%1$s, %2$s y %3$d persona más participan en esta llamada</item>
-        <item quantity="other">%1$s, %2$s y %3$d personas más participan en esta llamada</item>
+        <item quantity="one">%1$s, %2$s y %3$d persona más están en esta llamada</item>
+        <item quantity="other">%1$s, %2$s y %3$d personas más están en esta llamada</item>
     </plurals>
 
     <!-- Toggle content description for toggling camera direction  -->
@@ -2179,11 +2179,11 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Conexión de Signal</string>
+    <string name="AboutSheet__signal_connection">Contacto de Signal</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Persona verificada</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
-    <string name="AboutSheet__no_direct_message">No hay mensajes directos con %1$s</string>
+    <string name="AboutSheet__no_direct_message">No hay mensajes privados con %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s está en tus contactos del teléfono</string>
     <!-- Notice in a row when user has no groups in common -->
@@ -2236,7 +2236,7 @@
     <string name="ProxyBottomSheetFragment_proxy_address">Dirección del proxy</string>
     <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">¿Deseas usar esta dirección de proxy?</string>
     <string name="ProxyBottomSheetFragment_use_proxy">Usar proxy</string>
-    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Proxy conectado.</string>
+    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Proxy conectado correctamente.</string>
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">No se ha podido enviar</string>
@@ -2267,17 +2267,17 @@
     <string name="RegistrationActivity_terms_and_privacy">Términos y Política de privacidad</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos y archivos multimedia para ayudarte a conectar y chatear con otras personas. Tu lista de contactos se carga a través del método privado para encontrar contactos de Signal. Como la lista está cifrada de extremo a extremo, ni Signal ni nadie tienen acceso.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos para ayudarte a conectar con otras personas. Tu lista de contactos se carga a través del método privado para encontrar contactos de Signal. Como la lista está cifrada de extremo a extremo, ni Signal ni nadie tienen acceso.</string>
-    <string name="RegistrationActivity_rate_limited_to_service">Has hecho demasiados intentos para registrar este número. Inténtalo de nuevo más tarde.</string>
+    <string name="RegistrationActivity_rate_limited_to_service">Has intentado registrar este número demasiadas veces. Inténtalo de nuevo más tarde.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Has hecho demasiados intentos para registrar este número. Inténtalo de nuevo en %1$s.</string>
-    <string name="RegistrationActivity_unable_to_connect_to_service">No se puede conectar con el servidor. Comprueba la conexión de red e inténtalo de nuevo.</string>
+    <string name="RegistrationActivity_unable_to_connect_to_service">No se ha podido conectar con el servidor. Comprueba la conexión de red e inténtalo de nuevo.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">No hemos podido enviarte el código de verificación por SMS. Intenta recibir tu código a través de una llamada de voz.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">No se puede solicitar el código de verificación. Por favor, comprueba tu conexión y vuelve a intentarlo.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">No se ha podido solicitar el código de verificación. Comprueba la conexión de red e inténtalo de nuevo.</string>
     <string name="RegistrationActivity_non_standard_number_format">Número en formato no estándar</string>
     <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">El número que has introducido (%1$s) parece usar un formato no estándar.\n\n ¿Es %2$s el correcto?</string>
+    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Parece que el número que has introducido (%1$s) tiene un formato no estándar.\n\n ¿Es %2$s el número correcto?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android: Formato de número de teléfono</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Llamada solicitada</string>
@@ -2317,7 +2317,7 @@
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">estos pasos de resolución de problemas</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contactar con el soporte técnico</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contactar con asistencia</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">¿Activar el bloqueo de registro?</string>
@@ -2350,13 +2350,13 @@
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
-    <string name="SharedContactDetailsActivity_add_to_contacts">Añadir a Contactos</string>
+    <string name="SharedContactDetailsActivity_add_to_contacts">Añadir a contactos</string>
     <string name="SharedContactDetailsActivity_invite_to_signal">Invitar a Signal</string>
     <string name="SharedContactDetailsActivity_signal_message">Mensaje de Signal</string>
     <string name="SharedContactDetailsActivity_signal_call">Llamada de Signal</string>
 
     <!-- SharedContactView -->
-    <string name="SharedContactView_add_to_contacts">Añadir a Contactos</string>
+    <string name="SharedContactView_add_to_contacts">Añadir a contactos</string>
     <string name="SharedContactView_invite_to_signal">Invitar a Signal</string>
     <string name="SharedContactView_message">Mensaje de Signal</string>
 
@@ -2379,7 +2379,7 @@
 
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_secure_session_reset">Has restablecido la sesión segura.</string>
-    <string name="SmsMessageRecord_secure_session_reset_s">%1$s restableció la sesión segura.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%1$s ha restablecido la sesión segura.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicar mensaje.</string>
 
     <!-- StickerManagementActivity -->
@@ -2416,7 +2416,7 @@
     <string name="SubmitDebugLogActivity_submit">Enviar</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">No se ha podido enviar el registro de depuración</string>
     <string name="SubmitDebugLogActivity_success">¡Todo listo!</string>
-    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia esta URL y envíala junto con tu informe de incidencia o correo al servicio de asistencia:\n\n<b>%1$s</b></string>
+    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia esta URL y envíala junto con tu informe de incidencia o correo al equipo de asistencia:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Compartir</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este registro se publicará online y las personas que colaboran con nosotros tendrán acceso. Lo puedes examinar y editar antes de enviarlo.</string>
 
@@ -2859,7 +2859,7 @@
 
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal necesita acceso a los contactos en tu teléfono para mostrar tus contactos. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Contactos &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
-    <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">No se ha podido encontrar contactos. Comprueba tu conexión de red.</string>
+    <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">No se han podido encontrar contactos. Comprueba tu conexión de red.</string>
     <string name="ContactSelectionListFragment_username_not_found">Alias no encontrado</string>
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no usa Signal. Asegúrate de introducir el alias correcto e inténtalo de nuevo."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No necesitas añadirte como participante en el grupo</string>
@@ -2897,8 +2897,8 @@
     </plurals>
     <!-- Displays number of viewers for a story -->
     <plurals name="contact_selection_list_item__number_of_viewers">
-        <item quantity="one">Visto por %1$d</item>
-        <item quantity="other">Visto por %1$d</item>
+        <item quantity="one">%1$d persona</item>
+        <item quantity="other">%1$d personas</item>
     </plurals>
 
     <!-- conversation_activity -->
@@ -3255,7 +3255,7 @@
     <string name="HelpFragment__could_not_upload_logs">No se han podido cargar los registros</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Describe el problema detalladamente para ayudarnos a entender la incidencia.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Por favor, selecciona una opción</item>
+        <item>Selecciona una opción</item>
         <item>Algo no está funcionando</item>
         <item>Solicitud de función</item>
         <item>Pregunta</item>
@@ -3531,7 +3531,7 @@
     <string name="preferences_save">Guardar</string>
     <string name="preferences_connecting_to_proxy">Conectando con el proxy…</string>
     <string name="preferences_connected_to_proxy">Se ha conectado al proxy</string>
-    <string name="preferences_connection_failed">No se ha podido conectar</string>
+    <string name="preferences_connection_failed">Error de conexión</string>
     <string name="preferences_couldnt_connect_to_the_proxy">No se ha podido conectar al proxy. Comprueba la dirección del proxy e inténtalo de nuevo.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Signal ya se ha conectado al proxy. Puedes desactivar el proxy en cualquier momento en Ajustes.</string>
     <string name="preferences_success">¡Listo!</string>
@@ -3583,7 +3583,7 @@
     <string name="PaymentsHomeFragment__processing_payment">Procesando pago</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
     <string name="PaymentsHomeFragment__currency_conversion_not_available">Conversión de moneda no disponible</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">No se puede mostrar la conversión de moneda. Comprueba tu conexión e inténtalo de nuevo.</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">No se puede mostrar la conversión de moneda. Comprueba la conexión de tu teléfono e inténtalo de nuevo.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Los pagos no están disponibles en tu región.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">No se han podido activar los pagos. Inténtalo de nuevo más tarde.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">¿Desactivar pagos?</string>
@@ -4133,7 +4133,7 @@
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">No se ha podido crear ni verificar tu copia de seguridad más reciente. Crea una nueva.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Tu copia de seguridad contiene un archivo muy grande que no puede ser copiado. Por favor, bórralo y crea una nueva copia de seguridad.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Tu copia de seguridad contiene un archivo muy grande y no se puede crear una copia de seguridad. Bórralo y crea una copia de seguridad nueva.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Toca para gestionar las copias.</string>
     <string name="RegistrationActivity_wrong_number">¿Número erróneo?</string>
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
@@ -4508,7 +4508,7 @@
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__account_not_deleted">Cuenta no eliminada</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">Ha ocurrido un fallo al completar el proceso de eliminar tu cuenta. Comprueba tu conexión e inténtalo de nuevo.</string>
+    <string name="DeleteAccountFragment__there_was_a_problem">No se ha podido completar el proceso de eliminación de tu cuenta. Comprueba tu conexión de red e inténtalo de nuevo.</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">Buscar país</string>
@@ -5327,11 +5327,11 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Donar en nombre de un amigo</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">No se pudo confirmar la donación</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">No se ha podido confirmar la donación</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">No se pudo procesar tu donación mensual de %1$s. Consulta tu app bancaria para aprobar tu pago a través de iDEAL.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">No se ha podido procesar tu donación mensual de %1$s. Consulta la aplicación de tu banco para aprobar el pago a través de iDEAL.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">No se pudo procesar tu donación única de %1$s. Consulta tu app bancaria para aprobar tu pago a través de iDEAL.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">No se ha podido procesar tu donación única de %1$s. Consulta la aplicación de tu banco para aprobar el pago a través de iDEAL.</string>
 
     <string name="Boost__enter_custom_amount">Introduce una cantidad personalizada</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -5342,7 +5342,7 @@
     <string name="MySupportPreference__processing_transaction">Procesando transacción…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Fallo al añadir insignia. %1$s</string>
-    <string name="MySupportPreference__please_contact_support">Contacta con el servicio de soporte.</string>
+    <string name="MySupportPreference__please_contact_support">Contacta con el equipo de asistencia.</string>
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Pago pendiente</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
@@ -5395,7 +5395,7 @@
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Tenemos problemas con el cargo de tu sostén para Signal. Asegúrate que tu método de pago está al día. Si no es así, actualízalo en Google Pay. Signal intentará procesar el pago de nuevo en unos pocos días.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">No mostrar de nuevo</string>
 
-    <string name="Subscription__contact_support">Contactar con el soporte técnico</string>
+    <string name="Subscription__contact_support">Contactar con asistencia</string>
     <string name="Subscription__get_a_s_badge">Consigue la insignia «%1$s»</string>
 
     <string name="SubscribeFragment__processing_payment">Procesando donación…</string>
@@ -5407,32 +5407,32 @@
     <string name="DonationsErrors__learn_more">Saber más</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Fallo al procesar la donación. %1$s</string>
-    <string name="DonationsErrors__your_payment">No se ha podido procesar tu donación y no hemos hecho el cargo. Inténtalo de nuevo. Por favor, inténtalo de nuevo.</string>
+    <string name="DonationsErrors__your_payment">No se ha podido procesar tu donación y no hemos realizado el cargo. Inténtalo de nuevo.</string>
     <string name="DonationsErrors__still_processing">En proceso</string>
     <string name="DonationsErrors__couldnt_add_badge">Fallo al añadir insignia</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Fallo al validar la insignia</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__could_not_validate">Fallo al validar la respuesta del servidor. Contacta con el servicio de soporte.</string>
+    <string name="DonationsErrors__could_not_validate">No se ha podido validar la respuesta del servidor. Contacta con el equipo de asistencia.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Donación fallida</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Tu donación ha sido procesada, pero Signal no ha podido enviar tu mensaje de donación. Por favor, contacta con nuestro soporte.</string>
-    <string name="DonationsErrors__your_badge_could_not">No se ha podido añadir la insignia a tu perfil, pero puede haberse tramitado tu pago. Por favor, contacta con el soporte.</string>
-    <string name="DonationsErrors__your_payment_is_still">Todavía se está procesando tu donación. Puede tomar unos minutos dependiendo de tu conexión.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Tu donación se ha procesado, pero Signal no ha podido enviar tu mensaje de donación. Contacta con el equipo de asistencia.</string>
+    <string name="DonationsErrors__your_badge_could_not">No se ha podido añadir la insignia a tu perfil, pero es posible que se haya realizado el cargo. Contacta con el equipo de asistencia.</string>
+    <string name="DonationsErrors__your_payment_is_still">Tu donación todavía se está procesando. Este proceso puede tardar unos minutos dependiendo de tu conexión.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Fallo al cancelar la suscripción</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Necesitas una conexión a internet para cancelar la suscripción.</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Necesitas conexión a Internet para cancelar la suscripción.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Tu dispositivo no tiene Google Pay activado, por lo que no puedes crear una suscripción y conseguir una insignia. También puedes contribuir a Signal al hacer una donación en la página web de Signal.</string>
-    <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Fallo en la red. Comprueba tu conexión e inténtalo de nuevo.</string>
+    <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Error de red. Comprueba tu conexión e inténtalo de nuevo.</string>
     <string name="NetworkFailure__retry">Reintentar</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cannot_send_donation">No se puede enviar la donación</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__this_user_cant_receive_donations_until">Esta persona no puede recibir donaciones hasta que actualice Signal.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__your_donation_could_not_be_sent">No se ha podido mandar tu donación a causa de un error de la red. Comprueba tu conexión y vuelve a intentarlo.</string>
+    <string name="DonationsErrors__your_donation_could_not_be_sent">No se ha podido mandar tu donación debido a un error de red. Comprueba tu conexión e inténtalo de nuevo.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">No se pudo procesar tu donación a través de iDEAL. Selecciona otro método de pago o contacta a tu banco para más información.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">No se ha podido procesar tu donación a través de iDEAL. Selecciona otro método de pago o contacta a tu banco para más información.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Donación en nombre de %1$s</string>
@@ -5835,7 +5835,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">Quién puede ver esta historia</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">Todas las conexiones de Signal</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">Todos los contactos de Signal</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Todos excepto…</string>
@@ -5864,9 +5864,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permite a personas que pueden ver tu historia responder y reaccionar</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Conexiones de Signal</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Contactos de Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Las Conexiones de Signal son personas en las que has indicado que confías, ya sea a través de:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Los contactos de Signal son personas en las que has decidido confiar, ya que:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Iniciar un chat</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -5874,7 +5874,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Están en tus contactos del teléfono</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Tus conexiones en Signal pueden ver tu nombre y foto, así como tus «historias», a no ser que decidas ocultarlas para personas específicas."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Tus contactos pueden ver tu nombre y foto, así como las historias que subas, a no ser que decidas ocultarlas para personas específicas."</string>
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Añadir quién puede verla</string>
     <!-- Clickable option to delete a custom story -->
@@ -5911,7 +5911,7 @@
     <string name="TextStoryPostSendFragment__search">Buscar</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
-    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Por favor, introduce un enlace válido.</string>
+    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Introduce un enlace válido.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
     <string name="ChangeMyStoryMembershipFragment__all_except">Todos excepto…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
@@ -5937,7 +5937,7 @@
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">Fallo al enviar la historia. Comprueba tu conexión e inténtalo de nuevo.</string>
+    <string name="StoryDialogs__story_could_not_be_sent">No se ha podido enviar la historia. Comprueba tu conexión e inténtalo de nuevo.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Enviar</string>
     <!-- Action button for turning off stories when stories are present on the device -->
@@ -6163,11 +6163,11 @@
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Revisión del número de seguridad completada</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
-    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Se han revisado todos los contactos. Toca enviar para continuar.</string>
+    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Se han revisado todos los contactos. Toca «Enviar» para continuar.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">Es posible que %1$d contacto haya reinstalado Signal o cambiado de dispositivo. Revisa su número de seguridad o continua con el envío.</item>
-        <item quantity="other">Es posible que %1$d contactos hayan reinstalado Signal o cambiado de dispositivo. Revisa sus números de seguridad o continua con el envío.</item>
+        <item quantity="one">Es posible que %1$d contacto haya reinstalado Signal o cambiado de dispositivo. Revisa su número de seguridad o sigue enviando mensajes.</item>
+        <item quantity="other">Es posible que %1$d contactos hayan reinstalado Signal o cambiado de dispositivo. Revisa sus números de seguridad o sigue enviando mensajes.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verificar número de seguridad</string>
@@ -6200,7 +6200,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Elige quién puede ver lo que subes a tu historia. Siempre puedes hacer cambios en tus ajustes.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Todas las conexiones de Signal</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Todos los contactos de Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">Todos excepto…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -6296,9 +6296,9 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Las transferencias bancarias pueden tardar de 1 a 14 días hábiles en completarse. Espera hasta que se complete este pago antes de realizar otra donación.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Todavía se está procesando tu donación. Puede tomar unos minutos dependiendo de tu conexión. Por favor, espera hasta que se complete este pago antes de actualizar tu suscripción.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Tu donación aún se está procesando. Puede tardar unos minutos dependiendo de tu conexión. Espera hasta que se complete este pago antes de actualizar tu suscripción.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Todavía se está procesando tu donación. Puede tomar unos minutos dependiendo de tu conexión. Por favor, espera hasta que se complete este pago antes de realizar otra donación.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Tu donación aún se está procesando. Puede tardar unos minutos dependiendo de tu conexión. Espera hasta que se complete este pago antes de realizar otra donación.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Tu donación a través de iDEAL aún se está procesando. Consulta tu app bancaria para aprobar el pago antes de realizar otra donación.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
@@ -6376,7 +6376,7 @@
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Leer más</string>
     <!-- Text displayed when mandate load fails -->
-    <string name="BankTransferMandateFragment__failed_to_load_mandate">No se pudo cargar el mandato</string>
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">No se ha podido cargar el mandato</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
@@ -6453,7 +6453,7 @@
     <string name="DonationPendingBottomSheet__done">Hecho</string>
 
     <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">No se pudo procesar la donación</string>
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">No se ha podido procesar la donación</string>
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__were_having_trouble">Estamos teniendo problemas para procesar tu transferencia bancaria. No se te ha cobrado. Selecciona otro método de pago o contacta a tu banco para más información.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
@@ -6626,8 +6626,8 @@
     <string name="CallLogFragment__deletion_failed">Fallo al eliminar.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">No se ha podido eliminar el enlace. Comprueba tu conexión a internet e inténtalo de nuevo.</item>
-        <item quantity="other">No fue posible eliminar todos los enlace de llamada. Comprueba tu conexión a internet e inténtalo de nuevo.</item>
+        <item quantity="one">No se ha podido eliminar el enlace de la llamada. Comprueba tu conexión a Internet e inténtalo de nuevo.</item>
+        <item quantity="other">No se han podido eliminar todos los enlaces de las llamadas. Comprueba tu conexión a Internet e inténtalo de nuevo.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Eliminar historial de llamadas</string>
@@ -6798,7 +6798,7 @@
     <!-- Displayed in a text row, allowing the user to delete the call link -->
     <string name="CallLinkDetailsFragment__delete_call_link">Eliminar enlace de llamada</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
-    <string name="CallLinkDetailsFragment__couldnt_save_changes">No se han podido guardar los cambios. Comprueba tu conexión y vuelve a intentarlo.</string>
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">No se han podido guardar los cambios. Comprueba tu conexión de red e inténtalo de nuevo.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">¿Eliminar enlace?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -6841,11 +6841,11 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">El código QR no es válido.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">No se pudo encontrar al usuario con el alias %1$s.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">No se ha podido encontrar al usuario con el alias %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">No se pudo encontrar a este usuario.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">No se ha podido encontrar a este usuario.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Fallo en la conexión de red. Por favor, inténtalo de nuevo.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">Error en la conexión de red. Inténtalo de nuevo.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">No tienes acceso a la red. No se ha reiniciado tu enlace. Inténtalo de nuevo más tarde.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
@@ -7004,45 +7004,45 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">Media backups are off</string>
+    <string name="BackupAlertBottomSheet__media_backups_are_off">Copias de seguridad de archivos multimedia desactivadas</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="one">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d day to download any media stored in your backup. After %1$d day, the media in your backup will be deleted.</item>
-        <item quantity="other">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="one">Se ha cancelado tu plan de copia de seguridad de archivos multimedia en Signal porque no se ha podido procesar tu pago. Tienes %1$d día para descargar cualquier archivo almacenado en tu copia de seguridad. Transcurrido %1$d día, se eliminarán los archivo de tu copia de seguridad.</item>
+        <item quantity="other">Se ha cancelado tu plan de copia de seguridad de archivos multimedia en Signal porque no se ha podido procesar tu pago. Tienes %1$d días para descargar cualquier archivo almacenado en tu copia de seguridad. Transcurridos %1$d días, se eliminarán los archivo de tu copia de seguridad.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
-    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">You can begin paying for backups again at any time to continue backing up all your media. </string>
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Puedes volver a pagar por las copias de seguridad en cualquier momento para seguir haciendo copias de todos tus archivos multimedia. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Your media will be deleted today</string>
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Tus archivos multimedia se eliminarán hoy</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Your Signal media backup plan has been canceled because we couldn\'t process your payment. This is your last chance to download the media in your backup before it is deleted.</string>
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Se ha cancelado tu plan de copia de seguridad de archivos multimedia en Signal porque no se ha podido procesar tu pago. Esta es tu última oportunidad de descargar los archivos de tu copia de seguridad antes de que se elimine.</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">No se puede completar la descarga</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Tu dispositivo no tiene suficiente espacio libre. Libera hasta %1$s de espacio para descargar los archivos multimedia de tu copia de seguridad.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">If you choose \"Skip\" the media in your backup will be deleted in %1$d day.</item>
-        <item quantity="other">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
+        <item quantity="one">Si eliges «Omitir», los archivos multimedia de tu copia de seguridad se eliminarán en %1$d día.</item>
+        <item quantity="other">Si eliges «Omitir», los archivos multimedia de tu copia de seguridad se eliminarán en %1$d días.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Can\'t process backup payment</string>
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">No se ha podido procesar el pago de la copia de seguridad</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">We\'re having trouble collecting your recurring monthly backup payment. Make sure your payment method is up to date. If it isn\'t, update it in Google Pay. Signal will try to process the payment again in a few days.</string>
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Estamos teniendo problemas con el cargo de tu pago mensual recurrente de las copias de seguridad. Asegúrate de que tu método de pago esté al día. Si no es así, actualízalo en Google Pay. Signal intentará procesar el pago de nuevo en unos días.</string>
     <!-- Sheet title for generic backup error -->
-    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">No se ha podido completar la copia de seguridad</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\" </string>
+    <string name="BackupAlertBottomSheet__your_device_hasnt">Hace %1$d días que no se completa una copia de seguridad de tu dispositivo. Asegúrate de que tu dispositivo esté conectado a una red Wi-Fi y toca «Iniciar copia». </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Más información</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Omitir</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Download media now</string>
+    <string name="BackupAlertBottomSheet__download_media_now">Descargar archivos ahora</string>
     <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">Download later</string>
+    <string name="BackupAlertBottomSheet__download_later">Descargar más tarde</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Don\'t download media</string>
+    <string name="BackupAlertBottomSheet__dont_download_media">No descargar los archivos</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7165,25 +7165,25 @@
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Copia de seguridad manual</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
-    <string name="PassphrasePromptActivity_help_prompt_body">Please enter your device pin, password or pattern.</string>
+    <string name="PassphrasePromptActivity_help_prompt_body">Introduce el PIN, la contraseña o el patrón de tu dispositivo.</string>
 
     <!-- Primary action button label when selecting a backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__next">Siguiente</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Change backup type</string>
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Cambiar el tipo de copia de seguridad</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Cancelar suscripción</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
-    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Confirm cancellation</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Confirmar cancelación</string>
     <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">You won\'t be charged again. Backups will be turned off at the end of your billing cycle. After that date you will have 30 days to download the media you\'re currently backing up.</string>
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">No se te volverá a cobrar. Las copias de seguridad se desactivarán al final de tu periodo de facturación. Después de esa fecha, tendrás 30 días para descargar los archivos multimedia de los que estás haciendo una copia de seguridad.</string>
     <!-- Action button label to cancel subscription and download now -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Confirm and download now</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Confirmar y descargar ahora</string>
     <!-- Action button label to cancel subscription and download later -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Confirm and download later</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Confirmar y descargar más tarde</string>
     <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Keep subscription</string>
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Mantener suscripción</string>
     <!-- EOF -->
 </resources>

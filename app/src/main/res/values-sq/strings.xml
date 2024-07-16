@@ -1099,7 +1099,7 @@
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Njoftimet mund të vonohen për shkak të optimizimeve të baterisë</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
-    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Disable battery optimizations for Signal to ensure that message notifications will not be delayed. Tap “Continue” to see device-specific instructions.</string>
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Mund të çaktivizosh optimizimet e baterisë për Signal për t\'u siguruar që njoftimet e mesazheve nuk do të vonohen. Kliko \"Vazhdo\" për të parë udhëzimet specifike të pajisjes.</string>
     <!-- Button to dismiss notification help prompt -->
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Jo, faleminderit</string>
     <!-- Button to continue and go to Signal support website -->
@@ -7004,45 +7004,45 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">Media backups are off</string>
+    <string name="BackupAlertBottomSheet__media_backups_are_off">Kopjeruajtjet e medias janë joaktive</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="one">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d day to download any media stored in your backup. After %1$d day, the media in your backup will be deleted.</item>
-        <item quantity="other">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="one">Plani yt kopjeruajtës i medias në Signal është anuluar sepse nuk mund ta përpunonim pagesën. Ke %1$d ditë për të shkarkuar çdo media të ruajtur në kopjeruajtje. Pas %1$d dite, media në kopjeruajtjen tënde do të fshihet.</item>
+        <item quantity="other">Plani yt kopjeruajtës i medias në Signal është anuluar sepse nuk mund ta përpunonim pagesën. Ke %1$d ditë për të shkarkuar çdo media të ruajtur në kopjeruajtje. Pas %1$d ditësh, media në kopjeruajtjen tënde do të fshihet.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
-    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">You can begin paying for backups again at any time to continue backing up all your media. </string>
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Mund të fillosh të paguash përsëri për kopjeruajtjet në çdo kohë për të vazhduar të kopjeruash të gjitha mediat. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Your media will be deleted today</string>
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Media do të fshihet sot</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Your Signal media backup plan has been canceled because we couldn\'t process your payment. This is your last chance to download the media in your backup before it is deleted.</string>
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Plani yt kopjeruajtës i medias në Signal është anuluar sepse nuk mund ta përpunonim pagesën. Kjo është mundësia jote e fundit për ta shkarkuar median në kopjeruajtje përpara se të fshihet.</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">Shkarkimi nuk mund të kryhet</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Pajisja nuk ka hapësirë të mjaftueshme të lirë. Liro deri në %1$s hapësirë për të shkarkuar median e ruajtur në kopjeruajtje.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">If you choose \"Skip\" the media in your backup will be deleted in %1$d day.</item>
-        <item quantity="other">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
+        <item quantity="one">Nëse zgjedh \"Kapërce\", media e ruajtur në kopjeruajtje do të fshihet pas %1$d dite.</item>
+        <item quantity="other">Nëse zgjedh \"Kapërce\", media e ruajtur në kopjeruajtje do të fshihet pas %1$d ditësh.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Can\'t process backup payment</string>
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Pagesa e kopjeruajtjeve nuk mund të përpunohet</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">We\'re having trouble collecting your recurring monthly backup payment. Make sure your payment method is up to date. If it isn\'t, update it in Google Pay. Signal will try to process the payment again in a few days.</string>
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Po hasim probleme me mbledhjen e pagesës tënde mujore të kopjeruajtjes. Sigurohu që mënyra e pagesës të jetë e përditësuar. Nëse nuk është, përditësoje në Google Pay. Signal do të përpiqet ta përpunojë përsëri pagesën pas disa ditësh.</string>
     <!-- Sheet title for generic backup error -->
-    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Kopjeruajtja nuk përfundoi</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\" </string>
+    <string name="BackupAlertBottomSheet__your_device_hasnt">Kopjeruajtja nuk është kryer në pajisje për %1$d ditë. Sigurohu që pajisja të jetë e lidhur me Wi-Fi dhe kliko \"Kopjeruaj tani\". </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Mëso më shumë</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Anashkaloje</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Download media now</string>
+    <string name="BackupAlertBottomSheet__download_media_now">Shkarko media tani</string>
     <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">Download later</string>
+    <string name="BackupAlertBottomSheet__download_later">Shkarko më vonë</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Don\'t download media</string>
+    <string name="BackupAlertBottomSheet__dont_download_media">Mos shkarko median</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7165,25 +7165,25 @@
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Kopjeruajtje manuale</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
-    <string name="PassphrasePromptActivity_help_prompt_body">Please enter your device pin, password or pattern.</string>
+    <string name="PassphrasePromptActivity_help_prompt_body">Të lutem, vendos pinin, fjalëkalimin ose vizimin e pajisjes.</string>
 
     <!-- Primary action button label when selecting a backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__next">Tjetër</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Change backup type</string>
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Ndrysho llojin e kopjeruajtjes</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Anuloje abonimin</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
-    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Confirm cancellation</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Konfirmo anulimin</string>
     <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">You won\'t be charged again. Backups will be turned off at the end of your billing cycle. After that date you will have 30 days to download the media you\'re currently backing up.</string>
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Nuk do të tarifohesh më. Kopjeruajtjet do të çaktivizohen në fund të ciklit të faturimit. Pas asaj date do të kesh 30 ditë për të shkarkuar median që po kopjeruan aktualisht.</string>
     <!-- Action button label to cancel subscription and download now -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Confirm and download now</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Konfirmo dhe shkarko tani</string>
     <!-- Action button label to cancel subscription and download later -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Confirm and download later</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Konfirmo dhe shkarko më vonë</string>
     <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Keep subscription</string>
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Mbaj abonimin</string>
     <!-- EOF -->
 </resources>

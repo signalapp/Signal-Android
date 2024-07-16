@@ -1131,7 +1131,7 @@
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Paziņojumi var aizkavēties akumulatora optimizācijas dēļ</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
-    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Disable battery optimizations for Signal to ensure that message notifications will not be delayed. Tap “Continue” to see device-specific instructions.</string>
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Atspējojiet akumulatora optimizāciju lietotnei Signal, lai pārliecinātos, ka saņemat ziņu paziņojumus. Lai skatītu instrukcijas konkrētām ierīcēm, pieskarieties pie \"Turpināt\".</string>
     <!-- Button to dismiss notification help prompt -->
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Nē, paldies</string>
     <!-- Button to continue and go to Signal support website -->
@@ -7158,47 +7158,47 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">Media backups are off</string>
+    <string name="BackupAlertBottomSheet__media_backups_are_off">Multivides rezerves kopiju izveidošana ir izslēgta</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="zero">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
-        <item quantity="one">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d day to download any media stored in your backup. After %1$d day, the media in your backup will be deleted.</item>
-        <item quantity="other">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="zero">Jūsu Signal multivides rezerves kopiju plāns tika atcelts, jo nevarējām apstrādāt maksājumu. Jums ir %1$d dienas laika, lai lejupielādētu multivides rezerves kopiju. Pēc %1$d d. multivides rezerves kopija tiks dzēsta.</item>
+        <item quantity="one">Jūsu Signal multivides rezerves kopiju plāns tika atcelts, jo nevarējām apstrādāt maksājumu. Jums ir %1$d diena laika, lai lejupielādētu multivides rezerves kopiju. Pēc %1$d d. multivides rezerves kopija tiks dzēsta.</item>
+        <item quantity="other">Jūsu Signal multivides rezerves kopiju plāns tika atcelts, jo nevarējām apstrādāt maksājumu. Jums ir %1$d dienas laika, lai lejupielādētu multivides rezerves kopiju. Pēc %1$d d. multivides rezerves kopija tiks dzēsta.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
-    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">You can begin paying for backups again at any time to continue backing up all your media. </string>
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Lai turpinātu multivides rezerves kopiju izveidošanu, jebkurā brīdī varat atsākt maksājumu veikšanu. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Your media will be deleted today</string>
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Multivide tiks dzēsta šodien</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Your Signal media backup plan has been canceled because we couldn\'t process your payment. This is your last chance to download the media in your backup before it is deleted.</string>
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Jūsu Signal multivides rezerves kopiju plāns tika atcelts, jo nevarējām apstrādāt maksājumu. Šī ir jūsu pēdējā iespēja lejupielādēt multivides rezerves kopiju, pirms tā tiks dzēsta.</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">Nevar pabeigt lejupielādēšanu</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Jūsu ierīces krātuvē nav pietiekami daudz brīvas vietas. Lai lejupielādētu multivides rezerves kopiju, atbrīvojiet vietu (līdz %1$s).</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="zero">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
-        <item quantity="one">If you choose \"Skip\" the media in your backup will be deleted in %1$d day.</item>
-        <item quantity="other">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
+        <item quantity="zero">Izvēloties \"Izlaist\", multivides rezerves kopija tiks dzēsta pēc %1$d dienām.</item>
+        <item quantity="one">Izvēloties \"Izlaist\", multivides rezerves kopija tiks dzēsta pēc %1$d dienas.</item>
+        <item quantity="other">Izvēloties \"Izlaist\", multivides rezerves kopija tiks dzēsta pēc %1$d dienām.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Can\'t process backup payment</string>
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Nevar apstrādāt rezerves kopiju maksājumu</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">We\'re having trouble collecting your recurring monthly backup payment. Make sure your payment method is up to date. If it isn\'t, update it in Google Pay. Signal will try to process the payment again in a few days.</string>
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Mums neizdodas iekasēt regulāro maksājumu par ikmēneša rezerves kopiju izveidi. Pārliecinieties, ka maksājuma veids ir atjaunināts. Ja nav, atjauniniet to Google Pay. Signal mēģinās apstrādāt maksājumu vēlreiz pēc dažām dienām.</string>
     <!-- Sheet title for generic backup error -->
-    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Neizdevās izveidot rezerves kopiju</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\" </string>
+    <string name="BackupAlertBottomSheet__your_device_hasnt">Jūsu ierīce nav izveidojusi rezerves kopiju jau %1$d d. Pārliecinieties, ka ierīce ir savienota ar Wi-Fi, un pieskarieties pie \"Izveidot rezerves kopiju tūlīt\". </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Uzzināt vairāk</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Izlaist</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Download media now</string>
+    <string name="BackupAlertBottomSheet__download_media_now">Lejupielādēt multividi tūlīt</string>
     <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">Download later</string>
+    <string name="BackupAlertBottomSheet__download_later">Lejupielādēt vēlāk</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Don\'t download media</string>
+    <string name="BackupAlertBottomSheet__dont_download_media">Nelejupielādēt multividi</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7321,25 +7321,25 @@
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Pašrocīgi izveidot rezerves kopiju</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
-    <string name="PassphrasePromptActivity_help_prompt_body">Please enter your device pin, password or pattern.</string>
+    <string name="PassphrasePromptActivity_help_prompt_body">Ievadiet ierīces PIN kodu, paroli vai atbloķēšanas kombināciju.</string>
 
     <!-- Primary action button label when selecting a backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__next">Tālāk</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Change backup type</string>
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Mainīt rezerves kopijas veidu</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Atcelt abonementu</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
-    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Confirm cancellation</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Apstiprināt atcelšanu</string>
     <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">You won\'t be charged again. Backups will be turned off at the end of your billing cycle. After that date you will have 30 days to download the media you\'re currently backing up.</string>
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">No jums vairs netiks iekasēta maksa. Rezerves kopiju izveidošana tiks izslēgta norēķinu cikla beigās. Pēc šī datuma jums būs 30 dienas laika, lai lejupielādētu šobrīd izveidoto multivides rezerves kopiju.</string>
     <!-- Action button label to cancel subscription and download now -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Confirm and download now</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Apstiprināt un lejupielādēt tagad</string>
     <!-- Action button label to cancel subscription and download later -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Confirm and download later</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Apstiprināt un lejupielādēt vēlāk</string>
     <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Keep subscription</string>
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Saglabāt abonementu</string>
     <!-- EOF -->
 </resources>

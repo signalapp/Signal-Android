@@ -1067,7 +1067,7 @@
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">ဘက်ထရီ အကောင်းဆုံးချိန်ညှိမှုများကြောင့် အသိပေးချက်များ နှောင့်နှေးနိုင်ပါသည်</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
-    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Disable battery optimizations for Signal to ensure that message notifications will not be delayed. Tap “Continue” to see device-specific instructions.</string>
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">မက်ဆေ့ချ် အသိပေးချက်များ မနှောင့်နှေးကြောင်း သေချာစေရန် Signal အတွက် ဘက်ထရီ အကောင်းဆုံးချိန်ညှိမှုများကို ပိတ်ထားနိုင်ပါသည်။ စက်အလိုက် ညွှန်ကြားချက်များကို ကြည့်ရန် \"ဆက်လုပ်ရန်\" ကိုနှိပ်ပါ။</string>
     <!-- Button to dismiss notification help prompt -->
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">မလုပ်လိုပါ</string>
     <!-- Button to continue and go to Signal support website -->
@@ -2871,7 +2871,7 @@
     <!-- Update item button text shown for the accepted message request update message -->
     <string name="ConversationUpdateItem_options">ရွေးချယ်စရာများ</string>
     <!-- Update item button text shown for a profile name change. -->
-    <string name="ConversationUpdateItem_update">အပ်ဒိတ်မယ်</string>
+    <string name="ConversationUpdateItem_update">အပ်ဒိတ်လုပ်မည်</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">ဖွင့်မယ် … ခေတ္တရပ်မယ်</string>
@@ -6850,43 +6850,43 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">Media backups are off</string>
+    <string name="BackupAlertBottomSheet__media_backups_are_off">မီဒီယာဘက်ခ်အပ်များကို ပိတ်ထားသည်</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="other">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="other">သင့်ငွေပေးချေမှုကို ကျွန်ုပ်တို့ မလုပ်ဆောင်နိုင်ခဲ့သောကြောင့် သင်၏ Signal မီဒီယာ ဘက်ခ်အပ်အစီအစဉ်ကို ပယ်ဖျက်လိုက်ပါသည်။ သင့်ဘက်ခ်အပ်တွင် သိမ်းဆည်းထားသည့် မည်သည့်မီဒီယာကိုမဆို ဒေါင်းလုဒ်လုပ်ရန် သင့်တွင် အချိန် %1$d ရက်ရှိသည်။ %1$d ရက်ကြာပြီးနောက် သင်၏ ဘက်ခ်အပ်လုပ်ထားသောမီဒီယာကို ဖျက်လိုက်ပါမည်။</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
-    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">You can begin paying for backups again at any time to continue backing up all your media. </string>
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">သင်၏မီဒီယာအားလုံးကို ဆက်လက်ဘက်ခ်အပ်လုပ်ရန် ဘက်ခ်အပ်လုပ်ခြင်းများအတွက် အချိန်မရွေး ထပ်မံငွေပေးချေနိုင်ပါသည်။ </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Your media will be deleted today</string>
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">သင်၏မီဒီယာကို ယနေ့ ဖျက်လိုက်ပါမည်</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Your Signal media backup plan has been canceled because we couldn\'t process your payment. This is your last chance to download the media in your backup before it is deleted.</string>
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">သင့်ငွေပေးချေမှုကို ကျွန်ုပ်တို့ မလုပ်ဆောင်နိုင်ခဲ့သောကြောင့် သင်၏ Signal မီဒီယာ ဘက်ခ်အပ်အစီအစဉ်ကို ပယ်ဖျက်လိုက်ပါသည်။ မဖျက်မီ ဘက်ခ်အပ်လုပ်ထားသော မီဒီယာကို ဒေါင်းလုဒ်လုပ်ရန်အတွက် နောက်ဆုံးအခွင့်အရေးဖြစ်သည်။</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">ဒေါင်းလုဒ်ကို အပြီးမသတ်နိုင်ပါ</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">သင့်စက်တွင် နေရာလွတ် အလုံအလောက်မရှိပါ။ သင့် ဘက်ခ်အပ်တွင် သိမ်းထားသောမီဒီယာကို ဒေါင်းလုဒ်လုပ်ရန် %1$s အထိ နေရာလွတ် ထွက်လာအောင် ရှင်းထုတ်ပါ။</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="other">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
+        <item quantity="other">\"ကျော်မည်\" ကို ရွေးချယ်ပါက သင်ဘက်ခ်အပ်လုပ်ထားသော မီဒီယာကို %1$d ရက်အတွင်း ဖျက်ပစ်ပါမည်။</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Can\'t process backup payment</string>
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">ဘက်ခ်အပ်အတွက် ငွေပေးချေမှုကို လုပ်ဆောင်၍မရပါ</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">We\'re having trouble collecting your recurring monthly backup payment. Make sure your payment method is up to date. If it isn\'t, update it in Google Pay. Signal will try to process the payment again in a few days.</string>
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">သင်၏ ဘက်ခ်အပ်အတွက် လစဉ်ငွေပေးချေမှုကို ကောက်ခံရာတွင် ပြဿနာရှိနေပါသည်။ သင်၏ ငွေပေးချေမှုနည်းလမ်းသည် အပ်ဒိတ်ဖြစ်ကြောင်း သေချာပါစေ။ မဖြစ်ပါက Google Pay တွင် အပ်ဒိတ်လုပ်ပါ။ Signal က ရက်အနည်းငယ်အကြာတွင် ငွေပေးချေမှုကို ထပ်မံစီမံလုပ်ဆောင်ရန် ကြိုးစားပါမည်။</string>
     <!-- Sheet title for generic backup error -->
-    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">ဘက်ခ်အပ်လုပ်ခြင်းကို အပြီးသတ်၍မရပါ။</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\" </string>
+    <string name="BackupAlertBottomSheet__your_device_hasnt">သင့်စက်သည် ဘက်ခ်အပ်လုပ်ခြင်း မပြီးမြောက်သည်မှာ %1$d ရက်ရှိပြီဖြစ်သည်။ သင့်စက်ပစ္စည်းကို wi-fi နှင့် ချိတ်ဆက်ထားကြောင်း သေချာစေပြီး \"ယခု ဘက်ခ်အပ်လုပ်မည်\" ကိုနှိပ်ပါ။ </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">ကျော်မည်</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Download media now</string>
+    <string name="BackupAlertBottomSheet__download_media_now">မီဒီယာကို ယခုဒေါင်းလုဒ်လုပ်ပါ</string>
     <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">Download later</string>
+    <string name="BackupAlertBottomSheet__download_later">နောက်မှ ဒေါင်းလုဒ်လုပ်ပါ</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Don\'t download media</string>
+    <string name="BackupAlertBottomSheet__dont_download_media">မီဒီယာကို ဒေါင်းလုဒ်မလုပ်ပါနှင့်</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7009,25 +7009,25 @@
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">လူကိုယ်တိုင် ဘက်ခ်အပ်</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
-    <string name="PassphrasePromptActivity_help_prompt_body">Please enter your device pin, password or pattern.</string>
+    <string name="PassphrasePromptActivity_help_prompt_body">သင့်စက်၏ ပင်နံပါတ်၊ စကားဝှက် သို့မဟုတ် ပုံစံကို ထည့်ပါ။</string>
 
     <!-- Primary action button label when selecting a backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__next">ဆက်သွားမည်</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Change backup type</string>
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">ဘက်ခ်အပ် အမျိုးအစားပြောင်းမည်</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">ပုံမှန်လှူဒါန်းငွေကို ပယ်ဖျက်ရန်</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
-    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Confirm cancellation</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">ပယ်ဖျက်မှုကို အတည်ပြုမည်</string>
     <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">You won\'t be charged again. Backups will be turned off at the end of your billing cycle. After that date you will have 30 days to download the media you\'re currently backing up.</string>
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">ထပ်မံ ငွေကောက်ခံမည်မဟုတ်ပါ။ သင့်ငွေပေးချေမှု စက်ဝန်းအဆုံးတွင် ဘက်ခ်အပ်များကို ပိတ်သွားပါမည်။ ထိုရက်စွဲပြီးနောက် သင်လက်ရှိ ဘက်ခ်အပ်လုပ်နေသော မီဒီယာကို ဒေါင်းလုဒ်လုပ်ရန် ရက်ပေါင်း ၃၀ အချိန်ရပါမည်။</string>
     <!-- Action button label to cancel subscription and download now -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Confirm and download now</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">အတည်ပြုပြီး ယခုဒေါင်းလုဒ်လုပ်မည်</string>
     <!-- Action button label to cancel subscription and download later -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Confirm and download later</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">အတည်ပြုပြီး နောက်မှဒေါင်းလုဒ်လုပ်မည်</string>
     <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Keep subscription</string>
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">ပုံမှန်ငွေလှူဒါန်းမှုကို ဆက်လက်ပြုလုပ်မည်</string>
     <!-- EOF -->
 </resources>

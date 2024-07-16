@@ -1099,7 +1099,7 @@
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Notifikationer kan være forsinkede på grund af batterioptimering</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
-    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Disable battery optimizations for Signal to ensure that message notifications will not be delayed. Tap “Continue” to see device-specific instructions.</string>
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Deaktiver batterioptimering i Signal fra for at sikre, at beskednotifikationer ikke bliver forsinkede. Tryk på \"Fortsæt\" for at se enhedsspecifikke instruktioner.</string>
     <!-- Button to dismiss notification help prompt -->
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Nej tak</string>
     <!-- Button to continue and go to Signal support website -->
@@ -7007,8 +7007,8 @@
     <string name="BackupAlertBottomSheet__media_backups_are_off">Sikkerhedskopiering af medier er slået fra</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="one">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d day to download any media stored in your backup. After %1$d day, the media in your backup will be deleted.</item>
-        <item quantity="other">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="one">Dit abonnement for sikkerhedskopiering af Signal-medier er blevet opsagt, fordi vi ikke kunne behandle din betaling. Du har %1$d dage til at downloade alle medier, der er gemt i din sikkerhedskopi. Efter %1$d dage slettes medierne i din sikkerhedskopi.</item>
+        <item quantity="other">Dit abonnement for sikkerhedskopiering af Signal-medier er blevet opsagt, fordi vi ikke kunne behandle din betaling. Du har %1$d dage til at downloade alle medier, der er gemt i din sikkerhedskopi. Efter %1$d dage slettes medierne i din sikkerhedskopi.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Du kan til enhver tid begynde at betale for sikkerhedskopier igen for at fortsætte med at sikkerhedskopiere alle dine medier. </string>
@@ -7022,8 +7022,8 @@
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Din enhed har ikke nok ledig plads. Frigør op til %1$s plads for at downloade de medier, der er gemt i din sikkerhedskopi.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">If you choose \"Skip\" the media in your backup will be deleted in %1$d day.</item>
-        <item quantity="other">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
+        <item quantity="one">Hvis du vælger \"Spring over\", slettes medierne i sikkerhedskopien inden for %1$d dage.</item>
+        <item quantity="other">Hvis du vælger \"Spring over\", slettes medierne i sikkerhedskopien inden for %1$d dage.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__cant_process_backup_payment">Kunne ikke behandle betaling for sikkerhedskopiering</string>

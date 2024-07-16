@@ -1163,7 +1163,7 @@
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Oznámení se mohou zpožďovat kvůli optimalizaci baterie</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
-    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Disable battery optimizations for Signal to ensure that message notifications will not be delayed. Tap “Continue” to see device-specific instructions.</string>
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Vypněte optimalizaci baterie pro službu Signal, aby se oznámení zpráv nezpožďovala. Klepnutím na „Pokračovat“ zobrazíte pokyny pro konkrétní zařízení.</string>
     <!-- Button to dismiss notification help prompt -->
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Ne, díky</string>
     <!-- Button to continue and go to Signal support website -->
@@ -7312,49 +7312,49 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">Media backups are off</string>
+    <string name="BackupAlertBottomSheet__media_backups_are_off">Zálohování médií je vypnuto</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="one">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d day to download any media stored in your backup. After %1$d day, the media in your backup will be deleted.</item>
-        <item quantity="few">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
-        <item quantity="many">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
-        <item quantity="other">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="one">Váš plán zálohování médií v aplikaci Signal byl zrušen, protože nešlo zpracovat vaši platbu. Máte %1$d den na stažení všech médií uložených v záloze. Po %1$d dni budou média ve vaší záloze odstraněna.</item>
+        <item quantity="few">Váš plán zálohování médií v aplikaci Signal byl zrušen, protože nešlo zpracovat vaši platbu. Máte %1$d dny na stažení všech médií uložených v záloze. Po %1$d dnech budou média ve vaší záloze odstraněna.</item>
+        <item quantity="many">Váš plán zálohování médií v aplikaci Signal byl zrušen, protože nešlo zpracovat vaši platbu. Máte %1$d dní na stažení všech médií uložených v záloze. Po %1$d dnech budou média ve vaší záloze odstraněna.</item>
+        <item quantity="other">Váš plán zálohování médií v aplikaci Signal byl zrušen, protože nešlo zpracovat vaši platbu. Máte %1$d dní na stažení všech médií uložených v záloze. Po %1$d dnech budou média ve vaší záloze odstraněna.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
-    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">You can begin paying for backups again at any time to continue backing up all your media. </string>
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Kdykoliv můžete opět začít platit za zálohování a pokračovat v zálohování všech svých médií. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Your media will be deleted today</string>
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Vaše média budou dnes odstraněna</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Your Signal media backup plan has been canceled because we couldn\'t process your payment. This is your last chance to download the media in your backup before it is deleted.</string>
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Váš plán zálohování médií v aplikaci Signal byl zrušen, protože nešlo zpracovat vaši platbu. Toto je poslední možnost stáhnout média ze zálohy, než budou odstraněna.</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">Stahování nelze dokončit</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Vaše zařízení nemá dostatek volného místa. Uvolněte minimálně %1$s místa, abyste mohli stáhnout média z vaší zálohy.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">If you choose \"Skip\" the media in your backup will be deleted in %1$d day.</item>
-        <item quantity="few">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
-        <item quantity="many">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
-        <item quantity="other">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
+        <item quantity="one">Pokud zvolíte možnost „Přeskočit“, budou média ve vaší záloze odstraněna za %1$d den.</item>
+        <item quantity="few">Pokud zvolíte možnost „Přeskočit“, budou média ve vaší záloze odstraněna za %1$d dny.</item>
+        <item quantity="many">Pokud zvolíte možnost „Přeskočit“, budou média ve vaší záloze odstraněna za %1$d dní.</item>
+        <item quantity="other">Pokud zvolíte možnost „Přeskočit“, budou média ve vaší záloze odstraněna za %1$d dní.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Can\'t process backup payment</string>
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Nelze zpracovat platbu za zálohování</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">We\'re having trouble collecting your recurring monthly backup payment. Make sure your payment method is up to date. If it isn\'t, update it in Google Pay. Signal will try to process the payment again in a few days.</string>
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Máme problémy se stržením vaší pravidelné měsíční platby za zálohování. Zkontrolujte, že vámi zvolená platební metoda je aktuální. Pokud ne, aktualizujte ji v Google Pay. Aplikace Signal zkusí během pár dnů zpracovat platbu znovu.</string>
     <!-- Sheet title for generic backup error -->
-    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Zálohování se nepodařilo dokončit</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\" </string>
+    <string name="BackupAlertBottomSheet__your_device_hasnt">Vaše zařízení nedokončilo zálohování po dobu %1$d dnů. Ujistěte se, že je vaše zařízení připojeno k Wi-Fi a klepněte na „Zálohovat nyní“. </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Zjistit více</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Přeskočit</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Download media now</string>
+    <string name="BackupAlertBottomSheet__download_media_now">Stáhnout média</string>
     <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">Download later</string>
+    <string name="BackupAlertBottomSheet__download_later">Stáhnout později</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Don\'t download media</string>
+    <string name="BackupAlertBottomSheet__dont_download_media">Nestahovat média</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7477,25 +7477,25 @@
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Ruční zálohování</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
-    <string name="PassphrasePromptActivity_help_prompt_body">Please enter your device pin, password or pattern.</string>
+    <string name="PassphrasePromptActivity_help_prompt_body">Zadejte prosím PIN, heslo nebo vzorec svého zařízení.</string>
 
     <!-- Primary action button label when selecting a backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__next">Další</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Change backup type</string>
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Změnit typ zálohování</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Zrušit předplatné</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
-    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Confirm cancellation</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Potvrdit zrušení</string>
     <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">You won\'t be charged again. Backups will be turned off at the end of your billing cycle. After that date you will have 30 days to download the media you\'re currently backing up.</string>
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Nebudou vám účtovány žádné další poplatky. Zálohování bude vypnuto na konci vašeho zúčtovacího období. Poté budete mít 30 dní na stažení médií, která právě zálohujete.</string>
     <!-- Action button label to cancel subscription and download now -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Confirm and download now</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Potvrdit a stáhnout teď</string>
     <!-- Action button label to cancel subscription and download later -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Confirm and download later</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Potvrdit a stáhnout později</string>
     <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Keep subscription</string>
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Ponechat předplatné</string>
     <!-- EOF -->
 </resources>

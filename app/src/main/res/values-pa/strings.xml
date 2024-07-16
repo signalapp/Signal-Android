@@ -1099,7 +1099,7 @@
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">ਬੈਟਰੀ ਅਨੁਕੂਲਤਾ ਦੇ ਕਾਰਨ ਸੂਚਨਾਵਾਂ ਆਉਣ ਵਿੱਚ ਦੇਰੀ ਹੋ ਸਕਦੀ ਹੈ</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
-    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Disable battery optimizations for Signal to ensure that message notifications will not be delayed. Tap “Continue” to see device-specific instructions.</string>
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">ਸੁਨੇਹੇ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਆਉਣ ਵਿੱਚ ਦੇਰੀ ਨਾ ਹੋਵੇ ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ Signal ਲਈ ਬੈਟਰੀ ਅਨੁਕੂਲਤਾ ਨੂੰ ਅਸਮਰੱਥ ਕਰੋ। ਡਿਵਾਈਸ-ਵਿਸ਼ੇਸ਼ ਨਿਰਦੇਸ਼ਾਂ ਨੂੰ ਦੇਖਣ ਲਈ \"ਜਾਰੀ ਰੱਖੋ\" \'ਤੇ ਟੈਪ ਕਰੋ।</string>
     <!-- Button to dismiss notification help prompt -->
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
     <!-- Button to continue and go to Signal support website -->
@@ -7004,45 +7004,45 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">Media backups are off</string>
+    <string name="BackupAlertBottomSheet__media_backups_are_off">ਮੀਡੀਆ ਬੈਕਅੱਪ ਬੰਦ ਹੈ</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="one">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d day to download any media stored in your backup. After %1$d day, the media in your backup will be deleted.</item>
-        <item quantity="other">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="one">ਤੁਹਾਡਾ Signal ਮੀਡੀਆ ਬੈਕਅੱਪ ਪਲਾਨ ਰੱਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ ਕਿਉਂਕਿ ਅਸੀਂ ਤੁਹਾਡੇ ਭੁਗਤਾਨ ਉੱਤੇ ਕਾਰਵਾਈ ਨਹੀਂ ਕਰ ਸਕੇ। ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਵਿੱਚ ਸਟੋਰ ਕੀਤਾ ਮੀਡੀਆ ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਕੋਲ %1$d ਦਿਨ ਹੈ। %1$d ਦਿਨ ਬਾਅਦ, ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਵਿੱਚ ਮੌਜੂਦ ਮੀਡੀਆ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।</item>
+        <item quantity="other">ਤੁਹਾਡਾ Signal ਮੀਡੀਆ ਬੈਕਅੱਪ ਪਲਾਨ ਰੱਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ ਕਿਉਂਕਿ ਅਸੀਂ ਤੁਹਾਡੇ ਭੁਗਤਾਨ ਉੱਤੇ ਕਾਰਵਾਈ ਨਹੀਂ ਕਰ ਸਕੇ। ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਵਿੱਚ ਸਟੋਰ ਕੀਤਾ ਮੀਡੀਆ ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਕੋਲ %1$d ਦਿਨ ਹਨ। %1$d ਦਿਨਾਂ ਬਾਅਦ, ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਵਿੱਚ ਮੌਜੂਦ ਮੀਡੀਆ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
-    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">You can begin paying for backups again at any time to continue backing up all your media. </string>
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਸਮੇਂ ਦੁਬਾਰਾ ਬੈਕਅੱਪ ਲਈ ਭੁਗਤਾਨ ਕਰਕੇ ਆਪਣੇ ਸਾਰੇ ਮੀਡੀਆ ਦਾ ਬੈਕਅੱਪ ਲੈਣਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ। </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Your media will be deleted today</string>
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">ਤੁਹਾਡਾ ਮੀਡੀਆ ਅੱਜ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Your Signal media backup plan has been canceled because we couldn\'t process your payment. This is your last chance to download the media in your backup before it is deleted.</string>
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">ਤੁਹਾਡਾ Signal ਮੀਡੀਆ ਬੈਕਅੱਪ ਪਲਾਨ ਰੱਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ ਕਿਉਂਕਿ ਅਸੀਂ ਤੁਹਾਡੇ ਭੁਗਤਾਨ ਉੱਤੇ ਕਾਰਵਾਈ ਨਹੀਂ ਕਰ ਸਕੇ। ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਵਿੱਚ ਮੌਜੂਦ ਮੀਡੀਆ ਮਿਟਾਉਣ ਤੋਂ ਪਹਿਲਾਂ ਇਸਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਦਾ ਇਹ ਤੁਹਾਡਾ ਕੋਲ ਆਖਰੀ ਮੌਕਾ ਹੈ।</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">ਡਾਊਨਲੋਡ ਨੂੰ ਪੂਰਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਵਿੱਚ ਲੋੜੀਂਦੀ ਖਾਲੀ ਥਾਂ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਬੈਕਅੱਪ ਵਿੱਚ ਸਟੋਰ ਕੀਤਾ ਮੀਡੀਆ ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ %1$s ਤੱਕ ਥਾਂ ਖਾਲੀ ਕਰੋ।</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">If you choose \"Skip\" the media in your backup will be deleted in %1$d day.</item>
-        <item quantity="other">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
+        <item quantity="one">ਜੇਕਰ ਤੁਸੀਂ \"ਛੱਡੋ\" ਬਟਨ ਚੁਣਦੇ ਹੋ ਤਾਂ ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਵਿੱਚ ਮੌਜੂਦ ਮੀਡੀਆ %1$d ਦਿਨ ਬਾਅਦ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।</item>
+        <item quantity="other">ਜੇਕਰ ਤੁਸੀਂ \"ਛੱਡੋ\" ਬਟਨ ਚੁਣਦੇ ਹੋ ਤਾਂ ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਵਿੱਚ ਮੌਜੂਦ ਮੀਡੀਆ %1$d ਦਿਨਾਂ ਬਾਅਦ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Can\'t process backup payment</string>
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">ਬੈਕਅੱਪ ਦੇ ਭੁਗਤਾਨ ਉੱਤੇ ਕਾਰਵਾਈ ਨਹੀਂ ਕਰ ਸਕੇ</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">We\'re having trouble collecting your recurring monthly backup payment. Make sure your payment method is up to date. If it isn\'t, update it in Google Pay. Signal will try to process the payment again in a few days.</string>
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">ਸਾਨੂੰ ਤੁਹਾਡੇ ਵੱਲੋਂ ਹਰ ਮਹੀਨੇ ਦਿੱਤਾ ਜਾਣ ਵਾਲਾ ਬੈਕਅੱਪ ਦਾ ਭੁਗਤਾਨ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਮੁਸ਼ਕਲ ਆ ਰਹੀ ਹੈ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡੀ ਭੁਗਤਾਨ ਵਿਧੀ ਅੱਪਡੇਟ ਕੀਤੀ ਗਈ ਹੈ। ਜੇਕਰ ਅਜਿਹਾ ਨਹੀਂ ਹੈ, ਤਾਂ ਇਸਨੂੰ Google Pay ਵਿੱਚ ਜਾ ਕੇ ਅੱਪਡੇਟ ਕਰੋ। Signal ਕੁਝ ਦਿਨਾਂ ਬਾਅਦ ਦੁਬਾਰਾ ਭੁਗਤਾਨ ਉੱਤੇ ਕਾਰਵਾਈ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੇਗਾ।</string>
     <!-- Sheet title for generic backup error -->
-    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">ਬੈਕਅੱਪ ਪੂਰਾ ਨਹੀਂ ਕਰ ਸਕੇ</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\" </string>
+    <string name="BackupAlertBottomSheet__your_device_hasnt">ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਦਾ %1$d ਦਿਨਾਂ ਤੋਂ ਬੈਕਅੱਪ ਨਹੀਂ ਲਿਆ ਗਿਆ ਹੈ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡਾ ਡਿਵਾਈਸ Wi-Fi ਨਾਲ ਕਨੈਕਟ ਹੈ ਅਤੇ \"ਹੁਣੇ ਬੈਕਅੱਪ ਲਓ\" \'ਤੇ ਟੈਪ ਕਰੋ। </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">ਹੋਰ ਜਾਣੋ</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">ਛੱਡੋ</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Download media now</string>
+    <string name="BackupAlertBottomSheet__download_media_now">ਮੀਡੀਆ ਹੁਣੇ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">Download later</string>
+    <string name="BackupAlertBottomSheet__download_later">ਬਾਅਦ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Don\'t download media</string>
+    <string name="BackupAlertBottomSheet__dont_download_media">ਮੀਡੀਆ ਡਾਊਨਲੋਡ ਨਾ ਕਰੋ</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7165,25 +7165,25 @@
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">ਖੁਦ ਬੈਕਅੱਪ ਲਓ</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
-    <string name="PassphrasePromptActivity_help_prompt_body">Please enter your device pin, password or pattern.</string>
+    <string name="PassphrasePromptActivity_help_prompt_body">ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਡਿਵਾਈਸ PIN, ਪਾਸਵਰਡ ਜਾਂ ਪੈਟਰਨ ਦਾਖਲ ਕਰੋ।</string>
 
     <!-- Primary action button label when selecting a backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__next">ਅੱਗੇ</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Change backup type</string>
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">ਬੈਕਅੱਪ ਦੀ ਕਿਸਮ ਬਦਲੋ</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਰੱਦ ਕਰੋ</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
-    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Confirm cancellation</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">ਰੱਦ ਕਰਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
     <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">You won\'t be charged again. Backups will be turned off at the end of your billing cycle. After that date you will have 30 days to download the media you\'re currently backing up.</string>
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">ਤੁਹਾਡੇ ਕੋਲੋਂ ਦੁਬਾਰਾ ਕੋਈ ਖਰਚਾ ਨਹੀਂ ਲਿਆ ਜਾਵੇਗਾ। ਤੁਹਾਡੇ ਬਿਲਿੰਗ ਚੱਕਰ ਦੇ ਅੰਤ ਵਿੱਚ ਬੈਕਅੱਪ ਲੈਣਾ ਬੰਦ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ। ਉਸ ਮਿਤੀ ਤੋਂ ਬਾਅਦ ਤੁਹਾਡੇ ਕੋਲ ਆਪਣੇ ਬੈਕਅੱਪ ਵਿੱਚ ਮੌਜੂਦ ਮੀਡੀਆ ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ 30 ਦਿਨ ਹੋਣਗੇ।</string>
     <!-- Action button label to cancel subscription and download now -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Confirm and download now</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">ਪੁਸ਼ਟੀ ਕਰੋ ਅਤੇ ਹੁਣੇ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <!-- Action button label to cancel subscription and download later -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Confirm and download later</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">ਪੁਸ਼ਟੀ ਕਰੋ ਅਤੇ ਬਾਅਦ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Keep subscription</string>
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਜਾਰੀ ਰੱਖੋ</string>
     <!-- EOF -->
 </resources>

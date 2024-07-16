@@ -953,7 +953,7 @@
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Від\'єднати \'%1$s\'?</string>
-    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Після від\'єднання цього пристрою він більше не зможе відправляти та одержувати повідомлення.</string>
+    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Якщо відв\'язати цей пристрій, він більше не зможе надсилати та отримувати повідомлення.</string>
     <string name="DeviceListActivity_network_connection_failed">Проблема з\'єднання</string>
     <string name="DeviceListActivity_try_again">Спробуйте ще</string>
     <string name="DeviceListActivity_unlinking_device">Від\'єднання пристрою…</string>
@@ -1161,9 +1161,9 @@
     <string name="PromptBatterySaverBottomSheet__message">Ви можете вимкнути оптимізацію акумулятора для Signal, щоб упевнитися, що сповіщення про повідомлення надходитимуть без затримки.</string>
 
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
-    <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Сповіщення можуть надходити з затримкою через оптимізацію акумулятора</string>
+    <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Сповіщення можуть надходити із затримкою через оптимізацію акумулятора</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
-    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Disable battery optimizations for Signal to ensure that message notifications will not be delayed. Tap “Continue” to see device-specific instructions.</string>
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Вимкніть оптимізацію акумулятора для Signal, щоб сповіщення про повідомлення не затримувалися. Натисніть «Продовжити», щоб переглянути інструкції для конкретних пристроїв.</string>
     <!-- Button to dismiss notification help prompt -->
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Не хочу</string>
     <!-- Button to continue and go to Signal support website -->
@@ -1423,8 +1423,8 @@
     <!-- ImageEditorHud -->
     <string name="ImageEditorHud_blur_faces">Розмити обличчя</string>
     <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Нове: Розмити обличчя або розмити будь-що</string>
-    <string name="ImageEditorHud_draw_anywhere_to_blur">Малюй, щоб розмити</string>
-    <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Малюй, щоб розмити обличчя або зони</string>
+    <string name="ImageEditorHud_draw_anywhere_to_blur">Замалюйте зону, щоб її розмити</string>
+    <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Замалюйте інші обличчя або зони, щоб їх розмити</string>
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Записати: торкніться й утримуйте. Надіслати: відпустіть</string>
@@ -3404,11 +3404,11 @@
     <string name="message_details_recipient_header__pending_send">Очікування</string>
     <string name="message_details_recipient_header__sent_to">Кому надіслано:</string>
     <string name="message_details_recipient_header__sent_from">Відправник</string>
-    <string name="message_details_recipient_header__delivered_to">Доставлено</string>
-    <string name="message_details_recipient_header__read_by">Прочитано</string>
+    <string name="message_details_recipient_header__delivered_to">Кому доставлено:</string>
+    <string name="message_details_recipient_header__read_by">Хто прочитав:</string>
     <string name="message_details_recipient_header__not_sent">Не надіслано</string>
     <string name="message_details_recipient_header__viewed">Переглянули</string>
-    <string name="message_details_recipient_header__skipped">Пропущено</string>
+    <string name="message_details_recipient_header__skipped">Кому не доставлено:</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Не вдалося надіслати</string>
@@ -5486,7 +5486,7 @@
 
     <string name="MediaReviewImagePageFragment__discard">Відхилити</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Відхилити зміни?</string>
-    <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Ви втратите усі зміни, що зробили з цим фото.</string>
+    <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Усі зміни цього фото зникнуть.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
     <string name="MediaCaptureFragment_username_dialog_title">Знайдено %1$s</string>
@@ -7312,49 +7312,49 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">Media backups are off</string>
+    <string name="BackupAlertBottomSheet__media_backups_are_off">Резервне копіювання медіафайлів вимкнено</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="one">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d day to download any media stored in your backup. After %1$d day, the media in your backup will be deleted.</item>
-        <item quantity="few">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
-        <item quantity="many">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
-        <item quantity="other">Your Signal media backup plan has been canceled because we couldn\'t process your payment. You have %1$d days to download any media stored in your backup. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="one">Резервне копіювання медіафайлів у Signal було скасовано, тому що ми не змогли опрацювати ваш платіж. Ви маєте %1$d день, щоб завантажити медіафайли зі своєї резервної копії. Через %1$d день їх буде видалено.</item>
+        <item quantity="few">Резервне копіювання медіафайлів у Signal було скасовано, тому що ми не змогли опрацювати ваш платіж. Ви маєте %1$d дні, щоб завантажити медіафайли зі своєї резервної копії. Через %1$d дні їх буде видалено.</item>
+        <item quantity="many">Резервне копіювання медіафайлів у Signal було скасовано, тому що ми не змогли опрацювати ваш платіж. Ви маєте %1$d днів, щоб завантажити медіафайли зі своєї резервної копії. Через %1$d днів їх буде видалено.</item>
+        <item quantity="other">Резервне копіювання медіафайлів у Signal було скасовано, тому що ми не змогли опрацювати ваш платіж. Ви маєте %1$d дня, щоб завантажити медіафайли зі своєї резервної копії. Через %1$d дня їх буде видалено.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
-    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">You can begin paying for backups again at any time to continue backing up all your media. </string>
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Ви можете поновити оплату в будь-який момент, щоб знову здійснювати резервне копіювання медіафайлів. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Your media will be deleted today</string>
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Сьогодні буде видалено ваші медіафайли</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Your Signal media backup plan has been canceled because we couldn\'t process your payment. This is your last chance to download the media in your backup before it is deleted.</string>
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Резервне копіювання медіафайлів у Signal було скасовано, тому що ми не змогли опрацювати ваш платіж. Ви маєте останню можливість завантажити медіафайли з резервної копії, поки їх не видалено.</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">Неможливо завершити завантаження</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">На пристрої недостатньо місця. Звільніть %1$s, щоб завантажити медіафайли з резервної копії.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">If you choose \"Skip\" the media in your backup will be deleted in %1$d day.</item>
-        <item quantity="few">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
-        <item quantity="many">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
-        <item quantity="other">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
+        <item quantity="one">Якщо вибрати «Пропустити», медіафайли з резервної копії буде видалено через %1$d день.</item>
+        <item quantity="few">Якщо вибрати «Пропустити», медіафайли з резервної копії буде видалено через %1$d дні.</item>
+        <item quantity="many">Якщо вибрати «Пропустити», медіафайли з резервної копії буде видалено через %1$d днів.</item>
+        <item quantity="other">Якщо вибрати «Пропустити», медіафайли з резервної копії буде видалено через %1$d дня.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Can\'t process backup payment</string>
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Неможливо опрацювати платіж за резервне копіювання</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">We\'re having trouble collecting your recurring monthly backup payment. Make sure your payment method is up to date. If it isn\'t, update it in Google Pay. Signal will try to process the payment again in a few days.</string>
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Нам не вдалось опрацювати щомісячний платіж за резервне копіювання. Перевірте дійсність вашого платіжного засобу. За потреби оновіть платіжну інформацію в Google Pay. Через кілька днів Signal спробує стягнути платіж ще раз.</string>
     <!-- Sheet title for generic backup error -->
-    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Резервне копіювання не завершено</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\" </string>
+    <string name="BackupAlertBottomSheet__your_device_hasnt">Ваш пристрій не створював резервної копії вже %1$d дн. Перевірте, чи підключено пристрій до Wi-Fi, і натисніть «Створити копію зараз». </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Дізнатися більше</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Пропустити</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Download media now</string>
+    <string name="BackupAlertBottomSheet__download_media_now">Завантажити медіафайли</string>
     <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">Download later</string>
+    <string name="BackupAlertBottomSheet__download_later">Пізніше</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Don\'t download media</string>
+    <string name="BackupAlertBottomSheet__dont_download_media">Не завантажувати медіафайлів</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7477,25 +7477,25 @@
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Створювати вручну</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
-    <string name="PassphrasePromptActivity_help_prompt_body">Please enter your device pin, password or pattern.</string>
+    <string name="PassphrasePromptActivity_help_prompt_body">Уведіть PIN-код пристрою, пароль або графічний ключ.</string>
 
     <!-- Primary action button label when selecting a backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__next">Далі</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Change backup type</string>
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Змінити тип резервного копіювання</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Скасувати передплату</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
-    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Confirm cancellation</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Підтвердити скасування резервного копіювання</string>
     <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">You won\'t be charged again. Backups will be turned off at the end of your billing cycle. After that date you will have 30 days to download the media you\'re currently backing up.</string>
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Плату не буде стягнуто повторно. Резервне копіювання буде вимкнено, коли спливе розрахунковий період. Після цього ви матимете 30 днів, щоб завантажити медіафайли з поточної резервної копії.</string>
     <!-- Action button label to cancel subscription and download now -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Confirm and download now</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Підтвердити й завантажити зараз</string>
     <!-- Action button label to cancel subscription and download later -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Confirm and download later</string>
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Підтвердити й завантажити пізніше</string>
     <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Keep subscription</string>
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Продовжити передплату</string>
     <!-- EOF -->
 </resources>
