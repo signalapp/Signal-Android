@@ -10,6 +10,7 @@ import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
@@ -464,6 +465,10 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
         markDonationManuallyCancelled()
       } else {
         markBackupSubscriptionpManuallyCancelled()
+
+        // TODO [message-backups] -- Handle downgrades?
+        SignalStore.backup.areBackupsEnabled = false
+        SignalStore.backup.backupTier = null
       }
 
       val subscriber = InAppPaymentsRepository.getSubscriber(subscriberType)
@@ -504,6 +509,9 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
         }
       } else {
         clearBackupSubscriptionManuallyCancelled()
+
+        SignalStore.backup.areBackupsEnabled = true
+        SignalStore.backup.backupTier = MessageBackupTier.PAID
       }
 
       val subscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)

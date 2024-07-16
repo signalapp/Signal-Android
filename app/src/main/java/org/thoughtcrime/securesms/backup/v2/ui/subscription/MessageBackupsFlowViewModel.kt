@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import android.text.TextUtils
 import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -43,7 +44,10 @@ class MessageBackupsFlowViewModel : ViewModel() {
     )
   )
 
+  private val internalPinState = mutableStateOf("")
+
   val stateFlow: StateFlow<MessageBackupsFlowState> = internalStateFlow
+  val pinState: State<String> = internalPinState
 
   init {
     viewModelScope.launch {
@@ -58,11 +62,14 @@ class MessageBackupsFlowViewModel : ViewModel() {
   }
 
   fun goToNextScreen() {
+    val pinSnapshot = pinState.value
+    internalPinState.value = ""
+
     internalStateFlow.update {
       val nextScreen = when (it.screen) {
         MessageBackupsScreen.EDUCATION -> MessageBackupsScreen.PIN_EDUCATION
         MessageBackupsScreen.PIN_EDUCATION -> MessageBackupsScreen.PIN_CONFIRMATION
-        MessageBackupsScreen.PIN_CONFIRMATION -> validatePinAndUpdateState(it.pin)
+        MessageBackupsScreen.PIN_CONFIRMATION -> validatePinAndUpdateState(pinSnapshot)
         MessageBackupsScreen.TYPE_SELECTION -> validateTypeAndUpdateState(it.selectedMessageBackupTier!!)
         MessageBackupsScreen.CHECKOUT_SHEET -> validateGatewayAndUpdateState(it)
         MessageBackupsScreen.CREATING_IN_APP_PAYMENT -> error("This is driven by an async coroutine.")
@@ -107,10 +114,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
   }
 
   fun onPinEntryUpdated(pin: String) {
-    // TODO [alex] -- shouldn't store this in a flow
-    internalStateFlow.update {
-      it.copy(pin = pin)
-    }
+    internalPinState.value = pin
   }
 
   fun onPinKeyboardTypeUpdated(pinKeyboardType: PinKeyboardType) {
@@ -137,13 +141,15 @@ class MessageBackupsFlowViewModel : ViewModel() {
   }
 
   private fun validateTypeAndUpdateState(tier: MessageBackupTier): MessageBackupsScreen {
-    SignalStore.backup.areBackupsEnabled = true
-    SignalStore.backup.backupTier = tier
-
     // TODO [message-backups] - Does anything need to be kicked off?
 
     return when (tier) {
-      MessageBackupTier.FREE -> MessageBackupsScreen.COMPLETED
+      MessageBackupTier.FREE -> {
+        SignalStore.backup.areBackupsEnabled = true
+        SignalStore.backup.backupTier = MessageBackupTier.FREE
+
+        MessageBackupsScreen.COMPLETED
+      }
       MessageBackupTier.PAID -> MessageBackupsScreen.CHECKOUT_SHEET
     }
   }

@@ -32,6 +32,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -99,7 +100,8 @@ fun MessageBackupsPinConfirmationScreen(
               onDone = { onNextClick() }
             ),
             keyboardOptions = KeyboardOptions(
-              keyboardType = keyboardType
+              keyboardType = keyboardType,
+              imeAction = ImeAction.Done
             ),
             modifier = Modifier
               .padding(top = 72.dp)

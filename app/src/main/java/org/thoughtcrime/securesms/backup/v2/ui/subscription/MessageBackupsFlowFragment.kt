@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
+import androidx.activity.OnBackPressedCallback
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -38,6 +39,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
   @Composable
   override fun FragmentContent() {
     val state by viewModel.stateFlow.collectAsState()
+    val pin by viewModel.pinState
     val navController = rememberNavController()
 
     val checkoutDelegate = remember {
@@ -57,8 +59,12 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
 
     LaunchedEffect(Unit) {
       navController.setLifecycleOwner(this@MessageBackupsFlowFragment)
-      navController.setOnBackPressedDispatcher(requireActivity().onBackPressedDispatcher)
-      navController.enableOnBackPressed(true)
+
+      requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          viewModel.goToPreviousScreen()
+        }
+      })
     }
 
     Nav.Host(
@@ -84,7 +90,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
 
       composable(route = MessageBackupsScreen.PIN_CONFIRMATION.name) {
         MessageBackupsPinConfirmationScreen(
-          pin = state.pin,
+          pin = pin,
           onPinChanged = viewModel::onPinEntryUpdated,
           pinKeyboardType = state.pinKeyboardType,
           onPinKeyboardTypeSelected = viewModel::onPinKeyboardTypeUpdated,
