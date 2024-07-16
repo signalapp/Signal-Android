@@ -49,6 +49,7 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
 
   @RequiresApi(31)
   val onAudioDeviceSelected: (AudioOutputOption) -> Unit = {
+    Log.d(TAG, "User selected audio device of type ${it.deviceType}")
     audioOutputChangedListener.audioOutputChanged(WebRtcAudioDevice(it.toWebRtcAudioOutput(), it.deviceId))
 
     when (it.deviceType) {
