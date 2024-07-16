@@ -11,10 +11,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.i18n.phonenumbers.PhoneNumberUtil
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.logging.Log
@@ -31,7 +33,6 @@ import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegat
 import org.thoughtcrime.securesms.registration.fragments.SignalStrengthPhoneStateListener
 import org.thoughtcrime.securesms.registration.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
-import org.thoughtcrime.securesms.registration.ui.isBindingInvalid
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
@@ -48,17 +49,15 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
   private val TAG = Log.tag(EnterCodeFragment::class.java)
 
   private val sharedViewModel by activityViewModels<RegistrationViewModel>()
+  private val bottomSheet = ContactSupportBottomSheetFragment()
   private val binding: FragmentRegistrationEnterCodeBinding by ViewBinderDelegate(FragmentRegistrationEnterCodeBinding::bind)
 
   private lateinit var phoneStateListener: SignalStrengthPhoneStateListener
 
   private var autopilotCodeEntryActive = false
 
-  private val bottomSheet = ContactSupportBottomSheetFragment()
-
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-
     setDebugLogSubmitMultiTapView(binding.verifyHeader)
 
     phoneStateListener = SignalStrengthPhoneStateListener(this, PhoneStateCallback())
@@ -134,34 +133,28 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
   }
 
   private fun handleSessionErrorResponse(result: RegistrationResult) {
-    if (isBindingInvalid()) {
-      Log.w(TAG, "Binding not valid, aborting! Result: $result")
-      result.logCause()
-      return
-    }
-    when (result) {
-      is VerificationCodeRequestResult.Success -> binding.keyboard.displaySuccess()
-      is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
-      is VerificationCodeRequestResult.AttemptsExhausted -> presentAccountLocked()
-      is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
-      else -> presentGenericError(result)
+    viewLifecycleOwner.lifecycleScope.launch {
+      when (result) {
+        is VerificationCodeRequestResult.Success -> binding.keyboard.displaySuccess()
+        is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
+        is VerificationCodeRequestResult.AttemptsExhausted -> presentAccountLocked()
+        is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
+        else -> presentGenericError(result)
+      }
     }
   }
 
   private fun handleRegistrationErrorResponse(result: RegisterAccountResult) {
-    if (isBindingInvalid()) {
-      Log.w(TAG, "Binding not valid, aborting! Result: $result")
-      result.logCause()
-      return
-    }
-    when (result) {
-      is RegisterAccountResult.Success -> binding.keyboard.displaySuccess()
-      is RegisterAccountResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
-      is RegisterAccountResult.AuthorizationFailed -> presentIncorrectCodeDialog()
-      is RegisterAccountResult.AttemptsExhausted -> presentAccountLocked()
-      is RegisterAccountResult.RateLimited -> presentRateLimitedDialog()
+    viewLifecycleOwner.lifecycleScope.launch {
+      when (result) {
+        is RegisterAccountResult.Success -> binding.keyboard.displaySuccess()
+        is RegisterAccountResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
+        is RegisterAccountResult.AuthorizationFailed -> presentIncorrectCodeDialog()
+        is RegisterAccountResult.AttemptsExhausted -> presentAccountLocked()
+        is RegisterAccountResult.RateLimited -> presentRateLimitedDialog()
 
-      else -> presentGenericError(result)
+        else -> presentGenericError(result)
+      }
     }
   }
 
@@ -209,22 +202,19 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
   private fun presentIncorrectCodeDialog() {
     sharedViewModel.incrementIncorrectCodeAttempts()
 
-    Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_code, Toast.LENGTH_LONG).show()
+    viewLifecycleOwner.lifecycleScope.launch {
+      Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_code, Toast.LENGTH_LONG).show()
 
-    if (isBindingInvalid()) {
-      Log.w(TAG, "Binding not valid, aborting updating keyboard!")
-      return
+      binding.keyboard.displayFailure().addListener(object : AssertedSuccessListener<Boolean?>() {
+        override fun onSuccess(result: Boolean?) {
+          binding.callMeCountDown.visibility = View.VISIBLE
+          binding.resendSmsCountDown.visibility = View.VISIBLE
+          binding.wrongNumber.visibility = View.VISIBLE
+          binding.code.clear()
+          binding.keyboard.displayKeyboard()
+        }
+      })
     }
-
-    binding.keyboard.displayFailure().addListener(object : AssertedSuccessListener<Boolean?>() {
-      override fun onSuccess(result: Boolean?) {
-        binding.callMeCountDown.visibility = View.VISIBLE
-        binding.resendSmsCountDown.visibility = View.VISIBLE
-        binding.wrongNumber.visibility = View.VISIBLE
-        binding.code.clear()
-        binding.keyboard.displayKeyboard()
-      }
-    })
   }
 
   private fun presentGenericError(requestResult: RegistrationResult) {

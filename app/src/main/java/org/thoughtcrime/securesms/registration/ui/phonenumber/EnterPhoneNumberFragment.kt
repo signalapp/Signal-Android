@@ -25,6 +25,7 @@ import androidx.core.view.MenuProvider
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.ConnectionResult
@@ -35,6 +36,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
+import kotlinx.coroutines.launch
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
@@ -51,7 +53,6 @@ import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegat
 import org.thoughtcrime.securesms.registration.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.ui.RegistrationState
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
-import org.thoughtcrime.securesms.registration.ui.isBindingInvalid
 import org.thoughtcrime.securesms.registration.ui.toE164
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -300,54 +301,59 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
   }
 
   private fun handleErrorResponse(result: RegistrationResult) {
-    if (isBindingInvalid()) {
-      Log.w(TAG, "Binding not valid, aborting! Result: $result")
-      result.logCause()
-      return
-    }
-    if (!result.isSuccess()) {
-      Log.i(TAG, "Handling error response.", result.getCause())
-    }
-    when (result) {
-      is RegistrationSessionCreationResult.Success,
-      is VerificationCodeRequestResult.Success -> Unit
-      is RegistrationSessionCreationResult.AttemptsExhausted,
-      is VerificationCodeRequestResult.AttemptsExhausted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_service))
-      is VerificationCodeRequestResult.ChallengeRequired -> {
-        handleChallenges(result.challenges)
+    viewLifecycleOwner.lifecycleScope.launch {
+      if (!result.isSuccess()) {
+        Log.i(TAG, "Handling error response.", result.getCause())
       }
-      is VerificationCodeRequestResult.ExternalServiceFailure -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
-      is VerificationCodeRequestResult.ImpossibleNumber -> {
-        MaterialAlertDialogBuilder(requireContext()).apply {
-          setMessage(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid, fragmentViewModel.phoneNumber?.toE164()))
-          setPositiveButton(android.R.string.ok, null)
-          show()
+      when (result) {
+        is RegistrationSessionCreationResult.Success,
+        is VerificationCodeRequestResult.Success -> Unit
+
+        is RegistrationSessionCreationResult.AttemptsExhausted,
+        is VerificationCodeRequestResult.AttemptsExhausted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_service))
+
+        is VerificationCodeRequestResult.ChallengeRequired -> {
+          handleChallenges(result.challenges)
         }
-      }
-      is VerificationCodeRequestResult.InvalidTransportModeFailure -> {
-        MaterialAlertDialogBuilder(requireContext()).apply {
-          setMessage(R.string.RegistrationActivity_we_couldnt_send_you_a_verification_code)
-          setPositiveButton(R.string.RegistrationActivity_voice_call) { _, _ ->
-            sharedViewModel.requestVerificationCall(requireContext(), ::handleErrorResponse)
+
+        is VerificationCodeRequestResult.ExternalServiceFailure -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
+        is VerificationCodeRequestResult.ImpossibleNumber -> {
+          MaterialAlertDialogBuilder(requireContext()).apply {
+            setMessage(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid, fragmentViewModel.phoneNumber?.toE164()))
+            setPositiveButton(android.R.string.ok, null)
+            show()
           }
-          setNegativeButton(R.string.RegistrationActivity_cancel, null)
-          show()
         }
+
+        is VerificationCodeRequestResult.InvalidTransportModeFailure -> {
+          MaterialAlertDialogBuilder(requireContext()).apply {
+            setMessage(R.string.RegistrationActivity_we_couldnt_send_you_a_verification_code)
+            setPositiveButton(R.string.RegistrationActivity_voice_call) { _, _ ->
+              sharedViewModel.requestVerificationCall(requireContext(), ::handleErrorResponse)
+            }
+            setNegativeButton(R.string.RegistrationActivity_cancel, null)
+            show()
+          }
+        }
+
+        is RegistrationSessionCreationResult.MalformedRequest,
+        is VerificationCodeRequestResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
+
+        is VerificationCodeRequestResult.MustRetry -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
+        is VerificationCodeRequestResult.NonNormalizedNumber -> handleNonNormalizedNumberError(result.originalNumber, result.normalizedNumber, fragmentViewModel.mode)
+        is RegistrationSessionCreationResult.RateLimited -> {
+          Log.i(TAG, "Session creation rate limited! Next attempt: ${result.timeRemaining.milliseconds}")
+          presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
+        }
+
+        is VerificationCodeRequestResult.RateLimited -> {
+          Log.i(TAG, "Code request rate limited! Next attempt: ${result.timeRemaining.milliseconds}")
+          presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
+        }
+
+        is VerificationCodeRequestResult.TokenNotAccepted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human)) { _, _ -> moveToCaptcha() }
+        else -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
       }
-      is RegistrationSessionCreationResult.MalformedRequest,
-      is VerificationCodeRequestResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
-      is VerificationCodeRequestResult.MustRetry -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
-      is VerificationCodeRequestResult.NonNormalizedNumber -> handleNonNormalizedNumberError(result.originalNumber, result.normalizedNumber, fragmentViewModel.mode)
-      is RegistrationSessionCreationResult.RateLimited -> {
-        Log.i(TAG, "Session creation rate limited! Next attempt: ${result.timeRemaining.milliseconds}")
-        presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
-      }
-      is VerificationCodeRequestResult.RateLimited -> {
-        Log.i(TAG, "Code request rate limited! Next attempt: ${result.timeRemaining.milliseconds}")
-        presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
-      }
-      is VerificationCodeRequestResult.TokenNotAccepted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human)) { _, _ -> moveToCaptcha() }
-      else -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
     }
   }
 
