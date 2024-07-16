@@ -13,6 +13,7 @@ import org.signal.core.util.delete
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
@@ -29,6 +30,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
+import org.thoughtcrime.securesms.jobs.MinimalJobSpec
 
 class JobDatabase(
   application: Application,
@@ -183,6 +185,43 @@ class JobDatabase(
 
   @Synchronized
   fun getAllJobSpecs(): List<JobSpec> {
+    return readableDatabase
+      .select()
+      .from(Jobs.TABLE_NAME)
+      .orderBy("${Jobs.CREATE_TIME}, ${Jobs.ID} ASC")
+      .run()
+      .readToList { cursor ->
+        jobSpecFromCursor(cursor)
+      }
+  }
+
+  @Synchronized
+  fun getOldestJobSpecs(limit: Int): List<JobSpec> {
+    return readableDatabase
+      .select()
+      .from(Jobs.TABLE_NAME)
+      .orderBy("${Jobs.CREATE_TIME}, ${Jobs.ID} ASC")
+      .limit(limit)
+      .run()
+      .readToList { cursor ->
+        jobSpecFromCursor(cursor)
+      }
+  }
+
+  @Synchronized
+  fun getJobSpec(id: String): JobSpec? {
+    return readableDatabase
+      .select()
+      .from(Jobs.TABLE_NAME)
+      .where("${Jobs.JOB_SPEC_ID} = ?", id)
+      .run()
+      .readToSingleObject {
+        jobSpecFromCursor(it)
+      }
+  }
+
+  @Synchronized
+  fun getAllMinimalJobSpecs(): List<MinimalJobSpec> {
     val columns = arrayOf(
       Jobs.ID,
       Jobs.JOB_SPEC_ID,
@@ -191,18 +230,23 @@ class JobDatabase(
       Jobs.CREATE_TIME,
       Jobs.LAST_RUN_ATTEMPT_TIME,
       Jobs.NEXT_BACKOFF_INTERVAL,
-      Jobs.RUN_ATTEMPT,
-      Jobs.MAX_ATTEMPTS,
-      Jobs.LIFESPAN,
-      Jobs.SERIALIZED_DATA,
-      Jobs.SERIALIZED_INPUT_DATA,
       Jobs.IS_RUNNING,
       Jobs.PRIORITY
     )
     return readableDatabase
       .query(Jobs.TABLE_NAME, columns, null, null, null, null, "${Jobs.CREATE_TIME}, ${Jobs.ID} ASC")
       .readToList { cursor ->
-        jobSpecFromCursor(cursor)
+        MinimalJobSpec(
+          id = cursor.requireNonNullString(Jobs.JOB_SPEC_ID),
+          factoryKey = cursor.requireNonNullString(Jobs.FACTORY_KEY),
+          queueKey = cursor.requireNonNullString(Jobs.QUEUE_KEY),
+          createTime = cursor.requireLong(Jobs.CREATE_TIME),
+          lastRunAttemptTime = cursor.requireLong(Jobs.LAST_RUN_ATTEMPT_TIME),
+          nextBackoffInterval = cursor.requireLong(Jobs.NEXT_BACKOFF_INTERVAL),
+          priority = cursor.requireInt(Jobs.PRIORITY),
+          isRunning = cursor.requireBoolean(Jobs.IS_RUNNING),
+          isMemoryOnly = false
+        )
       }
   }
 
