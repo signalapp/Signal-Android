@@ -279,19 +279,26 @@ class GroupsV2StateProcessor private constructor(
   ): InternalUpdateResult {
     var currentLocalState: DecryptedGroup? = groupRecord.map { it.requireV2GroupProperties().decryptedGroup }.orNull()
 
-    val latestRevisionOnly = targetRevision == LATEST && (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION)
-
-    if (latestRevisionOnly) {
-      Log.i(TAG, "$logPrefix Latest revision or not a member, update to latest directly")
+    if (targetRevision == LATEST && (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION)) {
+      Log.i(TAG, "$logPrefix Latest revision only, update to latest directly")
       return updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = false)
     }
 
     Log.i(TAG, "$logPrefix Paging from server targetRevision: ${if (targetRevision == LATEST) "latest" else targetRevision}")
 
-    val joinedAtRevision = when (val result = groupsApi.getGroupJoinedAt(groupsV2Authorization.getAuthorizationForToday(serviceIds, groupSecretParams))) {
-      is NetworkResult.Success -> result.result
-      else -> return InternalUpdateResult.from(result.getCause()!!)
+    val joinedAtResult = groupsApi.getGroupJoinedAt(groupsV2Authorization.getAuthorizationForToday(serviceIds, groupSecretParams))
+
+    if (joinedAtResult !is NetworkResult.Success) {
+      val joinedAtFailure = InternalUpdateResult.from(joinedAtResult.getCause()!!)
+      if (joinedAtFailure is InternalUpdateResult.NotAMember) {
+        Log.i(TAG, "$logPrefix Not a member, try to update to latest directly")
+        return updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = currentLocalState != null)
+      } else {
+        return joinedAtFailure
+      }
     }
+
+    val joinedAtRevision = joinedAtResult.result
 
     val sendEndorsementExpiration = groupRecord.map { it.groupSendEndorsementExpiration }.orElse(0L)
 

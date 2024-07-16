@@ -450,6 +450,7 @@ class GroupsV2StateProcessorTest {
     }
 
     every { groupsV2API.getGroupJoinedAt(any()) } returns NetworkResult.StatusCodeError(NotInGroupException())
+    every { groupsV2API.getGroupAsResult(any(), any()) } returns NetworkResult.StatusCodeError(NotInGroupException())
 
     val signedChange = DecryptedGroupChange(
       revision = 2,
@@ -477,6 +478,7 @@ class GroupsV2StateProcessorTest {
     }
 
     every { groupsV2API.getGroupJoinedAt(any()) } returns NetworkResult.StatusCodeError(NotInGroupException())
+    every { groupsV2API.getGroupAsResult(any(), any()) } returns NetworkResult.StatusCodeError(NotInGroupException())
 
     val signedChange = DecryptedGroupChange(
       revision = 3,

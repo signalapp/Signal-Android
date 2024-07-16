@@ -2798,7 +2798,6 @@ public class PushServiceSocket {
   private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = (responseCode, body) -> {
     if (responseCode == 409) throw new GroupExistsException();
   };;
-  private static final ResponseCodeHandler GROUPS_V2_GET_LOGS_HANDLER       = NO_HANDLER;
   private static final ResponseCodeHandler GROUPS_V2_GET_CURRENT_HANDLER    = (responseCode, body) -> {
     switch (responseCode) {
       case 403: throw new NotInGroupException();
@@ -2893,7 +2892,7 @@ public class PushServiceSocket {
                                                 "GET",
                                                 null,
                                                 headers,
-                                                GROUPS_V2_GET_LOGS_HANDLER))
+                                                GROUPS_V2_GET_CURRENT_HANDLER))
     {
 
       if (response.body() == null) {
