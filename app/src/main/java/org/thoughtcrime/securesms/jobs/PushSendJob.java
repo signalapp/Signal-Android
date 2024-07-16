@@ -26,6 +26,7 @@ import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.contactshare.Contact;
@@ -248,15 +249,17 @@ public abstract class PushSendJob extends SendJob {
                              .toList());
 
     return new HashSet<>(Stream.of(attachments).map(a -> {
-                                                 AttachmentUploadJob attachmentUploadJob = new AttachmentUploadJob(((DatabaseAttachment) a).attachmentId);
+                                 final AttachmentId attachmentId = ((DatabaseAttachment) a).attachmentId;
+                                 Log.d(TAG, "Enqueueing job chain to upload " + attachmentId);
+                                 AttachmentUploadJob attachmentUploadJob = new AttachmentUploadJob(attachmentId);
 
-                                                 jobManager.startChain(AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
-                                                           .then(attachmentUploadJob)
-                                                           .enqueue();
+                                 jobManager.startChain(AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
+                                           .then(attachmentUploadJob)
+                                           .enqueue();
 
-                                                 return attachmentUploadJob.getId();
-                                               })
-                                               .toList());
+                                 return attachmentUploadJob.getId();
+                               })
+                               .toList());
   }
 
   protected @NonNull List<SignalServiceAttachment> getAttachmentPointersFor(List<Attachment> attachments) {

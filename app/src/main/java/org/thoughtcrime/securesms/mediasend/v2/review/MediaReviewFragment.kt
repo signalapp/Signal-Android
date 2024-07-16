@@ -189,12 +189,14 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
     val multiselectLauncher = registerForActivityResult(multiselectContract) { keys ->
       if (keys.isNotEmpty()) {
+        Log.d(TAG, "Performing send from multi-select activity result.")
         performSend(keys)
       }
     }
 
     val storiesLauncher = registerForActivityResult(storiesContract) { keys ->
       if (keys.isNotEmpty()) {
+        Log.d(TAG, "Performing send from stories activity result.")
         performSend(keys)
       }
     }
@@ -243,11 +245,15 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       } else if (sharedViewModel.isAddToGroupStoryFlow) {
         MaterialAlertDialogBuilder(requireContext())
           .setMessage(getString(R.string.MediaReviewFragment__add_to_the_group_story, sharedViewModel.state.value!!.recipient!!.getDisplayName(requireContext())))
-          .setPositiveButton(R.string.MediaReviewFragment__add_to_story) { _, _ -> performSend() }
+          .setPositiveButton(R.string.MediaReviewFragment__add_to_story) { _, _ ->
+            Log.d(TAG, "Performing send add to group story dialog.")
+            performSend()
+          }
           .setNegativeButton(android.R.string.cancel) { _, _ -> }
           .show()
         scheduledSendTime = null
       } else {
+        Log.d(TAG, "Performing send from send button.")
         performSend()
       }
     }

@@ -1044,6 +1044,7 @@ class AttachmentTable(
 
   @Throws(MmsException::class)
   fun insertAttachmentForPreUpload(attachment: Attachment): DatabaseAttachment {
+    Log.d(TAG, "Inserting attachment $attachment for pre-upload.")
     val result = insertAttachmentsForMessage(PREUPLOAD_MESSAGE_ID, listOf(attachment), emptyList())
 
     if (result.values.isEmpty()) {

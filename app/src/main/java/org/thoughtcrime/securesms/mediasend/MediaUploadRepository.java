@@ -67,7 +67,9 @@ public class MediaUploadRepository {
   public void startUpload(@NonNull Collection<Media> mediaItems, @Nullable Recipient recipient) {
     executor.execute(() -> {
       for (Media media : mediaItems) {
+        Log.d(TAG, "Canceling existing preuploads.");
         cancelUploadInternal(media);
+        Log.d(TAG, "Re-uploading media with recipient.");
         uploadMediaInternal(media, recipient);
       }
     });
@@ -85,7 +87,9 @@ public class MediaUploadRepository {
         boolean same     = oldMedia.equals(newMedia) && hasSameTransformProperties(oldMedia, newMedia);
 
         if (!same || !uploadResults.containsKey(newMedia)) {
+          Log.d(TAG, "Canceling existing preuploads.");
           cancelUploadInternal(oldMedia);
+          Log.d(TAG, "Applying media updates.");
           uploadMediaInternal(newMedia, recipient);
         }
       }
@@ -104,6 +108,7 @@ public class MediaUploadRepository {
   }
 
   public void cancelUpload(@NonNull Media media) {
+    Log.d(TAG, "User canceling media upload.");
     executor.execute(() -> cancelUploadInternal(media));
   }
 
