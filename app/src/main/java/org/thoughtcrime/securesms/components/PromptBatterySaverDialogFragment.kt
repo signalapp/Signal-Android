@@ -66,6 +66,8 @@ class PromptBatterySaverDialogFragment : FixedRoundedCornerBottomSheetDialogFrag
       PowerManagerCompat.requestIgnoreBatteryOptimizations(requireContext())
       Log.i(TAG, "Requested to ignore battery optimizations, clearing local metrics.")
       LocalMetrics.clear()
+      SignalStore.uiHints.markDismissedBatterySaverPrompt()
+      dismiss()
     }
     binding.dismissButton.setOnClickListener {
       Log.i(TAG, "User denied request to ignore battery optimizations.")
