@@ -220,6 +220,7 @@ public class LinkPreviewView extends FrameLayout {
       thumbnailState.applyState(thumbnail);
       thumbnail.get().setImageResource(requestManager, new ImageSlide(linkPreview.getThumbnail().get()), type == TYPE_CONVERSATION && !scheduleMessageMode, false);
       thumbnail.get().showSecondaryText(false);
+      thumbnail.get().setOutlineEnabled(true);
     } else if (callLinkRootKey != null) {
       thumbnail.setVisibility(VISIBLE);
       thumbnailState.applyState(thumbnail);
@@ -228,9 +229,10 @@ public class LinkPreviewView extends FrameLayout {
           new FallbackAvatarDrawable(
               getContext(),
               new FallbackAvatar.Resource.CallLink(AvatarColorHash.forCallLink(callLinkRootKey.getKeyBytes()))
-          )
+          ).circleCrop()
       );
       thumbnail.get().showSecondaryText(false);
+      thumbnail.get().setOutlineEnabled(false);
     } else {
       thumbnail.setVisibility(GONE);
     }
