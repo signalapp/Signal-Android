@@ -41,6 +41,7 @@ class PartDataSource implements DataSource {
 
   private Uri         uri;
   private InputStream inputStream;
+  private DataSpec    activeDataSpec;
 
   PartDataSource(@Nullable TransferListener listener) {
     this.listener = listener;
@@ -52,7 +53,8 @@ class PartDataSource implements DataSource {
 
   @Override
   public long open(DataSpec dataSpec) throws IOException {
-    this.uri = dataSpec.uri;
+    this.uri            = dataSpec.uri;
+    this.activeDataSpec = dataSpec;
 
     AttachmentTable    attachmentDatabase = SignalDatabase.attachments();
     PartUriParser      partUri            = new PartUriParser(uri);
@@ -116,7 +118,7 @@ class PartDataSource implements DataSource {
     int read = inputStream.read(buffer, offset, readLength);
 
     if (read > 0 && listener != null) {
-      listener.onBytesTransferred(this, null, false, read);
+      listener.onBytesTransferred(this, activeDataSpec, false, read);
     }
 
     return read;
