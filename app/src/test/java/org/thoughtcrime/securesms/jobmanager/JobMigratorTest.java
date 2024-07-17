@@ -12,8 +12,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+import kotlin.jvm.functions.Function1;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
@@ -88,7 +92,14 @@ public class JobMigratorTest {
 
   private static JobStorage simpleJobStorage() {
     JobStorage jobStorage = mock(JobStorage.class);
-    when(jobStorage.getAllJobSpecs()).thenReturn(new ArrayList<>(Collections.singletonList(new JobSpec("1", "f1", null, 1, 1, 1, 1, 1, 1, null, null, false, false, 0))));
+    JobSpec    job        = new JobSpec("1", "f1", null, 1, 1, 1, 1, 1, 1, null, null, false, false, 0);
+
+    when(jobStorage.debugGetJobSpecs(anyInt())).thenReturn(new ArrayList<>(Collections.singletonList(job)));
+    doAnswer(invocation -> {
+      Function1<JobSpec, JobSpec> transformer = invocation.getArgument(0);
+      return transformer.invoke(job);
+    }).when(jobStorage).transformJobs(any());
+
     return jobStorage;
   }
 

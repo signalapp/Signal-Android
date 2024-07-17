@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 @SuppressLint("UseSparseArrays")
@@ -47,40 +46,35 @@ public class JobMigrator {
    * @return The version that has been migrated to.
    */
   int migrate(@NonNull JobStorage jobStorage) {
-    List<JobSpec> jobSpecs = jobStorage.getAllJobSpecs();
-
     for (int i = lastSeenVersion; i < currentVersion; i++) {
       Log.i(TAG, "Migrating from " + i + " to " + (i + 1));
-
-      ListIterator<JobSpec> iter      = jobSpecs.listIterator();
-      JobMigration          migration = migrations.get(i + 1);
-
+      JobMigration migration = migrations.get(i + 1);
       assert migration != null;
 
-      while (iter.hasNext()) {
-        JobSpec     jobSpec         = iter.next();
-        JobData     originalJobData = new JobData(jobSpec.getFactoryKey(), jobSpec.getQueueKey(), jobSpec.getMaxAttempts(), jobSpec.getLifespan(), jobSpec.getSerializedData());
-        JobData     updatedJobData  = migration.migrate(originalJobData);
-        JobSpec     updatedJobSpec  = new JobSpec(jobSpec.getId(),
-                                                  updatedJobData.getFactoryKey(),
-                                                  updatedJobData.getQueueKey(),
-                                                  jobSpec.getCreateTime(),
-                                                  jobSpec.getLastRunAttemptTime(),
-                                                  jobSpec.getNextBackoffInterval(),
-                                                  jobSpec.getRunAttempt(),
-                                                  updatedJobData.getMaxAttempts(),
-                                                  updatedJobData.getLifespan(),
-                                                  updatedJobData.getData(),
-                                                  jobSpec.getSerializedInputData(),
-                                                  jobSpec.isRunning(),
-                                                  jobSpec.isMemoryOnly(),
-                                                  jobSpec.getPriority());
+      jobStorage.transformJobs(jobSpec -> {
+        JobData originalJobData = new JobData(jobSpec.getFactoryKey(), jobSpec.getQueueKey(), jobSpec.getMaxAttempts(), jobSpec.getLifespan(), jobSpec.getSerializedData());
+        JobData updatedJobData  = migration.migrate(originalJobData);
 
-        iter.set(updatedJobSpec);
-      }
+        if (updatedJobData == originalJobData) {
+          return jobSpec;
+        }
+
+        return new JobSpec(jobSpec.getId(),
+                           updatedJobData.getFactoryKey(),
+                           updatedJobData.getQueueKey(),
+                           jobSpec.getCreateTime(),
+                           jobSpec.getLastRunAttemptTime(),
+                           jobSpec.getNextBackoffInterval(),
+                           jobSpec.getRunAttempt(),
+                           updatedJobData.getMaxAttempts(),
+                           updatedJobData.getLifespan(),
+                           updatedJobData.getData(),
+                           jobSpec.getSerializedInputData(),
+                           jobSpec.isRunning(),
+                           jobSpec.isMemoryOnly(),
+                           jobSpec.getPriority());
+      });
     }
-
-    jobStorage.updateJobs(jobSpecs);
 
     return currentVersion;
   }

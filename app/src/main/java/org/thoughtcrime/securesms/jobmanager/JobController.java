@@ -231,26 +231,13 @@ class JobController {
 
   @WorkerThread
   synchronized void update(@NonNull JobUpdater updater) {
-    List<JobSpec> allJobs     = jobStorage.getAllJobSpecs();
-    List<JobSpec> updatedJobs = new LinkedList<>();
-
-    for (JobSpec job : allJobs) {
-      JobSpec updated = updater.update(job);
-      if (updated != job) {
-        updatedJobs.add(updated);
-      }
-    }
-
-    jobStorage.updateJobs(updatedJobs);
-
+    jobStorage.transformJobs(updater::update);
     notifyAll();
   }
 
   @WorkerThread
   synchronized List<JobSpec> findJobs(@NonNull Predicate<JobSpec> predicate) {
-    return Stream.of(jobStorage.getAllJobSpecs())
-                 .filter(predicate::test)
-                 .toList();
+    return jobStorage.getAllMatchingFilter(predicate);
   }
 
   @WorkerThread
@@ -360,9 +347,9 @@ class JobController {
    */
   @WorkerThread
   synchronized @NonNull String getDebugInfo() {
-    List<JobSpec>        jobs         = jobStorage.getAllJobSpecs();
-    List<ConstraintSpec> constraints  = jobStorage.getAllConstraintSpecs();
-    List<DependencySpec> dependencies = jobStorage.getAllDependencySpecs();
+    List<JobSpec>        jobs         = jobStorage.debugGetJobSpecs(1000);
+    List<ConstraintSpec> constraints  = jobStorage.debugGetConstraintSpecs(1000);
+    List<DependencySpec> dependencies = jobStorage.debugGetAllDependencySpecs();
 
     StringBuilder info = new StringBuilder();
 

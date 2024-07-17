@@ -20,9 +20,9 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    DataSet1.assertJobsMatch(subject.allJobSpecs)
-    DataSet1.assertConstraintsMatch(subject.allConstraintSpecs)
-    DataSet1.assertDependenciesMatch(subject.allDependencySpecs)
+    DataSet1.assertJobsMatch(subject.debugGetJobSpecs(1000))
+    DataSet1.assertConstraintsMatch(subject.debugGetConstraintSpecs(1000))
+    DataSet1.assertDependenciesMatch(subject.debugGetAllDependencySpecs())
   }
 
   @Test
@@ -30,9 +30,9 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSetCircularDependency.FULL_SPECS))
     subject.init()
 
-    DataSetCircularDependency.assertJobsMatch(subject.allJobSpecs)
-    DataSetCircularDependency.assertConstraintsMatch(subject.allConstraintSpecs)
-    DataSetCircularDependency.assertDependenciesMatch(subject.allDependencySpecs)
+    DataSetCircularDependency.assertJobsMatch(subject.debugGetJobSpecs(1000))
+    DataSetCircularDependency.assertConstraintsMatch(subject.debugGetConstraintSpecs(1000))
+    DataSetCircularDependency.assertDependenciesMatch(subject.debugGetAllDependencySpecs())
   }
 
   @Test
@@ -59,9 +59,9 @@ class FastJobStorageTest {
   fun `insertJobs - data can be found`() {
     val subject = FastJobStorage(mockDatabase())
     subject.insertJobs(DataSet1.FULL_SPECS)
-    DataSet1.assertJobsMatch(subject.allJobSpecs)
-    DataSet1.assertConstraintsMatch(subject.allConstraintSpecs)
-    DataSet1.assertDependenciesMatch(subject.allDependencySpecs)
+    DataSet1.assertJobsMatch(subject.debugGetJobSpecs(1000))
+    DataSet1.assertConstraintsMatch(subject.debugGetConstraintSpecs(1000))
+    DataSet1.assertDependenciesMatch(subject.debugGetAllDependencySpecs())
   }
 
   @Test
@@ -158,6 +158,71 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2, fullSpec3)))
     subject.init()
     subject.updateJobs(listOf(update1, update2))
+
+    subject.getJobSpec("1") assertIs update1
+    subject.getJobSpec("2") assertIs update2
+    subject.getJobSpec("3") assertIs fullSpec3.jobSpec
+  }
+
+  @Test
+  fun `transformJobs - writes to database`() {
+    val database = mockDatabase(DataSet1.FULL_SPECS)
+
+    val subject = FastJobStorage(database)
+    subject.init()
+    val transformer: (JobSpec) -> JobSpec = { it }
+    subject.transformJobs(transformer)
+
+    verify { database.transformJobs(transformer) }
+  }
+
+  @Test
+  fun `transformJobs - updates all fields`() {
+    val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1"), emptyList(), emptyList())
+    val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2"), emptyList(), emptyList())
+    val fullSpec3 = FullSpec(jobSpec(id = "3", factoryKey = "f3"), emptyList(), emptyList())
+
+    val update1 = jobSpec(
+      id = "1",
+      factoryKey = "g1",
+      queueKey = "q1",
+      createTime = 2,
+      lastRunAttemptTime = 2,
+      nextBackoffInterval = 2,
+      runAttempt = 2,
+      maxAttempts = 2,
+      lifespan = 2,
+      serializedData = "abc".toByteArray(),
+      serializedInputData = null,
+      isRunning = true,
+      isMemoryOnly = false
+    )
+    val update2 = jobSpec(
+      id = "2",
+      factoryKey = "g2",
+      queueKey = "q2",
+      createTime = 3,
+      lastRunAttemptTime = 3,
+      nextBackoffInterval = 3,
+      runAttempt = 3,
+      maxAttempts = 3,
+      lifespan = 3,
+      serializedData = "def".toByteArray(),
+      serializedInputData = "ghi".toByteArray(),
+      isRunning = true,
+      isMemoryOnly = false
+    )
+
+    val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2, fullSpec3)))
+    subject.init()
+
+    subject.transformJobs {
+      when (it.id) {
+        "1" -> update1
+        "2" -> update2
+        else -> it
+      }
+    }
 
     subject.getJobSpec("1") assertIs update1
     subject.getJobSpec("2") assertIs update2
@@ -614,9 +679,9 @@ class FastJobStorageTest {
 
     subject.deleteJobs(listOf("id1"))
 
-    val jobs = subject.allJobSpecs
-    val constraints = subject.allConstraintSpecs
-    val dependencies = subject.allDependencySpecs
+    val jobs = subject.debugGetJobSpecs(1000)
+    val constraints = subject.debugGetConstraintSpecs(1000)
+    val dependencies = subject.debugGetAllDependencySpecs()
 
     jobs.size assertIs 2
     jobs[0] assertIs DataSet1.JOB_2
@@ -727,11 +792,11 @@ class FastJobStorageTest {
     val dependencies = fullSpecs.map { it.dependencySpecs }.flatten().toMutableList()
 
     val mock = mockk<JobDatabase>(relaxed = true)
-    every { mock.getAllJobSpecs() } returns jobs
+    every { mock.getJobSpecs(any()) } returns jobs
     every { mock.getAllMinimalJobSpecs() } returns jobs.map { it.toMinimalJobSpec() }
-    every { mock.getOldestJobSpecs(any()) } answers { jobs.sortedBy { it.createTime }.take(firstArg()) }
-    every { mock.getAllConstraintSpecs() } returns constraints
+    every { mock.getConstraintSpecs(any()) } returns constraints
     every { mock.getAllDependencySpecs() } returns dependencies
+    every { mock.getConstraintSpecsForJobs(any()) } returns constraints
     every { mock.getJobSpec(any()) } answers { jobs.first { it.id == firstArg() } }
     every { mock.insertJobs(any()) } answers {
       val inserts: List<FullSpec> = firstArg()
@@ -753,6 +818,20 @@ class FastJobStorageTest {
         jobs.removeIf { it.id == update.id }
         jobs += update
       }
+    }
+    every { mock.transformJobs(any()) } answers {
+      val transformer: (JobSpec) -> JobSpec = firstArg()
+      val iterator = jobs.listIterator()
+      val out = mutableListOf<JobSpec>()
+      while (iterator.hasNext()) {
+        val current = iterator.next()
+        val updated = transformer(current)
+        iterator.set(transformer(current))
+        if (current != updated) {
+          out += updated
+        }
+      }
+      out
     }
     every { mock.updateAllJobsToBePending() } answers {
       val iterator = jobs.listIterator()
