@@ -7,6 +7,8 @@ import android.view.Window
 import androidx.activity.viewModels
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.core.util.logging.Log
+import org.signal.core.util.logging.Log.tag
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
@@ -24,6 +26,8 @@ import java.util.concurrent.TimeUnit
 open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner, InAppPaymentComponent {
 
   companion object {
+    private val TAG = tag(ConversationActivity::class.java)
+
     private const val STATE_WATERMARK = "share_data_watermark"
   }
 
@@ -68,6 +72,13 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
     outState.putLong(STATE_WATERMARK, shareDataTimestampViewModel.timestamp)
+  }
+
+  override fun onStop() {
+    super.onStop()
+    if (isChangingConfigurations) {
+      Log.i(TAG, "Conversation recreating due to configuration change")
+    }
   }
 
   override fun onDestroy() {
