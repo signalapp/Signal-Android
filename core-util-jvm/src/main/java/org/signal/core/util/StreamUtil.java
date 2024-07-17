@@ -106,6 +106,7 @@ public final class StreamUtil {
     }
 
     in.close();
+    out.flush();
     out.close();
 
     return total;

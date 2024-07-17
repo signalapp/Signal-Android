@@ -5,7 +5,9 @@
 package org.thoughtcrime.securesms.jobs
 
 import android.text.TextUtils
+import okhttp3.internal.http2.StreamResetException
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.inRoundedDays
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
@@ -23,6 +25,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.protos.AttachmentUploadJobData
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -39,6 +42,7 @@ import java.util.Optional
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * Uploads an attachment without alteration.
@@ -55,6 +59,8 @@ class AttachmentUploadJob private constructor(
     const val KEY = "AttachmentUploadJobV3"
 
     private val TAG = Log.tag(AttachmentUploadJob::class.java)
+
+    private val NETWORK_RESET_THRESHOLD = 1.minutes.inWholeMilliseconds
 
     val UPLOAD_REUSE_THRESHOLD = 3.days.inWholeMilliseconds
 
@@ -162,6 +168,19 @@ class AttachmentUploadJob private constructor(
           ArchiveThumbnailUploadJob.enqueueIfNecessary(databaseAttachment.attachmentId)
         }
       }
+    } catch (e: StreamResetException) {
+      val lastReset = SignalStore.misc.lastNetworkResetDueToStreamResets
+      val now = System.currentTimeMillis()
+
+      if (lastReset > now || lastReset + NETWORK_RESET_THRESHOLD > now) {
+        Log.w(TAG, "Our existing connections is getting repeatedly denied by the server, reset network to establish new connections")
+        AppDependencies.resetNetwork()
+        SignalStore.misc.lastNetworkResetDueToStreamResets = now
+      } else {
+        Log.i(TAG, "Stream reset during upload, not resetting network yet, last reset: $lastReset")
+      }
+
+      throw e
     } catch (e: NonSuccessfulResumableUploadResponseCodeException) {
       if (e.code == 400) {
         Log.w(TAG, "Failed to upload due to a 400 when getting resumable upload information. Clearing upload spec.", e)
@@ -217,9 +236,18 @@ class AttachmentUploadJob private constructor(
         uploadSpec = resumableUploadSpec,
         cancellationSignal = { isCanceled },
         progressListener = object : SignalServiceAttachment.ProgressListener {
+          private var lastUpdate = 0L
+          private val updateRate = 500.milliseconds.inWholeMilliseconds
+
           override fun onAttachmentProgress(total: Long, progress: Long) {
-            EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress))
-            notification?.progress = (progress.toFloat() / total)
+            val now = System.currentTimeMillis()
+            if (now < lastUpdate || lastUpdate + updateRate < now || progress >= total) {
+              SignalExecutors.BOUNDED_IO.execute {
+                EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress))
+                notification?.progress = (progress.toFloat() / total)
+              }
+              lastUpdate = now
+            }
           }
 
           override fun shouldCancel(): Boolean {

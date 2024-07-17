@@ -50,7 +50,7 @@ class DigestingRequestBody(
       outputStreamFactory.createFor(inner)
     }
 
-    val buffer = ByteArray(8192)
+    val buffer = ByteArray(16 * 1024)
     var read: Int
 
     while (inputStream.read(buffer, 0, buffer.size).also { read = it } != -1) {

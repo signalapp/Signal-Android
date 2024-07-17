@@ -37,6 +37,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val LEAST_ACTIVE_LINKED_DEVICE = "misc.linked_device.least_active"
     private const val NEXT_DATABASE_ANALYSIS_TIME = "misc.next_database_analysis_time"
     private const val LOCK_SCREEN_ATTEMPT_COUNT = "misc.lock_screen_attempt_count"
+    private const val LAST_NETWORK_RESET_TIME = "misc.last_network_reset_time"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -258,4 +259,6 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
   fun incrementLockScreenAttemptCount() {
     lockScreenAttemptCount++
   }
+
+  var lastNetworkResetDueToStreamResets: Long by longValue(LAST_NETWORK_RESET_TIME, 0L)
 }
