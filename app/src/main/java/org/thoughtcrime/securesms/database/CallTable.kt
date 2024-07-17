@@ -605,22 +605,6 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     return handleCallLinkUpdate(callRecipient, timestamp, CallId.fromEra(eraId), Direction.INCOMING)
   }
 
-  fun insertOrUpdateGroupCallFromExternalEvent(
-    groupRecipientId: RecipientId,
-    sender: RecipientId,
-    timestamp: Long,
-    messageGroupCallEraId: String?
-  ) {
-    insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId,
-      sender,
-      timestamp,
-      messageGroupCallEraId,
-      emptyList(),
-      false
-    )
-  }
-
   fun insertOrUpdateGroupCallFromLocalEvent(
     groupRecipientId: RecipientId,
     sender: RecipientId,

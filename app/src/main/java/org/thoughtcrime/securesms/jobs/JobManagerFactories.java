@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint;
 import org.thoughtcrime.securesms.jobmanager.migrations.DonationReceiptRedemptionJobMigration;
+import org.thoughtcrime.securesms.jobmanager.migrations.GroupCallPeekJobDataMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.PushDecryptMessageJobEnvelopeMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.PushProcessMessageJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.PushProcessMessageQueueJobMigration;
@@ -380,6 +381,7 @@ public final class JobManagerFactories {
                          new PushDecryptMessageJobEnvelopeMigration(),
                          new SenderKeyDistributionSendJobRecipientMigration(),
                          new PushProcessMessageJobMigration(),
-                         new DonationReceiptRedemptionJobMigration());
+                         new DonationReceiptRedemptionJobMigration(),
+                         new GroupCallPeekJobDataMigration());
   }
 }
