@@ -2328,7 +2328,7 @@ class ConversationFragment :
 
     viewModel.resolveMessageToEdit(conversationMessage)
       .subscribeBy { updatedMessage ->
-        inputPanel.enterEditMessageMode(Glide.with(this), updatedMessage, false, false)
+        inputPanel.enterEditModeIfPossible(Glide.with(this), updatedMessage, false, false)
       }
       .addTo(disposables)
   }
