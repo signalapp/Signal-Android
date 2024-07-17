@@ -80,8 +80,13 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     private val TAG = Log.tag(CallLogFragment::class.java)
   }
 
+  private var filterViewOffsetChangeListener: AppBarLayout.OnOffsetChangedListener? = null
+
   private val viewModel: CallLogViewModel by activityViewModels()
-  private val binding: CallLogFragmentBinding by ViewBinderDelegate(CallLogFragmentBinding::bind)
+  private val binding: CallLogFragmentBinding by ViewBinderDelegate(CallLogFragmentBinding::bind) {
+    binding.recyclerCoordinatorAppBar.removeOnOffsetChangedListener(filterViewOffsetChangeListener)
+  }
+
   private val disposables = LifecycleDisposable()
   private val callLogContextMenu = CallLogContextMenu(this, this)
   private val callLogActionMode = CallLogActionMode(CallLogActionModeCallback())
@@ -328,10 +333,13 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       }
     }
 
-    binding.recyclerCoordinatorAppBar.addOnOffsetChangedListener { layout: AppBarLayout, verticalOffset: Int ->
+    filterViewOffsetChangeListener = AppBarLayout.OnOffsetChangedListener {
+        layout: AppBarLayout, verticalOffset: Int ->
       val progress = 1 - verticalOffset.toFloat() / -layout.height
       binding.pullView.onUserDrag(progress)
     }
+
+    binding.recyclerCoordinatorAppBar.addOnOffsetChangedListener(filterViewOffsetChangeListener)
 
     if (viewModel.filterSnapshot != CallLogFilter.ALL) {
       binding.root.doAfterNextLayout {
