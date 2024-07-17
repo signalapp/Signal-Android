@@ -180,6 +180,8 @@ class ChatItemImportInserter(
     }
     val messageInsert = chatItem.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId)
     if (chatItem.revisions.isNotEmpty()) {
+      // Flush to avoid having revisions cross batch boundaries, which will cause a foreign key failure
+      flush()
       val originalId = messageId
       val latestRevisionId = originalId + chatItem.revisions.size
       val sortedRevisions = chatItem.revisions.sortedBy { it.dateSent }.map { it.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId) }

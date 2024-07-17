@@ -32,7 +32,7 @@ public final class GroupCallUpdateDetailsUtil {
    */
   public static @NonNull String createBodyFromBackup(@NonNull GroupCall groupCallChatUpdate, ServiceId.ACI startedCallAci) {
     GroupCallUpdateDetails details = new GroupCallUpdateDetails.Builder()
-        .startedCallUuid(Objects.toString(startedCallAci, null))
+        .startedCallUuid(Objects.toString(startedCallAci, ""))
         .startedCallTimestamp(groupCallChatUpdate.startedCallTimestamp)
         .endedCallTimestamp(groupCallChatUpdate.endedCallTimestamp)
         .isCallFull(false)

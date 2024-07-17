@@ -22,7 +22,6 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob
@@ -772,8 +771,6 @@ class RegistrationViewModel : ViewModel() {
     Log.v(TAG, "onSuccessfulRegistration()")
     RegistrationRepository.registerAccountLocally(context, registrationData, remoteResult, reglockEnabled)
 
-    restoreBackupTier()
-
     if (reglockEnabled) {
       SignalStore.onboarding.clearAll()
       val stopwatch = Stopwatch("RegistrationLockRestore")
@@ -863,12 +860,6 @@ class RegistrationViewModel : ViewModel() {
 
   companion object {
     private val TAG = Log.tag(RegistrationViewModel::class.java)
-
-    private suspend fun restoreBackupTier() = withContext(Dispatchers.IO) {
-      val startTime = System.currentTimeMillis()
-      BackupRepository.restoreBackupTier()
-      Log.i(TAG, "Took " + (System.currentTimeMillis() - startTime) + " ms to restore the backup tier..")
-    }
 
     private suspend fun refreshRemoteConfig() = withContext(Dispatchers.IO) {
       val startTime = System.currentTimeMillis()
