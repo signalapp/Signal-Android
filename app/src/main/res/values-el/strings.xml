@@ -1099,7 +1099,7 @@
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Οι ειδοποιήσεις ενδέχεται να καθυστερήσουν λόγω βελτιστοποιήσεων της μπαταρίας</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
-    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Απενεργοποίησε τις βελτιστοποιήσεις μπαταρίας για το Signal για να διασφαλίσεις ότι οι ειδοποιήσεις μηνυμάτων δεν θα καθυστερούν. Πάτα \"Συνέχεια\" για να δεις τις οδηγίες που αφορούν την εκάστοτε συσκευή.</string>
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Απενεργοποίησε τις βελτιστοποιήσεις μπαταρίας για το Signal για να διασφαλίσεις ότι οι ειδοποιήσεις μηνυμάτων δεν θα καθυστερούν. Πάτα «Συνέχεια» για να δεις τις οδηγίες που αφορούν την εκάστοτε συσκευή.</string>
     <!-- Button to dismiss notification help prompt -->
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Όχι, ευχαριστώ</string>
     <!-- Button to continue and go to Signal support website -->
@@ -1350,6 +1350,12 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Κράτα πατημένο για ηχογράφηση και άσε για αποστολή</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Επεξεργασία μηνύματος</string>
+    <!-- Dialog title shown if users are about to discard their draft message -->
+    <string name="InputPanel__discard_draft">Discard draft?</string>
+    <!-- Dialog message explaining their action cannot be reversed -->
+    <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
+    <!-- Button inside an alert dialog confirming the deletion of their draft -->
+    <string name="InputPanel__discard">Discard</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Μοιράσου</string>
@@ -7011,28 +7017,28 @@
         <item quantity="other">Το πρόγραμμα δημιουργίας αντιγράφων ασφαλείας των πολυμέσων Signal ακυρώθηκε επειδή δεν μπορέσαμε να επεξεργαστούμε την πληρωμή σου. Έχεις %1$d ημέρες για να κατεβάσεις όλα τα πολυμέσα που είναι αποθηκευμένα ως αντίγραφα ασφαλείας. Μετά από %1$d ημέρες, τα πολυμέσα στο αντίγραφο ασφαλείας σου θα διαγραφούν.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
-    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Μπορείς να αρχίσετε να πληρώνετε ξανά για τα αντίγραφα ασφαλείας ανά πάσα στιγμή για να συνεχίσεις να δημιουργείς αντίγραφα ασφαλείας για όλα τα πολυμέσα σου. </string>
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Μπορείς να αρχίσεις να πληρώνεις ξανά για τα αντίγραφα ασφαλείας ανά πάσα στιγμή για να συνεχίσεις να δημιουργείς αντίγραφα ασφαλείας για όλα τα πολυμέσα σου. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Τα πολυμέσα σου θα διαγραφούν σήμερα</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Το πρόγραμμα δημιουργίας αντιγράφων ασφαλείας των πολυμέσων Signal ακυρώθηκε επειδή δεν μπορέσαμε να επεξεργαστούμε την πληρωμή σου. Αυτή είναι η τελευταία σου ευκαιρία να κατεβάσετε τα πολυμέσα σου ως αντίγραφα ασφαλείας πριν διαγραφούν.</string>
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Το πρόγραμμα δημιουργίας αντιγράφων ασφαλείας των πολυμέσων Signal ακυρώθηκε επειδή δεν μπορέσαμε να επεξεργαστούμε την πληρωμή σου. Αυτή είναι η τελευταία σου ευκαιρία να κατεβάσεις τα πολυμέσα σου ως αντίγραφα ασφαλείας πριν διαγραφούν.</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">Δεν είναι δυνατή η ολοκλήρωση της λήψης</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Η συσκευή σου δεν διαθέτει αρκετό ελεύθερο χώρο. Απελευθέρωσε έως και %1$s χώρου και κάνε λήψη των πολυμέσων που είναι αποθηκευμένα ως αντίγραφα ασφαλείας.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">Αν επιλέξεις \"Παράλειψη\", τα πολυμέσα στο αντίγραφο ασφαλείας θα διαγραφούν σε %1$d ημέρα.</item>
-        <item quantity="other">Αν επιλέξεις \"Παράλειψη\", τα πολυμέσα στο αντίγραφο ασφαλείας θα διαγραφούν σε %1$d ημέρες.</item>
+        <item quantity="one">Αν επιλέξεις «Παράλειψη», τα πολυμέσα στο αντίγραφο ασφαλείας σου θα διαγραφούν σε %1$d ημέρα.</item>
+        <item quantity="other">Αν επιλέξεις «Παράλειψη», τα πολυμέσα στο αντίγραφο ασφαλείας σου θα διαγραφούν σε %1$d ημέρες.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Δεν ήταν δυνατή η διαδικασία πληρωμής της δημιουργίας αντιγράφων ασφαλείας</string>
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Δεν ήταν δυνατή η επεξεργασία της πληρωμής για τη δημιουργία αντιγράφων ασφαλείας</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Έχουμε δυσκολίες με το να λάβουμε την επαναλαμβανόμενη πληρωμή για τη μηνιαία δημιουργία αντιγράφων ασφαλείας. Επιβεβαίωσε πως η μέθοδος πληρωμής είναι επικαιροποιημένη. Αν δεν είναι, επικαιροποίησέ την στο Google Pay. Το Signal θα προσπαθήσει να πραγματοποιήσει αυτή τη πληρωμή ξανά σε μερικές ημέρες.</string>
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Συναντήσαμε δυσκολίες στη λήψη της επαναλαμβανόμενης μηνιαίας πληρωμής σου για τη δημιουργία αντιγράφων ασφαλείας. Επιβεβαίωσε ότι η μέθοδος πληρωμής είναι επικαιροποιημένη. Αν δεν είναι, επικαιροποίησέ την στο Google Pay. Το Signal θα προσπαθήσει να πραγματοποιήσει αυτή τη πληρωμή ξανά σε μερικές ημέρες.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Δεν ήταν δυνατή η ολοκλήρωση δημιουργίας αντιγράφων ασφαλείας</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Η συσκευή σου δεν έχει ολοκληρώσει τη δημιουργία αντιγράφων ασφαλείας για %1$d ημέρες. Βεβαιώσου ότι η συσκευή σου είναι συνδεδεμένη σε wi-fi και πατήστε \"Δημιουργία αντιγράφων ασφαλείας τώρα.\" </string>
+    <string name="BackupAlertBottomSheet__your_device_hasnt">Η συσκευή σου δεν έχει ολοκληρώσει τη δημιουργία αντιγράφων ασφαλείας για %1$d ημέρες. Βεβαιώσου ότι η συσκευή σου είναι συνδεδεμένη σε wi-fi και πάτησε «Δημιουργία αντιγράφων ασφαλείας τώρα.» </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Μάθε περισσότερα</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->

@@ -1350,6 +1350,12 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Houd vast om audio op te nemen, laat los en verstuur</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Bericht bewerken</string>
+    <!-- Dialog title shown if users are about to discard their draft message -->
+    <string name="InputPanel__discard_draft">Discard draft?</string>
+    <!-- Dialog message explaining their action cannot be reversed -->
+    <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
+    <!-- Button inside an alert dialog confirming the deletion of their draft -->
+    <string name="InputPanel__discard">Discard</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Delen via andere app</string>
@@ -3605,7 +3611,7 @@
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">Wil je Betalingsvergrendeling aanzetten voor toekomstige betalingen?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
-    <string name="PaymentsHomeFragment__add_an_additional_layer">Creëer extra beveiliging en vraag om een Android-schermvergrendeling of vingerafdruk om geld over te maken.</string>
+    <string name="PaymentsHomeFragment__add_an_additional_layer">Voeg een extra beveiligingslaag toe en vereis je Android-schermvergrendeling of vingerafdruk om geld over te maken.</string>
     <!-- Alert dialog button to enable payment lock -->
     <string name="PaymentsHomeFragment__enable">Aanzetten</string>
     <!-- Alert dialog button to not enable payment lock for now -->
@@ -4028,8 +4034,8 @@
     <string name="RegistrationLockFragment__forgot_pin">Pincode vergeten?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Onjuiste pincode</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Pincode vergeten?</string>
-    <string name="RegistrationLockFragment__not_many_tries_left">Weinig pogingen resterend.</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registratie - Hulp nodig met de pincode voor Signal-Android (pincode versie 2)</string>
+    <string name="RegistrationLockFragment__not_many_tries_left">Weinig pogingen over.</string>
+    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registratie - Hulp nodig met de pincode voor Android (Pincode-versie 2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Voor je privacy en veiligheid is er geen mogelijkheid om je pincode te herstellen. Als je je pincode niet meer weet, dan kun je je na %1$d dag inactivitieit opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
@@ -4037,8 +4043,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
-        <item quantity="one">Onjuiste pincode. %1$d poging resterend.</item>
-        <item quantity="other">Onjuiste pincode. %1$d pogingen resterend.</item>
+        <item quantity="one">Onjuiste pincode. Nog %1$d poging over.</item>
+        <item quantity="other">Onjuiste pincode. Nog %1$d pogingen over.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
@@ -4047,13 +4053,13 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
-        <item quantity="one">Je hebt %1$d poging resterend.</item>
-        <item quantity="other">Je hebt %1$d pogingen resterend.</item>
+        <item quantity="one">Je hebt nog %1$d poging over.</item>
+        <item quantity="other">Je hebt nog %1$d pogingen over.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__d_attempts_remaining">
-        <item quantity="one">%1$d poging resterend.</item>
-        <item quantity="other">%1$d pogingen resterend.</item>
+        <item quantity="one">Nog %1$d poging over.</item>
+        <item quantity="other">Nog %1$d pogingen over.</item>
     </plurals>
 
     <!-- CalleeMustAcceptMessageRequestDialogFragment -->
@@ -4650,11 +4656,11 @@
     <string name="PaymentsRecoveryPhraseFragment__edit">Bewerken</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Jouw herstelzin</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Schrijf de volgende %1$d woorden op in dezelfde volgorde en bewaar ze op een veilige plaats.</string>
-    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Ga na dat je je zin juist hebt ingevuld.</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Controleer of je je zin juist hebt ingevuld.</string>
     <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Maak geen schermafdruk en verzend dit nooit via e-mail (ook niet aan jezelf).</string>
     <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Betalingsaccount is hersteld.</string>
     <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Herstelzin ongeldig</string>
-    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Ga na dat je je zin juist hebt ingevuld en probeer het opnieuw.</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Controleer of je je zin juist hebt ingevuld en probeer het opnieuw.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopiëren naar klembord?</string>
     <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Als je ervoor kiest om je herstelzin digitaal op te slaan, zorg er dan voor dat je het beveiligd opslaat op een plek waarvan je weet dat niemand anders er bij kan.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy">Kopiëren</string>
@@ -4746,7 +4752,7 @@
     <!-- Title of dialog shown when report fails to generate -->
     <string name="ExportAccountDataFragment__report_generation_failed">Kan rapport niet genereren</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Check of je apparaat een internetverbinding heeft en probeer het opnieuw.</string>
+    <string name="ExportAccountDataFragment__check_network">Controleer of je apparaat een internetverbinding heeft en probeer het opnieuw.</string>
 
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">Gegevens exporteren?</string>

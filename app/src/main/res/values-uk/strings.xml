@@ -770,7 +770,7 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">Не вдалося встановити фото профілю</string>
     <string name="CreateProfileActivity_problem_setting_profile">Не вдалося встановити профіль</string>
     <string name="CreateProfileActivity_set_up_your_profile">Налаштувати ваш профайл</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профіль і зміни в ньому бачитимуть ваші співрозмовники, контакти та групи.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профіль і зміни в ньому бачать ваші співрозмовники, контакти й групи.</string>
     <string name="CreateProfileActivity_set_avatar_description">Установити зображення профілю</string>
 
     <!-- ProfileCreateFragment -->
@@ -1430,6 +1430,12 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Записати: торкніться й утримуйте. Надіслати: відпустіть</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Редагування повідомлення</string>
+    <!-- Dialog title shown if users are about to discard their draft message -->
+    <string name="InputPanel__discard_draft">Discard draft?</string>
+    <!-- Dialog message explaining their action cannot be reversed -->
+    <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
+    <!-- Button inside an alert dialog confirming the deletion of their draft -->
+    <string name="InputPanel__discard">Discard</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Поділитися</string>
@@ -3302,7 +3308,7 @@
     <string name="message_recipients_list_item__resend">Надіслати знову</string>
 
     <!-- Displayed in a toast when user long presses an item in MyStories -->
-    <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Часовий відбиток скопійовано до буфера обміну.</string>
+    <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Часову позначку скопійовано в буфер обміну.</string>
     <!-- Displayed when there are no outgoing stories -->
     <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Тут будуть оновлення вашої історії.</string>
 
@@ -3877,7 +3883,7 @@
     <string name="PaymentsAddMoneyFragment__add_funds">Додати кошти</string>
     <string name="PaymentsAddMoneyFragment__your_wallet_address">Адреса вашого гаманця</string>
     <string name="PaymentsAddMoneyFragment__copy">Копіювати</string>
-    <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Скопійовано до буфера обміну</string>
+    <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Скопійовано в буфер обміну</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">Щоб додати кошти — надішліть MobileCoin на адресу вашого гаманця. Розпочніть платіж з вашого облікового запису на біржі, що підтримує MobileCoin, зіскануйте QR-код, а потім скопіюйте адресу вашого гаманця.</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
@@ -4326,7 +4332,7 @@
     <string name="RegistrationActivity_restore_from_backup">Відновити з резервної копії?</string>
     <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Відновити ваші повідомлення та медіа-файли із локальної резервної копії. Якщо Ви не бажаєте цього робити зараз, це можна зробити потім.</string>
     <string name="RegistrationActivity_backup_size_s">Розмір резервної копії: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Мітка часу резервної копії: %1$s</string>
+    <string name="RegistrationActivity_backup_timestamp_s">Часова позначка резервної копії: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Увімкнути локальне резервне копіювання?</string>
     <string name="BackupDialog_enable_backups">Увімкнути</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Підтвердьте, що вам усе зрозуміло, поставивши галочку.</string>
@@ -4335,7 +4341,7 @@
     <string name="BackupDialog_delete_backups_statement">Видалити резервні копії</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Щоб увімкнути резервне копіювання, оберіть папку. У ній будуть зберігатися нові резервні копії.</string>
     <string name="BackupDialog_choose_folder">Обрати папку</string>
-    <string name="BackupDialog_copied_to_clipboard">Скопійовано до буфера обміну</string>
+    <string name="BackupDialog_copied_to_clipboard">Скопійовано в буфер обміну</string>
     <string name="BackupDialog_no_file_picker_available">Відсутня програма для вибору файлів.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Введіть вашу резервну копію фрази-паролю щоб перевірити її</string>
     <string name="BackupDialog_verify">Підтвердження</string>
@@ -4591,7 +4597,7 @@
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
     <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Вилучити %1$s з групи? Користувач більше не зможе приєднатись за посиланням групи.</string>
     <string name="RecipientBottomSheet_remove">Вилучити</string>
-    <string name="RecipientBottomSheet_copied_to_clipboard">Скопійовано до буфера обміну</string>
+    <string name="RecipientBottomSheet_copied_to_clipboard">Скопійовано в буфер обміну</string>
 
     <string name="GroupRecipientListItem_admin">Адміністратор</string>
     <!-- Button text to approve a user that has requested to join a group -->
@@ -4614,7 +4620,7 @@
     <string name="GroupLinkBottomSheet_copy">Копіювати</string>
     <string name="GroupLinkBottomSheet_qr_code">QR-код</string>
     <string name="GroupLinkBottomSheet_share">Поділитися</string>
-    <string name="GroupLinkBottomSheet_copied_to_clipboard">Скопійовано до буфера обміну</string>
+    <string name="GroupLinkBottomSheet_copied_to_clipboard">Скопійовано в буфер обміну</string>
     <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Це посилання в даний момент не доступне</string>
 
     <!-- VoiceNotePlaybackPreparer -->
@@ -4730,7 +4736,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Видаляємо акаунт…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Скасування передплати…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Скасовуємо вашу підписку…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">В залежності від кількості груп це може зайняти декілька хвилин</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -5525,16 +5531,16 @@
 
     <string name="ImageView__badge">Значок</string>
 
-    <string name="SubscribeFragment__cancel_subscription">Скасувати передплату</string>
+    <string name="SubscribeFragment__cancel_subscription">Скасувати підписку</string>
     <string name="SubscribeFragment__confirm_cancellation">Підтвердити скасування?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Плата більше не стягуватиметься. Ваш значок буде вилучено з профілю після закінчення періоду передплати.</string>
     <string name="SubscribeFragment__not_now">Не зараз</string>
     <string name="SubscribeFragment__confirm">Підтвердження</string>
-    <string name="SubscribeFragment__update_subscription">Оновити передплату</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Вашу передплату скасовано.</string>
-    <string name="SubscribeFragment__update_subscription_question">Оновити передплату?</string>
+    <string name="SubscribeFragment__update_subscription">Оновити підписку</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Вашу підписку скасовано.</string>
+    <string name="SubscribeFragment__update_subscription_question">Оновити підписку?</string>
     <string name="SubscribeFragment__update">Оновити</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Сьогодні з вас буде стягнуто повну суму (%1$s) передплати. Ваша передплата поновлюватиметься щомісяця.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Сьогодні з вас буде стягнуто повну суму (%1$s) підписки. Ми стягуватимемо таку суму щомісяця.</string>
 
     <string name="Subscription__s_per_month">%1$s/місяць</string>
     <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
@@ -5571,7 +5577,7 @@
     <!-- Heading for receipts area of manage subscriptions page -->
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">Моя підтримка</string>
-    <string name="ManageDonationsFragment__manage_subscription">Керувати передплатою</string>
+    <string name="ManageDonationsFragment__manage_subscription">Керувати підпискою</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Підтвердження ваших донатів</string>
     <string name="ManageDonationsFragment__badges">Значки</string>
@@ -5641,11 +5647,11 @@
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Регулярний щомісячний донат було скасовано. %1$s Ваш значок %2$s більше не відображається в профілі.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Ви можете продовжувати використовувати Signal. Якщо ви бажаєте підтримати застосунок і повторно активувати свій значок, ви можете поновити передплату.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Поновити передплату</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Поновити підписку</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">До Google Pay</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Неможливо опрацювати платіж передплати</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Неможливо опрацювати платіж за підпискою</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">У нас виникли проблеми зі списанням платежу Підтримувача Signal. Упевніться, що дані платіжного засобу вірні. Якщо ні — оновіть їх у Google Pay. Signal ще раз спробує здійснити списання коштів за декілька днів.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Не показувати знов</string>
 
@@ -5674,8 +5680,8 @@
     <string name="DonationsErrors__your_payment_was_processed_but">Ваш донат було оброблено, але Signal не вдалося надіслати повідомлення з ним. Будь ласка, зверніться до служби підтримки.</string>
     <string name="DonationsErrors__your_badge_could_not">Не вдалося додати значок до вашого профілю, але, можливо, з вас було стягнуто плату. Будь ласка, зверніться до служби підтримки.</string>
     <string name="DonationsErrors__your_payment_is_still">Ваш донат ще обробляється. Обробка може зайняти кілька хвилин в залежності від вашого з\'єднання.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">Не вдалося скасувати передплату</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Для скасування передплати потрібне підключення до інтернету.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">Не вдалося скасувати підписку</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Для скасування підписки потрібне з\'єднання з інтернетом.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ваш пристрій не підтримує Google Pay, тому ви не можете оформити передплату, щоб отримати значок. Ви все ще можете підтримати Signal, зробивши пожертву на нашому вебсайті.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Помилка мережі. Перевірте з\'єднання та спробуйте ще.</string>
     <string name="NetworkFailure__retry">Повторити</string>
@@ -6250,7 +6256,7 @@
     <!-- Choose groups bottom sheet title -->
     <string name="ChooseGroupStoryBottomSheet__choose_groups">Обрати групи</string>
     <!-- Displayed when copying group story reply text to clipboard -->
-    <string name="StoryGroupReplyFragment__copied_to_clipboard">Скопійовано до буфера обміну</string>
+    <string name="StoryGroupReplyFragment__copied_to_clipboard">Скопійовано в буфер обміну</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
     <string name="StoryViewerPageFragment__see_more">Докладніше</string>
     <!-- Displayed in toast after sending a direct reply -->
@@ -7050,7 +7056,7 @@
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Не вдається поділитися посиланням на виклик.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Скопійовано у буфер обміну</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Скопійовано в буфер обміну</string>
 
     <!-- CallLinkIncomingRequestSheet -->
     <!-- Displayed as line item in sheet for approving or denying a single user -->

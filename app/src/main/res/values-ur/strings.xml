@@ -25,7 +25,7 @@
     <string name="yes">جی ہاں</string>
     <string name="no">جی نہیں</string>
     <string name="delete">حذف کریں</string>
-    <string name="please_wait">برائے مہربانی انتظار کریں۔۔۔</string>
+    <string name="please_wait">برائے مہربانی انتظار کریں. . .</string>
     <string name="save">محفوظ کریں</string>
     <string name="note_to_self">خود کے لیے نوٹ</string>
 
@@ -42,7 +42,7 @@
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
-    <string name="ApplicationMigrationActivity__signal_is_updating">Signal کی تجدید ہورہی ہے۔۔۔</string>
+    <string name="ApplicationMigrationActivity__signal_is_updating">Signal کی تجدید ہورہی ہے۔ ۔ ۔</string>
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">آپ نے ابھی تک اپنا پاس فریز منتخب نہيں کیا!</string>
@@ -50,12 +50,12 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">یہ آپ کے Signal اور پیغامات کی اطلاعات کو ہمیشہ کیلئے اَن لاک کردے گا۔</string>
     <string name="ApplicationPreferencesActivity_disable">معطل کریں</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">سرور سے رابطے میں غلطی!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">اندراج کے لاک کیلئے PINs کی ضرورت ہے۔ PIN کو غیر فعال کرنے کیلئے ، براہ کرم پہلے رجسٹریشن لاک کو غیر فعال کریں۔</string>
-    <string name="ApplicationPreferencesActivity_pin_created">پن تیار کیا گیا۔</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">اندراج کے لاک کیلئے PINs کی ضرورت ہے۔ PINs کو غیر فعال کرنے کیلئے ، براہ کرم پہلے رجسٹریشن لاک کو غیر فعال کریں۔</string>
+    <string name="ApplicationPreferencesActivity_pin_created">PIN تیار کیا گیا۔</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN غیر فعال ہے۔</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ریکارڈ ادائیگیوں کی وصولی کا جملہ</string>
     <string name="ApplicationPreferencesActivity_record_phrase">ریکارڈ جملہ</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">اپنے پن کو غیر فعال کرنے سے پہلے ، آپ کو اپنے ادائیگیوں کے کھاتے کی وصولی کو یقینی بنانے کے لئے اپنے ادائیگیوں کی بازیابی کے جملہ کو ریکارڈ کرنا ہوگا۔</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">اپنے PIN کو غیر فعال کرنے سے پہلے ، آپ کو اپنے ادائیگیوں کے کھاتے کی وصولی کو یقینی بنانے کے لئے اپنے ادائیگیوں کی بازیابی کے جملہ کو ریکارڈ کرنا ہوگا۔</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -73,8 +73,8 @@
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(تصویر)</string>
-    <string name="DraftDatabase_Draft_audio_snippet">(آواز)</string>
-    <string name="DraftDatabase_Draft_video_snippet">(وڈیو)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(آڈیو)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(ویڈیو)</string>
     <string name="DraftDatabase_Draft_location_snippet">(مقام)</string>
     <string name="DraftDatabase_Draft_quote_snippet">(جواب )</string>
     <string name="DraftDatabase_Draft_voice_note">(صوتی پیغام)</string>
@@ -1350,6 +1350,12 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">وائس پیغام ریکارڈ کرنے کیلئے کلک کریں اور پکڑ کر رکھیں، بھیجنے کیلئے چھوڑ دیں</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">میسج میں ترمیم کریں</string>
+    <!-- Dialog title shown if users are about to discard their draft message -->
+    <string name="InputPanel__discard_draft">Discard draft?</string>
+    <!-- Dialog message explaining their action cannot be reversed -->
+    <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
+    <!-- Button inside an alert dialog confirming the deletion of their draft -->
+    <string name="InputPanel__discard">Discard</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">اشتراک کریں</string>
