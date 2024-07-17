@@ -197,7 +197,9 @@ public abstract class PushSendJob extends SendJob {
     return Optional.of(ProfileKeyUtil.getSelfProfileKey().serialize());
   }
 
-  protected SignalServiceAttachment getAttachmentFor(Attachment attachment) {
+  protected SignalServiceAttachment getAttachmentFor(Contact.Avatar avatar) {
+    Attachment attachment = avatar.getAttachment();
+
     try {
       if (attachment.getUri() == null || attachment.size == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
       InputStream is = PartAuthority.getAttachmentStream(context, attachment.getUri());
@@ -214,6 +216,7 @@ public abstract class PushSendJob extends SendJob {
                                     .withHeight(attachment.height)
                                     .withCaption(attachment.caption)
                                     .withUuid(attachment.uuid)
+                                    .withResumableUploadSpec(AppDependencies.getSignalServiceMessageSender().getResumableUploadSpec())
                                     .withListener(new SignalServiceAttachment.ProgressListener() {
                                       @Override
                                       public void onAttachmentProgress(long total, long progress) {
@@ -454,7 +457,7 @@ public abstract class PushSendJob extends SendJob {
       if (contact.getAvatar() != null && contact.getAvatar().getAttachment() != null) {
         SignalServiceAttachment attachment = getAttachmentPointerFor(contact.getAvatar().getAttachment());
         if (attachment == null) {
-          attachment = getAttachmentFor(contact.getAvatar().getAttachment());
+          attachment = getAttachmentFor(contact.getAvatar());
         }
         avatar = SharedContact.Avatar.newBuilder().withAttachment(attachment)
                                                   .withProfileFlag(contact.getAvatar().isProfile())

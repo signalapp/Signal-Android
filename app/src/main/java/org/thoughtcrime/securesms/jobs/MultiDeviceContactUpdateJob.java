@@ -307,7 +307,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
     }
   }
 
-  private Optional<SignalServiceAttachmentStream> getSystemAvatar(@Nullable Uri uri) {
+  private Optional<SignalServiceAttachmentStream> getSystemAvatar(@Nullable Uri uri) throws IOException {
     if (uri == null) {
       return Optional.empty();
     }
@@ -329,6 +329,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                                 .withStream(fd.createInputStream())
                                                 .withContentType("image/*")
                                                 .withLength(fd.getLength())
+                                                .withResumableUploadSpec(AppDependencies.getSignalServiceMessageSender().getResumableUploadSpec())
                                                 .build());
     } catch (IOException e) {
       // Ignored
@@ -355,6 +356,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                                     .withStream(new ByteArrayInputStream(data))
                                                     .withContentType("image/*")
                                                     .withLength(data.length)
+                                                    .withResumableUploadSpec(AppDependencies.getSignalServiceMessageSender().getResumableUploadSpec())
                                                     .build());
         }
       }

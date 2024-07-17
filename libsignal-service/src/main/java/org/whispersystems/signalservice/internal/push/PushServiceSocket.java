@@ -255,7 +255,6 @@ public class PushServiceSocket {
   private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s";
   private static final String SENDER_ACK_MESSAGE_PATH   = "/v1/messages/%s/%d";
   private static final String UUID_ACK_MESSAGE_PATH     = "/v1/messages/uuid/%s";
-  private static final String ATTACHMENT_V2_PATH        = "/v2/attachments/form/upload";
   private static final String ATTACHMENT_V4_PATH        = "/v4/attachments/form/upload";
 
   private static final String PAYMENTS_AUTH_PATH        = "/v1/payments/auth";
@@ -1541,18 +1540,6 @@ public class PushServiceSocket {
         Log.w(TAG, "Canceling: " + connection);
         connection.cancel();
       }
-    }
-  }
-
-  public AttachmentV2UploadAttributes getAttachmentV2UploadAttributes()
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
-  {
-    String response = makeServiceRequest(ATTACHMENT_V2_PATH, "GET", null);
-    try {
-      return JsonUtil.fromJson(response, AttachmentV2UploadAttributes.class);
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      throw new MalformedResponseException("Unable to parse entity", e);
     }
   }
 

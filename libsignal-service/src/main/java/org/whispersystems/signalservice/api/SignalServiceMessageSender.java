@@ -816,53 +816,11 @@ public class SignalServiceMessageSender {
                                                                  attachment.getCancelationSignal(),
                                                                  attachment.getResumableUploadSpec().orElse(null));
 
-    if (attachment.getResumableUploadSpec().isPresent()) {
-      return uploadAttachmentV4(attachment, attachmentKey, attachmentData);
-    } else {
-      Log.w(TAG, "Using legacy attachment upload endpoint.");
-      return uploadAttachmentV2(attachment, attachmentKey, attachmentData);
-    }
-  }
-
-  private SignalServiceAttachmentPointer uploadAttachmentV2(SignalServiceAttachmentStream attachment, byte[] attachmentKey, PushAttachmentData attachmentData)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
-  {
-    AttachmentV2UploadAttributes       v2UploadAttributes = null;
-
-    Log.d(TAG, "Using pipe to retrieve attachment upload attributes...");
-    try {
-      v2UploadAttributes = new AttachmentService.AttachmentAttributesResponseProcessor<>(attachmentService.getAttachmentV2UploadAttributes().blockingGet()).getResultOrThrow();
-    } catch (WebSocketUnavailableException e) {
-      Log.w(TAG, "[uploadAttachmentV2] Pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
-    } catch (IOException e) {
-      Log.w(TAG, "Failed to retrieve attachment upload attributes using pipe. Falling back...");
+    if (attachment.getResumableUploadSpec().isEmpty()) {
+      throw new IllegalStateException("Attachment must have a resumable upload spec.");
     }
 
-    if (v2UploadAttributes == null) {
-      Log.d(TAG, "Not using pipe to retrieve attachment upload attributes...");
-      v2UploadAttributes = socket.getAttachmentV2UploadAttributes();
-    }
-
-    Pair<Long, AttachmentDigest> attachmentIdAndDigest = socket.uploadAttachment(attachmentData, v2UploadAttributes);
-
-    return new SignalServiceAttachmentPointer(0,
-                                              new SignalServiceAttachmentRemoteId.V2(attachmentIdAndDigest.first()),
-                                              attachment.getContentType(),
-                                              attachmentKey,
-                                              Optional.of(Util.toIntExact(attachment.getLength())),
-                                              attachment.getPreview(),
-                                              attachment.getWidth(), attachment.getHeight(),
-                                              Optional.of(attachmentIdAndDigest.second().getDigest()),
-                                              Optional.of(attachmentIdAndDigest.second().getIncrementalDigest()),
-                                              attachmentIdAndDigest.second().getIncrementalMacChunkSize(),
-                                              attachment.getFileName(),
-                                              attachment.getVoiceNote(),
-                                              attachment.isBorderless(),
-                                              attachment.isGif(),
-                                              attachment.getCaption(),
-                                              attachment.getBlurHash(),
-                                              attachment.getUploadTimestamp(),
-                                              attachment.getUuid());
+    return uploadAttachmentV4(attachment, attachmentKey, attachmentData);
   }
 
   public ResumableUploadSpec getResumableUploadSpec() throws IOException {
