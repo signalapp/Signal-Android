@@ -226,9 +226,7 @@ abstract class ExoPlayerPool<T : ExoPlayer>(
       Log.d(TAG, "onTransferStart() for ${source.uri}")
     }
 
-    override fun onBytesTransferred(source: DataSource, dataSpec: DataSpec, isNetwork: Boolean, bytesTransferred: Int) {
-      Log.v(TAG, "$bytesTransferred bytes transferred for ${source.uri}")
-    }
+    override fun onBytesTransferred(source: DataSource, dataSpec: DataSpec, isNetwork: Boolean, bytesTransferred: Int) {}
 
     override fun onTransferEnd(source: DataSource, dataSpec: DataSpec, isNetwork: Boolean) {
       Log.d(TAG, "onTransferEnd() for ${source.uri}")
