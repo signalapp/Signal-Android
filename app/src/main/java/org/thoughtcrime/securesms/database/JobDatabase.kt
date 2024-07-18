@@ -198,6 +198,40 @@ class JobDatabase(
   }
 
   @Synchronized
+  fun getJobSpecsByKeys(keys: Collection<String>): List<JobSpec> {
+    if (keys.isEmpty()) {
+      return emptyList()
+    }
+
+    val output: MutableList<JobSpec> = ArrayList(keys.size)
+
+    for (query in SqlUtil.buildCollectionQuery(Jobs.JOB_SPEC_ID, keys)) {
+      readableDatabase
+        .select()
+        .from(Jobs.TABLE_NAME)
+        .where(query.where, query.whereArgs)
+        .run()
+        .forEach {
+          output += it.toJobSpec()
+        }
+    }
+
+    return output
+  }
+
+  @Synchronized
+  fun getMostEligibleJobInQueue(queue: String): JobSpec? {
+    return readableDatabase
+      .select()
+      .from(Jobs.TABLE_NAME)
+      .where("${Jobs.QUEUE_KEY} = ?", queue)
+      .orderBy("${Jobs.PRIORITY} DESC, ${Jobs.CREATE_TIME} ASC, ${Jobs.ID} ASC")
+      .limit(1)
+      .run()
+      .readToSingleObject { it.toJobSpec() }
+  }
+
+  @Synchronized
   fun getAllMatchingFilter(predicate: Predicate<JobSpec>): List<JobSpec> {
     val output: MutableList<JobSpec> = mutableListOf()
 

@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.annotation.VisibleForTesting
+import org.signal.core.util.Stopwatch
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.JobDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec
@@ -15,7 +17,9 @@ import java.util.function.Predicate
 class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   companion object {
+    private val TAG = Log.tag(FastJobStorage::class)
     private const val JOB_CACHE_LIMIT = 1000
+    private const val DEBUG = false
   }
 
   /** We keep a trimmed down version of every job in memory. */
@@ -38,7 +42,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   private val dependenciesByJobId: MutableMap<String, MutableList<DependencySpec>> = hashMapOf()
 
   /** The list of jobs eligible to be returned from [getPendingJobsWithNoDependenciesInCreatedOrder], kept sorted in the appropriate order. */
-  private val eligibleJobs: TreeSet<MinimalJobSpec> = TreeSet(EligibleJobComparator)
+  private val eligibleJobs: TreeSet<MinimalJobSpec> = TreeSet(EligibleMinJobComparator)
 
   /** All migration-related jobs, kept in the appropriate order. */
   private val migrationJobs: TreeSet<MinimalJobSpec> = TreeSet(compareBy { it.createTime })
@@ -48,7 +52,9 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   @Synchronized
   override fun init() {
+    val stopwatch = Stopwatch("init", decimalPlaces = 2)
     minimalJobs += jobDatabase.getAllMinimalJobSpecs()
+    stopwatch.split("fetch-min-jobs")
 
     for (job in minimalJobs) {
       if (job.queueKey == Job.Parameters.MIGRATION_QUEUE_KEY) {
@@ -57,29 +63,37 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
         placeJobInEligibleList(job)
       }
     }
+    stopwatch.split("sort-min-jobs")
 
     jobDatabase.getJobSpecs(JOB_CACHE_LIMIT).forEach {
       jobSpecCache[it.id] = it
     }
+    stopwatch.split("fetch-full-jobs")
 
     for (constraintSpec in jobDatabase.getConstraintSpecsForJobs(jobSpecCache.keys)) {
       val jobConstraints: MutableList<ConstraintSpec> = constraintsByJobId.getOrPut(constraintSpec.jobSpecId) { mutableListOf() }
       jobConstraints += constraintSpec
     }
+    stopwatch.split("fetch-constraints")
 
     for (dependencySpec in jobDatabase.getAllDependencySpecs().filterNot { it.hasCircularDependency() }) {
       val jobDependencies: MutableList<DependencySpec> = dependenciesByJobId.getOrPut(dependencySpec.jobId) { mutableListOf() }
       jobDependencies += dependencySpec
     }
+    stopwatch.split("fetch-dependencies")
+
+    stopwatch.stop(TAG)
   }
 
   @Synchronized
   override fun insertJobs(fullSpecs: List<FullSpec>) {
+    val stopwatch = debugStopwatch("insert")
     val durable: List<FullSpec> = fullSpecs.filterNot { it.isMemoryOnly }
 
     if (durable.isNotEmpty()) {
       jobDatabase.insertJobs(durable)
     }
+    stopwatch?.split("db")
 
     for (fullSpec in fullSpecs) {
       val minimalJobSpec = fullSpec.jobSpec.toMinimalJobSpec()
@@ -95,6 +109,8 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       constraintsByJobId[fullSpec.jobSpec.id] = fullSpec.constraintSpecs.toMutableList()
       dependenciesByJobId[fullSpec.jobSpec.id] = fullSpec.dependencySpecs.toMutableList()
     }
+    stopwatch?.split("cache")
+    stopwatch?.stop(TAG)
   }
 
   @Synchronized
@@ -109,6 +125,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   @Synchronized
   override fun getPendingJobsWithNoDependenciesInCreatedOrder(currentTime: Long): List<JobSpec> {
+    val stopwatch = debugStopwatch("get-pending")
     val migrationJob: MinimalJobSpec? = migrationJobs.firstOrNull()
 
     return if (migrationJob != null && !migrationJob.isRunning && migrationJob.hasEligibleRunTime(currentTime)) {
@@ -116,7 +133,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     } else if (migrationJob != null) {
       emptyList()
     } else {
-      eligibleJobs
+      val minJobs: List<MinimalJobSpec> = eligibleJobs
         .asSequence()
         .filter { job ->
           // Filter out all jobs with unmet dependencies
@@ -124,8 +141,11 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
         }
         .filterNot { it.isRunning }
         .filter { job -> job.hasEligibleRunTime(currentTime) }
-        .map { it.toJobSpec() }
         .toList()
+
+      getFullJobs(minJobs)
+    }.also {
+      stopwatch?.stop(TAG)
     }
   }
 
@@ -282,6 +302,8 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       .map { it.toMinimalJobSpec() }
       .toSet()
 
+    val affectedQueues: Set<String> = minimalJobsToDelete.mapNotNull { it.queueKey }.toSet()
+
     if (durableJobIdsToDelete.isNotEmpty()) {
       jobDatabase.deleteJobs(durableJobIdsToDelete)
     }
@@ -291,6 +313,15 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     jobSpecCache.keys.removeAll(deleteIds)
     eligibleJobs.removeAll(minimalJobsToDelete)
     migrationJobs.removeAll(minimalJobsToDelete)
+
+    mostEligibleJobForQueue.keys.removeAll(affectedQueues)
+
+    for (queue in affectedQueues) {
+      jobDatabase.getMostEligibleJobInQueue(queue)?.let {
+        jobSpecCache[it.id] = it
+        placeJobInEligibleList(it.toMinimalJobSpec())
+      }
+    }
 
     for (jobId in ids) {
       constraintsByJobId.remove(jobId)
@@ -490,7 +521,22 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     }
   }
 
-  private object EligibleJobComparator : Comparator<MinimalJobSpec> {
+  private fun getFullJobs(minJobs: Collection<MinimalJobSpec>): List<JobSpec> {
+    val requestedKeys = minJobs.map { it.id }.toSet()
+    val cachedKeys = jobSpecCache.keys.intersect(requestedKeys)
+    val uncachedKeys = requestedKeys.subtract(cachedKeys)
+
+    val cachedJobs = cachedKeys.map { jobSpecCache[it]!! }
+    val fetchedJobs = jobDatabase.getJobSpecsByKeys(uncachedKeys)
+
+    val sorted = TreeSet(EligibleFullJobComparator).apply {
+      addAll(cachedJobs)
+      addAll(fetchedJobs)
+    }
+    return sorted.toList()
+  }
+
+  private object EligibleMinJobComparator : Comparator<MinimalJobSpec> {
     override fun compare(o1: MinimalJobSpec, o2: MinimalJobSpec): Int {
       // We want to sort by priority descending, then createTime ascending
 
@@ -505,6 +551,25 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
         else -> o1.id.compareTo(o2.id)
       }
     }
+  }
+
+  /**
+   * Identical to [EligibleMinJobComparator], but for full jobs.
+   */
+  private object EligibleFullJobComparator : Comparator<JobSpec> {
+    override fun compare(o1: JobSpec, o2: JobSpec): Int {
+      return when {
+        o1.priority > o2.priority -> -1
+        o1.priority < o2.priority -> 1
+        o1.createTime < o2.createTime -> -1
+        o1.createTime > o2.createTime -> 1
+        else -> o1.id.compareTo(o2.id)
+      }
+    }
+  }
+
+  private fun debugStopwatch(label: String): Stopwatch? {
+    return if (DEBUG) Stopwatch(label, decimalPlaces = 2) else null
   }
 }
 

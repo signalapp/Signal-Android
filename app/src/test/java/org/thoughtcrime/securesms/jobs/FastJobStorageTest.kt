@@ -534,6 +534,33 @@ class FastJobStorageTest {
   }
 
   @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after deleted, next item in queue is eligible`() {
+    // Two jobs in the same queue but with different create times
+    val firstJob = DataSet1.JOB_1
+    val secondJob = DataSet1.JOB_1.copy(id = "id2", createTime = 2)
+    val subject = FastJobStorage(
+      mockDatabase(
+        fullSpecs = listOf(
+          FullSpec(jobSpec = firstJob, constraintSpecs = emptyList(), dependencySpecs = emptyList()),
+          FullSpec(jobSpec = secondJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())
+        )
+      )
+    )
+    subject.init()
+
+    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.size assertIs 1
+    jobs.contains(firstJob) assertIs true
+
+    subject.deleteJobs(listOf("id1"))
+
+    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
+    jobs.size assertIs 1
+    jobs.contains(firstJob) assertIs false
+    jobs.contains(secondJob) assertIs true
+  }
+
+  @Test
   fun `getPendingJobsWithNoDependenciesInCreatedOrder - after marked running, no longer is in eligible list`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
@@ -798,6 +825,10 @@ class FastJobStorageTest {
     every { mock.getAllDependencySpecs() } returns dependencies
     every { mock.getConstraintSpecsForJobs(any()) } returns constraints
     every { mock.getJobSpec(any()) } answers { jobs.first { it.id == firstArg() } }
+    every { mock.getJobSpecsByKeys(any()) } answers {
+      val ids: Collection<String> = firstArg()
+      jobs.filter { ids.contains(it.id) }
+    }
     every { mock.insertJobs(any()) } answers {
       val inserts: List<FullSpec> = firstArg()
       for (insert in inserts) {
@@ -862,6 +893,12 @@ class FastJobStorageTest {
           )
         }
       }
+    }
+    every { mock.getMostEligibleJobInQueue(any()) } answers {
+      jobs
+        .filter { it.queueKey == firstArg() }
+        .sortedByDescending { it.priority }
+        .minByOrNull { it.createTime }
     }
 
     return mock

@@ -8,7 +8,6 @@ package org.signal.core.util
 import org.signal.core.util.logging.Log
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
 /**
@@ -83,7 +82,6 @@ class Stopwatch @JvmOverloads constructor(private val title: String, private val
 /**
  * Logs how long it takes to perform the operation.
  */
-@OptIn(ExperimentalTime::class)
 inline fun <T> logTime(tag: String, label: String, decimalPlaces: Int = 0, block: () -> T): T {
   val result = measureTimedValue(block)
   Log.d(tag, "$label: ${result.duration.toDouble(DurationUnit.MILLISECONDS).roundedString(decimalPlaces)}")
