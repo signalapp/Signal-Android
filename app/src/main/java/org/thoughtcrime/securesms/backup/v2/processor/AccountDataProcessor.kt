@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
-import org.whispersystems.signalservice.api.storage.StorageRecordProtoUtil.defaultAccountRecord
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.Currency
@@ -68,14 +67,16 @@ object AccountDataProcessor {
             hasSeenGroupStoryEducationSheet = signalStore.storyValues.userHasSeenGroupStoryEducationSheet,
             hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding()
           ),
-          donationSubscriberData = AccountData.SubscriberData(
-            subscriberId = donationSubscriber?.subscriberId?.bytes?.toByteString() ?: defaultAccountRecord.subscriberId,
-            currencyCode = donationSubscriber?.currency?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
-            manuallyCancelled = signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled()
-          )
+          donationSubscriberData = donationSubscriber?.toSubscriberData(signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled())
         )
       )
     )
+  }
+
+  private fun InAppPaymentSubscriberRecord.toSubscriberData(manuallyCancelled: Boolean): AccountData.SubscriberData {
+    val subscriberId = subscriberId.bytes.toByteString()
+    val currencyCode = currency.currencyCode
+    return AccountData.SubscriberData(subscriberId = subscriberId, currencyCode = currencyCode, manuallyCancelled = manuallyCancelled)
   }
 
   fun import(accountData: AccountData, selfId: RecipientId) {
