@@ -388,7 +388,7 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_black</item>
+        <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

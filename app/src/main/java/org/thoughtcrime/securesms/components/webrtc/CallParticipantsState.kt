@@ -194,7 +194,7 @@ data class CallParticipantsState(
   }
 
   companion object {
-    private const val SMALL_GROUP_MAX = 6
+    const val SMALL_GROUP_MAX = 6
 
     @JvmField
     val MAX_OUTGOING_GROUP_RING_DURATION = TimeUnit.MINUTES.toMillis(1)

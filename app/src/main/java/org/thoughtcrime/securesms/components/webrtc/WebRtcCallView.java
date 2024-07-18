@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.webrtc;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Point;
@@ -79,9 +80,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
   private static final String TAG = Log.tag(WebRtcCallView.class);
 
-  private static final long TRANSITION_DURATION_MILLIS          = 250;
-  private static final int  SMALL_ONGOING_CALL_BUTTON_MARGIN_DP = 8;
-  private static final int  LARGE_ONGOING_CALL_BUTTON_MARGIN_DP = 16;
+  private static final long TRANSITION_DURATION_MILLIS = 250;
 
   private WebRtcAudioOutputToggleButton audioToggle;
   private AccessibleToggleButton        videoToggle;
@@ -142,7 +141,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private final Set<View> topViews             = new HashSet<>();
   private final Set<View> visibleViewSet       = new HashSet<>();
   private final Set<View> allTimeVisibleViews  = new HashSet<>();
-  private final Set<View> rotatableControls    = new HashSet<>();
 
   private final ThrottledDebouncer throttledDebouncer = new ThrottledDebouncer(TRANSITION_DURATION_MILLIS);
   private       WebRtcControls     controls           = WebRtcControls.NONE;
@@ -360,18 +358,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       return false;
     });
 
-    rotatableControls.add(overflow);
-    rotatableControls.add(hangup);
-    rotatableControls.add(answer);
-    rotatableControls.add(answerWithoutVideo);
-    rotatableControls.add(audioToggle);
-    rotatableControls.add(micToggle);
-    rotatableControls.add(videoToggle);
-    rotatableControls.add(cameraDirectionToggle);
-    rotatableControls.add(decline);
-    rotatableControls.add(smallLocalAudioIndicator);
-    rotatableControls.add(ringToggle);
-
     missingPermissionContainer.setVisibility(hasCameraPermission() ? View.GONE : View.VISIBLE);
 
     allowAccessButton.setOnClickListener(v -> {
@@ -379,10 +365,17 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     });
 
     ConstraintLayout aboveControls = findViewById(R.id.call_controls_floating_parent);
-    SlideUpWithCallControlsBehavior behavior = (SlideUpWithCallControlsBehavior) ((CoordinatorLayout.LayoutParams) aboveControls.getLayoutParams()).getBehavior();
-    Objects.requireNonNull(behavior).setOnTopOfControlsChangedListener(topOfControls -> {
-      pictureInPictureGestureHelper.setBottomVerticalBoundary(topOfControls);
-    });
+
+    if (getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+      aboveControls.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+        pictureInPictureGestureHelper.setBottomVerticalBoundary(bottom + ViewUtil.getStatusBarHeight(v));
+      });
+    } else {
+      SlideUpWithCallControlsBehavior behavior = (SlideUpWithCallControlsBehavior) ((CoordinatorLayout.LayoutParams) aboveControls.getLayoutParams()).getBehavior();
+      Objects.requireNonNull(behavior).setOnTopOfControlsChangedListener(topOfControls -> {
+        pictureInPictureGestureHelper.setBottomVerticalBoundary(topOfControls);
+      });
+    }
   }
 
   @Override
@@ -405,12 +398,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       pictureInPictureGestureHelper.setTopVerticalBoundary(statusBarGuideline.getBottom());
     } else {
       Log.d(TAG, "Could not update PiP gesture helper.");
-    }
-  }
-
-  public void rotateControls(int degrees) {
-    for (View view : rotatableControls) {
-      view.animate().rotation(degrees);
     }
   }
 
@@ -872,12 +859,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     ConstraintSet constraintSet = new ConstraintSet();
     constraintSet.setForceId(false);
     constraintSet.clone(this);
-
-    constraintSet.connect(R.id.call_screen_participants_parent,
-                          ConstraintSet.BOTTOM,
-                          layoutPositions.participantBottomViewId,
-                          layoutPositions.participantBottomViewEndSide,
-                          ViewUtil.dpToPx(layoutPositions.participantBottomMargin));
 
     constraintSet.connect(R.id.call_screen_reactions_feed,
                           ConstraintSet.BOTTOM,

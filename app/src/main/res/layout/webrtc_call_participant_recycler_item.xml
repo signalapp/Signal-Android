@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="4dp"
+    android:layout_marginEnd="@dimen/CallScreenParticipantItem__margin_end"
+    android:layout_marginBottom="@dimen/CallScreenParticipantItem__margin_bottom"
     android:background="@null"
     android:clipChildren="true"
     app:cardCornerRadius="8dp"
     tools:background="@color/red_500"
+    tools:viewBindingIgnore="true"
     tools:visibility="visible">
 
     <include

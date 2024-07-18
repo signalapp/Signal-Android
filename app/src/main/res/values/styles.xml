@@ -231,6 +231,9 @@
         <item name="android:layout_width">@dimen/webrtc_button_size</item>
         <item name="android:textOn">@null</item>
         <item name="android:textOff">@null</item>
+        <item name="android:layout_marginStart">@dimen/CallControls__button_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/CallControls__button_horizontal_margin</item>
+        <item name="android:layout_marginBottom">@dimen/CallControls__button_bottom_margin</item>
     </style>
 
     <style name="IdentityKey">
@@ -312,8 +315,9 @@
         <attr name="arcProgress" format="float"   />
     </declare-styleable>
 
-    <declare-styleable name="MaxHeightFrameLayout">
-        <attr name="mhfl_maxHeight" format="dimension" />
+    <declare-styleable name="MaxSizeFrameLayout">
+        <attr name="msfl_maxHeight" format="dimension" />
+        <attr name="msfl_maxWidth" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="PreviewView">

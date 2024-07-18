@@ -78,7 +78,7 @@ class CallStateUpdatePopupWindow(private val parent: ViewGroup) : PopupWindow(
   }
 
   private fun show() {
-    if (!enabled) {
+    if (!enabled || parent.windowToken == null) {
       return
     }
 

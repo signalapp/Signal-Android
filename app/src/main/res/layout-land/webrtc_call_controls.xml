@@ -11,7 +11,7 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintTop_toTopOf="@id/status_bar_guideline"
     tools:layout_height="match_parent"
     tools:layout_width="match_parent">
 
@@ -32,7 +32,7 @@
             android:orientation="vertical"
             android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/call_screen_raise_hand_view"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_raise_hand_view_wrapper"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -51,57 +51,67 @@
             app:layout_constraintStart_toStartOf="@id/call_screen_reactions_feed"
             app:layout_constraintTop_toTopOf="@id/call_screen_reactions_feed" />
 
-        <androidx.compose.ui.platform.ComposeView
-            android:id="@+id/call_screen_raise_hand_view"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:id="@+id/call_screen_raise_hand_view_wrapper"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toTopOf="@id/call_screen_pending_recipients"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_max="540dp">
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/call_screen_raise_hand_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end" />
+        </FrameLayout>
 
         <ViewStub
             android:id="@+id/call_screen_pending_recipients"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="6dp"
             android:inflatedId="@+id/call_screen_pending_recipients"
             android:layout="@layout/call_screen_pending_participants_view"
-            app:layout_constraintBottom_toTopOf="@id/call_screen_camera_direction_toggle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/call_screen_camera_direction_toggle"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:clickable="false"
-            android:contentDescription="@string/WebRtcCallView__toggle_camera_direction"
-            android:scaleType="fitXY"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/webrtc_call_screen_camera_toggle"
-            tools:visibility="visible" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_max="540dp" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/call_screen_above_controls_barrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="top"
-            app:constraint_referenced_ids="call_screen_camera_direction_toggle,call_screen_pending_recipients,call_screen_raise_hand_view" />
+            app:constraint_referenced_ids="call_screen_pending_recipients,call_screen_raise_hand_view_wrapper" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
+    <ImageView
+        android:id="@+id/call_screen_camera_direction_toggle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="false"
+        android:contentDescription="@string/WebRtcCallView__toggle_camera_direction"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        app:srcCompat="@drawable/webrtc_call_screen_camera_toggle"
+        tools:visibility="visible" />
+
+    <org.thoughtcrime.securesms.components.MaxSizeFrameLayout
         android:id="@+id/call_controls_info_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@color/signal_colorSurface"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:msfl_maxWidth="540dp">
 
         <ImageView
             android:id="@+id/handle"
@@ -122,8 +132,7 @@
             android:id="@+id/call_controls_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
-            android:paddingBottom="48dp">
+            android:layout_marginTop="38dp">
 
             <org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutputToggleButton
                 android:id="@+id/call_screen_speaker_toggle"
@@ -131,7 +140,7 @@
                 android:contentDescription="@string/WebRtcCallView__toggle_speaker"
                 android:scaleType="fitXY"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/call_screen_video_toggle"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
@@ -144,7 +153,7 @@
                 android:background="@drawable/webrtc_call_screen_video_toggle"
                 android:contentDescription="@string/WebRtcCallView__toggle_camera"
                 android:stateListAnimator="@null"
-                app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/call_screen_audio_mic_toggle"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@id/call_screen_speaker_toggle"
@@ -156,7 +165,7 @@
                 android:background="@drawable/webrtc_call_screen_mic_toggle"
                 android:contentDescription="@string/WebRtcCallView__toggle_mute"
                 android:stateListAnimator="@null"
-                app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/call_screen_audio_ring_toggle"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@id/call_screen_video_toggle" />
@@ -167,7 +176,7 @@
                 android:background="@drawable/webrtc_call_screen_ring_toggle"
                 android:stateListAnimator="@null"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/call_screen_overflow_button"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@id/call_screen_audio_mic_toggle"
@@ -181,7 +190,7 @@
                 android:contentDescription="@string/WebRtcCallView__additional_actions"
                 android:scaleType="fitXY"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/call_screen_end_call"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@id/call_screen_audio_ring_toggle"
@@ -194,8 +203,8 @@
                 android:contentDescription="@string/WebRtcCallView__end_call"
                 android:scaleType="fitXY"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/call_screen_start_call_controls"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@id/call_screen_overflow_button"
                 app:srcCompat="@drawable/webrtc_call_screen_hangup"
@@ -203,17 +212,17 @@
 
             <LinearLayout
                 android:id="@+id/call_screen_start_call_controls"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/CallControls__button_horizontal_margin"
+                android:layout_marginEnd="@dimen/CallControls__button_horizontal_margin"
+                android:layout_marginBottom="@dimen/CallControls__button_bottom_margin"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="32dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/call_screen_end_call"
                 tools:visibility="visible">
 
                 <com.google.android.material.button.MaterialButton
@@ -232,6 +241,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </FrameLayout>
+    </org.thoughtcrime.securesms.components.MaxSizeFrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

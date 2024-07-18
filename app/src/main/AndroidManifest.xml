@@ -121,7 +121,7 @@
               android:excludeFromRecents="true"
               android:supportsPictureInPicture="true"
               android:windowSoftInputMode="stateAlwaysHidden"
-              android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+              android:configChanges="screenSize|smallestScreenSize|screenLayout"
               android:taskAffinity=".calling"
               android:resizeableActivity="true"
               android:launchMode="singleTask"

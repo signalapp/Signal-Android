@@ -39,6 +39,10 @@ public final class WindowUtil {
     clearSystemUiFlags(window, View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
   }
 
+  public static void clearTranslucentNavigationBar(@NonNull Window window) {
+    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+  }
+
   public static void setLightNavigationBar(@NonNull Window window) {
     if (Build.VERSION.SDK_INT < 27) return;
 

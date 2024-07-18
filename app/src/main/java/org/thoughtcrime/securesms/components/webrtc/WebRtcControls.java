@@ -28,6 +28,7 @@ public final class WebRtcControls {
                                                                FoldableState.flat(),
                                                                SignalAudioManager.AudioDevice.NONE,
                                                                emptySet(),
+                                                               false,
                                                                false);
 
   private final boolean                             isRemoteVideoEnabled;
@@ -42,6 +43,7 @@ public final class WebRtcControls {
   private final SignalAudioManager.AudioDevice      activeDevice;
   private final Set<SignalAudioManager.AudioDevice> availableDevices;
   private final boolean                             isCallLink;
+  private final boolean                             hasParticipantOverflow;
 
   private WebRtcControls() {
     this(false,
@@ -55,6 +57,7 @@ public final class WebRtcControls {
          FoldableState.flat(),
          SignalAudioManager.AudioDevice.NONE,
          emptySet(),
+         false,
          false);
   }
 
@@ -69,7 +72,8 @@ public final class WebRtcControls {
                  @NonNull FoldableState foldableState,
                  @NonNull SignalAudioManager.AudioDevice activeDevice,
                  @NonNull Set<SignalAudioManager.AudioDevice> availableDevices,
-                 boolean isCallLink)
+                 boolean isCallLink,
+                 boolean hasParticipantOverflow)
   {
     this.isLocalVideoEnabled          = isLocalVideoEnabled;
     this.isRemoteVideoEnabled         = isRemoteVideoEnabled;
@@ -83,6 +87,7 @@ public final class WebRtcControls {
     this.activeDevice                 = activeDevice;
     this.availableDevices             = availableDevices;
     this.isCallLink                   = isCallLink;
+    this.hasParticipantOverflow       = hasParticipantOverflow;
   }
 
   public @NonNull WebRtcControls withFoldableState(FoldableState foldableState) {
@@ -97,7 +102,8 @@ public final class WebRtcControls {
                               foldableState,
                               activeDevice,
                               availableDevices,
-                              isCallLink);
+                              isCallLink,
+                              hasParticipantOverflow);
   }
 
   /**
@@ -178,7 +184,7 @@ public final class WebRtcControls {
   }
 
   public boolean displayRemoteVideoRecycler() {
-    return isOngoing();
+    return isOngoing() && hasParticipantOverflow;
   }
 
   public boolean displayAnswerWithoutVideo() {

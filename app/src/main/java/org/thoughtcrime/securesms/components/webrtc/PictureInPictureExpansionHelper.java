@@ -31,10 +31,10 @@ final class PictureInPictureExpansionHelper {
 
   private final View      selfPip;
   private final ViewGroup parent;
-  private final Point     expandedDimensions;
 
   private State state = State.IS_SHRUNKEN;
   private Point defaultDimensions;
+  private Point expandedDimensions;
 
   public PictureInPictureExpansionHelper(@NonNull View selfPip) {
     this.selfPip            = selfPip;
@@ -61,6 +61,11 @@ final class PictureInPictureExpansionHelper {
     }
 
     defaultDimensions = dimensions;
+
+    int x = (dimensions.x > dimensions.y) ? EXPANDED_PIP_HEIGHT_DP : EXPANDED_PIP_WIDTH_DP;
+    int y = (dimensions.x > dimensions.y) ? EXPANDED_PIP_WIDTH_DP  : EXPANDED_PIP_HEIGHT_DP;
+
+    expandedDimensions = new Point(ViewUtil.dpToPx(x), ViewUtil.dpToPx(y));
 
     if (isExpandedOrExpanding()) {
       return;

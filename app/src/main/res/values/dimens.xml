@@ -238,4 +238,11 @@
 
     <dimen name="contact_permission_button_min_width">140dp</dimen>
 
+    <dimen name="CallControls__button_horizontal_margin">8dp</dimen>
+    <dimen name="CallControls__button_bottom_margin">30dp</dimen>
+    <dimen name="CallScreenLargeHeader__avatar_size">96dp</dimen>
+    <dimen name="CallScreenLargeHeader__avatar_margin_top">106dp</dimen>
+    <dimen name="CallScreenParticipantItem__margin_end">4dp</dimen>
+    <dimen name="CallScreenParticipantItem__margin_bottom">0dp</dimen>
+
 </resources>
