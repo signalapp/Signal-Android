@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -26,8 +24,13 @@ public class HidingLinearLayout extends LinearLayout {
     super(context, attrs, defStyleAttr);
   }
 
-  public void hide() {
+  public void hide(boolean shouldAnimate) {
     if (!isEnabled() || getVisibility() == GONE) return;
+
+    if (!shouldAnimate) {
+      setVisibility(GONE);
+      return;
+    }
 
     AnimationSet animation = new AnimationSet(true);
     animation.addAnimation(new ScaleAnimation(1, 0.5f, 1, 1, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 0.5f));

@@ -425,8 +425,9 @@ public class InputPanel extends ConstraintLayout
 }
 
   public void enterEditMessageMode(@NonNull RequestManager requestManager, @NonNull ConversationMessage conversationMessageToEdit, boolean fromDraft, boolean clearQuote) {
-    int originalHeight         = composeTextContainer.getMeasuredHeight();
-    SpannableString textToEdit = conversationMessageToEdit.getDisplayBody(getContext());
+    boolean fromEditMessageMode = inEditMessageMode();
+    int originalHeight          = composeTextContainer.getMeasuredHeight();
+    SpannableString textToEdit  = conversationMessageToEdit.getDisplayBody(getContext());
 
     if (!fromDraft) {
       MessageStyler.convertSpoilersToComposeMode(textToEdit);
@@ -442,15 +443,20 @@ public class InputPanel extends ConstraintLayout
     }
 
     this.messageToEdit = conversationMessageToEdit.getMessageRecord();
+
+    updateEditModeUi();
     updateEditModeThumbnail(requestManager);
 
-    int maxWidth = composeContainer.getWidth();
-    if (composeContainer.getLayoutParams() instanceof MarginLayoutParams) {
-      MarginLayoutParams layoutParams = (MarginLayoutParams) composeContainer.getLayoutParams();
-      maxWidth -= layoutParams.leftMargin + layoutParams.rightMargin;
+    int maxWidth = composeContainer.getWidth() - mediaKeyboard.getWidth();
+    if (!fromEditMessageMode) {
+      maxWidth -= editMessageCancel.getWidth();
+      if (editMessageCancel.getLayoutParams() instanceof MarginLayoutParams) {
+        MarginLayoutParams layoutParams = (MarginLayoutParams) editMessageCancel.getLayoutParams();
+        maxWidth -= layoutParams.leftMargin;
+      }
     }
     composeTextContainer.measure(MeasureSpec.makeMeasureSpec(maxWidth, MeasureSpec.AT_MOST), MeasureSpec.UNSPECIFIED);
-    int finalHeight = (inEditMessageMode()) ? composeTextContainer.getMeasuredHeight() : composeTextContainer.getMeasuredHeight() + editMessageTitle.getMeasuredHeight();
+    int finalHeight = composeTextContainer.getMeasuredHeight();
 
     if (editMessageAnimator != null) {
       editMessageAnimator.cancel();
@@ -461,7 +467,6 @@ public class InputPanel extends ConstraintLayout
         ViewGroup.LayoutParams params = composeTextContainer.getLayoutParams();
         params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         composeTextContainer.setLayoutParams(params);
-        updateEditModeUi();
       }
     });
     editMessageAnimator.start();
