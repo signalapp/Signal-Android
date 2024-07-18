@@ -27,7 +27,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   /**
    * We keep a set of job specs in memory to facilitate fast retrieval. This is important because the most common job storage pattern is
-   * [getPendingJobsWithNoDependenciesInCreatedOrder], which needs to return full specs.
+   * [getNextEligibleJob], which needs to return full specs.
    */
   private val jobSpecCache: LRUCache<String, JobSpec> = LRUCache(JOB_CACHE_LIMIT)
 
@@ -41,7 +41,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   /** We keep every dependency in memory, since there aren't that many, and managing a limited subset would be very complicated. */
   private val dependenciesByJobId: MutableMap<String, MutableList<DependencySpec>> = hashMapOf()
 
-  /** The list of jobs eligible to be returned from [getPendingJobsWithNoDependenciesInCreatedOrder], kept sorted in the appropriate order. */
+  /** The list of jobs eligible to be returned from [getNextEligibleJob], kept sorted in the appropriate order. */
   private val eligibleJobs: TreeSet<MinimalJobSpec> = TreeSet(EligibleMinJobComparator)
 
   /** All migration-related jobs, kept in the appropriate order. */
@@ -124,16 +124,16 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   }
 
   @Synchronized
-  override fun getPendingJobsWithNoDependenciesInCreatedOrder(currentTime: Long): List<JobSpec> {
+  override fun getNextEligibleJob(currentTime: Long, filter: (MinimalJobSpec) -> Boolean): JobSpec? {
     val stopwatch = debugStopwatch("get-pending")
     val migrationJob: MinimalJobSpec? = migrationJobs.firstOrNull()
 
     return if (migrationJob != null && !migrationJob.isRunning && migrationJob.hasEligibleRunTime(currentTime)) {
-      listOf(migrationJob.toJobSpec())
+      migrationJob.toJobSpec()
     } else if (migrationJob != null) {
-      emptyList()
+      null
     } else {
-      val minJobs: List<MinimalJobSpec> = eligibleJobs
+      eligibleJobs
         .asSequence()
         .filter { job ->
           // Filter out all jobs with unmet dependencies
@@ -141,9 +141,8 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
         }
         .filterNot { it.isRunning }
         .filter { job -> job.hasEligibleRunTime(currentTime) }
-        .toList()
-
-      getFullJobs(minJobs)
+        .firstOrNull(filter)
+        ?.toJobSpec()
     }.also {
       stopwatch?.stop(TAG)
     }
@@ -519,21 +518,6 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     return jobSpecCache.getOrPut(this.id) {
       jobDatabase.getJobSpec(this.id) ?: throw IllegalArgumentException("JobSpec not found for id: $id")
     }
-  }
-
-  private fun getFullJobs(minJobs: Collection<MinimalJobSpec>): List<JobSpec> {
-    val requestedKeys = minJobs.map { it.id }.toSet()
-    val cachedKeys = jobSpecCache.keys.intersect(requestedKeys)
-    val uncachedKeys = requestedKeys.subtract(cachedKeys)
-
-    val cachedJobs = cachedKeys.map { jobSpecCache[it]!! }
-    val fetchedJobs = jobDatabase.getJobSpecsByKeys(uncachedKeys)
-
-    val sorted = TreeSet(EligibleFullJobComparator).apply {
-      addAll(cachedJobs)
-      addAll(fetchedJobs)
-    }
-    return sorted.toList()
   }
 
   private object EligibleMinJobComparator : Comparator<MinimalJobSpec> {

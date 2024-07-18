@@ -32,20 +32,20 @@ class JobManagerPerformanceTests {
 
   @Test
   fun testPerformance_singleQueue() {
-    runTest(2000) { TestJob(queue = "queue") }
+    runTest("singleQueue", 2000) { TestJob(queue = "queue") }
   }
 
   @Test
   fun testPerformance_fourQueues() {
-    runTest(2000) { TestJob(queue = "queue-${Random.nextInt(1, 5)}") }
+    runTest("fourQueues", 2000) { TestJob(queue = "queue-${Random.nextInt(1, 5)}") }
   }
 
   @Test
   fun testPerformance_noQueues() {
-    runTest(2000) { TestJob(queue = null) }
+    runTest("noQueues", 2000) { TestJob(queue = null) }
   }
 
-  private fun runTest(count: Int, jobCreator: () -> TestJob) {
+  private fun runTest(name: String, count: Int, jobCreator: () -> TestJob) {
     val context = AppDependencies.application
     val jobManager = testJobManager(context)
 
@@ -66,17 +66,17 @@ class JobManagerPerformanceTests {
         eventTimer.emit("job")
         latch.countDown()
         if (latch.count % 100 == 0L) {
-          Log.d(TAG, "Finished ${count - latch.count}/$count jobs")
+          Log.d(TAG, "[$name] Finished ${count - latch.count}/$count jobs")
         }
       }
     }
 
-    Log.i(TAG, "Adding jobs...")
+    Log.i(TAG, "[$name] Adding jobs...")
     jobManager.addAll((1..count).map { jobCreator() })
 
-    Log.i(TAG, "Waiting for jobs to complete...")
+    Log.i(TAG, "[$name] Waiting for jobs to complete...")
     latch.await()
-    Log.i(TAG, "Jobs complete!")
+    Log.i(TAG, "[$name] Jobs complete!")
     Log.i(TAG, eventTimer.stop().summary)
   }
 

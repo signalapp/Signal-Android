@@ -1,18 +1,16 @@
 package org.thoughtcrime.securesms.jobmanager.impl;
 
-import androidx.annotation.NonNull;
-
-import org.thoughtcrime.securesms.jobmanager.JobPredicate;
-import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
+import org.thoughtcrime.securesms.jobs.MinimalJobSpec;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
- * A {@link JobPredicate} that will only run jobs with the provided factory keys.
+ * A {@link Predicate} that will only run jobs with the provided factory keys.
  */
-public final class FactoryJobPredicate implements JobPredicate {
+public final class FactoryJobPredicate implements Predicate<MinimalJobSpec> {
 
   private final Set<String> factories;
 
@@ -21,7 +19,7 @@ public final class FactoryJobPredicate implements JobPredicate {
   }
 
   @Override
-  public boolean shouldRun(@NonNull JobSpec jobSpec) {
-    return factories.contains(jobSpec.getFactoryKey());
+  public boolean test(MinimalJobSpec minimalJobSpec) {
+    return factories.contains(minimalJobSpec.getFactoryKey());
   }
 }

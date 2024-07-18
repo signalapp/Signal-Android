@@ -198,28 +198,6 @@ class JobDatabase(
   }
 
   @Synchronized
-  fun getJobSpecsByKeys(keys: Collection<String>): List<JobSpec> {
-    if (keys.isEmpty()) {
-      return emptyList()
-    }
-
-    val output: MutableList<JobSpec> = ArrayList(keys.size)
-
-    for (query in SqlUtil.buildCollectionQuery(Jobs.JOB_SPEC_ID, keys)) {
-      readableDatabase
-        .select()
-        .from(Jobs.TABLE_NAME)
-        .where(query.where, query.whereArgs)
-        .run()
-        .forEach {
-          output += it.toJobSpec()
-        }
-    }
-
-    return output
-  }
-
-  @Synchronized
   fun getMostEligibleJobInQueue(queue: String): JobSpec? {
     return readableDatabase
       .select()

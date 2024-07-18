@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobmanager.persistence
 
 import androidx.annotation.WorkerThread
+import org.thoughtcrime.securesms.jobs.MinimalJobSpec
 import java.util.function.Predicate
 
 interface JobStorage {
@@ -17,7 +18,7 @@ interface JobStorage {
   fun getAllMatchingFilter(predicate: Predicate<JobSpec>): List<JobSpec>
 
   @WorkerThread
-  fun getPendingJobsWithNoDependenciesInCreatedOrder(currentTime: Long): List<JobSpec>
+  fun getNextEligibleJob(currentTime: Long, filter: (MinimalJobSpec) -> Boolean): JobSpec?
 
   @WorkerThread
   fun getJobsInQueue(queue: String): List<JobSpec>

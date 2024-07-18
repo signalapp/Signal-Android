@@ -5,6 +5,9 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Test
 import org.thoughtcrime.securesms.assertIs
+import org.thoughtcrime.securesms.assertIsNot
+import org.thoughtcrime.securesms.assertIsNotNull
+import org.thoughtcrime.securesms.assertIsNull
 import org.thoughtcrime.securesms.database.JobDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec
@@ -15,6 +18,11 @@ import org.thoughtcrime.securesms.testutil.TestHelpers
 import java.nio.charset.Charset
 
 class FastJobStorageTest {
+
+  companion object {
+    val NO_PREDICATE: (MinimalJobSpec) -> Boolean = { true }
+  }
+
   @Test
   fun `init - all stored data available`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
@@ -313,97 +321,100 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - none when earlier item in queue is running`() {
+  fun `getNextEligibleJob - none when earlier item in queue is running`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", isRunning = true), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = "q"), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2)))
     subject.init()
 
-    subject.getPendingJobsWithNoDependenciesInCreatedOrder(1).size assertIs 0
+    subject.getNextEligibleJob(1, NO_PREDICATE) assertIs null
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - none when all jobs are running`() {
+  fun `getNextEligibleJob - none when all jobs are running`() {
     val fullSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", isRunning = true), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec)))
     subject.init()
 
-    subject.getPendingJobsWithNoDependenciesInCreatedOrder(10).size assertIs 0
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs null
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - none when next run time is after current time`() {
+  fun `getNextEligibleJob - none when next run time is after current time`() {
     val currentTime = 0L
     val fullSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", lastRunAttemptTime = 0, nextBackoffInterval = 10), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec)))
     subject.init()
 
-    subject.getPendingJobsWithNoDependenciesInCreatedOrder(currentTime).size assertIs 0
+    subject.getNextEligibleJob(currentTime, NO_PREDICATE) assertIs null
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - none when dependent on another job`() {
+  fun `getNextEligibleJob - none when dependent on another job`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", isRunning = true), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2"), emptyList(), listOf(DependencySpec("2", "1", false)))
 
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2)))
     subject.init()
 
-    subject.getPendingJobsWithNoDependenciesInCreatedOrder(0).size assertIs 0
+    subject.getNextEligibleJob(0, NO_PREDICATE) assertIs null
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - single eligible job`() {
+  fun `getNextEligibleJob - single eligible job`() {
     val fullSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q"), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec)))
     subject.init()
 
-    subject.getPendingJobsWithNoDependenciesInCreatedOrder(10).size assertIs 1
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec.jobSpec
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - multiple eligible jobs`() {
+  fun `getNextEligibleJob - multiple eligible jobs`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1"), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2"), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2)))
     subject.init()
 
-    subject.getPendingJobsWithNoDependenciesInCreatedOrder(10).size assertIs 2
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec1.jobSpec
+    subject.deleteJob(fullSpec1.jobSpec.id)
+
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec2.jobSpec
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - single eligible job in mixed list`() {
+  fun `getNextEligibleJob - single eligible job in mixed list`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", isRunning = true), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2"), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2)))
     subject.init()
 
-    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10)
-    jobs.size assertIs 1
-    jobs[0].id assertIs "2"
+    val job = subject.getNextEligibleJob(10, NO_PREDICATE)
+    job.assertIsNotNull()
+    job.id assertIs fullSpec2.jobSpec.id
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - first item in queue`() {
+  fun `getNextEligibleJob - first item in queue`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q"), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = "q"), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2)))
     subject.init()
 
-    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10)
-    jobs.size assertIs 1
-    jobs[0].id assertIs "1"
+    val job = subject.getNextEligibleJob(10, NO_PREDICATE)
+    job.assertIsNotNull()
+    job.id assertIs fullSpec1.jobSpec.id
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - first item in queue with priority`() {
+  fun `getNextEligibleJob - first item in queue with priority`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", createTime = 1, priority = Job.Parameters.PRIORITY_LOW), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = "q", createTime = 2, priority = Job.Parameters.PRIORITY_HIGH), emptyList(), emptyList())
     val fullSpec3 = FullSpec(jobSpec(id = "3", factoryKey = "f3", queueKey = "q", createTime = 3, priority = Job.Parameters.PRIORITY_DEFAULT), emptyList(), emptyList())
@@ -411,13 +422,13 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2, fullSpec3)))
     subject.init()
 
-    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10)
-    jobs.size assertIs 1
-    jobs[0].id assertIs "2"
+    val job = subject.getNextEligibleJob(10, NO_PREDICATE)
+    job.assertIsNotNull()
+    job.id assertIs fullSpec2.jobSpec.id
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - complex priority`() {
+  fun `getNextEligibleJob - complex priority`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q1", createTime = 1, priority = Job.Parameters.PRIORITY_LOW), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = "q1", createTime = 2, priority = Job.Parameters.PRIORITY_HIGH), emptyList(), emptyList())
     val fullSpec3 = FullSpec(jobSpec(id = "3", factoryKey = "f3", queueKey = "q2", createTime = 3, priority = Job.Parameters.PRIORITY_DEFAULT), emptyList(), emptyList())
@@ -431,18 +442,35 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2, fullSpec3, fullSpec4, fullSpec5, fullSpec6, fullSpec7, fullSpec8, fullSpec9)))
     subject.init()
 
-    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10)
-    jobs.size assertIs 6
-    jobs[0].id assertIs "2"
-    jobs[1].id assertIs "6"
-    jobs[2].id assertIs "3"
-    jobs[3].id assertIs "9"
-    jobs[4].id assertIs "7"
-    jobs[5].id assertIs "8"
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec2.jobSpec
+    subject.deleteJob(fullSpec2.jobSpec.id)
+
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec6.jobSpec
+    subject.deleteJob(fullSpec6.jobSpec.id)
+
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec3.jobSpec
+    subject.deleteJob(fullSpec3.jobSpec.id)
+
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec5.jobSpec
+    subject.deleteJob(fullSpec5.jobSpec.id)
+
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec9.jobSpec
+    subject.deleteJob(fullSpec9.jobSpec.id)
+
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec1.jobSpec
+    subject.deleteJob(fullSpec1.jobSpec.id)
+
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec4.jobSpec
+    subject.deleteJob(fullSpec4.jobSpec.id)
+
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec7.jobSpec
+    subject.deleteJob(fullSpec7.jobSpec.id)
+
+    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec8.jobSpec
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - lastRunAttemptTime in the future runs right away`() {
+  fun `getNextEligibleJob - lastRunAttemptTime in the future runs right away`() {
     val currentTime = 10L
 
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", lastRunAttemptTime = 100, nextBackoffInterval = 5), emptyList(), emptyList())
@@ -450,63 +478,61 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1)))
     subject.init()
 
-    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(currentTime)
-    jobs.size assertIs 1
-    jobs[0].id assertIs "1"
+    val job = subject.getNextEligibleJob(currentTime, NO_PREDICATE)
+    job.assertIsNotNull()
+    job.id assertIs fullSpec1.jobSpec.id
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - migration job takes precedence`() {
+  fun `getNextEligibleJob - migration job takes precedence`() {
     val plainSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", createTime = 0), emptyList(), emptyList())
     val migrationSpec = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 5), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(plainSpec, migrationSpec)))
     subject.init()
 
-    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10)
-    jobs.size assertIs 1
-    jobs[0].id assertIs "2"
+    val job = subject.getNextEligibleJob(10, NO_PREDICATE)
+    job.assertIsNotNull()
+    job.id assertIs migrationSpec.jobSpec.id
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - running migration blocks normal jobs`() {
+  fun `getNextEligibleJob - running migration blocks normal jobs`() {
     val plainSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", createTime = 0), emptyList(), emptyList())
     val migrationSpec = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 5, isRunning = true), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(plainSpec, migrationSpec)))
     subject.init()
 
-    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10)
-    jobs.size assertIs 0
+    subject.getNextEligibleJob(10, NO_PREDICATE).assertIsNull()
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - running migration blocks later migration jobs`() {
+  fun `getNextEligibleJob - running migration blocks later migration jobs`() {
     val migrationSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 0, isRunning = true), emptyList(), emptyList())
     val migrationSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 5), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(migrationSpec1, migrationSpec2)))
     subject.init()
 
-    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10)
-    jobs.size assertIs 0
+    subject.getNextEligibleJob(10, NO_PREDICATE).assertIsNull()
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - only return first eligible migration job`() {
+  fun `getNextEligibleJob - only return first eligible migration job`() {
     val migrationSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 0), emptyList(), emptyList())
     val migrationSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 5), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(migrationSpec1, migrationSpec2)))
     subject.init()
 
-    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10)
-    jobs.size assertIs 1
-    jobs[0].id assertIs "1"
+    val job = subject.getNextEligibleJob(10, NO_PREDICATE)
+    job.assertIsNotNull()
+    job.id assertIs migrationSpec1.jobSpec.id
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - migration job that isn't scheduled to run yet blocks later migration jobs`() {
+  fun `getNextEligibleJob - migration job that isn't scheduled to run yet blocks later migration jobs`() {
     val currentTime = 10L
 
     val migrationSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 0, lastRunAttemptTime = 0, nextBackoffInterval = 999), emptyList(), emptyList())
@@ -515,26 +541,22 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(migrationSpec1, migrationSpec2)))
     subject.init()
 
-    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(currentTime)
-    jobs.size assertIs 0
+    subject.getNextEligibleJob(currentTime, NO_PREDICATE).assertIsNull()
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after deleted, no longer is in eligible list`() {
+  fun `getNextEligibleJob - after deleted, no longer is in eligible list`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs true
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    subject.deleteJob(DataSet1.JOB_1.id)
 
-    subject.deleteJobs(listOf("id1"))
-
-    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs false
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIsNot DataSet1.JOB_1
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after deleted, next item in queue is eligible`() {
+  fun `getNextEligibleJob - after deleted, next item in queue is eligible`() {
     // Two jobs in the same queue but with different create times
     val firstJob = DataSet1.JOB_1
     val secondJob = DataSet1.JOB_1.copy(id = "id2", createTime = 2)
@@ -548,129 +570,101 @@ class FastJobStorageTest {
     )
     subject.init()
 
-    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.size assertIs 1
-    jobs.contains(firstJob) assertIs true
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs firstJob
+    subject.deleteJob(firstJob.id)
 
-    subject.deleteJobs(listOf("id1"))
-
-    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.size assertIs 1
-    jobs.contains(firstJob) assertIs false
-    jobs.contains(secondJob) assertIs true
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs secondJob
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after marked running, no longer is in eligible list`() {
+  fun `getNextEligibleJob - after marked running, no longer is in eligible list`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs true
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    subject.markJobAsRunning(DataSet1.JOB_1.id, 1)
 
-    subject.markJobAsRunning("id1", 1)
-
-    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs false
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIsNot DataSet1.JOB_1
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after updateJobAfterRetry to be invalid, no longer is in eligible list`() {
+  fun `getNextEligibleJob - after updateJobAfterRetry to be invalid, no longer is in eligible list`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs true
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    subject.updateJobAfterRetry(DataSet1.JOB_1.id, 1, 1000, 1_000_000, null)
 
-    subject.updateJobAfterRetry("id1", 1, 1000, 1_000_000, null)
-
-    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs false
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIsNot DataSet1.JOB_1
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after invalid then marked pending, is in eligible list`() {
+  fun `getNextEligibleJob - after invalid then marked pending, is in eligible list`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.markJobAsRunning("id1", 1)
-    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs false
+    subject.markJobAsRunning(DataSet1.JOB_1.id, 1)
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIsNot DataSet1.JOB_1
 
     subject.updateAllJobsToBePending()
 
-    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.filter { it.id == DataSet1.JOB_1.id }.size assertIs 1 // The last run attempt time changes, so some fields will be different
+    subject.getNextEligibleJob(100, NO_PREDICATE)?.id assertIs DataSet1.JOB_1.id // The last run attempt time changes, so some fields will be different
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - after updateJobs to be invalid, no longer is in eligible list`() {
+  fun `getNextEligibleJob - after updateJobs to be invalid, no longer is in eligible list`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs true
-
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
     subject.updateJobs(listOf(DataSet1.JOB_1.copy(isRunning = true)))
 
-    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs false
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIsNot DataSet1.JOB_1
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - newly-inserted higher-priority job in queue replaces old`() {
+  fun `getNextEligibleJob - newly-inserted higher-priority job in queue replaces old`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs true
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
 
     val higherPriorityJob = DataSet1.JOB_1.copy(id = "id-bigboi", priority = Job.Parameters.PRIORITY_HIGH)
     subject.insertJobs(listOf(FullSpec(jobSpec = higherPriorityJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())))
 
-    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs false
-    jobs.contains(higherPriorityJob) assertIs true
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs higherPriorityJob
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - updating job to have a higher priority replaces lower priority in queue`() {
+  fun `getNextEligibleJob - updating job to have a higher priority replaces lower priority in queue`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
     val lowerPriorityJob = DataSet1.JOB_1.copy(id = "id-bigboi", priority = Job.Parameters.PRIORITY_LOW)
     subject.insertJobs(listOf(FullSpec(jobSpec = lowerPriorityJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())))
 
-    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs true
-    jobs.contains(lowerPriorityJob) assertIs false
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
 
     val higherPriorityJob = lowerPriorityJob.copy(priority = Job.Parameters.PRIORITY_HIGH)
     subject.updateJobs(listOf(higherPriorityJob))
 
-    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs false
-    jobs.contains(higherPriorityJob) assertIs true
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs higherPriorityJob
   }
 
   @Test
-  fun `getPendingJobsWithNoDependenciesInCreatedOrder - updating job to have an older createTime replaces newer in queue`() {
+  fun `getNextEligibleJob - updating job to have an older createTime replaces newer in queue`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
     val newerJob = DataSet1.JOB_1.copy(id = "id-bigboi", createTime = 1000)
     subject.insertJobs(listOf(FullSpec(jobSpec = newerJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())))
 
-    var jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs true
-    jobs.contains(newerJob) assertIs false
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
 
     val olderJob = newerJob.copy(createTime = 0)
     subject.updateJobs(listOf(olderJob))
 
-    jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(100)
-    jobs.contains(DataSet1.JOB_1) assertIs false
-    jobs.contains(olderJob) assertIs true
+    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs olderJob
   }
 
   @Test
@@ -825,10 +819,6 @@ class FastJobStorageTest {
     every { mock.getAllDependencySpecs() } returns dependencies
     every { mock.getConstraintSpecsForJobs(any()) } returns constraints
     every { mock.getJobSpec(any()) } answers { jobs.first { it.id == firstArg() } }
-    every { mock.getJobSpecsByKeys(any()) } answers {
-      val ids: Collection<String> = firstArg()
-      jobs.filter { ids.contains(it.id) }
-    }
     every { mock.insertJobs(any()) } answers {
       val inserts: List<FullSpec> = firstArg()
       for (insert in inserts) {
