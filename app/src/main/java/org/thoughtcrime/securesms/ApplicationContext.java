@@ -157,12 +157,12 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                               initializeLogging();
                               Log.i(TAG, "onCreate()");
                             })
+                            .addBlocking("app-dependencies", this::initializeAppDependencies)
                             .addBlocking("anr-detector", this::startAnrDetector)
                             .addBlocking("security-provider", this::initializeSecurityProvider)
                             .addBlocking("crash-handling", this::initializeCrashHandling)
                             .addBlocking("rx-init", this::initializeRx)
                             .addBlocking("event-bus", () -> EventBus.builder().logNoSubscriberMessages(false).installDefaultEventBus())
-                            .addBlocking("app-dependencies", this::initializeAppDependencies)
                             .addBlocking("scrubber", () -> Scrubber.setIdentifierHmacKeyProvider(() -> SignalStore.svr().getOrCreateMasterKey().deriveLoggingKey()))
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
