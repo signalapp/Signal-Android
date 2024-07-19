@@ -912,7 +912,7 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  const val CRASH_PROMPT_CONFIG: String = "android.crashPromptConfig"
+  const val CRASH_PROMPT_CONFIG: String = "android.crashPromptConfig.2"
 
   /** Config object for what crashes to prompt about.  */
   val crashPromptConfig: String by remoteString(
