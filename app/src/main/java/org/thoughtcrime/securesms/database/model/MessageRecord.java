@@ -614,6 +614,9 @@ public abstract class MessageRecord extends DisplayRecord {
     if ((isPush() || isCallLog()) && getDateSent() < getDateReceived()) {
       return getDateSent();
     }
+    if (isEditMessage()) {
+      return getDateSent();
+    }
     return getDateReceived();
   }
 

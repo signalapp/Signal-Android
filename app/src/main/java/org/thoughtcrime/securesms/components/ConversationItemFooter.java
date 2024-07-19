@@ -321,11 +321,6 @@ public class ConversationItemFooter extends ConstraintLayout {
       dateView.setText(DateUtils.getOnlyTimeString(getContext(), ((MmsMessageRecord) messageRecord).getScheduledDate()));
     } else {
       long timestamp = messageRecord.getTimestamp();
-      if (messageRecord.isEditMessage()) {
-        if (displayMode == ConversationItemDisplayMode.EditHistory.INSTANCE) {
-          timestamp = messageRecord.getDateSent();
-        }
-      }
       FormattedDate date = DateUtils.getDatelessRelativeTimeSpanFormattedDate(getContext(), locale, timestamp);
       String dateLabel = date.getValue();
       if (displayMode != ConversationItemDisplayMode.Detailed.INSTANCE && messageRecord.isEditMessage() && messageRecord.isLatestRevision()) {
