@@ -86,7 +86,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       if (RemoteConfig.messageBackups || state.remoteBackupsEnabled) {
         clickPref(
-          title = DSLSettingsText.from("Signal Backups"), // TODO [message-backups] -- Finalized copy
+          title = DSLSettingsText.from(R.string.RemoteBackupsSettingsFragment__signal_backups),
           summary = DSLSettingsText.from(if (state.remoteBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),
           onClick = {
             if (state.remoteBackupsEnabled) {

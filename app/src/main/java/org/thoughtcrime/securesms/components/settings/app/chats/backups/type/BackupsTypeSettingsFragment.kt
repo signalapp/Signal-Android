@@ -121,7 +121,7 @@ private fun BackupsTypeSettingsContent(
 
       item {
         Rows.TextRow(
-          text = "Change or cancel subscription", // TODO [message-backups] final copy
+          text = stringResource(id = R.string.BackupsTypeSettingsFragment__change_or_cancel_subscription),
           onClick = contentCallbacks::onChangeOrCancelSubscriptionClick
         )
       }
@@ -154,7 +154,7 @@ private fun BackupsTypeRow(
     Column {
       Text(text = messageBackupsType.title)
       Text(
-        text = "$formattedAmount/month . Renews $renewal", // TODO [message-backups] final copy
+        text = stringResource(id = R.string.BackupsTypeSettingsFragment__s_month_renews_s, formattedAmount, renewal),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )

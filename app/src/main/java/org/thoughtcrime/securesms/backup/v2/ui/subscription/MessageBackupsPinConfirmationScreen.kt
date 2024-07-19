@@ -32,6 +32,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -68,7 +69,7 @@ fun MessageBackupsPinConfirmationScreen(
       ) {
         item {
           Text(
-            text = "Enter your PIN", // TODO [message-backups] Finalized copy
+            text = stringResource(id = R.string.MessageBackupsPinConfirmationScreen__enter_your_pin),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(top = 40.dp)
           )
@@ -76,7 +77,7 @@ fun MessageBackupsPinConfirmationScreen(
 
         item {
           Text(
-            text = "Enter your Signal PIN to enable backups", // TODO [message-backups] Finalized copy
+            text = stringResource(id = R.string.MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups),
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(top = 16.dp)
@@ -84,7 +85,6 @@ fun MessageBackupsPinConfirmationScreen(
         }
 
         item {
-          // TODO [message-backups] Confirm default focus state
           val keyboardType = remember(pinKeyboardType) {
             when (pinKeyboardType) {
               PinKeyboardType.NUMERIC -> KeyboardType.NumberPassword
@@ -136,7 +136,7 @@ fun MessageBackupsPinConfirmationScreen(
           onClick = onNextClick
         ) {
           Text(
-            text = "Next" // TODO [message-backups] Finalized copy
+            text = stringResource(id = R.string.MessageBackupsPinConfirmationScreen__next)
           )
         }
       }
@@ -198,7 +198,7 @@ private fun PinKeyboardTypeToggle(
       modifier = Modifier.padding(end = 8.dp)
     )
     Text(
-      text = "Switch keyboard" // TODO [message-backups] Finalized copy
+      text = stringResource(id = R.string.MessageBackupsPinConfirmationScreen__switch_keyboard)
     )
   }
 }

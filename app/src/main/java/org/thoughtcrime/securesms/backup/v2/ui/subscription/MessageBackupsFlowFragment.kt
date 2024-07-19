@@ -82,7 +82,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       composable(route = MessageBackupsScreen.PIN_EDUCATION.name) {
         MessageBackupsPinEducationScreen(
           onNavigationClick = viewModel::goToPreviousScreen,
-          onGeneratePinClick = {},
+          onCreatePinClick = {},
           onUseCurrentPinClick = viewModel::goToNextScreen,
           recommendedPinSize = 16 // TODO [message-backups] This value should come from some kind of config
         )

@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,12 +36,12 @@ import org.thoughtcrime.securesms.R
 @Composable
 fun MessageBackupsPinEducationScreen(
   onNavigationClick: () -> Unit,
-  onGeneratePinClick: () -> Unit,
+  onCreatePinClick: () -> Unit,
   onUseCurrentPinClick: () -> Unit,
   recommendedPinSize: Int
 ) {
   Scaffolds.Settings(
-    title = "Backup type", // TODO [message-backups] Finalized copy
+    title = stringResource(id = R.string.RemoteBackupsSettingsFragment__signal_backups),
     onNavigationClick = onNavigationClick,
     navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24)
   ) {
@@ -68,7 +69,7 @@ fun MessageBackupsPinEducationScreen(
 
         item {
           Text(
-            text = "PINs protect your backup", // TODO [message-backups] Finalized copy
+            text = stringResource(id = R.string.MessageBackupsPinEducationScreen__pins_protect_your_backup),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(top = 16.dp)
           )
@@ -76,7 +77,7 @@ fun MessageBackupsPinEducationScreen(
 
         item {
           Text(
-            text = "Your Signal PIN lets you restore your backup when you re-install Signal. For increased security, we recommend updating to a new $recommendedPinSize-digit PIN.", // TODO [message-backups] Finalized copy
+            text = stringResource(id = R.string.MessageBackupsPinEducationScreen__your_signal_pin_lets_you),
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             style = MaterialTheme.typography.bodyLarge,
@@ -86,7 +87,7 @@ fun MessageBackupsPinEducationScreen(
 
         item {
           Text(
-            text = "If you forget your PIN, you will not be able to restore your backup. You can change your PIN at any time in settings.", // TODO [message-backups] Finalized copy
+            text = stringResource(id = R.string.MessageBackupsPinEducationScreen__if_you_forget_your_pin),
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             style = MaterialTheme.typography.bodyLarge,
@@ -100,18 +101,18 @@ fun MessageBackupsPinEducationScreen(
         modifier = Modifier.fillMaxWidth()
       ) {
         Text(
-          text = "Use current Signal PIN" // TODO [message-backups] Finalized copy
+          text = stringResource(id = R.string.MessageBackupsPinEducationScreen__use_current_signal_pin)
         )
       }
 
       TextButton(
-        onClick = onGeneratePinClick,
+        onClick = onCreatePinClick,
         modifier = Modifier
           .fillMaxWidth()
           .padding(bottom = 16.dp)
       ) {
         Text(
-          text = "Generate a new $recommendedPinSize-digit PIN" // TODO [message-backups] Finalized copy
+          text = stringResource(id = R.string.MessageBackupsPinEducationScreen__create_new_pin)
         )
       }
     }
@@ -124,7 +125,7 @@ private fun MessageBackupsPinScreenPreview() {
   Previews.Preview {
     MessageBackupsPinEducationScreen(
       onNavigationClick = {},
-      onGeneratePinClick = {},
+      onCreatePinClick = {},
       onUseCurrentPinClick = {},
       recommendedPinSize = 16
     )

@@ -98,24 +98,26 @@ fun MessageBackupsTypeSelectionScreen(
 
         item {
           Text(
-            text = "Choose your backup type", // TODO [message-backups] Finalized copy
+            text = stringResource(id = R.string.MessagesBackupsTypeSelectionScreen__choose_your_backup_plan),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(top = 12.dp)
           )
         }
 
         item {
-          // TODO [message-backups] Finalized copy
           val primaryColor = MaterialTheme.colorScheme.primary
           val readMoreString = buildAnnotatedString {
-            append("All backups are end-to-end encrypted. Signal is a non-profit—paying for backups helps support our mission. ")
+            append(stringResource(id = R.string.MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted))
+
+            val readMore = stringResource(id = R.string.MessageBackupsTypeSelectionScreen__read_more)
+            append(" ")
             withAnnotation(tag = "URL", annotation = "read-more") {
               withStyle(
                 style = SpanStyle(
                   color = primaryColor
                 )
               ) {
-                append("Read more")
+                append(readMore)
               }
             }
           }

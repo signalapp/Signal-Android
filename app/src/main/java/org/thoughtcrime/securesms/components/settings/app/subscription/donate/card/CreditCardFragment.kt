@@ -58,14 +58,22 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       }
     }
 
-    // TODO [message-backups] Copy for this button in backups checkout flow.
-    binding.continueButton.text = if (args.inAppPayment.type == InAppPaymentType.RECURRING_DONATION) {
-      getString(
-        R.string.CreditCardFragment__donate_s_month,
-        FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
-      )
-    } else {
-      getString(R.string.CreditCardFragment__donate_s, FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney()))
+    binding.continueButton.text = when (args.inAppPayment.type) {
+      InAppPaymentType.RECURRING_DONATION -> {
+        getString(
+          R.string.CreditCardFragment__donate_s_month,
+          FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+        )
+      }
+      InAppPaymentType.RECURRING_BACKUP -> {
+        getString(
+          R.string.CreditCardFragment__pay_s_month,
+          FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+        )
+      }
+      else -> {
+        getString(R.string.CreditCardFragment__donate_s, FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney()))
+      }
     }
 
     binding.description.setLinkColor(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))

@@ -173,20 +173,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/restoreFromBackupFragment"
-        android:name="org.thoughtcrime.securesms.backup.v2.ui.restore.RestoreFromBackupFragment">
-
-        <action
-            android:id="@+id/action_restoreFromBacakupFragment_to_moreOptions"
-            app:destination="@+id/transferOrRestoreMoreOptionsDialog" />
-
-        <argument
-            android:name="cancelable"
-            app:argType="boolean" />
-
-    </fragment>
-
-    <fragment
         android:id="@+id/restoreCompleteFragment"
         android:name="org.thoughtcrime.securesms.restore.restorecomplete.RestoreCompleteFragment" />
 

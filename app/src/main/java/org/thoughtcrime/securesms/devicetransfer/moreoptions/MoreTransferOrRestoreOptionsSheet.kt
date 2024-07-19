@@ -196,8 +196,8 @@ private fun LogInWithoutTransferringOption(
       }
     },
     isSelected = selectedOption == BackupRestorationType.NONE,
-    title = "Log in without transferring", // TODO [message-backups] Finalized copy.
-    subtitle = "Continue without transferring your messages and media", // TODO [message-backups] Finalized copy.
+    title = stringResource(id = R.string.MoreTransferOrRestoreOptionsSheet__log_in_without_transferring),
+    subtitle = stringResource(id = R.string.MoreTransferOrRestoreOptionsSheet__continue_without_transferring),
     onClick = { onOptionSelected(BackupRestorationType.NONE) }
   )
 }
@@ -232,8 +232,8 @@ private fun TransferFromAndroidDeviceOption(
       }
     },
     isSelected = selectedOption == BackupRestorationType.DEVICE_TRANSFER,
-    title = "Transfer from Android device", // TODO [message-backups] Finalized copy.
-    subtitle = "Transfer your account and messages from your old device.", // TODO [message-backups] Finalized copy.
+    title = stringResource(id = R.string.MoreTransferOrRestoreOptionsSheet__transfer_from_android_device),
+    subtitle = stringResource(id = R.string.MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages),
     onClick = { onOptionSelected(BackupRestorationType.DEVICE_TRANSFER) }
   )
 }
@@ -268,8 +268,8 @@ private fun RestoreLocalBackupOption(
       }
     },
     isSelected = selectedOption == BackupRestorationType.LOCAL_BACKUP,
-    title = "Restore local backup", // TODO [message-backups] Finalized copy.
-    subtitle = "Restore your messages from a backup file you saved on your device.", // TODO [message-backups] Finalized copy.
+    title = stringResource(id = R.string.MoreTransferOrRestoreOptionsSheet__restore_local_backup),
+    subtitle = stringResource(id = R.string.MoreTransferOrRestoreOptionsSheet__restore_your_messages),
     onClick = { onOptionSelected(BackupRestorationType.LOCAL_BACKUP) }
   )
 }
@@ -284,7 +284,7 @@ private fun OptionPreview() {
           modifier = Modifier.padding(horizontal = 18.dp)
         ) {
           Icon(
-            painter = painterResource(id = R.drawable.symbol_backup_light), // TODO [message-backups] Finalized asset.
+            painter = painterResource(id = R.drawable.symbol_backup_light),
             contentDescription = null,
             tint = MaterialTheme.colorScheme.primary,
             modifier = Modifier.size(36.dp)
@@ -292,8 +292,8 @@ private fun OptionPreview() {
         }
       },
       isSelected = false,
-      title = "Log in without transferring", // TODO [message-backups] Finalized copy.
-      subtitle = "Continue without transferring your messages and media", // TODO [message-backups] Finalized copy.
+      title = "Option Preview Title",
+      subtitle = "Option Preview Subtitle",
       onClick = {}
     )
   }
