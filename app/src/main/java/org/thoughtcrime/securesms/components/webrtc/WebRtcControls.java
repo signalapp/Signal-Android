@@ -227,6 +227,10 @@ public final class WebRtcControls {
     return !isInPipMode;
   }
 
+  public boolean displayWaitingToBeLetIn() {
+    return !isInPipMode && groupCallState == GroupCallState.PENDING;
+  }
+
   public @NonNull WebRtcAudioOutput getAudioOutput() {
     switch (activeDevice) {
       case SPEAKER_PHONE:
@@ -282,7 +286,6 @@ public final class WebRtcControls {
 
   private int displayedButtonCount() {
     return (displayAudioToggle() ? 1 : 0) +
-           (displayCameraToggle() ? 1 : 0) +
            (displayVideoToggle() ? 1 : 0) +
            (displayMuteAudio() ? 1 : 0) +
            (displayRingToggle() ? 1 : 0) +
@@ -312,6 +315,7 @@ public final class WebRtcControls {
     RECONNECTING,
     CONNECTING,
     FULL,
+    PENDING,
     CONNECTED;
 
     boolean isAtLeast(@SuppressWarnings("SameParameterValue") @NonNull GroupCallState other) {

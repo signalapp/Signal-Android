@@ -9,10 +9,12 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Handler
 import android.os.Parcelable
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.Px
@@ -34,6 +36,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.bottomsheet.BottomSheetBehaviorHack
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.progressindicator.CircularProgressIndicatorSpec
+import com.google.android.material.progressindicator.IndeterminateDrawable
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -111,6 +115,20 @@ class ControlsAndInfoController private constructor(
   private val toggleCameraDirectionView: View = webRtcCallView.findViewById(R.id.call_screen_camera_direction_toggle)
   private val callControls: ConstraintLayout = webRtcCallView.findViewById(R.id.call_controls_constraint_layout)
   private val isLandscape = webRtcCallActivity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+  private val waitingToBeLetInProgressDrawable = IndeterminateDrawable.createCircularDrawable(
+    webRtcCallActivity,
+    CircularProgressIndicatorSpec(webRtcCallActivity, null).apply {
+      indicatorSize = 20.dp
+      indicatorInset = 0.dp
+      trackThickness = 2.dp
+      trackCornerRadius = 1.dp
+      indicatorColors = intArrayOf(ContextCompat.getColor(webRtcCallActivity, R.color.signal_colorOnBackground))
+      trackColor = Color.TRANSPARENT
+    }
+  )
+  private val waitingToBeLetIn: TextView = webRtcCallView.findViewById<TextView>(R.id.call_controls_waiting_to_be_let_in).apply {
+    setCompoundDrawablesRelativeWithIntrinsicBounds(waitingToBeLetInProgressDrawable, null, null, null)
+  }
 
   private val scheduleHideControlsRunnable: Runnable = Runnable { onScheduledHide() }
   private val bottomSheetVisibilityListeners = mutableSetOf<BottomSheetVisibilityListener>()
@@ -367,6 +385,13 @@ class ControlsAndInfoController private constructor(
     constraints.applyTo(callControls)
 
     toggleCameraDirectionView.visible = controlState.displayCameraToggle()
+    waitingToBeLetIn.visible = controlState.displayWaitingToBeLetIn()
+
+    if (controlState.displayWaitingToBeLetIn()) {
+      waitingToBeLetInProgressDrawable.setVisible(true, false)
+    } else {
+      waitingToBeLetInProgressDrawable.stop()
+    }
   }
 
   private fun onScheduledHide() {
@@ -463,7 +488,8 @@ class ControlsAndInfoController private constructor(
       displayMuteAudio() != previousState.displayMuteAudio() ||
       displayRingToggle() != previousState.displayRingToggle() ||
       displayOverflow() != previousState.displayOverflow() ||
-      displayEndCall() != previousState.displayEndCall()
+      displayEndCall() != previousState.displayEndCall() ||
+      displayWaitingToBeLetIn() != previousState.displayWaitingToBeLetIn()
   }
 
   private fun alphaControls(slideOffset: Float): Float {

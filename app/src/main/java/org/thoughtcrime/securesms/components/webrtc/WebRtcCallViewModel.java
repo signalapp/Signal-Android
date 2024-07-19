@@ -408,9 +408,11 @@ public class WebRtcCallViewModel extends ViewModel {
         groupCallState = (participantLimit == null || remoteDevicesCount < participantLimit) ? WebRtcControls.GroupCallState.CONNECTING
                                                                                              : WebRtcControls.GroupCallState.FULL;
         break;
+      case CONNECTED_AND_PENDING:
+        groupCallState = WebRtcControls.GroupCallState.PENDING;
+        break;
       case CONNECTED:
       case CONNECTED_AND_JOINING:
-      case CONNECTED_AND_PENDING:
       case CONNECTED_AND_JOINED:
         groupCallState = WebRtcControls.GroupCallState.CONNECTED;
         break;
