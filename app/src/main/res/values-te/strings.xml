@@ -1355,7 +1355,7 @@
     <!-- Dialog message explaining their action cannot be reversed -->
     <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
-    <string name="InputPanel__discard">Discard</string>
+    <string name="InputPanel__discard">తీసివేయు</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">పంచుకోండి</string>
@@ -7026,6 +7026,11 @@
     <string name="BackupAlertBottomSheet__cant_complete_download">డౌన్‌లోడ్‌ను పూర్తి చేయలేకపోయాము</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">మీ పరికరంలో తగినంత ఖాళీ స్థలం లేదు. మీ బ్యాకప్‌లో నిల్వ చేయబడిన మీడియాను డౌన్‌లోడ్ చేయడానికి మొత్తం స్థలంలో %1$s వరకు స్థలాన్ని ఖాళీ చేయండి.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
+    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
+        <item quantity="one">మీరు \"దాటవేయి\" ఎంచుకుంటే మీ బ్యాకప్లోని మీడియా %1$d రోజులో తొలగించబడుతుంది.</item>
+        <item quantity="other">ఒక వేళ మీరు \"స్కిప్\" ను ఎంచుకుంటే మీ బ్యాకప్లో ఉన్న మీడియా %1$d రోజులలో తొలగించబడుతుంది.</item>
+    </plurals>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__cant_process_backup_payment">బ్యాకప్ చెల్లింపును ప్రాసెస్ చేయడం సాధ్యపడదు</string>
     <!-- Sheet body when user payment failed to process -->

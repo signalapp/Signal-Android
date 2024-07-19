@@ -291,8 +291,8 @@
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Installer la dernière version de Signal</string>
     <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Cette version de l’appli n’est plus prise en charge. Pour continuer à échanger des messages, passez à la dernière version de Signal.</string>
-    <string name="ClientDeprecatedActivity_update">Installer la mise à jour</string>
-    <string name="ClientDeprecatedActivity_dont_update">Ne pas installer la mise à jour</string>
+    <string name="ClientDeprecatedActivity_update">Mettre à jour</string>
+    <string name="ClientDeprecatedActivity_dont_update">Ne pas mettre à jour</string>
     <string name="ClientDeprecatedActivity_warning">Avertissement</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Votre version de Signal est expirée. Vous pouvez afficher l’historique de vos messages, mais vous ne pourrez pas échanger de messages tant que vous n’aurez pas mis Signal à jour.</string>
 
@@ -1180,15 +1180,15 @@
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
     <string name="ManageGroupActivity_not_capable">Un des membres que vous avez ajoutés ne peut utiliser les Nouveaux groupes et doit installer la dernière version de Signal.</string>
     <string name="ManageGroupActivity_not_announcement_capable">Un des membres que vous avez ajoutés ne peut utiliser les groupes de diffusion et doit installer la dernière version de Signal.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Échec de mise à jour du groupe</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group">Échec de la mise à jour du groupe.</string>
     <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Vous n’êtes pas un membre du groupe</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Échec de mise à jour du groupe, veuillez réessayer plus tard</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Échec de mise à jour du groupe en raison d’une erreur réseau, veuillez réessayer plus tard</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Échec de la mise à jour du groupe. Veuillez réessayer plus tard.</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Échec de la mise à jour du groupe en raison d’une erreur réseau. Veuillez réessayer plus tard.</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Modifier le nom et l’image</string>
     <string name="ManageGroupActivity_legacy_group">Groupe hérité</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
-    <string name="ManageGroupActivity_legacy_group_learn_more">Ce groupe est un groupe hérité. Les fonctions telles que l’administration des groupes ne sont proposées que pour les Nouveaux groupes.</string>
+    <string name="ManageGroupActivity_legacy_group_learn_more">Ce groupe est un groupe hérité. Des fonctionnalités telles que l’administration des groupes ne sont proposées que pour les nouveaux groupes.</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">Ce groupe est un groupe hérité. Pour accéder aux nouvelles fonctions telles que les @mentions et l’administration,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">Ce groupe hérité ne peut pas être converti en Nouveau groupe, car il comporte un trop grand nombre de membres. Un groupe ne peut compter plus de %1$d membres.</string>
@@ -1351,11 +1351,11 @@
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Modifier le message</string>
     <!-- Dialog title shown if users are about to discard their draft message -->
-    <string name="InputPanel__discard_draft">Discard draft?</string>
+    <string name="InputPanel__discard_draft">Supprimer le brouillon ?</string>
     <!-- Dialog message explaining their action cannot be reversed -->
     <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
-    <string name="InputPanel__discard">Discard</string>
+    <string name="InputPanel__discard">Abandonner</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Partager</string>
@@ -2269,7 +2269,7 @@
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">Cet appareil ne dispose pas des services Google Play. Vous pouvez quand même utiliser Signal, mais cette configuration pourrait entraîner une fiabilité ou des performances moindres.\n\nSi vous n’êtes pas un utilisateur expérimenté, que vous n’utilisez pas une image Android de remplacement ou si vous pensez voir cela par erreur, veuillez contacter support@signal.org pour obtenir une aide au dépannage.</string>
     <string name="RegistrationActivity_i_understand">Je comprends</string>
     <string name="RegistrationActivity_play_services_error">Erreur des Services Google Play</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Les services Google Play sont en cours de mise à jour ou temporairement non disponibles. Veuillez réessayer.</string>
+    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Les services Google Play sont en cours de mise à jour ou temporairement indisponibles. Veuillez réessayer.</string>
     <string name="RegistrationActivity_terms_and_privacy">Conditions générales et règles de confidentialité</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pour vous permettre de contacter vos amis et d’envoyer des messages, Signal a besoin des autorisations Contacts et Médias. Vos contacts sont importés grâce au service de découverte confidentielle de Signal : autrement dit, ils sont chiffrés de bout en bout et nous n’y avons jamais accès.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pour vous permettre de contacter vos amis, Signal a besoin de l’autorisation Contacts. Vos contacts sont importés grâce au service de découverte confidentielle de Signal•: autrement dit, ils sont chiffrés de bout en bout et nous n’y avons jamais accès.</string>
@@ -2711,7 +2711,7 @@
     <!-- ProfileEditNameFragment -->
 
     <!-- QuickResponseService -->
-    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La réponse rapide n’est pas proposée quand Signal est verrouillée.</string>
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Impossible d’envoyer une réponse rapide lorsque Signal est verrouillé.</string>
     <string name="QuickResponseService_problem_sending_message">Un problème d’envoi du message est survenu.</string>
 
     <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
@@ -2987,7 +2987,7 @@
     <!-- Label indicating that a quote is for a reply to a story you created -->
     <string name="QuoteView_your_story">Vous · Story</string>
     <!-- Label indicating that the story being replied to no longer exists -->
-    <string name="QuoteView_no_longer_available">N’est plus proposée</string>
+    <string name="QuoteView_no_longer_available">Cette story n’est plus disponible</string>
     <!-- Label for quoted gift -->
     <string name="QuoteView__donation_for_a_friend">Don pour un ami</string>
 
@@ -3166,7 +3166,7 @@
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
     <string name="EditProfileFragment_deprecated_dialog_title">Installez la dernière version de Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">Cette version de Signal est arrivée à expiration. Pour continuer d’utiliser l’application, une mise à jour est nécessaire.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">Cette version de Signal est arrivée à expiration. Installez la dernière version pour continuer d’utiliser l’application.</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
     <string name="EditProfileFragment_deprecated_dialog_update_button">Mettre à jour</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
@@ -3619,7 +3619,7 @@
     <!-- Alert dialog title which shows up to update app to send payments -->
     <string name="PaymentsHomeFragment__update_required">Mise à jour requise</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">Une mise à jour est nécessaire pour continuer à envoyer et à recevoir des paiements, et pour actualiser le solde de vos paiements.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">Une mise à jour est nécessaire pour afficher votre solde actualisé et continuer d’envoyer et de recevoir des paiements.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Annuler</string>
     <!-- Alert dialog button to update now -->
@@ -5258,13 +5258,13 @@
     <string name="BadgesOverviewFragment__my_badges">Mes macarons</string>
     <string name="BadgesOverviewFragment__featured_badge">Macarons mis en avant</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Afficher les macarons sur le profil</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Échec de mise à jour du profil</string>
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Échec de la mise à jour du profil</string>
 
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Sélectionnez un macaron</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Vous devez sélectionner un macaron</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Échec de mise à jour du profil</string>
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Échec de la mise à jour du profil</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Faire un don</string>
@@ -5361,7 +5361,7 @@
     <!-- Message of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__message">Cette version de Signal a expiré. Mettez Signal à jour pour continuer à utiliser l’appli.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Mise à jour</string>
+    <string name="UpdateSignalExpiredDialog__update_action">Mettre à jour</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
     <string name="UpdateSignalExpiredDialog__cancel_action">Annuler</string>
 
@@ -5717,7 +5717,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add">Appuyez pour ajouter</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Aucune mise à jour récente à afficher pour l’instant.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Aucune nouvelle story à afficher pour le moment.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Masquer la story</string>
     <!-- Context menu option to unhide a story -->
@@ -7190,6 +7190,6 @@
     <!-- Action button label to cancel subscription and download later -->
     <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Confirmer et télécharger plus tard</string>
     <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Conserver le forfait</string>
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Conserver l’abonnement</string>
     <!-- EOF -->
 </resources>

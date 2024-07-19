@@ -1068,7 +1068,7 @@
     <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Je zult in deze groep niet langer berichten kunnen verzenden of ontvangen.</string>
     <string name="LeaveGroupDialog_leave">Verlaten</string>
     <string name="LeaveGroupDialog_choose_new_admin">Kies een nieuwe beheerder</string>
-    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voor je de groep verlaat moet je ten minste één beheerder aanwijzen voor deze groep.</string>
+    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voordat je de groep verlaat moet je ten minste één beheerder aanwijzen voor deze groep.</string>
     <string name="LeaveGroupDialog_choose_admin">Beheerder kiezen</string>
 
     <!-- LinkPreviewView -->
@@ -1143,7 +1143,7 @@
     <string name="AddMembersActivity__done">Klaar</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan verouderde groepen.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">%1$s lid toevoegen aan %2$s?</item>
+        <item quantity="one">%1$s toevoegen aan %2$s?</item>
         <item quantity="other">%3$d leden toevoegen aan %2$s?</item>
     </plurals>
     <string name="AddMembersActivity__add">Toevoegen</string>
@@ -1351,11 +1351,11 @@
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Bericht bewerken</string>
     <!-- Dialog title shown if users are about to discard their draft message -->
-    <string name="InputPanel__discard_draft">Discard draft?</string>
+    <string name="InputPanel__discard_draft">Concept verwijderen?</string>
     <!-- Dialog message explaining their action cannot be reversed -->
     <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
-    <string name="InputPanel__discard">Discard</string>
+    <string name="InputPanel__discard">Verwerpen</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Delen via andere app</string>
@@ -2168,16 +2168,16 @@
     <string name="CallRaiseHandSnackbar__collapsed_second_person_raised_hand_single">%1$s</string>
     <!-- A badge to show the user and at least one other participant in the call have their hand raised. The placeholder is a number quantifying how many other hands are also raised, besides the user.  -->
     <plurals name="CallRaiseHandSnackbar__collapsed_second_person_raised_hands_multiple">
-        <item quantity="one">%1$s + %2$d</item>
-        <item quantity="other">%1$s + %2$d</item>
+        <item quantity="one">%1$s +%2$d</item>
+        <item quantity="other">%1$s +%2$d</item>
     </plurals>
 
     <!-- A badge to show how many hands are raised. The placeholder string is a name. -->
     <string name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_singular">%1$s</string>
     <!-- A badge to show how many hands are raised. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
     <plurals name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_multiple">
-        <item quantity="one">%1$s + %2$d</item>
-        <item quantity="other">%1$s + %2$d</item>
+        <item quantity="one">%1$s +%2$d</item>
+        <item quantity="other">%1$s +%2$d</item>
     </plurals>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
@@ -2790,7 +2790,7 @@
     <!-- Banner button to update now -->
 
     <!-- WebRtcCallActivity -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Je moet Signal toestaan om de microfoon te gebruiken voor je de oproep kunt beantwoorden.</string>
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Je moet Signal toestaan om de microfoon te gebruiken voordat je de oproep kunt beantwoorden.</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Geef Signal toegang tot je microfoon en camera om de video-oproep te beantwoorden.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toegang tot de microfoon en de camera nodig om oproepen te maken of te ontvangen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>

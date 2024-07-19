@@ -1099,7 +1099,7 @@
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Notifikationer kan være forsinkede på grund af batterioptimering</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
-    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Deaktiver batterioptimering i Signal fra for at sikre, at beskednotifikationer ikke bliver forsinkede. Tryk på \"Fortsæt\" for at se enhedsspecifikke instruktioner.</string>
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Deaktiver batterioptimering i Signal for at sikre, at beskednotifikationer ikke bliver forsinkede. Tryk på \"Fortsæt\" for at se enhedsspecifikke instruktioner.</string>
     <!-- Button to dismiss notification help prompt -->
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Nej tak</string>
     <!-- Button to continue and go to Signal support website -->
@@ -1351,11 +1351,11 @@
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Rediger besked</string>
     <!-- Dialog title shown if users are about to discard their draft message -->
-    <string name="InputPanel__discard_draft">Discard draft?</string>
+    <string name="InputPanel__discard_draft">Slet udkast?</string>
     <!-- Dialog message explaining their action cannot be reversed -->
     <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
-    <string name="InputPanel__discard">Discard</string>
+    <string name="InputPanel__discard">Kassér</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Del</string>
