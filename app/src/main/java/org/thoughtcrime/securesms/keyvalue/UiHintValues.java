@@ -198,6 +198,6 @@ public class UiHintValues extends SignalStoreValues {
    * Sets the version number of the support article that users see if they have device-specific notifications issues
    */
   public void setLastSupportVersionSeen(int version) {
-    putLong(LAST_SUPPORT_VERSION_SEEN, version);
+    putInteger(LAST_SUPPORT_VERSION_SEEN, version);
   }
 }

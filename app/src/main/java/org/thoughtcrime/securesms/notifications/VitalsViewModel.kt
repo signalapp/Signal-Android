@@ -53,7 +53,7 @@ class VitalsViewModel(private val context: Application) : AndroidViewModel(conte
           }
         }
         DeviceSpecificNotificationConfig.ShowCondition.HAS_BATTERY_OPTIMIZATION_ON -> {
-          if (SlowNotificationHeuristics.isBatteryOptimizationsOn()) {
+          if (SlowNotificationHeuristics.shouldShowDialog() && SlowNotificationHeuristics.isBatteryOptimizationsOn()) {
             state = State.PROMPT_SPECIFIC_BATTERY_SAVER_DIALOG
           }
         }
