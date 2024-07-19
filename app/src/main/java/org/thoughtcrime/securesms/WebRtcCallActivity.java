@@ -491,6 +491,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       }
       return state.getLocalParticipant().isHandRaised();
     });
+
+    getLifecycle().addObserver(participantUpdateWindow);
   }
 
   private @NonNull Orientation resolveOrientationFromContext() {
