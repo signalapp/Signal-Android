@@ -80,7 +80,7 @@ public class OutlinedThumbnailView extends ThumbnailView {
   @Override
   protected void onRestoreInstanceState(Parcelable state) {
     if (state instanceof Bundle) {
-      Parcelable root = BundleCompat.getParcelable((Bundle) state, STATE_ROOT, Parcelable.class);
+      Parcelable root = ((Bundle) state).getParcelable(STATE_ROOT);
 
       this.isOutlineEnabled = ((Bundle) state).getBoolean(STATE_OUTLINE_ENABLED, true);
       super.onRestoreInstanceState(root);
