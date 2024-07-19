@@ -2966,6 +2966,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
     }
 
+    val parentStoryId: Long = if (editedMessage == null) {
+      if (message.parentStoryId != null) message.parentStoryId.serialize() else 0
+    } else {
+      val originalId = (editedMessage as? MmsMessageRecord)?.parentStoryId
+      if (originalId != null && message.outgoingQuote != null) {
+        originalId.serialize()
+      } else {
+        0L
+      }
+    }
+
     val contentValues = ContentValues()
     contentValues.put(DATE_SENT, message.sentTimeMillis)
     contentValues.put(TYPE, type)
@@ -2981,7 +2992,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     contentValues.put(HAS_DELIVERY_RECEIPT, earlyDeliveryReceipts.values.sumOf { it.count })
     contentValues.put(RECEIPT_TIMESTAMP, earlyDeliveryReceipts.values.map { it.timestamp }.maxOrNull() ?: -1L)
     contentValues.put(STORY_TYPE, message.storyType.code)
-    contentValues.put(PARENT_STORY_ID, if (message.parentStoryId != null) message.parentStoryId.serialize() else 0)
+    contentValues.put(PARENT_STORY_ID, parentStoryId)
     contentValues.put(SCHEDULED_DATE, message.scheduledDate)
     contentValues.putNull(LATEST_REVISION_ID)
     contentValues.put(MESSAGE_EXTRAS, message.messageExtras?.encode())
