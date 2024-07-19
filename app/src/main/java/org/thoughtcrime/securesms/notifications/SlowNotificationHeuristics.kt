@@ -63,7 +63,7 @@ object SlowNotificationHeuristics {
   }
 
   @JvmStatic
-  fun shouldPromptUserForLogs(): Boolean {
+  fun shouldPromptUserForDelayedNotificationLogs(): Boolean {
     if (!LocaleRemoteConfig.isDelayedNotificationPromptEnabled() || SignalStore.uiHints.hasDeclinedToShareNotificationLogs()) {
       return false
     }
@@ -143,11 +143,11 @@ object SlowNotificationHeuristics {
     return true
   }
 
-  fun showCondition(): DeviceSpecificNotificationConfig.ShowCondition {
+  fun getDeviceSpecificShowCondition(): DeviceSpecificNotificationConfig.ShowCondition {
     return DeviceSpecificNotificationConfig.currentConfig.showCondition
   }
 
-  fun shouldShowDialog(): Boolean {
+  fun shouldShowDeviceSpecificDialog(): Boolean {
     return LocaleRemoteConfig.isDeviceSpecificNotificationEnabled() && SignalStore.uiHints.lastSupportVersionSeen < DeviceSpecificNotificationConfig.currentConfig.version
   }
 

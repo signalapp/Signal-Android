@@ -29,7 +29,7 @@ object DeviceSpecificNotificationConfig {
    */
   data class Config(
     @JsonProperty val model: String = "",
-    @JsonProperty val showConditionCode: String = "has-slow-notifications",
+    @JsonProperty val showConditionCode: String = ShowCondition.NONE.code,
     @JsonProperty val link: String = GENERAL_SUPPORT_URL,
     @JsonProperty val localePercent: String = "*",
     @JsonProperty val version: Int = 0
@@ -43,10 +43,11 @@ object DeviceSpecificNotificationConfig {
   enum class ShowCondition(val code: String) {
     ALWAYS("always"),
     HAS_BATTERY_OPTIMIZATION_ON("has-battery-optimization-on"),
-    HAS_SLOW_NOTIFICATIONS("has-slow-notifications");
+    HAS_SLOW_NOTIFICATIONS("has-slow-notifications"),
+    NONE("none");
 
     companion object {
-      fun fromCode(code: String) = values().firstOrNull { it.code == code } ?: HAS_SLOW_NOTIFICATIONS
+      fun fromCode(code: String) = entries.firstOrNull { it.code == code } ?: NONE
     }
   }
 

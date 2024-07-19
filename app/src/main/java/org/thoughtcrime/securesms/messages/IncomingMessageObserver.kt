@@ -378,6 +378,10 @@ class IncomingMessageObserver(private val context: Application) {
 
           // Any state change at all means that we are not drained
           decryptionDrained = false
+
+          if (state == WebSocketConnectionState.CONNECTED) {
+            SignalStore.misc.lastWebSocketConnectTime = System.currentTimeMillis()
+          }
         }
 
         signalWebSocket.connect()

@@ -122,7 +122,7 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
       priority = TextSecurePreferences.getNotificationPriority(AppDependencies.application),
       troubleshootNotifications = if (calculateSlowNotifications) {
         (SlowNotificationHeuristics.isBatteryOptimizationsOn() && SlowNotificationHeuristics.isHavingDelayedNotifications()) ||
-          SlowNotificationHeuristics.showCondition() == DeviceSpecificNotificationConfig.ShowCondition.ALWAYS
+          SlowNotificationHeuristics.getDeviceSpecificShowCondition() == DeviceSpecificNotificationConfig.ShowCondition.ALWAYS
       } else if (currentState != null) {
         currentState.messageNotificationsState.troubleshootNotifications
       } else {

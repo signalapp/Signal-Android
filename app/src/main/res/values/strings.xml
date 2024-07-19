@@ -1111,6 +1111,9 @@
     <string name="PromptLogsSlowNotificationsDialog__message">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
+    <!-- Title for dialog asking user to submit logs for a situation where they're not able to connect to the signal service -->
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">You may not be receiving messages. Submit debug log?</string>
+
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
@@ -1125,6 +1128,13 @@
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">No thanks</string>
     <!-- Button to continue and go to Signal support website -->
     <string name="DeviceSpecificNotificationBottomSheet__continue">Continue</string>
+
+    <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_title">You may not be receiving messages</string>
+    <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_body">Restarting your device may help solve the message delivery issue. If this problem continues, contact Signal support.</string>
+    <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
+    <string name="ConnectivityWarningBottomSheet_dismiss_button">Got it</string>
 
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Continue</string>
@@ -3334,10 +3344,6 @@
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Debug Log Submission</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Slow notifications</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Submit</string>
     <!-- Action to decline to submit logs -->
