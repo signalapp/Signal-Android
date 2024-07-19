@@ -174,13 +174,8 @@ public class InputPanel extends ConstraintLayout
 
     this.recordLockCancel.setOnClickListener(v -> microphoneRecorderView.cancelAction(true));
 
-    if (SignalStore.settings().isPreferSystemEmoji()) {
-      mediaKeyboard.setVisibility(View.GONE);
-      emojiVisible = false;
-    } else {
-      mediaKeyboard.setVisibility(View.VISIBLE);
-      emojiVisible = true;
-    }
+    mediaKeyboard.setVisibility(View.VISIBLE);
+    emojiVisible = true;
 
     quoteDismiss.setOnClickListener(v -> clearQuote());
 

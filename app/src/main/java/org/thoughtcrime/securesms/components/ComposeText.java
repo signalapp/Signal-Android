@@ -210,17 +210,11 @@ public class ComposeText extends EmojiEditText {
   }
 
   public void setMessageSendType(MessageSendType messageSendType) {
-    final boolean useSystemEmoji = SignalStore.settings().isPreferSystemEmoji();
-
     int imeOptions = (getImeOptions() & ~EditorInfo.IME_MASK_ACTION) | EditorInfo.IME_ACTION_SEND;
     int inputType  = getInputType();
 
     if (isLandscape()) setImeActionLabel(getContext().getString(messageSendType.getComposeHintRes()), EditorInfo.IME_ACTION_SEND);
     else               setImeActionLabel(null, 0);
-
-    if (useSystemEmoji) {
-      inputType = (inputType & ~InputType.TYPE_MASK_VARIATION) | InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE;
-    }
 
     setImeOptions(imeOptions);
     setHint(getContext().getString(messageSendType.getComposeHintRes()));

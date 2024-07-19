@@ -280,10 +280,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       sharedViewModel.incrementViewOnceState()
     }
 
-    if (!SignalStore.settings.isPreferSystemEmoji) {
-      emojiButton.setOnClickListener {
-        AddMessageDialogFragment.show(parentFragmentManager, sharedViewModel.state.value?.message, true)
-      }
+    emojiButton.setOnClickListener {
+      AddMessageDialogFragment.show(parentFragmentManager, sharedViewModel.state.value?.message, true)
     }
 
     addMessageButton.setOnClickListener {
@@ -669,7 +667,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeEmojiButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && !SignalStore.settings.isPreferSystemEmoji && state.viewOnceToggleState != MediaSelectionState.ViewOnceToggleState.ONCE) {
+    return if (state.isTouchEnabled && state.viewOnceToggleState != MediaSelectionState.ViewOnceToggleState.ONCE) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(emojiButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(emojiButton))

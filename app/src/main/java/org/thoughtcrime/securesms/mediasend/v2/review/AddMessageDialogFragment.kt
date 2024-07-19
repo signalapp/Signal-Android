@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewMod
 import org.thoughtcrime.securesms.databinding.V2MediaAddMessageDialogFragmentBinding
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
@@ -93,13 +92,9 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
 
     binding.content.addAMessageInput.setText(requireArguments().getCharSequence(ARG_INITIAL_TEXT))
 
-    if (SignalStore.settings.isPreferSystemEmoji) {
-      binding.content.emojiToggle.visible = false
-    } else {
-      binding.content.emojiToggle.setOnClickListener { onEmojiToggleClicked() }
-      if (requireArguments().getBoolean(ARG_INITIAL_EMOJI_TOGGLE) && view is KeyboardAwareLinearLayout) {
-        view.addOnKeyboardShownListener(EmojiLaunchListener(view))
-      }
+    binding.content.emojiToggle.setOnClickListener { onEmojiToggleClicked() }
+    if (requireArguments().getBoolean(ARG_INITIAL_EMOJI_TOGGLE) && view is KeyboardAwareLinearLayout) {
+      view.addOnKeyboardShownListener(EmojiLaunchListener(view))
     }
 
     binding.hud.setOnClickListener { dismissAllowingStateLoss() }
