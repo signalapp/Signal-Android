@@ -256,7 +256,7 @@ class JobDatabase(
         MinimalJobSpec(
           id = cursor.requireNonNullString(Jobs.JOB_SPEC_ID),
           factoryKey = cursor.requireNonNullString(Jobs.FACTORY_KEY),
-          queueKey = cursor.requireNonNullString(Jobs.QUEUE_KEY),
+          queueKey = cursor.requireString(Jobs.QUEUE_KEY),
           createTime = cursor.requireLong(Jobs.CREATE_TIME),
           lastRunAttemptTime = cursor.requireLong(Jobs.LAST_RUN_ATTEMPT_TIME),
           nextBackoffInterval = cursor.requireLong(Jobs.NEXT_BACKOFF_INTERVAL),
