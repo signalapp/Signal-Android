@@ -48,7 +48,6 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome) 
       }
       Activity.RESULT_CANCELED -> {
         Log.w(TAG, "Backup restoration canceled.")
-        findNavController().popBackStack()
       }
       else -> Log.w(TAG, "Backup restoration activity ended with unknown result code: $resultCode")
     }
