@@ -49,7 +49,7 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">Вимкнути фразу-пароль?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Це назавжди розблокує Signal та сповіщення повідомлень.</string>
     <string name="ApplicationPreferencesActivity_disable">Вимкнути</string>
-    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Помилка підключення до сервера!</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Помилка під час з\'єднання із сервером!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-коди необхідні для блокування реєстрації. Для вимкнення PIN-кодів спершу необхідно вимкнути блокування реєстрації.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN створений.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN вимкнений.</string>
@@ -2082,7 +2082,7 @@
     <!-- RedPhone -->
     <string name="RedPhone_answering">Відповідаємо…</string>
     <string name="RedPhone_ending_call">Завершення виклику…</string>
-    <string name="RedPhone_ringing">Дзвонимо…</string>
+    <string name="RedPhone_ringing">Лунає дзвінок…</string>
     <string name="RedPhone_busy">Зайнято</string>
     <string name="RedPhone_recipient_unavailable">Одержувач недоступний</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
@@ -2101,7 +2101,7 @@
     <string name="WebRtcCallActivity__signal_s">Виклик у Signal: %1$s</string>
     <string name="WebRtcCallActivity__calling">Здійснюємо виклик…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
-    <string name="WebRtcCallActivity__reconnecting">Повторне з’єднання…</string>
+    <string name="WebRtcCallActivity__reconnecting">Триває відновлення з\'єднання…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
     <string name="WebRtcCallActivity__bluetooth_permission_denied">Доступ до Bluetooth не отримано</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
@@ -2193,7 +2193,7 @@
     <string name="WebRtcCallView__call_is_full">Немає місць</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">У виклику вже бере участь максимальна кількість учасників: %1$d. Спробуйте пізніше.</string>
     <string name="WebRtcCallView__your_video_is_off">Відео вимкнено</string>
-    <string name="WebRtcCallView__reconnecting">Повторне з’єднання…</string>
+    <string name="WebRtcCallView__reconnecting">Триває відновлення з\'єднання…</string>
     <string name="WebRtcCallView__joining">Приєднання…</string>
     <string name="WebRtcCallView__disconnected">Від\'єднано</string>
     <!-- Utilized in the lobby before joining a call link -->
@@ -2223,13 +2223,13 @@
         <item quantity="other">%1$s, %2$s та %3$d інших будуть оповіщені</item>
     </plurals>
 
-    <string name="WebRtcCallView__ringing_s">Дзвонимо користувачу %1$s</string>
-    <string name="WebRtcCallView__ringing_s_and_s">Дзвонимо користувачам %1$s і %2$s</string>
+    <string name="WebRtcCallView__ringing_s">У користувача %1$s лунає дзвінок</string>
+    <string name="WebRtcCallView__ringing_s_and_s">У користувачів %1$s і %2$s лунає дзвінок</string>
     <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-        <item quantity="one">Дзвонимо користувачам %1$s, %2$s і ще %3$d</item>
-        <item quantity="few">Дзвонимо користувачам %1$s, %2$s і ще %3$d</item>
-        <item quantity="many">Дзвонимо користувачам %1$s, %2$s і ще %3$d</item>
-        <item quantity="other">Дзвонимо користувачам %1$s, %2$s і ще %3$d</item>
+        <item quantity="one">У користувачів %1$s, %2$s і ще %3$d лунає дзвінок</item>
+        <item quantity="few">У користувачів %1$s, %2$s і ще %3$d лунає дзвінок</item>
+        <item quantity="many">У користувачів %1$s, %2$s і ще %3$d лунає дзвінок</item>
+        <item quantity="other">У користувачів %1$s, %2$s і ще %3$d лунає дзвінок</item>
     </plurals>
 
     <string name="WebRtcCallView__s_is_calling_you">Вам дзвонить %1$s</string>
@@ -3735,7 +3735,7 @@
     <string name="preferences_only_use_a_proxy_if">Використовуйте проксі тільки якщо ви не можете підключитися до Signal через мобільні дані або Wi-Fi.</string>
     <string name="preferences_share">Поділитися</string>
     <string name="preferences_save">Зберегти</string>
-    <string name="preferences_connecting_to_proxy">Підключаємося до проксі…</string>
+    <string name="preferences_connecting_to_proxy">Триває з\'єднання з проксі-сервером…</string>
     <string name="preferences_connected_to_proxy">Під\'єднано до проксі</string>
     <string name="preferences_connection_failed">З\'єднання не вдалася!</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Помилка з\'єднання із проксі. Перевірте адресу проксі і спробуйте ще раз.</string>
@@ -4304,7 +4304,7 @@
 
     <!-- transport_selection_list_item -->
     <string name="ConversationListFragment_loading">Завантаження…</string>
-    <string name="CallNotificationBuilder_connecting">З’єднання…</string>
+    <string name="CallNotificationBuilder_connecting">Триває з\'єднання…</string>
     <string name="Permissions_permission_required">Необхідний дозвіл</string>
     <string name="Permissions_continue">Продовжити</string>
     <string name="Permissions_not_now">Не зараз</string>
@@ -4418,7 +4418,7 @@
     <string name="RegistrationActivity_too_many_attempts">Забагато спроб</string>
     <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Ви зробили забагато невдалих спроб введення PIN-коду для блокування реєстрації. Ви знову зможете ввести код через день.</string>
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Ви зробили надто багато спроб. Будь ласка, спробуйте ще раз пізніше</string>
-    <string name="RegistrationActivity_error_connecting_to_service">Помилка підключення до сервісу</string>
+    <string name="RegistrationActivity_error_connecting_to_service">Помилка з\'єднання із сервісом</string>
     <string name="preferences_chats__backups">Резервне копіювання</string>
     <string name="prompt_passphrase_activity__signal_is_locked">Signal заблоковано</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">НАТИСНІТЬ ДЛЯ РОЗБЛОКУВАННЯ</string>
@@ -4496,7 +4496,7 @@
     <string name="DeviceTransferSetup__grant_location_permission">Надати доступ до місцеположення</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Увімкнути геодані</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Увімкнути Wi-Fi</string>
-    <string name="DeviceTransferSetup__error_connecting">Приєднання З\'єднання</string>
+    <string name="DeviceTransferSetup__error_connecting">Помилка під час з\'єднання</string>
     <string name="DeviceTransferSetup__retry">Повторити</string>
     <string name="DeviceTransferSetup__submit_debug_logs">Надіслати журнали налагодження</string>
     <string name="DeviceTransferSetup__verify_code">Перевірити код</string>
@@ -4565,7 +4565,7 @@
     <string name="DeviceToDeviceTransferService_status_ready">Підготовка до підключення до вашого іншого Android-пристрою…</string>
     <string name="DeviceToDeviceTransferService_status_starting_up">Підготовка до підключення до вашого іншого Android-пристрою…</string>
     <string name="DeviceToDeviceTransferService_status_discovery">Пошук іншого Android-пристрою…</string>
-    <string name="DeviceToDeviceTransferService_status_network_connected">Підключення до вашого іншого Android-пристрою…</string>
+    <string name="DeviceToDeviceTransferService_status_network_connected">Триває з\'єднання з іншим пристроєм з ОС Android…</string>
     <string name="DeviceToDeviceTransferService_status_verification_required">Необхідна перевірка</string>
     <string name="DeviceToDeviceTransferService_status_service_connected">Переносимо акаунт…</string>
 
@@ -6983,9 +6983,9 @@
 
     <!-- Call state update popups -->
     <!-- Displayed when the user enables group call ringing -->
-    <string name="CallStateUpdatePopupWindow__ringing_on">Здійснення викликів увімкнено</string>
+    <string name="CallStateUpdatePopupWindow__ringing_on">Дзвінок увімкнено</string>
     <!-- Displayed when the user disables group call ringing -->
-    <string name="CallStateUpdatePopupWindow__ringing_off">Здійснення викликів вимкнено</string>
+    <string name="CallStateUpdatePopupWindow__ringing_off">Дзвінок вимкнено</string>
     <!-- Displayed when the user cannot enable group call ringing -->
     <string name="CallStateUpdatePopupWindow__group_is_too_large">Група завелика для здійснення викликів її учасникам</string>
     <!-- Displayed when the user turns on their mic -->

@@ -1538,8 +1538,8 @@
     <string name="MessageRecord_invite_friends_to_this_group">Je kunt vrienden voor deze groep uitnodigen via een groepslink</string>
 
     <!-- GV2 member additions -->
-    <string name="MessageRecord_you_added_s">Je hebt %1$s aan de groep toegevoegd.</string>
-    <string name="MessageRecord_s_added_s">%1$s heeft %2$s toegevoegd aan de groep.</string>
+    <string name="MessageRecord_you_added_s">Je hebt %1$s toegevoegd.</string>
+    <string name="MessageRecord_s_added_s">%1$s heeft %2$s toegevoegd.</string>
     <string name="MessageRecord_s_added_you">%1$s heeft je toegevoegd aan de groep.</string>
     <string name="MessageRecord_you_joined_the_group">Je bent lid geworden van de groep.</string>
     <string name="MessageRecord_s_joined_the_group">%1$s is lid geworden van de groep.</string>
@@ -6016,7 +6016,7 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Je reageerde op het verhaal van %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Je reageerde op een verhaal van %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">Reageerde op je verhaal</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
@@ -6410,7 +6410,7 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">Ongeldig IBAN-nummer</string>
     <!-- Error label for name field when name is not at least two characters long -->
-    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimaal 2 tekens</string>
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimaal 2 karakters</string>
     <!-- Error label for email field when email is not valid -->
     <string name="BankTransferDetailsFragment__invalid_email_address">Ongeldig e-mailadres</string>
 

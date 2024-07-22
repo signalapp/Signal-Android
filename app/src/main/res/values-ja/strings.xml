@@ -1313,7 +1313,7 @@
     <!-- Dialog title shown if users are about to discard their draft message -->
     <string name="InputPanel__discard_draft">下書きを削除しますか？</string>
     <!-- Dialog message explaining their action cannot be reversed -->
-    <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
+    <string name="InputPanel__this_action_cant_be_undone">この操作は元に戻せません。</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">破棄する</string>
 

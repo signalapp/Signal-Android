@@ -1097,7 +1097,7 @@
     <string name="PromptBatterySaverBottomSheet__message">Puedes deshabilitar las opciones de optimización de batería para Signal para asegurarte de que las notificaciones de mensajes no se retrasen.</string>
 
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
-    <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Las notificaciones pueden retrasarse debido a los procesos de optimización de la batería</string>
+    <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Las notificaciones pueden retrasarse debido a las optimizaciones de la batería</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
     <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Deshabilita las opciones de optimización de batería para Signal para asegurarte de que las notificaciones de mensajes no se retrasen. Toca «Continuar» para ver las instrucciones específicas del dispositivo.</string>
     <!-- Button to dismiss notification help prompt -->
@@ -2149,19 +2149,19 @@
 
 
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
-    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s has levantado la mano</string>
+    <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">Has levantado la mano</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
     <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
-        <item quantity="one">%1$s y %2$d más levantaron la mano</item>
-        <item quantity="other">%1$s y %2$d más levantaron la mano</item>
+        <item quantity="one">%1$s y %2$d más han levantado la mano</item>
+        <item quantity="other">%1$s y %2$d más han levantado la mano</item>
     </plurals>
 
     <!-- A notification to the user that one participant in the call successfully raised their hand. The placeholder string is a name. -->
     <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">%1$s ha levantado la mano</string>
     <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
     <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
-        <item quantity="one">%1$s y %2$d más levantaron la mano</item>
-        <item quantity="other">%1$s y %2$d más levantaron la mano</item>
+        <item quantity="one">%1$s y %2$d más han levantado la mano</item>
+        <item quantity="other">%1$s y %2$d más han levantado la mano</item>
     </plurals>
 
     <!-- A badge to show the user has their hand raised. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
@@ -2340,7 +2340,7 @@
 
     <!-- ReviewBannerView -->
     <!-- ReviewBannerView text when a name conflict has been found -->
-    <string name="ReviewBannerView__name_conflict_found">Se encontró conflicto de nombre</string>
+    <string name="ReviewBannerView__name_conflict_found">Se ha encontrado un conflicto de nombre</string>
     <!-- Button label to view name conflicts -->
     <string name="ReviewBannerView__view">Ver</string>
 
@@ -2424,7 +2424,7 @@
     <string name="SubmitDebugLogActivity_success">¡Todo listo!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia esta URL y envíala junto con tu informe de incidencia o correo al equipo de asistencia:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Compartir</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este registro se publicará online y las personas que colaboran con nosotros tendrán acceso. Lo puedes examinar y editar antes de enviarlo.</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este registro se publicará online y las personas que colaboran con nosotros tendrán acceso. Lo puedes examinar antes de enviarlo.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2457,7 +2457,7 @@
     <!-- Displayed in the notification when the recipient can accept payments -->
     <string name="ThreadRecord_can_accept_payments">%1$s ya puede aceptar Pagos</string>
     <string name="ThreadRecord_s_is_on_signal">¡%1$s usa Signal!</string>
-    <string name="ThreadRecord_disappearing_messages_disabled">Mensajes temporales activados</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Mensajes temporales desactivados</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">La duración de los mensajes temporales se ha establecido en %1$s</string>
     <string name="ThreadRecord_safety_number_changed">El número de seguridad ha cambiado</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Tu número de seguridad con %1$s ha cambiado.</string>
@@ -2547,7 +2547,7 @@
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
     <string name="UsernameEditFragment__this_number_cant_start_with_0">Los números con más de 2 dígitos no pueden comenzar con 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recuperar tu alias restablecerá tu código QR y tu enlace. ¿Quieres hacerlo de todos modos? ¿Quieres hacerlo de todos modos?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recuperar tu alias restablecerá tu código QR y tu enlace. ¿Quieres hacerlo de todos modos?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
     <string name="UsernameEditFragment_change_confirmation_message">Si cambias tu alias, se restablecerá tu código QR y tu enlace. ¿Deseas cambiarlo de todos modos?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
@@ -2567,8 +2567,8 @@
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">El código QR escaneado no tiene un formato correcto de código de verificación de número de seguridad. Intenta escanearlo de nuevo.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Compartir número de seguridad por…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Nuestro número de seguridad de Signal:</string>
-    <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no tiene ninguna aplicación con la que compartir.</string>
-    <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No se encontró ningún número de seguridad para comparar en el portapapeles</string>
+    <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no tienes ninguna aplicación con la que compartir.</string>
+    <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No se ha encontrado ningún número de seguridad en el portapapeles para completar la verificación</string>
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal necesita acceso a la cámara para escanear el código QR. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">No se puede escanear un código QR sin acceso a la cámara</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Tienes que intercambiar mensajes con %1$s para poder ver su número de seguridad.</string>
@@ -2619,7 +2619,7 @@
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">No se ha podido reproducir el archivo.</string>
     <string name="MediaPreviewActivity_error_finding_message">Error al encontrar el mensaje.</string>
-    <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">No se puede encontrar una aplicación para mostrar este archivo.</string>
+    <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">No se puede encontrar una aplicación para compartir este archivo.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Cerrar</string>
     <string name="MediaPreviewFragment_edit_media_error">Error de archivos</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
@@ -2649,7 +2649,7 @@
     <string name="MessageNotifier_group_story_title">De ti para %1$s</string>
     <string name="MessageNotifier_failed_to_deliver_message">No se ha podido entregar el mensaje.</string>
     <string name="MessageNotifier_error_delivering_message">No se ha podido entregar el mensaje.</string>
-    <string name="MessageNotifier_message_delivery_paused">Entrega de mensajes pausada.</string>
+    <string name="MessageNotifier_message_delivery_paused">Entrega de mensaje pausada.</string>
     <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verificar para continuar chateando en Signal.</string>
     <string name="MessageNotifier_mark_all_as_read">Marcar todos como leídos</string>
     <string name="MessageNotifier_mark_read">Marcar como leído</string>
@@ -2672,7 +2672,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reacción a tu sticker: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Mensaje eliminado.</string>
 
-    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">¿Desactivar las notificaciones cuando una persona comience a usar Signal? Puedes volver a activarlas en los ajustes de Signal &gt; Notificaciones.</string>
+    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">¿Desactivar las notificaciones cuando una persona comience a usar Signal? Puedes volver a activarlas en Signal &gt; Ajustes &gt; Notificaciones.</string>
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
@@ -2693,7 +2693,7 @@
     <string name="NotificationChannel_backups">Copias de seguridad</string>
     <string name="NotificationChannel_locked_status">Estado de bloqueo</string>
     <string name="NotificationChannel_app_updates">Actualizaciones de la app</string>
-    <string name="NotificationChannel_other">Otros</string>
+    <string name="NotificationChannel_other">Otro</string>
     <string name="NotificationChannel_group_chats">Chats</string>
     <string name="NotificationChannel_missing_display_name">Desconocido</string>
     <string name="NotificationChannel_voice_notes">Notas de voz</string>
@@ -2728,7 +2728,7 @@
     <string name="Material3SearchToolbar__clear">Eliminar</string>
 
     <!-- ShortcutLauncherActivity -->
-    <string name="ShortcutLauncherActivity_invalid_shortcut">Atajo no válido</string>
+    <string name="ShortcutLauncherActivity_invalid_shortcut">Acceso directo no válido</string>
 
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
@@ -2794,9 +2794,9 @@
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Para atender la videollamada, permite a Signal el acceso al micrófono y a la cámara.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal necesita acceso al micrófono y a la cámara para hacer o atender llamadas. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación, y activa el acceso al micrófono y a la cámara. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
-    <string name="WebRtcCallActivity__answered_on_a_linked_device">Atendida en dispositivo vinculado.</string>
-    <string name="WebRtcCallActivity__declined_on_a_linked_device">Rechazada en dispositivo vinculado.</string>
-    <string name="WebRtcCallActivity__busy_on_a_linked_device">No disponible en dispositivo vinculado.</string>
+    <string name="WebRtcCallActivity__answered_on_a_linked_device">Atendida en un dispositivo vinculado.</string>
+    <string name="WebRtcCallActivity__declined_on_a_linked_device">Rechazada en un dispositivo vinculado.</string>
+    <string name="WebRtcCallActivity__busy_on_a_linked_device">No disponible en un dispositivo vinculado.</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
     <string name="WebRtcCallActivity__flip_camera_tooltip">El botón para cambiar de cámara se ha movido para aquí; pulsa tu vídeo para probarlo</string>
 
@@ -2867,7 +2867,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal necesita acceso a los contactos en tu teléfono para mostrar tus contactos. Ve al menú «Ajustes» de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Contactos &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">No se han podido encontrar contactos. Comprueba tu conexión de red.</string>
     <string name="ContactSelectionListFragment_username_not_found">Alias no encontrado</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no usa Signal. Asegúrate de introducir el alias correcto e inténtalo de nuevo."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no usa Signal. Comprueba que el alias sea correcto e inténtalo de nuevo."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No necesitas añadirte como participante en el grupo</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Se alcanzó el número máximo de participantes en el grupo.</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Los grupos de Signal permiten un máximo de %1$d participantes.</string>

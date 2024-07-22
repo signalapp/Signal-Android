@@ -1311,11 +1311,11 @@
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">မက်ဆေ့ချ် တည်းဖြတ်ရန်</string>
     <!-- Dialog title shown if users are about to discard their draft message -->
-    <string name="InputPanel__discard_draft">Discard draft?</string>
+    <string name="InputPanel__discard_draft">မူကြမ်းကို ပျယ်ဖျက်မလား။</string>
     <!-- Dialog message explaining their action cannot be reversed -->
-    <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
+    <string name="InputPanel__this_action_cant_be_undone">ဤလုပ်ဆောင်ချက်ကို ပြန်ရုပ်သိမ်း၍ မရနိုင်ပါ။</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
-    <string name="InputPanel__discard">စွန့်ပစ်သည်</string>
+    <string name="InputPanel__discard">ပယ်ဖျက်မည်</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">မျှဝေရန်</string>

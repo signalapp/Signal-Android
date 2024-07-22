@@ -1353,9 +1353,9 @@
     <!-- Dialog title shown if users are about to discard their draft message -->
     <string name="InputPanel__discard_draft">ડ્રાફ્ટ કાઢી નાખવો છે?</string>
     <!-- Dialog message explaining their action cannot be reversed -->
-    <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
+    <string name="InputPanel__this_action_cant_be_undone">આ ક્રિયાને પૂર્વવત કરી શકાશે નહીં.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
-    <string name="InputPanel__discard">જવા દો</string>
+    <string name="InputPanel__discard">કાઢી નાખો</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">શેર કરો</string>
