@@ -22,6 +22,7 @@ import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.labelResource
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
@@ -82,8 +83,8 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
 
   private fun presentUiState(stage: InAppPaymentProcessorStage) {
     when (stage) {
-      InAppPaymentProcessorStage.INIT -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
-      InAppPaymentProcessorStage.PAYMENT_PIPELINE -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
+      InAppPaymentProcessorStage.INIT -> binding.progressCardStatus.text = getProcessingStatus()
+      InAppPaymentProcessorStage.PAYMENT_PIPELINE -> binding.progressCardStatus.text = getProcessingStatus()
       InAppPaymentProcessorStage.FAILED -> {
         viewModel.onEndAction()
         findNavController().popBackStack()
@@ -118,6 +119,10 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
 
       InAppPaymentProcessorStage.CANCELLING -> binding.progressCardStatus.setText(R.string.StripePaymentInProgressFragment__cancelling)
     }
+  }
+
+  private fun getProcessingStatus(): String {
+    return getString(R.string.InAppPaymentInProgressFragment__processing_s, getString(args.inAppPaymentType.labelResource))
   }
 
   private fun oneTimeConfirmationPipeline(createPaymentIntentResponse: PayPalCreatePaymentIntentResponse): Single<PayPalConfirmationResult> {

@@ -29,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:gravity="center"
-            android:text="@string/SubscribeFragment__processing_payment"
             android:textAppearance="@style/Signal.Text.BodyLarge"
             android:textColor="@color/signal_colorOnSurfaceVariant" />
     </LinearLayout>

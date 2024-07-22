@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import android.annotation.SuppressLint
+import androidx.annotation.StringRes
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Completable
@@ -24,6 +25,7 @@ import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
 import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
@@ -64,6 +66,15 @@ object InAppPaymentsRepository {
   private val TAG = Log.tag(InAppPaymentsRepository::class.java)
 
   private val temporaryErrorProcessor = PublishProcessor.create<Pair<InAppPaymentTable.InAppPaymentId, Throwable>>()
+
+  @get:StringRes
+  val InAppPaymentType.labelResource: Int get() {
+    return if (this == InAppPaymentType.RECURRING_BACKUP) {
+      R.string.InAppPaymentInProgressFragment__payment
+    } else {
+      R.string.InAppPaymentInProgressFragment__donation
+    }
+  }
 
   /**
    * Wraps an in-app-payment update in a completable.
