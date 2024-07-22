@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.PayPalDeclineCode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord;
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord;
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue;
@@ -233,7 +233,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       ReceiptCredentialPresentation receiptCredentialPresentation = getReceiptCredentialPresentation(receiptCredential);
 
       Log.d(TAG, "Validated credential. Recording receipt and handing off to redemption job.", true);
-      SignalDatabase.donationReceipts().addReceipt(DonationReceiptRecord.createForSubscription(subscription));
+      SignalDatabase.donationReceipts().addReceipt(InAppPaymentReceiptRecord.createForSubscription(subscription));
 
       SignalStore.inAppPayments().clearSubscriptionRequestCredential();
       SignalStore.inAppPayments().setSubscriptionReceiptCredential(receiptCredentialPresentation);

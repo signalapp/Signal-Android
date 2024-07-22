@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.TextPreference
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -30,8 +30,8 @@ class DonationReceiptListPageFragment : Fragment(R.layout.donation_receipt_list_
     }
   )
 
-  private val type: DonationReceiptRecord.Type?
-    get() = requireArguments().getString(ARG_TYPE)?.let { DonationReceiptRecord.Type.fromCode(it) }
+  private val type: InAppPaymentReceiptRecord.Type?
+    get() = requireArguments().getString(ARG_TYPE)?.let { InAppPaymentReceiptRecord.Type.fromCode(it) }
 
   private lateinit var emptyStateGroup: Group
 
@@ -71,10 +71,10 @@ class DonationReceiptListPageFragment : Fragment(R.layout.donation_receipt_list_
     }
   }
 
-  private fun getBadgeForRecord(record: DonationReceiptRecord, badges: List<DonationReceiptBadge>): Badge? {
+  private fun getBadgeForRecord(record: InAppPaymentReceiptRecord, badges: List<DonationReceiptBadge>): Badge? {
     return when (record.type) {
-      DonationReceiptRecord.Type.ONE_TIME_DONATION -> badges.firstOrNull { it.type == DonationReceiptRecord.Type.ONE_TIME_DONATION }?.badge
-      DonationReceiptRecord.Type.ONE_TIME_GIFT -> badges.firstOrNull { it.type == DonationReceiptRecord.Type.ONE_TIME_GIFT }?.badge
+      InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION -> badges.firstOrNull { it.type == InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION }?.badge
+      InAppPaymentReceiptRecord.Type.ONE_TIME_GIFT -> badges.firstOrNull { it.type == InAppPaymentReceiptRecord.Type.ONE_TIME_GIFT }?.badge
       else -> badges.firstOrNull { it.level == record.subscriptionLevel }?.badge
     }
   }
@@ -83,7 +83,7 @@ class DonationReceiptListPageFragment : Fragment(R.layout.donation_receipt_list_
 
     private const val ARG_TYPE = "arg_type"
 
-    fun create(type: DonationReceiptRecord.Type?): Fragment {
+    fun create(type: InAppPaymentReceiptRecord.Type?): Fragment {
       return DonationReceiptListPageFragment().apply {
         arguments = Bundle().apply {
           putString(ARG_TYPE, type?.code)

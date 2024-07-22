@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.util.livedata.Store
 
-class DonationReceiptListPageViewModel(type: DonationReceiptRecord.Type?, repository: DonationReceiptListPageRepository) : ViewModel() {
+class DonationReceiptListPageViewModel(type: InAppPaymentReceiptRecord.Type?, repository: DonationReceiptListPageRepository) : ViewModel() {
 
   private val disposables = CompositeDisposable()
   private val store = Store(DonationReceiptListPageState())
@@ -31,7 +31,7 @@ class DonationReceiptListPageViewModel(type: DonationReceiptRecord.Type?, reposi
     disposables.clear()
   }
 
-  class Factory(private val type: DonationReceiptRecord.Type?, private val repository: DonationReceiptListPageRepository) : ViewModelProvider.Factory {
+  class Factory(private val type: InAppPaymentReceiptRecord.Type?, private val repository: DonationReceiptListPageRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(DonationReceiptListPageViewModel(type, repository)) as T
     }

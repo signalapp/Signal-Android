@@ -5,7 +5,7 @@ import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.util.Currency
 
-data class DonationReceiptRecord(
+data class InAppPaymentReceiptRecord(
   val id: Long = -1L,
   val amount: FiatMoney,
   val timestamp: Long,
@@ -20,18 +20,18 @@ data class DonationReceiptRecord(
 
     companion object {
       fun fromCode(code: String): Type {
-        return values().first { it.code == code }
+        return entries.first { it.code == code }
       }
     }
   }
 
   companion object {
     @JvmStatic
-    fun createForSubscription(subscription: ActiveSubscription.Subscription): DonationReceiptRecord {
+    fun createForSubscription(subscription: ActiveSubscription.Subscription): InAppPaymentReceiptRecord {
       val activeCurrency = Currency.getInstance(subscription.currency)
       val activeAmount = subscription.amount.movePointLeft(activeCurrency.defaultFractionDigits)
 
-      return DonationReceiptRecord(
+      return InAppPaymentReceiptRecord(
         id = -1L,
         amount = FiatMoney(activeAmount, activeCurrency),
         timestamp = System.currentTimeMillis(),
@@ -40,8 +40,8 @@ data class DonationReceiptRecord(
       )
     }
 
-    fun createForBoost(amount: FiatMoney): DonationReceiptRecord {
-      return DonationReceiptRecord(
+    fun createForBoost(amount: FiatMoney): InAppPaymentReceiptRecord {
+      return InAppPaymentReceiptRecord(
         id = -1L,
         amount = amount,
         timestamp = System.currentTimeMillis(),
@@ -50,8 +50,8 @@ data class DonationReceiptRecord(
       )
     }
 
-    fun createForGift(amount: FiatMoney): DonationReceiptRecord {
-      return DonationReceiptRecord(
+    fun createForGift(amount: FiatMoney): InAppPaymentReceiptRecord {
+      return InAppPaymentReceiptRecord(
         id = -1L,
         amount = amount,
         timestamp = System.currentTimeMillis(),

@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.st
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.Companion.toDonationErrorValue
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
@@ -114,13 +114,13 @@ class ExternalLaunchDonationJob private constructor(
     checkIntentStatus(stripePaymentIntent.status)
 
     Log.i(TAG, "Creating and inserting donation receipt record.", true)
-    val donationReceiptRecord = if (stripe3DSData.inAppPayment.type == InAppPaymentType.ONE_TIME_DONATION) {
-      DonationReceiptRecord.createForBoost(stripe3DSData.inAppPayment.data.amount!!.toFiatMoney())
+    val inAppPaymentReceiptRecord = if (stripe3DSData.inAppPayment.type == InAppPaymentType.ONE_TIME_DONATION) {
+      InAppPaymentReceiptRecord.createForBoost(stripe3DSData.inAppPayment.data.amount!!.toFiatMoney())
     } else {
-      DonationReceiptRecord.createForGift(stripe3DSData.inAppPayment.data.amount!!.toFiatMoney())
+      InAppPaymentReceiptRecord.createForGift(stripe3DSData.inAppPayment.data.amount!!.toFiatMoney())
     }
 
-    SignalDatabase.donationReceipts.addReceipt(donationReceiptRecord)
+    SignalDatabase.donationReceipts.addReceipt(inAppPaymentReceiptRecord)
 
     Log.i(TAG, "Creating and inserting one-time pending donation.", true)
     SignalStore.inAppPayments.setPendingOneTimeDonation(

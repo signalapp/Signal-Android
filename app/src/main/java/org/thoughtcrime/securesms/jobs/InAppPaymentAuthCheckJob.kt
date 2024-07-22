@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaym
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -141,8 +141,8 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
 
     Log.i(TAG, "Creating and inserting receipt.", true)
     val receipt = when (inAppPayment.type) {
-      InAppPaymentType.ONE_TIME_DONATION -> DonationReceiptRecord.createForBoost(inAppPayment.data.amount!!.toFiatMoney())
-      InAppPaymentType.ONE_TIME_GIFT -> DonationReceiptRecord.createForGift(inAppPayment.data.amount!!.toFiatMoney())
+      InAppPaymentType.ONE_TIME_DONATION -> InAppPaymentReceiptRecord.createForBoost(inAppPayment.data.amount!!.toFiatMoney())
+      InAppPaymentType.ONE_TIME_GIFT -> InAppPaymentReceiptRecord.createForGift(inAppPayment.data.amount!!.toFiatMoney())
       else -> {
         Log.e(TAG, "Unexpected type ${inAppPayment.type}", true)
         return CheckResult.Failure()

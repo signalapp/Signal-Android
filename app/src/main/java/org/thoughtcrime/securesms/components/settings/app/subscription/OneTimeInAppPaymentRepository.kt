@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentOneTimeContextJob
@@ -106,16 +106,16 @@ class OneTimeInAppPaymentRepository(private val donationsService: DonationsServi
     }
 
     return Single.fromCallable {
-      val donationReceiptRecord = if (isBoost) {
-        DonationReceiptRecord.createForBoost(inAppPayment.data.amount!!.toFiatMoney())
+      val inAppPaymentReceiptRecord = if (isBoost) {
+        InAppPaymentReceiptRecord.createForBoost(inAppPayment.data.amount!!.toFiatMoney())
       } else {
-        DonationReceiptRecord.createForGift(inAppPayment.data.amount!!.toFiatMoney())
+        InAppPaymentReceiptRecord.createForGift(inAppPayment.data.amount!!.toFiatMoney())
       }
 
-      val donationTypeLabel = donationReceiptRecord.type.code.replaceFirstChar { c -> if (c.isLowerCase()) c.titlecase(Locale.US) else c.toString() }
+      val donationTypeLabel = inAppPaymentReceiptRecord.type.code.replaceFirstChar { c -> if (c.isLowerCase()) c.titlecase(Locale.US) else c.toString() }
 
       Log.d(TAG, "Confirmed payment intent. Recording $donationTypeLabel receipt and submitting badge reimbursement job chain.", true)
-      SignalDatabase.donationReceipts.addReceipt(donationReceiptRecord)
+      SignalDatabase.donationReceipts.addReceipt(inAppPaymentReceiptRecord)
 
       SignalDatabase.inAppPayments.update(
         inAppPayment = inAppPayment.copy(

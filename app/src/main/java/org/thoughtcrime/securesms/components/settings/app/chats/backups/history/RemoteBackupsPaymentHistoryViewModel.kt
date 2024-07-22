@@ -29,4 +29,12 @@ class RemoteBackupsPaymentHistoryViewModel : ViewModel() {
       internalStateFlow.update { state -> state.copy(records = receipts.associateBy { it.id }.toPersistentMap()) }
     }
   }
+
+  fun onStartRenderingBitmap() {
+    internalStateFlow.update { it.copy(displayProgressDialog = true) }
+  }
+
+  fun onEndRenderingBitmap() {
+    internalStateFlow.update { it.copy(displayProgressDialog = false) }
+  }
 }

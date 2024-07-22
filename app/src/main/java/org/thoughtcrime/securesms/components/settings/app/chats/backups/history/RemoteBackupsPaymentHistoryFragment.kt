@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.chats.backups.history
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -37,6 +38,7 @@ import androidx.navigation.navArgument
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toPersistentList
 import org.signal.core.ui.Buttons
+import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Rows
@@ -45,9 +47,10 @@ import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.Texts
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.subscription.receipts.ReceiptImageRenderer
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.Nav
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import java.math.BigDecimal
@@ -97,10 +100,33 @@ class RemoteBackupsPaymentHistoryFragment : ComposeFragment() {
         PaymentHistoryDetails(
           record = record,
           onNavigationClick = onNavigationClick,
-          onShareClick = {} // TODO [message-backups] Generate shareable png
+          onShareClick = this@RemoteBackupsPaymentHistoryFragment::onShareClick
         )
+
+        if (state.displayProgressDialog) {
+          Dialogs.IndeterminateProgressDialog()
+        }
       }
     }
+  }
+
+  private fun onShareClick(record: InAppPaymentReceiptRecord) {
+    viewModel.onStartRenderingBitmap()
+    ReceiptImageRenderer.renderPng(
+      requireContext(),
+      viewLifecycleOwner,
+      record,
+      getString(R.string.RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup),
+      object : ReceiptImageRenderer.Callback {
+        override fun onBitmapRendered() {
+          viewModel.onEndRenderingBitmap()
+        }
+
+        override fun onStartActivity(intent: Intent) {
+          startActivity(intent)
+        }
+      }
+    )
   }
 }
 
@@ -108,7 +134,7 @@ class RemoteBackupsPaymentHistoryFragment : ComposeFragment() {
 private fun PaymentHistoryContent(
   state: RemoteBackupsPaymentHistoryState,
   onNavigationClick: () -> Unit,
-  onRecordClick: (DonationReceiptRecord) -> Unit
+  onRecordClick: (InAppPaymentReceiptRecord) -> Unit
 ) {
   Scaffolds.Settings(
     title = stringResource(id = R.string.RemoteBackupsPaymentHistoryFragment__payment_history),
@@ -158,8 +184,8 @@ private fun rememberYear(timestamp: Long): Int {
 
 @Composable
 private fun PaymentHistoryRow(
-  record: DonationReceiptRecord,
-  onRecordClick: (DonationReceiptRecord) -> Unit
+  record: InAppPaymentReceiptRecord,
+  onRecordClick: (InAppPaymentReceiptRecord) -> Unit
 ) {
   val date = remember(record.timestamp) {
     DateUtils.formatDateWithYear(Locale.getDefault(), record.timestamp)
@@ -196,9 +222,9 @@ private fun PaymentHistoryRow(
 
 @Composable
 private fun PaymentHistoryDetails(
-  record: DonationReceiptRecord,
+  record: InAppPaymentReceiptRecord,
   onNavigationClick: () -> Unit,
-  onShareClick: () -> Unit
+  onShareClick: (InAppPaymentReceiptRecord) -> Unit
 ) {
   Scaffolds.Settings(
     title = stringResource(id = R.string.RemoteBackupsPaymentHistoryFragment__payment_details),
@@ -249,7 +275,7 @@ private fun PaymentHistoryDetails(
       Spacer(modifier = Modifier.weight(1f))
 
       Buttons.LargePrimary(
-        onClick = onShareClick,
+        onClick = { onShareClick(record) },
         modifier = Modifier
           .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
           .padding(bottom = 24.dp)
@@ -300,12 +326,12 @@ private fun PaymentDetailsContentPreview() {
   }
 }
 
-private fun testRecord(): DonationReceiptRecord {
-  return DonationReceiptRecord(
+private fun testRecord(): InAppPaymentReceiptRecord {
+  return InAppPaymentReceiptRecord(
     id = 1,
     amount = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")),
     timestamp = 1718739691000,
-    type = DonationReceiptRecord.Type.RECURRING_BACKUP,
+    type = InAppPaymentReceiptRecord.Type.RECURRING_BACKUP,
     subscriptionLevel = 201
   )
 }

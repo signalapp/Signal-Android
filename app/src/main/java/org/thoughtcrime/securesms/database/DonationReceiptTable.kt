@@ -6,7 +6,7 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.money.FiatMoney
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import java.math.BigDecimal
 import java.util.Currency
 
@@ -46,7 +46,7 @@ class DonationReceiptTable(context: Context, databaseHelper: SignalDatabase) : D
     }
   }
 
-  fun addReceipt(record: DonationReceiptRecord) {
+  fun addReceipt(record: InAppPaymentReceiptRecord) {
     require(record.id == -1L)
 
     val values = contentValuesOf(
@@ -60,7 +60,7 @@ class DonationReceiptTable(context: Context, databaseHelper: SignalDatabase) : D
     writableDatabase.insert(TABLE_NAME, null, values)
   }
 
-  fun getReceipt(id: Long): DonationReceiptRecord? {
+  fun getReceipt(id: Long): InAppPaymentReceiptRecord? {
     readableDatabase.query(TABLE_NAME, null, ID_WHERE, SqlUtil.buildArgs(id), null, null, null).use { cursor ->
       return if (cursor.moveToNext()) {
         readRecord(cursor)
@@ -70,15 +70,15 @@ class DonationReceiptTable(context: Context, databaseHelper: SignalDatabase) : D
     }
   }
 
-  fun getReceipts(type: DonationReceiptRecord.Type?): List<DonationReceiptRecord> {
+  fun getReceipts(type: InAppPaymentReceiptRecord.Type?): List<InAppPaymentReceiptRecord> {
     val (where, whereArgs) = if (type != null) {
       "$TYPE = ?" to SqlUtil.buildArgs(type.code)
     } else {
-      "$TYPE != ?" to SqlUtil.buildArgs(DonationReceiptRecord.Type.RECURRING_DONATION)
+      "$TYPE != ?" to SqlUtil.buildArgs(InAppPaymentReceiptRecord.Type.RECURRING_DONATION)
     }
 
     readableDatabase.query(TABLE_NAME, null, where, whereArgs, null, null, "$DATE DESC").use { cursor ->
-      val results = ArrayList<DonationReceiptRecord>(cursor.count)
+      val results = ArrayList<InAppPaymentReceiptRecord>(cursor.count)
       while (cursor.moveToNext()) {
         results.add(readRecord(cursor))
       }
@@ -87,10 +87,10 @@ class DonationReceiptTable(context: Context, databaseHelper: SignalDatabase) : D
     }
   }
 
-  private fun readRecord(cursor: Cursor): DonationReceiptRecord {
-    return DonationReceiptRecord(
+  private fun readRecord(cursor: Cursor): InAppPaymentReceiptRecord {
+    return InAppPaymentReceiptRecord(
       id = CursorUtil.requireLong(cursor, ID),
-      type = DonationReceiptRecord.Type.fromCode(CursorUtil.requireString(cursor, TYPE)),
+      type = InAppPaymentReceiptRecord.Type.fromCode(CursorUtil.requireString(cursor, TYPE)),
       amount = FiatMoney(
         BigDecimal(CursorUtil.requireString(cursor, AMOUNT)),
         Currency.getInstance(CursorUtil.requireString(cursor, CURRENCY))

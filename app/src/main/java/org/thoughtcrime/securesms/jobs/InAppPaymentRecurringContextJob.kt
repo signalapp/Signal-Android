@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaym
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toInAppPaymentDataChargeFailure
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -456,7 +456,7 @@ class InAppPaymentRecurringContextJob private constructor(
     }
 
     info("Validated credential. Recording receipt and handing off to redemption job.")
-    SignalDatabase.donationReceipts.addReceipt(DonationReceiptRecord.createForSubscription(subscription))
+    SignalDatabase.donationReceipts.addReceipt(InAppPaymentReceiptRecord.createForSubscription(subscription))
     SignalDatabase.inAppPayments.update(
       inAppPayment = inAppPayment.copy(
         data = inAppPayment.data.copy(
