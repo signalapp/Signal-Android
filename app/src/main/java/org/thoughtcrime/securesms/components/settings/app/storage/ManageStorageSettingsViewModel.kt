@@ -40,7 +40,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
   }
 
   fun deleteChatHistory() {
-    viewModelScope.launch {
+    SignalExecutors.BOUNDED_IO.execute {
       SignalDatabase.threads.deleteAllConversations()
       AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
     }
