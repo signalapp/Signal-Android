@@ -204,6 +204,7 @@ dependencyResolutionManagement {
       library("mockk-android", "io.mockk:mockk-android:1.13.2")
 
       library("conscrypt-openjdk-uber", "org.conscrypt:conscrypt-openjdk-uber:2.5.2")
+      library("diff-utils", "io.github.java-diff-utils:java-diff-utils:4.12")
     }
 
     create("lintLibs") {

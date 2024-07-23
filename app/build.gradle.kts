@@ -428,7 +428,7 @@ android {
     }
     onVariants { variant ->
       // Include the test-only library on debug builds.
-      if (variant.buildType != "debug") {
+      if (variant.buildType != "instrumentation") {
         variant.packaging.jniLibs.excludes.add("**/libsignal_jni_testing.so")
       }
     }
@@ -598,6 +598,7 @@ dependencies {
   androidTestImplementation(testLibs.mockito.kotlin)
   androidTestImplementation(testLibs.mockk.android)
   androidTestImplementation(testLibs.square.okhttp.mockserver)
+  androidTestImplementation(testLibs.diff.utils)
 
   androidTestUtil(testLibs.androidx.test.orchestrator)
 }

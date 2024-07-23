@@ -181,7 +181,7 @@ object BackupRepository {
     }
   }
 
-  fun export(outputStream: OutputStream, append: (ByteArray) -> Unit, plaintext: Boolean = false) {
+  fun export(outputStream: OutputStream, append: (ByteArray) -> Unit, plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis()) {
     val eventTimer = EventTimer()
     val dbSnapshot: SignalDatabase = createSignalDatabaseSnapshot()
     val signalStoreSnapshot: SignalStore = createSignalStoreSnapshot()
@@ -198,7 +198,7 @@ object BackupRepository {
         )
       }
 
-      val exportState = ExportState(backupTime = System.currentTimeMillis(), allowMediaBackup = SignalStore.backup.backsUpMedia)
+      val exportState = ExportState(backupTime = currentTime, allowMediaBackup = SignalStore.backup.backsUpMedia)
 
       writer.use {
         writer.write(
@@ -249,9 +249,9 @@ object BackupRepository {
     }
   }
 
-  fun export(plaintext: Boolean = false): ByteArray {
+  fun export(plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis()): ByteArray {
     val outputStream = ByteArrayOutputStream()
-    export(outputStream = outputStream, append = { mac -> outputStream.write(mac) }, plaintext = plaintext)
+    export(outputStream = outputStream, append = { mac -> outputStream.write(mac) }, plaintext = plaintext, currentTime = currentTime)
     return outputStream.toByteArray()
   }
 
@@ -262,7 +262,10 @@ object BackupRepository {
     return MessageBackup.validate(key, MessageBackup.Purpose.REMOTE_BACKUP, inputStreamFactory, length)
   }
 
-  fun import(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData, plaintext: Boolean = false) {
+  /**
+   * @return The time the backup was created, or null if the backup could not be read.
+   */
+  fun import(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData, plaintext: Boolean = false): ImportResult {
     val eventTimer = EventTimer()
 
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
@@ -281,10 +284,10 @@ object BackupRepository {
     val header = frameReader.getHeader()
     if (header == null) {
       Log.e(TAG, "Backup is missing header!")
-      return
+      return ImportResult.Failure
     } else if (header.version > VERSION) {
       Log.e(TAG, "Backup version is newer than we understand: ${header.version}")
-      return
+      return ImportResult.Failure
     }
 
     // Note: Without a transaction, bad imports could lead to lost data. But because we have a transaction,
@@ -367,6 +370,7 @@ object BackupRepository {
     }
 
     Log.d(TAG, "import() ${eventTimer.stop().summary}")
+    return ImportResult.Success(backupTime = header.backupTimeMs)
   }
 
   fun listRemoteMediaObjects(limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {
@@ -945,3 +949,8 @@ class BackupMetadata(
   val usedSpace: Long,
   val mediaCount: Long
 )
+
+sealed class ImportResult {
+  data class Success(val backupTime: Long) : ImportResult()
+  data object Failure : ImportResult()
+}
