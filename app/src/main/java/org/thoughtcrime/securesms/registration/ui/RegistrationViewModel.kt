@@ -142,7 +142,8 @@ class RegistrationViewModel : ViewModel() {
 
   fun setPhoneNumber(phoneNumber: Phonenumber.PhoneNumber?) {
     store.update {
-      it.copy(phoneNumber = phoneNumber)
+      it.copy(phoneNumber = phoneNumber,
+        sessionId = null)
     }
   }
 
