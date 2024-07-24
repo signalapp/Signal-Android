@@ -1,22 +1,23 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.errors
 
 import androidx.annotation.StringRes
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.StripeDeclineCode
 import org.signal.donations.StripeFailureCode
 import org.thoughtcrime.securesms.R
 
 @StringRes
-fun StripeFailureCode.mapToErrorStringResource(): Int {
+fun StripeFailureCode.mapToErrorStringResource(inAppPaymentType: InAppPaymentType): Int {
   return when (this) {
     is StripeFailureCode.Known -> when (this.code) {
       StripeFailureCode.Code.REFER_TO_CUSTOMER -> R.string.StripeFailureCode__verify_your_bank_details_are_correct
       StripeFailureCode.Code.INSUFFICIENT_FUNDS -> R.string.StripeFailureCode__the_bank_account_provided
       StripeFailureCode.Code.DEBIT_DISPUTED -> R.string.StripeFailureCode__verify_your_bank_details_are_correct
-      StripeFailureCode.Code.AUTHORIZATION_REVOKED -> R.string.StripeFailureCode__this_payment_was_revoked
-      StripeFailureCode.Code.DEBIT_NOT_AUTHORIZED -> R.string.StripeFailureCode__this_payment_was_revoked
+      StripeFailureCode.Code.AUTHORIZATION_REVOKED -> InAppPaymentErrorStrings.getStripeFailureCodeAuthorizationRevokedErrorMessage(inAppPaymentType)
+      StripeFailureCode.Code.DEBIT_NOT_AUTHORIZED -> InAppPaymentErrorStrings.getStripeFailureCodeAuthorizationRevokedErrorMessage(inAppPaymentType)
       StripeFailureCode.Code.ACCOUNT_CLOSED -> R.string.StripeFailureCode__the_bank_details_provided_could_not_be_processed
       StripeFailureCode.Code.BANK_ACCOUNT_RESTRICTED -> R.string.StripeFailureCode__the_bank_details_provided_could_not_be_processed
-      StripeFailureCode.Code.DEBIT_AUTHORIZATION_NOT_MATCH -> R.string.StripeFailureCode__an_error_occurred_while_processing_this_payment
+      StripeFailureCode.Code.DEBIT_AUTHORIZATION_NOT_MATCH -> InAppPaymentErrorStrings.getStripeFailureCodeDebitAuthorizationNotMatchErrorMessage(inAppPaymentType)
       StripeFailureCode.Code.RECIPIENT_DECEASED -> R.string.StripeFailureCode__the_bank_details_provided_could_not_be_processed
       StripeFailureCode.Code.BRANCH_DOES_NOT_EXIST -> R.string.StripeFailureCode__verify_your_bank_details_are_correct
       StripeFailureCode.Code.INCORRECT_ACCOUNT_HOLDER_NAME -> R.string.StripeFailureCode__verify_your_bank_details_are_correct

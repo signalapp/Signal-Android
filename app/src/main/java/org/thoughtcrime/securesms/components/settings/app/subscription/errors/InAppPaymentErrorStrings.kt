@@ -42,4 +42,31 @@ object InAppPaymentErrorStrings {
       R.string.DonationsErrors__your_payment_is_still
     }
   }
+
+  @StringRes
+  fun getStripeIssuerNotAvailableErrorMessage(inAppPaymentType: InAppPaymentType): Int {
+    return if (inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
+      R.string.InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again
+    } else {
+      R.string.DeclineCode__try_completing_the_payment_again
+    }
+  }
+
+  @StringRes
+  fun getStripeFailureCodeAuthorizationRevokedErrorMessage(inAppPaymentType: InAppPaymentType): Int {
+    return if (inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
+      R.string.InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked
+    } else {
+      R.string.StripeFailureCode__this_payment_was_revoked
+    }
+  }
+
+  @StringRes
+  fun getStripeFailureCodeDebitAuthorizationNotMatchErrorMessage(inAppPaymentType: InAppPaymentType): Int {
+    return if (inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
+      R.string.InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment
+    } else {
+      R.string.StripeFailureCode__an_error_occurred_while_processing_this_payment
+    }
+  }
 }

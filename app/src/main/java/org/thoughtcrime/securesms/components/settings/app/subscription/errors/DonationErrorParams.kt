@@ -99,8 +99,8 @@ class DonationErrorParams<V> private constructor(
         )
 
         else -> DonationErrorParams(
-          title = R.string.DonationsErrors__couldnt_add_badge,
-          message = R.string.DonationsErrors__your_badge_could_not,
+          title = R.string.DonationsErrors__couldnt_add_badge, // TODO [message-backups] -- This will need a backups-specific string
+          message = R.string.DonationsErrors__your_badge_could_not, // TODO [message-backups] -- This will need a backups-specific string
           positiveAction = callback.onContactSupport(context),
           negativeAction = null
         )
@@ -252,7 +252,7 @@ class DonationErrorParams<V> private constructor(
             }
           )
 
-          StripeDeclineCode.Code.ISSUER_NOT_AVAILABLE -> getLearnMoreParams(context, callback, inAppPaymentType, R.string.DeclineCode__try_completing_the_payment_again)
+          StripeDeclineCode.Code.ISSUER_NOT_AVAILABLE -> getLearnMoreParams(context, callback, inAppPaymentType, InAppPaymentErrorStrings.getStripeIssuerNotAvailableErrorMessage(inAppPaymentType))
           StripeDeclineCode.Code.PROCESSING_ERROR -> getLearnMoreParams(context, callback, inAppPaymentType, R.string.DeclineCode__try_again)
           StripeDeclineCode.Code.REENTER_TRANSACTION -> getLearnMoreParams(context, callback, inAppPaymentType, R.string.DeclineCode__try_again)
           else -> getLearnMoreParams(context, callback, inAppPaymentType, R.string.DeclineCode__try_another_payment_method_or_contact_your_bank)
@@ -275,7 +275,7 @@ class DonationErrorParams<V> private constructor(
 
       return when (failureCode) {
         is StripeFailureCode.Known -> {
-          val errorText = failureCode.mapToErrorStringResource()
+          val errorText = failureCode.mapToErrorStringResource(inAppPaymentType)
           when (failureCode.code) {
             StripeFailureCode.Code.REFER_TO_CUSTOMER -> getTryBankTransferAgainParams(context, callback, inAppPaymentType, errorText)
             StripeFailureCode.Code.INSUFFICIENT_FUNDS -> getLearnMoreParams(context, callback, inAppPaymentType, errorText)
