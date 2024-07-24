@@ -66,10 +66,11 @@ class ImportExportTestSuite(private val path: String) {
     val success = importResult as ImportResult.Success
 
     val generatedBackupData = BackupRepository.debugExport(plaintext = true, currentTime = success.backupTime)
-
-    // TODO [backup] Currently fails, need to look into it
-//    assertPassesValidator(generatedBackupData)
     assertEquivalent(binProtoBytes, generatedBackupData)
+
+    // Validator expects encrypted data, so we have to export again with encryption to validate
+    val encryptedBackupData = BackupRepository.debugExport(plaintext = false, currentTime = success.backupTime)
+    assertPassesValidator(encryptedBackupData)
   }
 
   private fun import(importData: ByteArray): ImportResult {
