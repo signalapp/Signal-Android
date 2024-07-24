@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
+import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import androidx.fragment.app.Fragment
@@ -127,6 +128,7 @@ class InAppPaymentCheckoutDelegate(
     if (result.action == InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION) {
       callback.onSubscriptionCancelled(result.inAppPaymentType)
     } else {
+      fragment.requireActivity().setResult(Activity.RESULT_OK)
       callback.onPaymentComplete(result.inAppPayment!!)
     }
   }
