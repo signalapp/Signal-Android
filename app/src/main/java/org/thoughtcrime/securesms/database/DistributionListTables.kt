@@ -411,11 +411,8 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     }
 
     return when (privacyMode) {
-      DistributionListPrivacyMode.ALL -> {
-        SignalDatabase.recipients
-          .getSignalContacts(false)!!
-          .readToList { it.requireObject(RecipientTable.ID, RecipientId.SERIALIZER) }
-      }
+      DistributionListPrivacyMode.ALL -> emptyList()
+      DistributionListPrivacyMode.ONLY_WITH -> rawMembers
       DistributionListPrivacyMode.ALL_EXCEPT -> {
         SignalDatabase.recipients
           .getSignalContacts(false)!!
@@ -424,7 +421,6 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
             mapper = { it.requireObject(RecipientTable.ID, RecipientId.SERIALIZER) }
           )
       }
-      DistributionListPrivacyMode.ONLY_WITH -> rawMembers
     }
   }
 
@@ -477,7 +473,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     }
   }
 
-  private fun getPrivacyMode(listId: DistributionListId): DistributionListPrivacyMode {
+  fun getPrivacyMode(listId: DistributionListId): DistributionListPrivacyMode {
     return readableDatabase
       .select(ListTable.PRIVACY_MODE)
       .from(ListTable.TABLE_NAME)

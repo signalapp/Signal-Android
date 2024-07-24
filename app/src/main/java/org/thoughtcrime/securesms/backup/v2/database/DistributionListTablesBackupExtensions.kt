@@ -6,14 +6,15 @@
 package org.thoughtcrime.securesms.backup.v2.database
 
 import okio.ByteString.Companion.toByteString
-import org.signal.core.util.CursorUtil
 import org.signal.core.util.deleteAll
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
+import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
 import org.signal.core.util.select
+import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.backup.v2.BackupState
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionListItem
@@ -36,7 +37,6 @@ fun DistributionListTables.getAllForBackup(): List<BackupRecipient> {
   val records = readableDatabase
     .select()
     .from(DistributionListTables.ListTable.TABLE_NAME)
-    .where(DistributionListTables.ListTable.IS_NOT_DELETED)
     .run()
     .readToList { cursor ->
       val id: DistributionListId = DistributionListId.from(cursor.requireLong(DistributionListTables.ListTable.ID))
@@ -48,11 +48,11 @@ fun DistributionListTables.getAllForBackup(): List<BackupRecipient> {
           id = id,
           name = cursor.requireNonNullString(DistributionListTables.ListTable.NAME),
           distributionId = DistributionId.from(cursor.requireNonNullString(DistributionListTables.ListTable.DISTRIBUTION_ID)),
-          allowsReplies = CursorUtil.requireBoolean(cursor, DistributionListTables.ListTable.ALLOWS_REPLIES),
+          allowsReplies = cursor.requireBoolean(DistributionListTables.ListTable.ALLOWS_REPLIES),
           rawMembers = getRawMembers(id, privacyMode),
-          members = getMembers(id),
-          deletedAtTimestamp = 0L,
-          isUnknown = CursorUtil.requireBoolean(cursor, DistributionListTables.ListTable.IS_UNKNOWN),
+          members = getMembersForBackup(id),
+          deletedAtTimestamp = cursor.requireLong(DistributionListTables.ListTable.DELETION_TIMESTAMP),
+          isUnknown = cursor.requireBoolean(DistributionListTables.ListTable.IS_UNKNOWN),
           privacyMode = privacyMode
         )
       )
@@ -82,7 +82,37 @@ fun DistributionListTables.getAllForBackup(): List<BackupRecipient> {
     }
 }
 
+fun DistributionListTables.getMembersForBackup(id: DistributionListId): List<RecipientId> {
+  lateinit var privacyMode: DistributionListPrivacyMode
+  lateinit var rawMembers: List<RecipientId>
+
+  readableDatabase.withinTransaction {
+    privacyMode = getPrivacyMode(id)
+    rawMembers = getRawMembers(id, privacyMode)
+  }
+
+  return when (privacyMode) {
+    DistributionListPrivacyMode.ALL -> emptyList()
+    DistributionListPrivacyMode.ONLY_WITH -> rawMembers
+    DistributionListPrivacyMode.ALL_EXCEPT -> rawMembers
+  }
+}
+
 fun DistributionListTables.restoreFromBackup(dlistItem: DistributionListItem, backupState: BackupState): RecipientId? {
+  if (dlistItem.deletionTimestamp != null && dlistItem.deletionTimestamp > 0) {
+    val dlistId = createList(
+      name = "",
+      members = emptyList(),
+      distributionId = DistributionId.from(UuidUtil.fromByteString(dlistItem.distributionId)),
+      allowsReplies = false,
+      deletionTimestamp = dlistItem.deletionTimestamp,
+      storageId = null,
+      privacyMode = DistributionListPrivacyMode.ONLY_WITH
+    )!!
+
+    return SignalDatabase.distributionLists.getRecipientId(dlistId)!!
+  }
+
   val dlist = dlistItem.distributionList ?: return null
   val members: List<RecipientId> = dlist.memberRecipientIds
     .mapNotNull { backupState.backupToLocalRecipientId[it] }
@@ -94,32 +124,22 @@ fun DistributionListTables.restoreFromBackup(dlistItem: DistributionListItem, ba
   val distributionId = DistributionId.from(UuidUtil.fromByteString(dlistItem.distributionId))
   val privacyMode = dlist.privacyMode.toLocalPrivacyMode()
 
-  val dlistId = if (distributionId == DistributionId.MY_STORY) {
-    setPrivacyMode(DistributionListId.MY_STORY, privacyMode)
-    members.forEach { addMemberToList(DistributionListId.MY_STORY, privacyMode, it) }
-    setAllowsReplies(DistributionListId.MY_STORY, dlist.allowReplies)
-    DistributionListId.MY_STORY
-  } else {
-    createList(
-      name = dlist.name,
-      members = members,
-      distributionId = distributionId,
-      allowsReplies = dlist.allowReplies,
-      deletionTimestamp = dlistItem.deletionTimestamp ?: 0,
-      storageId = null,
-      privacyMode = privacyMode
-    )!!
-  }
+  val dlistId = createList(
+    name = dlist.name,
+    members = members,
+    distributionId = distributionId,
+    allowsReplies = dlist.allowReplies,
+    deletionTimestamp = dlistItem.deletionTimestamp ?: 0,
+    storageId = null,
+    privacyMode = privacyMode
+  )!!
 
   return SignalDatabase.distributionLists.getRecipientId(dlistId)!!
 }
 
 fun DistributionListTables.clearAllDataForBackupRestore() {
-  writableDatabase
-    .deleteAll(DistributionListTables.ListTable.TABLE_NAME)
-
-  writableDatabase
-    .deleteAll(DistributionListTables.MembershipTable.TABLE_NAME)
+  writableDatabase.deleteAll(DistributionListTables.ListTable.TABLE_NAME)
+  writableDatabase.deleteAll(DistributionListTables.MembershipTable.TABLE_NAME)
 }
 
 private fun DistributionListPrivacyMode.toBackupPrivacyMode(): BackupDistributionList.PrivacyMode {

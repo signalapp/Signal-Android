@@ -420,7 +420,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             ${MessageTypes.PROFILE_CHANGE_TYPE}, 
             ${MessageTypes.GV1_MIGRATION_TYPE},
             ${MessageTypes.CHANGE_NUMBER_TYPE},
-            ${MessageTypes.BOOST_REQUEST_TYPE},
+            ${MessageTypes.RELEASE_CHANNEL_DONATION_REQUEST_TYPE},
             ${MessageTypes.SMS_EXPORT_TYPE}
            )
           ORDER BY $DATE_RECEIVED DESC LIMIT 1
@@ -1237,7 +1237,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         DATE_RECEIVED to System.currentTimeMillis(),
         DATE_SENT to System.currentTimeMillis(),
         READ to 1,
-        TYPE to MessageTypes.BOOST_REQUEST_TYPE,
+        TYPE to MessageTypes.RELEASE_CHANNEL_DONATION_REQUEST_TYPE,
         THREAD_ID to threadId,
         BODY to null
       )
@@ -1882,7 +1882,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $TYPE != ${MessageTypes.PROFILE_CHANGE_TYPE} AND
         $TYPE != ${MessageTypes.CHANGE_NUMBER_TYPE} AND
         $TYPE != ${MessageTypes.SMS_EXPORT_TYPE} AND
-        $TYPE != ${MessageTypes.BOOST_REQUEST_TYPE} AND
+        $TYPE != ${MessageTypes.RELEASE_CHANNEL_DONATION_REQUEST_TYPE} AND
         $TYPE & ${MessageTypes.GROUP_V2_LEAVE_BITS} != ${MessageTypes.GROUP_V2_LEAVE_BITS} AND
         $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_REPORTED_SPAM} AND
         $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED}

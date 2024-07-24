@@ -32,6 +32,7 @@ object RecipientBackupProcessor {
     val selfId = db.recipientTable.getByAci(signalStore.accountValues.aci!!).get().toLong()
     val releaseChannelId = signalStore.releaseChannelValues.releaseChannelRecipientId
     if (releaseChannelId != null) {
+      state.recipientIds.add(releaseChannelId.toLong())
       emitter.emit(
         Frame(
           recipient = BackupRecipient(

@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFe
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
-import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
@@ -249,17 +248,13 @@ object BackupRepository {
     }
   }
 
-  fun export(plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis()): ByteArray {
+  /**
+   * Exports to a blob in memory. Should only be used for testing.
+   */
+  fun debugExport(plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis()): ByteArray {
     val outputStream = ByteArrayOutputStream()
     export(outputStream = outputStream, append = { mac -> outputStream.write(mac) }, plaintext = plaintext, currentTime = currentTime)
     return outputStream.toByteArray()
-  }
-
-  fun validate(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData): ValidationResult {
-    val masterKey = SignalStore.svr.getOrCreateMasterKey()
-    val key = MessageBackupKey(masterKey.serialize(), Aci.parseFromBinary(selfData.aci.toByteArray()))
-
-    return MessageBackup.validate(key, MessageBackup.Purpose.REMOTE_BACKUP, inputStreamFactory, length)
   }
 
   /**
@@ -305,9 +300,6 @@ object BackupRepository {
       val selfId: RecipientId = SignalDatabase.recipients.getAndPossiblyMerge(selfData.aci, selfData.pni, selfData.e164, pniVerified = true, changeSelf = true)
       SignalDatabase.recipients.setProfileKey(selfId, selfData.profileKey)
       SignalDatabase.recipients.setProfileSharing(selfId, true)
-
-      // Add back my story after clearing data
-      DistributionListTables.insertInitialDistributionListAtCreationTime(it)
 
       eventTimer.emit("setup")
       val backupState = BackupState(backupKey)
@@ -371,6 +363,13 @@ object BackupRepository {
 
     Log.d(TAG, "import() ${eventTimer.stop().summary}")
     return ImportResult.Success(backupTime = header.backupTimeMs)
+  }
+
+  fun validate(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData): ValidationResult {
+    val masterKey = SignalStore.svr.getOrCreateMasterKey()
+    val key = MessageBackupKey(masterKey.serialize(), Aci.parseFromBinary(selfData.aci.toByteArray()))
+
+    return MessageBackup.validate(key, MessageBackup.Purpose.REMOTE_BACKUP, inputStreamFactory, length)
   }
 
   fun listRemoteMediaObjects(limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {

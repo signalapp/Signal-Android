@@ -10,7 +10,6 @@ import com.github.difflib.DiffUtils
 import com.github.difflib.UnifiedDiffUtils
 import junit.framework.Assert.assertTrue
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
@@ -26,7 +25,6 @@ import java.io.ByteArrayInputStream
 import java.util.UUID
 import kotlin.random.Random
 
-@Ignore("Not passing yet")
 @RunWith(Parameterized::class)
 class ImportExportTestSuite(private val path: String) {
   companion object {
@@ -41,8 +39,10 @@ class ImportExportTestSuite(private val path: String) {
     @JvmStatic
     @Parameterized.Parameters(name = "{0}")
     fun data(): Collection<Array<String>> {
-      val testFiles = InstrumentationRegistry.getInstrumentation().context.resources.assets.list(TESTS_FOLDER)
-      return testFiles?.map { arrayOf(it) }!!.toList()
+      val testFiles = InstrumentationRegistry.getInstrumentation().context.resources.assets.list(TESTS_FOLDER)!!
+      return testFiles
+        .map { arrayOf(it) }
+        .toList()
     }
   }
 
@@ -65,8 +65,11 @@ class ImportExportTestSuite(private val path: String) {
     assertTrue(importResult is ImportResult.Success)
     val success = importResult as ImportResult.Success
 
-    val generatedBackupData = BackupRepository.export(plaintext = true, currentTime = success.backupTime)
-    compare(binProtoBytes, generatedBackupData)
+    val generatedBackupData = BackupRepository.debugExport(plaintext = true, currentTime = success.backupTime)
+
+    // TODO [backup] Currently fails, need to look into it
+//    assertPassesValidator(generatedBackupData)
+    assertEquivalent(binProtoBytes, generatedBackupData)
   }
 
   private fun import(importData: ByteArray): ImportResult {
@@ -78,7 +81,15 @@ class ImportExportTestSuite(private val path: String) {
     )
   }
 
-  private fun compare(import: ByteArray, export: ByteArray) {
+  private fun assertPassesValidator(generatedBackupData: ByteArray) {
+    BackupRepository.validate(
+      length = generatedBackupData.size.toLong(),
+      inputStreamFactory = { ByteArrayInputStream(generatedBackupData) },
+      selfData = BackupRepository.SelfData(SELF_ACI, SELF_PNI, SELF_E164, SELF_PROFILE_KEY)
+    )
+  }
+
+  private fun assertEquivalent(import: ByteArray, export: ByteArray) {
     val importComparable = ComparableBackup.readUnencrypted(MessageBackup.Purpose.REMOTE_BACKUP, import.inputStream(), import.size.toLong())
     val exportComparable = ComparableBackup.readUnencrypted(MessageBackup.Purpose.REMOTE_BACKUP, export.inputStream(), import.size.toLong())
 

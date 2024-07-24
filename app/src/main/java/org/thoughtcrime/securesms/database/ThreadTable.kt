@@ -1788,10 +1788,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     deactivateThread(query = null)
   }
 
-  private fun SQLiteDatabase.deactivateThread(threadId: Long) {
-    deactivateThread(SqlUtil.Query("$ID = ?", SqlUtil.buildArgs(threadId)))
-  }
-
   private fun SQLiteDatabase.deactivateThread(query: SqlUtil.Query?) {
     val contentValues = contentValuesOf(
       DATE to 0,
@@ -1820,13 +1816,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     )
 
     if (query != null) {
-      writableDatabase
+      this
         .update(TABLE_NAME)
         .values(contentValues)
         .where(query.where, query.whereArgs)
         .run()
     } else {
-      writableDatabase
+      this
         .updateAll(TABLE_NAME)
         .values(contentValues)
         .run()
@@ -1979,7 +1975,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return MessageTypes.isProfileChange(type) ||
       MessageTypes.isGroupV1MigrationEvent(type) ||
       MessageTypes.isChangeNumber(type) ||
-      MessageTypes.isBoostRequest(type) ||
+      MessageTypes.isReleaseChannelDonationRequest(type) ||
       MessageTypes.isGroupV2LeaveOnly(type) ||
       MessageTypes.isThreadMergeType(type)
   }

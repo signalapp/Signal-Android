@@ -45,6 +45,7 @@ fun ThreadTable.getThreadsForBackup(): ChatIterator {
         ${RecipientTable.TABLE_NAME}.${RecipientTable.CUSTOM_CHAT_COLORS_ID}
       FROM ${ThreadTable.TABLE_NAME} 
         LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
+      WHERE ${ThreadTable.ACTIVE} = 1
     """
   val cursor = readableDatabase.query(query)
 

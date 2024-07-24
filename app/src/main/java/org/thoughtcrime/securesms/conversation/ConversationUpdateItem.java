@@ -186,7 +186,7 @@ public final class ConversationUpdateItem extends FrameLayout
                       shouldCollapse(messageRecord, nextMessageRecord),
                       hasWallpaper);
 
-    presentActionButton(hasWallpaper, conversationMessage.getMessageRecord().isBoostRequest());
+    presentActionButton(hasWallpaper, conversationMessage.getMessageRecord().isReleaseChannelDonationRequest());
 
     updateSelectedState();
   }
@@ -538,7 +538,7 @@ public final class ConversationUpdateItem extends FrameLayout
           eventListener.onBlockJoinRequest(conversationMessage.getMessageRecord().getFromRecipient());
         }
       });
-    } else if (conversationMessage.getMessageRecord().isBoostRequest()) {
+    } else if (conversationMessage.getMessageRecord().isReleaseChannelDonationRequest()) {
       actionButton.setVisibility(VISIBLE);
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {

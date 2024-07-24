@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.api.util.toByteArray
 import java.util.Currency
 
 object AccountDataProcessor {
@@ -48,6 +49,15 @@ object AccountDataProcessor {
           familyName = selfRecord.signalProfileName.familyName,
           avatarUrlPath = selfRecord.signalProfileAvatar ?: "",
           username = selfRecord.username,
+          usernameLink = if (signalStore.accountValues.usernameLink != null) {
+            AccountData.UsernameLink(
+              entropy = signalStore.accountValues.usernameLink?.entropy?.toByteString() ?: EMPTY,
+              serverId = signalStore.accountValues.usernameLink?.serverId?.toByteArray()?.toByteString() ?: EMPTY,
+              color = signalStore.miscValues.usernameQrCodeColorScheme.toBackupUsernameColor() ?: AccountData.UsernameLink.Color.BLUE
+            )
+          } else {
+            null
+          },
           accountSettings = AccountData.AccountSettings(
             storyViewReceiptsEnabled = signalStore.storyValues.viewedReceiptsEnabled,
             typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context),
@@ -71,12 +81,6 @@ object AccountDataProcessor {
         )
       )
     )
-  }
-
-  private fun InAppPaymentSubscriberRecord.toSubscriberData(manuallyCancelled: Boolean): AccountData.SubscriberData {
-    val subscriberId = subscriberId.bytes.toByteString()
-    val currencyCode = currency.currencyCode
-    return AccountData.SubscriberData(subscriberId = subscriberId, currencyCode = currencyCode, manuallyCancelled = manuallyCancelled)
   }
 
   fun import(accountData: AccountData, selfId: RecipientId) {
@@ -180,5 +184,24 @@ object AccountDataProcessor {
       AccountData.UsernameLink.Color.PURPLE -> UsernameQrCodeColorScheme.Purple
       else -> UsernameQrCodeColorScheme.Blue
     }
+  }
+
+  private fun UsernameQrCodeColorScheme.toBackupUsernameColor(): AccountData.UsernameLink.Color {
+    return when (this) {
+      UsernameQrCodeColorScheme.Blue -> AccountData.UsernameLink.Color.BLUE
+      UsernameQrCodeColorScheme.White -> AccountData.UsernameLink.Color.WHITE
+      UsernameQrCodeColorScheme.Grey -> AccountData.UsernameLink.Color.GREY
+      UsernameQrCodeColorScheme.Tan -> AccountData.UsernameLink.Color.OLIVE
+      UsernameQrCodeColorScheme.Green -> AccountData.UsernameLink.Color.GREEN
+      UsernameQrCodeColorScheme.Orange -> AccountData.UsernameLink.Color.ORANGE
+      UsernameQrCodeColorScheme.Pink -> AccountData.UsernameLink.Color.PINK
+      UsernameQrCodeColorScheme.Purple -> AccountData.UsernameLink.Color.PURPLE
+    }
+  }
+
+  private fun InAppPaymentSubscriberRecord.toSubscriberData(manuallyCancelled: Boolean): AccountData.SubscriberData {
+    val subscriberId = subscriberId.bytes.toByteString()
+    val currencyCode = currency.currencyCode
+    return AccountData.SubscriberData(subscriberId = subscriberId, currencyCode = currencyCode, manuallyCancelled = manuallyCancelled)
   }
 }

@@ -587,7 +587,7 @@ class ImportExportTest {
       )
     )
     import(importData)
-    val exported = BackupRepository.export()
+    val exported = BackupRepository.debugExport()
     val expected = exportFrames(
       *standardFrames,
       alexa
@@ -1012,7 +1012,7 @@ class ImportExportTest {
       expirationNotStarted
     )
     import(importData)
-    val exported = BackupRepository.export()
+    val exported = BackupRepository.debugExport()
     val expected = exportFrames(
       *standardFrames,
       alice,
@@ -1649,7 +1649,7 @@ class ImportExportTest {
 
     import(originalBackupData)
 
-    val generatedBackupData = BackupRepository.export()
+    val generatedBackupData = BackupRepository.debugExport()
     compare(originalBackupData, generatedBackupData)
   }
 

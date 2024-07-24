@@ -158,8 +158,8 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         MessageTypes.isChangeNumber(record.type) -> {
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.CHANGE_NUMBER)
         }
-        MessageTypes.isBoostRequest(record.type) -> {
-          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.BOOST_REQUEST)
+        MessageTypes.isReleaseChannelDonationRequest(record.type) -> {
+          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.RELEASE_CHANNEL_DONATION_REQUEST)
         }
         MessageTypes.isEndSessionType(record.type) -> {
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.END_SESSION)
@@ -175,6 +175,12 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         }
         MessageTypes.isPaymentsRequestToActivate(record.type) -> {
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST)
+        }
+        MessageTypes.isUnsupportedMessageType(record.type) -> {
+          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.UNSUPPORTED_PROTOCOL_MESSAGE)
+        }
+        MessageTypes.isReportedSpam(record.type) -> {
+          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.REPORTED_SPAM)
         }
         MessageTypes.isExpirationTimerUpdate(record.type) -> {
           builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate(record.expiresIn.toInt()))
@@ -265,7 +271,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       expiresInMs = if (record.expiresIn > 0) record.expiresIn else 0
       revisions = emptyList()
       sms = record.type.isSmsType()
-      if (MessageTypes.isCallLog(record.type)) {
+      if (record.type.isDirectionlessType()) {
         directionless = ChatItem.DirectionlessMessageDetails()
       } else if (MessageTypes.isOutgoingMessageType(record.type)) {
         outgoing = ChatItem.OutgoingMessageDetails(
@@ -997,6 +1003,27 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
 
     return MessageTypes.isOutgoingMessageType(this) || MessageTypes.isInboxType(this)
+  }
+
+  private fun Long.isDirectionlessType(): Boolean {
+    return MessageTypes.isCallLog(this) ||
+      MessageTypes.isExpirationTimerUpdate(this) ||
+      MessageTypes.isThreadMergeType(this) ||
+      MessageTypes.isSessionSwitchoverType(this) ||
+      MessageTypes.isProfileChange(this) ||
+      MessageTypes.isJoinedType(this) ||
+      MessageTypes.isIdentityUpdate(this) ||
+      MessageTypes.isIdentityVerified(this) ||
+      MessageTypes.isIdentityDefault(this) ||
+      MessageTypes.isReleaseChannelDonationRequest(this) ||
+      MessageTypes.isChangeNumber(this) ||
+      MessageTypes.isEndSessionType(this) ||
+      MessageTypes.isChatSessionRefresh(this) ||
+      MessageTypes.isBadDecryptType(this) ||
+      MessageTypes.isPaymentsActivated(this) ||
+      MessageTypes.isPaymentsRequestToActivate(this) ||
+      MessageTypes.isUnsupportedMessageType(this) ||
+      MessageTypes.isReportedSpam(this)
   }
 
   private fun String.e164ToLong(): Long? {
