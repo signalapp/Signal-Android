@@ -10,6 +10,7 @@ import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
+import org.signal.libsignal.protocol.InvalidSessionException
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.state.SessionRecord
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -64,6 +65,8 @@ class SessionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
         try {
           return SessionRecord(cursor.requireNonNullBlob(RECORD))
         } catch (e: IOException) {
+          Log.w(TAG, e)
+        } catch (e: InvalidSessionException) {
           Log.w(TAG, e)
         }
       }
