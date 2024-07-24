@@ -36,8 +36,8 @@ class DonationErrorParams<V> private constructor(
         is DonationError.PaymentSetupError.StripeFailureCodeError -> getStripeFailureCodeErrorParams(context, throwable.method, throwable.failureCode, throwable.source.toInAppPaymentType(), callback)
         is DonationError.PaymentSetupError.PayPalDeclinedError -> getPayPalDeclinedErrorParams(context, throwable.code, callback, throwable.source.toInAppPaymentType())
         is DonationError.PaymentSetupError -> getGenericPaymentSetupErrorParams(context, callback, throwable.source.toInAppPaymentType())
-        is DonationError.BadgeRedemptionError.DonationPending -> getStillProcessingErrorParams(context, callback)
-        is DonationError.BadgeRedemptionError.TimeoutWaitingForTokenError -> getStillProcessingErrorParams(context, callback)
+        is DonationError.BadgeRedemptionError.DonationPending -> getStillProcessingErrorParams(context, callback, throwable.source.toInAppPaymentType())
+        is DonationError.BadgeRedemptionError.TimeoutWaitingForTokenError -> getStillProcessingErrorParams(context, callback, throwable.source.toInAppPaymentType())
         is DonationError.BadgeRedemptionError.FailedToValidateCredentialError -> getBadgeCredentialValidationErrorParams(context, callback)
         is DonationError.BadgeRedemptionError.GenericError -> getGenericRedemptionError(context, throwable.source.toInAppPaymentType(), callback)
         else -> getGenericRedemptionError(context, InAppPaymentType.ONE_TIME_DONATION, callback)
@@ -297,10 +297,10 @@ class DonationErrorParams<V> private constructor(
       }
     }
 
-    private fun <V> getStillProcessingErrorParams(context: Context, callback: Callback<V>): DonationErrorParams<V> {
+    private fun <V> getStillProcessingErrorParams(context: Context, callback: Callback<V>, inAppPaymentType: InAppPaymentType): DonationErrorParams<V> {
       return DonationErrorParams(
         title = R.string.DonationsErrors__still_processing,
-        message = R.string.DonationsErrors__your_payment_is_still,
+        message = InAppPaymentErrorStrings.getStillProcessingErrorMessage(inAppPaymentType),
         positiveAction = callback.onOk(context),
         negativeAction = null
       )
@@ -317,8 +317,8 @@ class DonationErrorParams<V> private constructor(
 
     private fun <V> getGenericPaymentSetupErrorParams(context: Context, callback: Callback<V>, inAppPaymentType: InAppPaymentType): DonationErrorParams<V> {
       return DonationErrorParams(
-        title = getGenericErrorProcessingTitle(inAppPaymentType),
-        message = getPaymentSetupErrorMessage(inAppPaymentType),
+        title = InAppPaymentErrorStrings.getGenericErrorProcessingTitle(inAppPaymentType),
+        message = InAppPaymentErrorStrings.getPaymentSetupErrorMessage(inAppPaymentType),
         positiveAction = callback.onOk(context),
         negativeAction = null
       )
@@ -326,7 +326,7 @@ class DonationErrorParams<V> private constructor(
 
     private fun <V> getLearnMoreParams(context: Context, callback: Callback<V>, inAppPaymentType: InAppPaymentType, message: Int): DonationErrorParams<V> {
       return DonationErrorParams(
-        title = getGenericErrorProcessingTitle(inAppPaymentType),
+        title = InAppPaymentErrorStrings.getGenericErrorProcessingTitle(inAppPaymentType),
         message = message,
         positiveAction = callback.onOk(context),
         negativeAction = callback.onLearnMore(context)
@@ -335,7 +335,7 @@ class DonationErrorParams<V> private constructor(
 
     private fun <V> getGoToGooglePayParams(context: Context, callback: Callback<V>, inAppPaymentType: InAppPaymentType, message: Int): DonationErrorParams<V> {
       return DonationErrorParams(
-        title = getGenericErrorProcessingTitle(inAppPaymentType),
+        title = InAppPaymentErrorStrings.getGenericErrorProcessingTitle(inAppPaymentType),
         message = message,
         positiveAction = callback.onGoToGooglePay(context),
         negativeAction = callback.onCancel(context)
@@ -344,7 +344,7 @@ class DonationErrorParams<V> private constructor(
 
     private fun <V> getTryCreditCardAgainParams(context: Context, callback: Callback<V>, inAppPaymentType: InAppPaymentType, message: Int): DonationErrorParams<V> {
       return DonationErrorParams(
-        title = getGenericErrorProcessingTitle(inAppPaymentType),
+        title = InAppPaymentErrorStrings.getGenericErrorProcessingTitle(inAppPaymentType),
         message = message,
         positiveAction = callback.onTryCreditCardAgain(context),
         negativeAction = callback.onCancel(context)
@@ -353,29 +353,11 @@ class DonationErrorParams<V> private constructor(
 
     private fun <V> getTryBankTransferAgainParams(context: Context, callback: Callback<V>, inAppPaymentType: InAppPaymentType, message: Int): DonationErrorParams<V> {
       return DonationErrorParams(
-        title = getGenericErrorProcessingTitle(inAppPaymentType),
+        title = InAppPaymentErrorStrings.getGenericErrorProcessingTitle(inAppPaymentType),
         message = message,
         positiveAction = callback.onTryBankTransferAgain(context),
         negativeAction = callback.onCancel(context)
       )
-    }
-
-    @StringRes
-    private fun getGenericErrorProcessingTitle(inAppPaymentType: InAppPaymentType): Int {
-      return if (inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
-        R.string.InAppPaymentErrors__error_processing_payment
-      } else {
-        R.string.DonationsErrors__error_processing_payment
-      }
-    }
-
-    @StringRes
-    private fun getPaymentSetupErrorMessage(inAppPaymentType: InAppPaymentType): Int {
-      return if (inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
-        R.string.InAppPaymentErrors__your_payment_couldnt_be_processed
-      } else {
-        R.string.DonationsErrors__your_payment
-      }
     }
   }
 
