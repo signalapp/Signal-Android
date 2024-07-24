@@ -19,12 +19,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.labelResource
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
@@ -127,9 +127,12 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
   }
 
   private fun getProcessingStatus(): String {
-    return getString(R.string.InAppPaymentInProgressFragment__processing_s, getString(args.inAppPaymentType.labelResource))
+    return if (args.inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
+      getString(R.string.InAppPaymentInProgressFragment__processing_payment)
+    } else {
+      getString(R.string.InAppPaymentInProgressFragment__processing_donation)
+    }
   }
-
   private fun handleSecure3dsAction(secure3dsAction: StripeApi.Secure3DSAction, inAppPayment: InAppPaymentTable.InAppPayment): Single<StripeIntentAccessor> {
     return when (secure3dsAction) {
       is StripeApi.Secure3DSAction.NotNeeded -> {

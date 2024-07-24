@@ -20,9 +20,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.labelResource
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
@@ -122,7 +122,11 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
   }
 
   private fun getProcessingStatus(): String {
-    return getString(R.string.InAppPaymentInProgressFragment__processing_s, getString(args.inAppPaymentType.labelResource))
+    return if (args.inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
+      getString(R.string.InAppPaymentInProgressFragment__processing_payment)
+    } else {
+      getString(R.string.InAppPaymentInProgressFragment__processing_donation)
+    }
   }
 
   private fun oneTimeConfirmationPipeline(createPaymentIntentResponse: PayPalCreatePaymentIntentResponse): Single<PayPalConfirmationResult> {

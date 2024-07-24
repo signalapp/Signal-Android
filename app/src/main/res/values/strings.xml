@@ -5473,12 +5473,14 @@
     <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
 
     <!-- *PaymentInProgressFragment strings -->
-    <!-- String utilized for donation payments throughout status and error strings -->
-    <string name="InAppPaymentInProgressFragment__donation">donation</string>
-    <!-- String utilized for backup payments throughout status and error strings -->
-    <string name="InAppPaymentInProgressFragment__payment">payment</string>
-    <!-- Displayed in a dialog while a payment is being processed. Placeholder is donation or payment. -->
-    <string name="InAppPaymentInProgressFragment__processing_s">Processing %1$s…</string>
+    <string name="InAppPaymentInProgressFragment__processing_donation">Processing donation…</string>
+    <string name="InAppPaymentInProgressFragment__processing_payment">Processing payment…</string>
+
+    <!-- InAppPaymentErrors -->
+    <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
+    <string name="InAppPaymentErrors__error_processing_payment">Error processing payment</string>
+    <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
+    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">Your payment couldn\'t be processed and you have not been charged. Please try again.</string>
 
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
