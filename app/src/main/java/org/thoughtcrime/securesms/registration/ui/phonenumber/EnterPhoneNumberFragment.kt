@@ -311,7 +311,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
 
   private fun handleSessionCreationError(result: RegistrationSessionResult) {
     if (!result.isSuccess()) {
-      Log.i(TAG, "Handling error response.", result.getCause())
+      Log.i(TAG, "Handling error response of ${result.javaClass.name}", result.getCause())
     }
     when (result) {
       is RegistrationSessionCheckResult.Success,
@@ -376,7 +376,8 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
 
       is VerificationCodeRequestResult.TokenNotAccepted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human)) { _, _ -> moveToCaptcha() }
 
-      is VerificationCodeRequestResult.RegistrationLocked -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
+      is VerificationCodeRequestResult.RegistrationLocked -> findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.actionPhoneNumberRegistrationLock(result.timeRemaining))
+
       is VerificationCodeRequestResult.AlreadyVerified -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
       is VerificationCodeRequestResult.NoSuchSession -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
       is VerificationCodeRequestResult.UnknownError -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
