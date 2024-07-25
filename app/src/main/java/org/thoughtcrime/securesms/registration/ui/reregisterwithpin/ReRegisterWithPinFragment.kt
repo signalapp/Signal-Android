@@ -201,6 +201,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
   }
 
   private fun onNeedHelpClicked() {
+    Log.i(TAG, "User clicked need help dialog.")
     val message = if (reRegisterViewModel.isLocalVerification) R.string.ReRegisterWithPinFragment_need_help_local else R.string.PinRestoreEntryFragment_your_pin_is_a_d_digit_code
 
     MaterialAlertDialogBuilder(requireContext())
@@ -222,6 +223,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
   }
 
   private fun onSkipClicked() {
+    Log.i(TAG, "User clicked the skip PIN button.")
     val message = if (reRegisterViewModel.isLocalVerification) R.string.ReRegisterWithPinFragment_skip_local else R.string.PinRestoreEntryFragment_if_you_cant_remember_your_pin
 
     MaterialAlertDialogBuilder(requireContext())
