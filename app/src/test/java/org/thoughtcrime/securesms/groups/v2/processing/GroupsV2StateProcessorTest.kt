@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.database.GroupStateTestData
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.database.model.databaseprotos.member
@@ -54,6 +55,7 @@ import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupResponse
@@ -89,6 +91,7 @@ class GroupsV2StateProcessorTest {
 
   private lateinit var groupTable: GroupTable
   private lateinit var recipientTable: RecipientTable
+  private lateinit var threadTable: ThreadTable
   private lateinit var groupsV2API: GroupsV2Api
   private lateinit var groupsV2Authorization: GroupsV2Authorization
   private lateinit var groupsV2Operations: GroupsV2Operations
@@ -107,6 +110,7 @@ class GroupsV2StateProcessorTest {
 
     groupTable = mockk()
     recipientTable = mockk()
+    threadTable = mockk()
     groupsV2API = mockk()
     groupsV2Operations = mockk()
     groupsV2Authorization = mockk()
@@ -122,6 +126,7 @@ class GroupsV2StateProcessorTest {
     mockkObject(SignalDatabase)
     every { SignalDatabase.groups } returns groupTable
     every { SignalDatabase.recipients } returns recipientTable
+    every { SignalDatabase.threads } returns threadTable
 
     mockkObject(ProfileAndMessageHelper)
     every { ProfileAndMessageHelper.create(any(), any(), any()) } returns profileAndMessageHelper
@@ -137,6 +142,7 @@ class GroupsV2StateProcessorTest {
     unmockkObject(SignalDatabase)
     unmockkObject(ProfileAndMessageHelper)
     unmockkStatic(DecryptedGroupUtil::class)
+    unmockkStatic(Recipient::class)
   }
 
   private fun given(init: GroupStateTestData.() -> Unit) {
@@ -451,6 +457,9 @@ class GroupsV2StateProcessorTest {
 
     every { groupsV2API.getGroupJoinedAt(any()) } returns NetworkResult.StatusCodeError(NotInGroupException())
     every { groupsV2API.getGroupAsResult(any(), any()) } returns NetworkResult.StatusCodeError(NotInGroupException())
+    mockkStatic(Recipient::class)
+    every { Recipient.externalGroupExact(groupId) } returns Recipient()
+    every { threadTable.getThreadIdFor(any()) } returns null
 
     val signedChange = DecryptedGroupChange(
       revision = 2,

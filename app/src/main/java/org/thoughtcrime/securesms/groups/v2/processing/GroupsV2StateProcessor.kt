@@ -638,6 +638,15 @@ class GroupsV2StateProcessor private constructor(
     fun leaveGroupLocally(serviceIds: ServiceIds) {
       if (!SignalDatabase.groups.isActive(groupId)) {
         Log.w(TAG, "Group $groupId has already been left.")
+
+        val groupRecipient = Recipient.externalGroupExact(groupId)
+        val threadId = SignalDatabase.threads.getThreadIdFor(groupRecipient.id)
+
+        if (threadId != null) {
+          SignalDatabase.drafts.clearDrafts(threadId)
+          SignalDatabase.threads.update(threadId, unarchive = false, allowDeletion = false)
+        }
+
         return
       }
 
@@ -664,6 +673,7 @@ class GroupsV2StateProcessor private constructor(
         val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
         val id = SignalDatabase.messages.insertMessageOutbox(leaveMessage, threadId, false, null)
         SignalDatabase.messages.markAsSent(id, true)
+        SignalDatabase.drafts.clearDrafts(threadId)
         SignalDatabase.threads.update(threadId, unarchive = false, allowDeletion = false)
       } catch (e: MmsException) {
         Log.w(TAG, "Failed to insert leave message for $groupId", e)
