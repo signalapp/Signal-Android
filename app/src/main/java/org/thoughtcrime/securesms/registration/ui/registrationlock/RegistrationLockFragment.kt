@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
-import org.thoughtcrime.securesms.registration.data.network.RegistrationResult
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
@@ -101,11 +100,21 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
       binding.kbsLockPinInputLabel.text = requireContext().resources.getQuantityString(R.plurals.RegistrationLockFragment__d_attempts_remaining, triesRemaining, triesRemaining)
     }
 
-    viewModel.inProgress.observe(viewLifecycleOwner) {
-      if (it) {
+    viewModel.uiState.observe(viewLifecycleOwner) {
+      if (it.inProgress) {
         binding.kbsLockPinConfirm.setSpinning()
       } else {
         binding.kbsLockPinConfirm.cancelSpinning()
+      }
+
+      it.sessionStateError?.let { error ->
+        handleSessionErrorResponse(error)
+        viewModel.sessionStateErrorShown()
+      }
+
+      it.registerAccountError?.let { error ->
+        handleRegistrationErrorResponse(error)
+        viewModel.registerAccountErrorShown()
       }
     }
   }
@@ -132,12 +141,12 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
 
     binding.kbsLockPinConfirm.setSpinning()
 
-    viewModel.verifyCodeAndRegisterAccountWithRegistrationLock(requireContext(), pin, ::handleSessionErrorResponse, ::handleRegistrationErrorResponse)
+    viewModel.verifyCodeAndRegisterAccountWithRegistrationLock(requireContext(), pin)
   }
 
-  private fun handleSessionErrorResponse(requestResult: RegistrationResult) {
+  private fun handleSessionErrorResponse(requestResult: VerificationCodeRequestResult) {
     when (requestResult) {
-      is VerificationCodeRequestResult.Success -> Unit
+      is VerificationCodeRequestResult.Success -> throw IllegalStateException("Session error handler called on successful response!")
       is VerificationCodeRequestResult.RateLimited -> onRateLimited()
       is VerificationCodeRequestResult.AttemptsExhausted -> {
         findNavController().safeNavigate(RegistrationLockFragmentDirections.actionAccountLocked())
@@ -159,7 +168,7 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
 
   private fun handleRegistrationErrorResponse(result: RegisterAccountResult) {
     when (result) {
-      is RegisterAccountResult.Success -> Unit
+      is RegisterAccountResult.Success -> throw IllegalStateException("Register account error handler called on successful response!")
       is RegisterAccountResult.RateLimited -> onRateLimited()
       is RegisterAccountResult.AttemptsExhausted -> {
         findNavController().safeNavigate(RegistrationLockFragmentDirections.actionAccountLocked())

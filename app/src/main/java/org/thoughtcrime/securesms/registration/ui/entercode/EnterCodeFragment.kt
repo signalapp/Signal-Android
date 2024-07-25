@@ -11,12 +11,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.i18n.phonenumbers.PhoneNumberUtil
-import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.logging.Log
@@ -76,7 +74,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     }
 
     binding.code.setOnCompleteListener {
-      sharedViewModel.verifyCodeWithoutRegistrationLock(requireContext(), it, ::handleSessionErrorResponse, ::handleRegistrationErrorResponse)
+      sharedViewModel.verifyCodeWithoutRegistrationLock(requireContext(), it)
     }
 
     binding.havingTroubleButton.setOnClickListener {
@@ -86,14 +84,14 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     binding.callMeCountDown.apply {
       setTextResources(R.string.RegistrationActivity_call, R.string.RegistrationActivity_call_me_instead_available_in)
       setOnClickListener {
-        sharedViewModel.requestVerificationCall(requireContext(), ::handleSessionErrorResponse)
+        sharedViewModel.requestVerificationCall(requireContext())
       }
     }
 
     binding.resendSmsCountDown.apply {
       setTextResources(R.string.RegistrationActivity_resend_code, R.string.RegistrationActivity_resend_sms_available_in)
       setOnClickListener {
-        sharedViewModel.requestSmsCode(requireContext(), ::handleSessionErrorResponse)
+        sharedViewModel.requestSmsCode(requireContext())
       }
     }
 
@@ -114,6 +112,16 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     }
 
     sharedViewModel.uiState.observe(viewLifecycleOwner) {
+      it.sessionStateError?.let { error ->
+        handleSessionErrorResponse(error)
+        sharedViewModel.sessionStateErrorShown()
+      }
+
+      it.registerAccountError?.let { error ->
+        handleRegistrationErrorResponse(error)
+        sharedViewModel.registerAccountErrorShown()
+      }
+
       binding.resendSmsCountDown.startCountDownTo(it.nextSmsTimestamp)
       binding.callMeCountDown.startCountDownTo(it.nextCallTimestamp)
       if (it.inProgress) {
@@ -132,29 +140,25 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     }
   }
 
-  private fun handleSessionErrorResponse(result: RegistrationResult) {
-    viewLifecycleOwner.lifecycleScope.launch {
-      when (result) {
-        is VerificationCodeRequestResult.Success -> binding.keyboard.displaySuccess()
-        is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
-        is VerificationCodeRequestResult.AttemptsExhausted -> presentAccountLocked()
-        is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
-        else -> presentGenericError(result)
-      }
+  private fun handleSessionErrorResponse(result: VerificationCodeRequestResult) {
+    when (result) {
+      is VerificationCodeRequestResult.Success -> throw IllegalStateException("Session error handler called on successful response!")
+      is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
+      is VerificationCodeRequestResult.AttemptsExhausted -> presentAccountLocked()
+      is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
+      else -> presentGenericError(result)
     }
   }
 
   private fun handleRegistrationErrorResponse(result: RegisterAccountResult) {
-    viewLifecycleOwner.lifecycleScope.launch {
-      when (result) {
-        is RegisterAccountResult.Success -> binding.keyboard.displaySuccess()
-        is RegisterAccountResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
-        is RegisterAccountResult.AuthorizationFailed -> presentIncorrectCodeDialog()
-        is RegisterAccountResult.AttemptsExhausted -> presentAccountLocked()
-        is RegisterAccountResult.RateLimited -> presentRateLimitedDialog()
+    when (result) {
+      is RegisterAccountResult.Success -> throw IllegalStateException("Register account error handler called on successful response!")
+      is RegisterAccountResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
+      is RegisterAccountResult.AuthorizationFailed -> presentIncorrectCodeDialog()
+      is RegisterAccountResult.AttemptsExhausted -> presentAccountLocked()
+      is RegisterAccountResult.RateLimited -> presentRateLimitedDialog()
 
-        else -> presentGenericError(result)
-      }
+      else -> presentGenericError(result)
     }
   }
 
@@ -202,19 +206,17 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
   private fun presentIncorrectCodeDialog() {
     sharedViewModel.incrementIncorrectCodeAttempts()
 
-    viewLifecycleOwner.lifecycleScope.launch {
-      Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_code, Toast.LENGTH_LONG).show()
+    Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_code, Toast.LENGTH_LONG).show()
 
-      binding.keyboard.displayFailure().addListener(object : AssertedSuccessListener<Boolean?>() {
-        override fun onSuccess(result: Boolean?) {
-          binding.callMeCountDown.visibility = View.VISIBLE
-          binding.resendSmsCountDown.visibility = View.VISIBLE
-          binding.wrongNumber.visibility = View.VISIBLE
-          binding.code.clear()
-          binding.keyboard.displayKeyboard()
-        }
-      })
-    }
+    binding.keyboard.displayFailure().addListener(object : AssertedSuccessListener<Boolean?>() {
+      override fun onSuccess(result: Boolean?) {
+        binding.callMeCountDown.visibility = View.VISIBLE
+        binding.resendSmsCountDown.visibility = View.VISIBLE
+        binding.wrongNumber.visibility = View.VISIBLE
+        binding.code.clear()
+        binding.keyboard.displayKeyboard()
+      }
+    })
   }
 
   private fun presentGenericError(requestResult: RegistrationResult) {

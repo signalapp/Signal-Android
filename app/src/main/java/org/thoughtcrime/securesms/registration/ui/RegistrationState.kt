@@ -11,6 +11,9 @@ import com.google.i18n.phonenumbers.Phonenumber
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.data.network.Challenge
+import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
+import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionResult
+import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 
@@ -45,7 +48,10 @@ data class RegistrationState(
   val verified: Boolean = false,
   val smsListenerTimeout: Long = 0L,
   val registrationCheckpoint: RegistrationCheckpoint = RegistrationCheckpoint.INITIALIZATION,
-  val networkError: Throwable? = null
+  val networkError: Throwable? = null,
+  val sessionCreationError: RegistrationSessionResult? = null,
+  val sessionStateError: VerificationCodeRequestResult? = null,
+  val registerAccountError: RegisterAccountResult? = null
 ) {
   val challengesRemaining: List<Challenge> = challengesRequested.filterNot { it in challengesPresented }
 
