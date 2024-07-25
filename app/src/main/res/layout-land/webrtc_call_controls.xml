@@ -93,10 +93,12 @@
             android:paddingVertical="12dp"
             android:text="@string/WebRtcCallView__waiting_to_be_let_in"
             android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/call_screen_above_controls_barrier"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintWidth_max="540dp" />
+            app:layout_constraintWidth_max="540dp"
+            tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/call_screen_above_controls_barrier"
