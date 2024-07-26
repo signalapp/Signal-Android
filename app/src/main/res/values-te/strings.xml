@@ -170,6 +170,8 @@
     <string name="CreditCardFragment__donate_s">%1$s విరాళం ఇవ్వండి</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
     <string name="CreditCardFragment__donate_s_month">%1$s/నెలకు విరాళం ఇవ్వండి</string>
+    <!-- Button label to confirm credit card input and proceed with backups payment. Placeholder is formatted price. -->
+    <string name="CreditCardFragment__pay_s_month">%1$s/నెలకు విరాళం ఇవ్వండి</string>
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
@@ -219,6 +221,24 @@
     <string name="BucketedThreadMedia_Large">పెద్ద</string>
     <string name="BucketedThreadMedia_Medium">మీడియం</string>
     <string name="BucketedThreadMedia_Small">చిన్న</string>
+
+    <!-- CallInfoView -->
+    <!-- Unknown people row text when the only people in the call are unknowns -->
+    <plurals name="CallInfoView__d_people">
+        <item quantity="one">%1$d వ్యక్తి</item>
+        <item quantity="other">%1$dవ్యక్తులు</item>
+    </plurals>
+    <!-- Unknown people row, placeholder is the number of unknown people in the call -->
+    <plurals name="CallInfoView__plus_d_people">
+        <item quantity="one">+%1$d person</item>
+        <item quantity="other">+%1$d people</item>
+    </plurals>
+    <!-- Unknown people row icon content description -->
+    <string name="CallInfoView__more_information">మరింత సమాచారం</string>
+    <!-- Unknown people row info dialog message -->
+    <string name="CallInfoView__before_joining_a_call">Before joining a call you can only see the names of phone contacts, people you\'re in a group with, or people you\'ve chatted with 1:1. You\'ll see all names and photos once you\'ve joined the call.</string>
+    <!-- Unknown people row info dialog action to close the dialog -->
+    <string name="CallInfoView__got_it">అర్థమైంది</string>
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
@@ -771,6 +791,16 @@
     <!-- Backup has an unsupported file extension -->
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">బ్యాకప్‌కు చెడ్డ ఎక్స్‌టెన్షన్ ఉంది.</string>
 
+    <!-- CreateBackupBottomSheet -->
+    <!-- Bottom sheet title -->
+    <string name="CreateBackupBottomSheet__create_backup">ప్రత్యామ్నాయ సృష్టించు</string>
+    <!-- Bottom sheet message -->
+    <string name="CreateBackupBottomSheet__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the backup takes place.</string>
+    <!-- Action button to dismiss sheet and back up later -->
+    <string name="CreateBackupBottomSheet__back_up_later">Back up later</string>
+    <!-- Action button to dismiss sheet and back up now -->
+    <string name="CreateBackupBottomSheet__back_up_now">భద్రపరచు</string>
+
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">చాట్ బ్యాకప్‌లు</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">ప్రత్యామ్నాయములు పాస్‌ఫ్రేజ్‌తో గుప్తీకరించబడతాయి మరియు మీ పరికరంలో నిల్వ చేయబడతాయి.</string>
@@ -1090,6 +1120,9 @@
     <string name="PromptLogsSlowNotificationsDialog__message">సమస్యను గుర్తించడానికి మరియు పరిష్కరించడానికి డీబగ్ లాగ్‌లు మాకు సహాయపడతాయి, మరియు గుర్తించే సమాచారం కలిగి ఉండవు.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal సమస్యను ఎదుర్కొంది. డీబగ్ లాగ్‌ను సమర్పించేదా?</string>
+    <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">You may not be receiving messages. Submit debug log?</string>
+
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">బ్యాటరీ ఆప్టిమైజేషన్‌ల కారణంగా నోటిఫికేషన్‌లు ఆలస్యం కావచ్చు</string>
@@ -1104,6 +1137,13 @@
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">వద్దు ధన్యవాదాలు</string>
     <!-- Button to continue and go to Signal support website -->
     <string name="DeviceSpecificNotificationBottomSheet__continue">కొనసాగండి</string>
+
+    <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_title">You may not be receiving messages</string>
+    <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_body">Restarting your device may help solve the message delivery issue. If this problem continues, contact Signal support.</string>
+    <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
+    <string name="ConnectivityWarningBottomSheet_dismiss_button">అర్థమైంది</string>
 
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">కొనసాగండి</string>
@@ -1197,6 +1237,44 @@
     <string name="ManageGroupActivity_invite_now">ఇప్పుడే ఆహ్వానించండి</string>
     <string name="ManageGroupActivity_more">మరింత</string>
     <string name="ManageGroupActivity_add_group_description">సమూహ వివరణను జోడించండి …</string>
+
+    <!-- MoreTransferOrRestoreOptionsSheet -->
+    <!-- Row title for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Android పరికరం నుంచి బదిలీ చేయడం</string>
+    <!-- Row description for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Transfer your account and messages from your old Android device.</string>
+    <!-- Row title for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">బదిలీ చేయకుండానే లాగిన్ చేయండి</string>
+    <!-- Row description for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">మీ సందేశాలు అలాగే మీడియాను బదిలీ చేయకుండానే కొనసాగించండి</string>
+    <!-- Row title for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">లోకల్ బ్యాకప్‌ను పునరుద్ధరించండి</string>
+    <!-- Row description for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Restore your messages from a backup file you saved on your device.</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Progress dialog label when downloading a backup -->
+    <string name="RemoteRestoreActivity__downloading_backup">Downloading backup…</string>
+    <!-- Progress dialog label when restoring a backup -->
+    <string name="RemoteRestoreActivity__restoring_messages">Restoring messages…</string>
+    <!-- Progress dialog label while awaiting updates -->
+    <string name="RemoteRestoreActivity__restoring">Restoring…</string>
+    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
+    <string name="RemoteRestoreActivity__s_of_s_s">%1$s of %2$s (%3$s)</string>
+    <!-- Feature list media label for paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_media">All of your media</string>
+    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Your last %1$d days of media</string>
+    <!-- Feature list message label for free and paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_messages">All of your messages</string>
+    <!-- Screen title for restoring from backup -->
+    <string name="RemoteRestoreActivity__restore_from_backup">బ్యాకప్ నుంచి పునరుద్ధరించండి</string>
+    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">Only media sent or received in the past %1$d days is included.</string>
+    <!-- Section title for explaining what your backup includes -->
+    <string name="RemoteRestoreActivity__your_backup_includes">Your backup includes:</string>
+    <!-- Primary action button copy for starting restoration -->
+    <string name="RemoteRestoreActivity__restore_backup">ప్రత్యామ్నాయ పునరుద్ధరించండి</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">నాకు ప్రస్తావనల తెలియజేయండి</string>
@@ -3272,10 +3350,6 @@
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android డీబగ్ లాగ్ సమర్పణ</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">నోటిఫికేషన్‌లు నిదానంగా ఉన్నాయి</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">క్రాష్ అయింది</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">సమర్పించండి</string>
     <!-- Action to decline to submit logs -->
@@ -4715,7 +4789,12 @@
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">మీ స్నేహితులను ఆహ్వానించండి</string>
-    <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">సబ్‌స్క్రైబర్ IDని క్లిప్‌బోర్డ్‌కు కాపీ చేయండి</string>
+    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <!-- String displayed in a toast when a subscriber id is not present for a given type -->
+    <string name="AppSettingsFragment__no_subscriber_id_set">No subscriber id set</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">ఖాతా</string>
@@ -4863,7 +4942,7 @@
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">నిధులు బదిలీ చేయడానికి Android స్క్రీన్ లాక్ లేదా వేలిముద్ర అవసరం</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">చెల్లింపు లాక్‌ని ప్రారంభించలేరు</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
     <string name="PrivacySettingsFragment__cant_enable_description">చెల్లింపు లింక్‌ని ఉపయోగించడానికి, మీరు ముందుగా మీ ఫోన్ సెట్టింగ్స్‌లో స్క్రీన్ లాక్ లేదా వేలిముద్రను ప్రారంభించాలి.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
@@ -5404,7 +5483,24 @@
     <string name="Subscription__contact_support">మద్దతును సంప్రదించండి</string>
     <string name="Subscription__get_a_s_badge">%1$s బ్యాడ్జిని పొందండి</string>
 
-    <string name="SubscribeFragment__processing_payment">విరాళం ప్రక్రియ చేయబడుతోంది…</string>
+    <!-- *PaymentInProgressFragment strings -->
+    <string name="InAppPaymentInProgressFragment__processing_donation">విరాళం ప్రక్రియ చేయబడుతోంది…</string>
+    <string name="InAppPaymentInProgressFragment__processing_payment">పేమెంట్ ప్రాసెస్ చేస్తోంది…</string>
+
+    <!-- InAppPaymentErrors -->
+    <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
+    <string name="InAppPaymentErrors__error_processing_payment">పేమెంట్‌ని ప్రాసెస్ చేయడంలో దోషం.</string>
+    <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
+    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">మీ పేమెంట్ ప్రాసెస్ చేయబడలేదు మరియు మీకు ఛార్జ్ చేయబడదు. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
+    <!-- Displayed as a message in a dialog when we timeout waiting for a payment to be processed and token to be redeemed -->
+    <string name="InAppPaymentErrors__your_payment_is_still">మీ పేమెంట్ ఇంకా ప్రాసెసింగ్‌లో ఉంది. మీ కనెక్షన్‌పై ఆధారపడి దీనికి కొన్ని నిమిషాలు పట్టవచ్చు.</string>
+    <!-- Displayed as a message in a dialog or notification when stripe decline code issuer not available for backup payment. -->
+    <string name="InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again">పేమెంట్ పూర్తి చేయడానికి మళ్లీ ప్రయత్నించండి లేదా మరింత సమాచారం కొరకు మీ బ్యాంక్‌ని సంప్రదించండి.</string>
+    <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
+    <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">ఖాతాదారుడి ద్వారా ఈ చెల్లింపు ఉపసంహరించబడింది మరియు ప్రక్రియ చేయబడలేదు. మీకు ఛార్జీ విధించబడలేదు.</string>
+    <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">ఈ చెల్లింపును ప్రక్రియ చేసేటప్పుడు ఒక లోపం ఏర్పడింది, దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
+
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">విరాళాన్ని ప్రక్రియ చేసేటప్పుడు పొరపాటు ఏర్పడింది</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
@@ -7025,7 +7121,7 @@
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">డౌన్‌లోడ్‌ను పూర్తి చేయలేకపోయాము</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">మీ పరికరంలో తగినంత ఖాళీ స్థలం లేదు. మీ బ్యాకప్‌లో నిల్వ చేయబడిన మీడియాను డౌన్‌లోడ్ చేయడానికి మొత్తం స్థలంలో %1$s వరకు స్థలాన్ని ఖాళీ చేయండి.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up %1$s of space to download the media stored in your backup.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
         <item quantity="one">మీరు \"దాటవేయి\" ఎంచుకుంటే మీ బ్యాకప్లోని మీడియా %1$d రోజులో తొలగించబడుతుంది.</item>
@@ -7069,6 +7165,10 @@
     <string name="BackupsTypeSettingsFragment__unknown">తెలియని</string>
     <!-- Row title for entering payment history -->
     <string name="BackupsTypeSettingsFragment__payment_history">చెల్లింపుల చరిత్ర</string>
+    <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
+    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/నెల · రెన్యువల్స్%2$s</string>
+    <!-- Row title to change or cancel subscription -->
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Change or cancel subscription</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7173,6 +7273,55 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">దయచేసి మీ పరికరం PIN, పాస్‌వర్డ్ లేదా ప్యాటర్న్ ఎంటర్ చేయండి.</string>
 
+    <!-- MessageBackupsCheckoutSheet -->
+    <!-- Sheet title. Placeholder is formatted price. -->
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Pay %1$s/month to Signal</string>
+    <!-- Sheet subtitle -->
+    <string name="MessageBackupsCheckoutSheet__youll_get">You\'ll get:</string>
+
+    <!-- MessageBackupsEducationScreen -->
+    <!-- Screen subtitle underneath large headline title -->
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media and using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
+    <!-- Backups feature label for e2e encryption -->
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">End-to-end Encrypted</string>
+    <!-- Backups feature label for informing the user that this feature is completely optional -->
+    <string name="MessageBackupsEducationScreen__optional_always">Optional, always</string>
+    <!-- Backups feature label for informing the user that they can delete their backup at any time -->
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Delete your backup anytime</string>
+    <!-- Action button label to proceed with backups activation -->
+    <string name="MessageBackupsEducationScreen__enable_backups">ప్రత్యామ్నాయ ప్రారంభించు</string>
+    <!-- Action button label to learn more -->
+    <string name="MessageBackupsEducationScreen__learn_more">మరింత తెలుసుకోండి</string>
+
+    <!-- MessageBackupsPinConfirmationScreen -->
+    <!-- Screen title -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">మీ పిన్ను నమోదు చేయండి</string>
+    <!-- Screen subtitle -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Enter your Signal PIN to enable backups</string>
+    <!-- Action button to confirm pin entry and continue -->
+    <string name="MessageBackupsPinConfirmationScreen__next">తరువాత</string>
+    <!-- Action button to switch keyboard type -->
+    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">కీబోర్డ్ మారండి</string>
+
+    <!-- MessageBackupsPinEducationScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PINs protect your backup</string>
+    <!-- Notice about pin length. Placeholder is recommended pin length -->
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Your Signal PIN lets you restore your backup when you re-install Signal. We recommend using a PIN that\'s at least %1$d digits.</string>
+    <!-- Notice about changing your pin. -->
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">If you forget your PIN, you will not be able to restore your backup. You can change your PIN at any time in settings.</string>
+    <!-- Action button label to utilize current pin -->
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Use current Signal PIN</string>
+    <!-- Action button to create a new pin -->
+    <string name="MessageBackupsPinEducationScreen__create_new_pin">క్రొత్త పిన్ సృష్టించండి</string>
+
+    <!-- MessagesBackupsTypeSelectionScreen -->
+    <!-- Screen headline -->
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Choose your backup plan</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">All backups are end-to-end encrypted. Signal is a non-profit—paying for backups helps support our mission.</string>
+    <!-- Screen subhead highlighted read-more button -->
+    <string name="MessageBackupsTypeSelectionScreen__read_more">మరింత చదవండి</string>
     <!-- Primary action button label when selecting a backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__next">తరువాత</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

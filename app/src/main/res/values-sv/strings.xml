@@ -170,6 +170,8 @@
     <string name="CreditCardFragment__donate_s">Donera %1$s</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
     <string name="CreditCardFragment__donate_s_month">Donera %1$s/månad</string>
+    <!-- Button label to confirm credit card input and proceed with backups payment. Placeholder is formatted price. -->
+    <string name="CreditCardFragment__pay_s_month">Donera %1$s/månad</string>
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
@@ -219,6 +221,24 @@
     <string name="BucketedThreadMedia_Large">Stora</string>
     <string name="BucketedThreadMedia_Medium">Medel</string>
     <string name="BucketedThreadMedia_Small">Små</string>
+
+    <!-- CallInfoView -->
+    <!-- Unknown people row text when the only people in the call are unknowns -->
+    <plurals name="CallInfoView__d_people">
+        <item quantity="one">%1$d person</item>
+        <item quantity="other">%1$d personer</item>
+    </plurals>
+    <!-- Unknown people row, placeholder is the number of unknown people in the call -->
+    <plurals name="CallInfoView__plus_d_people">
+        <item quantity="one">+ %1$d person</item>
+        <item quantity="other">+ %1$d personer</item>
+    </plurals>
+    <!-- Unknown people row icon content description -->
+    <string name="CallInfoView__more_information">Mer information</string>
+    <!-- Unknown people row info dialog message -->
+    <string name="CallInfoView__before_joining_a_call">Innan du går med i ett samtal kan du bara se namnen på telefonkontakter, personer som är med i samma grupp som du eller personer som du har chattat med privat. Du ser alla namn och foton när du är ansluten till samtalet.</string>
+    <!-- Unknown people row info dialog action to close the dialog -->
+    <string name="CallInfoView__got_it">Uppfattat</string>
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
@@ -771,6 +791,16 @@
     <!-- Backup has an unsupported file extension -->
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">Säkerhetskopia har fel filtillägg.</string>
 
+    <!-- CreateBackupBottomSheet -->
+    <!-- Bottom sheet title -->
+    <string name="CreateBackupBottomSheet__create_backup">Skapa säkerhetskopia</string>
+    <!-- Bottom sheet message -->
+    <string name="CreateBackupBottomSheet__depending_on_the_size">Beroende på hur stor din säkerhetskopia är kan detta ta lång tid. Du kan använda din telefon som vanligt medan säkerhetskopieringen pågår.</string>
+    <!-- Action button to dismiss sheet and back up later -->
+    <string name="CreateBackupBottomSheet__back_up_later">Säkerhetskopiera senare</string>
+    <!-- Action button to dismiss sheet and back up now -->
+    <string name="CreateBackupBottomSheet__back_up_now">Säkerhetskopiera nu</string>
+
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Säkerhetskopior av chattar</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Säkerhetskopior krypteras med ett lösenord och lagras på din enhet.</string>
@@ -1090,6 +1120,9 @@
     <string name="PromptLogsSlowNotificationsDialog__message">Felsökningsloggar hjälper oss att diagnostisera och åtgärda problemet och innehåller inte identifierande information.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal stötte på ett problem. Skicka felsökningslogg?</string>
+    <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">Du kanske inte får några meddelanden. Skicka felsökningslogg?</string>
+
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Aviseringar kan försenas på grund av batterioptimeringar</string>
@@ -1104,6 +1137,13 @@
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Nej tack</string>
     <!-- Button to continue and go to Signal support website -->
     <string name="DeviceSpecificNotificationBottomSheet__continue">Fortsätt</string>
+
+    <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_title">Du kanske inte får några meddelanden</string>
+    <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_body">Om du startar om enheten kan det hjälpa dig att lösa problemet med leverans av meddelanden. Kontakta Signal-support om problemet kvarstår.</string>
+    <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
+    <string name="ConnectivityWarningBottomSheet_dismiss_button">Uppfattat</string>
 
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Fortsätt</string>
@@ -1197,6 +1237,44 @@
     <string name="ManageGroupActivity_invite_now">Bjud in nu</string>
     <string name="ManageGroupActivity_more">mer</string>
     <string name="ManageGroupActivity_add_group_description">Lägg till gruppbeskrivning…</string>
+
+    <!-- MoreTransferOrRestoreOptionsSheet -->
+    <!-- Row title for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Överför från Android-enhet</string>
+    <!-- Row description for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Överför ditt konto och dina meddelanden från din gamla Android-enhet.</string>
+    <!-- Row title for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">Logga in utan att överföra</string>
+    <!-- Row description for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">Fortsätt utan att överföra dina meddelanden och media</string>
+    <!-- Row title for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">Återställ lokal säkerhetskopia</string>
+    <!-- Row description for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Återställ dina meddelanden från en säkerhetskopia som du har sparat på din enhet.</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Progress dialog label when downloading a backup -->
+    <string name="RemoteRestoreActivity__downloading_backup">Laddar ner säkerhetskopia …</string>
+    <!-- Progress dialog label when restoring a backup -->
+    <string name="RemoteRestoreActivity__restoring_messages">Återställer meddelanden …</string>
+    <!-- Progress dialog label while awaiting updates -->
+    <string name="RemoteRestoreActivity__restoring">Återställer …</string>
+    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
+    <string name="RemoteRestoreActivity__s_of_s_s">%1$s av %2$s (%3$s)</string>
+    <!-- Feature list media label for paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_media">Alla dina media</string>
+    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Dina senaste %1$d dagars media</string>
+    <!-- Feature list message label for free and paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_messages">Alla dina meddelanden</string>
+    <!-- Screen title for restoring from backup -->
+    <string name="RemoteRestoreActivity__restore_from_backup">Återställ från säkerhetskopia</string>
+    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">Endast media som skickats eller tagits emot under de senaste %1$d dagarna ingår.</string>
+    <!-- Section title for explaining what your backup includes -->
+    <string name="RemoteRestoreActivity__your_backup_includes">Din säkerhetskopia innehåller:</string>
+    <!-- Primary action button copy for starting restoration -->
+    <string name="RemoteRestoreActivity__restore_backup">Återställ säkerhetskopia</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meddela mig om omnämnanden</string>
@@ -3272,10 +3350,6 @@
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android inskickad felsökningslogg</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Långsamma aviseringar</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">Krasch</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Skicka</string>
     <!-- Action to decline to submit logs -->
@@ -4715,7 +4789,12 @@
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Bjud in dina vänner</string>
-    <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Kopierade prenumerant-id till urklipp</string>
+    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <!-- String displayed in a toast when a subscriber id is not present for a given type -->
+    <string name="AppSettingsFragment__no_subscriber_id_set">No subscriber id set</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Konto</string>
@@ -4863,7 +4942,7 @@
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Kräv Andriod-skärmlås eller fingeravtryck för överföringar</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Det går inte att aktivera betalningssäkerhet</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
     <string name="PrivacySettingsFragment__cant_enable_description">För att använda betalningssäkerhet måste du först aktivera ett skärmlås eller fingeravtryck i din telefons inställningar.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
@@ -5404,7 +5483,24 @@
     <string name="Subscription__contact_support">Kontakta support</string>
     <string name="Subscription__get_a_s_badge">Skaffa ett %1$s-märke</string>
 
-    <string name="SubscribeFragment__processing_payment">Bearbetar donation …</string>
+    <!-- *PaymentInProgressFragment strings -->
+    <string name="InAppPaymentInProgressFragment__processing_donation">Bearbetar donation …</string>
+    <string name="InAppPaymentInProgressFragment__processing_payment">Bearbetar betalningen…</string>
+
+    <!-- InAppPaymentErrors -->
+    <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
+    <string name="InAppPaymentErrors__error_processing_payment">Fel vid bearbetning av betalningen</string>
+    <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
+    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">Din betalning kunde inte behandlas och du har inte debiterats. Försök igen.</string>
+    <!-- Displayed as a message in a dialog when we timeout waiting for a payment to be processed and token to be redeemed -->
+    <string name="InAppPaymentErrors__your_payment_is_still">Din betalning behandlas fortfarande. Detta kan ta några minuter beroende på din anslutning.</string>
+    <!-- Displayed as a message in a dialog or notification when stripe decline code issuer not available for backup payment. -->
+    <string name="InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again">Försök att slutföra betalningen igen eller kontakta din bank för mer information.</string>
+    <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
+    <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">Denna betalning återkallades av kontoinnehavaren och kunde inte bearbetas. Ingen betalning har dragits.</string>
+    <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">Ett fel uppstod när betalningen bearbetades. Försök igen.</string>
+
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Fel vid bearbetning av donation</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
@@ -7025,7 +7121,7 @@
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">Det går inte att slutföra nedladdningen</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Din enhet har inte tillräckligt med ledigt utrymme. Frigör upp till %1$s utrymme för att ladda ner media som finns lagrade i din säkerhetskopia.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up %1$s of space to download the media stored in your backup.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
         <item quantity="one">Om du väljer Hoppa över kommer media i säkerhetskopian att tas bort om %1$d dag.</item>
@@ -7069,6 +7165,10 @@
     <string name="BackupsTypeSettingsFragment__unknown">Okänt</string>
     <!-- Row title for entering payment history -->
     <string name="BackupsTypeSettingsFragment__payment_history">Betalningshistorik</string>
+    <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
+    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/månad · Förnyar %2$s</string>
+    <!-- Row title to change or cancel subscription -->
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Ändra eller avsluta abonnemang</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7173,6 +7273,55 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Ange din enhets pinkod, lösenord eller mönster.</string>
 
+    <!-- MessageBackupsCheckoutSheet -->
+    <!-- Sheet title. Placeholder is formatted price. -->
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Betala %1$s/månad till Signal</string>
+    <!-- Sheet subtitle -->
+    <string name="MessageBackupsCheckoutSheet__youll_get">Du kommer att få:</string>
+
+    <!-- MessageBackupsEducationScreen -->
+    <!-- Screen subtitle underneath large headline title -->
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Säkerhetskopiera dina meddelanden och media och använd Signals säkra, totalsträckskrypterade lagringstjänst. Förlora aldrig ett meddelande när du skaffar en ny telefon eller installerar om Signal.</string>
+    <!-- Backups feature label for e2e encryption -->
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">Totalsträckskrypterad</string>
+    <!-- Backups feature label for informing the user that this feature is completely optional -->
+    <string name="MessageBackupsEducationScreen__optional_always">Alltid valfritt</string>
+    <!-- Backups feature label for informing the user that they can delete their backup at any time -->
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Ta bort din säkerhetskopia när som helst</string>
+    <!-- Action button label to proceed with backups activation -->
+    <string name="MessageBackupsEducationScreen__enable_backups">Aktivera säkerhetskopior</string>
+    <!-- Action button label to learn more -->
+    <string name="MessageBackupsEducationScreen__learn_more">Läs mer</string>
+
+    <!-- MessageBackupsPinConfirmationScreen -->
+    <!-- Screen title -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">Ange din PIN-kod</string>
+    <!-- Screen subtitle -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Ange din Signal-pinkod för att aktivera säkerhetskopiering</string>
+    <!-- Action button to confirm pin entry and continue -->
+    <string name="MessageBackupsPinConfirmationScreen__next">Nästa</string>
+    <!-- Action button to switch keyboard type -->
+    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Växla tangentbord</string>
+
+    <!-- MessageBackupsPinEducationScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">Pinkoder skyddar din säkerhetskopia</string>
+    <!-- Notice about pin length. Placeholder is recommended pin length -->
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Med din Signal-pinkod kan du återställa din säkerhetskopia när du installerar om Signal. Vi rekommenderar att du använder en pinkod med minst %1$d siffror.</string>
+    <!-- Notice about changing your pin. -->
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Om du glömmer din pinkod kommer du inte att kunna återställa din säkerhetskopia. Du kan ändra din pinkod när som helst i inställningarna.</string>
+    <!-- Action button label to utilize current pin -->
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Använd aktuell Signal-pinkod</string>
+    <!-- Action button to create a new pin -->
+    <string name="MessageBackupsPinEducationScreen__create_new_pin">Skapa ny PIN-kod</string>
+
+    <!-- MessagesBackupsTypeSelectionScreen -->
+    <!-- Screen headline -->
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Välj din säkerhetskopieringsplan</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Alla säkerhetskopior är totalsträckskrypterade. Signal är en ideell organisation – att betala för säkerhetskopior hjälper till att stödja vårt uppdrag.</string>
+    <!-- Screen subhead highlighted read-more button -->
+    <string name="MessageBackupsTypeSelectionScreen__read_more">Läs mer</string>
     <!-- Primary action button label when selecting a backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__next">Nästa</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
