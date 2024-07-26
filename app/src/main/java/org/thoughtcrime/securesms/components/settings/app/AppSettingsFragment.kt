@@ -5,8 +5,13 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.IdRes
+import androidx.annotation.StringRes
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -171,7 +176,7 @@ class AppSettingsFragment : DSLSettingsFragment(
           onClick = {
             findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToManageDonationsFragment())
           },
-          onLongClick = this@AppSettingsFragment::copySubscriberIdToClipboard
+          onLongClick = this@AppSettingsFragment::copyDonorBadgeSubscriberIdToClipboard
         )
       } else {
         externalLinkPref(
@@ -197,6 +202,7 @@ class AppSettingsFragment : DSLSettingsFragment(
         onClick = {
           findNavController().safeNavigate(R.id.action_appSettingsFragment_to_chatsSettingsFragment)
         },
+        onLongClick = this@AppSettingsFragment::copyRemoteBackupsSubscriberIdToClipboard,
         isEnabled = state.isRegisteredAndUpToDate()
       )
 
@@ -288,15 +294,38 @@ class AppSettingsFragment : DSLSettingsFragment(
     }
   }
 
-  private fun copySubscriberIdToClipboard(): Boolean {
-    // TODO [alex] -- db access on main thread!
-    val subscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
-    return if (subscriber == null) {
-      false
-    } else {
-      Toast.makeText(requireContext(), R.string.AppSettingsFragment__copied_subscriber_id_to_clipboard, Toast.LENGTH_LONG).show()
-      Util.copyToClipboard(requireContext(), subscriber.subscriberId.serialize())
-      true
+  private fun copyDonorBadgeSubscriberIdToClipboard(): Boolean {
+    copySubscriberIdToClipboard(
+      subscriberType = InAppPaymentSubscriberRecord.Type.DONATION,
+      toastSuccessStringRes = R.string.AppSettingsFragment__copied_donor_subscriber_id_to_clipboard
+    )
+
+    return true
+  }
+
+  private fun copyRemoteBackupsSubscriberIdToClipboard(): Boolean {
+    copySubscriberIdToClipboard(
+      subscriberType = InAppPaymentSubscriberRecord.Type.BACKUP,
+      toastSuccessStringRes = R.string.AppSettingsFragment__copied_backups_subscriber_id_to_clipboard
+    )
+    return true
+  }
+
+  private fun copySubscriberIdToClipboard(
+    subscriberType: InAppPaymentSubscriberRecord.Type,
+    @StringRes toastSuccessStringRes: Int
+  ) {
+    lifecycleScope.launch {
+      val subscriber = withContext(Dispatchers.IO) {
+        InAppPaymentsRepository.getSubscriber(subscriberType)
+      }
+
+      withContext(Dispatchers.Main) {
+        if (subscriber != null) {
+          Toast.makeText(requireContext(), toastSuccessStringRes, Toast.LENGTH_LONG).show()
+          Util.copyToClipboard(requireContext(), subscriber.subscriberId.serialize())
+        }
+      }
     }
   }
 
