@@ -3005,11 +3005,14 @@ public class PushServiceSocket {
           Log.e(TAG, "Unable to read response body.", e);
           throw new NonSuccessfulResponseCodeException(409);
         }
-        if (response.pushChallengedRequired()) {
+        if (response.getVerified()) {
+          throw new AlreadyVerifiedException();
+        } else if (response.pushChallengedRequired()) {
           throw new PushChallengeRequiredException();
         } else if (response.captchaRequired()) {
           throw new CaptchaRequiredException();
         } else {
+          Log.i(TAG, "Received 409 in reg session handler that is not verified, with required information: " + String.join(", ", response.getRequestedInformation()));
           throw new HttpConflictException();
         }
       } else if (responseCode == 502) {
@@ -3045,11 +3048,14 @@ public class PushServiceSocket {
           Log.e(TAG, "Unable to read response body.", e);
           throw new NonSuccessfulResponseCodeException(409);
         }
-        if (response.pushChallengedRequired()) {
+        if (response.getVerified()) {
+          throw new AlreadyVerifiedException();
+        } else if (response.pushChallengedRequired()) {
           throw new PushChallengeRequiredException();
         } else if (response.captchaRequired()) {
           throw new CaptchaRequiredException();
         } else {
+          Log.i(TAG, "Received 409 in for reg code request that is not verified, with required information: " + String.join(", ", response.getRequestedInformation()));
           throw new HttpConflictException();
         }
       } else if (responseCode == 418) {
@@ -3087,11 +3093,14 @@ public class PushServiceSocket {
             Log.e(TAG, "Unable to read response body.", e);
             throw new NonSuccessfulResponseCodeException(409);
           }
-          if (response.pushChallengedRequired()) {
+          if (response.getVerified()) {
+            throw new AlreadyVerifiedException();
+          } else if (response.pushChallengedRequired()) {
             throw new PushChallengeRequiredException();
           } else if (response.captchaRequired()) {
             throw new CaptchaRequiredException();
           } else {
+            Log.i(TAG, "Received 409 for patching reg session that is not verified, with required information: " + String.join(", ", response.getRequestedInformation()));
             throw new HttpConflictException();
           }
       }
@@ -3121,6 +3130,7 @@ public class PushServiceSocket {
             // Note: this explicitly requires Verified to be false
             throw new MustRequestNewCodeException();
           } else {
+            Log.i(TAG, "Received 409 for reg code submission that is not verified, with required information: " + String.join(", ", sessionMetadata.getRequestedInformation()));
             throw new HttpConflictException();
           }
         case 440:

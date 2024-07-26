@@ -357,6 +357,12 @@ class RegistrationViewModel : ViewModel() {
     )
     Log.d(TAG, "SMS code request network call completed.")
 
+    if (codeRequestResponse is AlreadyVerified) {
+      Log.d(TAG, "Got session was already verified when requesting SMS code.")
+      registerVerifiedSession(context, sessionId)
+      return
+    }
+
     handleSessionStateResult(context, codeRequestResponse)
 
     if (codeRequestResponse is Success) {
@@ -792,6 +798,7 @@ class RegistrationViewModel : ViewModel() {
   }
 
   private suspend fun registerVerifiedSession(context: Context, sessionId: String) {
+    Log.v(TAG, "registerVerifiedSession()")
     val registrationData = getRegistrationData()
     val registrationResponse: RegisterAccountResult = RegistrationRepository.registerAccount(context, sessionId, registrationData)
     handleRegistrationResult(context, registrationData, registrationResponse, false)
