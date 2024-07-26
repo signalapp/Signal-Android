@@ -84,12 +84,12 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       sectionHeaderPref(R.string.preferences_chats__backups)
 
-      if (RemoteConfig.messageBackups || state.remoteBackupsEnabled) {
+      if (RemoteConfig.messageBackups || state.canAccessRemoteBackupsSettings) {
         clickPref(
           title = DSLSettingsText.from(R.string.RemoteBackupsSettingsFragment__signal_backups),
-          summary = DSLSettingsText.from(if (state.remoteBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),
+          summary = DSLSettingsText.from(if (state.canAccessRemoteBackupsSettings) R.string.arrays__enabled else R.string.arrays__disabled),
           onClick = {
-            if (state.remoteBackupsEnabled) {
+            if (state.canAccessRemoteBackupsSettings) {
               Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_remoteBackupsSettingsFragment)
             } else {
               startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.RECURRING_BACKUP))
