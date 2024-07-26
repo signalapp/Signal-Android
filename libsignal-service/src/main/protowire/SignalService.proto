@@ -37,7 +37,8 @@ message Envelope {
   reserved      /*updatedPni*/           15; // Not used presently, may be used in the future
   optional bool   story                = 16;
   optional bytes  reportingToken       = 17;
-  // NEXT ID: 18
+  reserved                               18;  // internal server use
+  // NEXT ID: 19
 }
 
 message Content {
