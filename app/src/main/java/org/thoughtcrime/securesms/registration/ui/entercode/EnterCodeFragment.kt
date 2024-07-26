@@ -244,6 +244,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   fun onVerificationCodeReceived(event: ReceivedSmsEvent) {
+    Log.i(TAG, "Received verification code via EventBus.")
     binding.code.clear()
 
     if (event.code.isBlank() || event.code.length != ReceivedSmsEvent.CODE_LENGTH) {
@@ -264,6 +265,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
             }
           }, i * 200L)
         }
+      Log.i(TAG, "Finished auto-filling code.")
     } catch (notADigit: IllegalArgumentException) {
       Log.w(TAG, "Failed to convert code into digits.", notADigit)
       autopilotCodeEntryActive = false
