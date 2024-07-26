@@ -44,6 +44,8 @@ import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterPhoneNumb
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.data.network.Challenge
+import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
+import org.thoughtcrime.securesms.registration.data.network.RegistrationResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionCheckResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionCreationResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionResult
@@ -126,6 +128,11 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       sharedState.sessionStateError?.let {
         handleSessionStateError(it)
         sharedViewModel.sessionStateErrorShown()
+      }
+
+      sharedState.registerAccountError?.let {
+        handleRegistrationErrorResponse(it)
+        sharedViewModel.registerAccountErrorShown()
       }
 
       if (sharedState.challengesRequested.contains(Challenge.CAPTCHA) && sharedState.captchaToken.isNotNullOrBlank()) {
@@ -324,10 +331,10 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
         presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
       }
 
-      is RegistrationSessionCreationResult.ServerUnableToParse -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
-      is RegistrationSessionCheckResult.SessionNotFound -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
+      is RegistrationSessionCreationResult.ServerUnableToParse -> presentGenericError(result)
+      is RegistrationSessionCheckResult.SessionNotFound -> presentGenericError(result)
       is RegistrationSessionCheckResult.UnknownError,
-      is RegistrationSessionCreationResult.UnknownError -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
+      is RegistrationSessionCreationResult.UnknownError -> presentGenericError(result)
     }
   }
 
@@ -337,13 +344,8 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     }
     when (result) {
       is VerificationCodeRequestResult.Success -> throw IllegalStateException("Session error handler called on successful response!")
-
-      is VerificationCodeRequestResult.AttemptsExhausted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_service))
-
-      is VerificationCodeRequestResult.ChallengeRequired -> {
-        handleChallenges(result.challenges)
-      }
-
+      is VerificationCodeRequestResult.AttemptsExhausted -> presentRateLimitedDialog()
+      is VerificationCodeRequestResult.ChallengeRequired -> handleChallenges(result.challenges)
       is VerificationCodeRequestResult.ExternalServiceFailure -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
       is VerificationCodeRequestResult.ImpossibleNumber -> {
         MaterialAlertDialogBuilder(requireContext()).apply {
@@ -365,23 +367,46 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       }
 
       is VerificationCodeRequestResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
-
       is VerificationCodeRequestResult.MustRetry -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
       is VerificationCodeRequestResult.NonNormalizedNumber -> handleNonNormalizedNumberError(result.originalNumber, result.normalizedNumber, fragmentViewModel.mode)
-
       is VerificationCodeRequestResult.RateLimited -> {
         Log.i(TAG, "Code request rate limited! Next attempt: ${result.timeRemaining.milliseconds}")
         presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
       }
-
       is VerificationCodeRequestResult.TokenNotAccepted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human)) { _, _ -> moveToCaptcha() }
-
-      is VerificationCodeRequestResult.RegistrationLocked -> findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.actionPhoneNumberRegistrationLock(result.timeRemaining))
-
-      is VerificationCodeRequestResult.AlreadyVerified -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
-      is VerificationCodeRequestResult.NoSuchSession -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
-      is VerificationCodeRequestResult.UnknownError -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
+      is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
+      is VerificationCodeRequestResult.AlreadyVerified -> presentGenericError(result)
+      is VerificationCodeRequestResult.NoSuchSession -> presentGenericError(result)
+      is VerificationCodeRequestResult.UnknownError -> presentGenericError(result)
     }
+  }
+
+  private fun presentGenericError(result: RegistrationResult) {
+    Log.i(TAG, "Received unhandled response: ${result.javaClass.name}", result.getCause())
+    presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
+  }
+
+  private fun handleRegistrationErrorResponse(result: RegisterAccountResult) {
+    when (result) {
+      is RegisterAccountResult.Success -> throw IllegalStateException("Register account error handler called on successful response!")
+      is RegisterAccountResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
+      is RegisterAccountResult.AttemptsExhausted -> presentAccountLocked()
+      is RegisterAccountResult.RateLimited -> presentRateLimitedDialog()
+      is RegisterAccountResult.SvrNoData -> presentAccountLocked()
+      else -> presentGenericError(result)
+    }
+  }
+
+  private fun presentRegistrationLocked(timeRemaining: Long) {
+    findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.actionPhoneNumberRegistrationLock(timeRemaining))
+  }
+
+  private fun presentRateLimitedDialog() {
+    presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_service))
+  }
+
+  private fun presentAccountLocked() {
+    findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.actionPhoneNumberAccountLocked())
   }
 
   private fun moveToCaptcha() {
