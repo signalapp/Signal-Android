@@ -513,7 +513,12 @@ class RegistrationViewModel : ViewModel() {
 
       is TokenNotAccepted -> Log.i(TAG, "Received TokenNotAccepted.", sessionResult.getCause())
 
-      is RegistrationLocked -> Log.i(TAG, "Received RegistrationLocked.", sessionResult.getCause())
+      is RegistrationLocked -> {
+        store.update {
+          it.copy(lockedTimeRemaining = sessionResult.timeRemaining)
+        }
+        Log.i(TAG, "Received RegistrationLocked.", sessionResult.getCause())
+      }
 
       is NoSuchSession -> Log.i(TAG, "Received NoSuchSession.", sessionResult.getCause())
 
@@ -763,6 +768,10 @@ class RegistrationViewModel : ViewModel() {
 
     if (result is RegisterAccountResult.RegistrationLocked) {
       Log.d(TAG, "Registration lock response received.")
+      val timeRemaining = result.timeRemaining
+      store.update {
+        it.copy(lockedTimeRemaining = timeRemaining)
+      }
       reglock = true
       if (pin == null && SignalStore.svr.registrationLockToken != null) {
         Log.d(TAG, "Retrying registration with stored credentials.")

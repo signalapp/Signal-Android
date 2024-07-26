@@ -430,6 +430,7 @@ class ChangeNumberViewModel : ViewModel() {
       is VerificationCodeRequestResult.RegistrationLocked ->
         store.update {
           it.copy(
+            lockedTimeRemaining = result.timeRemaining,
             svr2Credentials = result.svr2Credentials,
             svr3Credentials = result.svr3Credentials
           )
