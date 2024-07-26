@@ -7,5 +7,5 @@ data class ChatsSettingsState(
   val useSystemEmoji: Boolean,
   val enterKeySends: Boolean,
   val localBackupsEnabled: Boolean,
-  val canAccessRemoteBackupsSettings: Boolean,
+  val canAccessRemoteBackupsSettings: Boolean
 )

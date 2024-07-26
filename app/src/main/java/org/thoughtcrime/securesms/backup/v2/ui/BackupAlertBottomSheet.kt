@@ -38,8 +38,12 @@ import org.signal.core.ui.Icons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.BackupMessagesJob
+import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 
 /**
  * Notifies the user of an issue with their backup.
@@ -73,14 +77,13 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
   private fun performPrimaryAction() {
     when (backupAlert) {
       BackupAlert.COULD_NOT_COMPLETE_BACKUP -> {
-        // TODO [message-backups] -- Back up now
+        BackupMessagesJob.enqueue()
+        startActivity(AppSettingsActivity.remoteBackups(requireContext()))
       }
       BackupAlert.PAYMENT_PROCESSING -> Unit
-      BackupAlert.MEDIA_BACKUPS_ARE_OFF -> {
-        // TODO [message-backups] -- Download media now
-      }
-      BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> {
-        // TODO [message-backups] -- Download media now
+      BackupAlert.MEDIA_BACKUPS_ARE_OFF, BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> {
+        // TODO [message-backups] -- We need to force this to download everything.
+        AppDependencies.jobManager.add(BackupRestoreMediaJob())
       }
       BackupAlert.DISK_FULL -> Unit
     }
