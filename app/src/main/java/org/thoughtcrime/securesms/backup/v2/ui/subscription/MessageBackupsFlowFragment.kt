@@ -243,6 +243,8 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
   }
 
   override fun onSubscriptionCancelled(inAppPaymentType: InAppPaymentType) {
+    viewModel.onCancellationComplete()
+
     if (!findNavController().popBackStack()) {
       requireActivity().finishAfterTransition()
     }

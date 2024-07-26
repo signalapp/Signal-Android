@@ -148,14 +148,14 @@ fun MessageBackupsTypeSelectionScreen(
         }
       }
 
-      val hasSelectedBackupTier = currentBackupTier != null
+      val hasCurrentBackupTier = currentBackupTier != null
 
       Buttons.LargePrimary(
         onClick = onNextClicked,
-        enabled = selectedBackupTier != null,
+        enabled = selectedBackupTier != currentBackupTier && hasCurrentBackupTier,
         modifier = Modifier
           .fillMaxWidth()
-          .padding(vertical = if (hasSelectedBackupTier) 10.dp else 16.dp)
+          .padding(vertical = if (hasCurrentBackupTier) 10.dp else 16.dp)
       ) {
         Text(
           text = stringResource(
@@ -168,7 +168,7 @@ fun MessageBackupsTypeSelectionScreen(
         )
       }
 
-      if (hasSelectedBackupTier) {
+      if (hasCurrentBackupTier) {
         TextButton(
           onClick = onCancelSubscriptionClicked,
           modifier = Modifier

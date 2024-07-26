@@ -45,6 +45,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
   )
 
   private val internalPinState = mutableStateOf("")
+  private var isDowngrading = false
 
   val stateFlow: StateFlow<MessageBackupsFlowState> = internalStateFlow
   val pinState: State<String> = internalPinState
@@ -129,6 +130,15 @@ class MessageBackupsFlowViewModel : ViewModel() {
     internalStateFlow.update { it.copy(selectedMessageBackupTier = messageBackupTier) }
   }
 
+  fun onCancellationComplete() {
+    if (isDowngrading) {
+      SignalStore.backup.areBackupsEnabled = true
+      SignalStore.backup.backupTier = MessageBackupTier.FREE
+
+      // TODO [message-backups] -- Trigger backup now?
+    }
+  }
+
   private fun validatePinAndUpdateState(pin: String): MessageBackupsScreen {
     val pinHash = SignalStore.svr.localPinHash
 
@@ -141,14 +151,18 @@ class MessageBackupsFlowViewModel : ViewModel() {
   }
 
   private fun validateTypeAndUpdateState(tier: MessageBackupTier): MessageBackupsScreen {
-    // TODO [message-backups] - Does anything need to be kicked off?
-
     return when (tier) {
       MessageBackupTier.FREE -> {
-        SignalStore.backup.areBackupsEnabled = true
-        SignalStore.backup.backupTier = MessageBackupTier.FREE
+        if (SignalStore.backup.backupTier == MessageBackupTier.PAID) {
+          isDowngrading = true
+          MessageBackupsScreen.PROCESS_CANCELLATION
+        } else {
+          SignalStore.backup.areBackupsEnabled = true
+          SignalStore.backup.backupTier = MessageBackupTier.FREE
 
-        MessageBackupsScreen.COMPLETED
+          // TODO [message-backups] -- Trigger backup now?
+          MessageBackupsScreen.COMPLETED
+        }
       }
       MessageBackupTier.PAID -> MessageBackupsScreen.CHECKOUT_SHEET
     }
