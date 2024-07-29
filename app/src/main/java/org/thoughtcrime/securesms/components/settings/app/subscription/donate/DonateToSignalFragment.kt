@@ -171,26 +171,32 @@ class DonateToSignalFragment :
         }
 
         is DonateToSignalAction.CancelSubscription -> {
-          DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
+          val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
             InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION,
             null,
             InAppPaymentType.RECURRING_DONATION
           )
+
+          findNavController().safeNavigate(navAction)
         }
 
         is DonateToSignalAction.UpdateSubscription -> {
           if (action.inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.PAYPAL) {
-            DonateToSignalFragmentDirections.actionDonateToSignalFragmentToPaypalPaymentInProgressFragment(
+            val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToPaypalPaymentInProgressFragment(
               InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION,
               action.inAppPayment,
               action.inAppPayment.type
             )
+
+            findNavController().safeNavigate(navAction)
           } else {
-            DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
+            val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
               InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION,
               action.inAppPayment,
               action.inAppPayment.type
             )
+
+            findNavController().safeNavigate(navAction)
           }
         }
       }
@@ -507,6 +513,7 @@ class DonateToSignalFragment :
   }
 
   override fun onSubscriptionCancelled(inAppPaymentType: InAppPaymentType) {
+    viewModel.refreshActiveSubscription()
     Snackbar.make(requireView(), R.string.SubscribeFragment__your_subscription_has_been_cancelled, Snackbar.LENGTH_LONG).show()
   }
 
