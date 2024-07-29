@@ -3,21 +3,14 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.AttributeSet;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.core.os.BundleCompat;
 
 import org.thoughtcrime.securesms.R;
 
 public class OutlinedThumbnailView extends ThumbnailView {
-
-  private static final String STATE_OUTLINE_ENABLED = "state.outline.enabled";
-  private static final String STATE_ROOT = "state.root";
 
   private CornerMask cornerMask;
   private Outliner   outliner;
@@ -63,29 +56,6 @@ public class OutlinedThumbnailView extends ThumbnailView {
     if (isOutlineEnabled) {
       cornerMask.mask(canvas);
       outliner.draw(canvas);
-    }
-  }
-
-  @Override
-  protected @NonNull Parcelable onSaveInstanceState() {
-    Parcelable root  = super.onSaveInstanceState();
-    Bundle     state = new Bundle();
-
-    state.putParcelable(STATE_ROOT, root);
-    state.putBoolean(STATE_OUTLINE_ENABLED, isOutlineEnabled);
-
-    return state;
-  }
-
-  @Override
-  protected void onRestoreInstanceState(Parcelable state) {
-    if (state instanceof Bundle) {
-      Parcelable root = ((Bundle) state).getParcelable(STATE_ROOT);
-
-      this.isOutlineEnabled = ((Bundle) state).getBoolean(STATE_OUTLINE_ENABLED, true);
-      super.onRestoreInstanceState(root);
-    } else {
-      super.onRestoreInstanceState(state);
     }
   }
 
