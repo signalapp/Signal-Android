@@ -19,7 +19,7 @@ public final class GroupsV2ProcessingLock {
   private GroupsV2ProcessingLock() {
   }
 
-  private static final ReentrantLock lock = new ReentrantLock();
+  private static final GroupReentrantLock lock = new GroupReentrantLock();
 
   @WorkerThread
   public static Closeable acquireGroupProcessingLock() throws GroupChangeBusyException {
@@ -37,17 +37,24 @@ public final class GroupsV2ProcessingLock {
   }
 
   @WorkerThread
-  public static Closeable acquireGroupProcessingLock(long timeoutMs) throws GroupChangeBusyException {
+  private static Closeable acquireGroupProcessingLock(long timeoutMs) throws GroupChangeBusyException {
     ThreadUtil.assertNotMainThread();
 
     try {
       if (!lock.tryLock(timeoutMs, TimeUnit.MILLISECONDS)) {
-        throw new GroupChangeBusyException("Failed to get a lock on the group processing in the timeout period");
+        throw new GroupChangeBusyException("Failed to get a lock on the group processing in the timeout period. Owner: " + lock.getOwnerName());
       }
       return lock::unlock;
     } catch (InterruptedException e) {
       Log.w(TAG, e);
       throw new GroupChangeBusyException(e);
+    }
+  }
+
+  private static class GroupReentrantLock extends ReentrantLock {
+    String getOwnerName() {
+      Thread owner = super.getOwner();
+      return (owner != null) ? owner.getName() : "null";
     }
   }
 }
