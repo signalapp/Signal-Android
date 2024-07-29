@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
-import org.thoughtcrime.securesms.backup.v2.BackupState
+import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
@@ -89,7 +89,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
  */
 class ChatItemImportInserter(
   private val db: SQLiteDatabase,
-  private val backupState: BackupState,
+  private val importState: ImportState,
   private val batchSize: Int
 ) {
   companion object {
@@ -155,25 +155,25 @@ class ChatItemImportInserter(
    * If this item causes the buffer to hit the batch size, then a batch of items will actually be inserted.
    */
   fun insert(chatItem: ChatItem) {
-    val fromLocalRecipientId: RecipientId? = backupState.backupToLocalRecipientId[chatItem.authorId]
+    val fromLocalRecipientId: RecipientId? = importState.remoteToLocalRecipientId[chatItem.authorId]
     if (fromLocalRecipientId == null) {
       Log.w(TAG, "[insert] Could not find a local recipient for backup recipient ID ${chatItem.authorId}! Skipping.")
       return
     }
 
-    val chatLocalRecipientId: RecipientId? = backupState.chatIdToLocalRecipientId[chatItem.chatId]
+    val chatLocalRecipientId: RecipientId? = importState.chatIdToLocalRecipientId[chatItem.chatId]
     if (chatLocalRecipientId == null) {
       Log.w(TAG, "[insert] Could not find a local recipient for chatId ${chatItem.chatId}! Skipping.")
       return
     }
 
-    val localThreadId: Long? = backupState.chatIdToLocalThreadId[chatItem.chatId]
+    val localThreadId: Long? = importState.chatIdToLocalThreadId[chatItem.chatId]
     if (localThreadId == null) {
       Log.w(TAG, "[insert] Could not find a local threadId for backup chatId ${chatItem.chatId}! Skipping.")
       return
     }
 
-    val chatBackupRecipientId: Long? = backupState.chatIdToBackupRecipientId[chatItem.chatId]
+    val chatBackupRecipientId: Long? = importState.chatIdToBackupRecipientId[chatItem.chatId]
     if (chatBackupRecipientId == null) {
       Log.w(TAG, "[insert] Could not find a backup recipientId for backup chatId ${chatItem.chatId}! Skipping.")
       return
@@ -283,7 +283,7 @@ class ChatItemImportInserter(
             CallTable.MESSAGE_ID to messageRowId,
             CallTable.PEER to chatRecipientId.serialize(),
             CallTable.TYPE to CallTable.Type.serialize(CallTable.Type.GROUP_CALL),
-            CallTable.DIRECTION to CallTable.Direction.serialize(if (backupState.backupToLocalRecipientId[updateMessage.groupCall.ringerRecipientId] == selfId) CallTable.Direction.OUTGOING else CallTable.Direction.INCOMING),
+            CallTable.DIRECTION to CallTable.Direction.serialize(if (importState.remoteToLocalRecipientId[updateMessage.groupCall.ringerRecipientId] == selfId) CallTable.Direction.OUTGOING else CallTable.Direction.INCOMING),
             CallTable.EVENT to CallTable.Event.serialize(
               when (updateMessage.groupCall.state) {
                 GroupCall.State.ACCEPTED -> CallTable.Event.ACCEPTED
@@ -460,8 +460,8 @@ class ChatItemImportInserter(
       contentValues.put(MessageTable.UNIDENTIFIED, this.outgoing.sendStatus.count { it.sealedSender })
       contentValues.put(MessageTable.READ, 1)
 
-      contentValues.addNetworkFailures(this, backupState)
-      contentValues.addIdentityKeyMismatches(this, backupState)
+      contentValues.addNetworkFailures(this, importState)
+      contentValues.addIdentityKeyMismatches(this, importState)
     } else {
       contentValues.put(MessageTable.VIEWED_COLUMN, 0)
       contentValues.put(MessageTable.HAS_READ_RECEIPT, 0)
@@ -529,7 +529,7 @@ class ChatItemImportInserter(
 
     return reactions
       .mapNotNull {
-        val authorId: Long? = backupState.backupToLocalRecipientId[it.authorId]?.toLong()
+        val authorId: Long? = importState.remoteToLocalRecipientId[it.authorId]?.toLong()
 
         if (authorId != null) {
           contentValuesOf(
@@ -557,7 +557,7 @@ class ChatItemImportInserter(
     }
 
     return this.outgoing.sendStatus.mapNotNull { sendStatus ->
-      val recipientId = backupState.backupToLocalRecipientId[sendStatus.recipientId]
+      val recipientId = importState.remoteToLocalRecipientId[sendStatus.recipientId]
 
       if (recipientId != null) {
         contentValuesOf(
@@ -674,7 +674,7 @@ class ChatItemImportInserter(
       }
       updateMessage.groupCall != null -> {
         val startedCallRecipientId = if (updateMessage.groupCall.startedCallRecipientId != null) {
-          backupState.backupToLocalRecipientId[updateMessage.groupCall.startedCallRecipientId]
+          importState.remoteToLocalRecipientId[updateMessage.groupCall.startedCallRecipientId]
         } else {
           null
         }
@@ -815,7 +815,7 @@ class ChatItemImportInserter(
 
   private fun ContentValues.addQuote(quote: Quote) {
     this.put(MessageTable.QUOTE_ID, quote.targetSentTimestamp ?: MessageTable.QUOTE_TARGET_MISSING_ID)
-    this.put(MessageTable.QUOTE_AUTHOR, backupState.backupToLocalRecipientId[quote.authorId]!!.serialize())
+    this.put(MessageTable.QUOTE_AUTHOR, importState.remoteToLocalRecipientId[quote.authorId]!!.serialize())
     this.put(MessageTable.QUOTE_BODY, quote.text)
     this.put(MessageTable.QUOTE_TYPE, quote.type.toLocalQuoteType())
     this.put(MessageTable.QUOTE_BODY_RANGES, quote.bodyRanges.toLocalBodyRanges()?.encode())
@@ -840,14 +840,14 @@ class ChatItemImportInserter(
     }
   }
 
-  private fun ContentValues.addNetworkFailures(chatItem: ChatItem, backupState: BackupState) {
+  private fun ContentValues.addNetworkFailures(chatItem: ChatItem, importState: ImportState) {
     if (chatItem.outgoing == null) {
       return
     }
 
     val networkFailures = chatItem.outgoing.sendStatus
       .filter { status -> status.networkFailure }
-      .mapNotNull { status -> backupState.backupToLocalRecipientId[status.recipientId] }
+      .mapNotNull { status -> importState.remoteToLocalRecipientId[status.recipientId] }
       .map { recipientId -> NetworkFailure(recipientId) }
       .toSet()
 
@@ -856,14 +856,14 @@ class ChatItemImportInserter(
     }
   }
 
-  private fun ContentValues.addIdentityKeyMismatches(chatItem: ChatItem, backupState: BackupState) {
+  private fun ContentValues.addIdentityKeyMismatches(chatItem: ChatItem, importState: ImportState) {
     if (chatItem.outgoing == null) {
       return
     }
 
     val mismatches = chatItem.outgoing.sendStatus
       .filter { status -> status.identityKeyMismatch }
-      .mapNotNull { status -> backupState.backupToLocalRecipientId[status.recipientId] }
+      .mapNotNull { status -> importState.remoteToLocalRecipientId[status.recipientId] }
       .map { recipientId -> IdentityKeyMismatch(recipientId, null) } // TODO We probably want the actual identity key in this status situation?
       .toSet()
 
@@ -965,8 +965,8 @@ class ChatItemImportInserter(
         cdnKey = backupLocator.transitCdnKey,
         archiveCdn = backupLocator.cdnNumber,
         archiveMediaName = backupLocator.mediaName,
-        archiveMediaId = backupState.backupKey.deriveMediaId(MediaName(backupLocator.mediaName)).encode(),
-        archiveThumbnailMediaId = backupState.backupKey.deriveMediaId(MediaName.forThumbnailFromMediaName(backupLocator.mediaName)).encode(),
+        archiveMediaId = importState.backupKey.deriveMediaId(MediaName(backupLocator.mediaName)).encode(),
+        archiveThumbnailMediaId = importState.backupKey.deriveMediaId(MediaName.forThumbnailFromMediaName(backupLocator.mediaName)).encode(),
         digest = backupLocator.digest.toByteArray(),
         incrementalMac = incrementalMac?.toByteArray(),
         incrementalMacChunkSize = incrementalMacChunkSize,

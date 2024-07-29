@@ -220,8 +220,8 @@ object BackupRepository {
             backupTimeMs = exportState.backupTime
           )
         )
-        // Note: Without a transaction, we may export inconsistent state. But because we have a transaction,
-        // writes from other threads are blocked. This is something to think more about.
+
+        // We're using a snapshot, so the transaction is more for perf than correctness
         dbSnapshot.rawWritableDatabase.withinTransaction {
           AccountDataProcessor.export(dbSnapshot, signalStoreSnapshot) {
             writer.write(it)
@@ -316,29 +316,29 @@ object BackupRepository {
       SignalDatabase.recipients.setProfileSharing(selfId, true)
 
       eventTimer.emit("setup")
-      val backupState = BackupState(backupKey)
-      val chatItemInserter: ChatItemImportInserter = ChatItemBackupProcessor.beginImport(backupState)
+      val importState = ImportState(backupKey)
+      val chatItemInserter: ChatItemImportInserter = ChatItemBackupProcessor.beginImport(importState)
 
       val totalLength = frameReader.getStreamLength()
       for (frame in frameReader) {
         when {
           frame.account != null -> {
-            AccountDataProcessor.import(frame.account, selfId)
+            AccountDataProcessor.import(frame.account, selfId, importState)
             eventTimer.emit("account")
           }
 
           frame.recipient != null -> {
-            RecipientBackupProcessor.import(frame.recipient, backupState)
+            RecipientBackupProcessor.import(frame.recipient, importState)
             eventTimer.emit("recipient")
           }
 
           frame.chat != null -> {
-            ChatBackupProcessor.import(frame.chat, backupState)
+            ChatBackupProcessor.import(frame.chat, importState)
             eventTimer.emit("chat")
           }
 
           frame.adHocCall != null -> {
-            AdHocCallBackupProcessor.import(frame.adHocCall, backupState)
+            AdHocCallBackupProcessor.import(frame.adHocCall, importState)
             eventTimer.emit("call")
           }
 
@@ -362,7 +362,7 @@ object BackupRepository {
         eventTimer.emit("chatItem")
       }
 
-      backupState.chatIdToLocalThreadId.values.forEach {
+      importState.chatIdToLocalThreadId.values.forEach {
         SignalDatabase.threads.update(it, unarchive = false, allowDeletion = false)
       }
     }
@@ -947,15 +947,17 @@ data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
 data class BackupDirectories(val backupDir: String, val mediaDir: String)
 
 class ExportState(val backupTime: Long, val allowMediaBackup: Boolean) {
-  val recipientIds = HashSet<Long>()
-  val threadIds = HashSet<Long>()
+  val recipientIds: MutableSet<Long> = hashSetOf()
+  val threadIds: MutableSet<Long> = hashSetOf()
+  val localToRemoteCustomChatColors: MutableMap<Long, Int> = hashMapOf()
 }
 
-class BackupState(val backupKey: BackupKey) {
-  val backupToLocalRecipientId = HashMap<Long, RecipientId>()
-  val chatIdToLocalThreadId = HashMap<Long, Long>()
-  val chatIdToLocalRecipientId = HashMap<Long, RecipientId>()
-  val chatIdToBackupRecipientId = HashMap<Long, Long>()
+class ImportState(val backupKey: BackupKey) {
+  val remoteToLocalRecipientId: MutableMap<Long, RecipientId> = hashMapOf()
+  val chatIdToLocalThreadId: MutableMap<Long, Long> = hashMapOf()
+  val chatIdToLocalRecipientId: MutableMap<Long, RecipientId> = hashMapOf()
+  val chatIdToBackupRecipientId: MutableMap<Long, Long> = hashMapOf()
+  val remoteToLocalColorId: MutableMap<Long, Long> = hashMapOf()
 }
 
 class BackupMetadata(

@@ -384,7 +384,7 @@ object GroupsV2UpdateMessageConverter {
       updates.add(
         GroupChangeChatUpdate.Update(
           groupExpirationTimerUpdate = GroupExpirationTimerUpdate(
-            expiresInMs = (change.newTimer!!.duration * 1000L).toUInt().toInt(),
+            expiresInMs = (change.newTimer!!.duration * 1000L).toUInt().toLong(),
             updaterAci = if (editorUnknown) null else change.editorServiceIdBytes
           )
         )

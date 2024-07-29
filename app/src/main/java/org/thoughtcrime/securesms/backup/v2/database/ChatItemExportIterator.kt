@@ -183,7 +183,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.REPORTED_SPAM)
         }
         MessageTypes.isExpirationTimerUpdate(record.type) -> {
-          builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate(record.expiresIn.toInt()))
+          builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate(record.expiresIn))
           builder.expiresInMs = 0
         }
         MessageTypes.isProfileChange(record.type) -> {
@@ -774,7 +774,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           mediaName = archiveMediaName ?: this.getMediaName().toString(),
           cdnNumber = if (archiveMediaName != null) archiveCdn else Cdn.CDN_3.cdnNumber, // TODO (clark): Update when new proto with optional cdn is landed
           key = Base64.decode(remoteKey).toByteString(),
-          size = this.size.toInt(),
+          size = this.size,
           digest = remoteDigest.toByteString()
         )
       } else {

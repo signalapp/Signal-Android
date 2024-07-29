@@ -15,7 +15,7 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
 import org.signal.core.util.select
 import org.signal.core.util.withinTransaction
-import org.thoughtcrime.securesms.backup.v2.BackupState
+import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionListItem
 import org.thoughtcrime.securesms.database.DistributionListTables
@@ -98,7 +98,7 @@ fun DistributionListTables.getMembersForBackup(id: DistributionListId): List<Rec
   }
 }
 
-fun DistributionListTables.restoreFromBackup(dlistItem: DistributionListItem, backupState: BackupState): RecipientId? {
+fun DistributionListTables.restoreFromBackup(dlistItem: DistributionListItem, importState: ImportState): RecipientId? {
   if (dlistItem.deletionTimestamp != null && dlistItem.deletionTimestamp > 0) {
     val dlistId = createList(
       name = "",
@@ -115,7 +115,7 @@ fun DistributionListTables.restoreFromBackup(dlistItem: DistributionListItem, ba
 
   val dlist = dlistItem.distributionList ?: return null
   val members: List<RecipientId> = dlist.memberRecipientIds
-    .mapNotNull { backupState.backupToLocalRecipientId[it] }
+    .mapNotNull { importState.remoteToLocalRecipientId[it] }
 
   if (members.size != dlist.memberRecipientIds.size) {
     Log.w(TAG, "Couldn't find some member recipients! Missing backup recipientIds: ${dlist.memberRecipientIds.toSet() - members.toSet()}")

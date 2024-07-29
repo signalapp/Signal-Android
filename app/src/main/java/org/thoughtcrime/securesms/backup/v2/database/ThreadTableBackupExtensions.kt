@@ -16,12 +16,12 @@ import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.toInt
+import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.Chat
 import org.thoughtcrime.securesms.backup.v2.proto.ChatStyle
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.database.RecipientTable
-import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -29,7 +29,7 @@ import java.io.Closeable
 
 private val TAG = Log.tag(ThreadTable::class.java)
 
-fun ThreadTable.getThreadsForBackup(): ChatIterator {
+fun ThreadTable.getThreadsForBackup(): ChatExportIterator {
   //language=sql
   val query = """
       SELECT 
@@ -49,7 +49,7 @@ fun ThreadTable.getThreadsForBackup(): ChatIterator {
     """
   val cursor = readableDatabase.query(query)
 
-  return ChatIterator(cursor)
+  return ChatExportIterator(cursor)
 }
 
 fun ThreadTable.clearAllDataForBackupRestore() {
@@ -58,15 +58,10 @@ fun ThreadTable.clearAllDataForBackupRestore() {
   clearCache()
 }
 
-fun ThreadTable.restoreFromBackup(chat: Chat, recipientId: RecipientId): Long? {
-  val chatColor = chat.style?.parseChatColor()
-  val chatColorWithId = if (chatColor != null && chatColor.id is ChatColors.Id.NotSet) {
-    val savedColors = SignalDatabase.chatColors.getSavedChatColors()
-    val match = savedColors.find { it.matchesWithoutId(chatColor) }
-    match ?: SignalDatabase.chatColors.saveChatColors(chatColor)
-  } else {
-    chatColor
-  }
+fun ThreadTable.restoreFromBackup(chat: Chat, recipientId: RecipientId, importState: ImportState): Long? {
+  val chatColor = chat.style?.remoteToLocalChatColors(importState)
+
+  // TODO [backup] Wallpaper
 
   val threadId = writableDatabase
     .insertInto(ThreadTable.TABLE_NAME)
@@ -85,8 +80,8 @@ fun ThreadTable.restoreFromBackup(chat: Chat, recipientId: RecipientId): Long? {
         RecipientTable.MENTION_SETTING to (if (chat.dontNotifyForMentionsIfMuted) RecipientTable.MentionSetting.DO_NOT_NOTIFY.id else RecipientTable.MentionSetting.ALWAYS_NOTIFY.id),
         RecipientTable.MUTE_UNTIL to chat.muteUntilMs,
         RecipientTable.MESSAGE_EXPIRATION_TIME to chat.expirationTimerMs,
-        RecipientTable.CHAT_COLORS to chatColorWithId?.serialize()?.encode(),
-        RecipientTable.CUSTOM_CHAT_COLORS_ID to (chatColorWithId?.id ?: ChatColors.Id.NotSet).longValue
+        RecipientTable.CHAT_COLORS to chatColor?.serialize()?.encode(),
+        RecipientTable.CUSTOM_CHAT_COLORS_ID to (chatColor?.id ?: ChatColors.Id.NotSet).longValue
       ),
       "${RecipientTable.ID} = ?",
       SqlUtil.buildArgs(recipientId.toLong())
@@ -95,7 +90,7 @@ fun ThreadTable.restoreFromBackup(chat: Chat, recipientId: RecipientId): Long? {
   return threadId
 }
 
-class ChatIterator(private val cursor: Cursor) : Iterator<Chat>, Closeable {
+class ChatExportIterator(private val cursor: Cursor) : Iterator<Chat>, Closeable {
   override fun hasNext(): Boolean {
     return cursor.count > 0 && !cursor.isLast
   }
@@ -106,31 +101,32 @@ class ChatIterator(private val cursor: Cursor) : Iterator<Chat>, Closeable {
     }
 
     val serializedChatColors = cursor.requireBlob(RecipientTable.CHAT_COLORS)
-    val customChatColorsId = ChatColors.Id.forLongValue(cursor.requireLong(RecipientTable.CUSTOM_CHAT_COLORS_ID))
-    val chatColors: ChatColors? = if (serializedChatColors != null) {
+    val chatColorId = ChatColors.Id.forLongValue(cursor.requireLong(RecipientTable.CUSTOM_CHAT_COLORS_ID))
+    val chatColors: ChatColors? = serializedChatColors?.let { serialized ->
       try {
-        ChatColors.forChatColor(customChatColorsId, ChatColor.ADAPTER.decode(serializedChatColors))
+        ChatColors.forChatColor(chatColorId, ChatColor.ADAPTER.decode(serialized))
       } catch (e: InvalidProtocolBufferException) {
         null
       }
-    } else {
-      null
     }
 
     var chatStyleBuilder: ChatStyle.Builder? = null
     if (chatColors != null) {
       chatStyleBuilder = ChatStyle.Builder()
-      val presetBubbleColor = chatColors.tryToMapToBackupPreset()
-      if (presetBubbleColor != null) {
-        chatStyleBuilder.bubbleColorPreset = presetBubbleColor
-      } else if (chatColors.isGradient()) {
-        chatStyleBuilder.bubbleGradient = ChatStyle.Gradient(angle = chatColors.getDegrees().toInt(), colors = chatColors.getColors().toList())
-      } else if (customChatColorsId is ChatColors.Id.Auto) {
-        chatStyleBuilder.autoBubbleColor = ChatStyle.AutomaticBubbleColor()
-      } else {
-        chatStyleBuilder.bubbleSolidColor = chatColors.asSingleColor()
+      when (chatColorId) {
+        ChatColors.Id.NotSet -> {}
+        ChatColors.Id.Auto -> {
+          chatStyleBuilder.autoBubbleColor = ChatStyle.AutomaticBubbleColor()
+        }
+        ChatColors.Id.BuiltIn -> {
+          chatStyleBuilder.bubbleColorPreset = chatColors.localToRemoteChatColors()
+        }
+        is ChatColors.Id.Custom -> {
+          chatStyleBuilder.customColorId = chatColorId.longValue
+        }
       }
     }
+    // TODO [backup] wallpaper
 
     return Chat(
       id = cursor.requireLong(ThreadTable.ID),
@@ -150,9 +146,9 @@ class ChatIterator(private val cursor: Cursor) : Iterator<Chat>, Closeable {
   }
 }
 
-private fun ChatStyle.parseChatColor(): ChatColors? {
-  if (bubbleColorPreset != null) {
-    return when (bubbleColorPreset) {
+private fun ChatStyle.remoteToLocalChatColors(importState: ImportState): ChatColors? {
+  if (this.bubbleColorPreset != null) {
+    return when (this.bubbleColorPreset) {
       ChatStyle.BubbleColorPreset.SOLID_CRIMSON -> ChatColorsPalette.Bubbles.CRIMSON
       ChatStyle.BubbleColorPreset.SOLID_VERMILION -> ChatColorsPalette.Bubbles.VERMILION
       ChatStyle.BubbleColorPreset.SOLID_BURLAP -> ChatColorsPalette.Bubbles.BURLAP
@@ -177,27 +173,22 @@ private fun ChatStyle.parseChatColor(): ChatColors? {
       ChatStyle.BubbleColorPreset.UNKNOWN_BUBBLE_COLOR_PRESET, ChatStyle.BubbleColorPreset.SOLID_ULTRAMARINE -> ChatColorsPalette.Bubbles.ULTRAMARINE
     }
   }
-  if (autoBubbleColor != null) {
+
+  if (this.autoBubbleColor != null) {
     return ChatColorsPalette.Bubbles.default.withId(ChatColors.Id.Auto)
   }
-  if (bubbleSolidColor != null) {
-    return ChatColors(id = ChatColors.Id.NotSet, singleColor = bubbleSolidColor, linearGradient = null)
+
+  if (this.customColorId != null) {
+    return importState.remoteToLocalColorId[this.customColorId]?.let { localId ->
+      val colorId = ChatColors.Id.forLongValue(localId)
+      ChatColorsPalette.Bubbles.default.withId(colorId)
+    }
   }
-  if (bubbleGradient != null) {
-    return ChatColors(
-      id = ChatColors.Id.NotSet,
-      singleColor = null,
-      linearGradient = ChatColors.LinearGradient(
-        degrees = bubbleGradient.angle.toFloat(),
-        colors = bubbleGradient.colors.toIntArray(),
-        positions = floatArrayOf(0f, 1f)
-      )
-    )
-  }
+
   return null
 }
 
-private fun ChatColors.tryToMapToBackupPreset(): ChatStyle.BubbleColorPreset? {
+private fun ChatColors.localToRemoteChatColors(): ChatStyle.BubbleColorPreset? {
   when (this) {
     // Solids
     ChatColorsPalette.Bubbles.CRIMSON -> return ChatStyle.BubbleColorPreset.SOLID_CRIMSON

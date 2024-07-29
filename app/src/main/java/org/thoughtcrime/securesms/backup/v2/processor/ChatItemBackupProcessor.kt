@@ -6,8 +6,8 @@
 package org.thoughtcrime.securesms.backup.v2.processor
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.backup.v2.BackupState
 import org.thoughtcrime.securesms.backup.v2.ExportState
+import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.database.ChatItemImportInserter
 import org.thoughtcrime.securesms.backup.v2.database.createChatItemInserter
 import org.thoughtcrime.securesms.backup.v2.database.getMessagesForBackup
@@ -31,7 +31,7 @@ object ChatItemBackupProcessor {
     }
   }
 
-  fun beginImport(backupState: BackupState): ChatItemImportInserter {
-    return SignalDatabase.messages.createChatItemInserter(backupState)
+  fun beginImport(importState: ImportState): ChatItemImportInserter {
+    return SignalDatabase.messages.createChatItemInserter(importState)
   }
 }

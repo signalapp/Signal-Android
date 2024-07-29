@@ -28,8 +28,8 @@ import kotlin.math.min
 @Parcelize
 class ChatColors(
   val id: Id,
-  private val linearGradient: LinearGradient?,
-  private val singleColor: Int?
+  val linearGradient: LinearGradient?,
+  val singleColor: Int?
 ) : Parcelable {
 
   fun isGradient(): Boolean = linearGradient != null

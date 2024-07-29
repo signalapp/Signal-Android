@@ -6,8 +6,8 @@
 package org.thoughtcrime.securesms.backup.v2.processor
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.backup.v2.BackupState
 import org.thoughtcrime.securesms.backup.v2.ExportState
+import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.database.getThreadsForBackup
 import org.thoughtcrime.securesms.backup.v2.database.restoreFromBackup
 import org.thoughtcrime.securesms.backup.v2.proto.Chat
@@ -32,19 +32,17 @@ object ChatBackupProcessor {
     }
   }
 
-  fun import(chat: Chat, backupState: BackupState) {
-    val recipientId: RecipientId? = backupState.backupToLocalRecipientId[chat.recipientId]
+  fun import(chat: Chat, importState: ImportState) {
+    val recipientId: RecipientId? = importState.remoteToLocalRecipientId[chat.recipientId]
     if (recipientId == null) {
       Log.w(TAG, "Missing recipient for chat ${chat.id}")
       return
     }
 
-    SignalDatabase.threads.restoreFromBackup(chat, recipientId)?.let { threadId ->
-      backupState.chatIdToLocalRecipientId[chat.id] = recipientId
-      backupState.chatIdToLocalThreadId[chat.id] = threadId
-      backupState.chatIdToBackupRecipientId[chat.id] = chat.recipientId
+    SignalDatabase.threads.restoreFromBackup(chat, recipientId, importState)?.let { threadId ->
+      importState.chatIdToLocalRecipientId[chat.id] = recipientId
+      importState.chatIdToLocalThreadId[chat.id] = threadId
+      importState.chatIdToBackupRecipientId[chat.id] = chat.recipientId
     }
-
-    // TODO there's several fields in the chat that actually need to be restored on the recipient table
   }
 }
