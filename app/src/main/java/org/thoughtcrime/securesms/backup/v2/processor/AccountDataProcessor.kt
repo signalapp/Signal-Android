@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.backup.v2.proto.ChatStyle
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
+import org.thoughtcrime.securesms.backup.v2.util.BackupConverters
+import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -46,6 +48,8 @@ object AccountDataProcessor {
 
     val donationCurrency = signalStore.inAppPaymentValues.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
     val donationSubscriber = db.inAppPaymentSubscriberTable.getByCurrencyCode(donationCurrency.currencyCode, InAppPaymentSubscriberRecord.Type.DONATION)
+
+    val chatColors = SignalStore.chatColors.chatColors
 
     emitter.emit(
       Frame(
@@ -82,7 +86,13 @@ object AccountDataProcessor {
             displayBadgesOnProfile = signalStore.inAppPaymentValues.getDisplayBadgesOnProfile(),
             hasSeenGroupStoryEducationSheet = signalStore.storyValues.userHasSeenGroupStoryEducationSheet,
             hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding(),
-            customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors()
+            customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors(),
+            defaultChatStyle = BackupConverters.constructRemoteChatStyle(chatColors, chatColors?.id ?: ChatColors.Id.NotSet)?.also {
+              it.newBuilder().apply {
+                // TODO [backup] We should do this elsewhere once we handle wallpaper better
+                dimWallpaperInDarkMode = (SignalStore.wallpaper.wallpaper?.dimLevelForDarkTheme ?: 0f) > 0f
+              }.build()
+            }
           ),
           donationSubscriberData = donationSubscriber?.toSubscriberData(signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled())
         )
@@ -141,6 +151,16 @@ object AccountDataProcessor {
           val saved = SignalDatabase.chatColors.saveChatColors(chatColor.withId(ChatColors.Id.NotSet))
           importState.remoteToLocalColorId[chatColor.id.longValue] = saved.id.longValue
         }
+
+      if (settings.defaultChatStyle != null) {
+        val chatColors = settings.defaultChatStyle.toLocal(importState)
+        SignalStore.chatColors.chatColors = chatColors
+        if (SignalStore.wallpaper.wallpaper != null) {
+          SignalStore.wallpaper.setDimInDarkTheme(settings.defaultChatStyle.dimWallpaperInDarkMode)
+        }
+
+        // TODO [backup] wallpaper
+      }
 
       if (accountData.donationSubscriberData != null) {
         if (accountData.donationSubscriberData.subscriberId.size > 0) {

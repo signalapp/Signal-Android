@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
@@ -180,11 +181,11 @@ fun RecipientTable.restoreContactFromBackup(contact: Contact): RecipientId {
   val profileKey = contact.profileKey?.toByteArray()
   val values = contentValuesOf(
     RecipientTable.BLOCKED to contact.blocked,
-    RecipientTable.HIDDEN to (contact.visibility == Contact.Visibility.HIDDEN),
+    RecipientTable.HIDDEN to contact.visibility.toLocal().serialize(),
     RecipientTable.TYPE to RecipientTable.RecipientType.INDIVIDUAL.id,
-    RecipientTable.PROFILE_FAMILY_NAME to contact.profileFamilyName.nullIfBlank(),
-    RecipientTable.PROFILE_GIVEN_NAME to contact.profileGivenName.nullIfBlank(),
-    RecipientTable.PROFILE_JOINED_NAME to ProfileName.fromParts(contact.profileGivenName.nullIfBlank(), contact.profileFamilyName.nullIfBlank()).toString().nullIfBlank(),
+    RecipientTable.PROFILE_FAMILY_NAME to contact.profileFamilyName,
+    RecipientTable.PROFILE_GIVEN_NAME to contact.profileGivenName,
+    RecipientTable.PROFILE_JOINED_NAME to ProfileName.fromParts(contact.profileGivenName, contact.profileFamilyName).toString(),
     RecipientTable.PROFILE_KEY to if (profileKey == null) null else Base64.encodeWithPadding(profileKey),
     RecipientTable.PROFILE_SHARING to contact.profileSharing.toInt(),
     RecipientTable.USERNAME to contact.username,
@@ -247,6 +248,14 @@ fun RecipientTable.restoreGroupFromBackup(group: Group): RecipientId {
   }
 
   return RecipientId.from(recipientId)
+}
+
+private fun Contact.Visibility.toLocal(): Recipient.HiddenState {
+  return when (this) {
+    Contact.Visibility.VISIBLE -> Recipient.HiddenState.NOT_HIDDEN
+    Contact.Visibility.HIDDEN -> Recipient.HiddenState.HIDDEN
+    Contact.Visibility.HIDDEN_MESSAGE_REQUEST -> Recipient.HiddenState.HIDDEN_MESSAGE_REQUEST
+  }
 }
 
 private fun Group.AccessControl.AccessRequired.toLocal(): AccessControl.AccessRequired {
@@ -434,11 +443,11 @@ class BackupContactIterator(private val cursor: Cursor, private val selfId: Long
       .username(cursor.requireString(RecipientTable.USERNAME))
       .e164(cursor.requireString(RecipientTable.E164)?.e164ToLong())
       .blocked(cursor.requireBoolean(RecipientTable.BLOCKED))
-      .visibility(if (cursor.requireBoolean(RecipientTable.HIDDEN)) Contact.Visibility.HIDDEN else Contact.Visibility.VISIBLE)
+      .visibility(Recipient.HiddenState.deserialize(cursor.requireInt(RecipientTable.HIDDEN)).toRemote())
       .profileKey(if (profileKey != null) Base64.decode(profileKey).toByteString() else null)
       .profileSharing(cursor.requireBoolean(RecipientTable.PROFILE_SHARING))
-      .profileGivenName(cursor.requireString(RecipientTable.PROFILE_GIVEN_NAME).nullIfBlank())
-      .profileFamilyName(cursor.requireString(RecipientTable.PROFILE_FAMILY_NAME).nullIfBlank())
+      .profileGivenName(cursor.requireString(RecipientTable.PROFILE_GIVEN_NAME))
+      .profileFamilyName(cursor.requireString(RecipientTable.PROFILE_FAMILY_NAME))
       .hideStory(extras?.hideStory() ?: false)
 
     if (registeredState == RecipientTable.RegisteredState.REGISTERED) {
@@ -455,6 +464,14 @@ class BackupContactIterator(private val cursor: Cursor, private val selfId: Long
 
   override fun close() {
     cursor.close()
+  }
+}
+
+private fun Recipient.HiddenState.toRemote(): Contact.Visibility {
+  return when (this) {
+    Recipient.HiddenState.NOT_HIDDEN -> return Contact.Visibility.VISIBLE
+    Recipient.HiddenState.HIDDEN -> return Contact.Visibility.HIDDEN
+    Recipient.HiddenState.HIDDEN_MESSAGE_REQUEST -> return Contact.Visibility.HIDDEN_MESSAGE_REQUEST
   }
 }
 
