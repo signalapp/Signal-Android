@@ -4,6 +4,8 @@ import androidx.annotation.CheckResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -15,6 +17,8 @@ public final class RegistrationValues extends SignalStoreValues {
   private static final String SESSION_E164                = "registration.session_e164";
   private static final String SESSION_ID                  = "registration.session_id";
   private static final String SKIPPED_TRANSFER_OR_RESTORE = "registration.has_skipped_transfer_or_restore";
+  private static final String LOCAL_REGISTRATION_DATA     = "registration.local_registration_data";
+  private static final String RESTORE_COMPLETED           = "registration.backup_restore_completed";
 
   RegistrationValues(@NonNull KeyValueStore store) {
     super(store);
@@ -52,6 +56,20 @@ public final class RegistrationValues extends SignalStoreValues {
   @CheckResult
   public synchronized boolean isRegistrationComplete() {
     return getStore().getBoolean(REGISTRATION_COMPLETE, true);
+  }
+
+
+  public void setLocalRegistrationMetadata(LocalRegistrationMetadata data) {
+    putObject(LOCAL_REGISTRATION_DATA, data, LocalRegistrationMetadataSerializer.INSTANCE);
+  }
+
+  @Nullable
+  public LocalRegistrationMetadata getLocalRegistrationMetadata() {
+    return getObject(LOCAL_REGISTRATION_DATA, null, LocalRegistrationMetadataSerializer.INSTANCE);
+  }
+
+  public void clearLocalRegistrationMetadata() {
+    remove(LOCAL_REGISTRATION_DATA);
   }
 
   public boolean hasUploadedProfile() {
@@ -94,5 +112,13 @@ public final class RegistrationValues extends SignalStoreValues {
   @Nullable
   public String getSessionE164() {
     return getString(SESSION_E164, null);
+  }
+
+  public boolean hasCompletedRestore() {
+    return getBoolean(RESTORE_COMPLETED, false);
+  }
+
+  public void markRestoreCompleted() {
+    putBoolean(RESTORE_COMPLETED, true);
   }
 }

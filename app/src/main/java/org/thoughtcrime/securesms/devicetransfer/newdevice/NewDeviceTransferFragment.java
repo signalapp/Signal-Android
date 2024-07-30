@@ -13,6 +13,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.devicetransfer.DeviceTransferFragment;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 /**
@@ -61,6 +62,7 @@ public final class NewDeviceTransferFragment extends DeviceTransferFragment {
         case SUCCESS:
           transferFinished = true;
           DeviceToDeviceTransferService.stop(requireContext());
+          SignalStore.registration().markRestoreCompleted();
           navigateToTransferComplete();
           break;
         case FAILURE_VERSION_DOWNGRADE:

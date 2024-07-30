@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.RegistrationUtil
+import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.data.network.BackupAuthCheckResult
 import org.thoughtcrime.securesms.registration.data.network.Challenge
@@ -815,7 +816,11 @@ class RegistrationViewModel : ViewModel() {
 
   private suspend fun onSuccessfulRegistration(context: Context, registrationData: RegistrationData, remoteResult: RegistrationRepository.AccountRegistrationResult, reglockEnabled: Boolean) {
     Log.v(TAG, "onSuccessfulRegistration()")
-    RegistrationRepository.registerAccountLocally(context, registrationData, remoteResult, reglockEnabled)
+    val metadata = LocalRegistrationMetadataUtil.createLocalRegistrationMetadata(registrationData, remoteResult, reglockEnabled)
+    if (RemoteConfig.restoreAfterRegistration) {
+      SignalStore.registration.localRegistrationMetadata = metadata
+    }
+    RegistrationRepository.registerAccountLocally(context, metadata)
 
     if (reglockEnabled) {
       SignalStore.onboarding.clearAll()

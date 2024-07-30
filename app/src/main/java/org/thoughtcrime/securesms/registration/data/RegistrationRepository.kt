@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.gcm.FcmUtil
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
@@ -45,6 +46,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
+import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil.getAciPreKeyCollection
+import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil.getPniPreKeyCollection
 import org.thoughtcrime.securesms.registration.data.network.BackupAuthCheckResult
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionCheckResult
@@ -159,14 +162,14 @@ object RegistrationRepository {
    * Takes a server response from a successful registration and persists the relevant data.
    */
   @JvmStatic
-  suspend fun registerAccountLocally(context: Context, registrationData: RegistrationData, response: AccountRegistrationResult, reglockEnabled: Boolean) =
+  suspend fun registerAccountLocally(context: Context, data: LocalRegistrationMetadata) =
     withContext(Dispatchers.IO) {
       Log.v(TAG, "registerAccountLocally()")
-      val aciPreKeyCollection: PreKeyCollection = response.aciPreKeyCollection
-      val pniPreKeyCollection: PreKeyCollection = response.pniPreKeyCollection
-      val aci: ACI = ACI.parseOrThrow(response.uuid)
-      val pni: PNI = PNI.parseOrThrow(response.pni)
-      val hasPin: Boolean = response.storageCapable
+      val aciPreKeyCollection = data.getAciPreKeyCollection()
+      val pniPreKeyCollection = data.getPniPreKeyCollection()
+      val aci: ACI = ACI.parseOrThrow(data.aci)
+      val pni: PNI = PNI.parseOrThrow(data.pni)
+      val hasPin: Boolean = data.hasPin
 
       SignalStore.account.setAci(aci)
       SignalStore.account.setPni(pni)
@@ -187,30 +190,31 @@ object RegistrationRepository {
       storeSignedAndLastResortPreKeys(pniProtocolStore, pniMetadataStore, pniPreKeyCollection)
 
       val recipientTable = SignalDatabase.recipients
-      val selfId = Recipient.trustedPush(aci, pni, registrationData.e164).id
+      val selfId = Recipient.trustedPush(aci, pni, data.e164).id
 
       recipientTable.setProfileSharing(selfId, true)
       recipientTable.markRegisteredOrThrow(selfId, aci)
-      recipientTable.linkIdsForSelf(aci, pni, registrationData.e164)
-      recipientTable.setProfileKey(selfId, registrationData.profileKey)
+      recipientTable.linkIdsForSelf(aci, pni, data.e164)
+      recipientTable.setProfileKey(selfId, ProfileKey(data.profileKey.toByteArray()))
 
       AppDependencies.recipientCache.clearSelf()
 
-      SignalStore.account.setE164(registrationData.e164)
-      SignalStore.account.fcmToken = registrationData.fcmToken
-      SignalStore.account.fcmEnabled = registrationData.isFcm
+      SignalStore.account.setE164(data.e164)
+      SignalStore.account.fcmToken = data.fcmToken
+      SignalStore.account.fcmEnabled = data.fcmEnabled
 
       val now = System.currentTimeMillis()
       saveOwnIdentityKey(selfId, aci, aciProtocolStore, now)
       saveOwnIdentityKey(selfId, pni, pniProtocolStore, now)
 
-      SignalStore.account.setServicePassword(registrationData.password)
+      SignalStore.account.setServicePassword(data.servicePassword)
       SignalStore.account.setRegistered(true)
       TextSecurePreferences.setPromptedPushRegistration(context, true)
       TextSecurePreferences.setUnauthorizedReceived(context, false)
       NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID)
 
-      SvrRepository.onRegistrationComplete(response.masterKey, response.pin, hasPin, reglockEnabled)
+      val masterKey = if (data.masterKey != null) MasterKey(data.masterKey.toByteArray()) else null
+      SvrRepository.onRegistrationComplete(masterKey, data.pin, hasPin, data.reglockEnabled)
 
       AppDependencies.resetNetwork()
       AppDependencies.incomingMessageObserver

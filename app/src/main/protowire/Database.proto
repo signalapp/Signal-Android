@@ -514,3 +514,23 @@ message PaymentTombstone {
     CryptoValue amount = 2;
     CryptoValue fee = 3;
 }
+
+message LocalRegistrationMetadata {
+    bytes aciIdentityKey = 1;
+    bytes aciSignedPreKey = 2;
+    bytes aciLastRestoreKyberPreKey = 3;
+    bytes pniIdentityKey = 4;
+    bytes pniSignedPreKey = 5;
+    bytes pniLastRestoreKyberPreKey = 6;
+    string aci = 7;
+    string pni = 8;
+    bool hasPin = 9;
+    optional string pin = 10;
+    optional bytes masterKey = 11;
+    string e164 = 12;
+    bool fcmEnabled = 13;
+    string fcmToken = 14;
+    bytes profileKey = 15;
+    string servicePassword = 16;
+    bool reglockEnabled = 17;
+}

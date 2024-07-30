@@ -187,7 +187,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private boolean userCanTransferOrRestore() {
-    return !SignalStore.registration().isRegistrationComplete() && RemoteConfig.restoreAfterRegistration() && !SignalStore.registration().hasSkippedTransferOrRestore();
+    return !SignalStore.registration().isRegistrationComplete() && RemoteConfig.restoreAfterRegistration() && !SignalStore.registration().hasSkippedTransferOrRestore() && !SignalStore.registration().hasCompletedRestore();
   }
 
   private boolean userMustCreateSignalPin() {
@@ -241,6 +241,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private Intent getTransferOrRestoreIntent() {
     Intent intent = RestoreActivity.getIntentForTransferOrRestore(this);
+    intent.putExtra(NEXT_INTENT_EXTRA, MainActivity.clearTop(this));
     return getRoutedIntent(intent, getIntent());
   }
 

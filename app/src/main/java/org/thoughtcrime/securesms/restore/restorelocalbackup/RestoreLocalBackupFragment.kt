@@ -99,6 +99,7 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
           onBackupCompletedSuccessfully()
         } else {
           handleBackupImportError(importResult)
+          restoreLocalBackupViewModel.backupImportErrorShown()
         }
       }
     }
