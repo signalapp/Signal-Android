@@ -56,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            app:layout_goneMarginBottom="32dp"
             app:layout_constraintBottom_toTopOf="@id/call_screen_pending_recipients"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -67,7 +68,7 @@
             android:layout_marginBottom="32dp"
             android:inflatedId="@+id/call_screen_pending_recipients"
             android:layout="@layout/call_screen_pending_participants_view"
-            app:layout_constraintBottom_toTopOf="@id/call_screen_camera_direction_toggle"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_participants_overflow_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -84,7 +85,7 @@
             android:text="@string/WebRtcCallView__waiting_to_be_let_in"
             android:textAppearance="@style/Signal.Text.BodyLarge"
             android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/call_screen_camera_direction_toggle"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_participants_overflow_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:visibility="visible" />
@@ -110,6 +111,13 @@
             android:layout_height="wrap_content"
             app:barrierDirection="top"
             app:constraint_referenced_ids="call_screen_camera_direction_toggle,call_screen_pending_recipients,call_screen_raise_hand_view" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/call_screen_participants_overflow_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="0dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

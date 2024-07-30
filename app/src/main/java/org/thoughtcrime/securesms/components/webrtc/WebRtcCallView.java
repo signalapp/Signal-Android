@@ -130,6 +130,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private ComposeView                   raiseHandSnackbar;
   private View                          missingPermissionContainer;
   private MaterialButton                allowAccessButton;
+  private Guideline                     callParticipantsOverflowGuideline;
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
   private WebRtcCallParticipantsRecyclerAdapter recyclerAdapter;
@@ -164,50 +165,51 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   protected void onFinishInflate() {
     super.onFinishInflate();
 
-    audioToggle                   = findViewById(R.id.call_screen_speaker_toggle);
-    videoToggle                   = findViewById(R.id.call_screen_video_toggle);
-    micToggle                     = findViewById(R.id.call_screen_audio_mic_toggle);
-    smallLocalRenderFrame         = findViewById(R.id.call_screen_pip);
-    smallLocalRender              = findViewById(R.id.call_screen_small_local_renderer);
-    largeLocalRenderFrame         = findViewById(R.id.call_screen_large_local_renderer_frame);
-    largeLocalRender              = findViewById(R.id.call_screen_large_local_renderer);
-    largeLocalRenderNoVideo       = findViewById(R.id.call_screen_large_local_video_off);
-    largeLocalRenderNoVideoAvatar = findViewById(R.id.call_screen_large_local_video_off_avatar);
-    recipientName                 = findViewById(R.id.call_screen_recipient_name);
-    status                        = findViewById(R.id.call_screen_status);
-    incomingRingStatus            = findViewById(R.id.call_screen_incoming_ring_status);
-    answer                        = findViewById(R.id.call_screen_answer_call);
-    answerWithoutVideoLabel       = findViewById(R.id.call_screen_answer_without_video_label);
-    cameraDirectionToggle         = findViewById(R.id.call_screen_camera_direction_toggle);
-    ringToggle                    = findViewById(R.id.call_screen_audio_ring_toggle);
-    overflow                      = findViewById(R.id.call_screen_overflow_button);
-    hangup                        = findViewById(R.id.call_screen_end_call);
-    answerWithoutVideo            = findViewById(R.id.call_screen_answer_without_video);
-    topGradient                   = findViewById(R.id.call_screen_header_gradient);
-    footerGradient                = findViewById(R.id.call_screen_footer_gradient);
-    startCallControls             = findViewById(R.id.call_screen_start_call_controls);
-    callParticipantsPager         = findViewById(R.id.call_screen_participants_pager);
-    callParticipantsRecycler      = findViewById(R.id.call_screen_participants_recycler);
-    largeHeader                   = findViewById(R.id.call_screen_header);
-    startCall                     = findViewById(R.id.call_screen_start_call_start_call);
-    errorButton                   = findViewById(R.id.call_screen_error_cancel);
-    groupCallSpeakerHint          = new Stub<>(findViewById(R.id.call_screen_group_call_speaker_hint));
-    groupCallFullStub             = new Stub<>(findViewById(R.id.group_call_call_full_view));
-    showParticipantsGuideline     = findViewById(R.id.call_screen_show_participants_guideline);
-    aboveControlsGuideline        = findViewById(R.id.call_screen_above_controls_guideline);
-    topFoldGuideline              = findViewById(R.id.fold_top_guideline);
-    callScreenTopFoldGuideline    = findViewById(R.id.fold_top_call_screen_guideline);
-    largeHeaderAvatar             = findViewById(R.id.call_screen_header_avatar);
-    fullScreenShade               = findViewById(R.id.call_screen_full_shade);
-    collapsedToolbar              = findViewById(R.id.webrtc_call_view_toolbar_text);
-    headerToolbar                 = findViewById(R.id.webrtc_call_view_toolbar_no_text);
-    pendingParticipantsViewStub   = new Stub<>(findViewById(R.id.call_screen_pending_recipients));
-    callLinkWarningCard           = new Stub<>(findViewById(R.id.call_screen_call_link_warning));
-    groupReactionsFeed            = findViewById(R.id.call_screen_reactions_feed);
-    reactionViews                 = findViewById(R.id.call_screen_reactions_container);
-    raiseHandSnackbar             = findViewById(R.id.call_screen_raise_hand_view);
-    missingPermissionContainer    = findViewById(R.id.missing_permissions_container);
-    allowAccessButton             = findViewById(R.id.allow_access_button);
+    audioToggle                       = findViewById(R.id.call_screen_speaker_toggle);
+    videoToggle                       = findViewById(R.id.call_screen_video_toggle);
+    micToggle                         = findViewById(R.id.call_screen_audio_mic_toggle);
+    smallLocalRenderFrame             = findViewById(R.id.call_screen_pip);
+    smallLocalRender                  = findViewById(R.id.call_screen_small_local_renderer);
+    largeLocalRenderFrame             = findViewById(R.id.call_screen_large_local_renderer_frame);
+    largeLocalRender                  = findViewById(R.id.call_screen_large_local_renderer);
+    largeLocalRenderNoVideo           = findViewById(R.id.call_screen_large_local_video_off);
+    largeLocalRenderNoVideoAvatar     = findViewById(R.id.call_screen_large_local_video_off_avatar);
+    recipientName                     = findViewById(R.id.call_screen_recipient_name);
+    status                            = findViewById(R.id.call_screen_status);
+    incomingRingStatus                = findViewById(R.id.call_screen_incoming_ring_status);
+    answer                            = findViewById(R.id.call_screen_answer_call);
+    answerWithoutVideoLabel           = findViewById(R.id.call_screen_answer_without_video_label);
+    cameraDirectionToggle             = findViewById(R.id.call_screen_camera_direction_toggle);
+    ringToggle                        = findViewById(R.id.call_screen_audio_ring_toggle);
+    overflow                          = findViewById(R.id.call_screen_overflow_button);
+    hangup                            = findViewById(R.id.call_screen_end_call);
+    answerWithoutVideo                = findViewById(R.id.call_screen_answer_without_video);
+    topGradient                       = findViewById(R.id.call_screen_header_gradient);
+    footerGradient                    = findViewById(R.id.call_screen_footer_gradient);
+    startCallControls                 = findViewById(R.id.call_screen_start_call_controls);
+    callParticipantsPager             = findViewById(R.id.call_screen_participants_pager);
+    callParticipantsRecycler          = findViewById(R.id.call_screen_participants_recycler);
+    largeHeader                       = findViewById(R.id.call_screen_header);
+    startCall                         = findViewById(R.id.call_screen_start_call_start_call);
+    errorButton                       = findViewById(R.id.call_screen_error_cancel);
+    groupCallSpeakerHint              = new Stub<>(findViewById(R.id.call_screen_group_call_speaker_hint));
+    groupCallFullStub                 = new Stub<>(findViewById(R.id.group_call_call_full_view));
+    showParticipantsGuideline         = findViewById(R.id.call_screen_show_participants_guideline);
+    aboveControlsGuideline            = findViewById(R.id.call_screen_above_controls_guideline);
+    topFoldGuideline                  = findViewById(R.id.fold_top_guideline);
+    callScreenTopFoldGuideline        = findViewById(R.id.fold_top_call_screen_guideline);
+    largeHeaderAvatar                 = findViewById(R.id.call_screen_header_avatar);
+    fullScreenShade                   = findViewById(R.id.call_screen_full_shade);
+    collapsedToolbar                  = findViewById(R.id.webrtc_call_view_toolbar_text);
+    headerToolbar                     = findViewById(R.id.webrtc_call_view_toolbar_no_text);
+    pendingParticipantsViewStub       = new Stub<>(findViewById(R.id.call_screen_pending_recipients));
+    callLinkWarningCard               = new Stub<>(findViewById(R.id.call_screen_call_link_warning));
+    groupReactionsFeed                = findViewById(R.id.call_screen_reactions_feed);
+    reactionViews                     = findViewById(R.id.call_screen_reactions_container);
+    raiseHandSnackbar                 = findViewById(R.id.call_screen_raise_hand_view);
+    missingPermissionContainer        = findViewById(R.id.missing_permissions_container);
+    allowAccessButton                 = findViewById(R.id.allow_access_button);
+    callParticipantsOverflowGuideline = findViewById(R.id.call_screen_participants_overflow_guideline);
 
     View decline      = findViewById(R.id.call_screen_decline_call);
     View answerLabel  = findViewById(R.id.call_screen_answer_call_label);
@@ -374,6 +376,12 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       SlideUpWithCallControlsBehavior behavior = (SlideUpWithCallControlsBehavior) ((CoordinatorLayout.LayoutParams) aboveControls.getLayoutParams()).getBehavior();
       Objects.requireNonNull(behavior).setOnTopOfControlsChangedListener(topOfControls -> {
         pictureInPictureGestureHelper.setBottomVerticalBoundary(topOfControls);
+      });
+    }
+
+    if (callParticipantsOverflowGuideline != null) {
+      callParticipantsRecycler.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+        callParticipantsOverflowGuideline.setGuidelineEnd(bottom - top);
       });
     }
   }
