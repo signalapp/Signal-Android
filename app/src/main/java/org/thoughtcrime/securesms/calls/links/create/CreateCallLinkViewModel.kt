@@ -36,7 +36,7 @@ class CreateCallLinkViewModel(
       credentials = credentials,
       state = SignalCallLinkState(
         name = "",
-        restrictions = Restrictions.NONE,
+        restrictions = Restrictions.ADMIN_APPROVAL,
         revoked = false,
         expiration = Instant.MAX
       )
