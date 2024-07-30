@@ -215,6 +215,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.internal.http2.StreamResetException;
 
 /**
  * @author Moxie Marlinspike
@@ -1915,6 +1916,9 @@ public class PushServiceSocket {
     } catch (PushNetworkException | NonSuccessfulResponseCodeException e) {
       throw e;
     } catch (IOException e) {
+      if (e instanceof StreamResetException) {
+        throw e;
+      }
       throw new PushNetworkException(e);
     } finally {
       synchronized (connections) {
@@ -1987,6 +1991,9 @@ public class PushServiceSocket {
     } catch (PushNetworkException | NonSuccessfulResponseCodeException e) {
       throw e;
     } catch (IOException e) {
+      if (e instanceof StreamResetException) {
+        throw e;
+      }
       throw new PushNetworkException(e);
     } finally {
       synchronized (connections) {
