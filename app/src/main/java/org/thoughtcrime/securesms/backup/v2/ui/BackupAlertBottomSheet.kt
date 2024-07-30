@@ -31,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.os.BundleCompat
 import androidx.core.os.bundleOf
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.parcelize.Parcelize
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
@@ -82,8 +83,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
       }
       BackupAlert.PAYMENT_PROCESSING -> Unit
       BackupAlert.MEDIA_BACKUPS_ARE_OFF, BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> {
-        // TODO [message-backups] -- We need to force this to download everything.
-        AppDependencies.jobManager.add(BackupRestoreMediaJob())
+        performFullMediaDownload()
       }
       BackupAlert.DISK_FULL -> Unit
     }
@@ -102,12 +102,28 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
         // TODO [message-backups] - Silence and remind on last day
       }
       BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> {
-        // TODO [message-backups] - Silence forever
+        displayLastChanceDialog()
       }
       BackupAlert.DISK_FULL -> Unit
     }
 
     dismissAllowingStateLoss()
+  }
+
+  private fun displayLastChanceDialog() {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.BackupAlertBottomSheet__media_will_be_deleted)
+      .setMessage(R.string.BackupAlertBottomSheet__the_media_stored_in_your_backup)
+      .setPositiveButton(R.string.BackupAlertBottomSheet__download) { _, _ ->
+        performFullMediaDownload()
+      }
+      .setNegativeButton(R.string.BackupAlertBottomSheet__dont_download, null)
+      .show()
+  }
+
+  private fun performFullMediaDownload() {
+    // TODO [message-backups] -- We need to force this to download everything
+    AppDependencies.jobManager.add(BackupRestoreMediaJob())
   }
 }
 
