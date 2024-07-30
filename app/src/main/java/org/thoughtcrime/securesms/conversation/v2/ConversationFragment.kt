@@ -3389,12 +3389,12 @@ class ConversationFragment :
           }
         }
 
-        requireActivity().registerReceiver(pinnedShortcutReceiver, IntentFilter(ACTION_PINNED_SHORTCUT))
+        ContextCompat.registerReceiver(requireActivity(), pinnedShortcutReceiver, IntentFilter(ACTION_PINNED_SHORTCUT), ContextCompat.RECEIVER_EXPORTED)
       }
 
       viewModel.getContactPhotoIcon(requireContext(), Glide.with(this@ConversationFragment))
         .subscribe { infoCompat ->
-          val intent = Intent(ACTION_PINNED_SHORTCUT)
+          val intent = Intent(ACTION_PINNED_SHORTCUT).apply { `package` = requireContext().packageName }
           val callback = PendingIntent.getBroadcast(requireContext(), 902, intent, PendingIntentFlags.mutable())
           ShortcutManagerCompat.requestPinShortcut(requireContext(), infoCompat, callback.intentSender)
         }

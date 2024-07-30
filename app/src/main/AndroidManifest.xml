@@ -85,6 +85,13 @@
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
 
+    <!-- For services -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_REMOTE_MESSAGING" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <!-- For vestigial telecom integration service -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_PHONE_CALL" />
+
     <application android:name=".ApplicationContext"
                  android:icon="@mipmap/ic_launcher"
                  android:label="@string/app_name"
@@ -1102,17 +1109,19 @@
     <service
         android:enabled="true"
         android:name=".service.webrtc.WebRtcCallService"
-        android:foregroundServiceType="camera|microphone"
+        android:foregroundServiceType="dataSync"
         android:exported="false"/>
 
     <service
         android:enabled="true"
         android:exported="false"
-        android:name=".service.KeyCachingService" />
+        android:name=".service.KeyCachingService"
+        android:foregroundServiceType="remoteMessaging"/>
 
     <service
         android:enabled="true"
         android:name=".messages.IncomingMessageObserver$ForegroundService"
+        android:foregroundServiceType="remoteMessaging"
         android:exported="false"/>
 
     <service
@@ -1123,6 +1132,7 @@
     <service
         android:name=".service.webrtc.AndroidCallConnectionService"
         android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE"
+        android:foregroundServiceType="phoneCall"
         android:exported="true">
         <intent-filter>
             <action android:name="android.telecom.ConnectionService" />
@@ -1162,14 +1172,17 @@
 
     <service
         android:name=".service.GenericForegroundService"
+        android:foregroundServiceType="dataSync"
         android:exported="false"/>
 
     <service
         android:name=".service.AttachmentProgressService"
+        android:foregroundServiceType="dataSync"
         android:exported="false"/>
 
     <service
         android:name=".service.BackupProgressService"
+        android:foregroundServiceType="dataSync"
         android:exported="false"/>
 
     <service
@@ -1178,6 +1191,7 @@
 
     <service
         android:name=".gcm.FcmFetchForegroundService"
+        android:foregroundServiceType="remoteMessaging"
         android:exported="false"/>
 
     <service android:name=".gcm.FcmReceiveService" android:exported="true">
@@ -1365,7 +1379,7 @@
     <service
         android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallForegroundService"
         android:exported="false"
-        android:foregroundServiceType="camera|microphone" />
+        android:foregroundServiceType="dataSync" />
 
     <receiver android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallServiceReceiver" android:exported="false">
         <intent-filter>

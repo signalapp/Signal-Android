@@ -315,7 +315,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     }
 
     if (Build.VERSION.SDK_INT >= 30) {
-      startForeground(notificationId, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA | ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE);
+      startForeground(notificationId, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
     } else {
       startForeground(notificationId, notification);
     }

@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -34,7 +35,7 @@ public class SmsRetrieverReceiver extends BroadcastReceiver {
 
   public void registerReceiver() {
     Log.d(TAG, "Registering SMS retriever receiver");
-    context.registerReceiver(this, new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION));
+    ContextCompat.registerReceiver(context, this, new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION), ContextCompat.RECEIVER_EXPORTED);
   }
 
   public void unregisterReceiver() {

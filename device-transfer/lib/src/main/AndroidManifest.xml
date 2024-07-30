@@ -9,11 +9,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
 
     <application>
         <service
             android:name=".DeviceToDeviceTransferService"
             android:enabled="true"
+            android:foregroundServiceType="connectedDevice"
             android:exported="false" />
     </application>
 

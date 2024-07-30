@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.SystemClock;
 
 import androidx.core.app.AlarmManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
@@ -42,7 +43,7 @@ public class AlarmSleepTimer implements SleepTimer {
 
     try {
       String actionName = buildActionName(actionId);
-      context.registerReceiver(alarmReceiver, new IntentFilter(actionName));
+      ContextCompat.registerReceiver(context, alarmReceiver, new IntentFilter(actionName), ContextCompat.RECEIVER_NOT_EXPORTED);
 
       long startTime = System.currentTimeMillis();
       alarmReceiver.setAlarm(sleepDuration, actionName);
@@ -72,7 +73,9 @@ public class AlarmSleepTimer implements SleepTimer {
     private static final String WAKE_UP_THREAD_ACTION = "org.thoughtcrime.securesms.util.AlarmSleepTimer.AlarmReceiver.WAKE_UP_THREAD";
 
     private void setAlarm(long millis, String action) {
-      final Intent        intent        = new Intent(action);
+      final Intent intent = new Intent(action);
+      intent.setPackage(context.getPackageName());
+
       final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
       final AlarmManager  alarmManager  = ServiceUtil.getAlarmManager(context);
 

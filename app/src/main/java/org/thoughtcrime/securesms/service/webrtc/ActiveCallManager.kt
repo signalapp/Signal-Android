@@ -274,7 +274,7 @@ class ActiveCallManager(
 
     @get:RequiresApi(30)
     override val serviceType: Int
-      get() = ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+      get() = ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
 
     private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
     private var notification: Notification? = null

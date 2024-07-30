@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -295,7 +296,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
     };
 
     IntentFilter filter = new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT);
-    registerReceiver(clearKeyReceiver, filter, KeyCachingService.KEY_PERMISSION, null);
+    ContextCompat.registerReceiver(this, clearKeyReceiver, filter, KeyCachingService.KEY_PERMISSION, null, ContextCompat.RECEIVER_NOT_EXPORTED);
   }
 
   private void removeClearKeyReceiver(Context context) {
