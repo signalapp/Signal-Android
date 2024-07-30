@@ -135,7 +135,11 @@ public class Permissions {
     }
 
     public PermissionsBuilder withPermanentDenialDialog(@NonNull String message, @Nullable Runnable onDialogDismissed, int titleRes, int detailsRes, @Nullable FragmentManager fragmentManager) {
-      return onAnyPermanentlyDenied(new SettingsDialogListener(permissionObject.getContext(), message, onDialogDismissed, titleRes, detailsRes, fragmentManager));
+      return withPermanentDenialDialog(message, onDialogDismissed, titleRes, detailsRes, false, fragmentManager);
+    }
+
+    public PermissionsBuilder withPermanentDenialDialog(@NonNull String message, @Nullable Runnable onDialogDismissed, int titleRes, int detailsRes, boolean useExtended, @Nullable FragmentManager fragmentManager) {
+      return onAnyPermanentlyDenied(new SettingsDialogListener(permissionObject.getContext(), message, onDialogDismissed, titleRes, detailsRes, useExtended, fragmentManager));
     }
 
     public PermissionsBuilder onAllGranted(Runnable allGrantedListener) {
@@ -402,14 +406,16 @@ public class Permissions {
     private final int                             titleRes;
     private final int                             detailsRes;
     private final boolean                         useBottomSheet;
+    private final boolean                         useExtended;
 
-    SettingsDialogListener(Context context, String message, @Nullable Runnable onDialogDismissed, int titleRes, int detailsRes, @Nullable FragmentManager fragmentManager) {
+    SettingsDialogListener(Context context, String message, @Nullable Runnable onDialogDismissed, int titleRes, int detailsRes, boolean useExtended, @Nullable FragmentManager fragmentManager) {
       this.message           = message;
       this.context           = new WeakReference<>(context);
       this.onDialogDismissed = onDialogDismissed;
       this.fragmentManager   = new WeakReference<>(fragmentManager);
       this.titleRes          = titleRes;
       this.detailsRes        = detailsRes;
+      this.useExtended       = useExtended;
       this.useBottomSheet    = fragmentManager != null;
     }
 
@@ -420,7 +426,7 @@ public class Permissions {
 
       if (context != null) {
         if (useBottomSheet && fragmentManager != null) {
-          PermissionDeniedBottomSheet.showPermissionFragment(titleRes, detailsRes).show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+          PermissionDeniedBottomSheet.showPermissionFragment(titleRes, detailsRes, useExtended).show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
         } else if (!useBottomSheet){
           new MaterialAlertDialogBuilder(context)
             .setTitle(R.string.Permissions_permission_required)

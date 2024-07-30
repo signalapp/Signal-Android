@@ -1032,7 +1032,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
                    findViewById(R.id.missing_permissions_container).setVisibility(View.GONE);
                  })
                  .onAnyDenied(() -> Toast.makeText(this, R.string.WebRtcCallActivity__signal_needs_camera_access_enable_video, Toast.LENGTH_LONG).show())
-                 .onAnyPermanentlyDenied(() -> showPermissionFragment(R.string.WebRtcCallActivity__allow_access_camera, R.string.WebRtcCallActivity__to_enable_video).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG))
+                 .onAnyPermanentlyDenied(() -> showPermissionFragment(R.string.WebRtcCallActivity__allow_access_camera, R.string.WebRtcCallActivity__to_enable_video, false).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG))
                  .execute();
     }
   }
@@ -1050,7 +1050,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
                    Toast.makeText(this, R.string.WebRtcCallActivity__signal_needs_microphone_start_call, Toast.LENGTH_LONG).show();
                    handleDenyCall();
                  })
-                 .onAnyPermanentlyDenied(() -> showPermissionFragment(R.string.WebRtcCallActivity__allow_access_microphone, R.string.WebRtcCallActivity__to_start_call).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG))
+                 .onAnyPermanentlyDenied(() -> showPermissionFragment(R.string.WebRtcCallActivity__allow_access_microphone, R.string.WebRtcCallActivity__to_start_call, false).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG))
                  .execute();
     }
   }
@@ -1065,11 +1065,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
                  .onAnyResult(() -> isAskingForPermission = false)
                  .onSomePermanentlyDenied(deniedPermissions -> {
                    if (deniedPermissions.containsAll(List.of(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO))) {
-                     showPermissionFragment(R.string.WebRtcCallActivity__allow_access_camera_microphone, R.string.WebRtcCallActivity__to_start_call).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+                     showPermissionFragment(R.string.WebRtcCallActivity__allow_access_camera_microphone, R.string.WebRtcCallActivity__to_start_call, false).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
                    } else if (deniedPermissions.contains(Manifest.permission.CAMERA)) {
-                     showPermissionFragment(R.string.WebRtcCallActivity__allow_access_camera, R.string.WebRtcCallActivity__to_enable_video).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+                     showPermissionFragment(R.string.WebRtcCallActivity__allow_access_camera, R.string.WebRtcCallActivity__to_enable_video, false).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
                    } else {
-                     showPermissionFragment(R.string.WebRtcCallActivity__allow_access_microphone, R.string.WebRtcCallActivity__to_start_call).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+                     showPermissionFragment(R.string.WebRtcCallActivity__allow_access_microphone, R.string.WebRtcCallActivity__to_start_call, false).show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
                    }
                  })
                  .onAllGranted(onGranted)

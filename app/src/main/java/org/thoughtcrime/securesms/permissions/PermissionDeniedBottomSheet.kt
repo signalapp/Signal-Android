@@ -39,16 +39,20 @@ private const val PLACEHOLDER = "__RADIO_BUTTON_PLACEHOLDER__"
  */
 class PermissionDeniedBottomSheet private constructor() : ComposeBottomSheetDialogFragment() {
 
+  override val peekHeightPercentage: Float = 0.66f
+
   companion object {
     private const val ARG_TITLE = "argument.title_res"
     private const val ARG_SUBTITLE = "argument.subtitle_res"
+    private const val ARG_USE_EXTENDED = "argument.use.extended"
 
     @JvmStatic
-    fun showPermissionFragment(titleRes: Int, subtitleRes: Int): ComposeBottomSheetDialogFragment {
+    fun showPermissionFragment(titleRes: Int, subtitleRes: Int, useExtended: Boolean = false): ComposeBottomSheetDialogFragment {
       return PermissionDeniedBottomSheet().apply {
         arguments = bundleOf(
           ARG_TITLE to titleRes,
-          ARG_SUBTITLE to subtitleRes
+          ARG_SUBTITLE to subtitleRes,
+          ARG_USE_EXTENDED to useExtended
         )
       }
     }
@@ -59,6 +63,7 @@ class PermissionDeniedBottomSheet private constructor() : ComposeBottomSheetDial
     PermissionDeniedSheetContent(
       titleRes = remember { requireArguments().getInt(ARG_TITLE) },
       subtitleRes = remember { requireArguments().getInt(ARG_SUBTITLE) },
+      useExtended = remember { requireArguments().getBoolean(ARG_USE_EXTENDED) },
       onSettingsClicked = this::goToSettings
     )
   }
@@ -85,6 +90,7 @@ private fun PermissionDeniedSheetContentPreview() {
 private fun PermissionDeniedSheetContent(
   titleRes: Int,
   subtitleRes: Int,
+  useExtended: Boolean = false,
   onSettingsClicked: () -> Unit
 ) {
   Column(
@@ -119,9 +125,18 @@ private fun PermissionDeniedSheetContent(
       modifier = Modifier.padding(bottom = 24.dp)
     )
 
-    val step2String = stringResource(id = R.string.PermissionDeniedBottomSheet__2_allow_permission, PLACEHOLDER)
-    val (step2Text, step2InlineContent) = remember(step2String) {
-      val parts = step2String.split(PLACEHOLDER)
+    if (useExtended) {
+      Text(
+        text = stringResource(R.string.PermissionDeniedBottomSheet__2_tap_permissions),
+        color = MaterialTheme.colorScheme.onSurface,
+        modifier = Modifier.padding(bottom = 24.dp)
+      )
+    }
+
+    val stringId = if (useExtended) R.string.PermissionDeniedBottomSheet__3_allow_permission else R.string.PermissionDeniedBottomSheet__2_allow_permission
+    val stepString = stringResource(id = stringId, PLACEHOLDER)
+    val (stepText, stepInlineContent) = remember(stepString) {
+      val parts = stepString.split(PLACEHOLDER)
       val annotatedString = buildAnnotatedString {
         append(parts[0])
         appendInlineContent("radio")
@@ -142,8 +157,8 @@ private fun PermissionDeniedSheetContent(
     }
 
     Text(
-      text = step2Text,
-      inlineContent = step2InlineContent,
+      text = stepText,
+      inlineContent = stepInlineContent,
       color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier.padding(bottom = 32.dp)
     )

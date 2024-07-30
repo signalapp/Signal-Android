@@ -55,7 +55,7 @@ public class MediaRepository {
    * Retrieves a list of folders that contain media.
    */
   public void getFolders(@NonNull Context context, @NonNull Callback<List<MediaFolder>> callback) {
-    if (!StorageUtil.canReadFromMediaStore()) {
+    if (!StorageUtil.canReadAnyFromMediaStore()) {
       Log.w(TAG, "No storage permissions!", new Throwable());
       callback.onComplete(Collections.emptyList());
       return;
@@ -69,7 +69,7 @@ public class MediaRepository {
    */
   public Single<List<Media>> getRecentMedia() {
     return Single.<List<Media>>fromCallable(() -> {
-                   if (!StorageUtil.canReadFromMediaStore()) {
+                   if (!StorageUtil.canReadAnyFromMediaStore()) {
                      Log.w(TAG, "No storage permissions!", new Throwable());
                      return Collections.emptyList();
                    }
@@ -87,7 +87,7 @@ public class MediaRepository {
    * Retrieves a list of media items (images and videos) that are present int he specified bucket.
    */
   public void getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Callback<List<Media>> callback) {
-    if (!StorageUtil.canReadFromMediaStore()) {
+    if (!StorageUtil.canReadAnyFromMediaStore()) {
       Log.w(TAG, "No storage permissions!", new Throwable());
       callback.onComplete(Collections.emptyList());
       return;
@@ -106,7 +106,7 @@ public class MediaRepository {
       return;
     }
 
-    if (!StorageUtil.canReadFromMediaStore()) {
+    if (!StorageUtil.canReadAnyFromMediaStore()) {
       Log.w(TAG, "No storage permissions!", new Throwable());
       callback.onComplete(media);
       return;
@@ -117,7 +117,7 @@ public class MediaRepository {
   }
 
   void getMostRecentItem(@NonNull Context context, @NonNull Callback<Optional<Media>> callback) {
-    if (!StorageUtil.canReadFromMediaStore()) {
+    if (!StorageUtil.canReadAnyFromMediaStore()) {
       Log.w(TAG, "No storage permissions!", new Throwable());
       callback.onComplete(Optional.empty());
       return;

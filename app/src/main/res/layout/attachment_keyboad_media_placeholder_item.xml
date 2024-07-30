@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<org.thoughtcrime.securesms.components.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:viewBindingIgnore="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="12dp"
+    app:square_height="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Signal.Text.BodyMedium"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:paddingBottom="8dp"
+        app:autoSizeMaxTextSize="14sp"
+        app:autoSizeMinTextSize="4sp"
+        app:autoSizeTextType="uniform"
+        android:text="@string/AttachmentKeyboard_signal_has_limited_access" />
+
+</org.thoughtcrime.securesms.components.SquareFrameLayout>

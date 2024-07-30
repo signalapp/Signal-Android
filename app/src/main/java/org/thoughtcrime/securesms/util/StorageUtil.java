@@ -110,8 +110,16 @@ public class StorageUtil {
            Permissions.hasAll(AppDependencies.getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
   }
 
-  public static boolean canReadFromMediaStore() {
+  public static boolean canReadAnyFromMediaStore() {
     return Permissions.hasAny(AppDependencies.getApplication(), PermissionCompat.forImagesAndVideos());
+  }
+
+  public static boolean canOnlyReadSelectedMediaStore() {
+    return Build.VERSION.SDK_INT >= 34 && Permissions.hasAll(AppDependencies.getApplication(), Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED);
+  }
+
+  public static boolean canReadAllFromMediaStore() {
+    return Permissions.hasAll(AppDependencies.getApplication(), PermissionCompat.forImagesAndVideos());
   }
 
   public static @NonNull Uri getVideoUri() {

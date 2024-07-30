@@ -27,6 +27,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/attachment_keyboard_manage_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="104dp"
+            android:minHeight="36dp"
+            app:layout_constraintBottom_toBottomOf="@id/attachment_keyboard_media_list"
+            app:layout_constraintEnd_toEndOf="@id/attachment_keyboard_media_list"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp"
+            app:iconPadding="0dp"
+            style="@style/Signal.Widget.Button.Large.Tonal"
+            android:text="@string/AttachmentKeyboard_manage"
+            android:maxLines="1"
+            android:visibility="gone"
+            app:icon="@drawable/symbol_settings_android_24" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/attachment_keyboard_button_list"
             android:layout_width="match_parent"

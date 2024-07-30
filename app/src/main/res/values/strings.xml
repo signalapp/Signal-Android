@@ -89,6 +89,20 @@
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Allow Access</string>
     <string name="AttachmentKeyboard_payment">Payment</string>
+    <!-- Text in a button that allows users to manage which media Signal has access to -->
+    <string name="AttachmentKeyboard_manage">Manage</string>
+    <!-- Option in menu to select more photos that Signal will have access to -->
+    <string name="AttachmentKeyboard_select_more_photos">Select more photos</string>
+    <!-- Option in menu to go to settings -->
+    <string name="AttachmentKeyboard_go_to_settings">Go to Settings</string>
+    <!-- Text explaining that Signal has limited access to photos -->
+    <string name="AttachmentKeyboard_signal_has_limited_access">Signal has limited access to photos or videos</string>
+    <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
+    <string name="AttachmentKeyboard_no_photos_found">No photos found, select photos and videos to appear here or change permissions</string>
+
+    <!-- MediaGalleryFragment -->
+    <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
+    <string name="MediaGalleryFragment__no_photos_found">No photos or videos found. Signal only has access to photos and videos you selected.</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
@@ -109,7 +123,7 @@
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">To show photos and videos:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Signal needs storage access to show your photos and videos.</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Signal needs access to show your photos and videos.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
@@ -3734,6 +3748,10 @@
     <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
     <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %s Allow the permission</string>
+    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
+    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Tap “Permissions”</string>
+    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Allow the “Photos and videos” permission</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">Settings</string>
 

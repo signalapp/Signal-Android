@@ -29,7 +29,7 @@ class MediaCaptureRepository(context: Context) {
   private val context: Context = context.applicationContext
 
   fun getMostRecentItem(callback: (Media?) -> Unit) {
-    if (!StorageUtil.canReadFromMediaStore()) {
+    if (!StorageUtil.canReadAnyFromMediaStore()) {
       Log.w(TAG, "Cannot read from storage.")
       callback(null)
       return
