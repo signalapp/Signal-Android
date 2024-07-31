@@ -22,4 +22,8 @@ value class MediaName(val name: String) {
   fun toByteArray(): ByteArray {
     return name.toByteArray()
   }
+
+  override fun toString(): String {
+    return name
+  }
 }
