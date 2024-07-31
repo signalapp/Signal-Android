@@ -3000,6 +3000,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     if (editedMessage != null) {
       contentValues.put(ORIGINAL_MESSAGE_ID, editedMessage.getOriginalOrOwnMessageId().id)
       contentValues.put(REVISION_NUMBER, editedMessage.revisionNumber + 1)
+      contentValues.put(EXPIRE_STARTED, editedMessage.expireStarted)
     } else {
       contentValues.putNull(ORIGINAL_MESSAGE_ID)
     }
