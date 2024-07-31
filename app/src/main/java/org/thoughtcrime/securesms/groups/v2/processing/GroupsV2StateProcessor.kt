@@ -325,7 +325,7 @@ class GroupsV2StateProcessor private constructor(
       if (updatedGroupState == null || updatedGroupState == remoteGroupStateDiff.previousGroupState) {
         Log.i(TAG, "$logPrefix Local state is at or later than server revision: ${currentLocalState?.revision ?: "null"}")
 
-        if (currentLocalState != null) {
+        if (currentLocalState != null && applyGroupStateDiffResult.remainingRemoteGroupChanges.isEmpty()) {
           val endorsements = groupOperations.receiveGroupSendEndorsements(serviceIds.aci, currentLocalState, remoteGroupStateDiff.groupSendEndorsementsResponse)
 
           if (endorsements != null) {

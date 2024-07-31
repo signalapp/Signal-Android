@@ -1057,6 +1057,11 @@ public final class GroupsV2Operations {
 
       List<ACI> members = decryptedGroup.members.stream().map(m -> ACI.parseOrThrow(m.aciBytes)).collect(Collectors.toList());
 
+      if (!members.contains(selfAci)) {
+        Log.w(TAG, "Attempting to receive endorsements for group state we aren't in, aborting");
+        return null;
+      }
+
       GroupSendEndorsementsResponse.ReceivedEndorsements endorsements = null;
       try {
         endorsements = groupSendEndorsementsResponse.receive(
