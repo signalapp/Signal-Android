@@ -392,7 +392,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getArchiveMediaItemsPage(backupKey, credential, limit, cursor)
+        api.getArchiveMediaItemsPage(backupKey, SignalStore.account.requireAci(), credential, limit, cursor)
       }
   }
 
@@ -402,7 +402,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getBackupInfo(backupKey, credential)
+        api.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential)
           .map { it.usedSpace }
       }
   }
@@ -431,12 +431,12 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getBackupInfo(backupKey, credential)
+        api.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential)
           .map { it to credential }
       }
       .then { pair ->
         val (info, credential) = pair
-        api.debugGetUploadedMediaItemMetadata(backupKey, credential)
+        api.debugGetUploadedMediaItemMetadata(backupKey, SignalStore.account.requireAci(), credential)
           .also { Log.i(TAG, "MediaItemMetadataResult: $it") }
           .map { mediaObjects ->
             BackupMetadata(
@@ -458,7 +458,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getMessageBackupUploadForm(backupKey, credential)
+        api.getMessageBackupUploadForm(backupKey, SignalStore.account.requireAci(), credential)
           .also { Log.i(TAG, "UploadFormResult: $it") }
       }
       .then { form ->
@@ -480,7 +480,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getBackupInfo(backupKey, credential)
+        api.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential)
       }
       .then { info -> getCdnReadCredentials(info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
       .map { pair ->
@@ -496,7 +496,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getBackupInfo(backupKey, credential)
+        api.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential)
       }
       .then { info -> getCdnReadCredentials(info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
       .then { pair ->
@@ -517,7 +517,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.debugGetUploadedMediaItemMetadata(backupKey, credential)
+        api.debugGetUploadedMediaItemMetadata(backupKey, SignalStore.account.requireAci(), credential)
       }
   }
 
@@ -530,7 +530,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getMediaUploadForm(backupKey, credential)
+        api.getMediaUploadForm(backupKey, SignalStore.account.requireAci(), credential)
       }
       .then { form ->
         api.getResumableUploadSpec(form, secretKey)
@@ -546,6 +546,7 @@ object BackupRepository {
       .then { credential ->
         api.archiveAttachmentMedia(
           backupKey = backupKey,
+          aci = SignalStore.account.requireAci(),
           serviceCredential = credential,
           item = request
         )
@@ -563,6 +564,7 @@ object BackupRepository {
         api
           .archiveAttachmentMedia(
             backupKey = backupKey,
+            aci = SignalStore.account.requireAci(),
             serviceCredential = credential,
             item = request
           )
@@ -596,6 +598,7 @@ object BackupRepository {
         api
           .archiveAttachmentMedia(
             backupKey = backupKey,
+            aci = SignalStore.account.requireAci(),
             serviceCredential = credential,
             items = requests
           )
@@ -637,6 +640,7 @@ object BackupRepository {
       .then { credential ->
         api.deleteArchivedMedia(
           backupKey = backupKey,
+          aci = SignalStore.account.requireAci(),
           serviceCredential = credential,
           mediaToDelete = mediaToDelete
         )
@@ -668,6 +672,7 @@ object BackupRepository {
       .then { credential ->
         api.deleteArchivedMedia(
           backupKey = backupKey,
+          aci = SignalStore.account.requireAci(),
           serviceCredential = credential,
           mediaToDelete = mediaToDelete
         )
@@ -697,6 +702,7 @@ object BackupRepository {
             .then { credential ->
               api.deleteArchivedMedia(
                 backupKey = backupKey,
+                aci = SignalStore.account.requireAci(),
                 serviceCredential = credential,
                 mediaToDelete = mediaToDelete
               )
@@ -726,6 +732,7 @@ object BackupRepository {
         api.getCdnReadCredentials(
           cdnNumber = cdnNumber,
           backupKey = backupKey,
+          aci = SignalStore.account.requireAci(),
           serviceCredential = credential
         )
       }
@@ -781,7 +788,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getBackupInfo(backupKey, credential).map {
+        api.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential).map {
           SignalStore.backup.usedBackupMediaSpace = it.usedSpace ?: 0L
           BackupDirectories(it.backupDir!!, it.mediaDir!!)
         }
@@ -883,7 +890,7 @@ object BackupRepository {
       return api
         .triggerBackupIdReservation(backupKey)
         .then { getAuthCredential() }
-        .then { credential -> api.setPublicKey(backupKey, credential).map { credential } }
+        .then { credential -> api.setPublicKey(backupKey, SignalStore.account.requireAci(), credential).map { credential } }
         .runIfSuccessful { SignalStore.backup.backupsInitialized = true }
         .runOnStatusCodeError(resetInitializedStateErrorAction)
     }

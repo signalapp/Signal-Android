@@ -5,6 +5,8 @@
 
 package org.whispersystems.signalservice.api.backup
 
+import org.signal.libsignal.protocol.ecc.Curve
+import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.protocol.kdf.HKDF
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 
@@ -16,12 +18,18 @@ class BackupKey(val value: ByteArray) {
     require(value.size == 32) { "Backup key must be 32 bytes!" }
   }
 
+  /**
+   * Identifies a the location of a user's backup.
+   */
   fun deriveBackupId(aci: ACI): BackupId {
     return BackupId(
       HKDF.deriveSecrets(this.value, aci.toByteArray(), "20231003_Signal_Backups_GenerateBackupId".toByteArray(), 16)
     )
   }
 
+  /**
+   * The cryptographic material used to encrypt a backup.
+   */
   fun deriveBackupSecrets(aci: ACI): BackupKeyMaterial {
     val backupId = deriveBackupId(aci)
 
@@ -32,6 +40,14 @@ class BackupKey(val value: ByteArray) {
       macKey = extendedKey.copyOfRange(0, 32),
       cipherKey = extendedKey.copyOfRange(32, 64)
     )
+  }
+
+  /**
+   * The private key used to generate anonymous credentials when interacting with the backup service.
+   */
+  fun deriveAnonymousCredentialPrivateKey(aci: ACI): ECPrivateKey {
+    val material = HKDF.deriveSecrets(this.value, aci.toByteArray(), "20231003_Signal_Backups_GenerateBackupIdKeyPair".toByteArray(), 32)
+    return Curve.decodePrivatePoint(material)
   }
 
   fun deriveMediaId(mediaName: MediaName): MediaId {
