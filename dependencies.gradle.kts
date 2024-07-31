@@ -26,7 +26,7 @@ dependencyResolutionManagement {
       library("android-application", "com.android.application", "com.android.application.gradle.plugin").versionRef("android-gradle-plugin")
 
       // Compose
-      library("androidx-compose-bom", "androidx.compose:compose-bom:2024.04.00")
+      library("androidx-compose-bom", "androidx.compose:compose-bom:2023.10.01")
       library("androidx-compose-material3", "androidx.compose.material3", "material3").withoutVersion()
       library("androidx-compose-ui-tooling-preview", "androidx.compose.ui", "ui-tooling-preview").withoutVersion()
       library("androidx-compose-ui-tooling-core", "androidx.compose.ui", "ui-tooling").withoutVersion()
@@ -55,7 +55,7 @@ dependencyResolutionManagement {
       library("androidx-core-ktx", "androidx.core:core-ktx:1.12.0")
       library("androidx-fragment-ktx", "androidx.fragment", "fragment-ktx").versionRef("androidx-fragment")
       library("androidx-fragment-testing", "androidx.fragment", "fragment-testing").versionRef("androidx-fragment")
-      library("androidx-annotation", "androidx.annotation:annotation:1.8.0")
+      library("androidx-annotation", "androidx.annotation:annotation:1.4.0")
       library("androidx-constraintlayout", "androidx.constraintlayout:constraintlayout:2.1.4")
       library("androidx-window-window", "androidx.window", "window").versionRef("androidx-window")
       library("androidx-window-java", "androidx.window", "window-java").versionRef("androidx-window")
