@@ -573,8 +573,17 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   private void initializePictureInPictureParams() {
     if (isSystemPipEnabledAndAvailable()) {
+      final Orientation orientation = resolveOrientationFromContext();
+      final Rational    aspectRatio;
+
+      if (orientation == PORTRAIT_BOTTOM_EDGE) {
+        aspectRatio = new Rational(9, 16);
+      } else {
+        aspectRatio = new Rational(16, 9);
+      }
+
       pipBuilderParams = new PictureInPictureParams.Builder();
-      pipBuilderParams.setAspectRatio(new Rational(9, 16));
+      pipBuilderParams.setAspectRatio(aspectRatio);
       if (Build.VERSION.SDK_INT >= 31) {
         pipBuilderParams.setAutoEnterEnabled(true);
       }
