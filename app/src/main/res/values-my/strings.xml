@@ -229,12 +229,12 @@
     </plurals>
     <!-- Unknown people row, placeholder is the number of unknown people in the call -->
     <plurals name="CallInfoView__plus_d_people">
-        <item quantity="other">+%1$d people</item>
+        <item quantity="other">+%1$d ဦး</item>
     </plurals>
     <!-- Unknown people row icon content description -->
-    <string name="CallInfoView__more_information">အကျယ်ချဲ့ပါ</string>
+    <string name="CallInfoView__more_information">နောက်ထပ်အချက်အလက်</string>
     <!-- Unknown people row info dialog message -->
-    <string name="CallInfoView__before_joining_a_call">Before joining a call you can only see the names of phone contacts, people you\'re in a group with, or people you\'ve chatted with 1:1. You\'ll see all names and photos once you\'ve joined the call.</string>
+    <string name="CallInfoView__before_joining_a_call">ခေါ်ဆိုမှုတစ်ခုတွင် မပါဝင်မီ ဖုန်းအဆက်အသွယ်များ၊ သင်နှင့်အတူအုပ်စုဖွဲ့ထားသူများ သို့မဟုတ် သင်နှင့် 1:1 ချက်(တ်)ထားသည့် လူများ၏ အမည်များကိုသာ မြင်တွေ့နိုင်သည်။ ခေါ်ဆိုမှုတွင် ပါဝင်ပြီးသည်နှင့် အမည်များနှင့် ဓာတ်ပုံများအားလုံးကို မြင်တွေ့ရမည်ဖြစ်သည်။</string>
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">ရပြီ</string>
 
@@ -773,11 +773,11 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__create_backup">အရံသိမ်ဆည်းမှု ပြုလုပ်မည်</string>
+    <string name="CreateBackupBottomSheet__create_backup">ဘက်ခ်အပ် ဖန်တီးမည်</string>
     <!-- Bottom sheet message -->
-    <string name="CreateBackupBottomSheet__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the backup takes place.</string>
+    <string name="CreateBackupBottomSheet__depending_on_the_size">သင်၏ ဘက်ခ်အပ်အရွယ်အစားပေါ် မူတည်၍ အချိန်ကြာမြင့်နိုင်သည်။ ဘက်ခ်အပ်လုပ်နေစဉ်တွင် သင်သည် ပုံမှန်အတိုင်း သင့်ဖုန်းကို အသုံးပြုနိုင်သည်။</string>
     <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Back up later</string>
+    <string name="CreateBackupBottomSheet__back_up_later">ဘက်ခ်အပ် နောက်မှလုပ်မည်</string>
     <!-- Action button to dismiss sheet and back up now -->
     <string name="CreateBackupBottomSheet__back_up_now">ဘက်ခ်အပ် အခုလုပ်မည်</string>
 
@@ -1087,7 +1087,7 @@
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal တွင် ပြဿနာတစ်ခု ဖြစ်ပေါ်နေပါသည်။ ပြစ်ချက်မှတ်တမ်း ပေးပို့မည်လား။</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
-    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">You may not be receiving messages. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">သင်သည် မက်ဆေ့ချ်များ လက်ခံရရှိမည်မဟုတ်ပါ။ ပြစ်ချက်မှတ်တမ်း ပေးပို့မည်လား။</string>
 
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
@@ -1105,9 +1105,9 @@
     <string name="DeviceSpecificNotificationBottomSheet__continue">ဆက်လုပ်ရန်</string>
 
     <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_title">You may not be receiving messages</string>
+    <string name="ConnectivityWarningBottomSheet_title">သင်သည် မက်ဆေ့ချ်များ လက်ခံရရှိမည်မဟုတ်ပါ</string>
     <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_body">Restarting your device may help solve the message delivery issue. If this problem continues, contact Signal support.</string>
+    <string name="ConnectivityWarningBottomSheet_body">သင့်စက်ကို ပြန်လည်စတင်ခြင်းသည် မက်ဆေ့ချ်ပေးပို့ခြင်းပြဿနာကို ဖြေရှင်းရာတွင် အထောက်အကူဖြစ်စေပါသည်။ ဤပြဿနာဆက်လက်ရှိနေပါက Signal ပံ့ပိုးမှုသို့ ဆက်သွယ်ပါ။</string>
     <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
     <string name="ConnectivityWarningBottomSheet_dismiss_button">ရပြီ</string>
 
@@ -1202,9 +1202,9 @@
 
     <!-- MoreTransferOrRestoreOptionsSheet -->
     <!-- Row title for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Android စက်မှ လွှဲပြောင်းမယ်</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Android စက်မှ လွှဲပြောင်းမည်</string>
     <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Transfer your account and messages from your old Android device.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">သင့်အကောင့်နှင့် မက်ဆေ့ချ်များကို သင့် Android စက်ဟောင်းမှ လွှဲပြောင်းပါ။</string>
     <!-- Row title for logging in without transfer -->
     <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">လွှဲပြောင်းခြင်းမရှိဘဲ ဝင်ရောက်ခြင်း</string>
     <!-- Row description for logging in without transfer -->
@@ -1212,31 +1212,31 @@
     <!-- Row title for restoring from local backup -->
     <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">စက်အတွင်း ဘက်ခ်အပ် ပြုလုပ်ခြင်း</string>
     <!-- Row description for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Restore your messages from a backup file you saved on your device.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">သင့်စက်ပေါ်တွင် သင်သိမ်းဆည်းထားသော ဘက်ခ်အပ်ဖိုင်တစ်ခုမှ မက်ဆေ့ချ်များကို ပြန်လည်ရယူပါ။</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Downloading backup…</string>
+    <string name="RemoteRestoreActivity__downloading_backup">ဘက်ခ်အပ်များကို ဒေါင်းလုဒ်လုပ်နေသည်…</string>
     <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Restoring messages…</string>
+    <string name="RemoteRestoreActivity__restoring_messages">မက်ဆေ့ချ်များကို ပြန်လည်ရယူနေသည်..</string>
     <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Restoring…</string>
+    <string name="RemoteRestoreActivity__restoring">ပြန်လည်ရယူနေသည်…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s of %2$s (%3$s)</string>
+    <string name="RemoteRestoreActivity__s_of_s_s">%2$s မှ %1$s (%3$s)</string>
     <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">All of your media</string>
+    <string name="RemoteRestoreActivity__all_of_your_media">သင်၏မီဒီယာအားလုံး</string>
     <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Your last %1$d days of media</string>
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">သင်၏ နောက်ဆုံးမီဒီယာ %1$d ရက်</string>
     <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">All of your messages</string>
+    <string name="RemoteRestoreActivity__all_of_your_messages">သင်၏ မက်ဆေ့ချ်များအားလုံး</string>
     <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">နောက်ခံအရန်မှ ပြန်လည်ရယူမယ်</string>
+    <string name="RemoteRestoreActivity__restore_from_backup">ဘက်ခ်အပ်မှ ပြန်လည်ရယူမည်</string>
     <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">Only media sent or received in the past %1$d days is included.</string>
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">လွန်ခဲ့သော %1$d ရက်အတွင်း ပေးပို့ထားသည့် သို့မဟုတ် လက်ခံရရှိသည့် မီဒီယာများသာ ပါဝင်ပါသည်။</string>
     <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Your backup includes:</string>
+    <string name="RemoteRestoreActivity__your_backup_includes">သင့် ဘက်ခ်အပ်တွင် အောက်ပါတို့ပါဝင်သည်-</string>
     <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">အရန်သိမ်းထားသည်များကို ပြန်ရယူမယ်</string>
+    <string name="RemoteRestoreActivity__restore_backup">ဘက်ခ်အပ်မှ ပြန်လည်ရယူမည်</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">မန်းရှင်းများရှိလျှင် ကျွန်ုပ်ကိုအသိပေးပါ</string>
@@ -5370,7 +5370,7 @@
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
     <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">ဤငွေပေးချေမှုကို အကောင့်ပိုင်ရှင်က ရုပ်သိမ်းလိုက်ပြီး ဆောင်ရွက်၍မရနိုင်ပါ။ သင့်ထံမှ ငွေကောက်ခံခြင်း မရှိခဲ့ပါ။</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
-    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">ဤငွေပေးချေမှုကို စီမံဆောင်ရွက်နေစဉ် အမှားအယွင်းတစ်ခု ဖြစ်သွားပါသည်၊ ထပ်မံကြိုးစားပေးပါ။</string>
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">ဤငွေပေးချေမှုကို စီမံဆောင်ရွက်နေစဉ် ချို့ယွင်းချက်တစ်ခု ဖြစ်သွားပါသည်၊ ထပ်မံကြိုးစားပေးပါ။</string>
 
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">လှူဒါန်းမှု စီမံလုပ်ဆောင်ရာတွင် ချို့ယွင်းချက်ရှိသည်</string>
@@ -7010,7 +7010,7 @@
     <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
     <string name="BackupsTypeSettingsFragment__s_month_renews_s">တစ်လလျှင် %1$s · %2$s တွင် သက်တမ်းတိုးမည်</string>
     <!-- Row title to change or cancel subscription -->
-    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Change or cancel subscription</string>
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">ပုံမှန်လှူဒါန်းငွေကို ပြောင်းရန် သို့မဟုတ် ပယ်ဖျက်ရန်</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7117,19 +7117,19 @@
 
     <!-- MessageBackupsCheckoutSheet -->
     <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Pay %1$s/month to Signal</string>
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Signal သို့ တစ်လလျှင် %1$s ပေးရန်</string>
     <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">You\'ll get:</string>
+    <string name="MessageBackupsCheckoutSheet__youll_get">သင်ရမည့်အရာများ-</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media and using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">သင့်မက်ဆေ့ချ်များနှင့် မီဒီယာများကို ဘက်ခ်အပ်ပြုလုပ်ပြီး Signal ၏ လုံခြုံသော ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ထားသည့် သိုလှောင်ရေးဝန်ဆောင်မှုကို အသုံးပြုပါ။ ဖုန်းအသစ်တစ်ခုရသောအခါ သို့မဟုတ် Signal ကို ပြန်လည်ထည့်သွင်းသည့်အခါ မက်ဆေ့ချ်ဘယ်သောအခါမျှ မဆုံးရှုံးပါ။</string>
     <!-- Backups feature label for e2e encryption -->
-    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">End-to-end Encrypted</string>
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ထားသည်</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
-    <string name="MessageBackupsEducationScreen__optional_always">Optional, always</string>
+    <string name="MessageBackupsEducationScreen__optional_always">အမြဲတမ်း ရွေးချယ်နိုင်သည်</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
-    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Delete your backup anytime</string>
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">သင်၏ဘက်ခ်အပ်ကို အချိန်မရွေး ဖျက်နိုင်သည်</string>
     <!-- Action button label to proceed with backups activation -->
     <string name="MessageBackupsEducationScreen__enable_backups">ဘက်ခ်အပ် လုပ်ဆောင်မည်</string>
     <!-- Action button label to learn more -->
@@ -7139,7 +7139,7 @@
     <!-- Screen title -->
     <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">သင်၏ ပင်နံပါတ် ကိုထည့်ပါ</string>
     <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Enter your Signal PIN to enable backups</string>
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">ဘက်ခ်အပ်များကိုဖွင့်ရန် သင်၏ Signal PIN ကိုထည့်ပါ</string>
     <!-- Action button to confirm pin entry and continue -->
     <string name="MessageBackupsPinConfirmationScreen__next">ဆက်သွားမည်</string>
     <!-- Action button to switch keyboard type -->
@@ -7147,21 +7147,21 @@
 
     <!-- MessageBackupsPinEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PINs protect your backup</string>
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">ပင်နံပါတ်များသည် သင်၏ ဘက်ခ်အပ်ကို ကာကွယ်ပေးသည်</string>
     <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Your Signal PIN lets you restore your backup when you re-install Signal. We recommend using a PIN that\'s at least %1$d digits.</string>
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Signal ကို ပြန်လည်ထည့်သွင်းသောအခါ သင်၏ Signal PIN သည် သင့်ဘက်ခ်အပ်ကို ပြန်လည်ရယူနိုင်သည်။ အနည်းဆုံး ဂဏန်း %1$d လုံးရှိသည့် ပင်နံပါတ်ကို အသုံးပြုရန် အကြံပြုပါသည်။</string>
     <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">If you forget your PIN, you will not be able to restore your backup. You can change your PIN at any time in settings.</string>
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">သင့် PIN ကို မေ့သွားပါက သင်၏ဘက်ခ်အပ်ကို ပြန်လည်ရယူနိုင်တော့မည် မဟုတ်ပါ။ ဆက်တင်တွင် သင်၏ PIN ကို အချိန်မရွေး ပြောင်းနိုင်သည်။</string>
     <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Use current Signal PIN</string>
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">လက်ရှိ Signal PIN ကိုသုံးပါ</string>
     <!-- Action button to create a new pin -->
     <string name="MessageBackupsPinEducationScreen__create_new_pin">ပင်နံပါတ်အသစ်ဖန်တီးပါ</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
-    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Choose your backup plan</string>
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">ဘက်ခ်အပ်အစီအစဉ်ကို ရွေးပါ</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">All backups are end-to-end encrypted. Signal is a non-profit—paying for backups helps support our mission.</string>
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">ဘက်ခ်အပ်အားလုံးကို ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ထားသည်။ Signal သည် အကျိုးအမြတ်မယူပါ— ဘက်ခ်အပ်များအတွက် ပေးဆောင်ခြင်းသည် ကျွန်ုပ်တို့၏မစ်ရှင်ကို ထောက်အကူဖြစ်စေပါသည်။</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__read_more">ပိုမိုဖတ်ရှုရန်</string>
     <!-- Primary action button label when selecting a backup tier without a current selection -->

@@ -232,15 +232,15 @@
     </plurals>
     <!-- Unknown people row, placeholder is the number of unknown people in the call -->
     <plurals name="CallInfoView__plus_d_people">
-        <item quantity="one">+%1$d person</item>
-        <item quantity="two">+%1$d people</item>
-        <item quantity="few">+%1$d people</item>
-        <item quantity="other">+%1$d people</item>
+        <item quantity="one">%1$d oseba</item>
+        <item quantity="two">%1$d osebi</item>
+        <item quantity="few">%1$d osebe</item>
+        <item quantity="other">%1$d oseb</item>
     </plurals>
     <!-- Unknown people row icon content description -->
     <string name="CallInfoView__more_information">Več informacij</string>
     <!-- Unknown people row info dialog message -->
-    <string name="CallInfoView__before_joining_a_call">Before joining a call you can only see the names of phone contacts, people you\'re in a group with, or people you\'ve chatted with 1:1. You\'ll see all names and photos once you\'ve joined the call.</string>
+    <string name="CallInfoView__before_joining_a_call">Preden se pridružite klicu, lahko vidite le imena telefonskih stikov, ljudi, s katerimi ste v skupini, ali ljudi, s katerimi ste klepetali ena na ena. Ko se boste pridružili klicu, boste videli vsa imena in fotografije.</string>
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">Razumem</string>
 
@@ -835,9 +835,9 @@
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__create_backup">Ustvari varnostno kopijo</string>
     <!-- Bottom sheet message -->
-    <string name="CreateBackupBottomSheet__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the backup takes place.</string>
+    <string name="CreateBackupBottomSheet__depending_on_the_size">Glede na velikost varnostne kopije lahko to traja zelo dolgo. Med varnostnim kopiranjem lahko telefon uporabljate kot običajno.</string>
     <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Back up later</string>
+    <string name="CreateBackupBottomSheet__back_up_later">Varnostno kopijo izdelaj pozneje</string>
     <!-- Action button to dismiss sheet and back up now -->
     <string name="CreateBackupBottomSheet__back_up_now">Izdelaj varnostno kopijo</string>
 
@@ -1189,7 +1189,7 @@
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal je naletel na težavo. Želite poslati sistemsko zabeležbo?</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
-    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">You may not be receiving messages. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">Morda ne prejemate sporočil. Želite poslati sistemsko zabeležbo?</string>
 
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
@@ -1207,9 +1207,9 @@
     <string name="DeviceSpecificNotificationBottomSheet__continue">Nadaljuj</string>
 
     <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_title">You may not be receiving messages</string>
+    <string name="ConnectivityWarningBottomSheet_title">Morda ne prejemate sporočil</string>
     <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_body">Restarting your device may help solve the message delivery issue. If this problem continues, contact Signal support.</string>
+    <string name="ConnectivityWarningBottomSheet_body">Ponovni zagon naprave lahko pomaga rešiti težavo z dostavo sporočil. Če se ta težava nadaljuje, se obrnite na Signalovo podporo.</string>
     <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
     <string name="ConnectivityWarningBottomSheet_dismiss_button">Razumem</string>
 
@@ -1316,9 +1316,9 @@
 
     <!-- MoreTransferOrRestoreOptionsSheet -->
     <!-- Row title for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Prenos iz druge androidne naprave</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Prenos iz druge naprave Android</string>
     <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Transfer your account and messages from your old Android device.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Prenesite račun in sporočila iz stare naprave Android.</string>
     <!-- Row title for logging in without transfer -->
     <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">Prijava brez prenosa</string>
     <!-- Row description for logging in without transfer -->
@@ -1326,29 +1326,29 @@
     <!-- Row title for restoring from local backup -->
     <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">Obnovitev lokalne varnostne kopije</string>
     <!-- Row description for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Restore your messages from a backup file you saved on your device.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Obnovite sporočila iz varnostne kopije, ki ste jo shranili v napravo.</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Downloading backup…</string>
+    <string name="RemoteRestoreActivity__downloading_backup">Prenos varnostne kopije …</string>
     <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Restoring messages…</string>
+    <string name="RemoteRestoreActivity__restoring_messages">Obnovitev sporočil …</string>
     <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Restoring…</string>
+    <string name="RemoteRestoreActivity__restoring">Obnavljanje …</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s of %2$s (%3$s)</string>
+    <string name="RemoteRestoreActivity__s_of_s_s">%1$s od %2$s (%3$s)</string>
     <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">All of your media</string>
+    <string name="RemoteRestoreActivity__all_of_your_media">Vse vaše medije</string>
     <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Your last %1$d days of media</string>
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Vaši mediji v zadnjih %1$d dneh</string>
     <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">All of your messages</string>
+    <string name="RemoteRestoreActivity__all_of_your_messages">Vsa vaša sporočila</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">Obnovi iz varnostne kopije</string>
     <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">Only media sent or received in the past %1$d days is included.</string>
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">Vključeni so samo mediji, poslani ali prejeti v zadnjih %1$d dneh.</string>
     <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Your backup includes:</string>
+    <string name="RemoteRestoreActivity__your_backup_includes">Vaša varnostna kopija vključuje:</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">Obnovi iz varnostne kopije</string>
 
@@ -7484,7 +7484,7 @@
     <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
     <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/mesec · Obnovitev: %2$s</string>
     <!-- Row title to change or cancel subscription -->
-    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Change or cancel subscription</string>
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Sprememba ali preklic naročnine</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7591,19 +7591,19 @@
 
     <!-- MessageBackupsCheckoutSheet -->
     <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Pay %1$s/month to Signal</string>
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Plačajte %1$s/mesec za Signal</string>
     <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">You\'ll get:</string>
+    <string name="MessageBackupsCheckoutSheet__youll_get">Dobili boste:</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media and using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Varnostno kopirajte svoja sporočila in medije z uporabo Signalove varne, od konca do konca šifrirane storitve shranjevanja. Nikoli ne izgubite sporočila, ko dobite nov telefon ali ponovno namestite Signal.</string>
     <!-- Backups feature label for e2e encryption -->
-    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">End-to-end Encrypted</string>
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">Šifrirano od konca do konca</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
-    <string name="MessageBackupsEducationScreen__optional_always">Optional, always</string>
+    <string name="MessageBackupsEducationScreen__optional_always">Neobvezno, vedno</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
-    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Delete your backup anytime</string>
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Kadarkoli izbrišite varnostno kopijo</string>
     <!-- Action button label to proceed with backups activation -->
     <string name="MessageBackupsEducationScreen__enable_backups">Dovoli varnostno kopiranje</string>
     <!-- Action button label to learn more -->
@@ -7613,7 +7613,7 @@
     <!-- Screen title -->
     <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">Vnesite svoj PIN</string>
     <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Enter your Signal PIN to enable backups</string>
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Vnesite svoj Signalov PIN, da omogočite varnostno kopiranje</string>
     <!-- Action button to confirm pin entry and continue -->
     <string name="MessageBackupsPinConfirmationScreen__next">Naprej</string>
     <!-- Action button to switch keyboard type -->
@@ -7621,21 +7621,21 @@
 
     <!-- MessageBackupsPinEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PINs protect your backup</string>
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN zaščiti vašo varnostno kopijo</string>
     <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Your Signal PIN lets you restore your backup when you re-install Signal. We recommend using a PIN that\'s at least %1$d digits.</string>
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">S Signalovim PIN-om lahko obnovite varnostno kopijo, ko znova namestite Signal. Priporočamo, da uporabite PIN, ki ima vsaj %1$d številk.</string>
     <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">If you forget your PIN, you will not be able to restore your backup. You can change your PIN at any time in settings.</string>
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Če pozabite svoj PIN, ne boste mogli obnoviti varnostne kopije. PIN lahko kadarkoli spremenite v nastavitvah.</string>
     <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Use current Signal PIN</string>
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Uporabi trenutni Signalov PIN</string>
     <!-- Action button to create a new pin -->
     <string name="MessageBackupsPinEducationScreen__create_new_pin">Ustvari nov PIN</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
-    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Choose your backup plan</string>
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Izberite načrt varnostnega kopiranja</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">All backups are end-to-end encrypted. Signal is a non-profit—paying for backups helps support our mission.</string>
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Vse varnostne kopije so šifrirane od konca do konca. Signal je neprofitna organizacija—plačevanje varnostnih kopij pomaga podpirati naše poslanstvo.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__read_more">Preberite več</string>
     <!-- Primary action button label when selecting a backup tier without a current selection -->

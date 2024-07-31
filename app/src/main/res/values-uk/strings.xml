@@ -225,22 +225,22 @@
     <!-- CallInfoView -->
     <!-- Unknown people row text when the only people in the call are unknowns -->
     <plurals name="CallInfoView__d_people">
-        <item quantity="one">%1$d особи</item>
-        <item quantity="few">%1$d осіб</item>
-        <item quantity="many">%1$d осіб</item>
-        <item quantity="other">%1$d осіб</item>
+        <item quantity="one">%1$d людина</item>
+        <item quantity="few">%1$d людини</item>
+        <item quantity="many">%1$d людей</item>
+        <item quantity="other">%1$d людини</item>
     </plurals>
     <!-- Unknown people row, placeholder is the number of unknown people in the call -->
     <plurals name="CallInfoView__plus_d_people">
-        <item quantity="one">+%1$d person</item>
-        <item quantity="few">+%1$d people</item>
-        <item quantity="many">+%1$d people</item>
-        <item quantity="other">+%1$d people</item>
+        <item quantity="one">+ %1$d людина</item>
+        <item quantity="few">+ %1$d людини</item>
+        <item quantity="many">+ %1$d людей</item>
+        <item quantity="other">+ %1$d людини</item>
     </plurals>
     <!-- Unknown people row icon content description -->
-    <string name="CallInfoView__more_information">Більше інформації</string>
+    <string name="CallInfoView__more_information">Додаткова інформація</string>
     <!-- Unknown people row info dialog message -->
-    <string name="CallInfoView__before_joining_a_call">Before joining a call you can only see the names of phone contacts, people you\'re in a group with, or people you\'ve chatted with 1:1. You\'ll see all names and photos once you\'ve joined the call.</string>
+    <string name="CallInfoView__before_joining_a_call">Поки ви не приєдналися до виклику, ви бачите лише імена людей, яких маєте в контактах телефона, учасників спільних груп і користувачів, з якими спілкувалися в особистому чаті. Приєднавшись до виклику, ви побачите імена й фотографії всіх учасників.</string>
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">Зрозуміло</string>
 
@@ -550,10 +550,10 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">Програму з контактами не знайдено.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">Видалити обране повідомлення?</item>
-        <item quantity="few">Видалити обрані повідомлення?</item>
-        <item quantity="many">Видалити обрані повідомлення?</item>
-        <item quantity="other">Видалити обрані повідомлення?</item>
+        <item quantity="one">Видалити вибране повідомлення?</item>
+        <item quantity="few">Видалити вибрані повідомлення?</item>
+        <item quantity="many">Видалити вибрані повідомлення?</item>
+        <item quantity="other">Видалити вибрані повідомлення?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Зберегти на носій?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -741,7 +741,7 @@
     <string name="ConversationListFragment_pin">Закріпити</string>
     <string name="ConversationListFragment_unpin">Відкріпити</string>
     <string name="ConversationListFragment_mute">Не сповіщати</string>
-    <string name="ConversationListFragment_unmute">Сповіщати</string>
+    <string name="ConversationListFragment_unmute">Увімкнути сповіщення</string>
     <string name="ConversationListFragment_select">Вибрати</string>
     <string name="ConversationListFragment_archive">Архівувати</string>
     <string name="ConversationListFragment_unarchive">Розархівувати</string>
@@ -835,9 +835,9 @@
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__create_backup">Створити резервну копію</string>
     <!-- Bottom sheet message -->
-    <string name="CreateBackupBottomSheet__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the backup takes place.</string>
+    <string name="CreateBackupBottomSheet__depending_on_the_size">Що більший розмір резервної копії, то довше триватиме її створення. Поки копія створюється, ви можете користуватися телефоном як зазвичай.</string>
     <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Back up later</string>
+    <string name="CreateBackupBottomSheet__back_up_later">Створити пізніше</string>
     <!-- Action button to dismiss sheet and back up now -->
     <string name="CreateBackupBottomSheet__back_up_now">Створити копію зараз</string>
 
@@ -1189,7 +1189,7 @@
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">У Signal виникла проблема. Надіслати журнал налагодження?</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
-    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">You may not be receiving messages. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">Можливо, вам не надходять повідомлення. Надіслати журнал налагодження?</string>
 
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
@@ -1207,9 +1207,9 @@
     <string name="DeviceSpecificNotificationBottomSheet__continue">Продовжити</string>
 
     <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_title">You may not be receiving messages</string>
+    <string name="ConnectivityWarningBottomSheet_title">Можливо, вам не надходять повідомлення</string>
     <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_body">Restarting your device may help solve the message delivery issue. If this problem continues, contact Signal support.</string>
+    <string name="ConnectivityWarningBottomSheet_body">Спробуйте розв\'язати проблему з отриманням повідомлень, перезавантаживши пристрій. Якщо це не допоможе, зв\'яжіться зі службою підтримки Signal.</string>
     <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
     <string name="ConnectivityWarningBottomSheet_dismiss_button">Зрозуміло</string>
 
@@ -1318,7 +1318,7 @@
     <!-- Row title for transfer option -->
     <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Перенести з пристрою з ОС Android</string>
     <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Transfer your account and messages from your old Android device.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Перенесіть акаунт і повідомлення зі старого пристрою Android.</string>
     <!-- Row title for logging in without transfer -->
     <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">Увійти без перенесення даних</string>
     <!-- Row description for logging in without transfer -->
@@ -1326,34 +1326,34 @@
     <!-- Row title for restoring from local backup -->
     <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">Відновити з локальної резервної копії</string>
     <!-- Row description for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Restore your messages from a backup file you saved on your device.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Відновіть повідомлення з резервної копії, збереженої на вашому пристрої.</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Downloading backup…</string>
+    <string name="RemoteRestoreActivity__downloading_backup">Завантаження резервної копії…</string>
     <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Restoring messages…</string>
+    <string name="RemoteRestoreActivity__restoring_messages">Відновлення повідомлень…</string>
     <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Restoring…</string>
+    <string name="RemoteRestoreActivity__restoring">Відновлення…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s of %2$s (%3$s)</string>
+    <string name="RemoteRestoreActivity__s_of_s_s">%1$s з %2$s (%3$s)</string>
     <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">All of your media</string>
+    <string name="RemoteRestoreActivity__all_of_your_media">Усі ваші медіафайли</string>
     <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Your last %1$d days of media</string>
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Медіафайли за минулі %1$d днів</string>
     <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">All of your messages</string>
+    <string name="RemoteRestoreActivity__all_of_your_messages">Усі ваші повідомлення</string>
     <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Відновити з резервної копії</string>
+    <string name="RemoteRestoreActivity__restore_from_backup">Відновлення з резервної копії</string>
     <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">Only media sent or received in the past %1$d days is included.</string>
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">Вона містить лише медіафайли, надіслані та отримані за минулі %1$d днів.</string>
     <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Your backup includes:</string>
+    <string name="RemoteRestoreActivity__your_backup_includes">Ваша резервна копія містить:</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">Відновити з резервної копії</string>
 
     <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Сповіщати мене про згадування</string>
+    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Сповіщати про згадки</string>
     <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Отримувати сповіщення, коли вас згадують, навіть якщо сповіщення від чату вимкнено?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Завжди сповіщати</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Не сповіщати</string>
@@ -1674,7 +1674,7 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Пропущений відеовиклик</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Пропущено голосовий виклик під час увімкненого профілю сповіщень</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">Ви пропустили аудіовиклик, оскільки було ввімкнено профіль сповіщень</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
     <string name="MessageRecord_missed_video_call_notification_profile">Пропущено відеовиклик під час увімкненого профілю сповіщень</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
@@ -2290,10 +2290,10 @@
     <string name="WebRtcCallView__signal_will_ring_s">Буде здійснено виклик користувача %1$s у Signal</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Буде здійснено виклик користувачів %1$s і %2$s у Signal</string>
     <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
-        <item quantity="one">Signal зателефонує %1$s, %2$s та %3$d іншому</item>
-        <item quantity="few">Signal зателефонує %1$s, %2$s, та %3$d іншим</item>
-        <item quantity="many">Signal зателефонує %1$s, %2$s, та %3$d іншим</item>
-        <item quantity="other">Signal зателефонує %1$s, %2$s та %3$d іншим</item>
+        <item quantity="one">Буде здійснено виклик користувачів %1$s, %2$s та ще %3$d іншого в Signal</item>
+        <item quantity="few">Буде здійснено виклик користувачів %1$s, %2$s та ще %3$d інших у Signal</item>
+        <item quantity="many">Буде здійснено виклик користувачів %1$s, %2$s та ще %3$d інших у Signal</item>
+        <item quantity="other">Буде здійснено виклик користувачів %1$s, %2$s та ще %3$d інших у Signal</item>
     </plurals>
 
     <string name="WebRtcCallView__s_will_be_notified">%1$s буде сповіщено</string>
@@ -2454,10 +2454,10 @@
         <item quantity="other">У цьому виклику (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_ring">
-        <item quantity="one">Signal зателефонує (%1$d)</item>
-        <item quantity="few">Signal зателефонує (%1$d)</item>
-        <item quantity="many">Signal зателефонує (%1$d)</item>
-        <item quantity="other">Signal зателефонує (%1$d)</item>
+        <item quantity="one">Буде здійснено виклик у Signal (%1$d)</item>
+        <item quantity="few">Буде здійснено виклик у Signal (%1$d)</item>
+        <item quantity="many">Буде здійснено виклик у Signal (%1$d)</item>
+        <item quantity="other">Буде здійснено виклик у Signal (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_notify">
         <item quantity="one">Signal надішле сповіщення (%1$d)</item>
@@ -2524,7 +2524,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Ви зробили забагато спроб зареєструвати цей номер. Будь ласка, повторіть через %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Немає з\'єднання із сервером. Перевірте чи наявність доступу до Інтернет та спробуйте знову.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Нам не вдалося надіслати код підтвердження за допомогою SMS. Спробуйте отримати код за допомогою аудіовиклику.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Ми не змогли надіслати вам код підтвердження в SMS. Код можна також отримати, прийнявши аудіовиклик.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Не вдається надіслати запит на код підтвердження. Перевірте підключення до мережі та спробуйте знову.</string>
     <string name="RegistrationActivity_non_standard_number_format">Нестандартний формат номеру</string>
@@ -2565,7 +2565,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">Виникли проблеми з реєстрацією?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Перевірте сигнал стільникової мережі на вашому телефоні для отримання SMS чи виклику\n • Переконайтеся, що ви можете отримувати телефонні виклики на цей номер\n • Перевірте правильність введеного номера телефону.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Переконайтеся, що телефон перебуває в зоні дії мобільної мережі й може прийняти SMS або виклик.\n • Запевніться, що ви можете приймати телефонні виклики на цей номер.\n • Перевірте, чи правильно ви ввели свій номер.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Для додаткової інформації перегляньте %1$s. %2$s можна за цим посиланням</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2706,7 +2706,7 @@
     <string name="ThreadRecord_can_accept_payments">%1$s тепер може приймати платежі</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s тепер користується Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Тимчасові повідомлення вимкнено</string>
-    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Таймер встановлено на %1$s</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Установлено таймер: %1$s</string>
     <string name="ThreadRecord_safety_number_changed">Змінився код безпеки</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Змінився код безпеки для чатів з користувачем %1$s.</string>
     <string name="ThreadRecord_you_marked_verified">Ви позначили як перевірений</string>
@@ -3575,7 +3575,7 @@
     <string name="arrays__mute_for_eight_hours">Не сповіщати 8 годин</string>
     <string name="arrays__mute_for_one_day">Не сповіщати 1 день</string>
     <string name="arrays__mute_for_seven_days">Не сповіщати 7 днів</string>
-    <string name="arrays__always">Завжди</string>
+    <string name="arrays__always">Назавжди</string>
 
     <string name="arrays__settings_default">Типові налаштування</string>
     <string name="arrays__enabled">Увімкнено</string>
@@ -3694,13 +3694,13 @@
     <!-- Title for the confirmation dialog of changing the app icon. -->
     <string name="preferences__app_icon_dialog_title">Змінити значок і назву застосунку на «%1$s»</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Щоб змінити значок і назву застосунку, потрібно закрити Signal. У сповіщеннях завжди відображатимуться значок і назва Signal за замовчуванням.</string>
+    <string name="preferences__app_icon_dialog_description">Для зміни значка й назви застосунку Signal закриється. У сповіщеннях значок і назва Signal завжди будуть стандартні.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Виберіть значок і назву застосунку, які відображатимуться на головному екрані телефону та в панелі програм. У сповіщеннях завжди відображатимуться значок і назва Signal за замовчуванням. Докладніше</string>
+    <string name="preferences__app_icon_warning_learn_more">Оберіть значок і назву застосунку, які буде видно на головному екрані та в панелі застосунків телефона. У сповіщеннях значок і назва Signal завжди будуть стандартні. Докладніше</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
     <string name="preferences__app_icon_warning">Значки і назви застосунків відображаються на головному екрані та в панелі програм.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">У сповіщеннях завжди відображатимуться значок і назва Signal за замовчуванням.</string>
+    <string name="preferences__app_icon_notification_warning">У сповіщеннях значок і назва Signal завжди будуть стандартні.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">Докладніше</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
@@ -3709,7 +3709,7 @@
     <string name="preferences__enable_pin">Ввімкнути PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Якщо ви вимкнете PIN-код, то в разі повторної реєстрації в Signal усі ваші дані буде втрачено. Щоб цього уникнути, необхідно заздалегідь вручну створити їхню резервну копію. З вимкненим PIN-кодом неможливо ввімкнути блокування реєстрації.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коди зберігають інформацію в Signal зашифрованою, тому тільки ви можете отримати до неї доступ. Ваш профіль, налаштування та контакти буде відновлено, коли ви встановите застосунок знов. PIN-код не потрібен, щоб відкрити застосунок.</string>
-    <string name="preferences__system_default">За замовчуванням</string>
+    <string name="preferences__system_default">Системна</string>
     <string name="preferences__language">Мова</string>
     <string name="preferences__signal_messages_and_calls">Повідомлення та виклики Signal</string>
     <string name="preferences__advanced_pin_settings">Керування PIN-кодом</string>
@@ -3979,7 +3979,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s%2$s в %3$s</string>
     <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">Кому</string>
-    <string name="PaymentsDetailsFragment__from">Від кого</string>
+    <string name="PaymentsDetailsFragment__from">Відправник</string>
     <string name="PaymentsDetailsFragment__information">Деталі транзакції, зокрема сума платежу і час транзакції, є частиною особового рахунку MobileCoin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Плата за очищення монет</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">«Плата за очищення монет» стягується коли ваші монети неможливо сполучити для завершення транзакції. Очищення дозволить надсилати платежі далі.</string>
@@ -4156,7 +4156,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Сповіщати</string>
+    <string name="conversation_muted__unmute">Увімкнути сповіщення</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Вимкнути сповіщення</string>
@@ -4851,7 +4851,7 @@
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">Колір чату</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">Скинути кольори чату</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">Скинути кольори чатів</string>
     <string name="ChatWallpaperFragment__reset_chat_color">Скинути колір чату</string>
     <string name="ChatWallpaperFragment__reset_chat_color_question">Скинути колір чату?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">Обрати шпалери</string>
@@ -4859,11 +4859,11 @@
     <string name="ChatWallpaperFragment__contact_name">Ім\'я контакту</string>
     <string name="ChatWallpaperFragment__reset">Скинути</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Попередній вигляд шпалер</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Бажаєте замінити колір усіх чатів?</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Бажаєте замінити усі шпалери?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Скинути кольори за замовчуванням</string>
-    <string name="ChatWallpaperFragment__reset_all_colors">Скинути усі кольори</string>
-    <string name="ChatWallpaperFragment__reset_default_wallpaper">Скинути шпалери за замовчуванням</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Бажаєте скинути встановлені кольори всіх чатів?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Бажаєте скинути всі встановлені шпалери?</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Скинути стандартні кольори</string>
+    <string name="ChatWallpaperFragment__reset_all_colors">Скинути всі кольори</string>
+    <string name="ChatWallpaperFragment__reset_default_wallpaper">Скинути стандартні шпалери</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Скинути всі шпалери</string>
     <string name="ChatWallpaperFragment__reset_wallpapers">Скинути всі шпалери</string>
     <string name="ChatWallpaperFragment__reset_wallpaper">Скинути шпалери</string>
@@ -5147,7 +5147,7 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Повідомлення</string>
     <string name="NotificationsSettingsFragment__calls">Виклики</string>
-    <string name="NotificationsSettingsFragment__notify_when">Сповіщати коли…</string>
+    <string name="NotificationsSettingsFragment__notify_when">Сповіщати, коли…</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Контакт приєднався до Signal</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Профілі сповіщень</string>
@@ -5362,9 +5362,9 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Запити і запрошення</string>
     <string name="ConversationSettingsFragment__group_link">Посилання на групу</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Додати як контакт</string>
-    <string name="ConversationSettingsFragment__unmute">Сповіщати</string>
+    <string name="ConversationSettingsFragment__unmute">Увімкнути сповіщення</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Сповіщення чату вимкнені до %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Сповіщення в чаті вимкнено до %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Сповіщення чату вимкнені назавжди</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефону скопійовано в буфер обміну.</string>
     <string name="ConversationSettingsFragment__phone_number">Номер телефону</string>
@@ -5742,22 +5742,22 @@
     <string name="Subscription__get_a_s_badge">Отримати значок %1$s</string>
 
     <!-- *PaymentInProgressFragment strings -->
-    <string name="InAppPaymentInProgressFragment__processing_donation">Донат обробляється…</string>
-    <string name="InAppPaymentInProgressFragment__processing_payment">Обробка платежу…</string>
+    <string name="InAppPaymentInProgressFragment__processing_donation">Триває опрацювання донату…</string>
+    <string name="InAppPaymentInProgressFragment__processing_payment">Триває опрацювання платежу…</string>
 
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
-    <string name="InAppPaymentErrors__error_processing_payment">Помилка обробки платежу</string>
+    <string name="InAppPaymentErrors__error_processing_payment">Помилка під час опрацювання платежу</string>
     <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
-    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">Не вдалося обробити ваш платіж. Кошти не було стягнуто. Будь ласка, спробуйте ще раз.</string>
+    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">Ваш платіж не вдалось опрацювати, тому кошти не було стягнуто. Будь ласка, повторіть оплату.</string>
     <!-- Displayed as a message in a dialog when we timeout waiting for a payment to be processed and token to be redeemed -->
-    <string name="InAppPaymentErrors__your_payment_is_still">Ваш платіж ще обробляється. Це може зайняти декілька хвилин в залежності від швидкості інтернету.</string>
+    <string name="InAppPaymentErrors__your_payment_is_still">Опрацювання вашого платежу ще триває. Воно може зайняти кілька хвилин — швидкість залежить від вашого з\'єднання.</string>
     <!-- Displayed as a message in a dialog or notification when stripe decline code issuer not available for backup payment. -->
-    <string name="InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again">Спробуйте зробити платіж знов, або зв\'яжіться зі своїм банком для додаткової інформації.</string>
+    <string name="InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again">Спробуйте здійснити оплату ще раз або зверніться по додаткову інформацію у свій банк.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
-    <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">Власник рахунку скасував цей платіж, тому його не вдалося обробити. Оплату не було стягнуто.</string>
+    <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">Власник рахунку скасував цей платіж, тому його не було опрацьовану. Кошти не було стягнуто.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
-    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">Під час обробки платежу виникла помилка. Будь ласка, спробуйте ще раз.</string>
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">Під час опрацювання платежу сталася помилка. Будь ласка, повторіть оплату.</string>
 
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Помилка обробки доната</string>
@@ -5797,7 +5797,7 @@
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Донат від імені користувача %1$s</string>
     <!-- Gift message view title for incoming donations -->
-    <string name="GiftMessageView__s_donated_to_signal_on">%1$s підтримує Signal донатом від вашого імені</string>
+    <string name="GiftMessageView__s_donated_to_signal_on">Користувач %1$s підтримав Signal донатом від вашого імені</string>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Активувати</string>
     <!-- Gift badge view action label -->
@@ -5909,7 +5909,7 @@
     <!-- List preference to toggle that allows calls through the notification profile during create flow -->
     <string name="AddAllowedMembers__allow_all_calls">Дозволити всі виклики</string>
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
-    <string name="AddAllowedMembers__notify_for_all_mentions">Сповіщати про всі згадування</string>
+    <string name="AddAllowedMembers__notify_for_all_mentions">Сповіщати про всі згадки</string>
 
     <!-- Call to action button on contact picker for adding to profile -->
     <string name="SelectRecipientsFragment__add">Додати</string>
@@ -6071,7 +6071,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add">Торкніться, щоб додати</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Немає оновлень для показу.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Нових історій немає</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Приховати історію</string>
     <!-- Context menu option to unhide a story -->
@@ -6432,7 +6432,7 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Дякуємо за вашу підтримку!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s підтримує Signal донатом від вашого імені! Розкажіть іншим про підтримку, відобразивши в профілі значок.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">Користувач %1$s задонатив Signal від вашого імені! Покажіть у своєму профілі, що підтримуєте Signal.</string>
     <!-- Description for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Ви підтримали Signal донатом від імені користувача %1$s. Користувач зможе розказати іншим про підтримку, відобразивши в профілі значок.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
@@ -7484,7 +7484,7 @@
     <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
     <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/місяць · Оновлюється %2$s</string>
     <!-- Row title to change or cancel subscription -->
-    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Change or cancel subscription</string>
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Змінити або скасувати передплату</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7591,19 +7591,19 @@
 
     <!-- MessageBackupsCheckoutSheet -->
     <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Pay %1$s/month to Signal</string>
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Платіж %1$s/місяць на користь Signal</string>
     <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">You\'ll get:</string>
+    <string name="MessageBackupsCheckoutSheet__youll_get">Ви отримаєте:</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media and using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Зберігайте свої повідомлення і медіафайли в резервній копії завдяки надійному сервісу зберігання Signal, захищеному наскрізним шифруванням. Ви не втратите повідомлення, навіть якщо зміните телефон або перевстановите Signal.</string>
     <!-- Backups feature label for e2e encryption -->
-    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">End-to-end Encrypted</string>
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">Захищене наскрізним шифруванням</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
-    <string name="MessageBackupsEducationScreen__optional_always">Optional, always</string>
+    <string name="MessageBackupsEducationScreen__optional_always">Ніколи не буде обов\'язковим</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
-    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Delete your backup anytime</string>
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Резервну копію можна видалити коли завгодно</string>
     <!-- Action button label to proceed with backups activation -->
     <string name="MessageBackupsEducationScreen__enable_backups">Увімкнути</string>
     <!-- Action button label to learn more -->
@@ -7613,7 +7613,7 @@
     <!-- Screen title -->
     <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">Введіть свій PIN-код</string>
     <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Enter your Signal PIN to enable backups</string>
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Введіть свій PIN-код Signal, щоб увімкнути резервне копіювання</string>
     <!-- Action button to confirm pin entry and continue -->
     <string name="MessageBackupsPinConfirmationScreen__next">Далі</string>
     <!-- Action button to switch keyboard type -->
@@ -7621,21 +7621,21 @@
 
     <!-- MessageBackupsPinEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PINs protect your backup</string>
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN-код — захист резервної копії</string>
     <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Your Signal PIN lets you restore your backup when you re-install Signal. We recommend using a PIN that\'s at least %1$d digits.</string>
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">За допомогою PIN-коду Signal ви зможете відновити резервну копію в разі перевстановлення Signal. Ми рекомендуємо використовувати PIN-код принаймні з %1$d цифр.</string>
     <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">If you forget your PIN, you will not be able to restore your backup. You can change your PIN at any time in settings.</string>
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Якщо ви забудете PIN-код, то не зможете відновити резервну копію. Змінити PIN-код можна в будь-який момент у налаштуваннях.</string>
     <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Use current Signal PIN</string>
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Використати поточний PIN-код Signal</string>
     <!-- Action button to create a new pin -->
     <string name="MessageBackupsPinEducationScreen__create_new_pin">Створити новий PIN-код</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
-    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Choose your backup plan</string>
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Оберіть план резервного копіювання</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">All backups are end-to-end encrypted. Signal is a non-profit—paying for backups helps support our mission.</string>
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Усі резервні копії захищені наскрізним шифруванням. Signal — неприбуткова організація, тож сплачуючи за резервне копіювання, ви підтримуєте нашу місію.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__read_more">Дізнатися більше</string>
     <!-- Primary action button label when selecting a backup tier without a current selection -->

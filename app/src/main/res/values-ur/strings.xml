@@ -25,7 +25,7 @@
     <string name="yes">جی ہاں</string>
     <string name="no">جی نہیں</string>
     <string name="delete">حذف کریں</string>
-    <string name="please_wait">برائے مہربانی انتظار کریں. . .</string>
+    <string name="please_wait">برائے مہربانی انتظار کریں. . . .</string>
     <string name="save">محفوظ کریں</string>
     <string name="note_to_self">خود کے لیے نوٹ</string>
 
@@ -50,7 +50,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">یہ آپ کے Signal اور پیغامات کی اطلاعات کو ہمیشہ کیلئے اَن لاک کردے گا۔</string>
     <string name="ApplicationPreferencesActivity_disable">معطل کریں</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">سرور سے رابطے میں غلطی!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">اندراج کے لاک کیلئے PINs کی ضرورت ہے۔ PINs کو غیر فعال کرنے کیلئے ، براہ کرم پہلے رجسٹریشن لاک کو غیر فعال کریں۔</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">اندراج کے لاک کیلئے PINs کی ضرورت ہے۔ PINs کو غیر فعال کرنے کیلئے، براہ کرم پہلے رجسٹریشن لاک کو غیر فعال کریں۔</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN تیار کیا گیا۔</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN غیر فعال ہے۔</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ریکارڈ ادائیگیوں کی وصولی کا جملہ</string>
@@ -91,16 +91,16 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">میڈیا کے انتخاب کیلئے کوئی ایپ نہیں مل سکتی۔</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal کو آڈیو، ویڈیو، تصاویر وغیرہ منسلک کرنے کیلئے سٹوریج اجازت کی ضرورت ہوتی ہے، لیکن اس کی مستقل طور پر نفی کر دی گئی ہے ۔ برائے مہربانی ایپ ترتیبات کی فہرست میں جائیں، \"منظوری\" منتخب کریں، اور \"اسٹوریج\" فعال کریں۔</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">رابطوں کی معلومات لینے کیلئے Signal کو رابطوں کی منظوری کی ضرورت ہوتی ہے، لیکن اس کی ہمیشہ کیلئے نفی کردی گئی ہے۔ براہ کرم ایپ ترتیبات کی فہرست میں جاکر \"منظوری\" کا انتخاب کریں،اور \"رابطے\" فعال کریں۔</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal کو مقام سے منسلک کرنے کیلئے مقام کی منظوری کی ضرورت ہے،لیکن اس کی مستقل طور پر نفی کردی گئی ہے۔ براہ کرم ایپ ترتیبات کی فہرست میں جائیں\"منظوری\" منتخب کریں، اور \"مقام\" فعال کریں۔</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal کو آڈیو، ویڈیو، تصاویر وغیرہ منسلک کرنے کیلئے سٹوریج اجازت کی ضرورت ہوتی ہے، لیکن اس کو مستقل طور پررد کر دیا گیا ہے ۔ برائے مہربانی ایپ ترتیبات کی فہرست میں جائیں، \"اجازتیں\" منتخب کریں، اور \"اسٹوریج\" فعال کریں۔</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">رابطوں کی معلومات لینے کیلئے Signal کو رابطوں کی منظوری کی ضرورت ہوتی ہے، لیکن اس کی ہمیشہ کیلئے رد کر دیا گیا ہے ہے۔ براہ کرم ایپ ترتیبات کی فہرست میں جاکر \"اجازتیں\" کا انتخاب کریں،اور \"رابطے\" فعال کریں۔</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal کو مقام سے منسلک کرنے کیلئے مقام کی منظوری کی ضرورت ہے، لیکن اسے مستقل طور پررد کر دیا گیا ہے۔ براہ کرم ایپ ترتیبات کی فہرست میں جائیں\"اجازتیں\" منتخب کریں، اور \"مقام\" فعال کریں۔</string>
 
     <!-- Dialog title asking users for location permission -->
     <string name="AttachmentManager_signal_allow_access_location">اپنے مقام تک رسائی کی اجازت دیں</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
     <string name="AttachmentManager_signal_to_send_location">اپنا مقام بھیجنے کے لیے:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">اپنا مقام بھیجنے کے لیے Signal کو رسائی کی اجازت دیں۔</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">اپنا مقام بھیجنے کے لیے Signal رسائی کی اجازت دیں۔</string>
     <!-- Toast text explaining Signal\'s need for location access -->
     <string name="AttachmentManager_signal_needs_location_access">Signal کو آپ کا مقام بھیجنے کے لیے مقام تک رسائی کی ضرورت ہوتی ہے۔</string>
     <!-- Dialog title asking users for gallery storage permission -->
@@ -111,9 +111,9 @@
     <string name="AttachmentManager_signal_needs_storage_access">Signal کو آپ کی تصاویر اور ویڈیوز دکھانے کے لیے اسٹوریج تک رسائی کی ضرورت ہوتی ہے۔</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s نے پیمنٹس فعال نہیں کیں </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s نے ادائیگیاں فعال نہیں کیں </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">کیا آپ انہیں پیمنٹس فعال کرنے کی درخواست بھیجنا چاہتے ہیں؟</string>
+    <string name="AttachmentManager__request_to_activate_payments">کیا آپ انہیں ادائیگیاں فعال کرنے کی درخواست بھیجنا چاہتے ہیں؟</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">درخواست بھیجیں</string>
     <!-- Alert dialog button to cancel dialog -->
@@ -121,14 +121,14 @@
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">میڈیا اپ لوڈ ہو رہا ہے۔</string>
-    <string name="AttachmentUploadJob_compressing_video_start">ویڈیو مختصر ہو رہی ہے۔۔۔</string>
+    <string name="AttachmentUploadJob_compressing_video_start">ویڈیو کمپریس ہو رہی ہے۔۔۔</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">پیغامات کی جانچ ہو رہی ہے…</string>
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">آپ کے پاس نئے پیغامات ہو سکتے ہیں</string>
+    <string name="FcmFetchManager__you_may_have_messages">آپ کے نئے پیغامات ہو سکتے ہیں</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">بلاک کردہ یوزرز</string>
@@ -230,13 +230,13 @@
     </plurals>
     <!-- Unknown people row, placeholder is the number of unknown people in the call -->
     <plurals name="CallInfoView__plus_d_people">
-        <item quantity="one">+%1$d person</item>
-        <item quantity="other">+%1$d people</item>
+        <item quantity="one">+%1$d فرد</item>
+        <item quantity="other">+%1$d افراد</item>
     </plurals>
     <!-- Unknown people row icon content description -->
     <string name="CallInfoView__more_information">مزید معلومات</string>
     <!-- Unknown people row info dialog message -->
-    <string name="CallInfoView__before_joining_a_call">Before joining a call you can only see the names of phone contacts, people you\'re in a group with, or people you\'ve chatted with 1:1. You\'ll see all names and photos once you\'ve joined the call.</string>
+    <string name="CallInfoView__before_joining_a_call">کال میں شامل ہونے سے پہلے آپ صرف ان ناموں کو دیکھ سکتے ہیں جو آپ کے فون کے رابطوں میں ہیں، جن افراد کے ساتھ آپ گروپ میں ہیں، یا جن کے ساتھ آپ نے 1:1 چیٹ کی تھی۔ آپ کال میں شامل ہونے کے بعد تمام ناموں اور تصویروں کو دیکھیں گے۔</string>
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">سمجھ گیا</string>
 
@@ -795,9 +795,9 @@
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__create_backup">بیک اپ بنائیں</string>
     <!-- Bottom sheet message -->
-    <string name="CreateBackupBottomSheet__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the backup takes place.</string>
+    <string name="CreateBackupBottomSheet__depending_on_the_size">آپ کے بیک کے سائز پر منحصر، اس میں طویل وقت لگ سکتا ہے۔ آپ بیک اپ کے دوران اپنا فون معمول کے مطابق استعمال کر سکتے ہیں۔</string>
     <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Back up later</string>
+    <string name="CreateBackupBottomSheet__back_up_later">بعد میں بیک اپ کریں</string>
     <!-- Action button to dismiss sheet and back up now -->
     <string name="CreateBackupBottomSheet__back_up_now">اب بیک اپ کریں</string>
 
@@ -1121,7 +1121,7 @@
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">سگنل میں ایک مسئلہ پیش آیا۔ ڈی بَگ لاگ جمع کرائیں؟</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
-    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">You may not be receiving messages. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">ہو سکتا ہے آپ کو میسجز موصول نہ ہوں۔ ڈی بگ لاگ جمع کروائیں؟</string>
 
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
@@ -1139,9 +1139,9 @@
     <string name="DeviceSpecificNotificationBottomSheet__continue">جاری رکھیں</string>
 
     <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_title">You may not be receiving messages</string>
+    <string name="ConnectivityWarningBottomSheet_title">ہو سکتا ہے آپ کو میسجز موصول نہ ہوں</string>
     <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_body">Restarting your device may help solve the message delivery issue. If this problem continues, contact Signal support.</string>
+    <string name="ConnectivityWarningBottomSheet_body">اپنی ڈیوائس کو دوبارہ اسٹارٹ کرنا میسج کی ترسیل کے مسئلے کو حل کرنے میں مدد دے سکتا ہے۔ اگر یہ مسئلہ جاری رہتا ہے، تو Signal سپورٹ سے رابطہ کریں۔</string>
     <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
     <string name="ConnectivityWarningBottomSheet_dismiss_button">سمجھ گیا</string>
 
@@ -1242,7 +1242,7 @@
     <!-- Row title for transfer option -->
     <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Android آلہ سے منتقل کریں</string>
     <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Transfer your account and messages from your old Android device.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">اپنی پرانی Android ڈیوائس سے اپنا اکاؤنٹ اور میسجز منتقل کریں۔</string>
     <!-- Row title for logging in without transfer -->
     <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">منتقل کرنے کے بغیر لاگ ان کریں</string>
     <!-- Row description for logging in without transfer -->
@@ -1250,29 +1250,29 @@
     <!-- Row title for restoring from local backup -->
     <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">لوکل بیک اپ کو ری اسٹور کریں</string>
     <!-- Row description for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Restore your messages from a backup file you saved on your device.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">وہ بیک اپ فائل جو آپ نے اپنی ڈیوائس میں محفوظ کی تھی سے میسجز کو بحال کریں۔</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Downloading backup…</string>
+    <string name="RemoteRestoreActivity__downloading_backup">بیک اپ ڈاؤن لوڈ کر رہے ہیں…</string>
     <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Restoring messages…</string>
+    <string name="RemoteRestoreActivity__restoring_messages">میسجز بحال کر رہے ہیں…</string>
     <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Restoring…</string>
+    <string name="RemoteRestoreActivity__restoring">بحال کیا جا رہا ہے…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s of %2$s (%3$s)</string>
+    <string name="RemoteRestoreActivity__s_of_s_s">%2$s کا %1$s (%3$s)</string>
     <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">All of your media</string>
+    <string name="RemoteRestoreActivity__all_of_your_media">آپ کا تمام میڈیا</string>
     <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Your last %1$d days of media</string>
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">آپ کے میڈیا کے آخری %1$d دن</string>
     <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">All of your messages</string>
+    <string name="RemoteRestoreActivity__all_of_your_messages">آپ کے تمام میسجز</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">بیک اپ سے بحال کریں</string>
     <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">Only media sent or received in the past %1$d days is included.</string>
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">صرف گزشتہ%1$d دنوں میں بھیجا گیا یا موصول کیا گیا میڈیا شامل ہے۔</string>
     <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Your backup includes:</string>
+    <string name="RemoteRestoreActivity__your_backup_includes">آپ کے بیک اپ میں شامل ہوتا ہے:</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">بیک اپ بحال کریں</string>
 
@@ -7168,7 +7168,7 @@
     <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
     <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/ماہ…%2$s میں تجدید ہوتی ہے</string>
     <!-- Row title to change or cancel subscription -->
-    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Change or cancel subscription</string>
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">سبسکرپشن کو تبدیل یا منسوخ کریں</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7275,19 +7275,19 @@
 
     <!-- MessageBackupsCheckoutSheet -->
     <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Pay %1$s/month to Signal</string>
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Signal کو %1$s/مہینہ ادائیگی کریں</string>
     <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">You\'ll get:</string>
+    <string name="MessageBackupsCheckoutSheet__youll_get">آپ حاصل کریں گے:</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media and using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">اپنے میسجز اور میڈیا کا بیک اپ کریں اور Signal کی محفوظ، کلی طور ٹر انکرپٹ کردہ اسٹوریج سروس استعمال کریں۔ اپنا نیا فون لینے یا Signal کو دوبارہ انسٹال کرنے پر اپنے کسی بھی میسج سے کبھی محروم نہ ہوں۔</string>
     <!-- Backups feature label for e2e encryption -->
-    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">End-to-end Encrypted</string>
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">کلی طور پر انکرپٹ کردہ</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
-    <string name="MessageBackupsEducationScreen__optional_always">Optional, always</string>
+    <string name="MessageBackupsEducationScreen__optional_always">اختیاری، ہمیشہ</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
-    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Delete your backup anytime</string>
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">اپنا بیک اپ کسی بھی وقت حذف کریں</string>
     <!-- Action button label to proceed with backups activation -->
     <string name="MessageBackupsEducationScreen__enable_backups">بیک اپ فعال کریں</string>
     <!-- Action button label to learn more -->
@@ -7297,7 +7297,7 @@
     <!-- Screen title -->
     <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">اپنا پن داخل کریں</string>
     <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Enter your Signal PIN to enable backups</string>
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">بیک اپس کو فعال کرنے کے لیے Signal کی PIN درج کریں</string>
     <!-- Action button to confirm pin entry and continue -->
     <string name="MessageBackupsPinConfirmationScreen__next">اگلا</string>
     <!-- Action button to switch keyboard type -->
@@ -7305,21 +7305,21 @@
 
     <!-- MessageBackupsPinEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PINs protect your backup</string>
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PINs آپ کے بیک اپ کو محفوظ رکھتی ہیں</string>
     <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Your Signal PIN lets you restore your backup when you re-install Signal. We recommend using a PIN that\'s at least %1$d digits.</string>
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">جب آپ Signal کو دوبارہ انسٹال کرتے ہیں تو آپ کے Signal کی PIN آپ کے بیک اپ کو بحال کرتی ہے۔ ہم کم از کم %1$d ہندسوں پر مشتمل پِن استعمال کرنے کی تجویز پیش کرتے ہیں۔</string>
     <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">If you forget your PIN, you will not be able to restore your backup. You can change your PIN at any time in settings.</string>
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">اگر آپ اپنی PIN بھول گئے ہیں، تو آپ اپنے بیک اپ کو بحال نہیں کر سکیں گے۔ آپ اپنی PIN کو سیٹنگز میں کسی بھی وقت تبدیل کر سکتے ہیں۔</string>
     <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Use current Signal PIN</string>
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">موجودہ signal کا PIN استعمال کریں</string>
     <!-- Action button to create a new pin -->
     <string name="MessageBackupsPinEducationScreen__create_new_pin">نیا PIN بنائیں</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
-    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Choose your backup plan</string>
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">اپنا بیک اپ پلان منتخب کریں</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">All backups are end-to-end encrypted. Signal is a non-profit—paying for backups helps support our mission.</string>
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">تمام بیک اپس کلی طور پر تک انکرپٹ کردہ ہیں۔ Signal ایک غیر منافع بخش ادارہ ہے—بیک اپس کے لیے ادائیگی ہمارے مشن میں معاونت کے لیے ہیں۔</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__read_more">مزید پڑھیں</string>
     <!-- Primary action button label when selecting a backup tier without a current selection -->

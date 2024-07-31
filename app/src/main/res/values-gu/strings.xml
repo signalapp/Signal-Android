@@ -230,13 +230,13 @@
     </plurals>
     <!-- Unknown people row, placeholder is the number of unknown people in the call -->
     <plurals name="CallInfoView__plus_d_people">
-        <item quantity="one">+%1$d person</item>
-        <item quantity="other">+%1$d people</item>
+        <item quantity="one">%1$d વ્યક્તિ</item>
+        <item quantity="other">%1$d લોકો</item>
     </plurals>
     <!-- Unknown people row icon content description -->
-    <string name="CallInfoView__more_information">વધુ મહિતી</string>
+    <string name="CallInfoView__more_information">વધુ માહિતી</string>
     <!-- Unknown people row info dialog message -->
-    <string name="CallInfoView__before_joining_a_call">Before joining a call you can only see the names of phone contacts, people you\'re in a group with, or people you\'ve chatted with 1:1. You\'ll see all names and photos once you\'ve joined the call.</string>
+    <string name="CallInfoView__before_joining_a_call">કૉલમાં જોડાતાં પહેલાં તમે ફક્ત ફોન સંપર્કોના નામ, તમે જેની સાથે ગ્રૂપમાં છો તે લોકો અથવા તમે જેમની સાથે એકલા 1:1 ચેટ કરી હોય તેવા લોકો જ જોઈ શકો છો. એક વાર તમે કૉલમાં જોડાયા પછી તમને બધા નામ અને ફોટા દેખાશે.</string>
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">સમજાઈ ગયું</string>
 
@@ -795,11 +795,11 @@
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__create_backup">બૅકઅપ બનાવો</string>
     <!-- Bottom sheet message -->
-    <string name="CreateBackupBottomSheet__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the backup takes place.</string>
+    <string name="CreateBackupBottomSheet__depending_on_the_size">તમારા બેકઅપની સાઇઝના આધારે, આમાં લાંબો સમય લાગી શકે છે. જ્યારે બેકઅપ લેવામાં આવે ત્યારે તમે સામાન્ય રીતે કરતાં હોવ તેમ તમે તમારા ફોનનો ઉપયોગ કરી શકો છો.</string>
     <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Back up later</string>
+    <string name="CreateBackupBottomSheet__back_up_later">પછી બેકઅપ લો</string>
     <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">હમણાં બૅકઅપ</string>
+    <string name="CreateBackupBottomSheet__back_up_now">હમણાં બેકઅપ લો</string>
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">ચેટ બૅકઅપ</string>
@@ -1121,7 +1121,7 @@
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Signalને એક સમસ્યા આવી. ડીબગ લૉગ સબમિટ કરવો છે?</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
-    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">You may not be receiving messages. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">તમે કદાચ મેસેજ મેળવી શકતા નથી. ડીબગ લૉગ સબમિટ કરવો છે?</string>
 
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
@@ -1139,9 +1139,9 @@
     <string name="DeviceSpecificNotificationBottomSheet__continue">ચાલુ રાખો</string>
 
     <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_title">You may not be receiving messages</string>
+    <string name="ConnectivityWarningBottomSheet_title">તમે કદાચ મેસેજ મેળવી શકતા નથી</string>
     <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_body">Restarting your device may help solve the message delivery issue. If this problem continues, contact Signal support.</string>
+    <string name="ConnectivityWarningBottomSheet_body">તમારા ડિવાઇસને રિસ્ટાર્ટ કરવાથી મેસેજ ડિલિવરી સમસ્યા ઉકેલવામાં મદદ મળી શકે છે. જો સમસ્યા ચાલુ રહે તો Signal સપોર્ટનો સંપર્ક કરો.</string>
     <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
     <string name="ConnectivityWarningBottomSheet_dismiss_button">સમજાઈ ગયું</string>
 
@@ -1240,9 +1240,9 @@
 
     <!-- MoreTransferOrRestoreOptionsSheet -->
     <!-- Row title for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">એન્ડ્રોઇડ ડિવાઇસથી ટ્રાન્સફર કરો</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Android ડિવાઇસથી ટ્રાન્સફર કરો</string>
     <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Transfer your account and messages from your old Android device.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">તમારા જૂના Android ડિવાઇસ પરથી તમારું એકાઉન્ટ અને મેસેજ ટ્રાન્સફર કરો.</string>
     <!-- Row title for logging in without transfer -->
     <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">ટ્રાન્સફર કર્યા વગર લૉગ ઇન કરો</string>
     <!-- Row description for logging in without transfer -->
@@ -1250,31 +1250,31 @@
     <!-- Row title for restoring from local backup -->
     <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">લોકલ બેકઅપ રિસ્ટોર કરો</string>
     <!-- Row description for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Restore your messages from a backup file you saved on your device.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">તમે તમારા ડિવાઇસ પર સેવ કરેલી બેકઅપ ફાઇલમાંથી તમારા મેસેજ રિસ્ટોર કરો.</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Downloading backup…</string>
+    <string name="RemoteRestoreActivity__downloading_backup">બેકઅપ ડાઉનલોડ કરી રહ્યાં છીએ…</string>
     <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Restoring messages…</string>
+    <string name="RemoteRestoreActivity__restoring_messages">મેસેજ રિસ્ટોર કરી રહ્યાં છીએ…</string>
     <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Restoring…</string>
+    <string name="RemoteRestoreActivity__restoring">રિસ્ટોર થાય છે…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s of %2$s (%3$s)</string>
+    <string name="RemoteRestoreActivity__s_of_s_s">%2$s માંથી %1$s (%3$s)</string>
     <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">All of your media</string>
+    <string name="RemoteRestoreActivity__all_of_your_media">તમારા બધા મીડિયા</string>
     <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Your last %1$d days of media</string>
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">મીડિયાના તમારા છેલ્લા %1$d દિવસ</string>
     <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">All of your messages</string>
+    <string name="RemoteRestoreActivity__all_of_your_messages">તમારા બધા મેસેજ</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">બેકઅપમાંથી રિસ્ટોર કરો</string>
     <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">Only media sent or received in the past %1$d days is included.</string>
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">ફક્ત પાછલા %1$d દિવસમાં મોકલેલા કે મેળવેલા મીડિયા શામેલ છે.</string>
     <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Your backup includes:</string>
+    <string name="RemoteRestoreActivity__your_backup_includes">તમારા બેકઅપમાં શામેલ છે:</string>
     <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">બૅકઅપ રિસ્ટોર કરો</string>
+    <string name="RemoteRestoreActivity__restore_backup">બેકઅપ રિસ્ટોર કરો</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">મને ઉલ્લેખો માટે સૂચિત કરો</string>
@@ -5489,7 +5489,7 @@
 
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
-    <string name="InAppPaymentErrors__error_processing_payment">ચુકવણીની પ્રક્રિયા કરવામાં ત્રુટિ</string>
+    <string name="InAppPaymentErrors__error_processing_payment">ચુકવણીની પ્રક્રિયા કરવામાં ભૂલ</string>
     <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
     <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">તમારી ચુકવણીની પ્રક્રિયા થઈ ન શકી અને તમારી પાસેથી ચાર્જ લેવામાં આવ્યો નથી. કૃપા કરીને ફરી પ્રયાસ કરો.</string>
     <!-- Displayed as a message in a dialog when we timeout waiting for a payment to be processed and token to be redeemed -->
@@ -7166,9 +7166,9 @@
     <!-- Row title for entering payment history -->
     <string name="BackupsTypeSettingsFragment__payment_history">પેમેન્ટ હિસ્ટ્રી</string>
     <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
-    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/માસ · %2$sના રોજ રિન્યૂ થશે</string>
+    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/મહિને · %2$sના રોજ રિન્યૂ થશે</string>
     <!-- Row title to change or cancel subscription -->
-    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Change or cancel subscription</string>
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">સબ્સ્ક્રિપ્શન બદલો અથવા રદ કરો</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7275,21 +7275,21 @@
 
     <!-- MessageBackupsCheckoutSheet -->
     <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Pay %1$s/month to Signal</string>
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Signalને %1$s/મહિને ચૂકવો</string>
     <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">You\'ll get:</string>
+    <string name="MessageBackupsCheckoutSheet__youll_get">તમને મળશે:</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media and using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">તમારા મેસેજ અને મીડિયાનો બેકઅપ લો અને Signalની સુરક્ષિત, એન્ડ-ટૂ-એન્ડ એન્ક્રિપ્ટેડ સ્ટોરેજ સેવાનો ઉપયોગ કરો. જ્યારે તમે નવો ફોન મેળવો અથવા Signalને ફરીથી ઇન્સ્ટોલ કરો ત્યારે ક્યારેય કોઈ મેસેજ ગુમાવશો નહીં.</string>
     <!-- Backups feature label for e2e encryption -->
-    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">End-to-end Encrypted</string>
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">એન્ડ-ટૂ-એન્ડ એન્ક્રિપ્ટેડ</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
-    <string name="MessageBackupsEducationScreen__optional_always">Optional, always</string>
+    <string name="MessageBackupsEducationScreen__optional_always">વૈકલ્પિક, હંમેશા</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
-    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Delete your backup anytime</string>
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">તમારા બેકઅપને કોઈ પણ સમયે ડિલીટ કરો</string>
     <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">બૅકઅપ સક્ષમ કરીએ</string>
+    <string name="MessageBackupsEducationScreen__enable_backups">બેકઅપ સક્ષમ કરો</string>
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">વધુ જાણો</string>
 
@@ -7297,7 +7297,7 @@
     <!-- Screen title -->
     <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">તમારો પિન દાખલ કરો</string>
     <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Enter your Signal PIN to enable backups</string>
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">બેકઅપને સક્ષમ કરવા માટે તમારો Signal પિન દાખલ કરો</string>
     <!-- Action button to confirm pin entry and continue -->
     <string name="MessageBackupsPinConfirmationScreen__next">આગળ</string>
     <!-- Action button to switch keyboard type -->
@@ -7305,23 +7305,23 @@
 
     <!-- MessageBackupsPinEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PINs protect your backup</string>
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">પિન તમારા બેકઅપને સુરક્ષિત કરે છે</string>
     <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Your Signal PIN lets you restore your backup when you re-install Signal. We recommend using a PIN that\'s at least %1$d digits.</string>
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">જ્યારે તમે Signal ફરીથી ઇન્સ્ટોલ કરો છો ત્યારે તમારા Signal પિનથી તમારું બેકઅપ રિસ્ટોર કરી શકો છો. અમે ઓછામાં ઓછા %1$d અંકોનો પિન વાપરવાની ભલામણ કરીએ છીએ.</string>
     <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">If you forget your PIN, you will not be able to restore your backup. You can change your PIN at any time in settings.</string>
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">જો તમે તમારો પિન ભૂલી જાઓ, તો તમે તમારા બેકઅપને રિસ્ટોર કરી શકશો નહીં. તમે તમારો પિન કોઈ પણ સમયે સેટિંગ્સમાંથી બદલી શકો છો.</string>
     <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Use current Signal PIN</string>
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">વર્તમાન Signal પિનનો ઉપયોગ કરો</string>
     <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">નવો PIN બનાવો</string>
+    <string name="MessageBackupsPinEducationScreen__create_new_pin">નવો પિન બનાવો</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
-    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Choose your backup plan</string>
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">તમારો બેકઅપ પ્લાન પસંદ કરો</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">All backups are end-to-end encrypted. Signal is a non-profit—paying for backups helps support our mission.</string>
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">બધા બેકઅપ એન્ડ-ટૂ-એન્ડ એન્ક્રિપ્ટેડ છે. Signal એક બિન-લાભકારી છે—બેકઅપ માટે ચૂકવણી કરવાથી અમારા મિશનને સપોર્ટ કરવામાં મદદ મળે છે.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__read_more">વધુ vancho</string>
+    <string name="MessageBackupsTypeSelectionScreen__read_more">વધુ વાંચો</string>
     <!-- Primary action button label when selecting a backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__next">આગળ</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
