@@ -3086,7 +3086,7 @@
     <string name="safety_number_change_dialog__call_anyway">Ring allikevel</string>
     <string name="safety_number_change_dialog__join_call">Bli med i samtale</string>
     <string name="safety_number_change_dialog__continue_call">Fortsett samtale</string>
-    <string name="safety_number_change_dialog__leave_call">Forlat samtale</string>
+    <string name="safety_number_change_dialog__leave_call">Legg på</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Følgende personer kan ha reinstallert eller byttet enhet. Bekreft sikkerhetsnummeret ditt med dem for å sikre personvernet.</string>
     <string name="safety_number_change_dialog__view">Vis</string>
     <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->

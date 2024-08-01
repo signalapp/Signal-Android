@@ -229,10 +229,10 @@
     </plurals>
     <!-- Unknown people row, placeholder is the number of unknown people in the call -->
     <plurals name="CallInfoView__plus_d_people">
-        <item quantity="other">%1$d명 이상</item>
+        <item quantity="other">외 %1$d명</item>
     </plurals>
     <!-- Unknown people row icon content description -->
-    <string name="CallInfoView__more_information">더 많은 정보</string>
+    <string name="CallInfoView__more_information">자세한 정보</string>
     <!-- Unknown people row info dialog message -->
     <string name="CallInfoView__before_joining_a_call">통화에 참여하기 전에는 휴대폰 연락처, 그룹에 함께 속한 사용자, 1:1 대화를 한 적 있는 사용자의 이름만 표시됩니다. 통화에 참여하면 모든 이름과 사진이 표시됩니다.</string>
     <!-- Unknown people row info dialog action to close the dialog -->
@@ -1107,7 +1107,7 @@
     <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
     <string name="ConnectivityWarningBottomSheet_title">메시지가 수신되지 않을 수 있습니다.</string>
     <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
-    <string name="ConnectivityWarningBottomSheet_body">기기를 재시동하면 메시지 전송 문제를 해결하는 데 도움이 될 수도 있습니다. 문제가 지속되면, Signal 지원팀에 연락해 주세요.</string>
+    <string name="ConnectivityWarningBottomSheet_body">기기를 다시 시작하면 메시지 전송 문제를 해결하는 데 도움이 될 수도 있습니다. 문제가 지속되면 Signal 지원팀에 연락해 주세요.</string>
     <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
     <string name="ConnectivityWarningBottomSheet_dismiss_button">확인</string>
 
@@ -1202,13 +1202,13 @@
 
     <!-- MoreTransferOrRestoreOptionsSheet -->
     <!-- Row title for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Android 장치에서 전송</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Android 기기에서 전송</string>
     <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">이전 안드로이드 기기에서 내 계정과 메시지를 이동합니다.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">이전 Android 기기에서 내 계정과 메시지를 전송합니다.</string>
     <!-- Row title for logging in without transfer -->
     <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">전송하지 않고 로그인</string>
     <!-- Row description for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">메시지와 미디어를 전송하지 않고 계속합니다.</string>
+    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">메시지와 미디어를 전송하지 않고 계속</string>
     <!-- Row title for restoring from local backup -->
     <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">로컬 백업 복원</string>
     <!-- Row description for restoring from local backup -->
@@ -1222,7 +1222,7 @@
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">복원 중…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s 중 %2$s (%3$s)</string>
+    <string name="RemoteRestoreActivity__s_of_s_s">%1$s/%2$s(%3$s)</string>
     <!-- Feature list media label for paid tier -->
     <string name="RemoteRestoreActivity__all_of_your_media">모든 미디어</string>
     <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
@@ -1232,7 +1232,7 @@
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">백업에서 복원</string>
     <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">지난 %1$d일간 메시지를 보내거나 받은 미디어만 포함합니다.</string>
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">지난 %1$d일간 보내거나 받은 미디어만 포함합니다.</string>
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">백업 내용:</string>
     <!-- Primary action button copy for starting restoration -->
@@ -5356,7 +5356,7 @@
 
     <!-- *PaymentInProgressFragment strings -->
     <string name="InAppPaymentInProgressFragment__processing_donation">기부를 처리하는 중…</string>
-    <string name="InAppPaymentInProgressFragment__processing_payment">결제 처리 중…</string>
+    <string name="InAppPaymentInProgressFragment__processing_payment">결제를 처리하는 중…</string>
 
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
@@ -5370,7 +5370,7 @@
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
     <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">예금주가 이 송금을 취소하여 처리할 수 없습니다. 요금이 청구되지 않았습니다.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
-    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">송금을 진행하는 중에 오류가 발행했습니다. 다시 시도하세요.</string>
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">결제를 처리하는 동안 오류가 발행했습니다. 다시 시도하세요.</string>
 
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">기부 처리 오류</string>
@@ -7010,7 +7010,7 @@
     <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
     <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/월 · %2$s 갱신</string>
     <!-- Row title to change or cancel subscription -->
-    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">구독 변경 또는 취소하기</string>
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">구독 변경 또는 취소</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7123,7 +7123,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">메시지와 기기를 백업하고 Signal의 안전한 엔드투엔드 암호화 저장 공간 서비스를 사용해 보세요. 휴대폰을 새로 바꾸거나 Signal을 재설치할 때 메시지를 잃어버리면 안 되겠죠.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Signal의 안전한 엔드투엔드 암호화 저장소 서비스를 사용하여 메시지와 미디어를 백업하세요. 새 휴대폰을 구매하거나 Signal을 다시 설치하는 경우에도 메시지를 손실할 염려가 없습니다.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">엔드투엔드 암호화</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
@@ -7137,7 +7137,7 @@
 
     <!-- MessageBackupsPinConfirmationScreen -->
     <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">번호 입력</string>
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">PIN 입력</string>
     <!-- Screen subtitle -->
     <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Signal PIN을 입력하여 백업을 활성화하세요.</string>
     <!-- Action button to confirm pin entry and continue -->
@@ -7149,7 +7149,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN을 사용한 백업 보호</string>
     <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Signal 재설치 시 Signal PIN을 사용하여 백업을 복원할 수 있습니다. %1$d자리 이상의 PIN을 사용하십시오.</string>
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Signal 재설치 시 Signal PIN을 사용하여 백업을 복원할 수 있습니다. %1$d자리 이상의 PIN을 사용하는 것이 좋습니다.</string>
     <!-- Notice about changing your pin. -->
     <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">PIN을 잊어버리면 백업을 복원할 수 없습니다. 설정에서 언제든지 PIN을 변경할 수 있습니다.</string>
     <!-- Action button label to utilize current pin -->
@@ -7161,7 +7161,7 @@
     <!-- Screen headline -->
     <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">백업 플랜 선택</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">모든 백업 내용은 엔드투엔드로 암호화됩니다. Signal은 비영리 단체이며, 백업 비용 결제로 당사의 사명을 지원하실 수 있습니다.</string>
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">모든 백업 내용은 엔드투엔드로 암호화됩니다. Signal은 비영리 단체입니다. 백업 요금은 Signal의 사명을 지원하는 데 사용됩니다.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__read_more">더 읽기</string>
     <!-- Primary action button label when selecting a backup tier without a current selection -->

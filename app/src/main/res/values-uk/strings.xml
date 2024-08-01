@@ -42,20 +42,20 @@
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
-    <string name="ApplicationMigrationActivity__signal_is_updating">Signal оновлюється…</string>
+    <string name="ApplicationMigrationActivity__signal_is_updating">Триває оновлення Signal…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ви ще не встановили фразу-пароль!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Вимкнути фразу-пароль?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Це назавжди розблокує Signal та сповіщення повідомлень.</string>
-    <string name="ApplicationPreferencesActivity_disable">Вимкнути</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ви ще не встановили пароль!</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Деактивувати пароль?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal і сповіщення про повідомлення буде безстроково розблоковано.</string>
+    <string name="ApplicationPreferencesActivity_disable">Деактивувати</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Помилка під час з\'єднання із сервером!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-коди необхідні для блокування реєстрації. Для вимкнення PIN-кодів спершу необхідно вимкнути блокування реєстрації.</string>
-    <string name="ApplicationPreferencesActivity_pin_created">PIN створений.</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">PIN вимкнений.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Записати кодову фразу для платежів</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Записати кодову фразу</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Перед вимкненням PIN-коду ви маєте створити кодову фразу, щоб упевнитись, що ви зможете відновити свій платіжний профіль.</string>
+    <string name="ApplicationPreferencesActivity_pin_created">PIN-код створено.</string>
+    <string name="ApplicationPreferencesActivity_pin_disabled">PIN-код вимкнено.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Запишіть кодову фразу для платіжного профілю</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">Запишіть фразу</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Перед вимкненням PIN-коду ви повинні записати кодову фразу для свого платіжного профілю, щоб мати змогу відновити його.</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -69,7 +69,7 @@
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
-    <string name="NumericKeyboardView__backspace">Повернутись</string>
+    <string name="NumericKeyboardView__backspace">Клавіша повернення</string>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(зображення)</string>
@@ -90,9 +90,9 @@
     <string name="AttachmentKeyboard_payment">Платіж</string>
 
     <!-- AttachmentManager -->
-    <string name="AttachmentManager_cant_open_media_selection">Неможливо знайти програму для обрання медіа.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal потребує дозволу \"Зберігання\" для прикріплення фото, відео та аудіо, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Зберігання\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal потребує дозволу \"Контакти\", щоб прикріпити контакт, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Контакти\".</string>
+    <string name="AttachmentManager_cant_open_media_selection">Не знайдено застосунок для вибору медіафайлів.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal потребує доступу до пам\'яті, щоб прикріплювати фото, відео та аудіо, але його не надано. Перейдіть у налаштування застосунку, відкрийте «Дозволи» та виберіть «Пам\'ять».</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal потребує доступу до «Контактів», щоб прикріплювати контактну інформацію, але його не надано. Перейдіть у налаштування застосунку, відкрийте «Дозволи», та виберіть «Пам\'ять».</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal потребує доступу до місцеположення, щоб його прикріпити, але його не надано. Перейдіть у налаштування застосунку, відкрийте «Дозволи», та виберіть «Геодані».</string>
 
     <!-- Dialog title asking users for location permission -->
@@ -120,11 +120,11 @@
     <string name="AttachmentManager__cancel">Закрити</string>
 
     <!-- AttachmentUploadJob -->
-    <string name="AttachmentUploadJob_uploading_media">Вивантаження медіа…</string>
-    <string name="AttachmentUploadJob_compressing_video_start">Стиснення відео…</string>
+    <string name="AttachmentUploadJob_uploading_media">Триває вивантаження медіа…</string>
+    <string name="AttachmentUploadJob_compressing_video_start">Триває стиснення відео…</string>
 
     <!-- BackgroundMessageRetriever -->
-    <string name="BackgroundMessageRetriever_checking_for_messages">Перевірка нових повідомлень…</string>
+    <string name="BackgroundMessageRetriever_checking_for_messages">Перевірка наявності нових повідомлень…</string>
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
@@ -184,19 +184,19 @@
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Заблокувати і покинути «%1$s»?</string>
     <string name="BlockUnblockDialog_block_s">Заблокувати %1$s?</string>
-    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ви більше не отримуватимете повідомлень чи оновлень з цієї групи, та її учасники не зможуть додати вас до цієї групи знов.</string>
-    <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Учасники групи більше не зможуть додавати вас до цієї групи.</string>
-    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Учасники групи зможуть знову додати вас в неї.</string>
+    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ви перестанете отримувати повідомлення та оновлення від цієї групи, а її учасники не зможуть знов додати вас до цієї групи.</string>
+    <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Учасники не зможуть знов додати вас до цієї групи.</string>
+    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Учасники зможуть знов додати вас до цієї групи.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ви зможете надсилати повідомлення й дзвонити цьому користувачу. Користувач зможе надсилати повідомлення й дзвонити вам, а також бачити ваше ім\'я та фото.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Ви зможете надсилати повідомлення один одному.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Ви зможете обмінюватися повідомленнями.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Заблоковані користувачі не зможуть вам дзвонити й надсилати повідомлення.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Заблоковані користувачі не зможуть надсилати вам повідомлення.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Вимкнути отримання оновлень і новин Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Увімкнути отримання оновлень та новин Signal.</string>
+    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Відновити отримання повідомлень про оновлення та новин Signal.</string>
     <string name="BlockUnblockDialog_unblock_s">Розблокувати %1$s?</string>
     <string name="BlockUnblockDialog_block">Заблокувати</string>
     <string name="BlockUnblockDialog_block_and_leave">Заблокувати і покинути</string>
@@ -249,8 +249,8 @@
     <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Ваш пристрій не підтримує запис відео</string>
 
     <!-- CameraXFragment -->
-    <string name="CameraXFragment_tap_for_photo_hold_for_video">Натисніть для фото, тримайте для відео</string>
-    <string name="CameraXFragment_capture_description">Захопити</string>
+    <string name="CameraXFragment_tap_for_photo_hold_for_video">Торкніться для фото, утримуйте для відео</string>
+    <string name="CameraXFragment_capture_description">Зняти</string>
     <string name="CameraXFragment_change_camera_description">Змінити камеру</string>
     <string name="CameraXFragment_open_gallery_description">Відкрити галерею</string>
     <!-- Button text asking for access to camera permissions -->
@@ -297,10 +297,10 @@
         <item quantity="many">Ви можете поділитися максимум із %1$d чатами.</item>
         <item quantity="other">Ви можете поділитися максимум із %1$d чату.</item>
     </plurals>
-    <string name="CameraContacts_select_signal_recipients">Оберіть одержувача Signal</string>
+    <string name="CameraContacts_select_signal_recipients">Оберіть одержувачів у Signal</string>
     <string name="CameraContacts_no_signal_contacts">Контактів Signal немає</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Ви можете використовувати кнопку Камера лише для відправлення фото контактам Signal. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Не можете знайти, кого шукали?</string>
+    <string name="CameraContacts_you_can_only_use_the_camera_button">Ви можете використовувати кнопку камери лише для надсилання фото контактам Signal. </string>
+    <string name="CameraContacts_cant_find_who_youre_looking_for">Не знайшли тих, кого шукали?</string>
     <string name="CameraContacts_invite_a_contact_to_join_signal">Запросити контакт приєднатися до Signal</string>
     <string name="CameraContacts__menu_search">Пошук</string>
 
@@ -308,7 +308,7 @@
     <!-- Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
     <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Вимкнути обхід цензури?</string>
     <!-- Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
-    <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Тепер ви можете приєднатись до Signal напряму для отримання кращого досвіду.</string>
+    <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Тепер ви можете з\'єднатися з Signal напряму, щоб застосунком було зручніше користуватися.</string>
     <!-- Action to prompt the user to disable circumvention since it is no longer needed -->
     <string name="CensorshipCircumventionMegaphone_turn_off">Вимкнути</string>
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
@@ -316,15 +316,15 @@
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Оновити Signal</string>
-    <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Ця версія застосунку більше не підтримується. Щоб продовжити надсилати та отримувати повідомлення, оновіться до останньої версії.</string>
+    <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Ця версія застосунку вже не підтримується. Щоб і надалі надсилати та отримувати повідомлення, оновіться до останньої версії.</string>
     <string name="ClientDeprecatedActivity_update">Оновити</string>
     <string name="ClientDeprecatedActivity_dont_update">Не оновлювати</string>
-    <string name="ClientDeprecatedActivity_warning">Попередження</string>
+    <string name="ClientDeprecatedActivity_warning">Увага</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Ваша версія Signal застаріла. Ви можете переглядати історію повідомлень, але не зможете відправляти чи отримувати повідомлення допоки не оновите застосунок.</string>
 
     <!-- CommunicationActions -->
-    <string name="CommunicationActions_no_browser_found">Браузера не знайдено.</string>
-    <string name="CommunicationActions_send_email">Відправити електронний лист</string>
+    <string name="CommunicationActions_no_browser_found">Браузер не знайдено.</string>
+    <string name="CommunicationActions_send_email">Відправити електронного листа</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Зараз триває мобільний виклик.</string>
     <string name="CommunicationActions_start_voice_call">Почати аудіовиклик?</string>
     <string name="CommunicationActions_cancel">Закрити</string>
@@ -364,8 +364,8 @@
     <!-- Toolbar title for contact name edit activity -->
     <string name="ContactNameEditActivity_given_name">Ім\'я</string>
     <string name="ContactNameEditActivity_family_name">Прізвище</string>
-    <string name="ContactNameEditActivity_prefix">Звання</string>
-    <string name="ContactNameEditActivity_suffix">Титул</string>
+    <string name="ContactNameEditActivity_prefix">Звертання</string>
+    <string name="ContactNameEditActivity_suffix">Додаток до повного імені</string>
     <string name="ContactNameEditActivity_middle_name">Друге ім\'я</string>
 
     <!-- ContactShareEditActivity -->
@@ -379,11 +379,11 @@
     <!-- Content descrption for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">Редагувати ім’я</string>
     <!-- Content description for user avatar in edit activity -->
-    <string name="ContactShareEditActivity__avatar">Фото</string>
+    <string name="ContactShareEditActivity__avatar">Зображення</string>
 
     <!-- ConversationItem -->
-    <string name="ConversationItem_error_not_sent_tap_for_details">Не відправлено, торкніться для деталей</string>
-    <string name="ConversationItem_error_partially_not_delivered">Частково відправлено, торкніться для деталей</string>
+    <string name="ConversationItem_error_not_sent_tap_for_details">Не надіслано, торкніться для інформації</string>
+    <string name="ConversationItem_error_partially_not_delivered">Надіслано частково, торкніться для інформації</string>
     <string name="ConversationItem_error_network_not_delivered">Не вдалося відправити</string>
     <string name="ConversationItem_group_action_left">Користувач %1$s покинув групу.</string>
     <string name="ConversationItem_send_paused">Відправлення призупинене</string>
@@ -1610,8 +1610,8 @@
 
     <string name="MediaOverviewActivity_sent_by_s">Надіслав користувач %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Надіслали ви</string>
-    <string name="MediaOverviewActivity_sent_by_s_to_s">Надіслано користувачем %1$s у «%2$s»</string>
-    <string name="MediaOverviewActivity_sent_by_you_to_s">Надіслали ви в «%1$s»</string>
+    <string name="MediaOverviewActivity_sent_by_s_to_s">Надіслано користувачем %1$s у чаті «%2$s»</string>
+    <string name="MediaOverviewActivity_sent_by_you_to_s">Надіслали ви в чаті «%1$s»</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Нагадати пізніше</string>
@@ -1690,7 +1690,7 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Вас не вдалося додати до нової групи, тому вас запрошено приєднатися до неї.</string>
     <string name="MessageRecord_chat_session_refreshed">Сесію чату оновлено</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">Не вдалося додати учасника до нової групи. Йому було надіслано запрошення.</item>
+        <item quantity="one">Не вдалося додати %1$s учасника до нової групи. Йому було надіслано запрошення.</item>
         <item quantity="few">Не вдалося додати %1$s учасників до нової групи. Їм було надіслано запрошення.</item>
         <item quantity="many">Не вдалося додати %1$s учасників до нової групи. Їм було надіслано запрошення.</item>
         <item quantity="other">Не вдалося додати %1$s учасника до нової групи. Їм було надіслано запрошення.</item>

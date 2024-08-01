@@ -330,7 +330,7 @@
     <!-- Title on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_invalid_link">Le lien est invalide</string>
     <!-- Message on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_this_is_not_a_valid_call_link">Ce lien d’appel n’est pas valide. Avant de rejoindre l’appel, vérifiez que le lien n’est pas tronqué et qu’il s’agit bien du bon lien.</string>
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Ce lien d’appel n’est pas valide. Vérifiez qu’il n’est pas tronqué et qu’il s’agit du bon lien.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -457,7 +457,7 @@
     <string name="ConversationActivity_cant_start_group_call">Impossible de démarrer l’appel de groupe</string>
     <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Seuls les administrateurs de ce groupe peuvent démarrer un appel.</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n’y a aucune appli pour gérer ce lien sur votre appareil.</string>
-    <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Votre demande a bien été envoyée à l’administrateur. Vous recevrez une notification lorsque vous serez autorisé à rejoindre le groupe.</string>
+    <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Votre demande a bien été envoyée à l’admin. Un message vous signalera si vous êtes autorisé à rejoindre le groupe.</string>
     <string name="ConversationActivity_cancel_request">Annuler la demande</string>
 
     <!-- Dialog title asking users for microphone permission -->
@@ -1062,8 +1062,8 @@
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-        <item quantity="one">%1$d membre n’a pas pu être rajouté au Nouveau groupe. Voulez-vous l\'ajouter maintenant ?</item>
-        <item quantity="other">%1$d membres n’ont pas pu être rajoutés au Nouveau groupe. Voulez-vous les ajouter maintenant ?</item>
+        <item quantity="one">%1$d membre n’a pas pu être ajouté au nouveau groupe. Voulez-vous l\'ajouter maintenant ?</item>
+        <item quantity="other">%1$d membres n’ont pas pu être ajoutés au nouveau groupe. Voulez-vous les ajouter maintenant ?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
         <item quantity="one">Ajouter un membre</item>
@@ -1077,8 +1077,8 @@
         <item quantity="other">Ajouter des membres ?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-        <item quantity="one">Ce membre n’a pas pu être ajouté automatiquement au Nouveau groupe lors de sa conversion :</item>
-        <item quantity="other">Ces membres n’ont pas pu être ajoutés automatiquement au Nouveau groupe lors de sa conversion :</item>
+        <item quantity="one">Impossible d’ajouter automatiquement ce membre au nouveau groupe :</item>
+        <item quantity="other">Impossible d’ajouter automatiquement les membres suivants au nouveau groupe :</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
         <item quantity="one">Ajouter un membre</item>
@@ -1385,7 +1385,7 @@
     <!-- Message shown when you try to get information for a group via link but an unknown issue occurred -->
     <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Impossible de rejoindre le groupe via ce lien pour le moment. Veuillez réessayer plus tard.</string>
 
-    <string name="GroupJoinBottomSheetDialogFragment_direct_join">Voulez-vous vous vraiment rejoindre ce groupe et partager votre nom et votre photo avec ses membres ?</string>
+    <string name="GroupJoinBottomSheetDialogFragment_direct_join">Voulez-vous vous vraiment rejoindre ce groupe et partager vos nom et photo avec ses membres ?</string>
     <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Pour rejoindre ce groupe, un administrateur doit d’abord approuver votre demande. Vos nom et photo seront partagés avec les membres du groupe si vous demandez à le rejoindre.</string>
     <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
         <item quantity="one">Groupe · %1$d membre</item>
@@ -1749,7 +1749,7 @@
     </plurals>
 
     <!-- GV2 group link approvals -->
-    <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s a approuvé votre demande à rejoindre le groupe.</string>
+    <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s a approuvé votre demande d’adhésion au groupe.</string>
     <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s a autorisé %2$s à rejoindre le groupe.</string>
     <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Vous avez autorisé %1$s à rejoindre le groupe.</string>
     <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Votre demande à rejoindre le groupe a été approuvée.</string>
@@ -1759,7 +1759,7 @@
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Votre demande à rejoindre le groupe a été refusée par un administrateur.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s a refusé la demande de %2$s à rejoindre le groupe.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">La demande de %1$s à rejoindre le groupe a été refusée.</string>
-    <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Vous avez annulé votre demande à rejoindre le groupe.</string>
+    <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Vous avez annulé votre demande d’adhésion au groupe.</string>
     <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s a annulé sa demande à rejoindre le groupe.</string>
 
     <!-- End of GV2 specific update messages -->
@@ -1881,7 +1881,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Poursuivre votre conversation avec %1$s et partager vos nom et photo avec cette personne ?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Rejoindre ce groupe et partager votre nom et votre photo avec ses membres ? Aucune confirmation de lecture n’est envoyée tant que vous n’avrez pas accepté.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Rejoindre ce groupe et partager votre nom et votre photo avec ses membres ? Vous pourrez ensuite accéder à la conversation.</string>
-    <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Rejoindre ce groupe ? L’administrateur ne saura que vous avez vu son invitation que si vous l’acceptez.</string>
+    <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Rejoindre ce groupe ? Ce contact ne saura que vous avez vu son invitation que si vous l’acceptez.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager vos nom et photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Afficher</string>
@@ -2204,13 +2204,13 @@
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
     <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Aucune E/S audio éligible n’a été détectée.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">L’icône d’un appareil Bluetooth.</string>
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">Icône &lt;strong&gt;Appareil Bluetooth&lt;/strong&gt;.</string>
     <!-- A text description of the headset icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">L’icône d’un casque filaire.</string>
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">Icône &lt;strong&gt;Casque filaire&lt;/strong&gt;.</string>
     <!-- A text description of the speaker icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">L’icône d’un haut-parleur.</string>
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Icône &lt;strong&gt;Haut-parleur&lt;/strong&gt;.</string>
     <!-- A text description of the earpiece icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">L’icône de l’écouteur d’un appareil.</string>
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Icône &lt;strong&gt;Écouteurs&lt;/strong&gt; d’un appareil.</string>
 
     <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
     <string name="CallOverflowPopupWindow__raise_hand">Lever la main</string>

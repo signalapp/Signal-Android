@@ -5093,7 +5093,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">Видео позив</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__audio">Гласовин позив</string>
+    <string name="ConversationSettingsFragment__audio">Гласовни позив</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Позови</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
