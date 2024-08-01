@@ -51,7 +51,7 @@ class BackupKey(val value: ByteArray) {
   }
 
   fun deriveMediaId(mediaName: MediaName): MediaId {
-    return MediaId(HKDF.deriveSecrets(value, mediaName.toByteArray(), "Media ID".toByteArray(), 15))
+    return MediaId(HKDF.deriveSecrets(value, mediaName.toByteArray(), "20231003_Signal_Backups_Media_ID".toByteArray(), 15))
   }
 
   fun deriveMediaSecrets(mediaName: MediaName): MediaKeyMaterial {
