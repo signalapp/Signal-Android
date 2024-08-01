@@ -489,7 +489,8 @@ class ControlsAndInfoController private constructor(
       displayRingToggle() != previousState.displayRingToggle() ||
       displayOverflow() != previousState.displayOverflow() ||
       displayEndCall() != previousState.displayEndCall() ||
-      displayWaitingToBeLetIn() != previousState.displayWaitingToBeLetIn()
+      displayWaitingToBeLetIn() != previousState.displayWaitingToBeLetIn() ||
+      (previousState == WebRtcControls.PIP && this != WebRtcControls.PIP)
   }
 
   private fun alphaControls(slideOffset: Float): Float {
