@@ -261,6 +261,12 @@ fun MessageBackupsTypeBlock(
         style = MaterialTheme.typography.titleMedium
       )
 
+      val featureIconTint = if (isSelected) {
+        MaterialTheme.colorScheme.primary
+      } else {
+        MaterialTheme.colorScheme.onSurfaceVariant
+      }
+
       Column(
         verticalArrangement = spacedBy(4.dp),
         modifier = Modifier
@@ -268,7 +274,7 @@ fun MessageBackupsTypeBlock(
           .padding(horizontal = 16.dp)
       ) {
         messageBackupsType.features.forEach {
-          MessageBackupsTypeFeatureRow(messageBackupsTypeFeature = it)
+          MessageBackupsTypeFeatureRow(messageBackupsTypeFeature = it, iconTint = featureIconTint)
         }
       }
     }
@@ -292,7 +298,7 @@ private fun formatCostPerMonth(pricePerMonth: FiatMoney): String {
   }
 }
 
-private fun testBackupTypes(): List<MessageBackupsType> {
+fun testBackupTypes(): List<MessageBackupsType> {
   return listOf(
     MessageBackupsType(
       tier = MessageBackupTier.FREE,
