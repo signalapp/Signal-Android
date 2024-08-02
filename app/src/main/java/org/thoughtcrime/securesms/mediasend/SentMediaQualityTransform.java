@@ -27,7 +27,7 @@ public final class SentMediaQualityTransform implements MediaTransform {
   @Override
   public @NonNull Media transform(@NonNull Context context, @NonNull Media media) {
     return new Media(media.getUri(),
-                     media.getMimeType(),
+                     media.getContentType(),
                      media.getDate(),
                      media.getWidth(),
                      media.getHeight(),

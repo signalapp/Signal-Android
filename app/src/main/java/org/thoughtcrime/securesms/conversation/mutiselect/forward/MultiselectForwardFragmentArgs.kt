@@ -55,11 +55,11 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
 
   companion object {
     @JvmStatic
-    fun create(context: Context, threadId: Long, mediaUri: Uri, mediaType: String, consumer: Consumer<MultiselectForwardFragmentArgs>) {
+    fun create(context: Context, threadId: Long, mediaUri: Uri, contentType: String?, consumer: Consumer<MultiselectForwardFragmentArgs>) {
       SignalExecutors.BOUNDED.execute {
         val multiShareArgs = MultiShareArgs.Builder(setOf())
           .withDataUri(mediaUri)
-          .withDataType(mediaType)
+          .withDataType(contentType)
           .build()
 
         val sendButtonColors: ViewColorSet? = threadId.takeIf { it > 0 }

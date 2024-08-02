@@ -246,7 +246,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     val isOutgoing: Boolean
   ) {
 
-    val contentType: String
+    val contentType: String?
       get() = attachment!!.contentType
 
     companion object {

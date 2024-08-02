@@ -361,12 +361,12 @@ public class MediaRepository {
     }
 
     if (width == 0 || height == 0) {
-      Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, media.getMimeType(), media.getUri());
+      Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, media.getContentType(), media.getUri());
       width  = dimens.first;
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.empty(), Optional.empty());
+    return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.empty(), Optional.empty());
   }
 
   private Media getContentResolverPopulatedMedia(@NonNull Context context, @NonNull Media media) throws IOException {
@@ -387,20 +387,20 @@ public class MediaRepository {
     }
 
     if (width == 0 || height == 0) {
-      Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, media.getMimeType(), media.getUri());
+      Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, media.getContentType(), media.getUri());
       width  = dimens.first;
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.empty(), Optional.empty());
+    return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.empty(), Optional.empty());
   }
 
   @VisibleForTesting
   public static @NonNull Media fixMimeType(@NonNull Context context, @NonNull Media media) {
-    if (MediaUtil.isOctetStream(media.getMimeType())) {
+    if (MediaUtil.isOctetStream(media.getContentType())) {
       Log.w(TAG, "Media has mimetype octet stream");
       String newMimeType = MediaUtil.getMimeType(context, media.getUri());
-      if (newMimeType != null && !newMimeType.equals(media.getMimeType())) {
+      if (newMimeType != null && !newMimeType.equals(media.getContentType())) {
         Log.d(TAG, "Changing mime type to '" + newMimeType + "'");
         return Media.withMimeType(media, newMimeType);
       } else if (media.getSize() > 0 && media.getWidth() > 0 && media.getHeight() > 0) {

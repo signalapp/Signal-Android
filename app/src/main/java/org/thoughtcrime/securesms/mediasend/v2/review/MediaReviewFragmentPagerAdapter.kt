@@ -44,12 +44,12 @@ class MediaReviewFragmentPagerAdapter(fragment: Fragment) : FragmentStateAdapter
     val mediaItem: Media = mediaList[position]
 
     return when {
-      MediaUtil.isGif(mediaItem.mimeType) -> MediaReviewGifPageFragment.newInstance(mediaItem.uri)
-      MediaUtil.isImageType(mediaItem.mimeType) -> MediaReviewImagePageFragment.newInstance(mediaItem.uri)
-      MediaUtil.isVideoType(mediaItem.mimeType) -> MediaReviewVideoPageFragment.newInstance(mediaItem.uri, mediaItem.isVideoGif)
-      MediaUtil.isDocumentType(mediaItem.mimeType) -> MediaReviewDocumentPageFragment.newInstance(mediaItem)
+      MediaUtil.isGif(mediaItem.contentType) -> MediaReviewGifPageFragment.newInstance(mediaItem.uri)
+      MediaUtil.isImageType(mediaItem.contentType) -> MediaReviewImagePageFragment.newInstance(mediaItem.uri)
+      MediaUtil.isVideoType(mediaItem.contentType) -> MediaReviewVideoPageFragment.newInstance(mediaItem.uri, mediaItem.isVideoGif)
+      MediaUtil.isDocumentType(mediaItem.contentType) -> MediaReviewDocumentPageFragment.newInstance(mediaItem)
       else -> {
-        throw UnsupportedOperationException("Can only render images and videos. Found mimetype: '" + mediaItem.mimeType + "'")
+        throw UnsupportedOperationException("Can only render images and videos. Found mimetype: '" + mediaItem.contentType + "'")
       }
     }
   }

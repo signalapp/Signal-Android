@@ -12,7 +12,7 @@ class VideoTrimTransform(private val data: VideoTrimData) : MediaTransform {
   override fun transform(context: Context, media: Media): Media {
     return Media(
       media.uri,
-      media.mimeType,
+      media.contentType,
       media.date,
       media.width,
       media.height,

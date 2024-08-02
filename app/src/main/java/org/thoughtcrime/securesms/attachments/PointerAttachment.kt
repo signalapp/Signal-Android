@@ -17,7 +17,7 @@ import java.util.UUID
 class PointerAttachment : Attachment {
   @VisibleForTesting
   constructor(
-    contentType: String,
+    contentType: String?,
     transferState: Int,
     size: Long,
     fileName: String?,
@@ -87,15 +87,11 @@ class PointerAttachment : Attachment {
     @JvmStatic
     @JvmOverloads
     fun forPointer(pointer: Optional<SignalServiceAttachment>, stickerLocator: StickerLocator? = null, fastPreflightId: String? = null, transferState: Int = AttachmentTable.TRANSFER_PROGRESS_PENDING): Optional<Attachment> {
-      if (!pointer.isPresent || !pointer.get().isPointer) {
+      if (!pointer.isPresent || !pointer.get().isPointer()) {
         return Optional.empty()
       }
 
-      val encodedKey: String? = if (pointer.get().asPointer().key != null) {
-        encodeWithPadding(pointer.get().asPointer().key)
-      } else {
-        null
-      }
+      val encodedKey: String? = pointer.get().asPointer().key?.let { encodeWithPadding(it) }
 
       return Optional.of(
         PointerAttachment(
@@ -143,7 +139,7 @@ class PointerAttachment : Attachment {
           fileName = quotedAttachment.fileName,
           cdn = Cdn.fromCdnNumber(thumbnail?.asPointer()?.cdnNumber ?: 0),
           location = thumbnail?.asPointer()?.remoteId?.toString() ?: "0",
-          key = if (thumbnail != null && thumbnail.asPointer().key != null) encodeWithPadding(thumbnail.asPointer().key) else null,
+          key = thumbnail?.asPointer()?.key?.let { encodeWithPadding(it) },
           digest = thumbnail?.asPointer()?.digest?.orElse(null),
           incrementalDigest = thumbnail?.asPointer()?.incrementalDigest?.orElse(null),
           incrementalMacChunkSize = thumbnail?.asPointer()?.incrementalMacChunkSize ?: 0,

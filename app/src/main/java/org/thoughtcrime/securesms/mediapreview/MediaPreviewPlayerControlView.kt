@@ -50,7 +50,7 @@ class MediaPreviewPlayerControlView @JvmOverloads constructor(
 
     companion object {
       @JvmStatic
-      fun fromString(contentType: String): MediaMode {
+      fun fromString(contentType: String?): MediaMode {
         if (MediaUtil.isVideo(contentType)) return VIDEO
         if (MediaUtil.isImageType(contentType)) return IMAGE
         throw IllegalArgumentException("Unknown content type: $contentType")

@@ -200,7 +200,7 @@ object Stories {
     @WorkerThread
     fun canPreUploadMedia(media: Media): Boolean {
       return when {
-        MediaUtil.isVideo(media.mimeType) -> getSendRequirements(media) != SendRequirements.REQUIRES_CLIP
+        MediaUtil.isVideo(media.contentType) -> getSendRequirements(media) != SendRequirements.REQUIRES_CLIP
         else -> true
       }
     }
@@ -239,11 +239,11 @@ object Stories {
     }
 
     private fun canClipMedia(media: Media): Boolean {
-      return MediaUtil.isVideo(media.mimeType) && MediaConstraints.isVideoTranscodeAvailable()
+      return MediaUtil.isVideo(media.contentType) && MediaConstraints.isVideoTranscodeAvailable()
     }
 
     private fun getContentDuration(media: Media): DurationResult {
-      return if (MediaUtil.isVideo(media.mimeType)) {
+      return if (MediaUtil.isVideo(media.contentType)) {
         val mediaDuration = if (media.duration == 0L && media.transformProperties.map(TransformProperties::shouldSkipTransform).orElse(true)) {
           getVideoDuration(media.uri)
         } else if (media.transformProperties.map { it.videoTrim }.orElse(false)) {
@@ -349,7 +349,7 @@ object Stories {
       Log.d(TAG, "Transforming media clip: ${transformProperties.videoTrimStartTimeUs.microseconds.inWholeSeconds}s to ${transformProperties.videoTrimEndTimeUs.microseconds.inWholeSeconds}s")
       return Media(
         media.uri,
-        media.mimeType,
+        media.contentType,
         media.date,
         media.width,
         media.height,

@@ -153,7 +153,7 @@ class MediaSelectionRepository(context: Context) {
           scheduleMessages(sendType, contacts.map { it.recipientId }, trimmedBody, updatedMedia, trimmedMentions, trimmedBodyRanges, isViewOnce, scheduledTime)
           emitter.onComplete()
         }
-      } else if (MediaUtil.isDocumentType(selectedMedia.first().mimeType)) {
+      } else if (MediaUtil.isDocumentType(selectedMedia.first().contentType)) {
         Log.i(TAG, "Document. Skipping pre-upload.")
         emitter.onSuccess(
           MediaSendActivityResult(
@@ -315,14 +315,14 @@ class MediaSelectionRepository(context: Context) {
     val context: Context = AppDependencies.application
 
     for (mediaItem in nonUploadedMedia) {
-      if (MediaUtil.isVideoType(mediaItem.mimeType)) {
+      if (MediaUtil.isVideoType(mediaItem.contentType)) {
         slideDeck.addSlide(VideoSlide(context, mediaItem.uri, mediaItem.size, mediaItem.isVideoGif, mediaItem.width, mediaItem.height, mediaItem.caption.orElse(null), mediaItem.transformProperties.orElse(null)))
-      } else if (MediaUtil.isGif(mediaItem.mimeType)) {
+      } else if (MediaUtil.isGif(mediaItem.contentType)) {
         slideDeck.addSlide(GifSlide(context, mediaItem.uri, mediaItem.size, mediaItem.width, mediaItem.height, mediaItem.isBorderless, mediaItem.caption.orElse(null)))
-      } else if (MediaUtil.isImageType(mediaItem.mimeType)) {
-        slideDeck.addSlide(ImageSlide(context, mediaItem.uri, mediaItem.mimeType, mediaItem.size, mediaItem.width, mediaItem.height, mediaItem.isBorderless, mediaItem.caption.orElse(null), null, mediaItem.transformProperties.orElse(null)))
+      } else if (MediaUtil.isImageType(mediaItem.contentType)) {
+        slideDeck.addSlide(ImageSlide(context, mediaItem.uri, mediaItem.contentType, mediaItem.size, mediaItem.width, mediaItem.height, mediaItem.isBorderless, mediaItem.caption.orElse(null), null, mediaItem.transformProperties.orElse(null)))
       } else {
-        Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.mimeType + "'. Skipping.")
+        Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.contentType + "'. Skipping.")
       }
     }
     val splitMessage = MessageUtil.getSplitMessage(context, body, sendType.calculateCharacters(body).maxPrimaryMessageSize)

@@ -408,9 +408,12 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     public String contentType;
     public long   date;
 
-    public Attachment(@NonNull Uri uri, @NonNull String contentType,
-                      long date, @Nullable String fileName)
-    {
+    public Attachment(
+        @NonNull Uri uri,
+        @Nullable String contentType,
+        long date,
+        @Nullable String fileName
+    ) {
       if (uri == null || contentType == null || date < 0) {
         throw new AssertionError("uri, content type, and date must all be specified");
       }

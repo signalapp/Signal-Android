@@ -140,7 +140,7 @@ class AttachmentKeyboardMediaAdapter extends RecyclerView.Adapter<AttachmentKeyb
       if (media.getDuration() > 0) {
         duration.setVisibility(View.VISIBLE);
         duration.setText(formatTime(media.getDuration()));
-      } else if (MediaUtil.isVideoType(media.getMimeType())) {
+      } else if (MediaUtil.isVideoType(media.getContentType())) {
         videoIcon.setVisibility(View.VISIBLE);
       }
     }

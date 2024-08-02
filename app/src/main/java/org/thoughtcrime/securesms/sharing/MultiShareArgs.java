@@ -182,7 +182,7 @@ public final class MultiShareArgs implements Parcelable {
     }
 
     return isTextStory ||
-           (!media.isEmpty() && media.stream().allMatch(m -> MediaUtil.isStorySupportedType(m.getMimeType()))) ||
+           (!media.isEmpty() && media.stream().allMatch(m -> MediaUtil.isStorySupportedType(m.getContentType()))) ||
            MediaUtil.isStorySupportedType(dataType) ||
            isValidForTextStoryGeneration();
   }

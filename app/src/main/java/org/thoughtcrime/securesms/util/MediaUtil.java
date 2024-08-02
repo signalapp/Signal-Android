@@ -76,7 +76,7 @@ public class MediaUtil {
   public static final String UNKNOWN           = "*/*";
   public static final String OCTET             = "application/octet-stream";
 
-  public static SlideType getSlideTypeFromContentType(@NonNull String contentType) {
+  public static SlideType getSlideTypeFromContentType(@Nullable String contentType) {
     if (isGif(contentType)) {
       return SlideType.GIF;
     } else if (isImageType(contentType)) {
@@ -356,7 +356,7 @@ public class MediaUtil {
   }
 
   public static boolean isNonGifVideo(Media media) {
-    return isVideo(media.getMimeType()) && !media.isVideoGif();
+    return isVideo(media.getContentType()) && !media.isVideoGif();
   }
 
   public static boolean isImageType(String contentType) {

@@ -62,7 +62,7 @@ class InternalMessageDetailsViewModel(val messageId: Long) : ViewModel() {
 
   data class AttachmentInfo(
     val id: Long,
-    val contentType: String,
+    val contentType: String?,
     val size: Long,
     val fileName: String?,
     val hashStart: String?,

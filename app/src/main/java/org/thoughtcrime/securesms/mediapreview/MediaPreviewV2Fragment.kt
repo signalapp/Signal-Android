@@ -526,10 +526,10 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     val uri = attachment?.uri
     if (attachment != null && uri != null) {
       MultiselectForwardFragmentArgs.create(
-        requireContext(),
-        mediaItem.threadId,
-        uri,
-        attachment.contentType
+        context = requireContext(),
+        threadId = mediaItem.threadId,
+        mediaUri = uri,
+        contentType = attachment.contentType
       ) { args: MultiselectForwardFragmentArgs ->
         MultiselectForwardFragment.showBottomSheet(childFragmentManager, args)
       }
