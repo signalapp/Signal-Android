@@ -22,6 +22,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.os.bundleOf
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -179,8 +180,26 @@ class ActiveCallManager(
     previousNotificationId = notificationId
 
     if (type != CallNotificationBuilder.TYPE_ESTABLISHED) {
-      val notification = CallNotificationBuilder.getCallInProgressNotification(application, type, Recipient.resolved(recipientId), isVideoCall, false)
+      val requiresAsyncNotificationLoad = Build.VERSION.SDK_INT <= 29
+
+      val notification = CallNotificationBuilder.getCallInProgressNotification(application, type, Recipient.resolved(recipientId), isVideoCall, requiresAsyncNotificationLoad)
       NotificationManagerCompat.from(application).notify(notificationId, notification)
+
+      if (requiresAsyncNotificationLoad) {
+        Single.fromCallable { CallNotificationBuilder.getCallInProgressNotification(application, type, Recipient.resolved(recipientId), isVideoCall, false) }
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(object : SingleObserver<Notification> {
+            override fun onSuccess(t: Notification) {
+              if (NotificationManagerCompat.from(application).activeNotifications.any { n -> n.id == notificationId }) {
+                NotificationManagerCompat.from(application).notify(notificationId, notification!!)
+              }
+            }
+
+            override fun onSubscribe(d: Disposable) = Unit
+            override fun onError(e: Throwable) = Unit
+          })
+      }
     } else {
       ActiveCallForegroundService.start(application, recipientId, isVideoCall)
     }
@@ -274,7 +293,7 @@ class ActiveCallManager(
 
     @get:RequiresApi(30)
     override val serviceType: Int
-      get() = ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
+      get() = ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
 
     private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
     private var notification: Notification? = null

@@ -961,7 +961,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("useActiveCallManager")
   val useActiveCallManager: Boolean by remoteBoolean(
-    key = "android.calling.useActiveCallManager.5",
+    key = "android.calling.useActiveCallManager.6",
     defaultValue = false,
     hotSwappable = false
   )
