@@ -21,8 +21,10 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     private val TAG = Log.tag(SearchTable::class.java)
 
     const val FTS_TABLE_NAME = "message_fts"
+    const val MESSAGES_VIEW_NAME = "message_reaction_view"
     const val ID = "rowid"
     const val BODY = MessageTable.BODY
+    const val REACTIONS = ReactionTable.EMOJI
     const val THREAD_ID = MessageTable.THREAD_ID
     const val SNIPPET = "snippet"
     const val CONVERSATION_RECIPIENT = "conversation_recipient"
@@ -33,29 +35,88 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     @Language("sql")
     val CREATE_TABLE = arrayOf(
-      "CREATE VIRTUAL TABLE $FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${MessageTable.TABLE_NAME}, content_rowid=${MessageTable.ID})"
+      """
+        CREATE VIEW $MESSAGES_VIEW_NAME AS 
+          SELECT
+            ${MessageTable.TABLE_NAME}.${MessageTable.ID},
+            ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID},
+            ${MessageTable.TABLE_NAME}.${MessageTable.BODY},
+            GROUP_CONCAT(${ReactionTable.TABLE_NAME}.${ReactionTable.EMOJI}, '') AS $REACTIONS
+          FROM ${MessageTable.TABLE_NAME}
+          LEFT JOIN ${ReactionTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = ${ReactionTable.TABLE_NAME}.${ReactionTable.MESSAGE_ID}
+          GROUP BY ${MessageTable.TABLE_NAME}.${MessageTable.ID}
+          ORDER BY ${ReactionTable.TABLE_NAME}.${ReactionTable.DATE_SENT};
+      """,
+      // By default the fts5 tokenizer excludes currency symbols and "other symbols" (emoji)
+      // These are included by specifying Sc and So character classes
+      // https://www.sqlite.org/fts5.html#tokenizers
+      // https://www.compart.com/en/unicode/category
+      "CREATE VIRTUAL TABLE $FTS_TABLE_NAME USING fts5($BODY, $REACTIONS, $THREAD_ID UNINDEXED, content=$MESSAGES_VIEW_NAME, content_rowid=${MessageTable.ID}, tokenize = \"unicode61 categories 'L* N* Co S*'\");"
     )
 
-    private const val TRIGGER_AFTER_INSERT = "message_ai"
-    private const val TRIGGER_AFTER_DELETE = "message_ad"
-    private const val TRIGGER_AFTER_UPDATE = "message_au"
+    private const val TRIGGER_AFTER_MESSAGE_INSERT = "message_ai"
+    private const val TRIGGER_BEFORE_MESSAGE_DELETE = "message_bd"
+    private const val TRIGGER_BEFORE_MESSAGE_UPDATE = "message_bu"
+    private const val TRIGGER_AFTER_MESSAGE_UPDATE = "message_au"
+    private const val TRIGGER_BEFORE_REACTION_INSERT = "reaction_bi"
+    private const val TRIGGER_AFTER_REACTION_INSERT = "reaction_ai"
+    private const val TRIGGER_BEFORE_REACTION_DELETE = "reaction_bd"
+    private const val TRIGGER_AFTER_REACTION_DELETE = "reaction_ad"
+
+    private fun DELETE_OLD_FTS(idColName: String): String {
+      return """
+        INSERT INTO $FTS_TABLE_NAME($FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID, $REACTIONS) SELECT 'delete', *
+          FROM $MESSAGES_VIEW_NAME WHERE $MESSAGES_VIEW_NAME.${MessageTable.ID} = ${idColName} LIMIT 1;
+      """
+    }
+
+    private fun INSERT_NEW_FTS(idColName: String): String {
+      return """
+        INSERT INTO $FTS_TABLE_NAME($ID, $BODY, $THREAD_ID, $REACTIONS) SELECT *
+          FROM $MESSAGES_VIEW_NAME WHERE $MESSAGES_VIEW_NAME.${MessageTable.ID} = ${idColName} LIMIT 1;
+      """
+    }
 
     @Language("sql")
     val CREATE_TRIGGERS = arrayOf(
       """
-        CREATE TRIGGER $TRIGGER_AFTER_INSERT AFTER INSERT ON ${MessageTable.TABLE_NAME} BEGIN
-          INSERT INTO $FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${MessageTable.ID}, new.${MessageTable.BODY}, new.${MessageTable.THREAD_ID});
+        CREATE TRIGGER $TRIGGER_AFTER_MESSAGE_INSERT AFTER INSERT ON ${MessageTable.TABLE_NAME} BEGIN
+          ${INSERT_NEW_FTS("new." + MessageTable.ID)}
         END;
       """,
       """
-        CREATE TRIGGER $TRIGGER_AFTER_DELETE AFTER DELETE ON ${MessageTable.TABLE_NAME} BEGIN
-          INSERT INTO $FTS_TABLE_NAME($FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MessageTable.ID}, old.${MessageTable.BODY}, old.${MessageTable.THREAD_ID});
+        CREATE TRIGGER $TRIGGER_BEFORE_MESSAGE_DELETE BEFORE DELETE ON ${MessageTable.TABLE_NAME} BEGIN
+          ${DELETE_OLD_FTS("old." + MessageTable.ID)}
         END;
       """,
       """
-        CREATE TRIGGER $TRIGGER_AFTER_UPDATE AFTER UPDATE ON ${MessageTable.TABLE_NAME} BEGIN
-          INSERT INTO $FTS_TABLE_NAME($FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MessageTable.ID}, old.${MessageTable.BODY}, old.${MessageTable.THREAD_ID});
-          INSERT INTO $FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${MessageTable.ID}, new.${MessageTable.BODY}, new.${MessageTable.THREAD_ID});
+        CREATE TRIGGER $TRIGGER_BEFORE_MESSAGE_UPDATE BEFORE UPDATE ON ${MessageTable.TABLE_NAME} BEGIN
+          ${DELETE_OLD_FTS("old." + MessageTable.ID)}
+        END;
+      """,
+      """
+        CREATE TRIGGER $TRIGGER_AFTER_MESSAGE_UPDATE AFTER UPDATE ON ${MessageTable.TABLE_NAME} BEGIN
+          ${INSERT_NEW_FTS("new." + MessageTable.ID)}
+        END;
+      """,
+      """
+        CREATE TRIGGER $TRIGGER_BEFORE_REACTION_INSERT BEFORE INSERT ON ${ReactionTable.TABLE_NAME} BEGIN
+          ${DELETE_OLD_FTS("new." + ReactionTable.MESSAGE_ID)}
+        END;
+      """,
+      """
+        CREATE TRIGGER $TRIGGER_AFTER_REACTION_INSERT AFTER INSERT ON ${ReactionTable.TABLE_NAME} BEGIN
+          ${INSERT_NEW_FTS("new." + ReactionTable.MESSAGE_ID)}
+        END;
+      """,
+      """
+        CREATE TRIGGER $TRIGGER_BEFORE_REACTION_DELETE BEFORE DELETE ON ${ReactionTable.TABLE_NAME} BEGIN
+          ${DELETE_OLD_FTS("old." + ReactionTable.MESSAGE_ID)}
+        END;
+      """,
+      """
+        CREATE TRIGGER $TRIGGER_AFTER_REACTION_DELETE AFTER DELETE ON ${ReactionTable.TABLE_NAME} BEGIN
+          ${INSERT_NEW_FTS("old." + ReactionTable.MESSAGE_ID)}
         END;
       """
     )
@@ -65,7 +126,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
-        snippet($FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET, 
+        snippet($FTS_TABLE_NAME, 0, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
         $FTS_TABLE_NAME.$THREAD_ID, 
         $FTS_TABLE_NAME.$BODY, 
@@ -90,7 +151,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
-        snippet($FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET,
+        snippet($FTS_TABLE_NAME, 0, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET,
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
         $FTS_TABLE_NAME.$THREAD_ID, 
         $FTS_TABLE_NAME.$BODY, 
@@ -148,15 +209,16 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       Log.i(TAG, "Reindexing ID's [$i, ${i + batchSize})")
       writableDatabase.execSQL(
         """
-        INSERT INTO $FTS_TABLE_NAME ($ID, $BODY) 
-            SELECT 
-              ${MessageTable.ID}, 
-              ${MessageTable.BODY}
-            FROM 
-              ${MessageTable.TABLE_NAME} 
-            WHERE 
-              ${MessageTable.ID} >= $i AND
-              ${MessageTable.ID} < ${i + batchSize}
+        INSERT INTO $FTS_TABLE_NAME ($ID, $BODY, $REACTIONS) 
+          SELECT 
+            ${MessageTable.ID}, 
+            ${MessageTable.BODY},
+            $REACTIONS
+          FROM 
+            $MESSAGES_VIEW_NAME
+          WHERE 
+            ${MessageTable.ID} >= $i AND
+            ${MessageTable.ID} < ${i + batchSize}
         """
       )
     }
@@ -236,13 +298,19 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   fun fullyResetTables(db: SQLiteDatabase = writableDatabase.sqlCipherDatabase) {
     Log.w(TAG, "[fullyResetTables] Dropping tables and triggers...")
     db.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
+    db.execSQL("DROP VIEW IF EXISTS $MESSAGES_VIEW_NAME")
     db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
     db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
     db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_data")
     db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_idx")
-    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_INSERT")
-    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
-    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_UPDATE")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_MESSAGE_INSERT")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_BEFORE_MESSAGE_DELETE")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_BEFORE_MESSAGE_UPDATE")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_MESSAGE_UPDATE")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_BEFORE_REACTION_INSERT")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_REACTION_INSERT")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_BEFORE_REACTION_DELETE")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_REACTION_DELETE")
 
     Log.w(TAG, "[fullyResetTables] Recreating table...")
     CREATE_TABLE.forEach { db.execSQL(it) }
