@@ -242,8 +242,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private Intent getTransferOrRestoreIntent() {
     Intent intent = RestoreActivity.getIntentForTransferOrRestore(this);
-    intent.putExtra(NEXT_INTENT_EXTRA, MainActivity.clearTop(this));
-    return getRoutedIntent(intent, getIntent());
+    return getRoutedIntent(intent, MainActivity.clearTop(this));
   }
 
   private Intent getCreateProfileNameIntent() {
