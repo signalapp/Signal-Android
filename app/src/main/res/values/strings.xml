@@ -478,7 +478,7 @@
     <!-- Dialog title asking users for microphone permission -->
     <string name="ConversationActivity_allow_access_microphone">Allow access to your microphone</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send audio messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">To send voice messages:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">To send voice messages, allow Signal access to your microphone.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
@@ -919,7 +919,7 @@
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked. Your previous message history will not appear.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">On your other device, visit %s to install Signal</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">On the device you want to link, visit %s to install Signal</string>
     <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string>
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">My linked devices</string>
@@ -1609,12 +1609,12 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">You couldn\'t be added to the New Group and have been invited to join.</string>
     <string name="MessageRecord_chat_session_refreshed">Chat session refreshed</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
+        <item quantity="one">%1$s member couldn\'t be added to the New Group and has been invited to join.</item>
         <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
+        <item quantity="one">%1$s member couldn\'t be added to the New Group and has been removed.</item>
         <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
     </plurals>
 
@@ -4926,7 +4926,7 @@
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
-    <string name="ChatsSettingsFragment__enter_key_sends">Enter key sends</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Send with enter</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Messages</string>
@@ -4950,8 +4950,8 @@
     <string name="PrivacySettingsFragment__blocked">Blocked</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d contact</item>
-        <item quantity="other">%1$d contacts</item>
+        <item quantity="one">%1$d contact or group</item>
+        <item quantity="other">%1$d contacts or groups</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Messaging</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Disappearing messages</string>
@@ -5156,7 +5156,7 @@
     <string name="PermissionsSettingsFragment__only_admins">Only admins</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Who can add new members?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Who can edit this group\'s info?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Who can send messages?</string>
+    <string name="PermissionsSettingsFragment__who_can_send_messages">Who can send messages and start calls?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mute notifications</string>

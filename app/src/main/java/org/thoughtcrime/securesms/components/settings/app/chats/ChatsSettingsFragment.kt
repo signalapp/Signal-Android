@@ -73,7 +73,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
       )
 
       switchPref(
-        title = DSLSettingsText.from(R.string.ChatsSettingsFragment__enter_key_sends),
+        title = DSLSettingsText.from(R.string.ChatsSettingsFragment__send_with_enter),
         isChecked = state.enterKeySends,
         onClick = {
           viewModel.setEnterKeySends(!state.enterKeySends)
