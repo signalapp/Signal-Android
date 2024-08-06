@@ -91,6 +91,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         requestDialog(RemoteBackupsSettingsState.Dialog.BACKUP_DELETED)
         delay(2000.milliseconds)
         requestDialog(RemoteBackupsSettingsState.Dialog.NONE)
+        refresh()
       }
     }
   }
