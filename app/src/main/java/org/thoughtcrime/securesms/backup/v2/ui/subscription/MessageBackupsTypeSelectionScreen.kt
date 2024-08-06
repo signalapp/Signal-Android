@@ -152,7 +152,7 @@ fun MessageBackupsTypeSelectionScreen(
 
       Buttons.LargePrimary(
         onClick = onNextClicked,
-        enabled = selectedBackupTier != currentBackupTier && hasCurrentBackupTier,
+        enabled = selectedBackupTier != currentBackupTier && selectedBackupTier != null,
         modifier = Modifier
           .fillMaxWidth()
           .padding(vertical = if (hasCurrentBackupTier) 10.dp else 16.dp)
