@@ -89,9 +89,9 @@ class EnterPhoneNumberViewModel : ViewModel() {
     return PhoneNumberUtil.getInstance().parse(state.phoneNumber, supportedCountryPrefixes[state.countryPrefixIndex].regionCode)
   }
 
-  fun isEnteredNumberValid(state: EnterPhoneNumberState): Boolean {
+  fun isEnteredNumberPossible(state: EnterPhoneNumberState): Boolean {
     return try {
-      PhoneNumberUtil.getInstance().isValidNumber(parsePhoneNumber(state))
+      PhoneNumberUtil.getInstance().isPossibleNumber(parsePhoneNumber(state))
     } catch (ex: NumberParseException) {
       false
     }
