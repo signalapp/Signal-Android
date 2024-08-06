@@ -33,7 +33,10 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     @Language("sql")
     val CREATE_TABLE = arrayOf(
-      "CREATE VIRTUAL TABLE $FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${MessageTable.TABLE_NAME}, content_rowid=${MessageTable.ID})"
+      // We've taken the default of tokenize value of "unicode61 categories 'L* N* Co'" and added the Sc (currency) and So (emoji) categories to allow searching for those characters.
+      // https://www.sqlite.org/fts5.html#tokenizers
+      // https://www.compart.com/en/unicode/category
+      """CREATE VIRTUAL TABLE $FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${MessageTable.TABLE_NAME}, content_rowid=${MessageTable.ID}, tokenize = "unicode61 categories 'L* N* Co Sc So'")"""
     )
 
     private const val TRIGGER_AFTER_INSERT = "message_ai"
