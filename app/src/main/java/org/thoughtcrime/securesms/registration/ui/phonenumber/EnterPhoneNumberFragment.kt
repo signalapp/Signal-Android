@@ -153,7 +153,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
         phoneNumberInputLayout.requestFocus()
       }
 
-      if (fragmentViewModel.isEnteredNumberValid(fragmentState)) {
+      if (fragmentViewModel.isEnteredNumberPossible(fragmentState)) {
         sharedViewModel.setPhoneNumber(fragmentViewModel.parsePhoneNumber(fragmentState))
       } else {
         sharedViewModel.setPhoneNumber(null)
@@ -258,7 +258,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
   }
 
   private fun presentRegisterButton(sharedState: RegistrationState) {
-    binding.registerButton.isEnabled = sharedState.phoneNumber != null && PhoneNumberUtil.getInstance().isValidNumber(sharedState.phoneNumber)
+    binding.registerButton.isEnabled = sharedState.phoneNumber != null && PhoneNumberUtil.getInstance().isPossibleNumber(sharedState.phoneNumber)
     if (sharedState.inProgress) {
       binding.registerButton.setSpinning()
     } else {
