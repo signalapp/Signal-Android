@@ -5028,11 +5028,11 @@
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Pozovite svoje prijatelje</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Identifikacijski broj pretplatnika donatora kopiran je u međuspremnik</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Identifikacijski broj pretplatnika na sigurnosno kopiranje kopiran je u međuspremnik</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
-    <string name="AppSettingsFragment__no_subscriber_id_set">No subscriber id set</string>
+    <string name="AppSettingsFragment__no_subscriber_id_set">Identifikacijski broj pretplatnika nije postavljen</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Račun</string>
@@ -5182,7 +5182,7 @@
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Za prijenos sredstava potrebno je zaključavanje zaslona Androida ili identifikacija otiskom prsta</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">Nije moguće uključiti Zaključavanje plaćanja</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
     <string name="PrivacySettingsFragment__cant_enable_description">Za korištenje Zaključavanja plaćanja najprije morate omogućiti zaključavanje zaslona ili identifikaciju otiskom prsta u postavkama telefona.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
@@ -7435,7 +7435,7 @@
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">Nije moguće dovršiti preuzimanje</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Nema dovoljno slobodnog prostora na vašem uređaju. Oslobodite %1$s prostora da biste preuzeli medijske zapise spremljene u vašoj sigurnosnoj kopiji.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
         <item quantity="one">Ako preskočite ovaj korak, medijski zapisi spremljeni u sigurnosnoj kopiji bit će izbrisani za %1$d dan.</item>

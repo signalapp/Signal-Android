@@ -4790,11 +4790,11 @@
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Convideu-hi amistats</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">S\'ha copiat l\'identificador del donant al porta-retalls.</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">S\'ha copiat les còpies de seguretat del subscriptor al porta-retalls.</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
-    <string name="AppSettingsFragment__no_subscriber_id_set">No subscriber id set</string>
+    <string name="AppSettingsFragment__no_subscriber_id_set">No s\'ha establert cap identificador de subscriptor</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Compte</string>
@@ -4942,7 +4942,7 @@
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Demana el bloqueig de pantalla d\'Android o l\'empremta dactilar per transferir fons.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">No s\'ha pogut activar el bloqueig de pagament</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
     <string name="PrivacySettingsFragment__cant_enable_description">Per fer servir el bloqueig de pagament, abans has d\'activar el bloqueig de pantalla o la identificació amb empremta dactilar als Ajustos del teu telèfon.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
@@ -7121,7 +7121,7 @@
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">No es pot completar la descàrrega</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">El teu dispositiu no té prou espai lliure. Allibera fins a %1$s d\'espai per descarregar els arxius de la teva còpia de seguretat.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
         <item quantity="one">Si selecciones \"Ometre\", els arxius de la teva còpia de seguretat s\'eliminaran d\'aquí a %1$d dia.</item>

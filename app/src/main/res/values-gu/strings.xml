@@ -4790,11 +4790,11 @@
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">તમારા મિત્રોને આમંત્રણ આપો</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">દાતાનું સબ્સ્ક્રાઇબર ID ક્લિપબોર્ડ પર કૉપિ કર્યું</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">બેકઅપના સબ્સ્ક્રાઇબર ID ક્લિપબોર્ડ પર કૉપિ કર્યા</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
-    <string name="AppSettingsFragment__no_subscriber_id_set">No subscriber id set</string>
+    <string name="AppSettingsFragment__no_subscriber_id_set">કોઈ સબ્સ્ક્રાઇબર ID સેટ કરેલું નથી</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">એકાઉન્ટ</string>
@@ -4942,7 +4942,7 @@
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">ફંડ ટ્રાન્સફર કરવા માટે Android સ્ક્રીન લૉક અથવા ફિંગરપ્રિન્ટ આવશ્યક</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">પેમેન્ટ લૉક ચાલુ કરી શકતા નથી</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
     <string name="PrivacySettingsFragment__cant_enable_description">પેમેન્ટ લૉકનો ઉપયોગ કરવા માટે, તમારે પહેલા તમારા ફોનના સેટિંગમાં સ્ક્રીન લૉક અથવા ફિંગરપ્રિન્ટ આઇડી ચાલુ કરો.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
@@ -7121,7 +7121,7 @@
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">ડાઉનલોડ પૂર્ણ કરી શકાયું નથી</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">તમારા ડિવાઇસમાં પૂરતી જગ્યા ખાલી નથી. તમારા બેકઅપમાં સ્ટોર કરેલા મીડિયાને ડાઉનલોડ કરવા માટે %1$s જેટલી જગ્યા ખાલી કરો.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
         <item quantity="one">જો તમે \"છોડો\" પસંદ કરો છો, તો તમારા બેકઅપમાંના મીડિયા %1$d દિવસમાં ડિલીટ કરવામાં આવશે.</item>

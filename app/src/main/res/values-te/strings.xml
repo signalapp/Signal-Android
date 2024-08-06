@@ -4790,11 +4790,11 @@
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">మీ స్నేహితులను ఆహ్వానించండి</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">విరాళకర్త సబ్‌స్క్రైబర్ ID క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">బ్యాకప్‌ల సబ్‌స్క్రైబర్ ID క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
-    <string name="AppSettingsFragment__no_subscriber_id_set">No subscriber id set</string>
+    <string name="AppSettingsFragment__no_subscriber_id_set">ఏ సబ్‌స్క్రైబర్ id సెట్ చేయబడలేదు</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">ఖాతా</string>
@@ -4942,7 +4942,7 @@
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">నిధులు బదిలీ చేయడానికి Android స్క్రీన్ లాక్ లేదా వేలిముద్ర అవసరం</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">చెల్లింపు లాక్‌ను ప్రారంభించలేరు</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
     <string name="PrivacySettingsFragment__cant_enable_description">చెల్లింపు లింక్‌ని ఉపయోగించడానికి, మీరు ముందుగా మీ ఫోన్ సెట్టింగ్స్‌లో స్క్రీన్ లాక్ లేదా వేలిముద్రను ప్రారంభించాలి.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
@@ -7121,7 +7121,7 @@
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">డౌన్‌లోడ్‌ను పూర్తి చేయలేకపోయాము</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">మీ పరికరంలో తగినంత ఖాళీ స్థలం లేదు. మీ బ్యాకప్‌లో నిల్వ చేయబడిన మీడియాను డౌన్‌లోడ్ చేయడానికి మొత్తం స్థలంలో %1$s స్థలాన్ని ఖాళీ చేయండి.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
         <item quantity="one">మీరు \"దాటవేయి\" ఎంచుకుంటే మీ బ్యాకప్లోని మీడియా %1$d రోజులో తొలగించబడుతుంది.</item>

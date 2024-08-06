@@ -4790,11 +4790,11 @@
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Προσκάλεσε τους φίλους σου</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Το id συνδρομητή δωρητή αντιγράφτηκε στο πρόχειρο</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Τα αντίγραφα ασφαλείας του id συνδρομητή αντιγράφηκαν στο πρόχειρο</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
-    <string name="AppSettingsFragment__no_subscriber_id_set">No subscriber id set</string>
+    <string name="AppSettingsFragment__no_subscriber_id_set">Δεν έχει οριστεί id συνδρομητή</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Λογαριασμός</string>
@@ -4942,7 +4942,7 @@
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Απαιτείται κλείδωμα οθόνης Android ή δακτυλικό αποτύπωμα για τη μεταφορά χρημάτων</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">Δεν μπορώ να ενεργοποιήσω το κλείδωμα πληρωμής</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
     <string name="PrivacySettingsFragment__cant_enable_description">Για να χρησιμοποιήσεις το Κλείδωμα πληρωμής, πρέπει πρώτα να ενεργοποιήσεις το κλείδωμα οθόνης ή το αναγνωριστικό δακτυλικού αποτυπώματος στις ρυθμίσεις του τηλεφώνου σου.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
@@ -7121,7 +7121,7 @@
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">Δεν είναι δυνατή η ολοκλήρωση της λήψης</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Η συσκευή σου δεν διαθέτει αρκετό ελεύθερο χώρο. Απελευθέρωσε %1$s χώρου για λήψη των πολυμέσων που είναι αποθηκευμένα στο αντίγραφο ασφαλείας σου.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
         <item quantity="one">Αν επιλέξεις «Παράλειψη», τα πολυμέσα στο αντίγραφο ασφαλείας σου θα διαγραφούν σε %1$d ημέρα.</item>
