@@ -56,6 +56,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
@@ -94,6 +95,9 @@ import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertDelegate;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.badges.self.expired.MonthlyDonationCanceledBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.banner.Banner;
+import org.thoughtcrime.securesms.banner.BannerManager;
+import org.thoughtcrime.securesms.banner.banners.ExpiredBuildBanner;
 import org.thoughtcrime.securesms.components.DeleteSyncEducationDialog;
 import org.thoughtcrime.securesms.components.Material3SearchToolbar;
 import org.thoughtcrime.securesms.components.RatingManager;
@@ -171,6 +175,7 @@ import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
@@ -198,6 +203,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import kotlin.Unit;
+import kotlinx.coroutines.flow.Flow;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -223,6 +229,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private View                                   coordinator;
   private RecyclerView                           list;
   private Stub<ReminderView>                     reminderView;
+  private Stub<ComposeView>                      bannerView;
   private PulsingFloatingActionButton            fab;
   private PulsingFloatingActionButton            cameraFab;
   private ConversationListFilterPullView         pullView;
@@ -287,6 +294,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     list                    = view.findViewById(R.id.list);
     bottomActionBar         = view.findViewById(R.id.conversation_list_bottom_action_bar);
     reminderView            = new Stub<>(view.findViewById(R.id.reminder));
+    bannerView              = new Stub<>(view.findViewById(R.id.banner_compose_view));
     megaphoneContainer      = new Stub<>(view.findViewById(R.id.megaphone_container));
     voiceNotePlayerViewStub = new Stub<>(view.findViewById(R.id.voice_note_player));
     fab                     = view.findViewById(R.id.fab);
@@ -414,6 +422,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     initializeListAdapters();
     initializeTypingObserver();
     initializeVoiceNotePlayer();
+    initializeBanners();
 
     RatingManager.showRatingDialogIfNecessary(requireContext());
 
@@ -871,6 +880,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     });
   }
 
+  private void initializeBanners() {
+    if (RemoteConfig.newBannerUi()) {
+      final List<Flow<Banner>> bannerRepositories = List.of(ExpiredBuildBanner.createFlow(requireContext()));
+      final BannerManager      bannerManager      = new BannerManager(bannerRepositories);
+      bannerManager.setContent(bannerView.get());
+    }
+  }
+
   private @NonNull VoiceNotePlayerView requireVoiceNotePlayerView() {
     if (voiceNotePlayerView == null) {
       voiceNotePlayerView = voiceNotePlayerViewStub.get().findViewById(R.id.voice_note_player_view);
@@ -1042,6 +1059,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void updateReminders() {
+    if (RemoteConfig.newBannerUi()) {
+      return;
+    }
     Context context = requireContext();
 
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {

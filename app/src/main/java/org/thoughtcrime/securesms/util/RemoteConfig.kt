@@ -1091,6 +1091,15 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** Whether to use the new Banner system instead of the old Reminder system.  */
+  @JvmStatic
+  @get:JvmName("newBannerUi")
+  val newBannerUi: Boolean by remoteBoolean(
+    key = "android.newBannerUi",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   /** Which phase we're in for the SVR3 migration  */
   val svr3MigrationPhase: Int by remoteInt(
     key = "global.svr3.phase",

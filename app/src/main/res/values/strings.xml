@@ -7384,5 +7384,8 @@
     <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Confirm and download later</string>
     <!-- Action button label to keep current subscription -->
     <string name="ConfirmBackupCancellationDialog__keep_subscription">Keep subscription</string>
+
+    <!-- Accessible content description for the reminder view, describing the icon in the view. -->
+    <string name="ReminderView_icon_content_description">Reminder icon</string>
     <!-- EOF -->
 </resources>
