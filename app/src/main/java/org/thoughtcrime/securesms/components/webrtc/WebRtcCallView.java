@@ -131,6 +131,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private View                          missingPermissionContainer;
   private MaterialButton                allowAccessButton;
   private Guideline                     callParticipantsOverflowGuideline;
+  private View                          callControlsSheet;
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
   private WebRtcCallParticipantsRecyclerAdapter recyclerAdapter;
@@ -210,6 +211,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     missingPermissionContainer        = findViewById(R.id.missing_permissions_container);
     allowAccessButton                 = findViewById(R.id.allow_access_button);
     callParticipantsOverflowGuideline = findViewById(R.id.call_screen_participants_overflow_guideline);
+    callControlsSheet                 = findViewById(R.id.call_controls_info_parent);
 
     View decline      = findViewById(R.id.call_screen_decline_call);
     View answerLabel  = findViewById(R.id.call_screen_answer_call_label);
@@ -296,7 +298,13 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     answerWithoutVideo.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onAcceptCallWithVoiceOnlyPressed));
 
     pictureInPictureGestureHelper   = PictureInPictureGestureHelper.applyTo(smallLocalRenderFrame);
-    pictureInPictureExpansionHelper = new PictureInPictureExpansionHelper(smallLocalRenderFrame);
+    pictureInPictureExpansionHelper = new PictureInPictureExpansionHelper(smallLocalRenderFrame, state -> {
+      if (state == PictureInPictureExpansionHelper.State.IS_SHRUNKEN) {
+        pictureInPictureGestureHelper.setBoundaryState(PictureInPictureGestureHelper.BoundaryState.COLLAPSED);
+      } else {
+        pictureInPictureGestureHelper.setBoundaryState(PictureInPictureGestureHelper.BoundaryState.EXPANDED);
+      }
+    });
 
     smallLocalRenderFrame.setOnClickListener(v -> {
       if (controlsListener != null) {
@@ -370,19 +378,32 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
     if (getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
       aboveControls.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-        pictureInPictureGestureHelper.setBottomVerticalBoundary(bottom + ViewUtil.getStatusBarHeight(v));
-      });
-    } else {
-      SlideUpWithCallControlsBehavior behavior = (SlideUpWithCallControlsBehavior) ((CoordinatorLayout.LayoutParams) aboveControls.getLayoutParams()).getBehavior();
-      Objects.requireNonNull(behavior).setOnTopOfControlsChangedListener(topOfControls -> {
-        pictureInPictureGestureHelper.setBottomVerticalBoundary(topOfControls);
+        pictureInPictureGestureHelper.setCollapsedVerticalBoundary(bottom + ViewUtil.getStatusBarHeight(v));
       });
     }
+
+    SlideUpWithCallControlsBehavior behavior = (SlideUpWithCallControlsBehavior) ((CoordinatorLayout.LayoutParams) aboveControls.getLayoutParams()).getBehavior();
+    Objects.requireNonNull(behavior).setOnTopOfControlsChangedListener(topOfControls -> {
+      pictureInPictureGestureHelper.setExpandedVerticalBoundary(topOfControls);
+    });
 
     if (callParticipantsOverflowGuideline != null) {
       callParticipantsRecycler.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
         callParticipantsOverflowGuideline.setGuidelineEnd(bottom - top);
       });
+    }
+  }
+
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+
+    final int   pipWidth      = smallLocalRenderFrame.getMeasuredWidth();
+    final int   controlsWidth = callControlsSheet.getMeasuredWidth();
+    final float protection    = DimensionUnit.DP.toPixels(16 * 4);
+    final float requiredWidth = pipWidth + controlsWidth + protection;
+
+    if (w > h && w >= requiredWidth) {
+      pictureInPictureGestureHelper.allowCollapsedState();
     }
   }
 

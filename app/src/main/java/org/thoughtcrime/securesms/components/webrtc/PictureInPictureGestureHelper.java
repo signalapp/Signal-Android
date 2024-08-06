@@ -45,9 +45,12 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
   private int             maximumFlingVelocity;
   private boolean         isLockedToBottomEnd;
   private Interpolator    interpolator;
-  private Corner          currentCornerPosition  = Corner.BOTTOM_RIGHT;
-  private int             previousTopBoundary    = -1;
-  private int             previousBottomBoundary = -1;
+  private Corner          currentCornerPosition     = Corner.BOTTOM_RIGHT;
+  private int             previousTopBoundary       = -1;
+  private int             expandedVerticalBoundary  = -1;
+  private int             collapsedVerticalBoundary = -1;
+  private BoundaryState   boundaryState             = BoundaryState.EXPANDED;
+  private boolean         isCollapsedStateAllowed   = false;
 
   @SuppressLint("ClickableViewAccessibility")
   public static PictureInPictureGestureHelper applyTo(@NonNull View child) {
@@ -124,14 +127,47 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     child.setLayoutParams(layoutParams);
   }
 
-  public void setBottomVerticalBoundary(int bottomBoundary) {
-    if (bottomBoundary == previousBottomBoundary) {
+  public void setCollapsedVerticalBoundary(int bottomBoundary) {
+    final int oldBoundary = collapsedVerticalBoundary;
+    collapsedVerticalBoundary = bottomBoundary;
+
+    if (oldBoundary != bottomBoundary && boundaryState == BoundaryState.COLLAPSED) {
+      applyBottomVerticalBoundary(bottomBoundary);
+    }
+  }
+
+  public void setExpandedVerticalBoundary(int bottomBoundary) {
+    final int oldBoundary = expandedVerticalBoundary;
+    expandedVerticalBoundary = bottomBoundary;
+
+    if (oldBoundary != bottomBoundary && boundaryState == BoundaryState.EXPANDED) {
+      applyBottomVerticalBoundary(bottomBoundary);
+    }
+  }
+
+  public void setBoundaryState(@NonNull BoundaryState boundaryState) {
+    if (!isCollapsedStateAllowed && boundaryState == BoundaryState.COLLAPSED) {
       return;
     }
-    previousBottomBoundary = bottomBoundary;
 
+    final BoundaryState old = this.boundaryState;
+    this.boundaryState = boundaryState;
+    if (old != boundaryState) {
+      applyBottomVerticalBoundary(boundaryState == BoundaryState.EXPANDED ? expandedVerticalBoundary : collapsedVerticalBoundary);
+    }
+  }
+
+  public void allowCollapsedState() {
+    if (isCollapsedStateAllowed) {
+      return;
+    }
+
+    isCollapsedStateAllowed = true;
+    setBoundaryState(BoundaryState.COLLAPSED);
+  }
+
+  private void applyBottomVerticalBoundary(int bottomBoundary) {
     extraPaddingBottom = parent.getMeasuredHeight() + parent.getTop() - bottomBoundary;
-
     ViewUtil.setBottomMargin(child, extraPaddingBottom + framePadding);
   }
 
@@ -404,5 +440,10 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
       }
       return interpolated;
     }
+  }
+
+  public enum BoundaryState {
+    EXPANDED,
+    COLLAPSED
   }
 }
