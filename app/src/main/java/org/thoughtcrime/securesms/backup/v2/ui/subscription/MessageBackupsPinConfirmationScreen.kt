@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 @Composable
 fun MessageBackupsPinConfirmationScreen(
   pin: String,
+  isPinIncorrect: Boolean,
   onPinChanged: (String) -> Unit,
   pinKeyboardType: PinKeyboardType,
   onPinKeyboardTypeSelected: (PinKeyboardType) -> Unit,
@@ -107,7 +108,13 @@ fun MessageBackupsPinConfirmationScreen(
               .padding(top = 72.dp)
               .fillMaxWidth()
               .focusRequester(focusRequester),
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            isError = isPinIncorrect,
+            supportingText = {
+              if (isPinIncorrect) {
+                Text(text = stringResource(id = R.string.PinRestoreEntryFragment_incorrect_pin))
+              }
+            }
           )
         }
 
@@ -154,6 +161,7 @@ private fun MessageBackupsPinConfirmationScreenPreview() {
   Previews.Preview {
     MessageBackupsPinConfirmationScreen(
       pin = "",
+      isPinIncorrect = true,
       onPinChanged = {},
       pinKeyboardType = PinKeyboardType.ALPHA_NUMERIC,
       onPinKeyboardTypeSelected = {},

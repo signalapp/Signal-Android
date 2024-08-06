@@ -91,6 +91,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       composable(route = MessageBackupsScreen.PIN_CONFIRMATION.name) {
         MessageBackupsPinConfirmationScreen(
           pin = pin,
+          isPinIncorrect = state.displayIncorrectPinError,
           onPinChanged = viewModel::onPinEntryUpdated,
           pinKeyboardType = state.pinKeyboardType,
           onPinKeyboardTypeSelected = viewModel::onPinKeyboardTypeUpdated,

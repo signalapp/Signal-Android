@@ -64,23 +64,20 @@ class MessageBackupsFlowViewModel : ViewModel() {
 
   fun goToNextScreen() {
     val pinSnapshot = pinState.value
-    internalPinState.value = ""
 
     internalStateFlow.update {
-      val nextScreen = when (it.screen) {
-        MessageBackupsScreen.EDUCATION -> MessageBackupsScreen.PIN_EDUCATION
-        MessageBackupsScreen.PIN_EDUCATION -> MessageBackupsScreen.PIN_CONFIRMATION
-        MessageBackupsScreen.PIN_CONFIRMATION -> validatePinAndUpdateState(pinSnapshot)
-        MessageBackupsScreen.TYPE_SELECTION -> validateTypeAndUpdateState(it.selectedMessageBackupTier!!)
+      when (it.screen) {
+        MessageBackupsScreen.EDUCATION -> it.copy(screen = MessageBackupsScreen.PIN_EDUCATION)
+        MessageBackupsScreen.PIN_EDUCATION -> it.copy(screen = MessageBackupsScreen.PIN_CONFIRMATION)
+        MessageBackupsScreen.PIN_CONFIRMATION -> validatePinAndUpdateState(it, pinSnapshot)
+        MessageBackupsScreen.TYPE_SELECTION -> validateTypeAndUpdateState(it)
         MessageBackupsScreen.CHECKOUT_SHEET -> validateGatewayAndUpdateState(it)
         MessageBackupsScreen.CREATING_IN_APP_PAYMENT -> error("This is driven by an async coroutine.")
-        MessageBackupsScreen.CANCELLATION_DIALOG -> MessageBackupsScreen.PROCESS_CANCELLATION
-        MessageBackupsScreen.PROCESS_PAYMENT -> MessageBackupsScreen.COMPLETED
-        MessageBackupsScreen.PROCESS_CANCELLATION -> MessageBackupsScreen.COMPLETED
+        MessageBackupsScreen.CANCELLATION_DIALOG -> it.copy(screen = MessageBackupsScreen.PROCESS_CANCELLATION)
+        MessageBackupsScreen.PROCESS_PAYMENT -> it.copy(screen = MessageBackupsScreen.COMPLETED)
+        MessageBackupsScreen.PROCESS_CANCELLATION -> it.copy(screen = MessageBackupsScreen.COMPLETED)
         MessageBackupsScreen.COMPLETED -> error("Unsupported state transition from terminal state COMPLETED")
       }
-
-      it.copy(screen = nextScreen)
     }
   }
 
@@ -139,36 +136,49 @@ class MessageBackupsFlowViewModel : ViewModel() {
     }
   }
 
-  private fun validatePinAndUpdateState(pin: String): MessageBackupsScreen {
+  private fun validatePinAndUpdateState(state: MessageBackupsFlowState, pin: String): MessageBackupsFlowState {
     val pinHash = SignalStore.svr.localPinHash
 
-    if (pinHash == null || TextUtils.isEmpty(pin) || pin.length < SvrConstants.MINIMUM_PIN_LENGTH) return MessageBackupsScreen.PIN_CONFIRMATION
+    if (pinHash == null || TextUtils.isEmpty(pin) || pin.length < SvrConstants.MINIMUM_PIN_LENGTH) {
+      return state.copy(
+        screen = MessageBackupsScreen.PIN_CONFIRMATION,
+        displayIncorrectPinError = true
+      )
+    }
 
     if (!verifyLocalPinHash(pinHash, pin)) {
-      return MessageBackupsScreen.PIN_CONFIRMATION
+      return state.copy(
+        screen = MessageBackupsScreen.PIN_CONFIRMATION,
+        displayIncorrectPinError = true
+      )
     }
-    return MessageBackupsScreen.TYPE_SELECTION
+
+    internalPinState.value = ""
+    return state.copy(
+      screen = MessageBackupsScreen.TYPE_SELECTION,
+      displayIncorrectPinError = false
+    )
   }
 
-  private fun validateTypeAndUpdateState(tier: MessageBackupTier): MessageBackupsScreen {
-    return when (tier) {
+  private fun validateTypeAndUpdateState(state: MessageBackupsFlowState): MessageBackupsFlowState {
+    return when (state.selectedMessageBackupTier!!) {
       MessageBackupTier.FREE -> {
         if (SignalStore.backup.backupTier == MessageBackupTier.PAID) {
           isDowngrading = true
-          MessageBackupsScreen.PROCESS_CANCELLATION
+          state.copy(screen = MessageBackupsScreen.PROCESS_CANCELLATION)
         } else {
           SignalStore.backup.areBackupsEnabled = true
           SignalStore.backup.backupTier = MessageBackupTier.FREE
 
           // TODO [message-backups] -- Trigger backup now?
-          MessageBackupsScreen.COMPLETED
+          state.copy(screen = MessageBackupsScreen.COMPLETED)
         }
       }
-      MessageBackupTier.PAID -> MessageBackupsScreen.CHECKOUT_SHEET
+      MessageBackupTier.PAID -> state.copy(screen = MessageBackupsScreen.CHECKOUT_SHEET)
     }
   }
 
-  private fun validateGatewayAndUpdateState(state: MessageBackupsFlowState): MessageBackupsScreen {
+  private fun validateGatewayAndUpdateState(state: MessageBackupsFlowState): MessageBackupsFlowState {
     val backupsType = state.availableBackupTypes.first { it.tier == state.selectedMessageBackupTier }
 
     viewModelScope.launch(Dispatchers.IO) {
@@ -202,6 +212,6 @@ class MessageBackupsFlowViewModel : ViewModel() {
       }
     }
 
-    return MessageBackupsScreen.CREATING_IN_APP_PAYMENT
+    return state.copy(screen = MessageBackupsScreen.CREATING_IN_APP_PAYMENT)
   }
 }

@@ -20,5 +20,6 @@ data class MessageBackupsFlowState(
   val pinKeyboardType: PinKeyboardType = SignalStore.pin.keyboardType,
   val inAppPayment: InAppPaymentTable.InAppPayment? = null,
   val startScreen: MessageBackupsScreen,
-  val screen: MessageBackupsScreen = startScreen
+  val screen: MessageBackupsScreen = startScreen,
+  val displayIncorrectPinError: Boolean = false
 )
