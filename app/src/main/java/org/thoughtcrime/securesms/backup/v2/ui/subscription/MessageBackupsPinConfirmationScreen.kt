@@ -112,7 +112,13 @@ fun MessageBackupsPinConfirmationScreen(
             isError = isPinIncorrect,
             supportingText = {
               if (isPinIncorrect) {
-                Text(text = stringResource(id = R.string.PinRestoreEntryFragment_incorrect_pin))
+                Text(
+                  text = stringResource(id = R.string.PinRestoreEntryFragment_incorrect_pin),
+                  textAlign = TextAlign.Center,
+                  modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 12.dp)
+                )
               }
             }
           )
