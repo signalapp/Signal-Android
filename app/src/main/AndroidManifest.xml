@@ -1105,6 +1105,7 @@
 
     <activity android:name=".components.settings.app.subscription.donate.CheckoutFlowActivity"
             android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"/>
 

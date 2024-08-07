@@ -7346,6 +7346,8 @@
     <string name="MessageBackupsPinConfirmationScreen__next">Next</string>
     <!-- Action button to switch keyboard type -->
     <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Switch keyboard</string>
+    <!-- Action button to create a new pin if we type the incorrect one -->
+    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Create new pin</string>
 
     <!-- MessageBackupsPinEducationScreen -->
     <!-- Screen headline -->

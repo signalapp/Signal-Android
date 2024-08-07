@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -54,7 +56,8 @@ fun MessageBackupsPinConfirmationScreen(
   onPinChanged: (String) -> Unit,
   pinKeyboardType: PinKeyboardType,
   onPinKeyboardTypeSelected: (PinKeyboardType) -> Unit,
-  onNextClick: () -> Unit
+  onNextClick: () -> Unit,
+  onCreateNewPinClick: () -> Unit
 ) {
   val focusRequester = remember { FocusRequester() }
   Surface {
@@ -139,12 +142,21 @@ fun MessageBackupsPinConfirmationScreen(
         }
       }
 
-      Box(
-        contentAlignment = Alignment.BottomEnd,
+      Row(
         modifier = Modifier
           .fillMaxWidth()
           .padding(vertical = 16.dp)
       ) {
+        if (isPinIncorrect) {
+          TextButton(onClick = onCreateNewPinClick) {
+            Text(
+              text = stringResource(id = R.string.MessageBackupsPinConfirmationScreen__create_new_pin)
+            )
+          }
+        }
+
+        Spacer(modifier = Modifier.weight(1f))
+
         Buttons.LargeTonal(
           onClick = onNextClick
         ) {
@@ -171,7 +183,8 @@ private fun MessageBackupsPinConfirmationScreenPreview() {
       onPinChanged = {},
       pinKeyboardType = PinKeyboardType.ALPHA_NUMERIC,
       onPinKeyboardTypeSelected = {},
-      onNextClick = {}
+      onNextClick = {},
+      onCreateNewPinClick = {}
     )
   }
 }

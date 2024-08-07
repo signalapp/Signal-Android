@@ -13,6 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.findNavController
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.In
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.Nav
 import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
 
@@ -57,14 +59,19 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       skipPartiallyExpanded = true
     )
 
+    val lifecycleOwner = LocalLifecycleOwner.current
+
     LaunchedEffect(Unit) {
       navController.setLifecycleOwner(this@MessageBackupsFlowFragment)
 
-      requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-          viewModel.goToPreviousScreen()
+      requireActivity().onBackPressedDispatcher.addCallback(
+        lifecycleOwner,
+        object : OnBackPressedCallback(true) {
+          override fun handleOnBackPressed() {
+            viewModel.goToPreviousScreen()
+          }
         }
-      })
+      )
     }
 
     Nav.Host(
@@ -95,7 +102,8 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           onPinChanged = viewModel::onPinEntryUpdated,
           pinKeyboardType = state.pinKeyboardType,
           onPinKeyboardTypeSelected = viewModel::onPinKeyboardTypeUpdated,
-          onNextClick = viewModel::goToNextScreen
+          onNextClick = viewModel::goToNextScreen,
+          onCreateNewPinClick = this@MessageBackupsFlowFragment::createANewPin
         )
       }
 
@@ -186,6 +194,11 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         navController.navigate(state.screen.name)
       }
     }
+  }
+
+  private fun createANewPin() {
+    viewModel.onPinEntryUpdated("")
+    startActivity(CreateSvrPinActivity.getIntentForPinChangeFromSettings(requireContext()))
   }
 
   private fun cancelSubscription() {
