@@ -181,6 +181,7 @@ dependencyResolutionManagement {
       version("androidx-test", "1.5.0")
       version("androidx-test-ext-junit", "1.1.5")
       version("robolectric", "4.10.3")
+      version("espresso", "3.4.0")
 
       library("junit-junit", "junit:junit:4.13.2")
       library("androidx-test-core", "androidx.test", "core").versionRef("androidx-test")
@@ -190,7 +191,7 @@ dependencyResolutionManagement {
       library("androidx-test-monitor", "androidx.test:monitor:1.6.1")
       library("androidx-test-orchestrator", "androidx.test:orchestrator:1.4.1")
       library("androidx-test-runner", "androidx.test", "runner").versionRef("androidx-test")
-      library("espresso-core", "androidx.test.espresso:espresso-core:3.4.0")
+      library("espresso-core", "androidx.test.espresso", "espresso-core").versionRef("espresso")
       library("mockito-core", "org.mockito:mockito-inline:4.6.1")
       library("mockito-kotlin", "org.mockito.kotlin:mockito-kotlin:4.0.0")
       library("mockito-android", "org.mockito:mockito-android:4.6.1")

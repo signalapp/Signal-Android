@@ -88,13 +88,13 @@ public final class SignalExecutors {
     return handlerThread;
   }
 
-  private static class NumberedThreadFactory implements ThreadFactory {
+  public static class NumberedThreadFactory implements ThreadFactory {
 
     private final int           priority;
     private final String        baseName;
     private final AtomicInteger counter;
 
-    NumberedThreadFactory(@NonNull String baseName, int priority) {
+    public NumberedThreadFactory(@NonNull String baseName, int priority) {
       this.priority = priority;
       this.baseName = baseName;
       this.counter  = new AtomicInteger();

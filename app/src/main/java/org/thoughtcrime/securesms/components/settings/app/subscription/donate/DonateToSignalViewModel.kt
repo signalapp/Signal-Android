@@ -392,7 +392,13 @@ class DonateToSignalViewModel(
           if (selectedCurrency !in priceCurrencies) {
             Log.w(TAG, "Unsupported currency selection. Defaulting to USD. $selectedCurrency isn't supported.")
             val usd = PlatformCurrencyUtil.USD
-            val newSubscriber = InAppPaymentsRepository.getSubscriber(usd, InAppPaymentSubscriberRecord.Type.DONATION) ?: InAppPaymentSubscriberRecord(SubscriberId.generate(), usd, InAppPaymentSubscriberRecord.Type.DONATION, false, InAppPaymentData.PaymentMethodType.UNKNOWN)
+            val newSubscriber = InAppPaymentsRepository.getSubscriber(usd, InAppPaymentSubscriberRecord.Type.DONATION) ?: InAppPaymentSubscriberRecord(
+              subscriberId = SubscriberId.generate(),
+              currency = usd,
+              type = InAppPaymentSubscriberRecord.Type.DONATION,
+              requiresCancel = false,
+              paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN
+            )
             InAppPaymentsRepository.setSubscriber(newSubscriber)
             RecurringInAppPaymentRepository.syncAccountRecord().subscribe()
           }
