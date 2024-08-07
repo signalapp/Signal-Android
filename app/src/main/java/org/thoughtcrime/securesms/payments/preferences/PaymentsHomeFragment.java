@@ -10,7 +10,9 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.FlowLiveDataConversions;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -25,6 +27,9 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.PaymentPreferencesDirections;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.banner.Banner;
+import org.thoughtcrime.securesms.banner.BannerManager;
+import org.thoughtcrime.securesms.banner.banners.EnclaveFailureBanner;
 import org.thoughtcrime.securesms.components.reminder.EnclaveFailureReminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
@@ -40,12 +45,16 @@ import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
 import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.Stub;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import kotlinx.coroutines.flow.Flow;
 
 public class PaymentsHomeFragment extends LoggingFragment {
   private static final int DAYS_UNTIL_REPROMPT_PAYMENT_LOCK = 30;
@@ -99,6 +108,7 @@ public class PaymentsHomeFragment extends LoggingFragment {
     View                refresh          = view.findViewById(R.id.payments_home_fragment_header_refresh);
     LottieAnimationView refreshAnimation = view.findViewById(R.id.payments_home_fragment_header_refresh_animation);
     Stub<ReminderView>  reminderView     = ViewUtil.findStubById(view, R.id.reminder);
+    Stub<ComposeView>   bannerView       = ViewUtil.findStubById(view, R.id.banner_compose_view);
 
     toolbar.setNavigationOnClickListener(v -> {
       viewModel.markAllPaymentsSeen();
@@ -254,22 +264,33 @@ public class PaymentsHomeFragment extends LoggingFragment {
       }
     });
 
-    viewModel.getEnclaveFailure().observe(getViewLifecycleOwner(), failure -> {
-      if (failure) {
-        showUpdateIsRequiredDialog();
-        reminderView.get().showReminder(new EnclaveFailureReminder(requireContext()));
-        reminderView.get().setOnActionClickListener(actionId -> {
-          if (actionId == R.id.reminder_action_update_now) {
-            PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
-          } else if (actionId == R.id.reminder_action_re_register) {
-            startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()));
-          }
-        });
-      } else {
-        reminderView.get().requestDismiss();
-      }
-    });
-
+    if (RemoteConfig.newBannerUi()) {
+      viewModel.getEnclaveFailure().observe(getViewLifecycleOwner(), failure -> {
+        if (failure) {
+          showUpdateIsRequiredDialog();
+        }
+      });
+      final Flow<Boolean>                enclaveFailureFlow = FlowLiveDataConversions.asFlow(viewModel.getEnclaveFailure());
+      final List<Flow<? extends Banner>> bannerRepositories = List.of(EnclaveFailureBanner.Companion.mapBooleanFlowToBannerFlow(enclaveFailureFlow, requireContext()));
+      final BannerManager      bannerManager      = new BannerManager(bannerRepositories);
+      bannerManager.setContent(bannerView.get());
+    } else {
+      viewModel.getEnclaveFailure().observe(getViewLifecycleOwner(), failure -> {
+        if (failure) {
+          showUpdateIsRequiredDialog();
+          reminderView.get().showReminder(new EnclaveFailureReminder(requireContext()));
+          reminderView.get().setOnActionClickListener(actionId -> {
+            if (actionId == R.id.reminder_action_update_now) {
+              PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
+            } else if (actionId == R.id.reminder_action_re_register) {
+              startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()));
+            }
+          });
+        } else {
+          reminderView.get().requestDismiss();
+        }
+      });
+    }
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressed());
   }
 

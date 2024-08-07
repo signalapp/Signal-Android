@@ -1,16 +1,11 @@
 package org.thoughtcrime.securesms.components.reminder;
 
 import android.content.Context;
-import android.os.Build;
 
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.PlayStoreUtil;
-
-import java.util.List;
 
 /**
  * Showed when a build has fully expired (either via the compile-time constant, or remote

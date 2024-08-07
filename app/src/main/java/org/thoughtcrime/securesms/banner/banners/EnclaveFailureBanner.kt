@@ -9,48 +9,35 @@ import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.ui.compose.Action
 import org.thoughtcrime.securesms.banner.ui.compose.DefaultBanner
 import org.thoughtcrime.securesms.banner.ui.compose.Importance
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 
-/**
- * Banner to let the user know their build is about to expire.
- *
- * This serves as an example for how we can replicate the functionality of the old [org.thoughtcrime.securesms.components.reminder.Reminder] system purely in the new [Banner] system.
- */
-class ExpiredBuildBanner(val context: Context) : Banner() {
-
-  override var enabled = true
+class EnclaveFailureBanner(enclaveFailed: Boolean, private val context: Context) : Banner() {
+  override val enabled: Boolean = enclaveFailed
 
   @Composable
   override fun DisplayBanner() {
     DefaultBanner(
       title = null,
-      body = stringResource(id = R.string.OutdatedBuildReminder_your_version_of_signal_will_expire_today),
-      importance = Importance.TERMINAL,
-      isDismissible = false,
+      body = stringResource(id = R.string.EnclaveFailureReminder_update_signal),
+      importance = Importance.ERROR,
       actions = listOf(
         Action(R.string.ExpiredBuildReminder_update_now) {
           PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(context)
         }
-      ),
-      onHideListener = {},
-      onDismissListener = {}
+      )
     )
   }
 
   companion object {
     @JvmStatic
-    fun createFlow(context: Context): Flow<Banner> = createAndEmit {
-      if (SignalStore.misc.isClientDeprecated) {
-        ExpiredBuildBanner(context)
-      } else {
-        null
-      }
+    fun Flow<Boolean>.mapBooleanFlowToBannerFlow(context: Context): Flow<EnclaveFailureBanner> {
+      return map { EnclaveFailureBanner(it, context) }
     }
   }
 }

@@ -37,7 +37,7 @@ abstract class Banner {
   /**
    * Whether or not the [Banner] should be shown (enabled) or hidden (disabled).
    */
-  abstract var enabled: Boolean
+  abstract val enabled: Boolean
 
   /**
    * Composable function to display content when [enabled] is true.
