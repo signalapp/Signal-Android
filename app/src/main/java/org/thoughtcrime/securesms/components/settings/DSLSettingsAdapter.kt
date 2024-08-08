@@ -109,8 +109,13 @@ class LearnMoreTextPreferenceViewHolder(itemView: View) : PreferenceViewHolder<L
 class ClickPreferenceViewHolder(itemView: View) : PreferenceViewHolder<ClickPreference>(itemView) {
   override fun bind(model: ClickPreference) {
     super.bind(model)
-    itemView.setOnClickListener { model.onClick() }
-    itemView.setOnLongClickListener { model.onLongClick?.invoke() ?: false }
+    if (!itemView.isEnabled && model.onDisabledClicked != null) {
+      itemView.isEnabled = true
+      itemView.setOnClickListener { model.onDisabledClicked() }
+    } else {
+      itemView.setOnClickListener { model.onClick() }
+      itemView.setOnLongClickListener { model.onLongClick?.invoke() ?: false }
+    }
   }
 }
 

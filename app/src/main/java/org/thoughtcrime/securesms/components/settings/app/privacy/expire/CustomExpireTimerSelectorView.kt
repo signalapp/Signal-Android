@@ -65,6 +65,12 @@ class CustomExpireTimerSelectorView @JvmOverloads constructor(
     valuePicker.maxValue = timerUnit.maxValue
   }
 
+  fun setUnits(minValue: Int, maxValue: Int, timeUnitRes: Int) {
+    unitPicker.minValue = minValue
+    unitPicker.maxValue = maxValue
+    unitPicker.displayedValues = context.resources.getStringArray(timeUnitRes)
+  }
+
   private enum class TimerUnit(val minValue: Int, val maxValue: Int, val valueMultiplier: Long) {
     SECONDS(1, 59, TimeUnit.SECONDS.toSeconds(1)),
     MINUTES(1, 59, TimeUnit.MINUTES.toSeconds(1)),

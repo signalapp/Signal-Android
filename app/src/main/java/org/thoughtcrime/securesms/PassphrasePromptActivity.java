@@ -20,7 +20,6 @@ import android.animation.Animator;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -34,21 +33,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
@@ -64,7 +60,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicIntroTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
 import kotlin.Unit;
 
@@ -79,14 +75,14 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private static final short  AUTHENTICATE_REQUEST_CODE = 1007;
   private static final String BUNDLE_ALREADY_SHOWN      = "bundle_already_shown";
   public  static final String FROM_FOREGROUND           = "from_foreground";
-  private static final int    HELP_COUNT_THRESHOLD      = 3;
 
   private DynamicIntroTheme dynamicTheme    = new DynamicIntroTheme();
   private DynamicLanguage   dynamicLanguage = new DynamicLanguage();
 
-  private View            passphraseAuthContainer;
-  private ImageView       fingerprintPrompt;
-  private TextView        lockScreenButton;
+  private View                passphraseAuthContainer;
+  private LottieAnimationView unlockView;
+  private TextView            lockScreenButton;
+  private LearnMoreTextView   learnMoreText;
 
   private EditText        passphraseText;
   private ImageButton     showButton;
@@ -134,14 +130,11 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
     setLockTypeVisibility();
 
-    if (TextSecurePreferences.isScreenLockEnabled(this) && !authenticated && !hadFailure) {
+    if (SignalStore.settings().getScreenLockEnabled() && !authenticated && !hadFailure) {
       ThreadUtil.postToMain(resumeScreenLockRunnable);
     }
 
     hadFailure = false;
-
-    fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
-    fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_accent_primary), PorterDuff.Mode.SRC_IN);
   }
 
   @Override
@@ -174,9 +167,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     if (item.getItemId() == R.id.menu_submit_debug_logs) {
       handleLogSubmit();
       return true;
-    } else if (item.getItemId() == R.id.menu_contact_support) {
-      sendEmailToSupport();
-      return true;
     }
 
     return false;
@@ -193,7 +183,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     } else {
       Log.w(TAG, "Authentication failed");
       hadFailure = true;
-      incrementAttemptCountAndShowHelpIfNecessary();
+      showHelpDialog();
     }
   }
 
@@ -213,7 +203,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       passphraseText.setText("");
       passphraseText.setError(
               getString(R.string.PassphrasePromptActivity_invalid_passphrase_exclamation));
-      incrementAttemptCountAndShowHelpIfNecessary();
     }
   }
 
@@ -223,7 +212,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       
       MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
       setMasterSecret(masterSecret);
-      SignalStore.misc().setLockScreenAttemptCount(0);
     } catch (InvalidPassphraseException e) {
       throw new AssertionError(e);
     }
@@ -251,8 +239,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     visibilityToggle        = findViewById(R.id.button_toggle);
     passphraseText          = findViewById(R.id.passphrase_edit);
     passphraseAuthContainer = findViewById(R.id.password_auth_container);
-    fingerprintPrompt       = findViewById(R.id.fingerprint_auth_container);
-    lockScreenButton        = findViewById(R.id.lock_screen_auth_container);
+    unlockView              = findViewById(R.id.unlock_view);
+    lockScreenButton        = findViewById(R.id.lock_screen_button);
+    learnMoreText           = findViewById(R.id.learn_more_text);
     biometricManager        = BiometricManager.from(this);
     biometricPrompt         = new BiometricPrompt(this, new BiometricAuthenticationListener());
     BiometricPrompt.PromptInfo biometricPromptInfo = new BiometricPrompt.PromptInfo
@@ -276,34 +265,22 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     passphraseText.setImeActionLabel(getString(R.string.prompt_passphrase_activity__unlock),
                                      EditorInfo.IME_ACTION_DONE);
 
-    fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
-    fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.core_ultramarine), PorterDuff.Mode.SRC_IN);
-
     lockScreenButton.setOnClickListener(v -> resumeScreenLock(true));
-
-    if (SignalStore.misc().getLockScreenAttemptCount() > HELP_COUNT_THRESHOLD) {
-      showHelpDialogAndResetAttemptCount(null);
-    }
   }
 
   private void setLockTypeVisibility() {
-    if (TextSecurePreferences.isScreenLockEnabled(this)) {
+    if (SignalStore.settings().getScreenLockEnabled()) {
       passphraseAuthContainer.setVisibility(View.GONE);
-      fingerprintPrompt.setVisibility(biometricManager.canAuthenticate(BiometricDeviceAuthentication.BIOMETRIC_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS ? View.VISIBLE
-                                                                                                                                       : View.GONE);
+      unlockView.setVisibility(View.VISIBLE);
       lockScreenButton.setVisibility(View.VISIBLE);
     } else {
       passphraseAuthContainer.setVisibility(View.VISIBLE);
-      fingerprintPrompt.setVisibility(View.GONE);
+      unlockView.setVisibility(View.GONE);
       lockScreenButton.setVisibility(View.GONE);
     }
   }
 
   private void resumeScreenLock(boolean force) {
-    if (incrementAttemptCountAndShowHelpIfNecessary(() -> resumeScreenLock(force))) {
-      return;
-    }
-
     if (!biometricAuth.authenticate(getApplicationContext(), force, this::showConfirmDeviceCredentialIntent)) {
       handleAuthenticated();
     }
@@ -326,33 +303,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
     startActivityForResult(intent, AUTHENTICATE_REQUEST_CODE);
     return Unit.INSTANCE;
-  }
-
-  private boolean incrementAttemptCountAndShowHelpIfNecessary() {
-    return incrementAttemptCountAndShowHelpIfNecessary(null);
-  }
-
-  private boolean incrementAttemptCountAndShowHelpIfNecessary(Runnable onDismissed) {
-    SignalStore.misc().incrementLockScreenAttemptCount();
-
-    if (SignalStore.misc().getLockScreenAttemptCount() > HELP_COUNT_THRESHOLD) {
-      showHelpDialogAndResetAttemptCount(onDismissed);
-      return true;
-    }
-
-    return false;
-  }
-
-  private void showHelpDialogAndResetAttemptCount(@Nullable Runnable onDismissed) {
-    new MaterialAlertDialogBuilder(this)
-        .setMessage(R.string.PassphrasePromptActivity_help_prompt_body)
-        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-          SignalStore.misc().setLockScreenAttemptCount(0);
-          if (onDismissed != null) {
-            onDismissed.run();
-          }
-        })
-        .show();
   }
 
   private class PassphraseActionListener implements TextView.OnEditorActionListener {
@@ -403,13 +353,31 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     System.gc();
   }
 
+  private void showHelpDialog() {
+    lockScreenButton.setText(R.string.prompt_passphrase_activity__try_again);
+
+    learnMoreText.setVisibility(View.VISIBLE);
+    learnMoreText.setLearnMoreVisible(true);
+    learnMoreText.setLinkColor(ContextCompat.getColor(PassphrasePromptActivity.this, R.color.signal_colorPrimary));
+
+    learnMoreText.setOnClickListener(v ->
+         new MaterialAlertDialogBuilder(PassphrasePromptActivity.this)
+             .setTitle(R.string.prompt_passphrase_activity__unlock_signal)
+             .setMessage(R.string.prompt_passphrase_activity__screen_lock_is_on)
+             .setCancelable(true)
+             .setPositiveButton(android.R.string.ok, null)
+             .setNegativeButton(R.string.prompt_passphrase_activity__contact_support, (d,w) -> sendEmailToSupport())
+             .show()
+    );
+  }
+
   private class BiometricAuthenticationListener extends BiometricPrompt.AuthenticationCallback {
     @Override
     public void onAuthenticationError(int errorCode, @NonNull CharSequence errorString) {
       Log.w(TAG, "Authentication error: " + errorCode);
       hadFailure = true;
 
-      incrementAttemptCountAndShowHelpIfNecessary();
+      showHelpDialog();
 
       if (errorCode != BiometricPrompt.ERROR_CANCELED && errorCode != BiometricPrompt.ERROR_USER_CANCELED) {
         onAuthenticationFailed();
@@ -419,41 +387,19 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     @Override
     public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
       Log.i(TAG, "onAuthenticationSucceeded");
-      fingerprintPrompt.setImageResource(R.drawable.symbol_check_white_48);
-      fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.green_500), PorterDuff.Mode.SRC_IN);
-      fingerprintPrompt.animate().setInterpolator(new BounceInterpolator()).scaleX(1.1f).scaleY(1.1f).setDuration(500).setListener(new AnimationCompleteListener() {
+      unlockView.addAnimatorListener(new AnimationCompleteListener() {
         @Override
         public void onAnimationEnd(Animator animation) {
           handleAuthenticated();
         }
-      }).start();
+      });
+      unlockView.playAnimation();
     }
 
     @Override
     public void onAuthenticationFailed() {
       Log.w(TAG, "onAuthenticationFailed()");
-
-      fingerprintPrompt.setImageResource(R.drawable.symbol_x_white_48);
-      fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.red_500), PorterDuff.Mode.SRC_IN);
-
-      TranslateAnimation shake = new TranslateAnimation(0, 30, 0, 0);
-      shake.setDuration(50);
-      shake.setRepeatCount(7);
-      shake.setAnimationListener(new Animation.AnimationListener() {
-        @Override
-        public void onAnimationStart(Animation animation) {}
-
-        @Override
-        public void onAnimationEnd(Animation animation) {
-          fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
-          fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_accent_primary), PorterDuff.Mode.SRC_IN);
-        }
-
-        @Override
-        public void onAnimationRepeat(Animation animation) {}
-      });
-
-      fingerprintPrompt.startAnimation(shake);
+      showHelpDialog();
     }
   }
 }

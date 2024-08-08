@@ -29,9 +29,9 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
  * Activity for changing a user's local encryption passphrase.
@@ -81,7 +81,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     this.okButton.setOnClickListener(new OkButtonClickListener());
     this.cancelButton.setOnClickListener(new CancelButtonClickListener());
 
-    if (TextSecurePreferences.isPasswordDisabled(this)) {
+    if (SignalStore.settings().getPassphraseDisabled()) {
       this.originalPassphrase.setVisibility(View.GONE);
     } else {
       this.originalPassphrase.setVisibility(View.VISIBLE);
@@ -97,7 +97,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     String passphrase       = (newText == null ? "" : newText.toString());
     String passphraseRepeat = (repeatText == null ? "" : repeatText.toString());
 
-    if (TextSecurePreferences.isPasswordDisabled(this)) {
+    if (SignalStore.settings().getPassphraseDisabled()) {
       original = MasterSecretUtil.UNENCRYPTED_PASSPHRASE;
     }
 
@@ -142,7 +142,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     protected MasterSecret doInBackground(String... params) {
       try {
         MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(context, params[0], params[1]);
-        TextSecurePreferences.setPasswordDisabled(context, false);
+        SignalStore.settings().setPassphraseDisabled(false);
 
         return masterSecret;
 

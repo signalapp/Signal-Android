@@ -568,7 +568,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onPrepareOptionsMenu(Menu menu) {
-    menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(requireContext()));
+    menu.findItem(R.id.menu_clear_passphrase).setVisible(!SignalStore.settings().getPassphraseDisabled());
 
     ConversationFilterRequest request             = viewModel.getConversationFilterRequest();
     boolean                   isChatFilterEnabled = request != null && request.getFilter() == ConversationFilter.UNREAD;

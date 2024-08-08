@@ -32,6 +32,7 @@ import android.os.SystemClock;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -42,11 +43,11 @@ import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
 
@@ -80,17 +81,17 @@ public class KeyCachingService extends Service {
   public KeyCachingService() {}
 
   public static synchronized boolean isLocked(Context context) {
-    boolean locked = masterSecret == null && (!TextSecurePreferences.isPasswordDisabled(context) || TextSecurePreferences.isScreenLockEnabled(context));
+    boolean locked = masterSecret == null && (!SignalStore.settings().getPassphraseDisabled() || SignalStore.settings().getScreenLockEnabled());
 
     if (locked) {
-      Log.d(TAG, "Locked! PasswordDisabled: " + TextSecurePreferences.isPasswordDisabled(context) + ", ScreenLock: " + TextSecurePreferences.isScreenLockEnabled(context));
+      Log.d(TAG, "Locked! PasswordDisabled: " + SignalStore.settings().getPassphraseDisabled() + ", ScreenLock: " + SignalStore.settings().getScreenLockEnabled());
     }
 
     return locked;
   }
 
   public static synchronized @Nullable MasterSecret getMasterSecret(Context context) {
-    if (masterSecret == null && (TextSecurePreferences.isPasswordDisabled(context) && !TextSecurePreferences.isScreenLockEnabled(context))) {
+    if (masterSecret == null && (SignalStore.settings().getPassphraseDisabled() && !SignalStore.settings().getScreenLockEnabled())) {
       try {
         return MasterSecretUtil.getMasterSecret(context, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
       } catch (InvalidPassphraseException e) {
@@ -102,7 +103,7 @@ public class KeyCachingService extends Service {
   }
 
   public static void onAppForegrounded(@NonNull Context context) {
-    if (TextSecurePreferences.isScreenLockEnabled(context) || !TextSecurePreferences.isPasswordDisabled(context)) {
+    if (SignalStore.settings().getScreenLockEnabled() || !SignalStore.settings().getPassphraseDisabled()) {
       ServiceUtil.getAlarmManager(context).cancel(buildExpirationPendingIntent(context));
     }
   }
@@ -155,7 +156,7 @@ public class KeyCachingService extends Service {
     Log.i(TAG, "onCreate()");
     super.onCreate();
 
-    if (TextSecurePreferences.isPasswordDisabled(this) && !TextSecurePreferences.isScreenLockEnabled(this)) {
+    if (SignalStore.settings().getPassphraseDisabled() && !SignalStore.settings().getScreenLockEnabled()) {
       try {
         MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
         setMasterSecret(masterSecret);
@@ -215,8 +216,8 @@ public class KeyCachingService extends Service {
   }
 
   private void handleDisableService() {
-    if (TextSecurePreferences.isPasswordDisabled(this) &&
-        !TextSecurePreferences.isScreenLockEnabled(this))
+    if (SignalStore.settings().getPassphraseDisabled() &&
+        !SignalStore.settings().getScreenLockEnabled())
     {
       stopForeground(true);
     }
@@ -231,33 +232,40 @@ public class KeyCachingService extends Service {
     boolean appVisible       = AppDependencies.getAppForegroundObserver().isForegrounded();
     boolean secretSet        = KeyCachingService.masterSecret != null;
 
-    boolean timeoutEnabled   = TextSecurePreferences.isPassphraseTimeoutEnabled(context);
-    boolean passLockActive   = timeoutEnabled && !TextSecurePreferences.isPasswordDisabled(context);
+    boolean timeoutEnabled   = SignalStore.settings().getPassphraseTimeoutEnabled();
+    boolean passLockActive   = timeoutEnabled && !SignalStore.settings().getPassphraseDisabled();
 
-    long    screenTimeout    = TextSecurePreferences.getScreenLockTimeout(context);
-    boolean screenLockActive = screenTimeout >= 60 && TextSecurePreferences.isScreenLockEnabled(context);
+    long    screenTimeout       = SignalStore.settings().getScreenLockTimeout();
+    boolean screenLockActive    = SignalStore.settings().getScreenLockEnabled();
+    boolean immediateScreenLock = screenTimeout == 0 && screenLockActive;
 
     if (!appVisible && secretSet && (passLockActive || screenLockActive)) {
-      long passphraseTimeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(context);
-      long screenLockTimeoutSeconds = TextSecurePreferences.getScreenLockTimeout(context);
+      if (immediateScreenLock) {
+        Log.i(TAG, "Starting immediate screen lock");
+        Intent intent = new Intent(PASSPHRASE_EXPIRED_EVENT, null, context, KeyCachingService.class);
+        context.startService(intent);
+      } else {
+        long passphraseTimeoutMinutes = SignalStore.settings().getPassphraseTimeout();
+        long screenLockTimeoutSeconds = SignalStore.settings().getScreenLockTimeout();
 
-      long timeoutMillis;
+        long timeoutMillis;
 
-      if (!TextSecurePreferences.isPasswordDisabled(context)) timeoutMillis = TimeUnit.MINUTES.toMillis(passphraseTimeoutMinutes);
-      else                                                    timeoutMillis = TimeUnit.SECONDS.toMillis(screenLockTimeoutSeconds);
+        if (!SignalStore.settings().getPassphraseDisabled()) timeoutMillis = TimeUnit.MINUTES.toMillis(passphraseTimeoutMinutes);
+        else                                                    timeoutMillis = TimeUnit.SECONDS.toMillis(screenLockTimeoutSeconds);
 
-      Log.i(TAG, "Starting timeout: " + timeoutMillis);
+        Log.i(TAG, "Starting timeout: " + timeoutMillis);
 
-      AlarmManager  alarmManager     = ServiceUtil.getAlarmManager(context);
-      PendingIntent expirationIntent = buildExpirationPendingIntent(context);
+        AlarmManager  alarmManager     = ServiceUtil.getAlarmManager(context);
+        PendingIntent expirationIntent = buildExpirationPendingIntent(context);
 
-      alarmManager.cancel(expirationIntent);
-      alarmManager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + timeoutMillis, expirationIntent);
+        alarmManager.cancel(expirationIntent);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + timeoutMillis, expirationIntent);
+      }
     }
   }
 
   private void foregroundService() {
-    if (TextSecurePreferences.isPasswordDisabled(this) && !TextSecurePreferences.isScreenLockEnabled(this)) {
+    if (SignalStore.settings().getPassphraseDisabled() && !SignalStore.settings().getScreenLockEnabled()) {
       stopForeground(true);
       return;
     }
@@ -267,7 +275,8 @@ public class KeyCachingService extends Service {
 
     builder.setContentTitle(getString(R.string.KeyCachingService_passphrase_cached));
     builder.setContentText(getString(R.string.KeyCachingService_signal_passphrase_cached));
-    builder.setSmallIcon(R.drawable.icon_cached);
+    builder.setSmallIcon(R.drawable.ic_notification_unlocked);
+    builder.setColor(ContextCompat.getColor(this, R.color.signal_light_colorSecondary));
     builder.setWhen(0);
     builder.setPriority(Notification.PRIORITY_MIN);
     builder.setOngoing(true);

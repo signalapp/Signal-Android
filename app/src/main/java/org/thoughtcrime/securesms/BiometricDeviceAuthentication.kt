@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil
 class BiometricDeviceAuthentication(
   private val biometricManager: BiometricManager,
   private val biometricPrompt: BiometricPrompt,
-  private val biometricPromptInfo: PromptInfo
+  private var biometricPromptInfo: PromptInfo
 ) {
   companion object {
     const val AUTHENTICATED = 1
@@ -68,6 +68,10 @@ class BiometricDeviceAuthentication(
 
   fun cancelAuthentication() {
     biometricPrompt.cancelAuthentication()
+  }
+
+  fun updatePromptInfo(promptInfo: PromptInfo) {
+    biometricPromptInfo = promptInfo
   }
 }
 
