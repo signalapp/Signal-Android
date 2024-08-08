@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelec
 import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView.PositionDragListener
 import java.io.IOException
 import kotlin.time.Duration.Companion.microseconds
+import kotlin.time.Duration.Companion.milliseconds
 
 class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragment {
   private val sharedViewModel: MediaSelectionViewModel by viewModels(ownerProducer = { requireActivity() })
@@ -46,9 +47,9 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
   private val updatePosition = object : Runnable {
     override fun run() {
       if (MediaConstraints.isVideoTranscodeAvailable()) {
-        val playbackPositionUs = player.playbackPositionUs
-        if (playbackPositionUs >= 0) {
-          videoTimeLine.setActualPosition(playbackPositionUs)
+        val playbackPosition = player.truePlaybackPosition
+        if (playbackPosition >= 0) {
+          videoTimeLine.setActualPosition(playbackPosition.milliseconds.inWholeMicroseconds)
           handler.postDelayed(this, 100)
         }
       }
