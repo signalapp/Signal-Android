@@ -238,7 +238,7 @@ object RecurringInAppPaymentRepository {
                 it.state == InAppPaymentTable.State.END
               }.take(1).map {
                 if (it.data.error != null) {
-                  Log.d(TAG, "Failure during redemption chain.", true)
+                  Log.d(TAG, "Failure during redemption chain: ${it.data.error}", true)
                   throw DonationError.genericBadgeRedemptionFailure(errorSource)
                 }
                 it

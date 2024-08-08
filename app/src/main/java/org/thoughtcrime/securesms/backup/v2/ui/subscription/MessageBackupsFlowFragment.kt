@@ -187,6 +187,12 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         return@LaunchedEffect
       }
 
+      if (state.screen == MessageBackupsScreen.PROCESS_FREE) {
+        checkoutDelegate.setActivityResult(InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION, InAppPaymentType.RECURRING_BACKUP)
+        viewModel.goToNextScreen()
+        return@LaunchedEffect
+      }
+
       val routeScreen = MessageBackupsScreen.valueOf(route)
       if (routeScreen.isAfter(state.screen)) {
         navController.popBackStack()

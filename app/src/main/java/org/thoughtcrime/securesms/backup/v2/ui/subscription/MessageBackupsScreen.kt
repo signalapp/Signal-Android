@@ -15,6 +15,7 @@ enum class MessageBackupsScreen {
   CREATING_IN_APP_PAYMENT,
   PROCESS_PAYMENT,
   PROCESS_CANCELLATION,
+  PROCESS_FREE,
   COMPLETED;
 
   fun isAfter(other: MessageBackupsScreen): Boolean = ordinal > other.ordinal

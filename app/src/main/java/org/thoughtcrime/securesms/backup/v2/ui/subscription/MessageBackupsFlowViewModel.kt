@@ -76,6 +76,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
         MessageBackupsScreen.CANCELLATION_DIALOG -> it.copy(screen = MessageBackupsScreen.PROCESS_CANCELLATION)
         MessageBackupsScreen.PROCESS_PAYMENT -> it.copy(screen = MessageBackupsScreen.COMPLETED)
         MessageBackupsScreen.PROCESS_CANCELLATION -> it.copy(screen = MessageBackupsScreen.COMPLETED)
+        MessageBackupsScreen.PROCESS_FREE -> it.copy(screen = MessageBackupsScreen.COMPLETED)
         MessageBackupsScreen.COMPLETED -> error("Unsupported state transition from terminal state COMPLETED")
       }
     }
@@ -95,6 +96,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
           MessageBackupsScreen.CREATING_IN_APP_PAYMENT -> MessageBackupsScreen.TYPE_SELECTION
           MessageBackupsScreen.PROCESS_PAYMENT -> MessageBackupsScreen.TYPE_SELECTION
           MessageBackupsScreen.PROCESS_CANCELLATION -> MessageBackupsScreen.TYPE_SELECTION
+          MessageBackupsScreen.PROCESS_FREE -> MessageBackupsScreen.TYPE_SELECTION
           MessageBackupsScreen.CANCELLATION_DIALOG -> MessageBackupsScreen.TYPE_SELECTION
           MessageBackupsScreen.COMPLETED -> error("Unsupported state transition from terminal state COMPLETED")
         }
@@ -170,8 +172,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
           SignalStore.backup.areBackupsEnabled = true
           SignalStore.backup.backupTier = MessageBackupTier.FREE
 
-          // TODO [message-backups] -- Trigger backup now?
-          state.copy(screen = MessageBackupsScreen.COMPLETED)
+          state.copy(screen = MessageBackupsScreen.PROCESS_FREE)
         }
       }
       MessageBackupTier.PAID -> state.copy(screen = MessageBackupsScreen.CHECKOUT_SHEET)

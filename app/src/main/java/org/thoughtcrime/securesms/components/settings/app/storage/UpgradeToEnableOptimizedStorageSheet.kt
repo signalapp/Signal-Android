@@ -5,6 +5,9 @@
 
 package org.thoughtcrime.securesms.components.settings.app.storage
 
+import android.os.Bundle
+import android.view.View
+import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,7 +38,7 @@ import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeBlock
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.testBackupTypes
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 
 /**
@@ -47,13 +50,20 @@ class UpgradeToEnableOptimizedStorageSheet : ComposeBottomSheetDialogFragment() 
 
   private val viewModel: UpgradeToEnableOptimizedStorageViewModel by viewModels()
 
+  private lateinit var checkoutLauncher: ActivityResultLauncher<InAppPaymentType>
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    checkoutLauncher = createBackupsCheckoutLauncher()
+  }
+
   @Composable
   override fun SheetContent() {
     val type by viewModel.messageBackupsType
     UpgradeToEnableOptimizedStorageSheetContent(
       messageBackupsType = type,
       onUpgradeNowClick = {
-        startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.RECURRING_BACKUP))
+        checkoutLauncher.launch(InAppPaymentType.RECURRING_BACKUP)
         dismissAllowingStateLoss()
       },
       onCancelClick = {

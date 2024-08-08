@@ -3,10 +3,12 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.dp
 import org.signal.core.util.money.FiatMoney
@@ -21,6 +23,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.InAppPaymentsBottomSheetDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
@@ -54,6 +57,9 @@ class ManageDonationsFragment :
     const val DONATE_TROUBLESHOOTING_URL = "https://support.signal.org/hc/articles/360031949872#fix"
   }
 
+  private val args: ManageDonationsFragmentArgs by navArgs()
+  private lateinit var launcher: ActivityResultLauncher<InAppPaymentType>
+
   private val supportTechSummary: CharSequence by lazy {
     SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__private_messaging)))
       .append(" ")
@@ -69,6 +75,13 @@ class ManageDonationsFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     viewLifecycleOwner.lifecycle.addObserver(InAppPaymentsBottomSheetDelegate(childFragmentManager, viewLifecycleOwner))
     super.onViewCreated(view, savedInstanceState)
+
+    val contract = CheckoutFlowActivity.Contract()
+    launcher = registerForActivityResult(contract) { }
+
+    if (savedInstanceState == null && args.directToCheckoutType != InAppPaymentType.UNKNOWN) {
+      launcher.launch(args.directToCheckoutType)
+    }
   }
 
   override fun onResume() {
@@ -159,7 +172,7 @@ class ManageDonationsFragment :
       primaryWrappedButton(
         text = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_to_signal),
         onClick = {
-          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.ONE_TIME_DONATION))
+          launcher.launch(InAppPaymentType.ONE_TIME_DONATION)
         }
       )
 
@@ -269,7 +282,7 @@ class ManageDonationsFragment :
           subscriberRequiresCancel = state.subscriberRequiresCancel,
           onRowClick = {
             if (it != ManageDonationsState.RedemptionState.IN_PROGRESS) {
-              findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.RECURRING_DONATION))
+              launcher.launch(InAppPaymentType.RECURRING_DONATION)
             }
           },
           onPendingClick = {
@@ -337,7 +350,7 @@ class ManageDonationsFragment :
       title = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_for_a_friend),
       icon = DSLSettingsIcon.from(R.drawable.symbol_gift_24),
       onClick = {
-        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.ONE_TIME_GIFT))
+        launcher.launch(InAppPaymentType.ONE_TIME_GIFT)
       }
     )
   }
@@ -437,6 +450,6 @@ class ManageDonationsFragment :
   }
 
   override fun onMakeAMonthlyDonation() {
-    findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(InAppPaymentType.RECURRING_DONATION))
+    launcher.launch(InAppPaymentType.ONE_TIME_DONATION)
   }
 }

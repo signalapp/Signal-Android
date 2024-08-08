@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui
 
+import android.content.DialogInterface
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,32 +25,57 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Icons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 
 /**
  * Bottom sheet allowing the user to immediately start a backup or delay.
+ *
+ * If the result key is true, then the user has enqueued a backup and should be directed to the
+ * remote backup settings screen.
  */
 class CreateBackupBottomSheet : ComposeBottomSheetDialogFragment() {
+
+  companion object {
+    const val REQUEST_KEY = "CreateBackupBottomSheet"
+  }
+
+  private var isResultSet = false
+
   @Composable
   override fun SheetContent() {
     CreateBackupBottomSheetContent(
       onBackupNowClick = {
         BackupMessagesJob.enqueue()
-        startActivity(AppSettingsActivity.remoteBackups(requireContext()))
+        setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to Result.BACKUP_STARTED))
+        isResultSet = true
         dismissAllowingStateLoss()
       },
       onBackupLaterClick = {
         dismissAllowingStateLoss()
       }
     )
+  }
+
+  enum class Result {
+    BACKUP_STARTED,
+    BACKUP_DELAYED
+  }
+
+  override fun onDismiss(dialog: DialogInterface) {
+    if (!isResultSet) {
+      setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to Result.BACKUP_DELAYED))
+    }
+
+    super.onDismiss(dialog)
   }
 }
 

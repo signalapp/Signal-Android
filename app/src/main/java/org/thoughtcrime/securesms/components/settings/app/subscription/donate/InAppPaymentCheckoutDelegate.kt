@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -114,6 +115,10 @@ class InAppPaymentCheckoutDelegate(
     }
   }
 
+  fun setActivityResult(action: InAppPaymentProcessorAction, inAppPaymentType: InAppPaymentType) {
+    fragment.requireActivity().setResult(Activity.RESULT_OK, Intent().putExtra(CheckoutFlowActivity.RESULT_DATA, CheckoutFlowActivity.Result(action, inAppPaymentType)))
+  }
+
   private fun handleDonationProcessorActionResult(result: InAppPaymentProcessorActionResult) {
     when (result.status) {
       InAppPaymentProcessorActionResult.Status.SUCCESS -> handleSuccessfulDonationProcessorActionResult(result)
@@ -124,10 +129,11 @@ class InAppPaymentCheckoutDelegate(
   }
 
   private fun handleSuccessfulDonationProcessorActionResult(result: InAppPaymentProcessorActionResult) {
+    setActivityResult(result.action, result.inAppPaymentType)
+
     if (result.action == InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION) {
       callback.onSubscriptionCancelled(result.inAppPaymentType)
     } else {
-      fragment.requireActivity().setResult(Activity.RESULT_OK)
       callback.onPaymentComplete(result.inAppPayment!!)
     }
   }

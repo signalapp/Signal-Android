@@ -382,6 +382,10 @@ class ConversationFragment :
     MessageRequestRepository(requireContext())
   }
 
+  private val checkoutLauncher by lazy {
+    registerForActivityResult(CheckoutFlowActivity.Contract()) {}
+  }
+
   private val disposables = LifecycleDisposable()
   private val binding by ViewBinderDelegate(V2ConversationFragmentBinding::bind) { _binding ->
     _binding.conversationInputPanel.embeddedTextEditor.apply {
@@ -2959,7 +2963,7 @@ class ConversationFragment :
 
     override fun onCallToAction(action: String) {
       if ("gift_badge" == action) {
-        startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.ONE_TIME_GIFT))
+        checkoutLauncher.launch(InAppPaymentType.ONE_TIME_GIFT)
       } else if ("username_edit" == action) {
         startActivity(EditProfileActivity.getIntentForUsernameEdit(requireContext()))
       }

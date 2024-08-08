@@ -7311,6 +7311,8 @@
     <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription cancelled</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Download complete</string>
+    <!-- Snackbar text displayed when backup will be created overnight -->
+    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Backup will be created overnight.</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_type">Backup type</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
