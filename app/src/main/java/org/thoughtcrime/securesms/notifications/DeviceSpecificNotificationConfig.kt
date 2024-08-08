@@ -29,6 +29,7 @@ object DeviceSpecificNotificationConfig {
    */
   data class Config(
     @JsonProperty val model: String = "",
+    @JsonProperty val manufacturer: String = "",
     @JsonProperty val showConditionCode: String = ShowCondition.NONE.code,
     @JsonProperty val link: String = GENERAL_SUPPORT_URL,
     @JsonProperty val localePercent: String = "*",
@@ -66,16 +67,27 @@ object DeviceSpecificNotificationConfig {
       emptyList()
     }
 
-    val config: Config? = list
-      .filter { it.model.isNotEmpty() }
-      .find {
-        if (it.model.last() == '*') {
-          Build.MODEL.startsWith(it.model.substring(0, it.model.length - 1))
-        } else {
-          it.model.contains(Build.MODEL)
-        }
-      }
+    val matchedConfigs: List<Config> = list
+      .filter { matchesModel(it.model) || matchesManufacturer(it.manufacturer) }
 
-    return config ?: default
+    val matchedModelConfig: Config? = matchedConfigs.firstOrNull { matchesModel(it.model) }
+
+    if (matchedModelConfig != null) {
+      return matchedModelConfig
+    }
+
+    return matchedConfigs.firstOrNull() ?: default
+  }
+
+  private fun matchesModel(model: String): Boolean {
+    return if (model.isNotEmpty() && model.last() == '*') {
+      Build.MODEL.startsWith(model.substring(0, model.length - 1))
+    } else {
+      model.equals(Build.MODEL, ignoreCase = true)
+    }
+  }
+
+  private fun matchesManufacturer(manufacturer: String): Boolean {
+    return manufacturer.equals(Build.MANUFACTURER, ignoreCase = true)
   }
 }

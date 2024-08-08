@@ -97,4 +97,31 @@ class DeviceSpecificNotificationConfigTest {
     every { RemoteConfig.deviceSpecificNotificationConfig } returns """[ { "model": "test" } ]"""
     DeviceSpecificNotificationConfig.computeConfig() assertIs DeviceSpecificNotificationConfig.Config(model = "test", localePercent = "*", version = 0)
   }
+
+  @Test
+  fun `manufacturer match`() {
+    ReflectionHelpers.setStaticField(Build::class.java, "MODEL", "test-model")
+    ReflectionHelpers.setStaticField(Build::class.java, "MANUFACTURER", "test-manufacturer")
+    every { RemoteConfig.deviceSpecificNotificationConfig } returns
+      """
+      [
+        { "manufacturer": "test-manufacturer", "showConditionCode": "always", "localePercent": "*:10000", "version": 1 }
+      ]
+      """.trimMargin()
+    DeviceSpecificNotificationConfig.computeConfig() assertIs DeviceSpecificNotificationConfig.Config(manufacturer = "test-manufacturer", showConditionCode = "always", localePercent = "*:10000", version = 1)
+  }
+
+  @Test
+  fun `device model is matched over device manufacturer`() {
+    ReflectionHelpers.setStaticField(Build::class.java, "MODEL", "test-model")
+    ReflectionHelpers.setStaticField(Build::class.java, "MANUFACTURER", "test-manufacturer")
+    every { RemoteConfig.deviceSpecificNotificationConfig } returns
+      """
+      [
+        { "manufacturer": "test-manufacturer", "showConditionCode": "always", "localePercent": "*:10000", "version": 1 },
+        { "model": "test-model", "showConditionCode": "has-battery-optimization-on", "localePercent": "*:20000", "version": 2 }
+      ]
+      """.trimMargin()
+    DeviceSpecificNotificationConfig.computeConfig() assertIs DeviceSpecificNotificationConfig.Config(model = "test-model", showConditionCode = "has-battery-optimization-on", localePercent = "*:20000", version = 2)
+  }
 }
