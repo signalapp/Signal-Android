@@ -22,6 +22,7 @@ import com.airbnb.lottie.model.KeyPath
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.visible
+import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
@@ -74,9 +75,13 @@ class MediaPreviewPlayerControlView @JvmOverloads constructor(
       setProgressUpdateListener { position, _ ->
         val finalPlayer = player ?: return@setProgressUpdateListener
         val remainingDuration = (finalPlayer.duration - position).toDuration(DurationUnit.MILLISECONDS)
-        val minutes: Long = remainingDuration.inWholeMinutes
-        val seconds: Long = remainingDuration.inWholeSeconds % 60
-        durationLabel.text = "–${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}"
+        if (remainingDuration >= Duration.ZERO) {
+          val minutes: Long = remainingDuration.inWholeMinutes
+          val seconds: Long = remainingDuration.inWholeSeconds % 60
+          durationLabel.text = "–${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}"
+        } else {
+          durationLabel.text = ""
+        }
       }
     } else {
       setProgressUpdateListener(null)
