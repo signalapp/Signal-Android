@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -47,6 +48,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
   private val TAG = Log.tag(EnterCodeFragment::class.java)
 
   private val sharedViewModel by activityViewModels<RegistrationViewModel>()
+  private val fragmentViewModel by viewModels<EnterCodeViewModel>()
   private val bottomSheet = ContactSupportBottomSheetFragment()
   private val binding: FragmentRegistrationEnterCodeBinding by ViewBinderDelegate(FragmentRegistrationEnterCodeBinding::bind)
 
@@ -130,6 +132,20 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
         binding.keyboard.displayKeyboard()
       }
     }
+
+    fragmentViewModel.uiState.observe(viewLifecycleOwner) {
+      if (it.resetRequiredAfterFailure) {
+        binding.callMeCountDown.visibility = View.VISIBLE
+        binding.resendSmsCountDown.visibility = View.VISIBLE
+        binding.wrongNumber.visibility = View.VISIBLE
+        binding.code.clear()
+        binding.keyboard.displayKeyboard()
+        fragmentViewModel.allViewsResetCompleted()
+      } else if (it.showKeyboard) {
+        binding.keyboard.displayKeyboard()
+        fragmentViewModel.keyboardShown()
+      }
+    }
   }
 
   override fun onResume() {
@@ -190,11 +206,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
             setTitle(R.string.RegistrationActivity_too_many_attempts)
             setMessage(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later)
             setPositiveButton(android.R.string.ok) { _: DialogInterface?, _: Int ->
-              binding.callMeCountDown.visibility = View.VISIBLE
-              binding.resendSmsCountDown.visibility = View.VISIBLE
-              binding.wrongNumber.visibility = View.VISIBLE
-              binding.code.clear()
-              binding.keyboard.displayKeyboard()
+              fragmentViewModel.resetAllViews()
             }
             show()
           }
@@ -210,11 +222,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
 
     binding.keyboard.displayFailure().addListener(object : AssertedSuccessListener<Boolean?>() {
       override fun onSuccess(result: Boolean?) {
-        binding.callMeCountDown.visibility = View.VISIBLE
-        binding.resendSmsCountDown.visibility = View.VISIBLE
-        binding.wrongNumber.visibility = View.VISIBLE
-        binding.code.clear()
-        binding.keyboard.displayKeyboard()
+        fragmentViewModel.resetAllViews()
       }
     })
   }
@@ -229,7 +237,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
               setTitle(it)
             }
             setMessage(getString(R.string.RegistrationActivity_error_connecting_to_service))
-            setPositiveButton(android.R.string.ok) { _, _ -> binding.keyboard.displayKeyboard() }
+            setPositiveButton(android.R.string.ok) { _, _ -> fragmentViewModel.showKeyboard() }
             show()
           }
         }
