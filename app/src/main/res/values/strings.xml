@@ -829,9 +829,9 @@
     <!-- Accessibility content description for the "Backup Error" icon -->
     <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Backup error icon</string>
 
-    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device's memory has space for. -->
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
     <string name="RestoreMediaErrorBanner__Free_up_storage_space">Free up storage space to restore your media.</string>
-    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device's memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
     <string name="RestoreMediaErrorBanner__Free_up_of_space">Free up %1$s of space to restore your media.</string>
 
     <!-- Remote media restoration in-process status title. -->
@@ -844,7 +844,7 @@
     <string name="RestoreMediaReminder__Waiting_for_Wifi">Waiting for WiFi…</string>
     <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
     <string name="RestoreMediaReminder__Waiting_for_internet_connection">Waiting for Internet connection…</string>
-    <!-- Remote media restoration paused status description for when the device's battery is low -->
+    <!-- Remote media restoration paused status description for when the device\'s battery is low -->
     <string name="RestoreMediaReminder__low_battery">Low battery. Charge your device.</string>
     <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
     <string name="RestoreMediaReminder__Free_up_space">Free up %1$s to restore your media.</string>
