@@ -105,8 +105,8 @@ class ManageStorageSettingsViewModel : ViewModel() {
 
   private fun getOnDeviceStorageOptimizationState(): OnDeviceStorageOptimizationState {
     return when {
-      !RemoteConfig.messageBackups -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
-      !SignalStore.backup.areBackupsEnabled || SignalStore.backup.backupTier != MessageBackupTier.PAID -> OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER
+      !RemoteConfig.messageBackups || !SignalStore.backup.areBackupsEnabled -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
+      SignalStore.backup.backupTier != MessageBackupTier.PAID -> OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER
       SignalStore.backup.optimizeStorage -> OnDeviceStorageOptimizationState.ENABLED
       else -> OnDeviceStorageOptimizationState.DISABLED
     }
