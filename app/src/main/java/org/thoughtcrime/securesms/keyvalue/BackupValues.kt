@@ -27,6 +27,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
     private const val KEY_LAST_BACKUP_MEDIA_SYNC_TIME = "backup.lastBackupMediaSyncTime"
+    private const val KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE = "backup.totalRestorableAttachmentSize"
     private const val KEY_BACKUP_FREQUENCY = "backup.backupFrequency"
 
     private const val KEY_CDN_BACKUP_DIRECTORY = "backup.cdn.directory"
@@ -61,6 +62,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var nextBackupTime: Long by longValue(KEY_NEXT_BACKUP_TIME, -1)
   var lastBackupTime: Long by longValue(KEY_LAST_BACKUP_TIME, -1)
   var lastMediaSyncTime: Long by longValue(KEY_LAST_BACKUP_MEDIA_SYNC_TIME, -1)
+  var totalRestorableAttachmentSize: Long by longValue(KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE, 0)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
   var backupTier: MessageBackupTier? by enumValue(KEY_BACKUP_TIER, null, MessageBackupTier.Serializer)
 
@@ -85,6 +87,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     }
 
   var backupsInitialized: Boolean by booleanValue(KEY_BACKUPS_INITIALIZED, false)
+
+  val isRestoreInProgress: Boolean
+    get() = totalRestorableAttachmentSize > 0
 
   /**
    * Retrieves the stored credentials, mapped by the day they're valid. The day is represented as

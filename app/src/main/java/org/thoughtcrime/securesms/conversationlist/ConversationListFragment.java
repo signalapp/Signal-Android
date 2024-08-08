@@ -98,6 +98,7 @@ import org.thoughtcrime.securesms.badges.self.expired.MonthlyDonationCanceledBot
 import org.thoughtcrime.securesms.banner.Banner;
 import org.thoughtcrime.securesms.banner.BannerManager;
 import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner;
+import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner;
 import org.thoughtcrime.securesms.components.DeleteSyncEducationDialog;
 import org.thoughtcrime.securesms.components.Material3SearchToolbar;
 import org.thoughtcrime.securesms.components.RatingManager;
@@ -882,8 +883,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void initializeBanners() {
     if (RemoteConfig.newBannerUi()) {
-      final List<Flow<? extends Banner>> bannerRepositories = List.of(OutdatedBuildBanner.createFlow(requireContext()));
-      final BannerManager      bannerManager      = new BannerManager(bannerRepositories);
+      final List<Flow<? extends Banner>> bannerRepositories = List.of(OutdatedBuildBanner.createFlow(requireContext()),
+                                                                      MediaRestoreProgressBanner.createLifecycleAwareFlow(getViewLifecycleOwner()));
+      final BannerManager bannerManager                     = new BannerManager(bannerRepositories);
       bannerManager.setContent(bannerView.get());
     }
   }

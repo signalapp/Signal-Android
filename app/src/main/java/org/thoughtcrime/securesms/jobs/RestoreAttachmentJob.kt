@@ -103,7 +103,7 @@ class RestoreAttachmentJob private constructor(
     }
   }
 
-  private val attachmentId: Long
+  private val attachmentId: Long = attachmentId.id
 
   constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, forceArchiveDownload: Boolean = false, restoreMode: RestoreMode = RestoreMode.ORIGINAL) : this(
     Parameters.Builder()
@@ -118,10 +118,6 @@ class RestoreAttachmentJob private constructor(
     forceArchiveDownload,
     restoreMode
   )
-
-  init {
-    this.attachmentId = attachmentId.id
-  }
 
   override fun serialize(): ByteArray? {
     return JsonJobData.Builder()
@@ -155,6 +151,10 @@ class RestoreAttachmentJob private constructor(
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context, forConversation(0))
+    }
+
+    if (SignalDatabase.attachments.getTotalRestorableAttachmentSize() == 0L) {
+      SignalStore.backup.totalRestorableAttachmentSize = 0L
     }
   }
 
