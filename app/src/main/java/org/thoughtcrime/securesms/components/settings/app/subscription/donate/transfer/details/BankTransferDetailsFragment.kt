@@ -163,6 +163,10 @@ class BankTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDeleg
       }
     })
   }
+
+  override fun exitCheckoutFlow() {
+    requireActivity().finishAfterTransition()
+  }
 }
 
 @Preview

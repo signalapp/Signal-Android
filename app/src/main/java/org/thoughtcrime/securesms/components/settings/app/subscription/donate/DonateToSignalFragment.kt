@@ -528,4 +528,8 @@ class DonateToSignalFragment :
   override fun navigateToDonationPending(inAppPayment: InAppPaymentTable.InAppPayment) {
     findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToDonationPendingBottomSheet(inAppPayment))
   }
+
+  override fun exitCheckoutFlow() {
+    requireActivity().finishAffinity()
+  }
 }

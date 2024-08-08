@@ -194,6 +194,10 @@ class IdealTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDele
       }
     })
   }
+
+  override fun exitCheckoutFlow() {
+    requireActivity().finishAfterTransition()
+  }
 }
 
 @Preview

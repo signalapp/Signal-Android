@@ -273,4 +273,8 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
   override fun navigateToDonationPending(inAppPayment: InAppPaymentTable.InAppPayment) {
     // TODO [message-backups] What do? Are we even supporting bank transfers?
   }
+
+  override fun exitCheckoutFlow() {
+    requireActivity().finishAfterTransition()
+  }
 }
