@@ -87,22 +87,32 @@ class AttachmentDownloadJob private constructor(
 
     @JvmStatic
     fun downloadAttachmentIfNeeded(databaseAttachment: DatabaseAttachment): String? {
-      if (databaseAttachment.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
-        return RestoreAttachmentJob.restoreOffloadedAttachment(databaseAttachment)
-      } else if (databaseAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_STARTED &&
-        databaseAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE &&
-        databaseAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE
-      ) {
-        val downloadJob = AttachmentDownloadJob(
-          messageId = databaseAttachment.mmsId,
-          attachmentId = databaseAttachment.attachmentId,
-          manual = true,
-          forceArchiveDownload = false
-        )
-        AppDependencies.jobManager.add(downloadJob)
-        return downloadJob.id
+      return when (val transferState = databaseAttachment.transferState) {
+        AttachmentTable.TRANSFER_RESTORE_OFFLOADED -> RestoreAttachmentJob.restoreOffloadedAttachment(databaseAttachment)
+
+        AttachmentTable.TRANSFER_PROGRESS_PENDING,
+        AttachmentTable.TRANSFER_PROGRESS_FAILED,
+        AttachmentTable.TRANSFER_NEEDS_RESTORE,
+        AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS -> {
+          val downloadJob = AttachmentDownloadJob(
+            messageId = databaseAttachment.mmsId,
+            attachmentId = databaseAttachment.attachmentId,
+            manual = true,
+            forceArchiveDownload = false
+          )
+          AppDependencies.jobManager.add(downloadJob)
+          downloadJob.id
+        }
+
+        AttachmentTable.TRANSFER_PROGRESS_DONE,
+        AttachmentTable.TRANSFER_PROGRESS_STARTED,
+        AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE -> null
+
+        else -> {
+          Log.w(TAG, "Attempted to download attachment with unknown transfer state: $transferState")
+          null
+        }
       }
-      return null
     }
   }
 
