@@ -268,13 +268,13 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getRoutedIntent(Intent destination, @Nullable Intent nextIntent) {
-    if (nextIntent != null)   destination.putExtra("next_intent", nextIntent);
+    if (nextIntent != null)   destination.putExtra(NEXT_INTENT_EXTRA, nextIntent);
     return destination;
   }
 
   private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent) {
     final Intent intent = new Intent(this, destination);
-    if (nextIntent != null)   intent.putExtra("next_intent", nextIntent);
+    if (nextIntent != null)   intent.putExtra(NEXT_INTENT_EXTRA, nextIntent);
     return intent;
   }
 

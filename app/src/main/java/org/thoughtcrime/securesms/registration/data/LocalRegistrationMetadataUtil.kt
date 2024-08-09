@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.registration.data
 
 import okio.ByteString.Companion.toByteString
 import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
@@ -18,12 +19,12 @@ import org.whispersystems.signalservice.api.account.PreKeyCollection
  * and combines them into a proto-backed class [LocalRegistrationMetadata] so they can be serialized & stored.
  */
 object LocalRegistrationMetadataUtil {
-  fun createLocalRegistrationMetadata(registrationData: RegistrationData, remoteResult: RegistrationRepository.AccountRegistrationResult, reglockEnabled: Boolean): LocalRegistrationMetadata {
+  fun createLocalRegistrationMetadata(localAciIdentityKeyPair: IdentityKeyPair, localPniIdentityKeyPair: IdentityKeyPair, registrationData: RegistrationData, remoteResult: RegistrationRepository.AccountRegistrationResult, reglockEnabled: Boolean): LocalRegistrationMetadata {
     return LocalRegistrationMetadata.Builder().apply {
-      aciIdentityKey = remoteResult.aciPreKeyCollection.identityKey.serialize().toByteString()
+      aciIdentityKeyPair = localAciIdentityKeyPair.serialize().toByteString()
       aciSignedPreKey = remoteResult.aciPreKeyCollection.signedPreKey.serialize().toByteString()
       aciLastRestoreKyberPreKey = remoteResult.aciPreKeyCollection.signedPreKey.serialize().toByteString()
-      pniIdentityKey = remoteResult.pniPreKeyCollection.identityKey.serialize().toByteString()
+      pniIdentityKeyPair = localPniIdentityKeyPair.serialize().toByteString()
       pniSignedPreKey = remoteResult.pniPreKeyCollection.signedPreKey.serialize().toByteString()
       pniLastRestoreKyberPreKey = remoteResult.pniPreKeyCollection.signedPreKey.serialize().toByteString()
       aci = remoteResult.uuid
@@ -43,9 +44,17 @@ object LocalRegistrationMetadataUtil {
     }.build()
   }
 
+  fun LocalRegistrationMetadata.getAciIdentityKeyPair() : IdentityKeyPair {
+    return IdentityKeyPair(aciIdentityKeyPair.toByteArray())
+  }
+
+  fun LocalRegistrationMetadata.getPniIdentityKeyPair() : IdentityKeyPair {
+    return IdentityKeyPair(pniIdentityKeyPair.toByteArray())
+  }
+
   fun LocalRegistrationMetadata.getAciPreKeyCollection(): PreKeyCollection {
     return PreKeyCollection(
-      IdentityKey(aciIdentityKey.toByteArray()),
+      getAciIdentityKeyPair().publicKey,
       SignedPreKeyRecord(aciSignedPreKey.toByteArray()),
       KyberPreKeyRecord(aciLastRestoreKyberPreKey.toByteArray())
     )
@@ -53,7 +62,7 @@ object LocalRegistrationMetadataUtil {
 
   fun LocalRegistrationMetadata.getPniPreKeyCollection(): PreKeyCollection {
     return PreKeyCollection(
-      IdentityKey(pniIdentityKey.toByteArray()),
+      getPniIdentityKeyPair().publicKey,
       SignedPreKeyRecord(pniSignedPreKey.toByteArray()),
       KyberPreKeyRecord(pniLastRestoreKyberPreKey.toByteArray())
     )

@@ -516,10 +516,10 @@ message PaymentTombstone {
 }
 
 message LocalRegistrationMetadata {
-    bytes aciIdentityKey = 1;
+    bytes aciIdentityKeyPair = 1;
     bytes aciSignedPreKey = 2;
     bytes aciLastRestoreKyberPreKey = 3;
-    bytes pniIdentityKey = 4;
+    bytes pniIdentityKeyPair = 4;
     bytes pniSignedPreKey = 5;
     bytes pniLastRestoreKyberPreKey = 6;
     string aci = 7;
