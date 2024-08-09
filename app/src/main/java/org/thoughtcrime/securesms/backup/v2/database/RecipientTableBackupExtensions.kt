@@ -303,22 +303,23 @@ private fun Member.Role.toSnapshot(): Group.Member.Role {
 }
 
 private fun DecryptedGroup.toSnapshot(): Group.GroupSnapshot? {
-  if (revision == GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION || revision == GroupsV2StateProcessor.PLACEHOLDER_REVISION) {
+  if (this.revision == GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION || this.revision == GroupsV2StateProcessor.PLACEHOLDER_REVISION) {
     return null
   }
+
   return Group.GroupSnapshot(
-    title = Group.GroupAttributeBlob(title = title),
-    avatarUrl = avatar,
-    disappearingMessagesTimer = Group.GroupAttributeBlob(disappearingMessagesDuration = disappearingMessagesTimer?.duration ?: 0),
-    accessControl = accessControl?.toSnapshot(),
-    version = revision,
-    members = members.map { it.toSnapshot() },
-    membersPendingProfileKey = pendingMembers.map { it.toSnapshot() },
-    membersPendingAdminApproval = requestingMembers.map { it.toSnapshot() },
-    inviteLinkPassword = inviteLinkPassword,
-    description = Group.GroupAttributeBlob(descriptionText = description),
-    announcements_only = isAnnouncementGroup == EnabledState.ENABLED,
-    members_banned = bannedMembers.map { it.toSnapshot() }
+    title = Group.GroupAttributeBlob(title = this.title),
+    avatarUrl = this.avatar,
+    disappearingMessagesTimer = Group.GroupAttributeBlob(disappearingMessagesDuration = this.disappearingMessagesTimer?.duration ?: 0),
+    accessControl = this.accessControl?.toSnapshot(),
+    version = this.revision,
+    members = this.members.map { it.toSnapshot() },
+    membersPendingProfileKey = this.pendingMembers.map { it.toSnapshot() },
+    membersPendingAdminApproval = this.requestingMembers.map { it.toSnapshot() },
+    inviteLinkPassword = this.inviteLinkPassword,
+    description = this.description.takeUnless { it.isBlank() }?.let { Group.GroupAttributeBlob(descriptionText = it) },
+    announcements_only = this.isAnnouncementGroup == EnabledState.ENABLED,
+    members_banned = this.bannedMembers.map { it.toSnapshot() }
   )
 }
 
@@ -343,58 +344,58 @@ private fun Group.MemberPendingProfileKey.toLocal(operations: GroupsV2Operations
 private fun DecryptedPendingMember.toSnapshot(): Group.MemberPendingProfileKey {
   return Group.MemberPendingProfileKey(
     member = Group.Member(
-      userId = serviceIdBytes,
-      role = role.toSnapshot()
+      userId = this.serviceIdBytes,
+      role = this.role.toSnapshot()
     ),
-    addedByUserId = addedByAci,
-    timestamp = timestamp
+    addedByUserId = this.addedByAci,
+    timestamp = this.timestamp
   )
 }
 
 private fun Group.MemberPendingAdminApproval.toLocal(): DecryptedRequestingMember {
   return DecryptedRequestingMember(
-    aciBytes = userId,
-    profileKey = profileKey,
-    timestamp = timestamp
+    aciBytes = this.userId,
+    profileKey = this.profileKey,
+    timestamp = this.timestamp
   )
 }
 
 private fun DecryptedRequestingMember.toSnapshot(): Group.MemberPendingAdminApproval {
   return Group.MemberPendingAdminApproval(
-    userId = aciBytes,
-    profileKey = profileKey,
-    timestamp = timestamp
+    userId = this.aciBytes,
+    profileKey = this.profileKey,
+    timestamp = this.timestamp
   )
 }
 
 private fun Group.MemberBanned.toLocal(): DecryptedBannedMember {
   return DecryptedBannedMember(
-    serviceIdBytes = userId,
-    timestamp = timestamp
+    serviceIdBytes = this.userId,
+    timestamp = this.timestamp
   )
 }
 
 private fun DecryptedBannedMember.toSnapshot(): Group.MemberBanned {
   return Group.MemberBanned(
-    userId = serviceIdBytes,
-    timestamp = timestamp
+    userId = this.serviceIdBytes,
+    timestamp = this.timestamp
   )
 }
 
 private fun Group.GroupSnapshot.toDecryptedGroup(operations: GroupsV2Operations.GroupOperations): DecryptedGroup {
   return DecryptedGroup(
-    title = title?.title ?: "",
-    avatar = avatarUrl,
-    disappearingMessagesTimer = DecryptedTimer(duration = disappearingMessagesTimer?.disappearingMessagesDuration ?: 0),
-    accessControl = accessControl?.toLocal(),
-    revision = version,
-    members = members.map { member -> member.toLocal() },
-    pendingMembers = membersPendingProfileKey.map { pending -> pending.toLocal(operations) },
-    requestingMembers = membersPendingAdminApproval.map { requesting -> requesting.toLocal() },
-    inviteLinkPassword = inviteLinkPassword,
-    description = description?.descriptionText ?: "",
-    isAnnouncementGroup = if (announcements_only) EnabledState.ENABLED else EnabledState.DISABLED,
-    bannedMembers = members_banned.map { it.toLocal() }
+    title = this.title?.title ?: "",
+    avatar = this.avatarUrl,
+    disappearingMessagesTimer = DecryptedTimer(duration = this.disappearingMessagesTimer?.disappearingMessagesDuration ?: 0),
+    accessControl = this.accessControl?.toLocal(),
+    revision = this.version,
+    members = this.members.map { member -> member.toLocal() },
+    pendingMembers = this.membersPendingProfileKey.map { pending -> pending.toLocal(operations) },
+    requestingMembers = this.membersPendingAdminApproval.map { requesting -> requesting.toLocal() },
+    inviteLinkPassword = this.inviteLinkPassword,
+    description = this.description?.descriptionText ?: "",
+    isAnnouncementGroup = if (this.announcements_only) EnabledState.ENABLED else EnabledState.DISABLED,
+    bannedMembers = this.members_banned.map { it.toLocal() }
   )
 }
 

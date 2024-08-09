@@ -126,7 +126,7 @@ object GroupsV2UpdateMessageConverter {
   fun translateDecryptedChangeUpdate(selfIds: ServiceIds, groupContext: DecryptedGroupV2Context): GroupChangeChatUpdate {
     var previousGroupState = groupContext.previousGroupState
     val change = groupContext.change!!
-    if (DecryptedGroup().equals(previousGroupState)) {
+    if (DecryptedGroup() == previousGroupState) {
       previousGroupState = null
     }
     val updates: MutableList<GroupChangeChatUpdate.Update> = LinkedList()

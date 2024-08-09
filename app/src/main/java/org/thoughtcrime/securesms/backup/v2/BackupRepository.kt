@@ -211,7 +211,7 @@ object BackupRepository {
         )
       }
 
-      val exportState = ExportState(backupTime = currentTime, allowMediaBackup = SignalStore.backup.backsUpMedia)
+      val exportState = ExportState(backupTime = currentTime, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
 
       writer.use {
         writer.write(
@@ -302,13 +302,15 @@ object BackupRepository {
     // Note: Without a transaction, bad imports could lead to lost data. But because we have a transaction,
     // writes from other threads are blocked. This is something to think more about.
     SignalDatabase.rawDatabase.withinTransaction {
-      SignalStore.clearAllDataForBackupRestore()
       SignalDatabase.recipients.clearAllDataForBackupRestore()
       SignalDatabase.distributionLists.clearAllDataForBackupRestore()
       SignalDatabase.threads.clearAllDataForBackupRestore()
       SignalDatabase.messages.clearAllDataForBackupRestore()
       SignalDatabase.attachments.clearAllDataForBackupRestore()
       SignalDatabase.stickers.clearAllDataForBackupRestore()
+      SignalDatabase.reactions.clearAllDataForBackupRestore()
+      SignalDatabase.inAppPayments.clearAllDataForBackupRestore()
+      SignalDatabase.chatColors.clearAllDataForBackupRestore()
 
       // Add back self after clearing data
       val selfId: RecipientId = SignalDatabase.recipients.getAndPossiblyMerge(selfData.aci, selfData.pni, selfData.e164, pniVerified = true, changeSelf = true)
@@ -953,7 +955,7 @@ data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
 
 data class BackupDirectories(val backupDir: String, val mediaDir: String)
 
-class ExportState(val backupTime: Long, val allowMediaBackup: Boolean) {
+class ExportState(val backupTime: Long, val mediaBackupEnabled: Boolean) {
   val recipientIds: MutableSet<Long> = hashSetOf()
   val threadIds: MutableSet<Long> = hashSetOf()
   val localToRemoteCustomChatColors: MutableMap<Long, Int> = hashMapOf()

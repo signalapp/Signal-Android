@@ -46,7 +46,7 @@ enum class Cdn(private val value: Int) {
         0 -> CDN_0
         2 -> CDN_2
         3 -> CDN_3
-        else -> throw UnsupportedOperationException()
+        else -> throw UnsupportedOperationException("Invalid CDN number: $cdnNumber")
       }
     }
   }

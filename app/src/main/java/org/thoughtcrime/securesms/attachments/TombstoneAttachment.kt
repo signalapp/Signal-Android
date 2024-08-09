@@ -13,7 +13,7 @@ import java.util.UUID
  * quote them and know their contentType even though the media has been deleted.
  */
 class TombstoneAttachment : Attachment {
-  constructor(contentType: String, quote: Boolean) : super(
+  constructor(contentType: String?, quote: Boolean) : super(
     contentType = contentType,
     quote = quote,
     transferState = AttachmentTable.TRANSFER_PROGRESS_DONE,

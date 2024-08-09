@@ -234,6 +234,10 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     }
   }
 
+  public void clear() {
+    getWritableDatabase().delete(TABLE_NAME, null, null);
+  }
+
   private enum Type {
     BLOB(0), BOOLEAN(1), FLOAT(2), INTEGER(3), LONG(4), STRING(5);
 

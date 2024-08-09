@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 private val TAG = Log.tag(MessageTable::class.java)
 private const val BASE_TYPE = "base_type"
 
-fun MessageTable.getMessagesForBackup(backupTime: Long, archiveMedia: Boolean): ChatItemExportIterator {
+fun MessageTable.getMessagesForBackup(backupTime: Long, mediaBackupEnabled: Boolean): ChatItemExportIterator {
   val cursor = readableDatabase
     .select(
       MessageTable.ID,
@@ -66,7 +66,7 @@ fun MessageTable.getMessagesForBackup(backupTime: Long, archiveMedia: Boolean): 
     .orderBy("${MessageTable.DATE_RECEIVED} ASC")
     .run()
 
-  return ChatItemExportIterator(cursor, 100, archiveMedia)
+  return ChatItemExportIterator(cursor, 100, mediaBackupEnabled)
 }
 
 fun MessageTable.createChatItemInserter(importState: ImportState): ChatItemImportInserter {

@@ -157,7 +157,7 @@ message Group {
   // We would use Groups.proto if we could, but we want a plaintext version to improve export readability.
   // For documentation, defer to Groups.proto. The only name change is Group -> GroupSnapshot to avoid the naming conflict.
   message GroupSnapshot {
-    bytes publicKey = 1;
+    reserved /*publicKey*/ 1;  // The field is deprecated in the context of static group state
     GroupAttributeBlob title = 2;
     GroupAttributeBlob description = 11;
     string avatarUrl = 3;
@@ -343,23 +343,46 @@ message ChatItem {
 }
 
 message SendStatus {
-  enum Status {
-    UNKNOWN = 0;
-    FAILED = 1;
-    PENDING = 2;
-    SENT = 3;
-    DELIVERED = 4;
-    READ = 5;
-    VIEWED = 6;
-    SKIPPED = 7; // e.g. user in group was blocked, so we skipped sending to them
+  message Pending {}
+
+  message Sent {
+    bool sealedSender = 1;
+  }
+
+  message Delivered {
+    bool sealedSender = 1;
+  }
+
+  message Read {
+    bool sealedSender = 1;
+  }
+
+  message Viewed {
+    bool sealedSender = 1;
+  }
+
+  // e.g. user in group was blocked, so we skipped sending to them
+  message Skipped {}
+
+  message Failed {
+    oneof reason {
+      bool network = 1;
+      bool identityKeyMismatch = 2;
+    }
   }
 
   uint64 recipientId = 1;
-  Status deliveryStatus = 2;
-  bool networkFailure = 3;
-  bool identityKeyMismatch = 4;
-  bool sealedSender = 5;
-  uint64 lastStatusUpdateTimestamp = 6; // the time the status was last updated -- if from a receipt, it should be the sentTime of the receipt
+  uint64 timestamp = 2; // the time the status was last updated -- if from a receipt, it should be the sentTime of the receipt
+
+  oneof deliveryStatus {
+    Pending pending = 3;
+    Sent sent = 4;
+    Delivered delivered = 5;
+    Read read = 6;
+    Viewed viewed = 7;
+    Skipped skipped = 8;
+    Failed failed = 9;
+  }
 }
 
 message Text {
@@ -565,7 +588,7 @@ message FilePointer {
     optional uint32 cdnNumber = 2;
     bytes key = 3;
     bytes digest = 4;
-    uint64 size = 5;
+    uint32 size = 5;
     // Fallback in case backup tier upload failed.
     optional string transitCdnKey = 6;
     optional uint32 transitCdnNumber = 7;
@@ -652,8 +675,11 @@ message Reaction {
   string emoji = 1;
   uint64 authorId = 2;
   uint64 sentTimestamp = 3;
+  // Optional because some clients may not track this data
   optional uint64 receivedTimestamp = 4;
-  uint64 sortOrder = 5; // A higher sort order means that a reaction is more recent
+  // A higher sort order means that a reaction is more recent. Some clients may export this as
+  // incrementing numbers (e.g. 1, 2, 3), others as timestamps.
+  uint64 sortOrder = 5;
 }
 
 message ChatUpdateMessage {
@@ -749,6 +775,9 @@ message SimpleChatUpdate {
     PAYMENT_ACTIVATION_REQUEST = 11;
     UNSUPPORTED_PROTOCOL_MESSAGE = 12;
     REPORTED_SPAM = 13;
+    BLOCKED = 14;
+    UNBLOCKED = 15;
+    ACCEPTED = 16;
   }
 
   Type type = 1;

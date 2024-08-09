@@ -14,7 +14,7 @@ class UriAttachment : Attachment {
 
   constructor(
     uri: Uri,
-    contentType: String,
+    contentType: String?,
     transferState: Int,
     size: Long,
     fileName: String?,
@@ -50,7 +50,7 @@ class UriAttachment : Attachment {
   @JvmOverloads
   constructor(
     dataUri: Uri,
-    contentType: String,
+    contentType: String?,
     transferState: Int,
     size: Long,
     width: Int,

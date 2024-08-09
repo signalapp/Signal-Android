@@ -51,7 +51,7 @@ import kotlin.time.Duration.Companion.seconds
 class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
 
   companion object {
-    private const val TABLE_NAME = "in_app_payment"
+    const val TABLE_NAME = "in_app_payment"
 
     /**
      * Row ID

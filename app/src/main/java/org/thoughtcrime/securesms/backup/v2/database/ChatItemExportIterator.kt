@@ -131,7 +131,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       }
     }
 
-    val reactionsById: Map<Long, List<ReactionRecord>> = SignalDatabase.reactions.getReactionsForMessages(records.keys)
+    val reactionsById: Map<Long, List<ReactionRecord>> = SignalDatabase.reactions.getReactionsForMessages(records.keys).map { entry -> entry.key to entry.value.sortedBy { it.dateReceived } }.toMap()
     val mentionsById: Map<Long, List<Mention>> = SignalDatabase.mentions.getMentionsForMessages(records.keys)
     val attachmentsById: Map<Long, List<DatabaseAttachment>> = SignalDatabase.attachments.getAttachmentsForMessages(records.keys)
     val groupReceiptsById: Map<Long, List<GroupReceiptTable.GroupReceiptInfo>> = SignalDatabase.groupReceipts.getGroupReceiptInfoForMessages(records.keys)
@@ -757,28 +757,28 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
 
   private fun DatabaseAttachment.toBackupAttachment(): MessageAttachment {
     val builder = FilePointer.Builder()
-    builder.contentType = contentType
-    builder.incrementalMac = incrementalDigest?.toByteString()
-    builder.incrementalMacChunkSize = incrementalMacChunkSize
-    builder.fileName = fileName
-    builder.width = width
-    builder.height = height
-    builder.caption = caption
-    builder.blurHash = blurHash?.hash
+    builder.contentType = this.contentType?.takeUnless { it.isBlank() }
+    builder.incrementalMac = this.incrementalDigest?.toByteString()
+    builder.incrementalMacChunkSize = this.incrementalMacChunkSize.takeIf { it > 0 }
+    builder.fileName = this.fileName
+    builder.width = this.width.takeUnless { it == 0 }
+    builder.height = this.height.takeUnless { it == 0 }
+    builder.caption = this.caption
+    builder.blurHash = this.blurHash?.hash
 
-    if (remoteKey.isNullOrBlank() || remoteDigest == null || size == 0L) {
+    if (this.remoteKey.isNullOrBlank() || this.remoteDigest == null || this.size == 0L) {
       builder.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
     } else {
       if (archiveMedia) {
         builder.backupLocator = FilePointer.BackupLocator(
-          mediaName = archiveMediaName ?: this.getMediaName().toString(),
-          cdnNumber = if (archiveMediaName != null) archiveCdn else Cdn.CDN_3.cdnNumber, // TODO (clark): Update when new proto with optional cdn is landed
+          mediaName = this.archiveMediaName ?: this.getMediaName().toString(),
+          cdnNumber = if (this.archiveMediaName != null) this.archiveCdn else Cdn.CDN_3.cdnNumber, // TODO (clark): Update when new proto with optional cdn is landed
           key = Base64.decode(remoteKey).toByteString(),
-          size = this.size,
-          digest = remoteDigest.toByteString()
+          size = this.size.toInt(),
+          digest = this.remoteDigest.toByteString()
         )
       } else {
-        if (remoteLocation.isNullOrBlank()) {
+        if (this.remoteLocation.isNullOrBlank()) {
           builder.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
         } else {
           builder.attachmentLocator = FilePointer.AttachmentLocator(
@@ -787,7 +787,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
             uploadTimestamp = this.uploadTimestamp,
             key = Base64.decode(remoteKey).toByteString(),
             size = this.size.toInt(),
-            digest = remoteDigest.toByteString()
+            digest = this.remoteDigest.toByteString()
           )
         }
       }
@@ -795,16 +795,16 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     return MessageAttachment(
       pointer = builder.build(),
       wasDownloaded = this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE,
-      flag = if (voiceNote) {
+      flag = if (this.voiceNote) {
         MessageAttachment.Flag.VOICE_MESSAGE
-      } else if (videoGif) {
+      } else if (this.videoGif) {
         MessageAttachment.Flag.GIF
-      } else if (borderless) {
+      } else if (this.borderless) {
         MessageAttachment.Flag.BORDERLESS
       } else {
         MessageAttachment.Flag.NONE
       },
-      clientUuid = uuid?.let { UuidUtil.toByteString(uuid) }
+      clientUuid = this.uuid?.let { UuidUtil.toByteString(uuid) }
     )
   }
 
@@ -873,11 +873,18 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
 
     return decoded.ranges.map {
+      val mention = it.mentionUuid?.let { uuid -> UuidUtil.parseOrThrow(uuid) }?.toByteArray()?.toByteString()
+      val style = if (mention == null) {
+        it.style?.toBackupBodyRangeStyle() ?: BackupBodyRange.Style.NONE
+      } else {
+        null
+      }
+
       BackupBodyRange(
         start = it.start,
         length = it.length,
-        mentionAci = it.mentionUuid?.let { uuid -> UuidUtil.parseOrThrow(uuid) }?.toByteArray()?.toByteString(),
-        style = it.style?.toBackupBodyRangeStyle()
+        mentionAci = mention,
+        style = style
       )
     }
   }
@@ -899,7 +906,8 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           emoji = it.emoji,
           authorId = it.author.toLong(),
           sentTimestamp = it.dateSent,
-          receivedTimestamp = it.dateReceived
+          receivedTimestamp = it.dateReceived,
+          sortOrder = 0 // TODO [backup] make this it.dateReceived once comparator support is added
         )
       } ?: emptyList()
   }
@@ -913,48 +921,98 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       return groupReceipts.toBackupSendStatus(this.networkFailureRecipientIds, this.identityMismatchRecipientIds)
     }
 
-    val status: SendStatus.Status = when {
-      this.viewed -> SendStatus.Status.VIEWED
-      this.hasReadReceipt -> SendStatus.Status.READ
-      this.hasDeliveryReceipt -> SendStatus.Status.DELIVERED
-      this.baseType == MessageTypes.BASE_SENT_TYPE -> SendStatus.Status.SENT
-      MessageTypes.isFailedMessageType(this.type) -> SendStatus.Status.FAILED
-      else -> SendStatus.Status.PENDING
+    val statusBuilder = SendStatus.Builder()
+      .recipientId(this.toRecipientId)
+      .timestamp(this.receiptTimestamp)
+
+    when {
+      this.identityMismatchRecipientIds.contains(this.toRecipientId) -> {
+        statusBuilder.failed = SendStatus.Failed(
+          identityKeyMismatch = true
+        )
+      }
+      this.networkFailureRecipientIds.contains(this.toRecipientId) -> {
+        statusBuilder.failed = SendStatus.Failed(
+          network = true
+        )
+      }
+      this.baseType == MessageTypes.BASE_SENT_TYPE -> {
+        statusBuilder.sent = SendStatus.Sent(
+          sealedSender = this.sealedSender
+        )
+      }
+      this.hasDeliveryReceipt -> {
+        statusBuilder.delivered = SendStatus.Delivered(
+          sealedSender = this.sealedSender
+        )
+      }
+      this.hasReadReceipt -> {
+        statusBuilder.read = SendStatus.Read(
+          sealedSender = this.sealedSender
+        )
+      }
+      this.viewed -> {
+        statusBuilder.viewed = SendStatus.Viewed(
+          sealedSender = this.sealedSender
+        )
+      }
+      else -> {
+        statusBuilder.pending = SendStatus.Pending()
+      }
     }
 
-    return listOf(
-      SendStatus(
-        recipientId = this.toRecipientId,
-        deliveryStatus = status,
-        lastStatusUpdateTimestamp = this.receiptTimestamp,
-        sealedSender = this.sealedSender,
-        networkFailure = this.networkFailureRecipientIds.contains(this.toRecipientId),
-        identityKeyMismatch = this.identityMismatchRecipientIds.contains(this.toRecipientId)
-      )
-    )
+    return listOf(statusBuilder.build())
   }
 
   private fun List<GroupReceiptTable.GroupReceiptInfo>.toBackupSendStatus(networkFailureRecipientIds: Set<Long>, identityMismatchRecipientIds: Set<Long>): List<SendStatus> {
     return this.map {
-      SendStatus(
-        recipientId = it.recipientId.toLong(),
-        deliveryStatus = it.status.toBackupDeliveryStatus(),
-        sealedSender = it.isUnidentified,
-        lastStatusUpdateTimestamp = it.timestamp,
-        networkFailure = networkFailureRecipientIds.contains(it.recipientId.toLong()),
-        identityKeyMismatch = identityMismatchRecipientIds.contains(it.recipientId.toLong())
-      )
-    }
-  }
+      val statusBuilder = SendStatus.Builder()
+        .recipientId(it.recipientId.toLong())
+        .timestamp(it.timestamp)
 
-  private fun Int.toBackupDeliveryStatus(): SendStatus.Status {
-    return when (this) {
-      GroupReceiptTable.STATUS_UNDELIVERED -> SendStatus.Status.PENDING
-      GroupReceiptTable.STATUS_DELIVERED -> SendStatus.Status.DELIVERED
-      GroupReceiptTable.STATUS_READ -> SendStatus.Status.READ
-      GroupReceiptTable.STATUS_VIEWED -> SendStatus.Status.VIEWED
-      GroupReceiptTable.STATUS_SKIPPED -> SendStatus.Status.SKIPPED
-      else -> SendStatus.Status.SKIPPED
+      when {
+        identityMismatchRecipientIds.contains(it.recipientId.toLong()) -> {
+          statusBuilder.failed = SendStatus.Failed(
+            identityKeyMismatch = true
+          )
+        }
+        networkFailureRecipientIds.contains(it.recipientId.toLong()) -> {
+          statusBuilder.failed = SendStatus.Failed(
+            network = true
+          )
+        }
+        it.status == GroupReceiptTable.STATUS_UNKNOWN -> {
+          statusBuilder.pending = SendStatus.Pending()
+        }
+        it.status == GroupReceiptTable.STATUS_UNDELIVERED -> {
+          statusBuilder.sent = SendStatus.Sent(
+            sealedSender = it.isUnidentified
+          )
+        }
+        it.status == GroupReceiptTable.STATUS_DELIVERED -> {
+          statusBuilder.delivered = SendStatus.Delivered(
+            sealedSender = it.isUnidentified
+          )
+        }
+        it.status == GroupReceiptTable.STATUS_READ -> {
+          statusBuilder.read = SendStatus.Read(
+            sealedSender = it.isUnidentified
+          )
+        }
+        it.status == GroupReceiptTable.STATUS_VIEWED -> {
+          statusBuilder.viewed = SendStatus.Viewed(
+            sealedSender = it.isUnidentified
+          )
+        }
+        it.status == GroupReceiptTable.STATUS_SKIPPED -> {
+          statusBuilder.skipped = SendStatus.Skipped()
+        }
+        else -> {
+          statusBuilder.pending = SendStatus.Pending()
+        }
+      }
+
+      statusBuilder.build()
     }
   }
 

@@ -146,10 +146,10 @@ class ArchiveThumbnailUploadJob private constructor(
     val uri: DecryptableUri = attachment.uri?.let { DecryptableUri(it) } ?: return null
 
     return if (MediaUtil.isImageType(attachment.contentType)) {
-      ImageCompressionUtil.compress(context, attachment.contentType, uri, 256, 50)
+      ImageCompressionUtil.compress(context, attachment.contentType ?: "", uri, 256, 50)
     } else if (Build.VERSION.SDK_INT >= 23 && MediaUtil.isVideoType(attachment.contentType)) {
       MediaUtil.getVideoThumbnail(context, attachment.uri)?.let {
-        ImageCompressionUtil.compress(context, attachment.contentType, uri, 256, 50)
+        ImageCompressionUtil.compress(context, attachment.contentType ?: "", uri, 256, 50)
       }
     } else {
       null

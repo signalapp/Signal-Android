@@ -1103,8 +1103,8 @@ class RecipientTableTest_getAndPossiblyMerge {
 
     init {
       // Need to delete these first to prevent foreign key crash
-      SignalDatabase.rawDatabase.execSQL("DELETE FROM distribution_list")
-      SignalDatabase.rawDatabase.execSQL("DELETE FROM distribution_list_member")
+      SignalDatabase.rawDatabase.execSQL("DELETE FROM ${DistributionListTables.ListTable.TABLE_NAME}")
+      SignalDatabase.rawDatabase.execSQL("DELETE FROM ${DistributionListTables.MembershipTable.TABLE_NAME}")
 
       SqlUtil.getAllTables(SignalDatabase.rawDatabase)
         .filterNot { it.contains("sqlite") || it.contains("fts") || it.startsWith("emoji_search_") } // If we delete these we'll corrupt the DB

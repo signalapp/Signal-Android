@@ -288,10 +288,5 @@ class SignalStore(private val store: KeyValueStore) {
       instanceOverride = store
       _instance.reset()
     }
-
-    fun clearAllDataForBackupRestore() {
-      releaseChannel.clearReleaseChannelRecipientId()
-      account.clearRegistrationButKeepCredentials()
-    }
   }
 }

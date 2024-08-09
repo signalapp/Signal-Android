@@ -433,7 +433,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
               BuildConfig.SIGNAL_AGENT,
               healthMonitor,
               Stories.isFeatureEnabled(),
-              LibSignalNetworkExtensions.createChatService(libSignalNetworkSupplier.get(), null),
+              LibSignalNetworkExtensions.createChatService(libSignalNetworkSupplier.get(), null, Stories.isFeatureEnabled()),
               shadowPercentage,
               bridge
           );
@@ -442,7 +442,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
           Network network = libSignalNetworkSupplier.get();
           return new LibSignalChatConnection(
               "libsignal-unauth",
-              LibSignalNetworkExtensions.createChatService(network, null),
+              LibSignalNetworkExtensions.createChatService(network, null, Stories.isFeatureEnabled()),
               healthMonitor,
               false);
         } else {

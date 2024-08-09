@@ -83,7 +83,7 @@ class DatabaseAttachment : Attachment {
     thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState,
     uuid: UUID?
   ) : super(
-    contentType = contentType!!,
+    contentType = contentType,
     transferState = transferProgress,
     size = size,
     fileName = fileName,
