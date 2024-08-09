@@ -188,7 +188,7 @@ public class CreateGroupActivity extends ContactSelectionActivity implements Con
 
   private void handleNextPressed() {
     Stopwatch                              stopwatch         = new Stopwatch("Recipient Refresh");
-    SimpleProgressDialog.DismissibleDialog dismissibleDialog = SimpleProgressDialog.showDelayed(this);
+    SimpleProgressDialog.DismissibleDialog dismissibleDialog = SimpleProgressDialog.showDelayed(this, this);
 
     SimpleTask.run(getLifecycle(), () -> {
       List<RecipientId> ids = contactsFragment.getSelectedContacts()
