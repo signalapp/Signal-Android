@@ -46,8 +46,8 @@ class CdsPermanentErrorBanner(private val fragmentManager: FragmentManager) : Ba
     val PERMANENT_TIME_CUTOFF = 30.days.inWholeMilliseconds
 
     @JvmStatic
-    fun createFlow(fragmentManager: FragmentManager): Flow<CdsPermanentErrorBanner> = createAndEmit {
-      CdsPermanentErrorBanner(fragmentManager)
+    fun createFlow(childFragmentManager: FragmentManager): Flow<CdsPermanentErrorBanner> = createAndEmit {
+      CdsPermanentErrorBanner(childFragmentManager)
     }
   }
 }

@@ -39,8 +39,8 @@ class CdsTemporaryErrorBanner(private val fragmentManager: FragmentManager) : Ba
   companion object {
 
     @JvmStatic
-    fun createFlow(fragmentManager: FragmentManager): Flow<CdsTemporaryErrorBanner> = createAndEmit {
-      CdsTemporaryErrorBanner(fragmentManager)
+    fun createFlow(childFragmentManager: FragmentManager): Flow<CdsTemporaryErrorBanner> = createAndEmit {
+      CdsTemporaryErrorBanner(childFragmentManager)
     }
   }
 }

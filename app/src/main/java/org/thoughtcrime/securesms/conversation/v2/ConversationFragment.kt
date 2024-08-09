@@ -228,6 +228,7 @@ import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBotto
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
+import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
@@ -1016,17 +1017,38 @@ class ConversationFragment :
       VoiceMessageRecordingSessionCallbacks()
     )
 
-    binding.conversationBanner.listener = ConversationBannerListener()
-    viewModel
-      .reminder
-      .subscribeBy { reminder ->
-        if (reminder.isPresent) {
-          binding.conversationBanner.showReminder(reminder.get())
-        } else {
-          binding.conversationBanner.clearReminder()
-        }
+    val conversationBannerListener = ConversationBannerListener()
+    binding.conversationBanner.listener = conversationBannerListener
+    if (RemoteConfig.newBannerUi) {
+      val bannerFlows = viewModel.getBannerFlows(
+        context = requireContext(),
+        groupJoinClickListener = conversationBannerListener::reviewJoinRequestsAction,
+        onAddMembers = {
+          conversationGroupViewModel.groupRecordSnapshot?.let { groupRecord ->
+            GroupsV1MigrationSuggestionsDialog.show(requireActivity(), groupRecord.id.requireV2(), groupRecord.gv1MigrationSuggestions)
+          }
+        },
+        onNoThanks = conversationGroupViewModel::onSuggestedMembersBannerDismissed,
+        bubbleClickListener = conversationBannerListener::changeBubbleSettingAction
+      )
+
+      binding.conversationBanner.collectAndShowBanners(bannerFlows)
+
+      if (TextSecurePreferences.getServiceOutage(context)) {
+        AppDependencies.jobManager.add(ServiceOutageDetectionJob())
       }
-      .addTo(disposables)
+    } else {
+      viewModel
+        .reminder
+        .subscribeBy { reminder ->
+          if (reminder.isPresent) {
+            binding.conversationBanner.showReminder(reminder.get())
+          } else {
+            binding.conversationBanner.clearReminder()
+          }
+        }
+        .addTo(disposables)
+    }
 
     viewModel
       .identityRecordsObservable

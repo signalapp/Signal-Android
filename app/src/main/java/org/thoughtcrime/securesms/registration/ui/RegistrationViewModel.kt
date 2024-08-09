@@ -399,7 +399,7 @@ class RegistrationViewModel : ViewModel() {
             allowedToRequestCode = networkResult.body.allowedToRequestCode,
             challengesRequested = Challenge.parse(networkResult.body.requestedInformation),
             verified = networkResult.body.verified,
-            inProgress =  false
+            inProgress = false
           )
         }
       },
@@ -408,7 +408,7 @@ class RegistrationViewModel : ViewModel() {
         store.update {
           it.copy(
             sessionCreationError = error,
-            inProgress =  false
+            inProgress = false
           )
         }
       }

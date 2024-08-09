@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.IdRes
+import androidx.compose.ui.platform.ComposeView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.app.SharedElementCallback
 import androidx.core.view.ViewCompat
@@ -29,6 +30,9 @@ import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.banner.BannerManager
+import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner
+import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.components.Material3SearchToolbar
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder
 import org.thoughtcrime.securesms.components.reminder.Reminder
@@ -62,6 +66,7 @@ import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.PlayStoreUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -82,6 +87,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
   private lateinit var cameraFab: FloatingActionButton
 
   private lateinit var reminderView: Stub<ReminderView>
+  private lateinit var bannerView: Stub<ComposeView>
 
   private val lifecycleDisposable = LifecycleDisposable()
 
@@ -144,6 +150,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     super.onViewCreated(view, savedInstanceState)
 
     reminderView = ViewUtil.findStubById(view, R.id.reminder)
+    bannerView = ViewUtil.findStubById(view, R.id.banner_stub)
     updateReminders()
   }
 
@@ -153,12 +160,21 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
   }
 
   private fun updateReminders() {
-    if (ExpiredBuildReminder.isEligible()) {
-      showReminder(ExpiredBuildReminder(context))
-    } else if (UnauthorizedReminder.isEligible(context)) {
-      showReminder(UnauthorizedReminder())
+    if (RemoteConfig.newBannerUi) {
+      val bannerFlows = listOf(
+        OutdatedBuildBanner.createFlow(requireContext(), OutdatedBuildBanner.ExpiryStatus.EXPIRED_ONLY),
+        UnauthorizedBanner.createFlow(requireContext())
+      )
+      val bannerManager = BannerManager(bannerFlows)
+      bannerManager.setContent(bannerView.get())
     } else {
-      hideReminders()
+      if (ExpiredBuildReminder.isEligible()) {
+        showReminder(ExpiredBuildReminder(context))
+      } else if (UnauthorizedReminder.isEligible(context)) {
+        showReminder(UnauthorizedReminder())
+      } else {
+        hideReminders()
+      }
     }
   }
 

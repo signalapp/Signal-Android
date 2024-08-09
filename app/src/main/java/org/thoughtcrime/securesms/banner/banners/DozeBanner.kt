@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.banner.banners
 
 import android.content.Context
 import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.flow.Flow
@@ -20,12 +19,15 @@ import org.thoughtcrime.securesms.util.PowerManagerCompat
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 
-@RequiresApi(23)
 class DozeBanner(private val context: Context) : Banner() {
-  override val enabled: Boolean = !SignalStore.account.fcmEnabled && !TextSecurePreferences.hasPromptedOptimizeDoze(context) && Build.VERSION.SDK_INT >= 23 && !ServiceUtil.getPowerManager(context).isIgnoringBatteryOptimizations(context.packageName)
+  override val enabled: Boolean =
+    Build.VERSION.SDK_INT >= 23 && !SignalStore.account.fcmEnabled && !TextSecurePreferences.hasPromptedOptimizeDoze(context) && !ServiceUtil.getPowerManager(context).isIgnoringBatteryOptimizations(context.packageName)
 
   @Composable
   override fun DisplayBanner() {
+    if (Build.VERSION.SDK_INT < 23) {
+      throw IllegalStateException("Showing a Doze banner for an OS prior to Android 6.0")
+    }
     DefaultBanner(
       title = stringResource(id = R.string.DozeReminder_optimize_for_missing_play_services),
       body = stringResource(id = R.string.DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery),
@@ -45,11 +47,7 @@ class DozeBanner(private val context: Context) : Banner() {
 
     @JvmStatic
     fun createFlow(context: Context): Flow<DozeBanner> = createAndEmit {
-      if (Build.VERSION.SDK_INT >= 23) {
-        DozeBanner(context)
-      } else {
-        null
-      }
+      DozeBanner(context)
     }
   }
 }

@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,7 +40,9 @@ class MediaRestoreProgressBanner(private val data: MediaRestoreEvent) : Banner()
         lifecycleOwner.lifecycle.addObserver(observer)
         return observer.flow
       } else {
-        return emptyFlow()
+        return flow {
+          emit(MediaRestoreProgressBanner(MediaRestoreEvent(0L, 0L)))
+        }
       }
     }
   }

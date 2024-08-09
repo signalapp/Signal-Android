@@ -46,6 +46,9 @@ class UsernameOutOfSyncBanner(private val context: Context, private val username
 
   companion object {
 
+    /**
+     * @param onActionClick input is true if both the username and the link are corrupted, false if only the link is corrupted
+     */
     @JvmStatic
     fun createFlow(context: Context, onActionClick: (Boolean) -> Unit): Flow<UsernameOutOfSyncBanner> = createAndEmit {
       UsernameOutOfSyncBanner(context, SignalStore.account.usernameSyncState, onActionClick)

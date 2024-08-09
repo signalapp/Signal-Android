@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.pluralStringResource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.flow
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.ui.compose.Action
@@ -33,14 +32,8 @@ class PendingGroupJoinRequestsBanner(override val enabled: Boolean, private val 
     )
   }
 
-  companion object {
-
-    @JvmStatic
-    fun createFlow(suggestionsSize: Int, onViewClicked: () -> Unit): Flow<PendingGroupJoinRequestsBanner> = Producer(suggestionsSize, onViewClicked).flow
-  }
-
-  private class Producer(suggestionsSize: Int, onViewClicked: () -> Unit) {
-    val dismissListener: () -> Unit = {
+  class Producer(suggestionsSize: Int, onViewClicked: () -> Unit) {
+    private val dismissListener: () -> Unit = {
       mutableStateFlow.tryEmit(PendingGroupJoinRequestsBanner(false, suggestionsSize, onViewClicked, null))
     }
     private val mutableStateFlow: MutableStateFlow<PendingGroupJoinRequestsBanner> = MutableStateFlow(PendingGroupJoinRequestsBanner(true, suggestionsSize, onViewClicked, dismissListener))

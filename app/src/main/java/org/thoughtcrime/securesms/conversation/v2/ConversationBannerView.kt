@@ -14,8 +14,12 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.compose.ui.platform.ComposeView
 import androidx.core.transition.addListener
+import kotlinx.coroutines.flow.Flow
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.banner.Banner
+import org.thoughtcrime.securesms.banner.BannerManager
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView
 import org.thoughtcrime.securesms.components.reminder.Reminder
 import org.thoughtcrime.securesms.components.reminder.ReminderView
@@ -47,6 +51,7 @@ class ConversationBannerView @JvmOverloads constructor(
 ) : LinearLayoutCompat(context, attrs, defStyleAttr) {
   private val unverifiedBannerStub: Stub<UnverifiedBannerView> by lazy { ViewUtil.findStubById(this, R.id.unverified_banner_stub) }
   private val reminderStub: Stub<ReminderView> by lazy { ViewUtil.findStubById(this, R.id.reminder_stub) }
+  private val bannerStub: Stub<ComposeView> by lazy { ViewUtil.findStubById(this, R.id.banner_stub) }
   private val reviewBannerStub: Stub<ReviewBannerView> by lazy { ViewUtil.findStubById(this, R.id.review_banner_stub) }
   private val voiceNotePlayerStub: Stub<View> by lazy { ViewUtil.findStubById(this, R.id.voice_note_player_stub) }
 
@@ -54,6 +59,13 @@ class ConversationBannerView @JvmOverloads constructor(
 
   init {
     orientation = VERTICAL
+  }
+
+  fun collectAndShowBanners(flows: Iterable<Flow<Banner>>) {
+    val bannerManager = BannerManager(flows)
+    show(stub = bannerStub) {
+      bannerManager.setContent(this)
+    }
   }
 
   fun showReminder(reminder: Reminder) {

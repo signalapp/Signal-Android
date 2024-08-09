@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.registration.data
 
 import okio.ByteString.Companion.toByteString
-import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
@@ -44,11 +43,11 @@ object LocalRegistrationMetadataUtil {
     }.build()
   }
 
-  fun LocalRegistrationMetadata.getAciIdentityKeyPair() : IdentityKeyPair {
+  fun LocalRegistrationMetadata.getAciIdentityKeyPair(): IdentityKeyPair {
     return IdentityKeyPair(aciIdentityKeyPair.toByteArray())
   }
 
-  fun LocalRegistrationMetadata.getPniIdentityKeyPair() : IdentityKeyPair {
+  fun LocalRegistrationMetadata.getPniIdentityKeyPair(): IdentityKeyPair {
     return IdentityKeyPair(pniIdentityKeyPair.toByteArray())
   }
 

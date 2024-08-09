@@ -97,8 +97,14 @@ import org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomS
 import org.thoughtcrime.securesms.badges.self.expired.MonthlyDonationCanceledBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.banner.Banner;
 import org.thoughtcrime.securesms.banner.BannerManager;
+import org.thoughtcrime.securesms.banner.banners.CdsPermanentErrorBanner;
+import org.thoughtcrime.securesms.banner.banners.CdsTemporaryErrorBanner;
+import org.thoughtcrime.securesms.banner.banners.DozeBanner;
 import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner;
+import org.thoughtcrime.securesms.banner.banners.ServiceOutageBanner;
+import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner;
+import org.thoughtcrime.securesms.banner.banners.UsernameOutOfSyncBanner;
 import org.thoughtcrime.securesms.components.DeleteSyncEducationDialog;
 import org.thoughtcrime.securesms.components.Material3SearchToolbar;
 import org.thoughtcrime.securesms.components.RatingManager;
@@ -204,6 +210,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import kotlinx.coroutines.flow.Flow;
 
 import static android.app.Activity.RESULT_OK;
@@ -423,7 +430,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     initializeListAdapters();
     initializeTypingObserver();
     initializeVoiceNotePlayer();
-    initializeBanners();
+    if (RemoteConfig.newBannerUi()) {
+      initializeBanners();
+      maybeScheduleRefreshProfileJob();
+    }
 
     RatingManager.showRatingDialogIfNecessary(requireContext());
 
@@ -882,11 +892,30 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeBanners() {
-    if (RemoteConfig.newBannerUi()) {
-      final List<Flow<? extends Banner>> bannerRepositories = List.of(OutdatedBuildBanner.createFlow(requireContext()),
-                                                                      MediaRestoreProgressBanner.createLifecycleAwareFlow(getViewLifecycleOwner()));
-      final BannerManager bannerManager                     = new BannerManager(bannerRepositories);
-      bannerManager.setContent(bannerView.get());
+    final List<Flow<? extends Banner>> bannerRepositories = List.of(OutdatedBuildBanner.createFlow(requireContext(), OutdatedBuildBanner.ExpiryStatus.EXPIRED_ONLY),
+                                                                    UnauthorizedBanner.createFlow(requireContext()),
+                                                                    ServiceOutageBanner.createFlow(requireContext()),
+                                                                    OutdatedBuildBanner.createFlow(requireContext(), OutdatedBuildBanner.ExpiryStatus.OUTDATED_ONLY),
+                                                                    DozeBanner.createFlow(requireContext()),
+                                                                    CdsTemporaryErrorBanner.createFlow(getChildFragmentManager()),
+                                                                    CdsPermanentErrorBanner.createFlow(getChildFragmentManager()),
+                                                                    UsernameOutOfSyncBanner.createFlow(requireContext(), usernameCorruptedToo -> {
+                                                                      if (usernameCorruptedToo) {
+                                                                        startActivityForResult(AppSettingsActivity.usernameRecovery(requireContext()), UsernameEditFragment.REQUEST_CODE);
+                                                                      } else {
+                                                                        startActivity(AppSettingsActivity.usernameLinkSettings(requireContext()));
+                                                                      }
+                                                                      return Unit.INSTANCE;
+                                                                    }),
+                                                                    MediaRestoreProgressBanner.createLifecycleAwareFlow(getViewLifecycleOwner()));
+    final BannerManager bannerManager = new BannerManager(bannerRepositories);
+    bannerManager.setContent(bannerView.get());
+  }
+
+  private void maybeScheduleRefreshProfileJob() {
+    switch (SignalStore.account().getUsernameSyncState()) {
+      case USERNAME_AND_LINK_CORRUPTED, LINK_CORRUPTED -> AppDependencies.getJobManager().add(new RefreshOwnProfileJob());
+      case IN_SYNC -> {}
     }
   }
 

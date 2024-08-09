@@ -6,6 +6,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,9 @@ import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
+import org.thoughtcrime.securesms.banner.BannerManager
+import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner
+import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder
@@ -59,12 +63,14 @@ class AppSettingsFragment : DSLSettingsFragment(
   private val viewModel: AppSettingsViewModel by viewModels()
 
   private lateinit var reminderView: Stub<ReminderView>
+  private lateinit var bannerView: Stub<ComposeView>
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     viewLifecycleOwner.lifecycle.addObserver(InAppPaymentsBottomSheetDelegate(childFragmentManager, viewLifecycleOwner))
 
     super.onViewCreated(view, savedInstanceState)
     reminderView = ViewUtil.findStubById(view, R.id.reminder_stub)
+    bannerView = ViewUtil.findStubById(view, R.id.banner_stub)
 
     updateReminders()
   }
@@ -85,12 +91,21 @@ class AppSettingsFragment : DSLSettingsFragment(
   }
 
   private fun updateReminders() {
-    if (ExpiredBuildReminder.isEligible()) {
-      showReminder(ExpiredBuildReminder(context))
-    } else if (UnauthorizedReminder.isEligible(context)) {
-      showReminder(UnauthorizedReminder())
+    if (RemoteConfig.newBannerUi) {
+      val bannerFlows = listOf(
+        OutdatedBuildBanner.createFlow(requireContext(), OutdatedBuildBanner.ExpiryStatus.EXPIRED_ONLY),
+        UnauthorizedBanner.createFlow(requireContext())
+      )
+      val bannerManager = BannerManager(bannerFlows)
+      bannerManager.setContent(bannerView.get())
     } else {
-      hideReminders()
+      if (ExpiredBuildReminder.isEligible()) {
+        showReminder(ExpiredBuildReminder(context))
+      } else if (UnauthorizedReminder.isEligible(context)) {
+        showReminder(UnauthorizedReminder())
+      } else {
+        hideReminders()
+      }
     }
     viewModel.refreshDeprecatedOrUnregistered()
   }
