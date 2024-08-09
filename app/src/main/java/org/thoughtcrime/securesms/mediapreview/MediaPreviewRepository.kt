@@ -66,7 +66,9 @@ class MediaPreviewRepository {
 
           for (i in 0..limit) {
             val element = MediaTable.MediaRecord.from(cursor)
-            mediaRecords.add(element)
+            if (element.attachment?.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || element.attachment?.transferState == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
+              mediaRecords.add(element)
+            }
             if (!cursor.moveToNext()) {
               break
             }
