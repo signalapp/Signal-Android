@@ -37,7 +37,9 @@
                 android:id="@+id/add_to_story_label"
                 style="@style/Signal.Widget.TextView.ActionButton"
                 android:hyphenationFrequency="normal"
-                android:text="@string/ConversationSettingsFragment__story" />
+                android:text="@string/ConversationSettingsFragment__story"
+                android:maxLines="4"
+                android:ellipsize="end"/>
 
         </LinearLayout>
 
@@ -61,7 +63,9 @@
                 android:id="@+id/message_label"
                 style="@style/Signal.Widget.TextView.ActionButton"
                 android:hyphenationFrequency="normal"
-                android:text="@string/ConversationSettingsFragment__message" />
+                android:text="@string/ConversationSettingsFragment__message"
+                android:maxLines="4"
+                android:ellipsize="end"/>
 
         </LinearLayout>
 
@@ -85,7 +89,9 @@
                 android:id="@+id/start_video_label"
                 style="@style/Signal.Widget.TextView.ActionButton"
                 android:hyphenationFrequency="normal"
-                android:text="@string/ConversationSettingsFragment__video" />
+                android:text="@string/ConversationSettingsFragment__video"
+                android:maxLines="4"
+                android:ellipsize="end"/>
 
         </LinearLayout>
 
@@ -109,7 +115,9 @@
                 android:id="@+id/start_audio_label"
                 style="@style/Signal.Widget.TextView.ActionButton"
                 android:hyphenationFrequency="normal"
-                android:text="@string/ConversationSettingsFragment__audio" />
+                android:text="@string/ConversationSettingsFragment__audio"
+                android:maxLines="4"
+                android:ellipsize="end"/>
 
         </LinearLayout>
 
@@ -133,7 +141,9 @@
                 android:id="@+id/mute_label"
                 style="@style/Signal.Widget.TextView.ActionButton"
                 android:hyphenationFrequency="normal"
-                android:text="@string/ConversationSettingsFragment__mute" />
+                android:text="@string/ConversationSettingsFragment__mute"
+                android:maxLines="4"
+                android:ellipsize="end"/>
 
         </LinearLayout>
 
@@ -157,7 +167,9 @@
                 android:id="@+id/search_label"
                 style="@style/Signal.Widget.TextView.ActionButton"
                 android:hyphenationFrequency="normal"
-                android:text="@string/ConversationSettingsFragment__search" />
+                android:text="@string/ConversationSettingsFragment__search"
+                android:maxLines="4"
+                android:ellipsize="end"/>
 
         </LinearLayout>
 
