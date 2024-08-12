@@ -270,7 +270,7 @@
     </style>
 
     <style name="Signal.Toolbar.Overflow.Light">
-        <item name="srcCompat">@drawable/ic_more_vert_24</item>
+        <item name="srcCompat">@drawable/symbol_more_vertical</item>
         <item name="android:src">@null</item>
         <item name="android:tint">@color/signal_icon_tint_primary</item>
     </style>

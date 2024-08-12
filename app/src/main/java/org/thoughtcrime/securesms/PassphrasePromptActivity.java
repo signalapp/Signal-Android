@@ -387,6 +387,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     @Override
     public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
       Log.i(TAG, "onAuthenticationSucceeded");
+
+      lockScreenButton.setOnClickListener(null);
       unlockView.addAnimatorListener(new AnimationCompleteListener() {
         @Override
         public void onAnimationEnd(Animator animation) {

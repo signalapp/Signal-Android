@@ -97,8 +97,8 @@
     <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">default</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/login_top_background</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/signal_colorSurface</item>
+        <item name="android:navigationBarColor">@color/signal_colorSurface</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -114,8 +114,9 @@
     <style name="TextSecure.DarkIntroTheme" parent="@style/Theme.AppCompat">
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">default</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/login_top_background</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/signal_colorSurface</item>
+        <item name="android:navigationBarColor">@color/signal_colorSurface</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
