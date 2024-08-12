@@ -148,7 +148,6 @@ class ShadowingWebSocketConnection(
           if (!goodStatus) {
             stats.badStatuses.incrementAndGet()
           }
-          stats.reconnects.addAndGet(it?.debugInfo?.reconnectCount ?: 0)
           Log.i(TAG, "$it")
         },
         onFailure = {
@@ -187,13 +186,11 @@ class ShadowingWebSocketConnection(
     requestsCompared: Int = 0,
     failures: Int = 0,
     badStatuses: Int = 0,
-    reconnects: Int = 0,
     lastNotified: Long = 0
   ) {
     val requestsCompared: AtomicInteger = AtomicInteger(requestsCompared)
     val failures: AtomicInteger = AtomicInteger(failures)
     val badStatuses: AtomicInteger = AtomicInteger(badStatuses)
-    val reconnects: AtomicInteger = AtomicInteger(reconnects)
     val lastNotified: AtomicLong = AtomicLong(lastNotified)
     val lastSnapshot: AtomicLong = AtomicLong(0)
 
@@ -201,14 +198,13 @@ class ShadowingWebSocketConnection(
       requestsCompared.set(0)
       failures.set(0)
       badStatuses.set(0)
-      reconnects.set(0)
       // Do not reset lastNotified nor lastSnapshot
     }
 
     companion object {
       fun fromSnapshot(bytes: ByteArray): Stats {
         val snapshot = Snapshot.ADAPTER.decode(bytes)
-        return Stats(snapshot.requestsCompared, snapshot.failures, snapshot.badStatuses, snapshot.reconnects, snapshot.lastNotified)
+        return Stats(snapshot.requestsCompared, snapshot.failures, snapshot.badStatuses, snapshot.lastNotified)
       }
     }
 
@@ -218,7 +214,6 @@ class ShadowingWebSocketConnection(
         .requestsCompared(requestsCompared.get())
         .failures(failures.get())
         .badStatuses(badStatuses.get())
-        .reconnects(reconnects.get())
         .lastNotified(lastNotified.get())
         .build()
         .encode()
