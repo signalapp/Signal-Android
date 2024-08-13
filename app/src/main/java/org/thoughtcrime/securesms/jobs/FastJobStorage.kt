@@ -289,19 +289,17 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   @Synchronized
   override fun deleteJobs(ids: List<String>) {
-    val jobsToDelete: Set<JobSpec> = ids
-      .mapNotNull { getJobSpec(it) }
+    val jobsToDelete: Set<MinimalJobSpec> = ids
+      .mapNotNull { id ->
+        minimalJobs.firstOrNull { it.id == id }
+      }
       .toSet()
 
     val durableJobIdsToDelete: List<String> = jobsToDelete
       .filterNot { it.isMemoryOnly }
       .map { it.id }
 
-    val minimalJobsToDelete: Set<MinimalJobSpec> = jobsToDelete
-      .map { it.toMinimalJobSpec() }
-      .toSet()
-
-    val affectedQueues: Set<String> = minimalJobsToDelete.mapNotNull { it.queueKey }.toSet()
+    val affectedQueues: Set<String> = jobsToDelete.mapNotNull { it.queueKey }.toSet()
 
     if (durableJobIdsToDelete.isNotEmpty()) {
       jobDatabase.deleteJobs(durableJobIdsToDelete)
@@ -310,8 +308,8 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     val deleteIds: Set<String> = ids.toSet()
     minimalJobs.removeIf { deleteIds.contains(it.id) }
     jobSpecCache.keys.removeAll(deleteIds)
-    eligibleJobs.removeAll(minimalJobsToDelete)
-    migrationJobs.removeAll(minimalJobsToDelete)
+    eligibleJobs.removeAll(jobsToDelete)
+    migrationJobs.removeAll(jobsToDelete)
 
     mostEligibleJobForQueue.keys.removeAll(affectedQueues)
 
