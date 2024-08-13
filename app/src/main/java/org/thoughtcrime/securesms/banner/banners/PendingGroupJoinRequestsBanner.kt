@@ -36,7 +36,7 @@ class PendingGroupJoinRequestsBanner(override val enabled: Boolean, private val 
     private val dismissListener: () -> Unit = {
       mutableStateFlow.tryEmit(PendingGroupJoinRequestsBanner(false, suggestionsSize, onViewClicked, null))
     }
-    private val mutableStateFlow: MutableStateFlow<PendingGroupJoinRequestsBanner> = MutableStateFlow(PendingGroupJoinRequestsBanner(true, suggestionsSize, onViewClicked, dismissListener))
+    private val mutableStateFlow: MutableStateFlow<PendingGroupJoinRequestsBanner> = MutableStateFlow(PendingGroupJoinRequestsBanner(suggestionsSize > 0, suggestionsSize, onViewClicked, dismissListener))
     val flow: Flow<PendingGroupJoinRequestsBanner> = mutableStateFlow
   }
 }

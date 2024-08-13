@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 class GroupsV1MigrationSuggestionsBanner(private val suggestionsSize: Int, private val onAddMembers: () -> Unit, private val onNoThanks: () -> Unit) : Banner() {
   private val timeUntilUnblock = SignalStore.misc.cdsBlockedUtil - System.currentTimeMillis()
 
-  override val enabled: Boolean = SignalStore.misc.isCdsBlocked && timeUntilUnblock < CdsPermanentErrorBanner.PERMANENT_TIME_CUTOFF
+  override val enabled: Boolean = suggestionsSize > 0
 
   @Composable
   override fun DisplayBanner() {
