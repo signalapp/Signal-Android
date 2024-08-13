@@ -236,26 +236,40 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
    * Drops all tables and recreates them.
    */
   @JvmOverloads
-  fun fullyResetTables(db: SQLiteDatabase = writableDatabase.sqlCipherDatabase) {
-    Log.w(TAG, "[fullyResetTables] Dropping tables and triggers...")
-    db.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
-    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
-    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
-    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_data")
-    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_idx")
-    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_INSERT")
-    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
-    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_UPDATE")
+  fun fullyResetTables(db: SQLiteDatabase = writableDatabase.sqlCipherDatabase, useTransaction: Boolean = true) {
+    if (useTransaction) {
+      db.beginTransaction()
+    }
 
-    Log.w(TAG, "[fullyResetTables] Recreating table...")
-    CREATE_TABLE.forEach { db.execSQL(it) }
+    try {
+      Log.w(TAG, "[fullyResetTables] Dropping tables and triggers...")
+      db.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
+      db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
+      db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
+      db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_data")
+      db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_idx")
+      db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_INSERT")
+      db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
+      db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_UPDATE")
 
-    Log.w(TAG, "[fullyResetTables] Recreating triggers...")
-    CREATE_TRIGGERS.forEach { db.execSQL(it) }
+      Log.w(TAG, "[fullyResetTables] Recreating table...")
+      CREATE_TABLE.forEach { db.execSQL(it) }
 
-    RebuildMessageSearchIndexJob.enqueue()
+      Log.w(TAG, "[fullyResetTables] Recreating triggers...")
+      CREATE_TRIGGERS.forEach { db.execSQL(it) }
 
-    Log.w(TAG, "[fullyResetTables] Done. Index will be rebuilt asynchronously)")
+      RebuildMessageSearchIndexJob.enqueue()
+
+      Log.w(TAG, "[fullyResetTables] Done. Index will be rebuilt asynchronously)")
+
+      if (useTransaction) {
+        db.setTransactionSuccessful()
+      }
+    } finally {
+      if (useTransaction) {
+        db.endTransaction()
+      }
+    }
   }
 
   /**

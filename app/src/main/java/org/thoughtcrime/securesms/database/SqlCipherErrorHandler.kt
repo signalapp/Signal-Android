@@ -171,7 +171,7 @@ class SqlCipherErrorHandler(private val databaseName: String) : DatabaseErrorHan
       } catch (e: Exception) {
         Log.w(TAG, "Failed to re-open as read-write!", e)
       }
-      SignalDatabase.messageSearch.fullyResetTables(db)
+      SignalDatabase.messageSearch.fullyResetTables(db, useTransaction = false)
     } catch (e: Throwable) {
       Log.w(TAG, "Failed to clear full text search index.", e)
     }
