@@ -241,7 +241,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
   }
 
   private fun selectMorePhotos() {
-    Permissions.with(requireParentFragment())
+    Permissions.with(this)
       .request(*PermissionCompat.forImagesAndVideos())
       .onAnyResult { refreshMediaGallery() }
       .execute()
