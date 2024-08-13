@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.internal.backup
 
+import android.net.Uri
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -21,6 +22,11 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupMetadata
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
+import org.thoughtcrime.securesms.backup.v2.local.ArchiveResult
+import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
+import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver.FailureCause
+import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -103,6 +109,27 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
 
     disposables += Single.fromCallable { BackupRepository.import(length, inputStreamFactory, selfData, plaintext = plaintext) }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy {
+        backupData = null
+        _state.value = _state.value.copy(backupState = BackupState.NONE)
+      }
+  }
+
+  fun import(uri: Uri) {
+    _state.value = _state.value.copy(backupState = BackupState.IMPORT_IN_PROGRESS)
+
+    val self = Recipient.self()
+    val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+
+    disposables += Single.fromCallable {
+      val archiveFileSystem = ArchiveFileSystem.fromUri(AppDependencies.application, uri)!!
+      val snapshotInfo = archiveFileSystem.listSnapshots().firstOrNull() ?: return@fromCallable ArchiveResult.failure(FailureCause.MAIN_STREAM)
+      val snapshotFileSystem = SnapshotFileSystem(AppDependencies.application, snapshotInfo.file)
+
+      LocalArchiver.import(snapshotFileSystem, selfData)
+    }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy {
@@ -218,6 +245,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
                 reUploadAndArchiveMedia(result.result.mediaIdToAttachmentId(it.mediaId))
               }
           }
+
           else -> _mediaState.set { copy(error = MediaStateError(errorText = "$result")) }
         }
       }

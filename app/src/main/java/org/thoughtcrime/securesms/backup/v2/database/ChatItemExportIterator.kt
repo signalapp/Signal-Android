@@ -422,7 +422,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
             ChatUpdateMessage(
               groupCall = GroupCall(
                 state = GroupCall.State.GENERIC,
-                startedCallRecipientId = recipients.getByAci(ACI.from(UuidUtil.parseOrThrow(groupCallUpdateDetails.startedCallUuid))).getOrNull()?.toLong(),
+                startedCallRecipientId = UuidUtil.parseOrNull(groupCallUpdateDetails.startedCallUuid)?.let { recipients.getByAci(ACI.from(it)).getOrNull()?.toLong() },
                 startedCallTimestamp = groupCallUpdateDetails.startedCallTimestamp,
                 endedCallTimestamp = groupCallUpdateDetails.endedCallTimestamp
               )

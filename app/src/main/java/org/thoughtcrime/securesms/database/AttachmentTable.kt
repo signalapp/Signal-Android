@@ -294,6 +294,15 @@ class AttachmentTable(
   }
 
   @Throws(IOException::class)
+  fun getAttachmentStream(localArchivableAttachment: LocalArchivableAttachment): InputStream {
+    return try {
+      getDataStream(localArchivableAttachment.file, localArchivableAttachment.random, 0)
+    } catch (e: FileNotFoundException) {
+      throw IOException("No stream for: ${localArchivableAttachment.file}", e)
+    } ?: throw IOException("No stream for: ${localArchivableAttachment.file}")
+  }
+
+  @Throws(IOException::class)
   fun getAttachmentThumbnailStream(attachmentId: AttachmentId, offset: Long): InputStream {
     return try {
       getThumbnailStream(attachmentId, offset)
@@ -443,6 +452,24 @@ class AttachmentTable(
       .run()
   }
 
+  fun getLocalArchivableAttachments(): List<LocalArchivableAttachment> {
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$REMOTE_KEY IS NOT NULL AND $REMOTE_DIGEST IS NOT NULL AND $DATA_FILE IS NOT NULL")
+      .orderBy("$ID DESC")
+      .run()
+      .readToList {
+        LocalArchivableAttachment(
+          file = File(it.requireNonNullString(DATA_FILE)),
+          random = it.requireNonNullBlob(DATA_RANDOM),
+          size = it.requireLong(DATA_SIZE),
+          remoteDigest = it.requireBlob(REMOTE_DIGEST)!!,
+          remoteKey = it.requireBlob(REMOTE_KEY)!!
+        )
+      }
+  }
+
   fun getRestorableAttachments(batchSize: Int): List<DatabaseAttachment> {
     return readableDatabase
       .select(*PROJECTION)
@@ -450,9 +477,29 @@ class AttachmentTable(
       .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE.toString())
       .limit(batchSize)
       .orderBy("$ID DESC")
-      .run().readToList {
-        it.readAttachments()
-      }.flatten()
+      .run()
+      .readToList {
+        it.readAttachment()
+      }
+  }
+
+  fun getLocalRestorableAttachments(batchSize: Int): List<LocalRestorableAttachment> {
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$REMOTE_KEY IS NOT NULL AND $REMOTE_DIGEST IS NOT NULL AND $TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE.toString())
+      .limit(batchSize)
+      .orderBy("$ID DESC")
+      .run()
+      .readToList {
+        LocalRestorableAttachment(
+          attachmentId = AttachmentId(it.requireLong(ID)),
+          mmsId = it.requireLong(MESSAGE_ID),
+          size = it.requireLong(DATA_SIZE),
+          remoteDigest = it.requireBlob(REMOTE_DIGEST)!!,
+          remoteKey = it.requireBlob(REMOTE_KEY)!!
+        )
+      }
   }
 
   fun getTotalRestorableAttachmentSize(): Long {
@@ -1635,12 +1682,16 @@ class AttachmentTable(
   @Throws(FileNotFoundException::class)
   private fun getDataStream(attachmentId: AttachmentId, offset: Long): InputStream? {
     val dataInfo = getDataFileInfo(attachmentId) ?: return null
+    return getDataStream(dataInfo.file, dataInfo.random, offset)
+  }
 
+  @Throws(FileNotFoundException::class)
+  private fun getDataStream(file: File, random: ByteArray, offset: Long): InputStream? {
     return try {
-      if (dataInfo.random != null && dataInfo.random.size == 32) {
-        ModernDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.random, dataInfo.file, offset)
+      if (random.size == 32) {
+        ModernDecryptingPartInputStream.createFor(attachmentSecret, random, file, offset)
       } else {
-        val stream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.file)
+        val stream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, file)
         val skipped = stream.skip(offset)
         if (skipped != offset) {
           Log.w(TAG, "Skip failed: $skipped vs $offset")
@@ -2353,4 +2404,20 @@ class AttachmentTable(
   class SyncAttachmentId(val syncMessageId: SyncMessageId, val uuid: UUID?, val digest: ByteArray?, val plaintextHash: String?)
 
   class SyncAttachment(val id: AttachmentId, val uuid: UUID?, val digest: ByteArray?, val plaintextHash: String?)
+
+  class LocalArchivableAttachment(
+    val file: File,
+    val random: ByteArray,
+    val size: Long,
+    val remoteDigest: ByteArray,
+    val remoteKey: ByteArray
+  )
+
+  class LocalRestorableAttachment(
+    val attachmentId: AttachmentId,
+    val mmsId: Long,
+    val size: Long,
+    val remoteDigest: ByteArray,
+    val remoteKey: ByteArray
+  )
 }

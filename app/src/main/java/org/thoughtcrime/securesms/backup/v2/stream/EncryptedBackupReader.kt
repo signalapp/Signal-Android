@@ -45,7 +45,7 @@ class EncryptedBackupReader(
   init {
     val keyMaterial = key.deriveBackupSecrets(aci)
 
-    validateMac(keyMaterial.macKey, length, dataStream())
+    dataStream().use { validateMac(keyMaterial.macKey, length, it) }
 
     countingStream = CountingInputStream(dataStream())
     val iv = countingStream.readNBytesOrThrow(16)

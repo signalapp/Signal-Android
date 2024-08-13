@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package signal.backup.local;
+
+option java_package = "org.thoughtcrime.securesms.backup.v2.local.proto";
+
+message Metadata {
+  uint32 version = 1;
+}
+
+message FilesFrame {
+  oneof item {
+    string mediaName = 1;
+  }
+}

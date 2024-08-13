@@ -467,7 +467,7 @@ class RestoreAttachmentJob private constructor(
         pointer,
         thumbnailFile,
         maxThumbnailSize,
-        true,
+        true, // TODO [backup] don't ignore
         progressListener
       )
 

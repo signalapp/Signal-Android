@@ -65,6 +65,16 @@ public final class LocalBackupJob extends BaseJob {
     }
   }
 
+  public static void enqueueArchive() {
+    JobManager         jobManager = AppDependencies.getJobManager();
+    Parameters.Builder parameters = new Parameters.Builder()
+                                                  .setQueue(QUEUE)
+                                                  .setMaxInstancesForFactory(1)
+                                                  .setMaxAttempts(3);
+
+    jobManager.add(new LocalArchiveJob(parameters.build()));
+  }
+
   private LocalBackupJob(@NonNull Job.Parameters parameters) {
     super(parameters);
   }

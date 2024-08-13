@@ -12,3 +12,17 @@ class BackupV2Event(val type: Type, val count: Long, val estimatedTotalCount: Lo
     FINISHED
   }
 }
+
+class LocalBackupV2Event(val type: Type, val count: Long = 0, val estimatedTotalCount: Long = 0) {
+  enum class Type {
+    PROGRESS_ACCOUNT,
+    PROGRESS_RECIPIENT,
+    PROGRESS_THREAD,
+    PROGRESS_CALL,
+    PROGRESS_STICKER,
+    PROGRESS_MESSAGE,
+    PROGRESS_ATTACHMENT,
+    PROGRESS_VERIFYING,
+    FINISHED
+  }
+}

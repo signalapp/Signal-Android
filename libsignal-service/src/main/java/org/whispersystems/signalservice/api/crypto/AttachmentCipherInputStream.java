@@ -25,6 +25,7 @@ import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.function.Supplier;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -72,31 +73,41 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   public static InputStream createForAttachment(File file, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest, int incrementalMacChunkSize, boolean ignoreDigest)
       throws InvalidMessageException, IOException
   {
+    return createForAttachment(() -> new FileInputStream(file), file.length(), plaintextLength, combinedKeyMaterial, digest, incrementalDigest, incrementalMacChunkSize, ignoreDigest);
+  }
+
+  /**
+   * Passing in a null incrementalDigest and/or 0 for the chunk size at the call site disables incremental mac validation.
+   *
+   * Passing in true for ignoreDigest DOES NOT VERIFY THE DIGEST
+   */
+  public static InputStream createForAttachment(StreamSupplier streamSupplier, long streamLength, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest, int incrementalMacChunkSize, boolean ignoreDigest)
+      throws InvalidMessageException, IOException
+  {
     byte[][] parts = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
     Mac      mac   = initMac(parts[1]);
 
-    if (file.length() <= BLOCK_SIZE + mac.getMacLength()) {
-      throw new InvalidMessageException("Message shorter than crypto overhead!");
+    if (streamLength <= BLOCK_SIZE + mac.getMacLength()) {
+      throw new InvalidMessageException("Message shorter than crypto overhead! length: " + streamLength);
     }
 
     if (!ignoreDigest && digest == null) {
       throw new InvalidMessageException("Missing digest!");
     }
 
-
     final InputStream wrappedStream;
     final boolean     hasIncrementalMac = incrementalDigest != null && incrementalDigest.length > 0 && incrementalMacChunkSize > 0;
 
     if (!hasIncrementalMac) {
-      try (FileInputStream macVerificationStream = new FileInputStream(file)) {
-        verifyMac(macVerificationStream, file.length(), mac, digest);
+      try (InputStream macVerificationStream = streamSupplier.openStream()) {
+        verifyMac(macVerificationStream, streamLength, mac, digest);
       }
-      wrappedStream = new FileInputStream(file);
+      wrappedStream = streamSupplier.openStream();
     } else {
       wrappedStream = new IncrementalMacInputStream(
           new IncrementalMacAdditionalValidationsInputStream(
-              new FileInputStream(file),
-              file.length(),
+              streamSupplier.openStream(),
+              streamLength,
               mac,
               digest
           ),
@@ -104,7 +115,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
           ChunkSizeChoice.everyNthByte(incrementalMacChunkSize),
           incrementalDigest);
     }
-    InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
+    InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], streamLength - BLOCK_SIZE - mac.getMacLength());
 
     if (plaintextLength != 0) {
       inputStream = new ContentLengthInputStream(inputStream, plaintextLength);
@@ -380,5 +391,9 @@ public class AttachmentCipherInputStream extends FilterInputStream {
         return;
       }
     }
+  }
+
+  public interface StreamSupplier {
+    @Nonnull InputStream openStream() throws IOException;
   }
 }
