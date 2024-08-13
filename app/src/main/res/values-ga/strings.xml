@@ -89,19 +89,19 @@
     <string name="AttachmentKeyboard_allow_access">Ceadaigh Rochtain</string>
     <string name="AttachmentKeyboard_payment">Íocaíocht</string>
     <!-- Text in a button that allows users to manage which media Signal has access to -->
-    <string name="AttachmentKeyboard_manage">Manage</string>
+    <string name="AttachmentKeyboard_manage">Bainistigh</string>
     <!-- Option in menu to select more photos that Signal will have access to -->
-    <string name="AttachmentKeyboard_select_more_photos">Select more photos</string>
+    <string name="AttachmentKeyboard_select_more_photos">Roghnaigh tuilleadh grianghraf</string>
     <!-- Option in menu to go to settings -->
-    <string name="AttachmentKeyboard_go_to_settings">Go to Settings</string>
+    <string name="AttachmentKeyboard_go_to_settings">Socruithe</string>
     <!-- Text explaining that Signal has limited access to photos -->
-    <string name="AttachmentKeyboard_signal_has_limited_access">Signal has limited access to photos or videos</string>
+    <string name="AttachmentKeyboard_signal_has_limited_access">Tá rochtain theoranta ag Signal ar ghrianghraif nó físeáin</string>
     <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
-    <string name="AttachmentKeyboard_no_photos_found">No photos found, select photos and videos to appear here or change permissions</string>
+    <string name="AttachmentKeyboard_no_photos_found">Níor aimsíodh aon ghrianghraf; roghnaigh grianghraif agus físeáin le taispeáint anseo nó athraigh ceadanna</string>
 
     <!-- MediaGalleryFragment -->
     <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
-    <string name="MediaGalleryFragment__no_photos_found">No photos or videos found. Signal only has access to photos and videos you selected.</string>
+    <string name="MediaGalleryFragment__no_photos_found">Níor aimsíodh aon ghrianghraf ná físeán. Níl rochtain ag Signal ach ar ghrianghraif agus físeáin a roghnaigh tú.</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Ní féidir teacht ar fheidhmchláirín chun meán a roghnú.</string>
@@ -122,7 +122,7 @@
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">Chun grianghraif agus físeáin a thaispeáint:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Signal needs access to show your photos and videos.</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Teastaíonn rochtain ó Signal chun do ghrianghraif agus físeáin a thaispeáint.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">Níor ghníomhachtaigh %1$s Íocaíochtaí </string>
@@ -492,7 +492,7 @@
     <!-- Dialog title asking users for microphone permission -->
     <string name="ConversationActivity_allow_access_microphone">Tabhair cead rochtana ar do mhicreafón</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send voice messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">Chun glórphoist a sheoladh:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Chun glórphoist a sheoladh, tabhair cead rochtana ar do mhicreafón do Signal.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
@@ -876,39 +876,39 @@
     <string name="CreateBackupBottomSheet__back_up_now">Déan cúltaca anois</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
-    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Can\'t restore media</string>
+    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Ní féidir na meáin a aischur</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Your device does not have enough free space. Free up storage space to restore your media.\n\nIf you choose “Skip restore” the media in your backup will be deleted the next time your device completes a new backup.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Ní leor an spás saor ar do ghléas. Saor spás stórála ann le do mheáin a aischur.\n\nMá roghnaíonn tú \"Scipeáil aischur\" scriosfar na meáin i do chúltaca an chéad uair eile a dhéanfar cúltaca nua ar do ghléas.</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up %1$s of space to restore your media.\n\nIf you choose “Skip restore” the media in your backup will be deleted the next time your device completes a new backup.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Ní leor an spás saor ar do ghléas. Saor %1$s de spás le do mheáin a aischur.\n\nMá roghnaíonn tú \"Scipeáil aischur\" scriosfar na meáin i do chúltaca an chéad uair eile a dhéanfar cúltaca nua ar do ghléas.</string>
     <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
-    <string name="RestoreMediaFailedBottomSheet__Okay">OK</string>
+    <string name="RestoreMediaFailedBottomSheet__Okay">CGL</string>
     <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
-    <string name="RestoreMediaFailedBottomSheet__Skip_restore">Skip restore</string>
+    <string name="RestoreMediaFailedBottomSheet__Skip_restore">Scipeáil aischur</string>
     <!-- Accessibility content description for the "Backup Error" icon -->
-    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Backup error icon</string>
+    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Deilbhín earráide cúltaca</string>
 
     <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
-    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Free up storage space to restore your media.</string>
+    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Saor spás stórála le do mheáin a aischur.</string>
     <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaErrorBanner__Free_up_of_space">Free up %1$s of space to restore your media.</string>
+    <string name="RestoreMediaErrorBanner__Free_up_of_space">Saor %1$s de spás le do mheáin a aischur.</string>
 
     <!-- Remote media restoration in-process status title. -->
-    <string name="RestoreMediaReminder__Restoring_media">Restoring media</string>
+    <string name="RestoreMediaReminder__Restoring_media">Meáin á n-aischur</string>
     <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
-    <string name="RestoreMediaReminder__Progress_filesize">%1$s of %2$s (%3$d%%)</string>
+    <string name="RestoreMediaReminder__Progress_filesize">%1$s as %2$s (%3$d%%)</string>
     <!-- Remote media restoration paused status title. -->
-    <string name="RestoreMediaReminder__Restoring_media_paused">Restoring media paused</string>
+    <string name="RestoreMediaReminder__Restoring_media_paused">Aischur meán curtha ar sos</string>
     <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_Wifi">Waiting for WiFi…</string>
+    <string name="RestoreMediaReminder__Waiting_for_Wifi">Ag feitheamh le WiFi…</string>
     <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_internet_connection">Waiting for Internet connection…</string>
+    <string name="RestoreMediaReminder__Waiting_for_internet_connection">Ag feitheamh le nasc Idirlín…</string>
     <!-- Remote media restoration paused status description for when the device\'s battery is low -->
-    <string name="RestoreMediaReminder__low_battery">Low battery. Charge your device.</string>
+    <string name="RestoreMediaReminder__low_battery">Ceallra lag. Luchtaigh do ghléas.</string>
     <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
-    <string name="RestoreMediaReminder__Free_up_space">Free up %1$s to restore your media.</string>
+    <string name="RestoreMediaReminder__Free_up_space">Saor suas le %1$s le do mheáin a aischur.</string>
     <!-- Button label to abort media restoration -->
-    <string name="RestoreMediaReminder__Skip_restore">Skip restore</string>
+    <string name="RestoreMediaReminder__Skip_restore">Scipeáil aischur</string>
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Cúltacaí na gcomhráite</string>
@@ -1013,7 +1013,7 @@
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">Déanfar teachtaireachtaí Signal a shioncronú le Signal ar do ghuthán póca tar éis nascadh leis. Ní thaispeánfar stair do theachtaireachtaí roimhe.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">On the device you want to link, visit %1$s to install Signal</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">Ar an ngléas lenar mian leat nascadh, téigh chuig %1$s le Signal a shuiteáil</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">Mo ghléasanna nasctha</string>
@@ -4086,9 +4086,9 @@
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
     <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Tabhair an cead</string>
     <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Tap “Permissions”</string>
+    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Tapáil \"Ceadanna\"</string>
     <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Allow the “Photos and videos” permission</string>
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Tabhair an cead \"Grianghraif agus físeáin\"</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">Socruithe</string>
 
@@ -4643,7 +4643,7 @@
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Glasáil rochtain ar Signal le glas scáileáin Android nó méarloirg</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Am gníomhaíochta istigh don ghlas scáileáin</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">To use screen lock set a PIN, pattern, or password on this device.</string>
+    <string name="preferences_app_protection__to_use_screen_lock">Socraigh UAP, patrún nó pasfhocal ar an ngléas seo le glas scáileáin a úsáid.</string>
     <string name="preferences_app_protection__signal_pin">UAP Signal</string>
     <string name="preferences_app_protection__create_a_pin">Cruthaigh UAP</string>
     <string name="preferences_app_protection__change_your_pin">Athraigh d\'UAP</string>
@@ -4665,39 +4665,39 @@
     <string name="RegistrationActivity_error_connecting_to_service">Earráid agus ceangal á bhunú leis an tseirbhís</string>
     <string name="preferences_chats__backups">Cúltacaithe</string>
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
-    <string name="prompt_passphrase_activity__unlock_signal">Unlock Signal</string>
+    <string name="prompt_passphrase_activity__unlock_signal">Díghlasáil Signal</string>
     <!-- Description text explaining how to unlock Signal -->
-    <string name="prompt_passphrase_activity__use_your_android_device">Use your Android device lock settings to unlock Signal.</string>
+    <string name="prompt_passphrase_activity__use_your_android_device">Úsáid socruithe glasála ar do ghléas Android le Signal a dhíghlasáil.</string>
     <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
-    <string name="prompt_passphrase_activity__screen_lock_is_on">Screen lock is on and Signal is safely secured with your device lock settings. Unlock Signal the same way as you would normally unlock your phone, this could be with Face Unlock, Fingerprint Unlock, a PIN, password or pattern.</string>
+    <string name="prompt_passphrase_activity__screen_lock_is_on">Tá glas scáileáin air agus tá Signal slán sábháilte le socruithe glasála do ghléis. Díghlasáil Signal ar an mbealach céanna a dhíghlasálann tú do ghuthán de ghnáth, bíodh sin le d\'aghaidh, do mhéarlorg, UAP, pasfhocal nó patrún.</string>
     <!-- Button in a dialog that will contact Signal support if pressed -->
-    <string name="prompt_passphrase_activity__contact_support">Contact support</string>
+    <string name="prompt_passphrase_activity__contact_support">Déan teagmháil leis an bhfoireann tacaíochta</string>
     <!-- Button text to try again after unlocking has previously failed -->
-    <string name="prompt_passphrase_activity__try_again">Try again</string>
+    <string name="prompt_passphrase_activity__try_again">Triail arís í</string>
 
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Off</string>
+    <string name="ScreenLockSettingsFragment__off">As</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Use screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Úsáid glas scáileáin</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Your Android device lock settings will be required to unlock Signal when you leave or switch apps. When locked, notification previews will not show message content.</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">Beidh socruithe glasála ar do ghléas Android de dhíth le Signal a dhíghlasáil nuair a imíonn tú as aipeanna nó nuair a aistríonn tú eatarthu. Agus é glasáilte, ní thaispeánfar ábhar na dteachtaireachtaí ar réamhamhairc ar fhógraí.</string>
     <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Start screen lock</string>
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Tosaigh glas scáileáin</string>
     <!-- Option text explaining that screen lock should start immediately -->
-    <string name="ScreenLockSettingsFragment__immediately">Immediately</string>
+    <string name="ScreenLockSettingsFragment__immediately">Láithreach</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">After 1 minute</string>
+    <string name="ScreenLockSettingsFragment__after_1_min">Tar éis 1 nóiméid</string>
     <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">After 5 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_5_min">Tar éis 5 nóiméad</string>
     <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">After 30 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_30_min">Tar éis 30 nóiméad</string>
     <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Custom time</string>
+    <string name="ScreenLockSettingsFragment__custom_time">Am saincheaptha</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Use Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Úsáid glas scáileáin Signal</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Turn off Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Cas as glas scáileáin Signal</string>
 
     <string name="Recipient_unknown">Anaithnid</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5349,7 +5349,7 @@
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">An méarchlár</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Send with enter</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Seol leis an eochair iontrála</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Teachtaireachtaí</string>
@@ -5373,11 +5373,11 @@
     <string name="PrivacySettingsFragment__blocked">Bac curtha</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d contact or group</item>
-        <item quantity="two">%1$d contacts or groups</item>
-        <item quantity="few">%1$d contacts or groups</item>
-        <item quantity="many">%1$d contacts or groups</item>
-        <item quantity="other">%1$d contacts or groups</item>
+        <item quantity="one">%1$d teagmhálaí nó ghrúpa</item>
+        <item quantity="two">%1$d theagmhálaí nó ghrúpa</item>
+        <item quantity="few">%1$d theagmhálaí nó ghrúpa</item>
+        <item quantity="many">%1$d dteagmhálaí nó ngrúpa</item>
+        <item quantity="other">%1$d teagmhálaí nó grúpa</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Ag seoladh teachtaireachtaí</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Teachtaireachtaí a imíonn as amharc</string>
@@ -5588,7 +5588,7 @@
     <string name="PermissionsSettingsFragment__only_admins">Riarthóirí Amháin</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Cé ar féidir leis baill nua a chur leis?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cé atá in ann faisnéis faoin ngrúpa seo a chur in eagar?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Who can send messages and start calls?</string>
+    <string name="PermissionsSettingsFragment__who_can_send_messages">Cé atá in ann teachtaireachtaí a sheoladh agus tosú ar ghlaonna?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Balbhaigh fógraí</string>
@@ -7708,13 +7708,13 @@
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">Ná híoslódáil meáin</string>
     <!-- Dialog title for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__media_will_be_deleted">Media will be deleted</string>
+    <string name="BackupAlertBottomSheet__media_will_be_deleted">Scriosfar meáin</string>
     <!-- Dialog message for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">The media stored in your backup will be permanently deleted today. This is your last chance to download it.</string>
+    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Scriosfar go buan inniu na meáin atá i do chúltaca. Seo é an seans deiridh a bheidh agat iad a íoslódáil.</string>
     <!-- Dialog action to download now -->
-    <string name="BackupAlertBottomSheet__download">Download</string>
+    <string name="BackupAlertBottomSheet__download">Íoslódáil</string>
     <!-- Dialog action to not download now -->
-    <string name="BackupAlertBottomSheet__dont_download">Don\'t download</string>
+    <string name="BackupAlertBottomSheet__dont_download">Ná híoslódáil</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7758,19 +7758,19 @@
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_description">Agus teorainneacha le comhráite cumasaithe, scriosfar teachtaireachtaí ó do ghléasanna nasctha freisin.</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">On-device storage</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Stóras ar an ngléas</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimize on-device storage</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optamaigh stóras ar an ngléas</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Unused media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Bainfear meáin nár úsáideadh, ach is féidir iad a íoslódáil ó do chúltaca am ar bith.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Upgrade to enable this feature</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Uasghrádaigh chun an ghné seo a chumasú</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Upgrade your backup plan to start using this feature.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Ní féidir optamú stórais a úsáid ach leis an leibhéal íoctha de Chúltacaí Signal. Uasghrádaigh do phlean cúltacaithe le tosú ar úsáid na gné sin.</string>
     <!-- Primary action to launch upgrade flow -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">Upgrade now</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">Uasghrádaigh anois</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Tá scriosadh sioncronaithe trasna do ghléasanna uile anois</string>
@@ -7817,7 +7817,7 @@
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Íoslódáil críochnaithe</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
-    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Backup will be created overnight.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Cruthófar cúltaca thar oíche.</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_type">Cineál cúltaca</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7889,7 +7889,7 @@
     <!-- Action button to switch keyboard type -->
     <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Aistrigh eochairchlár</string>
     <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Create new pin</string>
+    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Cruthaigh UAP nua</string>
 
     <!-- MessageBackupsPinEducationScreen -->
     <!-- Screen headline -->
@@ -7930,6 +7930,6 @@
     <string name="ConfirmBackupCancellationDialog__keep_subscription">Coinnigh an síntiús</string>
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
-    <string name="ReminderView_icon_content_description">Reminder icon</string>
+    <string name="ReminderView_icon_content_description">Deilbhín meabhrúchán</string>
     <!-- EOF -->
 </resources>

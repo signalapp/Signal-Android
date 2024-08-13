@@ -89,19 +89,19 @@
     <string name="AttachmentKeyboard_allow_access">Sartzeko Baimena Eman</string>
     <string name="AttachmentKeyboard_payment">Ordainketa</string>
     <!-- Text in a button that allows users to manage which media Signal has access to -->
-    <string name="AttachmentKeyboard_manage">Manage</string>
+    <string name="AttachmentKeyboard_manage">Kudeatu</string>
     <!-- Option in menu to select more photos that Signal will have access to -->
-    <string name="AttachmentKeyboard_select_more_photos">Select more photos</string>
+    <string name="AttachmentKeyboard_select_more_photos">Hautatu argazki gehiago</string>
     <!-- Option in menu to go to settings -->
-    <string name="AttachmentKeyboard_go_to_settings">Go to Settings</string>
+    <string name="AttachmentKeyboard_go_to_settings">Joan Ezarpenetara</string>
     <!-- Text explaining that Signal has limited access to photos -->
-    <string name="AttachmentKeyboard_signal_has_limited_access">Signal has limited access to photos or videos</string>
+    <string name="AttachmentKeyboard_signal_has_limited_access">Signal-ek argazki eta bideoetarako sarbide mugatua du</string>
     <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
-    <string name="AttachmentKeyboard_no_photos_found">No photos found, select photos and videos to appear here or change permissions</string>
+    <string name="AttachmentKeyboard_no_photos_found">Ez da argazkirik aurkitu. Hautatu hemen agertuko diren argazki eta bideoak, edo aldatu baimenak</string>
 
     <!-- MediaGalleryFragment -->
     <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
-    <string name="MediaGalleryFragment__no_photos_found">No photos or videos found. Signal only has access to photos and videos you selected.</string>
+    <string name="MediaGalleryFragment__no_photos_found">Ez da argazki edo bideorik aurkitu. Signal-ek zuk hautatutako argazki eta bideotarako sarbidea du bakarrik.</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Ez da multimedia fitxategia aukeratzeko aplikaziorik aurkitu.</string>
@@ -122,7 +122,7 @@
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">Argazkiak eta bideoak erakusteko:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Signal needs access to show your photos and videos.</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Argazki eta bideoak erakusteko, Signal-ek sarbidea behar du.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s(e)k ez ditu aktibatu ordainketak </string>
@@ -477,7 +477,7 @@
     <!-- Dialog title asking users for microphone permission -->
     <string name="ConversationActivity_allow_access_microphone">Eman mikrofonoa atzitzeko baimena</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">To send voice messages:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">Ahots-mezuak bidaltzeko:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Ahots-mezuak bidaltzeko, eman Signal-i mikrofonoa atzitzeko baimena.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
@@ -816,39 +816,39 @@
     <string name="CreateBackupBottomSheet__back_up_now">Egin babeskopia</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
-    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Can\'t restore media</string>
+    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Ezin da leheneratu multimedia-edukia</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Your device does not have enough free space. Free up storage space to restore your media.\n\nIf you choose “Skip restore” the media in your backup will be deleted the next time your device completes a new backup.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Zure gailuak ez du leku libre nahikorik. Multimedia-edukia leheneratzeko, egin lekua.\n\n\"Saltatu leheneratzeko aukera\" hautatzen baduzu, babeskopiako multimedia-edukia ezabatu egingo da gailuak babeskopia bat egiten duen hurrengoan.</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up %1$s of space to restore your media.\n\nIf you choose “Skip restore” the media in your backup will be deleted the next time your device completes a new backup.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Zure gailuak ez du leku libre nahikorik. Multimedia-edukia leheneratzeko, utzi %1$s libre.\n\n\"Saltatu leheneratzeko aukera\" hautatzen baduzu, babeskopiako multimedia-edukia ezabatu egingo da gailuak babeskopia bat egiten duen hurrengoan.</string>
     <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
-    <string name="RestoreMediaFailedBottomSheet__Okay">OK</string>
+    <string name="RestoreMediaFailedBottomSheet__Okay">Ados</string>
     <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
-    <string name="RestoreMediaFailedBottomSheet__Skip_restore">Skip restore</string>
+    <string name="RestoreMediaFailedBottomSheet__Skip_restore">Saltatu leheneratzeko aukera</string>
     <!-- Accessibility content description for the "Backup Error" icon -->
-    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Backup error icon</string>
+    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Babeskopiaren errore-ikonoa</string>
 
     <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
-    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Free up storage space to restore your media.</string>
+    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Multimedia-edukia leheneratzeko, egin lekua.</string>
     <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaErrorBanner__Free_up_of_space">Free up %1$s of space to restore your media.</string>
+    <string name="RestoreMediaErrorBanner__Free_up_of_space">Multimedia-edukia leheneratzeko, utzi %1$s libre.</string>
 
     <!-- Remote media restoration in-process status title. -->
-    <string name="RestoreMediaReminder__Restoring_media">Restoring media</string>
+    <string name="RestoreMediaReminder__Restoring_media">Multimedia-edukia leheneratzen</string>
     <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
-    <string name="RestoreMediaReminder__Progress_filesize">%1$s of %2$s (%3$d%%)</string>
+    <string name="RestoreMediaReminder__Progress_filesize">%1$s / %2$s (%% %3$d)</string>
     <!-- Remote media restoration paused status title. -->
-    <string name="RestoreMediaReminder__Restoring_media_paused">Restoring media paused</string>
+    <string name="RestoreMediaReminder__Restoring_media_paused">Multimedia-edukia leheneratzeko prozesua pausatuta dago</string>
     <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_Wifi">Waiting for WiFi…</string>
+    <string name="RestoreMediaReminder__Waiting_for_Wifi">Wifiaren zain…</string>
     <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_internet_connection">Waiting for Internet connection…</string>
+    <string name="RestoreMediaReminder__Waiting_for_internet_connection">Interneteko konexioaren zain…</string>
     <!-- Remote media restoration paused status description for when the device\'s battery is low -->
-    <string name="RestoreMediaReminder__low_battery">Low battery. Charge your device.</string>
+    <string name="RestoreMediaReminder__low_battery">Bateria gutxi duzu. Kargatu gailua.</string>
     <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
-    <string name="RestoreMediaReminder__Free_up_space">Free up %1$s to restore your media.</string>
+    <string name="RestoreMediaReminder__Free_up_space">Multimedia-edukia leheneratzeko, utzi %1$s libre.</string>
     <!-- Button label to abort media restoration -->
-    <string name="RestoreMediaReminder__Skip_restore">Skip restore</string>
+    <string name="RestoreMediaReminder__Skip_restore">Saltatu leheneratzeko aukera</string>
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Txaten babeskopiak</string>
@@ -953,7 +953,7 @@
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal-mezuak Signal-ekin sinkronizatzen dira telefono mugikorrean, lotu ondoren. Zure aurreko mezuen historia ez da agertuko.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">On the device you want to link, visit %1$s to install Signal</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">Lotu nahi duzun gailuan, joan %1$s webgunera Signal instalatzeko</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">Nire lotutako gailuak</string>
@@ -3780,9 +3780,9 @@
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
     <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Eman baimena</string>
     <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Tap “Permissions”</string>
+    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Sakatu \"Baimenak\"</string>
     <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Allow the “Photos and videos” permission</string>
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Eman \"Argazkiak eta bideoak\" baimena</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">Ezarpenak</string>
 
@@ -4310,7 +4310,7 @@
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blokeatu Signal-era sartzea Androiden pantaila-blokeoa edo hatz-markak erabiliz</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Blokeo-pantailaren inaktibitate denbora-muga</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">To use screen lock set a PIN, pattern, or password on this device.</string>
+    <string name="preferences_app_protection__to_use_screen_lock">Pantaila-blokeoa erabiltzeko, ezarri PIN, eredu edo pasahitz bat gailu honetan.</string>
     <string name="preferences_app_protection__signal_pin">Signal PIN</string>
     <string name="preferences_app_protection__create_a_pin">Sortu PIN-a</string>
     <string name="preferences_app_protection__change_your_pin">Aldatu zure PINa</string>
@@ -4332,39 +4332,39 @@
     <string name="RegistrationActivity_error_connecting_to_service">Errorea zerbitzura konektatzean</string>
     <string name="preferences_chats__backups">Babes-kopiak</string>
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
-    <string name="prompt_passphrase_activity__unlock_signal">Unlock Signal</string>
+    <string name="prompt_passphrase_activity__unlock_signal">Desblokeatu Signal</string>
     <!-- Description text explaining how to unlock Signal -->
-    <string name="prompt_passphrase_activity__use_your_android_device">Use your Android device lock settings to unlock Signal.</string>
+    <string name="prompt_passphrase_activity__use_your_android_device">Signal desblokeatzeko, erabili Android-eko gailuaren blokeatze-ezarpenak.</string>
     <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
-    <string name="prompt_passphrase_activity__screen_lock_is_on">Screen lock is on and Signal is safely secured with your device lock settings. Unlock Signal the same way as you would normally unlock your phone, this could be with Face Unlock, Fingerprint Unlock, a PIN, password or pattern.</string>
+    <string name="prompt_passphrase_activity__screen_lock_is_on">Pantaila-blokeoa aktibatuta dago, eta Signal babestuta dago gailuaren blokeatze-ezarpenekin. Desblokeatu Signal telefonoa desblokeatuko bazenu bezala; hots, aurpegia, hatz-marka, PINa, pasahitza edo eredua erabilita.</string>
     <!-- Button in a dialog that will contact Signal support if pressed -->
-    <string name="prompt_passphrase_activity__contact_support">Contact support</string>
+    <string name="prompt_passphrase_activity__contact_support">Jarri harremanetan laguntza-zerbitzuarekin</string>
     <!-- Button text to try again after unlocking has previously failed -->
-    <string name="prompt_passphrase_activity__try_again">Try again</string>
+    <string name="prompt_passphrase_activity__try_again">Saiatu berriro</string>
 
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Off</string>
+    <string name="ScreenLockSettingsFragment__off">Desaktibatuta</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Use screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Erabili pantaila-blokeoa</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Your Android device lock settings will be required to unlock Signal when you leave or switch apps. When locked, notification previews will not show message content.</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">Aplikazioetatik irteten zarenean edo aplikazioz aldatzen zarenean, Android-eko gailuaren blokeatze-ezarpenek Signal desblokeatu beharko dute. Blokeatuta dagoen bitartean, jakinarazpenen aurrebistetan ez da ikusiko mezuen edukia.</string>
     <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Start screen lock</string>
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Aktibatu pantaila-blokeoa</string>
     <!-- Option text explaining that screen lock should start immediately -->
-    <string name="ScreenLockSettingsFragment__immediately">Immediately</string>
+    <string name="ScreenLockSettingsFragment__immediately">Berehala</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">After 1 minute</string>
+    <string name="ScreenLockSettingsFragment__after_1_min">Minutu baten buruan</string>
     <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">After 5 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_5_min">5 minuturen buruan</string>
     <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">After 30 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_30_min">30 minuturen buruan</string>
     <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Custom time</string>
+    <string name="ScreenLockSettingsFragment__custom_time">Denbora pertsonalizatua</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Use Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Erabili Signal-en pantaila-blokeoa</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Turn off Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Desaktibatu Signal-en pantaila-blokeoa</string>
 
     <string name="Recipient_unknown">Ezezaguna</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -4992,7 +4992,7 @@
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Teklatua</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Send with enter</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Bidali \"Sartu\" tekla sakatzean</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mezuak</string>
@@ -5016,8 +5016,8 @@
     <string name="PrivacySettingsFragment__blocked">Blokeatuta</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d contact or group</item>
-        <item quantity="other">%1$d contacts or groups</item>
+        <item quantity="one">Kontaktu edo talde %1$d</item>
+        <item quantity="other">%1$d kontaktu edo talde</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Mezularitza</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Mezuen desagerpena</string>
@@ -5222,7 +5222,7 @@
     <string name="PermissionsSettingsFragment__only_admins">Administratzaileak bakarrik</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Nork gehitu ditzake kide berriak?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Nork edita dezake talde honen informazioa?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Who can send messages and start calls?</string>
+    <string name="PermissionsSettingsFragment__who_can_send_messages">Nork bidal diezazkizuke mezuak eta nork has ditzake deiak?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Desaktibatu jakinarazpenak</string>
@@ -7234,13 +7234,13 @@
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">Ez deskargatu multimedia-edukia</string>
     <!-- Dialog title for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__media_will_be_deleted">Media will be deleted</string>
+    <string name="BackupAlertBottomSheet__media_will_be_deleted">Multimedia-edukia ezabatu egingo da</string>
     <!-- Dialog message for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">The media stored in your backup will be permanently deleted today. This is your last chance to download it.</string>
+    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Babeskopian gordetako multimedia-edukia betiko ezabatuko da gaur. Hura deskargatzeko azken aukera duzu hau.</string>
     <!-- Dialog action to download now -->
-    <string name="BackupAlertBottomSheet__download">Download</string>
+    <string name="BackupAlertBottomSheet__download">Deskargatu</string>
     <!-- Dialog action to not download now -->
-    <string name="BackupAlertBottomSheet__dont_download">Don\'t download</string>
+    <string name="BackupAlertBottomSheet__dont_download">Ez deskargatu</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7284,19 +7284,19 @@
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_description">Gaitutakoan, txaten mugak ere ezabatuko dituzte mezuak lotutako gailuetan.</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">On-device storage</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Gailuko memoria</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimize on-device storage</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizatu gailuko memoria</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Unused media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Erabiltzen ez den multimedia-edukia kendu egingo da, baina babeskopiatik deskargatu ahalko duzu edonoiz.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Upgrade to enable this feature</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Eginbide hau erabiltzeko, igo mailaz</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Upgrade your backup plan to start using this feature.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Biltegia optimizatzeko aukera erabiltzeko, Signal-en Babeskopiak eginbidearen ordainpeko mailaren batean egon behar duzu. Eginbide hau erabiltzen hasteko, igo babeskopia-plana mailaz.</string>
     <!-- Primary action to launch upgrade flow -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">Upgrade now</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">Igo mailaz orain</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Orain, ezabatzeko ekintza gailu guztietan sinkronizatzen da</string>
@@ -7343,7 +7343,7 @@
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Deskarga osatuta</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
-    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Backup will be created overnight.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Babeskopia gauez sortuko da.</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_type">Babeskopia mota</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7415,7 +7415,7 @@
     <!-- Action button to switch keyboard type -->
     <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Aldatu teklatua</string>
     <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Create new pin</string>
+    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Sortu PIN berria</string>
 
     <!-- MessageBackupsPinEducationScreen -->
     <!-- Screen headline -->
@@ -7456,6 +7456,6 @@
     <string name="ConfirmBackupCancellationDialog__keep_subscription">Mantendu harpidetza</string>
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
-    <string name="ReminderView_icon_content_description">Reminder icon</string>
+    <string name="ReminderView_icon_content_description">Gogorarazpen-ikonoa</string>
     <!-- EOF -->
 </resources>
