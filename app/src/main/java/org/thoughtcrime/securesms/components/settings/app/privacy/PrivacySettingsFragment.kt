@@ -355,7 +355,8 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
     return if (!enabledScreenLock) {
       getString(R.string.ScreenLockSettingsFragment__off)
     } else if (timeoutSeconds == 0L) {
-      getString(R.string.ScreenLockSettingsFragment__immediately)
+      Log.i(TAG, "Default immediate screen lock to one minute")
+      ExpirationUtil.getExpirationDisplayValue(requireContext(), 60)
     } else {
       ExpirationUtil.getExpirationDisplayValue(requireContext(), timeoutSeconds.toInt())
     }

@@ -239,6 +239,12 @@ public class KeyCachingService extends Service {
     boolean screenLockActive    = SignalStore.settings().getScreenLockEnabled();
     boolean immediateScreenLock = screenTimeout == 0 && screenLockActive;
 
+    if (immediateScreenLock) {
+      Log.i(TAG, "Default immediate screen lock to one minute");
+      SignalStore.settings().setScreenLockTimeout(60);
+      immediateScreenLock = false;
+    }
+
     if (!appVisible && secretSet && (passLockActive || screenLockActive)) {
       if (immediateScreenLock) {
         Log.i(TAG, "Starting immediate screen lock");
