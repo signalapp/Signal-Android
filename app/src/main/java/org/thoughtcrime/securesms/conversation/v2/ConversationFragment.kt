@@ -3698,7 +3698,8 @@ class ConversationFragment :
         contacts = emptyList(),
         clearCompose = true,
         linkPreviews = emptyList(),
-        isViewOnce = result.isViewOnce
+        isViewOnce = result.isViewOnce,
+        bypassPreSendSafetyNumberCheck = true
       ) {
         viewModel.deleteSlideData(slides)
       }
@@ -3717,7 +3718,8 @@ class ConversationFragment :
         clearCompose = true,
         linkPreviews = emptyList(),
         preUploadResults = result.preUploadResults,
-        isViewOnce = result.isViewOnce
+        isViewOnce = result.isViewOnce,
+        bypassPreSendSafetyNumberCheck = true
       )
     }
 
