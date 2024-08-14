@@ -94,10 +94,10 @@ object BackupRepository {
 
   private val TAG = Log.tag(BackupRepository::class.java)
   private const val VERSION = 1L
-  private const val MAIN_DB_SNAPSHOT_NAME = "signal-snapshot.db"
-  private const val KEYVALUE_DB_SNAPSHOT_NAME = "key-value-snapshot.db"
-  private const val LOCAL_MAIN_DB_SNAPSHOT_NAME = "local-signal-snapshot.db"
-  private const val LOCAL_KEYVALUE_DB_SNAPSHOT_NAME = "local-key-value-snapshot.db"
+  private const val REMOTE_MAIN_DB_SNAPSHOT_NAME = "remote-signal-snapshot"
+  private const val REMOTE_KEYVALUE_DB_SNAPSHOT_NAME = "remote-signal-key-value-snapshot"
+  private const val LOCAL_MAIN_DB_SNAPSHOT_NAME = "local-signal-snapshot"
+  private const val LOCAL_KEYVALUE_DB_SNAPSHOT_NAME = "local-signal-key-value-snapshot"
 
   private val resetInitializedStateErrorAction: StatusCodeErrorAction = { error ->
     when (error.code) {
@@ -134,7 +134,7 @@ object BackupRepository {
     SignalStore.backup.backupTier = null
   }
 
-  private fun createSignalDatabaseSnapshot(name: String): SignalDatabase {
+  private fun createSignalDatabaseSnapshot(baseName: String): SignalDatabase {
     // Need to do a WAL checkpoint to ensure that the database file we're copying has all pending writes
     if (!SignalDatabase.rawDatabase.fullWalCheckpoint()) {
       Log.w(TAG, "Failed to checkpoint WAL for main database! Not guaranteed to be using the most recent data.")
@@ -145,7 +145,9 @@ object BackupRepository {
       val context = AppDependencies.application
 
       val existingDbFile = context.getDatabasePath(SignalDatabase.DATABASE_NAME)
-      val targetFile = File(existingDbFile.parentFile, name)
+      val targetFile = File(existingDbFile.parentFile, "$baseName.db")
+
+      existingDbFile.parentFile?.deleteAllFilesWithPrefix(baseName)
 
       try {
         existingDbFile.copyTo(targetFile, overwrite = true)
@@ -158,12 +160,12 @@ object BackupRepository {
         context = context,
         databaseSecret = DatabaseSecretProvider.getOrCreateDatabaseSecret(context),
         attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-        name = name
+        name = "$baseName.db"
       )
     }
   }
 
-  private fun createSignalStoreSnapshot(name: String): SignalStore {
+  private fun createSignalStoreSnapshot(baseName: String): SignalStore {
     val context = AppDependencies.application
 
     // Need to do a WAL checkpoint to ensure that the database file we're copying has all pending writes
@@ -174,7 +176,9 @@ object BackupRepository {
     // We make a copy of the database within a transaction to ensure that no writes occur while we're copying the file
     return KeyValueDatabase.getInstance(context).writableDatabase.withinTransaction {
       val existingDbFile = context.getDatabasePath(KeyValueDatabase.DATABASE_NAME)
-      val targetFile = File(existingDbFile.parentFile, name)
+      val targetFile = File(existingDbFile.parentFile, "$baseName.db")
+
+      existingDbFile.parentFile?.deleteAllFilesWithPrefix(baseName)
 
       try {
         existingDbFile.copyTo(targetFile, overwrite = true)
@@ -183,23 +187,15 @@ object BackupRepository {
         throw IllegalStateException("Failed to copy database file!", e)
       }
 
-      val db = KeyValueDatabase.createWithName(context, name)
+      val db = KeyValueDatabase.createWithName(context, "$baseName.db")
       SignalStore(KeyValueStore(db))
     }
   }
 
   private fun deleteDatabaseSnapshot(name: String) {
-    val targetFile = AppDependencies.application.getDatabasePath(name)
-    if (!targetFile.delete()) {
-      Log.w(TAG, "Failed to delete main database snapshot!")
-    }
-  }
-
-  private fun deleteSignalStoreSnapshot(name: String) {
-    val targetFile = AppDependencies.application.getDatabasePath(name)
-    if (!targetFile.delete()) {
-      Log.w(TAG, "Failed to delete key value database snapshot!")
-    }
+    AppDependencies.application.getDatabasePath("$name.db")
+      .parentFile
+      ?.deleteAllFilesWithPrefix(name)
   }
 
   fun localExport(
@@ -269,8 +265,8 @@ object BackupRepository {
     exportExtras: ((SignalDatabase) -> Unit)? = null
   ) {
     val eventTimer = EventTimer()
-    val mainDbName = if (isLocal) LOCAL_MAIN_DB_SNAPSHOT_NAME else MAIN_DB_SNAPSHOT_NAME
-    val keyValueDbName = if (isLocal) LOCAL_KEYVALUE_DB_SNAPSHOT_NAME else KEYVALUE_DB_SNAPSHOT_NAME
+    val mainDbName = if (isLocal) LOCAL_MAIN_DB_SNAPSHOT_NAME else REMOTE_MAIN_DB_SNAPSHOT_NAME
+    val keyValueDbName = if (isLocal) LOCAL_KEYVALUE_DB_SNAPSHOT_NAME else REMOTE_KEYVALUE_DB_SNAPSHOT_NAME
 
     try {
       val dbSnapshot: SignalDatabase = createSignalDatabaseSnapshot(mainDbName)
@@ -331,7 +327,7 @@ object BackupRepository {
       Log.d(TAG, "export() ${eventTimer.stop().summary}")
     } finally {
       deleteDatabaseSnapshot(mainDbName)
-      deleteSignalStoreSnapshot(keyValueDbName)
+      deleteDatabaseSnapshot(keyValueDbName)
     }
   }
 
@@ -1007,6 +1003,10 @@ object BackupRepository {
       SignalStore.backup.clearCredentialsOlderThan(currentTime)
       SignalStore.backup.credentialsByDay.getForCurrentTime(currentTime.milliseconds)!!
     }
+  }
+
+  private fun File.deleteAllFilesWithPrefix(prefix: String) {
+    this.listFiles()?.filter { it.name.startsWith(prefix) }?.forEach { it.delete() }
   }
 
   data class SelfData(

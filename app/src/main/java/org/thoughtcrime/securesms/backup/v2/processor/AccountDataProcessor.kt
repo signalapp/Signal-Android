@@ -193,6 +193,8 @@ object AccountDataProcessor {
           UuidUtil.parseOrThrow(accountData.usernameLink.serverId.toByteArray())
         )
         SignalStore.misc.usernameQrCodeColorScheme = accountData.usernameLink.color.toLocalUsernameColor()
+      } else {
+        SignalStore.account.usernameLink = null
       }
 
       if (settings.preferredReactionEmoji.isNotEmpty()) {

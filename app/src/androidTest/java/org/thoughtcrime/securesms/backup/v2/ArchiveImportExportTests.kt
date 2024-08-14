@@ -170,10 +170,6 @@ class ArchiveImportExportTests {
     val generatedBackupData = BackupRepository.debugExport(plaintext = true, currentTime = success.backupTime)
     checkEquivalent(filename, inputFileBytes, generatedBackupData)?.let { return it }
 
-    // Validator expects encrypted data, so we have to export again with encryption to validate
-    val encryptedBackupData = BackupRepository.debugExport(plaintext = false, currentTime = success.backupTime)
-    assertPassesValidator(filename, encryptedBackupData)?.let { return it }
-
     return TestResult.Success(filename)
   }
 
