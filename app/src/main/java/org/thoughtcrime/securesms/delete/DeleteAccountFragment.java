@@ -263,6 +263,7 @@ public class DeleteAccountFragment extends Fragment {
       case LEAVE_GROUPS_FINISHED:
         ensureDeletionProgressDialog();
         deletionProgressDialog.presentDeletingAccount();
+        break;
       case CANCELING_SUBSCRIPTION:
         ensureDeletionProgressDialog();
         deletionProgressDialog.presentCancelingSubscription();
