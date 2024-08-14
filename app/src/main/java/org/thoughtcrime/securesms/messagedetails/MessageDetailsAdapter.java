@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.RequestManager;
 
+import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
@@ -127,7 +128,7 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
     }
   }
 
-  interface Callbacks {
+  interface Callbacks extends BindableConversationItem.EventListener {
     void onErrorClicked(@NonNull MessageRecord messageRecord);
     void onViewEditHistoryClicked(MessageRecord record);
     void onInternalDetailsClicked(MessageRecord record);

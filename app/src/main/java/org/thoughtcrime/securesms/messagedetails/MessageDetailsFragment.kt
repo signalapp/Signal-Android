@@ -1,29 +1,47 @@
 package org.thoughtcrime.securesms.messagedetails
 
 import android.content.DialogInterface
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import org.signal.core.util.logging.Log
+import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
+import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
+import org.thoughtcrime.securesms.contactshare.Contact
+import org.thoughtcrime.securesms.conversation.ConversationItem
+import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog.Companion.show
+import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
+import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
+import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory.MediaPreviewArgs
 import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsFragment.Companion.create
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsAdapter.MessageDetailsViewState
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet.forMessageRecord
+import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
+import org.thoughtcrime.securesms.util.fragments.requireListener
 
 class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter.Callbacks {
   private lateinit var requestManager: RequestManager
@@ -31,6 +49,8 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
   private lateinit var adapter: MessageDetailsAdapter
   private lateinit var colorizer: Colorizer
   private lateinit var recyclerViewColorizer: RecyclerViewColorizer
+
+  private fun getVoiceNoteMediaController() = requireListener<VoiceNoteMediaControllerOwner>().voiceNoteMediaController
 
   override fun getTitle() = R.string.AndroidManifest__message_details
 
@@ -145,11 +165,229 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
     create(record).show(parentFragmentManager, InternalMessageDetailsFragment::class.java.simpleName)
   }
 
+  override fun onQuoteClicked(messageRecord: MmsMessageRecord?) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onLinkPreviewClicked(linkPreview: LinkPreview) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onQuotedIndicatorClicked(messageRecord: MessageRecord) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onMoreTextClicked(conversationRecipientId: RecipientId, messageId: Long, isMms: Boolean) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onStickerClicked(stickerLocator: StickerLocator) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onViewOnceMessageClicked(messageRecord: MmsMessageRecord) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onSharedContactDetailsClicked(contact: Contact, avatarTransitionView: View) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onAddToContactsClicked(contact: Contact) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onMessageSharedContactClicked(choices: MutableList<Recipient>) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onInviteSharedContactClicked(choices: MutableList<Recipient>) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onMessageWithErrorClicked(messageRecord: MessageRecord) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onMessageWithRecaptchaNeededClicked(messageRecord: MessageRecord) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onIncomingIdentityMismatchClicked(recipientId: RecipientId) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onRegisterVoiceNoteCallbacks(onPlaybackStartObserver: Observer<VoiceNotePlaybackState>) {
+    getVoiceNoteMediaController()
+      .voiceNotePlaybackState
+      .observe(viewLifecycleOwner, onPlaybackStartObserver)
+  }
+
+  override fun onUnregisterVoiceNoteCallbacks(onPlaybackStartObserver: Observer<VoiceNotePlaybackState>) {
+    getVoiceNoteMediaController()
+      .voiceNotePlaybackState
+      .removeObserver(onPlaybackStartObserver)
+  }
+
+  override fun onVoiceNotePause(uri: Uri) {
+    getVoiceNoteMediaController().pausePlayback(uri)
+  }
+
+  override fun onVoiceNotePlay(uri: Uri, messageId: Long, position: Double) {
+    getVoiceNoteMediaController().startConsecutivePlayback(uri, messageId, position)
+  }
+
+  override fun onVoiceNoteSeekTo(uri: Uri, position: Double) {
+    getVoiceNoteMediaController().seekToPosition(uri, position)
+  }
+
+  override fun onVoiceNotePlaybackSpeedChanged(uri: Uri, speed: Float) {
+    getVoiceNoteMediaController().setPlaybackSpeed(uri, speed)
+  }
+
+  override fun onGroupMigrationLearnMoreClicked(membershipChange: GroupMigrationMembershipChange) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onChatSessionRefreshLearnMoreClicked() {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onBadDecryptLearnMoreClicked(author: RecipientId) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onSafetyNumberLearnMoreClicked(recipient: Recipient) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onJoinGroupCallClicked() {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onInviteFriendsToGroupClicked(groupId: GroupId.V2) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onEnableCallNotificationsClicked() {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onPlayInlineContent(conversationMessage: ConversationMessage?) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onInMemoryMessageClicked(messageRecord: InMemoryMessageRecord) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onViewGroupDescriptionChange(groupId: GroupId?, description: String, isMessageRequestAccepted: Boolean) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onChangeNumberUpdateContact(recipient: Recipient) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onChangeProfileNameUpdateContact(recipient: Recipient) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onCallToAction(action: String) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onDonateClicked() {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onBlockJoinRequest(recipient: Recipient) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onRecipientNameClicked(target: RecipientId) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onInviteToSignalClicked() {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onActivatePaymentsClicked() {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onSendPaymentClicked(recipientId: RecipientId) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onScheduledIndicatorClicked(view: View, conversationMessage: ConversationMessage) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onUrlClicked(url: String): Boolean {
+    Log.w(TAG, "Not yet implemented!", Exception())
+    return false
+  }
+
+  override fun onViewGiftBadgeClicked(messageRecord: MessageRecord) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onGiftBadgeRevealed(messageRecord: MessageRecord) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun goToMediaPreview(parent: ConversationItem?, sharedElement: View?, args: MediaPreviewArgs?) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onEditedIndicatorClicked(conversationMessage: ConversationMessage) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onShowGroupDescriptionClicked(groupName: String, description: String, shouldLinkifyWebLinks: Boolean) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onShowSafetyTips(forGroup: Boolean) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onReportSpamLearnMoreClicked() {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onMessageRequestAcceptOptionsClicked() {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onItemDoubleClick(multiselectPart: MultiselectPart?) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onPaymentTombstoneClicked() {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
   interface Callback {
     fun onMessageDetailsFragmentDismissed()
   }
 
   companion object {
+    private val TAG = Log.tag(MessageDetailsFragment::class)
     private const val MESSAGE_ID_EXTRA = "message_id"
     private const val RECIPIENT_EXTRA = "recipient_id"
 

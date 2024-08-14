@@ -23,6 +23,7 @@ import androidx.media3.common.MediaItem;
 import com.bumptech.glide.RequestManager;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
@@ -115,6 +116,9 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
         conversationItem = (ConversationItem) receivedStub.inflate();
       }
     }
+
+    conversationItem.setEventListener(callbacks);
+
     conversationItem.bind(lifecycleOwner,
                           conversationMessage,
                           Optional.empty(),
