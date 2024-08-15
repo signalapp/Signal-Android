@@ -10,13 +10,11 @@ import androidx.compose.ui.res.pluralStringResource
 import kotlinx.coroutines.flow.Flow
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
+import org.thoughtcrime.securesms.banner.DismissibleBannerProducer
 import org.thoughtcrime.securesms.banner.ui.compose.Action
 import org.thoughtcrime.securesms.banner.ui.compose.DefaultBanner
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 class GroupsV1MigrationSuggestionsBanner(private val suggestionsSize: Int, private val onAddMembers: () -> Unit, private val onNoThanks: () -> Unit) : Banner() {
-  private val timeUntilUnblock = SignalStore.misc.cdsBlockedUtil - System.currentTimeMillis()
-
   override val enabled: Boolean = suggestionsSize > 0
 
   @Composable
@@ -35,11 +33,23 @@ class GroupsV1MigrationSuggestionsBanner(private val suggestionsSize: Int, priva
     )
   }
 
-  companion object {
+  private class Producer(suggestionsSize: Int, onAddMembers: () -> Unit, onNoThanks: () -> Unit) : DismissibleBannerProducer<GroupsV1MigrationSuggestionsBanner>(bannerProducer = {
+    GroupsV1MigrationSuggestionsBanner(
+      suggestionsSize,
+      onAddMembers
+    ) {
+      onNoThanks()
+      it()
+    }
+  }) {
+    override fun createDismissedBanner(): GroupsV1MigrationSuggestionsBanner {
+      return GroupsV1MigrationSuggestionsBanner(0, {}, {})
+    }
+  }
 
-    @JvmStatic
-    fun createFlow(suggestionsSize: Int, onAddMembers: () -> Unit, onNoThanks: () -> Unit): Flow<GroupsV1MigrationSuggestionsBanner> = createAndEmit {
-      GroupsV1MigrationSuggestionsBanner(suggestionsSize, onAddMembers, onNoThanks)
+  companion object {
+    fun createFlow(suggestionsSize: Int, onAddMembers: () -> Unit, onNoThanks: () -> Unit): Flow<GroupsV1MigrationSuggestionsBanner> {
+      return Producer(suggestionsSize, onAddMembers, onNoThanks).flow
     }
   }
 }

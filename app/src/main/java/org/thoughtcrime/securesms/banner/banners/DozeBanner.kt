@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.flow.Flow
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
+import org.thoughtcrime.securesms.banner.DismissibleBannerProducer
 import org.thoughtcrime.securesms.banner.ui.compose.Action
 import org.thoughtcrime.securesms.banner.ui.compose.DefaultBanner
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -19,8 +20,8 @@ import org.thoughtcrime.securesms.util.PowerManagerCompat
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 
-class DozeBanner(private val context: Context) : Banner() {
-  override val enabled: Boolean =
+class DozeBanner(private val context: Context, val dismissed: Boolean, private val onDismiss: () -> Unit) : Banner() {
+  override val enabled: Boolean = !dismissed &&
     Build.VERSION.SDK_INT >= 23 && !SignalStore.account.fcmEnabled && !TextSecurePreferences.hasPromptedOptimizeDoze(context) && !ServiceUtil.getPowerManager(context).isIgnoringBatteryOptimizations(context.packageName)
 
   @Composable
@@ -39,15 +40,23 @@ class DozeBanner(private val context: Context) : Banner() {
       ),
       onDismissListener = {
         TextSecurePreferences.setPromptedOptimizeDoze(context, true)
+        onDismiss()
       }
     )
   }
 
-  companion object {
+  private class Producer(private val context: Context) : DismissibleBannerProducer<DozeBanner>(bannerProducer = {
+    DozeBanner(context = context, dismissed = false, onDismiss = it)
+  }) {
+    override fun createDismissedBanner(): DozeBanner {
+      return DozeBanner(context, true) {}
+    }
+  }
 
+  companion object {
     @JvmStatic
-    fun createFlow(context: Context): Flow<DozeBanner> = createAndEmit {
-      DozeBanner(context)
+    fun createFlow(context: Context): Flow<DozeBanner> {
+      return Producer(context).flow
     }
   }
 }

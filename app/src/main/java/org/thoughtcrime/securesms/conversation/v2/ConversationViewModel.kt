@@ -31,11 +31,10 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.flatMap
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.util.concurrent.subscribeWithSubject
 import org.signal.core.util.orNull
@@ -45,7 +44,6 @@ import org.thoughtcrime.securesms.banner.banners.BubbleOptOutBanner
 import org.thoughtcrime.securesms.banner.banners.GroupsV1MigrationSuggestionsBanner
 import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner
 import org.thoughtcrime.securesms.banner.banners.PendingGroupJoinRequestsBanner
-import org.thoughtcrime.securesms.banner.banners.PendingGroupJoinRequestsBanner.Producer
 import org.thoughtcrime.securesms.banner.banners.ServiceOutageBanner
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.components.reminder.Reminder
@@ -172,7 +170,7 @@ class ConversationViewModel(
   private val refreshReminder: Subject<Unit> = PublishSubject.create()
   val reminder: Observable<Optional<Reminder>>
 
-  private val groupRecordFlow: Flow<GroupRecord?>
+  private val groupRecordFlow: Flow<GroupRecord>
 
   private val refreshIdentityRecords: Subject<Unit> = PublishSubject.create()
   private val identityRecordsStore: RxStore<IdentityRecordsState> = RxStore(IdentityRecordsState())
@@ -295,7 +293,7 @@ class ConversationViewModel(
       .flatMapMaybe { groupRecord -> repository.getReminder(groupRecord.orNull()) }
       .observeOn(AndroidSchedulers.mainThread())
 
-    groupRecordFlow = recipientRepository.groupRecord.subscribeOn(Schedulers.io()).asFlow().map { it.orNull() }
+    groupRecordFlow = recipientRepository.groupRecord.subscribeOn(Schedulers.io()).asFlow().mapNotNull { it.orNull() }
 
     Observable.combineLatest(
       refreshIdentityRecords.startWithItem(Unit).observeOn(Schedulers.io()),
@@ -322,23 +320,19 @@ class ConversationViewModel(
 
   @OptIn(ExperimentalCoroutinesApi::class)
   fun getBannerFlows(context: Context, groupJoinClickListener: () -> Unit, onAddMembers: () -> Unit, onNoThanks: () -> Unit, bubbleClickListener: (Boolean) -> Unit): List<Flow<Banner>> {
-    val pendingGroupJoinFlow = groupRecordFlow.flatMapConcat {
+    val pendingGroupJoinFlow: Flow<PendingGroupJoinRequestsBanner> = merge(
       flow {
-        if (it == null) {
-          emit(PendingGroupJoinRequestsBanner(false, 0, {}, {}))
-        } else {
-          emitAll(Producer(it.actionableRequestingMembersCount, groupJoinClickListener).flow)
-        }
-      }
-    }
+        emit(PendingGroupJoinRequestsBanner(false, 0, {}, {}))
+      },
+      groupRecordFlow.flatMapConcat { PendingGroupJoinRequestsBanner.createFlow(it.actionableRequestingMembersCount, groupJoinClickListener) }
+    )
 
-    val groupV1SuggestionsFlow = groupRecordFlow.map {
-      if (it == null) {
+    val groupV1SuggestionsFlow = merge(
+      flow {
         GroupsV1MigrationSuggestionsBanner(0, {}, {})
-      } else {
-        GroupsV1MigrationSuggestionsBanner(it.gv1MigrationSuggestions.size, onAddMembers, onNoThanks)
-      }
-    }
+      },
+      groupRecordFlow.flatMapConcat { GroupsV1MigrationSuggestionsBanner.createFlow(it.gv1MigrationSuggestions.size, onAddMembers, onNoThanks) }
+    )
 
     return listOf(
       OutdatedBuildBanner.createFlow(context, OutdatedBuildBanner.ExpiryStatus.EXPIRED_ONLY),
@@ -346,7 +340,7 @@ class ConversationViewModel(
       ServiceOutageBanner.createFlow(context),
       pendingGroupJoinFlow,
       groupV1SuggestionsFlow,
-      BubbleOptOutBanner.createFlow(inBubble = true, bubbleClickListener)
+      BubbleOptOutBanner.createFlow(inBubble = repository.isInBubble, bubbleClickListener)
     )
   }
 

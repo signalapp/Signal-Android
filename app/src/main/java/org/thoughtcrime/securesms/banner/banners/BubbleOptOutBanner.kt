@@ -11,6 +11,7 @@ import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.flow.Flow
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
+import org.thoughtcrime.securesms.banner.DismissibleBannerProducer
 import org.thoughtcrime.securesms.banner.ui.compose.Action
 import org.thoughtcrime.securesms.banner.ui.compose.DefaultBanner
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -35,10 +36,20 @@ class BubbleOptOutBanner(inBubble: Boolean, private val actionListener: (Boolean
     )
   }
 
+  private class Producer(inBubble: Boolean, actionListener: (Boolean) -> Unit) : DismissibleBannerProducer<BubbleOptOutBanner>(bannerProducer = {
+    BubbleOptOutBanner(inBubble) { turnOffBubbles ->
+      actionListener(turnOffBubbles)
+      it()
+    }
+  }) {
+    override fun createDismissedBanner(): BubbleOptOutBanner {
+      return BubbleOptOutBanner(false) {}
+    }
+  }
+
   companion object {
-    @JvmStatic
-    fun createFlow(inBubble: Boolean, actionListener: (Boolean) -> Unit): Flow<BubbleOptOutBanner> = createAndEmit {
-      BubbleOptOutBanner(inBubble, actionListener)
+    fun createFlow(inBubble: Boolean, actionListener: (Boolean) -> Unit): Flow<BubbleOptOutBanner> {
+      return Producer(inBubble, actionListener).flow
     }
   }
 }

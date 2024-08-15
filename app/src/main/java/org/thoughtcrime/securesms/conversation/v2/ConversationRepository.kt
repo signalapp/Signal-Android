@@ -108,7 +108,7 @@ import kotlin.time.Duration.Companion.seconds
 
 class ConversationRepository(
   private val localContext: Context,
-  private val isInBubble: Boolean
+  val isInBubble: Boolean
 ) {
 
   companion object {

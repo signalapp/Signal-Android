@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.banner
 
 import androidx.compose.runtime.Composable
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flow
 import org.signal.core.util.logging.Log
 
@@ -27,10 +26,10 @@ abstract class Banner {
      * @param bannerFactory a block the produces a [Banner], or null. Returning null will complete the [Flow] without emitting any values.
      */
     @JvmStatic
-    fun <T : Banner> createAndEmit(bannerFactory: () -> T?): Flow<T> {
-      return bannerFactory()?.let {
+    fun <T : Banner> createAndEmit(bannerFactory: () -> T): Flow<T> {
+      return bannerFactory().let {
         flow { emit(it) }
-      } ?: emptyFlow()
+      }
     }
   }
 
