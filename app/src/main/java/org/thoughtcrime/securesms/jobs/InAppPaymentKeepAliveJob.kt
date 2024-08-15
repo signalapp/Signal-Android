@@ -142,6 +142,13 @@ class InAppPaymentKeepAliveJob private constructor(
       return
     }
 
+    if (activeInAppPayment.state == InAppPaymentTable.State.END) {
+      warn(type, "Active in-app payment is in the END state. Cannot proceed.")
+      warn(type, "Active in-app payment error state: ${activeInAppPayment.data.error}")
+      warn(type, "Active in-app payment cancel state: ${activeInAppPayment.data.cancellation}")
+      return
+    }
+
     info(type, "Processing id: ${activeInAppPayment.id}")
 
     when (activeInAppPayment.data.redemption?.stage) {
