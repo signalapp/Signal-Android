@@ -7,9 +7,7 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
-
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXController;
-import org.thoughtcrime.securesms.mediasend.camerax.SignalCameraController;
+import androidx.camera.view.CameraController;
 
 final class CameraXSelfieFlashHelper {
 
@@ -17,7 +15,7 @@ final class CameraXSelfieFlashHelper {
   private static final float MAX_SELFIE_FLASH_ALPHA = 0.9f;
 
   private final Window            window;
-  private final CameraXController camera;
+  private final CameraController camera;
   private final View              selfieFlash;
 
   private float   brightnessBeforeFlash;
@@ -25,7 +23,7 @@ final class CameraXSelfieFlashHelper {
   private int     flashMode = -1;
 
   CameraXSelfieFlashHelper(@NonNull Window window,
-                           @NonNull CameraXController camera,
+                           @NonNull CameraController camera,
                            @NonNull View selfieFlash)
   {
     this.window      = window;

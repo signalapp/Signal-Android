@@ -14,7 +14,6 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraMetadata;
 import android.os.Build;
 import android.util.Pair;
-import android.util.Rational;
 import android.util.Size;
 
 import androidx.annotation.NonNull;
@@ -125,21 +124,6 @@ public class CameraXUtil {
   public static @ImageCapture.CaptureMode int getOptimalCaptureMode() {
     return FastCameraModels.contains(Build.MODEL) ? ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY
                                                   : ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY;
-  }
-
-  public static int getIdealResolution(int displayWidth, int displayHeight) {
-    int maxDisplay = Math.max(displayWidth, displayHeight);
-    return Math.max(maxDisplay, 1920);
-  }
-
-  public static @NonNull Size buildResolutionForRatio(int longDimension, @NonNull Rational ratio, boolean isPortrait) {
-    int shortDimension = longDimension * ratio.getDenominator() / ratio.getNumerator();
-
-    if (isPortrait) {
-      return new Size(shortDimension, longDimension);
-    } else {
-      return new Size(longDimension, shortDimension);
-    }
   }
 
   private static byte[] transformByteArray(@NonNull byte[] data, @Nullable Rect cropRect, int rotation, boolean flip) throws IOException {

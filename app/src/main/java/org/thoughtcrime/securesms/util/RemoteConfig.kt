@@ -1031,15 +1031,6 @@ object RemoteConfig {
     BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
   }
 
-  /** Whether or not to use the custom CameraX controller class  */
-  @JvmStatic
-  @get:JvmName("customCameraXController")
-  val customCameraXController: Boolean by remoteBoolean(
-    key = "android.cameraXCustomController",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** Whether unauthenticated chat web socket is backed by libsignal-net  */
   @JvmStatic
   @get:JvmName("libSignalWebSocketEnabled")
