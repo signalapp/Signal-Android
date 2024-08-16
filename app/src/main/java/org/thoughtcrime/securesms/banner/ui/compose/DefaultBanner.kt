@@ -53,6 +53,7 @@ fun DefaultBanner(
 ) {
   Box(
     modifier = Modifier
+      .padding(horizontal = 12.dp, vertical = 8.dp)
       .background(
         color = when (importance) {
           Importance.NORMAL -> MaterialTheme.colorScheme.surface
@@ -74,8 +75,8 @@ fun DefaultBanner(
         Row(modifier = Modifier.fillMaxWidth()) {
           Column(
             modifier = Modifier
-              .padding(12.dp)
               .weight(1f)
+              .padding(start = 16.dp, top = 16.dp)
           ) {
             if (title.isNotNullOrBlank()) {
               Text(
@@ -123,24 +124,27 @@ fun DefaultBanner(
             }
           }
 
-          if (onDismissListener != null) {
-            IconButton(
-              onClick = {
-                onHideListener?.invoke()
-                onDismissListener()
-              },
-              modifier = Modifier.size(48.dp)
-            ) {
-              Icon(
-                painter = painterResource(id = R.drawable.symbol_x_24),
-                contentDescription = stringResource(id = R.string.InviteActivity_cancel)
-              )
+          Box(modifier = Modifier.size(48.dp)) {
+            if (onDismissListener != null) {
+              IconButton(
+                onClick = {
+                  onHideListener?.invoke()
+                  onDismissListener()
+                },
+                modifier = Modifier.size(48.dp)
+              ) {
+                Icon(
+                  painter = painterResource(id = R.drawable.symbol_x_24),
+                  contentDescription = stringResource(id = R.string.InviteActivity_cancel)
+                )
+              }
             }
           }
         }
         Row(
           horizontalArrangement = Arrangement.End,
           modifier = Modifier.fillMaxWidth()
+            .padding(end = 8.dp)
         ) {
           for (action in actions) {
             TextButton(onClick = action.onClick) {

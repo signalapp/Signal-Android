@@ -6,11 +6,8 @@
 package org.thoughtcrime.securesms.banner
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
@@ -45,7 +42,7 @@ class BannerManager(allFlows: Iterable<Flow<Banner>>) {
         val state = combinedFlow.collectAsStateWithLifecycle(initialValue = emptyList())
 
         state.value.firstOrNull()?.let {
-          Box(modifier = Modifier.padding(8.dp)) {
+          Box {
             it.DisplayBanner()
           }
         }
