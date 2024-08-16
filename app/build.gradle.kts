@@ -558,6 +558,8 @@ dependencies {
   implementation(libs.rxjava3.rxkotlin)
   implementation(libs.rxdogtag)
 
+  "playImplementation"(project(":billing"))
+
   "spinnerImplementation"(project(":spinner"))
 
   "canaryImplementation"(libs.square.leakcanary)

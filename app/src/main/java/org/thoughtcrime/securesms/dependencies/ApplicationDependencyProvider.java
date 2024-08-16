@@ -15,6 +15,8 @@ import org.signal.libsignal.net.Network;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.billing.GooglePlayBillingApi;
+import org.thoughtcrime.securesms.billing.GooglePlayBillingFactory;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
@@ -69,8 +71,8 @@ import org.thoughtcrime.securesms.util.AlarmSleepTimer;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
@@ -92,11 +94,11 @@ import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
+import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnection;
 import org.whispersystems.signalservice.internal.websocket.LibSignalNetworkExtensions;
+import org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection;
 import org.whispersystems.signalservice.internal.websocket.ShadowingWebSocketConnection;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
-import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnection;
-import org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection;
 import org.whispersystems.signalservice.internal.websocket.WebSocketShadowingBridge;
 
 import java.util.Optional;
@@ -455,6 +457,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
         }
       }
     };
+  }
+
+  @Override
+  public @NonNull GooglePlayBillingApi provideBillingApi() {
+    return GooglePlayBillingFactory.create(context);
   }
 
   @VisibleForTesting

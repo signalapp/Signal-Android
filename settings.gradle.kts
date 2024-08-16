@@ -56,6 +56,7 @@ include(":benchmark")
 include(":microbenchmark")
 include(":video")
 include(":video-app")
+include(":billing")
 
 project(":app").name = "Signal-Android"
 project(":paging").projectDir = file("paging/lib")

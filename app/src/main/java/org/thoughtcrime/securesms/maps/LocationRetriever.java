@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.maps;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -73,6 +74,7 @@ class LocationRetriever implements DefaultLifecycleObserver, LocationListener {
     }
   }
 
+  @SuppressLint("MissingPermission")
   @Override
   public void onStop(@NonNull LifecycleOwner owner) {
     Log.i(TAG, "Removing any possible location listeners.");

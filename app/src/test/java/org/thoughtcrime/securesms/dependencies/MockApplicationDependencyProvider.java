@@ -6,6 +6,7 @@ import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.libsignal.net.Network;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
+import org.thoughtcrime.securesms.billing.GooglePlayBillingApi;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl;
@@ -236,6 +237,11 @@ public class MockApplicationDependencyProvider implements AppDependencies.Provid
 
   @Override
   public @NonNull Network provideLibsignalNetwork(@NonNull SignalServiceConfiguration config) {
+    return null;
+  }
+
+  @Override
+  public @NonNull GooglePlayBillingApi provideBillingApi() {
     return null;
   }
 }

@@ -99,6 +99,7 @@ dependencyResolutionManagement {
       library("androidx-asynclayoutinflater-appcompat", "androidx.asynclayoutinflater:asynclayoutinflater-appcompat:1.1.0-alpha01")
       library("androidx-emoji2", "androidx.emoji2:emoji2:1.4.0")
       library("androidx-documentfile", "androidx.documentfile:documentfile:1.0.0")
+      library("android-billing", "com.android.billingclient:billing-ktx:7.0.0")
 
       // Material
       library("material-material", "com.google.android.material:material:1.8.0")

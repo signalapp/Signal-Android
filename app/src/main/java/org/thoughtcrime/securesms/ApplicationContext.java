@@ -196,6 +196,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addNonBlocking(this::beginJobLoop)
                             .addNonBlocking(EmojiSource::refresh)
                             .addNonBlocking(() -> AppDependencies.getGiphyMp4Cache().onAppStart(this))
+                            .addNonBlocking(AppDependencies::getBillingApi)
                             .addNonBlocking(this::ensureProfileUploaded)
                             .addNonBlocking(() -> AppDependencies.getExpireStoriesManager().scheduleIfNecessary())
                             .addPostRender(() -> AppDependencies.getDeletedCallEventManager().scheduleIfNecessary())

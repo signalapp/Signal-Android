@@ -12,6 +12,7 @@ import org.signal.core.util.resettableLazy
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
+import org.thoughtcrime.securesms.billing.GooglePlayBillingApi
 import org.thoughtcrime.securesms.components.TypingStatusRepository
 import org.thoughtcrime.securesms.components.TypingStatusSender
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl
@@ -210,6 +211,11 @@ object AppDependencies {
     provider.provideAndroidCallAudioManager()
   }
 
+  @JvmStatic
+  val billingApi: GooglePlayBillingApi by lazy {
+    provider.provideBillingApi()
+  }
+
   private val _webSocketObserver: Subject<WebSocketConnectionState> = BehaviorSubject.create()
 
   /**
@@ -342,5 +348,6 @@ object AppDependencies {
     fun provideClientZkReceiptOperations(signalServiceConfiguration: SignalServiceConfiguration): ClientZkReceiptOperations
     fun provideScheduledMessageManager(): ScheduledMessageManager
     fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network
+    fun provideBillingApi(): GooglePlayBillingApi
   }
 }
