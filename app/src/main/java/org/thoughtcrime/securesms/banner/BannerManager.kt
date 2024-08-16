@@ -17,7 +17,11 @@ import org.signal.core.util.logging.Log
  * A class that can be instantiated with a list of [Flow]s that produce [Banner]s, then applied to a [ComposeView], typically within a [Fragment].
  * Usually, the [Flow]s will come from [Banner.BannerFactory] instances, but may also be produced by the other properties of the host.
  */
-class BannerManager(allFlows: Iterable<Flow<Banner>>) {
+class BannerManager @JvmOverloads constructor(
+  allFlows: Iterable<Flow<Banner>>,
+  private val onNewBannerShownListener: () -> Unit = {},
+  private val onNoBannerShownListener: () -> Unit = {}
+) {
 
   companion object {
     val TAG = Log.tag(BannerManager::class)
@@ -41,10 +45,15 @@ class BannerManager(allFlows: Iterable<Flow<Banner>>) {
       setContent {
         val state = combinedFlow.collectAsStateWithLifecycle(initialValue = emptyList())
 
-        state.value.firstOrNull()?.let {
+        val bannerToDisplay = state.value.firstOrNull()
+        if (bannerToDisplay != null) {
           Box {
-            it.DisplayBanner()
+            bannerToDisplay.DisplayBanner()
           }
+
+          onNewBannerShownListener()
+        } else {
+          onNoBannerShownListener()
         }
       }
     }
