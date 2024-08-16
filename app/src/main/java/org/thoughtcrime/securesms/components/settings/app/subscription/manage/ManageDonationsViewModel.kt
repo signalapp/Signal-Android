@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -66,7 +67,7 @@ class ManageDonationsViewModel : ViewModel() {
 
     disposables += Single.fromCallable {
       InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)
-    }.subscribeBy { requiresCancel ->
+    }.subscribeOn(Schedulers.io()).subscribeBy { requiresCancel ->
       store.update {
         it.copy(subscriberRequiresCancel = requiresCancel)
       }

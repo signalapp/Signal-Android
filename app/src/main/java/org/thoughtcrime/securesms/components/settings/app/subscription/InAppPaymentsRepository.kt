@@ -406,18 +406,28 @@ object InAppPaymentsRepository {
 
   /**
    * Retrieves whether or not we should force a cancel before next subscribe attempt for in app payments of the given
-   * type. This method will first check the database, and then fall back on the deprecated SignalStore value.
+   * type. This method will first check the database, and then fall back on the deprecated SignalStore value. This method
+   * will also access and check the current subscriber data, if it exists.
    */
   @JvmStatic
   @WorkerThread
   fun getShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberType: InAppPaymentSubscriberRecord.Type): Boolean {
     val latestSubscriber = getSubscriber(subscriberType)
 
-    return latestSubscriber?.requiresCancel ?: if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
+    val localState = latestSubscriber?.requiresCancel ?: if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
       SignalStore.inAppPayments.shouldCancelSubscriptionBeforeNextSubscribeAttempt
     } else {
       false
     }
+
+    if (latestSubscriber != null) {
+      val remoteState = AppDependencies.donationsService.getSubscription(latestSubscriber.subscriberId)
+      val result = remoteState.result.getOrNull() ?: return localState
+
+      return result.activeSubscription?.isCanceled ?: localState
+    }
+
+    return localState
   }
 
   /**

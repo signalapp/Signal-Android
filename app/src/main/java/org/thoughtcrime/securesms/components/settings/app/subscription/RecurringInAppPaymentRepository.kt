@@ -163,7 +163,7 @@ object RecurringInAppPaymentRepository {
       } else {
         Completable.complete()
       }
-    }
+    }.subscribeOn(Schedulers.io())
   }
 
   fun getPaymentSourceTypeOfLatestSubscription(subscriberType: InAppPaymentSubscriberRecord.Type): Single<PaymentSourceType> {
