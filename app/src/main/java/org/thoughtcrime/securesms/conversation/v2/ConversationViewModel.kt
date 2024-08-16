@@ -293,7 +293,11 @@ class ConversationViewModel(
       .flatMapMaybe { groupRecord -> repository.getReminder(groupRecord.orNull()) }
       .observeOn(AndroidSchedulers.mainThread())
 
-    groupRecordFlow = recipientRepository.groupRecord.subscribeOn(Schedulers.io()).asFlow().mapNotNull { it.orNull() }
+    groupRecordFlow = recipientRepository.groupRecord
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .asFlow()
+      .mapNotNull { it.orNull() }
 
     Observable.combineLatest(
       refreshIdentityRecords.startWithItem(Unit).observeOn(Schedulers.io()),
@@ -329,7 +333,7 @@ class ConversationViewModel(
 
     val groupV1SuggestionsFlow = merge(
       flow {
-        GroupsV1MigrationSuggestionsBanner(0, {}, {})
+        emit(GroupsV1MigrationSuggestionsBanner(0, {}, {}))
       },
       groupRecordFlow.flatMapConcat { GroupsV1MigrationSuggestionsBanner.createFlow(it.gv1MigrationSuggestions.size, onAddMembers, onNoThanks) }
     )
