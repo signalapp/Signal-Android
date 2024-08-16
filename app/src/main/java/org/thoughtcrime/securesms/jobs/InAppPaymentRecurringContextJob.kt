@@ -238,8 +238,8 @@ class InAppPaymentRecurringContextJob private constructor(
         warning("Charge failure detected on active subscription: ${chargeFailure.code}: ${chargeFailure.message}")
       }
 
-      if (inAppPayment.data.redemption!!.keepAlive == true) {
-        warning("Payment failure during keep-alive, allow keep-alive to retry later.")
+      if (inAppPayment.data.redemption!!.keepAlive == true && !subscription.isCanceled) {
+        warning("Payment failure for uncanceled subscription during keep-alive, allow keep-alive to retry later.")
 
         SignalDatabase.inAppPayments.update(
           inAppPayment.copy(
