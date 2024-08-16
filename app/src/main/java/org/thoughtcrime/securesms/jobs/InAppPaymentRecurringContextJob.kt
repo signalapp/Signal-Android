@@ -247,7 +247,7 @@ class InAppPaymentRecurringContextJob private constructor(
             data = inAppPayment.data.copy(
               error = InAppPaymentData.Error(
                 type = InAppPaymentData.Error.Type.PAYMENT_PROCESSING,
-                data_ = "keep-alive"
+                data_ = InAppPaymentKeepAliveJob.KEEP_ALIVE
               )
             )
           )

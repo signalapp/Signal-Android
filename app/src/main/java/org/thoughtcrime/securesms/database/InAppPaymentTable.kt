@@ -287,19 +287,6 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
   }
 
   /**
-   * Returns whether there are any pending donations in the database.
-   */
-  fun hasPending(type: InAppPaymentType): Boolean {
-    return readableDatabase.exists(TABLE_NAME)
-      .where(
-        "$STATE = ? AND $TYPE = ?",
-        State.serialize(State.PENDING),
-        InAppPaymentType.serialize(type)
-      )
-      .run()
-  }
-
-  /**
    * Retrieves from the database the latest payment of the given type that is either in the PENDING or WAITING_FOR_AUTHORIZATION state.
    */
   fun getLatestInAppPaymentByType(type: InAppPaymentType): InAppPayment? {
