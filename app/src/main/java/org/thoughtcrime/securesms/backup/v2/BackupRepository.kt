@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.backup.v2
 
 import androidx.annotation.WorkerThread
-import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
@@ -25,7 +24,6 @@ import org.signal.libsignal.messagebackup.MessageBackupKey
 import org.signal.libsignal.protocol.ServiceId.Aci
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
@@ -46,7 +44,6 @@ import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFeature
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
@@ -83,7 +80,6 @@ import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
-import java.math.BigDecimal
 import java.time.ZonedDateTime
 import java.util.Currency
 import java.util.Locale
@@ -896,30 +892,29 @@ object BackupRepository {
   suspend fun getBackupsType(tier: MessageBackupTier): MessageBackupsType {
     val backupCurrency = SignalStore.inAppPayments.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.BACKUP)
     return when (tier) {
-      MessageBackupTier.FREE -> getFreeType(backupCurrency)
+      MessageBackupTier.FREE -> getFreeType()
       MessageBackupTier.PAID -> getPaidType(backupCurrency)
     }
   }
 
-  private fun getFreeType(currency: Currency): MessageBackupsType {
-    return MessageBackupsType(
-      tier = MessageBackupTier.FREE,
-      pricePerMonth = FiatMoney(BigDecimal.ZERO, currency),
-      title = "Text + 30 days of media", // TODO [message-backups] Finalize text (does this come from server?)
-      features = persistentListOf(
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = "Full text message backup" // TODO [message-backups] Finalize text (does this come from server?)
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_album_compact_bold_16,
-          label = "Last 30 days of media" // TODO [message-backups] Finalize text (does this come from server?)
-        )
-      )
+  private suspend fun getFreeType(): MessageBackupsType {
+    val config = getSubscriptionsConfiguration()
+
+    return MessageBackupsType.Free(
+      mediaRetentionDays = config.backupConfiguration.freeTierMediaDays
     )
   }
 
   private suspend fun getPaidType(currency: Currency): MessageBackupsType {
+    val config = getSubscriptionsConfiguration()
+
+    return MessageBackupsType.Paid(
+      pricePerMonth = FiatMoney(config.currencies[currency.currencyCode.lowercase()]!!.backupSubscription[SubscriptionsConfiguration.BACKUPS_LEVEL]!!, currency),
+      storageAllowanceBytes = config.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL]!!.storageAllowanceBytes
+    )
+  }
+
+  private suspend fun getSubscriptionsConfiguration(): SubscriptionsConfiguration {
     val serviceResponse = withContext(Dispatchers.IO) {
       AppDependencies
         .donationsService
@@ -938,31 +933,7 @@ object BackupRepository {
       error("Unhandled error occurred while downloading configuration.")
     }
 
-    val config = serviceResponse.result.get()
-
-    return MessageBackupsType(
-      tier = MessageBackupTier.PAID,
-      pricePerMonth = FiatMoney(config.currencies[currency.currencyCode.lowercase()]!!.backupSubscription[SubscriptionsConfiguration.BACKUPS_LEVEL]!!, currency),
-      title = "Text + All your media", // TODO [message-backups] Finalize text (does this come from server?)
-      features = persistentListOf(
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = "Full text message backup" // TODO [message-backups] Finalize text (does this come from server?)
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_album_compact_bold_16,
-          label = "Full media backup" // TODO [message-backups] Finalize text (does this come from server?)
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = "1TB of storage (~250K photos)" // TODO [message-backups] Finalize text (does this come from server?)
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_heart_compact_bold_16,
-          label = "Thanks for supporting Signal!" // TODO [message-backups] Finalize text (does this come from server?)
-        )
-      )
-    )
+    return serviceResponse.result.get()
   }
 
   /**

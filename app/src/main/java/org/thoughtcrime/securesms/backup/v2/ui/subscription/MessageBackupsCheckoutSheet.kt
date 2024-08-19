@@ -32,13 +32,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.updateLayoutParams
-import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.databinding.PaypalButtonBinding
@@ -49,7 +47,7 @@ import java.util.Currency
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessageBackupsCheckoutSheet(
-  messageBackupsType: MessageBackupsType,
+  messageBackupsType: MessageBackupsType.Paid,
   availablePaymentMethods: List<InAppPaymentData.PaymentMethodType>,
   sheetState: SheetState,
   onDismissRequest: () -> Unit,
@@ -78,7 +76,7 @@ fun MessageBackupsCheckoutSheet(
 
 @Composable
 private fun SheetContent(
-  messageBackupsType: MessageBackupsType,
+  messageBackupsType: MessageBackupsType.Paid,
   availablePaymentGateways: List<InAppPaymentData.PaymentMethodType>,
   onPaymentGatewaySelected: (InAppPaymentData.PaymentMethodType) -> Unit
 ) {
@@ -244,11 +242,9 @@ private fun MessageBackupsCheckoutSheetPreview() {
       modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
     ) {
       SheetContent(
-        messageBackupsType = MessageBackupsType(
-          tier = MessageBackupTier.FREE,
-          title = "Free",
+        messageBackupsType = MessageBackupsType.Paid(
           pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance("USD")),
-          features = persistentListOf()
+          storageAllowanceBytes = 107374182400
         ),
         availablePaymentGateways = availablePaymentGateways,
         onPaymentGatewaySelected = {}

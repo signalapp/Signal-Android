@@ -42,13 +42,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import kotlinx.collections.immutable.persistentListOf
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -66,19 +66,19 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.chats.backups.type.BackupsTypeSettingsFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
 import java.math.BigDecimal
-import java.util.Currency
 import java.util.Locale
 
 /**
@@ -418,14 +418,29 @@ private fun BackupTypeRow(
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.onSurfaceVariant
         )
-      } else {
+      } else if (messageBackupsType is MessageBackupsType.Paid) {
         val localResources = LocalContext.current.resources
         val formattedCurrency = remember(messageBackupsType.pricePerMonth) {
           FiatMoneyUtil.format(localResources, messageBackupsType.pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
         }
 
         Text(
-          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__s_dot_s_per_month, messageBackupsType.title, formattedCurrency)
+          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__s_dot_s_per_month, stringResource(id = R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media), formattedCurrency)
+        )
+      } else {
+        val retentionDays = (messageBackupsType as MessageBackupsType.Free).mediaRetentionDays
+        val localResources = LocalContext.current.resources
+        val formattedCurrency = remember {
+          val currency = SignalStore.inAppPayments.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.BACKUP)
+          FiatMoneyUtil.format(localResources, FiatMoney(BigDecimal.ZERO, currency), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+        }
+
+        Text(
+          text = stringResource(
+            id = R.string.RemoteBackupsSettingsFragment__s_dot_s_per_month,
+            pluralStringResource(id = R.plurals.MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media, retentionDays, retentionDays),
+            formattedCurrency
+          )
         )
       }
     }
@@ -680,11 +695,8 @@ private fun RemoteBackupsSettingsContentPreview() {
 private fun BackupTypeRowPreview() {
   Previews.Preview {
     BackupTypeRow(
-      messageBackupsType = MessageBackupsType(
-        tier = MessageBackupTier.FREE,
-        title = "Free",
-        pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance("USD")),
-        features = persistentListOf()
+      messageBackupsType = MessageBackupsType.Free(
+        mediaRetentionDays = 30
       ),
       onChangeBackupsTypeClick = {},
       onEnableBackupsClick = {}

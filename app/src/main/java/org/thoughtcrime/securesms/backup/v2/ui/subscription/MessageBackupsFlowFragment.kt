@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.processors.PublishProcessor
 import org.signal.donations.InAppPaymentType
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -112,7 +113,15 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           currentBackupTier = state.currentMessageBackupTier,
           selectedBackupTier = state.selectedMessageBackupTier,
           availableBackupTypes = state.availableBackupTypes,
-          onMessageBackupsTierSelected = viewModel::onMessageBackupTierUpdated,
+          onMessageBackupsTierSelected = { tier ->
+            val type = state.availableBackupTypes.first { it.tier == tier }
+            val label = when (type) {
+              is MessageBackupsType.Free -> requireContext().resources.getQuantityString(R.plurals.MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media, type.mediaRetentionDays, type.mediaRetentionDays)
+              is MessageBackupsType.Paid -> requireContext().getString(R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media)
+            }
+
+            viewModel.onMessageBackupTierUpdated(tier, label)
+          },
           onNavigationClick = viewModel::goToPreviousScreen,
           onReadMoreClicked = {},
           onCancelSubscriptionClicked = viewModel::displayCancellationDialog,
@@ -121,7 +130,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
 
         if (state.screen == MessageBackupsScreen.CHECKOUT_SHEET) {
           MessageBackupsCheckoutSheet(
-            messageBackupsType = state.availableBackupTypes.first { it.tier == state.selectedMessageBackupTier!! },
+            messageBackupsType = state.availableBackupTypes.filterIsInstance<MessageBackupsType.Paid>().first { it.tier == state.selectedMessageBackupTier!! },
             availablePaymentMethods = state.availablePaymentMethods,
             sheetState = checkoutSheetState,
             onDismissRequest = {

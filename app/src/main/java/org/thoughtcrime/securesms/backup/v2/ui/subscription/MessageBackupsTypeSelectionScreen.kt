@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.SpanStyle
@@ -49,10 +50,12 @@ import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.util.bytes
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
+import org.thoughtcrime.securesms.util.ByteUnit
 import java.math.BigDecimal
 import java.util.Currency
 
@@ -252,12 +255,15 @@ fun MessageBackupsTypeBlock(
   ) {
     Column {
       Text(
-        text = formatCostPerMonth(messageBackupsType.pricePerMonth),
+        text = getFormattedPricePerMonth(messageBackupsType),
         style = MaterialTheme.typography.titleSmall
       )
 
       Text(
-        text = messageBackupsType.title,
+        text = when (messageBackupsType) {
+          is MessageBackupsType.Free -> pluralStringResource(id = R.plurals.MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media, messageBackupsType.mediaRetentionDays, messageBackupsType.mediaRetentionDays)
+          is MessageBackupsType.Paid -> stringResource(id = R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media)
+        },
         style = MaterialTheme.typography.titleMedium
       )
 
@@ -273,7 +279,7 @@ fun MessageBackupsTypeBlock(
           .padding(top = 8.dp)
           .padding(horizontal = 16.dp)
       ) {
-        messageBackupsType.features.forEach {
+        getFeatures(messageBackupsType = messageBackupsType).forEach {
           MessageBackupsTypeFeatureRow(messageBackupsTypeFeature = it, iconTint = featureIconTint)
         }
       }
@@ -290,53 +296,73 @@ fun MessageBackupsTypeBlock(
 }
 
 @Composable
-private fun formatCostPerMonth(pricePerMonth: FiatMoney): String {
-  return if (pricePerMonth.amount == BigDecimal.ZERO) {
-    "Free"
-  } else {
-    "${FiatMoneyUtil.format(LocalContext.current.resources, pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())}/month"
+private fun getFormattedPricePerMonth(messageBackupsType: MessageBackupsType): String {
+  return when (messageBackupsType) {
+    is MessageBackupsType.Free -> stringResource(id = R.string.MessageBackupsTypeSelectionScreen__free)
+    is MessageBackupsType.Paid -> {
+      val formattedAmount = FiatMoneyUtil.format(LocalContext.current.resources, messageBackupsType.pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+      stringResource(id = R.string.MessageBackupsTypeSelectionScreen__s_month, formattedAmount)
+    }
+  }
+}
+
+@Composable
+private fun getFeatures(messageBackupsType: MessageBackupsType): List<MessageBackupsTypeFeature> {
+  return when (messageBackupsType) {
+    is MessageBackupsType.Free -> persistentListOf(
+      MessageBackupsTypeFeature(
+        iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+        label = stringResource(id = R.string.MessageBackupsTypeSelectionScreen__full_text_message_backup)
+      ),
+      MessageBackupsTypeFeature(
+        iconResourceId = R.drawable.symbol_album_compact_bold_16,
+        label = pluralStringResource(
+          id = R.plurals.MessageBackupsTypeSelectionScreen__last_d_days_of_media,
+          count = messageBackupsType.mediaRetentionDays,
+          messageBackupsType.mediaRetentionDays
+        )
+      )
+    )
+
+    is MessageBackupsType.Paid -> {
+      val photoCount = messageBackupsType.storageAllowanceBytes / ByteUnit.MEGABYTES.toBytes(2)
+      val photoCountThousands = photoCount / 1000
+      val (count, size) = messageBackupsType.storageAllowanceBytes.bytes.getLargestNonZeroValue()
+
+      persistentListOf(
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+          label = stringResource(id = R.string.MessageBackupsTypeSelectionScreen__full_text_message_backup)
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_album_compact_bold_16,
+          label = stringResource(id = R.string.MessageBackupsTypeSelectionScreen__full_media_backup)
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+          label = stringResource(
+            id = R.string.MessageBackupsTypeSelectionScreen__s_of_storage_s_photos,
+            "${count}${size.label}",
+            "~${photoCountThousands}K"
+          )
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_heart_compact_bold_16,
+          label = stringResource(id = R.string.MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal)
+        )
+      )
+    }
   }
 }
 
 fun testBackupTypes(): List<MessageBackupsType> {
   return listOf(
-    MessageBackupsType(
-      tier = MessageBackupTier.FREE,
-      pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance("USD")),
-      title = "Text + 30 days of media",
-      features = persistentListOf(
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = "Full text message backup"
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_album_compact_bold_16,
-          label = "Last 30 days of media"
-        )
-      )
+    MessageBackupsType.Free(
+      mediaRetentionDays = 30
     ),
-    MessageBackupsType(
-      tier = MessageBackupTier.PAID,
+    MessageBackupsType.Paid(
       pricePerMonth = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")),
-      title = "Text + All your media",
-      features = persistentListOf(
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = "Full text message backup"
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_album_compact_bold_16,
-          label = "Full media backup"
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = "1TB of storage (~250K photos)"
-        ),
-        MessageBackupsTypeFeature(
-          iconResourceId = R.drawable.symbol_heart_compact_bold_16,
-          label = "Thanks for supporting Signal!"
-        )
-      )
+      storageAllowanceBytes = 107374182400
     )
   )
 }

@@ -29,6 +29,12 @@ inline val Long.gibiBytes: ByteSize
 inline val Int.gibiBytes: ByteSize
   get() = (this * 1024).mebiBytes
 
+inline val Long.tebiBytes: ByteSize
+  get() = (this * 1024).gibiBytes
+
+inline val Int.tebiBytes: ByteSize
+  get() = (this * 1024).gibiBytes
+
 class ByteSize(val bytes: Long) {
   val inWholeBytes: Long
     get() = bytes
@@ -42,6 +48,9 @@ class ByteSize(val bytes: Long) {
   val inWholeGibiBytes: Long
     get() = inWholeMebiBytes / 1024
 
+  val inWholeTebiBytes: Long
+    get() = inWholeGibiBytes / 1024
+
   val inKibiBytes: Float
     get() = bytes / 1024f
 
@@ -50,4 +59,25 @@ class ByteSize(val bytes: Long) {
 
   val inGibiBytes: Float
     get() = inMebiBytes / 1024f
+
+  val inTebiBytes: Float
+    get() = inGibiBytes / 1024f
+
+  fun getLargestNonZeroValue(): Pair<Long, Size> {
+    return when {
+      inWholeTebiBytes > 0L -> inWholeTebiBytes to Size.TEBIBYTE
+      inWholeGibiBytes > 0L -> inWholeGibiBytes to Size.GIBIBYTE
+      inWholeMebiBytes > 0L -> inWholeMebiBytes to Size.MEBIBYTE
+      inWholeKibiBytes > 0L -> inWholeKibiBytes to Size.KIBIBYTE
+      else -> inWholeBytes to Size.BYTE
+    }
+  }
+
+  enum class Size(val label: String) {
+    BYTE("B"),
+    KIBIBYTE("KB"),
+    MEBIBYTE("MB"),
+    GIBIBYTE("GB"),
+    TEBIBYTE("TB")
+  }
 }
