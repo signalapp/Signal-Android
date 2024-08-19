@@ -308,6 +308,7 @@ import org.thoughtcrime.securesms.util.MessageConstraintsUtil.isValidEditMessage
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
+import org.thoughtcrime.securesms.util.ServiceOutageObserver
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -1020,8 +1021,11 @@ class ConversationFragment :
     val conversationBannerListener = ConversationBannerListener()
     binding.conversationBanner.listener = conversationBannerListener
     if (RemoteConfig.newBannerUi) {
+      val serviceOutageObserver = ServiceOutageObserver(requireContext())
+
       val bannerFlows = viewModel.getBannerFlows(
         context = requireContext(),
+        serviceOutageStatusFlow = serviceOutageObserver.flow,
         groupJoinClickListener = conversationBannerListener::reviewJoinRequestsAction,
         onAddMembers = {
           conversationGroupViewModel.groupRecordSnapshot?.let { groupRecord ->
@@ -1033,10 +1037,6 @@ class ConversationFragment :
       )
 
       binding.conversationBanner.collectAndShowBanners(bannerFlows)
-
-      if (TextSecurePreferences.getServiceOutage(context)) {
-        AppDependencies.jobManager.add(ServiceOutageDetectionJob())
-      }
     } else {
       viewModel
         .reminder

@@ -183,6 +183,7 @@ import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
+import org.thoughtcrime.securesms.util.ServiceOutageObserver;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
@@ -892,9 +893,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeBanners() {
+    final ServiceOutageObserver serviceOutageObserver = new ServiceOutageObserver(requireContext());
+
+    getLifecycle().addObserver(serviceOutageObserver);
+
     final List<Flow<? extends Banner>> bannerRepositories = List.of(OutdatedBuildBanner.createFlow(requireContext(), OutdatedBuildBanner.ExpiryStatus.EXPIRED_ONLY),
                                                                     UnauthorizedBanner.createFlow(requireContext()),
-                                                                    ServiceOutageBanner.createFlow(requireContext()),
+                                                                    ServiceOutageBanner.fromFlow(serviceOutageObserver.getFlow()),
                                                                     OutdatedBuildBanner.createFlow(requireContext(), OutdatedBuildBanner.ExpiryStatus.OUTDATED_ONLY),
                                                                     DozeBanner.createFlow(requireContext()),
                                                                     CdsTemporaryErrorBanner.createFlow(getChildFragmentManager()),

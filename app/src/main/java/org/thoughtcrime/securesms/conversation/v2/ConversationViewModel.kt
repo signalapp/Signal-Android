@@ -323,7 +323,7 @@ class ConversationViewModel(
   }
 
   @OptIn(ExperimentalCoroutinesApi::class)
-  fun getBannerFlows(context: Context, groupJoinClickListener: () -> Unit, onAddMembers: () -> Unit, onNoThanks: () -> Unit, bubbleClickListener: (Boolean) -> Unit): List<Flow<Banner>> {
+  fun getBannerFlows(context: Context, serviceOutageStatusFlow: Flow<Boolean>, groupJoinClickListener: () -> Unit, onAddMembers: () -> Unit, onNoThanks: () -> Unit, bubbleClickListener: (Boolean) -> Unit): List<Flow<Banner>> {
     val pendingGroupJoinFlow: Flow<PendingGroupJoinRequestsBanner> = merge(
       flow {
         emit(PendingGroupJoinRequestsBanner(false, 0, {}, {}))
@@ -341,7 +341,7 @@ class ConversationViewModel(
     return listOf(
       OutdatedBuildBanner.createFlow(context, OutdatedBuildBanner.ExpiryStatus.EXPIRED_ONLY),
       UnauthorizedBanner.createFlow(context),
-      ServiceOutageBanner.createFlow(context),
+      ServiceOutageBanner.fromFlow(serviceOutageStatusFlow),
       pendingGroupJoinFlow,
       groupV1SuggestionsFlow,
       BubbleOptOutBanner.createFlow(inBubble = repository.isInBubble, bubbleClickListener)

@@ -21,9 +21,9 @@ public class ServiceOutageDetectionJob extends BaseJob {
 
   private static final String TAG = Log.tag(ServiceOutageDetectionJob.class);
 
-  private static final String IP_SUCCESS = "127.0.0.1";
-  private static final String IP_FAILURE = "127.0.0.2";
-  private static final long   CHECK_TIME = 1000 * 60;
+  public static final String IP_SUCCESS = "127.0.0.1";
+  public static final String IP_FAILURE = "127.0.0.2";
+  public static final long   CHECK_TIME = 1000 * 60;
 
   public ServiceOutageDetectionJob() {
     this(new Job.Parameters.Builder()
