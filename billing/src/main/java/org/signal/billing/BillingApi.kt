@@ -5,16 +5,24 @@
 
 package org.signal.billing
 
+import android.app.Activity
 import android.content.Context
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClient.BillingResponseCode
+import com.android.billingclient.api.BillingClient.ProductType
 import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingFlowParams
+import com.android.billingclient.api.BillingFlowParams.ProductDetailsParams
 import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.PendingPurchasesParams
+import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.ProductDetailsResult
+import com.android.billingclient.api.PurchasesResult
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
+import com.android.billingclient.api.QueryPurchasesParams
 import com.android.billingclient.api.queryProductDetails
+import com.android.billingclient.api.queryPurchasesAsync
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,7 +46,8 @@ import org.signal.core.util.logging.Log
  * Care should be taken here to ensure only one instance of this exists at a time.
  */
 class BillingApi private constructor(
-  context: Context
+  context: Context,
+  onPurchaseUpdateListener: PurchasesUpdatedListener
 ) {
   companion object {
     private val TAG = Log.tag(BillingApi::class)
@@ -46,8 +55,8 @@ class BillingApi private constructor(
     private var instance: BillingApi? = null
 
     @Synchronized
-    fun getOrCreate(context: Context): BillingApi {
-      return instance ?: BillingApi(context).let {
+    fun getOrCreate(context: Context, onPurchaseUpdateListener: PurchasesUpdatedListener): BillingApi {
+      return instance ?: BillingApi(context, onPurchaseUpdateListener).let {
         instance = it
         it
       }
@@ -57,13 +66,8 @@ class BillingApi private constructor(
   private val connectionState = MutableStateFlow<State>(State.Init)
   private val coroutineScope = CoroutineScope(Dispatchers.Default)
 
-  private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
-    Log.d(TAG, "purchasesUpdatedListener: ${billingResult.responseCode}")
-    Log.d(TAG, "purchasesUpdatedListener: Detected ${purchases?.size ?: 0} purchases.")
-  }
-
   private val billingClient: BillingClient = BillingClient.newBuilder(context)
-    .setListener(purchasesUpdatedListener)
+    .setListener(onPurchaseUpdateListener)
     .enablePendingPurchases(
       PendingPurchasesParams.newBuilder()
         .enableOneTimeProducts()
@@ -88,7 +92,7 @@ class BillingApi private constructor(
     val productList = listOf(
       QueryProductDetailsParams.Product.newBuilder()
         .setProductId("") // TODO [message-backups] where does the product id come from?
-        .setProductType(BillingClient.ProductType.SUBS)
+        .setProductType(ProductType.SUBS)
         .build()
     )
 
@@ -99,6 +103,52 @@ class BillingApi private constructor(
     return withContext(Dispatchers.IO) {
       doOnConnectionReady {
         billingClient.queryProductDetails(params)
+      }
+    }
+  }
+
+  suspend fun queryPurchases(): PurchasesResult {
+    val param = QueryPurchasesParams.newBuilder()
+      .setProductType(ProductType.SUBS)
+      .build()
+
+    return doOnConnectionReady {
+      billingClient.queryPurchasesAsync(param)
+    }
+  }
+
+  /**
+   * Launches the Google Play billing flow.
+   * Returns a billing result if we launched the flow, null otherwise.
+   */
+  suspend fun launchBillingFlow(activity: Activity): BillingResult? {
+    val productDetails = queryProducts().productDetailsList
+    if (productDetails.isNullOrEmpty()) {
+      Log.w(TAG, "No products are available! Cancelling billing flow launch.")
+      return null
+    }
+
+    val subscriptionDetails: ProductDetails = productDetails[0]
+    val offerToken = subscriptionDetails.subscriptionOfferDetails?.firstOrNull()
+    if (offerToken == null) {
+      Log.w(TAG, "No offer tokens available on subscription product! Cancelling billing flow launch.")
+      return null
+    }
+
+    val productDetailParamsList = listOf(
+      ProductDetailsParams.newBuilder()
+        .setProductDetails(subscriptionDetails)
+        .setOfferToken(offerToken.offerToken)
+        .build()
+    )
+
+    val billingFlowParams = BillingFlowParams.newBuilder()
+      .setProductDetailsParamsList(productDetailParamsList)
+      .build()
+
+    return doOnConnectionReady {
+      withContext(Dispatchers.Main) {
+        billingClient.launchBillingFlow(activity, billingFlowParams)
       }
     }
   }

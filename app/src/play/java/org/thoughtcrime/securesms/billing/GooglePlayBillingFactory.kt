@@ -1,7 +1,10 @@
 package org.thoughtcrime.securesms.billing
 
+import android.app.Activity
 import android.content.Context
+import com.android.billingclient.api.BillingClient.BillingResponseCode
 import com.android.billingclient.api.ProductDetailsResult
+import com.android.billingclient.api.PurchasesUpdatedListener
 import org.signal.billing.BillingApi
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -29,7 +32,25 @@ private class GooglePlayBillingApiImpl(context: Context) : GooglePlayBillingApi 
     val TAG = Log.tag(GooglePlayBillingApiImpl::class)
   }
 
-  private val billingApi: BillingApi = BillingApi.getOrCreate(context)
+  private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
+    when {
+      billingResult.responseCode == BillingResponseCode.OK && purchases != null -> {
+        Log.d(TAG, "purchasesUpdatedListener: ${purchases.size} purchases.")
+        purchases.forEach {
+          // Handle purchases.
+        }
+      }
+      billingResult.responseCode == BillingResponseCode.USER_CANCELED -> {
+        // Handle user cancelled
+        Log.d(TAG, "purchasesUpdatedListener: User cancelled.")
+      }
+      else -> {
+        Log.d(TAG, "purchasesUpdatedListener: No purchases.")
+      }
+    }
+  }
+
+  private val billingApi: BillingApi = BillingApi.getOrCreate(context, purchasesUpdatedListener)
 
   override fun isApiAvailable(): Boolean = billingApi.areSubscriptionsSupported()
 
@@ -37,5 +58,16 @@ private class GooglePlayBillingApiImpl(context: Context) : GooglePlayBillingApi 
     val products: ProductDetailsResult = billingApi.queryProducts()
 
     Log.d(TAG, "queryProducts: ${products.billingResult.responseCode}, ${products.billingResult.debugMessage}")
+  }
+
+  override suspend fun queryPurchases() {
+    Log.d(TAG, "queryPurchases")
+
+    val purchaseResult = billingApi.queryPurchases()
+    purchasesUpdatedListener.onPurchasesUpdated(purchaseResult.billingResult, purchaseResult.purchasesList)
+  }
+
+  override suspend fun launchBillingFlow(activity: Activity) {
+    billingApi.launchBillingFlow(activity)
   }
 }
