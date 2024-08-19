@@ -50,13 +50,13 @@ public class CallParticipantsLayout extends FlexboxLayout {
     super(context, attrs, defStyleAttr);
   }
 
-  void update(@NonNull List<CallParticipant> callParticipants,
-              @NonNull CallParticipant focusedParticipant,
-              boolean shouldRenderInPip,
-              boolean isPortrait,
-              boolean hideAvatar,
-              int navBarBottomInset,
-              @NonNull LayoutStrategy layoutStrategy)
+  public void update(@NonNull List<CallParticipant> callParticipants,
+                     @NonNull CallParticipant focusedParticipant,
+                     boolean shouldRenderInPip,
+                     boolean isPortrait,
+                     boolean hideAvatar,
+                     int navBarBottomInset,
+                     @NonNull LayoutStrategy layoutStrategy)
   {
     this.callParticipants   = callParticipants;
     this.focusedParticipant = focusedParticipant;

@@ -2100,6 +2100,16 @@
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
 
+    <!-- CallScreenTopBar -->
+    <!-- Content description for navigation icon -->
+    <string name="CallScreenTopBar__go_back">Go back</string>
+    <!-- Content description for info icon -->
+    <string name="CallScreenTopBar__call_information">Call information</string>
+
+    <!-- CallScreenPreJoinOverlay -->
+    <!-- Displayed when users camera is disabled -->
+    <string name="CallScreenPreJoinOverlay__your_camera_is_off">Your camera is off</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tap here to turn on your video</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">To call %1$s, Signal needs access to your camera</string>
@@ -2249,6 +2259,8 @@
     <string name="WebRtcCallView__additional_actions">Additional actions</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">End call</string>
+    <!-- Content description for toggling group ring state -->
+    <string name="WebRtcCallView__toggle_group_ringing">Toggle group ringing</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">A UI error occurred. Please report this error to the developers.</string>

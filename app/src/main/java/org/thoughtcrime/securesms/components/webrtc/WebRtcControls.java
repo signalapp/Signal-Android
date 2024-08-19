@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.StringRes;
+import androidx.annotation.VisibleForTesting;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
@@ -61,7 +62,8 @@ public final class WebRtcControls {
          false);
   }
 
-  WebRtcControls(boolean isLocalVideoEnabled,
+  @VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
+  public WebRtcControls(boolean isLocalVideoEnabled,
                  boolean isRemoteVideoEnabled,
                  boolean isMoreThanOneCameraAvailable,
                  boolean isInPipMode,

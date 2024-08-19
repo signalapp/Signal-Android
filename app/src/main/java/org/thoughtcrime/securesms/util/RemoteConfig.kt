@@ -1111,5 +1111,13 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  @JvmStatic
+  @get:JvmName("useNewCallApi")
+  val newCallUi: Boolean by remoteBoolean(
+    key = "android.newCallUi",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
   // endregion
 }
