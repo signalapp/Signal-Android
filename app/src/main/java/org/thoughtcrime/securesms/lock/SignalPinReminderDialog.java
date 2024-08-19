@@ -66,7 +66,7 @@ public final class SignalPinReminderDialog {
 
     EditText pinEditText = (EditText) DialogCompat.requireViewById(dialog, R.id.pin);
     TextView pinStatus   = (TextView) DialogCompat.requireViewById(dialog, R.id.pin_status);
-    TextView reminder    = (TextView) DialogCompat.requireViewById(dialog, R.id.reminder);
+    TextView reminder    = (TextView) DialogCompat.requireViewById(dialog, R.id.kbs_reminder_body);
     View     skip        = DialogCompat.requireViewById(dialog, R.id.skip);
     View     submit      = DialogCompat.requireViewById(dialog, R.id.submit);
 

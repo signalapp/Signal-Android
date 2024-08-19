@@ -49,7 +49,7 @@
     </TextView>
 
     <TextView
-        android:id="@+id/reminder"
+        android:id="@+id/kbs_reminder_body"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:lineSpacingMultiplier="1.3"
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/KbsReminderDialog__submit"
-        app:layout_constraintTop_toBottomOf="@id/reminder"
+        app:layout_constraintTop_toBottomOf="@id/kbs_reminder_body"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

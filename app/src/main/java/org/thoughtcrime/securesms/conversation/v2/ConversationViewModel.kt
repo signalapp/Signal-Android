@@ -36,7 +36,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.rx3.asFlow
-import org.signal.core.util.concurrent.subscribeWithSubject
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.banner.Banner
@@ -46,7 +45,6 @@ import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner
 import org.thoughtcrime.securesms.banner.banners.PendingGroupJoinRequestsBanner
 import org.thoughtcrime.securesms.banner.banners.ServiceOutageBanner
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
-import org.thoughtcrime.securesms.components.reminder.Reminder
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
@@ -87,7 +85,6 @@ import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.whispersystems.signalservice.api.push.ServiceId
-import java.util.Optional
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
 
@@ -96,7 +93,7 @@ import kotlin.time.Duration
  */
 class ConversationViewModel(
   val threadId: Long,
-  private val requestedStartingPosition: Int,
+  requestedStartingPosition: Int,
   initialChatColors: ChatColors,
   private val repository: ConversationRepository,
   recipientRepository: ConversationRecipientRepository,
@@ -166,9 +163,6 @@ class ConversationViewModel(
     get() = hasMessageRequestStateSubject.value?.state != MessageRequestState.State.NONE
   val messageRequestState: MessageRequestState
     get() = hasMessageRequestStateSubject.value ?: MessageRequestState()
-
-  private val refreshReminder: Subject<Unit> = PublishSubject.create()
-  val reminder: Observable<Optional<Reminder>>
 
   private val groupRecordFlow: Flow<GroupRecord>
 
@@ -286,13 +280,6 @@ class ConversationViewModel(
     }
     inputReadyState = _inputReadyState.observeOn(AndroidSchedulers.mainThread())
 
-    recipientRepository.conversationRecipient.map { Unit }.subscribeWithSubject(refreshReminder, disposables)
-
-    reminder = Observable.combineLatest(refreshReminder.startWithItem(Unit), recipientRepository.groupRecord) { _, groupRecord -> groupRecord }
-      .subscribeOn(Schedulers.io())
-      .flatMapMaybe { groupRecord -> repository.getReminder(groupRecord.orNull()) }
-      .observeOn(AndroidSchedulers.mainThread())
-
     groupRecordFlow = recipientRepository.groupRecord
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
@@ -354,10 +341,6 @@ class ConversationViewModel(
 
   fun setSearchQuery(query: String?) {
     _searchQuery.onNext(query ?: "")
-  }
-
-  fun refreshReminder() {
-    refreshReminder.onNext(Unit)
   }
 
   fun onDismissReview() {

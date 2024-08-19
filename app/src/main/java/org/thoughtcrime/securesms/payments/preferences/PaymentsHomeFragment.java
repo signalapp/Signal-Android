@@ -30,8 +30,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.banner.Banner;
 import org.thoughtcrime.securesms.banner.BannerManager;
 import org.thoughtcrime.securesms.banner.banners.EnclaveFailureBanner;
-import org.thoughtcrime.securesms.components.reminder.EnclaveFailureReminder;
-import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.help.HelpFragment;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -107,7 +105,6 @@ public class PaymentsHomeFragment extends LoggingFragment {
     View                sendMoney        = view.findViewById(R.id.button_end_frame);
     View                refresh          = view.findViewById(R.id.payments_home_fragment_header_refresh);
     LottieAnimationView refreshAnimation = view.findViewById(R.id.payments_home_fragment_header_refresh_animation);
-    Stub<ReminderView>  reminderView     = ViewUtil.findStubById(view, R.id.reminder);
     Stub<ComposeView>   bannerView       = ViewUtil.findStubById(view, R.id.banner_compose_view);
 
     toolbar.setNavigationOnClickListener(v -> {
@@ -264,33 +261,15 @@ public class PaymentsHomeFragment extends LoggingFragment {
       }
     });
 
-    if (RemoteConfig.newBannerUi()) {
-      viewModel.getEnclaveFailure().observe(getViewLifecycleOwner(), failure -> {
-        if (failure) {
-          showUpdateIsRequiredDialog();
-        }
-      });
-      final Flow<Boolean>                enclaveFailureFlow = FlowLiveDataConversions.asFlow(viewModel.getEnclaveFailure());
-      final List<Flow<? extends Banner>> bannerRepositories = List.of(EnclaveFailureBanner.Companion.mapBooleanFlowToBannerFlow(enclaveFailureFlow, requireContext()));
-      final BannerManager      bannerManager      = new BannerManager(bannerRepositories);
-      bannerManager.setContent(bannerView.get());
-    } else {
-      viewModel.getEnclaveFailure().observe(getViewLifecycleOwner(), failure -> {
-        if (failure) {
-          showUpdateIsRequiredDialog();
-          reminderView.get().showReminder(new EnclaveFailureReminder(requireContext()));
-          reminderView.get().setOnActionClickListener(actionId -> {
-            if (actionId == R.id.reminder_action_update_now) {
-              PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
-            } else if (actionId == R.id.reminder_action_re_register) {
-              startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()));
-            }
-          });
-        } else {
-          reminderView.get().requestDismiss();
-        }
-      });
-    }
+    viewModel.getEnclaveFailure().observe(getViewLifecycleOwner(), failure -> {
+      if (failure) {
+        showUpdateIsRequiredDialog();
+      }
+    });
+    final Flow<Boolean>                enclaveFailureFlow = FlowLiveDataConversions.asFlow(viewModel.getEnclaveFailure());
+    final List<Flow<? extends Banner>> bannerRepositories = List.of(EnclaveFailureBanner.Companion.mapBooleanFlowToBannerFlow(enclaveFailureFlow, requireContext()));
+    final BannerManager      bannerManager      = new BannerManager(bannerRepositories);
+    bannerManager.setContent(bannerView.get());
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressed());
   }
 

@@ -210,7 +210,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent
-import org.thoughtcrime.securesms.events.ReminderUpdateEvent
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
@@ -228,7 +227,6 @@ import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBotto
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
-import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
@@ -1020,35 +1018,25 @@ class ConversationFragment :
 
     val conversationBannerListener = ConversationBannerListener()
     binding.conversationBanner.listener = conversationBannerListener
-    if (RemoteConfig.newBannerUi) {
-      val serviceOutageObserver = ServiceOutageObserver(requireContext())
 
-      val bannerFlows = viewModel.getBannerFlows(
-        context = requireContext(),
-        serviceOutageStatusFlow = serviceOutageObserver.flow,
-        groupJoinClickListener = conversationBannerListener::reviewJoinRequestsAction,
-        onAddMembers = {
-          conversationGroupViewModel.groupRecordSnapshot?.let { groupRecord ->
-            GroupsV1MigrationSuggestionsDialog.show(requireActivity(), groupRecord.id.requireV2(), groupRecord.gv1MigrationSuggestions)
-          }
-        },
-        onNoThanks = conversationGroupViewModel::onSuggestedMembersBannerDismissed,
-        bubbleClickListener = conversationBannerListener::changeBubbleSettingAction
-      )
+    val serviceOutageObserver = ServiceOutageObserver(requireContext())
 
-      binding.conversationBanner.collectAndShowBanners(bannerFlows)
-    } else {
-      viewModel
-        .reminder
-        .subscribeBy { reminder ->
-          if (reminder.isPresent) {
-            binding.conversationBanner.showReminder(reminder.get())
-          } else {
-            binding.conversationBanner.clearReminder()
-          }
+    lifecycle.addObserver(serviceOutageObserver)
+
+    val bannerFlows = viewModel.getBannerFlows(
+      context = requireContext(),
+      serviceOutageStatusFlow = serviceOutageObserver.flow,
+      groupJoinClickListener = conversationBannerListener::reviewJoinRequestsAction,
+      onAddMembers = {
+        conversationGroupViewModel.groupRecordSnapshot?.let { groupRecord ->
+          GroupsV1MigrationSuggestionsDialog.show(requireActivity(), groupRecord.id.requireV2(), groupRecord.gv1MigrationSuggestions)
         }
-        .addTo(disposables)
-    }
+      },
+      onNoThanks = conversationGroupViewModel::onSuggestedMembersBannerDismissed,
+      bubbleClickListener = conversationBannerListener::changeBubbleSettingAction
+    )
+
+    binding.conversationBanner.collectAndShowBanners(bannerFlows)
 
     viewModel
       .identityRecordsObservable
@@ -4285,11 +4273,6 @@ class ConversationFragment :
   @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
   fun onGroupCallPeekEvent(groupCallPeekEvent: GroupCallPeekEvent) {
     groupCallViewModel.onGroupCallPeekEvent(groupCallPeekEvent)
-  }
-
-  @Subscribe(threadMode = ThreadMode.MAIN)
-  fun onReminderUpdateEvent(reminderUpdateEvent: ReminderUpdateEvent) {
-    viewModel.refreshReminder()
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
