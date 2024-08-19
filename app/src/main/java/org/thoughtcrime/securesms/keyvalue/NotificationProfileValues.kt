@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.keyvalue
 
-import androidx.annotation.VisibleForTesting
-
 /**
  * Values for managing enable/disable state and corresponding alerts for Notification Profiles.
  */
@@ -12,14 +10,9 @@ class NotificationProfileValues(store: KeyValueStore) : SignalStoreValues(store)
     private const val KEY_LAST_PROFILE_POPUP_TIME = "np.last_profile_popup_time"
     private const val KEY_SEEN_TOOLTIP = "np.seen_tooltip"
 
-    @VisibleForTesting
-    const val KEY_MANUALLY_ENABLED_PROFILE = "np.manually_enabled_profile"
-
-    @VisibleForTesting
-    const val KEY_MANUALLY_ENABLED_UNTIL = "np.manually_enabled_until"
-
-    @VisibleForTesting
-    const val KEY_MANUALLY_DISABLED_AT = "np.manually_disabled_at"
+    private const val KEY_MANUALLY_ENABLED_PROFILE = "np.manually_enabled_profile"
+    private const val KEY_MANUALLY_ENABLED_UNTIL = "np.manually_enabled_until"
+    private const val KEY_MANUALLY_DISABLED_AT = "np.manually_disabled_at"
   }
 
   public override fun onFirstEverAppLaunch() = Unit

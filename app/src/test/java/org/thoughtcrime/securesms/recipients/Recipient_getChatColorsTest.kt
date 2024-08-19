@@ -3,6 +3,9 @@ package org.thoughtcrime.securesms.recipients
 import android.graphics.Color
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkAll
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -26,17 +29,21 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
 
   @Before
   fun setUp() {
-    wallpaperValues = mockk<WallpaperValues>()
-    chatColorsValues = mockk<ChatColorsValues>()
+    wallpaperValues = mockk()
+    chatColorsValues = mockk()
 
     val globalWallpaper = createWallpaper(globalWallpaperChatColor)
     every { wallpaperValues.wallpaper } answers { globalWallpaper }
     every { chatColorsValues.chatColors } answers { globalChatColor }
 
-    val mockStore = mockk<SignalStore>()
-    SignalStore.testInject(mockStore)
+    mockkObject(SignalStore)
     every { SignalStore.wallpaper } returns wallpaperValues
     every { SignalStore.chatColors } returns chatColorsValues
+  }
+
+  @After
+  fun tearDown() {
+    unmockkAll()
   }
 
   @Test

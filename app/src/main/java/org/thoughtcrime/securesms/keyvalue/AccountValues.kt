@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import androidx.annotation.VisibleForTesting
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKey
@@ -73,17 +72,10 @@ class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValu
     private const val KEY_USERNAME_SYNC_STATE = "phoneNumberPrivacy.usernameSyncState"
     private const val KEY_USERNAME_SYNC_ERROR_COUNT = "phoneNumberPrivacy.usernameErrorCount"
 
-    @VisibleForTesting
-    const val KEY_E164 = "account.e164"
-
-    @VisibleForTesting
-    const val KEY_ACI = "account.aci"
-
-    @VisibleForTesting
-    const val KEY_PNI = "account.pni"
-
-    @VisibleForTesting
-    const val KEY_IS_REGISTERED = "account.is_registered"
+    private const val KEY_E164 = "account.e164"
+    private const val KEY_ACI = "account.aci"
+    private const val KEY_PNI = "account.pni"
+    private const val KEY_IS_REGISTERED = "account.is_registered"
   }
 
   init {

@@ -9,24 +9,15 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
-import org.thoughtcrime.securesms.database.CallLinkTable;
 import org.thoughtcrime.securesms.database.DistributionListTables;
 import org.thoughtcrime.securesms.database.GroupTable;
-import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.DistributionListRecord;
-import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicReference;
@@ -198,60 +189,9 @@ public final class LiveRecipient {
   }
 
   private @NonNull Recipient fetchAndCacheRecipientFromDisk(@NonNull RecipientId id) {
-    RecipientRecord record = recipientTable.getRecord(id);
-
-    Recipient recipient;
-    if (record.getGroupId() != null) {
-      recipient = getGroupRecipientDetails(record);
-    } else if (record.getDistributionListId() != null) {
-      recipient = getDistributionListRecipientDetails(record);
-    } else if (record.getCallLinkRoomId() != null) {
-      recipient = getCallLinkRecipientDetails(record);
-    } else {
-      recipient = RecipientCreator.forIndividual(context, record);
-    }
-
+    Recipient recipient = RecipientCreator.forRecord(context, recipientTable.getRecord(id));
     RecipientIdCache.INSTANCE.put(recipient);
     return recipient;
-  }
-
-  @WorkerThread
-  private @NonNull Recipient getGroupRecipientDetails(@NonNull RecipientRecord record) {
-    Optional<GroupRecord> groupRecord = groupDatabase.getGroup(record.getId());
-
-    if (groupRecord.isPresent()) {
-      return RecipientCreator.forGroup(groupRecord.get(), record);
-    } else {
-      return RecipientCreator.forUnknownGroup(record.getId(), record.getGroupId());
-    }
-  }
-
-  @WorkerThread
-  private @NonNull Recipient getDistributionListRecipientDetails(@NonNull RecipientRecord record) {
-    DistributionListRecord groupRecord = distributionListTables.getList(Objects.requireNonNull(record.getDistributionListId()));
-
-    // TODO [stories] We'll have to see what the perf is like for very large distribution lists. We may not be able to support fetching all the members.
-    if (groupRecord != null) {
-      String            title    = groupRecord.isUnknown() ? null : groupRecord.getName();
-      List<RecipientId> members  = Stream.of(groupRecord.getMembers()).filterNot(RecipientId::isUnknown).toList();
-
-      return RecipientCreator.forDistributionList(title, members, record);
-    }
-
-    return RecipientCreator.forDistributionList(null, null, record);
-  }
-
-  @WorkerThread
-  private @NonNull Recipient getCallLinkRecipientDetails(@NonNull RecipientRecord record) {
-    CallLinkTable.CallLink callLink = SignalDatabase.callLinks().getCallLinkByRoomId(Objects.requireNonNull(record.getCallLinkRoomId()));
-
-    if (callLink != null) {
-      String name = callLink.getState().getName();
-
-      return RecipientCreator.forCallLink(name, record, callLink.getAvatarColor());
-    }
-
-    return RecipientCreator.forCallLink(null, record, AvatarColor.UNKNOWN);
   }
 
   synchronized void set(@NonNull Recipient recipient) {

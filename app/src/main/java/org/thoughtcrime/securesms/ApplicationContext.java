@@ -153,6 +153,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                                                   DatabaseSecretProvider.getOrCreateDatabaseSecret(this),
                                                   AttachmentSecretProvider.getInstance(this).getOrCreateAttachmentSecret());
                             })
+                            .addBlocking("signal-store", () -> SignalStore.init(this))
                             .addBlocking("logging", () -> {
                               initializeLogging();
                               Log.i(TAG, "onCreate()");

@@ -2,50 +2,34 @@ package org.thoughtcrime.securesms.components.emoji
 
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
+import io.mockk.every
+import io.mockk.mockkObject
 import org.junit.Assert
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers
-import org.mockito.Mock
-import org.mockito.MockedStatic
-import org.mockito.Mockito
-import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoRule
 import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.emoji.EmojiSource.Companion.refresh
-import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet
-import org.thoughtcrime.securesms.keyvalue.KeyValueStore
-import org.thoughtcrime.securesms.keyvalue.MockKeyValuePersistentStorage
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
+import org.thoughtcrime.securesms.emoji.EmojiSource
 
 @RunWith(ParameterizedRobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class EmojiUtilTest_isEmoji(private val input: String?, private val output: Boolean) {
-  @Rule
-  @JvmField
-  val rule: MockitoRule = MockitoJUnit.rule()
-
-  @Mock
-  private val applicationDependenciesMockedStatic: MockedStatic<AppDependencies>? = null
-
-  @Mock
-  private val attachmentSecretProviderMockedStatic: MockedStatic<AttachmentSecretProvider>? = null
 
   @Throws(Exception::class)
   @Test
   fun isEmoji() {
-    val application = ApplicationProvider.getApplicationContext<Application>()
+    if (!AppDependencies.isInitialized) {
+      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
+    }
 
-    Mockito.`when`(AppDependencies.application).thenReturn(application)
-    Mockito.`when`(AttachmentSecretProvider.getInstance(ArgumentMatchers.any())).thenThrow(RuntimeException::class.java)
-    SignalStore.testInject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(KeyValueDataSet())))
-    refresh()
+    val source = EmojiSource.loadAssetBasedEmojis()
 
-    Assert.assertEquals(output, EmojiUtil.isEmoji(input))
+    mockkObject(EmojiSource) {
+      every { EmojiSource.latest } returns source
+      Assert.assertEquals(output, EmojiUtil.isEmoji(input))
+    }
   }
 
   companion object {

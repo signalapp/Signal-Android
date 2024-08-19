@@ -188,7 +188,7 @@ object BackupRepository {
       }
 
       val db = KeyValueDatabase.createWithName(context, "$baseName.db")
-      SignalStore(KeyValueStore(db))
+      SignalStore(context, KeyValueStore(db))
     }
   }
 

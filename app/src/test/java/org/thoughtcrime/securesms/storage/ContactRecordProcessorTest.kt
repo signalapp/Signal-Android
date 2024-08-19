@@ -2,35 +2,26 @@ package org.thoughtcrime.securesms.storage
 
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.BeforeClass
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.MockedStatic
-import org.mockito.Mockito
-import org.mockito.Mockito.mock
-import org.mockito.internal.configuration.plugins.Plugins
-import org.mockito.internal.junit.JUnitRule
-import org.mockito.junit.MockitoRule
-import org.mockito.quality.Strictness
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
-import org.thoughtcrime.securesms.keyvalue.AccountValues
-import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet
-import org.thoughtcrime.securesms.keyvalue.KeyValueStore
-import org.thoughtcrime.securesms.keyvalue.MockKeyValuePersistentStorage
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.EmptyLogger
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
@@ -42,24 +33,23 @@ import java.util.UUID
 @Config(application = Application::class)
 class ContactRecordProcessorTest {
 
-  @Rule
-  @JvmField
-  val mockitoRule: MockitoRule = JUnitRule(Plugins.getMockitoLogger(), Strictness.STRICT_STUBS)
-
-  @Mock
   lateinit var recipientTable: RecipientTable
-
-  @Mock
-  lateinit var remoteConfig: MockedStatic<RemoteConfig>
 
   @Before
   fun setup() {
-    val mockAccountValues = mock(AccountValues::class.java)
-    Mockito.lenient().`when`(mockAccountValues.isPrimaryDevice).thenReturn(true)
     if (!AppDependencies.isInitialized) {
       AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
     }
-    SignalStore.testInject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(KeyValueDataSet())))
+
+    mockkObject(SignalStore)
+    every { SignalStore.account.isPrimaryDevice } returns true
+
+    recipientTable = mockk(relaxed = true)
+  }
+
+  @After
+  fun tearDown() {
+    unmockkObject(SignalStore)
   }
 
   @Test

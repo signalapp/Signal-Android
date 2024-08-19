@@ -2,13 +2,14 @@ package org.thoughtcrime.securesms.groups.v2.processing
 
 import android.annotation.SuppressLint
 import android.app.Application
+import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.justRun
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.mockkStatic
 import io.mockk.spyk
-import io.mockk.unmockkObject
+import io.mockk.unmockkAll
 import io.mockk.unmockkStatic
 import io.mockk.verify
 import org.hamcrest.MatcherAssert.assertThat
@@ -16,7 +17,6 @@ import org.hamcrest.Matchers.hasItem
 import org.hamcrest.Matchers.`is`
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -32,7 +32,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.signal.storageservice.protos.groups.local.DecryptedMember
 import org.signal.storageservice.protos.groups.local.DecryptedString
 import org.signal.storageservice.protos.groups.local.DecryptedTimer
-import org.thoughtcrime.securesms.SignalStoreRule
 import org.thoughtcrime.securesms.database.GroupStateTestData
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
@@ -46,6 +45,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.requestingMember
 import org.thoughtcrime.securesms.database.setNewDescription
 import org.thoughtcrime.securesms.database.setNewTitle
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization
@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor.Pr
 import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
@@ -100,11 +101,15 @@ class GroupsV2StateProcessorTest {
 
   private lateinit var processor: GroupsV2StateProcessor
 
-  @get:Rule
-  val signalStore: SignalStoreRule = SignalStoreRule()
-
   @Before
   fun setUp() {
+    if (!AppDependencies.isInitialized) {
+      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
+    }
+
+    mockkObject(SignalStore)
+    every { SignalStore.internal.gv2IgnoreP2PChanges() } returns false
+
     Log.initialize(SystemOutLogger())
     SignalProtocolLoggerProvider.setProvider(CustomSignalProtocolLogger())
 
@@ -138,11 +143,7 @@ class GroupsV2StateProcessorTest {
 
   @After
   fun tearDown() {
-    unmockkStatic(AppDependencies::class)
-    unmockkObject(SignalDatabase)
-    unmockkObject(ProfileAndMessageHelper)
-    unmockkStatic(DecryptedGroupUtil::class)
-    unmockkStatic(Recipient::class)
+    unmockkAll()
   }
 
   private fun given(init: GroupStateTestData.() -> Unit) {

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.emoji
 
 import android.net.Uri
+import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import org.thoughtcrime.securesms.components.emoji.Emoji
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
@@ -122,7 +123,8 @@ class EmojiSource(
       }
     }
 
-    private fun loadAssetBasedEmojis(): EmojiSource {
+    @VisibleForTesting
+    fun loadAssetBasedEmojis(): EmojiSource {
       val emojiData: InputStream = AppDependencies.application.assets.open("emoji/emoji_data.json")
 
       emojiData.use {
