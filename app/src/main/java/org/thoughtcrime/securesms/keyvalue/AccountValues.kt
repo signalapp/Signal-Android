@@ -30,7 +30,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.security.SecureRandom
 
-class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class AccountValues internal constructor(store: KeyValueStore, context: Context) : SignalStoreValues(store) {
 
   companion object {
     private val TAG = Log.tag(AccountValues::class.java)
@@ -80,11 +80,11 @@ class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValu
 
   init {
     if (!store.containsKey(KEY_ACI)) {
-      migrateFromSharedPrefsV1(AppDependencies.application)
+      migrateFromSharedPrefsV1(context)
     }
 
     if (!store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)) {
-      migrateFromSharedPrefsV2(AppDependencies.application)
+      migrateFromSharedPrefsV2(context)
     }
 
     store.getString(KEY_PNI, null)?.let { pni ->

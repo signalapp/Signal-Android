@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.KeyValueDatabase
  */
 class SignalStore(context: Application, private val store: KeyValueStore) {
 
-  val accountValues = AccountValues(store)
+  val accountValues = AccountValues(store, context)
   val svrValues = SvrValues(store)
   val registrationValues = RegistrationValues(store)
   val pinValues = PinValues(store)
@@ -21,7 +21,7 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
   val miscValues = MiscellaneousValues(store)
   val internalValues = InternalValues(store)
   val emojiValues = EmojiValues(store)
-  val settingsValues = SettingsValues(store)
+  val settingsValues = SettingsValues(store, context)
   val certificateValues = CertificateValues(store)
   val phoneNumberPrivacyValues = PhoneNumberPrivacyValues(store)
   val onboardingValues = OnboardingValues(store)
