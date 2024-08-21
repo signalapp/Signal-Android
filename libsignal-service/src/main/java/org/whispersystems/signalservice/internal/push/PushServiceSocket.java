@@ -447,30 +447,36 @@ public class PushServiceSocket {
       gcmRegistrationId = new GcmRegistrationId(fcmToken, true);
     }
 
-    final SignedPreKeyEntity aciSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(aciPreKeys.getSignedPreKey()).getId(),
-                                                                      aciPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
-                                                                      aciPreKeys.getSignedPreKey().getSignature());
-    final SignedPreKeyEntity pniSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(pniPreKeys.getSignedPreKey()).getId(),
-                                                                      pniPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
-                                                                      pniPreKeys.getSignedPreKey().getSignature());
-    final KyberPreKeyEntity aciLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(aciPreKeys.getLastResortKyberPreKey()).getId(),
-                                                                             aciPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
-                                                                             aciPreKeys.getLastResortKyberPreKey().getSignature());
-    final KyberPreKeyEntity pniLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(pniPreKeys.getLastResortKyberPreKey()).getId(),
-                                                                             pniPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
-                                                                             pniPreKeys.getLastResortKyberPreKey().getSignature());
-    RegistrationSessionRequestBody body = new RegistrationSessionRequestBody(sessionId,
-                                                                             recoveryPassword,
-                                                                             attributes,
-                                                                             Base64.encodeWithoutPadding(aciPreKeys.getIdentityKey().serialize()),
-                                                                             Base64.encodeWithoutPadding(pniPreKeys.getIdentityKey().serialize()),
-                                                                             aciSignedPreKey,
-                                                                             pniSignedPreKey,
-                                                                             aciLastResortKyberPreKey,
-                                                                             pniLastResortKyberPreKey,
-                                                                             gcmRegistrationId,
-                                                                             skipDeviceTransfer,
-                                                                             true);
+    RegistrationSessionRequestBody body;
+    try {
+      final SignedPreKeyEntity aciSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(aciPreKeys.getSignedPreKey()).getId(),
+                                                                        aciPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
+                                                                        aciPreKeys.getSignedPreKey().getSignature());
+      final SignedPreKeyEntity pniSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(pniPreKeys.getSignedPreKey()).getId(),
+                                                                        pniPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
+                                                                        pniPreKeys.getSignedPreKey().getSignature());
+      final KyberPreKeyEntity aciLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(aciPreKeys.getLastResortKyberPreKey()).getId(),
+                                                                               aciPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
+                                                                               aciPreKeys.getLastResortKyberPreKey().getSignature());
+      final KyberPreKeyEntity pniLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(pniPreKeys.getLastResortKyberPreKey()).getId(),
+                                                                               pniPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
+                                                                               pniPreKeys.getLastResortKyberPreKey().getSignature());
+
+      body = new RegistrationSessionRequestBody(sessionId,
+                                                recoveryPassword,
+                                                attributes,
+                                                Base64.encodeWithoutPadding(aciPreKeys.getIdentityKey().serialize()),
+                                                Base64.encodeWithoutPadding(pniPreKeys.getIdentityKey().serialize()),
+                                                aciSignedPreKey,
+                                                pniSignedPreKey,
+                                                aciLastResortKyberPreKey,
+                                                pniLastResortKyberPreKey,
+                                                gcmRegistrationId,
+                                                skipDeviceTransfer,
+                                                true);
+    } catch (InvalidKeyException e) {
+      throw new AssertionError("unexpected invalid key", e);
+    }
 
     String response = makeServiceRequest(path, "POST", JsonUtil.toJson(body), NO_HEADERS, new RegistrationSessionResponseHandler(), SealedSenderAccess.NONE);
     return JsonUtil.fromJson(response, VerifyAccountResponse.class);
@@ -817,10 +823,14 @@ public class PushServiceSocket {
     KyberPreKeyEntity       lastResortKyberPreKey = null;
     List<KyberPreKeyEntity> oneTimeKyberPreKeys   = null;
 
-    if (preKeyUpload.getSignedPreKey() != null) {
-      signedPreKey = new SignedPreKeyEntity(preKeyUpload.getSignedPreKey().getId(),
-                                            preKeyUpload.getSignedPreKey().getKeyPair().getPublicKey(),
-                                            preKeyUpload.getSignedPreKey().getSignature());
+    try {
+      if (preKeyUpload.getSignedPreKey() != null) {
+        signedPreKey = new SignedPreKeyEntity(preKeyUpload.getSignedPreKey().getId(),
+                                              preKeyUpload.getSignedPreKey().getKeyPair().getPublicKey(),
+                                              preKeyUpload.getSignedPreKey().getSignature());
+      }
+    } catch (InvalidKeyException e) {
+      throw new AssertionError("unexpected invalid key", e);
     }
 
     if (preKeyUpload.getOneTimeEcPreKeys() != null) {
@@ -838,16 +848,26 @@ public class PushServiceSocket {
     }
 
     if (preKeyUpload.getLastResortKyberPreKey() != null) {
-      lastResortKyberPreKey = new KyberPreKeyEntity(preKeyUpload.getLastResortKyberPreKey().getId(),
-                                                    preKeyUpload.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
-                                                    preKeyUpload.getLastResortKyberPreKey().getSignature());
+      try {
+        lastResortKyberPreKey = new KyberPreKeyEntity(preKeyUpload.getLastResortKyberPreKey().getId(),
+                                                      preKeyUpload.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
+                                                      preKeyUpload.getLastResortKyberPreKey().getSignature());
+      } catch (InvalidKeyException e) {
+        throw new AssertionError("unexpected invalid key", e);
+      }
     }
 
     if (preKeyUpload.getOneTimeKyberPreKeys() != null) {
       oneTimeKyberPreKeys = preKeyUpload
           .getOneTimeKyberPreKeys()
           .stream()
-          .map(it -> new KyberPreKeyEntity(it.getId(), it.getKeyPair().getPublicKey(), it.getSignature()))
+          .map(it -> {
+            try {
+              return new KyberPreKeyEntity(it.getId(), it.getKeyPair().getPublicKey(), it.getSignature());
+            } catch (InvalidKeyException e) {
+              throw new AssertionError("unexpected invalid key", e);
+            }
+          })
           .collect(Collectors.toList());
     }
 

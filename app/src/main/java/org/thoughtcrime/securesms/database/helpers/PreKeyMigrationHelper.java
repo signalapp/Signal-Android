@@ -77,7 +77,7 @@ public final class PreKeyMigrationHelper {
             contentValues.put(SignedPreKeyTable.TIMESTAMP, signedPreKey.getTimestamp());
             database.insert(SignedPreKeyTable.TABLE_NAME, null, contentValues);
             Log.i(TAG, "Migrated signed prekey: " + signedPreKey.getId());
-          } catch (IOException | InvalidMessageException e) {
+          } catch (IOException | InvalidMessageException | InvalidKeyException e) {
             Log.w(TAG, e);
             clean = false;
           }

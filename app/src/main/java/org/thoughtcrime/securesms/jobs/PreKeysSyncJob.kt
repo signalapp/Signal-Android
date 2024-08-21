@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs
 import androidx.annotation.VisibleForTesting
 import org.signal.core.util.logging.Log
 import org.signal.core.util.roundedString
+import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.SignalProtocolStore
@@ -258,18 +259,23 @@ class PreKeysSyncJob private constructor(
 
   @Throws(IOException::class)
   private fun checkPreKeyConsistency(serviceIdType: ServiceIdType, protocolStore: SignalServiceAccountDataStore, metadataStore: PreKeyMetadataStore): Boolean {
-    val result: NetworkResult<Unit> = AppDependencies.signalServiceAccountManager.keysApi.checkRepeatedUseKeys(
-      serviceIdType = serviceIdType,
-      identityKey = protocolStore.identityKeyPair.publicKey,
-      signedPreKeyId = metadataStore.activeSignedPreKeyId,
-      signedPreKey = protocolStore.loadSignedPreKey(metadataStore.activeSignedPreKeyId).keyPair.publicKey,
-      lastResortKyberKeyId = metadataStore.lastResortKyberPreKeyId,
-      lastResortKyberKey = protocolStore.loadKyberPreKey(metadataStore.lastResortKyberPreKeyId).keyPair.publicKey
-    )
+    val result: NetworkResult<Unit> = try {
+      AppDependencies.signalServiceAccountManager.keysApi.checkRepeatedUseKeys(
+        serviceIdType = serviceIdType,
+        identityKey = protocolStore.identityKeyPair.publicKey,
+        signedPreKeyId = metadataStore.activeSignedPreKeyId,
+        signedPreKey = protocolStore.loadSignedPreKey(metadataStore.activeSignedPreKeyId).keyPair.publicKey,
+        lastResortKyberKeyId = metadataStore.lastResortKyberPreKeyId,
+        lastResortKyberKey = protocolStore.loadKyberPreKey(metadataStore.lastResortKyberPreKeyId).keyPair.publicKey
+      )
+    } catch (e: InvalidKeyException) {
+      Log.w(TAG, "Unable to load keys", e)
+      return false
+    }
 
     return when (result) {
       is NetworkResult.Success -> true
-      is NetworkResult.NetworkError -> throw result.exception ?: PushNetworkException("Network error")
+      is NetworkResult.NetworkError -> throw result.exception
       is NetworkResult.ApplicationError -> throw result.throwable
       is NetworkResult.StatusCodeError -> if (result.code == 409) {
         false
