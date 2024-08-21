@@ -23,7 +23,6 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
@@ -106,13 +105,11 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     viewModel.markStoriesRead()
 
     AppDependencies.expireStoriesManager.scheduleIfNecessary()
-    EventBus.getDefault().register(this)
   }
 
   override fun onPause() {
     super.onPause()
     requireListener<SearchBinder>().getSearchAction().setOnClickListener(null)
-    EventBus.getDefault().unregister(this)
   }
 
   private fun initializeSearchAction() {
