@@ -76,10 +76,10 @@ class ServiceOutageObserver(private val context: Context) : DefaultLifecycleObse
 
   private suspend fun queryAvailability(): Result = withContext(Dispatchers.IO) {
     try {
-      val address = InetAddress.getByName(BuildConfig.SIGNAL_SERVICE_STATUS_URL)
-
       val now = System.currentTimeMillis()
       TextSecurePreferences.setLastOutageCheckTime(context, now)
+
+      val address = InetAddress.getByName(BuildConfig.SIGNAL_SERVICE_STATUS_URL)
 
       if (ServiceOutageDetectionJob.IP_SUCCESS == address.hostAddress) {
         Result.SUCCESS
