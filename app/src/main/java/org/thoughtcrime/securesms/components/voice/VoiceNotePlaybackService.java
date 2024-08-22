@@ -239,13 +239,17 @@ public class VoiceNotePlaybackService extends MediaSessionService {
    * This method will catch that exception and attempt to disable the duplicated broadcast receiver in the hopes of getting the package manager to
    * report only 1, avoiding the error.
    * If that doesn't work, it returns null, signaling the {@link MediaSession} cannot be built on this device.
+   * The opposite problem also appears to happen: the device reports that it cannot assign the media button receiver, which is required by AndroidX Media3.
+   * This is despite the fact that Media3 confirms the presence of the receiver before attempting to bind.
+   * In this case, the system throws an {@link IllegalArgumentException}, which we catch. Then we also disable the existing receiver, which should be the same
+   * as if we had never had the received in the first place, which should cause Media3 to abort trying to bind to it and allow it to proceed.
    *
    * @return the built MediaSession, or null if the session cannot be built.
    */
   private @Nullable MediaSession buildMediaSession(boolean isRetry) {
     try {
       return new MediaSession.Builder(this, player).setCallback(voiceNotePlayerCallback).setId(SESSION_ID).build();
-    } catch (IllegalStateException e) {
+    } catch (IllegalStateException | IllegalArgumentException e) {
 
       if (isRetry) {
         Log.e(TAG, "Unable to create media session, even after retry.", e);
