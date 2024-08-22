@@ -99,8 +99,8 @@ import org.thoughtcrime.securesms.banner.BannerManager;
 import org.thoughtcrime.securesms.banner.banners.CdsPermanentErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.CdsTemporaryErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.DozeBanner;
-import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner;
+import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.ServiceOutageBanner;
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner;
 import org.thoughtcrime.securesms.banner.banners.UsernameOutOfSyncBanner;
@@ -165,8 +165,8 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.thoughtcrime.securesms.util.ServiceOutageObserver;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.SharedPreferencesLifecycleObserver;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
@@ -184,14 +184,17 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import kotlinx.coroutines.flow.Flow;
 
 import static android.app.Activity.RESULT_OK;
@@ -846,13 +849,26 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeBanners() {
-    final ServiceOutageObserver serviceOutageObserver = new ServiceOutageObserver(requireContext());
+    Map<String, Function0<Unit>>       listenerMap                 = new HashMap<>();
+    final UnauthorizedBanner.Producer  unauthorizedBannerProducer  = new UnauthorizedBanner.Producer(requireContext());
+    final ServiceOutageBanner.Producer serviceOutageBannerProducer = new ServiceOutageBanner.Producer(requireContext());
 
-    getLifecycle().addObserver(serviceOutageObserver);
+    listenerMap.put(TextSecurePreferences.UNAUTHORIZED_RECEIVED, () -> {
+      unauthorizedBannerProducer.queryAndEmit();
+      return Unit.INSTANCE;
+    });
+    listenerMap.put(TextSecurePreferences.SERVICE_OUTAGE, () -> {
+      serviceOutageBannerProducer.queryAndEmit();
+      return Unit.INSTANCE;
+    });
+
+    final SharedPreferencesLifecycleObserver sharedPrefsObserver = new SharedPreferencesLifecycleObserver(requireContext(), listenerMap);
+
+    getLifecycle().addObserver(sharedPrefsObserver);
 
     final List<Flow<? extends Banner>> bannerRepositories = List.of(OutdatedBuildBanner.createFlow(requireContext(), OutdatedBuildBanner.ExpiryStatus.EXPIRED_ONLY),
-                                                                    UnauthorizedBanner.createFlow(requireContext()),
-                                                                    ServiceOutageBanner.fromFlow(serviceOutageObserver.getFlow()),
+                                                                    unauthorizedBannerProducer.getFlow(),
+                                                                    serviceOutageBannerProducer.getFlow(),
                                                                     OutdatedBuildBanner.createFlow(requireContext(), OutdatedBuildBanner.ExpiryStatus.OUTDATED_ONLY),
                                                                     DozeBanner.createFlow(requireContext()),
                                                                     CdsTemporaryErrorBanner.createFlow(getChildFragmentManager()),

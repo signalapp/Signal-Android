@@ -9,7 +9,9 @@ import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.map
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.ui.compose.DefaultBanner
@@ -31,17 +33,24 @@ class ServiceOutageBanner(outageInProgress: Boolean) : Banner() {
     )
   }
 
-  companion object {
+  /**
+   * A class that can be held by a listener but still produce new [ServiceOutageBanner] in its flow.
+   * Designed for being called upon by a listener that is listening to changes in [TextSecurePreferences]
+   */
+  class Producer(private val context: Context) {
+    private val _flow = MutableSharedFlow<Boolean>(replay = 1)
+    val flow: Flow<ServiceOutageBanner> = _flow.map { ServiceOutageBanner(context) }
 
-    @JvmStatic
-    fun createOneShotFlow(context: Context): Flow<ServiceOutageBanner> = createAndEmit {
-      ServiceOutageBanner(context)
+    init {
+      queryAndEmit()
     }
 
-    /**
-     * Take a [Flow] of [Boolean] values representing the service status and map it into a [Flow] of [ServiceOutageBanner]
-     */
-    @JvmStatic
-    fun fromFlow(statusFlow: Flow<Boolean>): Flow<ServiceOutageBanner> = statusFlow.map { ServiceOutageBanner(it) }
+    fun queryAndEmit() {
+      _flow.tryEmit(TextSecurePreferences.getServiceOutage(context))
+    }
+  }
+
+  companion object {
+    private val TAG = Log.tag(ServiceOutageBanner::class)
   }
 }

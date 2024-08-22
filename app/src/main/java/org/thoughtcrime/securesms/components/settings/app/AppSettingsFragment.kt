@@ -35,6 +35,8 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SharedPreferencesLifecycleObserver
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -73,11 +75,21 @@ class AppSettingsFragment : DSLSettingsFragment(
   }
 
   private fun updateBanners() {
+    val unauthorizedProducer = UnauthorizedBanner.Producer(requireContext())
+    lifecycle.addObserver(
+      SharedPreferencesLifecycleObserver(
+        requireContext(),
+        mapOf(
+          TextSecurePreferences.UNAUTHORIZED_RECEIVED to { unauthorizedProducer.queryAndEmit() }
+        )
+      )
+    )
     val bannerFlows = listOf(
       OutdatedBuildBanner.createFlow(requireContext(), OutdatedBuildBanner.ExpiryStatus.EXPIRED_ONLY),
-      UnauthorizedBanner.createFlow(requireContext())
+      unauthorizedProducer.flow
     )
-    val bannerManager = BannerManager(bannerFlows,
+    val bannerManager = BannerManager(
+      bannerFlows,
       onNewBannerShownListener = {
         if (bannerView.resolved()) {
           bannerView.get().addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->

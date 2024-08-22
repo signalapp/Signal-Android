@@ -110,7 +110,7 @@ public class TextSecurePreferences {
   public  static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
   public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
   public  static final String INCOGNITO_KEYBORAD_PREF          = "pref_incognito_keyboard";
-  private static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
+  public  static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
   private static final String SUCCESSFUL_DIRECTORY_PREF        = "pref_successful_directory";
 
   private static final String DATABASE_ENCRYPTED_SECRET     = "pref_database_encrypted_secret";
@@ -146,7 +146,7 @@ public class TextSecurePreferences {
 
   public  static final String SIGNAL_PIN_CHANGE = "pref_kbs_change";
 
-  private static final String SERVICE_OUTAGE         = "pref_service_outage";
+  public  static final String SERVICE_OUTAGE         = "pref_service_outage";
   private static final String LAST_OUTAGE_CHECK_TIME = "pref_last_outage_check_time";
 
   private static final String LAST_FULL_CONTACT_SYNC_TIME = "pref_last_full_contact_sync_time";
@@ -291,6 +291,14 @@ public class TextSecurePreferences {
     if (NotificationChannels.supported()) {
       NotificationChannels.getInstance().updateMessageVibrate(SignalStore.settings().isMessageVibrateEnabled());
     }
+  }
+
+  public static void registerListener(@NonNull Context context, SharedPreferences.OnSharedPreferenceChangeListener listener) {
+    getSharedPreferences(context).registerOnSharedPreferenceChangeListener(listener);
+  }
+
+  public static void unregisterListener(@NonNull Context context, SharedPreferences.OnSharedPreferenceChangeListener listener) {
+    getSharedPreferences(context).unregisterOnSharedPreferenceChangeListener(listener);
   }
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
