@@ -2100,13 +2100,13 @@
 
     <!-- CallScreenTopBar -->
     <!-- Content description for navigation icon -->
-    <string name="CallScreenTopBar__go_back">Go back</string>
+    <string name="CallScreenTopBar__go_back">Bumalik</string>
     <!-- Content description for info icon -->
     <string name="CallScreenTopBar__call_information">Call information</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
-    <string name="CallScreenPreJoinOverlay__your_camera_is_off">Your camera is off</string>
+    <string name="CallScreenPreJoinOverlay__your_camera_is_off">Naka-off ang camera mo</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">I-tap dito upang buksan ang iyong video</string>

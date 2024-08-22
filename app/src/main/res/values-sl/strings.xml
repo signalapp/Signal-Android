@@ -2228,13 +2228,13 @@
 
     <!-- CallScreenTopBar -->
     <!-- Content description for navigation icon -->
-    <string name="CallScreenTopBar__go_back">Go back</string>
+    <string name="CallScreenTopBar__go_back">Nazaj</string>
     <!-- Content description for info icon -->
     <string name="CallScreenTopBar__call_information">Call information</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
-    <string name="CallScreenPreJoinOverlay__your_camera_is_off">Your camera is off</string>
+    <string name="CallScreenPreJoinOverlay__your_camera_is_off">Vaša kamera je izključena</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tapnite tukaj za vklop videa</string>
@@ -7773,7 +7773,7 @@
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
-    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/month</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/mesec</string>
     <!-- Title for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Text + all your media</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->

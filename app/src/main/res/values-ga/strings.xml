@@ -2292,7 +2292,7 @@
 
     <!-- CallScreenTopBar -->
     <!-- Content description for navigation icon -->
-    <string name="CallScreenTopBar__go_back">Go back</string>
+    <string name="CallScreenTopBar__go_back">Siar</string>
     <!-- Content description for info icon -->
     <string name="CallScreenTopBar__call_information">Call information</string>
 
