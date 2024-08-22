@@ -7,12 +7,12 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
 import okhttp3.OkHttpClient
+import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.concurrent.DeadlockDetector
 import org.signal.core.util.resettableLazy
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
-import org.thoughtcrime.securesms.billing.GooglePlayBillingApi
 import org.thoughtcrime.securesms.components.TypingStatusRepository
 import org.thoughtcrime.securesms.components.TypingStatusSender
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl
@@ -212,7 +212,7 @@ object AppDependencies {
   }
 
   @JvmStatic
-  val billingApi: GooglePlayBillingApi by lazy {
+  val billingApi: BillingApi by lazy {
     provider.provideBillingApi()
   }
 
@@ -348,6 +348,6 @@ object AppDependencies {
     fun provideClientZkReceiptOperations(signalServiceConfiguration: SignalServiceConfiguration): ClientZkReceiptOperations
     fun provideScheduledMessageManager(): ScheduledMessageManager
     fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network
-    fun provideBillingApi(): GooglePlayBillingApi
+    fun provideBillingApi(): BillingApi
   }
 }

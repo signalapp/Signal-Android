@@ -559,6 +559,7 @@ dependencies {
   implementation(libs.rxdogtag)
 
   "playImplementation"(project(":billing"))
+  "nightlyImplementation"(project(":billing"))
 
   "spinnerImplementation"(project(":spinner"))
 

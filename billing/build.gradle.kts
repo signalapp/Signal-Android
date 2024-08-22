@@ -9,6 +9,6 @@ android {
 dependencies {
   lintChecks(project(":lintchecks"))
 
-  api(libs.android.billing)
+  implementation(libs.android.billing)
   implementation(project(":core-util"))
 }

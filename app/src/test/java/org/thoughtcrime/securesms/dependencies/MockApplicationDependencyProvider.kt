@@ -2,11 +2,11 @@ package org.thoughtcrime.securesms.dependencies
 
 import io.mockk.mockk
 import org.mockito.Mockito
+import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.concurrent.DeadlockDetector
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
-import org.thoughtcrime.securesms.billing.GooglePlayBillingApi
 import org.thoughtcrime.securesms.components.TypingStatusRepository
 import org.thoughtcrime.securesms.components.TypingStatusSender
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl
@@ -199,7 +199,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk()
   }
 
-  override fun provideBillingApi(): GooglePlayBillingApi {
+  override fun provideBillingApi(): BillingApi {
     return mockk()
   }
 }

@@ -8,15 +8,15 @@ import android.os.HandlerThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
+import org.signal.billing.BillingFactory;
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.billing.BillingApi;
 import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.libsignal.net.Network;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.billing.GooglePlayBillingApi;
-import org.thoughtcrime.securesms.billing.GooglePlayBillingFactory;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
@@ -460,8 +460,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull GooglePlayBillingApi provideBillingApi() {
-    return GooglePlayBillingFactory.create(context);
+  public @NonNull BillingApi provideBillingApi() {
+    return BillingFactory.create(context, RemoteConfig.messageBackups());
   }
 
   @VisibleForTesting

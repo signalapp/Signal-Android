@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.billing
+package org.signal.core.util.billing
 
 import android.app.Activity
 
 /**
  * Variant interface for the BillingApi.
  */
-interface GooglePlayBillingApi {
+interface BillingApi {
   fun isApiAvailable(): Boolean = false
   suspend fun queryProducts() = Unit
 
@@ -26,5 +26,5 @@ interface GooglePlayBillingApi {
    * Empty implementation, to be used when play services are available but
    * GooglePlayBillingApi is not available.
    */
-  object Empty : GooglePlayBillingApi
+  object Empty : BillingApi
 }
