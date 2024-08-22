@@ -36,6 +36,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact;
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactAvatar;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsOutputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
@@ -307,7 +308,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
     }
   }
 
-  private Optional<SignalServiceAttachmentStream> getSystemAvatar(@Nullable Uri uri) throws IOException {
+  private Optional<DeviceContactAvatar> getSystemAvatar(@Nullable Uri uri) throws IOException {
     if (uri == null) {
       return Optional.empty();
     }
@@ -325,12 +326,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
         return Optional.empty();
       }
 
-      return Optional.of(SignalServiceAttachment.newStreamBuilder()
-                                                .withStream(fd.createInputStream())
-                                                .withContentType("image/*")
-                                                .withLength(fd.getLength())
-                                                .withResumableUploadSpec(AppDependencies.getSignalServiceMessageSender().getResumableUploadSpec())
-                                                .build());
+      return Optional.of(new DeviceContactAvatar(fd.createInputStream(), fd.getLength(), "image/*"));
     } catch (IOException e) {
       // Ignored
     }
@@ -352,12 +348,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
         byte[] data = cursor.getBlob(0);
 
         if (data != null) {
-          return Optional.of(SignalServiceAttachment.newStreamBuilder()
-                                                    .withStream(new ByteArrayInputStream(data))
-                                                    .withContentType("image/*")
-                                                    .withLength(data.length)
-                                                    .withResumableUploadSpec(AppDependencies.getSignalServiceMessageSender().getResumableUploadSpec())
-                                                    .build());
+          return Optional.of(new DeviceContactAvatar(new ByteArrayInputStream(data), data.length, "image/*"));
         }
       }
 

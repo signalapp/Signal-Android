@@ -47,27 +47,23 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
       throw new IOException("Missing contact address!");
     }
 
-    Optional<ACI>                           aci           = Optional.ofNullable(ACI.parseOrNull(details.aci));
-    Optional<String>                        e164          = Optional.ofNullable(details.number);
-    Optional<String>                        name          = Optional.ofNullable(details.name);
-    Optional<SignalServiceAttachmentStream> avatar        = Optional.empty();
-    Optional<String>                        color         = details.color != null ? Optional.of(details.color) : Optional.empty();
-    Optional<VerifiedMessage>               verified      = Optional.empty();
-    Optional<ProfileKey>                    profileKey    = Optional.empty();
-    Optional<Integer>                       expireTimer   = Optional.empty();
-    Optional<Integer>                       inboxPosition = Optional.empty();
-    boolean                                 archived      = false;
+    Optional<ACI>                 aci           = Optional.ofNullable(ACI.parseOrNull(details.aci));
+    Optional<String>              e164          = Optional.ofNullable(details.number);
+    Optional<String>              name          = Optional.ofNullable(details.name);
+    Optional<DeviceContactAvatar> avatar        = Optional.empty();
+    Optional<String>              color         = details.color != null ? Optional.of(details.color) : Optional.empty();
+    Optional<VerifiedMessage>     verified      = Optional.empty();
+    Optional<ProfileKey>          profileKey    = Optional.empty();
+    Optional<Integer>             expireTimer   = Optional.empty();
+    Optional<Integer>             inboxPosition = Optional.empty();
+    boolean                       archived      = false;
 
-    if (details.avatar != null) {
+    if (details.avatar != null && details.avatar.length != null) {
       long        avatarLength      = details.avatar.length;
       InputStream avatarStream      = new LimitedInputStream(in, avatarLength);
-      String      avatarContentType = details.avatar.contentType;
+      String      avatarContentType = details.avatar.contentType != null ? details.avatar.contentType : "image/*";
 
-      avatar = Optional.of(SignalServiceAttachment.newStreamBuilder()
-                                                  .withStream(avatarStream)
-                                                  .withContentType(avatarContentType)
-                                                  .withLength(avatarLength)
-                                                  .build());
+      avatar = Optional.of(new DeviceContactAvatar(avatarStream, avatarLength, avatarContentType));
     }
 
     if (details.verified != null) {
