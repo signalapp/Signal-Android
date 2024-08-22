@@ -139,7 +139,7 @@ private fun PresetPicker(
       .fillMaxWidth()
       .selectableGroup()
   ) {
-    TranscodingPreset.values().forEach {
+    TranscodingPreset.entries.forEach {
       Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -185,7 +185,7 @@ private fun CustomSettings(
       .fillMaxWidth()
       .selectableGroup()
   ) {
-    VideoResolution.values().forEach {
+    VideoResolution.entries.forEach {
       Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
