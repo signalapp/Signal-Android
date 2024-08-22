@@ -225,7 +225,9 @@ open class SignalServiceNetworkAccess(context: Context) {
     COUNTRY_CODE_QATAR,
     COUNTRY_CODE_IRAN,
     COUNTRY_CODE_CUBA,
-    COUNTRY_CODE_UZBEKISTAN
+    COUNTRY_CODE_UZBEKISTAN,
+    COUNTRY_CODE_RUSSIA,
+    COUNTRY_CODE_VENEZUELA
   )
 
   open val uncensoredConfiguration: SignalServiceConfiguration = SignalServiceConfiguration(
