@@ -97,7 +97,7 @@
     <!-- Text explaining that Signal has limited access to photos -->
     <string name="AttachmentKeyboard_signal_has_limited_access">Signal heeft beperkte toegang tot foto\'s of video\'s</string>
     <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
-    <string name="AttachmentKeyboard_no_photos_found">Er zijn geen foto\'s gevonden, selecteer foto\'s en video\'s of verander machtigingen om foto\'s te weergeven</string>
+    <string name="AttachmentKeyboard_no_photos_found">Er zijn geen foto\'s gevonden. Selecteer foto\'s en video\'s of wijzig machtigingen om foto\'s te weergeven.</string>
 
     <!-- MediaGalleryFragment -->
     <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
@@ -122,7 +122,7 @@
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">Om afbeeldingen en video\'s weer te geven:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Signal heeft toegang nodig tot je foto\'s en video\'s.</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Signal heeft toegang nodig om je foto\'s en video\'s te kunnen weergeven.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s heeft Betalingen niet geactiveerd </string>
@@ -818,9 +818,9 @@
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Kan media niet herstellen</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Je apparaat heeft niet genoeg vrije ruimte. Maak ruimte vrij om je media te herstellen.\n\nAls je \'Herstellen overslaan\' kiest, worden de media in je back-up de volgende keer dat je apparaat een back-up voltooit verwijderd.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Je apparaat heeft niet genoeg vrije ruimte. Maak ruimte vrij om je media te herstellen.\n\nAls je ‘Herstel overslaan’ kiest, worden de media in je back-up de volgende keer dat je apparaat een back-up voltooit verwijderd.</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Je apparaat heeft niet genoeg vrije ruimte. Maak %1$s ruimte vrij om je media te herstellen.\n\nAls je \'Herstellen overslaan\' kiest, worden de media in je back-up de volgende keer dat je apparaat een back-up voltooit verwijderd.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Je apparaat heeft niet genoeg vrije ruimte. Maak %1$s ruimte vrij om je media te herstellen.\n\nAls je ‘Herstel overslaan’ kiest, worden de media in je back-up de volgende keer dat je apparaat een back-up voltooit verwijderd.</string>
     <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
     <string name="RestoreMediaFailedBottomSheet__Okay">Begrepen</string>
     <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
@@ -3780,9 +3780,9 @@
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
     <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Geef toestemming</string>
     <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Tik op \'Machtigingen\'</string>
+    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Tik op ‘Machtigingen’</string>
     <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Geen toestemming tot \'Foto\'s en video\'s</string>
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Geef toestemming voor ‘Foto\'s en video\'s’</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">Instellingen</string>
 
@@ -4338,7 +4338,7 @@
     <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
     <string name="prompt_passphrase_activity__screen_lock_is_on">Schermvergrendeling is ingeschakeld en Signal is beveiligd met de vergrendelingsinstellingen van je apparaat. Ontgrendel Signal op dezelfde manier als je normaal je telefoon ontgrendelt, dat kan gezichtsherkenning, je vingerafdruk, een pincode, wachtwoord of patroon zijn.</string>
     <!-- Button in a dialog that will contact Signal support if pressed -->
-    <string name="prompt_passphrase_activity__contact_support">Neem contact op met ons supportteam</string>
+    <string name="prompt_passphrase_activity__contact_support">Neem contact op met ondersteuning</string>
     <!-- Button text to try again after unlocking has previously failed -->
     <string name="prompt_passphrase_activity__try_again">Opnieuw proberen</string>
 
@@ -4346,11 +4346,11 @@
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">Uit</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Schermvergrendeling gebruiken</string>
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Appvergrendeling gebruiken</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">De vergrendelingsinstellingen van je Android-apparaat zijn vereist om Signal te ontgrendelen wanneer je de app afsluit of van app wisselt. Als het apparaat is vergrendeld, zie je geen voorvertoningen van berichten in je meldingen.</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">De vergrendelingsinstellingen van je Android-apparaat zijn vereist om Signal te ontgrendelen wanneer je de app afsluit of van app wisselt. Als de app is vergrendeld, zie je geen inhoud van berichten in meldingen.</string>
     <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Schermvergrendeling starten</string>
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Appvergrendeling starten</string>
     <!-- Option text explaining that screen lock should start immediately -->
     <string name="ScreenLockSettingsFragment__immediately">Direct</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
@@ -4362,9 +4362,9 @@
     <!-- Option text explaining that screen lock should start at a custom time set by the user -->
     <string name="ScreenLockSettingsFragment__custom_time">Zelfgekozen tijd</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Gebruik Signal-schermvergrendeling</string>
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Gebruik Signal-appvergrendeling</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal-schermvergrendeling uitschakelen</string>
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal-appvergrendeling uitschakelen</string>
 
     <string name="Recipient_unknown">Onbekend</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -4880,9 +4880,9 @@
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Donateur-ID naar klembord gekopieerd</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Donateur-ID voor back-ups naar klembord gekopieerd</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Abonnee-ID voor back-ups naar klembord gekopieerd</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
-    <string name="AppSettingsFragment__no_subscriber_id_set">Geen donateur-ID ingesteld</string>
+    <string name="AppSettingsFragment__no_subscriber_id_set">Geen abonnee-ID ingesteld</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Account</string>

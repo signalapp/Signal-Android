@@ -196,9 +196,9 @@
     <string name="OneTimeDonationPreference__donation_processing">Донат в обробці</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Заблокувати і покинути «%1$s»?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Заблокувати й покинути «%1$s»?</string>
     <string name="BlockUnblockDialog_block_s">Заблокувати %1$s?</string>
-    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ви перестанете отримувати повідомлення та оновлення від цієї групи, а її учасники не зможуть знов додати вас до цієї групи.</string>
+    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ви перестанете отримувати повідомлення та оновлення від цієї групи, а її учасники не зможуть знов додати вас до неї.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Учасники не зможуть знов додати вас до цієї групи.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Учасники зможуть знов додати вас до цієї групи.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
@@ -213,7 +213,7 @@
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Відновити отримання повідомлень про оновлення та новин Signal.</string>
     <string name="BlockUnblockDialog_unblock_s">Розблокувати %1$s?</string>
     <string name="BlockUnblockDialog_block">Заблокувати</string>
-    <string name="BlockUnblockDialog_block_and_leave">Заблокувати і покинути</string>
+    <string name="BlockUnblockDialog_block_and_leave">Заблокувати й покинути</string>
     <!-- Dialog button label to report as spam and block the person -->
     <string name="BlockUnblockDialog_report_spam_and_block">Повідомити й заблокувати</string>
     <!-- Dialog title for reporting spam -->
@@ -1210,7 +1210,7 @@
 
     <!-- LeaveGroupDialog -->
     <string name="LeaveGroupDialog_leave_group">Покинути групу?</string>
-    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Ви не зможете надсилати чи одержувати повідомлення в цій групі.</string>
+    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Ви не зможете надсилати та отримувати повідомлення в цій групі.</string>
     <string name="LeaveGroupDialog_leave">Покинути</string>
     <string name="LeaveGroupDialog_choose_new_admin">Виберіть нового адміністратора</string>
     <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Перш ніж покинути цю групу, необхідно обрати щонайменше одного нового адміністратора для цієї групи.</string>
@@ -1333,7 +1333,7 @@
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Хто може додавати учасників?</string>
-    <string name="ManageGroupActivity_who_can_edit_this_groups_info">Хто може редагувати інформацію цієї групи?</string>
+    <string name="ManageGroupActivity_who_can_edit_this_groups_info">Хто може редагувати інформацію про цю групу?</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="one">Додано %1$d учасника.</item>
@@ -1499,7 +1499,7 @@
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ви вже учасник</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ви вже учасник цієї групи</string>
     <string name="GroupJoinBottomSheetDialogFragment_join">Приєднатись</string>
     <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Запит на приєднання</string>
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Не вдалось приєднатись до групи. Будь ласка, спробуйте пізніше</string>
@@ -3231,7 +3231,7 @@
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Увімк/вимк скриньку вкладень камери</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записати та надіслати аудіо вкладення</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Заблокувати запис аудіо вкладення</string>
-    <string name="conversation_activity__message_could_not_be_sent">Не вдалося відправити повідомлення. Перевірте з\'єднання з інтернетом і надішліть повідомлення ще раз.</string>
+    <string name="conversation_activity__message_could_not_be_sent">Не вдалося надіслати повідомлення. Перевірте з\'єднання з інтернетом і надішліть повідомлення ще раз.</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">Проведіть для скасування</string>
@@ -3565,7 +3565,7 @@
     <string name="AndroidManifest_archived_conversations">Архівні чати</string>
 
     <!-- HelpFragment -->
-    <string name="HelpFragment__have_you_read_our_faq_yet">Відповіді на поширені запитання.</string>
+    <string name="HelpFragment__have_you_read_our_faq_yet">Відповіді на поширені запитання</string>
     <string name="HelpFragment__next">Далі</string>
     <string name="HelpFragment__contact_us">Зв\'яжіться з нами</string>
     <string name="HelpFragment__tell_us_whats_going_on">Поясніть, що сталося</string>
@@ -4216,7 +4216,7 @@
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">Налаштування групи</string>
-    <string name="conversation__menu_leave_group">Вийти з групи</string>
+    <string name="conversation__menu_leave_group">Покинути групу</string>
     <string name="conversation__menu_view_all_media">Усі медіафайли</string>
     <string name="conversation__menu_conversation_settings">Налаштування чату</string>
     <string name="conversation__menu_add_shortcut">Додати на домашній екран</string>
@@ -4449,7 +4449,7 @@
     <string name="registration_activity__transfer_or_restore_account">Перенести або відновити акаунт</string>
     <string name="registration_activity__transfer_account">Перенести акаунт</string>
     <string name="registration_activity__skip">Пропустити</string>
-    <string name="preferences_chats__chat_backups">Резервне копіювання чатів</string>
+    <string name="preferences_chats__chat_backups">Резервні копії чатів</string>
     <string name="preferences_chats__transfer_account">Перенести акаунт</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Перенесіть акаунт на новий пристрій з ОС Android</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Введіть фразу-пароль</string>
@@ -5459,13 +5459,13 @@
     <string name="ConversationSettingsFragment__get_badges">Отримуйте значки для профілю за підтримку Signal. Торкніться значка, щоб дізнатися більше.</string>
 
     <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Додати учасників</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Редагувати інфо про групу</string>
-    <string name="PermissionsSettingsFragment__send_messages">Відправити повідомлення</string>
+    <string name="PermissionsSettingsFragment__add_members">Додавання учасників</string>
+    <string name="PermissionsSettingsFragment__edit_group_info">Редагування інформації про групу</string>
+    <string name="PermissionsSettingsFragment__send_messages">Надсилання повідомлень</string>
     <string name="PermissionsSettingsFragment__all_members">Усі учасники</string>
     <string name="PermissionsSettingsFragment__only_admins">Тільки адміністратори</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Хто може додавати нових учасників?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Хто може редагувати інформацію цієї групи?</string>
+    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Хто може редагувати інформацію про цю групу?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">Хто може надсилати повідомлення та починати виклики?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
@@ -5587,10 +5587,10 @@
         <item quantity="other">Повідомлення надіслані</item>
     </plurals>
     <plurals name="MultiselectForwardFragment_messages_failed_to_send">
-        <item quantity="one">Не вдалось відправити повідомлення</item>
-        <item quantity="few">Не вдалось відправити повідомлення</item>
-        <item quantity="many">Не вдалось відправити повідомлення</item>
-        <item quantity="other">Не вдалось відправити повідомлення</item>
+        <item quantity="one">Не вдалося надіслати повідомлення</item>
+        <item quantity="few">Не вдалося надіслати повідомлення</item>
+        <item quantity="many">Не вдалося надіслати повідомлення</item>
+        <item quantity="other">Не вдалося надіслати повідомлення</item>
     </plurals>
     <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
         <item quantity="one">Не вдалось переслати повідомлення тому що воно більше недоступне.</item>

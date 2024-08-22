@@ -1181,7 +1181,7 @@
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">L’optimisation de la batterie peut retarder les notifications</string>
     <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
-    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Pour être averti de la réception de messages dès leur arrivée, désactivez l’optimisation de la batterie pour Signal. Appuyez sur &lt;strong&gt;Continuer&lt;/strong&gt; pour afficher les instructions propres à votre appareil.</string>
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Pour être averti de la réception de messages dès leur arrivée, désactivez l’optimisation de la batterie pour Signal. Appuyez sur \"Continuer\" pour afficher les instructions propres à votre appareil.</string>
     <!-- Button to dismiss notification help prompt -->
     <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Non merci</string>
     <!-- Button to continue and go to Signal support website -->
@@ -1730,8 +1730,8 @@
     <string name="MessageRecord_s_added_invited_member_s">%1$s a ajouté le membre invité %2$s.</string>
 
     <!-- GV2 title change -->
-    <string name="MessageRecord_you_changed_the_group_name_to_s">Vous avez changé le nom du groupe à « %1$s ».</string>
-    <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s a changé le nom du groupe à « %2$s ».</string>
+    <string name="MessageRecord_you_changed_the_group_name_to_s">Vous avez remplacé le nom du groupe par « %1$s ».</string>
+    <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s a remplacé le nom du groupe par « %2$s ».</string>
     <string name="MessageRecord_the_group_name_has_changed_to_s">Le nom du groupe a été changé à « %1$s ».</string>
 
     <!-- GV2 description change -->
@@ -2253,13 +2253,13 @@
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
     <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Aucune E/S audio éligible n’a été détectée.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">Icône &lt;strong&gt;Appareil Bluetooth&lt;/strong&gt;.</string>
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">Icône représentant un appareil Bluetooth.</string>
     <!-- A text description of the headset icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">Icône &lt;strong&gt;Casque filaire&lt;/strong&gt;.</string>
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">Icône  représentant un casque filaire.</string>
     <!-- A text description of the speaker icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Icône &lt;strong&gt;Haut-parleur&lt;/strong&gt;.</string>
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Icône  représentant un haut-parleur.</string>
     <!-- A text description of the earpiece icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Icône &lt;strong&gt;Écouteurs&lt;/strong&gt; d’un appareil.</string>
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Icône représentant les écouteurs d’un appareil.</string>
 
     <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
     <string name="CallOverflowPopupWindow__raise_hand">Lever la main</string>
@@ -2666,9 +2666,9 @@
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
     <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Nom d’utilisateur indisponible, veuillez essayer un autre numéro.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Nom d’utilisateur non valide. Veuillez saisir au moins %1$d chiffres.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Nom d’utilisateur incorrect. Veuillez saisir au moins %1$d chiffres.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nom d’utilisateur non valide. Veuillez saisir %1$d chiffres maximum.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nom d’utilisateur incorrect. Veuillez saisir %1$d chiffres maximum.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
     <string name="UsernameEditFragment__this_number_cant_be_00">Ce chiffre ne peut pas être 00. Il doit être compris entre 1 et 9.</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
@@ -2799,7 +2799,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">a réagi par %1$s à votre sticker.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ce message a été supprimé.</string>
 
-    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Ne plus recevoir de notifications quand un contact rejoint Signal ? Vous pourrez les réactiver sous &lt;strong&gt;Signal&lt;/strong&gt; &gt; &lt;strong&gt;Paramètres&lt;/strong&gt; &gt; &lt;strong&gt;Notifications&lt;/strong&gt;</string>
+    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Ne plus recevoir de notifications quand un contact rejoint Signal ? Vous pourrez les réactiver sous Signal &gt; Paramètres &gt; Notifications.</string>
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
@@ -2807,9 +2807,9 @@
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Pour recevoir les notifications des nouveaux messages :</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Appuyez sur &lt;strong&gt;Paramètres&lt;/strong&gt; ci-dessous</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Appuyez sur \"Paramètres\" ci-dessous.</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Activer les notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Activez les notifications.</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Paramètres</string>
 
@@ -3259,7 +3259,7 @@
 
     <!-- prompt_mms_activity -->
     <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal exige que les paramètres de messages multimédias remettent les messages multimédias et de groupe en utilisant votre opérateur de réseau mobile. Votre appareil n’offre pas ces informations, ce qui arrive parfois pour les appareils verrouillés ou d’autres configurations restrictives.</string>
-    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pour envoyer des messages multimédias ou de groupe, touchez &lt;strong&gt;OK&lt;/strong&gt; et définissez les paramètres demandés. Pour trouver les paramètres MMS de votre opérateur, recherchez son APN (nom du point d’accès). Vous n’aurez à le faire qu’une seule fois.</string>
+    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pour envoyer des messages multimédias ou de groupe, touchez \"OK\" et définissez les paramètres demandés. Pour trouver les paramètres MMS de votre opérateur, recherchez son APN (nom du point d’accès). Vous n’aurez à le faire qu’une seule fois.</string>
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problème de remise</string>
@@ -3776,7 +3776,7 @@
 
     <!-- PermissionDeniedBottomSheet -->
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Appuyez sur &lt;strong&gt;Paramètres&lt;/strong&gt; ci-dessous</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Appuyez sur \"Paramètres\" ci-dessous.</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
     <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Accordez l’autorisation</string>
     <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
@@ -3906,7 +3906,7 @@
     <!-- Button in a dialog that will take the user to the privacy settings -->
     <string name="ConfirmPaymentFragment__go_to_settings">Rendez-vous dans les Paramètres</string>
     <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Cette personne n’a pas activé les paiements</string>
-    <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Impossible de demander des frais de réseau. Pour réessayer et poursuivre ce paiement, touchez &lt;strong&gt;OK&lt;/strong&gt;.</string>
+    <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Impossible de demander des frais de réseau. Pour réessayer et poursuivre ce paiement, touchez \"OK\".</string>
 
     <!-- BiometricDeviceAuthentication -->
     <!-- Biometric/Device authentication prompt title -->
@@ -6616,7 +6616,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirmez votre don %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
-    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Pour mettre en place votre don mensuel, appuyez sur &lt;strong&gt;Continuer&lt;/strong&gt;. Vous confirmez ainsi le prélèvement de 0,01 € auprès de votre banque. Cette somme sera automatiquement remboursée et permettra de confirmer le prélèvement de la somme mensuelle de %1$s sur votre compte.</string>
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Pour mettre en place votre don mensuel, appuyez sur \"Continuer\". Vous confirmez ainsi le prélèvement de 0,01 € auprès de votre banque. Cette somme sera automatiquement remboursée et permettra de confirmer le prélèvement de la somme mensuelle de %1$s sur votre compte.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Poursuivre</string>
 
@@ -7222,7 +7222,7 @@
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Impossible de terminer la sauvegarde</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Votre appareil n’a pas effectué de sauvegarde complète depuis %1$d jours. Vérifiez qu’il est connecté au Wi-Fi et appuyez sur &lt;strong&gt;Sauvegarder maintenant&lt;/strong&gt; </string>
+    <string name="BackupAlertBottomSheet__your_device_hasnt">Votre appareil n’a pas effectué de sauvegarde complète depuis %1$d jours. Vérifiez qu’il est connecté au Wi-Fi, puis appuyez sur \"Sauvegarder maintenant\". </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">En savoir plus</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
@@ -7373,7 +7373,7 @@
     <!-- Text on dialog when user backup is deleted -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted">Sauvegarde supprimée</string>
     <!-- Subtitle for frequency option MANUAL for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"via l’option &lt;strong&gt;Sauvegarder maintenant&lt;/strong&gt;"</string>
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"via l’option \"Sauvegarder maintenant\""</string>
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__daily">Quotidienne</string>
     <!-- Title for frequency option DAILY for backup frequency -->

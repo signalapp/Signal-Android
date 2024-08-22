@@ -3604,16 +3604,16 @@
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Целокупна историја порука биће трајно уклоњена са свих уређаја. Ова радња се не може опозвати.</string>
     <string name="preferences_storage__delete_all_now">Избриши све сада</string>
     <string name="preferences_storage__forever">Заувек</string>
-    <string name="preferences_storage__one_year">1 година</string>
+    <string name="preferences_storage__one_year">1 годину</string>
     <string name="preferences_storage__six_months">6 месеци</string>
     <string name="preferences_storage__thirty_days">30 дана</string>
-    <string name="preferences_storage__none">Нема</string>
+    <string name="preferences_storage__none">Неограничен</string>
     <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">Порука: %1$s</item>
-        <item quantity="other">Порука: %1$s</item>
+        <item quantity="one">%1$s порука</item>
+        <item quantity="other">%1$s порука </item>
     </plurals>
 
-    <string name="preferences_storage__custom">Прилагођено</string>
+    <string name="preferences_storage__custom">Прилагођен</string>
     <string name="preferences_advanced__use_system_emoji">Користи системске емоџије</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Преусмерава све позиве преко Signal-овог сервера да би се избегло откривање ваше IP адресе вашем контакту. Умањује квалитет позива.</string>
     <string name="preferences_advanced__always_relay_calls">Увек преусмеравај позиве</string>
@@ -3625,7 +3625,7 @@
     <string name="preferences_data_and_storage__use_less_data_for_calls">Користите мање података за позиве</string>
     <string name="preferences_data_and_storage__never">Никад</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi и мобилни интернет</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Само мобилни инттернет</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Само мобилни интернет</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Ако користите мање података можете побољшати позиве на лошим мрежама</string>
     <string name="preferences_notifications__in_chat_sounds">Звуци ћаскања</string>
     <string name="preferences_notifications__show">Прикажи</string>

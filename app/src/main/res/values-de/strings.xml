@@ -818,7 +818,7 @@
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Medien können nicht wiederhergestellt werden</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Dein Gerät hat nicht genug Speicherplatz. Du musst deinen Speicherplatz freigeben, um deine Medien wiederherzustellen.\n\nWenn du »Wiederherstellen überspringen« wählst, werden die Medien in der Datensicherung gelöscht, wenn dein Gerät das nächste Mal eine neue Datensicherung durchführt.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Dein Gerät hat nicht genug Speicherplatz. Du musst Speicherplatz freigeben, um deine Medien wiederherzustellen.\n\nWenn du »Wiederherstellen überspringen« wählst, werden die Medien in der Datensicherung gelöscht, wenn dein Gerät das nächste Mal eine neue Datensicherung durchführt.</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
     <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Dein Gerät hat nicht genug Speicherplatz. Du musst %1$s freigeben, um deine Medien wiederherzustellen.\n\nWenn du »Wiederherstellen überspringen« wählst, werden die Medien in der Datensicherung gelöscht, wenn dein Gerät das nächste Mal eine neue Datensicherung durchführt.</string>
     <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
@@ -829,12 +829,12 @@
     <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Datensicherungsfehler-Icon</string>
 
     <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
-    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Du musst deinen Speicherplatz freigeben, um deine Medien wiederherzustellen.</string>
+    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Du musst Speicherplatz freigeben, um deine Medien wiederherzustellen.</string>
     <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
     <string name="RestoreMediaErrorBanner__Free_up_of_space">Du musst %1$s freigeben, um deine Medien wiederherzustellen.</string>
 
     <!-- Remote media restoration in-process status title. -->
-    <string name="RestoreMediaReminder__Restoring_media">Medien wiederherstellen</string>
+    <string name="RestoreMediaReminder__Restoring_media">Medien werden wiederhergestellt</string>
     <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
     <string name="RestoreMediaReminder__Progress_filesize">%1$s von %2$s (%3$d %%)</string>
     <!-- Remote media restoration paused status title. -->
@@ -984,9 +984,9 @@
     <!-- Dialog text describing the consequences of linking a device -->
     <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">Dieses Gerät kann deine Gruppen und Kontakte sehen, auf deine Chats zugreifen und Nachrichten in deinem Namen versenden.</string>
     <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
-    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">Die Kopplung auf deinem anderen Gerät beenden</string>
+    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">Die Kopplung auf deinem anderen Gerät abschließen</string>
     <!-- Bottom sheet description telling users to complete the linking process -->
-    <string name="AddLinkDeviceFragment__finish_linking_signal">Beende die Kopplung von Signal auf deinem anderen Gerät.</string>
+    <string name="AddLinkDeviceFragment__finish_linking_signal">Schließe die Kopplung von Signal auf deinem anderen Gerät ab.</string>
     <!-- Title of dialog when the QR code being scanned is invalid -->
     <string name="AddLinkDeviceFragment__linking_device_failed">Gerät konnte nicht gekoppelt werden</string>
     <!-- Text shown in a dialog when the QR code being scanned is invalid -->
@@ -4880,7 +4880,7 @@
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Spender-ID in die Zwischenablage kopiert</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Spender-ID-Back-ups in die Zwischenablage kopiert</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Spender-ID für Backups in die Zwischenablage kopiert</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Keine Spender-ID festgelegt</string>
 
@@ -4992,7 +4992,7 @@
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Wird durch die Enter-Taste verschickt</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Mit Enter-Taste versenden</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Nachrichten</string>
