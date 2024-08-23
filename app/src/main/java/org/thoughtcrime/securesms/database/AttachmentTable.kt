@@ -947,6 +947,8 @@ class AttachmentTable(
         .where("$ID = ?", attachmentId.id)
         .run()
 
+      Log.i(TAG, "[finalizeAttachmentAfterDownload] Finalized downloaded data for $attachmentId. (MessageId: $mmsId, $attachmentId)")
+
       hashMatch != null
     }
 
