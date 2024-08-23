@@ -2067,7 +2067,7 @@
     <!-- RecaptchaRequiredBottomSheetFragment -->
     <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verificar para continuar chateando</string>
     <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Para ayudar a prevenir spam en Signal, completa la verificación.</string>
-    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Tras la verificación, podrás seguir chateando y se enviarán todos los mensajes pausados.</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Después de completar la verificación, podrás seguir chateando y se enviarán todos los mensajes pausados.</string>
 
     <!-- Recipient -->
     <string name="Recipient_you">Tú</string>
@@ -2456,7 +2456,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">¿Tienes problemas para registrarte?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Asegúrate de que tu teléfono tenga señal para recibir tu SMS o llamada\n • Confirma que puedes recibir una llamada telefónica al número\n • Verifica que hayas ingresado tu número de teléfono correctamente.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Asegúrate de que tu teléfono tenga señal para recibir tu SMS o llamada\n • Confirma que puedes recibir una llamada telefónica al número\n • Comprueba que has ingresado tu número de teléfono correctamente.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Para obtener más información, consulta %1$s o %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2467,7 +2467,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">¿Activar el bloqueo de registro?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">¿Desactivar el bloqueo de registro?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si olvidas el PIN de Signal al registrarte nuevamente en Signal, no podrás acceder a tu cuenta durante 7 días.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si olvidas tu PIN de Signal al registrarte nuevamente en Signal, no podrás acceder a tu cuenta durante 7 días.</string>
     <string name="RegistrationLockV2Dialog_turn_on">Activar</string>
     <string name="RegistrationLockV2Dialog_turn_off">Desactivar</string>
 
@@ -3486,8 +3486,8 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea la pantalla y las notificaciones con una clave de acceso</string>
     <string name="preferences__screen_security">Seguridad de la pantalla</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquea automáticamente Signal tras un intervalo de inactividad especificado</string>
-    <string name="preferences__inactivity_timeout_passphrase">Clave de acceso por inactividad</string>
-    <string name="preferences__inactivity_timeout_interval">Intervalo para suspensión por inactividad</string>
+    <string name="preferences__inactivity_timeout_passphrase">Clave de acceso para el tiempo de inactividad</string>
+    <string name="preferences__inactivity_timeout_interval">Intervalo de tiempo de inactividad</string>
     <string name="preferences__notifications">Notificaciones</string>
     <string name="preferences__led_color">Color del LED</string>
     <string name="preferences__led_color_unknown">Desconocido</string>
@@ -3517,7 +3517,7 @@
     <string name="preferences__normal">Normal</string>
     <string name="preferences__slow">Lento</string>
     <string name="preferences__help">Ayuda</string>
-    <string name="preferences__advanced">Avanzado</string>
+    <string name="preferences__advanced">Ajustes avanzados</string>
     <string name="preferences__donate_to_signal">Donar a Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">Privacidad</string>
@@ -3650,7 +3650,7 @@
     <string name="preferences_communication__category_censorship_circumvention">Evitar censura</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
     <string name="preferences_communication__censorship_circumvention">Evitar censura</string>
-    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Al activar Evitar censura, Signal intentará enviar mensajes evitando la censura. Activa esta función solo si te encuentras en un país que bloquee Signal.</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Si activas Evitar censura, Signal intentará enviar mensajes evitando la censura. Activa esta función solo si te encuentras en un país que bloquee Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Evitar censura se ha activado automáticamente basándose en el número de teléfono de tu cuenta de Signal.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
@@ -3714,7 +3714,7 @@
     <string name="PaymentsHomeFragment__sent_s">Enviado: %1$s</string>
     <string name="PaymentsHomeFragment__received_s">Recibido: %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Transferir a plataforma de intercambio</string>
-    <string name="PaymentsHomeFragment__currency_conversion">Moneda de cambio</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Conversión de moneda</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Desactivar pagos</string>
     <string name="PaymentsHomeFragment__recovery_phrase">Frase de recuperación</string>
     <string name="PaymentsHomeFragment__help">Ayuda</string>
@@ -3726,7 +3726,7 @@
     <string name="PaymentsHomeFragment__currency_conversion_not_available">Conversión de moneda no disponible</string>
     <string name="PaymentsHomeFragment__cant_display_currency_conversion">No se puede mostrar la conversión de moneda. Comprueba la conexión de tu teléfono e inténtalo de nuevo.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Los pagos no están disponibles en tu región.</string>
-    <string name="PaymentsHomeFragment__could_not_enable_payments">No se han podido activar los pagos. Inténtalo de nuevo más tarde.</string>
+    <string name="PaymentsHomeFragment__could_not_enable_payments">No se han podido habilitar los pagos. Inténtalo de nuevo más tarde.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">¿Desactivar pagos?</string>
     <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">No podrás enviar ni recibir MobileCoin en Signal si desactivas los pagos.</string>
     <string name="PaymentsHomeFragment__deactivate">Desactivar</string>
@@ -3833,7 +3833,7 @@
     <string name="PaymentsDetailsFragment__processing_payment">Procesando pago…</string>
     <string name="PaymentsDetailsFragment__payment_complete">Pago completado</string>
     <string name="PaymentsDetailsFragment__payment_failed">No se ha podido completar el pago</string>
-    <string name="PaymentsDetailsFragment__network_fee">Tasa de la red</string>
+    <string name="PaymentsDetailsFragment__network_fee">Comisión de red</string>
     <string name="PaymentsDetailsFragment__sent_by">Enviado por</string>
     <string name="PaymentsDetailsFragment__sent_to_s">Enviado a %1$s</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">Tú (fecha y hora: %1$s - %2$s)</string>
@@ -3841,7 +3841,7 @@
     <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">Para</string>
     <string name="PaymentsDetailsFragment__from">De</string>
-    <string name="PaymentsDetailsFragment__information">Los detalles de la transacción incluyen la cantidad y fecha del pago, pero no su origen o destino y figuran en el libro mayor de MobileCoin.</string>
+    <string name="PaymentsDetailsFragment__information">Los detalles de la transacción, incluidos el importe y la fecha del pago, se registran en el libro mayor de MobileCoin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Tasa de limpieza de monedas</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">Se cobra una tasa de limpieza de monedas cuando las monedas que tienes no pueden combinarse para completar una transacción. La limpieza te permite continuar enviando pagos.</string>
     <string name="PaymentsDetailsFragment__no_details_available">No hay más detalles disponibles para esta transacción</string>
@@ -3899,7 +3899,7 @@
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Confirmar pago</string>
-    <string name="ConfirmPayment__network_fee">Tasa de la red</string>
+    <string name="ConfirmPayment__network_fee">Comisión de red</string>
     <string name="ConfirmPayment__estimated_s">Estimación en %1$s</string>
     <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">Para</string>
@@ -3918,7 +3918,7 @@
     <!-- Button in a dialog that will take the user to the privacy settings -->
     <string name="ConfirmPaymentFragment__go_to_settings">Ir a Ajustes</string>
     <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Esta persona no ha activado los pagos</string>
-    <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">No es posible calcular la tasa de la red. Para continuar con este pago, toca Aceptar e inténtalo de nuevo.</string>
+    <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">No es posible calcular la comisión de red. Para continuar con este pago, toca Aceptar e inténtalo de nuevo.</string>
 
     <!-- BiometricDeviceAuthentication -->
     <!-- Biometric/Device authentication prompt title -->
@@ -4293,7 +4293,7 @@
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Número de teléfono</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Elige quién puede ver tu número de teléfono y quién puede contactarte en Signal con él.</string>
+    <string name="preferences_app_protection__choose_who_can_see">Elige quién puede ver tu número de teléfono y quién puede usarlo para buscarte en Signal.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Quién puede ver mi número</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
@@ -4320,7 +4320,7 @@
     <string name="PhoneNumberPrivacy_nobody">Nadie</string>
     <string name="preferences_app_protection__screen_lock">Bloqueo de pantalla</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloquea el acceso a Signal con el código de bloqueo o la huella dactilar de Android</string>
-    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tiempo de inactividad para el bloqueo de pantalla</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tiempo de espera para el bloqueo</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Para usar el bloqueo de pantalla, establece un PIN, un patrón o una contraseña en este dispositivo.</string>
     <string name="preferences_app_protection__signal_pin">PIN de Signal</string>
@@ -4456,7 +4456,7 @@
     <string name="DeviceTransferSetup__retry">Reintentar</string>
     <string name="DeviceTransferSetup__submit_debug_logs">Enviar registros de depuración</string>
     <string name="DeviceTransferSetup__verify_code">Verificar código</string>
-    <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verifica que el código que aparece abajo coincida en ambos dispositivos. Luego, toca Continuar.</string>
+    <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Comprueba que el código que aparece abajo coincide en ambos dispositivos. Luego, toca Continuar.</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">Los números no coinciden</string>
     <string name="DeviceTransferSetup__continue">Continuar</string>
     <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Si los números de tus dispositivos no coinciden, es posible que no te hayas conectado al dispositivo correcto. Para solucionarlo, detén la transferencia e inténtalo de nuevo. Mantén ambos dispositivos cerca.</string>
@@ -4734,7 +4734,7 @@
     <string name="ChatWallpaperFragment__reset_wallpaper_question">¿Restablecer fondo de pantalla?</string>
 
     <!-- ChatWallpaperSelectionFragment -->
-    <string name="ChatWallpaperSelectionFragment__choose_from_photos">Seleccionar desde fotos</string>
+    <string name="ChatWallpaperSelectionFragment__choose_from_photos">Seleccionar de la fototeca</string>
     <string name="ChatWallpaperSelectionFragment__presets">Predeterminados</string>
 
     <!-- ChatWallpaperPreviewActivity -->
@@ -4796,7 +4796,7 @@
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Introducir frase de recuperación</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
         <item quantity="one">Tu saldo se restaurará automáticamente cuando reinstales Signal si confirmas el PIN de tu cuenta de Signal. También puedes restaurar tu saldo con la frase de recuperación: una clave de %1$d palabra que es única para ti. Anótala y guárdala en un sitio seguro.</item>
-        <item quantity="other">Tu saldo se restaurará automáticamente cuando reinstales Signal si confirmas el PIN de tu cuenta de Signal. También puedes restaurar tu saldo con la frase de recuperación: una clave de %1$d palabra que es única para ti. Anótala y guárdala en un sitio seguro.</item>
+        <item quantity="other">Tu saldo se restaurará automáticamente cuando reinstales Signal si confirmas el PIN de tu cuenta de Signal. También puedes restaurar tu saldo con la frase de recuperación: una clave de %1$d palabras que es única para ti. Anótala y guárdala en un sitio seguro.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">¡Tienes saldo! Es el momento de guardar tu frase de recuperación, una clave de 24 palabras que puedes usar para restaurar tu saldo.</string>
@@ -4829,12 +4829,12 @@
     <string name="PaymentsRecoveryPhraseFragment__next">Siguiente</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">Editar</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Tu frase de recuperación</string>
-    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Anota las siguientes %1$d palabras en orden. Guárdalas en lugar seguro.</string>
-    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Comprueba que hayas introducido la frase de recuperación correcta.</string>
+    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Anota las siguientes %1$d palabras en orden. Guárdalas en un lugar seguro.</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Comprueba que hayas introducido la frase de recuperación correctamente.</string>
     <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">No hagas una captura de pantalla ni la envíes por correo electrónico.</string>
     <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Cuenta de pagos restaurada.</string>
     <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Frase de recuperación no válida</string>
-    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Asegúrate de haber introducido la frase de recuperación correcta e inténtalo de nuevo.</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Comprueba que hayas introducido la frase de recuperación correctamente e inténtalo de nuevo.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">¿Copiar al portapapeles?</string>
     <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Si eliges guardar tu frase de recuperación de forma digital, asegúrate de que esté almacenada de manera segura en un sitio de confianza.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy">Copiar</string>
@@ -4972,7 +4972,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Cambiar número</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Vas a cambiar tu número de teléfono en Signal de %1$s a %2$s.\n\nAntes de continuar, verifica que el número a continuación es correcto.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Vas a cambiar tu número de teléfono en Signal de %1$s a %2$s.\n\nAntes de continuar, comprueba que el número a continuación es correcto.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Corregir número</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -5042,7 +5042,7 @@
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Requiere el bloqueo de pantalla de Android o la huella dactilar para transferir fondos</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">No se puede activar el bloqueo de pagos</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">No se puede habilitar el bloqueo de pagos</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
     <string name="PrivacySettingsFragment__cant_enable_description">Para usar el bloqueo de pagos, antes debes activar el bloqueo de pantalla o la identificación con huella dactilar en los ajustes de tu teléfono.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
@@ -5058,7 +5058,7 @@
     <!-- ExpireTimerSettingsFragment -->
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Con esta opción activa, los mensajes enviados y recibidos en chats que tú inicies desaparecerán tras ser vistos.</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Si habilitas esta función, los mensajes enviados y recibidos en este chat desaparecerán tras ser vistos.</string>
-    <string name="ExpireTimerSettingsFragment__off">Desactivados</string>
+    <string name="ExpireTimerSettingsFragment__off">Desactivado</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 semanas</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 semana</string>
     <string name="ExpireTimerSettingsFragment__1_day">1 día</string>
@@ -5655,11 +5655,11 @@
     <!-- PayPal decline code for payment declined -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">Selecciona otro método de pago o contacta con tu banco para más información. Si esta transacción fue hecha a través de PayPal, ponte en contacto con PayPal.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
-    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Verifica que tu método de pago esté al día en Google Pay e inténtalo de nuevo.</string>
+    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Comprueba que tu método de pago está al día en Google Pay e inténtalo de nuevo.</string>
     <!-- Stripe decline code learn more action label -->
     <string name="DeclineCode__learn_more">Más información</string>
     <!-- Stripe decline code contact issuer -->
-    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Verifica que tu método de pago esté al día en Google Pay e inténtalo de nuevo. Si el problema persiste, contacta con tu banco.</string>
+    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Comprueba que tu método de pago está al día en Google Pay e inténtalo de nuevo. Si el problema persiste, contacta con tu banco.</string>
     <!-- Stripe decline code purchase not supported -->
     <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Tu tarjeta no permite este tipo de compra. Inténtalo con otro método de pago.</string>
     <!-- Stripe decline code your card has expired -->
@@ -5685,19 +5685,19 @@
 
     <!-- Credit Card decline code error strings -->
     <!-- Stripe decline code approve_with_id for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again">Verifica que los datos de tu tarjeta sean correctos e inténtalo de nuevo.</string>
+    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again">Comprueba que los datos de tu tarjeta son correctos e inténtalo de nuevo.</string>
     <!-- Stripe decline code call_issuer for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again_if_the_problem_continues">Verifica que los datos de tu tarjeta sean correctos e inténtalo de nuevo. Si el problema persiste, contacta con tu banco.</string>
+    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again_if_the_problem_continues">Comprueba que los datos de tu tarjeta son correctos e inténtalo de nuevo. Si el problema persiste, contacta con tu banco.</string>
     <!-- Stripe decline code expired_card for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_card_has_expired_verify_your_card_details">Tu tarjeta ha caducado. Verifica que los datos de tu tarjeta sean correctos e inténtalo de nuevo.</string>
+    <string name="DeclineCode__your_card_has_expired_verify_your_card_details">Tu tarjeta ha caducado. Comprueba que los datos de tu tarjeta son correctos e inténtalo de nuevo.</string>
     <!-- Stripe decline code incorrect_cvc and invalid_cvc for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">El número CVC de tu tarjeta es incorrecto. Verifica que los datos de tu tarjeta sean correctos e inténtalo de nuevo.</string>
+    <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">El número CVC de tu tarjeta es incorrecto. Comprueba que los datos de tu tarjeta son correctos e inténtalo de nuevo.</string>
     <!-- Stripe decline code invalid_expiry_month for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">El mes de vencimiento de tu tarjeta no es correcto. Verifica que los datos de tu tarjeta sean correctos e inténtalo de nuevo.</string>
+    <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">El mes de vencimiento de tu tarjeta no es correcto. Comprueba que los datos de tu tarjeta son correctos e inténtalo de nuevo.</string>
     <!-- Stripe decline code invalid_expiry_year for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">El año de vencimiento de tu tarjeta no es correcto. Verifica que los datos de tu tarjeta sean correctos e inténtalo de nuevo.</string>
+    <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">El año de vencimiento de tu tarjeta no es correcto. Comprueba que los datos de tu tarjeta son correctos e inténtalo de nuevo.</string>
     <!-- Stripe decline code incorrect_number and invalid_number for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">Tu número de tarjeta no es correcto. Verifica que los datos de tu tarjeta sean correctos e inténtalo de nuevo.</string>
+    <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">Tu número de tarjeta no es correcto. Comprueba que los datos de tu tarjeta son correctos e inténtalo de nuevo.</string>
 
     <!-- Stripe Failure Codes for failed bank transfers -->
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
@@ -5709,7 +5709,7 @@
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Los datos bancarios proporcionados no han podido ser procesados. Ponte en contacto con tu banco para obtener más información.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Verifica que los datos de tu banco sean correctos e inténtalo de nuevo. Si el problema persiste, contacta con tu banco.</string>
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Comprueba que los datos de tu banco son correctos e inténtalo de nuevo. Si el problema persiste, contacta con tu banco.</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Asigna un nombre de perfil</string>
@@ -7037,7 +7037,7 @@
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Escanear</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Escanea el código QR mostrado en el dispositivo de tu contacto.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Escanea el código QR que se muestra en el dispositivo de tu contacto.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
