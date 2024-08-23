@@ -51,7 +51,7 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     }
 
     val inputParams = InputParams(inputData)
-    val inputFilename = DocumentFile.fromSingleUri(applicationContext, inputParams.inputUri)?.name
+    val inputFilename = DocumentFile.fromSingleUri(applicationContext, inputParams.inputUri)?.name?.removeFileExtension()
     if (inputFilename == null) {
       Log.w(TAG, "$logPrefix Could not read input file name!")
       return Result.failure()
@@ -151,13 +151,13 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
           return Result.failure()
         }
 
-        val tempFile = File(applicationContext.filesDir, tempFilename)
-        if (!tempFile.delete()) {
-          Log.w(TAG, "$logPrefix Failed to delete temp file after processing!")
-          return Result.failure()
-        }
+        Log.v(TAG, "$logPrefix Faststart postprocess successful.")
       }
-      Log.v(TAG, "$logPrefix Faststart postprocess successful.")
+      val tempFile = File(applicationContext.filesDir, tempFilename)
+      if (!tempFile.delete()) {
+        Log.w(TAG, "$logPrefix Failed to delete temp file after processing!")
+        return Result.failure()
+      }
     }
     Log.v(TAG, "$logPrefix Overall transcode job successful.")
     return Result.success()
@@ -197,6 +197,15 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
 
   private fun createFile(treeUri: Uri, filename: String): DocumentFile? {
     return DocumentFile.fromTreeUri(applicationContext, treeUri)?.createFile(VideoConstants.VIDEO_MIME_TYPE, filename)
+  }
+
+  private fun String.removeFileExtension(): String {
+    val lastDot = this.lastIndexOf('.')
+    return if (lastDot != -1) {
+      this.substring(0, lastDot)
+    } else {
+      this
+    }
   }
 
   private class WorkerMediaDataSource(private val file: File) : InputStreamMediaDataSource() {

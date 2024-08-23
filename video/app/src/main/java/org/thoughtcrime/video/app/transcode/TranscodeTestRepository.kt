@@ -99,8 +99,8 @@ class TranscodeTestRepository(context: Context) {
     workManager.pruneWork()
   }
 
-  fun cleanFailedTranscodes(context: Context) {
-    context.filesDir.listFiles()?.filter { it.name.endsWith(TranscodeWorker.TEMP_FILE_EXTENSION) }?.forEach {
+  fun cleanPrivateStorage(context: Context) {
+    context.filesDir.listFiles()?.forEach {
       it.delete()
     }
   }

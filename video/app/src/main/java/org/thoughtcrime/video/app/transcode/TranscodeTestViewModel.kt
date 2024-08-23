@@ -90,7 +90,7 @@ class TranscodeTestViewModel : ViewModel() {
 
   fun setOutputDirectoryAndCleanFailedTranscodes(context: Context, folderUri: Uri) {
     outputDirectory = folderUri
-    repository.cleanFailedTranscodes(context)
+    repository.cleanPrivateStorage(context)
   }
 
   fun reset() {
