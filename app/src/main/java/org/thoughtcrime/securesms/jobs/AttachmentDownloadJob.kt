@@ -92,8 +92,7 @@ class AttachmentDownloadJob private constructor(
 
         AttachmentTable.TRANSFER_PROGRESS_PENDING,
         AttachmentTable.TRANSFER_PROGRESS_FAILED,
-        AttachmentTable.TRANSFER_NEEDS_RESTORE,
-        AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS -> {
+        AttachmentTable.TRANSFER_NEEDS_RESTORE -> {
           val downloadJob = AttachmentDownloadJob(
             messageId = databaseAttachment.mmsId,
             attachmentId = databaseAttachment.attachmentId,
@@ -104,6 +103,7 @@ class AttachmentDownloadJob private constructor(
           downloadJob.id
         }
 
+        AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS,
         AttachmentTable.TRANSFER_PROGRESS_DONE,
         AttachmentTable.TRANSFER_PROGRESS_STARTED,
         AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE -> null
