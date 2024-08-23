@@ -177,6 +177,7 @@ fun CallScreen(
           overflowParticipants = overflowParticipants,
           scaffoldState = scaffoldState,
           callControlsState = callControlsState,
+          callScreenState = callScreenState,
           onPipClick = onLocalPictureInPictureClicked,
           onControlsToggled = onControlsToggled
         )
@@ -196,6 +197,7 @@ fun CallScreen(
             overflowParticipants = overflowParticipants,
             scaffoldState = scaffoldState,
             callControlsState = callControlsState,
+            callScreenState = callScreenState,
             onPipClick = onLocalPictureInPictureClicked,
             onControlsToggled = onControlsToggled
           )
@@ -264,6 +266,7 @@ private fun BoxScope.Viewport(
   overflowParticipants: List<CallParticipant>,
   scaffoldState: BottomSheetScaffoldState,
   callControlsState: CallControlsState,
+  callScreenState: CallScreenState,
   onPipClick: () -> Unit,
   onControlsToggled: (Boolean) -> Unit
 ) {
@@ -279,7 +282,7 @@ private fun BoxScope.Viewport(
     val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
     val scope = rememberCoroutineScope()
 
-    val hideSheet by rememberUpdatedState(newValue = scaffoldState.bottomSheetState.currentValue == SheetValue.PartiallyExpanded && !callControlsState.skipHiddenState)
+    val hideSheet by rememberUpdatedState(newValue = scaffoldState.bottomSheetState.currentValue == SheetValue.PartiallyExpanded && !callControlsState.skipHiddenState && !callScreenState.isDisplayingAudioToggleSheet)
     LaunchedEffect(hideSheet) {
       if (hideSheet) {
         delay(5.seconds)

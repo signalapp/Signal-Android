@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,6 +32,8 @@ import org.signal.core.ui.DarkPreview
 import org.signal.core.ui.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
+import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState
+import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
 import org.thoughtcrime.securesms.events.WebRtcViewModel
@@ -66,7 +69,30 @@ fun CallControls(
     Row(
       horizontalArrangement = spacedBy(20.dp)
     ) {
-      // TODO [alex] -- Audio output toggle
+      if (callControlsState.displayAudioOutputToggle) {
+        val outputState = remember {
+          ToggleButtonOutputState().apply {
+            isEarpieceAvailable = callControlsState.isEarpieceAvailable
+            isWiredHeadsetAvailable = callControlsState.isWiredHeadsetAvailable
+            isBluetoothHeadsetAvailable = callControlsState.isBluetoothHeadsetAvailable
+          }
+        }
+
+        LaunchedEffect(callControlsState.isEarpieceAvailable, callControlsState.isWiredHeadsetAvailable, callControlsState.isBluetoothHeadsetAvailable) {
+          outputState.apply {
+            isEarpieceAvailable = callControlsState.isEarpieceAvailable
+            isWiredHeadsetAvailable = callControlsState.isWiredHeadsetAvailable
+            isBluetoothHeadsetAvailable = callControlsState.isBluetoothHeadsetAvailable
+          }
+        }
+
+        CallAudioToggleButton(
+          outputState = outputState,
+          contentDescription = stringResource(id = R.string.WebRtcAudioOutputToggle__audio_output),
+          onSelectedDeviceChanged = callControlsCallback::onSelectedAudioDeviceChanged,
+          onSheetDisplayChanged = callControlsCallback::onAudioDeviceSheetDisplayChanged
+        )
+      }
 
       val hasCameraPermission = ContextCompat.checkSelfPermission(LocalContext.current, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
       if (callControlsState.displayVideoToggle) {
@@ -145,6 +171,8 @@ fun CallControlsPreview() {
  * Callbacks for call controls actions.
  */
 interface CallControlsCallback {
+  fun onAudioDeviceSheetDisplayChanged(displayed: Boolean)
+  fun onSelectedAudioDeviceChanged(audioDevice: WebRtcAudioDevice)
   fun onVideoToggleClick(enabled: Boolean)
   fun onMicToggleClick(enabled: Boolean)
   fun onGroupRingingToggleClick(enabled: Boolean, allowed: Boolean)
@@ -153,6 +181,8 @@ interface CallControlsCallback {
   fun onEndCallClick()
 
   object Empty : CallControlsCallback {
+    override fun onAudioDeviceSheetDisplayChanged(displayed: Boolean) = Unit
+    override fun onSelectedAudioDeviceChanged(audioDevice: WebRtcAudioDevice) = Unit
     override fun onVideoToggleClick(enabled: Boolean) = Unit
     override fun onMicToggleClick(enabled: Boolean) = Unit
     override fun onGroupRingingToggleClick(enabled: Boolean, allowed: Boolean) = Unit
@@ -168,6 +198,9 @@ interface CallControlsCallback {
  * sources so we don't need to listen to multiple here.
  */
 data class CallControlsState(
+  val isEarpieceAvailable: Boolean = false,
+  val isBluetoothHeadsetAvailable: Boolean = false,
+  val isWiredHeadsetAvailable: Boolean = false,
   val skipHiddenState: Boolean = true,
   val displayAudioOutputToggle: Boolean = false,
   val audioOutput: WebRtcAudioOutput = WebRtcAudioOutput.HANDSET,
@@ -200,6 +233,9 @@ data class CallControlsState(
       }
 
       return CallControlsState(
+        isEarpieceAvailable = webRtcControls.isEarpieceAvailableForAudioToggle,
+        isBluetoothHeadsetAvailable = webRtcControls.isBluetoothHeadsetAvailableForAudioToggle,
+        isWiredHeadsetAvailable = webRtcControls.isWiredHeadsetAvailableForAudioToggle,
         skipHiddenState = !(webRtcControls.isFadeOutEnabled || webRtcControls == WebRtcControls.PIP || webRtcControls.displayErrorControls()),
         displayAudioOutputToggle = webRtcControls.displayAudioToggle(),
         audioOutput = webRtcControls.audioOutput,

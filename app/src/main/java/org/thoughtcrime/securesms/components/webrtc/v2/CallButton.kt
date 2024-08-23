@@ -43,12 +43,14 @@ private fun ToggleCallButton(
     onCheckedChange = onCheckedChange,
     size = buttonSize,
     modifier = modifier.size(buttonSize),
-    colors = IconButtons.iconToggleButtonColors(
-      checkedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-      checkedContentColor = colorResource(id = R.color.signal_light_colorOnPrimary),
-      containerColor = colorResource(id = R.color.signal_light_colorSecondaryContainer),
-      contentColor = colorResource(id = R.color.signal_light_colorOnSecondaryContainer)
-    )
+    colors = IconButtons.run {
+      iconToggleButtonColors(
+        checkedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+        checkedContentColor = colorResource(id = R.color.signal_light_colorOnPrimary),
+        containerColor = colorResource(id = R.color.signal_light_colorSecondaryContainer),
+        contentColor = colorResource(id = R.color.signal_light_colorOnSecondaryContainer)
+      )
+    }
   ) {
     Icon(
       painter = if (checked) checkedPainter else painter,

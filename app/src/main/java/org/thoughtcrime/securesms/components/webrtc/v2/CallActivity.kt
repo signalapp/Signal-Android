@@ -35,6 +35,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
+import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
 import org.thoughtcrime.securesms.components.webrtc.controls.CallInfoView
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel
@@ -261,6 +262,14 @@ class CallActivity : BaseActivity(), CallControlsCallback {
   @SuppressLint("MissingSuperCall")
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
+
+  override fun onAudioDeviceSheetDisplayChanged(displayed: Boolean) {
+    viewModel.onAudioDeviceSheetDisplayChanged(displayed)
+  }
+
+  override fun onSelectedAudioDeviceChanged(audioDevice: WebRtcAudioDevice) {
+    viewModel.onSelectedAudioDeviceChanged(audioDevice)
   }
 
   override fun onVideoToggleClick(enabled: Boolean) {
