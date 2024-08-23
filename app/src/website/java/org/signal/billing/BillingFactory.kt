@@ -8,7 +8,7 @@ import org.signal.core.util.billing.BillingApi
  */
 object BillingFactory {
   @JvmStatic
-  fun create(context: Context): BillingApi {
+  fun create(context: Context, isBackupsAvailable: Boolean): BillingApi {
     return BillingApi.Empty
   }
 }
