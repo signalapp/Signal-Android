@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="reminder" />
+        app:constraint_referenced_ids="banner_compose_view" />
 
     <include
         layout="@layout/payments_home_fragment_header"
