@@ -1110,5 +1110,13 @@ object RemoteConfig {
     hotSwappable = false
   )
 
+  @JvmStatic
+  @get:JvmName("useHevcEncoder")
+  val useHevcEncoder: Boolean by remoteBoolean(
+    key = "android.useHevcEncoder",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
   // endregion
 }

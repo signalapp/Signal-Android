@@ -383,6 +383,19 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
+      sectionHeaderPref(DSLSettingsText.from("Media"))
+
+      switchPref(
+        title = DSLSettingsText.from("Enable HEVC Encoding for HD Videos"),
+        summary = DSLSettingsText.from("Videos sent in \"HD\" quality will be encoded in HEVC on compatible devices."),
+        isChecked = state.hevcEncoding,
+        onClick = {
+          viewModel.setHevcEncoding(!state.hevcEncoding)
+        }
+      )
+
+      dividerPref()
+
       sectionHeaderPref(DSLSettingsText.from("Conversations and Shortcuts"))
 
       clickPref(

@@ -119,6 +119,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setHevcEncoding(enabled: Boolean) {
+    SignalStore.internal.hevcEncoding = enabled
+    refresh()
+  }
+
   fun addSampleReleaseNote() {
     repository.addSampleReleaseNote()
   }
@@ -159,7 +164,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     canClearOnboardingState = SignalStore.story.hasDownloadedOnboardingStory && Stories.isFeatureEnabled(),
     pnpInitialized = SignalStore.misc.hasPniInitializedDevices,
     useConversationItemV2ForMedia = SignalStore.internal.useConversationItemV2Media(),
-    hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null
+    hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null,
+    hevcEncoding = SignalStore.internal.hevcEncoding
   )
 
   fun onClearOnboardingState() {

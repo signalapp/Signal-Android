@@ -41,10 +41,6 @@ public abstract class MediaConstraints {
     return TranscodingPreset.LEVEL_1;
   }
 
-  public boolean isHighQuality() {
-    return false;
-  }
-
   /**
    * Provide a list of dimensions that should be attempted during compression. We will keep moving
    * down the list until the image can be scaled to fit under {@link #getImageMaxSize(Context)}.

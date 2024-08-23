@@ -50,6 +50,7 @@ class TranscodeTestRepository(context: Context) {
       if (transcodingPreset != null) {
         inputData.putString(TranscodeWorker.KEY_TRANSCODING_PRESET_NAME, transcodingPreset.name)
       } else if (customTranscodingOptions != null) {
+        inputData.putString(TranscodeWorker.KEY_VIDEO_CODEC, customTranscodingOptions.videoCodec)
         inputData.putInt(TranscodeWorker.KEY_LONG_EDGE, customTranscodingOptions.videoResolution.longEdge)
         inputData.putInt(TranscodeWorker.KEY_SHORT_EDGE, customTranscodingOptions.videoResolution.shortEdge)
         inputData.putInt(TranscodeWorker.KEY_VIDEO_BIT_RATE, customTranscodingOptions.videoBitrate)
@@ -104,7 +105,7 @@ class TranscodeTestRepository(context: Context) {
     }
   }
 
-  data class CustomTranscodingOptions(val videoResolution: VideoResolution, val videoBitrate: Int, val audioBitrate: Int, val enableFastStart: Boolean, val enableAudioRemux: Boolean)
+  data class CustomTranscodingOptions(val videoCodec: String, val videoResolution: VideoResolution, val videoBitrate: Int, val audioBitrate: Int, val enableFastStart: Boolean, val enableAudioRemux: Boolean)
 
   companion object {
     private const val TAG = "TranscodingTestRepository"

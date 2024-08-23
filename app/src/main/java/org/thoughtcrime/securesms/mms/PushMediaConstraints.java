@@ -7,10 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.TranscodingPreset;
+import org.thoughtcrime.securesms.video.videoconverter.utils.DeviceCapabilities;
 
 import java.util.Arrays;
 
@@ -23,11 +25,6 @@ public class PushMediaConstraints extends MediaConstraints {
 
   public PushMediaConstraints(@Nullable SentMediaQuality sentMediaQuality) {
     currentConfig = getCurrentConfig(AppDependencies.getApplication(), sentMediaQuality);
-  }
-
-  @Override
-  public boolean isHighQuality() {
-    return currentConfig == MediaConfig.LEVEL_3;
   }
 
   @Override
@@ -102,7 +99,11 @@ public class PushMediaConstraints extends MediaConstraints {
     }
 
     if (sentMediaQuality == SentMediaQuality.HIGH) {
-      return MediaConfig.LEVEL_3;
+      if (DeviceCapabilities.canEncodeHevc() && (RemoteConfig.useHevcEncoder() || SignalStore.internal().getHevcEncoding())) {
+        return MediaConfig.LEVEL_4;
+      } else {
+        return MediaConfig.LEVEL_3;
+      }
     }
     return LocaleRemoteConfig.getMediaQualityLevel().orElse(MediaConfig.getDefault(context));
   }
@@ -112,7 +113,8 @@ public class PushMediaConstraints extends MediaConstraints {
 
     LEVEL_1(false, 1, MB, new int[] { 1600, 1024, 768, 512 }, 70, TranscodingPreset.LEVEL_1),
     LEVEL_2(false, 2, (int) (1.5 * MB), new int[] { 2048, 1600, 1024, 768, 512 }, 75, TranscodingPreset.LEVEL_2),
-    LEVEL_3(false, 3, (int) (3 * MB), new int[] { 4096, 3072, 2048, 1600, 1024, 768, 512 }, 75, TranscodingPreset.LEVEL_3);
+    LEVEL_3(false, 3, (int) (3 * MB), new int[] { 4096, 3072, 2048, 1600, 1024, 768, 512 }, 75, TranscodingPreset.LEVEL_3),
+    LEVEL_4(false, 4, 3 * MB, new int[] { 4096, 3072, 2048, 1600, 1024, 768, 512 }, 75, TranscodingPreset.LEVEL_4);
 
     private final boolean           isLowMemory;
     private final int               level;

@@ -25,6 +25,7 @@ import org.signal.core.util.readLength
 import org.thoughtcrime.securesms.video.StreamingTranscoder
 import org.thoughtcrime.securesms.video.TranscodingPreset
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor
+import org.thoughtcrime.securesms.video.videoconverter.MediaConverter.VideoCodec
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.InputStreamMediaDataSource
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 import org.thoughtcrime.video.app.R
@@ -61,7 +62,6 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     val finalFilename = "$filenameBase$OUTPUT_FILE_EXTENSION"
 
     setForeground(createForegroundInfo(-1, inputParams.notificationId))
-
     applicationContext.openFileOutput(tempFilename, Context.MODE_PRIVATE).use { outputStream ->
       if (outputStream == null) {
         Log.w(TAG, "$logPrefix Could not open temp file for I/O!")
@@ -80,8 +80,12 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     val datasource = WorkerMediaDataSource(File(applicationContext.filesDir, inputFilename))
 
     val transcoder = if (inputParams.resolution > 0 && inputParams.videoBitrate > 0) {
-      Log.d(TAG, "$logPrefix Initializing StreamingTranscoder with custom parameters: B:V=${inputParams.videoBitrate}, B:A=${inputParams.audioBitrate}, res=${inputParams.resolution}, audioRemux=${inputParams.audioRemux}")
-      StreamingTranscoder.createManuallyForTesting(datasource, null, inputParams.videoBitrate, inputParams.audioBitrate, inputParams.resolution, inputParams.audioRemux)
+      if (inputParams.videoCodec == null) {
+        Log.w(TAG, "$logPrefix Video codec was null!")
+        return Result.failure()
+      }
+      Log.d(TAG, "$logPrefix Initializing StreamingTranscoder with custom parameters: CODEC:${inputParams.videoCodec} B:V=${inputParams.videoBitrate}, B:A=${inputParams.audioBitrate}, res=${inputParams.resolution}, audioRemux=${inputParams.audioRemux}")
+      StreamingTranscoder.createManuallyForTesting(datasource, null, inputParams.videoCodec, inputParams.videoBitrate, inputParams.audioBitrate, inputParams.resolution, inputParams.audioRemux)
     } else if (inputParams.transcodingPreset != null) {
       StreamingTranscoder(datasource, null, inputParams.transcodingPreset, DEFAULT_FILE_SIZE_LIMIT, inputParams.audioRemux)
     } else {
@@ -224,6 +228,8 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     val outputDirUri: Uri = Uri.parse(inputData.getString(KEY_OUTPUT_URI))
     val postProcessForFastStart: Boolean = inputData.getBoolean(KEY_ENABLE_FASTSTART, true)
     val transcodingPreset: TranscodingPreset? = inputData.getString(KEY_TRANSCODING_PRESET_NAME)?.let { TranscodingPreset.valueOf(it) }
+
+    @VideoCodec val videoCodec: String? = inputData.getString(KEY_VIDEO_CODEC)
     val resolution: Int = inputData.getInt(KEY_SHORT_EDGE, -1)
     val videoBitrate: Int = inputData.getInt(KEY_VIDEO_BIT_RATE, -1)
     val audioBitrate: Int = inputData.getInt(KEY_AUDIO_BIT_RATE, -1)
@@ -239,6 +245,7 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     const val KEY_OUTPUT_URI = "output_uri"
     const val KEY_TRANSCODING_PRESET_NAME = "transcoding_quality_preset"
     const val KEY_PROGRESS = "progress"
+    const val KEY_VIDEO_CODEC = "video_codec"
     const val KEY_LONG_EDGE = "resolution_long_edge"
     const val KEY_SHORT_EDGE = "resolution_short_edge"
     const val KEY_VIDEO_BIT_RATE = "video_bit_rate"
