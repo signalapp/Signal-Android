@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.viewinterop.AndroidView
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
@@ -47,13 +48,19 @@ fun LocalParticipantRenderer(
       )
     }
 
+    val localRecipient = if (LocalInspectionMode.current) {
+      Recipient()
+    } else {
+      localParticipant.recipient
+    }
+
     val model = remember {
-      ProfileContactPhoto(Recipient.self())
+      ProfileContactPhoto(localRecipient)
     }
 
     val context = LocalContext.current
     val fallback = remember {
-      FallbackAvatarDrawable(context, Recipient.self().getFallbackAvatar())
+      FallbackAvatarDrawable(context, localRecipient.getFallbackAvatar())
     }
 
     GlideImage(

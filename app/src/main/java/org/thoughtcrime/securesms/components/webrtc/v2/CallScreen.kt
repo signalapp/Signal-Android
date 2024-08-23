@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -19,12 +20,10 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
@@ -38,10 +37,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -50,11 +51,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Previews
@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import kotlin.math.max
 import kotlin.math.round
+import kotlin.time.Duration.Companion.seconds
 
 private const val DRAG_HANDLE_HEIGHT = 22
 private const val SHEET_TOP_PADDING = 9
@@ -86,19 +87,26 @@ fun CallScreen(
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
   callInfoView: @Composable (Float) -> Unit,
+  raiseHandSnackbar: @Composable (Modifier) -> Unit,
   onNavigationClick: () -> Unit,
-  onLocalPictureInPictureClicked: () -> Unit
+  onLocalPictureInPictureClicked: () -> Unit,
+  onControlsToggled: (Boolean) -> Unit
 ) {
   var peekPercentage by remember {
     mutableFloatStateOf(0f)
   }
 
+  val skipHiddenState by rememberUpdatedState(newValue = callControlsState.skipHiddenState)
+  val valueChangeOperation: (SheetValue) -> Boolean = remember {
+    {
+      !(it == SheetValue.Hidden && skipHiddenState)
+    }
+  }
+
   val scope = rememberCoroutineScope()
   val scaffoldState = rememberBottomSheetScaffoldState(
     bottomSheetState = rememberStandardBottomSheetState(
-      confirmValueChange = {
-        !(it == SheetValue.Hidden && callControlsState.skipHiddenState)
-      },
+      confirmValueChange = valueChangeOperation,
       skipHiddenState = false
     )
   )
@@ -169,7 +177,8 @@ fun CallScreen(
           overflowParticipants = overflowParticipants,
           scaffoldState = scaffoldState,
           callControlsState = callControlsState,
-          onPipClick = onLocalPictureInPictureClicked
+          onPipClick = onLocalPictureInPictureClicked,
+          onControlsToggled = onControlsToggled
         )
       }
 
@@ -187,7 +196,8 @@ fun CallScreen(
             overflowParticipants = overflowParticipants,
             scaffoldState = scaffoldState,
             callControlsState = callControlsState,
-            onPipClick = onLocalPictureInPictureClicked
+            onPipClick = onLocalPictureInPictureClicked,
+            onControlsToggled = onControlsToggled
           )
         }
       }
@@ -203,13 +213,19 @@ fun CallScreen(
       }
 
       if (webRtcCallState.isPassedPreJoin) {
-        CallScreenTopBar(
-          callRecipient = callRecipient,
-          callStatus = callScreenState.callStatus,
-          onNavigationClick = onNavigationClick,
-          onCallInfoClick = onCallInfoClick,
-          modifier = Modifier.padding(bottom = padding)
-        )
+        AnimatedVisibility(
+          visible = scaffoldState.bottomSheetState.targetValue != SheetValue.Hidden,
+          enter = fadeIn(),
+          exit = fadeOut()
+        ) {
+          CallScreenTopBar(
+            callRecipient = callRecipient,
+            callStatus = callScreenState.callStatus,
+            onNavigationClick = onNavigationClick,
+            onCallInfoClick = onCallInfoClick,
+            modifier = Modifier.padding(bottom = padding)
+          )
+        }
       } else {
         CallScreenPreJoinOverlay(
           callRecipient = callRecipient,
@@ -220,6 +236,8 @@ fun CallScreen(
           modifier = Modifier.padding(bottom = padding)
         )
       }
+
+      raiseHandSnackbar(Modifier.fillMaxWidth())
 
       AnimatedCallStateUpdate(
         callControlsChange = callScreenState.callControlsChange,
@@ -246,7 +264,8 @@ private fun BoxScope.Viewport(
   overflowParticipants: List<CallParticipant>,
   scaffoldState: BottomSheetScaffoldState,
   callControlsState: CallControlsState,
-  onPipClick: () -> Unit
+  onPipClick: () -> Unit,
+  onControlsToggled: (Boolean) -> Unit
 ) {
   if (webRtcCallState.isPreJoinOrNetworkUnavailable) {
     LargeLocalVideoRenderer(
@@ -259,6 +278,15 @@ private fun BoxScope.Viewport(
   if (webRtcCallState.isPassedPreJoin) {
     val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
     val scope = rememberCoroutineScope()
+
+    val hideSheet by rememberUpdatedState(newValue = scaffoldState.bottomSheetState.currentValue == SheetValue.PartiallyExpanded && !callControlsState.skipHiddenState)
+    LaunchedEffect(hideSheet) {
+      if (hideSheet) {
+        delay(5.seconds)
+        scaffoldState.bottomSheetState.hide()
+        onControlsToggled(false)
+      }
+    }
 
     Row {
       Column(
@@ -275,7 +303,9 @@ private fun BoxScope.Viewport(
                 scope.launch {
                   if (scaffoldState.bottomSheetState.isVisible) {
                     scaffoldState.bottomSheetState.hide()
+                    onControlsToggled(false)
                   } else {
+                    onControlsToggled(true)
                     scaffoldState.bottomSheetState.show()
                   }
                 }
@@ -317,17 +347,9 @@ private fun BoxScope.Viewport(
   }
 
   if (webRtcCallState.inOngoingCall && localParticipant.isVideoEnabled && !isLargeGroupCall) {
-    val padBottom: Dp = if (scaffoldState.bottomSheetState.isVisible) {
-      0.dp
-    } else {
-      val density = LocalDensity.current
-      with(density) { WindowInsets.navigationBars.getBottom(density).toDp() }
-    }
-
     SmallMoveableLocalVideoRenderer(
       localParticipant = localParticipant,
       localRenderState = localRenderState,
-      extraPadBottom = padBottom,
       onClick = onPipClick
     )
   }
@@ -365,12 +387,14 @@ private fun TinyLocalVideoRenderer(
   val smallSize = remember(isPortrait) {
     if (isPortrait) DpSize(40.dp, 72.dp) else DpSize(72.dp, 40.dp)
   }
-  val largeSize = remember(isPortrait) {
+  val expandedSize = remember(isPortrait) {
     if (isPortrait) DpSize(180.dp, 320.dp) else DpSize(320.dp, 180.dp)
   }
 
-  val width by animateDpAsState(label = "tiny-width", targetValue = if (localRenderState == WebRtcLocalRenderState.EXPANDED) largeSize.width else smallSize.width)
-  val height by animateDpAsState(label = "tiny-height", targetValue = if (localRenderState == WebRtcLocalRenderState.EXPANDED) largeSize.height else smallSize.height)
+  val size = if (localRenderState == WebRtcLocalRenderState.EXPANDED) expandedSize else smallSize
+
+  val width by animateDpAsState(label = "tiny-width", targetValue = size.width)
+  val height by animateDpAsState(label = "tiny-height", targetValue = size.height)
 
   LocalParticipantRenderer(
     localParticipant = localParticipant,
@@ -391,7 +415,6 @@ private fun TinyLocalVideoRenderer(
 private fun SmallMoveableLocalVideoRenderer(
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
-  extraPadBottom: Dp,
   onClick: () -> Unit
 ) {
   val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
@@ -399,15 +422,14 @@ private fun SmallMoveableLocalVideoRenderer(
   val smallSize = remember(isPortrait) {
     if (isPortrait) DpSize(90.dp, 160.dp) else DpSize(160.dp, 90.dp)
   }
-  val largeSize = remember(isPortrait) {
+  val expandedSize = remember(isPortrait) {
     if (isPortrait) DpSize(180.dp, 320.dp) else DpSize(320.dp, 180.dp)
   }
 
-  val size = if (localRenderState == WebRtcLocalRenderState.SMALL_RECTANGLE) smallSize else largeSize
+  val size = if (localRenderState == WebRtcLocalRenderState.EXPANDED) expandedSize else smallSize
 
   val targetWidth by animateDpAsState(label = "animate-pip-width", targetValue = size.width, animationSpec = tween())
   val targetHeight by animateDpAsState(label = "animate-pip-height", targetValue = size.height, animationSpec = tween())
-  val bottomPadding by animateDpAsState(label = "animate-pip-bottom-pad", targetValue = extraPadBottom, animationSpec = tween())
 
   PictureInPicture(
     contentSize = DpSize(targetWidth, targetHeight),
@@ -415,7 +437,6 @@ private fun SmallMoveableLocalVideoRenderer(
       .fillMaxSize()
       .padding(16.dp)
       .statusBarsPadding()
-      .padding(bottom = bottomPadding)
   ) {
     LocalParticipantRenderer(
       localParticipant = localParticipant,
@@ -482,9 +503,11 @@ private fun CallScreenPreview() {
       callInfoView = {
         Text(text = "Call Info View Preview", modifier = Modifier.alpha(it))
       },
+      raiseHandSnackbar = {},
       onNavigationClick = {},
       onLocalPictureInPictureClicked = {},
-      overflowParticipants = (1..5).map { CallParticipant() }
+      overflowParticipants = emptyList(),
+      onControlsToggled = {}
     )
   }
 }
