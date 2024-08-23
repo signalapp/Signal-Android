@@ -15,12 +15,12 @@ import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
 
-class WebRtcCallParticipantsRecyclerAdapter extends ListAdapter<CallParticipant, WebRtcCallParticipantsRecyclerAdapter.ViewHolder> {
+public class WebRtcCallParticipantsRecyclerAdapter extends ListAdapter<CallParticipant, WebRtcCallParticipantsRecyclerAdapter.ViewHolder> {
 
   private static final int PARTICIPANT = 0;
   private static final int EMPTY       = 1;
 
-  protected WebRtcCallParticipantsRecyclerAdapter() {
+  public WebRtcCallParticipantsRecyclerAdapter() {
     super(new DiffCallback());
   }
 
@@ -43,7 +43,7 @@ class WebRtcCallParticipantsRecyclerAdapter extends ListAdapter<CallParticipant,
     return getItem(position) == CallParticipant.EMPTY ? EMPTY : PARTICIPANT;
   }
 
-  static class ViewHolder extends RecyclerView.ViewHolder {
+  public static class ViewHolder extends RecyclerView.ViewHolder {
     ViewHolder(@NonNull View itemView) {
       super(itemView);
     }

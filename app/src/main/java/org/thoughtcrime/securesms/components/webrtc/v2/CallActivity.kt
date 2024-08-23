@@ -134,6 +134,7 @@ class CallActivity : BaseActivity(), CallControlsCallback {
               isRenderInPip = callParticipantsState.isInPipMode,
               hideAvatar = callParticipantsState.hideAvatar
             ),
+            overflowParticipants = callParticipantsState.listParticipants,
             localParticipant = callParticipantsState.localParticipant,
             localRenderState = callParticipantsState.localRenderState,
             callInfoView = {

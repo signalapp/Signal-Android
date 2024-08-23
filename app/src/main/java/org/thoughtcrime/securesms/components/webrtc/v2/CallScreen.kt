@@ -15,14 +15,20 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -76,6 +82,7 @@ fun CallScreen(
   callControlsState: CallControlsState,
   callControlsCallback: CallControlsCallback = CallControlsCallback.Empty,
   callParticipantsPagerState: CallParticipantsPagerState,
+  overflowParticipants: List<CallParticipant>,
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
   callInfoView: @Composable (Float) -> Unit,
@@ -159,6 +166,7 @@ fun CallScreen(
           localRenderState = localRenderState,
           webRtcCallState = webRtcCallState,
           callParticipantsPagerState = callParticipantsPagerState,
+          overflowParticipants = overflowParticipants,
           scaffoldState = scaffoldState,
           callControlsState = callControlsState,
           onPipClick = onLocalPictureInPictureClicked
@@ -176,6 +184,7 @@ fun CallScreen(
             localRenderState = localRenderState,
             webRtcCallState = webRtcCallState,
             callParticipantsPagerState = callParticipantsPagerState,
+            overflowParticipants = overflowParticipants,
             scaffoldState = scaffoldState,
             callControlsState = callControlsState,
             onPipClick = onLocalPictureInPictureClicked
@@ -229,44 +238,85 @@ fun CallScreen(
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun Viewport(
+private fun BoxScope.Viewport(
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
   webRtcCallState: WebRtcViewModel.State,
   callParticipantsPagerState: CallParticipantsPagerState,
+  overflowParticipants: List<CallParticipant>,
   scaffoldState: BottomSheetScaffoldState,
   callControlsState: CallControlsState,
   onPipClick: () -> Unit
 ) {
-  LargeLocalVideoRenderer(
-    localParticipant = localParticipant,
-    localRenderState = localRenderState
-  )
-
-  if (webRtcCallState.isPassedPreJoin) {
-    val scope = rememberCoroutineScope()
-
-    CallParticipantsPager(
-      callParticipantsPagerState = callParticipantsPagerState,
-      modifier = Modifier
-        .fillMaxSize()
-        .clip(MaterialTheme.shapes.extraLarge)
-        .clickable(
-          onClick = {
-            scope.launch {
-              if (scaffoldState.bottomSheetState.isVisible) {
-                scaffoldState.bottomSheetState.hide()
-              } else {
-                scaffoldState.bottomSheetState.show()
-              }
-            }
-          },
-          enabled = !callControlsState.skipHiddenState
-        )
+  if (webRtcCallState.isPreJoinOrNetworkUnavailable) {
+    LargeLocalVideoRenderer(
+      localParticipant = localParticipant,
+      localRenderState = localRenderState
     )
   }
 
-  if (webRtcCallState.inOngoingCall && localParticipant.isVideoEnabled) {
+  val isLargeGroupCall = overflowParticipants.size > 1
+  if (webRtcCallState.isPassedPreJoin) {
+    val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
+    val scope = rememberCoroutineScope()
+
+    Row {
+      Column(
+        modifier = Modifier.weight(1f)
+      ) {
+        CallParticipantsPager(
+          callParticipantsPagerState = callParticipantsPagerState,
+          modifier = Modifier
+            .fillMaxWidth()
+            .weight(1f)
+            .clip(MaterialTheme.shapes.extraLarge)
+            .clickable(
+              onClick = {
+                scope.launch {
+                  if (scaffoldState.bottomSheetState.isVisible) {
+                    scaffoldState.bottomSheetState.hide()
+                  } else {
+                    scaffoldState.bottomSheetState.show()
+                  }
+                }
+              },
+              enabled = !callControlsState.skipHiddenState
+            )
+        )
+
+        if (isPortrait && isLargeGroupCall) {
+          CallParticipantsOverflow(
+            overflowParticipants = overflowParticipants,
+            modifier = Modifier
+              .padding(16.dp)
+              .height(72.dp)
+              .fillMaxWidth()
+          )
+        }
+      }
+
+      if (!isPortrait && isLargeGroupCall) {
+        CallParticipantsOverflow(
+          overflowParticipants = overflowParticipants,
+          modifier = Modifier
+            .padding(16.dp)
+            .width(72.dp)
+            .fillMaxHeight()
+        )
+      }
+    }
+
+    if (isLargeGroupCall) {
+      TinyLocalVideoRenderer(
+        localParticipant = localParticipant,
+        localRenderState = localRenderState,
+        modifier = Modifier.align(Alignment.BottomEnd),
+        onClick = onPipClick
+      )
+    }
+  }
+
+  if (webRtcCallState.inOngoingCall && localParticipant.isVideoEnabled && !isLargeGroupCall) {
     val padBottom: Dp = if (scaffoldState.bottomSheetState.isVisible) {
       0.dp
     } else {
@@ -283,20 +333,60 @@ private fun Viewport(
   }
 }
 
+/**
+ * Full-screen local video renderer displayed when the user is in pre-call state.
+ */
 @Composable
 private fun LargeLocalVideoRenderer(
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState
 ) {
-  CallParticipantVideoRenderer(
-    callParticipant = localParticipant,
-    attachVideoSink = localRenderState == WebRtcLocalRenderState.LARGE,
+  LocalParticipantRenderer(
+    localParticipant = localParticipant,
+    localRenderState = localRenderState,
     modifier = Modifier
       .fillMaxSize()
       .clip(MaterialTheme.shapes.extraLarge)
   )
 }
 
+/**
+ * Tiny expandable video renderer displayed when the user is in a large group call.
+ */
+@Composable
+private fun TinyLocalVideoRenderer(
+  localParticipant: CallParticipant,
+  localRenderState: WebRtcLocalRenderState,
+  modifier: Modifier = Modifier,
+  onClick: () -> Unit
+) {
+  val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
+
+  val smallSize = remember(isPortrait) {
+    if (isPortrait) DpSize(40.dp, 72.dp) else DpSize(72.dp, 40.dp)
+  }
+  val largeSize = remember(isPortrait) {
+    if (isPortrait) DpSize(180.dp, 320.dp) else DpSize(320.dp, 180.dp)
+  }
+
+  val width by animateDpAsState(label = "tiny-width", targetValue = if (localRenderState == WebRtcLocalRenderState.EXPANDED) largeSize.width else smallSize.width)
+  val height by animateDpAsState(label = "tiny-height", targetValue = if (localRenderState == WebRtcLocalRenderState.EXPANDED) largeSize.height else smallSize.height)
+
+  LocalParticipantRenderer(
+    localParticipant = localParticipant,
+    localRenderState = localRenderState,
+    modifier = modifier
+      .padding(16.dp)
+      .height(height)
+      .width(width)
+      .clip(RoundedCornerShape(8.dp))
+      .clickable(onClick = onClick)
+  )
+}
+
+/**
+ * Small moveable local video renderer that displays the user's video in a draggable and expandable view.
+ */
 @Composable
 private fun SmallMoveableLocalVideoRenderer(
   localParticipant: CallParticipant,
@@ -304,8 +394,14 @@ private fun SmallMoveableLocalVideoRenderer(
   extraPadBottom: Dp,
   onClick: () -> Unit
 ) {
-  val smallSize = DpSize(90.dp, 160.dp)
-  val largeSize = DpSize(180.dp, 320.dp)
+  val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
+
+  val smallSize = remember(isPortrait) {
+    if (isPortrait) DpSize(90.dp, 160.dp) else DpSize(160.dp, 90.dp)
+  }
+  val largeSize = remember(isPortrait) {
+    if (isPortrait) DpSize(180.dp, 320.dp) else DpSize(320.dp, 180.dp)
+  }
 
   val size = if (localRenderState == WebRtcLocalRenderState.SMALL_RECTANGLE) smallSize else largeSize
 
@@ -321,19 +417,23 @@ private fun SmallMoveableLocalVideoRenderer(
       .statusBarsPadding()
       .padding(bottom = bottomPadding)
   ) {
-    CallParticipantVideoRenderer(
-      callParticipant = localParticipant,
-      attachVideoSink = localRenderState == WebRtcLocalRenderState.SMALL_RECTANGLE || localRenderState == WebRtcLocalRenderState.EXPANDED,
+    LocalParticipantRenderer(
+      localParticipant = localParticipant,
+      localRenderState = localRenderState,
       modifier = Modifier
         .fillMaxSize()
         .clip(MaterialTheme.shapes.medium)
-        .clickable {
+        .clickable(onClick = {
           onClick()
-        }
+        })
     )
   }
 }
 
+/**
+ * Wrapper for a CallStateUpdate popup that animates its display on the screen, sliding up from either
+ * above the controls or from the bottom of the screen if the controls are hidden.
+ */
 @Composable
 private fun AnimatedCallStateUpdate(
   callControlsChange: CallControlsChange?,
@@ -366,7 +466,7 @@ private fun AnimatedCallStateUpdate(
 private fun CallScreenPreview() {
   Previews.Preview {
     CallScreen(
-      callRecipient = Recipient.UNKNOWN,
+      callRecipient = Recipient(systemContactName = "Test User"),
       webRtcCallState = WebRtcViewModel.State.CALL_CONNECTED,
       callScreenState = CallScreenState(),
       callControlsState = CallControlsState(
@@ -376,14 +476,15 @@ private fun CallScreenPreview() {
         displayGroupRingingToggle = true,
         displayStartCallButton = true
       ),
+      callParticipantsPagerState = CallParticipantsPagerState(),
+      localParticipant = CallParticipant(),
+      localRenderState = WebRtcLocalRenderState.LARGE,
       callInfoView = {
         Text(text = "Call Info View Preview", modifier = Modifier.alpha(it))
       },
-      localParticipant = CallParticipant(),
-      localRenderState = WebRtcLocalRenderState.LARGE,
-      callParticipantsPagerState = CallParticipantsPagerState(),
       onNavigationClick = {},
-      onLocalPictureInPictureClicked = {}
+      onLocalPictureInPictureClicked = {},
+      overflowParticipants = (1..5).map { CallParticipant() }
     )
   }
 }

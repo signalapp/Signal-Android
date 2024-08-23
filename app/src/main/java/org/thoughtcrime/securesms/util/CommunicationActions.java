@@ -480,7 +480,7 @@ public class CommunicationActions {
   }
 
   private static Class<? extends Activity> getCallActivityClass() {
-    return RemoteConfig.useNewCallApi() ? CallActivity.class : WebRtcCallActivity.class;
+    return RemoteConfig.newCallUi() ? CallActivity.class : WebRtcCallActivity.class;
   }
 
   private interface CallContext {
