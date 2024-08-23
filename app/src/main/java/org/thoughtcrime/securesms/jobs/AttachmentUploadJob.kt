@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -180,6 +181,8 @@ class AttachmentUploadJob private constructor(
         Log.i(TAG, "Stream reset during upload, not resetting network yet, last reset: $lastReset")
       }
 
+      resetProgressListeners(databaseAttachment)
+
       throw e
     } catch (e: NonSuccessfulResumableUploadResponseCodeException) {
       if (e.code == 400) {
@@ -187,10 +190,14 @@ class AttachmentUploadJob private constructor(
         uploadSpec = null
       }
 
+      resetProgressListeners(databaseAttachment)
+
       throw e
     } catch (e: ResumeLocationInvalidException) {
       Log.w(TAG, "Resume location invalid. Clearing upload spec.", e)
       uploadSpec = null
+
+      resetProgressListeners(databaseAttachment)
 
       throw e
     }
@@ -202,6 +209,10 @@ class AttachmentUploadJob private constructor(
     } else {
       null
     }
+  }
+
+  private fun resetProgressListeners(attachment: DatabaseAttachment) {
+    EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, 0, -1))
   }
 
   override fun onFailure() {
