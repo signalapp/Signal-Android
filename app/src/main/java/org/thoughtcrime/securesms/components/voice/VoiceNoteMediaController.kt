@@ -141,9 +141,10 @@ class VoiceNoteMediaController(val activity: FragmentActivity, private var postp
     Observable.fromFuture(mediaControllerBuilder.buildAsync())
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe {
-        initializeMediaController(it)
-      }
+      .subscribe(
+        { initializeMediaController(it) },
+        { Log.w(TAG, "Could not initialize MediaController!", it) }
+      )
       .addTo(disposables)
   }
 
