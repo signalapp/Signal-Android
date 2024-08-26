@@ -1807,7 +1807,7 @@
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Je verzoek om lid te worden van de groep is door een beheerder afgewezen.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s heeft een verzoek van %2$s om lid te worden van de groep afgewezen.</string>
-    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Een verzoek van %1$s om lid te worden van de groep is afgewezen..</string>
+    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Een verzoek van %1$s om lid te worden van de groep is afgewezen.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Je hebt je verzoek om lid te worden van de groep ingetrokken.</string>
     <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s heeft het verzoek om lid te worden van de groep ingetrokken.</string>
 
@@ -2102,7 +2102,7 @@
     <!-- Content description for navigation icon -->
     <string name="CallScreenTopBar__go_back">Ga terug</string>
     <!-- Content description for info icon -->
-    <string name="CallScreenTopBar__call_information">Call information</string>
+    <string name="CallScreenTopBar__call_information">Oproepdetails</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
@@ -2158,9 +2158,9 @@
         <item quantity="other">%1$d personen</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__join_request_denied">Deelnameverzoek geweigerd</string>
+    <string name="WebRtcCallActivity__join_request_denied">Deelnameverzoek afgewezen</string>
     <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Je verzoek om deel te nemen aan deze oproep is geweigerd.</string>
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Je verzoek om deel te nemen aan deze oproep is afgewezen.</string>
     <!-- Title of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__removed_from_call">Verwijderd uit oproep</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
@@ -2258,7 +2258,7 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Oproep beëindigen</string>
     <!-- Content description for toggling group ring state -->
-    <string name="WebRtcCallView__toggle_group_ringing">Toggle group ringing</string>
+    <string name="WebRtcCallView__toggle_group_ringing">Bellen naar groep in- of uitschakelen</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Er is een UI-fout opgetreden. Meld deze fout aan de ontwikkelaars.</string>
@@ -4273,7 +4273,7 @@
     <string name="LocalBackupJob_verifying_signal_backup">Back-up van Signal verifiëren…</string>
     <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-up is mislukt</string>
     <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
-    <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-upbestand is te groot om op dit volume op te slaan.</string>
+    <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-upbestand is te groot om op dit opslagvolume op te slaan.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Er is niet genoeg opslagruimte om je back-up op te slaan.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Je recente back-up kon niet gecreëerd en geverifieerd worden. Probeer het opnieuw.</string>
@@ -4433,7 +4433,7 @@
     <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Aan het wachten tot je oude Android-apparaat verbinding maakt…</string>
     <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Om je oude Android-apparaat te kunnen detecteren en om er verbinding mee te maken, heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
     <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Om je oude Android-apparaat te kunnen detecteren en om er verbinding mee te maken, is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je oude Android-apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal heeft wifi nodig om je oude Android-apparaat te detecteren en om er verbinding mee te maken. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
     <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, het lijkt er op dat dit apparaat geen ondersteuning biedt voor Wi-Fi Direct. Signal heeft Wi-Fi Direct nodig om je oude Android-apparaat te detecteren en om er verbinding mee te maken. Je kunt nog wel je gegevens overzetten door op je oude Android-apparaat in Signal een back-up te maken en vervolgens die back-up te herstellen op je nieuwe Android-apparaat.</string>
     <string name="NewDeviceTransferSetup__restore_a_backup">Back-upgegevens terugzetten</string>
     <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Er is een onverwachte fout opgetreden bij het proberen verbinding te maken met je oude Android-apparaat.</string>
@@ -4442,7 +4442,7 @@
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Er wordt gezocht naar je nieuwe Android-apparaat…</string>
     <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Om je nieuwe Android-apparaat te kunnen detecteren en om er verbinding mee te maken, heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Om je nieuwe Android-apparaat te kunnen detecteren en om er verbinding mee te maken, is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
-    <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je nieuwe Android-apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
+    <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal heeft wifi nodig om je nieuwe Android-apparaat te detecteren en om er verbinding mee te maken. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
     <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, het lijkt er op dat dit apparaat geen ondersteuning biedt voor Wi-Fi Direct. Signal heeft Wi-Fi Direct nodig om je nieuwe Android-apparaat te detecteren en om er verbinding mee te maken. Je kunt nog wel je gegevens overzetten door op je oude Android-apparaat in Signal een back-up te maken en vervolgens die back-up te herstellen op je nieuwe Android-apparaat.</string>
     <string name="OldDeviceTransferSetup__create_a_backup">Een back-up maken</string>
     <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Er is een onverwachte fout opgetreden bij het proberen verbinding te maken met je nieuwe Android-apparaat.</string>
@@ -5584,7 +5584,7 @@
     <string name="Subscription__get_a_s_badge">Ontvang een ‘%1$s’-badge</string>
 
     <!-- *PaymentInProgressFragment strings -->
-    <string name="InAppPaymentInProgressFragment__processing_donation">Donatie aan het verwerken…</string>
+    <string name="InAppPaymentInProgressFragment__processing_donation">Aan het verwerken…</string>
     <string name="InAppPaymentInProgressFragment__processing_payment">Betaling aan het verwerken…</string>
 
     <!-- InAppPaymentErrors -->
@@ -7455,28 +7455,28 @@
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Maandelijkse donatie stopzetten</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">Gratis</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/maand</string>
     <!-- Title for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Text + all your media</string>
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Tekst + al je media</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
-        <item quantity="one">Text + %1$d day of media</item>
-        <item quantity="other">Text + %1$d days of media</item>
+        <item quantity="one">Tekst + media van %1$d dag</item>
+        <item quantity="other">Tekst + media van %1$d dagen</item>
     </plurals>
     <!-- Description text for text history feature -->
-    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Full text message backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Volledige back-up van tekstberichten</string>
     <!-- Description text for paid tier media retention -->
-    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Full media backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Volledige back-up van media</string>
     <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
-    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s of storage (%2$s photos)</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s opslag (%2$s foto\'s)</string>
     <!-- Description text for thanks -->
-    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Thanks for supporting Signal!</string>
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Bedankt dat je Signal steunt!</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
-        <item quantity="one">Last %1$d day of media</item>
-        <item quantity="other">Last %1$d days of media</item>
+        <item quantity="one">Media van de afgelopen dag</item>
+        <item quantity="other">Media van de afgelopen %1$d dagen</item>
     </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->

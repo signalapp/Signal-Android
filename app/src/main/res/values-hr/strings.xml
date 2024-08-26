@@ -2230,7 +2230,7 @@
     <!-- Content description for navigation icon -->
     <string name="CallScreenTopBar__go_back">Idi na prethodno</string>
     <!-- Content description for info icon -->
-    <string name="CallScreenTopBar__call_information">Call information</string>
+    <string name="CallScreenTopBar__call_information">Informacije o pozivu</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
@@ -2408,7 +2408,7 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Završi poziv</string>
     <!-- Content description for toggling group ring state -->
-    <string name="WebRtcCallView__toggle_group_ringing">Toggle group ringing</string>
+    <string name="WebRtcCallView__toggle_group_ringing">Uključi/isključi zvono za grupne pozive</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Došlo je do pogreške u korisničkom sučelju. Molimo da prijavite ovu pogrešku programerima.</string>
@@ -7771,32 +7771,32 @@
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Otkažite pretplatu</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">Besplatno</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
-    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/mjesečno</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s mjesečno</string>
     <!-- Title for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Text + all your media</string>
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Poruke + svi vaši medijski zapisi</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
-        <item quantity="one">Text + %1$d day of media</item>
-        <item quantity="few">Text + %1$d days of media</item>
-        <item quantity="many">Text + %1$d days of media</item>
-        <item quantity="other">Text + %1$d days of media</item>
+        <item quantity="one">Poruke + medijski zapisi iz zadnjeg %1$d dana</item>
+        <item quantity="few">Poruke + medijski zapisi iz zadnja %1$d dana</item>
+        <item quantity="many">Poruke + medijski zapisi iz zadnjih %1$d dana</item>
+        <item quantity="other">Poruke + medijski zapisi iz zadnjih %1$d dana</item>
     </plurals>
     <!-- Description text for text history feature -->
-    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Full text message backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Sigurnosna kopija svih poruka</string>
     <!-- Description text for paid tier media retention -->
-    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Full media backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Sigurnosna kopija svih medijskih zapisa</string>
     <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
-    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s of storage (%2$s photos)</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s pohrane (%2$s fotografija)</string>
     <!-- Description text for thanks -->
-    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Thanks for supporting Signal!</string>
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Hvala što podržavate Signal!</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
-        <item quantity="one">Last %1$d day of media</item>
-        <item quantity="few">Last %1$d days of media</item>
-        <item quantity="many">Last %1$d days of media</item>
-        <item quantity="other">Last %1$d days of media</item>
+        <item quantity="one">Medijski zapisi iz zadnjeg %1$d dana</item>
+        <item quantity="few">Medijski zapisi iz zadnja %1$d dana</item>
+        <item quantity="many">Medijski zapisi iz zadnjih %1$d dana</item>
+        <item quantity="other">Medijski zapisi iz zadnjih %1$d dana</item>
     </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->

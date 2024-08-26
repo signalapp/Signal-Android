@@ -3772,7 +3772,7 @@
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Benachrichtigungen</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Erhalte Benachrichtigung, wenn du neue Nachrichten erhältst.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Erhalte Benachrichtigungen, wenn du neue Nachrichten erhältst.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Kontakte</string>
     <!-- Contacts permission row description -->
@@ -3780,7 +3780,7 @@
     <!-- Phone calls permission row title -->
     <string name="GrantPermissionsFragment__phone_calls">Anrufe</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Mit der Anruf-Funktion erleichterst du den Registrierungsvorgang.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Mit der Anruf-Funktion erleichterst du den Registrierungsvorgang und aktivierst Anrufe in Signal.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Speicher</string>
     <!-- Storage permission row description -->
@@ -4502,7 +4502,7 @@
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
     <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Tippe auf »Konto übertragen oder wiederherstellen«"</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Tippe auf »Von Android-Gerät übertragen« und dann auf »Fortfahren«. Positioniere beide Geräte nahe beieinander."</string>
+    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Tippe auf »Von Android-Gerät übertragen« und dann auf »Weiter«. Positioniere beide Geräte nahe beieinander."</string>
     <string name="OldDeviceTransferInstructions__continue">Fortfahren</string>
 
     <!-- OldDeviceTransferComplete -->

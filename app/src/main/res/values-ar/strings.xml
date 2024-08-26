@@ -2358,7 +2358,7 @@
     <!-- Content description for navigation icon -->
     <string name="CallScreenTopBar__go_back">العودة للوراء</string>
     <!-- Content description for info icon -->
-    <string name="CallScreenTopBar__call_information">Call information</string>
+    <string name="CallScreenTopBar__call_information">معلومات عن المكالمة</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
@@ -2558,7 +2558,7 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">إنهاء المُكالمة</string>
     <!-- Content description for toggling group ring state -->
-    <string name="WebRtcCallView__toggle_group_ringing">Toggle group ringing</string>
+    <string name="WebRtcCallView__toggle_group_ringing">تفعيل الرنين الجماعي</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">حدث خطأ في واجهة المستخدم. يُرجى الإبلاغ عن هذا الخطأ للمطورين.</string>
@@ -8087,36 +8087,36 @@
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">إلغاء الاشتراك</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">مجانًا</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/شهر</string>
     <!-- Title for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Text + all your media</string>
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">الرسائل النصية + كل وسائطك</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
-        <item quantity="zero">Text + %1$d days of media</item>
-        <item quantity="one">Text + %1$d day of media</item>
-        <item quantity="two">Text + %1$d days of media</item>
-        <item quantity="few">Text + %1$d days of media</item>
-        <item quantity="many">Text + %1$d days of media</item>
-        <item quantity="other">Text + %1$d days of media</item>
+        <item quantity="zero">الرسائل النصية + %1$d أيام من الوسائط</item>
+        <item quantity="one">الرسائل النصية + %1$d يوم من الوسائط</item>
+        <item quantity="two">الرسائل النصية + %1$d يومين من الوسائط</item>
+        <item quantity="few">الرسائل النصية + %1$d أيام من الوسائط</item>
+        <item quantity="many">الرسائل النصية + %1$d يوما من الوسائط</item>
+        <item quantity="other">الرسائل النصية + %1$d يوم من الوسائط</item>
     </plurals>
     <!-- Description text for text history feature -->
-    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Full text message backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">النسخ الاحتياطي الكامل للرسائل النصية</string>
     <!-- Description text for paid tier media retention -->
-    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Full media backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">النسخ الاحتياطي الكامل للوسائط</string>
     <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
-    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s of storage (%2$s photos)</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s من التخزين (%2$s صورة)</string>
     <!-- Description text for thanks -->
-    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Thanks for supporting Signal!</string>
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">شكراً لدعمك لسيجنال!</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
-        <item quantity="zero">Last %1$d days of media</item>
-        <item quantity="one">Last %1$d day of media</item>
-        <item quantity="two">Last %1$d days of media</item>
-        <item quantity="few">Last %1$d days of media</item>
-        <item quantity="many">Last %1$d days of media</item>
-        <item quantity="other">Last %1$d days of media</item>
+        <item quantity="zero">الأيام %1$d الأخيرة من الوسائط</item>
+        <item quantity="one">اليوم %1$d الأخير من الوسائط</item>
+        <item quantity="two">اليومان %1$d الأخيران من الوسائط</item>
+        <item quantity="few">الأيام %1$d الأخيرة من الوسائط</item>
+        <item quantity="many">الأيام %1$d الأخيرة من الوسائط</item>
+        <item quantity="other">الأيام %1$d الأخيرة من الوسائط</item>
     </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->

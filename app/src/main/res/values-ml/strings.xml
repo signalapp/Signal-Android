@@ -2102,7 +2102,7 @@
     <!-- Content description for navigation icon -->
     <string name="CallScreenTopBar__go_back">മടങ്ങിപ്പോവുക</string>
     <!-- Content description for info icon -->
-    <string name="CallScreenTopBar__call_information">Call information</string>
+    <string name="CallScreenTopBar__call_information">കോൾ വിവരങ്ങൾ</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
@@ -2258,7 +2258,7 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">കോൾ അവസാനിപ്പിക്കൂ</string>
     <!-- Content description for toggling group ring state -->
-    <string name="WebRtcCallView__toggle_group_ringing">Toggle group ringing</string>
+    <string name="WebRtcCallView__toggle_group_ringing">ഗ്രൂപ്പ് റിംഗിംഗ് ടോഗിൾ ചെയ്യുക</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI പിശക് സംഭവിച്ചു. ഈ പിശക് ഡെവലപ്പർമാർക്ക് റിപ്പോർട്ട് ചെയ്യൂ.</string>
@@ -7455,28 +7455,28 @@
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">സബ്‍സ്ക്രിപ്ഷൻ റദ്ദാക്കുക</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">സൗജന്യം</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/ മാസം</string>
     <!-- Title for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Text + all your media</string>
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">ടെക്സ്റ്റ് + നിങ്ങളുടെ എല്ലാ മീഡിയയും</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
-        <item quantity="one">Text + %1$d day of media</item>
-        <item quantity="other">Text + %1$d days of media</item>
+        <item quantity="one">ടെക്സ്റ്റ് + %1$d മീഡിയ ദിനം</item>
+        <item quantity="other">ടെക്സ്റ്റ് + %1$d മീഡിയ ദിനം</item>
     </plurals>
     <!-- Description text for text history feature -->
-    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Full text message backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">മുഴുവൻ ടെക്സ്റ്റ് സന്ദേശ ബാക്കപ്പ്</string>
     <!-- Description text for paid tier media retention -->
-    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Full media backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">പൂർണ്ണ മീഡിയ ബാക്കപ്പ്</string>
     <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
-    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s of storage (%2$s photos)</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s സംഭരണം (%2$s ഫോട്ടോകൾ)</string>
     <!-- Description text for thanks -->
-    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Thanks for supporting Signal!</string>
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Signal-നെ പിന്തുണച്ചതിന് നന്ദി!</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
-        <item quantity="one">Last %1$d day of media</item>
-        <item quantity="other">Last %1$d days of media</item>
+        <item quantity="one">മീഡിയയുടെ അവസാന %1$d ദിവസം</item>
+        <item quantity="other">മീഡിയയുടെ അവസാന %1$d ദിവസം</item>
     </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->

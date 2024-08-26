@@ -1097,7 +1097,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Actualizar al nuevo sistema de grupos</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Actualizar este grupo</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Los nuevos grupos incluyen funciones como @menciones y admins, y se añadirán más en el futuro.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Los mensajes y adjuntos se mantendrán tras la actualización.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Se conservará el historial de mensajes y los archivos que tenías antes de actualizar.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Error en la conexión de red. Inténtalo de nuevo más tarde.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">No se ha podido actualizar.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -3475,18 +3475,18 @@
     <string name="preferences__pref_use_address_book_photos">Usar fotos de la libreta de contactos</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Mostrar fotos de la libreta de contactos si están disponibles</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Dejar archivados los chats silenciados</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Dejar archivados chats silenciados</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Los chats silenciados que hayas archivado permanecerán archivados aunque recibas un nuevo mensaje.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Hacer que los chats silenciados que haya archivado permanezcan archivados aunque reciba un nuevo mensaje.</string>
     <string name="preferences__generate_link_previews">Generar vista previa de enlaces</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obtener vistas previas de enlaces directamente de los sitios web para los mensajes que envías.</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obtener vistas previas de enlaces directamente de los sitios web para los mensajes que envío.</string>
     <string name="preferences__change_passphrase">Cambiar clave de acceso</string>
     <string name="preferences__change_your_passphrase">Cambia tu clave de acceso</string>
     <string name="preferences__enable_passphrase">Activar bloqueo de pantalla con clave de acceso</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea la pantalla y las notificaciones con una clave de acceso</string>
     <string name="preferences__screen_security">Seguridad de la pantalla</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquea automáticamente Signal tras un intervalo de inactividad especificado</string>
-    <string name="preferences__inactivity_timeout_passphrase">Clave de acceso para el tiempo de inactividad</string>
+    <string name="preferences__inactivity_timeout_passphrase">Contraseña de tiempo de inactividad</string>
     <string name="preferences__inactivity_timeout_interval">Intervalo de tiempo de inactividad</string>
     <string name="preferences__notifications">Notificaciones</string>
     <string name="preferences__led_color">Color del LED</string>
@@ -3569,7 +3569,7 @@
     <string name="preferences__disable_pin">Desactivar PIN</string>
     <string name="preferences__enable_pin">Activar PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si desactivas el PIN, perderás todos los datos de tu cuenta al volver a instalar Signal, a menos que hagas una copia de seguridad manual y la restaures. No puedes activar el bloqueo de registro mientras el PIN esté desactivado.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">El PIN permite almacenar la información de tu cuenta cifrada en el servidor de Signal de forma que solo tú puedes acceder a ella. Tu perfil, tus ajustes y tus contactos se restaurarán al reinstalar Signal. No necesitarás el PIN para abrir la aplicación.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">El PIN mantiene la información guardada en Signal cifrada para que solo tú tengas acceso. Tu perfil, ajustes y contactos se restaurarán al reinstalar Signal. No necesitarás el PIN para abrir la aplicación.</string>
     <string name="preferences__system_default">Predeterminado del sistema</string>
     <string name="preferences__language">Idioma</string>
     <string name="preferences__signal_messages_and_calls">Mensajes y llamadas de Signal</string>
@@ -4137,7 +4137,7 @@
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">¡Los PIN han llegado a Signal!</string>
-    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">El PIN permite almacenar la información de tu cuenta cifrada en el servidor de Signal de forma que solo tú puedes acceder a ella. Tu perfil, ajustes y contactos se restaurarán al reinstalar Signal. No necesitas el PIN para abrir la aplicación.</string>
+    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">El PIN mantiene la información guardada en Signal cifrada para que solo tú tengas acceso. Tu perfil, ajustes y contactos se restaurarán al reinstalar Signal. No necesitarás el PIN para abrir la aplicación.</string>
     <string name="KbsSplashFragment__learn_more">Más información</string>
   <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueo de registro = PIN</string>
@@ -4206,7 +4206,7 @@
 
     <!-- KBS Megaphone -->
     <string name="KbsMegaphone__create_a_pin">Crear un PIN</string>
-    <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">El PIN permite almacenar la información de tu cuenta de Signal cifrada.</string>
+    <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">El PIN mantiene la información guardada en Signal cifrada.</string>
     <string name="KbsMegaphone__create_pin">Crear PIN</string>
 
     <!-- CallNotificationBuilder -->
@@ -4293,7 +4293,7 @@
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Número de teléfono</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Elige quién puede ver tu número de teléfono y quién puede usarlo para buscarte en Signal.</string>
+    <string name="preferences_app_protection__choose_who_can_see">Elegir quién puede ver mi número de teléfono y quién puede usarlo para buscarme en Signal.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Quién puede ver mi número</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
@@ -4320,7 +4320,7 @@
     <string name="PhoneNumberPrivacy_nobody">Nadie</string>
     <string name="preferences_app_protection__screen_lock">Bloqueo de pantalla</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloquea el acceso a Signal con el código de bloqueo o la huella dactilar de Android</string>
-    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tiempo de espera para el bloqueo</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tiempo de inactividad para el bloqueo</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Para usar el bloqueo de pantalla, establece un PIN, un patrón o una contraseña en este dispositivo.</string>
     <string name="preferences_app_protection__signal_pin">PIN de Signal</string>
@@ -4330,7 +4330,7 @@
     <string name="preferences_app_protection__turn_off">Desactivar</string>
     <string name="preferences_app_protection__confirm_pin">Confirmar PIN</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">Confirma tu PIN de Signal</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Asegúrate de memorizar o guardar tu PIN de forma segura ya que no se puede recuperar. Si olvidas tu PIN, es posible que pierdas información cuando vuelvas a registrar tu cuenta de Signal.</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Asegúrate de memorizar o guardar tu PIN de forma segura, ya que no se puede recuperar. Si olvidas tu PIN, es posible que pierdas información cuando vuelvas a registrar tu cuenta de Signal.</string>
     <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorrecto. Inténtalo de nuevo.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">No se ha podido activar el bloqueo de registro.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">No se ha podido desactivar el bloqueo de registro.</string>
@@ -4682,7 +4682,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
     <string name="DeleteAccountFragment__canceling_your_subscription">Cancelando tu suscripción…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Este proceso puede tardar unos minutos dependiendo del número de grupos en los que estés</string>
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Este proceso puede llevar unos minutos dependiendo del número de grupos en los que estés</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Eliminando datos de usuario y restableciendo la aplicación</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
@@ -4719,7 +4719,7 @@
     <string name="ChatWallpaperFragment__reset_chat_color">Restablecer color del chat</string>
     <string name="ChatWallpaperFragment__reset_chat_color_question">¿Restablecer color del chat?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">Establecer fondo de pantalla</string>
-    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Con tema oscuro se oscurece el fondo</string>
+    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Tema oscuro atenúa el fondo</string>
     <string name="ChatWallpaperFragment__contact_name">Nombre del contacto</string>
     <string name="ChatWallpaperFragment__reset">Restablecer</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Vista previa del fondo</string>
@@ -5038,7 +5038,7 @@
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquea capturas de pantalla en la lista de aplicaciones recientes y dentro de la aplicación</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Mensajes y llamadas de Signal: siempre redirigir las llamadas y usar remitente confidencial</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Duración predeterminada en chats nuevos</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Elige la duración predeterminada de los mensajes temporales para todos los chats nuevos que inicies.</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Elegir una duración predeterminada de los mensajes temporales para todos los chats nuevos que inicio.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Requiere el bloqueo de pantalla de Android o la huella dactilar para transferir fondos</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -5089,7 +5089,7 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Calidad de fotos y vídeos</string>
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Calidad de envío de fotos y vídeos</string>
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Calidad de fotos y vídeos enviados</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Si seleccionas la opción de alta calidad, se usarán más datos.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">Alta</string>
@@ -5114,7 +5114,7 @@
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Sólido</string>
-    <string name="CustomChatColorCreatorFragment__gradient">Gradiente</string>
+    <string name="CustomChatColorCreatorFragment__gradient">Degradado</string>
     <string name="CustomChatColorCreatorFragment__hue">Tonalidad</string>
     <string name="CustomChatColorCreatorFragment__saturation">Saturación</string>
 
@@ -5142,8 +5142,8 @@
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Toca para reemplazar un emoji</string>
     <string name="EditReactionsFragment__reset">Restablecer</string>
     <string name="EditReactionsFragment_save">Guardar</string>
-    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">La opción \"base\" hace que el color de las burbujas combine con el del fondo de pantalla del chat</string>
-    <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Desliza para cambiar la dirección del gradiente</string>
+    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Hace que el color de las burbujas combine con el del fondo de pantalla del chat</string>
+    <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Desliza para cambiar la dirección del degradado</string>
 
     <!-- AddAProfilePhotoMegaphone -->
     <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Añade una foto de perfil</string>
@@ -5531,7 +5531,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Pago pendiente</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Tu transferencia bancaria de %1$s está pendiente. Las transferencias bancarias pueden tardar de 1 a 14 días hábiles en completarse.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Tu transferencia bancaria de %1$s está pendiente. Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en completarse.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Más información</string>
 
@@ -5593,7 +5593,7 @@
     <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
     <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">No se ha podido procesar tu pago y no hemos hecho el cargo. Inténtalo de nuevo.</string>
     <!-- Displayed as a message in a dialog when we timeout waiting for a payment to be processed and token to be redeemed -->
-    <string name="InAppPaymentErrors__your_payment_is_still">Todavía se está procesando tu pago. Puede llevar unos minutos dependiendo de tu conexión.</string>
+    <string name="InAppPaymentErrors__your_payment_is_still">Aún se está procesando tu pago. Puede llevar unos minutos dependiendo de tu conexión.</string>
     <!-- Displayed as a message in a dialog or notification when stripe decline code issuer not available for backup payment. -->
     <string name="InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again">Intenta completar el pago de nuevo o contacta con tu banco para obtener más información.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
@@ -5621,7 +5621,7 @@
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__your_payment_was_processed_but">Tu donación se ha procesado, pero Signal no ha podido enviar tu mensaje de donación. Contacta con el equipo de asistencia.</string>
     <string name="DonationsErrors__your_badge_could_not">No se ha podido añadir la insignia a tu perfil, pero es posible que se haya realizado el cargo. Contacta con el equipo de asistencia.</string>
-    <string name="DonationsErrors__your_payment_is_still">Tu donación todavía se está procesando. Este proceso puede tardar unos minutos dependiendo de tu conexión.</string>
+    <string name="DonationsErrors__your_payment_is_still">Tu donación aún se está procesando. Este proceso puede llevar unos minutos dependiendo de tu conexión.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Fallo al cancelar la suscripción</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Necesitas conexión a Internet para cancelar la suscripción.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Tu dispositivo no tiene Google Pay activado, por lo que no puedes crear una suscripción y conseguir una insignia. También puedes contribuir a Signal al hacer una donación en la página web de Signal.</string>
@@ -5990,9 +5990,9 @@
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Responder en el grupo</string>
     <!-- Displayed when a story has no views -->
-    <string name="StoryViewsFragment__no_views_yet">Todavía no hay visualizaciones</string>
+    <string name="StoryViewsFragment__no_views_yet">Aún no hay visualizaciones</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Habilita las confirmaciones de visualización para ver quién ha visto tus historias.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Habilita las confirmaciones de visualización para saber quién ha visto tus historias.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Ir a ajustes</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -6004,7 +6004,7 @@
     <!-- Story View context menu action to remove them from a story -->
     <string name="StoryViewItem__remove_viewer">Quitar espectador</string>
     <!-- Displayed when a story has no replies yet -->
-    <string name="StoryGroupReplyFragment__no_replies_yet">Todavía no hay respuestas</string>
+    <string name="StoryGroupReplyFragment__no_replies_yet">Aún no hay respuestas</string>
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">No puedes responder a esta historia porque ya no formas parte de este grupo.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
@@ -6258,7 +6258,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">¡%1$s ha hecho una donación a Signal en tu nombre! Muestra tu apoyo a Signal en tu perfil.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Has hecho una donación a Signal en nombre de %1$s. Tendrán la opción de mostrar su apoyo en su perfil.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Has hecho una donación a Signal en nombre de %1$s. Tendrá la opción de mostrar su apoyo en su perfil.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Canjear</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -6266,7 +6266,7 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">Canjeando insignia…</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">Has hecho una donación a Signal en nombre de %1$s. Tendrán la opción de mostrar su apoyo en su perfil.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">Has hecho una donación a Signal en nombre de %1$s. Tendrá la opción de mostrar su apoyo en su perfil.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Tu insignia ha caducado</string>
     <!-- Expired gift sheet top description text -->
@@ -6421,7 +6421,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Las historias desaparecerán automáticamente después de 24 horas. Elige quién puede ver tu historia o crea nuevas historias para personas o grupos específicos.</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Las historias desaparecerán automáticamente después de 24 horas. Elige quién puede ver tu historia o crea historias nuevas para compartir con personas o grupos específicos.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">Desactivar historias</string>
     <!-- Preference summary to turn off stories -->
@@ -6442,7 +6442,7 @@
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">Confirmaciones de visualización</string>
     <!-- Story view receipts toggle message -->
-    <string name="StoriesPrivacySettingsFragment__see_and_share">Muestra y comparte cuándo se ven las historias. Si lo desactivas, no podrás saber cuándo otras personas ven tus historias.</string>
+    <string name="StoriesPrivacySettingsFragment__see_and_share">Mostrar y compartir cuándo se ven las historias. Si lo desactivas, no podrás saber cuándo otras personas ven tus historias.</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">Nueva historia</string>
@@ -6494,13 +6494,13 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Tienes una donación pendiente</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Las transferencias bancarias pueden tardar de 1 a 14 días hábiles en completarse. Espera hasta que se complete este pago antes de actualizar tu suscripción.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en completarse. Espera hasta que se complete este pago antes de actualizar tu suscripción.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Las transferencias bancarias pueden tardar de 1 a 14 días hábiles en completarse. Espera hasta que se complete este pago antes de realizar otra donación.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en completarse. Espera hasta que se complete este pago antes de realizar otra donación.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Tu donación aún se está procesando. Puede tardar unos minutos dependiendo de tu conexión. Espera hasta que se complete este pago antes de actualizar tu suscripción.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Tu donación aún se está procesando. Puede llevar unos minutos dependiendo de tu conexión. Espera hasta que se complete este pago antes de actualizar tu suscripción.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Tu donación aún se está procesando. Puede tardar unos minutos dependiendo de tu conexión. Espera hasta que se complete este pago antes de realizar otra donación.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Tu donación aún se está procesando. Puede llevar unos minutos dependiendo de tu conexión. Espera hasta que se complete este pago antes de realizar otra donación.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Tu donación a través de iDEAL aún se está procesando. Consulta tu app bancaria para aprobar el pago antes de realizar otra donación.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
@@ -6648,7 +6648,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Tu donación única está pendiente. Podrás mostrar la insignia %1$s en tu perfil cuando recibamos tu donación.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Las transferencias bancarias pueden tardar de 1 a 14 días hábiles en completarse. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en completarse. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Más información</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->

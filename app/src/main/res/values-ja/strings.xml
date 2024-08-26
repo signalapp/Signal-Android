@@ -2038,7 +2038,7 @@
     <!-- Content description for navigation icon -->
     <string name="CallScreenTopBar__go_back">戻る</string>
     <!-- Content description for info icon -->
-    <string name="CallScreenTopBar__call_information">Call information</string>
+    <string name="CallScreenTopBar__call_information">通話情報</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
@@ -2183,7 +2183,7 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">通話終了</string>
     <!-- Content description for toggling group ring state -->
-    <string name="WebRtcCallView__toggle_group_ringing">Toggle group ringing</string>
+    <string name="WebRtcCallView__toggle_group_ringing">グループ呼び出し音の切り替え</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI エラーが発生しました。このエラーを開発者に報告してください。</string>
@@ -7297,26 +7297,26 @@
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">サブスクリプションを解除する</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">無料プラン</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
-    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/月</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/月プラン</string>
     <!-- Title for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Text + all your media</string>
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">テキストとすべてのメディアが対象となります</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
-        <item quantity="other">Text + %1$d days of media</item>
+        <item quantity="other">テキストと%1$d日間のメディアが対象となります</item>
     </plurals>
     <!-- Description text for text history feature -->
-    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Full text message backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">すべてのテキストメッセージのバックアップ</string>
     <!-- Description text for paid tier media retention -->
-    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Full media backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">すべてのメディアのバックアップ</string>
     <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
-    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s of storage (%2$s photos)</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">容量のうち%1$s（%2$s枚の写真）</string>
     <!-- Description text for thanks -->
-    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Thanks for supporting Signal!</string>
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Signalをサポートしていただきありがとうございます！</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
-        <item quantity="other">Last %1$d days of media</item>
+        <item quantity="other">直近%1$d日間のメディア</item>
     </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->

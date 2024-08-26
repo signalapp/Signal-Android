@@ -2230,7 +2230,7 @@
     <!-- Content description for navigation icon -->
     <string name="CallScreenTopBar__go_back">Nazaj</string>
     <!-- Content description for info icon -->
-    <string name="CallScreenTopBar__call_information">Call information</string>
+    <string name="CallScreenTopBar__call_information">Informacije o klicu</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
@@ -2408,7 +2408,7 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Zaključi klic</string>
     <!-- Content description for toggling group ring state -->
-    <string name="WebRtcCallView__toggle_group_ringing">Toggle group ringing</string>
+    <string name="WebRtcCallView__toggle_group_ringing">Preklapljanje zvonjenja skupine</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Prišlo je do napake uporabniškega vmesnika. Prosimo, prijavite to napako razvijalcem.</string>
@@ -7771,32 +7771,32 @@
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Prekini naročnino</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">Brezplačno</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/mesec</string>
     <!-- Title for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Text + all your media</string>
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Besedilo + vsi vaši mediji</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
-        <item quantity="one">Text + %1$d day of media</item>
-        <item quantity="two">Text + %1$d days of media</item>
-        <item quantity="few">Text + %1$d days of media</item>
-        <item quantity="other">Text + %1$d days of media</item>
+        <item quantity="one">Besedilo + %1$d dan medijev</item>
+        <item quantity="two">Besedilo + %1$d dneva medijev</item>
+        <item quantity="few">Besedilo + %1$d dnevi medijev</item>
+        <item quantity="other">Besedilo + %1$d dni medijev</item>
     </plurals>
     <!-- Description text for text history feature -->
-    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Full text message backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Varnostno kopiranje vseh besedilnih sporočil</string>
     <!-- Description text for paid tier media retention -->
-    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Full media backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Varnostna kopija vseh medijev</string>
     <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
-    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s of storage (%2$s photos)</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s prostora za shranjevanje (fotografije: %2$s)</string>
     <!-- Description text for thanks -->
-    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Thanks for supporting Signal!</string>
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Hvala za podporo Signalu!</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
-        <item quantity="one">Last %1$d day of media</item>
-        <item quantity="two">Last %1$d days of media</item>
-        <item quantity="few">Last %1$d days of media</item>
-        <item quantity="other">Last %1$d days of media</item>
+        <item quantity="one">Zadnji %1$d dan medijev</item>
+        <item quantity="two">Zadnja %1$d dneva medijev</item>
+        <item quantity="few">Zadnji %1$d dnevi medijev</item>
+        <item quantity="other">Zadnjih %1$d dni medijev</item>
     </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->
