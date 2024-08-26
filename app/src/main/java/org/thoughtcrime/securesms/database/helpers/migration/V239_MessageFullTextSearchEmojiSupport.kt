@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
 import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.signal.core.util.logging.Log
 
 /**
  * Recreates the message FTS stuff, but with a tokenizer property that lets us search for emoji.
@@ -15,9 +16,22 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 @Suppress("ClassName")
 object V239_MessageFullTextSearchEmojiSupport : SignalDatabaseMigration {
 
-  const val FTS_TABLE_NAME = "message_fts"
+  private val TAG = Log.tag(V239_MessageFullTextSearchEmojiSupport::class.java)
+
+  private const val FTS_TABLE_NAME = "message_fts"
 
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+    try {
+      doMigration(db)
+    } catch (t: Throwable) {
+      // For some unknown reason, a select few users are hitting a 'vtable constructor' crash when trying to drop the FTS table.
+      // This feature is not critical, so for now we'll take the loss in those cases and try to synchronize it later.
+      // The migration doesn't change the actual schema, just the tokenization, so it shouldn't be that big of a deal.
+      Log.e(TAG, "Failed to perform migration!", t)
+    }
+  }
+
+  private fun doMigration(db: SQLiteDatabase) {
     db.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
     db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
     db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
