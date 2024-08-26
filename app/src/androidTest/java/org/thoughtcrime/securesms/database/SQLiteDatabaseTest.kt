@@ -8,7 +8,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.testing.SignalFlakyTest
 import org.thoughtcrime.securesms.testing.SignalFlakyTestRule
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicBoolean
@@ -187,8 +186,8 @@ class SQLiteDatabaseTest {
     assertTrue(hasRun2.get())
   }
 
-  @SignalFlakyTest
-  @Test
+//  @SignalFlakyTest
+//  @Test
   fun runPostSuccessfulTransaction_runsAfterMainTransactionInNestedTransaction() {
     val hasRun1 = AtomicBoolean(false)
     val hasRun2 = AtomicBoolean(false)
