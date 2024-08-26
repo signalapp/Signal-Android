@@ -127,7 +127,7 @@ dependencyResolutionManagement {
       library("libsignal-android", "org.signal", "libsignal-android").versionRef("libsignal-client")
       library("signal-aesgcmprovider", "org.signal:aesgcmprovider:0.0.3")
       library("signal-ringrtc", "org.signal:ringrtc-android:2.46.1")
-      library("signal-android-database-sqlcipher", "org.signal:sqlcipher-android:4.5.4-S2")
+      library("signal-android-database-sqlcipher", "org.signal:sqlcipher-android:4.6.0-S1")
 
       // Third Party
       library("greenrobot-eventbus", "org.greenrobot:eventbus:3.0.0")
