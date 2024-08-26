@@ -112,7 +112,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchove
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
-import org.thoughtcrime.securesms.jobs.OptimizeMessageSearchIndexJob
 import org.thoughtcrime.securesms.jobs.ThreadUpdateJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -1651,7 +1650,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .readToList { RecipientId.from(it.requireLong(FROM_RECIPIENT_ID)) }
         .forEach { id -> AppDependencies.databaseObserver.notifyStoryObservers(id) }
 
-      val deletedStoryCount = db.select(ID)
+      db.select(ID)
         .from(TABLE_NAME)
         .where(storiesBeforeTimestampWhere, sharedArgs)
         .run()
@@ -1662,12 +1661,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
           cursor.count
         }
-
-      if (deletedStoryCount > 0) {
-        OptimizeMessageSearchIndexJob.enqueue()
-      }
-
-      deletedStoryCount
     }
   }
 
@@ -1710,7 +1703,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
       AppDependencies.databaseObserver.notifyStoryObservers(recipientId)
 
-      val deletedStoryCount = db.select(ID)
+      db.select(ID)
         .from(TABLE_NAME)
         .where(storesInRecipientThread, sharedArgs)
         .run()
@@ -1721,12 +1714,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
           cursor.count
         }
-
-      if (deletedStoryCount > 0) {
-        OptimizeMessageSearchIndexJob.enqueue()
-      }
-
-      deletedStoryCount
     }
   }
 
@@ -2107,7 +2094,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       threads.update(threadId, false)
     }
 
-    OptimizeMessageSearchIndexJob.enqueue()
     AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
     AppDependencies.databaseObserver.notifyConversationListListeners()
 
@@ -3306,7 +3292,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       notifyConversationListeners(threadId)
       notifyStickerListeners()
       notifyStickerPackListeners()
-      OptimizeMessageSearchIndexJob.enqueue()
     }
 
     return threadDeleted
@@ -3526,7 +3511,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     notifyConversationListListeners()
     notifyStickerListeners()
     notifyStickerPackListeners()
-    OptimizeMessageSearchIndexJob.enqueue()
 
     return unhandled
   }
@@ -3548,8 +3532,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     mentions.deleteAllMentions()
     writableDatabase.deleteAll(TABLE_NAME)
     calls.updateCallEventDeletionTimestamps()
-
-    OptimizeMessageSearchIndexJob.enqueue()
   }
 
   fun getNearestExpiringViewOnceMessage(): ViewOnceExpirationInfo? {

@@ -51,7 +51,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob
-import org.thoughtcrime.securesms.jobs.OptimizeMessageSearchIndexJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.mms.StickerSlide
@@ -363,7 +362,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     notifyAttachmentListeners()
     notifyStickerPackListeners()
-    OptimizeMessageSearchIndexJob.enqueue()
   }
 
   fun trimThread(
@@ -397,7 +395,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     notifyAttachmentListeners()
     notifyStickerPackListeners()
-    OptimizeMessageSearchIndexJob.enqueue()
   }
 
   private fun trimThreadInternal(
@@ -1188,8 +1185,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     AppDependencies.databaseObserver.notifyConversationDeleteListeners(selectedConversations)
 
     ConversationUtil.clearShortcuts(context, recipientIds)
-
-    OptimizeMessageSearchIndexJob.enqueue()
   }
 
   @SuppressLint("DiscouragedApi")
