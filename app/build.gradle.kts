@@ -54,6 +54,7 @@ val signalBuildToolsVersion: String by rootProject.extra
 val signalCompileSdkVersion: String by rootProject.extra
 val signalTargetSdkVersion: Int by rootProject.extra
 val signalMinSdkVersion: Int by rootProject.extra
+val signalNdkVersion: String by rootProject.extra
 val signalJavaVersion: JavaVersion by rootProject.extra
 val signalKotlinJvmTarget: String by rootProject.extra
 
@@ -80,6 +81,7 @@ android {
 
   buildToolsVersion = signalBuildToolsVersion
   compileSdkVersion = signalCompileSdkVersion
+  ndkVersion = signalNdkVersion
 
   flavorDimensions += listOf("distribution", "environment")
   useLibrary("org.apache.http.legacy")
