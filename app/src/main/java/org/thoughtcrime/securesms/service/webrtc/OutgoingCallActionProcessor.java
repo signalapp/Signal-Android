@@ -152,7 +152,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 context,
                                                 videoState.getLockableEglBase().require(),
                                                 RingRtcDynamicConfiguration.getAudioProcessingMethod(),
-                                                SignalStore.internal().callingEnableOboeAdm(),
+                                                RingRtcDynamicConfiguration.shouldUseOboeAdm(),
                                                 videoState.requireLocalSink(),
                                                 callParticipant.getVideoSink(),
                                                 videoState.requireCamera(),

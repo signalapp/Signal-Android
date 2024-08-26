@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
-import org.thoughtcrime.securesms.service.webrtc.RingRtcDynamicConfiguration.getAudioProcessingMethod
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState
 import org.thoughtcrime.securesms.util.NetworkUtil
 import java.io.IOException
@@ -62,8 +61,8 @@ class CallLinkPreJoinActionProcessor(
         callLink.credentials.adminPassBytes,
         ByteArray(0),
         AUDIO_LEVELS_INTERVAL,
-        getAudioProcessingMethod(),
-        SignalStore.internal.callingEnableOboeAdm(),
+        RingRtcDynamicConfiguration.getAudioProcessingMethod(),
+        RingRtcDynamicConfiguration.shouldUseOboeAdm(),
         webRtcInteractor.groupCallObserver
       )
     } catch (e: InvalidInputException) {
