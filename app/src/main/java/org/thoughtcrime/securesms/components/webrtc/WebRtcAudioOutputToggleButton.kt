@@ -94,7 +94,7 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
       WebRtcAudioOutput.WIRED_HEADSET -> intArrayOf(R.attr.state_wired_headset_selected)
     }
 
-    Log.i(TAG, "Switching to $currentOutput")
+    Log.d(TAG, "Switching button drawable to $currentOutput")
 
     val drawableState = super.onCreateDrawableState(extraSpace + extra.size)
     mergeDrawableStates(drawableState, extra)
