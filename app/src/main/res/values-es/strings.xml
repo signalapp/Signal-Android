@@ -339,7 +339,7 @@
     <string name="CommunicationActions_call">Llamar</string>
     <string name="CommunicationActions_insecure_call">Llamada no segura</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Es posible que se apliquen cargos del operador móvil. El número al que llamas no está registrado en Signal. Esta llamada se realizará por la red de tu operador móvil, no por Internet.</string>
-    <string name="CommunicationActions_cant_join_call">Imposible unirse a la llamada</string>
+    <string name="CommunicationActions_cant_join_call">No es posible unirse a la llamada</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Este enlace de llamada ya no es válido.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_invalid_link">Enlace inválido</string>
@@ -715,7 +715,7 @@
         <item quantity="other">No leídos</item>
     </plurals>
     <string name="ConversationListFragment_pin">Fijar</string>
-    <string name="ConversationListFragment_unpin">No fijar</string>
+    <string name="ConversationListFragment_unpin">Desfijar</string>
     <string name="ConversationListFragment_mute">Silenciar</string>
     <string name="ConversationListFragment_unmute">No silenciar</string>
     <string name="ConversationListFragment_select">Seleccionar</string>
@@ -1363,11 +1363,11 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Ha habido un problema con tu alias, ya no está asignado a tu cuenta. Puedes intentar configurarlo de nuevo o elegir uno distinto.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Ha habido un problema con tu alias; ya no está asignado a tu cuenta. Puedes intentar configurarlo de nuevo o elegir uno distinto.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
     <string name="UsernameOutOfSyncReminder__link_corrupt">Hubo un problema con el código QR y el enlace de tu alias; ya no es válido. Crea un nuevo enlace para compartir.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Reparalo ahora</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">Corregirlo ahora</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -2102,7 +2102,7 @@
     <!-- Content description for navigation icon -->
     <string name="CallScreenTopBar__go_back">Volver</string>
     <!-- Content description for info icon -->
-    <string name="CallScreenTopBar__call_information">Call information</string>
+    <string name="CallScreenTopBar__call_information">Información de la llamada</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
@@ -2258,7 +2258,7 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Finalizar llamada</string>
     <!-- Content description for toggling group ring state -->
-    <string name="WebRtcCallView__toggle_group_ringing">Toggle group ringing</string>
+    <string name="WebRtcCallView__toggle_group_ringing">Activar o desactivar tono de llamada grupal</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Se produjo un error de interfaz de usuario. Informa este error a los desarrolladores.</string>
@@ -2410,8 +2410,8 @@
     <string name="RegistrationActivity_play_services_error">Error de Servicios de Google Play</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Servicios de Google Play se está actualizando o está temporalmente no disponible. Inténtalo de nuevo.</string>
     <string name="RegistrationActivity_terms_and_privacy">Términos y Política de privacidad</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos y archivos multimedia para ayudarte a conectar y chatear con otras personas. Tu lista de contactos se carga a través del método privado para encontrar contactos de Signal. Como la lista está cifrada de extremo a extremo, ni Signal ni nadie tienen acceso.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos para ayudarte a conectar con otras personas. Tu lista de contactos se carga a través del método privado para encontrar contactos de Signal. Como la lista está cifrada de extremo a extremo, ni Signal ni nadie tienen acceso.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos y archivos multimedia para ayudarte a conectar y chatear con otras personas. Tu lista de contactos se carga a través del método privado para encontrar contactos de Signal. La lista está cifrada de extremo a extremo y nunca es visible para el servicio de Signal.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos para ayudarte a conectar con otras personas. Tu lista de contactos se carga a través del método privado para encontrar contactos de Signal. La lista está cifrada de extremo a extremo y no es visible para el servicio de Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Has intentado registrar este número demasiadas veces. Inténtalo de nuevo más tarde.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Has hecho demasiados intentos para registrar este número. Inténtalo de nuevo en %1$s.</string>
@@ -3029,7 +3029,7 @@
     <!-- Text on button to dismiss Signal\'s request for contact permissions -->
     <string name="ContactSelectionListFragment__no_thanks">No, gracias</string>
     <!-- Text asking for user\'s contact permission -->
-    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Permite acceso a tus contactos. Tus contactos están cifrados y no son visibles para Signal ni nadie.</string>
+    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Permite acceso a tus contactos. Tus contactos están cifrados y no son visibles para el servicio de Signal.</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal necesita acceso a tus contactos para poder mostrarlos.</string>
@@ -5484,7 +5484,7 @@
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">¡Gracias por tu apoyo!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">Has ganado una insignia de donante de Signal. Muéstrala en tu perfil para presumir tu apoyo.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">Has ganado una insignia por donar a Signal. Añádela a tu perfil para mostrar tu apoyo.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">También puedes</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">contribuir mensualmente.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostrar en mi perfil</string>
@@ -5602,13 +5602,13 @@
     <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">No se ha podido procesar este pago. Inténtalo de nuevo.</string>
 
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Fallo al procesar la donación</string>
+    <string name="DonationsErrors__error_processing_payment">No se ha podido procesar la donación</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Selecciona otro método de pago o contacta con tu banco para más información.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Más información</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Fallo al procesar la donación. %1$s</string>
+    <string name="DonationsErrors__error_processing_payment_s">No se ha podido procesar la donación.%1$s</string>
     <string name="DonationsErrors__your_payment">No se ha podido procesar tu donación y no hemos realizado el cargo. Inténtalo de nuevo.</string>
     <string name="DonationsErrors__still_processing">Aún se está procesando</string>
     <string name="DonationsErrors__couldnt_add_badge">Fallo al añadir insignia</string>
@@ -5701,7 +5701,7 @@
 
     <!-- Stripe Failure Codes for failed bank transfers -->
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__the_bank_account_provided">La cuenta bancaria proporcionada no tiene fondos suficientes para completar esta compra. Vuelve a intentarlo o ponte en contacto con tu banco para obtener más información.</string>
+    <string name="StripeFailureCode__the_bank_account_provided">La cuenta bancaria proporcionada no tiene fondos suficientes para completar esta compra. Vuelve a intentarlo o contacta con tu banco para obtener más información.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
     <string name="StripeFailureCode__this_payment_was_revoked">Esta donación fue revocada por el titular de la cuenta y no pudo procesarse. No se te ha cobrado.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
@@ -6592,7 +6592,7 @@
     <!-- Text field label for email -->
     <string name="BankTransferDetailsFragment__email">Correo</string>
     <!-- Text label for button to show user how to find their IBAN -->
-    <string name="BankTransferDetailsFragment__find_account_info">Buscar información de la cuenta</string>
+    <string name="BankTransferDetailsFragment__find_account_info">¿Dónde encuentro los datos bancarios?</string>
     <!-- Donate button label for monthly subscription -->
     <string name="BankTransferDetailsFragment__donate_s_month">Donar %1$s/mes</string>
     <!-- Donate button label for one-time -->
@@ -6666,7 +6666,7 @@
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">Donación completada</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
-    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Se ha recibido tu transferencia bancaria. Tienes la opción de mostrar esta insignia en tu perfil para presumir de tu apoyo.</string>
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Se ha recibido tu transferencia bancaria. Puedes añadir esta insignia en tu perfil para mostrar que apoyas a Signal.</string>
     <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
     <string name="DonationCompleteBottomSheet__done">Hecho</string>
 
@@ -7455,28 +7455,28 @@
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Cancelar suscripción</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">Gratis</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/mes</string>
     <!-- Title for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Text + all your media</string>
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Mensajes de texto + todos tus archivos multimedia</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
-        <item quantity="one">Text + %1$d day of media</item>
-        <item quantity="other">Text + %1$d days of media</item>
+        <item quantity="one">Mensajes de texto + %1$d día de archivos multimedia</item>
+        <item quantity="other">Mensajes de texto + %1$d días de archivos multimedia</item>
     </plurals>
     <!-- Description text for text history feature -->
-    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Full text message backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Copia de seguridad de todos los mensajes de texto</string>
     <!-- Description text for paid tier media retention -->
-    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Full media backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Copia de seguridad de todos los archivos multimedia</string>
     <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
-    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s of storage (%2$s photos)</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s de espacio de almacenamiento (%2$s fotos)</string>
     <!-- Description text for thanks -->
-    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Thanks for supporting Signal!</string>
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">¡Gracias por apoyar a Signal!</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
-        <item quantity="one">Last %1$d day of media</item>
-        <item quantity="other">Last %1$d days of media</item>
+        <item quantity="one">Último día de archivos multimedia</item>
+        <item quantity="other">Últimos %1$d días de archivos multimedia</item>
     </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->

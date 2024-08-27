@@ -2102,7 +2102,7 @@
     <!-- Content description for navigation icon -->
     <string name="CallScreenTopBar__go_back">Қайту</string>
     <!-- Content description for info icon -->
-    <string name="CallScreenTopBar__call_information">Call information</string>
+    <string name="CallScreenTopBar__call_information">Қоңырау туралы ақпарат</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
@@ -2258,7 +2258,7 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Қоңырауды аяқтау</string>
     <!-- Content description for toggling group ring state -->
-    <string name="WebRtcCallView__toggle_group_ringing">Toggle group ringing</string>
+    <string name="WebRtcCallView__toggle_group_ringing">Топтық қоңырауды ауыстыру</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Интерфейсте қате шықты. Бұл қате туралы әзірлеушілерге хабарлаңыз.</string>
@@ -7455,28 +7455,28 @@
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Жазылымнан бас тарту</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">Тегін</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">айына %1$s</string>
     <!-- Title for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Text + all your media</string>
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Мәтін + барлық мультимедиа</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
-        <item quantity="one">Text + %1$d day of media</item>
-        <item quantity="other">Text + %1$d days of media</item>
+        <item quantity="one">Мәтін + %1$d күн мультимедиа</item>
+        <item quantity="other">Мәтін + %1$d күн мультимедиа</item>
     </plurals>
     <!-- Description text for text history feature -->
-    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Full text message backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Толық мәтіндік хабардың резервтік көшірмесі</string>
     <!-- Description text for paid tier media retention -->
-    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Full media backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Толық мультимедианың резервтік көшірмесі</string>
     <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
-    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s of storage (%2$s photos)</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s жад (%2$s фотосурет)</string>
     <!-- Description text for thanks -->
-    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Thanks for supporting Signal!</string>
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Signal-ға қолдау көрсеткеніңіз үшін рақмет!</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
-        <item quantity="one">Last %1$d day of media</item>
-        <item quantity="other">Last %1$d days of media</item>
+        <item quantity="one">Соңғы %1$d күн мультимедиа</item>
+        <item quantity="other">Соңғы %1$d күн мультимедиа</item>
     </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->

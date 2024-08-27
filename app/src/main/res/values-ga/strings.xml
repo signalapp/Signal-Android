@@ -2294,11 +2294,11 @@
     <!-- Content description for navigation icon -->
     <string name="CallScreenTopBar__go_back">Siar</string>
     <!-- Content description for info icon -->
-    <string name="CallScreenTopBar__call_information">Call information</string>
+    <string name="CallScreenTopBar__call_information">Faisnéis faoin nglao</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
-    <string name="CallScreenPreJoinOverlay__your_camera_is_off">Your camera is off</string>
+    <string name="CallScreenPreJoinOverlay__your_camera_is_off">Tá do cheamara casta as</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tapáil anseo chun fís a chur ar siúl</string>
@@ -2483,7 +2483,7 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Cuir deireadh leis an nglao</string>
     <!-- Content description for toggling group ring state -->
-    <string name="WebRtcCallView__toggle_group_ringing">Toggle group ringing</string>
+    <string name="WebRtcCallView__toggle_group_ringing">Scoránaigh fógraí grúpghlaonna</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Tharla earráid UI. Tuairiscigh an earráid seo do na forbróirí.</string>
@@ -7929,34 +7929,34 @@
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Cuir Síntiús ar Ceal</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">Saor in aisce</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
-    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/month</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/mí</string>
     <!-- Title for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Text + all your media</string>
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Téacs + do mheáin uile</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
-        <item quantity="one">Text + %1$d day of media</item>
-        <item quantity="two">Text + %1$d days of media</item>
-        <item quantity="few">Text + %1$d days of media</item>
-        <item quantity="many">Text + %1$d days of media</item>
-        <item quantity="other">Text + %1$d days of media</item>
+        <item quantity="one">Téacs + %1$d lá de mheáin</item>
+        <item quantity="two">Téacs + %1$d lá de mheáin</item>
+        <item quantity="few">Téacs + %1$d lá de mheáin</item>
+        <item quantity="many">Téacs + %1$d lá de mheáin</item>
+        <item quantity="other">Téacs + %1$d lá de mheáin</item>
     </plurals>
     <!-- Description text for text history feature -->
-    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Full text message backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Cúltacú iomlán ar theachtaireachtaí téacs</string>
     <!-- Description text for paid tier media retention -->
-    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Full media backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Cúltacú iomlán ar mheáin</string>
     <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
-    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s of storage (%2$s photos)</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s de stóras (grianghraif: %2$s)</string>
     <!-- Description text for thanks -->
-    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Thanks for supporting Signal!</string>
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Go raibh maith agat as tacú le Signal!</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
-        <item quantity="one">Last %1$d day of media</item>
-        <item quantity="two">Last %1$d days of media</item>
-        <item quantity="few">Last %1$d days of media</item>
-        <item quantity="many">Last %1$d days of media</item>
-        <item quantity="other">Last %1$d days of media</item>
+        <item quantity="one">An %1$d lá deireanach de mheáin</item>
+        <item quantity="two">An %1$d lá dheireanacha de mheáin</item>
+        <item quantity="few">Na %1$d lá dheireanacha de mheáin</item>
+        <item quantity="many">Na %1$d lá dheireanacha de mheáin</item>
+        <item quantity="other">Na %1$d lá dheireanacha de mheáin</item>
     </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->

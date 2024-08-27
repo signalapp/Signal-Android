@@ -2102,7 +2102,7 @@
     <!-- Content description for navigation icon -->
     <string name="CallScreenTopBar__go_back">Retour</string>
     <!-- Content description for info icon -->
-    <string name="CallScreenTopBar__call_information">Call information</string>
+    <string name="CallScreenTopBar__call_information">Informations sur l\'appel</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
@@ -2258,7 +2258,7 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Raccrocher</string>
     <!-- Content description for toggling group ring state -->
-    <string name="WebRtcCallView__toggle_group_ringing">Toggle group ringing</string>
+    <string name="WebRtcCallView__toggle_group_ringing">Activer ou désactiver la sonnerie des appels de groupe</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Erreur d’interface utilisateur. Veuillez signaler cette erreur aux développeurs.</string>
@@ -4991,11 +4991,11 @@
     <!-- Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__change_status_confirmed">Changement d’état confirmé</string>
     <!-- Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Votre numéro %1$s a été confirmé. Si ce n’est pas le vôtre, veuillez recommencer la procédure de changement de numéro.</string>
+    <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Le numéro %1$s est maintenant confirmé. S’il ne s’agit pas de votre nouveau numéro, nous vous invitons à recommencer la procédure de changement de numéro.</string>
     <!-- Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__change_status_unconfirmed">État du changement non confirmé</string>
     <!-- Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nous n\'avons pas pu déterminer l\'état de votre requête de changement de numéro. (Erreur: %1$s)</string>
+    <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Impossible de vérifier l\'état de votre demande de changement de numéro. (Erreur : %1$s)</string>
     <!-- Dialog button to retry confirming the number on the server -->
     <string name="ChangeNumberLockActivity__retry">Réessayer</string>
     <!-- Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow -->
@@ -7455,28 +7455,28 @@
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Annuler l’abonnement</string>
     <!-- MessageBackupsType block amount for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
+    <string name="MessageBackupsTypeSelectionScreen__free">Gratuit</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/mois</string>
     <!-- Title for free tier -->
-    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Text + all your media</string>
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Messages texte + tous vos médias</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
-        <item quantity="one">Text + %1$d day of media</item>
-        <item quantity="other">Text + %1$d days of media</item>
+        <item quantity="one">Message texte + %1$d jour de médias</item>
+        <item quantity="other">Messages texte + %1$d jours de médias</item>
     </plurals>
     <!-- Description text for text history feature -->
-    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Full text message backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Sauvegarde complète des messages texte</string>
     <!-- Description text for paid tier media retention -->
-    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Full media backup</string>
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Sauvegarde complète des médias</string>
     <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
-    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s of storage (%2$s photos)</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s de stockage (%2$s photos)</string>
     <!-- Description text for thanks -->
-    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Thanks for supporting Signal!</string>
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Et nos remerciements pour votre soutien !</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
-        <item quantity="one">Last %1$d day of media</item>
-        <item quantity="other">Last %1$d days of media</item>
+        <item quantity="one">Médias des dernières 24 heures</item>
+        <item quantity="other">Médias des %1$d derniers jours</item>
     </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->
