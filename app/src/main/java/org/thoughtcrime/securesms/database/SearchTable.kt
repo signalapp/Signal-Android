@@ -146,6 +146,12 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   fun rebuildIndex(batchSize: Long = 10_000L) {
     val maxId: Long = SignalDatabase.messages.getNextId()
 
+    if (!SqlUtil.tableExists(readableDatabase, FTS_TABLE_NAME)) {
+      Log.w(TAG, "FTS table does not exist. Rebuilding.")
+      fullyResetTables()
+      return
+    }
+
     Log.i(TAG, "Re-indexing. Operating on ID's 1-$maxId in steps of $batchSize.")
 
     for (i in 1..maxId step batchSize) {
