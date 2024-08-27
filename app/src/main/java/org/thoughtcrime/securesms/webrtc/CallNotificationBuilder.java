@@ -87,8 +87,7 @@ public class CallNotificationBuilder {
       Recipient recipient,
       boolean isVideoCall,
       boolean skipPersonIcon
-  )
-  {
+  ) {
     PendingIntent pendingIntent = getActivityPendingIntent(context, LaunchCallScreenIntentState.CONTENT);
     NotificationCompat.Builder builder = new NotificationCompat.Builder(context, getNotificationChannel(type))
         .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
