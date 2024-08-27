@@ -4,6 +4,7 @@ import androidx.annotation.VisibleForTesting
 import org.signal.core.util.logging.Log
 import org.signal.core.util.roundedString
 import org.signal.libsignal.protocol.InvalidKeyException
+import org.signal.libsignal.protocol.InvalidKeyIdException
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.SignalProtocolStore
@@ -269,7 +270,10 @@ class PreKeysSyncJob private constructor(
         lastResortKyberKey = protocolStore.loadKyberPreKey(metadataStore.lastResortKyberPreKeyId).keyPair.publicKey
       )
     } catch (e: InvalidKeyException) {
-      Log.w(TAG, "Unable to load keys", e)
+      Log.w(TAG, "Unable to load keys.", e)
+      return false
+    } catch (e: InvalidKeyIdException) {
+      Log.w(TAG, "Unable to load keys.", e)
       return false
     }
 

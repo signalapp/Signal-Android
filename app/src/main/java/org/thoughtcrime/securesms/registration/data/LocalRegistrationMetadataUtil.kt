@@ -22,10 +22,10 @@ object LocalRegistrationMetadataUtil {
     return LocalRegistrationMetadata.Builder().apply {
       aciIdentityKeyPair = localAciIdentityKeyPair.serialize().toByteString()
       aciSignedPreKey = remoteResult.aciPreKeyCollection.signedPreKey.serialize().toByteString()
-      aciLastRestoreKyberPreKey = remoteResult.aciPreKeyCollection.signedPreKey.serialize().toByteString()
+      aciLastRestoreKyberPreKey = remoteResult.aciPreKeyCollection.lastResortKyberPreKey.serialize().toByteString()
       pniIdentityKeyPair = localPniIdentityKeyPair.serialize().toByteString()
       pniSignedPreKey = remoteResult.pniPreKeyCollection.signedPreKey.serialize().toByteString()
-      pniLastRestoreKyberPreKey = remoteResult.pniPreKeyCollection.signedPreKey.serialize().toByteString()
+      pniLastRestoreKyberPreKey = remoteResult.pniPreKeyCollection.lastResortKyberPreKey.serialize().toByteString()
       aci = remoteResult.uuid
       pni = remoteResult.pni
       hasPin = remoteResult.storageCapable
