@@ -99,6 +99,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final int                      subscriptionId;
   private final long                     expiresIn;
   private final long                     expireStarted;
+  private final int                      expireTimerVersion;
   private final boolean                  unidentified;
   private final List<ReactionRecord>     reactions;
   private final long                     serverTimestamp;
@@ -119,6 +120,7 @@ public abstract class MessageRecord extends DisplayRecord {
                 int subscriptionId,
                 long expiresIn,
                 long expireStarted,
+                int expireTimerVersion,
                 boolean hasReadReceipt,
                 boolean unidentified,
                 @NonNull List<ReactionRecord> reactions,
@@ -140,6 +142,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.subscriptionId      = subscriptionId;
     this.expiresIn           = expiresIn;
     this.expireStarted       = expireStarted;
+    this.expireTimerVersion  = expireTimerVersion;
     this.unidentified        = unidentified;
     this.reactions           = reactions;
     this.serverTimestamp     = dateServer;
@@ -752,6 +755,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public long getExpireStarted() {
     return expireStarted;
+  }
+
+  public int getExpireTimerVersion() {
+    return expireTimerVersion;
   }
 
   public boolean isUnidentified() {

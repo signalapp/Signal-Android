@@ -47,16 +47,17 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
       throw new IOException("Missing contact address!");
     }
 
-    Optional<ACI>                 aci           = Optional.ofNullable(ACI.parseOrNull(details.aci));
-    Optional<String>              e164          = Optional.ofNullable(details.number);
-    Optional<String>              name          = Optional.ofNullable(details.name);
-    Optional<DeviceContactAvatar> avatar        = Optional.empty();
-    Optional<String>              color         = details.color != null ? Optional.of(details.color) : Optional.empty();
-    Optional<VerifiedMessage>     verified      = Optional.empty();
-    Optional<ProfileKey>          profileKey    = Optional.empty();
-    Optional<Integer>             expireTimer   = Optional.empty();
-    Optional<Integer>             inboxPosition = Optional.empty();
-    boolean                       archived      = false;
+    Optional<ACI>                 aci                = Optional.ofNullable(ACI.parseOrNull(details.aci));
+    Optional<String>              e164               = Optional.ofNullable(details.number);
+    Optional<String>              name               = Optional.ofNullable(details.name);
+    Optional<DeviceContactAvatar> avatar             = Optional.empty();
+    Optional<String>              color              = details.color != null ? Optional.of(details.color) : Optional.empty();
+    Optional<VerifiedMessage>     verified           = Optional.empty();
+    Optional<ProfileKey>          profileKey         = Optional.empty();
+    Optional<Integer>             expireTimer        = Optional.empty();
+    Optional<Integer>             expireTimerVersion = Optional.empty();
+    Optional<Integer>             inboxPosition      = Optional.empty();
+    boolean                       archived           = false;
 
     if (details.avatar != null && details.avatar.length != null) {
       long        avatarLength      = details.avatar.length;
@@ -103,13 +104,17 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
       expireTimer = Optional.of(details.expireTimer);
     }
 
+    if (details.expireTimerVersion != null && details.expireTimerVersion > 0) {
+      expireTimerVersion = Optional.of(details.expireTimerVersion);
+    }
+
     if (details.inboxPosition != null) {
       inboxPosition = Optional.of(details.inboxPosition);
     }
 
     archived = details.archived;
 
-    return new DeviceContact(aci, e164, name, avatar, color, verified, profileKey, expireTimer, inboxPosition, archived);
+    return new DeviceContact(aci, e164, name, avatar, color, verified, profileKey, expireTimer, expireTimerVersion, inboxPosition, archived);
   }
 
 }

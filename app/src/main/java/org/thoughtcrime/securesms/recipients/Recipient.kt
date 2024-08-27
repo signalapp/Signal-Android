@@ -84,6 +84,7 @@ class Recipient(
   private val messageRingtoneUri: Uri? = null,
   private val callRingtoneUri: Uri? = null,
   val expiresInSeconds: Int = 0,
+  val expireTimerVersion: Int = 1,
   private val registeredValue: RegisteredState = RegisteredState.UNKNOWN,
   val profileKey: ByteArray? = null,
   val expiringProfileKeyCredential: ExpiringProfileKeyCredential? = null,
@@ -314,8 +315,11 @@ class Recipient(
   /** The notification channel, if both set and supported by the system. Otherwise null. */
   val notificationChannel: String? = if (!NotificationChannels.supported()) null else notificationChannelValue
 
-  /** The user's payment capability. */
+  /** The user's capability to handle synchronizing deletes across linked devices. */
   val deleteSyncCapability: Capability = capabilities.deleteSync
+
+  /** The user's capability to handle tracking an expire timer version. */
+  val versionedExpirationTimerCapability: Capability = capabilities.versionedExpirationTimer
 
   /** The state around whether we can send sealed sender to this user. */
   val sealedSenderAccessMode: SealedSenderAccessMode = if (pni.isPresent && pni == serviceId) {

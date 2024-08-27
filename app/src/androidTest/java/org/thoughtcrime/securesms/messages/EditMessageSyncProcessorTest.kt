@@ -77,7 +77,7 @@ class EditMessageSyncProcessorTest {
             .build()
         ).build()
       ).build()
-      SignalDatabase.recipients.setExpireMessages(toRecipient.id, content.dataMessage?.expireTimer ?: 0)
+      SignalDatabase.recipients.setExpireMessages(toRecipient.id, content.dataMessage?.expireTimer ?: 0, content.dataMessage?.expireTimerVersion ?: 1)
       val syncTextMessage = TestMessage(
         envelope = MessageContentFuzzer.envelope(originalTimestamp),
         content = syncContent,
@@ -112,7 +112,7 @@ class EditMessageSyncProcessorTest {
 
       testResult.runSync(listOf(syncTextMessage, syncEditMessage))
 
-      SignalDatabase.recipients.setExpireMessages(toRecipient.id, (content.dataMessage?.expireTimer ?: 0) / 1000)
+      SignalDatabase.recipients.setExpireMessages(toRecipient.id, (content.dataMessage?.expireTimer ?: 0) / 1000, content.dataMessage?.expireTimerVersion ?: 1)
       val originalTextMessage = OutgoingMessage(
         threadRecipient = toRecipient,
         sentTimeMillis = originalTimestamp,

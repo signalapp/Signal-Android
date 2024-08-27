@@ -105,12 +105,13 @@ public final class MultiShareSender {
     for (ContactSearchKey.RecipientSearchKey recipientSearchKey : multiShareArgs.getRecipientSearchKeys()) {
       Recipient recipient = Recipient.resolved(recipientSearchKey.getRecipientId());
 
-      long            threadId  = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
-      List<Mention>   mentions  = getValidMentionsForRecipient(recipient, multiShareArgs.getMentions());
-      MessageSendType sendType  = MessageSendType.SignalMessageSendType.INSTANCE;
-      long            expiresIn = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
-      List<Contact>   contacts  = multiShareArgs.getSharedContacts();
-      SlideDeck       slideDeck = new SlideDeck(primarySlideDeck);
+      long            threadId           = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
+      List<Mention>   mentions           = getValidMentionsForRecipient(recipient, multiShareArgs.getMentions());
+      MessageSendType sendType           = MessageSendType.SignalMessageSendType.INSTANCE;
+      long            expiresIn          = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
+      int             expireTimerVersion = recipient.getExpireTimerVersion();
+      List<Contact>   contacts           = multiShareArgs.getSharedContacts();
+      SlideDeck       slideDeck          = new SlideDeck(primarySlideDeck);
 
       boolean needsSplit = message != null &&
                            message.length() > sendType.calculateCharacters(message).maxPrimaryMessageSize;
@@ -138,6 +139,7 @@ public final class MultiShareSender {
                                               sendType,
                                               threadId,
                                               expiresIn,
+                                              expireTimerVersion,
                                               multiShareArgs.isViewOnce(),
                                               mentions,
                                               recipientSearchKey.isStory(),
@@ -182,6 +184,7 @@ public final class MultiShareSender {
                                                             @NonNull MessageSendType sendType,
                                                             long threadId,
                                                             long expiresIn,
+                                                            int expireTimerVersion,
                                                             boolean isViewOnce,
                                                             @NonNull List<Mention> validatedMentions,
                                                             boolean isStory,
@@ -221,6 +224,7 @@ public final class MultiShareSender {
                                                               body,
                                                               sentTimestamps.getMillis(0),
                                                               0L,
+                                                              1,
                                                               false,
                                                               storyType.toTextStoryType(),
                                                               buildLinkPreviews(context, multiShareArgs.getLinkPreview()),
@@ -260,6 +264,7 @@ public final class MultiShareSender {
                                                                 body,
                                                                 sentTimestamps.getMillis(i),
                                                                 0L,
+                                                                1,
                                                                 false,
                                                                 storyType,
                                                                 Collections.emptyList(),
@@ -277,6 +282,7 @@ public final class MultiShareSender {
                                                             body,
                                                             sentTimestamps.getMillis(0),
                                                             expiresIn,
+                                                            expireTimerVersion,
                                                             isViewOnce,
                                                             StoryType.NONE,
                                                             buildLinkPreviews(context, multiShareArgs.getLinkPreview()),

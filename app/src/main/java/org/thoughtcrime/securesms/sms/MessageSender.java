@@ -513,8 +513,12 @@ public class MessageSender {
   }
 
   private static @NonNull OutgoingMessage applyUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, @NonNull OutgoingMessage outgoingMessage, long threadId) {
-    if (!outgoingMessage.isExpirationUpdate() && outgoingMessage.getExpiresIn() == 0 && RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId)) {
-      return outgoingMessage.withExpiry(TimeUnit.SECONDS.toMillis(SignalStore.settings().getUniversalExpireTimer()));
+    if (!outgoingMessage.isExpirationUpdate() && outgoingMessage.getExpiresIn() == 0) {
+      Integer expireTimerVersion = RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId);
+
+      if (expireTimerVersion != null) {
+        return outgoingMessage.withExpiry(TimeUnit.SECONDS.toMillis(SignalStore.settings().getUniversalExpireTimer()), expireTimerVersion);
+      }
     }
     return outgoingMessage;
   }

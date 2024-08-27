@@ -170,6 +170,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                   ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey()),
                                   recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds())
                                                                       : Optional.empty(),
+                                  Optional.of(recipient.getExpireTimerVersion()),
                                   Optional.ofNullable(inboxPositions.get(recipientId)),
                                   archived.contains(recipientId)));
 
@@ -219,13 +220,14 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       Set<RecipientId>           archived       = SignalDatabase.threads().getArchivedRecipients();
 
       for (Recipient recipient : recipients) {
-        Optional<IdentityRecord>  identity      = AppDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.getId());
-        Optional<VerifiedMessage> verified      = getVerifiedMessage(recipient, identity);
-        Optional<String>          name          = Optional.ofNullable(recipient.isSystemContact() ? recipient.getDisplayName(context) : recipient.getGroupName(context));
-        Optional<ProfileKey>      profileKey    = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
-        boolean                   blocked       = recipient.isBlocked();
-        Optional<Integer>         expireTimer   = recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds()) : Optional.empty();
-        Optional<Integer>         inboxPosition = Optional.ofNullable(inboxPositions.get(recipient.getId()));
+        Optional<IdentityRecord>  identity           = AppDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.getId());
+        Optional<VerifiedMessage> verified           = getVerifiedMessage(recipient, identity);
+        Optional<String>          name               = Optional.ofNullable(recipient.isSystemContact() ? recipient.getDisplayName(context) : recipient.getGroupName(context));
+        Optional<ProfileKey>      profileKey         = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
+        boolean                   blocked            = recipient.isBlocked();
+        Optional<Integer>         expireTimer        = recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds()) : Optional.empty();
+        Optional<Integer>         expireTimerVersion = Optional.of(recipient.getExpireTimerVersion());
+        Optional<Integer>         inboxPosition      = Optional.ofNullable(inboxPositions.get(recipient.getId()));
 
         out.write(new DeviceContact(recipient.getAci(),
                                     recipient.getE164(),
@@ -235,6 +237,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                     verified,
                                     profileKey,
                                     expireTimer,
+                                    expireTimerVersion,
                                     inboxPosition,
                                     archived.contains(recipient.getId())));
       }
@@ -252,6 +255,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                     Optional.empty(),
                                     ProfileKeyUtil.profileKeyOptionalOrThrow(self.getProfileKey()),
                                     self.getExpiresInSeconds() > 0 ? Optional.of(self.getExpiresInSeconds()) : Optional.empty(),
+                                    Optional.of(self.getExpireTimerVersion()),
                                     Optional.ofNullable(inboxPositions.get(self.getId())),
                                     archived.contains(self.getId())));
       }

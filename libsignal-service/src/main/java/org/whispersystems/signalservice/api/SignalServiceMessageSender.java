@@ -1059,6 +1059,7 @@ public class SignalServiceMessageSender {
     if (message.getExpiresInSeconds() > 0) {
       builder.expireTimer(message.getExpiresInSeconds());
     }
+    builder.expireTimerVersion(message.getExpireTimerVersion());
 
     if (message.getProfileKey().isPresent()) {
       builder.profileKey(ByteString.of(message.getProfileKey().get()));

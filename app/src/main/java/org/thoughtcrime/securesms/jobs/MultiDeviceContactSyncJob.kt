@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
@@ -92,7 +93,14 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
       }
 
       if (contact.expirationTimer.isPresent) {
-        recipients.setExpireMessages(recipient.id, contact.expirationTimer.get())
+        if (contact.expirationTimerVersion.isPresent && contact.expirationTimerVersion.get() > recipient.expireTimerVersion) {
+          recipients.setExpireMessages(recipient.id, contact.expirationTimer.get(), contact.expirationTimerVersion.orElse(1))
+        } else if (contact.expirationTimerVersion.isAbsent()) {
+          // TODO [expireVersion] After unsupported builds expire, we can remove this branch
+          recipients.setExpireMessagesWithoutIncrementingVersion(recipient.id, contact.expirationTimer.get())
+        } else {
+          Log.w(TAG, "[ContactSync] ${recipient.id} was synced with an old expiration timer. Ignoring. Recieved: ${contact.expirationTimerVersion.get()} Current: ${recipient.expireTimerVersion}")
+        }
       }
 
       if (contact.profileKey.isPresent) {

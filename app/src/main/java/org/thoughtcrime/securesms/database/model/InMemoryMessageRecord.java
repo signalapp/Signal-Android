@@ -48,6 +48,7 @@ public class InMemoryMessageRecord extends MessageRecord {
           -1,
           0,
           System.currentTimeMillis(),
+          1,
           false,
           false,
           Collections.emptyList(),

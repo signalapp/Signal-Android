@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.util.ExpirationTimerUtil
 import java.io.IOException
 
 private val TAG: String = Log.tag(ExpireTimerSettingsRepository::class.java)
@@ -38,8 +39,8 @@ class ExpireTimerSettingsRepository(val context: Context) {
           consumer.invoke(Result.failure(e))
         }
       } else {
-        SignalDatabase.recipients.setExpireMessages(recipientId, newExpirationTime)
-        val outgoingMessage = OutgoingMessage.expirationUpdateMessage(Recipient.resolved(recipientId), System.currentTimeMillis(), newExpirationTime * 1000L)
+        val expireTimerVersion = ExpirationTimerUtil.setExpirationTimer(recipientId, newExpirationTime)
+        val outgoingMessage = OutgoingMessage.expirationUpdateMessage(Recipient.resolved(recipientId), System.currentTimeMillis(), newExpirationTime * 1000L, expireTimerVersion)
         MessageSender.send(context, outgoingMessage, getThreadId(recipientId), MessageSender.SendType.SIGNAL, null, null)
         consumer.invoke(Result.success(newExpirationTime))
       }

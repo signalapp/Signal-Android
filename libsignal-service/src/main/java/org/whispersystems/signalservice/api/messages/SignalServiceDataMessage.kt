@@ -34,6 +34,7 @@ class SignalServiceDataMessage private constructor(
   val body: Optional<String>,
   val isEndSession: Boolean,
   val expiresInSeconds: Int,
+  val expireTimerVersion: Int,
   val isExpirationUpdate: Boolean,
   val profileKey: Optional<ByteArray>,
   val isProfileKeyUpdate: Boolean,
@@ -79,6 +80,7 @@ class SignalServiceDataMessage private constructor(
     private var body: String? = null
     private var endSession: Boolean = false
     private var expiresInSeconds: Int = 0
+    private var expireTimerVersion: Int = 1
     private var expirationUpdate: Boolean = false
     private var profileKey: ByteArray? = null
     private var profileKeyUpdate: Boolean = false
@@ -130,6 +132,11 @@ class SignalServiceDataMessage private constructor(
 
     fun withExpiration(expiresInSeconds: Int): Builder {
       this.expiresInSeconds = expiresInSeconds
+      return this
+    }
+
+    fun withExpireTimerVersion(expireTimerVersion: Int): Builder {
+      this.expireTimerVersion = expireTimerVersion
       return this
     }
 
@@ -225,6 +232,7 @@ class SignalServiceDataMessage private constructor(
         body = body.emptyIfStringEmpty(),
         isEndSession = endSession,
         expiresInSeconds = expiresInSeconds,
+        expireTimerVersion = expireTimerVersion,
         isExpirationUpdate = expirationUpdate,
         profileKey = profileKey.asOptional(),
         isProfileKeyUpdate = profileKeyUpdate,

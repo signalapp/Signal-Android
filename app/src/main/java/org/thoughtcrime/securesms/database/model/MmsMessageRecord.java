@@ -94,6 +94,7 @@ public class MmsMessageRecord extends MessageRecord {
                           int subscriptionId,
                           long expiresIn,
                           long expireStarted,
+                          int expireTimerVersion,
                           boolean viewOnce,
                           boolean hasReadReceipt,
                           @Nullable Quote quote,
@@ -121,7 +122,7 @@ public class MmsMessageRecord extends MessageRecord {
   {
     super(id, body, fromRecipient, fromDeviceId, toRecipient,
           dateSent, dateReceived, dateServer, threadId, Status.STATUS_NONE, hasDeliveryReceipt,
-          mailbox, mismatches, failures, subscriptionId, expiresIn, expireStarted, hasReadReceipt,
+          mailbox, mismatches, failures, subscriptionId, expiresIn, expireStarted, expireTimerVersion, hasReadReceipt,
           unidentified, reactions, remoteDelete, notifiedTimestamp, viewed, receiptTimestamp, originalMessageId, revisionNumber, messageExtras);
 
     this.slideDeck        = slideDeck;
@@ -323,7 +324,7 @@ public class MmsMessageRecord extends MessageRecord {
 
   public @NonNull MmsMessageRecord withReactions(@NonNull List<ReactionRecord> reactions) {
     return new MmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), hasDeliveryReceipt(), getThreadId(), getBody(), getSlideDeck(),
-                                getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
                                 hasReadReceipt(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), reactions, isRemoteDelete(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate(), getLatestRevisionId(),
                                 getOriginalMessageId(), getRevisionNumber(), isRead(), getMessageExtras());
@@ -331,7 +332,7 @@ public class MmsMessageRecord extends MessageRecord {
 
   public @NonNull MmsMessageRecord withoutQuote() {
     return new MmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), hasDeliveryReceipt(), getThreadId(), getBody(), getSlideDeck(),
-                                getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
                                 hasReadReceipt(), null, getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate(), getLatestRevisionId(),
                                 getOriginalMessageId(), getRevisionNumber(), isRead(), getMessageExtras());
@@ -353,7 +354,7 @@ public class MmsMessageRecord extends MessageRecord {
     SlideDeck                slideDeck        = MessageTable.MmsReader.buildSlideDeck(slideAttachments);
 
     return new MmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), hasDeliveryReceipt(), getThreadId(), getBody(), slideDeck,
-                                getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
                                 hasReadReceipt(), quote, contacts, linkPreviews, isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate(), getLatestRevisionId(),
                                 getOriginalMessageId(), getRevisionNumber(), isRead(), getMessageExtras());
@@ -361,7 +362,7 @@ public class MmsMessageRecord extends MessageRecord {
 
   public @NonNull MmsMessageRecord withPayment(@NonNull Payment payment) {
     return new MmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), hasDeliveryReceipt(), getThreadId(), getBody(), getSlideDeck(),
-                                getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
                                 hasReadReceipt(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), payment, getCall(), getScheduledDate(), getLatestRevisionId(),
                                 getOriginalMessageId(), getRevisionNumber(), isRead(), getMessageExtras());
@@ -370,7 +371,7 @@ public class MmsMessageRecord extends MessageRecord {
 
   public @NonNull MmsMessageRecord withCall(@Nullable CallTable.Call call) {
     return new MmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), hasDeliveryReceipt(), getThreadId(), getBody(), getSlideDeck(),
-                                getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
                                 hasReadReceipt(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), call, getScheduledDate(), getLatestRevisionId(),
                                 getOriginalMessageId(), getRevisionNumber(), isRead(), getMessageExtras());

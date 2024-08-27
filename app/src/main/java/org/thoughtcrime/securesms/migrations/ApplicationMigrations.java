@@ -151,9 +151,10 @@ public class ApplicationMigrations {
     static final int CONTACT_LINK_REBUILD          = 106;
     static final int DELETE_SYNC_CAPABILITY        = 107;
     static final int REBUILD_MESSAGE_FTS_INDEX_5   = 108;
+    static final int EXPIRE_TIMER_CAPABILITY       = 109;
   }
 
-  public static final int CURRENT_VERSION = 108;
+  public static final int CURRENT_VERSION = 109;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -686,6 +687,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.REBUILD_MESSAGE_FTS_INDEX_5) {
       jobs.put(Version.REBUILD_MESSAGE_FTS_INDEX_5, new RebuildMessageSearchIndexMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.EXPIRE_TIMER_CAPABILITY) {
+      jobs.put(Version.EXPIRE_TIMER_CAPABILITY, new AttributesMigrationJob());
     }
 
     return jobs;

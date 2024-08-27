@@ -135,6 +135,7 @@ object RecipientTableCursorUtil {
       messageRingtone = Util.uri(cursor.requireString(RecipientTable.MESSAGE_RINGTONE)),
       callRingtone = Util.uri(cursor.requireString(RecipientTable.CALL_RINGTONE)),
       expireMessages = cursor.requireInt(RecipientTable.MESSAGE_EXPIRATION_TIME),
+      expireTimerVersion = cursor.requireInt(RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION),
       registered = RegisteredState.fromId(cursor.requireInt(RecipientTable.REGISTERED)),
       profileKey = profileKey,
       expiringProfileKeyCredential = expiringProfileKeyCredential,
@@ -175,7 +176,8 @@ object RecipientTableCursorUtil {
     val capabilities = cursor.requireLong(RecipientTable.CAPABILITIES)
     return RecipientRecord.Capabilities(
       rawBits = capabilities,
-      deleteSync = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.DELETE_SYNC, Capabilities.BIT_LENGTH).toInt())
+      deleteSync = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.DELETE_SYNC, Capabilities.BIT_LENGTH).toInt()),
+      versionedExpirationTimer = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.VERSIONED_EXPIRATION_TIMER, Capabilities.BIT_LENGTH).toInt())
     )
   }
 

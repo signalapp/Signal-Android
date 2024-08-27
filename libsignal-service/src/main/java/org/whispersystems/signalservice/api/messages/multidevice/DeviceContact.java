@@ -21,6 +21,7 @@ public class DeviceContact {
   private final Optional<VerifiedMessage>     verified;
   private final Optional<ProfileKey>          profileKey;
   private final Optional<Integer>             expirationTimer;
+  private final Optional<Integer>             expirationTimerVersion;
   private final Optional<Integer>             inboxPosition;
   private final boolean                       archived;
 
@@ -32,6 +33,7 @@ public class DeviceContact {
                        Optional<VerifiedMessage> verified,
                        Optional<ProfileKey> profileKey,
                        Optional<Integer> expirationTimer,
+                       Optional<Integer> expirationTimerVersion,
                        Optional<Integer> inboxPosition,
                        boolean archived)
   {
@@ -39,16 +41,17 @@ public class DeviceContact {
       throw new IllegalArgumentException("Must have either ACI or E164");
     }
 
-    this.aci             = aci;
-    this.e164            = e164;
-    this.name            = name;
-    this.avatar          = avatar;
-    this.color           = color;
-    this.verified        = verified;
-    this.profileKey      = profileKey;
-    this.expirationTimer = expirationTimer;
-    this.inboxPosition   = inboxPosition;
-    this.archived        = archived;
+    this.aci                    = aci;
+    this.e164                   = e164;
+    this.name                   = name;
+    this.avatar                 = avatar;
+    this.color                  = color;
+    this.verified               = verified;
+    this.profileKey             = profileKey;
+    this.expirationTimer        = expirationTimer;
+    this.expirationTimerVersion = expirationTimerVersion;
+    this.inboxPosition          = inboxPosition;
+    this.archived               = archived;
   }
 
   public Optional<DeviceContactAvatar> getAvatar() {
@@ -81,6 +84,10 @@ public class DeviceContact {
 
   public Optional<Integer> getExpirationTimer() {
     return expirationTimer;
+  }
+
+  public Optional<Integer> getExpirationTimerVersion() {
+    return expirationTimerVersion;
   }
 
   public Optional<Integer> getInboxPosition() {
