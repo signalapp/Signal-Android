@@ -28,6 +28,7 @@ public final class RegistrationUtil {
     {
       Log.i(TAG, "Marking registration completed.", new Throwable());
       SignalStore.registration().setRegistrationComplete();
+      SignalStore.registration().clearLocalRegistrationMetadata();
 
       if (SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.UNDECIDED) {
         Log.w(TAG, "Phone number discoverability mode is still UNDECIDED. Setting to DISCOVERABLE.");

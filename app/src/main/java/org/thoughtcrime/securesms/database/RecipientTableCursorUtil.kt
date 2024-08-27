@@ -149,7 +149,7 @@ object RecipientTableCursorUtil {
       profileSharing = cursor.requireBoolean(RecipientTable.PROFILE_SHARING),
       lastProfileFetch = cursor.requireLong(RecipientTable.LAST_PROFILE_FETCH),
       notificationChannel = cursor.requireString(RecipientTable.NOTIFICATION_CHANNEL),
-      unidentifiedAccessMode = RecipientTable.UnidentifiedAccessMode.fromMode(cursor.requireInt(RecipientTable.SEALED_SENDER_MODE)),
+      sealedSenderAccessMode = RecipientTable.SealedSenderAccessMode.fromMode(cursor.requireInt(RecipientTable.SEALED_SENDER_MODE)),
       capabilities = readCapabilities(cursor),
       storageId = Base64.decodeNullableOrThrow(cursor.requireString(RecipientTable.STORAGE_SERVICE_ID)),
       mentionSetting = RecipientTable.MentionSetting.fromId(cursor.requireInt(RecipientTable.MENTION_SETTING)),
@@ -175,7 +175,6 @@ object RecipientTableCursorUtil {
     val capabilities = cursor.requireLong(RecipientTable.CAPABILITIES)
     return RecipientRecord.Capabilities(
       rawBits = capabilities,
-      paymentActivation = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.PAYMENT_ACTIVATION, Capabilities.BIT_LENGTH).toInt()),
       deleteSync = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.DELETE_SYNC, Capabilities.BIT_LENGTH).toInt())
     )
   }

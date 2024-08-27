@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
+import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1144,7 +1144,7 @@ public class TextSecurePreferences {
   private static void notifyUnregisteredReceived(Context context) {
     PendingIntent reRegistrationIntent = PendingIntent.getActivity(context,
                                                                    0,
-                                                                   RegistrationNavigationActivity.newIntentForReRegistration(context),
+                                                                   RegistrationActivity.newIntentForReRegistration(context),
                                                                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntentFlags.immutable());
     final NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
         .setSmallIcon(R.drawable.ic_signal_logo_large)

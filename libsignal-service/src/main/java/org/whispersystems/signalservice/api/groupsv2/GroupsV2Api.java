@@ -9,13 +9,16 @@ import org.signal.libsignal.zkgroup.auth.ClientZkAuthOperations;
 import org.signal.libsignal.zkgroup.calllinks.CallLinkAuthCredentialResponse;
 import org.signal.libsignal.zkgroup.groups.ClientZkGroupCipher;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
+import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsementsResponse;
 import org.signal.storageservice.protos.groups.AvatarUploadAttributes;
 import org.signal.storageservice.protos.groups.Group;
 import org.signal.storageservice.protos.groups.GroupAttributeBlob;
 import org.signal.storageservice.protos.groups.GroupChange;
+import org.signal.storageservice.protos.groups.GroupChangeResponse;
 import org.signal.storageservice.protos.groups.GroupChanges;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.GroupJoinInfo;
+import org.signal.storageservice.protos.groups.GroupResponse;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
@@ -31,6 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
@@ -73,9 +77,9 @@ public class GroupsV2Api {
     return new GroupsV2AuthorizationString(groupSecretParams, authCredentialPresentation);
   }
 
-  public void putNewGroup(GroupsV2Operations.NewGroup newGroup,
-                          GroupsV2AuthorizationString authorization)
-      throws IOException
+  public DecryptedGroupResponse putNewGroup(GroupsV2Operations.NewGroup newGroup,
+                                            GroupsV2AuthorizationString authorization)
+      throws IOException, InvalidGroupStateException, VerificationFailedException, InvalidInputException
   {
     Group group = newGroup.getNewGroupMessage();
 
@@ -83,34 +87,38 @@ public class GroupsV2Api {
       String cdnKey = uploadAvatar(newGroup.getAvatar().get(), newGroup.getGroupSecretParams(), authorization);
 
       group = group.newBuilder()
-                    .avatar(cdnKey)
-                    .build();
+                   .avatar(cdnKey)
+                   .build();
     }
 
-    socket.putNewGroupsV2Group(group, authorization);
+    GroupResponse response = socket.putNewGroupsV2Group(group, authorization);
+
+    return groupsOperations.forGroup(newGroup.getGroupSecretParams())
+                           .decryptGroup(Objects.requireNonNull(response.group), response.groupSendEndorsementsResponse.toByteArray());
   }
 
-  public NetworkResult<DecryptedGroup> getGroupAsResult(GroupSecretParams groupSecretParams, GroupsV2AuthorizationString authorization) {
+  public NetworkResult<DecryptedGroupResponse> getGroupAsResult(GroupSecretParams groupSecretParams, GroupsV2AuthorizationString authorization) {
     return NetworkResult.fromFetch(() -> getGroup(groupSecretParams, authorization));
   }
 
-  public DecryptedGroup getGroup(GroupSecretParams groupSecretParams,
-                                 GroupsV2AuthorizationString authorization)
-      throws IOException, InvalidGroupStateException, VerificationFailedException
+  public DecryptedGroupResponse getGroup(GroupSecretParams groupSecretParams,
+                                         GroupsV2AuthorizationString authorization)
+      throws IOException, InvalidGroupStateException, VerificationFailedException, InvalidInputException
   {
-    Group group = socket.getGroupsV2Group(authorization);
+    GroupResponse response = socket.getGroupsV2Group(authorization);
 
     return groupsOperations.forGroup(groupSecretParams)
-                           .decryptGroup(group);
+                           .decryptGroup(Objects.requireNonNull(response.group), response.groupSendEndorsementsResponse.toByteArray());
   }
 
   public GroupHistoryPage getGroupHistoryPage(GroupSecretParams groupSecretParams,
                                               int fromRevision,
                                               GroupsV2AuthorizationString authorization,
-                                              boolean includeFirstState)
-      throws IOException, InvalidGroupStateException, VerificationFailedException
+                                              boolean includeFirstState,
+                                              long sendEndorsementsExpirationMs)
+      throws IOException, InvalidGroupStateException, VerificationFailedException, InvalidInputException
   {
-    PushServiceSocket.GroupHistory     group           = socket.getGroupsV2GroupHistory(fromRevision, authorization, GroupsV2Operations.HIGHEST_KNOWN_EPOCH, includeFirstState);
+    PushServiceSocket.GroupHistory     group           = socket.getGroupHistory(fromRevision, authorization, GroupsV2Operations.HIGHEST_KNOWN_EPOCH, includeFirstState, sendEndorsementsExpirationMs);
     List<DecryptedGroupChangeLog>      result          = new ArrayList<>(group.getGroupChanges().groupChanges.size());
     GroupsV2Operations.GroupOperations groupOperations = groupsOperations.forGroup(groupSecretParams);
 
@@ -121,7 +129,10 @@ public class GroupsV2Api {
       result.add(new DecryptedGroupChangeLog(decryptedGroup, decryptedChange));
     }
 
-    return new GroupHistoryPage(result, GroupHistoryPage.PagingData.forGroupHistory(group));
+    byte[]                        groupSendEndorsementsResponseBytes = group.getGroupChanges().groupSendEndorsementsResponse.toByteArray();
+    GroupSendEndorsementsResponse groupSendEndorsementsResponse      = groupSendEndorsementsResponseBytes.length > 0 ? new GroupSendEndorsementsResponse(groupSendEndorsementsResponseBytes) : null;
+
+    return new GroupHistoryPage(result, groupSendEndorsementsResponse, GroupHistoryPage.PagingData.forGroupHistory(group));
   }
 
   public NetworkResult<Integer> getGroupJoinedAt(@Nonnull GroupsV2AuthorizationString authorization) {
@@ -162,9 +173,9 @@ public class GroupsV2Api {
     return form.key;
   }
 
-  public GroupChange patchGroup(GroupChange.Actions groupChange,
-                                GroupsV2AuthorizationString authorization,
-                                Optional<byte[]> groupLinkPassword)
+  public GroupChangeResponse patchGroup(GroupChange.Actions groupChange,
+                                        GroupsV2AuthorizationString authorization,
+                                        Optional<byte[]> groupLinkPassword)
       throws IOException
   {
     return socket.patchGroupsV2Group(groupChange, authorization.toString(), groupLinkPassword);

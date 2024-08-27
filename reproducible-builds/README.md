@@ -219,6 +219,10 @@ If you're having difficulty getting things to build at all, the [community forum
 
 ## Extra credit: Code Transparency verification
 
+> **Important**: At the time of writing, the public version of `bundletool` does not support v3.1 signature schemes and will output an error when running the instructions below.
+> We have opened a [pull request](https://github.com/google/bundletool/pull/368) to fix this, but until it is merged, you will need to build the tool from source.
+> Feel free to comment on the accompanying [issue](https://github.com/google/bundletool/issues/369) to expedite the process ;)
+
 As part of the release of app bundles, Google also added a new [Code Transparency](https://developer.android.com/guide/app-bundle/code-transparency) mechanism. This is a process by which we can sign certain parts of the APK with a private key, allowing users to verify that the APK from the Play Store has not been modified after it was submitted by Signal.
 
 This is labeled as "extra credit" because it is, by definition, a weaker check than the above reproducible build verification process. For one, the Code Transparency signature does not cover the contents of the entire APK — media assets and other auxiliary files are excluded. Also, it only verifies that the code Signal submitted matches the code in the APK — it does _not_ verify that the code that was submitted matches the public git repository. In contrast, the reproducible build steps above cover all of these scenarios.

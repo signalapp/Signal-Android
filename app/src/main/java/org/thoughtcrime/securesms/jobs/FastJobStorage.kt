@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.VisibleForTesting
+import org.signal.core.util.Stopwatch
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.JobDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec
@@ -7,194 +10,238 @@ import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage
+import org.thoughtcrime.securesms.util.LRUCache
+import java.util.TreeSet
+import java.util.function.Predicate
 
 class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
-  private val jobs: MutableList<JobSpec> = mutableListOf()
-  private val constraintsByJobId: MutableMap<String, MutableList<ConstraintSpec>> = mutableMapOf()
-  private val dependenciesByJobId: MutableMap<String, MutableList<DependencySpec>> = mutableMapOf()
+  companion object {
+    private val TAG = Log.tag(FastJobStorage::class)
+    private const val JOB_CACHE_LIMIT = 1000
+    private const val DEBUG = false
+  }
+
+  /** We keep a trimmed down version of every job in memory. */
+  private val minimalJobs: MutableList<MinimalJobSpec> = mutableListOf()
+
+  /**
+   * We keep a set of job specs in memory to facilitate fast retrieval. This is important because the most common job storage pattern is
+   * [getNextEligibleJob], which needs to return full specs.
+   */
+  private val jobSpecCache: LRUCache<String, JobSpec> = LRUCache(JOB_CACHE_LIMIT)
+
+  /**
+   * We keep a set of constraints in memory, seeded by the same jobs in the [jobSpecCache]. It doesn't need to necessarily stay in sync with that cache, though.
+   * The most important property to maintain is that if there's an entry in the map for a given jobId, we need to ensure we have _all_ of the constraints for
+   * that job. Important for [getConstraintSpecs].
+   */
+  private val constraintsByJobId: LRUCache<String, MutableList<ConstraintSpec>> = LRUCache(JOB_CACHE_LIMIT)
+
+  /** We keep every dependency in memory, since there aren't that many, and managing a limited subset would be very complicated. */
+  private val dependenciesByJobId: MutableMap<String, MutableList<DependencySpec>> = hashMapOf()
+
+  /** The list of jobs eligible to be returned from [getNextEligibleJob], kept sorted in the appropriate order. */
+  private val eligibleJobs: TreeSet<MinimalJobSpec> = TreeSet(EligibleMinJobComparator)
+
+  /** All migration-related jobs, kept in the appropriate order. */
+  private val migrationJobs: TreeSet<MinimalJobSpec> = TreeSet(compareBy { it.createTime })
+
+  /** We need a fast way to know what the "most eligible job" is for a given queue. This serves as a lookup table that speeds up the maintenance of [eligibleJobs]. */
+  private val mostEligibleJobForQueue: MutableMap<String, MinimalJobSpec> = hashMapOf()
 
   @Synchronized
   override fun init() {
-    jobs += jobDatabase.getAllJobSpecs()
+    val stopwatch = Stopwatch("init", decimalPlaces = 2)
+    minimalJobs += jobDatabase.getAllMinimalJobSpecs()
+    stopwatch.split("fetch-min-jobs")
 
-    for (constraintSpec in jobDatabase.getAllConstraintSpecs()) {
+    for (job in minimalJobs) {
+      if (job.queueKey == Job.Parameters.MIGRATION_QUEUE_KEY) {
+        migrationJobs += job
+      } else {
+        placeJobInEligibleList(job)
+      }
+    }
+    stopwatch.split("sort-min-jobs")
+
+    jobDatabase.getJobSpecs(JOB_CACHE_LIMIT).forEach {
+      jobSpecCache[it.id] = it
+    }
+    stopwatch.split("fetch-full-jobs")
+
+    for (constraintSpec in jobDatabase.getConstraintSpecsForJobs(jobSpecCache.keys)) {
       val jobConstraints: MutableList<ConstraintSpec> = constraintsByJobId.getOrPut(constraintSpec.jobSpecId) { mutableListOf() }
       jobConstraints += constraintSpec
     }
+    stopwatch.split("fetch-constraints")
 
     for (dependencySpec in jobDatabase.getAllDependencySpecs().filterNot { it.hasCircularDependency() }) {
       val jobDependencies: MutableList<DependencySpec> = dependenciesByJobId.getOrPut(dependencySpec.jobId) { mutableListOf() }
       jobDependencies += dependencySpec
     }
+    stopwatch.split("fetch-dependencies")
+
+    stopwatch.stop(TAG)
   }
 
   @Synchronized
   override fun insertJobs(fullSpecs: List<FullSpec>) {
+    val stopwatch = debugStopwatch("insert")
     val durable: List<FullSpec> = fullSpecs.filterNot { it.isMemoryOnly }
 
     if (durable.isNotEmpty()) {
       jobDatabase.insertJobs(durable)
     }
+    stopwatch?.split("db")
 
     for (fullSpec in fullSpecs) {
-      jobs += fullSpec.jobSpec
+      val minimalJobSpec = fullSpec.jobSpec.toMinimalJobSpec()
+      minimalJobs += minimalJobSpec
+      jobSpecCache[fullSpec.jobSpec.id] = fullSpec.jobSpec
+
+      if (fullSpec.jobSpec.queueKey == Job.Parameters.MIGRATION_QUEUE_KEY) {
+        migrationJobs += minimalJobSpec
+      } else {
+        placeJobInEligibleList(minimalJobSpec)
+      }
+
       constraintsByJobId[fullSpec.jobSpec.id] = fullSpec.constraintSpecs.toMutableList()
       dependenciesByJobId[fullSpec.jobSpec.id] = fullSpec.dependencySpecs.toMutableList()
     }
+    stopwatch?.split("cache")
+    stopwatch?.stop(TAG)
   }
 
   @Synchronized
   override fun getJobSpec(id: String): JobSpec? {
-    return jobs.firstOrNull { it.id == id }
+    return minimalJobs.firstOrNull { it.id == id }?.toJobSpec()
   }
 
   @Synchronized
-  override fun getAllJobSpecs(): List<JobSpec> {
-    return ArrayList(jobs)
+  override fun getAllMatchingFilter(predicate: Predicate<JobSpec>): List<JobSpec> {
+    return jobDatabase.getAllMatchingFilter(predicate)
   }
 
   @Synchronized
-  override fun getPendingJobsWithNoDependenciesInCreatedOrder(currentTime: Long): List<JobSpec> {
-    val migrationJob: JobSpec? = getMigrationJob()
+  override fun getNextEligibleJob(currentTime: Long, filter: (MinimalJobSpec) -> Boolean): JobSpec? {
+    val stopwatch = debugStopwatch("get-pending")
+    val migrationJob: MinimalJobSpec? = migrationJobs.firstOrNull()
 
     return if (migrationJob != null && !migrationJob.isRunning && migrationJob.hasEligibleRunTime(currentTime)) {
-      listOf(migrationJob)
+      migrationJob.toJobSpec()
     } else if (migrationJob != null) {
-      emptyList()
+      null
     } else {
-      jobs
-        .groupBy {
-          // Group together by queue. If it doesn't have a queue, we just use the ID, since it's unique and will give us all of the jobs without queues.
-          it.queueKey ?: it.id
-        }
-        .map { byQueueKey: Map.Entry<String, List<JobSpec>> ->
-          // We want to find the next job we should run within each queue. It should be the oldest job within the group of jobs with the highest priority.
-          // We can get this by sorting by createTime, then taking first job in that list that has the max priority.
-          byQueueKey.value
-            .sortedBy { it.createTime }
-            .maxByOrNull { it.priority }
-        }
-        .filterNotNull()
+      eligibleJobs
+        .asSequence()
         .filter { job ->
           // Filter out all jobs with unmet dependencies
           dependenciesByJobId[job.id].isNullOrEmpty()
         }
         .filterNot { it.isRunning }
         .filter { job -> job.hasEligibleRunTime(currentTime) }
-        .sortedBy { it.createTime }
-        .sortedByDescending { it.priority }
-
-      // Note: The priority sort at the end is safe because it's stable. That means that within jobs with the same priority, they will still be sorted by createTime.
+        .firstOrNull(filter)
+        ?.toJobSpec()
+    }.also {
+      stopwatch?.stop(TAG)
     }
   }
 
   @Synchronized
   override fun getJobsInQueue(queue: String): List<JobSpec> {
-    return jobs
+    return minimalJobs
       .filter { it.queueKey == queue }
-      .sortedBy { it.createTime }
-  }
-
-  private fun getMigrationJob(): JobSpec? {
-    return jobs
-      .filter { it.queueKey == Job.Parameters.MIGRATION_QUEUE_KEY }
-      .firstOrNull { firstInQueue(it) }
-  }
-
-  private fun firstInQueue(job: JobSpec): Boolean {
-    return if (job.queueKey == null) {
-      true
-    } else {
-      val firstInQueue: JobSpec? = jobs
-        .filter { it.queueKey == job.queueKey }
-        .minByOrNull { it.createTime }
-
-      job == firstInQueue
-    }
+      .map { it.toJobSpec() }
   }
 
   @Synchronized
   override fun getJobCountForFactory(factoryKey: String): Int {
-    return jobs
+    return minimalJobs
       .filter { it.factoryKey == factoryKey }
       .size
   }
 
   @Synchronized
   override fun getJobCountForFactoryAndQueue(factoryKey: String, queueKey: String): Int {
-    return jobs
+    return minimalJobs
       .filter { it.factoryKey == factoryKey && it.queueKey == queueKey }
       .size
   }
 
   @Synchronized
   override fun areQueuesEmpty(queueKeys: Set<String>): Boolean {
-    return jobs.none { it.queueKey != null && queueKeys.contains(it.queueKey) }
+    return minimalJobs.none { it.queueKey != null && queueKeys.contains(it.queueKey) }
   }
 
   @Synchronized
   override fun markJobAsRunning(id: String, currentTime: Long) {
-    val job: JobSpec? = getJobById(id)
+    val job: JobSpec? = getJobSpec(id)
     if (job == null || !job.isMemoryOnly) {
       jobDatabase.markJobAsRunning(id, currentTime)
+      // Don't need to update jobSpecCache because all changed fields are in the min spec
     }
 
-    val iter = jobs.listIterator()
-
-    while (iter.hasNext()) {
-      val current: JobSpec = iter.next()
-      if (current.id == id) {
-        iter.set(
-          current.copy(
-            isRunning = true,
-            lastRunAttemptTime = currentTime
-          )
+    updateCachedJobSpecs(
+      filter = { it.id == id },
+      transformer = { jobSpec ->
+        jobSpec.copy(
+          isRunning = true,
+          lastRunAttemptTime = currentTime
         )
-      }
-    }
+      },
+      singleUpdate = true
+    )
   }
 
   @Synchronized
   override fun updateJobAfterRetry(id: String, currentTime: Long, runAttempt: Int, nextBackoffInterval: Long, serializedData: ByteArray?) {
-    val job = getJobById(id)
+    val job = getJobSpec(id)
     if (job == null || !job.isMemoryOnly) {
       jobDatabase.updateJobAfterRetry(id, currentTime, runAttempt, nextBackoffInterval, serializedData)
-    }
 
-    val iter = jobs.listIterator()
-    while (iter.hasNext()) {
-      val current = iter.next()
-      if (current.id == id) {
-        iter.set(
-          current.copy(
-            isRunning = false,
-            runAttempt = runAttempt,
-            lastRunAttemptTime = currentTime,
-            nextBackoffInterval = nextBackoffInterval,
-            serializedData = serializedData
-          )
-        )
+      // Note: All other fields are accounted for in the min spec. We only need to update from disk if serialized data changes.
+      val cached = jobSpecCache[id]
+      if (cached != null && !cached.serializedData.contentEquals(serializedData)) {
+        jobDatabase.getJobSpec(id)?.let {
+          jobSpecCache[id] = it
+        }
       }
     }
+
+    updateCachedJobSpecs(
+      filter = { it.id == id },
+      transformer = { jobSpec ->
+        jobSpec.copy(
+          isRunning = false,
+          lastRunAttemptTime = currentTime,
+          nextBackoffInterval = nextBackoffInterval
+        )
+      },
+      singleUpdate = true
+    )
   }
 
   @Synchronized
   override fun updateAllJobsToBePending() {
     jobDatabase.updateAllJobsToBePending()
+    // Don't need to update jobSpecCache because all changed fields are in the min spec
 
-    val iter = jobs.listIterator()
-    while (iter.hasNext()) {
-      val current = iter.next()
-      iter.set(current.copy(isRunning = false))
-    }
+    updateCachedJobSpecs(
+      filter = { it.isRunning },
+      transformer = { jobSpec ->
+        jobSpec.copy(
+          isRunning = false
+        )
+      }
+    )
   }
 
   @Synchronized
   override fun updateJobs(jobSpecs: List<JobSpec>) {
     val durable: List<JobSpec> = jobSpecs
       .filter { updatedJob ->
-        val found = getJobById(updatedJob.id)
+        val found = getJobSpec(updatedJob.id)
         found != null && !found.isMemoryOnly
       }
 
@@ -202,39 +249,80 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       jobDatabase.updateJobs(durable)
     }
 
-    val updatesById: Map<String, JobSpec> = jobSpecs.associateBy { it.id }
+    val updatesById: Map<String, MinimalJobSpec> = jobSpecs
+      .map { it.toMinimalJobSpec() }
+      .associateBy { it.id }
 
-    val iter = jobs.listIterator()
-    while (iter.hasNext()) {
-      val current = iter.next()
-      val update = updatesById[current.id]
+    updateCachedJobSpecs(
+      filter = { updatesById.containsKey(it.id) },
+      transformer = { updatesById.getValue(it.id) }
+    )
 
-      if (update != null) {
-        iter.set(update)
+    for (update in jobSpecs) {
+      jobSpecCache[update.id] = update
+    }
+  }
+
+  @Synchronized
+  override fun transformJobs(transformer: (JobSpec) -> JobSpec) {
+    val updated = jobDatabase.transformJobs(transformer)
+    for (update in updated) {
+      jobSpecCache[update.id] = update
+    }
+
+    val iterator = minimalJobs.listIterator()
+    while (iterator.hasNext()) {
+      val current = iterator.next()
+      val updatedJob = updated.firstOrNull { it.id == current.id }
+
+      if (updatedJob != null) {
+        iterator.set(updatedJob.toMinimalJobSpec())
+        replaceJobInEligibleList(current, updatedJob.toMinimalJobSpec())
       }
     }
   }
 
   @Synchronized
-  override fun deleteJob(jobId: String) {
-    deleteJobs(listOf(jobId))
+  override fun deleteJob(id: String) {
+    deleteJobs(listOf(id))
   }
 
   @Synchronized
-  override fun deleteJobs(jobIds: List<String>) {
-    val durableIds: List<String> = jobIds
-      .mapNotNull { getJobById(it) }
+  override fun deleteJobs(ids: List<String>) {
+    val jobsToDelete: Set<JobSpec> = ids
+      .mapNotNull { getJobSpec(it) }
+      .toSet()
+
+    val durableJobIdsToDelete: List<String> = jobsToDelete
       .filterNot { it.isMemoryOnly }
       .map { it.id }
 
-    if (durableIds.isNotEmpty()) {
-      jobDatabase.deleteJobs(durableIds)
+    val minimalJobsToDelete: Set<MinimalJobSpec> = jobsToDelete
+      .map { it.toMinimalJobSpec() }
+      .toSet()
+
+    val affectedQueues: Set<String> = minimalJobsToDelete.mapNotNull { it.queueKey }.toSet()
+
+    if (durableJobIdsToDelete.isNotEmpty()) {
+      jobDatabase.deleteJobs(durableJobIdsToDelete)
     }
 
-    val deleteIds: Set<String> = jobIds.toSet()
-    jobs.removeIf { deleteIds.contains(it.id) }
+    val deleteIds: Set<String> = ids.toSet()
+    minimalJobs.removeIf { deleteIds.contains(it.id) }
+    jobSpecCache.keys.removeAll(deleteIds)
+    eligibleJobs.removeAll(minimalJobsToDelete)
+    migrationJobs.removeAll(minimalJobsToDelete)
 
-    for (jobId in jobIds) {
+    mostEligibleJobForQueue.keys.removeAll(affectedQueues)
+
+    for (queue in affectedQueues) {
+      jobDatabase.getMostEligibleJobInQueue(queue)?.let {
+        jobSpecCache[it.id] = it
+        placeJobInEligibleList(it.toMinimalJobSpec())
+      }
+    }
+
+    for (jobId in ids) {
       constraintsByJobId.remove(jobId)
       dependenciesByJobId.remove(jobId)
 
@@ -252,12 +340,9 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   @Synchronized
   override fun getConstraintSpecs(jobId: String): List<ConstraintSpec> {
-    return constraintsByJobId.getOrElse(jobId) { listOf() }
-  }
-
-  @Synchronized
-  override fun getAllConstraintSpecs(): List<ConstraintSpec> {
-    return constraintsByJobId.values.flatten()
+    return constraintsByJobId.getOrPut(jobId) {
+      jobDatabase.getConstraintSpecsForJobs(listOf(jobId)).toMutableList()
+    }
   }
 
   @Synchronized
@@ -277,19 +362,108 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     return all
   }
 
-  private fun getSingleLayerOfDependencySpecsThatDependOnJob(jobSpecId: String): List<DependencySpec> {
-    return dependenciesByJobId
-      .values
-      .flatten()
-      .filter { it.dependsOnJobId == jobSpecId }
+  @Synchronized
+  override fun debugGetJobSpecs(limit: Int): List<JobSpec> {
+    return jobDatabase.getJobSpecs(limit)
   }
 
-  override fun getAllDependencySpecs(): List<DependencySpec> {
+  @Synchronized
+  override fun debugGetConstraintSpecs(limit: Int): List<ConstraintSpec> {
+    return jobDatabase.getConstraintSpecs(limit)
+  }
+
+  @Synchronized
+  override fun debugGetAllDependencySpecs(): List<DependencySpec> {
     return dependenciesByJobId.values.flatten()
   }
 
-  private fun getJobById(id: String): JobSpec? {
-    return jobs.firstOrNull { it.id == id }
+  private fun updateCachedJobSpecs(filter: (MinimalJobSpec) -> Boolean, transformer: (MinimalJobSpec) -> MinimalJobSpec, singleUpdate: Boolean = false) {
+    val iterator = minimalJobs.listIterator()
+
+    while (iterator.hasNext()) {
+      val current = iterator.next()
+
+      if (filter(current)) {
+        val updated = transformer(current)
+        iterator.set(updated)
+        replaceJobInEligibleList(current, updated)
+
+        jobSpecCache.remove(current.id)?.let { currentJobSpec ->
+          val updatedJobSpec = currentJobSpec.copy(
+            id = updated.id,
+            factoryKey = updated.factoryKey,
+            queueKey = updated.queueKey,
+            createTime = updated.createTime,
+            lastRunAttemptTime = updated.lastRunAttemptTime,
+            nextBackoffInterval = updated.nextBackoffInterval,
+            priority = updated.priority,
+            isRunning = updated.isRunning,
+            isMemoryOnly = updated.isMemoryOnly
+          )
+          jobSpecCache[updatedJobSpec.id] = updatedJobSpec
+
+          if (singleUpdate) {
+            return
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Heart of a lot of the in-memory job management. Will ensure that we have an up-to-date list of eligible jobs in sorted order.
+   */
+  private fun placeJobInEligibleList(job: MinimalJobSpec) {
+    var jobToPlace: MinimalJobSpec? = job
+
+    if (job.queueKey != null) {
+      val existingJobInQueue = mostEligibleJobForQueue[job.queueKey]
+      if (existingJobInQueue != null) {
+        // We only want a single job from each queue. It should be the oldest job with the highest priority.
+        if (job.priority > existingJobInQueue.priority || (job.priority == existingJobInQueue.priority && job.createTime < existingJobInQueue.createTime)) {
+          mostEligibleJobForQueue[job.queueKey] = job
+          eligibleJobs.remove(existingJobInQueue)
+        } else {
+          // There's a more eligible job in the queue already, so no need to put it in the eligible list
+          jobToPlace = null
+        }
+      }
+    }
+
+    if (jobToPlace == null) {
+      return
+    }
+
+    jobToPlace.queueKey?.let { queueKey ->
+      mostEligibleJobForQueue[queueKey] = job
+    }
+
+    // At this point, anything queue-related has been handled. We just need to insert this job in the correct spot in the list.
+    // Thankfully, we're using a TreeSet, so sorting is automatic.
+
+    eligibleJobs += jobToPlace
+  }
+
+  /**
+   * Replaces a job in the eligible list with an updated version of the job.
+   */
+  private fun replaceJobInEligibleList(current: MinimalJobSpec?, updated: MinimalJobSpec?) {
+    if (current == null || updated == null) {
+      return
+    }
+
+    if (updated.queueKey == Job.Parameters.MIGRATION_QUEUE_KEY) {
+      migrationJobs.remove(current)
+      migrationJobs += updated
+    } else {
+      eligibleJobs.remove(current)
+      current.queueKey?.let { queueKey ->
+        if (mostEligibleJobForQueue[queueKey] == current) {
+          mostEligibleJobForQueue.remove(queueKey)
+        }
+      }
+      placeJobInEligibleList(updated)
+    }
   }
 
   /**
@@ -304,8 +478,8 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
    * serves the same effect and doesn't require new write methods. This should also be very rare.
    */
   private fun DependencySpec.hasCircularDependency(): Boolean {
-    val job = getJobById(this.jobId)
-    val dependsOnJob = getJobById(this.dependsOnJobId)
+    val job = getJobSpec(this.jobId)
+    val dependsOnJob = getJobSpec(this.dependsOnJobId)
 
     if (job == null || dependsOnJob == null) {
       return false
@@ -325,7 +499,78 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   /**
    * Whether or not the job's eligible to be run based off of it's [Job.nextBackoffInterval] and other properties.
    */
-  private fun JobSpec.hasEligibleRunTime(currentTime: Long): Boolean {
+  private fun MinimalJobSpec.hasEligibleRunTime(currentTime: Long): Boolean {
     return this.lastRunAttemptTime > currentTime || (this.lastRunAttemptTime + this.nextBackoffInterval) < currentTime
   }
+
+  private fun getSingleLayerOfDependencySpecsThatDependOnJob(jobSpecId: String): List<DependencySpec> {
+    return dependenciesByJobId
+      .values
+      .flatten()
+      .filter { it.dependsOnJobId == jobSpecId }
+  }
+
+  /**
+   * Converts a [MinimalJobSpec] to a [JobSpec]. We prefer using the cache, but if it's not found, we'll hit the database.
+   * We consider this a "recent access" and will cache it for future use.
+   */
+  private fun MinimalJobSpec.toJobSpec(): JobSpec {
+    return jobSpecCache.getOrPut(this.id) {
+      jobDatabase.getJobSpec(this.id) ?: throw IllegalArgumentException("JobSpec not found for id: $id")
+    }
+  }
+
+  private object EligibleMinJobComparator : Comparator<MinimalJobSpec> {
+    override fun compare(o1: MinimalJobSpec, o2: MinimalJobSpec): Int {
+      // We want to sort by priority descending, then createTime ascending
+
+      // CAUTION: This is used by a TreeSet, so it must be consistent with equals.
+      //          If this compare function says two objects are equal, then only one will be allowed in the set!
+      //          This is why the last step is to compare the IDs.
+      return when {
+        o1.priority > o2.priority -> -1
+        o1.priority < o2.priority -> 1
+        o1.createTime < o2.createTime -> -1
+        o1.createTime > o2.createTime -> 1
+        else -> o1.id.compareTo(o2.id)
+      }
+    }
+  }
+
+  /**
+   * Identical to [EligibleMinJobComparator], but for full jobs.
+   */
+  private object EligibleFullJobComparator : Comparator<JobSpec> {
+    override fun compare(o1: JobSpec, o2: JobSpec): Int {
+      return when {
+        o1.priority > o2.priority -> -1
+        o1.priority < o2.priority -> 1
+        o1.createTime < o2.createTime -> -1
+        o1.createTime > o2.createTime -> 1
+        else -> o1.id.compareTo(o2.id)
+      }
+    }
+  }
+
+  private fun debugStopwatch(label: String): Stopwatch? {
+    return if (DEBUG) Stopwatch(label, decimalPlaces = 2) else null
+  }
+}
+
+/**
+ * Converts a [JobSpec] to a [MinimalJobSpec], which is just a matter of trimming off unnecessary properties.
+ */
+@VisibleForTesting
+fun JobSpec.toMinimalJobSpec(): MinimalJobSpec {
+  return MinimalJobSpec(
+    id = this.id,
+    factoryKey = this.factoryKey,
+    queueKey = this.queueKey,
+    createTime = this.createTime,
+    lastRunAttemptTime = this.lastRunAttemptTime,
+    nextBackoffInterval = this.nextBackoffInterval,
+    priority = this.priority,
+    isRunning = this.isRunning,
+    isMemoryOnly = this.isMemoryOnly
+  )
 }

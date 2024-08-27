@@ -111,6 +111,7 @@ class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValu
       KEY_PNI_IDENTITY_PUBLIC_KEY,
       KEY_PNI_IDENTITY_PRIVATE_KEY,
       KEY_USERNAME,
+      KEY_USERNAME_LINK_ENTROPY,
       KEY_USERNAME_LINK_SERVER_ID
     )
   }

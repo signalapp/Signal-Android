@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2024 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <ImageView
+        android:id="@+id/call_screen_decline_call"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginBottom="65dp"
+        android:contentDescription="@string/WebRtcCallScreen__decline"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/navigation_bar_guideline"
+        app:layout_constraintEnd_toStartOf="@id/call_screen_answer_call"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/webrtc_call_screen_hangup"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/call_screen_decline_call_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hyphenationFrequency="normal"
+        android:text="@string/WebRtcCallScreen__decline"
+        android:textColor="@color/core_white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/call_screen_decline_call"
+        app:layout_constraintStart_toStartOf="@id/call_screen_decline_call"
+        app:layout_constraintTop_toBottomOf="@id/call_screen_decline_call"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/call_screen_answer_call"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginBottom="65dp"
+        android:contentDescription="@string/WebRtcCallScreen__answer"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/navigation_bar_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@id/call_screen_decline_call"
+        app:srcCompat="@drawable/webrtc_call_screen_answer"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/call_screen_answer_call_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hyphenationFrequency="normal"
+        android:text="@string/WebRtcCallScreen__answer"
+        android:textColor="@color/core_white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/call_screen_answer_call"
+        app:layout_constraintStart_toStartOf="@id/call_screen_answer_call"
+        app:layout_constraintTop_toBottomOf="@id/call_screen_answer_call"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/call_screen_answer_without_video"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="5dp"
+        android:contentDescription="@string/WebRtcCallScreen__answer_without_video"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/call_screen_answer_without_video_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/webrtc_call_screen_answer_without_video"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/call_screen_answer_without_video_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:hyphenationFrequency="normal"
+        android:text="@string/WebRtcCallScreen__answer_without_video"
+        android:textColor="@color/core_white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/call_screen_answer_call"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+</merge>

@@ -58,6 +58,8 @@ class ActiveCallManager(
   companion object {
     private val TAG = Log.tag(ActiveCallManager::class.java)
 
+    private val requiresAsyncNotificationLoad = Build.VERSION.SDK_INT <= 29
+
     private var activeCallManager: ActiveCallManager? = null
     private val activeCallManagerLock = ReentrantLock()
 
@@ -140,6 +142,7 @@ class ActiveCallManager(
   private val webSocketKeepAliveTask: WebSocketKeepAliveTask = WebSocketKeepAliveTask()
   private var signalAudioManager: SignalAudioManager? = null
   private var previousNotificationId = -1
+  private var previousNotificationDisposable = Disposable.disposed()
 
   init {
     registerUncaughtExceptionHandler()
@@ -150,6 +153,8 @@ class ActiveCallManager(
 
   fun shutdown() {
     Log.v(TAG, "shutdown")
+
+    previousNotificationDisposable.dispose()
 
     uncaughtExceptionHandlerManager?.unregister()
     uncaughtExceptionHandlerManager = null
@@ -169,6 +174,7 @@ class ActiveCallManager(
 
   fun update(type: Int, recipientId: RecipientId, isVideoCall: Boolean) {
     Log.i(TAG, "update $type $recipientId $isVideoCall")
+    previousNotificationDisposable.dispose()
 
     val notificationId = CallNotificationBuilder.getNotificationId(type)
 
@@ -178,11 +184,22 @@ class ActiveCallManager(
 
     previousNotificationId = notificationId
 
-    if (type != CallNotificationBuilder.TYPE_ESTABLISHED) {
-      val notification = CallNotificationBuilder.getCallInProgressNotification(application, type, Recipient.resolved(recipientId), isVideoCall, false)
+    if (type == CallNotificationBuilder.TYPE_INCOMING_RINGING || type == CallNotificationBuilder.TYPE_INCOMING_CONNECTING) {
+      val notification = CallNotificationBuilder.getCallInProgressNotification(application, type, Recipient.resolved(recipientId), isVideoCall, requiresAsyncNotificationLoad)
       NotificationManagerCompat.from(application).notify(notificationId, notification)
+
+      if (requiresAsyncNotificationLoad) {
+        previousNotificationDisposable = Single.fromCallable { CallNotificationBuilder.getCallInProgressNotification(application, type, Recipient.resolved(recipientId), isVideoCall, false) }
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribeBy { asyncNotification ->
+            if (NotificationManagerCompat.from(application).activeNotifications.any { n -> n.id == notificationId }) {
+              NotificationManagerCompat.from(application).notify(notificationId, asyncNotification)
+            }
+          }
+      }
     } else {
-      ActiveCallForegroundService.start(application, recipientId, isVideoCall)
+      ActiveCallForegroundService.update(application, type, recipientId, isVideoCall)
     }
   }
 
@@ -249,15 +266,19 @@ class ActiveCallManager(
     companion object {
       private const val EXTRA_RECIPIENT_ID = "RECIPIENT_ID"
       private const val EXTRA_IS_VIDEO_CALL = "IS_VIDEO_CALL"
+      private const val EXTRA_TYPE = "TYPE"
 
-      fun start(context: Context, recipientId: RecipientId, isVideoCall: Boolean) {
+      fun update(context: Context, @CallNotificationBuilder.CallNotificationType type: Int, recipientId: RecipientId, isVideoCall: Boolean) {
         val extras = bundleOf(
+          EXTRA_TYPE to type,
           EXTRA_RECIPIENT_ID to recipientId,
           EXTRA_IS_VIDEO_CALL to isVideoCall
         )
 
-        if (!SafeForegroundService.start(context, ActiveCallForegroundService::class.java, extras)) {
-          throw UnableToStartException(Exception())
+        if (!SafeForegroundService.update(context, ActiveCallForegroundService::class.java, extras)) {
+          if (!SafeForegroundService.start(context, ActiveCallForegroundService::class.java, extras)) {
+            throw UnableToStartException(Exception())
+          }
         }
       }
 
@@ -274,11 +295,19 @@ class ActiveCallManager(
 
     @get:RequiresApi(30)
     override val serviceType: Int
-      get() = ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+      get() = ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
 
     private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
-    private var notification: Notification? = null
     private var notificationDisposable: Disposable = Disposable.disposed()
+
+    @Volatile
+    private var asyncServiceNotification: Notification? = null
+
+    @Volatile
+    private var lastAsyncServiceNotificationRequestTime: Long = 0
+
+    @Volatile
+    private var lastAsyncServiceNotificationType: Int = -1
 
     override fun onCreate() {
       super.onCreate()
@@ -293,9 +322,11 @@ class ActiveCallManager(
       }
     }
 
-    override fun onDestroy() {
+    override fun onServiceStopCommandReceived(intent: Intent) {
       notificationDisposable.dispose()
+    }
 
+    override fun onDestroy() {
       super.onDestroy()
 
       if (!AndroidTelecomUtil.telecomSupported) {
@@ -304,42 +335,47 @@ class ActiveCallManager(
     }
 
     override fun getForegroundNotification(intent: Intent): Notification {
+      notificationDisposable.dispose()
+
       if (SafeForegroundService.isStopping(intent)) {
         Log.v(TAG, "Service is stopping, using generic stopping notification")
         return CallNotificationBuilder.getStoppingNotification(this)
       }
 
-      if (notification != null) {
-        return notification!!
-      } else if (!intent.hasExtra(EXTRA_RECIPIENT_ID)) {
+      if (!intent.hasExtra(EXTRA_RECIPIENT_ID) || !intent.hasExtra(EXTRA_TYPE)) {
+        Log.w(TAG, "Missing required data, service is stopping, using generic stopping notification")
         return CallNotificationBuilder.getStoppingNotification(this)
       }
 
+      val type = intent.getIntExtra(EXTRA_TYPE, 0)
       val recipient: Recipient = Recipient.resolved(intent.getParcelableExtra(EXTRA_RECIPIENT_ID)!!)
       val isVideoCall = intent.getBooleanExtra(EXTRA_IS_VIDEO_CALL, false)
-      val requiresAsyncNotificationLoad = Build.VERSION.SDK_INT <= 29
-
-      notification = createNotification(recipient, isVideoCall, skipAvatarLoad = requiresAsyncNotificationLoad)
 
       if (requiresAsyncNotificationLoad) {
-        notificationDisposable = Single.fromCallable { createNotification(recipient, isVideoCall, skipAvatarLoad = false) }
+        if (asyncServiceNotification != null && lastAsyncServiceNotificationType == type) {
+          return asyncServiceNotification!!
+        }
+
+        val requestTime = System.currentTimeMillis()
+        lastAsyncServiceNotificationRequestTime = requestTime
+        notificationDisposable = Single.fromCallable { createNotification(type, recipient, isVideoCall, skipAvatarLoad = false) }
           .subscribeOn(Schedulers.io())
+          .filter { requestTime == lastAsyncServiceNotificationRequestTime }
           .observeOn(AndroidSchedulers.mainThread())
-          .subscribeBy {
-            notification = it
-            if (NotificationManagerCompat.from(this).activeNotifications.any { n -> n.id == notificationId }) {
-              NotificationManagerCompat.from(application).notify(notificationId, notification!!)
-            }
+          .subscribeBy { notification ->
+            lastAsyncServiceNotificationType = type
+            asyncServiceNotification = notification
+            update(this, type, recipient.id, isVideoCall)
           }
       }
 
-      return notification!!
+      return createNotification(type, recipient, isVideoCall, skipAvatarLoad = requiresAsyncNotificationLoad)
     }
 
-    private fun createNotification(recipient: Recipient, isVideoCall: Boolean, skipAvatarLoad: Boolean): Notification {
+    private fun createNotification(type: Int, recipient: Recipient, isVideoCall: Boolean, skipAvatarLoad: Boolean): Notification {
       return CallNotificationBuilder.getCallInProgressNotification(
         this,
-        CallNotificationBuilder.TYPE_ESTABLISHED,
+        type,
         recipient,
         isVideoCall,
         skipAvatarLoad

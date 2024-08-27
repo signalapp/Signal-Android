@@ -376,8 +376,14 @@ class IncomingMessageObserver(private val context: Application) {
         val webSocketDisposable = AppDependencies.webSocketObserver.subscribe { state: WebSocketConnectionState ->
           Log.d(TAG, "WebSocket State: $state")
 
-          // Any state change at all means that we are not drained
-          decryptionDrained = false
+          // Any change to a non-connected state means that we are not drained
+          if (state != WebSocketConnectionState.CONNECTED) {
+            decryptionDrained = false
+          }
+
+          if (state == WebSocketConnectionState.CONNECTED) {
+            SignalStore.misc.lastWebSocketConnectTime = System.currentTimeMillis()
+          }
         }
 
         signalWebSocket.connect()

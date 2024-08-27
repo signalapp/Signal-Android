@@ -48,6 +48,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
       throw NotPushRegisteredException()
     }
 
+    SignalStore.backup.totalRestorableAttachmentSize = SignalDatabase.attachments.getTotalRestorableAttachmentSize()
     val jobManager = AppDependencies.jobManager
     val batchSize = 100
     val restoreTime = System.currentTimeMillis()

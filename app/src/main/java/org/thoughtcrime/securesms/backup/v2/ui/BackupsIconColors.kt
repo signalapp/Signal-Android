@@ -20,7 +20,7 @@ sealed interface BackupsIconColors {
   @get:Composable
   val background: Color
 
-  object Normal : BackupsIconColors {
+  data object Normal : BackupsIconColors {
     override val foreground: Brush
       @Composable get() = remember {
         Brush.linearGradient(

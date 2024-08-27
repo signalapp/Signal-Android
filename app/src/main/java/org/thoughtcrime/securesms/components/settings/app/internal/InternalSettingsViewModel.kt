@@ -23,7 +23,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
       store.update { it.copy(emojiVersion = version) }
     }
 
-    val pendingOneTimeDonation: Observable<Boolean> = SignalStore.donations.observablePendingOneTimeDonation
+    val pendingOneTimeDonation: Observable<Boolean> = SignalStore.inAppPayments.observablePendingOneTimeDonation
       .distinctUntilChanged()
       .map { it.isPresent }
 
@@ -109,8 +109,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setInternalCallingDisableLBRed(enabled: Boolean) {
-    preferenceDataStore.putBoolean(InternalValues.CALLING_DISABLE_LBRED, enabled)
+  fun setInternalCallingEnableOboeAdm(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_ENABLE_OBOE_ADM, enabled)
     refresh()
   }
 
@@ -150,7 +150,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     callingAudioProcessingMethod = SignalStore.internal.callingAudioProcessingMethod(),
     callingDataMode = SignalStore.internal.callingDataMode(),
     callingDisableTelecom = SignalStore.internal.callingDisableTelecom(),
-    callingDisableLBRed = SignalStore.internal.callingDisableLBRed(),
+    callingEnableOboeAdm = SignalStore.internal.callingEnableOboeAdm(),
     useBuiltInEmojiSet = SignalStore.internal.forceBuiltInEmoji(),
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internal.removeSenderKeyMinimum(),
@@ -159,7 +159,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     canClearOnboardingState = SignalStore.story.hasDownloadedOnboardingStory && Stories.isFeatureEnabled(),
     pnpInitialized = SignalStore.misc.hasPniInitializedDevices,
     useConversationItemV2ForMedia = SignalStore.internal.useConversationItemV2Media(),
-    hasPendingOneTimeDonation = SignalStore.donations.getPendingOneTimeDonation() != null
+    hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null
   )
 
   fun onClearOnboardingState() {

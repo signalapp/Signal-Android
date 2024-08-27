@@ -23,8 +23,14 @@ class EventTimer {
 
   private val durationsByGroup: MutableMap<String, MutableList<Long>> = mutableMapOf()
 
-  private val startTime = System.nanoTime()
+  private var startTime = System.nanoTime()
   private var lastTimeNanos: Long = startTime
+
+  fun reset() {
+    startTime = System.nanoTime()
+    lastTimeNanos = startTime
+    durationsByGroup.clear()
+  }
 
   /**
    * Indicates an event in the specified group has finished.

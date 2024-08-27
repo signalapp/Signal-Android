@@ -5,6 +5,9 @@
 
 package org.thoughtcrime.securesms.components.settings.app.chats.backups.type
 
+import android.os.Bundle
+import android.view.View
+import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.Previews
@@ -30,7 +35,7 @@ import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
@@ -45,8 +50,22 @@ import java.util.Locale
  */
 class BackupsTypeSettingsFragment : ComposeFragment() {
 
+  companion object {
+    const val REQUEST_KEY = "BackupsTypeSettingsFragment__result"
+  }
+
   private val viewModel: BackupsTypeSettingsViewModel by viewModel {
     BackupsTypeSettingsViewModel()
+  }
+
+  private lateinit var checkoutLauncher: ActivityResultLauncher<InAppPaymentType>
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    checkoutLauncher = createBackupsCheckoutLauncher { backUpLater ->
+      findNavController().popBackStack()
+      setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to backUpLater))
+    }
   }
 
   @Composable
@@ -73,7 +92,7 @@ class BackupsTypeSettingsFragment : ComposeFragment() {
     }
 
     override fun onChangeOrCancelSubscriptionClick() {
-      startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.RECURRING_BACKUP))
+      checkoutLauncher.launch(InAppPaymentType.RECURRING_BACKUP)
     }
   }
 
@@ -121,7 +140,7 @@ private fun BackupsTypeSettingsContent(
 
       item {
         Rows.TextRow(
-          text = "Change or cancel subscription", // TODO [message-backups] final copy
+          text = stringResource(id = R.string.BackupsTypeSettingsFragment__change_or_cancel_subscription),
           onClick = contentCallbacks::onChangeOrCancelSubscriptionClick
         )
       }
@@ -154,7 +173,7 @@ private fun BackupsTypeRow(
     Column {
       Text(text = messageBackupsType.title)
       Text(
-        text = "$formattedAmount/month . Renews $renewal", // TODO [message-backups] final copy
+        text = stringResource(id = R.string.BackupsTypeSettingsFragment__s_month_renews_s, formattedAmount, renewal),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )

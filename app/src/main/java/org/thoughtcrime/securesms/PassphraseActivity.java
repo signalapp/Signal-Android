@@ -63,6 +63,7 @@ public abstract class PassphraseActivity extends BaseActivity {
         if (nextIntent != null) {
             try {
                 startActivity(nextIntent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             } catch (java.lang.SecurityException e) {
                 Log.w(TAG, "Access permission not passed from PassphraseActivity, retry sharing.");
             }

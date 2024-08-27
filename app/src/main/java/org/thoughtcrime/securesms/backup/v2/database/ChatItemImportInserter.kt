@@ -20,13 +20,15 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
-import org.thoughtcrime.securesms.backup.v2.BackupState
+import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
+import org.thoughtcrime.securesms.backup.v2.proto.ContactAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCall
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
+import org.thoughtcrime.securesms.backup.v2.proto.LinkPreview
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.PaymentNotification
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
@@ -35,6 +37,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
 import org.thoughtcrime.securesms.backup.v2.proto.SimpleChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Sticker
+import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
@@ -86,7 +89,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
  */
 class ChatItemImportInserter(
   private val db: SQLiteDatabase,
-  private val backupState: BackupState,
+  private val importState: ImportState,
   private val batchSize: Int
 ) {
   companion object {
@@ -152,31 +155,33 @@ class ChatItemImportInserter(
    * If this item causes the buffer to hit the batch size, then a batch of items will actually be inserted.
    */
   fun insert(chatItem: ChatItem) {
-    val fromLocalRecipientId: RecipientId? = backupState.backupToLocalRecipientId[chatItem.authorId]
+    val fromLocalRecipientId: RecipientId? = importState.remoteToLocalRecipientId[chatItem.authorId]
     if (fromLocalRecipientId == null) {
       Log.w(TAG, "[insert] Could not find a local recipient for backup recipient ID ${chatItem.authorId}! Skipping.")
       return
     }
 
-    val chatLocalRecipientId: RecipientId? = backupState.chatIdToLocalRecipientId[chatItem.chatId]
+    val chatLocalRecipientId: RecipientId? = importState.chatIdToLocalRecipientId[chatItem.chatId]
     if (chatLocalRecipientId == null) {
       Log.w(TAG, "[insert] Could not find a local recipient for chatId ${chatItem.chatId}! Skipping.")
       return
     }
 
-    val localThreadId: Long? = backupState.chatIdToLocalThreadId[chatItem.chatId]
+    val localThreadId: Long? = importState.chatIdToLocalThreadId[chatItem.chatId]
     if (localThreadId == null) {
       Log.w(TAG, "[insert] Could not find a local threadId for backup chatId ${chatItem.chatId}! Skipping.")
       return
     }
 
-    val chatBackupRecipientId: Long? = backupState.chatIdToBackupRecipientId[chatItem.chatId]
+    val chatBackupRecipientId: Long? = importState.chatIdToBackupRecipientId[chatItem.chatId]
     if (chatBackupRecipientId == null) {
       Log.w(TAG, "[insert] Could not find a backup recipientId for backup chatId ${chatItem.chatId}! Skipping.")
       return
     }
     val messageInsert = chatItem.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId)
     if (chatItem.revisions.isNotEmpty()) {
+      // Flush to avoid having revisions cross batch boundaries, which will cause a foreign key failure
+      flush()
       val originalId = messageId
       val latestRevisionId = originalId + chatItem.revisions.size
       val sortedRevisions = chatItem.revisions.sortedBy { it.dateSent }.map { it.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId) }
@@ -278,7 +283,7 @@ class ChatItemImportInserter(
             CallTable.MESSAGE_ID to messageRowId,
             CallTable.PEER to chatRecipientId.serialize(),
             CallTable.TYPE to CallTable.Type.serialize(CallTable.Type.GROUP_CALL),
-            CallTable.DIRECTION to CallTable.Direction.serialize(if (backupState.backupToLocalRecipientId[updateMessage.groupCall.ringerRecipientId] == selfId) CallTable.Direction.OUTGOING else CallTable.Direction.INCOMING),
+            CallTable.DIRECTION to CallTable.Direction.serialize(if (importState.remoteToLocalRecipientId[updateMessage.groupCall.ringerRecipientId] == selfId) CallTable.Direction.OUTGOING else CallTable.Direction.INCOMING),
             CallTable.EVENT to CallTable.Event.serialize(
               when (updateMessage.groupCall.state) {
                 GroupCall.State.ACCEPTED -> CallTable.Event.ACCEPTED
@@ -315,6 +320,60 @@ class ChatItemImportInserter(
         }
       }
     }
+    if (this.contactMessage != null) {
+      val contacts = this.contactMessage.contact.map { backupContact ->
+        Contact(
+          backupContact.name.toLocal(),
+          backupContact.organization,
+          backupContact.number.map { phone ->
+            Contact.Phone(
+              phone.value_ ?: "",
+              phone.type.toLocal(),
+              phone.label
+            )
+          },
+          backupContact.email.map { email ->
+            Contact.Email(
+              email.value_ ?: "",
+              email.type.toLocal(),
+              email.label
+            )
+          },
+          backupContact.address.map { address ->
+            Contact.PostalAddress(
+              address.type.toLocal(),
+              address.label,
+              address.street,
+              address.pobox,
+              address.neighborhood,
+              address.city,
+              address.region,
+              address.postcode,
+              address.country
+            )
+          },
+          Contact.Avatar(null, backupContact.avatar.toLocalAttachment(voiceNote = false, borderless = false, gif = false, wasDownloaded = true), true)
+        )
+      }
+      val contactAttachments = contacts.mapNotNull { it.avatarAttachment }
+      if (contacts.isNotEmpty()) {
+        followUp = { messageRowId ->
+          val attachmentMap = if (contactAttachments.isNotEmpty()) {
+            SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, contactAttachments, emptyList())
+          } else {
+            emptyMap()
+          }
+          db.update(
+            MessageTable.TABLE_NAME,
+            contentValuesOf(
+              MessageTable.SHARED_CONTACTS to SignalDatabase.messages.getSerializedSharedContacts(attachmentMap, contacts)
+            ),
+            "${MessageTable.ID} = ?",
+            SqlUtil.buildArgs(messageRowId)
+          )
+        }
+      }
+    }
     if (this.standardMessage != null) {
       val bodyRanges = this.standardMessage.text?.bodyRanges
       if (!bodyRanges.isNullOrEmpty()) {
@@ -335,15 +394,27 @@ class ChatItemImportInserter(
           }
         }
       }
+      val linkPreviews = this.standardMessage.linkPreview.map { it.toLocalLinkPreview() }
+      val linkPreviewAttachments = linkPreviews.mapNotNull { it.thumbnail.orNull() }
       val attachments = this.standardMessage.attachments.mapNotNull { attachment ->
         attachment.toLocalAttachment()
       }
       val quoteAttachments = this.standardMessage.quote?.attachments?.mapNotNull {
         it.toLocalAttachment()
       } ?: emptyList()
-      if (attachments.isNotEmpty()) {
+      if (attachments.isNotEmpty() || linkPreviewAttachments.isNotEmpty() || quoteAttachments.isNotEmpty()) {
         followUp = { messageRowId ->
-          SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments, quoteAttachments)
+          val attachmentMap = SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments + linkPreviewAttachments, quoteAttachments)
+          if (linkPreviews.isNotEmpty()) {
+            db.update(
+              MessageTable.TABLE_NAME,
+              contentValuesOf(
+                MessageTable.LINK_PREVIEWS to SignalDatabase.messages.getSerializedLinkPreviews(attachmentMap, linkPreviews)
+              ),
+              "${MessageTable.ID} = ?",
+              SqlUtil.buildArgs(messageRowId)
+            )
+          }
         }
       }
     }
@@ -389,8 +460,8 @@ class ChatItemImportInserter(
       contentValues.put(MessageTable.UNIDENTIFIED, this.outgoing.sendStatus.count { it.sealedSender })
       contentValues.put(MessageTable.READ, 1)
 
-      contentValues.addNetworkFailures(this, backupState)
-      contentValues.addIdentityKeyMismatches(this, backupState)
+      contentValues.addNetworkFailures(this, importState)
+      contentValues.addIdentityKeyMismatches(this, importState)
     } else {
       contentValues.put(MessageTable.VIEWED_COLUMN, 0)
       contentValues.put(MessageTable.HAS_READ_RECEIPT, 0)
@@ -458,7 +529,7 @@ class ChatItemImportInserter(
 
     return reactions
       .mapNotNull {
-        val authorId: Long? = backupState.backupToLocalRecipientId[it.authorId]?.toLong()
+        val authorId: Long? = importState.remoteToLocalRecipientId[it.authorId]?.toLong()
 
         if (authorId != null) {
           contentValuesOf(
@@ -486,7 +557,7 @@ class ChatItemImportInserter(
     }
 
     return this.outgoing.sendStatus.mapNotNull { sendStatus ->
-      val recipientId = backupState.backupToLocalRecipientId[sendStatus.recipientId]
+      val recipientId = importState.remoteToLocalRecipientId[sendStatus.recipientId]
 
       if (recipientId != null) {
         contentValuesOf(
@@ -553,13 +624,14 @@ class ChatItemImportInserter(
           SimpleChatUpdate.Type.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT or typeWithoutBase
           SimpleChatUpdate.Type.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT or typeWithoutBase
           SimpleChatUpdate.Type.CHANGE_NUMBER -> MessageTypes.CHANGE_NUMBER_TYPE
-          SimpleChatUpdate.Type.BOOST_REQUEST -> MessageTypes.BOOST_REQUEST_TYPE
+          SimpleChatUpdate.Type.RELEASE_CHANNEL_DONATION_REQUEST -> MessageTypes.RELEASE_CHANNEL_DONATION_REQUEST_TYPE
           SimpleChatUpdate.Type.END_SESSION -> MessageTypes.END_SESSION_BIT or typeWithoutBase
           SimpleChatUpdate.Type.CHAT_SESSION_REFRESH -> MessageTypes.ENCRYPTION_REMOTE_FAILED_BIT or typeWithoutBase
           SimpleChatUpdate.Type.BAD_DECRYPT -> MessageTypes.BAD_DECRYPT_TYPE or typeWithoutBase
           SimpleChatUpdate.Type.PAYMENTS_ACTIVATED -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED or typeWithoutBase
           SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST or typeWithoutBase
           SimpleChatUpdate.Type.UNSUPPORTED_PROTOCOL_MESSAGE -> MessageTypes.UNSUPPORTED_MESSAGE_TYPE or typeWithoutBase
+          SimpleChatUpdate.Type.REPORTED_SPAM -> MessageTypes.SPECIAL_TYPE_REPORTED_SPAM or typeWithoutBase
         }
       }
       updateMessage.expirationTimerChange != null -> {
@@ -602,7 +674,7 @@ class ChatItemImportInserter(
       }
       updateMessage.groupCall != null -> {
         val startedCallRecipientId = if (updateMessage.groupCall.startedCallRecipientId != null) {
-          backupState.backupToLocalRecipientId[updateMessage.groupCall.startedCallRecipientId]
+          importState.remoteToLocalRecipientId[updateMessage.groupCall.startedCallRecipientId]
         } else {
           null
         }
@@ -743,7 +815,7 @@ class ChatItemImportInserter(
 
   private fun ContentValues.addQuote(quote: Quote) {
     this.put(MessageTable.QUOTE_ID, quote.targetSentTimestamp ?: MessageTable.QUOTE_TARGET_MISSING_ID)
-    this.put(MessageTable.QUOTE_AUTHOR, backupState.backupToLocalRecipientId[quote.authorId]!!.serialize())
+    this.put(MessageTable.QUOTE_AUTHOR, importState.remoteToLocalRecipientId[quote.authorId]!!.serialize())
     this.put(MessageTable.QUOTE_BODY, quote.text)
     this.put(MessageTable.QUOTE_TYPE, quote.type.toLocalQuoteType())
     this.put(MessageTable.QUOTE_BODY_RANGES, quote.bodyRanges.toLocalBodyRanges()?.encode())
@@ -768,14 +840,14 @@ class ChatItemImportInserter(
     }
   }
 
-  private fun ContentValues.addNetworkFailures(chatItem: ChatItem, backupState: BackupState) {
+  private fun ContentValues.addNetworkFailures(chatItem: ChatItem, importState: ImportState) {
     if (chatItem.outgoing == null) {
       return
     }
 
     val networkFailures = chatItem.outgoing.sendStatus
       .filter { status -> status.networkFailure }
-      .mapNotNull { status -> backupState.backupToLocalRecipientId[status.recipientId] }
+      .mapNotNull { status -> importState.remoteToLocalRecipientId[status.recipientId] }
       .map { recipientId -> NetworkFailure(recipientId) }
       .toSet()
 
@@ -784,14 +856,14 @@ class ChatItemImportInserter(
     }
   }
 
-  private fun ContentValues.addIdentityKeyMismatches(chatItem: ChatItem, backupState: BackupState) {
+  private fun ContentValues.addIdentityKeyMismatches(chatItem: ChatItem, importState: ImportState) {
     if (chatItem.outgoing == null) {
       return
     }
 
     val mismatches = chatItem.outgoing.sendStatus
       .filter { status -> status.identityKeyMismatch }
-      .mapNotNull { status -> backupState.backupToLocalRecipientId[status.recipientId] }
+      .mapNotNull { status -> importState.remoteToLocalRecipientId[status.recipientId] }
       .map { recipientId -> IdentityKeyMismatch(recipientId, null) } // TODO We probably want the actual identity key in this status situation?
       .toSet()
 
@@ -893,8 +965,8 @@ class ChatItemImportInserter(
         cdnKey = backupLocator.transitCdnKey,
         archiveCdn = backupLocator.cdnNumber,
         archiveMediaName = backupLocator.mediaName,
-        archiveMediaId = backupState.backupKey.deriveMediaId(MediaName(backupLocator.mediaName)).encode(),
-        archiveThumbnailMediaId = backupState.backupKey.deriveMediaId(MediaName.forThumbnailFromMediaName(backupLocator.mediaName)).encode(),
+        archiveMediaId = importState.backupKey.deriveMediaId(MediaName(backupLocator.mediaName)).encode(),
+        archiveThumbnailMediaId = importState.backupKey.deriveMediaId(MediaName.forThumbnailFromMediaName(backupLocator.mediaName)).encode(),
         digest = backupLocator.digest.toByteArray(),
         incrementalMac = incrementalMac?.toByteArray(),
         incrementalMacChunkSize = incrementalMacChunkSize,
@@ -930,6 +1002,16 @@ class ChatItemImportInserter(
     )
   }
 
+  private fun LinkPreview.toLocalLinkPreview(): org.thoughtcrime.securesms.linkpreview.LinkPreview {
+    return org.thoughtcrime.securesms.linkpreview.LinkPreview(
+      this.url,
+      this.title ?: "",
+      this.description ?: "",
+      this.date ?: 0,
+      Optional.ofNullable(this.image?.toLocalAttachment(voiceNote = false, borderless = false, gif = false, wasDownloaded = true))
+    )
+  }
+
   private fun MessageAttachment.toLocalAttachment(): Attachment? {
     return pointer?.toLocalAttachment(
       voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
@@ -938,6 +1020,42 @@ class ChatItemImportInserter(
       wasDownloaded = wasDownloaded,
       uuid = clientUuid
     )
+  }
+
+  private fun ContactAttachment.Name?.toLocal(): Contact.Name {
+    return Contact.Name(this?.displayName, this?.givenName, this?.familyName, this?.prefix, this?.suffix, this?.middleName)
+  }
+
+  private fun ContactAttachment.Phone.Type?.toLocal(): Contact.Phone.Type {
+    return when (this) {
+      ContactAttachment.Phone.Type.HOME -> Contact.Phone.Type.HOME
+      ContactAttachment.Phone.Type.MOBILE -> Contact.Phone.Type.MOBILE
+      ContactAttachment.Phone.Type.WORK -> Contact.Phone.Type.WORK
+      ContactAttachment.Phone.Type.CUSTOM,
+      ContactAttachment.Phone.Type.UNKNOWN,
+      null -> Contact.Phone.Type.CUSTOM
+    }
+  }
+
+  private fun ContactAttachment.Email.Type?.toLocal(): Contact.Email.Type {
+    return when (this) {
+      ContactAttachment.Email.Type.HOME -> Contact.Email.Type.HOME
+      ContactAttachment.Email.Type.MOBILE -> Contact.Email.Type.MOBILE
+      ContactAttachment.Email.Type.WORK -> Contact.Email.Type.WORK
+      ContactAttachment.Email.Type.CUSTOM,
+      ContactAttachment.Email.Type.UNKNOWN,
+      null -> Contact.Email.Type.CUSTOM
+    }
+  }
+
+  private fun ContactAttachment.PostalAddress.Type?.toLocal(): Contact.PostalAddress.Type {
+    return when (this) {
+      ContactAttachment.PostalAddress.Type.HOME -> Contact.PostalAddress.Type.HOME
+      ContactAttachment.PostalAddress.Type.WORK -> Contact.PostalAddress.Type.WORK
+      ContactAttachment.PostalAddress.Type.CUSTOM,
+      ContactAttachment.PostalAddress.Type.UNKNOWN,
+      null -> Contact.PostalAddress.Type.CUSTOM
+    }
   }
 
   private fun MessageAttachment.toLocalAttachment(contentType: String?, fileName: String?): Attachment? {

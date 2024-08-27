@@ -63,7 +63,11 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
       InputStream avatarStream      = new LimitedInputStream(in, avatarLength);
       String      avatarContentType = details.avatar.contentType;
 
-      avatar = Optional.of(SignalServiceAttachment.newStreamBuilder().withStream(avatarStream).withContentType(avatarContentType).withLength(avatarLength).build());
+      avatar = Optional.of(SignalServiceAttachment.newStreamBuilder()
+                                                  .withStream(avatarStream)
+                                                  .withContentType(avatarContentType)
+                                                  .withLength(avatarLength)
+                                                  .build());
     }
 
     if (details.verified != null) {

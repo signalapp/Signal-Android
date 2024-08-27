@@ -7,12 +7,18 @@ package org.thoughtcrime.securesms.backup.v2.processor
 
 import okio.ByteString.Companion.EMPTY
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.database.restoreSelfFromBackup
 import org.thoughtcrime.securesms.backup.v2.proto.AccountData
+import org.thoughtcrime.securesms.backup.v2.proto.ChatStyle
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
+import org.thoughtcrime.securesms.backup.v2.util.BackupConverters
+import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -25,12 +31,14 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
-import org.whispersystems.signalservice.api.storage.StorageRecordProtoUtil.defaultAccountRecord
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.api.util.toByteArray
 import java.util.Currency
 
 object AccountDataProcessor {
+
+  private val TAG = Log.tag(AccountDataProcessor::class)
 
   fun export(db: SignalDatabase, signalStore: SignalStore, emitter: BackupFrameEmitter) {
     val context = AppDependencies.application
@@ -38,8 +46,10 @@ object AccountDataProcessor {
     val selfId = db.recipientTable.getByAci(signalStore.accountValues.aci!!).get()
     val selfRecord = db.recipientTable.getRecordForSync(selfId)!!
 
-    val donationCurrency = signalStore.donationsValues.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
+    val donationCurrency = signalStore.inAppPaymentValues.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
     val donationSubscriber = db.inAppPaymentSubscriberTable.getByCurrencyCode(donationCurrency.currencyCode, InAppPaymentSubscriberRecord.Type.DONATION)
+
+    val chatColors = SignalStore.chatColors.chatColors
 
     emitter.emit(
       Frame(
@@ -49,6 +59,15 @@ object AccountDataProcessor {
           familyName = selfRecord.signalProfileName.familyName,
           avatarUrlPath = selfRecord.signalProfileAvatar ?: "",
           username = selfRecord.username,
+          usernameLink = if (signalStore.accountValues.usernameLink != null) {
+            AccountData.UsernameLink(
+              entropy = signalStore.accountValues.usernameLink?.entropy?.toByteString() ?: EMPTY,
+              serverId = signalStore.accountValues.usernameLink?.serverId?.toByteArray()?.toByteString() ?: EMPTY,
+              color = signalStore.miscValues.usernameQrCodeColorScheme.toBackupUsernameColor()
+            )
+          } else {
+            null
+          },
           accountSettings = AccountData.AccountSettings(
             storyViewReceiptsEnabled = signalStore.storyValues.viewedReceiptsEnabled,
             typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context),
@@ -58,27 +77,30 @@ object AccountDataProcessor {
             notDiscoverableByPhoneNumber = signalStore.phoneNumberPrivacyValues.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE,
             phoneNumberSharingMode = signalStore.phoneNumberPrivacyValues.phoneNumberSharingMode.toBackupPhoneNumberSharingMode(),
             preferContactAvatars = signalStore.settingsValues.isPreferSystemContactPhotos,
-            universalExpireTimer = signalStore.settingsValues.universalExpireTimer,
+            universalExpireTimerSeconds = signalStore.settingsValues.universalExpireTimer,
             preferredReactionEmoji = signalStore.emojiValues.rawReactions,
             storiesDisabled = signalStore.storyValues.isFeatureDisabled,
             hasViewedOnboardingStory = signalStore.storyValues.userHasViewedOnboardingStory,
             hasSetMyStoriesPrivacy = signalStore.storyValues.userHasBeenNotifiedAboutStories,
             keepMutedChatsArchived = signalStore.settingsValues.shouldKeepMutedChatsArchived(),
-            displayBadgesOnProfile = signalStore.donationsValues.getDisplayBadgesOnProfile(),
+            displayBadgesOnProfile = signalStore.inAppPaymentValues.getDisplayBadgesOnProfile(),
             hasSeenGroupStoryEducationSheet = signalStore.storyValues.userHasSeenGroupStoryEducationSheet,
-            hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding()
+            hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding(),
+            customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors(),
+            defaultChatStyle = BackupConverters.constructRemoteChatStyle(chatColors, chatColors?.id ?: ChatColors.Id.NotSet)?.also {
+              it.newBuilder().apply {
+                // TODO [backup] We should do this elsewhere once we handle wallpaper better
+                dimWallpaperInDarkMode = (SignalStore.wallpaper.wallpaper?.dimLevelForDarkTheme ?: 0f) > 0f
+              }.build()
+            }
           ),
-          donationSubscriberData = AccountData.SubscriberData(
-            subscriberId = donationSubscriber?.subscriberId?.bytes?.toByteString() ?: defaultAccountRecord.subscriberId,
-            currencyCode = donationSubscriber?.currency?.currencyCode ?: defaultAccountRecord.subscriberCurrencyCode,
-            manuallyCancelled = signalStore.donationsValues.isDonationSubscriptionManuallyCancelled()
-          )
+          donationSubscriberData = donationSubscriber?.toSubscriberData(signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled())
         )
       )
     )
   }
 
-  fun import(accountData: AccountData, selfId: RecipientId) {
+  fun import(accountData: AccountData, selfId: RecipientId, importState: ImportState) {
     SignalDatabase.recipients.restoreSelfFromBackup(accountData, selfId)
 
     SignalStore.account.setRegistered(true)
@@ -94,15 +116,51 @@ object AccountDataProcessor {
       SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (settings.notDiscoverableByPhoneNumber) PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberDiscoverabilityMode.DISCOVERABLE
       SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = settings.phoneNumberSharingMode.toLocalPhoneNumberMode()
       SignalStore.settings.isPreferSystemContactPhotos = settings.preferContactAvatars
-      SignalStore.settings.universalExpireTimer = settings.universalExpireTimer
+      SignalStore.settings.universalExpireTimer = settings.universalExpireTimerSeconds
       SignalStore.emoji.reactions = settings.preferredReactionEmoji
-      SignalStore.donations.setDisplayBadgesOnProfile(settings.displayBadgesOnProfile)
+      SignalStore.inAppPayments.setDisplayBadgesOnProfile(settings.displayBadgesOnProfile)
       SignalStore.settings.setKeepMutedChatsArchived(settings.keepMutedChatsArchived)
       SignalStore.story.userHasBeenNotifiedAboutStories = settings.hasSetMyStoriesPrivacy
       SignalStore.story.userHasViewedOnboardingStory = settings.hasViewedOnboardingStory
       SignalStore.story.isFeatureDisabled = settings.storiesDisabled
       SignalStore.story.userHasSeenGroupStoryEducationSheet = settings.hasSeenGroupStoryEducationSheet
       SignalStore.story.viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
+
+      settings.customChatColors
+        .mapNotNull { chatColor ->
+          val id = ChatColors.Id.forLongValue(chatColor.id)
+          when {
+            chatColor.solid != null -> {
+              ChatColors.forColor(id, chatColor.solid)
+            }
+            chatColor.gradient != null -> {
+              ChatColors.forGradient(
+                id,
+                ChatColors.LinearGradient(
+                  degrees = chatColor.gradient.angle.toFloat(),
+                  colors = chatColor.gradient.colors.toIntArray(),
+                  positions = chatColor.gradient.positions.toFloatArray()
+                )
+              )
+            }
+            else -> null
+          }
+        }
+        .forEach { chatColor ->
+          // We need to use the "NotSet" chatId so that this operation is treated as an insert rather than an update
+          val saved = SignalDatabase.chatColors.saveChatColors(chatColor.withId(ChatColors.Id.NotSet))
+          importState.remoteToLocalColorId[chatColor.id.longValue] = saved.id.longValue
+        }
+
+      if (settings.defaultChatStyle != null) {
+        val chatColors = settings.defaultChatStyle.toLocal(importState)
+        SignalStore.chatColors.chatColors = chatColors
+        if (SignalStore.wallpaper.wallpaper != null) {
+          SignalStore.wallpaper.setDimInDarkTheme(settings.defaultChatStyle.dimWallpaperInDarkMode)
+        }
+
+        // TODO [backup] wallpaper
+      }
 
       if (accountData.donationSubscriberData != null) {
         if (accountData.donationSubscriberData.subscriberId.size > 0) {
@@ -121,7 +179,7 @@ object AccountDataProcessor {
         }
 
         if (accountData.donationSubscriberData.manuallyCancelled) {
-          SignalStore.donations.updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
+          SignalStore.inAppPayments.updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
         }
       }
 
@@ -179,5 +237,48 @@ object AccountDataProcessor {
       AccountData.UsernameLink.Color.PURPLE -> UsernameQrCodeColorScheme.Purple
       else -> UsernameQrCodeColorScheme.Blue
     }
+  }
+
+  private fun UsernameQrCodeColorScheme.toBackupUsernameColor(): AccountData.UsernameLink.Color {
+    return when (this) {
+      UsernameQrCodeColorScheme.Blue -> AccountData.UsernameLink.Color.BLUE
+      UsernameQrCodeColorScheme.White -> AccountData.UsernameLink.Color.WHITE
+      UsernameQrCodeColorScheme.Grey -> AccountData.UsernameLink.Color.GREY
+      UsernameQrCodeColorScheme.Tan -> AccountData.UsernameLink.Color.OLIVE
+      UsernameQrCodeColorScheme.Green -> AccountData.UsernameLink.Color.GREEN
+      UsernameQrCodeColorScheme.Orange -> AccountData.UsernameLink.Color.ORANGE
+      UsernameQrCodeColorScheme.Pink -> AccountData.UsernameLink.Color.PINK
+      UsernameQrCodeColorScheme.Purple -> AccountData.UsernameLink.Color.PURPLE
+    }
+  }
+
+  private fun InAppPaymentSubscriberRecord.toSubscriberData(manuallyCancelled: Boolean): AccountData.SubscriberData {
+    val subscriberId = subscriberId.bytes.toByteString()
+    val currencyCode = currency.currencyCode
+    return AccountData.SubscriberData(subscriberId = subscriberId, currencyCode = currencyCode, manuallyCancelled = manuallyCancelled)
+  }
+
+  private fun List<ChatColors>.toRemoteChatColors(): List<ChatStyle.CustomChatColor> {
+    return this
+      .mapNotNull { local ->
+        if (local.linearGradient != null) {
+          ChatStyle.CustomChatColor(
+            id = local.id.longValue,
+            gradient = ChatStyle.Gradient(
+              angle = local.linearGradient.degrees.toInt(),
+              colors = local.linearGradient.colors.toList(),
+              positions = local.linearGradient.positions.toList()
+            )
+          )
+        } else if (local.singleColor != null) {
+          ChatStyle.CustomChatColor(
+            id = local.id.longValue,
+            solid = local.singleColor
+          )
+        } else {
+          Log.w(TAG, "Invalid custom color (id = ${local.id}, no gradient or solid color!")
+          null
+        }
+      }
   }
 }

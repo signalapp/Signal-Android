@@ -88,6 +88,20 @@
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">อนุญาตให้เข้าถึง</string>
     <string name="AttachmentKeyboard_payment">การจ่ายเงิน</string>
+    <!-- Text in a button that allows users to manage which media Signal has access to -->
+    <string name="AttachmentKeyboard_manage">จัดการ</string>
+    <!-- Option in menu to select more photos that Signal will have access to -->
+    <string name="AttachmentKeyboard_select_more_photos">เลือกรูปภาพเพิ่มเติม</string>
+    <!-- Option in menu to go to settings -->
+    <string name="AttachmentKeyboard_go_to_settings">ไปที่การตั้งค่า</string>
+    <!-- Text explaining that Signal has limited access to photos -->
+    <string name="AttachmentKeyboard_signal_has_limited_access">Signal ได้รับสิทธิ์จำกัดในการเข้าถึงรูปภาพหรือวิดีโอของคุณ</string>
+    <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
+    <string name="AttachmentKeyboard_no_photos_found">ไม่พบรูปภาพ เลือกรูปและวิดีโอที่คุณอนุญาตให้ปรากฏที่นี่หรือเปลี่ยนสิทธิ์การเข้าถึง</string>
+
+    <!-- MediaGalleryFragment -->
+    <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
+    <string name="MediaGalleryFragment__no_photos_found">ไม่พบรูปภาพหรือวิดีโอ Signal ได้รับสิทธิ์การเข้าถึงเฉพาะรูปภาพและวิดีโอที่คุณเลือกเท่านั้น</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">ไม่พบแอปสำหรับเลือกสื่อ</string>
@@ -108,7 +122,7 @@
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">ในการแสดงรูปและวิดีโอ:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Signal จำเป็นต้องได้รับสิทธิ์เข้าถึงพื้นที่จัดเก็บเพื่อแสดงรูปและวิดีโอของคุณ</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Signal จำเป็นต้องได้รับสิทธิ์การเข้าถึงเพื่อแสดงรูปและวิดีโอของคุณ</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s ยังไม่ได้เปิดใช้การชำระเงิน </string>
@@ -170,6 +184,8 @@
     <string name="CreditCardFragment__donate_s">บริจาค %1$s</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
     <string name="CreditCardFragment__donate_s_month">บริจาค %1$s/เดือน</string>
+    <!-- Button label to confirm credit card input and proceed with backups payment. Placeholder is formatted price. -->
+    <string name="CreditCardFragment__pay_s_month">บริจาค %1$s/เดือน</string>
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
@@ -219,6 +235,22 @@
     <string name="BucketedThreadMedia_Large">ใหญ่</string>
     <string name="BucketedThreadMedia_Medium">กลาง</string>
     <string name="BucketedThreadMedia_Small">เล็ก</string>
+
+    <!-- CallInfoView -->
+    <!-- Unknown people row text when the only people in the call are unknowns -->
+    <plurals name="CallInfoView__d_people">
+        <item quantity="other">%1$d คน</item>
+    </plurals>
+    <!-- Unknown people row, placeholder is the number of unknown people in the call -->
+    <plurals name="CallInfoView__plus_d_people">
+        <item quantity="other">+%1$d คน</item>
+    </plurals>
+    <!-- Unknown people row icon content description -->
+    <string name="CallInfoView__more_information">ข้อมูลเพิ่มเติม</string>
+    <!-- Unknown people row info dialog message -->
+    <string name="CallInfoView__before_joining_a_call">ก่อนเข้าร่วมการโทร คุณจะเห็นเฉพาะชื่อของผู้ติดต่อที่บันทึกไว้ในโทรศัพท์ รวมถึงผู้ใช้ที่เป็นสมาชิกในกลุ่มเดียวกับคุณ และคนที่คุณเคยแชทส่วนตัวด้วย โดยคุณจะเห็นชื่อและรูปภาพของสมาชิกทุกคนเมื่อเข้าร่วมการโทรแล้ว</string>
+    <!-- Unknown people row info dialog action to close the dialog -->
+    <string name="CallInfoView__got_it">เข้าใจแล้ว</string>
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
@@ -440,7 +472,7 @@
     <!-- Dialog title asking users for microphone permission -->
     <string name="ConversationActivity_allow_access_microphone">อนุญาตให้เข้าถึงไมโครโฟนของคุณ</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">ในการส่งข้อความเสียง:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">วิธีส่งข้อความเสียง:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">อนุญาตให้ Signal เข้าถึงไมโครโฟนของคุณเพื่อส่งข้อความเสียง</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
@@ -753,6 +785,51 @@
     <!-- Backup has an unsupported file extension -->
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">ข้อมูลสำรองมีส่วนขยายที่ไม่ดี</string>
 
+    <!-- CreateBackupBottomSheet -->
+    <!-- Bottom sheet title -->
+    <string name="CreateBackupBottomSheet__create_backup">สร้างข้อมูลสำรอง</string>
+    <!-- Bottom sheet message -->
+    <string name="CreateBackupBottomSheet__depending_on_the_size">ขั้นตอนนี้อาจใช้เวลาค่อนข้างนาน ขึ้นอยู่กับขนาดของข้อมูลสำรอง โดยคุณสามารถใช้โทรศัพท์ได้ตามปกติในระหว่างที่ระบบกำลังสำรองข้อมูล</string>
+    <!-- Action button to dismiss sheet and back up later -->
+    <string name="CreateBackupBottomSheet__back_up_later">สำรองข้อมูลภายหลัง</string>
+    <!-- Action button to dismiss sheet and back up now -->
+    <string name="CreateBackupBottomSheet__back_up_now">สำรองข้อมูลเดี๋ยวนี้</string>
+
+    <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
+    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">ไม่สามารถกู้คืนไฟล์สื่อได้</string>
+    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">อุปกรณ์ของคุณมีพื้นที่จัดเก็บไม่เพียงพอ โปรดเพิ่มพื้นที่จัดเก็บเพื่อกู้คืนไฟล์สื่อของคุณ\n\nหากคุณเลือก “ข้ามการกู้คืน” ไฟล์สื่อในข้อมูลสำรองของคุณจะถูกลบเมื่ออุปกรณ์สำรองข้อมูลเสร็จสมบูรณ์ในครั้งต่อไป</string>
+    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">อุปกรณ์ของคุณมีพื้นที่จัดเก็บไม่เพียงพอ โปรดเพิ่มพื้นที่จัดเก็บ %1$s เพื่อกู้คืนไฟล์สื่อของคุณ\n\nหากคุณเลือก “ข้ามการกู้คืน” ไฟล์สื่อในข้อมูลสำรองของคุณจะถูกลบเมื่ออุปกรณ์สำรองข้อมูลเสร็จสมบูรณ์ในครั้งต่อไป</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
+    <string name="RestoreMediaFailedBottomSheet__Okay">ตกลง</string>
+    <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
+    <string name="RestoreMediaFailedBottomSheet__Skip_restore">ข้ามการกู้คืน</string>
+    <!-- Accessibility content description for the "Backup Error" icon -->
+    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">ไอคอนแสดงข้อผิดพลาดในการสำรองข้อมูล</string>
+
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
+    <string name="RestoreMediaErrorBanner__Free_up_storage_space">โปรดเพิ่มพื้นที่จัดเก็บเพื่อกู้คืนไฟล์สื่อของคุณ</string>
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
+    <string name="RestoreMediaErrorBanner__Free_up_of_space">โปรดเพิ่มพื้นที่จัดเก็บ %1$s เพื่อกู้คืนไฟล์สื่อของคุณ</string>
+
+    <!-- Remote media restoration in-process status title. -->
+    <string name="RestoreMediaReminder__Restoring_media">กำลังกู้คืนไฟล์สื่อ</string>
+    <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
+    <string name="RestoreMediaReminder__Progress_filesize">%1$s จาก %2$s (%3$d%%)</string>
+    <!-- Remote media restoration paused status title. -->
+    <string name="RestoreMediaReminder__Restoring_media_paused">การกู้คืนไฟล์สื่อหยุดชั่วคราว</string>
+    <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RestoreMediaReminder__Waiting_for_Wifi">กำลังรอสัญญาณ Wi-Fi…</string>
+    <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
+    <string name="RestoreMediaReminder__Waiting_for_internet_connection">กำลังรอการเชื่อมต่ออินเทอร์เน็ต…</string>
+    <!-- Remote media restoration paused status description for when the device\'s battery is low -->
+    <string name="RestoreMediaReminder__low_battery">แบตเตอรี่ต่ำ โปรดชาร์จอุปกรณ์ของคุณ</string>
+    <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
+    <string name="RestoreMediaReminder__Free_up_space">เพิ่มพื้นที่ %1$s เพื่อกู้คืนไฟล์สื่อของคุณ</string>
+    <!-- Button label to abort media restoration -->
+    <string name="RestoreMediaReminder__Skip_restore">ข้ามการกู้คืน</string>
+
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">ข้อมูลสำรองของแชท</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">ข้อมูลสำรองถูกเข้ารหัสด้วยวลีรหัสผ่านและเก็บในอุปกรณ์ของคุณ</string>
@@ -850,13 +927,13 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s ปกป้องข้อความและข้อมูลการแชทด้วยการเข้ารหัสตั้งแต่ต้นทางถึงปลายทางบนอุปกรณ์ทุกเครื่อง</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal บนเดสก์ท็อปหรือ iPad</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">ทุกการส่งและรับข้อความบนอุปกรณ์ที่เชื่อมโยงอยู่นั้นเป็นส่วนตัว</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">ข้อความ Signal จะเริ่มซิงค์กับแอป Signal บนมือถือคุณหลังการเชื่อมโยงอุปกรณ์เสร็จสิ้น ประวัติการส่งข้อความก่อนหน้านั้นจะไม่ปรากฏบนเดสก์ท็อป</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">ไปที่ %1$s เพื่อติดตั้ง Signal บนอุปกรณ์อีกเครื่องของคุณ</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">ติดตั้ง Signal โดยไปที่ %1$s จากอุปกรณ์เครื่องที่คุณต้องการเชื่อมโยง</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่ของฉัน</string>
@@ -873,7 +950,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">ไม่มีอุปกรณ์ที่เชื่อมโยงอยู่</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">ปลดล็อกเพื่อเชื่อมโยงอุปกรณ์</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1058,16 +1135,35 @@
     <string name="PromptLogsSlowNotificationsDialog__message">บันทึกดีบักจะช่วยให้เราสามารถตรวจสอบและแก้ไขปัญหาได้ โดยที่ในบันทึกจะไม่มีข้อมูลที่ใช้ระบุตัวตน</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">พบปัญหาในการใช้งาน Signal คุณต้องการส่งบันทึกดีบักหรือไม่</string>
+    <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">พบปัญหาที่อาจทำให้คุณไม่ได้รับข้อความ คุณต้องการส่งบันทึกดีบักหรือไม่</string>
+
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">การแจ้งเตือนอาจล่าช้าเนื่องจากการเพิ่มประสิทธิภาพแบตเตอรี่</string>
     <!-- Message explaining that battery saver may delay notifications -->
     <string name="PromptBatterySaverBottomSheet__message">คุณสามารถปิดใช้งานการเพิ่มประสิทธิภาพแบตเตอรี่สำหรับแอป Signal เพื่อป้องกันไม่ให้การแจ้งเตือนข้อความความล่าช้าได้</string>
 
+    <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
+    <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">การแจ้งเตือนอาจล่าช้าเนื่องจากการเพิ่มประสิทธิภาพแบตเตอรี่</string>
+    <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">ปิดใช้งานการเพิ่มประสิทธิภาพแบตเตอรี่สำหรับแอป Signal เพื่อป้องกันไม่ให้การแจ้งเตือนข้อความล่าช้า แตะ \"ดำเนินการต่อ\" เพื่อดูคำแนะนำสำหรับอุปกรณ์แต่ละประเภท</string>
+    <!-- Button to dismiss notification help prompt -->
+    <string name="DeviceSpecificNotificationBottomSheet__no_thanks">ไม่ ขอบคุณ</string>
+    <!-- Button to continue and go to Signal support website -->
+    <string name="DeviceSpecificNotificationBottomSheet__continue">ดำเนินการต่อ</string>
+
+    <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_title">พบปัญหาที่อาจทำให้คุณไม่ได้รับข้อความ</string>
+    <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_body">การรีสตาร์ทอุปกรณ์อาจช่วยแก้ไขปัญหาเกี่ยวกับการรับข้อความได้ โปรดติดต่อฝ่ายสนับสนุนของ Signal หากคุณยังพบปัญหาอยู่</string>
+    <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
+    <string name="ConnectivityWarningBottomSheet_dismiss_button">เข้าใจแล้ว</string>
+
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">ดำเนินการต่อ</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__no_thanks">No thanks</string>
+    <string name="PromptBatterySaverBottomSheet__no_thanks">ไม่ ขอบคุณ</string>
   <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
@@ -1152,6 +1248,44 @@
     <string name="ManageGroupActivity_invite_now">เชิญเดี๋ยวนี้</string>
     <string name="ManageGroupActivity_more">มีอีก</string>
     <string name="ManageGroupActivity_add_group_description">เพิ่มคำอธิบายกลุ่ม…</string>
+
+    <!-- MoreTransferOrRestoreOptionsSheet -->
+    <!-- Row title for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">ถ่ายโอนจากอุปกรณ์ Android</string>
+    <!-- Row description for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">ถ่ายโอนบัญชีและข้อความจากอุปกรณ์ Android เครื่องเก่าของคุณ</string>
+    <!-- Row title for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">เข้าสู่ระบบโดยไม่ถ่ายโอนข้อมูล</string>
+    <!-- Row description for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">ดำเนินการต่อโดยไม่ถ่ายโอนข้อความและไฟล์สื่อของคุณ</string>
+    <!-- Row title for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">กู้คืนข้อมูลสำรองจากอุปกรณ์</string>
+    <!-- Row description for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">กู้คืนข้อความของคุณจากไฟล์ข้อมูลสำรองที่บันทึกไว้ในอุปกรณ์</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Progress dialog label when downloading a backup -->
+    <string name="RemoteRestoreActivity__downloading_backup">กำลังดาวน์โหลดข้อมูลสำรอง…</string>
+    <!-- Progress dialog label when restoring a backup -->
+    <string name="RemoteRestoreActivity__restoring_messages">กำลังกู้คืนข้อความ…</string>
+    <!-- Progress dialog label while awaiting updates -->
+    <string name="RemoteRestoreActivity__restoring">กำลังกู้คืน…</string>
+    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
+    <string name="RemoteRestoreActivity__s_of_s_s">%1$s จาก %2$s (%3$s)</string>
+    <!-- Feature list media label for paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_media">ไฟล์สื่อทั้งหมด</string>
+    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">ไฟล์สื่อจาก %1$d วันที่ผ่านมา</string>
+    <!-- Feature list message label for free and paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_messages">ข้อความทั้งหมด</string>
+    <!-- Screen title for restoring from backup -->
+    <string name="RemoteRestoreActivity__restore_from_backup">กู้คืนจากข้อมูลสำรอง</string>
+    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">โดยข้อมูลสำรองจะรวมไฟล์สื่อที่ส่งหรือได้รับภายใน %1$d วันที่ผ่านมาเท่านั้น</string>
+    <!-- Section title for explaining what your backup includes -->
+    <string name="RemoteRestoreActivity__your_backup_includes">ข้อมูลสำรองของคุณประกอบด้วย:</string>
+    <!-- Primary action button copy for starting restoration -->
+    <string name="RemoteRestoreActivity__restore_backup">กู้คืนจากข้อมูลสำรอง</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">แจ้งให้ฉันรู้สำหรับการกล่าวถึง</string>
@@ -1301,6 +1435,12 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">แตะค้างไว้เพื่อบันทึกข้อความเสียง แล้วปล่อยเพื่อส่ง</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">แก้ไขข้อความ</string>
+    <!-- Dialog title shown if users are about to discard their draft message -->
+    <string name="InputPanel__discard_draft">ยกเลิกฉบับร่างใช่หรือไม่</string>
+    <!-- Dialog message explaining their action cannot be reversed -->
+    <string name="InputPanel__this_action_cant_be_undone">เมื่อดำเนินการแล้วจะไม่สามารถแก้ไขหรือเปลี่ยนแปลงได้</string>
+    <!-- Button inside an alert dialog confirming the deletion of their draft -->
+    <string name="InputPanel__discard">ยกเลิก</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">แบ่งปัน</string>
@@ -2861,6 +3001,8 @@
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">คุณลบผู้ใช้คนนี้แล้ว การส่งข้อความหาผู้ใช้อีกครั้งจะเป็นการเพิ่มคนคนนั้นกลับเข้ามาในรายชื่อผู้ติดต่อของคุณ</string>
     <!-- Update item button text shown for the accepted message request update message -->
     <string name="ConversationUpdateItem_options">ตัวเลือก</string>
+    <!-- Update item button text shown for a profile name change. -->
+    <string name="ConversationUpdateItem_update">อัปเดต</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">เล่น … หยุดชั่วคราว</string>
@@ -3158,10 +3300,6 @@
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">การส่งรายงานบันทึกดีบักสำหรับ Signal Android</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">การแจ้งเตือนล่าช้า</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">หยุดทำงาน</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">ส่ง</string>
     <!-- Action to decline to submit logs -->
@@ -3539,6 +3677,10 @@
     <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. แตะ “การตั้งค่า” ด้านล่างนี้</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
     <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s อนุญาตสิทธิ์การเข้าถึง</string>
+    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
+    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. แตะ “สิทธิ์การเข้าถึง”</string>
+    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s อนุญาตสิทธิ์การเข้าถึง “รูปภาพและวิดีโอ”</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">การตั้งค่า</string>
 
@@ -4056,6 +4198,8 @@
     <string name="preferences_app_protection__screen_lock">ล็อกหน้าจอ</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ล็อกการเข้าถึง Signal ด้วยการล็อกหน้าจอของ Android หรือลายนิ้วมือ</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">ล็อกหน้าจอเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">เปิดใช้งานการล็อกหน้าจอด้วยการตั้ง PIN, รูปแบบการวาดเส้น หรือรหัสผ่านบนอุปกรณ์เครื่องนี้</string>
     <string name="preferences_app_protection__signal_pin">รหัส PIN ของ Signal</string>
     <string name="preferences_app_protection__create_a_pin">สร้างรหัส PIN</string>
     <string name="preferences_app_protection__change_your_pin">เปลี่ยนรหัส PIN ของคุณ</string>
@@ -4076,8 +4220,41 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">คุณได้พยายามหลายครั้งเกินไป โปรดลองใหม่ในภายหลัง</string>
     <string name="RegistrationActivity_error_connecting_to_service">เกิดข้อผิดพลาดในการเชื่อมต่อกับบริการ</string>
     <string name="preferences_chats__backups">ข้อมูลสำรอง</string>
-    <string name="prompt_passphrase_activity__signal_is_locked">Signal ได้ถูกล็อก</string>
-    <string name="prompt_passphrase_activity__tap_to_unlock">แตะเพื่อปลดล็อก</string>
+    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+    <string name="prompt_passphrase_activity__unlock_signal">ปลดล็อก Signal</string>
+    <!-- Description text explaining how to unlock Signal -->
+    <string name="prompt_passphrase_activity__use_your_android_device">ปลดล็อก Signal โดยใช้รูปแบบการล็อกอุปกรณ์ Android ที่คุณตั้งค่าไว้</string>
+    <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
+    <string name="prompt_passphrase_activity__screen_lock_is_on">กำลังใช้งานการล็อกหน้าจอพร้อมรักษาความปลอดภัยให้ Signal ด้วยรูปแบบการล็อกอุปกรณ์ที่คุณตั้งค่าไว้ คุณสามารถปลดล็อก Signal โดยใช้วิธีเดียวกับที่ใช้ปลดล็อกโทรศัพท์ ไม่ว่าจะด้วยการสแกนใบหน้า, สแกนลายนิ้วมือ, ระบุ PIN, รหัสผ่าน หรือรูปแบบการวาดเส้น</string>
+    <!-- Button in a dialog that will contact Signal support if pressed -->
+    <string name="prompt_passphrase_activity__contact_support">ติดต่อฝ่ายสนับสนุน</string>
+    <!-- Button text to try again after unlocking has previously failed -->
+    <string name="prompt_passphrase_activity__try_again">ลองอีกครั้ง</string>
+
+    <!-- ScreenLockSettingsFragment -->
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">ปิด</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">ใช้การล็อกหน้าจอ</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">ระบบจะใช้รูปแบบการล็อกที่คุณตั้งค่าไว้บนอุปกรณ์ Android มาปลดล็อก Signal เมื่อคุณสลับหรือปิดแอป โดยแถบการแจ้งเตือนจะไม่แสดงเนื้อหาของข้อความในระหว่างที่แอปถูกล็อก</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">เริ่มล็อกหน้าจอ</string>
+    <!-- Option text explaining that screen lock should start immediately -->
+    <string name="ScreenLockSettingsFragment__immediately">ทันที</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">ผ่านไป 1 นาที</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">ผ่านไป 5 นาที</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">ผ่านไป 30 นาที</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">กำหนดเวลาเอง</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">ใช้การล็อกหน้าจอของ Signal</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">ปิดใช้การล็อกหน้าจอของ Signal</string>
+
     <string name="Recipient_unknown">ไม่ทราบ</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">บัญชีที่ถูกลบ</string>
@@ -4581,7 +4758,12 @@
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">เชิญเพื่อนของคุณ</string>
-    <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">คัดลอกไอดีสมาชิกไปยังคลิปบอร์ดแล้ว</string>
+    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">คัดลอกรหัสสมาชิกผู้บริจาคไปยังคลิปบอร์ดแล้ว</string>
+    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">คัดลอกข้อมูลสำรองของรหัสสมาชิกไปยังคลิปบอร์ดแล้ว</string>
+    <!-- String displayed in a toast when a subscriber id is not present for a given type -->
+    <string name="AppSettingsFragment__no_subscriber_id_set">ไม่มีการตั้งค่ารหัสสมาชิก</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">บัญชี</string>
@@ -4691,7 +4873,7 @@
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">แป้นพิมพ์</string>
-    <string name="ChatsSettingsFragment__enter_key_sends">กด Enter เพื่อส่ง</string>
+    <string name="ChatsSettingsFragment__send_with_enter">กด Enter เพื่อส่ง</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">ข้อความ</string>
@@ -4715,7 +4897,7 @@
     <string name="PrivacySettingsFragment__blocked">ถูกบล็อก</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="other">ผู้ติดต่อ %1$d คน</item>
+        <item quantity="other">%1$d ผู้ติดต่อหรือกลุ่ม</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">การส่งข้อความ</string>
     <string name="PrivacySettingsFragment__disappearing_messages">ข้อความที่ลบตัวเอง</string>
@@ -4918,7 +5100,7 @@
     <string name="PermissionsSettingsFragment__only_admins">เฉพาะผู้ดูแล</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">ใครสามารถเพิ่มสมาชิกใหม่?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ใครสามารถแก้ไขข้อมูลของกลุ่มนี้ได้?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">ใครที่ส่งข้อความได้บ้าง?</string>
+    <string name="PermissionsSettingsFragment__who_can_send_messages">เลือกอนุญาตสิทธิ์ในการส่งข้อความและเริ่มการโทร</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ปิดเสียงการแจ้งเตือน</string>
@@ -5260,7 +5442,24 @@
     <string name="Subscription__contact_support">ติดต่อการสนับสนุน</string>
     <string name="Subscription__get_a_s_badge">รับโล่ %1$s</string>
 
-    <string name="SubscribeFragment__processing_payment">กำลังดำเนินการบริจาค…</string>
+    <!-- *PaymentInProgressFragment strings -->
+    <string name="InAppPaymentInProgressFragment__processing_donation">กำลังดำเนินการบริจาค…</string>
+    <string name="InAppPaymentInProgressFragment__processing_payment">กำลังประมวลผลการชำระเงิน…</string>
+
+    <!-- InAppPaymentErrors -->
+    <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
+    <string name="InAppPaymentErrors__error_processing_payment">การดำเนินการชำระเงินมีข้อผิดพลาด</string>
+    <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
+    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">ไม่สามารถดำเนินการชำระเงินของคุณได้ และคุณยังไม่ได้ถูกเรียกเก็บเงิน กรุณาลองใหม่อีกครั้ง</string>
+    <!-- Displayed as a message in a dialog when we timeout waiting for a payment to be processed and token to be redeemed -->
+    <string name="InAppPaymentErrors__your_payment_is_still">การชำระเงินของคุณยังคงดำเนินการอยู่ อาจจะใช้เวลาสักครู่ ขึ้นอยู่กับการสัญญาณอินเทอร์เน็ตของคุณ</string>
+    <!-- Displayed as a message in a dialog or notification when stripe decline code issuer not available for backup payment. -->
+    <string name="InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again">ลองทำการชำระเงินให้เรียบร้อยอีกครั้ง หรือติดต่อธนาคารเพื่อขอข้อมูลเพิ่มเติม</string>
+    <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
+    <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">การชำระเงินนี้ถูกเจ้าของบัญชียกเลิกและไม่สามารถดำเนินการได้ คุณยังไม่ถูกเรียกเก็บเงินในกรณีนี้</string>
+    <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">เกิดข้อผิดพลาดขณะประมวลผลการชำระเงินนี้ โปรดลองอีกครั้ง</string>
+
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">การดำเนินการบริจาคมีข้อผิดพลาด</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
@@ -6267,8 +6466,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">เลือกธนาคาร</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">ยืนยันการบริจาคผ่าน %1$s ของคุณ</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">แตะดำเนินการต่อเพื่อตั้งการบริจาครายเดือนของคุณ โดยคุณจะถูกเรียกเก็บเงิน €0,01 จากทางธนาคาร ซึ่งยอดดังกล่าวจะถูกโอนกลับคืนเข้าบัญชีโดยอัตโนมัติ และการบริจาคจำนวน €5/เดือนจะถูกหักจากบัญชีของคุณ</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">แตะดำเนินการต่อเพื่อตั้งการบริจาครายเดือนของคุณ โดยคุณจะถูกเรียกเก็บเงิน €0,01 จากทางธนาคาร ซึ่งยอดดังกล่าวจะถูกโอนกลับคืนเข้าบัญชีโดยอัตโนมัติ และการบริจาคจำนวน %1$s/เดือนจะถูกหักจากบัญชีของคุณ</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">ดำเนินการต่อ</string>
 
@@ -6838,20 +7037,56 @@
     <string name="BackupProgressService_title_downloading">กำลังดาวน์โหลดข้อมูลสำรอง…</string>
 
     <!-- BackupAlertBottomSheet -->
+    <!-- Sheet title when media backups have been disabled -->
+    <string name="BackupAlertBottomSheet__media_backups_are_off">การสำรองข้อมูลสื่อปิดใช้งานอยู่</string>
+    <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
+    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
+        <item quantity="other">แพ็กเกจสำรองข้อมูลสื่อของคุณถูกยกเลิกเนื่องจาก Signal ประมวลผลการชำระเงินของคุณไม่ได้ คุณมีเวลา %1$d วันในการดาวน์โหลดไฟล์สื่อที่เก็บอยู่ในข้อมูลสำรอง โดยหลังจาก %1$d วันนั้น ไฟล์สื่อที่คุณสำรองข้อมูลไว้จะถูกลบ</item>
+    </plurals>
+    <!-- Sheet body part 2 when media backups have been disabled. -->
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">หากต้องการสำรองข้อมูลสื่อต่อ คุณสามารถเริ่มชำระเงินเพื่อสำรองข้อมูลอีกครั้งได้ทุกเมื่อ </string>
+    <!-- Sheet title when user\'s media will be deleted today -->
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">สื่อของคุณจะถูกลบวันนี้</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted today -->
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">แพ็กเกจสำรองข้อมูลสื่อของคุณถูกยกเลิกเนื่องจาก Signal ประมวลผลการชำระเงินของคุณไม่ได้ นี่เป็นโอกาสสุดท้ายที่คุณจะสามารถดาวน์โหลดไฟล์สื่อที่เก็บอยู่ในข้อมูลสำรองก่อนที่ข้อมูลจะถูกลบ</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">การดาวน์โหลดไม่เสร็จสมบูรณ์</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">อุปกรณ์ของคุณมีพื้นที่จัดเก็บไม่เพียงพอ เพิ่มพื้นที่จัดเก็บ %1$s เพื่อดาวน์โหลดไฟล์สื่อในข้อมูลสำรองของคุณ</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
+        <item quantity="other">หากคุณเลือก \"ข้าม\" ไฟล์สื่อในข้อมูลสำรองของคุณจะถูกลบใน %1$d วัน</item>
+    </plurals>
+    <!-- Sheet title when user payment failed to process -->
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">ไม่สามารถดำเนินการชำระเงินค่าสำรองข้อมูลได้</string>
+    <!-- Sheet body when user payment failed to process -->
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">เราประสบปัญหาในการเรียกเก็บเงินค่าสำรองข้อมูลรายเดือนของคุณ โปรดตรวจสอบให้แน่ใจว่าคุณอัปเดตวิธีการชำระเงินแล้ว โดยสามารถไปที่ Google Pay ในกรณีที่ยังไม่ได้อัปเดต และ Signal จะลองประมวลผลการชำระเงินอีกครั้งในอีก 2-3 วัน</string>
+    <!-- Sheet title for generic backup error -->
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">การสำรองข้อมูลไม่เสร็จสมบูรณ์</string>
+    <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
+    <string name="BackupAlertBottomSheet__your_device_hasnt">อุปกรณ์ของคุณไม่ได้ดำเนินการสำรองข้อมูลเป็นเวลา %1$d วัน โปรดตรวจสอบว่าอุปกรณ์เชื่อมต่อกับ Wi-Fi แล้วแตะ \"สำรองข้อมูลเดี๋ยวนี้\" </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
-    <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
+    <string name="BackupAlertBottomSheet__learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip">Skip</string>
+    <string name="BackupAlertBottomSheet__skip">ข้าม</string>
+    <!-- Primary action button text prompting user to download their media -->
+    <string name="BackupAlertBottomSheet__download_media_now">ดาวน์โหลดสื่อเดี๋ยวนี้</string>
+    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
+    <string name="BackupAlertBottomSheet__download_later">ดาวน์โหลดภายหลัง</string>
+    <!-- Secondary action button text to dismiss sheet, skipping media download -->
+    <string name="BackupAlertBottomSheet__dont_download_media">ไม่ต้องดาวน์โหลดสื่อ</string>
+    <!-- Dialog title for last chance to download backup -->
+    <string name="BackupAlertBottomSheet__media_will_be_deleted">สื่อจะถูกลบ</string>
+    <!-- Dialog message for last chance to download backup -->
+    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">ไฟล์สื่อที่เก็บอยู่ในข้อมูลสำรองของคุณจะถูกลบอย่างถาวรในวันนี้ นี่เป็นโอกาสสุดท้ายที่คุณจะสามารถดาวน์โหลดไฟล์ดังกล่าว</string>
+    <!-- Dialog action to download now -->
+    <string name="BackupAlertBottomSheet__download">ดาวน์โหลด</string>
+    <!-- Dialog action to not download now -->
+    <string name="BackupAlertBottomSheet__dont_download">ไม่ต้องดาวน์โหลด</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">เพิ่มพื้นที่จัดเก็บ %1$s เพื่อดาวน์โหลดไฟล์สื่อของคุณ</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -6867,7 +7102,11 @@
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__unknown">ไม่ทราบ</string>
     <!-- Row title for entering payment history -->
-    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
+    <string name="BackupsTypeSettingsFragment__payment_history">ประวัติการชำระเงิน</string>
+    <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
+    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/เดือน · ต่ออายุ %2$s</string>
+    <!-- Row title to change or cancel subscription -->
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">เปลี่ยนหรือยกเลิกการสมัคร</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -6886,6 +7125,20 @@
     <string name="ManageStorageSettingsFragment_apply_limits_title">ใช้การตั้งค่าการจำกัดข้อความในแชทกับอุปกรณ์ที่เชื่อมโยงอยู่</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_description">หากเปิดใช้งาน ระบบจะลบข้อความออกจากอุปกรณ์ที่เชื่อมโยงอยู่ตามการตั้งค่าการจำกัดข้อความในแชทสูงสุด</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">พื้นที่จัดเก็บบนอุปกรณ์</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">เพิ่มประสิทธิภาพพื้นที่จัดเก็บบนอุปกรณ์</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ไฟล์สื่อที่ไม่ได้ใช้งานจะถูกออฟโหลด แต่คุณสามารถดาวน์โหลดไฟล์กลับมาจากข้อมูลสำรองได้ทุกเมื่อ</string>
+
+    <!-- UpgradeToEnableOptimizedStorageSheet -->
+    <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">อัปเกรดเพื่อเปิดใช้งานฟีเจอร์นี้</string>
+    <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">เริ่มใช้งานฟีเจอร์การเพิ่มประสิทธิภาพพื้นที่จัดเก็บ โดยอัปเกรดแพ็กเกจสำรองข้อมูลของคุณด้วยการชำระค่าสำรองข้อมูลของ Signal</string>
+    <!-- Primary action to launch upgrade flow -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">อัปเกรดตอนนี้</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">การลบซิงค์เข้ากับอุปกรณ์ทุกเครื่องของคุณแล้ว</string>
@@ -6896,17 +7149,17 @@
 
     <!-- RemoteBackupsPaymentHistoryFragment -->
     <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Payment history</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">ประวัติการชำระเงิน</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">สำรองข้อความและสื่อทั้งหมด</string>
     <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Payment details</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">รายละเอียดการชำระเงิน</string>
     <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Backup type</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">ประเภทของการสำรองข้อมูล</string>
     <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date paid</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">วันที่ชำระ</string>
     <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">Share</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__share">แชร์</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -6931,6 +7184,8 @@
     <string name="RemoteBackupsSettingsFragment__subscription_cancelled">ยกเลิกการสมัครแล้ว</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">ดาวน์โหลดเสร็จสิ้น</string>
+    <!-- Snackbar text displayed when backup will be created overnight -->
+    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ระบบจะสำรองข้อมูลในช่วงกลางคืน</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_type">ประเภทของการสำรองข้อมูล</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -6969,6 +7224,80 @@
     <string name="RemoteBackupsSettingsFragment__monthly">ทุกเดือน</string>
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">สำรองข้อมูลด้วยตัวเอง</string>
+    <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
+    <string name="PassphrasePromptActivity_help_prompt_body">โปรดใส่ PIN, รหัสผ่าน หรือรูปแบบการวาดเส้นของอุปกรณ์คุณ</string>
 
+    <!-- MessageBackupsCheckoutSheet -->
+    <!-- Sheet title. Placeholder is formatted price. -->
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">ชำระ %1$s/เดือน ให้ Signal</string>
+    <!-- Sheet subtitle -->
+    <string name="MessageBackupsCheckoutSheet__youll_get">คุณจะได้รับ:</string>
+
+    <!-- MessageBackupsEducationScreen -->
+    <!-- Screen subtitle underneath large headline title -->
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">สำรองข้อความและไฟล์สื่อของคุณด้วยบริการจัดเก็บที่ปลอดภัยและถูกเข้ารหัสตั้งแต่ต้นทางถึงปลายทางของ Signal ช่วยเก็บรักษาทุกข้อความแม้ในกรณีที่คุณเปลี่ยนโทรศัพท์เครื่องใหม่หรือติดตั้ง Signal อีกครั้ง</string>
+    <!-- Backups feature label for e2e encryption -->
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">เข้ารหัสตั้งแต่ต้นทางถึงปลายทาง</string>
+    <!-- Backups feature label for informing the user that this feature is completely optional -->
+    <string name="MessageBackupsEducationScreen__optional_always">เลือกสมัครใช้บริการได้ตลอด</string>
+    <!-- Backups feature label for informing the user that they can delete their backup at any time -->
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">เลือกลบข้อมูลสำรองได้ทุกเมื่อ</string>
+    <!-- Action button label to proceed with backups activation -->
+    <string name="MessageBackupsEducationScreen__enable_backups">เปิดใช้การสำรองข้อมูล</string>
+    <!-- Action button label to learn more -->
+    <string name="MessageBackupsEducationScreen__learn_more">เรียนรู้เพิ่มเติม</string>
+
+    <!-- MessageBackupsPinConfirmationScreen -->
+    <!-- Screen title -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">ใส่รหัส PIN ของคุณ</string>
+    <!-- Screen subtitle -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">ใส่ Signal PIN ของคุณเพื่อเปิดใช้งานการสำรองข้อมูล</string>
+    <!-- Action button to confirm pin entry and continue -->
+    <string name="MessageBackupsPinConfirmationScreen__next">ดำเนินการต่อ</string>
+    <!-- Action button to switch keyboard type -->
+    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">สลับแป้นพิมพ์</string>
+    <!-- Action button to create a new pin if we type the incorrect one -->
+    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">สร้างรหัส PIN ใหม่</string>
+
+    <!-- MessageBackupsPinEducationScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">ปกป้องข้อมูลสำรองของคุณด้วย PIN</string>
+    <!-- Notice about pin length. Placeholder is recommended pin length -->
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Signal PIN ช่วยให้คุณสามารถกู้คืนข้อมูลสำรองในกรณีที่คุณติดตั้ง Signal ใหม่อีกครั้ง เราขอแนะนำให้ใช้ PIN ที่มีความยาวอย่างน้อย %1$d หลัก</string>
+    <!-- Notice about changing your pin. -->
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">หากคุณลืม PIN ของตัวเอง คุณจะไม่สามารถกู้คืนข้อมูลสำรองได้ โดยคุณสามารถเปลี่ยน PIN ได้ทุกเมื่อในการตั้งค่า</string>
+    <!-- Action button label to utilize current pin -->
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">ใช้ Signal PIN ของฉัน</string>
+    <!-- Action button to create a new pin -->
+    <string name="MessageBackupsPinEducationScreen__create_new_pin">สร้างรหัส PIN ใหม่</string>
+
+    <!-- MessagesBackupsTypeSelectionScreen -->
+    <!-- Screen headline -->
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">เลือกแพ็กเกจสำรองข้อมูลของคุณ</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">การสำรองข้อมูลทั้งหมดจะถูกเข้ารหัสตั้งแต่ต้นทางถึงปลายทาง Signal เป็นแอปที่ไม่แสวงผลกำไร ร่วมสนับสนุนภารกิจนี้ของเราได้ด้วยการสมัครบริการสำรองข้อมูล</string>
+    <!-- Screen subhead highlighted read-more button -->
+    <string name="MessageBackupsTypeSelectionScreen__read_more">อ่านเพิ่มเติม</string>
+    <!-- Primary action button label when selecting a backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__next">ดำเนินการต่อ</string>
+    <!-- Primary action button label when selecting a backup tier with a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">เปลี่ยนประเภทของการสำรองข้อมูล</string>
+    <!-- Secondary action button label when selecting a backup tier with a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">ยกเลิกการเป็นสมาชิก</string>
+
+    <!-- ConfirmBackupCancellationDialog -->
+    <!-- Dialog title -->
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">ยืนยันการยกเลิก</string>
+    <!-- Dialog body -->
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">คุณจะไม่ถูกเรียกเก็บเงินอีก การสำรองข้อมูลจะถูกปิดใช้งานเมื่อสิ้นสุดรอบการเรียกเก็บเงิน หลังจากวันที่กำหนดดังกล่าว คุณจะมีเวลา 30 วันในการดาวน์โหลดไฟล์สื่อที่สำรองข้อมูลเอาไว้</string>
+    <!-- Action button label to cancel subscription and download now -->
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">ยืนยันและดาวน์โหลดเดี๋ยวนี้</string>
+    <!-- Action button label to cancel subscription and download later -->
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">ยืนยันและดาวน์โหลดภายหลัง</string>
+    <!-- Action button label to keep current subscription -->
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">สมัครใช้บริการต่อไป</string>
+
+    <!-- Accessible content description for the reminder view, describing the icon in the view. -->
+    <string name="ReminderView_icon_content_description">ไอคอนการเตือนความจำ</string>
     <!-- EOF -->
 </resources>

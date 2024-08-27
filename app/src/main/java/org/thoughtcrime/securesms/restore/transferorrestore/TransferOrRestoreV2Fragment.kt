@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.databinding.FragmentTransferRestoreV2Binding
 import org.thoughtcrime.securesms.devicetransfer.newdevice.BackupRestorationType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
-import org.thoughtcrime.securesms.registration.v2.ui.restore.RemoteRestoreActivity
+import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.restore.RestoreViewModel
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -74,7 +74,7 @@ class TransferOrRestoreV2Fragment : LoggingFragment(R.layout.fragment_transfer_r
         NavHostFragment.findNavController(this).safeNavigate(TransferOrRestoreV2FragmentDirections.actionNewDeviceTransferInstructions())
       }
       BackupRestorationType.LOCAL_BACKUP -> {
-        NavHostFragment.findNavController(this).safeNavigate(TransferOrRestoreV2FragmentDirections.actionTransferOrRestoreToRestore())
+        NavHostFragment.findNavController(this).safeNavigate(TransferOrRestoreV2FragmentDirections.actionTransferOrRestoreToLocalRestore())
       }
       BackupRestorationType.REMOTE_BACKUP -> {
         startActivity(RemoteRestoreActivity.getIntent(requireContext()))

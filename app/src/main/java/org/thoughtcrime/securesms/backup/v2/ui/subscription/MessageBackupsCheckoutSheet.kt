@@ -88,19 +88,20 @@ private fun SheetContent(
   }
 
   Text(
-    text = "Pay $formattedPrice/month to Signal", // TODO [message-backups] Finalized copy
+    text = stringResource(id = R.string.MessageBackupsCheckoutSheet__pay_s_per_month, formattedPrice),
     style = MaterialTheme.typography.titleLarge,
     modifier = Modifier.padding(top = 48.dp)
   )
 
   Text(
-    text = "You'll get:", // TODO [message-backups] Finalized copy
+    text = stringResource(id = R.string.MessageBackupsCheckoutSheet__youll_get),
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(top = 5.dp)
   )
 
   MessageBackupsTypeBlock(
     messageBackupsType = messageBackupsType,
+    isCurrent = false,
     isSelected = false,
     onSelected = {},
     enabled = false,

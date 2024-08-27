@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -117,8 +116,8 @@ public final class MultiDeviceOutgoingPaymentSyncJob extends BaseJob {
 
 
     AppDependencies.getSignalServiceMessageSender()
-                   .sendSyncMessage(SignalServiceSyncMessage.forOutgoingPayment(outgoingPaymentMessage),
-                                            UnidentifiedAccessUtil.getAccessForSync(context));
+                   .sendSyncMessage(SignalServiceSyncMessage.forOutgoingPayment(outgoingPaymentMessage)
+                   );
   }
 
   @Override

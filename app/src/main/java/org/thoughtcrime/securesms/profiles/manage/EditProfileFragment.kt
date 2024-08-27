@@ -37,7 +37,7 @@ import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.profiles.manage.EditProfileViewModel.AvatarState
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
+import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
 import org.thoughtcrime.securesms.util.NameUtil.getAbbreviation
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
@@ -389,7 +389,7 @@ class EditProfileFragment : LoggingFragment() {
         .setMessage(R.string.EditProfileFragment_unregistered_dialog_body)
         .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
         .setPositiveButton(R.string.EditProfileFragment_unregistered_dialog_reregister_button) { d, _ ->
-          startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()))
+          startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()))
           d.dismiss()
         }
         .show()

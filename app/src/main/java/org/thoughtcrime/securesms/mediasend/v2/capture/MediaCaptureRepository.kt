@@ -29,7 +29,7 @@ class MediaCaptureRepository(context: Context) {
   private val context: Context = context.applicationContext
 
   fun getMostRecentItem(callback: (Media?) -> Unit) {
-    if (!StorageUtil.canReadFromMediaStore()) {
+    if (!StorageUtil.canReadAnyFromMediaStore()) {
       Log.w(TAG, "Cannot read from storage.")
       callback(null)
       return
@@ -106,6 +106,7 @@ class MediaCaptureRepository(context: Context) {
         false,
         Optional.of(Media.ALL_MEDIA_BUCKET_ID),
         Optional.empty(),
+        Optional.empty(),
         Optional.empty()
       )
     } catch (e: IOException) {
@@ -159,6 +160,7 @@ class MediaCaptureRepository(context: Context) {
                 false,
                 false,
                 Optional.of(bucketId),
+                Optional.empty(),
                 Optional.empty(),
                 Optional.empty()
               )

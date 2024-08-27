@@ -87,7 +87,7 @@ class InAppPaymentSubscriberTable(
         .values(InAppPaymentSubscriberSerializer.serialize(inAppPaymentSubscriberRecord))
         .run(conflictStrategy = SQLiteDatabase.CONFLICT_REPLACE)
 
-      SignalStore.donations.setSubscriberCurrency(
+      SignalStore.inAppPayments.setSubscriberCurrency(
         inAppPaymentSubscriberRecord.currency,
         inAppPaymentSubscriberRecord.type
       )
@@ -152,7 +152,7 @@ class InAppPaymentSubscriberTable(
       val currencyCode = input.requireNonNullString(CURRENCY_CODE).takeIf { it.isNotEmpty() }
       return InAppPaymentSubscriberRecord(
         subscriberId = SubscriberId.deserialize(input.requireNonNullString(SUBSCRIBER_ID)),
-        currency = currencyCode?.let { Currency.getInstance(it) } ?: SignalStore.donations.getSubscriptionCurrency(type),
+        currency = currencyCode?.let { Currency.getInstance(it) } ?: SignalStore.inAppPayments.getSubscriptionCurrency(type),
         type = type,
         requiresCancel = input.requireBoolean(REQUIRES_CANCEL) || currencyCode.isNullOrBlank(),
         paymentMethodType = InAppPaymentData.PaymentMethodType.fromValue(input.requireInt(PAYMENT_METHOD_TYPE)) ?: InAppPaymentData.PaymentMethodType.UNKNOWN

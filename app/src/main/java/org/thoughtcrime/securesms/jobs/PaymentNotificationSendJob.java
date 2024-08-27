@@ -4,12 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -18,14 +18,12 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
-import java.util.Optional;
 import java.util.UUID;
 
 public final class PaymentNotificationSendJob extends BaseJob {
@@ -81,9 +79,8 @@ public final class PaymentNotificationSendJob extends BaseJob {
       return;
     }
 
-    SignalServiceMessageSender       messageSender      = AppDependencies.getSignalServiceMessageSender();
-    SignalServiceAddress             address            = RecipientUtil.toSignalServiceAddress(context, recipient);
-    Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient);
+    SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
+    SignalServiceAddress       address       = RecipientUtil.toSignalServiceAddress(context, recipient);
 
     PaymentTable.PaymentTransaction payment = paymentDatabase.getPayment(uuid);
 
@@ -101,7 +98,13 @@ public final class PaymentNotificationSendJob extends BaseJob {
                                                                    .withPayment(new SignalServiceDataMessage.Payment(new SignalServiceDataMessage.PaymentNotification(payment.getReceipt(), payment.getNote()), null))
                                                                    .build();
 
-    SendMessageResult sendMessageResult = messageSender.sendDataMessage(address, unidentifiedAccess, ContentHint.DEFAULT, dataMessage, IndividualSendEvents.EMPTY, false, recipient.getNeedsPniSignature());
+    SendMessageResult sendMessageResult = messageSender.sendDataMessage(address,
+                                                                        SealedSenderAccessUtil.getSealedSenderAccessFor(recipient),
+                                                                        ContentHint.DEFAULT,
+                                                                        dataMessage,
+                                                                        IndividualSendEvents.EMPTY,
+                                                                        false,
+                                                                        recipient.getNeedsPniSignature());
 
     if (recipient.getNeedsPniSignature()) {
       SignalDatabase.pendingPniSignatureMessages().insertIfNecessary(recipientId, dataMessage.getTimestamp(), sendMessageResult);

@@ -112,7 +112,12 @@ object CrashConfig {
         return false
       }
 
-      val partsPerMillion = (1_000_000 * percent).toInt()
+      if (percent <= 0f || percent > 100f) {
+        return false
+      }
+
+      val fraction = percent / 100
+      val partsPerMillion = (1_000_000 * fraction).toInt()
       val bucket = BucketingUtil.bucket(RemoteConfig.CRASH_PROMPT_CONFIG, aci.rawUuid, 1_000_000)
       return partsPerMillion > bucket
     }

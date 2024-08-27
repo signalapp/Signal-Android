@@ -88,6 +88,20 @@
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Povolit přístup</string>
     <string name="AttachmentKeyboard_payment">Platba</string>
+    <!-- Text in a button that allows users to manage which media Signal has access to -->
+    <string name="AttachmentKeyboard_manage">Spravovat</string>
+    <!-- Option in menu to select more photos that Signal will have access to -->
+    <string name="AttachmentKeyboard_select_more_photos">Vyberte více fotografií</string>
+    <!-- Option in menu to go to settings -->
+    <string name="AttachmentKeyboard_go_to_settings">Přejít do nastavení</string>
+    <!-- Text explaining that Signal has limited access to photos -->
+    <string name="AttachmentKeyboard_signal_has_limited_access">Aplikace Signal má omezený přístup k fotkám nebo videím</string>
+    <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
+    <string name="AttachmentKeyboard_no_photos_found">Nebyly nalezeny žádné fotografie. Vyberte fotografie a videa, která se zde mají zobrazit, nebo změňte oprávnění.</string>
+
+    <!-- MediaGalleryFragment -->
+    <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
+    <string name="MediaGalleryFragment__no_photos_found">Nebyly nalezeny žádné fotografie ani videa. Aplikace Signal má přístup pouze k vybraným fotografiím a videím.</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat.</string>
@@ -108,7 +122,7 @@
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">Zobrazení fotografií a videí:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Aplikace Signal potřebuje povolit přístup k úložišti, aby mohla zobrazovat vaše fotografie a videa.</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Aplikace Signal potřebuje povolit přístup k fotografiím a videím.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s nemá aktivované Platby </string>
@@ -170,6 +184,8 @@
     <string name="CreditCardFragment__donate_s">Přispět %1$s</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
     <string name="CreditCardFragment__donate_s_month">Přispívat %1$s měsíčně</string>
+    <!-- Button label to confirm credit card input and proceed with backups payment. Placeholder is formatted price. -->
+    <string name="CreditCardFragment__pay_s_month">Přispívat %1$s měsíčně</string>
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
@@ -219,6 +235,28 @@
     <string name="BucketedThreadMedia_Large">Velké</string>
     <string name="BucketedThreadMedia_Medium">Střední</string>
     <string name="BucketedThreadMedia_Small">Malé</string>
+
+    <!-- CallInfoView -->
+    <!-- Unknown people row text when the only people in the call are unknowns -->
+    <plurals name="CallInfoView__d_people">
+        <item quantity="one">%1$d člověk</item>
+        <item quantity="few">%1$d lidé</item>
+        <item quantity="many">%1$d lidí</item>
+        <item quantity="other">%1$d lidí</item>
+    </plurals>
+    <!-- Unknown people row, placeholder is the number of unknown people in the call -->
+    <plurals name="CallInfoView__plus_d_people">
+        <item quantity="one">%1$d člověk</item>
+        <item quantity="few">%1$d lidé</item>
+        <item quantity="many">%1$d lidí</item>
+        <item quantity="other">%1$d lidí</item>
+    </plurals>
+    <!-- Unknown people row icon content description -->
+    <string name="CallInfoView__more_information">Více informací</string>
+    <!-- Unknown people row info dialog message -->
+    <string name="CallInfoView__before_joining_a_call">Před připojením se k hovoru uvidíte jen jména telefonních kontaktů, lidí, se kterými jste ve skupině, nebo lidí, se kterými jste již osobně chatovali. Po připojení se k hovoru uvidíte všechna jména a fotografie.</string>
+    <!-- Unknown people row info dialog action to close the dialog -->
+    <string name="CallInfoView__got_it">Rozumím</string>
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
@@ -449,7 +487,7 @@
     <!-- Dialog title asking users for microphone permission -->
     <string name="ConversationActivity_allow_access_microphone">Povolte přístup k mikrofonu</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">Jak poslat hlasovou zprávu:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">Pro odesílání hlasových zpráv:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Pro odeslání hlasové zprávy povolte aplikaci Signal přístup k mikrofonu.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
@@ -807,6 +845,51 @@
     <!-- Backup has an unsupported file extension -->
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">Záloha má špatnou koncovku.</string>
 
+    <!-- CreateBackupBottomSheet -->
+    <!-- Bottom sheet title -->
+    <string name="CreateBackupBottomSheet__create_backup">Vytvořit zálohu</string>
+    <!-- Bottom sheet message -->
+    <string name="CreateBackupBottomSheet__depending_on_the_size">V závislosti na velikosti zálohy to může trvat delší dobu. Během zálohování můžete telefon používat jako obvykle.</string>
+    <!-- Action button to dismiss sheet and back up later -->
+    <string name="CreateBackupBottomSheet__back_up_later">Zálohovat později</string>
+    <!-- Action button to dismiss sheet and back up now -->
+    <string name="CreateBackupBottomSheet__back_up_now">Zálohovat nyní</string>
+
+    <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
+    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Média nelze obnovit</string>
+    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Vaše zařízení nemá dostatek volného místa. Uvolněte místo v úložišti a obnovte média.\n\nPokud zvolíte možnost Přeskočit obnovení, budou média v záloze odstraněna při příštím dokončení nové zálohy zařízení.</string>
+    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Vaše zařízení nemá dostatek volného místa. Uvolněte %1$s místa pro obnovení médií.\n\nPokud zvolíte možnost Přeskočit obnovení, budou média v záloze odstraněna při příštím dokončení nové zálohy zařízení.</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
+    <string name="RestoreMediaFailedBottomSheet__Okay">OK</string>
+    <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
+    <string name="RestoreMediaFailedBottomSheet__Skip_restore">Přeskočit obnovení</string>
+    <!-- Accessibility content description for the "Backup Error" icon -->
+    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Ikona chyby zálohování</string>
+
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
+    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Uvolněte místo v úložišti a obnovte média.</string>
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
+    <string name="RestoreMediaErrorBanner__Free_up_of_space">Uvolněte %1$s místa pro obnovení médií.</string>
+
+    <!-- Remote media restoration in-process status title. -->
+    <string name="RestoreMediaReminder__Restoring_media">Obnovování médií</string>
+    <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
+    <string name="RestoreMediaReminder__Progress_filesize">%1$s z %2$s (%3$d %%)</string>
+    <!-- Remote media restoration paused status title. -->
+    <string name="RestoreMediaReminder__Restoring_media_paused">Obnovování médií pozastaveno</string>
+    <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RestoreMediaReminder__Waiting_for_Wifi">Čeká se na signál Wi-Fi…</string>
+    <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
+    <string name="RestoreMediaReminder__Waiting_for_internet_connection">Čeká se na připojení k internetu…</string>
+    <!-- Remote media restoration paused status description for when the device\'s battery is low -->
+    <string name="RestoreMediaReminder__low_battery">Vybitá baterie. Nabijte své zařízení.</string>
+    <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
+    <string name="RestoreMediaReminder__Free_up_space">Uvolněte %1$s místa pro obnovení médií.</string>
+    <!-- Button label to abort media restoration -->
+    <string name="RestoreMediaReminder__Skip_restore">Přeskočit obnovení</string>
+
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Zálohy chatů</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Zálohy jsou zašifrované heslem a uložené ve vašem zařízení.</string>
@@ -904,13 +987,13 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Zprávy a informace o chatech jsou na všech zařízeních chráněny koncovým šifrováním</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Aplikace Signal ve stolním počítači nebo iPadu</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Všechny zprávy na propojených zařízeních jsou soukromé</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">Po propojení jsou zprávy Signal synchronizovány se službou Signal ve vašem mobilu. Historie předchozích zpráv se nezobrazí.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">V jiném zařízení navštivte %1$s a nainstalujte aplikaci Signal</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">V zařízení, které chcete propojit, navštivte %1$s a nainstalujte aplikaci Signal.</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">Moje propojená zařízení</string>
@@ -927,7 +1010,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">Žádná propojená zařízení</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">Odemknout za účelem propojení zařízení</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1154,16 +1237,35 @@
     <string name="PromptLogsSlowNotificationsDialog__message">Protokoly ladění nám pomáhají diagnostikovat a opravit problém a neobsahují identifikační informace.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">U aplikace Signal se vyskytl problém. Odeslat protokol ladění?</string>
+    <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">Možná nebudete moci přijímat zprávy. Odeslat protokol ladění?</string>
+
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Oznámení se mohou zpožďovat kvůli optimalizaci baterie</string>
     <!-- Message explaining that battery saver may delay notifications -->
     <string name="PromptBatterySaverBottomSheet__message">Optimalizaci baterie pro službu Signal můžete vypnout, abyste zajistili, že se oznámení zpráv nebudou zpožďovat.</string>
 
+    <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
+    <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Oznámení se mohou zpožďovat kvůli optimalizaci baterie</string>
+    <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Vypněte optimalizaci baterie pro službu Signal, aby se oznámení zpráv nezpožďovala. Klepnutím na „Pokračovat“ zobrazíte pokyny pro konkrétní zařízení.</string>
+    <!-- Button to dismiss notification help prompt -->
+    <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Ne, díky</string>
+    <!-- Button to continue and go to Signal support website -->
+    <string name="DeviceSpecificNotificationBottomSheet__continue">Pokračovat</string>
+
+    <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_title">Možná nebudete moci přijímat zprávy</string>
+    <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_body">Problém s doručováním zpráv může vyřešit restart zařízení. Pokud problém přetrvává, obraťte se na podporu služby Signal.</string>
+    <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
+    <string name="ConnectivityWarningBottomSheet_dismiss_button">Rozumím</string>
+
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Pokračovat</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__no_thanks">No thanks</string>
+    <string name="PromptBatterySaverBottomSheet__no_thanks">Ne, díky</string>
   <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
@@ -1260,6 +1362,44 @@
     <string name="ManageGroupActivity_invite_now">Pozvat nyní</string>
     <string name="ManageGroupActivity_more">více</string>
     <string name="ManageGroupActivity_add_group_description">Přidejte popisek skupiny…</string>
+
+    <!-- MoreTransferOrRestoreOptionsSheet -->
+    <!-- Row title for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Přenést z Android zařízení</string>
+    <!-- Row description for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Přeneste svůj účet a zprávy ze svého starého zařízení se systémem Android.</string>
+    <!-- Row title for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">Přihlásit se bez přenosu</string>
+    <!-- Row description for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">Pokračovat bez přenosu zpráv a médií</string>
+    <!-- Row title for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">Obnovit místní zálohu</string>
+    <!-- Row description for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Obnovte zprávy ze záložního souboru, který jste uložili do svého zařízení.</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Progress dialog label when downloading a backup -->
+    <string name="RemoteRestoreActivity__downloading_backup">Stahování zálohy…</string>
+    <!-- Progress dialog label when restoring a backup -->
+    <string name="RemoteRestoreActivity__restoring_messages">Obnovování zpráv…</string>
+    <!-- Progress dialog label while awaiting updates -->
+    <string name="RemoteRestoreActivity__restoring">Obnovování…</string>
+    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
+    <string name="RemoteRestoreActivity__s_of_s_s">%1$s z %2$s (%3$s)</string>
+    <!-- Feature list media label for paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_media">Všechna vaše média</string>
+    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Vaše média za posledních %1$d dní</string>
+    <!-- Feature list message label for free and paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_messages">Všechny vaše zprávy</string>
+    <!-- Screen title for restoring from backup -->
+    <string name="RemoteRestoreActivity__restore_from_backup">Obnovit ze zálohy</string>
+    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">Zahrnuta jsou pouze média odeslaná nebo přijatá v posledních %1$d dnech.</string>
+    <!-- Section title for explaining what your backup includes -->
+    <string name="RemoteRestoreActivity__your_backup_includes">Vaše záloha obsahuje:</string>
+    <!-- Primary action button copy for starting restoration -->
+    <string name="RemoteRestoreActivity__restore_backup">Obnovit zálohu</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozornit mne na zmínky</string>
@@ -1421,6 +1561,12 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Držte pro nahrání hlasové zprávy, pusťte pro odeslání</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Upravit zprávu</string>
+    <!-- Dialog title shown if users are about to discard their draft message -->
+    <string name="InputPanel__discard_draft">Zahodit koncept?</string>
+    <!-- Dialog message explaining their action cannot be reversed -->
+    <string name="InputPanel__this_action_cant_be_undone">Tuto akci nelze vzít zpět.</string>
+    <!-- Button inside an alert dialog confirming the deletion of their draft -->
+    <string name="InputPanel__discard">Zahodit</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Sdílet</string>
@@ -3131,6 +3277,8 @@
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Tuto osobu jste odebrali. Když jí znovu napíšete, bude přidána zpět do vašeho seznamu.</string>
     <!-- Update item button text shown for the accepted message request update message -->
     <string name="ConversationUpdateItem_options">Možnosti</string>
+    <!-- Update item button text shown for a profile name change. -->
+    <string name="ConversationUpdateItem_update">Aktualizovat</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Spustit … Pozastavit</string>
@@ -3449,10 +3597,6 @@
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Odeslání protokolu ladění aplikace Signal pro Android</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Pomalá oznámení</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">Pád aplikace</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Odeslat</string>
     <!-- Action to decline to submit logs -->
@@ -3839,6 +3983,10 @@
     <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Klepněte níže na „nastavení“</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
     <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Povolit přístup</string>
+    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
+    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Klikněte na Oprávnění</string>
+    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Povolte přístup k fotografiím a videím</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">Nastavení</string>
 
@@ -4383,6 +4531,8 @@
     <string name="preferences_app_protection__screen_lock">Zámek obrazovky</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zamknout přístup k Signal zámkem obrazovky Androidu nebo otiskem prstu</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časový limit neaktivity zámku obrazovky</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">Pro využití zámku obrazovky nastavte v tomto zařízení PIN, vzorec nebo heslo.</string>
     <string name="preferences_app_protection__signal_pin">Signal PIN</string>
     <string name="preferences_app_protection__create_a_pin">Vytvořit PIN</string>
     <string name="preferences_app_protection__change_your_pin">Změnit váš PIN</string>
@@ -4403,8 +4553,41 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Uskutečnili jste příliš mnoho pokusů. Prosím zkuste to znovu později</string>
     <string name="RegistrationActivity_error_connecting_to_service">Chyba při připojování k službě</string>
     <string name="preferences_chats__backups">Zálohy</string>
-    <string name="prompt_passphrase_activity__signal_is_locked">Signal je zamčen</string>
-    <string name="prompt_passphrase_activity__tap_to_unlock">KLEPNUTÍM ODEMKNĚTE</string>
+    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+    <string name="prompt_passphrase_activity__unlock_signal">Odemknout Signal</string>
+    <!-- Description text explaining how to unlock Signal -->
+    <string name="prompt_passphrase_activity__use_your_android_device">K odemknutí aplikace Signál použijte nastavení zámku zařízení se systémem Android.</string>
+    <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
+    <string name="prompt_passphrase_activity__screen_lock_is_on">Zámek obrazovky je zapnutý a aplikace Signal je zabezpečena pomocí nastavení zámku zařízení. Aplikaci Signal odemknete stejným způsobem, jakým běžně odemykáte telefon, tedy pomocí rozpoznání obličeje, otisku prstu, kódu PIN, hesla nebo vzorce.</string>
+    <!-- Button in a dialog that will contact Signal support if pressed -->
+    <string name="prompt_passphrase_activity__contact_support">Kontaktovat podporu</string>
+    <!-- Button text to try again after unlocking has previously failed -->
+    <string name="prompt_passphrase_activity__try_again">Zkusit znovu</string>
+
+    <!-- ScreenLockSettingsFragment -->
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">Vypnuto</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Použít zámek obrazovky</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">Pro odemknutí aplikace Signal při jejím vypnutí nebo přepnutí bude nutné nastavení zámku v zařízení se systémem Android. Při uzamčení se v náhledech oznámení nezobrazuje obsah zprávy.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Zámek úvodní obrazovky</string>
+    <!-- Option text explaining that screen lock should start immediately -->
+    <string name="ScreenLockSettingsFragment__immediately">Okamžitě</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">Po 1 minutě</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">Po 5 minutách</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">Po 30 minutách</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">Vlastní čas</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Použít zámek obrazovky aplikace Signal</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Vypněte zámek obrazovky aplikace Signal</string>
+
     <string name="Recipient_unknown">Neznámý</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Smazaný účet</string>
@@ -4932,7 +5115,12 @@
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Pozvěte své přátele</string>
-    <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Číslo předplatitele zkopírováno do schránky</string>
+    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">ID předplatitele zkopírováno do schránky</string>
+    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">ID předplatitele záloh zkopírováno do schránky</string>
+    <!-- String displayed in a toast when a subscriber id is not present for a given type -->
+    <string name="AppSettingsFragment__no_subscriber_id_set">ID předplatitele není nastaveno</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Účet</string>
@@ -5042,7 +5230,7 @@
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Klávesnice</string>
-    <string name="ChatsSettingsFragment__enter_key_sends">Klávesa Enter odesílá</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Odeslat tlačítkem Enter</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Zprávy</string>
@@ -5066,10 +5254,10 @@
     <string name="PrivacySettingsFragment__blocked">Zablokováno</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d kontakt</item>
-        <item quantity="few">%1$d kontakty</item>
-        <item quantity="many">%1$d kontaktů</item>
-        <item quantity="other">%1$d kontaktů</item>
+        <item quantity="one">%1$d kontakt nebo skupina</item>
+        <item quantity="few">%1$d kontakty nebo skupiny</item>
+        <item quantity="many">%1$d kontaktů nebo skupin</item>
+        <item quantity="other">%1$d kontaktů nebo skupin</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Odesílání zpráv</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Mizející zprávy</string>
@@ -5278,7 +5466,7 @@
     <string name="PermissionsSettingsFragment__only_admins">Pouze správci</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Kdo může přidávat nové členy?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kdo může upravovat informace o této skupině?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Kdo může odesílat zprávy?</string>
+    <string name="PermissionsSettingsFragment__who_can_send_messages">Kdo může posílat zprávy a zahajovat hovory?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Vypnout oznámení</string>
@@ -5641,7 +5829,24 @@
     <string name="Subscription__contact_support">Kontaktovat podporu</string>
     <string name="Subscription__get_a_s_badge">Získat %1$s odznak</string>
 
-    <string name="SubscribeFragment__processing_payment">Příspěvek se zpracovává…</string>
+    <!-- *PaymentInProgressFragment strings -->
+    <string name="InAppPaymentInProgressFragment__processing_donation">Příspěvek se zpracovává…</string>
+    <string name="InAppPaymentInProgressFragment__processing_payment">Zpracovávání platby…</string>
+
+    <!-- InAppPaymentErrors -->
+    <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
+    <string name="InAppPaymentErrors__error_processing_payment">Chyba při zpracování platby</string>
+    <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
+    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">Vaše platba nemohla být zpracována a nebyla vám odečtena. Zkuste to prosím znovu.</string>
+    <!-- Displayed as a message in a dialog when we timeout waiting for a payment to be processed and token to be redeemed -->
+    <string name="InAppPaymentErrors__your_payment_is_still">Vaše platba se stále zpracovává. To může trvat několik minut v závislosti na vašem připojení.</string>
+    <!-- Displayed as a message in a dialog or notification when stripe decline code issuer not available for backup payment. -->
+    <string name="InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again">Zkuste platbu dokončit znovu nebo se obraťte na svou banku a požádejte o další informace.</string>
+    <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
+    <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">Tato platba byla majitelem účtu zrušena a nemohla být zpracována. Platba vám nebyla odečtena.</string>
+    <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">Při zpracování této platby se vyskytla chyba. Zkuste to prosím znovu.</string>
+
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Při zpracování příspěvku se vyskytla chyba</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
@@ -6708,8 +6913,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">Vyberte svou banku</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Potvrďte svůj příspěvek u banky %1$s</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Chcete-li nastavit svůj pravidelný příspěvek, klepněte na pokračovat a potvrďte poplatek 0,01 € u své banky. Ten vám bude automaticky vrácen a umožní, aby se z vašeho účtu odečítal příspěvek ve výši 5 € měsíčně.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Chcete-li nastavit svůj pravidelný příspěvek, klepněte na pokračovat a potvrďte poplatek 0,01 € u své banky. Ten vám bude automaticky vrácen a umožní, aby se z vašeho účtu odečítal příspěvek ve výši %1$s měsíčně.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Pokračovat</string>
 
@@ -7300,20 +7505,62 @@
     <string name="BackupProgressService_title_downloading">Stahování záložních dat…</string>
 
     <!-- BackupAlertBottomSheet -->
+    <!-- Sheet title when media backups have been disabled -->
+    <string name="BackupAlertBottomSheet__media_backups_are_off">Zálohování médií je vypnuto</string>
+    <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
+    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
+        <item quantity="one">Váš plán zálohování médií v aplikaci Signal byl zrušen, protože nešlo zpracovat vaši platbu. Máte %1$d den na stažení všech médií uložených v záloze. Po %1$d dni budou média ve vaší záloze odstraněna.</item>
+        <item quantity="few">Váš plán zálohování médií v aplikaci Signal byl zrušen, protože nešlo zpracovat vaši platbu. Máte %1$d dny na stažení všech médií uložených v záloze. Po %1$d dnech budou média ve vaší záloze odstraněna.</item>
+        <item quantity="many">Váš plán zálohování médií v aplikaci Signal byl zrušen, protože nešlo zpracovat vaši platbu. Máte %1$d dní na stažení všech médií uložených v záloze. Po %1$d dnech budou média ve vaší záloze odstraněna.</item>
+        <item quantity="other">Váš plán zálohování médií v aplikaci Signal byl zrušen, protože nešlo zpracovat vaši platbu. Máte %1$d dní na stažení všech médií uložených v záloze. Po %1$d dnech budou média ve vaší záloze odstraněna.</item>
+    </plurals>
+    <!-- Sheet body part 2 when media backups have been disabled. -->
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Kdykoliv můžete opět začít platit za zálohování a pokračovat v zálohování všech svých médií. </string>
+    <!-- Sheet title when user\'s media will be deleted today -->
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Vaše média budou dnes odstraněna</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted today -->
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Váš plán zálohování médií v aplikaci Signal byl zrušen, protože nešlo zpracovat vaši platbu. Toto je poslední možnost stáhnout média ze zálohy, než budou odstraněna.</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">Stahování nelze dokončit</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Vaše zařízení nemá dostatek volného místa. Uvolněte minimálně %1$s místa, abyste mohli stáhnout média z vaší zálohy.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
+        <item quantity="one">Pokud zvolíte možnost „Přeskočit“, budou média ve vaší záloze odstraněna za %1$d den.</item>
+        <item quantity="few">Pokud zvolíte možnost „Přeskočit“, budou média ve vaší záloze odstraněna za %1$d dny.</item>
+        <item quantity="many">Pokud zvolíte možnost „Přeskočit“, budou média ve vaší záloze odstraněna za %1$d dní.</item>
+        <item quantity="other">Pokud zvolíte možnost „Přeskočit“, budou média ve vaší záloze odstraněna za %1$d dní.</item>
+    </plurals>
+    <!-- Sheet title when user payment failed to process -->
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Nelze zpracovat platbu za zálohování</string>
+    <!-- Sheet body when user payment failed to process -->
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Máme problémy se stržením vaší pravidelné měsíční platby za zálohování. Zkontrolujte, že vámi zvolená platební metoda je aktuální. Pokud ne, aktualizujte ji v Google Pay. Aplikace Signal zkusí během pár dnů zpracovat platbu znovu.</string>
+    <!-- Sheet title for generic backup error -->
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Zálohování se nepodařilo dokončit</string>
+    <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
+    <string name="BackupAlertBottomSheet__your_device_hasnt">Vaše zařízení nedokončilo zálohování po dobu %1$d dnů. Ujistěte se, že je vaše zařízení připojeno k Wi-Fi a klepněte na „Zálohovat nyní“. </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
-    <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
+    <string name="BackupAlertBottomSheet__learn_more">Zjistit více</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip">Skip</string>
+    <string name="BackupAlertBottomSheet__skip">Přeskočit</string>
+    <!-- Primary action button text prompting user to download their media -->
+    <string name="BackupAlertBottomSheet__download_media_now">Stáhnout média</string>
+    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
+    <string name="BackupAlertBottomSheet__download_later">Stáhnout později</string>
+    <!-- Secondary action button text to dismiss sheet, skipping media download -->
+    <string name="BackupAlertBottomSheet__dont_download_media">Nestahovat média</string>
+    <!-- Dialog title for last chance to download backup -->
+    <string name="BackupAlertBottomSheet__media_will_be_deleted">Média budou odstraněna</string>
+    <!-- Dialog message for last chance to download backup -->
+    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Média uložená v záloze budou dnes navždy odstraněna. Toto je poslední šance na jejich stažení.</string>
+    <!-- Dialog action to download now -->
+    <string name="BackupAlertBottomSheet__download">Stáhnout</string>
+    <!-- Dialog action to not download now -->
+    <string name="BackupAlertBottomSheet__dont_download">Nestahovat</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Uvolněte %1$s místa pro stahování médií.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7329,7 +7576,11 @@
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__unknown">Neznámý</string>
     <!-- Row title for entering payment history -->
-    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
+    <string name="BackupsTypeSettingsFragment__payment_history">Historie plateb</string>
+    <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
+    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/měsíc · Obnovení %2$s</string>
+    <!-- Row title to change or cancel subscription -->
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Změnit nebo zrušit předplatné</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7348,6 +7599,20 @@
     <string name="ManageStorageSettingsFragment_apply_limits_title">Použít limity u propojených zařízení</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_description">Pokud jsou limity chatu povoleny, budou se mazat i zprávy z propojených zařízení.</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Ukládání do zařízení</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimalizace úložiště v zařízení</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nevyužívaná média budou odložena, ale můžete si je kdykoli stáhnout ze zálohy.</string>
+
+    <!-- UpgradeToEnableOptimizedStorageSheet -->
+    <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Pro tuto funkci je nutná aktualizace</string>
+    <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Optimalizaci úložiště lze použít pouze s placenou službou Signal zálohování. Aktualizujte svůj plán zálohování, abyste mohli začít tuto funkci používat.</string>
+    <!-- Primary action to launch upgrade flow -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">Aktualizovat hned</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Odstraňování zpráv je nyní synchronizováno pro všechna vaše zařízení</string>
@@ -7358,17 +7623,17 @@
 
     <!-- RemoteBackupsPaymentHistoryFragment -->
     <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Payment history</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Historie plateb</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Zálohování textových zpráv a všech médií</string>
     <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Payment details</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Podrobnosti platby</string>
     <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Backup type</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Typ zálohování</string>
     <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date paid</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Datum platby</string>
     <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">Share</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__share">Sdílet</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7393,6 +7658,8 @@
     <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Předplatné zrušeno</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Stahování dokončeno</string>
+    <!-- Snackbar text displayed when backup will be created overnight -->
+    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Záloha bude vytvořena přes noc.</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_type">Typ zálohování</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7431,6 +7698,80 @@
     <string name="RemoteBackupsSettingsFragment__monthly">Měsíčně</string>
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Ruční zálohování</string>
+    <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
+    <string name="PassphrasePromptActivity_help_prompt_body">Zadejte prosím PIN, heslo nebo vzorec svého zařízení.</string>
 
+    <!-- MessageBackupsCheckoutSheet -->
+    <!-- Sheet title. Placeholder is formatted price. -->
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Platba službě Signal ve výši %1$s měsíčně</string>
+    <!-- Sheet subtitle -->
+    <string name="MessageBackupsCheckoutSheet__youll_get">Získáte:</string>
+
+    <!-- MessageBackupsEducationScreen -->
+    <!-- Screen subtitle underneath large headline title -->
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Zálohujte své zprávy a média pomocí zabezpečené, koncově šifrované služby úložiště Signal. Už nepřijdete o žádnou zprávu, když si pořídíte nový telefon nebo přeinstalujete aplikaci Signal.</string>
+    <!-- Backups feature label for e2e encryption -->
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">Koncové šifrování</string>
+    <!-- Backups feature label for informing the user that this feature is completely optional -->
+    <string name="MessageBackupsEducationScreen__optional_always">Volitelné, vždy</string>
+    <!-- Backups feature label for informing the user that they can delete their backup at any time -->
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Zálohu můžete kdykoli odstranit</string>
+    <!-- Action button label to proceed with backups activation -->
+    <string name="MessageBackupsEducationScreen__enable_backups">Povolit zálohování</string>
+    <!-- Action button label to learn more -->
+    <string name="MessageBackupsEducationScreen__learn_more">Zjistit více</string>
+
+    <!-- MessageBackupsPinConfirmationScreen -->
+    <!-- Screen title -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">Zadejte váš PIN</string>
+    <!-- Screen subtitle -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Zadejte svůj Signal PIN a povolte zálohování</string>
+    <!-- Action button to confirm pin entry and continue -->
+    <string name="MessageBackupsPinConfirmationScreen__next">Další</string>
+    <!-- Action button to switch keyboard type -->
+    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Přepnout klávesnici</string>
+    <!-- Action button to create a new pin if we type the incorrect one -->
+    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Vytvořit nový PIN</string>
+
+    <!-- MessageBackupsPinEducationScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">Vaše záloha je chráněna PIN kódem</string>
+    <!-- Notice about pin length. Placeholder is recommended pin length -->
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Váš Signal PIN vám umožní obnovit zálohu při opětovné instalaci aplikace Signal. Doporučujeme použít PIN, který má alespoň %1$d číslic.</string>
+    <!-- Notice about changing your pin. -->
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Pokud PIN zapomenete, nebude možné zálohu obnovit. PIN můžete kdykoliv změnit v nastavení.</string>
+    <!-- Action button label to utilize current pin -->
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Použít aktuální Signal PIN</string>
+    <!-- Action button to create a new pin -->
+    <string name="MessageBackupsPinEducationScreen__create_new_pin">Vytvořit nový PIN?</string>
+
+    <!-- MessagesBackupsTypeSelectionScreen -->
+    <!-- Screen headline -->
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Vyberte svůj plán zálohování</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Všechny zálohy jsou koncově šifrovány. Signal je nezisková organizace – platba za zálohování nám pomáhá plnit naše poslání.</string>
+    <!-- Screen subhead highlighted read-more button -->
+    <string name="MessageBackupsTypeSelectionScreen__read_more">Číst dále</string>
+    <!-- Primary action button label when selecting a backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__next">Další</string>
+    <!-- Primary action button label when selecting a backup tier with a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Změnit typ zálohování</string>
+    <!-- Secondary action button label when selecting a backup tier with a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Zrušit předplatné</string>
+
+    <!-- ConfirmBackupCancellationDialog -->
+    <!-- Dialog title -->
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Potvrdit zrušení</string>
+    <!-- Dialog body -->
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Nebudou vám účtovány žádné další poplatky. Zálohování bude vypnuto na konci vašeho zúčtovacího období. Poté budete mít 30 dní na stažení médií, která právě zálohujete.</string>
+    <!-- Action button label to cancel subscription and download now -->
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Potvrdit a stáhnout teď</string>
+    <!-- Action button label to cancel subscription and download later -->
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Potvrdit a stáhnout později</string>
+    <!-- Action button label to keep current subscription -->
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Ponechat předplatné</string>
+
+    <!-- Accessible content description for the reminder view, describing the icon in the view. -->
+    <string name="ReminderView_icon_content_description">Ikona připomenutí</string>
     <!-- EOF -->
 </resources>

@@ -162,7 +162,7 @@ object RecipientCreator {
       lastProfileFetchTime = record.lastProfileFetch,
       isSelf = isSelf,
       notificationChannelValue = record.notificationChannel,
-      unidentifiedAccessModeValue = record.unidentifiedAccessMode,
+      sealedSenderAccessModeValue = record.sealedSenderAccessMode,
       capabilities = record.capabilities,
       storageId = record.storageId,
       mentionSetting = record.mentionSetting,

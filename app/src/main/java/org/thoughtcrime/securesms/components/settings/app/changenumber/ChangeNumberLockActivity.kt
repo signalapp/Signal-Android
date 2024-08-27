@@ -1,14 +1,16 @@
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.components.settings.app.changenumber
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
@@ -18,10 +20,6 @@ import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
-import java.util.Objects
-
-private val TAG: String = Log.tag(ChangeNumberLockActivity::class.java)
 
 /**
  * A captive activity that can determine if an interrupted/erred change number request
@@ -29,17 +27,34 @@ private val TAG: String = Log.tag(ChangeNumberLockActivity::class.java)
  */
 class ChangeNumberLockActivity : PassphraseRequiredActivity() {
 
+  companion object {
+    private val TAG: String = Log.tag(ChangeNumberLockActivity::class.java)
+
+    @JvmStatic
+    fun createIntent(context: Context): Intent {
+      return Intent(context, ChangeNumberLockActivity::class.java).apply {
+        flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+      }
+    }
+  }
+
+  private val viewModel: ChangeNumberViewModel by viewModels()
   private val dynamicTheme: DynamicTheme = DynamicNoActionBarTheme()
-  private val disposables: LifecycleDisposable = LifecycleDisposable()
-  private lateinit var changeNumberRepository: ChangeNumberRepository
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     dynamicTheme.onCreate(this)
-    disposables.bindTo(lifecycle)
+
+    onBackPressedDispatcher.addCallback(
+      this,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          Log.d(TAG, "Back button press swallowed.")
+        }
+      }
+    )
 
     setContentView(R.layout.activity_change_number_lock)
 
-    changeNumberRepository = ChangeNumberRepository()
     checkWhoAmI()
   }
 
@@ -48,31 +63,11 @@ class ChangeNumberLockActivity : PassphraseRequiredActivity() {
     dynamicTheme.onResume(this)
   }
 
-  @SuppressLint("MissingSuperCall")
-  override fun onBackPressed() = Unit
-
   private fun checkWhoAmI() {
-    disposables += changeNumberRepository
-      .whoAmI()
-      .flatMap { whoAmI ->
-        if (Objects.equals(whoAmI.number, SignalStore.account.e164)) {
-          Log.i(TAG, "Local and remote numbers match, nothing needs to be done.")
-          Single.just(false)
-        } else {
-          Log.i(TAG, "Local (${SignalStore.account.e164}) and remote (${whoAmI.number}) numbers do not match, updating local.")
-          Single
-            .just(true)
-            .flatMap { changeNumberRepository.changeLocalNumber(whoAmI.number, PNI.parseOrThrow(whoAmI.pni)) }
-            .compose(ChangeNumberRepository::acquireReleaseChangeNumberLock)
-            .map { true }
-        }
-      }
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy(onSuccess = { onChangeStatusConfirmed() }, onError = this::onFailedToGetChangeNumberStatus)
+    viewModel.checkWhoAmI(::onChangeStatusConfirmed, ::onFailedToGetChangeNumberStatus)
   }
 
   private fun onChangeStatusConfirmed() {
-    SignalStore.misc.unlockChangeNumber()
     SignalStore.misc.clearPendingChangeNumberMetadata()
 
     MaterialAlertDialogBuilder(this)
@@ -100,14 +95,5 @@ class ChangeNumberLockActivity : PassphraseRequiredActivity() {
       }
       .setCancelable(false)
       .show()
-  }
-
-  companion object {
-    @JvmStatic
-    fun createIntent(context: Context): Intent {
-      return Intent(context, ChangeNumberLockActivity::class.java).apply {
-        flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-      }
-    }
   }
 }

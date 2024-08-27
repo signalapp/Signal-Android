@@ -202,6 +202,14 @@ class SelectBuilderPart2(
     return SelectBuilderPart3(db, columns, tableName, where, whereArgs)
   }
 
+  fun orderBy(orderBy: String): SelectBuilderPart4a {
+    return SelectBuilderPart4a(db, columns, tableName, "", arrayOf(), orderBy)
+  }
+
+  fun limit(limit: Int): SelectBuilderPart4b {
+    return SelectBuilderPart4b(db, columns, tableName, "", arrayOf(), limit.toString())
+  }
+
   fun run(): Cursor {
     return db.query(
       SupportSQLiteQueryBuilder

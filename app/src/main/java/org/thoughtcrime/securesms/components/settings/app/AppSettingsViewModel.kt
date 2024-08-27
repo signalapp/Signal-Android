@@ -21,8 +21,8 @@ class AppSettingsViewModel : ViewModel() {
     AppSettingsState(
       Recipient.self(),
       0,
-      SignalStore.donations.getExpiredGiftBadge() != null,
-      SignalStore.donations.isLikelyASustainer() || InAppDonations.hasAtLeastOnePaymentMethodAvailable(),
+      SignalStore.inAppPayments.getExpiredGiftBadge() != null,
+      SignalStore.inAppPayments.isLikelyASustainer() || InAppDonations.hasAtLeastOnePaymentMethodAvailable(),
       TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account.isRegistered,
       SignalStore.misc.isClientDeprecated
     )
@@ -62,6 +62,6 @@ class AppSettingsViewModel : ViewModel() {
   }
 
   fun refreshExpiredGiftBadge() {
-    store.update { it.copy(hasExpiredGiftBadge = SignalStore.donations.getExpiredGiftBadge() != null) }
+    store.update { it.copy(hasExpiredGiftBadge = SignalStore.inAppPayments.getExpiredGiftBadge() != null) }
   }
 }

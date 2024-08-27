@@ -21,6 +21,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.BiometricDeviceLockContract
@@ -36,9 +37,9 @@ import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -197,7 +198,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
                   KeyCachingService.getMasterSecret(context),
                   MasterSecretUtil.UNENCRYPTED_PASSPHRASE
                 )
-                TextSecurePreferences.setPasswordDisabled(activity, true)
+                SignalStore.settings.passphraseDisabled = true
                 val intent = Intent(activity, KeyCachingService::class.java)
                 intent.action = KeyCachingService.DISABLE_ACTION
                 requireActivity().startService(intent)
@@ -249,33 +250,21 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
       } else {
         val isKeyguardSecure = ServiceUtil.getKeyguardManager(requireContext()).isKeyguardSecure
 
-        switchPref(
-          title = DSLSettingsText.from(R.string.preferences_app_protection__screen_lock),
-          summary = DSLSettingsText.from(R.string.preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint),
-          isChecked = state.screenLock && isKeyguardSecure,
-          isEnabled = isKeyguardSecure,
-          onClick = {
-            viewModel.setScreenLockEnabled(!state.screenLock)
-
-            val intent = Intent(requireContext(), KeyCachingService::class.java)
-            intent.action = KeyCachingService.LOCK_TOGGLED_EVENT
-            requireContext().startService(intent)
-
-            ConversationUtil.refreshRecipientShortcuts()
-          }
-        )
-
         clickPref(
-          title = DSLSettingsText.from(R.string.preferences_app_protection__screen_lock_inactivity_timeout),
-          summary = DSLSettingsText.from(getScreenLockInactivityTimeoutSummary(state.screenLockActivityTimeout)),
-          isEnabled = isKeyguardSecure && state.screenLock,
+          title = DSLSettingsText.from(R.string.preferences_app_protection__screen_lock),
+          summary = DSLSettingsText.from(getScreenLockInactivityTimeoutSummary(isKeyguardSecure && state.screenLock, state.screenLockActivityTimeout)),
           onClick = {
-            childFragmentManager.clearFragmentResult(TimeDurationPickerDialog.RESULT_DURATION)
-            childFragmentManager.clearFragmentResultListener(TimeDurationPickerDialog.RESULT_DURATION)
-            childFragmentManager.setFragmentResultListener(TimeDurationPickerDialog.RESULT_DURATION, this@PrivacySettingsFragment) { _, bundle ->
-              viewModel.setScreenLockTimeout(bundle.getLong(TimeDurationPickerDialog.RESULT_KEY_DURATION_MILLISECONDS).milliseconds.inWholeSeconds)
-            }
-            TimeDurationPickerDialog.create(state.screenLockActivityTimeout.seconds).show(childFragmentManager, null)
+            Navigation.findNavController(requireView()).safeNavigate(R.id.action_privacySettingsFragment_to_screenLockSettingsFragment)
+          },
+          isEnabled = isKeyguardSecure,
+          onDisabledClicked = {
+            Snackbar
+              .make(
+                requireView(),
+                resources.getString(R.string.preferences_app_protection__to_use_screen_lock),
+                Snackbar.LENGTH_LONG
+              )
+              .show()
           }
         )
       }
@@ -362,9 +351,12 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
     }
   }
 
-  private fun getScreenLockInactivityTimeoutSummary(timeoutSeconds: Long): String {
-    return if (timeoutSeconds <= 0) {
-      getString(R.string.AppProtectionPreferenceFragment_none)
+  private fun getScreenLockInactivityTimeoutSummary(enabledScreenLock: Boolean, timeoutSeconds: Long): String {
+    return if (!enabledScreenLock) {
+      getString(R.string.ScreenLockSettingsFragment__off)
+    } else if (timeoutSeconds == 0L) {
+      Log.i(TAG, "Default immediate screen lock to one minute")
+      ExpirationUtil.getExpirationDisplayValue(requireContext(), 60)
     } else {
       ExpirationUtil.getExpirationDisplayValue(requireContext(), timeoutSeconds.toInt())
     }

@@ -67,7 +67,9 @@ public class MediaUploadRepository {
   public void startUpload(@NonNull Collection<Media> mediaItems, @Nullable Recipient recipient) {
     executor.execute(() -> {
       for (Media media : mediaItems) {
+        Log.d(TAG, "Canceling existing preuploads.");
         cancelUploadInternal(media);
+        Log.d(TAG, "Re-uploading media with recipient.");
         uploadMediaInternal(media, recipient);
       }
     });
@@ -85,7 +87,9 @@ public class MediaUploadRepository {
         boolean same     = oldMedia.equals(newMedia) && hasSameTransformProperties(oldMedia, newMedia);
 
         if (!same || !uploadResults.containsKey(newMedia)) {
+          Log.d(TAG, "Canceling existing preuploads.");
           cancelUploadInternal(oldMedia);
+          Log.d(TAG, "Applying media updates.");
           uploadMediaInternal(newMedia, recipient);
         }
       }
@@ -104,6 +108,7 @@ public class MediaUploadRepository {
   }
 
   public void cancelUpload(@NonNull Media media) {
+    Log.d(TAG, "User canceling media upload.");
     executor.execute(() -> cancelUploadInternal(media));
   }
 
@@ -209,16 +214,16 @@ public class MediaUploadRepository {
   }
 
   public static @NonNull Attachment asAttachment(@NonNull Context context, @NonNull Media media) {
-    if (MediaUtil.isVideoType(media.getMimeType())) {
+    if (MediaUtil.isVideoType(media.getContentType())) {
       return new VideoSlide(context, media.getUri(), media.getSize(), media.isVideoGif(), media.getWidth(), media.getHeight(), media.getCaption().orElse(null), media.getTransformProperties().orElse(null)).asAttachment();
-    } else if (MediaUtil.isGif(media.getMimeType())) {
+    } else if (MediaUtil.isGif(media.getContentType())) {
       return new GifSlide(context, media.getUri(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orElse(null)).asAttachment();
-    } else if (MediaUtil.isImageType(media.getMimeType())) {
-      return new ImageSlide(context, media.getUri(), media.getMimeType(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orElse(null), null, media.getTransformProperties().orElse(null)).asAttachment();
-    } else if (MediaUtil.isTextType(media.getMimeType())) {
+    } else if (MediaUtil.isImageType(media.getContentType())) {
+      return new ImageSlide(context, media.getUri(), media.getContentType(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orElse(null), null, media.getTransformProperties().orElse(null)).asAttachment();
+    } else if (MediaUtil.isTextType(media.getContentType())) {
       return new TextSlide(context, media.getUri(), null, media.getSize()).asAttachment();
     } else {
-      throw new AssertionError("Unexpected mimeType: " + media.getMimeType());
+      throw new AssertionError("Unexpected mimeType: " + media.getContentType());
     }
   }
 

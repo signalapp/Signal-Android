@@ -13,7 +13,8 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.toMillis
 import java.time.LocalDateTime
 import java.util.Random
-import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.minutes
 
 class MessageBackupListener : PersistentAlarmManagerListener() {
   override fun shouldScheduleExact(): Boolean {
@@ -26,13 +27,15 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
 
   override fun onAlarm(context: Context, scheduledTime: Long): Long {
     if (SignalStore.backup.areBackupsEnabled) {
-      BackupMessagesJob.enqueue()
+      val timeSinceLastSync = System.currentTimeMillis() - SignalStore.backup.lastMediaSyncTime
+      BackupMessagesJob.enqueue(pruneAbandonedRemoteMedia = timeSinceLastSync >= BACKUP_MEDIA_SYNC_INTERVAL || timeSinceLastSync < 0)
     }
     return setNextBackupTimeToIntervalFromNow()
   }
 
   companion object {
-    private val BACKUP_JITTER_WINDOW_SECONDS = Math.toIntExact(TimeUnit.MINUTES.toSeconds(10))
+    private val BACKUP_JITTER_WINDOW_SECONDS = 10.minutes.inWholeSeconds.toInt()
+    private val BACKUP_MEDIA_SYNC_INTERVAL = 7.days.inWholeMilliseconds
 
     @JvmStatic
     fun schedule(context: Context?) {
@@ -42,22 +45,23 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
     }
 
     @JvmStatic
-    fun getNextDailyBackupTimeFromNowWithJitter(now: LocalDateTime, hour: Int, minute: Int, maxJitterSeconds: Int): LocalDateTime {
+    fun getNextDailyBackupTimeFromNowWithJitter(now: LocalDateTime, hour: Int, minute: Int, maxJitterSeconds: Int, randomSource: Random = Random()): LocalDateTime {
       var next = now.withHour(hour).withMinute(minute).withSecond(0)
 
-      if (!now.plusSeconds(maxJitterSeconds.toLong() / 2).isBefore(next)) {
+      val endOfJitterWindowForNow = now.plusSeconds(maxJitterSeconds.toLong() / 2)
+      while (!endOfJitterWindowForNow.isBefore(next)) {
         next = next.plusDays(1)
       }
 
-      val jitter = Random().nextInt(BACKUP_JITTER_WINDOW_SECONDS) - BACKUP_JITTER_WINDOW_SECONDS / 2
+      val jitter = randomSource.nextInt(maxJitterSeconds) - maxJitterSeconds / 2
       return next.plusSeconds(jitter.toLong())
     }
 
-    fun setNextBackupTimeToIntervalFromNow(): Long {
+    fun setNextBackupTimeToIntervalFromNow(maxJitterSeconds: Int = BACKUP_JITTER_WINDOW_SECONDS): Long {
       val now = LocalDateTime.now()
       val hour = SignalStore.settings.backupHour
       val minute = SignalStore.settings.backupMinute
-      var next = getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, BACKUP_JITTER_WINDOW_SECONDS)
+      var next = getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, maxJitterSeconds)
       next = when (SignalStore.backup.backupFrequency) {
         BackupFrequency.MANUAL -> next.plusDays(364)
         BackupFrequency.MONTHLY -> next.plusDays(29)

@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.components.webrtc;
 
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
@@ -24,14 +28,15 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
+public class CallParticipantsListUpdatePopupWindow extends PopupWindow implements DefaultLifecycleObserver {
 
-  private static final long DURATION = TimeUnit.SECONDS.toMillis(2);
+  private static final long DURATION = TimeUnit.SECONDS.toMillis(10);
 
   private final ViewGroup       parent;
   private final AvatarImageView avatarImageView;
   private final BadgeImageView  badgeImageView;
   private final TextView        descriptionTextView;
+  private final Handler         handler;
 
   private final Set<CallParticipantListUpdate.Wrapper> pendingAdditions = new HashSet<>();
   private final Set<CallParticipantListUpdate.Wrapper> pendingRemovals  = new HashSet<>();
@@ -47,6 +52,7 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
     this.avatarImageView     = getContentView().findViewById(R.id.avatar);
     this.badgeImageView      = getContentView().findViewById(R.id.badge);
     this.descriptionTextView = getContentView().findViewById(R.id.description);
+    this.handler             = new Handler(Looper.getMainLooper());
 
     setOnDismissListener(this::showPending);
     setAnimationStyle(R.style.PopupAnimation);
@@ -70,6 +76,13 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
     if (!isEnabled) {
       dismiss();
     }
+  }
+
+  @Override
+  public void onDestroy(@NonNull LifecycleOwner owner) {
+    handler.removeCallbacksAndMessages(null);
+    setOnDismissListener(null);
+    dismiss();
   }
 
   private void showPending() {
@@ -102,7 +115,7 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
     showAtLocation(parent, Gravity.TOP | Gravity.START, 0, 0);
     measureChild();
     update();
-    getContentView().postDelayed(this::dismiss, DURATION);
+    handler.postDelayed(this::dismiss, DURATION);
   }
 
   private void measureChild() {

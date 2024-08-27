@@ -101,6 +101,17 @@ class ConversationViewModel(
     get() = scrollButtonStateStore.state.unreadCount
 
   val recipient: Observable<Recipient> = recipientRepository.conversationRecipient
+  val titleViewParticipants: Observable<List<Recipient>> = recipient.filter { it.isGroup }.switchMap { groupRecipient ->
+    val firstTenIds = groupRecipient.participantIds
+      .take(10)
+      .sortedBy { it == Recipient.self().id }
+
+    Observable.combineLatest(
+      firstTenIds.map { Recipient.observable(it) }
+    ) { objects ->
+      objects.toList() as List<Recipient>
+    }
+  }
 
   private val _conversationThreadState: Subject<ConversationThreadState> = BehaviorSubject.create()
   val conversationThreadState: Single<ConversationThreadState> = _conversationThreadState.firstOrError()
@@ -120,6 +131,10 @@ class ConversationViewModel(
 
   @Volatile
   var recipientSnapshot: Recipient? = null
+    private set
+
+  @Volatile
+  var titleViewParticipantsSnapshot: List<Recipient> = emptyList()
     private set
 
   val isPushAvailable: Boolean
@@ -165,6 +180,11 @@ class ConversationViewModel(
     disposables += recipient
       .subscribeBy {
         recipientSnapshot = it
+      }
+
+    disposables += titleViewParticipants
+      .subscribeBy {
+        titleViewParticipantsSnapshot = it
       }
 
     val chatColorsDataObservable: Observable<ChatColorsDrawable.ChatColorsData> = Observable.combineLatest(

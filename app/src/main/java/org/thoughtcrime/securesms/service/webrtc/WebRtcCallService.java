@@ -87,8 +87,12 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   private Disposable                      lastNotificationDisposable = Disposable.disposed();
   private boolean                         stopping                   = false;
 
+  private static boolean useActiveCallManager() {
+    return Build.VERSION.SDK_INT >= 34 || RemoteConfig.useActiveCallManager();
+  }
+
   public synchronized static void update(@NonNull Context context, int type, @NonNull RecipientId recipientId, boolean isVideoCall) {
-    if (RemoteConfig.useActiveCallManager()) {
+    if (useActiveCallManager()) {
       ActiveCallManager.update(context, type, recipientId, isVideoCall);
 
       return;
@@ -104,7 +108,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   public static void denyCall(@NonNull Context context) {
-    if (RemoteConfig.useActiveCallManager()) {
+    if (useActiveCallManager()) {
       ActiveCallManager.denyCall();
       return;
     }
@@ -113,7 +117,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   public static void hangup(@NonNull Context context) {
-    if (RemoteConfig.useActiveCallManager()) {
+    if (useActiveCallManager()) {
       ActiveCallManager.hangup();
       return;
     }
@@ -122,7 +126,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   public synchronized static void stop(@NonNull Context context) {
-    if (RemoteConfig.useActiveCallManager()) {
+    if (useActiveCallManager()) {
       ActiveCallManager.stop();
       return;
     }
@@ -134,7 +138,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   public synchronized static @NonNull PendingIntent denyCallIntent(@NonNull Context context) {
-    if (RemoteConfig.useActiveCallManager()) {
+    if (useActiveCallManager()) {
       return ActiveCallManager.denyCallIntent(context);
     }
 
@@ -142,7 +146,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   public synchronized static @NonNull PendingIntent hangupIntent(@NonNull Context context) {
-    if (RemoteConfig.useActiveCallManager()) {
+    if (useActiveCallManager()) {
       return ActiveCallManager.hangupIntent(context);
     }
 
@@ -150,7 +154,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   public synchronized static void sendAudioManagerCommand(@NonNull Context context, @NonNull AudioManagerCommand command) {
-    if (RemoteConfig.useActiveCallManager()) {
+    if (useActiveCallManager()) {
       ActiveCallManager.sendAudioManagerCommand(context, command);
       return;
     }
@@ -162,7 +166,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   public synchronized static void changePowerButtonReceiver(@NonNull Context context, boolean register) {
-    if (RemoteConfig.useActiveCallManager()) {
+    if (useActiveCallManager()) {
       ActiveCallManager.changePowerButtonReceiver(context, register);
       return;
     }
@@ -315,7 +319,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     }
 
     if (Build.VERSION.SDK_INT >= 30) {
-      startForeground(notificationId, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA | ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE);
+      startForeground(notificationId, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
     } else {
       startForeground(notificationId, notification);
     }

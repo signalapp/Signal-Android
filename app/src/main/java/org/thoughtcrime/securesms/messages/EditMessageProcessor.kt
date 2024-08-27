@@ -122,7 +122,7 @@ object EditMessageProcessor {
   ): InsertResult? {
     val messageRanges: BodyRangeList? = message.bodyRanges.filter { it.mentionAci == null }.toList().toBodyRangeList()
     val targetQuote = targetMessage.quote
-    val quote: QuoteModel? = if (targetQuote != null && message.quote != null) {
+    val quote: QuoteModel? = if (targetQuote != null && (message.quote != null || (targetMessage.parentStoryId != null && message.storyContext != null))) {
       QuoteModel(
         targetQuote.id,
         targetQuote.author,
@@ -153,6 +153,7 @@ object EditMessageProcessor {
       groupId = groupId,
       attachments = attachments,
       quote = quote,
+      parentStoryId = targetMessage.parentStoryId,
       sharedContacts = emptyList(),
       linkPreviews = DataMessageProcessor.getLinkPreviews(message.preview, message.body ?: "", false),
       mentions = DataMessageProcessor.getMentions(message.bodyRanges),
@@ -188,6 +189,7 @@ object EditMessageProcessor {
       receivedTimeMillis = targetMessage.dateReceived,
       body = message.body,
       groupId = groupId,
+      parentStoryId = targetMessage.parentStoryId,
       expiresIn = targetMessage.expiresIn,
       isUnidentified = metadata.sealedSender,
       serverGuid = envelope.serverGuid

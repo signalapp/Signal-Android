@@ -53,6 +53,7 @@ public class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcesso
                                                                             new byte[0],
                                                                             null,
                                                                             RingRtcDynamicConfiguration.getAudioProcessingMethod(),
+                                                                            SignalStore.internal().callingEnableOboeAdm(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
     return currentState.builder()

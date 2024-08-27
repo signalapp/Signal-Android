@@ -32,7 +32,7 @@ class ExpiredOneTimeBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragm
   private fun getConfiguration(): DSLConfiguration {
     val args = ExpiredOneTimeBadgeBottomSheetDialogFragmentArgs.fromBundle(requireArguments())
     val badge: Badge = args.badge
-    val isLikelyASustainer = SignalStore.donations.isLikelyASustainer()
+    val isLikelyASustainer = SignalStore.inAppPayments.isLikelyASustainer()
 
     Log.d(TAG, "Displaying Expired Badge Fragment with bundle: ${requireArguments()}", true)
 

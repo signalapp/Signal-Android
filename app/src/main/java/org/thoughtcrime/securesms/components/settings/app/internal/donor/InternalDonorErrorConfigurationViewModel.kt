@@ -117,11 +117,11 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   fun clearErrorState(): Completable {
     return Completable.fromAction {
       synchronized(InAppPaymentSubscriberRecord.Type.DONATION) {
-        SignalStore.donations.setExpiredBadge(null)
-        SignalStore.donations.setExpiredGiftBadge(null)
-        SignalStore.donations.unexpectedSubscriptionCancelationReason = null
-        SignalStore.donations.unexpectedSubscriptionCancelationTimestamp = 0L
-        SignalStore.donations.setUnexpectedSubscriptionCancelationChargeFailure(null)
+        SignalStore.inAppPayments.setExpiredBadge(null)
+        SignalStore.inAppPayments.setExpiredGiftBadge(null)
+        SignalStore.inAppPayments.unexpectedSubscriptionCancelationReason = null
+        SignalStore.inAppPayments.unexpectedSubscriptionCancelationTimestamp = 0L
+        SignalStore.inAppPayments.setUnexpectedSubscriptionCancelationChargeFailure(null)
       }
 
       store.update {
@@ -135,24 +135,24 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   }
 
   private fun handleBoostExpiration(state: InternalDonorErrorConfigurationState) {
-    SignalStore.donations.setExpiredBadge(state.selectedBadge)
+    SignalStore.inAppPayments.setExpiredBadge(state.selectedBadge)
   }
 
   private fun handleGiftExpiration(state: InternalDonorErrorConfigurationState) {
-    SignalStore.donations.setExpiredGiftBadge(state.selectedBadge)
+    SignalStore.inAppPayments.setExpiredGiftBadge(state.selectedBadge)
   }
 
   private fun handleSubscriptionExpiration(state: InternalDonorErrorConfigurationState) {
-    SignalStore.donations.updateLocalStateForLocalSubscribe(InAppPaymentSubscriberRecord.Type.DONATION)
-    SignalStore.donations.setExpiredBadge(state.selectedBadge)
+    SignalStore.inAppPayments.updateLocalStateForLocalSubscribe(InAppPaymentSubscriberRecord.Type.DONATION)
+    SignalStore.inAppPayments.setExpiredBadge(state.selectedBadge)
     handleSubscriptionPaymentFailure(state)
   }
 
   private fun handleSubscriptionPaymentFailure(state: InternalDonorErrorConfigurationState) {
-    SignalStore.donations.unexpectedSubscriptionCancelationReason = state.selectedUnexpectedSubscriptionCancellation?.status
-    SignalStore.donations.unexpectedSubscriptionCancelationTimestamp = System.currentTimeMillis()
-    SignalStore.donations.showMonthlyDonationCanceledDialog = true
-    SignalStore.donations.setUnexpectedSubscriptionCancelationChargeFailure(
+    SignalStore.inAppPayments.unexpectedSubscriptionCancelationReason = state.selectedUnexpectedSubscriptionCancellation?.status
+    SignalStore.inAppPayments.unexpectedSubscriptionCancelationTimestamp = System.currentTimeMillis()
+    SignalStore.inAppPayments.showMonthlyDonationCanceledDialog = true
+    SignalStore.inAppPayments.setUnexpectedSubscriptionCancelationChargeFailure(
       state.selectedStripeDeclineCode?.let {
         ActiveSubscription.ChargeFailure(
           it.code,

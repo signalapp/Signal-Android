@@ -18,7 +18,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
 import org.whispersystems.signalservice.internal.push.SyncMessage.CallLinkUpdate
-import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 /**
@@ -83,7 +82,7 @@ class CallLinkUpdateSendJob private constructor(
     )
 
     AppDependencies.signalServiceMessageSender
-      .sendSyncMessage(SignalServiceSyncMessage.forCallLinkUpdate(callLinkUpdate), Optional.empty())
+      .sendSyncMessage(SignalServiceSyncMessage.forCallLinkUpdate(callLinkUpdate))
 
     if (callLinkUpdateType == CallLinkUpdate.Type.DELETE) {
       SignalDatabase.callLinks.deleteCallLink(callLinkRoomId)

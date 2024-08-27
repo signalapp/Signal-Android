@@ -520,10 +520,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from("Disable LBRed"),
-        isChecked = state.callingDisableLBRed,
+        title = DSLSettingsText.from("Enable Oboe ADM"),
+        isChecked = state.callingEnableOboeAdm,
         onClick = {
-          viewModel.setInternalCallingDisableLBRed(!state.callingDisableLBRed)
+          viewModel.setInternalCallingEnableOboeAdm(!state.callingEnableOboeAdm)
         }
       )
 
@@ -557,9 +557,9 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         clickPref(
           title = DSLSettingsText.from("Clear keep-alive timestamps"),
           onClick = {
-            SignalStore.donations.subscriptionEndOfPeriodRedemptionStarted = 0L
-            SignalStore.donations.subscriptionEndOfPeriodConversionStarted = 0L
-            SignalStore.donations.setLastEndOfPeriod(0L)
+            SignalStore.inAppPayments.subscriptionEndOfPeriodRedemptionStarted = 0L
+            SignalStore.inAppPayments.subscriptionEndOfPeriodConversionStarted = 0L
+            SignalStore.inAppPayments.setLastEndOfPeriod(0L)
             Toast.makeText(context, "Cleared", Toast.LENGTH_SHORT).show()
           }
         )
@@ -570,7 +570,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         clickPref(
           title = DSLSettingsText.from("Clear pending one-time donation."),
           onClick = {
-            SignalStore.donations.setPendingOneTimeDonation(null)
+            SignalStore.inAppPayments.setPendingOneTimeDonation(null)
           }
         )
       } else {

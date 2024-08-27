@@ -69,7 +69,7 @@ class InternalPendingOneTimeDonationConfigurationFragment : ComposeFragment() {
         viewModel.state.value = viewModel.state.value.copy(error = viewModel.state.value.error!!.copy(code = it))
       },
       onSave = {
-        SignalStore.donations.setPendingOneTimeDonation(viewModel.state.value)
+        SignalStore.inAppPayments.setPendingOneTimeDonation(viewModel.state.value)
         findNavController().popBackStack()
       }
     )

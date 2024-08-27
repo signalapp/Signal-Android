@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -16,7 +16,7 @@ class DonationReceiptDetailViewModel(id: Long, private val repository: DonationR
   private val store = Store(DonationReceiptDetailState())
   private val disposables = CompositeDisposable()
   private var networkDisposable: Disposable
-  private val cachedRecord: Single<DonationReceiptRecord> = repository.getDonationReceiptRecord(id).cache()
+  private val cachedRecord: Single<InAppPaymentReceiptRecord> = repository.getDonationReceiptRecord(id).cache()
 
   val state: LiveData<DonationReceiptDetailState> = store.stateLiveData
 
@@ -43,7 +43,7 @@ class DonationReceiptDetailViewModel(id: Long, private val repository: DonationR
     disposables.clear()
 
     disposables += cachedRecord.subscribe { record ->
-      store.update { it.copy(donationReceiptRecord = record) }
+      store.update { it.copy(inAppPaymentReceiptRecord = record) }
     }
 
     disposables += cachedRecord.flatMap {

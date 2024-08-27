@@ -20,12 +20,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorStage
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorStage
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.databinding.DonationInProgressFragmentBinding
@@ -60,15 +61,15 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
     if (savedInstanceState == null) {
       viewModel.onBeginNewAction()
       when (args.action) {
-        DonationProcessorAction.PROCESS_NEW_DONATION -> {
+        InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT -> {
           viewModel.processNewDonation(args.inAppPayment!!, this::oneTimeConfirmationPipeline, this::monthlyConfirmationPipeline)
         }
 
-        DonationProcessorAction.UPDATE_SUBSCRIPTION -> {
+        InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION -> {
           viewModel.updateSubscription(args.inAppPayment!!)
         }
 
-        DonationProcessorAction.CANCEL_SUBSCRIPTION -> {
+        InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION -> {
           viewModel.cancelSubscription(InAppPaymentSubscriberRecord.Type.DONATION) // TODO [message-backups] Remove hardcode
         }
       }
@@ -80,43 +81,51 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
     }
   }
 
-  private fun presentUiState(stage: DonationProcessorStage) {
+  private fun presentUiState(stage: InAppPaymentProcessorStage) {
     when (stage) {
-      DonationProcessorStage.INIT -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
-      DonationProcessorStage.PAYMENT_PIPELINE -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
-      DonationProcessorStage.FAILED -> {
+      InAppPaymentProcessorStage.INIT -> binding.progressCardStatus.text = getProcessingStatus()
+      InAppPaymentProcessorStage.PAYMENT_PIPELINE -> binding.progressCardStatus.text = getProcessingStatus()
+      InAppPaymentProcessorStage.FAILED -> {
         viewModel.onEndAction()
         findNavController().popBackStack()
         setFragmentResult(
           REQUEST_KEY,
           bundleOf(
-            REQUEST_KEY to DonationProcessorActionResult(
+            REQUEST_KEY to InAppPaymentProcessorActionResult(
               action = args.action,
               inAppPayment = args.inAppPayment,
               inAppPaymentType = args.inAppPaymentType,
-              status = DonationProcessorActionResult.Status.FAILURE
+              status = InAppPaymentProcessorActionResult.Status.FAILURE
             )
           )
         )
       }
 
-      DonationProcessorStage.COMPLETE -> {
+      InAppPaymentProcessorStage.COMPLETE -> {
         viewModel.onEndAction()
         findNavController().popBackStack()
         setFragmentResult(
           REQUEST_KEY,
           bundleOf(
-            REQUEST_KEY to DonationProcessorActionResult(
+            REQUEST_KEY to InAppPaymentProcessorActionResult(
               action = args.action,
               inAppPayment = args.inAppPayment,
               inAppPaymentType = args.inAppPaymentType,
-              status = DonationProcessorActionResult.Status.SUCCESS
+              status = InAppPaymentProcessorActionResult.Status.SUCCESS
             )
           )
         )
       }
 
-      DonationProcessorStage.CANCELLING -> binding.progressCardStatus.setText(R.string.StripePaymentInProgressFragment__cancelling)
+      InAppPaymentProcessorStage.CANCELLING -> binding.progressCardStatus.setText(R.string.StripePaymentInProgressFragment__cancelling)
+    }
+  }
+
+  private fun getProcessingStatus(): String {
+    return if (args.inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
+      getString(R.string.InAppPaymentInProgressFragment__processing_payment)
+    } else {
+      getString(R.string.InAppPaymentInProgressFragment__processing_donation)
     }
   }
 

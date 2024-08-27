@@ -232,7 +232,7 @@ public abstract class MessageRecord extends DisplayRecord {
       return getProfileChangeDescription(context);
     } else if (isChangeNumber()) {
       return fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_s_changed_their_phone_number, r.getDisplayName(context)), R.drawable.ic_phone_16);
-    } else if (isBoostRequest()) {
+    } else if (isReleaseChannelDonationRequest()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation), 0);
     } else if (isEndSession()) {
       if (isOutgoing()) return staticUpdateDescription(context.getString(R.string.SmsMessageRecord_secure_session_reset), R.drawable.ic_update_info_16);
@@ -352,7 +352,7 @@ public abstract class MessageRecord extends DisplayRecord {
       if (messageExtras.gv2UpdateDescription.groupChangeUpdate != null) {
         GroupsV2UpdateMessageProducer updateMessageProducer = new GroupsV2UpdateMessageProducer(context, SignalStore.account().getServiceIds(), recipientClickHandler);
 
-        return UpdateDescription.concatWithNewLines(updateMessageProducer.describeChanges(messageExtras.gv2UpdateDescription.groupChangeUpdate.updates));
+        return concatWithNewLinesCapped(context, updateMessageProducer.describeChanges(messageExtras.gv2UpdateDescription.groupChangeUpdate.updates));
       } else if (messageExtras.gv2UpdateDescription.gv2ChangeDescription != null) {
         return getGv2ChangeDescription(context, messageExtras.gv2UpdateDescription.gv2ChangeDescription, recipientClickHandler);
       } else {
@@ -367,7 +367,7 @@ public abstract class MessageRecord extends DisplayRecord {
       GroupsV2UpdateMessageProducer  updateMessageProducer   = new GroupsV2UpdateMessageProducer(context, SignalStore.account().getServiceIds(), recipientClickHandler);
 
       if (decryptedGroupV2Context.change != null && ((decryptedGroupV2Context.groupState != null && decryptedGroupV2Context.groupState.revision != 0) || decryptedGroupV2Context.previousGroupState != null)) {
-        return UpdateDescription.concatWithNewLines(updateMessageProducer.describeChanges(decryptedGroupV2Context.previousGroupState, decryptedGroupV2Context.change));
+        return concatWithNewLinesCapped(context, updateMessageProducer.describeChanges(decryptedGroupV2Context.previousGroupState, decryptedGroupV2Context.change));
       } else {
         List<UpdateDescription> newGroupDescriptions = new ArrayList<>();
         newGroupDescriptions.add(updateMessageProducer.describeNewGroup(decryptedGroupV2Context.groupState, decryptedGroupV2Context.change));
@@ -379,12 +379,20 @@ public abstract class MessageRecord extends DisplayRecord {
         if (selfCreatedGroup(decryptedGroupV2Context.change)) {
           newGroupDescriptions.add(staticUpdateDescription(context.getString(R.string.MessageRecord_invite_friends_to_this_group), 0));
         }
-        return UpdateDescription.concatWithNewLines(newGroupDescriptions);
+        return concatWithNewLinesCapped(context, newGroupDescriptions);
       }
     } catch (IllegalArgumentException | IllegalStateException e) {
       Log.w(TAG, "GV2 Message update detail could not be read", e);
       return staticUpdateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16);
     }
+  }
+
+  private static @NonNull UpdateDescription concatWithNewLinesCapped(@NonNull Context context, @NonNull List<UpdateDescription> updateDescriptions) {
+    if (updateDescriptions.size() > 100) {
+      // Arbitrary update description collapse cap, otherwise the long string can cause issues
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16);
+    }
+    return UpdateDescription.concatWithNewLines(updateDescriptions);
   }
 
   public @Nullable InviteAddState getGv2AddInviteState() {
@@ -508,7 +516,7 @@ public abstract class MessageRecord extends DisplayRecord {
         updates.add(staticUpdateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed, count, count), R.drawable.ic_update_group_remove_16));
       }
 
-      return UpdateDescription.concatWithNewLines(updates);
+      return concatWithNewLinesCapped(context, updates);
     }
   }
 
@@ -606,6 +614,9 @@ public abstract class MessageRecord extends DisplayRecord {
     if ((isPush() || isCallLog()) && getDateSent() < getDateReceived()) {
       return getDateSent();
     }
+    if (isEditMessage()) {
+      return getDateSent();
+    }
     return getDateReceived();
   }
 
@@ -673,7 +684,7 @@ public abstract class MessageRecord extends DisplayRecord {
     return isGroupAction() || isJoined() || isExpirationTimerUpdate() || isCallLog() ||
            isEndSession() || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() ||
            isProfileChange() || isGroupV1MigrationEvent() || isChatSessionRefresh() || isBadDecryptType() ||
-           isChangeNumber() || isBoostRequest() || isThreadMergeEventType() || isSmsExportType() || isSessionSwitchoverEventType() ||
+           isChangeNumber() || isReleaseChannelDonationRequest() || isThreadMergeEventType() || isSmsExportType() || isSessionSwitchoverEventType() ||
            isPaymentsRequestToActivate() || isPaymentsActivated() || isReportedSpam() || isMessageRequestAccepted();
   }
 

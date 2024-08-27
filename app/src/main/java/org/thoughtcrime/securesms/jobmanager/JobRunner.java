@@ -8,10 +8,12 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.jobs.MinimalJobSpec;
 import org.thoughtcrime.securesms.util.WakeLockUtil;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Predicate;
 
 /**
  * A thread that constantly checks for available {@link Job}s owned by the {@link JobController}.
@@ -27,12 +29,12 @@ class JobRunner extends Thread {
 
   private static long WAKE_LOCK_TIMEOUT = TimeUnit.MINUTES.toMillis(10);
 
-  private final Application   application;
-  private final int           id;
-  private final JobController jobController;
-  private final JobPredicate  jobPredicate;
+  private final Application               application;
+  private final int                       id;
+  private final JobController             jobController;
+  private final Predicate<MinimalJobSpec> jobPredicate;
 
-  JobRunner(@NonNull Application application, int id, @NonNull JobController jobController, @NonNull JobPredicate predicate) {
+  JobRunner(@NonNull Application application, int id, @NonNull JobController jobController, @NonNull Predicate<MinimalJobSpec> predicate) {
     super("signal-JobRunner-" + id);
 
     this.application   = application;

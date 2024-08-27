@@ -88,6 +88,20 @@
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">អនុញ្ញាតចូលប្រើប្រាស់</string>
     <string name="AttachmentKeyboard_payment">ការទូទាត់</string>
+    <!-- Text in a button that allows users to manage which media Signal has access to -->
+    <string name="AttachmentKeyboard_manage">គ្រប់គ្រង</string>
+    <!-- Option in menu to select more photos that Signal will have access to -->
+    <string name="AttachmentKeyboard_select_more_photos">ជ្រើសរើសរូបថតជាច្រើនទៀត</string>
+    <!-- Option in menu to go to settings -->
+    <string name="AttachmentKeyboard_go_to_settings">ទៅកាន់ ការកំណត់</string>
+    <!-- Text explaining that Signal has limited access to photos -->
+    <string name="AttachmentKeyboard_signal_has_limited_access">Signal មានសិទ្ធិចូលប្រើរូបថត ឬវីដេអូនៅមានកម្រិត</string>
+    <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
+    <string name="AttachmentKeyboard_no_photos_found">រកមិនឃើញរូបថតទេ សូមជ្រើសរើសរូបថត និងវីដេអូ ដើម្បីបង្ហាញនៅទីនេះ ឬផ្លាស់ប្តូរការអនុញ្ញាត</string>
+
+    <!-- MediaGalleryFragment -->
+    <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
+    <string name="MediaGalleryFragment__no_photos_found">រកមិនឃើញរូបថត ឬវីដេអូទេ។ Signal មានសិទ្ធិចូលប្រើតែរូបថត និងវីដេអូដែលអ្នកបានជ្រើសរើសប៉ុណ្ណោះ។</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">មិនអាចស្វែងរកកម្មវិធីដើម្បីជ្រើសរើសព័ត៌មាន</string>
@@ -108,7 +122,7 @@
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">ដើម្បីបង្ហាញរូបថត និងវីដេអូ៖</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Signal ត្រូវការចូលប្រើកន្លែងផ្ទុកដើម្បីបង្ហាញរូបថត និងវីដេអូរបស់អ្នក។</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Signal ត្រូវការសិទ្ធិចូលប្រើដើម្បីបង្ហាញរូបថត និងវីដេអូរបស់អ្នក។</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s មិនទាន់បានបើកដំណើរការការបង់ប្រាក់ </string>
@@ -170,6 +184,8 @@
     <string name="CreditCardFragment__donate_s">បរិច្ចាគ %1$s</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
     <string name="CreditCardFragment__donate_s_month">បរិច្ចាគ %1$s/ខែ</string>
+    <!-- Button label to confirm credit card input and proceed with backups payment. Placeholder is formatted price. -->
+    <string name="CreditCardFragment__pay_s_month">បរិច្ចាគ %1$s/ខែ</string>
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
@@ -219,6 +235,22 @@
     <string name="BucketedThreadMedia_Large">ធំ</string>
     <string name="BucketedThreadMedia_Medium">មធ្យម</string>
     <string name="BucketedThreadMedia_Small">តូច</string>
+
+    <!-- CallInfoView -->
+    <!-- Unknown people row text when the only people in the call are unknowns -->
+    <plurals name="CallInfoView__d_people">
+        <item quantity="other">មនុស្ស %1$d នាក់</item>
+    </plurals>
+    <!-- Unknown people row, placeholder is the number of unknown people in the call -->
+    <plurals name="CallInfoView__plus_d_people">
+        <item quantity="other">មនុស្ស +%1$d នាក់</item>
+    </plurals>
+    <!-- Unknown people row icon content description -->
+    <string name="CallInfoView__more_information">ព័ត៌មានបន្ថែម</string>
+    <!-- Unknown people row info dialog message -->
+    <string name="CallInfoView__before_joining_a_call">មុនពេលចូលរួមការហៅទូរសព្ទ អ្នកអាចមើលឃើញតែឈ្មោះរបស់ទំនាក់ទំនងទូរសព្ទ មនុស្សដែលអ្នកនៅក្នុងក្រុមជាមួយ ឬមនុស្សដែលអ្នកបានជជែកជាមួយមួយទល់មួយប៉ុណ្ណោះ។ អ្នកនឹងឃើញឈ្មោះ និងរូបថតទាំងអស់នៅពេលដែលអ្នកបានចូលរួមការហៅ។</string>
+    <!-- Unknown people row info dialog action to close the dialog -->
+    <string name="CallInfoView__got_it">យល់ហើយ</string>
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
@@ -440,7 +472,7 @@
     <!-- Dialog title asking users for microphone permission -->
     <string name="ConversationActivity_allow_access_microphone">អនុញ្ញាតឱ្យចូលប្រើមីក្រូហ្វូនរបស់អ្នក</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">ដើម្បីផ្ញើសារសំឡេង៖</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">ដើម្បីផ្ញើសារជាសំឡេង៖</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">ដើម្បីផ្ញើសារជាសំឡេង សូមអនុញ្ញាតឱ្យ Signal ចូលប្រើមីក្រូហ្វូនរបស់អ្នក។</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
@@ -753,6 +785,51 @@
     <!-- Backup has an unsupported file extension -->
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">ការបម្រុងទុកទិន្នន័យមានផ្នែកបន្ថែមមិនល្អ។</string>
 
+    <!-- CreateBackupBottomSheet -->
+    <!-- Bottom sheet title -->
+    <string name="CreateBackupBottomSheet__create_backup">បង្កើតការបម្រុងទុក</string>
+    <!-- Bottom sheet message -->
+    <string name="CreateBackupBottomSheet__depending_on_the_size">វាអាចចំណាយពេលយូរ អាស្រ័យលើទំហំនៃការបម្រុងទុករបស់អ្នក។ អ្នកអាចប្រើទូរសព្ទរបស់អ្នកបានធម្មតា ពេលកំពុងធ្វើការបម្រុងទុក។</string>
+    <!-- Action button to dismiss sheet and back up later -->
+    <string name="CreateBackupBottomSheet__back_up_later">បម្រុងទុកនៅពេលក្រោយ</string>
+    <!-- Action button to dismiss sheet and back up now -->
+    <string name="CreateBackupBottomSheet__back_up_now">បម្រុងទុកឥឡូវនេះ</string>
+
+    <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
+    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">មិនអាចស្តារមេឌៀឡើងវិញបានទេ</string>
+    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">ឧបករណ៍របស់អ្នកមិនមានទំហំផ្ទុកទំនេរគ្រប់គ្រាន់ទេ។ បង្កើនទំហំផ្ទុក ដើម្បីស្ដារមេឌៀរបស់អ្នកឡើងវិញ។\n\nប្រសិនបើអ្នកជ្រើសរើស “រំលងការស្តារឡើងវិញ” មេឌៀនៅក្នុងការបម្រុងទុករបស់អ្នកនឹងត្រូវបានលុបចោល នៅពេលក្រោយដែលឧបករណ៍របស់អ្នកបញ្ចប់ការបម្រុងទុកថ្មី។</string>
+    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">ឧបករណ៍របស់អ្នកមិនមានទំហំផ្ទុកទំនេរគ្រប់គ្រាន់ទេ។ បង្កើនទំហំផ្ទុក %1$s ដើម្បីស្ដារមេឌៀរបស់អ្នកឡើងវិញ។\n\nប្រសិនបើអ្នកជ្រើសរើស “រំលងការស្តារឡើងវិញ” មេឌៀនៅក្នុងការបម្រុងទុករបស់អ្នកនឹងត្រូវបានលុបចោល នៅពេលក្រោយដែលឧបករណ៍របស់អ្នកបញ្ចប់ការបម្រុងទុកថ្មី។</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
+    <string name="RestoreMediaFailedBottomSheet__Okay">យល់ព្រម</string>
+    <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
+    <string name="RestoreMediaFailedBottomSheet__Skip_restore">រំលងការស្តារឡើងវិញ</string>
+    <!-- Accessibility content description for the "Backup Error" icon -->
+    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">រូបបញ្ហាក្នុងការបម្រុងទុក</string>
+
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
+    <string name="RestoreMediaErrorBanner__Free_up_storage_space">បង្កើនទំហំផ្ទុក ដើម្បីស្ដារមេឌៀរបស់អ្នកឡើងវិញ។</string>
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
+    <string name="RestoreMediaErrorBanner__Free_up_of_space">បង្កើនទំហំផ្ទុក %1$s ដើម្បីស្ដារមេឌៀរបស់អ្នកឡើងវិញ។</string>
+
+    <!-- Remote media restoration in-process status title. -->
+    <string name="RestoreMediaReminder__Restoring_media">កំពុងស្ដារមេឌៀឡើងវិញ</string>
+    <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
+    <string name="RestoreMediaReminder__Progress_filesize">%1$s នៃ %2$s (%3$d)</string>
+    <!-- Remote media restoration paused status title. -->
+    <string name="RestoreMediaReminder__Restoring_media_paused">ការស្ដារមេឌៀត្រូវបានផ្អាក</string>
+    <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RestoreMediaReminder__Waiting_for_Wifi">កំពុងរង់ចាំ WiFi…</string>
+    <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
+    <string name="RestoreMediaReminder__Waiting_for_internet_connection">កំពុងរង់ចាំការតភ្ជាប់អ៊ីនធឺណិត…</string>
+    <!-- Remote media restoration paused status description for when the device\'s battery is low -->
+    <string name="RestoreMediaReminder__low_battery">ជិតអស់ថ្មហើយ។ សាកឧបករណ៍របស់អ្នក។</string>
+    <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
+    <string name="RestoreMediaReminder__Free_up_space">បង្កើនទំហំផ្ទុក %1$s ដើម្បីស្តារមេឌៀរបស់អ្នកឡើងវិញ។</string>
+    <!-- Button label to abort media restoration -->
+    <string name="RestoreMediaReminder__Skip_restore">រំលងការស្តារឡើងវិញ</string>
+
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">ការបម្រុងទុកការជជែក</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">ការបម្រុងទុក ត្រូវបានធ្វើកូដនីយកម្មជាមួយឃ្លាសម្ងាត់ និងត្រូវបានរក្សាទុកនៅលើឧបករណ៍របស់អ្នក។</string>
@@ -850,13 +927,13 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s សារ និងព័ត៌មានជជែកត្រូវបានការពារដោយការអ៊ីនគ្រីបទាំងសងខាងនៅលើឧបករណ៍ទាំងអស់</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal នៅលើ Desktop ឬ iPad</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">ការផ្ញើសារទាំងអស់នៅលើឧបករណ៍ដែលបានភ្ជាប់គឺមានលក្ខណៈឯកជន</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">សារ Signal ត្រូវបានធ្វើសមកាលកម្មជាមួយ Signal នៅលើទូរសព្ទដៃរបស់អ្នកបន្ទាប់ពីវាត្រូវបានភ្ជាប់។ ប្រវត្តិសារពីមុនរបស់អ្នកនឹងមិនបង្ហាញទេ។</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">នៅលើឧបករណ៍ផ្សេងទៀតរបស់អ្នក សូមចូលទៅកាន់ %1$s ដើម្បីដំឡើង Signal</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">នៅលើឧបករណ៍ដែលអ្នកចង់ភ្ជាប់ សូមចូលទៅកាន់ %1$s ដើម្បីដំឡើង Signal</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">ឧបករណ៍ដែលបានភ្ជាប់របស់ខ្ញុំ</string>
@@ -873,7 +950,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">មិនមានឧបករណ៍ដែលបានភ្ជាប់ទេ</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">ដោះសោដើម្បីភ្ជាប់ឧបករណ៍</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1058,16 +1135,35 @@
     <string name="PromptLogsSlowNotificationsDialog__message">កំណត់ហេតុបញ្ហាជួយឲ្យយើងវិភាគ និងដោះស្រាយបញ្ហានេះ ហើយមិនមានព័ត៌មានកំណត់អត្តសញ្ញាណទេ។</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal បានជួបប្រទះបញ្ហាមួយ។ ដាក់បញ្ជូនកំណត់ហេតុបំបាត់បញ្ហា?</string>
+    <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">អ្នកប្រហែលជាមិនទទួលបានសារទេ។ ដាក់បញ្ជូនកំណត់ត្រាបញ្ហា?</string>
+
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">ការជូនដំណឹងអាចនឹងពន្យារពេល ដោយសារការបង្កើនប្រសិទ្ធភាពថ្ម</string>
     <!-- Message explaining that battery saver may delay notifications -->
     <string name="PromptBatterySaverBottomSheet__message">អ្នកអាចបិទការបង្កើនប្រសិទ្ធភាពថ្មសម្រាប់ Signal ដើម្បីធានាថាការជូនដំណឹងអំពីសារនឹងមិនត្រូវបានពន្យារពេលឡើយ។</string>
 
+    <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
+    <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">ការជូនដំណឹងអាចនឹងពន្យារពេល ដោយសារការបង្កើនប្រសិទ្ធភាពថ្ម</string>
+    <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">បិទការបង្កើនប្រសិទ្ធភាពថ្មសម្រាប់ Signal ដើម្បីធានាថាការជូនដំណឹងអំពីសារនឹងមិនត្រូវបានពន្យារពេលឡើយ។ ចុច “បន្ត” ដើម្បីមើលការណែនាំអំពីឧបករណ៍ជាក់លាក់។</string>
+    <!-- Button to dismiss notification help prompt -->
+    <string name="DeviceSpecificNotificationBottomSheet__no_thanks">ទេ អរគុណ</string>
+    <!-- Button to continue and go to Signal support website -->
+    <string name="DeviceSpecificNotificationBottomSheet__continue">បន្ត</string>
+
+    <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_title">អ្នកប្រហែលជាមិនទទួលបានសារទេ</string>
+    <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_body">ការចាប់ផ្តើមឧបករណ៍របស់អ្នកឡើងវិញអាចជួយដោះស្រាយបញ្ហានៃការបញ្ជូនសារ។ ប្រសិនបើបញ្ហានេះនៅតែបន្ត សូមទាក់ទងផ្នែកជំនួយរបស់ Signal។</string>
+    <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
+    <string name="ConnectivityWarningBottomSheet_dismiss_button">យល់ហើយ</string>
+
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">បន្ត</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__no_thanks">No thanks</string>
+    <string name="PromptBatterySaverBottomSheet__no_thanks">ទេ អរគុណ</string>
   <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
@@ -1152,6 +1248,44 @@
     <string name="ManageGroupActivity_invite_now">អញ្ជើញឥឡូវ</string>
     <string name="ManageGroupActivity_more">បន្ថែម</string>
     <string name="ManageGroupActivity_add_group_description">បន្ថែមការពណ៌នាក្រុម…</string>
+
+    <!-- MoreTransferOrRestoreOptionsSheet -->
+    <!-- Row title for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">ផ្ទេរពីឧបករណ៍ Android</string>
+    <!-- Row description for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">ផ្ទេរគណនី និងសាររបស់អ្នកពីឧបករណ៍ Android ចាស់របស់អ្នក។</string>
+    <!-- Row title for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">ចូលដោយមិនចាំបាច់ផ្ទេរ</string>
+    <!-- Row description for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">បន្តដោយមិនបាច់ផ្ទេរសារ និងមេឌៀរបស់អ្នក</string>
+    <!-- Row title for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">ស្តារការបម្រុងទុកក្នុងឧបករណ៍</string>
+    <!-- Row description for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">ស្ដារសាររបស់អ្នកពីឯកសារបម្រុងទុកដែលអ្នកបានរក្សាទុកនៅលើឧបករណ៍របស់អ្នក។</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Progress dialog label when downloading a backup -->
+    <string name="RemoteRestoreActivity__downloading_backup">កំពុងទាញយកការបម្រុងទុក…</string>
+    <!-- Progress dialog label when restoring a backup -->
+    <string name="RemoteRestoreActivity__restoring_messages">កំពុងស្ដារសារ…</string>
+    <!-- Progress dialog label while awaiting updates -->
+    <string name="RemoteRestoreActivity__restoring">កំពុងស្ដារ…</string>
+    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
+    <string name="RemoteRestoreActivity__s_of_s_s">%1$s នៃ %2$s (%3$s)</string>
+    <!-- Feature list media label for paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_media">មេឌៀទាំងអស់របស់អ្នក</string>
+    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">មេឌៀ %1$d ថ្ងៃចុងក្រោយរបស់អ្នក</string>
+    <!-- Feature list message label for free and paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_messages">សារទាំងអស់របស់អ្នក</string>
+    <!-- Screen title for restoring from backup -->
+    <string name="RemoteRestoreActivity__restore_from_backup">ស្តារចេញពីការបម្រុងទុក</string>
+    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">មានតែមេឌៀដែលបានផ្ញើ ឬទទួលបានក្នុងរយៈពេល %1$d ថ្ងៃចុងក្រោយប៉ុណ្ណោះដែលត្រូវបានរួមបញ្ចូល។</string>
+    <!-- Section title for explaining what your backup includes -->
+    <string name="RemoteRestoreActivity__your_backup_includes">ការបម្រុងទុករបស់អ្នករួមមាន៖</string>
+    <!-- Primary action button copy for starting restoration -->
+    <string name="RemoteRestoreActivity__restore_backup">ស្តារការបម្រុងទុក</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">ជូនដំណឹងខ្ញុំសម្រាប់ការហៅឈ្មោះ</string>
@@ -1301,6 +1435,12 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ចុចអោយជាប់ដើម្បីថតសំឡេងជាសារ ដកដៃចេញដើម្បីផ្ញើ</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">កែសារ</string>
+    <!-- Dialog title shown if users are about to discard their draft message -->
+    <string name="InputPanel__discard_draft">បោះបង់សេចក្តីព្រាងឬ?</string>
+    <!-- Dialog message explaining their action cannot be reversed -->
+    <string name="InputPanel__this_action_cant_be_undone">សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ។</string>
+    <!-- Button inside an alert dialog confirming the deletion of their draft -->
+    <string name="InputPanel__discard">បោះបង់</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">ចែករំលែក</string>
@@ -2861,6 +3001,8 @@
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">អ្នកបានដកបុគ្គលនេះចេញហើយ។ ការផ្ញើសារទៅគេម្តងទៀតនឹងបញ្ចូលគេទៅក្នុងបញ្ជីរបស់អ្នកវិញ។</string>
     <!-- Update item button text shown for the accepted message request update message -->
     <string name="ConversationUpdateItem_options">ជម្រើស</string>
+    <!-- Update item button text shown for a profile name change. -->
+    <string name="ConversationUpdateItem_update">ធ្វើបច្ចុប្បន្នភាព</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">លេង … ផ្អាក</string>
@@ -3158,10 +3300,6 @@
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">ការដាក់បញ្ជូនកំណត់ហេតុបញ្ហា Signal Android</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">ការជូនដំណឹងយឺត</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">គាំង</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">បញ្ជូន</string>
     <!-- Action to decline to submit logs -->
@@ -3539,6 +3677,10 @@
     <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. ចុច “ការកំណត់” ខាងក្រោម</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
     <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s បើកការអនុញ្ញាត</string>
+    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
+    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. ចុច “ការអនុញ្ញាត”</string>
+    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s បើកការអនុញ្ញាត “រូបថត និងវីដេអូ”</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">ការកំណត់</string>
 
@@ -4056,6 +4198,8 @@
     <string name="preferences_app_protection__screen_lock">ចាក់សោរអេក្រង់</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ចាក់សោរការប្រើប្រាស់ Signal ជាមួយសោរអេក្រង់ Android ឬ ក្រយៅដៃ</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">អេក្រង់ជាប់សោរ ទុកចោលហួសកំណត់</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">ដើម្បីប្រើការចាក់សោអេក្រង់ សូមកំណត់លេខកូដសម្ងាត់ លំនាំគំនូស ឬពាក្យសម្ងាត់នៅលើឧបករណ៍នេះ។</string>
     <string name="preferences_app_protection__signal_pin">លេខកូដ PIN Signal</string>
     <string name="preferences_app_protection__create_a_pin">បង្កើតលេខកូដ PIN មួយ</string>
     <string name="preferences_app_protection__change_your_pin">ផ្លាស់ប្តូរលេខ PIN របស់អ្នក</string>
@@ -4076,8 +4220,41 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">អ្នកបានសាកល្បងច្រើនដងពេក។ សូមសាកល្បងម្តងទៀតនៅពេលក្រោយ។</string>
     <string name="RegistrationActivity_error_connecting_to_service">បញ្ហាការតភ្ជាប់សេវា</string>
     <string name="preferences_chats__backups">បម្រុងទុក</string>
-    <string name="prompt_passphrase_activity__signal_is_locked">Signal ជាប់សោរ</string>
-    <string name="prompt_passphrase_activity__tap_to_unlock">ចុច ដើម្បីដោះសោរ</string>
+    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+    <string name="prompt_passphrase_activity__unlock_signal">ដោះសោ Signal</string>
+    <!-- Description text explaining how to unlock Signal -->
+    <string name="prompt_passphrase_activity__use_your_android_device">ប្រើការកំណត់ចាក់សោឧបករណ៍ Android របស់អ្នកដើម្បីដោះសោ Signal។</string>
+    <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
+    <string name="prompt_passphrase_activity__screen_lock_is_on">ការចាក់សោអេក្រង់ត្រូវបានបើក ហើយ Signal ត្រូវបានធានាសុវត្ថិភាពដោយការកំណត់ចាក់សោឧបករណ៍របស់អ្នក។ ដោះសោ Signal តាមធម្មតា តាមវិធីដូចគ្នានឹងពេលដែលអ្នកដោះសោទូរសព្ទរបស់អ្នក ពោលគឺអាចជាការដោះសោមុខ ដោះសោតាមស្នាមម្រាមដៃ លេខកូដសម្ងាត់ ពាក្យសម្ងាត់ ឬលំនាំគំនូស។</string>
+    <!-- Button in a dialog that will contact Signal support if pressed -->
+    <string name="prompt_passphrase_activity__contact_support">ទាក់ទងផ្នែកជំនួយ</string>
+    <!-- Button text to try again after unlocking has previously failed -->
+    <string name="prompt_passphrase_activity__try_again">ព្យាយាមម្តងទៀត</string>
+
+    <!-- ScreenLockSettingsFragment -->
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">បិទ</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">ប្រើការចាក់សោអេក្រង់</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">នឹងតម្រូវឱ្យមានការកំណត់ចាក់សោឧបករណ៍ Android របស់អ្នក ដើម្បីដោះសោ Signal នៅពេលអ្នកចេញពី ឬប្តូរកម្មវិធី។ នៅពេលចាក់សោ នៅក្នុងផ្នែកមើលការជូនដំណឹងជាមុន វានឹងមិនបង្ហាញខ្លឹមសាររបស់សារនោះទេ។</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">ចាប់ផ្តើមចាក់សោអេក្រង់</string>
+    <!-- Option text explaining that screen lock should start immediately -->
+    <string name="ScreenLockSettingsFragment__immediately">ភ្លាមៗ</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">បន្ទាប់ពី 1 នាទី</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">បន្ទាប់ពី 5 នាទី</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">បន្ទាប់ពី 30 នាទី</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">កំណត់រយៈពេលខ្លួនឯង</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">ប្រើការចាក់សោអេក្រង់ Signal</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">បិទការចាក់សោអេក្រង់ Signal</string>
+
     <string name="Recipient_unknown">មិនស្គាល់</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">បានលុបគណនី</string>
@@ -4581,7 +4758,12 @@
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">អញ្ជើញមិត្តភក្តិអ្នក</string>
-    <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">បានចម្លងលេខសម្គាល់អ្នកជាវទៅឃ្លីបបត</string>
+    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">បានចម្លងលេខសម្គាល់អ្នកជាវជាម្ចាស់ជំនួយ ដាក់ទៅឃ្លីបបត</string>
+    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">បានចម្លងលេខសម្គាល់អ្នកជាវបម្រុងទុក ដាក់ទៅឃ្លីបបត</string>
+    <!-- String displayed in a toast when a subscriber id is not present for a given type -->
+    <string name="AppSettingsFragment__no_subscriber_id_set">មិនមានការកំណត់លេខសម្គាល់អ្នកជាវទេ</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">គណនី</string>
@@ -4691,7 +4873,7 @@
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">ក្ដារចុច</string>
-    <string name="ChatsSettingsFragment__enter_key_sends">ចុច Enter ដើម្បីផ្ញើ</string>
+    <string name="ChatsSettingsFragment__send_with_enter">ផ្ញើដោយចុច Enter</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">សារ</string>
@@ -4715,7 +4897,7 @@
     <string name="PrivacySettingsFragment__blocked">បានទប់ស្កាត់</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="other">%1$d ឈ្មោះទំនាក់ទំនង</item>
+        <item quantity="other">%1$d ទំនាក់ទំនង ឬក្រុម</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">ការផ្ញើសារ</string>
     <string name="PrivacySettingsFragment__disappearing_messages">សារដែលបាត់ទៅវិញ</string>
@@ -4918,7 +5100,7 @@
     <string name="PermissionsSettingsFragment__only_admins">តែអ្នកគ្រប់គ្រង</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">នរណាអាចបន្ថែមសមាជិកថ្មីឯ</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">នរណាអាចកែប្រែព័ត៌មានក្រុមនេះ?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">អ្នកណាអាចផ្ញើសារបានខ្លះ?</string>
+    <string name="PermissionsSettingsFragment__who_can_send_messages">តើនរណាអាចផ្ញើសារ និងចាប់ផ្តើមការហៅទូរសព្ទបាន?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">បិទសំឡេងការជូនដំណឹង</string>
@@ -5260,7 +5442,24 @@
     <string name="Subscription__contact_support">ទាក់ទងជំនួយ</string>
     <string name="Subscription__get_a_s_badge">ទទួលស្លាក%1$s</string>
 
-    <string name="SubscribeFragment__processing_payment">កំពុងដំណើរការការបរិច្ចាគ…</string>
+    <!-- *PaymentInProgressFragment strings -->
+    <string name="InAppPaymentInProgressFragment__processing_donation">កំពុងដំណើរការការបរិច្ចាគ…</string>
+    <string name="InAppPaymentInProgressFragment__processing_payment">កំពុងដំណើរការការបង់ប្រាក់…</string>
+
+    <!-- InAppPaymentErrors -->
+    <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
+    <string name="InAppPaymentErrors__error_processing_payment">បញ្ហាក្នុងការដំណើរការការបង់ប្រាក់</string>
+    <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
+    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">ការបង់ប្រាក់របស់អ្នកមិនអាចដំណើរការបានទេ ហើយអ្នកក៏មិនទាន់ត្រូវបានគិតប្រាក់ដែរ។ សូមព្យាយាមម្ដងទៀត។</string>
+    <!-- Displayed as a message in a dialog when we timeout waiting for a payment to be processed and token to be redeemed -->
+    <string name="InAppPaymentErrors__your_payment_is_still">ការបង់ប្រាក់របស់អ្នកកំពុងដំណើរការនៅឡើយ ដែលអាចចំណាយពេលពីរបីនាទីអាស្រ័យលើសេវាអុីនធឺណិតរបស់អ្នក។</string>
+    <!-- Displayed as a message in a dialog or notification when stripe decline code issuer not available for backup payment. -->
+    <string name="InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again">ព្យាយាមបញ្ចប់ការបង់ប្រាក់ម្ដងទៀត ឬទាក់ទងទៅធនាគាររបស់អ្នកសម្រាប់ព័ត៌មានបន្ថែម។</string>
+    <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
+    <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">ការបង់ប្រាក់នេះត្រូវបានលុបចោលវិញដោយម្ចាស់គណនី ហើយមិនអាចដំណើរការបានទេ។ អ្នកមិនត្រូវបានគិតប្រាក់ទេ។</string>
+    <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">មានបញ្ហាមួយបានកើតឡើង នៅពេលដំណើរការការបង់ប្រាក់នេះ។ សូមព្យាយាមម្តងទៀត។</string>
+
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">មានបញ្ហាក្នុងការដំណើរការការបរិច្ចាគ</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
@@ -6267,8 +6466,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">ជ្រើសរើសធនាគាររបស់អ្នក</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">បញ្ជាក់ការបរិច្ចាគរបស់អ្នកជាមួយ %1$s</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">ដើម្បីរៀបចំសម្រាប់ការបរិច្ចាគជាថ្មីទៀតរបស់អ្នក សូមចុច បន្ត ដើម្បីបញ្ជាក់ការគិតប្រាក់ €0,01 ជាមួយធនាគាររបស់អ្នក។ វានឹងត្រូវបានបង្វិលសងវិញដោយស្វ័យប្រវត្តិ ហើយអនុញ្ញាតឱ្យមានការដកប្រាក់ពីគណនីរបស់អ្នក សម្រាប់ការបរិច្ចាគ €5/ខែរបស់អ្នក។</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">ដើម្បីរៀបចំសម្រាប់ការបរិច្ចាគជាថ្មីទៀតរបស់អ្នក សូមចុច បន្ត ដើម្បីបញ្ជាក់ការគិតប្រាក់ €0,01 ជាមួយធនាគាររបស់អ្នក។ វានឹងត្រូវបានបង្វិលសងវិញដោយស្វ័យប្រវត្តិ ហើយអនុញ្ញាតឱ្យមានការដកប្រាក់ពីគណនីរបស់អ្នក សម្រាប់ការបរិច្ចាគ %1$s/ខែរបស់អ្នក។</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">បន្ត</string>
 
@@ -6838,20 +7037,56 @@
     <string name="BackupProgressService_title_downloading">កំពុងទាញយកទិន្នន័យបម្រុងទុក…</string>
 
     <!-- BackupAlertBottomSheet -->
+    <!-- Sheet title when media backups have been disabled -->
+    <string name="BackupAlertBottomSheet__media_backups_are_off">ការបម្រុងទុកមេឌៀត្រូវបានបិទ</string>
+    <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
+    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
+        <item quantity="other">គម្រោងបម្រុងទុកមេឌៀ Signal របស់អ្នកត្រូវបានបោះបង់ ដោយសារយើងមិនអាចដំណើរការការបង់ប្រាក់របស់អ្នកបានទេ។ អ្នកមានរយៈពេល %1$d ថ្ងៃដើម្បីទាញយកមេឌៀណាមួយដែលបានរក្សាទុកនៅក្នុងការបម្រុងទុករបស់អ្នក។ បន្ទាប់ពីរយៈពេល %1$d ថ្ងៃ មេឌៀនៅក្នុងការបម្រុងទុករបស់អ្នកនឹងត្រូវបានលុបចោល។</item>
+    </plurals>
+    <!-- Sheet body part 2 when media backups have been disabled. -->
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">អ្នកអាចចាប់ផ្តើមបង់ប្រាក់សម្រាប់ការបម្រុងទុកម្តងទៀតនៅពេលណាក៏បាន ដើម្បីបន្តការបម្រុងទុកមេឌៀរបស់អ្នកទាំងអស់។ </string>
+    <!-- Sheet title when user\'s media will be deleted today -->
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">មេឌៀរបស់អ្នកនឹងត្រូវបានលុបចោលនៅថ្ងៃនេះ</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted today -->
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">គម្រោងបម្រុងទុកមេឌៀ Signal របស់អ្នកត្រូវបានលុបចោល ដោយសារយើងមិនអាចដំណើរការការបង់ប្រាក់របស់អ្នកបាន។ នេះជាឱកាសចុងក្រោយរបស់អ្នកក្នុងការទាញយកមេឌៀនៅក្នុងការបម្រុងទុករបស់អ្នក មុនពេលវាត្រូវបានលុបចោល។</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">មិនអាចបញ្ចប់ការទាញយកបានទេ</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">ឧបករណ៍របស់អ្នកមិនមានទំហំផ្ទុកទំនេរគ្រប់គ្រាន់ទេ។ បង្កើនទំហំផ្ទុក %1$s ដើម្បីទាញយកមេឌៀដែលបានរក្សាទុកនៅក្នុងការបម្រុងទុករបស់អ្នក។</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
+        <item quantity="other">ប្រសិនបើអ្នកជ្រើសរើស \"រំលង\" នោះមេឌៀនៅក្នុងការបម្រុងទុករបស់អ្នកនឹងត្រូវបានលុបក្នុងរយៈពេល %1$d ថ្ងៃ។</item>
+    </plurals>
+    <!-- Sheet title when user payment failed to process -->
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">មិនអាចដំណើរការការបង់ប្រាក់លើការបម្រុងទុកបានទេ</string>
+    <!-- Sheet body when user payment failed to process -->
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">យើងកំពុងមានបញ្ហាក្នុងការប្រមូលការបង់ប្រាក់ឡើងវិញប្រចាំខែសម្រាប់ការបម្រុងទុករបស់អ្នក។ ត្រូវប្រាកដថាវិធីបង់ប្រាក់របស់អ្នកជាវិធីបង់ប្រាក់ទាន់សម័យ។ ប្រសិនបើវាមិនទាន់សម័យទេ សូមធ្វើបច្ចុប្បន្នភាពវានៅក្នុង Google Pay។ Signal នឹងព្យាយាមដំណើរការការបង់ប្រាក់ម្តងទៀតក្នុងរយៈពេលពីរបីថ្ងៃទៀត។</string>
+    <!-- Sheet title for generic backup error -->
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">មិនអាចបញ្ចប់ការបម្រុងទុកបានទេ</string>
+    <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
+    <string name="BackupAlertBottomSheet__your_device_hasnt">ឧបករណ៍របស់អ្នកមិនបានបញ្ចប់ការបម្រុងទុករយៈពេល %1$d ថ្ងៃ។ ត្រូវប្រាកដថាឧបករណ៍របស់អ្នកបានភ្ជាប់ Wi-Fi រួចចុច \"បម្រុងទុកឥឡូវនេះ\"។ </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
-    <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
+    <string name="BackupAlertBottomSheet__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip">Skip</string>
+    <string name="BackupAlertBottomSheet__skip">រំលង</string>
+    <!-- Primary action button text prompting user to download their media -->
+    <string name="BackupAlertBottomSheet__download_media_now">ទាញយកមេឌៀឥឡូវនេះ</string>
+    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
+    <string name="BackupAlertBottomSheet__download_later">ទាញយកនៅពេលក្រោយ</string>
+    <!-- Secondary action button text to dismiss sheet, skipping media download -->
+    <string name="BackupAlertBottomSheet__dont_download_media">កុំទាញយកមេឌៀ</string>
+    <!-- Dialog title for last chance to download backup -->
+    <string name="BackupAlertBottomSheet__media_will_be_deleted">មេឌៀនឹងត្រូវបានលុបចោល</string>
+    <!-- Dialog message for last chance to download backup -->
+    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">មេឌៀដែលបានរក្សាទុកនៅក្នុងការបម្រុងទុករបស់អ្នកនឹងត្រូវបានលុបជាអចិន្ត្រៃយ៍នៅថ្ងៃនេះ។ នេះជាឱកាសចុងក្រោយរបស់អ្នកក្នុងការទាញយកវា។</string>
+    <!-- Dialog action to download now -->
+    <string name="BackupAlertBottomSheet__download">ទាញយក</string>
+    <!-- Dialog action to not download now -->
+    <string name="BackupAlertBottomSheet__dont_download">កុំទាញយក</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">បង្កើនទំហំផ្ទុក %1$s ដើម្បីទាញយកមេឌៀរបស់អ្នក។</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -6867,7 +7102,11 @@
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__unknown">មិនស្គាល់</string>
     <!-- Row title for entering payment history -->
-    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
+    <string name="BackupsTypeSettingsFragment__payment_history">ប្រវត្តិបង់ប្រាក់</string>
+    <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
+    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/ខែ · ភ្ជាប់ឡើងវិញ%2$s</string>
+    <!-- Row title to change or cancel subscription -->
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">ផ្លាស់ប្តូរ ឬបោះបង់ការជាវ</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -6886,6 +7125,20 @@
     <string name="ManageStorageSettingsFragment_apply_limits_title">អនុវត្តដែនកំណត់ចំពោះឧបករណ៍ដែលបានភ្ជាប់</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_description">នៅពេលបើក ដែនកំណត់នៃចំនួនសារជជែកក៏នឹងលុបសារពីឧបករណ៍ដែលបានភ្ជាប់របស់អ្នកដែរ។</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">ទំហំផ្ទុកនៅលើឧបករណ៍</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">បង្កើនប្រសិទ្ធភាពទំហំផ្ទុកនៅលើឧបករណ៍</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">មេឌៀដែលមិនបានប្រើនឹងត្រូវបានបិទ ប៉ុន្តែអាចទាញយកពីការបម្រុងទុករបស់អ្នកបានគ្រប់ពេល។</string>
+
+    <!-- UpgradeToEnableOptimizedStorageSheet -->
+    <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">ដំឡើងកម្រិតដើម្បីបើកមុខងារនេះ</string>
+    <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">ការបង្កើនប្រសិទ្ធភាពទំហំផ្ទុកអាចប្រើបានតែជាមួយការបម្រុងទុក Signal នៅក្នុងកម្រិតបង់ប្រាក់ប៉ុណ្ណោះ។ ដំឡើងកម្រិតនៃគម្រោងបម្រុងទុករបស់អ្នក ដើម្បីចាប់ផ្តើមប្រើមុខងារនេះ។</string>
+    <!-- Primary action to launch upgrade flow -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">ដំឡើងកម្រិតឥឡូវនេះ</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">ឥឡូវនេះការលុបត្រូវបានធ្វើសមកាលកម្មនៅលើឧបករណ៍របស់អ្នកទាំងអស់</string>
@@ -6896,17 +7149,17 @@
 
     <!-- RemoteBackupsPaymentHistoryFragment -->
     <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Payment history</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">ប្រវត្តិបង់ប្រាក់</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">ការបម្រុងទុកមេឌៀទាំងអស់ និងអត្ថបទ</string>
     <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Payment details</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">ព័ត៌មានលម្អិតអំពីការបង់ប្រាក់</string>
     <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Backup type</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">ប្រភេទបម្រុងទុក</string>
     <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date paid</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">កាលបរិច្ឆេទបង់ប្រាក់</string>
     <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">Share</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__share">ចែករំលែក</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -6931,6 +7184,8 @@
     <string name="RemoteBackupsSettingsFragment__subscription_cancelled">ការជាវត្រូវបានបោះបង់</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">ការទាញយកបានបញ្ចប់</string>
+    <!-- Snackbar text displayed when backup will be created overnight -->
+    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ការបម្រុងទុកនឹងត្រូវបានបង្កើតឡើងក្នុងពេលមួយយប់។</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_type">ប្រភេទបម្រុងទុក</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -6969,6 +7224,80 @@
     <string name="RemoteBackupsSettingsFragment__monthly">រាល់ខែ</string>
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">បម្រុងទុកដោយដៃ</string>
+    <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
+    <string name="PassphrasePromptActivity_help_prompt_body">សូមបញ្ចូលលេខកូដសម្ងាត់ ពាក្យសម្ងាត់ ឬលំនាំឧបករណ៍របស់អ្នក។</string>
 
+    <!-- MessageBackupsCheckoutSheet -->
+    <!-- Sheet title. Placeholder is formatted price. -->
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">បង់ %1$s/ខែទៅ Signal</string>
+    <!-- Sheet subtitle -->
+    <string name="MessageBackupsCheckoutSheet__youll_get">អ្នកនឹងទទួលបាន៖</string>
+
+    <!-- MessageBackupsEducationScreen -->
+    <!-- Screen subtitle underneath large headline title -->
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">បម្រុងទុកសារ និងមេឌៀរបស់អ្នក ហើយប្រើប្រាស់សេវាកម្មផ្ទុកទិន្នន័យដែលបានអ៊ីនគ្រីបទាំងសងខាង និងមានសុវត្ថិភាពរបស់ Signal។ មិនបាត់បង់សារនៅពេលអ្នកមានទូរសព្ទថ្មី ឬដំឡើង Signal ឡើងវិញ។</string>
+    <!-- Backups feature label for e2e encryption -->
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">បានអ៊ីនគ្រីបទាំងសងខាង</string>
+    <!-- Backups feature label for informing the user that this feature is completely optional -->
+    <string name="MessageBackupsEducationScreen__optional_always">ជាជម្រើសជានិច្ច</string>
+    <!-- Backups feature label for informing the user that they can delete their backup at any time -->
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">លុបការបម្រុងទុករបស់អ្នកនៅពេលណាក៏បាន</string>
+    <!-- Action button label to proceed with backups activation -->
+    <string name="MessageBackupsEducationScreen__enable_backups">បើកការបម្រុងទុក</string>
+    <!-- Action button label to learn more -->
+    <string name="MessageBackupsEducationScreen__learn_more">ស្វែងយល់បន្ថែម</string>
+
+    <!-- MessageBackupsPinConfirmationScreen -->
+    <!-- Screen title -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">បញ្ចូលលេខកូដសម្ងាត់របស់អ្នក</string>
+    <!-- Screen subtitle -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">បញ្ចូលលេខកូដសម្ងាត់ Signal របស់អ្នកដើម្បីបើកការបម្រុងទុក</string>
+    <!-- Action button to confirm pin entry and continue -->
+    <string name="MessageBackupsPinConfirmationScreen__next">បន្ទាប់</string>
+    <!-- Action button to switch keyboard type -->
+    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">ប្តូរក្តារចុច</string>
+    <!-- Action button to create a new pin if we type the incorrect one -->
+    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">បង្កើតលេខកូដសម្ងាត់ថ្មី</string>
+
+    <!-- MessageBackupsPinEducationScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">លេខកូដសម្ងាត់ការពារការបម្រុងទុករបស់អ្នក</string>
+    <!-- Notice about pin length. Placeholder is recommended pin length -->
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">លេខកូដសម្ងាត់ Signal របស់អ្នកអនុញ្ញាតឱ្យអ្នកស្ដារការបម្រុងទុករបស់អ្នក នៅពេលអ្នកដំឡើង Signal ឡើងវិញ។ យើងសូមណែនាំឱ្យប្រើលេខកូដសម្ងាត់ដែលមានយ៉ាងហោចណាស់ %1$d ខ្ទង់។</string>
+    <!-- Notice about changing your pin. -->
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">ប្រសិនបើអ្នកភ្លេចលេខកូដសម្ងាត់របស់អ្នក អ្នកនឹងមិនអាចស្ដារការបម្រុងទុករបស់អ្នកបានទេ។ អ្នកអាចផ្លាស់ប្តូរលេខកូដសម្ងាត់របស់អ្នកបានគ្រប់ពេលនៅក្នុងការកំណត់។</string>
+    <!-- Action button label to utilize current pin -->
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">ប្រើលេខកូដសម្ងាត់ Signal បច្ចុប្បន្ន</string>
+    <!-- Action button to create a new pin -->
+    <string name="MessageBackupsPinEducationScreen__create_new_pin">បង្កើតលេខកូដសម្ងាត់ថ្មី</string>
+
+    <!-- MessagesBackupsTypeSelectionScreen -->
+    <!-- Screen headline -->
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">ជ្រើសរើសគម្រោងបម្រុងទុករបស់អ្នក</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">ការបម្រុងទុកទាំងអស់ត្រូវបានអ៊ីនគ្រីបទាំងសងខាង។ Signal គឺជាអង្គការមិនរកប្រាក់ចំណេញ—ការបង់ប្រាក់សម្រាប់ការបម្រុងទុកជួយគាំទ្រដល់បេសកកម្មរបស់យើង។</string>
+    <!-- Screen subhead highlighted read-more button -->
+    <string name="MessageBackupsTypeSelectionScreen__read_more">អានបន្ថែម</string>
+    <!-- Primary action button label when selecting a backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__next">បន្ទាប់</string>
+    <!-- Primary action button label when selecting a backup tier with a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">ផ្លាស់ប្តូរប្រភេទបម្រុងទុក</string>
+    <!-- Secondary action button label when selecting a backup tier with a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">បោះបង់ការជាវ</string>
+
+    <!-- ConfirmBackupCancellationDialog -->
+    <!-- Dialog title -->
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">បញ្ជាក់ការបោះបង់</string>
+    <!-- Dialog body -->
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">អ្នកនឹងមិនត្រូវបានគិតប្រាក់ម្តងទៀតទេ។ ការបម្រុងទុកនឹងត្រូវបានបិទនៅចុងបញ្ចប់នៃវដ្តវិក្កយបត្ររបស់អ្នក។ បន្ទាប់ពីកាលបរិច្ឆេទនោះ អ្នកនឹងមានរយៈពេល 30 ថ្ងៃដើម្បីទាញយកមេឌៀដែលអ្នកកំពុងបម្រុងទុកបច្ចុប្បន្ន។</string>
+    <!-- Action button label to cancel subscription and download now -->
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">បញ្ជាក់ និងទាញយកឥឡូវនេះ</string>
+    <!-- Action button label to cancel subscription and download later -->
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">បញ្ជាក់ និងទាញយកនៅពេលក្រោយ</string>
+    <!-- Action button label to keep current subscription -->
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">រក្សាការជាវ</string>
+
+    <!-- Accessible content description for the reminder view, describing the icon in the view. -->
+    <string name="ReminderView_icon_content_description">រូបក្រើនរំលឹក</string>
     <!-- EOF -->
 </resources>

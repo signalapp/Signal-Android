@@ -1,89 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
+                tools:viewBindingIgnore="true"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/prompt_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/signal_colorSurface"
                 android:orientation="vertical"
                 android:fitsSystemWindows="true">
-
-    <View android:id="@+id/shim"
-          android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:layout_centerVertical="true"
-          android:visibility="invisible"/>
-
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/login_top_background"
-            android:layout_above="@id/shim">
-
-    </FrameLayout>
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="20dp">
-
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_launcher_foreground"
-                android:layout_gravity="center"/>
-
-    </androidx.appcompat.widget.Toolbar>
-
+            app:layout_constraintTop_toTopOf="parent"
+            android:theme="@style/TextSecure.LightActionBar.DarkText"
+            android:layout_marginTop="20dp" />
 
     <LinearLayout
+            android:id="@+id/unlock_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingBottom="36dp"
             android:orientation="vertical"
-            android:background="@drawable/rounded_rectangle"
-            android:layout_centerInParent="true"
-            android:padding="20dp"
-            android:elevation="10dp">
+            android:gravity="center">
 
-        <TextView android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="40dp"
-                  android:text="@string/prompt_passphrase_activity__signal_is_locked"
-                  android:gravity="center_horizontal"
-                  android:textSize="25sp"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/unlock_view"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="4dp"
+            app:lottie_rawRes="@raw/lottie_unlock" />
 
-        <ImageView android:id="@+id/fingerprint_auth_container"
-                android:src="@drawable/ic_fingerprint_white_48dp"
-                android:background="@drawable/circle_tintable"
-                android:backgroundTint="@color/signal_accent_primary"
-                android:padding="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="60dp"
-                tools:visibility="visible"/>
-
-        <TextView android:id="@+id/lock_screen_auth_container"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:background="@drawable/rounded_rectangle"
-                  android:backgroundTint="@color/signal_accent_primary"
-                  android:textColor="@color/white"
-                  android:gravity="center_horizontal"
-                  android:elevation="3dp"
-                  android:padding="10dp"
-                  android:text="@string/prompt_passphrase_activity__tap_to_unlock"
-                  tools:visibility="gone"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_passphrase_activity__unlock_signal"
+            style="@style/Signal.Text.HeadlineMedium" />
 
         <RelativeLayout android:id="@+id/password_auth_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="60dp"
+                        android:layout_marginTop="60dp"
                         tools:visibility="gone">
 
             <EditText android:id="@+id/passphrase_edit"
@@ -147,4 +111,36 @@
         </RelativeLayout>
 
     </LinearLayout>
-</RelativeLayout>
+
+    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+        android:id="@+id/learn_more_text"
+        style="@style/Signal.Text.BodyMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/unlock_container"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias=".65"
+        app:layout_constraintBottom_toTopOf="@id/lock_screen_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="32dp"
+        android:paddingHorizontal="72dp"
+        android:text="@string/prompt_passphrase_activity__use_your_android_device"
+        android:textAlignment="center"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        android:visibility="gone" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/lock_screen_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Signal.Widget.Button.Medium.Tonal"
+        android:text="@string/prompt_passphrase_activity__unlock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/learn_more_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        tools:visibility="visible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

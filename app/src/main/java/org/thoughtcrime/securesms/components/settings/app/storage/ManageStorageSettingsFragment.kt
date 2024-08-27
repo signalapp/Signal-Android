@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -67,6 +68,7 @@ import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.preferences.widgets.StorageGraphView
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.viewModel
@@ -79,6 +81,7 @@ class ManageStorageSettingsFragment : ComposeFragment() {
 
   private val viewModel by viewModel<ManageStorageSettingsViewModel> { ManageStorageSettingsViewModel() }
 
+  @ExperimentalMaterial3Api
   @Composable
   override fun FragmentContent() {
     val state by viewModel.state.collectAsState()
@@ -102,7 +105,14 @@ class ManageStorageSettingsFragment : ComposeFragment() {
             onSetKeepMessages = { navController.navigate("set-keep-messages") },
             onSetChatLengthLimit = { navController.navigate("set-chat-length-limit") },
             onSyncTrimThreadDeletes = { viewModel.setSyncTrimDeletes(it) },
-            onDeleteChatHistory = { navController.navigate("confirm-delete-chat-history") }
+            onDeleteChatHistory = { navController.navigate("confirm-delete-chat-history") },
+            onToggleOnDeviceStorageOptimization = {
+              if (state.onDeviceStorageOptimizationState == ManageStorageSettingsViewModel.OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER) {
+                UpgradeToEnableOptimizedStorageSheet().show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+              } else {
+                viewModel.setOptimizeStorage(it)
+              }
+            }
           )
         }
 
@@ -236,7 +246,8 @@ private fun ManageStorageSettingsScreen(
   onSetKeepMessages: () -> Unit = {},
   onSetChatLengthLimit: () -> Unit = {},
   onSyncTrimThreadDeletes: (Boolean) -> Unit = {},
-  onDeleteChatHistory: () -> Unit = {}
+  onDeleteChatHistory: () -> Unit = {},
+  onToggleOnDeviceStorageOptimization: (Boolean) -> Unit = {}
 ) {
   Scaffolds.Settings(
     title = stringResource(id = R.string.preferences__storage),
@@ -251,6 +262,19 @@ private fun ManageStorageSettingsScreen(
       Texts.SectionHeader(text = stringResource(id = R.string.preferences_storage__storage_usage))
 
       StorageOverview(state.breakdown, onReviewStorage)
+
+      if (state.onDeviceStorageOptimizationState > ManageStorageSettingsViewModel.OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE) {
+        Dividers.Default()
+
+        Texts.SectionHeader(text = stringResource(id = R.string.ManageStorageSettingsFragment__on_device_storage))
+
+        Rows.ToggleRow(
+          checked = state.onDeviceStorageOptimizationState == ManageStorageSettingsViewModel.OnDeviceStorageOptimizationState.ENABLED,
+          text = stringResource(id = R.string.ManageStorageSettingsFragment__optimize_on_device_storage),
+          label = stringResource(id = R.string.ManageStorageSettingsFragment__unused_media_will_be_offloaded),
+          onCheckChanged = onToggleOnDeviceStorageOptimization
+        )
+      }
 
       Dividers.Default()
 
@@ -510,7 +534,8 @@ private fun ManageStorageSettingsScreenPreview() {
     ManageStorageSettingsScreen(
       state = ManageStorageSettingsViewModel.ManageStorageState(
         keepMessagesDuration = KeepMessagesDuration.FOREVER,
-        lengthLimit = ManageStorageSettingsViewModel.ManageStorageState.NO_LIMIT
+        lengthLimit = ManageStorageSettingsViewModel.ManageStorageState.NO_LIMIT,
+        onDeviceStorageOptimizationState = ManageStorageSettingsViewModel.OnDeviceStorageOptimizationState.DISABLED
       )
     )
   }

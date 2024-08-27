@@ -5,8 +5,13 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.IdRes
+import androidx.annotation.StringRes
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -26,14 +31,14 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.completed.TerminalDonationDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.completed.InAppPaymentsBottomSheetDelegate
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
+import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -56,7 +61,7 @@ class AppSettingsFragment : DSLSettingsFragment(
   private lateinit var reminderView: Stub<ReminderView>
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    viewLifecycleOwner.lifecycle.addObserver(TerminalDonationDelegate(childFragmentManager, viewLifecycleOwner))
+    viewLifecycleOwner.lifecycle.addObserver(InAppPaymentsBottomSheetDelegate(childFragmentManager, viewLifecycleOwner))
 
     super.onViewCreated(view, savedInstanceState)
     reminderView = ViewUtil.findStubById(view, R.id.reminder_stub)
@@ -114,7 +119,7 @@ class AppSettingsFragment : DSLSettingsFragment(
         PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
       }
       R.id.reminder_action_re_register -> {
-        startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()))
+        startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()))
       }
     }
   }
@@ -159,13 +164,7 @@ class AppSettingsFragment : DSLSettingsFragment(
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__linked_devices),
         icon = DSLSettingsIcon.from(R.drawable.symbol_devices_24),
-        onClick = {
-          if (RemoteConfig.internalUser) {
-            findNavController().safeNavigate(R.id.action_appSettingsFragment_to_linkDeviceFragment)
-          } else {
-            findNavController().safeNavigate(R.id.action_appSettingsFragment_to_deviceActivity)
-          }
-        },
+        onClick = { findNavController().safeNavigate(R.id.action_appSettingsFragment_to_linkDeviceFragment) },
         isEnabled = state.isRegisteredAndUpToDate()
       )
 
@@ -177,7 +176,7 @@ class AppSettingsFragment : DSLSettingsFragment(
           onClick = {
             findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToManageDonationsFragment())
           },
-          onLongClick = this@AppSettingsFragment::copySubscriberIdToClipboard
+          onLongClick = this@AppSettingsFragment::copyDonorBadgeSubscriberIdToClipboard
         )
       } else {
         externalLinkPref(
@@ -203,6 +202,7 @@ class AppSettingsFragment : DSLSettingsFragment(
         onClick = {
           findNavController().safeNavigate(R.id.action_appSettingsFragment_to_chatsSettingsFragment)
         },
+        onLongClick = this@AppSettingsFragment::copyRemoteBackupsSubscriberIdToClipboard,
         isEnabled = state.isRegisteredAndUpToDate()
       )
 
@@ -294,15 +294,38 @@ class AppSettingsFragment : DSLSettingsFragment(
     }
   }
 
-  private fun copySubscriberIdToClipboard(): Boolean {
-    // TODO [alex] -- db access on main thread!
-    val subscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
-    return if (subscriber == null) {
-      false
-    } else {
-      Toast.makeText(requireContext(), R.string.AppSettingsFragment__copied_subscriber_id_to_clipboard, Toast.LENGTH_LONG).show()
-      Util.copyToClipboard(requireContext(), subscriber.subscriberId.serialize())
-      true
+  private fun copyDonorBadgeSubscriberIdToClipboard(): Boolean {
+    copySubscriberIdToClipboard(
+      subscriberType = InAppPaymentSubscriberRecord.Type.DONATION,
+      toastSuccessStringRes = R.string.AppSettingsFragment__copied_donor_subscriber_id_to_clipboard
+    )
+
+    return true
+  }
+
+  private fun copyRemoteBackupsSubscriberIdToClipboard(): Boolean {
+    copySubscriberIdToClipboard(
+      subscriberType = InAppPaymentSubscriberRecord.Type.BACKUP,
+      toastSuccessStringRes = R.string.AppSettingsFragment__copied_backups_subscriber_id_to_clipboard
+    )
+    return true
+  }
+
+  private fun copySubscriberIdToClipboard(
+    subscriberType: InAppPaymentSubscriberRecord.Type,
+    @StringRes toastSuccessStringRes: Int
+  ) {
+    lifecycleScope.launch {
+      val subscriber = withContext(Dispatchers.IO) {
+        InAppPaymentsRepository.getSubscriber(subscriberType)
+      }
+
+      withContext(Dispatchers.Main) {
+        if (subscriber != null) {
+          Toast.makeText(requireContext(), toastSuccessStringRes, Toast.LENGTH_LONG).show()
+          Util.copyToClipboard(requireContext(), subscriber.subscriberId.serialize())
+        }
+      }
     }
   }
 

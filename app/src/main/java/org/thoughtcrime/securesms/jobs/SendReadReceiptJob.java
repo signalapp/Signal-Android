@@ -9,14 +9,14 @@ import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.ListUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -188,7 +188,8 @@ public class SendReadReceiptJob extends BaseJob {
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.READ, messageSentTimestamps, timestamp);
 
     SendMessageResult result = messageSender.sendReceipt(remoteAddress,
-                                                         UnidentifiedAccessUtil.getAccessFor(context, Recipient.resolved(recipientId)),
+                                                         SealedSenderAccessUtil.getSealedSenderAccessFor(recipient,
+                                                                                                         () -> SignalDatabase.groups().getGroupSendFullToken(threadId, recipientId)),
                                                          receiptMessage,
                                                          recipient.getNeedsPniSignature());
 

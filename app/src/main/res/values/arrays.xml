@@ -362,6 +362,24 @@
         <item>@string/CustomExpireTimerSelectorView__weeks</item>
     </string-array>
 
+    <string-array name="ScreenLockSettingsFragment__labels">
+        <item>@string/ScreenLockSettingsFragment__after_1_min</item>
+        <item>@string/ScreenLockSettingsFragment__after_5_min</item>
+        <item>@string/ScreenLockSettingsFragment__after_30_min</item>
+    </string-array>
+
+    <integer-array name="ScreenLockSettingsFragment__values">
+        <item>60</item>
+        <item>300</item>
+        <item>1800</item>
+    </integer-array>
+
+    <string-array name="CustomScreenLockTimerSelectorView__unit_labels">
+        <item>@string/CustomExpireTimerSelectorView__minutes</item>
+        <item>@string/CustomExpireTimerSelectorView__hours</item>
+        <item>@string/CustomExpireTimerSelectorView__days</item>
+    </string-array>
+
     <string-array name="PermissionsSettingsFragment__editor_labels">
         <item>@string/PermissionsSettingsFragment__only_admins</item>
         <item>@string/PermissionsSettingsFragment__all_members</item>

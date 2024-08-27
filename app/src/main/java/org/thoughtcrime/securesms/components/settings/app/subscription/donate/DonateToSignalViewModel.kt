@@ -248,7 +248,7 @@ class DonateToSignalViewModel(
       }
     }.distinctUntilChanged()
 
-    val oneTimeDonationFromStore: Observable<Optional<PendingOneTimeDonation>> = SignalStore.donations.observablePendingOneTimeDonation
+    val oneTimeDonationFromStore: Observable<Optional<PendingOneTimeDonation>> = SignalStore.inAppPayments.observablePendingOneTimeDonation
       .map { pending -> pending.filter { !it.isExpired } }
       .distinctUntilChanged()
 
@@ -283,13 +283,13 @@ class DonateToSignalViewModel(
     )
 
     val boosts: Observable<Map<Currency, List<Boost>>> = oneTimeInAppPaymentRepository.getBoosts().toObservable()
-    val oneTimeCurrency: Observable<Currency> = SignalStore.donations.observableOneTimeCurrency
+    val oneTimeCurrency: Observable<Currency> = SignalStore.inAppPayments.observableOneTimeCurrency
 
     oneTimeDonationDisposables += Observable.combineLatest(boosts, oneTimeCurrency) { boostMap, currency ->
       val boostList = if (currency in boostMap) {
         boostMap[currency]!!
       } else {
-        SignalStore.donations.setOneTimeCurrency(PlatformCurrencyUtil.USD)
+        SignalStore.inAppPayments.setOneTimeCurrency(PlatformCurrencyUtil.USD)
         listOf()
       }
 
@@ -387,12 +387,18 @@ class DonateToSignalViewModel(
       onSuccess = { subscriptions ->
         if (subscriptions.isNotEmpty()) {
           val priceCurrencies = subscriptions[0].prices.map { it.currency }
-          val selectedCurrency = SignalStore.donations.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
+          val selectedCurrency = SignalStore.inAppPayments.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
 
           if (selectedCurrency !in priceCurrencies) {
             Log.w(TAG, "Unsupported currency selection. Defaulting to USD. $selectedCurrency isn't supported.")
             val usd = PlatformCurrencyUtil.USD
-            val newSubscriber = InAppPaymentsRepository.getSubscriber(usd, InAppPaymentSubscriberRecord.Type.DONATION) ?: InAppPaymentSubscriberRecord(SubscriberId.generate(), usd, InAppPaymentSubscriberRecord.Type.DONATION, false, InAppPaymentData.PaymentMethodType.UNKNOWN)
+            val newSubscriber = InAppPaymentsRepository.getSubscriber(usd, InAppPaymentSubscriberRecord.Type.DONATION) ?: InAppPaymentSubscriberRecord(
+              subscriberId = SubscriberId.generate(),
+              currency = usd,
+              type = InAppPaymentSubscriberRecord.Type.DONATION,
+              requiresCancel = false,
+              paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN
+            )
             InAppPaymentsRepository.setSubscriber(newSubscriber)
             RecurringInAppPaymentRepository.syncAccountRecord().subscribe()
           }
@@ -403,7 +409,7 @@ class DonateToSignalViewModel(
   }
 
   private fun monitorSubscriptionCurrency() {
-    monthlyDonationDisposables += SignalStore.donations.observableRecurringDonationCurrency.subscribe {
+    monthlyDonationDisposables += SignalStore.inAppPayments.observableRecurringDonationCurrency.subscribe {
       store.update { state ->
         state.copy(monthlyDonationState = state.monthlyDonationState.copy(selectedCurrency = it))
       }

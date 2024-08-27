@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting
 import org.thoughtcrime.securesms.database.RecipientTable.MissingRecipientException
 import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
-import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode
+import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode
 import org.thoughtcrime.securesms.database.RecipientTable.VibrateState
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
@@ -98,7 +98,7 @@ class Recipient(
   val hiddenState: HiddenState = HiddenState.NOT_HIDDEN,
   val lastProfileFetchTime: Long = 0,
   private val notificationChannelValue: String? = null,
-  private val unidentifiedAccessModeValue: UnidentifiedAccessMode = UnidentifiedAccessMode.UNKNOWN,
+  private val sealedSenderAccessModeValue: SealedSenderAccessMode = SealedSenderAccessMode.UNKNOWN,
   private val capabilities: RecipientRecord.Capabilities = RecipientRecord.Capabilities.UNKNOWN,
   val storageId: ByteArray? = null,
   val mentionSetting: MentionSetting = MentionSetting.ALWAYS_NOTIFY,
@@ -315,16 +315,13 @@ class Recipient(
   val notificationChannel: String? = if (!NotificationChannels.supported()) null else notificationChannelValue
 
   /** The user's payment capability. */
-  val paymentActivationCapability: Capability = capabilities.paymentActivation
-
-  /** The user's payment capability. */
   val deleteSyncCapability: Capability = capabilities.deleteSync
 
   /** The state around whether we can send sealed sender to this user. */
-  val unidentifiedAccessMode: UnidentifiedAccessMode = if (pni.isPresent && pni == serviceId) {
-    UnidentifiedAccessMode.DISABLED
+  val sealedSenderAccessMode: SealedSenderAccessMode = if (pni.isPresent && pni == serviceId) {
+    SealedSenderAccessMode.DISABLED
   } else {
-    unidentifiedAccessModeValue
+    sealedSenderAccessModeValue
   }
 
   /** The wallpaper to render as the chat background, if present. */
@@ -763,7 +760,7 @@ class Recipient(
       systemProfileName == other.systemProfileName &&
       profileAvatar == other.profileAvatar &&
       notificationChannelValue == other.notificationChannelValue &&
-      unidentifiedAccessModeValue == other.unidentifiedAccessModeValue &&
+      sealedSenderAccessModeValue == other.sealedSenderAccessModeValue &&
       storageId.contentEquals(other.storageId) &&
       mentionSetting == other.mentionSetting &&
       wallpaperValue == other.wallpaperValue &&

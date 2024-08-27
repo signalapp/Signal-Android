@@ -63,7 +63,6 @@
 
         <argument
             android:name="result_key"
-            android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
     </fragment>
@@ -74,7 +73,6 @@
         tools:layout="@layout/fragment_change_phone_number_verify">
 
         <argument android:name="sms_listener_enabled"
-            android:defaultValue="false"
             app:argType="boolean" />
 
         <action
@@ -97,12 +95,12 @@
 
     <fragment
         android:id="@+id/captchaFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.CaptchaFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberCaptchaFragment"
         tools:layout="@layout/fragment_registration_captcha" />
 
     <fragment
         android:id="@+id/changeNumberEnterCodeFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberEnterSmsCodeFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberEnterCodeFragment"
         tools:layout="@layout/fragment_change_number_enter_code">
 
         <action

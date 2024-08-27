@@ -31,11 +31,17 @@ fun CallLinkTable.getCallLinksForBackup(): BackupCallLinkIterator {
   return BackupCallLinkIterator(cursor)
 }
 
-fun CallLinkTable.restoreFromBackup(callLink: CallLink): RecipientId {
+fun CallLinkTable.restoreFromBackup(callLink: CallLink): RecipientId? {
+  val rootKey: CallLinkRootKey
+  try {
+    rootKey = CallLinkRootKey(callLink.rootKey.toByteArray())
+  } catch (e: Exception) {
+    return null
+  }
   return SignalDatabase.callLinks.insertCallLink(
     CallLinkTable.CallLink(
       recipientId = RecipientId.UNKNOWN,
-      roomId = CallLinkRoomId.fromCallLinkRootKey(CallLinkRootKey(callLink.rootKey.toByteArray())),
+      roomId = CallLinkRoomId.fromCallLinkRootKey(rootKey),
       credentials = CallLinkCredentials(callLink.rootKey.toByteArray(), callLink.adminKey?.toByteArray()),
       state = SignalCallLinkState(
         name = callLink.name,
@@ -67,7 +73,9 @@ class BackupCallLinkIterator(private val cursor: Cursor) : Iterator<BackupRecipi
         rootKey = callLink.credentials?.linkKeyBytes?.toByteString() ?: ByteString.EMPTY,
         adminKey = callLink.credentials?.adminPassBytes?.toByteString(),
         name = callLink.state.name,
-        expirationMs = callLink.state.expiration.toEpochMilli(),
+        expirationMs = try {
+          callLink.state.expiration.toEpochMilli()
+        } catch (e: ArithmeticException) { Long.MAX_VALUE },
         restrictions = callLink.state.restrictions.toBackup()
       )
     )

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.groups.v2.processing
 
+import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsementsResponse
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupChangeLog
@@ -9,10 +10,15 @@ import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupChangeLog
  */
 class GroupStateDiff(
   val previousGroupState: DecryptedGroup?,
-  val serverHistory: List<DecryptedGroupChangeLog>
+  val serverHistory: List<DecryptedGroupChangeLog>,
+  val groupSendEndorsementsResponse: GroupSendEndorsementsResponse?
 ) {
 
-  constructor(previousGroupState: DecryptedGroup?, changedGroupState: DecryptedGroup?, change: DecryptedGroupChange?) : this(previousGroupState, listOf(DecryptedGroupChangeLog(changedGroupState, change)))
+  constructor(
+    previousGroupState: DecryptedGroup?,
+    changedGroupState: DecryptedGroup?,
+    change: DecryptedGroupChange?
+  ) : this(previousGroupState, listOf(DecryptedGroupChangeLog(changedGroupState, change)), null)
 
   val earliestRevisionNumber: Int
     get() {

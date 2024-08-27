@@ -53,6 +53,7 @@ import java.util.Optional
 import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -62,6 +63,9 @@ object InAppPaymentsRepository {
 
   private const val JOB_PREFIX = "InAppPayments__"
   private val TAG = Log.tag(InAppPaymentsRepository::class.java)
+
+  private val backupExpirationTimeout = 30.days
+  private val backupExpirationDeletion = 60.days
 
   private val temporaryErrorProcessor = PublishProcessor.create<Pair<InAppPaymentTable.InAppPaymentId, Throwable>>()
 
@@ -313,7 +317,7 @@ object InAppPaymentsRepository {
     return if (paymentMethodType != InAppPaymentData.PaymentMethodType.UNKNOWN) {
       paymentMethodType
     } else if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
-      SignalStore.donations.getSubscriptionPaymentSourceType().toPaymentMethodType()
+      SignalStore.inAppPayments.getSubscriptionPaymentSourceType().toPaymentMethodType()
     } else {
       return InAppPaymentData.PaymentMethodType.UNKNOWN
     }
@@ -325,9 +329,9 @@ object InAppPaymentsRepository {
   @JvmStatic
   fun isUserManuallyCancelled(subscriberType: InAppPaymentSubscriberRecord.Type): Boolean {
     return if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
-      SignalStore.donations.isDonationSubscriptionManuallyCancelled()
+      SignalStore.inAppPayments.isDonationSubscriptionManuallyCancelled()
     } else {
-      SignalStore.donations.isBackupSubscriptionManuallyCancelled()
+      SignalStore.inAppPayments.isBackupSubscriptionManuallyCancelled()
     }
   }
 
@@ -341,9 +345,35 @@ object InAppPaymentsRepository {
   @JvmStatic
   fun getFallbackLastEndOfPeriod(subscriberType: InAppPaymentSubscriberRecord.Type): Duration {
     return if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
-      SignalStore.donations.getLastEndOfPeriod().seconds
+      SignalStore.inAppPayments.getLastEndOfPeriod().seconds
     } else {
       0.seconds
+    }
+  }
+
+  /**
+   * Determines if we are in the timeout period to display the "your backup will be deleted today" message
+   */
+  @WorkerThread
+  fun getExpiredBackupDeletionState(): ExpiredBackupDeletionState {
+    val inAppPayment = SignalDatabase.inAppPayments.getByLatestEndOfPeriod(InAppPaymentType.RECURRING_BACKUP)
+    if (inAppPayment == null) {
+      Log.w(TAG, "InAppPayment for recurring backup not found for last day check. Clearing check.")
+      SignalStore.inAppPayments.showLastDayToDownloadMediaDialog = false
+      return ExpiredBackupDeletionState.NONE
+    }
+
+    val now = SignalStore.misc.estimatedServerTime.milliseconds
+    val lastEndOfPeriod = inAppPayment.endOfPeriod
+    val displayDialogStart = lastEndOfPeriod + backupExpirationTimeout
+    val displayDialogEnd = lastEndOfPeriod + backupExpirationDeletion
+
+    return if (now in displayDialogStart..displayDialogEnd) {
+      ExpiredBackupDeletionState.DELETE_TODAY
+    } else if (now > displayDialogEnd) {
+      ExpiredBackupDeletionState.EXPIRED
+    } else {
+      ExpiredBackupDeletionState.NONE
     }
   }
 
@@ -361,7 +391,7 @@ object InAppPaymentsRepository {
   @WorkerThread
   fun setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberType: InAppPaymentSubscriberRecord.Type, subscriberId: SubscriberId?, shouldCancel: Boolean) {
     if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
-      SignalStore.donations.shouldCancelSubscriptionBeforeNextSubscribeAttempt = shouldCancel
+      SignalStore.inAppPayments.shouldCancelSubscriptionBeforeNextSubscribeAttempt = shouldCancel
     }
 
     if (subscriberId == null) {
@@ -384,7 +414,7 @@ object InAppPaymentsRepository {
     val latestSubscriber = getSubscriber(subscriberType)
 
     return latestSubscriber?.requiresCancel ?: if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
-      SignalStore.donations.shouldCancelSubscriptionBeforeNextSubscribeAttempt
+      SignalStore.inAppPayments.shouldCancelSubscriptionBeforeNextSubscribeAttempt
     } else {
       false
     }
@@ -401,7 +431,7 @@ object InAppPaymentsRepository {
     val subscriber = SignalDatabase.inAppPaymentSubscribers.getByCurrencyCode(currency.currencyCode, type)
 
     return if (subscriber == null && type == InAppPaymentSubscriberRecord.Type.DONATION) {
-      SignalStore.donations.getSubscriber(currency)
+      SignalStore.inAppPayments.getSubscriber(currency)
     } else {
       subscriber
     }
@@ -413,7 +443,7 @@ object InAppPaymentsRepository {
   @JvmStatic
   @WorkerThread
   fun getSubscriber(type: InAppPaymentSubscriberRecord.Type): InAppPaymentSubscriberRecord? {
-    val currency = SignalStore.donations.getSubscriptionCurrency(type)
+    val currency = SignalStore.inAppPayments.getSubscriptionCurrency(type)
     Log.d(TAG, "Attempting to retrieve subscriber of type $type for ${currency.currencyCode}")
 
     return getSubscriber(currency, type)
@@ -622,5 +652,11 @@ object InAppPaymentsRepository {
       InAppPaymentData.PaymentMethodType.IDEAL -> DonationProcessor.STRIPE
       InAppPaymentData.PaymentMethodType.PAYPAL -> DonationProcessor.PAYPAL
     }
+  }
+
+  enum class ExpiredBackupDeletionState {
+    NONE,
+    DELETE_TODAY,
+    EXPIRED
   }
 }

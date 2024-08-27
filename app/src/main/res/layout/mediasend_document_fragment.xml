@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:viewBindingIgnore="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="70dp"
+            android:minHeight="94dp"
+            android:src="@drawable/ic_document_large" />
+
+        <TextView
+            android:id="@+id/extension"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/signal_light_colorOnSurface"
+            style="@style/Signal.Text.Caption"
+            tools:text="pdf" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginHorizontal="16dp"
+        android:singleLine="true"
+        android:ellipsize="middle"
+        android:textColor="@color/signal_colorOnSurface"
+        android:gravity="center"
+        style="@style/Signal.Text.BodyLarge"
+        android:letterSpacing="0"
+        tools:text="thoughts.pdf" />
+
+    <TextView
+        android:id="@+id/size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        style="@style/Signal.Text.BodyLarge"
+        tools:text="12 KB" />
+
+</LinearLayout>

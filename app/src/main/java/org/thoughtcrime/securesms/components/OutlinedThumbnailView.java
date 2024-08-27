@@ -14,6 +14,7 @@ public class OutlinedThumbnailView extends ThumbnailView {
 
   private CornerMask cornerMask;
   private Outliner   outliner;
+  private boolean    isOutlineEnabled;
 
   public OutlinedThumbnailView(Context context) {
     super(context);
@@ -52,8 +53,15 @@ public class OutlinedThumbnailView extends ThumbnailView {
   protected void dispatchDraw(Canvas canvas) {
     super.dispatchDraw(canvas);
 
-    cornerMask.mask(canvas);
-    outliner.draw(canvas);
+    if (isOutlineEnabled) {
+      cornerMask.mask(canvas);
+      outliner.draw(canvas);
+    }
+  }
+
+  public void setOutlineEnabled(boolean isOutlineEnabled) {
+    this.isOutlineEnabled = isOutlineEnabled;
+    invalidate();
   }
 
   public void setCorners(int topLeft, int topRight, int bottomRight, int bottomLeft) {

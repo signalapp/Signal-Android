@@ -15,6 +15,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
+import org.thoughtcrime.securesms.jobs.MinimalJobSpec;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -44,7 +45,9 @@ public class JobManager implements ConstraintObserver.Notifier {
 
   private static final String TAG = Log.tag(JobManager.class);
 
-  public static final int CURRENT_VERSION = 11;
+  public static final int CURRENT_VERSION = 12;
+
+  private static final Predicate<MinimalJobSpec> NO_PREDICATE = spec -> true;
 
   private final Application   application;
   private final Configuration configuration;
@@ -109,10 +112,10 @@ public class JobManager implements ConstraintObserver.Notifier {
       int id = 0;
 
       for (int i = 0; i < configuration.getJobThreadCount(); i++) {
-        new JobRunner(application, ++id, jobController, JobPredicate.NONE).start();
+        new JobRunner(application, ++id, jobController, NO_PREDICATE).start();
       }
 
-      for (JobPredicate predicate : configuration.getReservedJobRunners()) {
+      for (Predicate<MinimalJobSpec> predicate : configuration.getReservedJobRunners()) {
         new JobRunner(application, ++id, jobController, predicate).start();
       }
 
@@ -578,15 +581,15 @@ public class JobManager implements ConstraintObserver.Notifier {
 
   public static class Configuration {
 
-    private final ExecutorFactory          executorFactory;
-    private final int                      jobThreadCount;
-    private final JobInstantiator          jobInstantiator;
-    private final ConstraintInstantiator   constraintInstantiator;
-    private final List<ConstraintObserver> constraintObservers;
-    private final JobStorage               jobStorage;
-    private final JobMigrator              jobMigrator;
-    private final JobTracker               jobTracker;
-    private final List<JobPredicate>       reservedJobRunners;
+    private final ExecutorFactory                 executorFactory;
+    private final int                             jobThreadCount;
+    private final JobInstantiator                 jobInstantiator;
+    private final ConstraintInstantiator          constraintInstantiator;
+    private final List<ConstraintObserver>        constraintObservers;
+    private final JobStorage                      jobStorage;
+    private final JobMigrator                     jobMigrator;
+    private final JobTracker                      jobTracker;
+    private final List<Predicate<MinimalJobSpec>> reservedJobRunners;
 
     private Configuration(int jobThreadCount,
                           @NonNull ExecutorFactory executorFactory,
@@ -596,7 +599,7 @@ public class JobManager implements ConstraintObserver.Notifier {
                           @NonNull JobStorage jobStorage,
                           @NonNull JobMigrator jobMigrator,
                           @NonNull JobTracker jobTracker,
-                          @NonNull List<JobPredicate> reservedJobRunners)
+                          @NonNull List<Predicate<MinimalJobSpec>> reservedJobRunners)
     {
       this.executorFactory        = executorFactory;
       this.jobThreadCount         = jobThreadCount;
@@ -642,7 +645,7 @@ public class JobManager implements ConstraintObserver.Notifier {
       return jobTracker;
     }
 
-    @NonNull List<JobPredicate> getReservedJobRunners() {
+    @NonNull List<Predicate<MinimalJobSpec>> getReservedJobRunners() {
       return reservedJobRunners;
     }
 
@@ -656,14 +659,14 @@ public class JobManager implements ConstraintObserver.Notifier {
       private JobStorage                      jobStorage          = null;
       private JobMigrator                     jobMigrator         = null;
       private JobTracker                      jobTracker          = new JobTracker();
-      private List<JobPredicate>              reservedJobRunners  = new ArrayList<>();
+      private List<Predicate<MinimalJobSpec>> reservedJobRunners  = new ArrayList<>();
 
       public @NonNull Builder setJobThreadCount(int jobThreadCount) {
         this.jobThreadCount = jobThreadCount;
         return this;
       }
 
-      public @NonNull Builder addReservedJobRunner(@NonNull JobPredicate predicate) {
+      public @NonNull Builder addReservedJobRunner(@NonNull Predicate<MinimalJobSpec> predicate) {
         this.reservedJobRunners.add(predicate);
         return this;
       }

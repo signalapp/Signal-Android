@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,8 +19,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -39,6 +43,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withAnnotation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
@@ -49,6 +54,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import java.math.BigDecimal
+import java.util.Currency
 
 /**
  * Screen which allows the user to select their preferred backup type.
@@ -56,12 +62,14 @@ import java.math.BigDecimal
 @OptIn(ExperimentalTextApi::class)
 @Composable
 fun MessageBackupsTypeSelectionScreen(
+  currentBackupTier: MessageBackupTier?,
   selectedBackupTier: MessageBackupTier?,
   availableBackupTypes: List<MessageBackupsType>,
   onMessageBackupsTierSelected: (MessageBackupTier) -> Unit,
   onNavigationClick: () -> Unit,
   onReadMoreClicked: () -> Unit,
-  onNextClicked: () -> Unit
+  onNextClicked: () -> Unit,
+  onCancelSubscriptionClicked: () -> Unit
 ) {
   Scaffolds.Settings(
     title = "",
@@ -90,24 +98,26 @@ fun MessageBackupsTypeSelectionScreen(
 
         item {
           Text(
-            text = "Choose your backup type", // TODO [message-backups] Finalized copy
+            text = stringResource(id = R.string.MessagesBackupsTypeSelectionScreen__choose_your_backup_plan),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(top = 12.dp)
           )
         }
 
         item {
-          // TODO [message-backups] Finalized copy
           val primaryColor = MaterialTheme.colorScheme.primary
           val readMoreString = buildAnnotatedString {
-            append("All backups are end-to-end encrypted. Signal is a non-profit—paying for backups helps support our mission. ")
+            append(stringResource(id = R.string.MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted))
+
+            val readMore = stringResource(id = R.string.MessageBackupsTypeSelectionScreen__read_more)
+            append(" ")
             withAnnotation(tag = "URL", annotation = "read-more") {
               withStyle(
                 style = SpanStyle(
                   color = primaryColor
                 )
               ) {
-                append("Read more")
+                append(readMore)
               }
             }
           }
@@ -130,6 +140,7 @@ fun MessageBackupsTypeSelectionScreen(
         ) { index, item ->
           MessageBackupsTypeBlock(
             messageBackupsType = item,
+            isCurrent = item.tier == currentBackupTier,
             isSelected = item.tier == selectedBackupTier,
             onSelected = { onMessageBackupsTierSelected(item.tier) },
             modifier = Modifier.padding(top = if (index == 0) 20.dp else 18.dp)
@@ -137,16 +148,35 @@ fun MessageBackupsTypeSelectionScreen(
         }
       }
 
+      val hasCurrentBackupTier = currentBackupTier != null
+
       Buttons.LargePrimary(
         onClick = onNextClicked,
-        enabled = selectedBackupTier != null,
+        enabled = selectedBackupTier != currentBackupTier && selectedBackupTier != null,
         modifier = Modifier
           .fillMaxWidth()
-          .padding(vertical = 16.dp)
+          .padding(vertical = if (hasCurrentBackupTier) 10.dp else 16.dp)
       ) {
         Text(
-          text = "Next" // TODO [message-backups] Finalized copy
+          text = stringResource(
+            id = if (currentBackupTier == null) {
+              R.string.MessageBackupsTypeSelectionScreen__next
+            } else {
+              R.string.MessageBackupsTypeSelectionScreen__change_backup_type
+            }
+          )
         )
+      }
+
+      if (hasCurrentBackupTier) {
+        TextButton(
+          onClick = onCancelSubscriptionClicked,
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 14.dp)
+        ) {
+          Text(text = stringResource(id = R.string.MessageBackupsTypeSelectionScreen__cancel_subscription))
+        }
       }
     }
   }
@@ -160,11 +190,32 @@ private fun MessageBackupsTypeSelectionScreenPreview() {
   Previews.Preview {
     MessageBackupsTypeSelectionScreen(
       selectedBackupTier = MessageBackupTier.FREE,
-      availableBackupTypes = emptyList(),
+      availableBackupTypes = testBackupTypes(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },
       onNavigationClick = {},
       onReadMoreClicked = {},
-      onNextClicked = {}
+      onNextClicked = {},
+      onCancelSubscriptionClicked = {},
+      currentBackupTier = null
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun MessageBackupsTypeSelectionScreenWithCurrentTierPreview() {
+  var selectedBackupsType by remember { mutableStateOf(MessageBackupTier.FREE) }
+
+  Previews.Preview {
+    MessageBackupsTypeSelectionScreen(
+      selectedBackupTier = MessageBackupTier.FREE,
+      availableBackupTypes = testBackupTypes(),
+      onMessageBackupsTierSelected = { selectedBackupsType = it },
+      onNavigationClick = {},
+      onReadMoreClicked = {},
+      onNextClicked = {},
+      onCancelSubscriptionClicked = {},
+      currentBackupTier = MessageBackupTier.PAID
     )
   }
 }
@@ -172,6 +223,7 @@ private fun MessageBackupsTypeSelectionScreenPreview() {
 @Composable
 fun MessageBackupsTypeBlock(
   messageBackupsType: MessageBackupsType,
+  isCurrent: Boolean,
   isSelected: Boolean,
   onSelected: () -> Unit,
   modifier: Modifier = Modifier,
@@ -189,7 +241,7 @@ fun MessageBackupsTypeBlock(
     SignalTheme.colors.colorSurface2
   }
 
-  Column(
+  Box(
     modifier = modifier
       .fillMaxWidth()
       .background(color = background, shape = RoundedCornerShape(18.dp))
@@ -198,25 +250,41 @@ fun MessageBackupsTypeBlock(
       .clickable(onClick = onSelected, enabled = enabled)
       .padding(vertical = 16.dp, horizontal = 20.dp)
   ) {
-    Text(
-      text = formatCostPerMonth(messageBackupsType.pricePerMonth),
-      style = MaterialTheme.typography.titleSmall
-    )
+    Column {
+      Text(
+        text = formatCostPerMonth(messageBackupsType.pricePerMonth),
+        style = MaterialTheme.typography.titleSmall
+      )
 
-    Text(
-      text = messageBackupsType.title,
-      style = MaterialTheme.typography.titleMedium
-    )
+      Text(
+        text = messageBackupsType.title,
+        style = MaterialTheme.typography.titleMedium
+      )
 
-    Column(
-      verticalArrangement = spacedBy(4.dp),
-      modifier = Modifier
-        .padding(top = 8.dp)
-        .padding(horizontal = 16.dp)
-    ) {
-      messageBackupsType.features.forEach {
-        MessageBackupsTypeFeatureRow(messageBackupsTypeFeature = it)
+      val featureIconTint = if (isSelected) {
+        MaterialTheme.colorScheme.primary
+      } else {
+        MaterialTheme.colorScheme.onSurfaceVariant
       }
+
+      Column(
+        verticalArrangement = spacedBy(4.dp),
+        modifier = Modifier
+          .padding(top = 8.dp)
+          .padding(horizontal = 16.dp)
+      ) {
+        messageBackupsType.features.forEach {
+          MessageBackupsTypeFeatureRow(messageBackupsTypeFeature = it, iconTint = featureIconTint)
+        }
+      }
+    }
+
+    if (isCurrent) {
+      Icon(
+        painter = painterResource(id = R.drawable.symbol_check_24),
+        contentDescription = null,
+        modifier = Modifier.align(Alignment.TopEnd)
+      )
     }
   }
 }
@@ -228,4 +296,47 @@ private fun formatCostPerMonth(pricePerMonth: FiatMoney): String {
   } else {
     "${FiatMoneyUtil.format(LocalContext.current.resources, pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())}/month"
   }
+}
+
+fun testBackupTypes(): List<MessageBackupsType> {
+  return listOf(
+    MessageBackupsType(
+      tier = MessageBackupTier.FREE,
+      pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance("USD")),
+      title = "Text + 30 days of media",
+      features = persistentListOf(
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+          label = "Full text message backup"
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_album_compact_bold_16,
+          label = "Last 30 days of media"
+        )
+      )
+    ),
+    MessageBackupsType(
+      tier = MessageBackupTier.PAID,
+      pricePerMonth = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")),
+      title = "Text + All your media",
+      features = persistentListOf(
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+          label = "Full text message backup"
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_album_compact_bold_16,
+          label = "Full media backup"
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_thread_compact_bold_16,
+          label = "1TB of storage (~250K photos)"
+        ),
+        MessageBackupsTypeFeature(
+          iconResourceId = R.drawable.symbol_heart_compact_bold_16,
+          label = "Thanks for supporting Signal!"
+        )
+      )
+    )
+  )
 }

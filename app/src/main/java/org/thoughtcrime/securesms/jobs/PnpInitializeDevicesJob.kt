@@ -14,7 +14,7 @@ import org.signal.libsignal.protocol.state.SignalProtocolStore
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.protocol.util.Medium
-import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberRepository
+import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberViewModel
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -87,7 +87,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
       return
     }
 
-    ChangeNumberRepository.CHANGE_NUMBER_LOCK.lock()
+    ChangeNumberViewModel.CHANGE_NUMBER_LOCK.lock()
     try {
       if (SignalStore.misc.hasPniInitializedDevices) {
         Log.w(TAG, "We found out that things have been initialized after we got the lock! No need to do anything else.")
@@ -112,7 +112,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
       SignalStore.misc.hasPniInitializedDevices = true
     } finally {
-      ChangeNumberRepository.CHANGE_NUMBER_LOCK.unlock()
+      ChangeNumberViewModel.CHANGE_NUMBER_LOCK.unlock()
     }
   }
 

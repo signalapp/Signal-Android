@@ -58,9 +58,9 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.BankTransferRequestKeys
@@ -76,7 +76,7 @@ import org.thoughtcrime.securesms.util.viewModel
 /**
  * Fragment for inputting necessary bank transfer information for iDEAL donation
  */
-class IdealTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate.ErrorHandlerCallback {
+class IdealTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDelegate.ErrorHandlerCallback {
 
   private val args: IdealTransferDetailsFragmentArgs by navArgs()
   private val viewModel: IdealTransferDetailsViewModel by viewModel {
@@ -93,11 +93,11 @@ class IdealTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this)
 
-    DonationCheckoutDelegate.ErrorHandler().attach(this, this, args.inAppPayment.id)
+    InAppPaymentCheckoutDelegate.ErrorHandler().attach(this, this, args.inAppPayment.id)
 
     setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
-      val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
-      if (result.status == DonationProcessorActionResult.Status.SUCCESS) {
+      val result: InAppPaymentProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, InAppPaymentProcessorActionResult::class.java)!!
+      if (result.status == InAppPaymentProcessorActionResult.Status.SUCCESS) {
         findNavController().popBackStack(R.id.donateToSignalFragment, false)
         setFragmentResult(BankTransferRequestKeys.REQUEST_KEY, bundle)
       }
@@ -156,7 +156,7 @@ class IdealTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate
       stripePaymentViewModel.provideIDEALData(state.asIDEALData())
       findNavController().safeNavigate(
         IdealTransferDetailsFragmentDirections.actionBankTransferDetailsFragmentToStripePaymentInProgressFragment(
-          DonationProcessorAction.PROCESS_NEW_DONATION,
+          InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
           args.inAppPayment,
           args.inAppPayment.type
         )
@@ -164,9 +164,10 @@ class IdealTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate
     }
 
     if (args.inAppPayment.type.recurring) { // TODO [message-requests] -- handle backup
+      val formattedMoney = FiatMoneyUtil.format(requireContext().resources, args.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
       MaterialAlertDialogBuilder(requireContext())
         .setTitle(getString(R.string.IdealTransferDetailsFragment__confirm_your_donation_with_s, getString(state.idealBank!!.getUIValues().name)))
-        .setMessage(R.string.IdealTransferDetailsFragment__monthly_ideal_warning)
+        .setMessage(getString(R.string.IdealTransferDetailsFragment__to_setup_your_recurring_donation, formattedMoney))
         .setPositiveButton(R.string.IdealTransferDetailsFragment__continue) { _, _ ->
           continueTransfer()
         }
@@ -192,6 +193,10 @@ class IdealTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate
         findNavController().popBackStack(R.id.donateToSignalFragment, false)
       }
     })
+  }
+
+  override fun exitCheckoutFlow() {
+    requireActivity().finishAfterTransition()
   }
 }
 

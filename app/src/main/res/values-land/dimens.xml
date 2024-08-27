@@ -5,4 +5,13 @@
     <dimen name="transfer_top_padding">16dp</dimen>
     <dimen name="transfer_split_top_padding">8dp</dimen>
     <dimen name="transfer_item_spacing">16dp</dimen>
+
+    <!-- Call controls dimens -->
+    <dimen name="CallControls__button_horizontal_margin">10dp</dimen>
+    <dimen name="CallControls__button_bottom_margin">0dp</dimen>
+    <dimen name="CallScreenLargeHeader__avatar_size">80dp</dimen>
+    <dimen name="CallScreenLargeHeader__avatar_margin_top">48dp</dimen>
+    <dimen name="CallScreenParticipantItem__margin_end">0dp</dimen>
+    <dimen name="CallScreenParticipantItem__margin_bottom">4dp</dimen>
+
 </resources>

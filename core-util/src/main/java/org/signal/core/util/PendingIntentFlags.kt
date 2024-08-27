@@ -23,9 +23,13 @@ object PendingIntentFlags {
     return mutable() or PendingIntent.FLAG_CANCEL_CURRENT
   }
 
+  /**
+   * Flag indicating that this [PendingIntent] can be used only once. After [PendingIntent.send] is called on it,
+   * it will be automatically canceled for you and any future attempt to send through it will fail.
+   */
   @JvmStatic
   fun oneShot(): Int {
-    return mutable() or PendingIntent.FLAG_ONE_SHOT
+    return immutable() or PendingIntent.FLAG_ONE_SHOT
   }
 
   /**

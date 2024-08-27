@@ -605,22 +605,6 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     return handleCallLinkUpdate(callRecipient, timestamp, CallId.fromEra(eraId), Direction.INCOMING)
   }
 
-  fun insertOrUpdateGroupCallFromExternalEvent(
-    groupRecipientId: RecipientId,
-    sender: RecipientId,
-    timestamp: Long,
-    messageGroupCallEraId: String?
-  ) {
-    insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId,
-      sender,
-      timestamp,
-      messageGroupCallEraId,
-      emptyList(),
-      false
-    )
-  }
-
   fun insertOrUpdateGroupCallFromLocalEvent(
     groupRecipientId: RecipientId,
     sender: RecipientId,
@@ -719,19 +703,19 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
     val didInsert = writableDatabase.withinTransaction { db ->
       val exists = db.exists(TABLE_NAME)
-        .where("$PEER = ? AND $CALL_ID = ?", callLinkRecipient.id.serialize(), callId)
+        .where("$PEER = ? AND $CALL_ID = ?", callLinkRecipient.id.serialize(), callId.longValue())
         .run()
 
       if (exists && !skipTimestampUpdate) {
         db.update(TABLE_NAME)
           .values(TIMESTAMP to timestamp)
-          .where("$PEER = ? AND $CALL_ID = ? AND $TIMESTAMP < ?", callLinkRecipient.id.serialize(), callId, timestamp)
+          .where("$PEER = ? AND $CALL_ID = ? AND $TIMESTAMP < ?", callLinkRecipient.id.serialize(), callId.longValue(), timestamp)
           .run()
         false
       } else if (!exists) {
         db.insertInto(TABLE_NAME)
           .values(
-            CALL_ID to callId,
+            CALL_ID to callId.longValue(),
             MESSAGE_ID to null,
             PEER to callLinkRecipient.id.toLong(),
             EVENT to Event.serialize(Event.GENERIC_GROUP_CALL),
@@ -1227,7 +1211,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     val isMissedGenericGroupCall = "$EVENT = ${Event.serialize(Event.GENERIC_GROUP_CALL)} AND $LOCAL_JOINED = ${false.toInt()} AND $GROUP_CALL_ACTIVE = ${false.toInt()}"
     val filterClause: SqlUtil.Query = when (filter) {
       CallLogFilter.ALL -> SqlUtil.buildQuery("$DELETION_TIMESTAMP = 0")
-      CallLogFilter.MISSED -> SqlUtil.buildQuery("($EVENT = ${Event.serialize(Event.MISSED)} OR $EVENT = ${Event.serialize(Event.MISSED_NOTIFICATION_PROFILE)} OR $EVENT = ${Event.serialize(Event.NOT_ACCEPTED)} OR $EVENT = ${Event.serialize(Event.DECLINED)} OR ($isMissedGenericGroupCall)) AND $DELETION_TIMESTAMP = 0")
+      CallLogFilter.MISSED -> SqlUtil.buildQuery("$TYPE != ${Type.serialize(Type.AD_HOC_CALL)} AND $DIRECTION == ${Direction.serialize(Direction.INCOMING)} AND ($EVENT = ${Event.serialize(Event.MISSED)} OR $EVENT = ${Event.serialize(Event.MISSED_NOTIFICATION_PROFILE)} OR $EVENT = ${Event.serialize(Event.NOT_ACCEPTED)} OR $EVENT = ${Event.serialize(Event.DECLINED)} OR ($isMissedGenericGroupCall)) AND $DELETION_TIMESTAMP = 0")
       CallLogFilter.AD_HOC -> SqlUtil.buildQuery("$TYPE = ${Type.serialize(Type.AD_HOC_CALL)} AND $DELETION_TIMESTAMP = 0")
     }
 

@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
+import org.thoughtcrime.securesms.jobs.protos.GroupCallPeekJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
@@ -1016,14 +1017,13 @@ object DataMessageProcessor {
 
     val groupRecipientId = SignalDatabase.recipients.getOrInsertFromPossiblyMigratedGroupId(groupId)
 
-    SignalDatabase.calls.insertOrUpdateGroupCallFromExternalEvent(
-      groupRecipientId,
-      senderRecipientId,
-      envelope.serverTimestamp!!,
-      groupCallUpdate.eraId
+    GroupCallPeekJob.enqueue(
+      GroupCallPeekJobData(
+        groupRecipientId.toLong(),
+        senderRecipientId.toLong(),
+        envelope.serverTimestamp!!
+      )
     )
-
-    GroupCallPeekJob.enqueue(groupRecipientId)
   }
 
   fun notifyTypingStoppedFromIncomingMessage(context: Context, senderRecipient: Recipient, threadRecipientId: RecipientId, device: Int) {

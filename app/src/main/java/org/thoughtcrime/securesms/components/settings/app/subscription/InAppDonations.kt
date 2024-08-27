@@ -62,7 +62,7 @@ object InAppDonations {
    * Whether the user is using a device that supports GooglePay, based off Wallet API and phone number.
    */
   fun isGooglePayAvailable(): Boolean {
-    return SignalStore.donations.isGooglePayReady && !LocaleRemoteConfig.isGooglePayDisabled()
+    return SignalStore.inAppPayments.isGooglePayReady && !LocaleRemoteConfig.isGooglePayDisabled()
   }
 
   /**

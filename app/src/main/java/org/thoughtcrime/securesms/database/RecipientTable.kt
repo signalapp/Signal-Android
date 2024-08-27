@@ -409,7 +409,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     @JvmStatic
     fun maskCapabilitiesToLong(capabilities: SignalServiceProfile.Capabilities): Long {
       var value: Long = 0
-      value = Bitmask.update(value, Capabilities.PAYMENT_ACTIVATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isPaymentActivation).serialize().toLong())
       value = Bitmask.update(value, Capabilities.DELETE_SYNC, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isDeleteSync).serialize().toLong())
       return value
     }
@@ -853,6 +852,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     if (id < 0) {
       Log.w(TAG, "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.")
       recipientId = getAndPossiblyMerge(aci = insert.aci.orNull(), pni = insert.pni.orNull(), e164 = insert.number.orNull(), pniVerified = insert.isPniSignatureVerified)
+      resolvePotentialUsernameConflicts(values.getAsString(USERNAME), recipientId)
+
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     } else {
       recipientId = RecipientId.from(id)
@@ -893,6 +894,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       recipientId = getAndPossiblyMerge(aci = update.new.aci.orElse(null), pni = update.new.pni.orElse(null), e164 = update.new.number.orElse(null), pniVerified = update.new.isPniSignatureVerified)
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Merged into $recipientId")
+      resolvePotentialUsernameConflicts(values.getAsString(USERNAME), recipientId)
+
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     }
 
@@ -929,6 +932,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     AppDependencies.databaseObserver.notifyRecipientChanged(recipientId)
   }
 
+  private fun resolvePotentialUsernameConflicts(username: String?, recipientId: RecipientId) {
+    if (username != null) {
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(USERNAME to null)
+        .where("$USERNAME = ? AND $ID != ?", username, recipientId.serialize())
+        .run()
+    }
+  }
+
   fun applyStorageSyncGroupV1Insert(insert: SignalGroupV1Record) {
     val id = writableDatabase.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert, true))
 
@@ -959,10 +972,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     Log.i(TAG, "Creating restore placeholder for $groupId")
     val createdId = groups.create(
-      masterKey,
-      DecryptedGroup.Builder()
-        .revision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
-        .build()
+      groupMasterKey = masterKey,
+      groupState = DecryptedGroup(revision = GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION),
+      groupSendEndorsements = null
     )
 
     if (createdId == null) {
@@ -1470,9 +1482,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun setUnidentifiedAccessMode(id: RecipientId, unidentifiedAccessMode: UnidentifiedAccessMode) {
+  fun setSealedSenderAccessMode(id: RecipientId, sealedSenderAccessMode: SealedSenderAccessMode) {
     val values = ContentValues(1).apply {
-      put(SEALED_SENDER_MODE, unidentifiedAccessMode.mode)
+      put(SEALED_SENDER_MODE, sealedSenderAccessMode.mode)
     }
     if (update(id, values)) {
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
@@ -1555,7 +1567,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val valuesToSet = ContentValues(3).apply {
       put(PROFILE_KEY, encodedProfileKey)
       putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
-      put(SEALED_SENDER_MODE, UnidentifiedAccessMode.UNKNOWN.mode)
+      put(SEALED_SENDER_MODE, SealedSenderAccessMode.UNKNOWN.mode)
     }
 
     val updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, valuesToCompare)
@@ -1587,7 +1599,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val valuesToSet = ContentValues(3).apply {
       put(PROFILE_KEY, Base64.encodeWithPadding(profileKey.serialize()))
       putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
-      put(SEALED_SENDER_MODE, UnidentifiedAccessMode.UNKNOWN.mode)
+      put(SEALED_SENDER_MODE, SealedSenderAccessMode.UNKNOWN.mode)
     }
 
     if (writableDatabase.update(TABLE_NAME, valuesToSet, selection, args) > 0) {
@@ -4577,8 +4589,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 //    const val STORIES = 5
 //    const val GIFT_BADGES = 6
 //    const val PNP = 7
-    const val PAYMENT_ACTIVATION = 8
+//    const val PAYMENT_ACTIVATION = 8
     const val DELETE_SYNC = 9
+
+    // IMPORTANT: We cannot sore more than 32 capabilities in the bitmask.
   }
 
   enum class VibrateState(val id: Int) {
@@ -4609,14 +4623,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  enum class UnidentifiedAccessMode(val mode: Int) {
+  enum class SealedSenderAccessMode(val mode: Int) {
     UNKNOWN(0),
     DISABLED(1),
     ENABLED(2),
     UNRESTRICTED(3);
 
     companion object {
-      fun fromMode(mode: Int): UnidentifiedAccessMode {
+      fun fromMode(mode: Int): SealedSenderAccessMode {
         return values()[mode]
       }
     }

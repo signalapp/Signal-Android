@@ -32,13 +32,14 @@ abstract class SafeForegroundService : Service() {
     private val TAG = Log.tag(SafeForegroundService::class.java)
 
     private const val ACTION_START = "start"
+    private const val ACTION_UPDATE = "update"
     private const val ACTION_STOP = "stop"
 
     private var states: MutableMap<Class<out SafeForegroundService>, State> = mutableMapOf()
     private val stateLock = ReentrantLock()
 
     /**
-     * Safety starts the target foreground service.
+     * Safely starts the target foreground service.
      * @return False if we tried to start the service but failed, otherwise true.
      */
     @CheckReturnValue
@@ -124,6 +125,44 @@ abstract class SafeForegroundService : Service() {
       }
     }
 
+    /**
+     * Safely updates the target foreground service if it is already starting.
+     *
+     * @return True if we updated a started service, otherwise false.
+     */
+    @CheckReturnValue
+    fun update(context: Context, serviceClass: Class<out SafeForegroundService>, extras: Bundle = Bundle.EMPTY): Boolean {
+      stateLock.withLock {
+        val state = currentState(serviceClass)
+
+        Log.d(TAG, "[update] Current state: $state")
+
+        return when (state) {
+          State.STARTING -> {
+            Log.d(TAG, "[update] Updating service.")
+            try {
+              ForegroundServiceUtil.startWhenCapable(
+                context = context,
+                intent = Intent(context, serviceClass).apply {
+                  action = ACTION_UPDATE
+                  putExtras(extras)
+                }
+              )
+              true
+            } catch (e: UnableToStartException) {
+              Log.w(TAG, "Failed to update service class $serviceClass", e)
+              false
+            }
+          }
+
+          else -> {
+            Log.d(TAG, "[update] Service cannot be updated. Current state: $state")
+            false
+          }
+        }
+      }
+    }
+
     fun isStopping(intent: Intent): Boolean {
       return intent.action == ACTION_STOP
     }
@@ -157,6 +196,9 @@ abstract class SafeForegroundService : Service() {
         onServiceStopCommandReceived(intent)
         ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
         stopSelf()
+      }
+      ACTION_UPDATE -> {
+        onServiceUpdateCommandReceived(intent)
       }
       else -> Log.w(tag, "Unknown action: $action")
     }
@@ -209,6 +251,9 @@ abstract class SafeForegroundService : Service() {
 
   /** Event listener for when the service is stopped via an intent. */
   open fun onServiceStopCommandReceived(intent: Intent) = Unit
+
+  /** Event listener for when the service is updated via an intent. */
+  open fun onServiceUpdateCommandReceived(intent: Intent) = Unit
 
   private enum class State {
     /** The service is not running. */

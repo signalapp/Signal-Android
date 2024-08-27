@@ -23,7 +23,7 @@ import java.util.UUID
  */
 abstract class Attachment(
   @JvmField
-  val contentType: String,
+  val contentType: String?,
   @JvmField
   val transferState: Int,
   @JvmField

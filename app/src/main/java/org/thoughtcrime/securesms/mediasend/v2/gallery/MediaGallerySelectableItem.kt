@@ -115,7 +115,7 @@ object MediaGallerySelectableItem {
       checkView?.visible = model.isSelected
       checkView?.text = "${model.selectionOneBasedIndex}"
       itemView.setOnClickListener { onMediaClicked(model.media, model.isSelected) }
-      playOverlay?.visible = MediaUtil.isVideo(model.media.mimeType) && !model.media.isVideoGif
+      playOverlay?.visible = MediaUtil.isVideo(model.media.contentType) && !model.media.isVideoGif
       title?.visible = false
 
       if (PAYLOAD_INDEX_CHANGED in payload) {

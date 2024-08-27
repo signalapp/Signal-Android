@@ -42,6 +42,13 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_privacySettingsFragment_to_screenLockSettingsFragment"
+            app:destination="@id/screenLockSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
 
     </fragment>
 
@@ -59,6 +66,19 @@
         android:id="@+id/phoneNumberPrivacySettingsFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.privacy.pnp.PhoneNumberPrivacySettingsFragment"
         android:label="phone_number_privacy_settings_fragment" />
+
+    <fragment
+        android:id="@+id/screenLockSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.screenlock.ScreenLockSettingsFragment"
+        android:label="screen_lock_settings_fragment">
+        <action
+            android:id="@+id/action_screenLockSettingsFragment_to_customScreenLockTimerSelectDialog"
+            app:destination="@id/customScreenLockTimerSelectDialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/customScreenLockTimerSelectDialog"
+        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.screenlock.CustomScreenLockTimerSelectDialog" />
 
     <include app:graph="@navigation/app_settings_expire_timer" />
 

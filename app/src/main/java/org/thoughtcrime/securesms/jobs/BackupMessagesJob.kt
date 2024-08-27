@@ -36,9 +36,20 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
 
     const val QUEUE = "BackupMessagesQueue"
 
-    fun enqueue() {
+    /**
+     * Pruning abandoned remote media is relatively expensive, so we should
+     * not do this every time we backup.
+     */
+    fun enqueue(pruneAbandonedRemoteMedia: Boolean = false) {
       val jobManager = AppDependencies.jobManager
-      jobManager.add(BackupMessagesJob())
+      if (pruneAbandonedRemoteMedia) {
+        jobManager
+          .startChain(BackupMessagesJob())
+          .then(SyncArchivedMediaJob())
+          .enqueue()
+      } else {
+        jobManager.add(BackupMessagesJob())
+      }
     }
   }
 

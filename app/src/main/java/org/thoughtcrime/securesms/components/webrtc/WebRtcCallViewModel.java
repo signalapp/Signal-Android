@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components.webrtc;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Pair;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -12,12 +11,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.ThreadUtil;
-import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -41,7 +38,6 @@ import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -68,9 +64,7 @@ public class WebRtcCallViewModel extends ViewModel {
   private final LiveData<List<GroupMemberEntry.FullMember>>   groupMembersChanged       = LiveDataUtil.skip(groupMembers, 1);
   private final LiveData<Integer>                             groupMemberCount          = Transformations.map(groupMembers, List::size);
   private final Observable<Boolean>                           shouldShowSpeakerHint     = participantsState.map(this::shouldShowSpeakerHint);
-  private final LiveData<Orientation>                         orientation;
   private final MutableLiveData<Boolean>                      isLandscapeEnabled        = new MutableLiveData<>();
-  private final LiveData<Integer>                             controlsRotation;
   private final Observer<List<GroupMemberEntry.FullMember>>   groupMemberStateUpdater   = m -> participantsState.onNext(CallParticipantsState.update(participantsState.getValue(), m));
   private final MutableLiveData<WebRtcEphemeralState>         ephemeralState            = new MutableLiveData<>();
 
@@ -95,25 +89,8 @@ public class WebRtcCallViewModel extends ViewModel {
 
   private final WebRtcCallRepository repository = new WebRtcCallRepository(AppDependencies.getApplication());
 
-  private WebRtcCallViewModel(@NonNull DeviceOrientationMonitor deviceOrientationMonitor) {
-    orientation      = deviceOrientationMonitor.getOrientation();
-    controlsRotation = LiveDataUtil.combineLatest(Transformations.distinctUntilChanged(isLandscapeEnabled),
-                                                  Transformations.distinctUntilChanged(orientation),
-                                                  this::resolveRotation);
-
+  public WebRtcCallViewModel() {
     groupMembers.observeForever(groupMemberStateUpdater);
-  }
-
-  public LiveData<Integer> getControlsRotation() {
-    return controlsRotation;
-  }
-
-  public LiveData<Orientation> getOrientation() {
-    return Transformations.distinctUntilChanged(orientation);
-  }
-
-  public LiveData<Pair<Orientation, Boolean>> getOrientationAndLandscapeEnabled() {
-    return LiveDataUtil.combineLatest(orientation, isLandscapeEnabled, Pair::new);
   }
 
   public LiveData<Boolean> getMicrophoneEnabled() {
@@ -309,7 +286,8 @@ public class WebRtcCallViewModel extends ViewModel {
                          webRtcViewModel.getAvailableDevices(),
                          webRtcViewModel.getRemoteDevicesCount().orElse(0),
                          webRtcViewModel.getParticipantLimit(),
-                         webRtcViewModel.getRecipient().isCallLink());
+                         webRtcViewModel.getRecipient().isCallLink(),
+                         webRtcViewModel.getRemoteParticipants().size() > CallParticipantsState.SMALL_GROUP_MAX);
 
     pendingParticipants.onNext(webRtcViewModel.getPendingParticipants());
 
@@ -364,23 +342,6 @@ public class WebRtcCallViewModel extends ViewModel {
     ephemeralState.setValue(state);
   }
 
-  private int resolveRotation(boolean isLandscapeEnabled, @NonNull Orientation orientation) {
-    if (isLandscapeEnabled) {
-      return 0;
-    }
-
-    switch (orientation) {
-      case LANDSCAPE_LEFT_EDGE:
-        return 90;
-      case LANDSCAPE_RIGHT_EDGE:
-        return -90;
-      case PORTRAIT_BOTTOM_EDGE:
-        return 0;
-      default:
-        throw new AssertionError();
-    }
-  }
-
   private boolean containsPlaceholders(@NonNull List<CallParticipant> callParticipants) {
     return Stream.of(callParticipants).anyMatch(p -> p.getCallParticipantId().getDemuxId() == CallParticipantId.DEFAULT_ID);
   }
@@ -396,7 +357,8 @@ public class WebRtcCallViewModel extends ViewModel {
                                     @NonNull Set<SignalAudioManager.AudioDevice> availableDevices,
                                     long remoteDevicesCount,
                                     @Nullable Long participantLimit,
-                                    boolean isCallLink)
+                                    boolean isCallLink,
+                                    boolean hasParticipantOverflow)
   {
     final WebRtcControls.CallState callState;
 
@@ -446,9 +408,11 @@ public class WebRtcCallViewModel extends ViewModel {
         groupCallState = (participantLimit == null || remoteDevicesCount < participantLimit) ? WebRtcControls.GroupCallState.CONNECTING
                                                                                              : WebRtcControls.GroupCallState.FULL;
         break;
+      case CONNECTED_AND_PENDING:
+        groupCallState = WebRtcControls.GroupCallState.PENDING;
+        break;
       case CONNECTED:
       case CONNECTED_AND_JOINING:
-      case CONNECTED_AND_PENDING:
       case CONNECTED_AND_JOINED:
         groupCallState = WebRtcControls.GroupCallState.CONNECTED;
         break;
@@ -468,7 +432,8 @@ public class WebRtcCallViewModel extends ViewModel {
                                                WebRtcControls.FoldableState.flat(),
                                                activeDevice,
                                                availableDevices,
-                                               isCallLink));
+                                               isCallLink,
+                                               hasParticipantOverflow));
   }
 
   private @NonNull WebRtcControls updateControlsFoldableState(@NonNull WebRtcControls.FoldableState foldableState, @NonNull WebRtcControls controls) {
@@ -606,20 +571,6 @@ public class WebRtcCallViewModel extends ViewModel {
 
     public @NonNull Collection<RecipientId> getRecipientIds() {
       return recipientIds;
-    }
-  }
-
-  public static class Factory implements ViewModelProvider.Factory {
-
-    private final DeviceOrientationMonitor deviceOrientationMonitor;
-
-    public Factory(@NonNull DeviceOrientationMonitor deviceOrientationMonitor) {
-      this.deviceOrientationMonitor = deviceOrientationMonitor;
-    }
-
-    @Override
-    public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      return Objects.requireNonNull(modelClass.cast(new WebRtcCallViewModel(deviceOrientationMonitor)));
     }
   }
 }

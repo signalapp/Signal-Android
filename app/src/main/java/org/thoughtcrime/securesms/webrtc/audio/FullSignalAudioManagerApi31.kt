@@ -201,6 +201,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
           Log.d(TAG, "Switching to new device of type ${candidate.type} from ${currentAudioDevice?.type}")
           val result = androidAudioManager.setCommunicationDevice(candidate)
           if (result) {
+            Log.w(TAG, "Succeeded in setting ${candidate.id} (type: ${candidate.type}) as communication device.")
             eventListener?.onAudioDeviceChanged(AudioDeviceMapping.fromPlatformType(candidate.type), availableCommunicationDevices.map { AudioDeviceMapping.fromPlatformType(it.type) }.toSet())
           } else {
             Log.w(TAG, "Failed to set ${candidate.id} as communication device.")

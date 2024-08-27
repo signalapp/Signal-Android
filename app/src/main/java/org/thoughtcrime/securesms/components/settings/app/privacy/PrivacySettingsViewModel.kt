@@ -37,16 +37,6 @@ class PrivacySettingsViewModel(
     refresh()
   }
 
-  fun setScreenLockEnabled(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.SCREEN_LOCK, enabled).apply()
-    refresh()
-  }
-
-  fun setScreenLockTimeout(seconds: Long) {
-    TextSecurePreferences.setScreenLockTimeout(AppDependencies.application, seconds)
-    refresh()
-  }
-
   fun setScreenSecurityEnabled(enabled: Boolean) {
     sharedPreferences.edit().putBoolean(TextSecurePreferences.SCREEN_SECURITY_PREF, enabled).apply()
     refresh()
@@ -63,12 +53,12 @@ class PrivacySettingsViewModel(
   }
 
   fun setObsoletePasswordTimeoutEnabled(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.PASSPHRASE_TIMEOUT_PREF, enabled).apply()
+    SignalStore.settings.passphraseTimeoutEnabled = enabled
     refresh()
   }
 
   fun setObsoletePasswordTimeout(minutes: Int) {
-    TextSecurePreferences.setPassphraseTimeoutInterval(AppDependencies.application, minutes)
+    SignalStore.settings.passphraseTimeout = minutes
     refresh()
   }
 
@@ -81,14 +71,14 @@ class PrivacySettingsViewModel(
       blockedCount = 0,
       readReceipts = TextSecurePreferences.isReadReceiptsEnabled(AppDependencies.application),
       typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(AppDependencies.application),
-      screenLock = TextSecurePreferences.isScreenLockEnabled(AppDependencies.application),
-      screenLockActivityTimeout = TextSecurePreferences.getScreenLockTimeout(AppDependencies.application),
+      screenLock = SignalStore.settings.screenLockEnabled,
+      screenLockActivityTimeout = SignalStore.settings.screenLockTimeout,
       screenSecurity = TextSecurePreferences.isScreenSecurityEnabled(AppDependencies.application),
       incognitoKeyboard = TextSecurePreferences.isIncognitoKeyboardEnabled(AppDependencies.application),
       paymentLock = SignalStore.payments.paymentLock,
-      isObsoletePasswordEnabled = !TextSecurePreferences.isPasswordDisabled(AppDependencies.application),
-      isObsoletePasswordTimeoutEnabled = TextSecurePreferences.isPassphraseTimeoutEnabled(AppDependencies.application),
-      obsoletePasswordTimeout = TextSecurePreferences.getPassphraseTimeoutInterval(AppDependencies.application),
+      isObsoletePasswordEnabled = !SignalStore.settings.passphraseDisabled,
+      isObsoletePasswordTimeoutEnabled = SignalStore.settings.passphraseTimeoutEnabled,
+      obsoletePasswordTimeout = SignalStore.settings.passphraseTimeout,
       universalExpireTimer = SignalStore.settings.universalExpireTimer
     )
   }

@@ -15,6 +15,9 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.thoughtcrime.securesms.crash.CrashConfig
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.notifications.DeviceSpecificNotificationConfig.ShowCondition
+import org.thoughtcrime.securesms.util.ConnectivityWarning
+import org.thoughtcrime.securesms.util.NetworkUtil
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
 
@@ -45,29 +48,58 @@ class VitalsViewModel(private val context: Application) : AndroidViewModel(conte
 
   private fun checkHeuristics(): Single<State> {
     return Single.fromCallable {
-      var state = State.NONE
-      if (SlowNotificationHeuristics.showPreemptively() || SlowNotificationHeuristics.isHavingDelayedNotifications()) {
-        if (SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && SlowNotificationHeuristics.shouldPromptBatterySaver()) {
-          state = State.PROMPT_BATTERY_SAVER_DIALOG
-        } else if (SlowNotificationHeuristics.shouldPromptUserForLogs()) {
-          state = State.PROMPT_DEBUGLOGS_FOR_NOTIFICATIONS
-        }
-      } else if (LogDatabase.getInstance(context).crashes.anyMatch(patterns = CrashConfig.patterns, promptThreshold = System.currentTimeMillis() - 14.days.inWholeMilliseconds)) {
-        val timeSinceLastPrompt = System.currentTimeMillis() - SignalStore.uiHints.lastCrashPrompt
+      val deviceSpecificCondition = SlowNotificationHeuristics.getDeviceSpecificShowCondition()
 
-        if (timeSinceLastPrompt > 1.days.inWholeMilliseconds) {
-          state = State.PROMPT_DEBUGLOGS_FOR_CRASH
+      if (deviceSpecificCondition == ShowCondition.ALWAYS && SlowNotificationHeuristics.shouldShowDeviceSpecificDialog()) {
+        return@fromCallable State.PROMPT_SPECIFIC_BATTERY_SAVER_DIALOG
+      }
+
+      if (deviceSpecificCondition == ShowCondition.HAS_BATTERY_OPTIMIZATION_ON && SlowNotificationHeuristics.shouldShowDeviceSpecificDialog() && SlowNotificationHeuristics.isBatteryOptimizationsOn()) {
+        return@fromCallable State.PROMPT_SPECIFIC_BATTERY_SAVER_DIALOG
+      }
+
+      if (deviceSpecificCondition == ShowCondition.HAS_SLOW_NOTIFICATIONS && SlowNotificationHeuristics.shouldShowDeviceSpecificDialog() && SlowNotificationHeuristics.isHavingDelayedNotifications()) {
+        return@fromCallable State.PROMPT_SPECIFIC_BATTERY_SAVER_DIALOG
+      }
+
+      if (SlowNotificationHeuristics.isHavingDelayedNotifications() && SlowNotificationHeuristics.shouldPromptBatterySaver()) {
+        return@fromCallable State.PROMPT_GENERAL_BATTERY_SAVER_DIALOG
+      }
+
+      if (SlowNotificationHeuristics.isHavingDelayedNotifications() && SlowNotificationHeuristics.shouldPromptUserForDelayedNotificationLogs()) {
+        return@fromCallable State.PROMPT_DEBUGLOGS_FOR_NOTIFICATIONS
+      }
+
+      val timeSinceLastConnection = System.currentTimeMillis() - SignalStore.misc.lastWebSocketConnectTime
+      val timeSinceLastConnectionWarning = System.currentTimeMillis() - SignalStore.misc.lastConnectivityWarningTime
+
+      if (ConnectivityWarning.isEnabled && timeSinceLastConnection > ConnectivityWarning.threshold && timeSinceLastConnectionWarning > 14.days.inWholeMilliseconds && NetworkUtil.isConnected(context)) {
+        return@fromCallable if (ConnectivityWarning.isDebugPromptEnabled) {
+          State.PROMPT_DEBUGLOGS_FOR_CONNECTIVITY_WARNING
+        } else {
+          State.PROMPT_CONNECTIVITY_WARNING
         }
       }
 
-      return@fromCallable state
+      if (LogDatabase.getInstance(context).crashes.anyMatch(patterns = CrashConfig.patterns, promptThreshold = System.currentTimeMillis() - 14.days.inWholeMilliseconds)) {
+        val timeSinceLastPrompt = System.currentTimeMillis() - SignalStore.uiHints.lastCrashPrompt
+
+        if (timeSinceLastPrompt > 1.days.inWholeMilliseconds) {
+          return@fromCallable State.PROMPT_DEBUGLOGS_FOR_CRASH
+        }
+      }
+
+      return@fromCallable State.NONE
     }.subscribeOn(Schedulers.io())
   }
 
   enum class State {
     NONE,
-    PROMPT_BATTERY_SAVER_DIALOG,
+    PROMPT_SPECIFIC_BATTERY_SAVER_DIALOG,
+    PROMPT_GENERAL_BATTERY_SAVER_DIALOG,
     PROMPT_DEBUGLOGS_FOR_NOTIFICATIONS,
-    PROMPT_DEBUGLOGS_FOR_CRASH
+    PROMPT_DEBUGLOGS_FOR_CRASH,
+    PROMPT_CONNECTIVITY_WARNING,
+    PROMPT_DEBUGLOGS_FOR_CONNECTIVITY_WARNING
   }
 }

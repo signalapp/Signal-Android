@@ -25,12 +25,20 @@
         android:layout="@layout/conversation_list_reminder_view"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ViewStub
+        android:id="@+id/banner_compose_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inflatedId="@+id/banner_compose_view"
+        android:layout="@layout/conversation_list_banner_view"
+        app:layout_constraintTop_toBottomOf="@id/reminder" />
+
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/banner_barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="reminder,voice_note_player" />
+        app:constraint_referenced_ids="reminder,voice_note_player,banner_compose_view" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"

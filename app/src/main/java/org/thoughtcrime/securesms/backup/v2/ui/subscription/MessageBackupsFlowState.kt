@@ -17,9 +17,9 @@ data class MessageBackupsFlowState(
   val availableBackupTypes: List<MessageBackupsType> = emptyList(),
   val selectedPaymentMethod: InAppPaymentData.PaymentMethodType? = null,
   val availablePaymentMethods: List<InAppPaymentData.PaymentMethodType> = emptyList(),
-  val pin: String = "",
   val pinKeyboardType: PinKeyboardType = SignalStore.pin.keyboardType,
   val inAppPayment: InAppPaymentTable.InAppPayment? = null,
   val startScreen: MessageBackupsScreen,
-  val screen: MessageBackupsScreen = startScreen
+  val screen: MessageBackupsScreen = startScreen,
+  val displayIncorrectPinError: Boolean = false
 )

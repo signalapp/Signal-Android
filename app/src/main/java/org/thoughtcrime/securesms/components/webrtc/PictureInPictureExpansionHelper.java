@@ -31,16 +31,19 @@ final class PictureInPictureExpansionHelper {
 
   private final View      selfPip;
   private final ViewGroup parent;
-  private final Point     expandedDimensions;
 
   private State state = State.IS_SHRUNKEN;
   private Point defaultDimensions;
+  private Point expandedDimensions;
 
-  public PictureInPictureExpansionHelper(@NonNull View selfPip) {
-    this.selfPip            = selfPip;
-    this.parent             = (ViewGroup) selfPip.getParent();
-    this.defaultDimensions  = new Point(selfPip.getLayoutParams().width, selfPip.getLayoutParams().height);
-    this.expandedDimensions = new Point(ViewUtil.dpToPx(EXPANDED_PIP_WIDTH_DP), ViewUtil.dpToPx(EXPANDED_PIP_HEIGHT_DP));
+  private final OnStateChangedListener onStateChangedListener;
+
+  public PictureInPictureExpansionHelper(@NonNull View selfPip, @NonNull OnStateChangedListener onStateChangedListener) {
+    this.selfPip                = selfPip;
+    this.parent                 = (ViewGroup) selfPip.getParent();
+    this.defaultDimensions      = new Point(selfPip.getLayoutParams().width, selfPip.getLayoutParams().height);
+    this.expandedDimensions     = new Point(ViewUtil.dpToPx(EXPANDED_PIP_WIDTH_DP), ViewUtil.dpToPx(EXPANDED_PIP_HEIGHT_DP));
+    this.onStateChangedListener = onStateChangedListener;
   }
 
   public boolean isExpandedOrExpanding() {
@@ -62,6 +65,11 @@ final class PictureInPictureExpansionHelper {
 
     defaultDimensions = dimensions;
 
+    int x = (dimensions.x > dimensions.y) ? EXPANDED_PIP_HEIGHT_DP : EXPANDED_PIP_WIDTH_DP;
+    int y = (dimensions.x > dimensions.y) ? EXPANDED_PIP_WIDTH_DP  : EXPANDED_PIP_HEIGHT_DP;
+
+    expandedDimensions = new Point(ViewUtil.dpToPx(x), ViewUtil.dpToPx(y));
+
     if (isExpandedOrExpanding()) {
       return;
     }
@@ -77,12 +85,12 @@ final class PictureInPictureExpansionHelper {
     beginResizeSelfPipTransition(expandedDimensions, new Callback() {
       @Override
       public void onAnimationWillStart() {
-        state = State.IS_EXPANDING;
+        setState(State.IS_EXPANDING);
       }
 
       @Override
       public void onAnimationHasFinished() {
-        state = State.IS_EXPANDED;
+        setState(State.IS_EXPANDED);
       }
     });
   }
@@ -95,12 +103,12 @@ final class PictureInPictureExpansionHelper {
     beginResizeSelfPipTransition(defaultDimensions, new Callback() {
       @Override
       public void onAnimationWillStart() {
-        state = State.IS_SHRINKING;
+        setState(State.IS_SHRINKING);
       }
 
       @Override
       public void onAnimationHasFinished() {
-        state = State.IS_SHRUNKEN;
+        setState(State.IS_SHRUNKEN);
       }
     });
   }
@@ -131,11 +139,23 @@ final class PictureInPictureExpansionHelper {
     selfPip.setLayoutParams(params);
   }
 
+  private void setState(@NonNull State state) {
+    this.state = state;
+
+    if (onStateChangedListener != null) {
+      onStateChangedListener.onStateChanged(state);
+    }
+  }
+
   enum State {
     IS_EXPANDING,
     IS_EXPANDED,
     IS_SHRINKING,
     IS_SHRUNKEN
+  }
+
+  interface OnStateChangedListener {
+    void onStateChanged(@NonNull State state);
   }
 
   public interface Callback {

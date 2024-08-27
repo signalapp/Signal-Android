@@ -131,6 +131,7 @@ fun MediaTable.MediaRecord.toMedia(): Media? {
     attachment.videoGif,
     Optional.empty(),
     Optional.ofNullable(attachment.caption),
+    Optional.empty(),
     Optional.empty()
   )
 }

@@ -60,6 +60,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.annotation.Nullable;
+
 /**
  * This is used to encrypt + decrypt received envelopes.
  */
@@ -110,17 +112,17 @@ public class SignalServiceCipher {
   }
 
   public OutgoingPushMessage encrypt(SignalProtocolAddress destination,
-                                     Optional<UnidentifiedAccess> unidentifiedAccess,
+                                     @Nullable SealedSenderAccess sealedSenderAccess,
                                      EnvelopeContent content)
       throws UntrustedIdentityException, InvalidKeyException
   {
     try {
       SignalSessionCipher sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, destination));
-      if (unidentifiedAccess.isPresent()) {
+      if (sealedSenderAccess != null) {
         SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().getRawUuid(), localAddress.getNumber()
                                                                                                                                                                                                       .orElse(null), localDeviceId));
 
-        return content.processSealedSender(sessionCipher, sealedSessionCipher, destination, unidentifiedAccess.get().getUnidentifiedCertificate());
+        return content.processSealedSender(sessionCipher, sealedSessionCipher, destination, sealedSenderAccess.getSenderCertificate());
       } else {
         return content.processUnsealedSender(sessionCipher, destination);
       }

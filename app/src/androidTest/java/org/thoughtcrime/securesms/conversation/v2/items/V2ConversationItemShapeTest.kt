@@ -290,6 +290,8 @@ class V2ConversationItemShapeTest {
 
     override fun onChangeNumberUpdateContact(recipient: Recipient) = Unit
 
+    override fun onChangeProfileNameUpdateContact(recipient: Recipient) = Unit
+
     override fun onCallToAction(action: String) = Unit
 
     override fun onDonateClicked() = Unit

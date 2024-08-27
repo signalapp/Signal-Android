@@ -41,7 +41,7 @@ public final class GroupStatePatcherTest {
 
   @Test
   public void unknown_group_with_no_states_to_update() {
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(null, emptyList()), 10);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(null, emptyList(), null), 10);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(emptyList()));
     assertTrue(advanceGroupStateResult.getRemainingRemoteGroupChanges().isEmpty());
@@ -52,7 +52,7 @@ public final class GroupStatePatcherTest {
   public void known_group_with_no_states_to_update() {
     DecryptedGroup currentState = state(0);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, emptyList()), 10);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, emptyList(), null), 10);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(emptyList()));
     assertTrue(advanceGroupStateResult.getRemainingRemoteGroupChanges().isEmpty());
@@ -63,7 +63,7 @@ public final class GroupStatePatcherTest {
   public void unknown_group_single_state_to_update() {
     DecryptedGroupChangeLog log0 = serverLogEntry(0);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(null, singletonList(log0)), 10);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(null, singletonList(log0), null), 10);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(asLocal(log0))));
     assertTrue(advanceGroupStateResult.getRemainingRemoteGroupChanges().isEmpty());
@@ -75,7 +75,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroup          currentState = state(0);
     DecryptedGroupChangeLog log1         = serverLogEntry(1);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log1)), 1);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log1), null), 1);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(asLocal(log1))));
     assertTrue(advanceGroupStateResult.getRemainingRemoteGroupChanges().isEmpty());
@@ -88,7 +88,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroupChangeLog log1         = serverLogEntry(1);
     DecryptedGroupChangeLog log2         = serverLogEntry(2);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2)), 2);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2), null), 2);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log1), asLocal(log2))));
     assertTrue(advanceGroupStateResult.getRemainingRemoteGroupChanges().isEmpty());
@@ -101,7 +101,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroupChangeLog log1         = serverLogEntry(1);
     DecryptedGroupChangeLog log2         = serverLogEntry(2);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2)), 2);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2), null), 2);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(asLocal(log2))));
     assertTrue(advanceGroupStateResult.getRemainingRemoteGroupChanges().isEmpty());
@@ -115,7 +115,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroupChangeLog log2         = serverLogEntry(2);
     DecryptedGroupChangeLog log3         = serverLogEntry(3);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2, log3)), 2);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2, log3), null), 2);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log1), asLocal(log2))));
     assertNewState(log2.getGroup(), singletonList(log3), advanceGroupStateResult.getUpdatedGroupState(), advanceGroupStateResult.getRemainingRemoteGroupChanges());
@@ -129,7 +129,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroupChangeLog log2         = serverLogEntry(2);
     DecryptedGroupChangeLog log3         = serverLogEntry(3);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2, log3)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2, log3), null), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log1), asLocal(log2), asLocal(log3))));
     assertNewState(log3.getGroup(), emptyList(), advanceGroupStateResult.getUpdatedGroupState(), advanceGroupStateResult.getRemainingRemoteGroupChanges());
@@ -142,7 +142,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroupChangeLog log1         = serverLogEntry(Integer.MAX_VALUE - 1);
     DecryptedGroupChangeLog log2         = serverLogEntry(Integer.MAX_VALUE);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2), null), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log1), asLocal(log2))));
     assertNewState(log2.getGroup(), emptyList(), advanceGroupStateResult.getUpdatedGroupState(), advanceGroupStateResult.getRemainingRemoteGroupChanges());
@@ -153,7 +153,7 @@ public final class GroupStatePatcherTest {
   public void unknown_group_single_state_to_update_with_missing_change() {
     DecryptedGroupChangeLog log0 = serverLogEntryWholeStateOnly(0);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(null, singletonList(log0)), 10);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(null, singletonList(log0), null), 10);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(asLocal(log0))));
     assertTrue(advanceGroupStateResult.getRemainingRemoteGroupChanges().isEmpty());
@@ -165,7 +165,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroup          currentState = state(0);
     DecryptedGroupChangeLog log1         = serverLogEntryWholeStateOnly(1);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log1)), 1);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log1), null), 1);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(localLogEntryNoEditor(1))));
     assertTrue(advanceGroupStateResult.getRemainingRemoteGroupChanges().isEmpty());
@@ -179,7 +179,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroupChangeLog log2         = serverLogEntryWholeStateOnly(2);
     DecryptedGroupChangeLog log3         = serverLogEntry(3);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2, log3)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2, log3), null), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log1), localLogEntryNoEditor(2), asLocal(log3))));
     assertNewState(log3.getGroup(), emptyList(), advanceGroupStateResult.getUpdatedGroupState(), advanceGroupStateResult.getRemainingRemoteGroupChanges());
@@ -192,7 +192,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroupChangeLog log1         = serverLogEntry(1);
     DecryptedGroupChangeLog log3         = serverLogEntry(3);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log3)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log3), null), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log1), asLocal(log3))));
     assertNewState(log3.getGroup(), emptyList(), advanceGroupStateResult.getUpdatedGroupState(), advanceGroupStateResult.getRemainingRemoteGroupChanges());
@@ -220,7 +220,7 @@ public final class GroupStatePatcherTest {
         .build();
     DecryptedGroupChangeLog log4 = new DecryptedGroupChangeLog(state4, change(4));
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log3, log4)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log3, log4), null), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log1),
                                                                            new AppliedGroupChangeLog(state3a, log3.getChange()),
@@ -241,7 +241,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroupChangeLog log7         = serverLogEntryWholeStateOnly(7);
     DecryptedGroupChangeLog log8         = serverLogEntryWholeStateOnly(8);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log6, log7, log8)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log6, log7, log8), null), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(localLogEntryNoEditor(6), localLogEntryNoEditor(7), localLogEntryNoEditor(8))));
     assertNewState(log8.getGroup(), emptyList(), advanceGroupStateResult.getUpdatedGroupState(), advanceGroupStateResult.getRemainingRemoteGroupChanges());
@@ -255,7 +255,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroupChangeLog log8         = logEntryMissingState(8);
     DecryptedGroupChangeLog log9         = logEntryMissingState(9);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log7, log8, log9)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log7, log8, log9), null), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(serverLogEntry(7)), asLocal(serverLogEntry(8)), asLocal(serverLogEntry(9)))));
     assertNewState(state(9), emptyList(), advanceGroupStateResult.getUpdatedGroupState(), advanceGroupStateResult.getRemainingRemoteGroupChanges());
@@ -287,7 +287,7 @@ public final class GroupStatePatcherTest {
                                                                    .build(),
                                                                change(9));
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log7, log8, log9)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log7, log8, log9), null), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log7),
                                                                            new AppliedGroupChangeLog(state7b, log8.getChange()),
@@ -305,7 +305,7 @@ public final class GroupStatePatcherTest {
     DecryptedGroup          currentState = state(6);
     DecryptedGroupChangeLog log6         = serverLogEntryWholeStateOnly(6);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log6)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log6), null), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(emptyList()));
     assertNewState(state(6), emptyList(), advanceGroupStateResult.getUpdatedGroupState(), advanceGroupStateResult.getRemainingRemoteGroupChanges());
@@ -320,7 +320,7 @@ public final class GroupStatePatcherTest {
         .build();
     DecryptedGroupChangeLog log6 = serverLogEntry(6);
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log6)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log6), null), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(asLocal(log6))));
     assertTrue(advanceGroupStateResult.getRemainingRemoteGroupChanges().isEmpty());
@@ -352,7 +352,7 @@ public final class GroupStatePatcherTest {
                                                                    .newMembers(Collections.singletonList(newMember))
                                                                    .build());
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log8)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log8), null), LATEST);
 
     assertNotNull(log8.getGroup());
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(emptyList()));
@@ -392,7 +392,7 @@ public final class GroupStatePatcherTest {
         .newMembers(Collections.singletonList(newMember))
         .build();
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log8)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log8), null), LATEST);
 
     assertNotNull(log8.getGroup());
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(new AppliedGroupChangeLog(log8.getGroup(), expectedChange))));
@@ -433,7 +433,7 @@ public final class GroupStatePatcherTest {
         .newAvatar(new DecryptedString.Builder().value_("Group Avatar " + 8).build())
         .build();
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log8)), LATEST);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, singletonList(log8), null), LATEST);
 
     assertNotNull(log8.getGroup());
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(new AppliedGroupChangeLog(log8.getGroup(), expectedChange))));
@@ -454,7 +454,7 @@ public final class GroupStatePatcherTest {
                                                                    .newTitle(new DecryptedString.Builder().value_(log1.getGroup().title).build())
                                                                    .build());
 
-    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2)), 2);
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(new GroupStateDiff(currentState, asList(log1, log2), null), 2);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log1),
                                                                            new AppliedGroupChangeLog(log2.getGroup(), new DecryptedGroupChange.Builder()

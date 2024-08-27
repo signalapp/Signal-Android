@@ -112,3 +112,9 @@ message DeleteSyncJobData {
 message Svr3MirrorJobData {
   optional string serializedChangeSession = 1;
 }
+
+message GroupCallPeekJobData {
+  uint64 groupRecipientId  = 1;
+  uint64 senderRecipientId = 2;
+  uint64 serverTimestamp   = 3;
+}

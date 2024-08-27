@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.testing
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
@@ -50,7 +49,7 @@ class AliceClient(val serviceId: ServiceId, val e164: String, val trustRoot: ECK
   fun encrypt(now: Long, destination: Recipient): Envelope {
     return AppDependencies.signalServiceMessageSender.getEncryptedMessage(
       SignalServiceAddress(destination.requireServiceId(), destination.requireE164()),
-      FakeClientHelpers.getTargetUnidentifiedAccess(ProfileKeyUtil.getSelfProfileKey(), ProfileKey(destination.profileKey), aliceSenderCertificate),
+      FakeClientHelpers.getSealedSenderAccess(ProfileKey(destination.profileKey), aliceSenderCertificate),
       1,
       FakeClientHelpers.encryptedTextMessage(now),
       false

@@ -67,7 +67,7 @@ class ChangeSet {
   }
 
   fun toApiResponse(): GroupHistoryPage {
-    return GroupHistoryPage(changeSet.map { DecryptedGroupChangeLog(it.groupSnapshot, it.groupChange) }, GroupHistoryPage.PagingData.NONE)
+    return GroupHistoryPage(changeSet.map { DecryptedGroupChangeLog(it.groupSnapshot, it.groupChange) }, null, GroupHistoryPage.PagingData.NONE)
   }
 }
 
@@ -193,7 +193,8 @@ fun groupRecord(
       decryptedGroup.revision,
       decryptedGroup.encode(),
       distributionId,
-      System.currentTimeMillis()
+      System.currentTimeMillis(),
+      0
     )
   )
 }

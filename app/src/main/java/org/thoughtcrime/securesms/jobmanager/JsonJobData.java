@@ -50,6 +50,18 @@ public class JsonJobData {
     }
   }
 
+  public static @Nullable JsonJobData deserializeOrNull(@Nullable byte[] data) {
+    if (data == null) {
+      return null;
+    }
+
+    try {
+      return JsonUtils.fromJson(data, JsonJobData.class);
+    } catch (IOException e) {
+      return null;
+    }
+  }
+
   private JsonJobData(@JsonProperty("strings")       @NonNull Map<String, String>    strings,
                       @JsonProperty("stringArrays")  @NonNull Map<String, String[]>  stringArrays,
                       @JsonProperty("integers")      @NonNull Map<String, Integer>   integers,

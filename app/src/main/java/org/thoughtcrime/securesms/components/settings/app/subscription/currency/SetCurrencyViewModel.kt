@@ -24,9 +24,9 @@ class SetCurrencyViewModel(
   private val store = Store(
     SetCurrencyState(
       selectedCurrencyCode = if (inAppPaymentType.recurring) {
-        SignalStore.donations.getSubscriptionCurrency(inAppPaymentType.requireSubscriberType()).currencyCode
+        SignalStore.inAppPayments.getSubscriptionCurrency(inAppPaymentType.requireSubscriberType()).currencyCode
       } else {
-        SignalStore.donations.getOneTimeCurrency().currencyCode
+        SignalStore.inAppPayments.getOneTimeCurrency().currencyCode
       },
       currencies = supportedCurrencyCodes
         .map(Currency::getInstance)
@@ -40,7 +40,7 @@ class SetCurrencyViewModel(
     store.update { it.copy(selectedCurrencyCode = selectedCurrencyCode) }
 
     if (!inAppPaymentType.recurring) {
-      SignalStore.donations.setOneTimeCurrency(Currency.getInstance(selectedCurrencyCode))
+      SignalStore.inAppPayments.setOneTimeCurrency(Currency.getInstance(selectedCurrencyCode))
     } else {
       val currency = Currency.getInstance(selectedCurrencyCode)
       val subscriber = InAppPaymentsRepository.getSubscriber(currency, inAppPaymentType.requireSubscriberType())

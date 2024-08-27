@@ -42,7 +42,7 @@ class GatewaySelectorViewModel(
     val gatewayConfiguration = gatewaySelectorRepository.getAvailableGatewayConfiguration(currencyCode = args.inAppPayment.data.amount!!.currencyCode)
 
     disposables += Single.zip(isGooglePayAvailable, gatewayConfiguration, ::Pair).subscribeBy { (googlePayAvailable, gatewayConfiguration) ->
-      SignalStore.donations.isGooglePayReady = googlePayAvailable
+      SignalStore.inAppPayments.isGooglePayReady = googlePayAvailable
       store.update {
         it.copy(
           loading = false,

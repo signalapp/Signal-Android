@@ -1,13 +1,15 @@
 package org.thoughtcrime.securesms.components.settings.app.chats
 
+import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -16,6 +18,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__chats) {
 
   private lateinit var viewModel: ChatsSettingsViewModel
+  private lateinit var checkoutLauncher: ActivityResultLauncher<InAppPaymentType>
 
   override fun onResume() {
     super.onResume()
@@ -24,6 +27,10 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
   @Suppress("ReplaceGetOrSet")
   override fun bindAdapter(adapter: MappingAdapter) {
+    checkoutLauncher = createBackupsCheckoutLauncher {
+      findNavController().safeNavigate(ChatsSettingsFragmentDirections.actionChatsSettingsFragmentToRemoteBackupsSettingsFragment().setBackupLaterSelected(it))
+    }
+
     viewModel = ViewModelProvider(this).get(ChatsSettingsViewModel::class.java)
 
     viewModel.state.observe(viewLifecycleOwner) {
@@ -73,7 +80,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
       )
 
       switchPref(
-        title = DSLSettingsText.from(R.string.ChatsSettingsFragment__enter_key_sends),
+        title = DSLSettingsText.from(R.string.ChatsSettingsFragment__send_with_enter),
         isChecked = state.enterKeySends,
         onClick = {
           viewModel.setEnterKeySends(!state.enterKeySends)
@@ -84,15 +91,15 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       sectionHeaderPref(R.string.preferences_chats__backups)
 
-      if (RemoteConfig.messageBackups || state.remoteBackupsEnabled) {
+      if (RemoteConfig.messageBackups || state.canAccessRemoteBackupsSettings) {
         clickPref(
-          title = DSLSettingsText.from("Signal Backups"), // TODO [message-backups] -- Finalized copy
-          summary = DSLSettingsText.from(if (state.remoteBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),
+          title = DSLSettingsText.from(R.string.RemoteBackupsSettingsFragment__signal_backups),
+          summary = DSLSettingsText.from(if (state.canAccessRemoteBackupsSettings) R.string.arrays__enabled else R.string.arrays__disabled),
           onClick = {
-            if (state.remoteBackupsEnabled) {
+            if (state.canAccessRemoteBackupsSettings) {
               Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_remoteBackupsSettingsFragment)
             } else {
-              startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.RECURRING_BACKUP))
+              checkoutLauncher.launch(InAppPaymentType.RECURRING_BACKUP)
             }
           }
         )

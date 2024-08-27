@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -21,9 +22,9 @@ public class Media implements Parcelable {
 
   public static final String ALL_MEDIA_BUCKET_ID = "org.thoughtcrime.securesms.ALL_MEDIA";
 
-  private final Uri     uri;
-  private final String  mimeType;
-  private final long    date;
+  private final Uri    uri;
+  private final String contentType;
+  private final long   date;
   private final int     width;
   private final int     height;
   private final long    size;
@@ -31,12 +32,13 @@ public class Media implements Parcelable {
   private final boolean borderless;
   private final boolean videoGif;
 
-  private Optional<String>                                 bucketId;
+  private Optional<String>                              bucketId;
   private Optional<String>                              caption;
   private Optional<AttachmentTable.TransformProperties> transformProperties;
+  private Optional<String>                              fileName;
 
   public Media(@NonNull Uri uri,
-               @NonNull String mimeType,
+               @Nullable String contentType,
                long date,
                int width,
                int height,
@@ -46,10 +48,11 @@ public class Media implements Parcelable {
                boolean videoGif,
                Optional<String> bucketId,
                Optional<String> caption,
-               Optional<AttachmentTable.TransformProperties> transformProperties)
+               Optional<AttachmentTable.TransformProperties> transformProperties,
+               Optional<String> fileName)
   {
     this.uri                 = uri;
-    this.mimeType            = mimeType;
+    this.contentType         = contentType;
     this.date                = date;
     this.width               = width;
     this.height              = height;
@@ -60,12 +63,13 @@ public class Media implements Parcelable {
     this.bucketId            = bucketId;
     this.caption             = caption;
     this.transformProperties = transformProperties;
+    this.fileName            = fileName;
   }
 
   protected Media(Parcel in) {
-    uri        = in.readParcelable(Uri.class.getClassLoader());
-    mimeType   = in.readString();
-    date       = in.readLong();
+    uri         = in.readParcelable(Uri.class.getClassLoader());
+    contentType = in.readString();
+    date        = in.readLong();
     width      = in.readInt();
     height     = in.readInt();
     size       = in.readLong();
@@ -80,14 +84,15 @@ public class Media implements Parcelable {
     } catch (IOException e) {
       throw new AssertionError(e);
     }
+    fileName   = Optional.ofNullable(in.readString());
   }
 
   public Uri getUri() {
     return uri;
   }
 
-  public String getMimeType() {
-    return mimeType;
+  public String getContentType() {
+    return contentType;
   }
 
   public long getDate() {
@@ -130,6 +135,14 @@ public class Media implements Parcelable {
     this.caption = Optional.ofNullable(caption);
   }
 
+  public Optional<String> getFileName() {
+    return fileName;
+  }
+
+  public void setFileName(String name) {
+    this.fileName = Optional.ofNullable(name);
+  }
+
   public Optional<AttachmentTable.TransformProperties> getTransformProperties() {
     return transformProperties;
   }
@@ -142,7 +155,7 @@ public class Media implements Parcelable {
   @Override
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeParcelable(uri, flags);
-    dest.writeString(mimeType);
+    dest.writeString(contentType);
     dest.writeLong(date);
     dest.writeInt(width);
     dest.writeInt(height);
@@ -153,6 +166,7 @@ public class Media implements Parcelable {
     dest.writeString(bucketId.orElse(null));
     dest.writeString(caption.orElse(null));
     dest.writeString(transformProperties.map(JsonUtil::toJson).orElse(null));
+    dest.writeString(fileName.orElse(null));
   }
 
   public static final Creator<Media> CREATOR = new Creator<Media>() {
@@ -194,14 +208,15 @@ public class Media implements Parcelable {
                      media.isVideoGif(),
                      media.getBucketId(),
                      media.getCaption(),
-                     media.getTransformProperties());
+                     media.getTransformProperties(),
+                     media.getFileName());
   }
 
   public static @NonNull Media stripTransform(@NonNull Media media) {
-    Preconditions.checkArgument(MediaUtil.isImageType(media.mimeType));
+    Preconditions.checkArgument(MediaUtil.isImageType(media.contentType));
 
     return new Media(media.getUri(),
-                     media.getMimeType(),
+                     media.getContentType(),
                      media.getDate(),
                      media.getWidth(),
                      media.getHeight(),
@@ -211,6 +226,7 @@ public class Media implements Parcelable {
                      media.isVideoGif(),
                      media.getBucketId(),
                      media.getCaption(),
-                     Optional.empty());
+                     Optional.empty(),
+                     media.getFileName());
   }
 }

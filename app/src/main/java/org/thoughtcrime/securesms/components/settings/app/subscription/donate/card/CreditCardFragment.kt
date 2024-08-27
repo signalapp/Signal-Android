@@ -22,9 +22,9 @@ import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
 import org.thoughtcrime.securesms.databinding.CreditCardFragmentBinding
@@ -48,24 +48,32 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this)
-    DonationCheckoutDelegate.ErrorHandler().attach(this, null, args.inAppPayment.id)
+    InAppPaymentCheckoutDelegate.ErrorHandler().attach(this, null, args.inAppPayment.id)
 
     setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
-      val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
-      if (result.status == DonationProcessorActionResult.Status.SUCCESS) {
+      val result: InAppPaymentProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, InAppPaymentProcessorActionResult::class.java)!!
+      if (result.status == InAppPaymentProcessorActionResult.Status.SUCCESS) {
         findNavController().popBackStack()
         setFragmentResult(REQUEST_KEY, bundle)
       }
     }
 
-    // TODO [message-backups] Copy for this button in backups checkout flow.
-    binding.continueButton.text = if (args.inAppPayment.type == InAppPaymentType.RECURRING_DONATION) {
-      getString(
-        R.string.CreditCardFragment__donate_s_month,
-        FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
-      )
-    } else {
-      getString(R.string.CreditCardFragment__donate_s, FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney()))
+    binding.continueButton.text = when (args.inAppPayment.type) {
+      InAppPaymentType.RECURRING_DONATION -> {
+        getString(
+          R.string.CreditCardFragment__donate_s_month,
+          FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+        )
+      }
+      InAppPaymentType.RECURRING_BACKUP -> {
+        getString(
+          R.string.CreditCardFragment__pay_s_month,
+          FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+        )
+      }
+      else -> {
+        getString(R.string.CreditCardFragment__donate_s, FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney()))
+      }
     }
 
     binding.description.setLinkColor(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))
@@ -115,7 +123,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       stripePaymentViewModel.provideCardData(viewModel.getCardData())
       findNavController().safeNavigate(
         CreditCardFragmentDirections.actionCreditCardFragmentToStripePaymentInProgressFragment(
-          DonationProcessorAction.PROCESS_NEW_DONATION,
+          InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
           args.inAppPayment,
           args.inAppPayment.type
         )

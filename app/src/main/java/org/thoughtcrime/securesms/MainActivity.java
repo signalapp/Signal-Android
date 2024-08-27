@@ -19,7 +19,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.donations.StripeApi;
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment;
+import org.thoughtcrime.securesms.components.DeviceSpecificNotificationBottomSheet;
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment;
+import org.thoughtcrime.securesms.components.ConnectivityWarningBottomSheet;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
@@ -112,13 +114,23 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     switch (state) {
       case NONE:
         break;
-      case PROMPT_BATTERY_SAVER_DIALOG:
+      case PROMPT_SPECIFIC_BATTERY_SAVER_DIALOG:
+        DeviceSpecificNotificationBottomSheet.show(getSupportFragmentManager());
+        break;
+      case PROMPT_GENERAL_BATTERY_SAVER_DIALOG:
         PromptBatterySaverDialogFragment.show(getSupportFragmentManager());
+        break;
+      case PROMPT_CONNECTIVITY_WARNING:
+        ConnectivityWarningBottomSheet.show(getSupportFragmentManager());
         break;
       case PROMPT_DEBUGLOGS_FOR_NOTIFICATIONS:
         DebugLogsPromptDialogFragment.show(this, DebugLogsPromptDialogFragment.Purpose.NOTIFICATIONS);
+        break;
       case PROMPT_DEBUGLOGS_FOR_CRASH:
         DebugLogsPromptDialogFragment.show(this, DebugLogsPromptDialogFragment.Purpose.CRASH);
+        break;
+      case PROMPT_DEBUGLOGS_FOR_CONNECTIVITY_WARNING:
+        DebugLogsPromptDialogFragment.show(this, DebugLogsPromptDialogFragment.Purpose.CONNECTIVITY_WARNING);
         break;
     }
   }

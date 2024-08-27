@@ -202,7 +202,7 @@ public class CameraXUtil {
   }
 
   public static int getLowestSupportedHardwareLevel(@NonNull Context context) {
-    @SuppressLint("RestrictedApi") CameraManager cameraManager = CameraManagerCompat.from(context).unwrap();
+    @SuppressLint("RestrictedApi") CameraManager cameraManager = CameraManagerCompat.from(context.getApplicationContext()).unwrap();
 
     try {
       int supported = maxHardwareLevel();

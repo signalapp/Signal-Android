@@ -532,17 +532,13 @@
         app:popEnterAnim="@anim/fragment_close_enter"
         app:popExitAnim="@anim/fragment_close_exit"
         app:popUpTo="@id/app_settings"
-        app:popUpToInclusive="true" />
+        app:popUpToInclusive="true">
 
-    <action
-        android:id="@+id/action_direct_to_checkout"
-        app:destination="@id/checkoutFlowActivity"
-        app:enterAnim="@anim/fragment_open_enter"
-        app:exitAnim="@anim/fragment_open_exit"
-        app:popEnterAnim="@anim/fragment_close_enter"
-        app:popExitAnim="@anim/fragment_close_exit"
-        app:popUpTo="@id/app_settings"
-        app:popUpToInclusive="true" />
+        <argument
+            android:name="direct_to_checkout_type"
+            android:defaultValue="UNKNOWN"
+            app:argType="org.signal.donations.InAppPaymentType" />
+    </action>
 
     <action
         android:id="@+id/action_direct_to_notificationProfiles"
@@ -616,6 +612,14 @@
             android:defaultValue="RECOVERY"
             app:argType="org.thoughtcrime.securesms.profiles.manage.UsernameEditMode" />
     </action>
+
+    <action
+        android:id="@+id/action_direct_to_remoteBackupsSettingsFragment"
+        app:destination="@id/remoteBackupsSettingsFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
 
     <!-- endregion -->
 
@@ -733,13 +737,10 @@
         <action
             android:id="@+id/action_manageDonationsFragment_to_subscribeLearnMoreBottomSheetDialog"
             app:destination="@id/subscribeLearnMoreBottomSheetDialog" />
-        <action
-            android:id="@+id/action_manageDonationsFragment_to_donateToSignalFragment"
-            app:destination="@id/checkoutFlowActivity"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+        <argument
+            android:name="direct_to_checkout_type"
+            android:defaultValue="UNKNOWN"
+            app:argType="org.signal.donations.InAppPaymentType" />
     </fragment>
 
     <fragment
@@ -977,6 +978,11 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+
+        <argument
+            android:name="backup_later_selected"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
 
     <fragment
@@ -994,19 +1000,9 @@
 
     <fragment
         android:id="@+id/remoteBackupsPaymentHistoryFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.chats.backups.history.RemoteBackupsPaymentHistoryFragment"/>
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.backups.history.RemoteBackupsPaymentHistoryFragment" />
 
     <include app:graph="@navigation/username_link_settings" />
     <include app:graph="@navigation/story_privacy_settings" />
-
-    <activity
-        android:id="@+id/checkoutFlowActivity"
-        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity"
-        android:label="checkout_flow_activity">
-
-        <argument
-            android:name="in_app_payment_type"
-            app:argType="org.signal.donations.InAppPaymentType" />
-    </activity>
 
 </navigation>

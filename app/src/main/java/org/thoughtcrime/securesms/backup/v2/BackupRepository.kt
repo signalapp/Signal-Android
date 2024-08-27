@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFe
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
-import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
@@ -104,6 +103,20 @@ object BackupRepository {
         SignalStore.backup.clearAllCredentials()
       }
     }
+  }
+
+  @WorkerThread
+  fun canAccessRemoteBackupSettings(): Boolean {
+    // TODO [message-backups]
+
+    // We need to check whether the user can access remote backup settings.
+
+    // 1. Do they have a receipt they need to be able to view?
+    // 2. Do they have a backup they need to be able to manage?
+
+    // The easy thing to do here would actually be to set a ui hint.
+
+    return SignalStore.backup.areBackupsEnabled
   }
 
   @WorkerThread
@@ -181,7 +194,7 @@ object BackupRepository {
     }
   }
 
-  fun export(outputStream: OutputStream, append: (ByteArray) -> Unit, plaintext: Boolean = false) {
+  fun export(outputStream: OutputStream, append: (ByteArray) -> Unit, plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis()) {
     val eventTimer = EventTimer()
     val dbSnapshot: SignalDatabase = createSignalDatabaseSnapshot()
     val signalStoreSnapshot: SignalStore = createSignalStoreSnapshot()
@@ -198,7 +211,7 @@ object BackupRepository {
         )
       }
 
-      val exportState = ExportState(backupTime = System.currentTimeMillis(), allowMediaBackup = SignalStore.backup.backsUpMedia)
+      val exportState = ExportState(backupTime = currentTime, allowMediaBackup = SignalStore.backup.backsUpMedia)
 
       writer.use {
         writer.write(
@@ -207,8 +220,8 @@ object BackupRepository {
             backupTimeMs = exportState.backupTime
           )
         )
-        // Note: Without a transaction, we may export inconsistent state. But because we have a transaction,
-        // writes from other threads are blocked. This is something to think more about.
+
+        // We're using a snapshot, so the transaction is more for perf than correctness
         dbSnapshot.rawWritableDatabase.withinTransaction {
           AccountDataProcessor.export(dbSnapshot, signalStoreSnapshot) {
             writer.write(it)
@@ -249,20 +262,19 @@ object BackupRepository {
     }
   }
 
-  fun export(plaintext: Boolean = false): ByteArray {
+  /**
+   * Exports to a blob in memory. Should only be used for testing.
+   */
+  fun debugExport(plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis()): ByteArray {
     val outputStream = ByteArrayOutputStream()
-    export(outputStream = outputStream, append = { mac -> outputStream.write(mac) }, plaintext = plaintext)
+    export(outputStream = outputStream, append = { mac -> outputStream.write(mac) }, plaintext = plaintext, currentTime = currentTime)
     return outputStream.toByteArray()
   }
 
-  fun validate(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData): ValidationResult {
-    val masterKey = SignalStore.svr.getOrCreateMasterKey()
-    val key = MessageBackupKey(masterKey.serialize(), Aci.parseFromBinary(selfData.aci.toByteArray()))
-
-    return MessageBackup.validate(key, MessageBackup.Purpose.REMOTE_BACKUP, inputStreamFactory, length)
-  }
-
-  fun import(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData, plaintext: Boolean = false) {
+  /**
+   * @return The time the backup was created, or null if the backup could not be read.
+   */
+  fun import(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData, plaintext: Boolean = false): ImportResult {
     val eventTimer = EventTimer()
 
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
@@ -281,10 +293,10 @@ object BackupRepository {
     val header = frameReader.getHeader()
     if (header == null) {
       Log.e(TAG, "Backup is missing header!")
-      return
+      return ImportResult.Failure
     } else if (header.version > VERSION) {
       Log.e(TAG, "Backup version is newer than we understand: ${header.version}")
-      return
+      return ImportResult.Failure
     }
 
     // Note: Without a transaction, bad imports could lead to lost data. But because we have a transaction,
@@ -303,33 +315,30 @@ object BackupRepository {
       SignalDatabase.recipients.setProfileKey(selfId, selfData.profileKey)
       SignalDatabase.recipients.setProfileSharing(selfId, true)
 
-      // Add back my story after clearing data
-      DistributionListTables.insertInitialDistributionListAtCreationTime(it)
-
       eventTimer.emit("setup")
-      val backupState = BackupState(backupKey)
-      val chatItemInserter: ChatItemImportInserter = ChatItemBackupProcessor.beginImport(backupState)
+      val importState = ImportState(backupKey)
+      val chatItemInserter: ChatItemImportInserter = ChatItemBackupProcessor.beginImport(importState)
 
       val totalLength = frameReader.getStreamLength()
       for (frame in frameReader) {
         when {
           frame.account != null -> {
-            AccountDataProcessor.import(frame.account, selfId)
+            AccountDataProcessor.import(frame.account, selfId, importState)
             eventTimer.emit("account")
           }
 
           frame.recipient != null -> {
-            RecipientBackupProcessor.import(frame.recipient, backupState)
+            RecipientBackupProcessor.import(frame.recipient, importState)
             eventTimer.emit("recipient")
           }
 
           frame.chat != null -> {
-            ChatBackupProcessor.import(frame.chat, backupState)
+            ChatBackupProcessor.import(frame.chat, importState)
             eventTimer.emit("chat")
           }
 
           frame.adHocCall != null -> {
-            AdHocCallBackupProcessor.import(frame.adHocCall, backupState)
+            AdHocCallBackupProcessor.import(frame.adHocCall, importState)
             eventTimer.emit("call")
           }
 
@@ -353,7 +362,7 @@ object BackupRepository {
         eventTimer.emit("chatItem")
       }
 
-      backupState.chatIdToLocalThreadId.values.forEach {
+      importState.chatIdToLocalThreadId.values.forEach {
         SignalDatabase.threads.update(it, unarchive = false, allowDeletion = false)
       }
     }
@@ -367,6 +376,14 @@ object BackupRepository {
     }
 
     Log.d(TAG, "import() ${eventTimer.stop().summary}")
+    return ImportResult.Success(backupTime = header.backupTimeMs)
+  }
+
+  fun validate(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData): ValidationResult {
+    val masterKey = SignalStore.svr.getOrCreateMasterKey()
+    val key = MessageBackupKey(masterKey.serialize(), Aci.parseFromBinary(selfData.aci.toByteArray()))
+
+    return MessageBackup.validate(key, MessageBackup.Purpose.REMOTE_BACKUP, inputStreamFactory, length)
   }
 
   fun listRemoteMediaObjects(limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {
@@ -375,7 +392,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getArchiveMediaItemsPage(backupKey, credential, limit, cursor)
+        api.getArchiveMediaItemsPage(backupKey, SignalStore.account.requireAci(), credential, limit, cursor)
       }
   }
 
@@ -385,7 +402,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getBackupInfo(backupKey, credential)
+        api.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential)
           .map { it.usedSpace }
       }
   }
@@ -414,12 +431,12 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getBackupInfo(backupKey, credential)
+        api.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential)
           .map { it to credential }
       }
       .then { pair ->
         val (info, credential) = pair
-        api.debugGetUploadedMediaItemMetadata(backupKey, credential)
+        api.debugGetUploadedMediaItemMetadata(backupKey, SignalStore.account.requireAci(), credential)
           .also { Log.i(TAG, "MediaItemMetadataResult: $it") }
           .map { mediaObjects ->
             BackupMetadata(
@@ -441,7 +458,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getMessageBackupUploadForm(backupKey, credential)
+        api.getMessageBackupUploadForm(backupKey, SignalStore.account.requireAci(), credential)
           .also { Log.i(TAG, "UploadFormResult: $it") }
       }
       .then { form ->
@@ -463,7 +480,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getBackupInfo(backupKey, credential)
+        api.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential)
       }
       .then { info -> getCdnReadCredentials(info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
       .map { pair ->
@@ -479,7 +496,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getBackupInfo(backupKey, credential)
+        api.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential)
       }
       .then { info -> getCdnReadCredentials(info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
       .then { pair ->
@@ -500,7 +517,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.debugGetUploadedMediaItemMetadata(backupKey, credential)
+        api.debugGetUploadedMediaItemMetadata(backupKey, SignalStore.account.requireAci(), credential)
       }
   }
 
@@ -513,7 +530,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getMediaUploadForm(backupKey, credential)
+        api.getMediaUploadForm(backupKey, SignalStore.account.requireAci(), credential)
       }
       .then { form ->
         api.getResumableUploadSpec(form, secretKey)
@@ -529,6 +546,7 @@ object BackupRepository {
       .then { credential ->
         api.archiveAttachmentMedia(
           backupKey = backupKey,
+          aci = SignalStore.account.requireAci(),
           serviceCredential = credential,
           item = request
         )
@@ -546,6 +564,7 @@ object BackupRepository {
         api
           .archiveAttachmentMedia(
             backupKey = backupKey,
+            aci = SignalStore.account.requireAci(),
             serviceCredential = credential,
             item = request
           )
@@ -579,6 +598,7 @@ object BackupRepository {
         api
           .archiveAttachmentMedia(
             backupKey = backupKey,
+            aci = SignalStore.account.requireAci(),
             serviceCredential = credential,
             items = requests
           )
@@ -620,6 +640,7 @@ object BackupRepository {
       .then { credential ->
         api.deleteArchivedMedia(
           backupKey = backupKey,
+          aci = SignalStore.account.requireAci(),
           serviceCredential = credential,
           mediaToDelete = mediaToDelete
         )
@@ -651,6 +672,7 @@ object BackupRepository {
       .then { credential ->
         api.deleteArchivedMedia(
           backupKey = backupKey,
+          aci = SignalStore.account.requireAci(),
           serviceCredential = credential,
           mediaToDelete = mediaToDelete
         )
@@ -680,6 +702,7 @@ object BackupRepository {
             .then { credential ->
               api.deleteArchivedMedia(
                 backupKey = backupKey,
+                aci = SignalStore.account.requireAci(),
                 serviceCredential = credential,
                 mediaToDelete = mediaToDelete
               )
@@ -709,6 +732,7 @@ object BackupRepository {
         api.getCdnReadCredentials(
           cdnNumber = cdnNumber,
           backupKey = backupKey,
+          aci = SignalStore.account.requireAci(),
           serviceCredential = credential
         )
       }
@@ -764,7 +788,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        api.getBackupInfo(backupKey, credential).map {
+        api.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential).map {
           SignalStore.backup.usedBackupMediaSpace = it.usedSpace ?: 0L
           BackupDirectories(it.backupDir!!, it.mediaDir!!)
         }
@@ -782,7 +806,7 @@ object BackupRepository {
   }
 
   suspend fun getBackupsType(tier: MessageBackupTier): MessageBackupsType {
-    val backupCurrency = SignalStore.donations.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.BACKUP)
+    val backupCurrency = SignalStore.inAppPayments.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.BACKUP)
     return when (tier) {
       MessageBackupTier.FREE -> getFreeType(backupCurrency)
       MessageBackupTier.PAID -> getPaidType(backupCurrency)
@@ -866,7 +890,7 @@ object BackupRepository {
       return api
         .triggerBackupIdReservation(backupKey)
         .then { getAuthCredential() }
-        .then { credential -> api.setPublicKey(backupKey, credential).map { credential } }
+        .then { credential -> api.setPublicKey(backupKey, SignalStore.account.requireAci(), credential).map { credential } }
         .runIfSuccessful { SignalStore.backup.backupsInitialized = true }
         .runOnStatusCodeError(resetInitializedStateErrorAction)
     }
@@ -930,18 +954,25 @@ data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
 data class BackupDirectories(val backupDir: String, val mediaDir: String)
 
 class ExportState(val backupTime: Long, val allowMediaBackup: Boolean) {
-  val recipientIds = HashSet<Long>()
-  val threadIds = HashSet<Long>()
+  val recipientIds: MutableSet<Long> = hashSetOf()
+  val threadIds: MutableSet<Long> = hashSetOf()
+  val localToRemoteCustomChatColors: MutableMap<Long, Int> = hashMapOf()
 }
 
-class BackupState(val backupKey: BackupKey) {
-  val backupToLocalRecipientId = HashMap<Long, RecipientId>()
-  val chatIdToLocalThreadId = HashMap<Long, Long>()
-  val chatIdToLocalRecipientId = HashMap<Long, RecipientId>()
-  val chatIdToBackupRecipientId = HashMap<Long, Long>()
+class ImportState(val backupKey: BackupKey) {
+  val remoteToLocalRecipientId: MutableMap<Long, RecipientId> = hashMapOf()
+  val chatIdToLocalThreadId: MutableMap<Long, Long> = hashMapOf()
+  val chatIdToLocalRecipientId: MutableMap<Long, RecipientId> = hashMapOf()
+  val chatIdToBackupRecipientId: MutableMap<Long, Long> = hashMapOf()
+  val remoteToLocalColorId: MutableMap<Long, Long> = hashMapOf()
 }
 
 class BackupMetadata(
   val usedSpace: Long,
   val mediaCount: Long
 )
+
+sealed class ImportResult {
+  data class Success(val backupTime: Long) : ImportResult()
+  data object Failure : ImportResult()
+}

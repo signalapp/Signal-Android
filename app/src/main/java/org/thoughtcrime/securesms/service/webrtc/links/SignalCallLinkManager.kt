@@ -115,7 +115,8 @@ class SignalCallLinkManager(
         credentialPresentation.serialize(),
         rootKey,
         adminPassKey,
-        publicParams.serialize()
+        publicParams.serialize(),
+        Restrictions.ADMIN_APPROVAL
       ) { result ->
         if (result.isSuccess) {
           Log.d(TAG, "Successfully created call link.")

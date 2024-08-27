@@ -68,6 +68,11 @@ public final class SettingsValues extends SignalStoreValues {
   private static final String KEEP_MUTED_CHATS_ARCHIVED               = "settings.keepMutedChatsArchived";
   private static final String USE_COMPACT_NAVIGATION_BAR              = "settings.useCompactNavigationBar";
   private static final String THREAD_TRIM_SYNC_TO_LINKED_DEVICES      = "settings.storage.syncThreadTrimDeletes";
+  private static final String PASSPHRASE_DISABLED                     = "settings.passphrase.disabled";
+  private static final String PASSPHRASE_TIMEOUT_ENABLED              = "settings.passphrase.timeout.enabled";
+  private static final String PASSPHRASE_TIMEOUT                      = "settings.passphrase.timeout";
+  private static final String SCREEN_LOCK_ENABLED                     = "settings.screen.lock.enabled";
+  private static final String SCREEN_LOCK_TIMEOUT                     = "settings.screen.lock.timeout";
 
   public static final int BACKUP_DEFAULT_FREQUENCY = 30; // days
   public static final int BACKUP_DEFAULT_HOUR      = 2;
@@ -77,6 +82,20 @@ public final class SettingsValues extends SignalStoreValues {
 
   SettingsValues(@NonNull KeyValueStore store) {
     super(store);
+
+    if (!store.containsKey(SCREEN_LOCK_ENABLED)) {
+      migrateFromSharedPrefsV1(AppDependencies.getApplication());
+    }
+  }
+
+  private void migrateFromSharedPrefsV1(@NonNull Context context) {
+    Log.i(TAG, "[V1] Migrating screen lock values from shared prefs.");
+
+    putBoolean(PASSPHRASE_DISABLED, TextSecurePreferences.getBooleanPreference(context, "pref_disable_passphrase", true));
+    putBoolean(PASSPHRASE_TIMEOUT_ENABLED, TextSecurePreferences.getBooleanPreference(context, "pref_timeout_passphrase", false));
+    putInteger(PASSPHRASE_TIMEOUT, TextSecurePreferences.getIntegerPreference(context, "pref_timeout_interval", 5 * 60));
+    putBoolean(SCREEN_LOCK_ENABLED, TextSecurePreferences.getBooleanPreference(context, "pref_android_screen_lock", false));
+    putLong(SCREEN_LOCK_TIMEOUT, TextSecurePreferences.getLongPreference(context, "pref_android_screen_lock_timeout", 0));
   }
 
   @Override
@@ -123,7 +142,12 @@ public final class SettingsValues extends SignalStoreValues {
                          SENT_MEDIA_QUALITY,
                          KEEP_MUTED_CHATS_ARCHIVED,
                          USE_COMPACT_NAVIGATION_BAR,
-                         THREAD_TRIM_SYNC_TO_LINKED_DEVICES);
+                         THREAD_TRIM_SYNC_TO_LINKED_DEVICES,
+                         PASSPHRASE_DISABLED,
+                         PASSPHRASE_TIMEOUT_ENABLED,
+                         PASSPHRASE_TIMEOUT,
+                         SCREEN_LOCK_ENABLED,
+                         SCREEN_LOCK_TIMEOUT);
   }
 
   public @NonNull LiveData<String> getOnConfigurationSettingChanged() {
@@ -466,6 +490,46 @@ public final class SettingsValues extends SignalStoreValues {
 
   public boolean getUseCompactNavigationBar() {
     return getBoolean(USE_COMPACT_NAVIGATION_BAR, false);
+  }
+
+  public void setPassphraseDisabled(boolean disabled) {
+    putBoolean(PASSPHRASE_DISABLED, disabled);
+  }
+
+  public boolean getPassphraseDisabled() {
+    return getBoolean(PASSPHRASE_DISABLED, true);
+  }
+
+  public void setPassphraseTimeoutEnabled(boolean enabled) {
+    putBoolean(PASSPHRASE_TIMEOUT_ENABLED, enabled);
+  }
+
+  public boolean getPassphraseTimeoutEnabled() {
+    return getBoolean(PASSPHRASE_TIMEOUT_ENABLED, false);
+  }
+
+  public void setPassphraseTimeout(int minutes) {
+    putLong(PASSPHRASE_TIMEOUT, minutes);
+  }
+
+  public int getPassphraseTimeout() {
+    return getInteger(PASSPHRASE_TIMEOUT, 0);
+  }
+
+  public void setScreenLockEnabled(boolean enabled) {
+    putBoolean(SCREEN_LOCK_ENABLED, enabled);
+  }
+
+  public boolean getScreenLockEnabled() {
+    return getBoolean(SCREEN_LOCK_ENABLED, false);
+  }
+
+  public void setScreenLockTimeout(long seconds) {
+    putLong(SCREEN_LOCK_TIMEOUT, seconds);
+  }
+
+  public long getScreenLockTimeout() {
+    return getLong(SCREEN_LOCK_TIMEOUT, 0);
   }
 
   private @Nullable Uri getUri(@NonNull String key) {

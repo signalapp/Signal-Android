@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api;
 
 import org.signal.libsignal.protocol.logging.Log;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
+import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.messages.EnvelopeResponse;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
@@ -11,13 +11,14 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage;
 import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMessage;
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse;
-import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeoutException;
+
+import javax.annotation.Nullable;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -198,10 +199,11 @@ public final class SignalWebSocket {
     }
   }
 
-  public Single<WebsocketResponse> request(WebSocketRequestMessage requestMessage, Optional<UnidentifiedAccess> unidentifiedAccess) {
-    if (unidentifiedAccess.isPresent()) {
+  public Single<WebsocketResponse> request(WebSocketRequestMessage requestMessage, @Nullable SealedSenderAccess sealedSenderAccess) {
+    if (sealedSenderAccess != null) {
       List<String> headers = new ArrayList<>(requestMessage.headers);
-      headers.add("Unidentified-Access-Key:" + Base64.encodeWithPadding(unidentifiedAccess.get().getUnidentifiedAccessKey()));
+      headers.add(sealedSenderAccess.getHeader());
+
       WebSocketRequestMessage message = requestMessage.newBuilder()
                                                       .headers(headers)
                                                       .build();
@@ -209,7 +211,7 @@ public final class SignalWebSocket {
         return getUnidentifiedWebSocket().sendRequest(message)
                                          .flatMap(r -> {
                                            if (r.getStatus() == 401) {
-                                             return request(requestMessage);
+                                             return request(requestMessage, sealedSenderAccess.switchToFallback());
                                            }
                                            return Single.just(r);
                                          });

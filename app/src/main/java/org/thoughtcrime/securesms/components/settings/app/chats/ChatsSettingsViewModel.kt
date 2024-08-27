@@ -2,6 +2,11 @@ package org.thoughtcrime.securesms.components.settings.app.chats
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.schedulers.Schedulers
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BackupUtil
@@ -23,11 +28,22 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
       useSystemEmoji = SignalStore.settings.isPreferSystemEmoji,
       enterKeySends = SignalStore.settings.isEnterKeySends,
       localBackupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application),
-      remoteBackupsEnabled = SignalStore.backup.areBackupsEnabled
+      canAccessRemoteBackupsSettings = SignalStore.backup.areBackupsEnabled
     )
   )
 
   val state: LiveData<ChatsSettingsState> = store.stateLiveData
+
+  private val disposable = Single.fromCallable { BackupRepository.canAccessRemoteBackupSettings() }
+    .subscribeOn(Schedulers.io())
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribeBy { canAccessRemoteBackupSettings ->
+      store.update { it.copy(canAccessRemoteBackupsSettings = canAccessRemoteBackupSettings) }
+    }
+
+  override fun onCleared() {
+    disposable.dispose()
+  }
 
   fun setGenerateLinkPreviewsEnabled(enabled: Boolean) {
     store.update { it.copy(generateLinkPreviews = enabled) }
@@ -63,9 +79,9 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
     val remoteBackupsEnabled = SignalStore.backup.areBackupsEnabled
 
     if (store.state.localBackupsEnabled != backupsEnabled ||
-      store.state.remoteBackupsEnabled != remoteBackupsEnabled
+      store.state.canAccessRemoteBackupsSettings != remoteBackupsEnabled
     ) {
-      store.update { it.copy(localBackupsEnabled = backupsEnabled, remoteBackupsEnabled = remoteBackupsEnabled) }
+      store.update { it.copy(localBackupsEnabled = backupsEnabled, canAccessRemoteBackupsSettings = remoteBackupsEnabled) }
     }
   }
 }

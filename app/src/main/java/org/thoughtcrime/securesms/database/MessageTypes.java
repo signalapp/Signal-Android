@@ -33,24 +33,24 @@ public interface MessageTypes {
   // Base Types
   long BASE_TYPE_MASK = 0x1F;
 
-  long INCOMING_AUDIO_CALL_TYPE = 1;
-  long OUTGOING_AUDIO_CALL_TYPE = 2;
-  long MISSED_AUDIO_CALL_TYPE   = 3;
-  long JOINED_TYPE              = 4;
-  long UNSUPPORTED_MESSAGE_TYPE = 5;
-  long INVALID_MESSAGE_TYPE     = 6;
-  long PROFILE_CHANGE_TYPE      = 7;
-  long MISSED_VIDEO_CALL_TYPE   = 8;
-  long GV1_MIGRATION_TYPE       = 9;
-  long INCOMING_VIDEO_CALL_TYPE = 10;
-  long OUTGOING_VIDEO_CALL_TYPE = 11;
-  long GROUP_CALL_TYPE          = 12;
-  long BAD_DECRYPT_TYPE         = 13;
-  long CHANGE_NUMBER_TYPE       = 14;
-  long BOOST_REQUEST_TYPE       = 15;
-  long THREAD_MERGE_TYPE        = 16;
-  long SMS_EXPORT_TYPE          = 17;
-  long SESSION_SWITCHOVER_TYPE  = 18;
+  long INCOMING_AUDIO_CALL_TYPE              = 1;
+  long OUTGOING_AUDIO_CALL_TYPE              = 2;
+  long MISSED_AUDIO_CALL_TYPE                = 3;
+  long JOINED_TYPE                           = 4;
+  long UNSUPPORTED_MESSAGE_TYPE              = 5;
+  long INVALID_MESSAGE_TYPE                  = 6;
+  long PROFILE_CHANGE_TYPE                   = 7;
+  long MISSED_VIDEO_CALL_TYPE                = 8;
+  long GV1_MIGRATION_TYPE                    = 9;
+  long INCOMING_VIDEO_CALL_TYPE              = 10;
+  long OUTGOING_VIDEO_CALL_TYPE              = 11;
+  long GROUP_CALL_TYPE                       = 12;
+  long BAD_DECRYPT_TYPE                      = 13;
+  long CHANGE_NUMBER_TYPE                    = 14;
+  long RELEASE_CHANNEL_DONATION_REQUEST_TYPE = 15;
+  long THREAD_MERGE_TYPE                     = 16;
+  long SMS_EXPORT_TYPE                       = 17;
+  long SESSION_SWITCHOVER_TYPE               = 18;
 
   long BASE_INBOX_TYPE                    = 20;
   long BASE_OUTBOX_TYPE                   = 21;
@@ -59,7 +59,7 @@ public interface MessageTypes {
   long BASE_SENT_FAILED_TYPE              = 24;
   long BASE_PENDING_SECURE_SMS_FALLBACK   = 25;
   long BASE_PENDING_INSECURE_SMS_FALLBACK = 26;
-  long BASE_DRAFT_TYPE = 27;
+  long BASE_DRAFT_TYPE                    = 27;
 
   long[] OUTGOING_MESSAGE_TYPES = { BASE_OUTBOX_TYPE, BASE_SENT_TYPE,
                                     BASE_SENDING_TYPE, BASE_SENT_FAILED_TYPE,
@@ -351,8 +351,8 @@ public interface MessageTypes {
     return type == CHANGE_NUMBER_TYPE;
   }
 
-  static boolean isBoostRequest(long type) {
-    return type == BOOST_REQUEST_TYPE;
+  static boolean isReleaseChannelDonationRequest(long type) {
+    return type == RELEASE_CHANNEL_DONATION_REQUEST_TYPE;
   }
 
   static boolean isSmsExport(long type) {

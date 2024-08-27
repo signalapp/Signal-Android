@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.AttachmentKeyboard
 import org.thoughtcrime.securesms.conversation.AttachmentKeyboardButton
+import org.thoughtcrime.securesms.conversation.ManageContextMenu
 import org.thoughtcrime.securesms.conversation.v2.ConversationViewModel
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
@@ -96,9 +97,32 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
     Permissions.with(requireParentFragment())
       .request(*PermissionCompat.forImagesAndVideos())
       .ifNecessary()
-      .onAllGranted { viewModel.refreshRecentMedia() }
-      .withPermanentDenialDialog(getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio), null, R.string.AttachmentManager_signal_allow_storage, R.string.AttachmentManager_signal_to_show_photos, parentFragmentManager)
-      .onAnyDenied { Toast.makeText(requireContext(), R.string.AttachmentManager_signal_needs_storage_access, Toast.LENGTH_LONG).show() }
+      .onAnyResult { viewModel.refreshRecentMedia() }
+      .withPermanentDenialDialog(getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio), null, R.string.AttachmentManager_signal_allow_storage, R.string.AttachmentManager_signal_to_show_photos, true, parentFragmentManager)
+      .onSomeDenied {
+        val deniedPermissions = PermissionCompat.getRequiredPermissionsForDenial()
+        if (it.containsAll(deniedPermissions.toList())) {
+          Toast.makeText(requireContext(), R.string.AttachmentManager_signal_needs_storage_access, Toast.LENGTH_LONG).show()
+        }
+      }
+      .execute()
+  }
+
+  override fun onDisplayMoreContextMenu(v: View, showAbove: Boolean, showAtStart: Boolean) {
+    ManageContextMenu.show(
+      context = requireContext(),
+      anchorView = v,
+      showAbove = showAbove,
+      showAtStart = showAtStart,
+      onSelectMore = { selectMorePhotos() },
+      onSettings = { requireContext().startActivity(Permissions.getApplicationSettingsIntent(requireContext())) }
+    )
+  }
+
+  private fun selectMorePhotos() {
+    Permissions.with(requireParentFragment())
+      .request(*PermissionCompat.forImagesAndVideos())
+      .onAnyResult { viewModel.refreshRecentMedia() }
       .execute()
   }
 

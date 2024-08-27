@@ -12,7 +12,7 @@ class VideoTrimTransform(private val data: VideoTrimData) : MediaTransform {
   override fun transform(context: Context, media: Media): Media {
     return Media(
       media.uri,
-      media.mimeType,
+      media.contentType,
       media.date,
       media.width,
       media.height,
@@ -22,7 +22,8 @@ class VideoTrimTransform(private val data: VideoTrimData) : MediaTransform {
       media.isVideoGif,
       media.bucketId,
       media.caption,
-      Optional.of(TransformProperties(false, data.isDurationEdited, data.startTimeUs, data.endTimeUs, SentMediaQuality.STANDARD.code, false))
+      Optional.of(TransformProperties(false, data.isDurationEdited, data.startTimeUs, data.endTimeUs, SentMediaQuality.STANDARD.code, false)),
+      media.fileName
     )
   }
 }

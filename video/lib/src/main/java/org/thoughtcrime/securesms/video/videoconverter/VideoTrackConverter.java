@@ -1,3 +1,8 @@
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.video.videoconverter;
 
 import android.media.MediaCodec;
@@ -21,7 +26,6 @@ import org.thoughtcrime.securesms.video.videoconverter.utils.Preconditions;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
 import kotlin.Pair;
@@ -157,6 +161,7 @@ final class VideoTrackConverter {
         // configure() call to throw an unhelpful exception.
         outputVideoFormat.setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface);
         outputVideoFormat.setInteger(MediaFormat.KEY_BIT_RATE, videoBitrate);
+        outputVideoFormat.setInteger(MediaFormat.KEY_BITRATE_MODE, MediaCodecInfo.EncoderCapabilities.BITRATE_MODE_CBR);
         outputVideoFormat.setInteger(MediaFormat.KEY_FRAME_RATE, OUTPUT_VIDEO_FRAME_RATE);
         outputVideoFormat.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, OUTPUT_VIDEO_IFRAME_INTERVAL);
         if (Build.VERSION.SDK_INT >= 31 && isHdr(inputVideoFormat)) {
@@ -476,15 +481,15 @@ final class VideoTrackConverter {
                 }
             }
             shader =
-                    "#extension GL_OES_EGL_image_external : require\n" +
-                            "precision mediump float;\n" +      // highp here doesn't seem to matter
-                            "varying vec2 vTextureCoord;\n" +
-                            "uniform samplerExternalOES sTexture;\n" +
-                            "void main() {\n" +
-                            "    gl_FragColor = (texture2D(sTexture, vTextureCoord)\n" +
-                            colorLoop.toString() +
-                            "    ) / " + sum + ";\n" +
-                            "}\n";
+                "#extension GL_OES_EGL_image_external : require\n" +
+                "precision mediump float;\n" +      // highp here doesn't seem to matter
+                "varying vec2 vTextureCoord;\n" +
+                "uniform samplerExternalOES sTexture;\n" +
+                "void main() {\n" +
+                "    gl_FragColor = (texture2D(sTexture, vTextureCoord)\n" +
+                colorLoop +
+                "    ) / " + sum + ";\n" +
+                "}\n";
         }
         Log.i(TAG, shader);
         return shader;

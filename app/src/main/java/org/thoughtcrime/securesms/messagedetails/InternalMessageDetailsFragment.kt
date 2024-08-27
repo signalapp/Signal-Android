@@ -197,7 +197,7 @@ private fun AttachmentBlock(attachment: AttachmentInfo) {
   )
   ClickToCopyRow(
     name = "Content Type",
-    value = attachment.contentType
+    value = attachment.contentType ?: "null"
   )
   ClickToCopyRow(
     name = "Start Hash",

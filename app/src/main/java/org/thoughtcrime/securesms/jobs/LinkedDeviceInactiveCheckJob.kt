@@ -45,6 +45,11 @@ class LinkedDeviceInactiveCheckJob private constructor(
 
     @JvmStatic
     fun enqueueIfNecessary() {
+      if (!SignalStore.account.isRegistered) {
+        Log.i(TAG, "Not registered, skipping enqueue.")
+        return
+      }
+
       val timeSinceLastCheck = System.currentTimeMillis() - SignalStore.misc.linkedDeviceLastActiveCheckTime
       if (timeSinceLastCheck > 1.days.inWholeMilliseconds || timeSinceLastCheck < 0) {
         AppDependencies.jobManager.add(LinkedDeviceInactiveCheckJob())
@@ -57,6 +62,11 @@ class LinkedDeviceInactiveCheckJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
+    if (!SignalStore.account.isRegistered) {
+      Log.i(TAG, "Not registered, skipping.")
+      return Result.success()
+    }
+
     val devices = try {
       AppDependencies.signalServiceAccountManager.devices
     } catch (e: IOException) {

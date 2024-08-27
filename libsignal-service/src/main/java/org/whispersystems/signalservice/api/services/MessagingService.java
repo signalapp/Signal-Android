@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.services;
 
 import org.whispersystems.signalservice.api.SignalWebSocket;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
+import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -19,13 +19,14 @@ import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
 import org.whispersystems.signalservice.internal.websocket.ResponseMapper;
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage;
-import org.signal.core.util.Base64;
 
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import io.reactivex.rxjava3.core.Single;
 import okio.ByteString;
@@ -42,7 +43,9 @@ public class MessagingService {
     this.signalWebSocket = signalWebSocket;
   }
 
-  public Single<ServiceResponse<SendMessageResponse>> send(OutgoingPushMessageList list, Optional<UnidentifiedAccess> unidentifiedAccess, boolean story) {
+  public Single<ServiceResponse<SendMessageResponse>> send(OutgoingPushMessageList list,
+                                                           @Nullable SealedSenderAccess sealedSenderAccess,
+                                                           boolean story) {
     List<String> headers = new LinkedList<String>() {{
       add("content-type:application/json");
     }};
@@ -66,15 +69,15 @@ public class MessagingService {
                                                                               .withCustomError(404, (status, body, getHeader) -> new UnregisteredUserException(list.getDestination(), new NotFoundException("not found")))
                                                                               .build();
 
-    return signalWebSocket.request(requestMessage, unidentifiedAccess)
+    return signalWebSocket.request(requestMessage, sealedSenderAccess)
                           .map(responseMapper::map)
                           .onErrorReturn(ServiceResponse::forUnknownError);
   }
 
-  public Single<ServiceResponse<SendGroupMessageResponse>> sendToGroup(byte[] body, byte[] joinedUnidentifiedAccess, long timestamp, boolean online, boolean urgent, boolean story) {
+  public Single<ServiceResponse<SendGroupMessageResponse>> sendToGroup(byte[] body, @Nonnull SealedSenderAccess sealedSenderAccess, long timestamp, boolean online, boolean urgent, boolean story) {
     List<String> headers = new LinkedList<String>() {{
       add("content-type:application/vnd.signal-messenger.mrm");
-      add("Unidentified-Access-Key:" + Base64.encodeWithPadding(joinedUnidentifiedAccess));
+      add(sealedSenderAccess.getHeader());
     }};
 
     String path = String.format(Locale.US, "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s", timestamp, online, urgent, story);

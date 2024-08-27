@@ -45,6 +45,7 @@ import org.signal.core.util.groupBy
 import org.signal.core.util.isNull
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSingleLong
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
@@ -452,6 +453,15 @@ class AttachmentTable(
       .run().readToList {
         it.readAttachments()
       }.flatten()
+  }
+
+  fun getTotalRestorableAttachmentSize(): Long {
+    return readableDatabase
+      .select("SUM($DATA_SIZE)")
+      .from(TABLE_NAME)
+      .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE.toString())
+      .run()
+      .readToSingleLong()
   }
 
   /**
@@ -1044,6 +1054,7 @@ class AttachmentTable(
 
   @Throws(MmsException::class)
   fun insertAttachmentForPreUpload(attachment: Attachment): DatabaseAttachment {
+    Log.d(TAG, "Inserting attachment $attachment for pre-upload.")
     val result = insertAttachmentsForMessage(PREUPLOAD_MESSAGE_ID, listOf(attachment), emptyList())
 
     if (result.values.isEmpty()) {

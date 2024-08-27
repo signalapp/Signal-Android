@@ -1,32 +1,20 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.receipts.detail
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ShareCompat
-import androidx.core.view.drawToBitmap
 import androidx.fragment.app.viewModels
 import com.google.android.material.button.MaterialButton
-import org.signal.core.util.concurrent.SimpleTask
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.subscription.receipts.ReceiptImageRenderer
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.SplashImage
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
-import java.io.ByteArrayOutputStream
 import java.util.Locale
 
 class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.donation_receipt_detail_fragment) {
@@ -49,77 +37,35 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
     sharePngButton.isEnabled = false
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
-      if (state.donationReceiptRecord != null) {
-        adapter.submitList(getConfiguration(state.donationReceiptRecord, state.subscriptionName).toMappingModelList())
+      if (state.inAppPaymentReceiptRecord != null) {
+        adapter.submitList(getConfiguration(state.inAppPaymentReceiptRecord, state.subscriptionName).toMappingModelList())
       }
 
-      if (state.donationReceiptRecord != null && state.subscriptionName != null) {
+      if (state.inAppPaymentReceiptRecord != null && state.subscriptionName != null) {
         sharePngButton.isEnabled = true
         sharePngButton.setOnClickListener {
-          renderPng(state.donationReceiptRecord, state.subscriptionName)
+          progressDialog = SignalProgressDialog.show(requireContext())
+          ReceiptImageRenderer.renderPng(
+            context = requireContext(),
+            lifecycleOwner = viewLifecycleOwner,
+            record = state.inAppPaymentReceiptRecord,
+            subscriptionName = state.subscriptionName,
+            callback = object : ReceiptImageRenderer.Callback {
+              override fun onBitmapRendered() {
+                progressDialog.dismiss()
+              }
+
+              override fun onStartActivity(intent: Intent) {
+                startActivity(intent)
+              }
+            }
+          )
         }
       }
     }
   }
 
-  private fun renderPng(record: DonationReceiptRecord, subscriptionName: String) {
-    progressDialog = SignalProgressDialog.show(requireContext())
-
-    val today: String = DateUtils.formatDateWithDayOfWeek(Locale.getDefault(), System.currentTimeMillis())
-    val amount: String = FiatMoneyUtil.format(resources, record.amount)
-    val type: String = when (record.type) {
-      DonationReceiptRecord.Type.RECURRING_DONATION -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
-      DonationReceiptRecord.Type.ONE_TIME_DONATION -> getString(R.string.DonationReceiptListFragment__one_time)
-      DonationReceiptRecord.Type.ONE_TIME_GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
-      DonationReceiptRecord.Type.RECURRING_BACKUP -> error("Not supported in this fragment")
-    }
-    val datePaid: String = DateUtils.formatDate(Locale.getDefault(), record.timestamp)
-
-    SimpleTask.run(viewLifecycleOwner.lifecycle, {
-      val outputStream = ByteArrayOutputStream()
-      val view = LayoutInflater
-        .from(requireContext())
-        .inflate(R.layout.donation_receipt_png, null)
-
-      view.findViewById<TextView>(R.id.date).text = today
-      view.findViewById<TextView>(R.id.amount).text = amount
-      view.findViewById<TextView>(R.id.donation_type).text = type
-      view.findViewById<TextView>(R.id.date_paid).text = datePaid
-
-      view.measure(View.MeasureSpec.makeMeasureSpec(DONATION_RECEIPT_WIDTH, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
-      view.layout(0, 0, view.measuredWidth, view.measuredHeight)
-
-      val bitmap = view.drawToBitmap()
-      bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream)
-
-      BlobProvider.getInstance()
-        .forData(outputStream.toByteArray())
-        .withMimeType("image/png")
-        .withFileName("Signal-Donation-Receipt.png")
-        .createForSingleSessionInMemory()
-    }, {
-      progressDialog.dismiss()
-      openShareSheet(it)
-    })
-  }
-
-  private fun openShareSheet(uri: Uri) {
-    val mimeType = Intent.normalizeMimeType("image/png")
-    val shareIntent = ShareCompat.IntentBuilder(requireContext())
-      .setStream(uri)
-      .setType(mimeType)
-      .createChooserIntent()
-      .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-    try {
-      startActivity(shareIntent)
-    } catch (e: ActivityNotFoundException) {
-      Log.w(TAG, "No activity existed to share the media.", e)
-      Toast.makeText(requireContext(), R.string.MediaPreviewActivity_cant_find_an_app_able_to_share_this_media, Toast.LENGTH_LONG).show()
-    }
-  }
-
-  private fun getConfiguration(record: DonationReceiptRecord, subscriptionName: String?): DSLConfiguration {
+  private fun getConfiguration(record: InAppPaymentReceiptRecord, subscriptionName: String?): DSLConfiguration {
     return configure {
       customPref(
         SplashImage.Model(
@@ -141,10 +87,10 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
         title = DSLSettingsText.from(R.string.DonationReceiptDetailsFragment__donation_type),
         summary = DSLSettingsText.from(
           when (record.type) {
-            DonationReceiptRecord.Type.RECURRING_DONATION -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
-            DonationReceiptRecord.Type.ONE_TIME_DONATION -> getString(R.string.DonationReceiptListFragment__one_time)
-            DonationReceiptRecord.Type.ONE_TIME_GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
-            DonationReceiptRecord.Type.RECURRING_BACKUP -> error("Not supported in this fragment.")
+            InAppPaymentReceiptRecord.Type.RECURRING_DONATION -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
+            InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION -> getString(R.string.DonationReceiptListFragment__one_time)
+            InAppPaymentReceiptRecord.Type.ONE_TIME_GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
+            InAppPaymentReceiptRecord.Type.RECURRING_BACKUP -> error("Not supported in this fragment.")
           }
         )
       )
@@ -154,11 +100,5 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
         summary = record.let { DSLSettingsText.from(DateUtils.formatDateWithYear(Locale.getDefault(), it.timestamp)) }
       )
     }
-  }
-
-  companion object {
-    private const val DONATION_RECEIPT_WIDTH = 1916
-
-    private val TAG = Log.tag(DonationReceiptDetailFragment::class.java)
   }
 }

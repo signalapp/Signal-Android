@@ -189,12 +189,14 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
     val multiselectLauncher = registerForActivityResult(multiselectContract) { keys ->
       if (keys.isNotEmpty()) {
+        Log.d(TAG, "Performing send from multi-select activity result.")
         performSend(keys)
       }
     }
 
     val storiesLauncher = registerForActivityResult(storiesContract) { keys ->
       if (keys.isNotEmpty()) {
+        Log.d(TAG, "Performing send from stories activity result.")
         performSend(keys)
       }
     }
@@ -218,7 +220,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
             SimpleTask.run(viewLifecycleOwner.lifecycle, {
               snapshot.selectedMedia.take(2).map { media ->
                 val editorData = snapshot.editorStateMap[media.uri]
-                if (MediaUtil.isImageType(media.mimeType) && editorData != null && editorData is ImageEditorFragment.Data) {
+                if (MediaUtil.isImageType(media.contentType) && editorData != null && editorData is ImageEditorFragment.Data) {
                   val model = editorData.readModel()
                   if (model != null) {
                     ImageEditorFragment.renderToSingleUseBlob(requireContext(), model)
@@ -243,11 +245,15 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       } else if (sharedViewModel.isAddToGroupStoryFlow) {
         MaterialAlertDialogBuilder(requireContext())
           .setMessage(getString(R.string.MediaReviewFragment__add_to_the_group_story, sharedViewModel.state.value!!.recipient!!.getDisplayName(requireContext())))
-          .setPositiveButton(R.string.MediaReviewFragment__add_to_story) { _, _ -> performSend() }
+          .setPositiveButton(R.string.MediaReviewFragment__add_to_story) { _, _ ->
+            Log.d(TAG, "Performing send add to group story dialog.")
+            performSend()
+          }
           .setNegativeButton(android.R.string.cancel) { _, _ -> }
           .show()
         scheduledSendTime = null
       } else {
+        Log.d(TAG, "Performing send from send button.")
         performSend()
       }
     }
@@ -274,10 +280,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       sharedViewModel.incrementViewOnceState()
     }
 
-    if (!SignalStore.settings.isPreferSystemEmoji) {
-      emojiButton.setOnClickListener {
-        AddMessageDialogFragment.show(parentFragmentManager, sharedViewModel.state.value?.message, true)
-      }
+    emojiButton.setOnClickListener {
+      AddMessageDialogFragment.show(parentFragmentManager, sharedViewModel.state.value?.message, true)
     }
 
     addMessageButton.setOnClickListener {
@@ -384,14 +388,14 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
         } else {
           getString(R.string.MediaReviewFragment__video_set_to_standard_quality)
         }
-      } else if (MediaUtil.isImageType(media.mimeType)) {
+      } else if (MediaUtil.isImageType(media.contentType)) {
         if (state.quality == SentMediaQuality.HIGH) {
           getString(R.string.MediaReviewFragment__photo_set_to_high_quality)
         } else {
           getString(R.string.MediaReviewFragment__photo_set_to_standard_quality)
         }
       } else {
-        Log.i(TAG, "Could not display quality toggle toast for attachment of type: ${media.mimeType}")
+        Log.i(TAG, "Could not display quality toggle toast for attachment of type: ${media.contentType}")
         return
       }
     } else {
@@ -480,7 +484,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
   private fun presentImageQualityToggle(state: MediaSelectionState) {
     qualityButton.updateLayoutParams<ConstraintLayout.LayoutParams> {
-      if (MediaUtil.isImageAndNotGif(state.focusedMedia?.mimeType ?: "")) {
+      if (MediaUtil.isImageAndNotGif(state.focusedMedia?.contentType ?: "")) {
         startToStart = ConstraintLayout.LayoutParams.UNSET
         startToEnd = cropAndRotateButton.id
       } else {
@@ -536,7 +540,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
   private fun presentVideoTimeline(state: MediaSelectionState) {
     val mediaItem = state.focusedMedia ?: return
-    if (!MediaUtil.isVideoType(mediaItem.mimeType) || !MediaConstraints.isVideoTranscodeAvailable()) {
+    if (!MediaUtil.isVideoType(mediaItem.contentType) || !MediaConstraints.isVideoTranscodeAvailable()) {
       return
     }
     val uri = mediaItem.uri
@@ -655,7 +659,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeViewOnceButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && state.selectedMedia.size == 1 && !state.isStory) {
+    return if (state.isTouchEnabled && state.selectedMedia.size == 1 && !state.isStory && !MediaUtil.isDocumentType(state.focusedMedia?.contentType)) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(viewOnceButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(viewOnceButton))
@@ -663,7 +667,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeEmojiButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && !SignalStore.settings.isPreferSystemEmoji && state.viewOnceToggleState != MediaSelectionState.ViewOnceToggleState.ONCE) {
+    return if (state.isTouchEnabled && state.viewOnceToggleState != MediaSelectionState.ViewOnceToggleState.ONCE) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(emojiButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(emojiButton))
@@ -672,7 +676,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
   private fun computeAddMediaButtonsAnimators(state: MediaSelectionState): List<Animator> {
     return when {
-      !state.isTouchEnabled || state.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE -> {
+      !state.isTouchEnabled || state.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE || MediaUtil.isDocumentType(state.focusedMedia?.contentType) -> {
         listOf(
           MediaReviewAnimatorController.getFadeOutAnimator(addMediaButton),
           MediaReviewAnimatorController.getFadeOutAnimator(selectionRecycler)
@@ -706,7 +710,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeSaveButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && !MediaUtil.isVideo(state.focusedMedia?.mimeType)) {
+    return if (state.isTouchEnabled && !MediaUtil.isVideo(state.focusedMedia?.contentType) && !MediaUtil.isDocumentType(state.focusedMedia?.contentType)) {
       listOf(
         MediaReviewAnimatorController.getFadeInAnimator(saveButton)
       )
@@ -718,7 +722,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeQualityButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && !state.isStory) {
+    return if (state.isTouchEnabled && !state.isStory && !MediaUtil.isDocumentType(state.focusedMedia?.contentType)) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(qualityButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(qualityButton))
@@ -726,7 +730,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeCropAndRotateButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && MediaUtil.isImageAndNotGif(state.focusedMedia?.mimeType ?: "")) {
+    return if (state.isTouchEnabled && MediaUtil.isImageAndNotGif(state.focusedMedia?.contentType ?: "")) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(cropAndRotateButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(cropAndRotateButton))
@@ -734,7 +738,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeDrawToolButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && MediaUtil.isImageAndNotGif(state.focusedMedia?.mimeType ?: "")) {
+    return if (state.isTouchEnabled && MediaUtil.isImageAndNotGif(state.focusedMedia?.contentType ?: "")) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(drawToolButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(drawToolButton))

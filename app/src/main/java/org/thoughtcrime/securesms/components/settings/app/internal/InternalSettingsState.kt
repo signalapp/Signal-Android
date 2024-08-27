@@ -14,7 +14,7 @@ data class InternalSettingsState(
   val callingAudioProcessingMethod: CallManager.AudioProcessingMethod,
   val callingDataMode: CallManager.DataMode,
   val callingDisableTelecom: Boolean,
-  val callingDisableLBRed: Boolean,
+  val callingEnableOboeAdm: Boolean,
   val useBuiltInEmojiSet: Boolean,
   val emojiVersion: EmojiFiles.Version?,
   val removeSenderKeyMinimium: Boolean,

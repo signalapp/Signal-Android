@@ -46,7 +46,7 @@ class TerminalDonationViewModel(
     disposables += repository.getBadge(donationCompleted)
       .map { badge ->
         val hasOtherBadges = Recipient.self().badges.filterNot { it.id == badge.id }.isNotEmpty()
-        val isDisplayingBadges = SignalStore.donations.getDisplayBadgesOnProfile()
+        val isDisplayingBadges = SignalStore.inAppPayments.getDisplayBadgesOnProfile()
 
         val toggleType = when {
           hasOtherBadges && isDisplayingBadges -> ToggleType.MAKE_FEATURED_BADGE

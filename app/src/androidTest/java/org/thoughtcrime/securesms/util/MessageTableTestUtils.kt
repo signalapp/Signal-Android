@@ -61,7 +61,7 @@ object MessageTableTestUtils {
       isProfileChange:${type == MessageTypes.PROFILE_CHANGE_TYPE}
       isGroupV1MigrationEvent:${type == MessageTypes.GV1_MIGRATION_TYPE}
       isChangeNumber:${type == MessageTypes.CHANGE_NUMBER_TYPE}
-      isBoostRequest:${type == MessageTypes.BOOST_REQUEST_TYPE}
+      isDonationChannelDonationRequest:${type == MessageTypes.RELEASE_CHANNEL_DONATION_REQUEST_TYPE}
       isThreadMerge:${type == MessageTypes.THREAD_MERGE_TYPE}
       isSmsExport:${type == MessageTypes.SMS_EXPORT_TYPE}
       isGroupV2LeaveOnly:${type and MessageTypes.GROUP_V2_LEAVE_BITS == MessageTypes.GROUP_V2_LEAVE_BITS}

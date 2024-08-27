@@ -42,7 +42,7 @@ object MediaGallerySelectedItem {
         .centerCrop()
         .into(imageView)
 
-      videoOverlay.visible = MediaUtil.isVideo(model.media.mimeType) && !model.media.isVideoGif
+      videoOverlay.visible = MediaUtil.isVideo(model.media.contentType) && !model.media.isVideoGif
       itemView.setOnClickListener { onSelectedMediaClicked(model.media) }
     }
   }

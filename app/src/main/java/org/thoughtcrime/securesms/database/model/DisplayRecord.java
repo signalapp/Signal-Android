@@ -196,8 +196,8 @@ public abstract class DisplayRecord {
     return MessageTypes.isChangeNumber(type);
   }
 
-  public boolean isBoostRequest() {
-    return MessageTypes.isBoostRequest(type);
+  public boolean isReleaseChannelDonationRequest() {
+    return MessageTypes.isReleaseChannelDonationRequest(type);
   }
 
   public int getDeliveryStatus() {

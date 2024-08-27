@@ -7,17 +7,9 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.WelcomeFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.welcome.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_registration_welcome">
-
-        <action
-            android:id="@+id/action_restore"
-            app:destination="@id/restoreBackupFragmentV2"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
         <action
             android:id="@+id/action_skip_restore"
@@ -28,16 +20,8 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
         <action
-            android:id="@+id/action_transfer_or_restore"
-            app:destination="@id/transferOrRestore"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
-            android:id="@+id/action_welcomeFragment_to_deviceTransferSetup"
-            app:destination="@id/deviceTransferSetup"
+            android:id="@+id/action_go_to_registration"
+            app:destination="@id/enterPhoneNumberFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -55,28 +39,13 @@
 
     <fragment
         android:id="@+id/grantPermissionsFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.GrantPermissionsFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.grantpermissions.GrantPermissionsFragment"
         android:label="fragment_grant_permissions">
 
         <action
-            android:id="@+id/action_restore"
-            app:destination="@id/restoreBackupFragmentV2"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
-            android:id="@+id/action_skip_restore"
+            android:id="@+id/action_enter_phone_number"
             app:destination="@id/enterPhoneNumberFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
-            android:id="@+id/action_transfer_or_restore"
-            app:destination="@id/transferOrRestore"
+            app:popUpTo="@+id/welcomeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -84,52 +53,17 @@
 
         <argument
             android:name="welcomeAction"
-            app:argType="org.thoughtcrime.securesms.registration.fragments.GrantPermissionsFragment$WelcomeAction" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/chooseBackupFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.ChooseBackupFragment"
-        android:label="fragment_choose_backup"
-        tools:layout="@layout/fragment_registration_choose_backup">
-
-        <action
-            android:id="@+id/action_restore"
-            app:destination="@id/restoreBackupFragmentV2"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/chooseBackupFragment"
-            app:popUpToInclusive="true" />
-
-        <action
-            android:id="@+id/action_skip"
-            app:destination="@id/enterPhoneNumberFragment"
-            app:enterAnim="@anim/slide_from_end"
-            app:exitAnim="@anim/slide_to_start"
-            app:popEnterAnim="@anim/slide_from_start"
-            app:popExitAnim="@anim/slide_to_end" />
+            app:argType="org.thoughtcrime.securesms.registration.ui.grantpermissions.GrantPermissionsFragment$WelcomeAction" />
 
     </fragment>
 
     <fragment
         android:id="@+id/enterPhoneNumberFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.EnterPhoneNumberFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberFragment"
         android:label="fragment_enter_phone_number"
         tools:layout="@layout/fragment_registration_enter_phone_number">
 
-        <action
-            android:id="@+id/action_pickCountry"
-            app:destination="@id/countryPickerFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:launchSingleTop="true"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
+         <action
             android:id="@+id/action_enterVerificationCode"
             app:destination="@id/enterCodeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -163,6 +97,25 @@
             app:popUpTo="@id/enterPhoneNumberFragment"
             app:popUpToInclusive="true" />
 
+        <action
+            android:id="@+id/action_phoneNumberRegistrationLock"
+            app:destination="@id/registrationLockFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/enterPhoneNumberFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_phoneNumberAccountLocked"
+            app:destination="@id/accountLockedFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+
     </fragment>
 
     <fragment
@@ -173,7 +126,7 @@
 
     <fragment
         android:id="@+id/enterCodeFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.EnterSmsCodeFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.entercode.EnterCodeFragment"
         android:label="fragment_enter_code"
         tools:layout="@layout/fragment_registration_enter_code">
 
@@ -196,11 +149,6 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
         <action
-            android:id="@+id/action_successfulRegistration"
-            app:destination="@id/registrationCompletePlaceHolderFragment"
-            app:popUpTo="@+id/welcomeFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_accountLocked"
             app:destination="@id/accountLockedFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -214,19 +162,9 @@
 
     <fragment
         android:id="@+id/registrationLockFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.RegistrationLockFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.registrationlock.RegistrationLockFragment"
         android:label="fragment_kbs_lock"
         tools:layout="@layout/fragment_registration_lock">
-
-        <action
-            android:id="@+id/action_successfulRegistration"
-            app:destination="@id/registrationCompletePlaceHolderFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@+id/welcomeFragment"
-            app:popUpToInclusive="true" />
 
         <action
             android:id="@+id/action_accountLocked"
@@ -246,18 +184,8 @@
 
     <fragment
         android:id="@+id/reRegisterWithPinFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.ReRegisterWithPinFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.reregisterwithpin.ReRegisterWithPinFragment"
         tools:layout="@layout/fragment_registration_lock">
-
-        <action
-            android:id="@+id/action_reRegisterWithPinFragment_to_registrationCompletePlaceHolderFragment"
-            app:destination="@id/registrationCompletePlaceHolderFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@+id/welcomeFragment"
-            app:popUpToInclusive="true" />
 
         <action
             android:id="@+id/action_reRegisterWithPinFragment_to_enterPhoneNumberFragment"
@@ -273,210 +201,22 @@
 
     <fragment
         android:id="@+id/accountLockedFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.AccountLockedFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.accountlocked.AccountLockedFragment"
         android:label="fragment_account_locked"
         tools:layout="@layout/account_locked_fragment" />
 
     <fragment
         android:id="@+id/captchaFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.CaptchaFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.captcha.RegistrationCaptchaFragment"
         android:label="fragment_captcha"
         tools:layout="@layout/fragment_registration_captcha" />
 
-    <fragment
-        android:id="@+id/restoreBackupFragmentV2"
-        android:name="org.thoughtcrime.securesms.registration.fragments.RestoreBackupFragment"
-        android:label="fragment_restore_backup"
-        tools:layout="@layout/fragment_registration_restore_backup">
-
-        <action
-            android:id="@+id/action_backupRestored"
-            app:destination="@id/enterPhoneNumberFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/restoreBackupFragmentV2"
-            app:popUpToInclusive="true" />
-
-        <action
-            android:id="@+id/action_skip"
-            app:destination="@id/enterPhoneNumberFragment"
-            app:enterAnim="@anim/slide_from_end"
-            app:exitAnim="@anim/slide_to_start"
-            app:popEnterAnim="@anim/slide_from_start"
-            app:popExitAnim="@anim/slide_to_end" />
-
-        <action
-            android:id="@+id/action_noBackupFound"
-            app:destination="@id/enterPhoneNumberFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/restoreBackupFragmentV2"
-            app:popUpToInclusive="true" />
-
-        <action
-            android:id="@+id/action_skip_no_return"
-            app:destination="@id/enterPhoneNumberFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@+id/restoreBackupFragmentV2"
-            app:popUpToInclusive="true" />
-
-        <argument
-            android:name="uri"
-            android:defaultValue="@null"
-            app:argType="android.net.Uri"
-            app:nullable="true" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/registrationCompletePlaceHolderFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.RegistrationCompleteFragment"
-        android:label="fragment_registration_complete_place_holder"
-        tools:layout="@layout/fragment_registration_blank" />
 
     <fragment
         android:id="@+id/registrationProxyFragment"
         android:name="org.thoughtcrime.securesms.preferences.EditProxyFragment"
         android:label="fragment_registration_edit_proxy"
         tools:layout="@layout/edit_proxy_fragment" />
-
-    <fragment
-        android:id="@+id/transferOrRestore"
-        android:name="org.thoughtcrime.securesms.devicetransfer.newdevice.TransferOrRestoreFragment"
-        tools:layout="@layout/fragment_transfer_restore">
-
-        <action
-            android:id="@+id/action_choose_backup"
-            app:destination="@id/chooseBackupFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
-            android:id="@+id/action_new_device_transfer_instructions"
-            app:destination="@id/newDeviceTransferInstructions"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
-            android:id="@+id/action_transferOrRestore_to_moreOptions"
-            app:destination="@+id/transferOrRestoreMoreOptionsDialog" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/restoreFromBackupFragment"
-        android:name="org.thoughtcrime.securesms.backup.v2.ui.restore.RestoreFromBackupFragment">
-
-        <action
-            android:id="@+id/action_restoreFromBacakupFragment_to_moreOptions"
-            app:destination="@+id/transferOrRestoreMoreOptionsDialog" />
-
-        <argument
-            android:name="cancelable"
-            app:argType="boolean" />
-
-    </fragment>
-
-    <dialog
-        android:id="@+id/transferOrRestoreMoreOptionsDialog"
-        android:name="org.thoughtcrime.securesms.devicetransfer.moreoptions.MoreTransferOrRestoreOptionsSheet">
-
-        <argument
-            android:name="mode"
-            app:argType="org.thoughtcrime.securesms.devicetransfer.moreoptions.MoreTransferOrRestoreOptionsMode" />
-    </dialog>
-
-    <fragment
-        android:id="@+id/newDeviceTransferInstructions"
-        android:name="org.thoughtcrime.securesms.devicetransfer.newdevice.NewDeviceTransferInstructionsFragment"
-        tools:layout="@layout/new_device_transfer_instructions_fragment">
-
-        <action
-            android:id="@+id/action_device_transfer_setup"
-            app:destination="@id/deviceTransferSetup"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/deviceTransferSetup"
-        android:name="org.thoughtcrime.securesms.devicetransfer.newdevice.NewDeviceTransferSetupFragment"
-        tools:layout="@layout/device_transfer_setup_fragment">
-
-        <action
-            android:id="@+id/action_new_device_transfer"
-            app:destination="@id/newDeviceTransfer"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-        <action
-            android:id="@+id/action_deviceTransferSetup_to_transferOrRestore"
-            app:destination="@id/transferOrRestore"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/transferOrRestore"
-            app:popUpToInclusive="true" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/newDeviceTransfer"
-        android:name="org.thoughtcrime.securesms.devicetransfer.newdevice.NewDeviceTransferFragment"
-        tools:layout="@layout/device_transfer_fragment">
-
-        <action
-            android:id="@+id/action_newDeviceTransfer_to_newDeviceTransferInstructions"
-            app:destination="@id/newDeviceTransferInstructions"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/newDeviceTransferInstructions"
-            app:popUpToInclusive="true" />
-
-        <action
-            android:id="@+id/action_newDeviceTransfer_to_newDeviceTransferComplete"
-            app:destination="@id/newDeviceTransferComplete"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/welcomeFragment" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/newDeviceTransferComplete"
-        android:name="org.thoughtcrime.securesms.devicetransfer.newdevice.NewDeviceTransferCompleteFragment"
-        tools:layout="@layout/new_device_transfer_complete_fragment">
-
-        <action
-            android:id="@+id/action_newDeviceTransferComplete_to_enterPhoneNumberFragment"
-            app:destination="@id/enterPhoneNumberFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-    </fragment>
 
     <action
         android:id="@+id/action_restart_to_welcomeFragment"

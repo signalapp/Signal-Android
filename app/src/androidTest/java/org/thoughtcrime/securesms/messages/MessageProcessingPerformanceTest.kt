@@ -16,7 +16,7 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
+import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.AliceClient
@@ -55,8 +55,8 @@ class MessageProcessingPerformanceTest {
 
   @Before
   fun setup() {
-    mockkStatic(UnidentifiedAccessUtil::class)
-    every { UnidentifiedAccessUtil.getCertificateValidator() } returns FakeClientHelpers.noOpCertificateValidator
+    mockkStatic(SealedSenderAccessUtil::class)
+    every { SealedSenderAccessUtil.getCertificateValidator() } returns FakeClientHelpers.noOpCertificateValidator
 
     mockkObject(MessageContentProcessor)
     every { MessageContentProcessor.create(harness.application) } returns TimingMessageContentProcessor(harness.application)
@@ -64,7 +64,7 @@ class MessageProcessingPerformanceTest {
 
   @After
   fun after() {
-    unmockkStatic(UnidentifiedAccessUtil::class)
+    unmockkStatic(SealedSenderAccessUtil::class)
     unmockkStatic(MessageContentProcessor::class)
   }
 

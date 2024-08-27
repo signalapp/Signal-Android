@@ -17,7 +17,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
 import org.whispersystems.signalservice.internal.push.SyncMessage
-import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 /**
@@ -98,10 +97,7 @@ class CallLogEventSendJob private constructor(
 
   override fun onRun() {
     AppDependencies.signalServiceMessageSender
-      .sendSyncMessage(
-        SignalServiceSyncMessage.forCallLogEvent(callLogEvent),
-        Optional.empty()
-      )
+      .sendSyncMessage(SignalServiceSyncMessage.forCallLogEvent(callLogEvent))
   }
 
   override fun onShouldRetry(e: Exception): Boolean {

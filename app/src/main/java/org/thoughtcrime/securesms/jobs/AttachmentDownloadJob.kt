@@ -359,7 +359,7 @@ class AttachmentDownloadJob private constructor(
       if (attachment.remoteDigest != null) {
         Log.i(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.remoteDigest))
       } else {
-        Log.i(TAG, "Downloading attachment with no digest...")
+        throw InvalidPartException("Null remote digest for $attachmentId")
       }
 
       SignalServiceAttachmentPointer(

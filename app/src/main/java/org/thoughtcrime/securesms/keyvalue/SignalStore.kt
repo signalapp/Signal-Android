@@ -28,7 +28,7 @@ class SignalStore(private val store: KeyValueStore) {
   val onboardingValues = OnboardingValues(store)
   val wallpaperValues = WallpaperValues(store)
   val paymentsValues = PaymentsValues(store)
-  val donationsValues = DonationsValues(store)
+  val inAppPaymentValues = InAppPaymentValues(store)
   val proxyValues = ProxyValues(store)
   val rateLimitValues = RateLimitValues(store)
   val chatColorsValues = ChatColorsValues(store)
@@ -68,7 +68,7 @@ class SignalStore(private val store: KeyValueStore) {
       onboarding.onFirstEverAppLaunch()
       wallpaper.onFirstEverAppLaunch()
       payments.onFirstEverAppLaunch()
-      donations.onFirstEverAppLaunch()
+      inAppPayments.onFirstEverAppLaunch()
       proxy.onFirstEverAppLaunch()
       rateLimit.onFirstEverAppLaunch()
       chatColors.onFirstEverAppLaunch()
@@ -98,7 +98,7 @@ class SignalStore(private val store: KeyValueStore) {
           onboarding.keysToIncludeInBackup +
           wallpaper.keysToIncludeInBackup +
           payments.keysToIncludeInBackup +
-          donations.keysToIncludeInBackup +
+          inAppPayments.keysToIncludeInBackup +
           proxy.keysToIncludeInBackup +
           rateLimit.keysToIncludeInBackup +
           chatColors.keysToIncludeInBackup +
@@ -209,9 +209,9 @@ class SignalStore(private val store: KeyValueStore) {
       get() = instance.paymentsValues
 
     @JvmStatic
-    @get:JvmName("donations")
-    val donations: DonationsValues
-      get() = instance.donationsValues
+    @get:JvmName("inAppPayments")
+    val inAppPayments: InAppPaymentValues
+      get() = instance.inAppPaymentValues
 
     @JvmStatic
     @get:JvmName("proxy")

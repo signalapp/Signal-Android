@@ -33,6 +33,33 @@ abstract class JobMigration protected constructor(val endVersion: Int) {
       return copy(data = newData)
     }
 
+    override fun equals(other: Any?): Boolean {
+      if (this === other) return true
+      if (javaClass != other?.javaClass) return false
+
+      other as JobData
+
+      if (factoryKey != other.factoryKey) return false
+      if (queueKey != other.queueKey) return false
+      if (maxAttempts != other.maxAttempts) return false
+      if (lifespan != other.lifespan) return false
+      if (data != null) {
+        if (other.data == null) return false
+        if (!data.contentEquals(other.data)) return false
+      } else if (other.data != null) return false
+
+      return true
+    }
+
+    override fun hashCode(): Int {
+      var result = factoryKey.hashCode()
+      result = 31 * result + (queueKey?.hashCode() ?: 0)
+      result = 31 * result + maxAttempts
+      result = 31 * result + lifespan.hashCode()
+      result = 31 * result + (data?.contentHashCode() ?: 0)
+      return result
+    }
+
     companion object {
       @JvmField
       val FAILING_JOB_DATA = JobData("FailingJob", null, -1, -1, null)

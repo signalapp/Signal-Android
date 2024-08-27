@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import org.signal.core.util.ResourceUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.PromptLogsBottomSheetBinding
@@ -50,6 +49,7 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
         when (purpose) {
           Purpose.NOTIFICATIONS -> SignalStore.uiHints.lastNotificationLogsPrompt = System.currentTimeMillis()
           Purpose.CRASH -> SignalStore.uiHints.lastCrashPrompt = System.currentTimeMillis()
+          Purpose.CONNECTIVITY_WARNING -> SignalStore.misc.lastConnectivityWarningTime = System.currentTimeMillis()
         }
       }
     }
@@ -84,6 +84,9 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
       }
       Purpose.CRASH -> {
         binding.title.setText(R.string.PromptLogsSlowNotificationsDialog__title_crash)
+      }
+      Purpose.CONNECTIVITY_WARNING -> {
+        binding.title.setText(R.string.PromptLogsSlowNotificationsDialog__title_connectivity_warning)
       }
     }
 
@@ -137,8 +140,9 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
     }
 
     val category = when (purpose) {
-      Purpose.NOTIFICATIONS -> ResourceUtil.getEnglishResources(requireContext()).getString(R.string.DebugLogsPromptDialogFragment__slow_notifications_category)
-      Purpose.CRASH -> ResourceUtil.getEnglishResources(requireContext()).getString(R.string.DebugLogsPromptDialogFragment__crash_category)
+      Purpose.NOTIFICATIONS -> "Slow notifications"
+      Purpose.CRASH -> "Crash"
+      Purpose.CONNECTIVITY_WARNING -> "Connectivity"
     }
 
     return SupportEmailUtil.generateSupportEmailBody(
@@ -177,17 +181,12 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
   enum class Purpose(val serialized: Int) {
 
     NOTIFICATIONS(1),
-    CRASH(2);
+    CRASH(2),
+    CONNECTIVITY_WARNING(3);
 
     companion object {
       fun deserialize(serialized: Int): Purpose {
-        for (value in values()) {
-          if (value.serialized == serialized) {
-            return value
-          }
-        }
-
-        throw IllegalArgumentException("Invalid value: $serialized")
+        return entries.firstOrNull { it.serialized == serialized } ?: throw IllegalArgumentException("Invalid value: $serialized")
       }
     }
   }

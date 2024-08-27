@@ -129,7 +129,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
         textPref(
           title = DSLSettingsText.from("Sealed Sender Mode"),
-          summary = DSLSettingsText.from(recipient.unidentifiedAccessMode.toString())
+          summary = DSLSettingsText.from(recipient.sealedSenderAccessMode.toString())
         )
 
         textPref(
@@ -341,7 +341,6 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
     return if (capabilities != null) {
       TextUtils.concat(
-        colorize("PaymentActivation", capabilities.paymentActivation),
         ", ",
         colorize("DeleteSync", capabilities.deleteSync)
       )

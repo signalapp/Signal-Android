@@ -8,7 +8,7 @@
     <dimen name="signal_m3_toolbar_height">64dp</dimen>
 
     <dimen name="min_keyboard_size">60dp</dimen>
-    <dimen name="default_custom_keyboard_size">240dp</dimen>
+    <dimen name="default_custom_keyboard_size">260dp</dimen>
     <dimen name="min_custom_keyboard_size">110dp</dimen>
     <dimen name="min_custom_keyboard_top_margin_portrait">170dp</dimen>
     <dimen name="min_custom_keyboard_top_margin_landscape_bubble">56dp</dimen>
@@ -237,5 +237,12 @@
     <dimen name="image_editor_hud_tool_invisible_circle_padding">6dp</dimen>
 
     <dimen name="contact_permission_button_min_width">140dp</dimen>
+
+    <dimen name="CallControls__button_horizontal_margin">8dp</dimen>
+    <dimen name="CallControls__button_bottom_margin">30dp</dimen>
+    <dimen name="CallScreenLargeHeader__avatar_size">96dp</dimen>
+    <dimen name="CallScreenLargeHeader__avatar_margin_top">106dp</dimen>
+    <dimen name="CallScreenParticipantItem__margin_end">4dp</dimen>
+    <dimen name="CallScreenParticipantItem__margin_bottom">0dp</dimen>
 
 </resources>

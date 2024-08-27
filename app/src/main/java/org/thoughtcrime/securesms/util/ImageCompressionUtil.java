@@ -73,10 +73,10 @@ public final class ImageCompressionUtil {
    */
   @WorkerThread
   public static @NonNull Result compress(@NonNull Context context,
-                                          @NonNull String mimeType,
-                                          @NonNull Object glideModel,
-                                          int maxDimension,
-                                          @IntRange(from = 0, to = 100) int quality)
+                                         @Nullable String contentType,
+                                         @NonNull Object glideModel,
+                                         int maxDimension,
+                                         @IntRange(from = 0, to = 100) int quality)
       throws BitmapDecodingException
   {
     Bitmap scaledBitmap;
@@ -121,16 +121,16 @@ public final class ImageCompressionUtil {
     }
 
     ByteArrayOutputStream output = new ByteArrayOutputStream();
-    Bitmap.CompressFormat format = mimeTypeToCompressFormat(mimeType);
+    Bitmap.CompressFormat format = mimeTypeToCompressFormat(contentType);
     scaledBitmap.compress(format, quality, output);
 
     byte[] data = output.toByteArray();
 
-    Log.d(TAG, "[Input] mimeType: " + mimeType + " [Output] format: " + format + ", maxDimension: " + maxDimension + ", quality: " + quality + ", size(KiB): " + new ByteSize(data.length).getInWholeKibiBytes());
+    Log.d(TAG, "[Input] mimeType: " + contentType + " [Output] format: " + format + ", maxDimension: " + maxDimension + ", quality: " + quality + ", size(KiB): " + new ByteSize(data.length).getInWholeKibiBytes());
     return new Result(data, compressFormatToMimeType(format), scaledBitmap.getWidth(), scaledBitmap.getHeight());
   }
 
-  private static @NonNull Bitmap.CompressFormat mimeTypeToCompressFormat(@NonNull String mimeType) {
+  private static @NonNull Bitmap.CompressFormat mimeTypeToCompressFormat(@Nullable String mimeType) {
     if (MediaUtil.isJpegType(mimeType) ||
         MediaUtil.isHeicType(mimeType) ||
         MediaUtil.isHeifType(mimeType) ||

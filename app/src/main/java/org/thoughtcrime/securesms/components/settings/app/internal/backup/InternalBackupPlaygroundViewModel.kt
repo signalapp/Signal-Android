@@ -57,7 +57,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     _state.value = _state.value.copy(backupState = BackupState.EXPORT_IN_PROGRESS)
     val plaintext = _state.value.plaintext
 
-    disposables += Single.fromCallable { BackupRepository.export(plaintext = plaintext) }
+    disposables += Single.fromCallable { BackupRepository.debugExport(plaintext = plaintext) }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { data ->

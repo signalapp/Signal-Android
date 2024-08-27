@@ -88,6 +88,20 @@
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Lejoje Përdorimin</string>
     <string name="AttachmentKeyboard_payment">Pagesë</string>
+    <!-- Text in a button that allows users to manage which media Signal has access to -->
+    <string name="AttachmentKeyboard_manage">Menaxho</string>
+    <!-- Option in menu to select more photos that Signal will have access to -->
+    <string name="AttachmentKeyboard_select_more_photos">Përzgjidh më shumë foto</string>
+    <!-- Option in menu to go to settings -->
+    <string name="AttachmentKeyboard_go_to_settings">Kalo te Rregullimet</string>
+    <!-- Text explaining that Signal has limited access to photos -->
+    <string name="AttachmentKeyboard_signal_has_limited_access">Signal ka lejehyrje të kufizuar te fotot ose videot</string>
+    <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
+    <string name="AttachmentKeyboard_no_photos_found">Nuk u gjet asnjë foto, zgjidh fotot dhe videot për t\'i shfaqur këtu ose ndrysho lejehyrjet</string>
+
+    <!-- MediaGalleryFragment -->
+    <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
+    <string name="MediaGalleryFragment__no_photos_found">Nuk u gjet asnjë foto ose video. Signal ka lejehyrje vetëm te fotot dhe videot që ke zgjedhur.</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Nuk gjendet një aplikacion për të përzgjedhur median.</string>
@@ -108,7 +122,7 @@
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">Për të shfaqur foto dhe video:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Signal ka nevojë për akses në hapësirën ruajtëse për të shfaqur fotot dhe videot.</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Signal ka nevojë për lejehyrje për të shfaqur fotot dhe videot.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s nuk ka aktivizuar Pagesat </string>
@@ -170,6 +184,8 @@
     <string name="CreditCardFragment__donate_s">Dhuro %1$s</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
     <string name="CreditCardFragment__donate_s_month">Dhuro %1$s/muaj</string>
+    <!-- Button label to confirm credit card input and proceed with backups payment. Placeholder is formatted price. -->
+    <string name="CreditCardFragment__pay_s_month">Dhuro %1$s/muaj</string>
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
@@ -219,6 +235,24 @@
     <string name="BucketedThreadMedia_Large">Madh</string>
     <string name="BucketedThreadMedia_Medium">Mesatarë</string>
     <string name="BucketedThreadMedia_Small">Vogël</string>
+
+    <!-- CallInfoView -->
+    <!-- Unknown people row text when the only people in the call are unknowns -->
+    <plurals name="CallInfoView__d_people">
+        <item quantity="one">%1$d person</item>
+        <item quantity="other">%1$d persona</item>
+    </plurals>
+    <!-- Unknown people row, placeholder is the number of unknown people in the call -->
+    <plurals name="CallInfoView__plus_d_people">
+        <item quantity="one">+%1$d person</item>
+        <item quantity="other">+%1$d persona</item>
+    </plurals>
+    <!-- Unknown people row icon content description -->
+    <string name="CallInfoView__more_information">Më tepër të dhëna</string>
+    <!-- Unknown people row info dialog message -->
+    <string name="CallInfoView__before_joining_a_call">Përpara se t\'i bashkohesh një telefonate, mund të shohësh vetëm emrat e kontakteve të telefonit, njerëzve me të cilët je në një grup ose njerëzve me të cilët ke biseduar 1:1. Do të shohësh të gjithë emrat dhe fotot pasi t\'i bashkohesh telefonatës.</string>
+    <!-- Unknown people row info dialog action to close the dialog -->
+    <string name="CallInfoView__got_it">E kuptova</string>
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
@@ -443,7 +477,7 @@
     <!-- Dialog title asking users for microphone permission -->
     <string name="ConversationActivity_allow_access_microphone">Lejo aksesin në mikrofon</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">Për të dërguar mesazhe me audio:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">Për të dërguar mesazhe zanore:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Për të dërguar mesazhe zanore, lejo aksesin e Signal në mikrofon.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
@@ -771,6 +805,51 @@
     <!-- Backup has an unsupported file extension -->
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">Kopjeruajtja ka zgjatim të gabuar.</string>
 
+    <!-- CreateBackupBottomSheet -->
+    <!-- Bottom sheet title -->
+    <string name="CreateBackupBottomSheet__create_backup">Krijo kopjeruajtje</string>
+    <!-- Bottom sheet message -->
+    <string name="CreateBackupBottomSheet__depending_on_the_size">Në varësi të madhësisë së kopjeruajtjes, kjo mund të zgjasë shumë. Mund ta përdorësh telefonin siç bën zakonisht ndërsa bëhet kopjeruajtja.</string>
+    <!-- Action button to dismiss sheet and back up later -->
+    <string name="CreateBackupBottomSheet__back_up_later">Kopjeruaj më vonë</string>
+    <!-- Action button to dismiss sheet and back up now -->
+    <string name="CreateBackupBottomSheet__back_up_now">Kopjeruaje Tani</string>
+
+    <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
+    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Media nuk mund të rikthehet</string>
+    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Pajisja nuk ka hapësirë të mjaftueshme të lirë. Liro hapësirën ruajtëse për të rikthyer median.\n\nNëse zgjedh \"Kapërce rikthimin\", media e ruajtur në kopjeruajtje do të fshihet herën tjetër që pajisja të bëjë kopjeruajtje të re.</string>
+    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Pajisja nuk ka hapësirë të mjaftueshme të lirë. Liro %1$s hapësirë për të rikthyer median.\n\nNëse zgjedh \"Kapërce rikthimin\", media e ruajtur në kopjeruajtje do të fshihet herën tjetër që pajisja të bëjë kopjeruajtje të re.</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
+    <string name="RestoreMediaFailedBottomSheet__Okay">OK</string>
+    <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
+    <string name="RestoreMediaFailedBottomSheet__Skip_restore">Kapërce rikthimin</string>
+    <!-- Accessibility content description for the "Backup Error" icon -->
+    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Ikona e gabimit për kopjeruajtjen</string>
+
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
+    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Liro hapësirën ruajtëse për të rikthyer median.\n\n</string>
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
+    <string name="RestoreMediaErrorBanner__Free_up_of_space">Liro %1$s hapësirë për të rikthyer median.</string>
+
+    <!-- Remote media restoration in-process status title. -->
+    <string name="RestoreMediaReminder__Restoring_media">Duke rikthyer median</string>
+    <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
+    <string name="RestoreMediaReminder__Progress_filesize">%1$s nga %2$s (%3$d)</string>
+    <!-- Remote media restoration paused status title. -->
+    <string name="RestoreMediaReminder__Restoring_media_paused">Rikthimi i medias u ndërpre</string>
+    <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RestoreMediaReminder__Waiting_for_Wifi">Në pritje të WiFi…</string>
+    <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
+    <string name="RestoreMediaReminder__Waiting_for_internet_connection">Në pritje të lidhjes me internetin…</string>
+    <!-- Remote media restoration paused status description for when the device\'s battery is low -->
+    <string name="RestoreMediaReminder__low_battery">Bateri në mbarim. Kariko pajisjen.</string>
+    <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
+    <string name="RestoreMediaReminder__Free_up_space">Liro %1$s për të rikthyer median.</string>
+    <!-- Button label to abort media restoration -->
+    <string name="RestoreMediaReminder__Skip_restore">Kapërce rikthimin</string>
+
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Kopjeruajtje bisedash</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Kopjeruajtjet fshehtëzohen me një frazëkalim dhe depozitohe te pajisja juaj.</string>
@@ -868,13 +947,13 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Mesazhet dhe informacionet e bisedës mbrohen nga kodimi skaji më skaj në të gjitha pajisjet</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal në Desktop ose iPad</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Të gjitha mesazhet në pajisjet e lidhura janë private</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">Mesazhet e Signal sinkronizohen me Signal në telefonin tënd pasi të jetë lidhur. Historiku i mëparshëm i mesazheve nuk do të shfaqet.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">Në pajisjen tënde tjetër, vizito %1$s për të instaluar Signal</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">Në pajisjen që dëshiron të lidhësh, vizito %1$s për të instaluar Signal</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">Pajisjet e mia të lidhura</string>
@@ -891,7 +970,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">Nuk ka pajisje të lidhura</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">Zhblloko për të lidhur një pajisje</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1090,16 +1169,35 @@
     <string name="PromptLogsSlowNotificationsDialog__message">Regjistrat e korrigjimit të gabimeve na ndihmojnë të diagnostikojmë dhe rregullojmë problemin dhe nuk përmbajnë informacion identifikues.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal hasi në një problem. Të paraqitet regjistri i korrigjimit?</string>
+    <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">Mund të mos marrësh mesazhe. Të paraqitet regjistri i diagnostikimeve?</string>
+
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Njoftimet mund të vonohen për shkak të optimizimeve të baterisë</string>
     <!-- Message explaining that battery saver may delay notifications -->
     <string name="PromptBatterySaverBottomSheet__message">Mund të çaktivizoni optimizimet e baterisë për Signal për t\'u siguruar që njoftimet e mesazheve nuk do të vonohen.</string>
 
+    <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
+    <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Njoftimet mund të vonohen për shkak të optimizimeve të baterisë</string>
+    <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Mund të çaktivizosh optimizimet e baterisë për Signal për t\'u siguruar që njoftimet e mesazheve nuk do të vonohen. Kliko \"Vazhdo\" për të parë udhëzimet specifike të pajisjes.</string>
+    <!-- Button to dismiss notification help prompt -->
+    <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Jo, faleminderit</string>
+    <!-- Button to continue and go to Signal support website -->
+    <string name="DeviceSpecificNotificationBottomSheet__continue">Vazhdo</string>
+
+    <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_title">Mund të mos marrësh mesazhe</string>
+    <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_body">Rindezja e pajisjes mund të ndihmojë në zgjidhjen e problemit të dërgimit të mesazhit. Nëse ky problem vazhdon, kontakto ndihmën nga Signal.</string>
+    <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
+    <string name="ConnectivityWarningBottomSheet_dismiss_button">E kuptova</string>
+
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Vazhdo</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__no_thanks">No thanks</string>
+    <string name="PromptBatterySaverBottomSheet__no_thanks">Jo, faleminderit</string>
   <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
@@ -1188,6 +1286,44 @@
     <string name="ManageGroupActivity_invite_now">Ftojini tani</string>
     <string name="ManageGroupActivity_more">më shumë</string>
     <string name="ManageGroupActivity_add_group_description">Shtoni përshkrim grupi…</string>
+
+    <!-- MoreTransferOrRestoreOptionsSheet -->
+    <!-- Row title for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Shpërngulni prej pajisjeje Android</string>
+    <!-- Row description for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Transfero llogarinë dhe mesazhet nga pajisja e vjetër Android.</string>
+    <!-- Row title for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">Identifikohu pa transferim</string>
+    <!-- Row description for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">Vazhdo pa transferuar mesazhet dhe mediat</string>
+    <!-- Row title for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">Rikthe kopjeruajtjen lokale</string>
+    <!-- Row description for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Rikthe mesazhet nga skedari i kopjeruajtjes që ke ruajtur në pajisje.</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Progress dialog label when downloading a backup -->
+    <string name="RemoteRestoreActivity__downloading_backup">Kopjeruajtja po shkarkohet…</string>
+    <!-- Progress dialog label when restoring a backup -->
+    <string name="RemoteRestoreActivity__restoring_messages">Po rikthehen mesazhet…</string>
+    <!-- Progress dialog label while awaiting updates -->
+    <string name="RemoteRestoreActivity__restoring">Po kthehet…</string>
+    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
+    <string name="RemoteRestoreActivity__s_of_s_s">%1$s nga %2$s (%3$s)</string>
+    <!-- Feature list media label for paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_media">Të gjithë median</string>
+    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">%1$d ditët e tua të fundit të medias</string>
+    <!-- Feature list message label for free and paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_messages">Të gjitha mesazhet</string>
+    <!-- Screen title for restoring from backup -->
+    <string name="RemoteRestoreActivity__restore_from_backup">Riktheni prej kopjeruajtje</string>
+    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">Përfshihet vetëm media e dërguar ose marrë në %1$d ditët e fundit.</string>
+    <!-- Section title for explaining what your backup includes -->
+    <string name="RemoteRestoreActivity__your_backup_includes">Kopjeruajtja përfshin:</string>
+    <!-- Primary action button copy for starting restoration -->
+    <string name="RemoteRestoreActivity__restore_backup">Riktheje kopjeruajtjen</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Njoftomë për Përmendje</string>
@@ -1341,6 +1477,12 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Preke për të regjistruar audion, lëshoje për ta dërguar</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Përpuno mesazhin</string>
+    <!-- Dialog title shown if users are about to discard their draft message -->
+    <string name="InputPanel__discard_draft">Të fshihet drafti?</string>
+    <!-- Dialog message explaining their action cannot be reversed -->
+    <string name="InputPanel__this_action_cant_be_undone">Ky veprim nuk mund të zhbëhet.</string>
+    <!-- Button inside an alert dialog confirming the deletion of their draft -->
+    <string name="InputPanel__discard">Hidhe tej</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Ndaje</string>
@@ -2126,7 +2268,7 @@
     <!-- A dialog prompt to confirm you want to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_your_hand">Ul dorën?</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
-    <string name="CallOverflowPopupWindow__lower_hand">Ul dorën</string>
+    <string name="CallOverflowPopupWindow__lower_hand">Ul</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Anulo</string>
     <!-- A button to take you to a list of participants with raised hands -->
@@ -2951,6 +3093,8 @@
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">E ke hequr këtë person dhe duke i dërguar mesazhe sërish do ta rishtosh atë në listën tënde.</string>
     <!-- Update item button text shown for the accepted message request update message -->
     <string name="ConversationUpdateItem_options">Opsione</string>
+    <!-- Update item button text shown for a profile name change. -->
+    <string name="ConversationUpdateItem_update">Përditësoje</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
@@ -3255,10 +3399,6 @@
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Paraqitja e regjistrit të korrigjimit në Android Signal</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Njoftimet e ngadalësuara</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">Problematika</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Parashtroje</string>
     <!-- Action to decline to submit logs -->
@@ -3639,6 +3779,10 @@
     <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Kliko më poshtë \"Parametrat\"</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
     <string name="PermissionDeniedBottomSheet__2_allow_permission">2.%1$s Lejo</string>
+    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
+    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Kliko \"Lejet\"</string>
+    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Lejo lejehyrjen te \"Fotot dhe videot\"</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">Parametrat</string>
 
@@ -4165,6 +4309,8 @@
     <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Kyçni hyrjen në Signal përmes kyçjeje ekrani ose shenjash gishtash Android</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Kohë mbarimi plogështie për kyçje ekrani</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">Për të përdorur kyçjen e ekranit, vendos PIN, vijëzim ose fjalëkalim në pajisje.</string>
     <string name="preferences_app_protection__signal_pin">PIN Signal-i</string>
     <string name="preferences_app_protection__create_a_pin">Krijoni PIN</string>
     <string name="preferences_app_protection__change_your_pin">Ndryshoni PIN-in tuaj</string>
@@ -4185,8 +4331,41 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Keni bërë shumë përpjekje. Ju lutemi, riprovoni më vonë.</string>
     <string name="RegistrationActivity_error_connecting_to_service">Gabim në lidhjen me shërbimin</string>
     <string name="preferences_chats__backups">Kopjeruajtje</string>
-    <string name="prompt_passphrase_activity__signal_is_locked">Signal-i është i kyçur</string>
-    <string name="prompt_passphrase_activity__tap_to_unlock">PREKENI QË TË SHKYÇET</string>
+    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+    <string name="prompt_passphrase_activity__unlock_signal">Zhblloko Signal</string>
+    <!-- Description text explaining how to unlock Signal -->
+    <string name="prompt_passphrase_activity__use_your_android_device">Përdor parametrat e kyçjes së pajisjes Android për të shkyçur Signal.</string>
+    <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
+    <string name="prompt_passphrase_activity__screen_lock_is_on">Kyçja e ekranit është aktive dhe Signal është i siguruar në mënyrë të sigurt me parametrat e kyçjes së pajisjes. Zhblloko Signal në të njëjtën mënyrë siç do ta zhbllokoje normalisht telefonin tënd, gjë që mund të bëhet me shkyçjen me fytyrë, shkyçjen me shenjën e gishtave, me PIN, fjalëkalim ose vijëzim.</string>
+    <!-- Button in a dialog that will contact Signal support if pressed -->
+    <string name="prompt_passphrase_activity__contact_support">Kontakto ndihmën</string>
+    <!-- Button text to try again after unlocking has previously failed -->
+    <string name="prompt_passphrase_activity__try_again">Provo sërish</string>
+
+    <!-- ScreenLockSettingsFragment -->
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">Joaktiv</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Përdor kyçjen e ekranit</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">Parametrat e kyçjes së pajisjes Android do të kërkohen për të shkyçur Signal kur largohesh ose ndërron aplikacionet. Kur kyçet, pamjet paraprake të njoftimeve nuk do të shfaqin përmbajtjen e mesazhit.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Nis kyçjen e ekranit</string>
+    <!-- Option text explaining that screen lock should start immediately -->
+    <string name="ScreenLockSettingsFragment__immediately">Menjëherë</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">Pas 1 minuti</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">Pas 5 minutash</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">Pas 30 minutash</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">Kohë e personalizuar</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Përdor kyçjen e ekranit të Signal</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Çaktivizo kyçjen e ekranit të Signal</string>
+
     <string name="Recipient_unknown">I panjohur</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Fshij llogarinë</string>
@@ -4698,7 +4877,12 @@
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Ftoni shokët tuaj</string>
-    <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">ID-ja e pajtimtarit u kopjua në të papastër</string>
+    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">ID-ja e abonuesit dhurures u kopjua në kujtesën e fragmenteve</string>
+    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">ID-ja e abonuesit të kopjeruajtjeve u kopjua në kujtesën e fragmenteve</string>
+    <!-- String displayed in a toast when a subscriber id is not present for a given type -->
+    <string name="AppSettingsFragment__no_subscriber_id_set">Asnjë ID abonuesi nuk është caktuar</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Llogari</string>
@@ -4808,7 +4992,7 @@
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Tastierë</string>
-    <string name="ChatsSettingsFragment__enter_key_sends">Tasti Enter dërgon</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Dërgo me enter</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mesazhe</string>
@@ -4832,8 +5016,8 @@
     <string name="PrivacySettingsFragment__blocked">E bllokuar</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d kontakt</item>
-        <item quantity="other">%1$d kontakte</item>
+        <item quantity="one">%1$d kontakt ose grup</item>
+        <item quantity="other">%1$d kontakte ose grupe</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Shkëmbim Mesazhesh</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Zhdukje mesazhesh</string>
@@ -4846,7 +5030,7 @@
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Kërko kyçje të ekranit nga Android ose gjurmën e gishtit për të transferuar fondet</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Kyçja e pagesës nuk mund të aktivizohet</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">Çelësi i pagesës nuk mund të aktivizohet</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
     <string name="PrivacySettingsFragment__cant_enable_description">Për të përdorur kyçjen e pagesës, fillimisht duhet të aktivizosh një kyçje ekrani ose ID të gjurmës së gishtit te parametrat e telefonit.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
@@ -5038,7 +5222,7 @@
     <string name="PermissionsSettingsFragment__only_admins">Vetëm përgjegjësit</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Cilët mund të shtojnë anëtarë të rinj?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cilët mund të përpunojnë të dhënat mbi këtë grup?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Cilët mund të dërgojnë mesazhe?</string>
+    <string name="PermissionsSettingsFragment__who_can_send_messages">Kush mund të dërgojë mesazhe dhe të fillojë telefonatat?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Hiqu zërin njoftimeve</string>
@@ -5387,7 +5571,24 @@
     <string name="Subscription__contact_support">Lidhuni Me Asistencën</string>
     <string name="Subscription__get_a_s_badge">Merr një distinktiv %1$s</string>
 
-    <string name="SubscribeFragment__processing_payment">Dhurimi po përpunohet…</string>
+    <!-- *PaymentInProgressFragment strings -->
+    <string name="InAppPaymentInProgressFragment__processing_donation">Dhurimi po përpunohet…</string>
+    <string name="InAppPaymentInProgressFragment__processing_payment">Po kryhet pagesa…</string>
+
+    <!-- InAppPaymentErrors -->
+    <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
+    <string name="InAppPaymentErrors__error_processing_payment">Gabim në përpunim pagese</string>
+    <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
+    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">Pagesa jote nuk mundi të përpunohej dhe nuk të është mbajtur. Të lutem, provo përsëri.</string>
+    <!-- Displayed as a message in a dialog when we timeout waiting for a payment to be processed and token to be redeemed -->
+    <string name="InAppPaymentErrors__your_payment_is_still">Pagesa juaj ende po përpunohet. Kjo mund të zërë ca minuta, varet nga lidhja juaj.</string>
+    <!-- Displayed as a message in a dialog or notification when stripe decline code issuer not available for backup payment. -->
+    <string name="InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again">Riprovoni të plotësoni pagesën, ose lidhuni me bankën tuaj për më tepër informacion.</string>
+    <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
+    <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">Kjo pagesë u anulua nga mbajtësi i llogarisë dhe nuk mund të përpunohej. Nuk je tarifuar.</string>
+    <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">Ndodhi një gabim gjatë përpunimit të kësaj pagese, ju lutemi provo përsëri.</string>
+
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Gabim gjatë përpunimit të dhurimit</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
@@ -6414,8 +6615,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">Zgjidh bankën</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Konfirmo dhurimin tënd me %1$s</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Për të konfiguruar dhurimin tënd të përsëritur, kliko për të konfirmuar një tarifë prej 0,01 € me bankën tënde. Kjo do të rimbursohet automatikisht dhe lejon që dhurimi yt prej 5 €/muaj të debitohet nga llogaria jote.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Për të konfiguruar dhurimin e përsëritur, kliko \"vazhdo\" për të konfirmuar tarifimin prej 0,01 € nga banka jote. Kjo do të rimbursohet automatikisht dhe lejon që dhurimi yt prej %1$s/muaj të debitohet nga llogaria jote.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Vazhdo</string>
 
@@ -6992,20 +7193,58 @@
     <string name="BackupProgressService_title_downloading">Po shkarkohen të dhënat rezervë…</string>
 
     <!-- BackupAlertBottomSheet -->
+    <!-- Sheet title when media backups have been disabled -->
+    <string name="BackupAlertBottomSheet__media_backups_are_off">Kopjeruajtjet e medias janë joaktive</string>
+    <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
+    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
+        <item quantity="one">Plani yt kopjeruajtës i medias në Signal është anuluar sepse nuk mund ta përpunonim pagesën. Ke %1$d ditë për të shkarkuar çdo media të ruajtur në kopjeruajtje. Pas %1$d dite, media në kopjeruajtjen tënde do të fshihet.</item>
+        <item quantity="other">Plani yt kopjeruajtës i medias në Signal është anuluar sepse nuk mund ta përpunonim pagesën. Ke %1$d ditë për të shkarkuar çdo media të ruajtur në kopjeruajtje. Pas %1$d ditësh, media në kopjeruajtjen tënde do të fshihet.</item>
+    </plurals>
+    <!-- Sheet body part 2 when media backups have been disabled. -->
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Mund të fillosh të paguash përsëri për kopjeruajtjet në çdo kohë për të vazhduar të kopjeruash të gjitha mediat. </string>
+    <!-- Sheet title when user\'s media will be deleted today -->
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Media do të fshihet sot</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted today -->
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Plani yt kopjeruajtës i medias në Signal është anuluar sepse nuk mund ta përpunonim pagesën. Kjo është mundësia jote e fundit për ta shkarkuar median në kopjeruajtje përpara se të fshihet.</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">Shkarkimi nuk mund të kryhet</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Pajisja nuk ka hapësirë të mjaftueshme të lirë. Liro deri në %1$s hapësirë për të shkarkuar median e ruajtur në kopjeruajtje.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
+        <item quantity="one">Nëse zgjedh \"Kapërce\", media e ruajtur në kopjeruajtje do të fshihet pas %1$d dite.</item>
+        <item quantity="other">Nëse zgjedh \"Kapërce\", media e ruajtur në kopjeruajtje do të fshihet pas %1$d ditësh.</item>
+    </plurals>
+    <!-- Sheet title when user payment failed to process -->
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Pagesa e kopjeruajtjeve nuk mund të përpunohet</string>
+    <!-- Sheet body when user payment failed to process -->
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Po hasim probleme me mbledhjen e pagesës tënde mujore të kopjeruajtjes. Sigurohu që mënyra e pagesës të jetë e përditësuar. Nëse nuk është, përditësoje në Google Pay. Signal do të përpiqet ta përpunojë përsëri pagesën pas disa ditësh.</string>
+    <!-- Sheet title for generic backup error -->
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Kopjeruajtja nuk përfundoi</string>
+    <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
+    <string name="BackupAlertBottomSheet__your_device_hasnt">Kopjeruajtja nuk është kryer në pajisje për %1$d ditë. Sigurohu që pajisja të jetë e lidhur me Wi-Fi dhe kliko \"Kopjeruaj tani\". </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
-    <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
+    <string name="BackupAlertBottomSheet__learn_more">Mëso më shumë</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip">Skip</string>
+    <string name="BackupAlertBottomSheet__skip">Anashkaloje</string>
+    <!-- Primary action button text prompting user to download their media -->
+    <string name="BackupAlertBottomSheet__download_media_now">Shkarko media tani</string>
+    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
+    <string name="BackupAlertBottomSheet__download_later">Shkarko më vonë</string>
+    <!-- Secondary action button text to dismiss sheet, skipping media download -->
+    <string name="BackupAlertBottomSheet__dont_download_media">Mos shkarko median</string>
+    <!-- Dialog title for last chance to download backup -->
+    <string name="BackupAlertBottomSheet__media_will_be_deleted">Media do të fshihet</string>
+    <!-- Dialog message for last chance to download backup -->
+    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Media e ruajtur në kopjeruajtje do të fshihet përgjithmonë sot. Kjo është mundësia e fundit për ta shkarkuar atë.</string>
+    <!-- Dialog action to download now -->
+    <string name="BackupAlertBottomSheet__download">Shkarkoje</string>
+    <!-- Dialog action to not download now -->
+    <string name="BackupAlertBottomSheet__dont_download">Mos shkarko</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Liro %1$s hapësirë për të shkarkuar media.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7021,7 +7260,11 @@
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__unknown">I panjohur</string>
     <!-- Row title for entering payment history -->
-    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
+    <string name="BackupsTypeSettingsFragment__payment_history">Historia e pagesave</string>
+    <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
+    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/muaj · Rinovohet më %2$s</string>
+    <!-- Row title to change or cancel subscription -->
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Ndrysho ose anulo abonimin</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7040,6 +7283,20 @@
     <string name="ManageStorageSettingsFragment_apply_limits_title">Vendos kufizime për pajisjet e lidhura</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_description">Kur aktivizohen, kufijtë e bisedës do të fshijnë edhe mesazhet e pajisjeve të lidhura.</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Hapësira ruajtëse e pajisjes</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizo hapësirën ruajtëse të pajisjes</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Media e papërdorur do të shkarkohet, por mund të shkarkohet nga kopjeruajtja në çdo kohë.</string>
+
+    <!-- UpgradeToEnableOptimizedStorageSheet -->
+    <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Përmirëso për ta aktivizuar veçorinë</string>
+    <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Optimizimi i hapësirës ruajtëse mund të përdoret vetëm me nivelin e paguar të kopjeruajtjeve të Signal. Përmirëso planin e kopjeruajtjeve për të nisur përdorimin e veçorisë.</string>
+    <!-- Primary action to launch upgrade flow -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">Përmirëso tani</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Fshirja u sinkronizua tashmë në të gjitha pajisjet</string>
@@ -7050,17 +7307,17 @@
 
     <!-- RemoteBackupsPaymentHistoryFragment -->
     <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Payment history</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Historia e pagesave</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Kopjeruajtje për tekst dhe për të gjitha mediat</string>
     <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Payment details</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Detajet e pagesës</string>
     <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Backup type</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Lloji i kopjeruajtjeve</string>
     <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date paid</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Datë pagese</string>
     <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">Share</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__share">Ndajeni Me të Tjerë</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7085,6 +7342,8 @@
     <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Pajtimi u anulua</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Shkarkimi përfundoi</string>
+    <!-- Snackbar text displayed when backup will be created overnight -->
+    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Kopjeruajtja do të krijohet brenda natës.</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_type">Lloji i kopjeruajtjeve</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7123,6 +7382,80 @@
     <string name="RemoteBackupsSettingsFragment__monthly">Mujore</string>
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Kopjeruajtje manuale</string>
+    <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
+    <string name="PassphrasePromptActivity_help_prompt_body">Të lutem, vendos pinin, fjalëkalimin ose vizimin e pajisjes.</string>
 
+    <!-- MessageBackupsCheckoutSheet -->
+    <!-- Sheet title. Placeholder is formatted price. -->
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Paguaj %1$s/muaj te Signal</string>
+    <!-- Sheet subtitle -->
+    <string name="MessageBackupsCheckoutSheet__youll_get">Do marrësh:</string>
+
+    <!-- MessageBackupsEducationScreen -->
+    <!-- Screen subtitle underneath large headline title -->
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Kopjeruaj mesazhet dhe median duke përdorur shërbimin e ruajtjes së sigurt, të koduar nga skaji në skaj të Signal. Mos e humb as edhe një mesazh kur merr telefon të ri ose riinstalon Signal.</string>
+    <!-- Backups feature label for e2e encryption -->
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">Koduar nga skaji në skaj</string>
+    <!-- Backups feature label for informing the user that this feature is completely optional -->
+    <string name="MessageBackupsEducationScreen__optional_always">Opsionale, gjithmonë</string>
+    <!-- Backups feature label for informing the user that they can delete their backup at any time -->
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Fshij kopjeruajtjen në çdo kohë</string>
+    <!-- Action button label to proceed with backups activation -->
+    <string name="MessageBackupsEducationScreen__enable_backups">Aktivizoji kopjeruajtjet</string>
+    <!-- Action button label to learn more -->
+    <string name="MessageBackupsEducationScreen__learn_more">Mëso më shumë</string>
+
+    <!-- MessageBackupsPinConfirmationScreen -->
+    <!-- Screen title -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">Jepni PIN-in tuaj</string>
+    <!-- Screen subtitle -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Fut PIN-in e Signal për të aktivizuar kopjeruajtjet</string>
+    <!-- Action button to confirm pin entry and continue -->
+    <string name="MessageBackupsPinConfirmationScreen__next">Tjetër</string>
+    <!-- Action button to switch keyboard type -->
+    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Ndërro tastierën</string>
+    <!-- Action button to create a new pin if we type the incorrect one -->
+    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Krijoni PIN të ri</string>
+
+    <!-- MessageBackupsPinEducationScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN-et mbrojnë kopjeruajtjen</string>
+    <!-- Notice about pin length. Placeholder is recommended pin length -->
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">PIN-i i Signal të lejon të rikthesh kopjeruajtjen kur riinstalon Signal. Ne rekomandojmë përdorimin e një PIN-i me të paktën %1$d shifra.</string>
+    <!-- Notice about changing your pin. -->
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Nëse harron PIN-in, nuk do të jesh në gjendje të rikthesh kopjeruajtjen. Mund ta ndryshosh PIN-in në çdo kohë te parametrat.</string>
+    <!-- Action button label to utilize current pin -->
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Përdor pinin aktual të Signal</string>
+    <!-- Action button to create a new pin -->
+    <string name="MessageBackupsPinEducationScreen__create_new_pin">Krijoni PIN të ri</string>
+
+    <!-- MessagesBackupsTypeSelectionScreen -->
+    <!-- Screen headline -->
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Zgjidh planin e kopjeruajtjes</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Të gjitha kopjeruajtjet janë të koduara nga skaji në skaj. Signal është organizatë jofitimprurëse—pagesa për kopjeruajtjet ndihmon në mbështetjen e misionit tonë.</string>
+    <!-- Screen subhead highlighted read-more button -->
+    <string name="MessageBackupsTypeSelectionScreen__read_more">Lexoni më tepër</string>
+    <!-- Primary action button label when selecting a backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__next">Tjetër</string>
+    <!-- Primary action button label when selecting a backup tier with a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Ndrysho llojin e kopjeruajtjes</string>
+    <!-- Secondary action button label when selecting a backup tier with a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Anuloje abonimin</string>
+
+    <!-- ConfirmBackupCancellationDialog -->
+    <!-- Dialog title -->
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Konfirmo anulimin</string>
+    <!-- Dialog body -->
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Nuk do të tarifohesh më. Kopjeruajtjet do të çaktivizohen në fund të ciklit të faturimit. Pas asaj date do të kesh 30 ditë për të shkarkuar median që po kopjeruan aktualisht.</string>
+    <!-- Action button label to cancel subscription and download now -->
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Konfirmo dhe shkarko tani</string>
+    <!-- Action button label to cancel subscription and download later -->
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Konfirmo dhe shkarko më vonë</string>
+    <!-- Action button label to keep current subscription -->
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Mbaj abonimin</string>
+
+    <!-- Accessible content description for the reminder view, describing the icon in the view. -->
+    <string name="ReminderView_icon_content_description">Ikona e rikujtesës</string>
     <!-- EOF -->
 </resources>

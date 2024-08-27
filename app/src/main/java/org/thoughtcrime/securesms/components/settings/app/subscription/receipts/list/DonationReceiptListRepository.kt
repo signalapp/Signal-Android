@@ -5,7 +5,7 @@ import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.getBoostBadges
 import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBadges
 import org.thoughtcrime.securesms.components.settings.app.subscription.getSubscriptionLevels
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import java.util.Locale
 
@@ -17,13 +17,13 @@ class DonationReceiptListRepository {
     }.map { response ->
       if (response.result.isPresent) {
         val config = response.result.get()
-        val boostBadge = DonationReceiptBadge(DonationReceiptRecord.Type.ONE_TIME_DONATION, -1, config.getBoostBadges().first())
-        val giftBadge = DonationReceiptBadge(DonationReceiptRecord.Type.ONE_TIME_GIFT, -1, config.getGiftBadges().first())
+        val boostBadge = DonationReceiptBadge(InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION, -1, config.getBoostBadges().first())
+        val giftBadge = DonationReceiptBadge(InAppPaymentReceiptRecord.Type.ONE_TIME_GIFT, -1, config.getGiftBadges().first())
         val subBadges = config.getSubscriptionLevels().map {
           DonationReceiptBadge(
             level = it.key,
             badge = Badges.fromServiceBadge(it.value.badge),
-            type = DonationReceiptRecord.Type.RECURRING_DONATION
+            type = InAppPaymentReceiptRecord.Type.RECURRING_DONATION
           )
         }
         subBadges + boostBadge + giftBadge

@@ -31,7 +31,8 @@ class GroupRecord(
   groupRevision: Int,
   decryptedGroupBytes: ByteArray?,
   val distributionId: DistributionId?,
-  val lastForceUpdateTimestamp: Long
+  val lastForceUpdateTimestamp: Long,
+  val groupSendEndorsementExpiration: Long
 ) {
 
   val members: List<RecipientId> by lazy {

@@ -23,13 +23,42 @@
         app:title="@string/AttachmentKeyboard_gallery"
         app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
+    <LinearLayout
+        android:id="@+id/media_gallery_manage_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="72dp"
+        android:gravity="center"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/media_gallery_toolbar">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/Signal.Text.BodyMedium"
+            android:layout_marginEnd="16dp"
+            android:text="@string/AttachmentKeyboard_signal_has_limited_access" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/media_gallery_manage_button"
+            style="@style/Signal.Widget.Button.Base.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="32dp"
+            android:padding="0dp"
+            android:text="@string/AttachmentKeyboard_manage" />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/media_gallery_grid"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/media_gallery_bottom_bar_barrier"
-        app:layout_constraintTop_toBottomOf="@id/media_gallery_toolbar"
+        app:layout_constraintTop_toBottomOf="@id/media_gallery_manage_container"
         app:spanCount="4"
         tools:itemCount="36"
         tools:listitem="@layout/v2_media_gallery_item" />
@@ -52,6 +81,7 @@
             android:src="@drawable/permission_gallery" />
 
         <TextView
+            android:id="@+id/media_gallery_permission_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos"

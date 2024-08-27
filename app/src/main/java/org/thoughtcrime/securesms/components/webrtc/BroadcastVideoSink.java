@@ -47,7 +47,7 @@ public class BroadcastVideoSink implements VideoSink {
     this.deviceOrientationDegrees = deviceOrientationDegrees;
     this.rotateToRightSide        = false;
     this.forceRotate              = forceRotate;
-    this.rotateWithDevice         = rotateWithDevice;
+    this.rotateWithDevice         = false;
   }
 
   public @NonNull EglBaseWrapper getLockableEglBase() {

@@ -234,7 +234,7 @@ final class GroupsV2UpdateMessageProducer {
     }
   }
   private void describeGroupExpirationTimerUpdate(@NonNull GroupExpirationTimerUpdate update, @NonNull List<UpdateDescription> updates) {
-    final int duration = Math.toIntExact(Integer.toUnsignedLong(update.expiresInMs) / 1000);
+    final int duration = Math.toIntExact(update.expiresInMs / 1000);
     String time = ExpirationUtil.getExpirationDisplayValue(context, duration);
     if (update.updaterAci == null) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_disappearing_message_time_set_to_s, time), R.drawable.ic_update_timer_16));

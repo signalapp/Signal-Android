@@ -4,7 +4,4 @@
     <item android:title="@string/preferences__submit_debug_log"
           android:id="@+id/menu_submit_debug_logs"
           android:icon="@android:drawable/ic_menu_upload" />
-
-    <item android:title="@string/PinRestoreEntryFragment_contact_support"
-          android:id="@+id/menu_contact_support" />
 </menu>

@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/call_screen_header"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal">
+    android:layout_gravity="center_horizontal"
+    tools:viewBindingIgnore="true">
 
     <TextView
         android:id="@+id/call_screen_incoming_ring_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:drawablePadding="4dp"
         android:gravity="center"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/core_white"
         android:visibility="gone"
+        android:layout_marginTop="8dp"
         app:drawableStartCompat="@drawable/ic_signal_logo_small"
-        app:layout_constraintBottom_toBottomOf="@id/action_bar_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,19 +26,12 @@
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/call_screen_header_avatar"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="106dp"
+        android:layout_width="@dimen/CallScreenLargeHeader__avatar_size"
+        android:layout_height="@dimen/CallScreenLargeHeader__avatar_size"
+        android:layout_marginTop="@dimen/CallScreenLargeHeader__avatar_margin_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/action_bar_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="?actionBarSize" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/call_screen_recipient_name"
@@ -74,27 +66,27 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/call_screen_status"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/call_screen_status">
 
         <TextView
             android:id="@+id/missing_permissions_text"
+            style="@style/Signal.Text.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            style="@style/Signal.Text.Body"
             android:text="@string/WebRtcCallActivity__to_enable_video_allow_camera" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/allow_access_button"
+            style="@style/Signal.Widget.Button.Large.Tonal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            style="@style/Signal.Widget.Button.Large.Tonal"
             android:text="@string/CameraXFragment_allow_access" />
 
     </LinearLayout>

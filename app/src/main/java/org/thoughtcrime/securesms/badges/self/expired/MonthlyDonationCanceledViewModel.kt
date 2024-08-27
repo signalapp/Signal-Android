@@ -13,6 +13,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.StripeDeclineCode
 import org.signal.donations.StripeFailureCode
 import org.thoughtcrime.securesms.badges.Badges
@@ -58,8 +59,8 @@ class MonthlyDonationCanceledViewModel(
   private fun initializeFromSignalStore() {
     internalState.value = MonthlyDonationCanceledState(
       loadState = MonthlyDonationCanceledState.LoadState.READY,
-      badge = SignalStore.donations.getExpiredBadge(),
-      errorMessage = getErrorMessage(SignalStore.donations.getUnexpectedSubscriptionCancelationChargeFailure())
+      badge = SignalStore.inAppPayments.getExpiredBadge(),
+      errorMessage = getErrorMessage(SignalStore.inAppPayments.getUnexpectedSubscriptionCancelationChargeFailure())
     )
   }
 
@@ -71,7 +72,7 @@ class MonthlyDonationCanceledViewModel(
     return if (declineCode.isKnown()) {
       declineCode.mapToErrorStringResource()
     } else if (failureCode.isKnown) {
-      failureCode.mapToErrorStringResource()
+      failureCode.mapToErrorStringResource(InAppPaymentType.RECURRING_DONATION)
     } else {
       declineCode.mapToErrorStringResource()
     }

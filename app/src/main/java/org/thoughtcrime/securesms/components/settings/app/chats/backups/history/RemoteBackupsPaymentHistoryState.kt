@@ -8,9 +8,10 @@ package org.thoughtcrime.securesms.components.settings.app.chats.backups.history
 import androidx.compose.runtime.Stable
 import kotlinx.collections.immutable.PersistentMap
 import kotlinx.collections.immutable.persistentMapOf
-import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 
 @Stable
 data class RemoteBackupsPaymentHistoryState(
-  val records: PersistentMap<Long, DonationReceiptRecord> = persistentMapOf()
+  val records: PersistentMap<Long, InAppPaymentReceiptRecord> = persistentMapOf(),
+  val displayProgressDialog: Boolean = false
 )

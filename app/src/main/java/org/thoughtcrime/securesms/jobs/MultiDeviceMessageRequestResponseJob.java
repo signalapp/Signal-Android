@@ -5,10 +5,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -122,8 +121,8 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
     }
 
     if (response != null) {
-      messageSender.sendSyncMessage(SignalServiceSyncMessage.forMessageRequestResponse(response),
-                                    UnidentifiedAccessUtil.getAccessForSync(context));
+      messageSender.sendSyncMessage(SignalServiceSyncMessage.forMessageRequestResponse(response)
+      );
     } else {
       Log.w(TAG, recipient.getId() + " not registered!");
     }

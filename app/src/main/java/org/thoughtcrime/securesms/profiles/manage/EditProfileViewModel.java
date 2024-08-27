@@ -140,7 +140,7 @@ class EditProfileViewModel extends ViewModel {
 
           internalAvatarState.postValue(InternalAvatarState.loading(data));
 
-          repository.setAvatar(context, data, media.getMimeType(), result -> {
+          repository.setAvatar(context, data, media.getContentType(), result -> {
             switch (result) {
               case SUCCESS:
                 internalAvatarState.postValue(InternalAvatarState.loaded(data));

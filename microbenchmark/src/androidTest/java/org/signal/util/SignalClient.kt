@@ -21,6 +21,7 @@ import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.SignalSessionLock
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
+import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.crypto.SignalGroupSessionBuilder
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
@@ -93,7 +94,7 @@ class SignalClient {
 
     val outgoingPushMessage: OutgoingPushMessage = cipher.encrypt(
       SignalProtocolAddress(to.aci.toString(), 1),
-      Optional.empty(),
+      SealedSenderAccess.NONE,
       EnvelopeContent.encrypted(content, ContentHint.RESENDABLE, Optional.empty())
     )
 
@@ -124,7 +125,7 @@ class SignalClient {
 
     val outgoingPushMessage: OutgoingPushMessage = cipher.encrypt(
       SignalProtocolAddress(to.aci.toString(), 1),
-      Optional.of(UnidentifiedAccess(to.unidentifiedAccessKey, senderCertificate.serialized, false)),
+      SealedSenderAccess.forIndividual(UnidentifiedAccess(to.unidentifiedAccessKey, senderCertificate.serialized, false)),
       EnvelopeContent.encrypted(content, ContentHint.RESENDABLE, Optional.empty())
     )
 

@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
+import org.thoughtcrime.securesms.jobs.MinimalJobSpec;
 import org.thoughtcrime.securesms.util.Debouncer;
 
 import java.util.ArrayList;
@@ -231,26 +232,13 @@ class JobController {
 
   @WorkerThread
   synchronized void update(@NonNull JobUpdater updater) {
-    List<JobSpec> allJobs     = jobStorage.getAllJobSpecs();
-    List<JobSpec> updatedJobs = new LinkedList<>();
-
-    for (JobSpec job : allJobs) {
-      JobSpec updated = updater.update(job);
-      if (updated != job) {
-        updatedJobs.add(updated);
-      }
-    }
-
-    jobStorage.updateJobs(updatedJobs);
-
+    jobStorage.transformJobs(updater::update);
     notifyAll();
   }
 
   @WorkerThread
   synchronized List<JobSpec> findJobs(@NonNull Predicate<JobSpec> predicate) {
-    return Stream.of(jobStorage.getAllJobSpecs())
-                 .filter(predicate::test)
-                 .toList();
+    return jobStorage.getAllMatchingFilter(predicate);
   }
 
   @WorkerThread
@@ -332,7 +320,7 @@ class JobController {
    * When the job returned from this method has been run, you must call {@link #onJobFinished(Job)}.
    */
   @WorkerThread
-  synchronized @NonNull Job pullNextEligibleJobForExecution(@NonNull JobPredicate predicate) {
+  synchronized @NonNull Job pullNextEligibleJobForExecution(@NonNull Predicate<MinimalJobSpec> predicate) {
     try {
       Job job;
 
@@ -360,9 +348,9 @@ class JobController {
    */
   @WorkerThread
   synchronized @NonNull String getDebugInfo() {
-    List<JobSpec>        jobs         = jobStorage.getAllJobSpecs();
-    List<ConstraintSpec> constraints  = jobStorage.getAllConstraintSpecs();
-    List<DependencySpec> dependencies = jobStorage.getAllDependencySpecs();
+    List<JobSpec>        jobs         = jobStorage.debugGetJobSpecs(1000);
+    List<ConstraintSpec> constraints  = jobStorage.debugGetConstraintSpecs(1000);
+    List<DependencySpec> dependencies = jobStorage.debugGetAllDependencySpecs();
 
     StringBuilder info = new StringBuilder();
 
@@ -492,24 +480,27 @@ class JobController {
   }
 
   @WorkerThread
-  private @Nullable Job getNextEligibleJobForExecution(@NonNull JobPredicate predicate) {
-    List<JobSpec> jobSpecs = Stream.of(jobStorage.getPendingJobsWithNoDependenciesInCreatedOrder(System.currentTimeMillis()))
-                                   .filter(predicate::shouldRun)
-                                   .toList();
+  private @Nullable Job getNextEligibleJobForExecution(@NonNull Predicate<MinimalJobSpec> predicate) {
+    JobSpec jobSpec = jobStorage.getNextEligibleJob(System.currentTimeMillis(), minimalJobSpec -> {
+      if (!predicate.test(minimalJobSpec)) {
+        return false;
+      }
 
-    for (JobSpec jobSpec : jobSpecs) {
-      List<ConstraintSpec> constraintSpecs = jobStorage.getConstraintSpecs(jobSpec.getId());
+      List<ConstraintSpec> constraintSpecs = jobStorage.getConstraintSpecs(minimalJobSpec.getId());
       List<Constraint>     constraints     = Stream.of(constraintSpecs)
                                                    .map(ConstraintSpec::getFactoryKey)
                                                    .map(constraintInstantiator::instantiate)
                                                    .toList();
 
-      if (Stream.of(constraints).allMatch(Constraint::isMet)) {
-        return createJob(jobSpec, constraintSpecs);
-      }
+      return Stream.of(constraints).allMatch(Constraint::isMet);
+    });
+
+    if (jobSpec == null) {
+      return null;
     }
 
-    return null;
+    List<ConstraintSpec> constraintSpecs = jobStorage.getConstraintSpecs(jobSpec.getId());
+    return createJob(jobSpec, constraintSpecs);
   }
 
   private @NonNull Job createJob(@NonNull JobSpec jobSpec, @NonNull List<ConstraintSpec> constraintSpecs) {

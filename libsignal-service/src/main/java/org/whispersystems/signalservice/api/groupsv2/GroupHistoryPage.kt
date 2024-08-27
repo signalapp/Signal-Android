@@ -1,11 +1,12 @@
 package org.whispersystems.signalservice.api.groupsv2
 
+import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsementsResponse
 import org.whispersystems.signalservice.internal.push.PushServiceSocket.GroupHistory
 
 /**
  * Wraps result of group history fetch with it's associated paging data.
  */
-data class GroupHistoryPage(val changeLogs: List<DecryptedGroupChangeLog>, val pagingData: PagingData) {
+data class GroupHistoryPage(val changeLogs: List<DecryptedGroupChangeLog>, val groupSendEndorsementsResponse: GroupSendEndorsementsResponse?, val pagingData: PagingData) {
 
   data class PagingData(val hasMorePages: Boolean, val nextPageRevision: Int) {
     companion object {

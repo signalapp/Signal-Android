@@ -26,6 +26,7 @@ import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.contactshare.Contact;
@@ -196,7 +197,9 @@ public abstract class PushSendJob extends SendJob {
     return Optional.of(ProfileKeyUtil.getSelfProfileKey().serialize());
   }
 
-  protected SignalServiceAttachment getAttachmentFor(Attachment attachment) {
+  protected SignalServiceAttachment getAttachmentFor(Contact.Avatar avatar) {
+    Attachment attachment = avatar.getAttachment();
+
     try {
       if (attachment.getUri() == null || attachment.size == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
       InputStream is = PartAuthority.getAttachmentStream(context, attachment.getUri());
@@ -213,6 +216,7 @@ public abstract class PushSendJob extends SendJob {
                                     .withHeight(attachment.height)
                                     .withCaption(attachment.caption)
                                     .withUuid(attachment.uuid)
+                                    .withResumableUploadSpec(AppDependencies.getSignalServiceMessageSender().getResumableUploadSpec())
                                     .withListener(new SignalServiceAttachment.ProgressListener() {
                                       @Override
                                       public void onAttachmentProgress(long total, long progress) {
@@ -248,15 +252,17 @@ public abstract class PushSendJob extends SendJob {
                              .toList());
 
     return new HashSet<>(Stream.of(attachments).map(a -> {
-                                                 AttachmentUploadJob attachmentUploadJob = new AttachmentUploadJob(((DatabaseAttachment) a).attachmentId);
+                                 final AttachmentId attachmentId = ((DatabaseAttachment) a).attachmentId;
+                                 Log.d(TAG, "Enqueueing job chain to upload " + attachmentId);
+                                 AttachmentUploadJob attachmentUploadJob = new AttachmentUploadJob(attachmentId);
 
-                                                 jobManager.startChain(AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
-                                                           .then(attachmentUploadJob)
-                                                           .enqueue();
+                                 jobManager.startChain(AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
+                                           .then(attachmentUploadJob)
+                                           .enqueue();
 
-                                                 return attachmentUploadJob.getId();
-                                               })
-                                               .toList());
+                                 return attachmentUploadJob.getId();
+                               })
+                               .toList());
   }
 
   protected @NonNull List<SignalServiceAttachment> getAttachmentPointersFor(List<Attachment> attachments) {
@@ -451,7 +457,7 @@ public abstract class PushSendJob extends SendJob {
       if (contact.getAvatar() != null && contact.getAvatar().getAttachment() != null) {
         SignalServiceAttachment attachment = getAttachmentPointerFor(contact.getAvatar().getAttachment());
         if (attachment == null) {
-          attachment = getAttachmentFor(contact.getAvatar().getAttachment());
+          attachment = getAttachmentFor(contact.getAvatar());
         }
         avatar = SharedContact.Avatar.newBuilder().withAttachment(attachment)
                                                   .withProfileFlag(contact.getAvatar().isProfile())
@@ -602,13 +608,8 @@ public abstract class PushSendJob extends SendJob {
       SignalDatabase.messages().markAsRateLimited(messageId);
     }
 
-    final Optional<ProofRequiredException.Option> captchaRequired =
-        proofRequired.getOptions().stream()
-                     .filter(option -> option.equals(ProofRequiredException.Option.RECAPTCHA) || option.equals(ProofRequiredException.Option.CAPTCHA))
-                     .findFirst();
-
-    if (captchaRequired.isPresent()) {
-      Log.i(TAG, "[Proof Required] " + captchaRequired.get() + " required.");
+    if (proofRequired.getOptions().contains(ProofRequiredException.Option.CAPTCHA)) {
+      Log.i(TAG, "[Proof Required] CAPTCHA required.");
       SignalStore.rateLimit().markNeedsRecaptcha(proofRequired.getToken());
 
       if (recipient != null) {

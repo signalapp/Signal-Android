@@ -10,8 +10,12 @@ enum class MessageBackupsScreen {
   PIN_EDUCATION,
   PIN_CONFIRMATION,
   TYPE_SELECTION,
+  CANCELLATION_DIALOG,
   CHECKOUT_SHEET,
+  CREATING_IN_APP_PAYMENT,
   PROCESS_PAYMENT,
+  PROCESS_CANCELLATION,
+  PROCESS_FREE,
   COMPLETED;
 
   fun isAfter(other: MessageBackupsScreen): Boolean = ordinal > other.ordinal

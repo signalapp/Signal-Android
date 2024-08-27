@@ -18,6 +18,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.Result
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
@@ -25,6 +26,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.MessageSendType
@@ -42,6 +44,7 @@ import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.visible
 import java.util.Optional
+import java.util.concurrent.TimeUnit
 
 class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.Callback {
 
@@ -122,6 +125,22 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
         is ShareEvent.SendWithoutInterstitial -> sendWithoutInterstitial(shareEvent)
       }
     }
+
+    var dialog: SignalProgressDialog? = null
+    viewModel
+      .state
+      .debounce(500, TimeUnit.MILLISECONDS)
+      .onErrorComplete()
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy { state ->
+        if (state.loadState == ShareState.ShareDataLoadState.Init) {
+          dialog = SignalProgressDialog.show(this, indeterminate = true)
+        } else {
+          dialog?.dismiss()
+          dialog = null
+        }
+      }
+      .addTo(lifecycleDisposable)
 
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { shareState ->
       when (shareState.loadState) {
@@ -284,6 +303,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
           0,
           false,
           false,
+          Optional.empty(),
           Optional.empty(),
           Optional.empty(),
           Optional.empty()

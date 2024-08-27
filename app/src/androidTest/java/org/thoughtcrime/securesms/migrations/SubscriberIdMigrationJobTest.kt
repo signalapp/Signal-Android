@@ -36,10 +36,10 @@ class SubscriberIdMigrationJobTest {
   @Test
   fun givenUSDSubscriber_whenIRunSubscriberIdMigrationJob_thenIExpectASingleEntry() {
     val subscriberId = SubscriberId.generate()
-    SignalStore.donations.setSubscriberCurrency(Currency.getInstance("USD"), InAppPaymentSubscriberRecord.Type.DONATION)
-    SignalStore.donations.setSubscriber("USD", subscriberId)
-    SignalStore.donations.setSubscriptionPaymentSourceType(PaymentSourceType.PayPal)
-    SignalStore.donations.shouldCancelSubscriptionBeforeNextSubscribeAttempt = true
+    SignalStore.inAppPayments.setSubscriberCurrency(Currency.getInstance("USD"), InAppPaymentSubscriberRecord.Type.DONATION)
+    SignalStore.inAppPayments.setSubscriber("USD", subscriberId)
+    SignalStore.inAppPayments.setSubscriptionPaymentSourceType(PaymentSourceType.PayPal)
+    SignalStore.inAppPayments.shouldCancelSubscriptionBeforeNextSubscribeAttempt = true
 
     testSubject.run()
 

@@ -8,14 +8,14 @@ dependencyResolutionManagement {
       version("androidx-activity", "1.8.2")
       version("androidx-camera", "1.3.4")
       version("androidx-fragment", "1.6.2")
-      version("androidx-lifecycle", "2.7.0")
-      version("androidx-media3", "1.2.1")
+      version("androidx-lifecycle", "2.8.4")
+      version("androidx-media3", "1.3.1")
       version("androidx-navigation", "2.7.6")
       version("androidx-window", "1.2.0")
       version("exoplayer", "2.19.0")
       version("glide", "4.15.1")
       version("kotlin", "1.9.20")
-      version("libsignal-client", "0.51.1")
+      version("libsignal-client", "0.52.5")
       version("mp4parser", "1.9.39")
       version("android-gradle-plugin", "8.4.0")
       version("accompanist", "0.28.0")
@@ -81,6 +81,7 @@ dependencyResolutionManagement {
       library("androidx-lifecycle-viewmodel-savedstate", "androidx.lifecycle", "lifecycle-viewmodel-savedstate").versionRef("androidx-lifecycle")
       library("androidx-lifecycle-common-java8", "androidx.lifecycle", "lifecycle-common-java8").versionRef("androidx-lifecycle")
       library("androidx-lifecycle-reactivestreams-ktx", "androidx.lifecycle", "lifecycle-reactivestreams-ktx").versionRef("androidx-lifecycle")
+      library("androidx-lifecycle-runtime-compose", "androidx.lifecycle", "lifecycle-runtime-compose").versionRef("androidx-lifecycle")
       library("androidx-camera-core", "androidx.camera", "camera-core").versionRef("androidx-camera")
       library("androidx-camera-camera2", "androidx.camera", "camera-camera2").versionRef("androidx-camera")
       library("androidx-camera-extensions", "androidx.camera", "camera-extensions").versionRef("androidx-camera")
@@ -102,7 +103,7 @@ dependencyResolutionManagement {
 
       // Google
       library("google-protobuf-javalite", "com.google.protobuf:protobuf-javalite:3.11.4")
-      library("google-libphonenumber", "com.googlecode.libphonenumber:libphonenumber:8.13.23")
+      library("google-libphonenumber", "com.googlecode.libphonenumber:libphonenumber:8.13.40")
       library("google-play-services-maps", "com.google.android.gms:play-services-maps:18.2.0")
       library("google-play-services-auth", "com.google.android.gms:play-services-auth:21.0.0")
       library("google-play-services-wallet", "com.google.android.gms:play-services-wallet:19.2.1")
@@ -122,7 +123,7 @@ dependencyResolutionManagement {
       library("libsignal-client", "org.signal", "libsignal-client").versionRef("libsignal-client")
       library("libsignal-android", "org.signal", "libsignal-android").versionRef("libsignal-client")
       library("signal-aesgcmprovider", "org.signal:aesgcmprovider:0.0.3")
-      library("signal-ringrtc", "org.signal:ringrtc-android:2.44.0")
+      library("signal-ringrtc", "org.signal:ringrtc-android:2.46.0")
       library("signal-android-database-sqlcipher", "org.signal:sqlcipher-android:4.5.4-S2")
 
       // Third Party
@@ -180,6 +181,7 @@ dependencyResolutionManagement {
       version("androidx-test", "1.5.0")
       version("androidx-test-ext-junit", "1.1.5")
       version("robolectric", "4.10.3")
+      version("espresso", "3.4.0")
 
       library("junit-junit", "junit:junit:4.13.2")
       library("androidx-test-core", "androidx.test", "core").versionRef("androidx-test")
@@ -189,7 +191,7 @@ dependencyResolutionManagement {
       library("androidx-test-monitor", "androidx.test:monitor:1.6.1")
       library("androidx-test-orchestrator", "androidx.test:orchestrator:1.4.1")
       library("androidx-test-runner", "androidx.test", "runner").versionRef("androidx-test")
-      library("espresso-core", "androidx.test.espresso:espresso-core:3.4.0")
+      library("espresso-core", "androidx.test.espresso", "espresso-core").versionRef("espresso")
       library("mockito-core", "org.mockito:mockito-inline:4.6.1")
       library("mockito-kotlin", "org.mockito.kotlin:mockito-kotlin:4.0.0")
       library("mockito-android", "org.mockito:mockito-android:4.6.1")
@@ -204,6 +206,7 @@ dependencyResolutionManagement {
       library("mockk-android", "io.mockk:mockk-android:1.13.2")
 
       library("conscrypt-openjdk-uber", "org.conscrypt:conscrypt-openjdk-uber:2.5.2")
+      library("diff-utils", "io.github.java-diff-utils:java-diff-utils:4.12")
     }
 
     create("lintLibs") {

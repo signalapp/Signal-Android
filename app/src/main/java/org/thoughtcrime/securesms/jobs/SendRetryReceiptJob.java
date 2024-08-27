@@ -4,19 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.InvalidKeyException;
+import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -87,12 +86,11 @@ public final class SendRetryReceiptJob extends BaseJob {
       return;
     }
 
-    SignalServiceAddress             address   = RecipientUtil.toSignalServiceAddress(context, recipient);
-    Optional<UnidentifiedAccessPair> access    = UnidentifiedAccessUtil.getAccessFor(context, recipient);
-    Optional<byte[]>                 group     = groupId.map(GroupId::getDecodedId);
+    SignalServiceAddress address = RecipientUtil.toSignalServiceAddress(context, recipient);
+    Optional<byte[]>     group   = groupId.map(GroupId::getDecodedId);
 
     Log.i(TAG, "Sending retry receipt for " + errorMessage.getTimestamp() + " to " + recipientId + ", device: " + errorMessage.getDeviceId());
-    AppDependencies.getSignalServiceMessageSender().sendRetryReceipt(address, access, group, errorMessage);
+    AppDependencies.getSignalServiceMessageSender().sendRetryReceipt(address, SealedSenderAccessUtil.getSealedSenderAccessFor(recipient), group, errorMessage);
   }
 
   @Override

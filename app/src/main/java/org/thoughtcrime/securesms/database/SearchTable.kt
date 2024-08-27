@@ -33,7 +33,10 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     @Language("sql")
     val CREATE_TABLE = arrayOf(
-      "CREATE VIRTUAL TABLE $FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${MessageTable.TABLE_NAME}, content_rowid=${MessageTable.ID})"
+      // We've taken the default of tokenize value of "unicode61 categories 'L* N* Co'" and added the Sc (currency) and So (emoji) categories to allow searching for those characters.
+      // https://www.sqlite.org/fts5.html#tokenizers
+      // https://www.compart.com/en/unicode/category
+      """CREATE VIRTUAL TABLE $FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${MessageTable.TABLE_NAME}, content_rowid=${MessageTable.ID}, tokenize = "unicode61 categories 'L* N* Co Sc So'")"""
     )
 
     private const val TRIGGER_AFTER_INSERT = "message_ai"
@@ -233,26 +236,40 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
    * Drops all tables and recreates them.
    */
   @JvmOverloads
-  fun fullyResetTables(db: SQLiteDatabase = writableDatabase.sqlCipherDatabase) {
-    Log.w(TAG, "[fullyResetTables] Dropping tables and triggers...")
-    db.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
-    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
-    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
-    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_data")
-    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_idx")
-    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_INSERT")
-    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
-    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_UPDATE")
+  fun fullyResetTables(db: SQLiteDatabase = writableDatabase.sqlCipherDatabase, useTransaction: Boolean = true) {
+    if (useTransaction) {
+      db.beginTransaction()
+    }
 
-    Log.w(TAG, "[fullyResetTables] Recreating table...")
-    CREATE_TABLE.forEach { db.execSQL(it) }
+    try {
+      Log.w(TAG, "[fullyResetTables] Dropping tables and triggers...")
+      db.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
+      db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
+      db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
+      db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_data")
+      db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_idx")
+      db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_INSERT")
+      db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
+      db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_UPDATE")
 
-    Log.w(TAG, "[fullyResetTables] Recreating triggers...")
-    CREATE_TRIGGERS.forEach { db.execSQL(it) }
+      Log.w(TAG, "[fullyResetTables] Recreating table...")
+      CREATE_TABLE.forEach { db.execSQL(it) }
 
-    RebuildMessageSearchIndexJob.enqueue()
+      Log.w(TAG, "[fullyResetTables] Recreating triggers...")
+      CREATE_TRIGGERS.forEach { db.execSQL(it) }
 
-    Log.w(TAG, "[fullyResetTables] Done. Index will be rebuilt asynchronously)")
+      RebuildMessageSearchIndexJob.enqueue()
+
+      Log.w(TAG, "[fullyResetTables] Done. Index will be rebuilt asynchronously)")
+
+      if (useTransaction) {
+        db.setTransactionSuccessful()
+      }
+    } finally {
+      if (useTransaction) {
+        db.endTransaction()
+      }
+    }
   }
 
   /**

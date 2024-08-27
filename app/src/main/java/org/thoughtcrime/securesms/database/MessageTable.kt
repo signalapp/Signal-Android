@@ -420,7 +420,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             ${MessageTypes.PROFILE_CHANGE_TYPE}, 
             ${MessageTypes.GV1_MIGRATION_TYPE},
             ${MessageTypes.CHANGE_NUMBER_TYPE},
-            ${MessageTypes.BOOST_REQUEST_TYPE},
+            ${MessageTypes.RELEASE_CHANNEL_DONATION_REQUEST_TYPE},
             ${MessageTypes.SMS_EXPORT_TYPE}
            )
           ORDER BY $DATE_RECEIVED DESC LIMIT 1
@@ -993,11 +993,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val containsSelf = joinedUuids.contains(SignalStore.account.requireAci().rawUuid)
       val sameEraId = updateDetail.eraId == eraId && !Util.isEmpty(eraId)
       val inCallUuids = if (sameEraId) joinedUuids.map { it.toString() } else emptyList()
+      val body = GroupCallUpdateDetailsUtil.createUpdatedBody(updateDetail, inCallUuids, isCallFull, isRingingOnLocalDevice)
       val contentValues = contentValuesOf(
-        BODY to GroupCallUpdateDetailsUtil.createUpdatedBody(updateDetail, inCallUuids, isCallFull, isRingingOnLocalDevice)
+        BODY to body
       )
 
-      if (sameEraId && containsSelf) {
+      if (sameEraId && (containsSelf || updateDetail.localUserJoined)) {
         contentValues.put(READ, 1)
       }
 
@@ -1044,7 +1045,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           BODY to GroupCallUpdateDetailsUtil.createUpdatedBody(groupCallUpdateDetails, inCallUuids, isCallFull, isRingingOnLocalDevice)
         )
 
-        if (sameEraId && containsSelf) {
+        if (sameEraId && (containsSelf || groupCallUpdateDetails.localUserJoined)) {
           contentValues.put(READ, 1)
         }
 
@@ -1236,7 +1237,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         DATE_RECEIVED to System.currentTimeMillis(),
         DATE_SENT to System.currentTimeMillis(),
         READ to 1,
-        TYPE to MessageTypes.BOOST_REQUEST_TYPE,
+        TYPE to MessageTypes.RELEASE_CHANNEL_DONATION_REQUEST_TYPE,
         THREAD_ID to threadId,
         BODY to null
       )
@@ -1881,7 +1882,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $TYPE != ${MessageTypes.PROFILE_CHANGE_TYPE} AND
         $TYPE != ${MessageTypes.CHANGE_NUMBER_TYPE} AND
         $TYPE != ${MessageTypes.SMS_EXPORT_TYPE} AND
-        $TYPE != ${MessageTypes.BOOST_REQUEST_TYPE} AND
+        $TYPE != ${MessageTypes.RELEASE_CHANNEL_DONATION_REQUEST_TYPE} AND
         $TYPE & ${MessageTypes.GROUP_V2_LEAVE_BITS} != ${MessageTypes.GROUP_V2_LEAVE_BITS} AND
         $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_REPORTED_SPAM} AND
         $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED}
@@ -2965,6 +2966,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
     }
 
+    val parentStoryId: Long = if (editedMessage == null) {
+      if (message.parentStoryId != null) message.parentStoryId.serialize() else 0
+    } else {
+      val originalId = (editedMessage as? MmsMessageRecord)?.parentStoryId
+      if (originalId != null && message.outgoingQuote != null) {
+        originalId.serialize()
+      } else {
+        0L
+      }
+    }
+
     val contentValues = ContentValues()
     contentValues.put(DATE_SENT, message.sentTimeMillis)
     contentValues.put(TYPE, type)
@@ -2980,7 +2992,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     contentValues.put(HAS_DELIVERY_RECEIPT, earlyDeliveryReceipts.values.sumOf { it.count })
     contentValues.put(RECEIPT_TIMESTAMP, earlyDeliveryReceipts.values.map { it.timestamp }.maxOrNull() ?: -1L)
     contentValues.put(STORY_TYPE, message.storyType.code)
-    contentValues.put(PARENT_STORY_ID, if (message.parentStoryId != null) message.parentStoryId.serialize() else 0)
+    contentValues.put(PARENT_STORY_ID, parentStoryId)
     contentValues.put(SCHEDULED_DATE, message.scheduledDate)
     contentValues.putNull(LATEST_REVISION_ID)
     contentValues.put(MESSAGE_EXTRAS, message.messageExtras?.encode())
@@ -2988,6 +3000,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     if (editedMessage != null) {
       contentValues.put(ORIGINAL_MESSAGE_ID, editedMessage.getOriginalOrOwnMessageId().id)
       contentValues.put(REVISION_NUMBER, editedMessage.revisionNumber + 1)
+      contentValues.put(EXPIRE_STARTED, editedMessage.expireStarted)
     } else {
       contentValues.putNull(ORIGINAL_MESSAGE_ID)
     }
@@ -3339,7 +3352,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
-  private fun getSerializedSharedContacts(insertedAttachmentIds: Map<Attachment, AttachmentId>, contacts: List<Contact>): String? {
+  fun getSerializedSharedContacts(insertedAttachmentIds: Map<Attachment, AttachmentId>, contacts: List<Contact>): String? {
     if (contacts.isEmpty()) {
       return null
     }
@@ -3373,7 +3386,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return sharedContactJson.toString()
   }
 
-  private fun getSerializedLinkPreviews(insertedAttachmentIds: Map<Attachment, AttachmentId>, previews: List<LinkPreview>): String? {
+  fun getSerializedLinkPreviews(insertedAttachmentIds: Map<Attachment, AttachmentId>, previews: List<LinkPreview>): String? {
     if (previews.isEmpty()) {
       return null
     }

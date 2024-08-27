@@ -66,7 +66,7 @@ class MediaRepositoryTest {
     val result: Media = MediaRepository.fixMimeType(context, media)
 
     // THEN
-    assertEquals(MediaUtil.IMAGE_JPEG, result.mimeType)
+    assertEquals(MediaUtil.IMAGE_JPEG, result.contentType)
   }
 
   @Test
@@ -83,7 +83,7 @@ class MediaRepositoryTest {
     val result: Media = MediaRepository.fixMimeType(context, media)
 
     // THEN
-    assertEquals(MediaUtil.IMAGE_JPEG, result.mimeType)
+    assertEquals(MediaUtil.IMAGE_JPEG, result.contentType)
   }
 
   @Test
@@ -101,7 +101,7 @@ class MediaRepositoryTest {
     val result: Media = MediaRepository.fixMimeType(context, media)
 
     // THEN
-    assertEquals(MediaUtil.VIDEO_UNSPECIFIED, result.mimeType)
+    assertEquals(MediaUtil.VIDEO_UNSPECIFIED, result.contentType)
   }
 
   private fun buildMedia(
@@ -116,7 +116,8 @@ class MediaRepositoryTest {
     videoGif: Boolean = false,
     bucketId: Optional<String> = Optional.empty(),
     caption: Optional<String> = Optional.empty(),
-    transformProperties: Optional<TransformProperties> = Optional.empty()
+    transformProperties: Optional<TransformProperties> = Optional.empty(),
+    fileName: Optional<String> = Optional.empty()
   ): Media {
     return Media(
       uri,
@@ -130,7 +131,8 @@ class MediaRepositoryTest {
       videoGif,
       bucketId,
       caption,
-      transformProperties
+      transformProperties,
+      fileName
     )
   }
 }

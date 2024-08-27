@@ -24,7 +24,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
+import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
 
 public class Dialogs {
   public static void showAlertDialog(Context context, String title, String message) {
@@ -85,7 +85,7 @@ public class Dialogs {
         .setMessage(R.string.ReregisterSignalDialog__message)
         .setNegativeButton(R.string.ReregisterSignalDialog__cancel_action, null)
         .setPositiveButton(R.string.ReregisterSignalDialog__reregister_action, (d, w) -> {
-          context.startActivity(RegistrationNavigationActivity.newIntentForReRegistration(context));
+          context.startActivity(RegistrationActivity.newIntentForReRegistration(context));
         })
         .show();
   }

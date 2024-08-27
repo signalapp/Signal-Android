@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -32,6 +34,8 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -48,10 +52,12 @@ import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 @Composable
 fun MessageBackupsPinConfirmationScreen(
   pin: String,
+  isPinIncorrect: Boolean,
   onPinChanged: (String) -> Unit,
   pinKeyboardType: PinKeyboardType,
   onPinKeyboardTypeSelected: (PinKeyboardType) -> Unit,
-  onNextClick: () -> Unit
+  onNextClick: () -> Unit,
+  onCreateNewPinClick: () -> Unit
 ) {
   val focusRequester = remember { FocusRequester() }
   Surface {
@@ -67,7 +73,7 @@ fun MessageBackupsPinConfirmationScreen(
       ) {
         item {
           Text(
-            text = "Enter your PIN", // TODO [message-backups] Finalized copy
+            text = stringResource(id = R.string.MessageBackupsPinConfirmationScreen__enter_your_pin),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(top = 40.dp)
           )
@@ -75,7 +81,7 @@ fun MessageBackupsPinConfirmationScreen(
 
         item {
           Text(
-            text = "Enter your Signal PIN to enable backups", // TODO [message-backups] Finalized copy
+            text = stringResource(id = R.string.MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups),
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(top = 16.dp)
@@ -83,7 +89,6 @@ fun MessageBackupsPinConfirmationScreen(
         }
 
         item {
-          // TODO [message-backups] Confirm default focus state
           val keyboardType = remember(pinKeyboardType) {
             when (pinKeyboardType) {
               PinKeyboardType.NUMERIC -> KeyboardType.NumberPassword
@@ -99,13 +104,26 @@ fun MessageBackupsPinConfirmationScreen(
               onDone = { onNextClick() }
             ),
             keyboardOptions = KeyboardOptions(
-              keyboardType = keyboardType
+              keyboardType = keyboardType,
+              imeAction = ImeAction.Done
             ),
             modifier = Modifier
               .padding(top = 72.dp)
               .fillMaxWidth()
               .focusRequester(focusRequester),
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            isError = isPinIncorrect,
+            supportingText = {
+              if (isPinIncorrect) {
+                Text(
+                  text = stringResource(id = R.string.PinRestoreEntryFragment_incorrect_pin),
+                  textAlign = TextAlign.Center,
+                  modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 12.dp)
+                )
+              }
+            }
           )
         }
 
@@ -124,17 +142,26 @@ fun MessageBackupsPinConfirmationScreen(
         }
       }
 
-      Box(
-        contentAlignment = Alignment.BottomEnd,
+      Row(
         modifier = Modifier
           .fillMaxWidth()
           .padding(vertical = 16.dp)
       ) {
+        if (isPinIncorrect) {
+          TextButton(onClick = onCreateNewPinClick) {
+            Text(
+              text = stringResource(id = R.string.MessageBackupsPinConfirmationScreen__create_new_pin)
+            )
+          }
+        }
+
+        Spacer(modifier = Modifier.weight(1f))
+
         Buttons.LargeTonal(
           onClick = onNextClick
         ) {
           Text(
-            text = "Next" // TODO [message-backups] Finalized copy
+            text = stringResource(id = R.string.MessageBackupsPinConfirmationScreen__next)
           )
         }
       }
@@ -152,10 +179,12 @@ private fun MessageBackupsPinConfirmationScreenPreview() {
   Previews.Preview {
     MessageBackupsPinConfirmationScreen(
       pin = "",
+      isPinIncorrect = true,
       onPinChanged = {},
       pinKeyboardType = PinKeyboardType.ALPHA_NUMERIC,
       onPinKeyboardTypeSelected = {},
-      onNextClick = {}
+      onNextClick = {},
+      onCreateNewPinClick = {}
     )
   }
 }
@@ -196,7 +225,7 @@ private fun PinKeyboardTypeToggle(
       modifier = Modifier.padding(end = 8.dp)
     )
     Text(
-      text = "Switch keyboard" // TODO [message-backups] Finalized copy
+      text = stringResource(id = R.string.MessageBackupsPinConfirmationScreen__switch_keyboard)
     )
   }
 }

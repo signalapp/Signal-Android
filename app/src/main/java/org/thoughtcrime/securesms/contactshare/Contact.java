@@ -160,7 +160,7 @@ public class Contact implements Parcelable {
     @JsonProperty
     private final String middleName;
 
-    Name(@JsonProperty("displayName") @Nullable String displayName,
+    public Name(@JsonProperty("displayName") @Nullable String displayName,
          @JsonProperty("givenName")   @Nullable String givenName,
          @JsonProperty("familyName")  @Nullable String familyName,
          @JsonProperty("prefix")      @Nullable String prefix,
@@ -254,9 +254,9 @@ public class Contact implements Parcelable {
     @JsonIgnore
     private boolean selected;
 
-    Phone(@JsonProperty("number") @NonNull  String number,
-          @JsonProperty("type")   @NonNull  Type   type,
-          @JsonProperty("label")  @Nullable String label)
+    public Phone(@JsonProperty("number") @NonNull  String number,
+                 @JsonProperty("type")   @NonNull  Type   type,
+                 @JsonProperty("label")  @Nullable String label)
     {
       this.number   = number;
       this.type     = type;
@@ -333,9 +333,9 @@ public class Contact implements Parcelable {
     @JsonIgnore
     private boolean selected;
 
-    Email(@JsonProperty("email") @NonNull  String email,
-          @JsonProperty("type")  @NonNull  Type   type,
-          @JsonProperty("label") @Nullable String label)
+    public Email(@JsonProperty("email") @NonNull  String email,
+                 @JsonProperty("type")  @NonNull  Type   type,
+                 @JsonProperty("label") @Nullable String label)
     {
       this.email    = email;
       this.type     = type;
@@ -430,15 +430,15 @@ public class Contact implements Parcelable {
     @JsonIgnore
     private boolean selected;
 
-    PostalAddress(@JsonProperty("type")         @NonNull  Type   type,
-                  @JsonProperty("label")        @Nullable String label,
-                  @JsonProperty("street")       @Nullable String street,
-                  @JsonProperty("poBox")        @Nullable String poBox,
-                  @JsonProperty("neighborhood") @Nullable String neighborhood,
-                  @JsonProperty("city")         @Nullable String city,
-                  @JsonProperty("region")       @Nullable String region,
-                  @JsonProperty("postalCode")   @Nullable String postalCode,
-                  @JsonProperty("country")      @Nullable String country)
+    public PostalAddress(@JsonProperty("type")         @NonNull  Type   type,
+                         @JsonProperty("label")        @Nullable String label,
+                         @JsonProperty("street")       @Nullable String street,
+                         @JsonProperty("poBox")        @Nullable String poBox,
+                         @JsonProperty("neighborhood") @Nullable String neighborhood,
+                         @JsonProperty("city")         @Nullable String city,
+                         @JsonProperty("region")       @Nullable String region,
+                         @JsonProperty("postalCode")   @Nullable String postalCode,
+                         @JsonProperty("country")      @Nullable String country)
     {
       this.type         = type;
       this.label        = label;

@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.jobs.protos.GroupCallPeekJobData;
+
+import java.io.IOException;
 
 /**
  * Allows the enqueueing of one peek operation per group while the web socket is not drained.
@@ -19,32 +21,30 @@ public final class GroupCallPeekJob extends BaseJob {
 
   private static final String QUEUE = "__GroupCallPeekJob__";
 
-  private static final String KEY_GROUP_RECIPIENT_ID = "group_recipient_id";
+  @NonNull private final GroupCallPeekJobData groupCallPeekJobData;
 
-  @NonNull private final RecipientId groupRecipientId;
-
-  public static void enqueue(@NonNull RecipientId groupRecipientId) {
+  public static void enqueue(@NonNull GroupCallPeekJobData groupCallPeekJobData) {
     JobManager         jobManager = AppDependencies.getJobManager();
-    String             queue      = QUEUE + groupRecipientId.serialize();
+    String             queue      = QUEUE + groupCallPeekJobData.groupRecipientId;
     Parameters.Builder parameters = new Parameters.Builder()
                                                   .setQueue(queue)
                                                   .addConstraint(DecryptionsDrainedConstraint.KEY);
 
     jobManager.cancelAllInQueue(queue);
 
-    jobManager.add(new GroupCallPeekJob(parameters.build(), groupRecipientId));
+    jobManager.add(new GroupCallPeekJob(parameters.build(), groupCallPeekJobData));
   }
 
   private GroupCallPeekJob(@NonNull Parameters parameters,
-                           @NonNull RecipientId groupRecipientId)
+                           @NonNull GroupCallPeekJobData groupCallPeekJobData)
   {
     super(parameters);
-    this.groupRecipientId = groupRecipientId;
+    this.groupCallPeekJobData = groupCallPeekJobData;
   }
 
   @Override
   protected void onRun() {
-    AppDependencies.getJobManager().add(new GroupCallPeekWorkerJob(groupRecipientId));
+    AppDependencies.getJobManager().add(new GroupCallPeekWorkerJob(groupCallPeekJobData));
   }
 
   @Override
@@ -53,10 +53,8 @@ public final class GroupCallPeekJob extends BaseJob {
   }
 
   @Override
-  public @Nullable byte[] serialize() {
-    return new JsonJobData.Builder()
-                   .putString(KEY_GROUP_RECIPIENT_ID, groupRecipientId.serialize())
-                   .serialize();
+  public @NonNull byte[] serialize() {
+    return groupCallPeekJobData.encode();
   }
 
   @Override
@@ -72,8 +70,12 @@ public final class GroupCallPeekJob extends BaseJob {
 
     @Override
     public @NonNull GroupCallPeekJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
-      JsonJobData data = JsonJobData.deserialize(serializedData);
-      return new GroupCallPeekJob(parameters, RecipientId.from(data.getString(KEY_GROUP_RECIPIENT_ID)));
+      try {
+        GroupCallPeekJobData jobData = GroupCallPeekJobData.ADAPTER.decode(serializedData);
+        return new GroupCallPeekJob(parameters, jobData);
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
     }
   }
 }

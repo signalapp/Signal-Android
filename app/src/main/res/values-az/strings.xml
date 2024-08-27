@@ -88,6 +88,20 @@
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Müraciətə icazə ver</string>
     <string name="AttachmentKeyboard_payment">Ödəniş</string>
+    <!-- Text in a button that allows users to manage which media Signal has access to -->
+    <string name="AttachmentKeyboard_manage">İdarə et</string>
+    <!-- Option in menu to select more photos that Signal will have access to -->
+    <string name="AttachmentKeyboard_select_more_photos">Daha çox foto seç</string>
+    <!-- Option in menu to go to settings -->
+    <string name="AttachmentKeyboard_go_to_settings">Tənzimləmələrə get</string>
+    <!-- Text explaining that Signal has limited access to photos -->
+    <string name="AttachmentKeyboard_signal_has_limited_access">Signal-ın foto və videolara məhdud girişi var</string>
+    <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
+    <string name="AttachmentKeyboard_no_photos_found">Heç bir şəkil tapılmadı, burada görünməsi üçün foto və ya videolar seçin, yaxud da icazələri dəyişin</string>
+
+    <!-- MediaGalleryFragment -->
+    <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
+    <string name="MediaGalleryFragment__no_photos_found">Heç bir foto və ya video tapılmadı. Signal yalnız seçdiyiniz foto və videolara daxil ola bilər.</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Media seçmək üçün tətbiq tapıla bilmədi.</string>
@@ -108,7 +122,7 @@
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">Fotoları və videoları göstərmək üçün:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
-    <string name="AttachmentManager_signal_needs_storage_access">Fotolarınızı və videolarınızı göstərmək üçün Signal yaddaşa giriş tələb edir.</string>
+    <string name="AttachmentManager_signal_needs_storage_access">Signal foto və videolarınızı göstərmək üçün giriş icazəsi tələb edir.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s aktiv Ödənişlərə malik deyil </string>
@@ -170,6 +184,8 @@
     <string name="CreditCardFragment__donate_s">%1$s ianə ver</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
     <string name="CreditCardFragment__donate_s_month">Aylıq %1$s ianə ver</string>
+    <!-- Button label to confirm credit card input and proceed with backups payment. Placeholder is formatted price. -->
+    <string name="CreditCardFragment__pay_s_month">Aylıq %1$s ianə ver</string>
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
@@ -219,6 +235,24 @@
     <string name="BucketedThreadMedia_Large">Böyük</string>
     <string name="BucketedThreadMedia_Medium">Orta</string>
     <string name="BucketedThreadMedia_Small">Kiçik</string>
+
+    <!-- CallInfoView -->
+    <!-- Unknown people row text when the only people in the call are unknowns -->
+    <plurals name="CallInfoView__d_people">
+        <item quantity="one">%1$d nəfər</item>
+        <item quantity="other">%1$d nəfər</item>
+    </plurals>
+    <!-- Unknown people row, placeholder is the number of unknown people in the call -->
+    <plurals name="CallInfoView__plus_d_people">
+        <item quantity="one">+%1$d nəfər</item>
+        <item quantity="other">+%1$d nəfər</item>
+    </plurals>
+    <!-- Unknown people row icon content description -->
+    <string name="CallInfoView__more_information">Daha ətraflı məlumat</string>
+    <!-- Unknown people row info dialog message -->
+    <string name="CallInfoView__before_joining_a_call">Zəngə qoşulmazdan əvvəl yalnız eyni qrupda olduğunuz və ya birə-bir söhbətləşdiyiniz telefon kontaktlarının adlarını görə bilərsiniz. Zəngə qoşulan kimi bütün adları və fotoları görəcəksiniz.</string>
+    <!-- Unknown people row info dialog action to close the dialog -->
+    <string name="CallInfoView__got_it">Anladım</string>
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
@@ -443,7 +477,7 @@
     <!-- Dialog title asking users for microphone permission -->
     <string name="ConversationActivity_allow_access_microphone">Mikrofona giriş icazəsi verin</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
-    <string name="ConversationActivity_signal_to_send_audio_messages">Səsli mesajlar göndərmək üçün:</string>
+    <string name="ConversationActivity_signal_to_send_audio_messages">Səsli mesaj göndərmək üçün:</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Səsli mesajlar göndərmək üçün Signal-ın mikrofon parametrlərinə daxil olmasına icazə verin.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
@@ -771,6 +805,51 @@
     <!-- Backup has an unsupported file extension -->
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">Nüsxənin yanlış bir genişləndirməsi var.</string>
 
+    <!-- CreateBackupBottomSheet -->
+    <!-- Bottom sheet title -->
+    <string name="CreateBackupBottomSheet__create_backup">Nüsxə yarat</string>
+    <!-- Bottom sheet message -->
+    <string name="CreateBackupBottomSheet__depending_on_the_size">Ehtiyat nüsxə həcmindən asılı olaraq, bu, bir qədər uzun çəkə bilər. Ehtiyat nüsxə çıxarılarkən adi hallarda olduğu kimi telefonunuzdan istifadə edə bilərsiniz.</string>
+    <!-- Action button to dismiss sheet and back up later -->
+    <string name="CreateBackupBottomSheet__back_up_later">Daha sonra ehtiyat nüsxə çıxar</string>
+    <!-- Action button to dismiss sheet and back up now -->
+    <string name="CreateBackupBottomSheet__back_up_now">İndi Arxivləşdir</string>
+
+    <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
+    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Media faylını bərpa etmək mümkün deyil</string>
+    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Cihazınızda kifayət qədər boş yer yoxdur. Media faylını bərpa etmək üçün yaddaşda yer boşaldın.\n\n\"Bərpanı ötür\" seçimini etsəniz növbəti dəfə cihaz yeni ehtiyat nüsxəçıxarmanı tamamladıqda, ehtiyat nüsxənizdəki köhnə media faylı silinəcək.</string>
+    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Cihazınızda kifayət qədər boş yer yoxdur. Media faylını bərpa etmək üçün %1$s həcmində yer boşaldın.\n\n\"Bərpanı ötür\" seçimini etsəniz növbəti dəfə cihaz yeni ehtiyat nüsxəçıxarmanı tamamladıqda, ehtiyat nüsxənizdəki köhnə media faylı silinəcək.</string>
+    <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
+    <string name="RestoreMediaFailedBottomSheet__Okay">Oldu</string>
+    <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
+    <string name="RestoreMediaFailedBottomSheet__Skip_restore">Bərpanı ötür</string>
+    <!-- Accessibility content description for the "Backup Error" icon -->
+    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Ehtiyat nüsxə xətası piktoqramı</string>
+
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
+    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Media faylını bərpa etmək üçün yaddaşda yer boşaldın.</string>
+    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
+    <string name="RestoreMediaErrorBanner__Free_up_of_space">Media faylını bərpa etmək üçün %1$s həcmində yer boşaldın.</string>
+
+    <!-- Remote media restoration in-process status title. -->
+    <string name="RestoreMediaReminder__Restoring_media">Media faylı bərpa olunur</string>
+    <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
+    <string name="RestoreMediaReminder__Progress_filesize">%1$s / %2$s (%3$d%%)</string>
+    <!-- Remote media restoration paused status title. -->
+    <string name="RestoreMediaReminder__Restoring_media_paused">Media faylının bərpası dayandırıldı</string>
+    <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RestoreMediaReminder__Waiting_for_Wifi">WiFi bağlantısı gözlənilir…</string>
+    <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
+    <string name="RestoreMediaReminder__Waiting_for_internet_connection">İnternet bağlantısı gözlənilir…</string>
+    <!-- Remote media restoration paused status description for when the device\'s battery is low -->
+    <string name="RestoreMediaReminder__low_battery">Batareya zəifdir. Cihazınızı dəyişin.</string>
+    <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
+    <string name="RestoreMediaReminder__Free_up_space">Medianı bərpa etmək üçün %1$s həcmində yer boşaldın.</string>
+    <!-- Button label to abort media restoration -->
+    <string name="RestoreMediaReminder__Skip_restore">Bərpanı ötür</string>
+
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Çat nüsxələri</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Nüsxələr bir parolla şifrələnib və cihazınızda saxlanılıb.</string>
@@ -868,13 +947,13 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Mesajlar və çat məlumatları bütün cihazlarda tam şifrələmə ilə qorunur</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on desktop or iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Desktop və ya iPad-da Signal</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Əlaqələndirilmiş cihazlardakı bütün mesajlaşmalar gizlidir</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal mesajları əlaqələndirildikdən sonra mobil telefonunuzdakı Signal ilə sinxronlaşdırılır. Əvvəlki mesaj tarixçəniz görünməyəcək.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">Digər cihazınızda Signal-ı quraşdırmaq üçün %1$s vebsaytına daxil olun</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">Signal-ı quraşdırmaq üçün əlaqələndirmək istədiyiniz cihazdan %1$s vebsaytına daxil olun</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">Əlaqələndirilmiş cihazlarım</string>
@@ -891,7 +970,7 @@
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">Əlaqələndirilmiş cihazlar yoxdur</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
-    <string name="LinkDeviceFragment__unlock_to_link">Unlock to link a device</string>
+    <string name="LinkDeviceFragment__unlock_to_link">Cihazı əlaqələndirmək üçün kilidi açın</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1090,16 +1169,35 @@
     <string name="PromptLogsSlowNotificationsDialog__message">Sazlama jurnalları bizə problemi təyin edib, aradan qaldırmaqda kömək edir və kimlik məlumatlarını əhatə etmir.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal problemlə üzləşdi. Sazlama jurnalı göndərilsin?</string>
+    <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">Mesajları almaya bilərsiniz. Sazlama jurnalı göndərilsin?</string>
+
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Bildirişlər batareyanın optimallaşdırılması səbəbilə gecikə bilər</string>
     <!-- Message explaining that battery saver may delay notifications -->
     <string name="PromptBatterySaverBottomSheet__message">Mesaj bildirişlərinin gecikməməsi üçün Signal batareya optimallaşdırılmasını qeyri-aktiv edə bilərsiniz.</string>
 
+    <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
+    <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Bildirişlər batareyanın optimallaşdırılması səbəbilə gecikə bilər</string>
+    <!-- Message in bottom sheet prompting users to fix potential issues by disabling battery optimizations -->
+    <string name="DeviceSpecificNotificationBottomSheet__disable_battery_optimizations">Mesaj bildirişlərinin gecikməməsi üçün Signal batareya optimallaşdırılmasını qeyri-aktiv edə bilərsiniz. Cihaza məxsus təlimatlara baxmaq üçün \"Davam et\" seçiminə klikləyin.</string>
+    <!-- Button to dismiss notification help prompt -->
+    <string name="DeviceSpecificNotificationBottomSheet__no_thanks">Xeyr, təşəkkürlər</string>
+    <!-- Button to continue and go to Signal support website -->
+    <string name="DeviceSpecificNotificationBottomSheet__continue">Davam et</string>
+
+    <!-- Title of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_title">Mesajları almaya bilərsiniz</string>
+    <!-- Body of a bottom sheet that is shown when the user is having connectivity issues -->
+    <string name="ConnectivityWarningBottomSheet_body">Cihazınızı yenidən işə salmaq mesajın çatdırılması probleminin həllinə kömək edə bilər. Bu problem davam etdikdə, Signal dəstək xidməti ilə əlaqə saxlayın.</string>
+    <!-- Text for a button in a bottom sheet that is shown when the user is having connectivity issues. Clicking it will dismiss the bottom sheet. -->
+    <string name="ConnectivityWarningBottomSheet_dismiss_button">Anladım</string>
+
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Davam et</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__no_thanks">No thanks</string>
+    <string name="PromptBatterySaverBottomSheet__no_thanks">Xeyr, təşəkkürlər</string>
   <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
@@ -1188,6 +1286,44 @@
     <string name="ManageGroupActivity_invite_now">İndi dəvət et</string>
     <string name="ManageGroupActivity_more">daha çox</string>
     <string name="ManageGroupActivity_add_group_description">Qrup açıqlaması əlavə edin…</string>
+
+    <!-- MoreTransferOrRestoreOptionsSheet -->
+    <!-- Row title for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Android cihazınızdan köçürün</string>
+    <!-- Row description for transfer option -->
+    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Köhnə Android cihazındakı hesab və mesajlarınızı köçürün.</string>
+    <!-- Row title for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">Köçürmədən daxil olun</string>
+    <!-- Row description for logging in without transfer -->
+    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">Mesajlarınızı və media fayllarını ötürmədən davam edin</string>
+    <!-- Row title for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">Yerli ehtiyat nüsxəni bərpa edin</string>
+    <!-- Row description for restoring from local backup -->
+    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Mesajları cihazınızda saxladığınız ehtiyat nüsxə faylından bərpa edin.</string>
+
+    <!-- RemoteRestoreActivity -->
+    <!-- Progress dialog label when downloading a backup -->
+    <string name="RemoteRestoreActivity__downloading_backup">Ehtiyat nüsxə endirilir…</string>
+    <!-- Progress dialog label when restoring a backup -->
+    <string name="RemoteRestoreActivity__restoring_messages">Mesajlar bərpa olunur…</string>
+    <!-- Progress dialog label while awaiting updates -->
+    <string name="RemoteRestoreActivity__restoring">Bərpa olunur…</string>
+    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
+    <string name="RemoteRestoreActivity__s_of_s_s">%1$s / %2$s (%3$s)</string>
+    <!-- Feature list media label for paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_media">Bütün media fayllarınız</string>
+    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
+    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Medianızın son %1$d günü</string>
+    <!-- Feature list message label for free and paid tier -->
+    <string name="RemoteRestoreActivity__all_of_your_messages">Bütün mesajlarınız</string>
+    <!-- Screen title for restoring from backup -->
+    <string name="RemoteRestoreActivity__restore_from_backup">Nüsxədən geri yükləyin</string>
+    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
+    <string name="RemoteRestoreActivity__only_media_sent_or_received">Yalnız son %1$d gün ərzində göndərilən və qəbul edilən media fayllar əhatə olunub.</string>
+    <!-- Section title for explaining what your backup includes -->
+    <string name="RemoteRestoreActivity__your_backup_includes">Ehtiyat nüsxənizə bunlar daxildir:</string>
+    <!-- Primary action button copy for starting restoration -->
+    <string name="RemoteRestoreActivity__restore_backup">Nüsxəni geri yüklə</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Adım çəkiləndə bildir</string>
@@ -1341,6 +1477,12 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Audio mesaj üçün basıb saxlayın, göndərmək üçün buraxın</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Mesajı redaktə et</string>
+    <!-- Dialog title shown if users are about to discard their draft message -->
+    <string name="InputPanel__discard_draft">Qaralama mesaj silinsin?</string>
+    <!-- Dialog message explaining their action cannot be reversed -->
+    <string name="InputPanel__this_action_cant_be_undone">Bu əməliyyat geri qaytarıla bilməz.</string>
+    <!-- Button inside an alert dialog confirming the deletion of their draft -->
+    <string name="InputPanel__discard">Sil</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Paylaş</string>
@@ -2951,6 +3093,8 @@
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Bu şəxsi sildiniz, ona yenidən mesaj göndərməklə, onu siyahınıza əlavə edə bilərsiniz.</string>
     <!-- Update item button text shown for the accepted message request update message -->
     <string name="ConversationUpdateItem_options">Seçimlər</string>
+    <!-- Update item button text shown for a profile name change. -->
+    <string name="ConversationUpdateItem_update">Yenilə</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Oxut … Fasilə ver</string>
@@ -3255,10 +3399,6 @@
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android sazlama jurnalının göndərilməsi</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Yavaş gələn bildirişlər</string>
-    <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">Xəta</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Təqdim et</string>
     <!-- Action to decline to submit logs -->
@@ -3639,6 +3779,10 @@
     <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Aşağıda “Parametrlər”ə toxunun</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
     <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s İcazə verin</string>
+    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
+    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. “İcazələrə” toxun</string>
+    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s \"Foto və video\" icazəsini aktivləşdir</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">Parametrlər</string>
 
@@ -4165,6 +4309,8 @@
     <string name="preferences_app_protection__screen_lock">Ekran kilidi</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android ekran kilidi və ya barmaq izi ilə Signal-a müraciəti kilidləyin</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekran kilidi bitmə vaxtı</string>
+    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
+    <string name="preferences_app_protection__to_use_screen_lock">Ekran kilidindən istifadə etmək üçün bu cihazda bir PIN kod və ya parol təyin edin.</string>
     <string name="preferences_app_protection__signal_pin">Signal PIN-i</string>
     <string name="preferences_app_protection__create_a_pin">Bir PIN yarat</string>
     <string name="preferences_app_protection__change_your_pin">PIN-i dəyişdirin</string>
@@ -4185,8 +4331,41 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Həddindən çox cəhd etdiniz. Zəhmət olmasa daha sonra yenidən sınayın.</string>
     <string name="RegistrationActivity_error_connecting_to_service">Xidmətə bağlanma xətası</string>
     <string name="preferences_chats__backups">Nüsxələr</string>
-    <string name="prompt_passphrase_activity__signal_is_locked">Signal kilidlənib</string>
-    <string name="prompt_passphrase_activity__tap_to_unlock">KİLİDİ AÇMAQ ÜÇÜN TOXUNUN</string>
+    <!-- Title text shown when Signal is locked and needs to be unlocked -->
+    <string name="prompt_passphrase_activity__unlock_signal">Signal-ın kilidini aç</string>
+    <!-- Description text explaining how to unlock Signal -->
+    <string name="prompt_passphrase_activity__use_your_android_device">Signal-ın kilidini açmaq üçün Android cihazınızdakı kilidləmə parametlərindən istifadə edin.</string>
+    <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
+    <string name="prompt_passphrase_activity__screen_lock_is_on">Ekran kilidi açıqdır və Signal cihazınızın kilidləmə parametrləri ilə təhlükəsiz şəkildə kilidlənib. Signal kilidini telefon kilidini açdığınız kimi açın, bu Üzlə kilidaçma, Barmaq izi ilə kilidaçma, PIN kod, parol və ya naxışla kilidaçma ola bilər.</string>
+    <!-- Button in a dialog that will contact Signal support if pressed -->
+    <string name="prompt_passphrase_activity__contact_support">Dəstək xidməti ilə əlaqə saxlayın</string>
+    <!-- Button text to try again after unlocking has previously failed -->
+    <string name="prompt_passphrase_activity__try_again">Yenidən cəhd edin</string>
+
+    <!-- ScreenLockSettingsFragment -->
+    <!-- Text shown when screen lock is not enabled -->
+    <string name="ScreenLockSettingsFragment__off">Bağlı</string>
+    <!-- Text shown with toggle that when switched on will enable screen lock -->
+    <string name="ScreenLockSettingsFragment__use_screen_lock">Ekran kilidindən istifadə et</string>
+    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
+    <string name="ScreenLockSettingsFragment__your_android_device">Tətbiqlərdən çıxarkən və ya başqa tətbiqə keçərkən Signal kilidini açmaq üçün Android cihazınızın kilidləmə parametrlərinə ehtiyacınız olacaq. Kilidləndikdə bildiriş önbaxışları mesaj məzmununu göstərməyəcək.</string>
+    <!-- Title text explaining when users should start the screen lock -->
+    <string name="ScreenLockSettingsFragment__start_screen_lock">Ekran kilidini aktivləşdir</string>
+    <!-- Option text explaining that screen lock should start immediately -->
+    <string name="ScreenLockSettingsFragment__immediately">Dərhal</string>
+    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_1_min">1 dəqiqə sonra</string>
+    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_5_min">5 dəqiqə sonra</string>
+    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
+    <string name="ScreenLockSettingsFragment__after_30_min">30 dəqiqə sonra</string>
+    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
+    <string name="ScreenLockSettingsFragment__custom_time">Xüsusi vaxt</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal ekran kilidindən istifadə et</string>
+    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal ekran kilidini söndür</string>
+
     <string name="Recipient_unknown">Bilinmir</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Silinmiş hesab</string>
@@ -4698,7 +4877,12 @@
 
     <!-- AppSettingsFragment -->
     <string name="AppSettingsFragment__invite_your_friends">Dostlarınızı dəvət edin</string>
-    <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Abunəçi kimliyi lövhəyə kopyalandı</string>
+    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Donorun abunəçi identifikasiyası mübadilə buferinə kopyalandı</string>
+    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Ehtiyat nüsxələrin abunəçi identifikasiyası mübadilə buderinə kopyalandı</string>
+    <!-- String displayed in a toast when a subscriber id is not present for a given type -->
+    <string name="AppSettingsFragment__no_subscriber_id_set">Heç bir abunəçi identifikasiyası təyin olunmayıb</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Hesab</string>
@@ -4808,7 +4992,7 @@
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Klaviatura</string>
-    <string name="ChatsSettingsFragment__enter_key_sends">Enter düyməsi göndərsin</string>
+    <string name="ChatsSettingsFragment__send_with_enter">\"Enter\"ə basaraq göndər</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mesajlar</string>
@@ -4832,8 +5016,8 @@
     <string name="PrivacySettingsFragment__blocked">Bloklandı</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">1 kontakt</item>
-        <item quantity="other">%1$d kontakt</item>
+        <item quantity="one">%1$d kontakt və ya qrup</item>
+        <item quantity="other">%1$d kontakt və ya qrup</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Mesajlaşma</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Yox olan mesajlar</string>
@@ -5038,7 +5222,7 @@
     <string name="PermissionsSettingsFragment__only_admins">Yalnız adminlər</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Kim yeni üzv əlavə edə bilər?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kim bu qrupun məlumatına düzəliş edə bilər?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Kim mesaj göndərə bilər?</string>
+    <string name="PermissionsSettingsFragment__who_can_send_messages">Mesajları kim göndərə və zəngləri kim başlada bilər?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Bildirişlərin səsini bağla</string>
@@ -5387,7 +5571,24 @@
     <string name="Subscription__contact_support">Dəstək ilə əlaqə</string>
     <string name="Subscription__get_a_s_badge">%1$s nişanını əldə edin</string>
 
-    <string name="SubscribeFragment__processing_payment">İanə emal edilir…</string>
+    <!-- *PaymentInProgressFragment strings -->
+    <string name="InAppPaymentInProgressFragment__processing_donation">İanə emal edilir…</string>
+    <string name="InAppPaymentInProgressFragment__processing_payment">Ödəniş emal olunur…</string>
+
+    <!-- InAppPaymentErrors -->
+    <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
+    <string name="InAppPaymentErrors__error_processing_payment">Ödəniş emal xətası</string>
+    <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
+    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">Ödənişinizi emal etmək mümkün olmadı və sizdən ödəniş alınmadı. Yenidən cəhd edin.</string>
+    <!-- Displayed as a message in a dialog when we timeout waiting for a payment to be processed and token to be redeemed -->
+    <string name="InAppPaymentErrors__your_payment_is_still">Ödənişiniz emal olunur. Bu, bağlantınızdan asılı olaraq bir neçə dəqiqə çəkə bilər.</string>
+    <!-- Displayed as a message in a dialog or notification when stripe decline code issuer not available for backup payment. -->
+    <string name="InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again">Ödənişi yenidən tamamlamağa çalışın və ya daha ətraflı məlumat üçün bankınızla əlaqə saxlayın.</string>
+    <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
+    <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">Bu ödəniş əmri hesab sahibi tərəfindən geri çəkilib və ödənişi tamamlamaq mümkün deyil. Sizdən ödəniş tutulmayıb.</string>
+    <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">Bu ödəniş yerinə yetirilərkən bir xəta baş verdi, daha sonra təkrar cəhd edin.</string>
+
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">İanə emal edilərkən xəta baş verdi</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
@@ -6414,8 +6615,8 @@
     <string name="IdealTransferDetailsFragment__choose_your_bank">Bankınızı seçin</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s ilə etdiyiniz ianəni təsdiqləyin</string>
-    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__monthly_ideal_warning">Təkrar ianənizi tənzimləmək məqsədilə bankınızla 0,01€ dəyərində ödənişi təsdiqləmək üçün \"davam et\" qutucuğuna toxunun. Bu məbləğ avtomatik olaraq geri qaytarılacaq və aylıq 5€ dəyərində ianənizin hesabınızdan tutulmasına imkan verəcək.</string>
+    <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Təkrar ianənizi tənzimləmək məqsədilə bankınızla 0,01€ dəyərində ödənişi təsdiqləmək üçün \"davam et\" üzərinə toxunun. Bu məbləğ avtomatik olaraq geri qaytarılacaq və aylıq %1$s dəyərində ianənizin hesabınızdan tutulmasına imkan verəcək.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Davam et</string>
 
@@ -6992,20 +7193,58 @@
     <string name="BackupProgressService_title_downloading">Ehtiyat nüsxə verilənləri endirilir…</string>
 
     <!-- BackupAlertBottomSheet -->
+    <!-- Sheet title when media backups have been disabled -->
+    <string name="BackupAlertBottomSheet__media_backups_are_off">Media fayl; ehtiyat nüsxələri qeyri-aktivdir</string>
+    <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
+    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
+        <item quantity="one">Ödənişinizi emal edə bilmədiyimizə görə Signal media faylı üçün ehtiyat nüsxə planınız ləğv edilib. Ehtiyat nüsxənizdə saxlanılan istənilən media faylını endirmək üçün %1$d gün vaxtınız var. %1$d gündən sonra ehtiyat nüsxənizdəki media faylı silinəcək.</item>
+        <item quantity="other">Ödənişinizi emal edə bilmədiyimizə görə Signal media faylı üçün ehtiyat nüsxə planınız ləğv edilib. Ehtiyat nüsxənizdə saxlanılan istənilən media faylını endirmək üçün %1$d gün vaxtınız var. %1$d gündən sonra ehtiyat nüsxənizdəki media faylı silinəcək.</item>
+    </plurals>
+    <!-- Sheet body part 2 when media backups have been disabled. -->
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Bütün media fayllarınızın ehtiyat nüsxəsini çıxarmağa davam etmək üçün istənilən vaxt yenidən ehtiyat nüsxələr üçün ödəniş etməyə başlaya bilərsiniz. </string>
+    <!-- Sheet title when user\'s media will be deleted today -->
+    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Media faylınız bu gün silinəcək</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted today -->
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Ödənişinizi emal edə bilmədiyimizə görə Signal media faylı üçün ehtiyat nüsxə planınız ləğv edilib. Silinməzdən əvvəl ehtiyat nüsxənizdəki media faylını endirmək üçün bu son şansınızdır.</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <string name="BackupAlertBottomSheet__cant_complete_download">Endirməni tamamlamaq mümkün olmadı</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up to %1$s of space to download the media stored in your backup.</string>
+    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Cihazınızda kifayət qədər boş yer yoxdur. Ehtiyat nüsxənizdə saxlanılmış media faylını endirmək üçün %1$s həcmində yer boşaldın.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <string name="BackupAlertBottomSheet__if_you_choose_skip">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</string>
+    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
+        <item quantity="one">\"Ötür\" seçimini etsəniz ehtiyat nüsxənizdəki media faylı %1$d günə silinəcək.</item>
+        <item quantity="other">\"Ötür\" seçimini etsəniz ehtiyat nüsxənizdəki media faylı %1$d günə silinəcək.</item>
+    </plurals>
+    <!-- Sheet title when user payment failed to process -->
+    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Ehtiyat nüsxə ödənişini emal etmək mümkün deyil</string>
+    <!-- Sheet body when user payment failed to process -->
+    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Müntəzəm aylıq ehtiyat nüsxə ödənişinizi qəbul edərkən problem yaranır. Ödəniş metodunuzun aktual olduğundan əmin olun. Əgər deyilsə, onu Google Pay-dən yeniləyin. Signal ödənişi bir neçə gün içində yenidən emal etməyə çalışacaq.</string>
+    <!-- Sheet title for generic backup error -->
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Ehtiyat nüsxəni tamamlamaq mümkün olmadı</string>
+    <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
+    <string name="BackupAlertBottomSheet__your_device_hasnt">Cihazınız %1$d günlük ehtiyat nüsxə çıxarılmasını tamamlamayıb. Cihazınızın wi-fi-a qoşulduğundan əmin olun və \"İndi ehtiyat nüsxə çıxar\" seçiminə toxunun. </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
-    <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
+    <string name="BackupAlertBottomSheet__learn_more">Daha ətraflı</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip">Skip</string>
+    <string name="BackupAlertBottomSheet__skip">Ötür</string>
+    <!-- Primary action button text prompting user to download their media -->
+    <string name="BackupAlertBottomSheet__download_media_now">Media faylını indi endir</string>
+    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
+    <string name="BackupAlertBottomSheet__download_later">Daha sonra endir</string>
+    <!-- Secondary action button text to dismiss sheet, skipping media download -->
+    <string name="BackupAlertBottomSheet__dont_download_media">Media faylını endirmə</string>
+    <!-- Dialog title for last chance to download backup -->
+    <string name="BackupAlertBottomSheet__media_will_be_deleted">Media faylı silinəcək</string>
+    <!-- Dialog message for last chance to download backup -->
+    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Ehtiyat nüsxənizdə saxlanmış media faylı bu gün həmişəlik silinəcək. Onu endirmək üçün bu son şansınızdır.</string>
+    <!-- Dialog action to download now -->
+    <string name="BackupAlertBottomSheet__download">Endir</string>
+    <!-- Dialog action to not download now -->
+    <string name="BackupAlertBottomSheet__dont_download">Endirmə</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to download your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Media faylınızı endirmək üçün %1$s həcmində yer boşaldın.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7021,7 +7260,11 @@
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__unknown">Bilinmir</string>
     <!-- Row title for entering payment history -->
-    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
+    <string name="BackupsTypeSettingsFragment__payment_history">Ödəniş tarixçəsi</string>
+    <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
+    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/ay · Yenilənir %2$s</string>
+    <!-- Row title to change or cancel subscription -->
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Abunəliyi dəyişin və ya ləğv edin</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
@@ -7040,6 +7283,20 @@
     <string name="ManageStorageSettingsFragment_apply_limits_title">Əlaqələndirilmiş cihazlara limitlər tətbiq et</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_description">Aktivləşdirildikdə, əlaqələndirilmiş cihazlarınızdan çat limitləri də mesajları siləcək.</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Cihaz yaddaşı</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Cihaz yaddaşını optimallaşdırın</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">İstifadə edilməyən media faylı yaddaşdan çıxarılacaq, amma ehtiyat nüsxənizdən istənilən vaxt yenidən endirilə bilər.</string>
+
+    <!-- UpgradeToEnableOptimizedStorageSheet -->
+    <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Bu xüsusiyyəti aktivləşdirmək üçün versiyanı yüksəldin</string>
+    <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Yaddaş optimallaşdırması yalnız Signal ehtiyat nüsxələrinin ödənişli səviyyəsi ilə istifadə oluna bilər. Bu xüsusiyyətdən istifadə etməyə başlamaq üçün ehtiyat nüsxə planını yeniləşdirin.</string>
+    <!-- Primary action to launch upgrade flow -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">İndi yeniləşdir</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Silmə funksiyası artıq bütün cihazlarınızla sinxronlaşdırılıb</string>
@@ -7050,17 +7307,17 @@
 
     <!-- RemoteBackupsPaymentHistoryFragment -->
     <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Payment history</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Ödəniş tarixçəsi</string>
     <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Text and all media backup</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Mətn və bütün medianın ehtiyat nüsxəsi</string>
     <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Payment details</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Ödəniş təfsilatları</string>
     <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Backup type</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Ehtiyat nüsxə növü</string>
     <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Date paid</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Ödəniş tarixi</string>
     <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">Share</string>
+    <string name="RemoteBackupsPaymentHistoryFragment__share">Paylaş</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7085,6 +7342,8 @@
     <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Abunəlik ləğv edildi</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Endirmə tamamlandı</string>
+    <!-- Snackbar text displayed when backup will be created overnight -->
+    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Ehtiyat nüsxə gecə çıxarılacaq.</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_type">Ehtiyat nüsxə növü</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7123,6 +7382,80 @@
     <string name="RemoteBackupsSettingsFragment__monthly">Aylıq</string>
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Əllə ehtiyat nüsxə çıxarmaq üçün</string>
+    <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
+    <string name="PassphrasePromptActivity_help_prompt_body">Cihazın PIN kodunu, parolunu və ya qrafik şifrəsini daxil edin.</string>
 
+    <!-- MessageBackupsCheckoutSheet -->
+    <!-- Sheet title. Placeholder is formatted price. -->
+    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Signal üçün aylıq %1$s dəyərində ödəniş edin</string>
+    <!-- Sheet subtitle -->
+    <string name="MessageBackupsCheckoutSheet__youll_get">Aşağıdakıları alacaqsınız:</string>
+
+    <!-- MessageBackupsEducationScreen -->
+    <!-- Screen subtitle underneath large headline title -->
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Mesaj və media fayllarınızın ehtiyat nüsxəsinin çıxarılması və Signal-ın etibarlı tam şəkildə şifrələnmiş yaddaş xidmətindən istifadə. Yeni telefon aldıqda və ya Signal-ı təkrar quraşıdrdıqda mesajı heç vaxt itirməyin.</string>
+    <!-- Backups feature label for e2e encryption -->
+    <string name="MessageBackupsEducationScreen__end_to_end_encrypted">Tam şifrələnmə</string>
+    <!-- Backups feature label for informing the user that this feature is completely optional -->
+    <string name="MessageBackupsEducationScreen__optional_always">Hər zaman ixtiyari</string>
+    <!-- Backups feature label for informing the user that they can delete their backup at any time -->
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Ehtiyat nüsxəni istədiyiniz zaman silin</string>
+    <!-- Action button label to proceed with backups activation -->
+    <string name="MessageBackupsEducationScreen__enable_backups">Nüsxələməni fəallaşdır</string>
+    <!-- Action button label to learn more -->
+    <string name="MessageBackupsEducationScreen__learn_more">Daha ətraflı</string>
+
+    <!-- MessageBackupsPinConfirmationScreen -->
+    <!-- Screen title -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">PIN-inizi daxil edin</string>
+    <!-- Screen subtitle -->
+    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Ehtiyat nüsxələri aktivləşdirmək üçün Signal PIN kodunuzu daxil edin</string>
+    <!-- Action button to confirm pin entry and continue -->
+    <string name="MessageBackupsPinConfirmationScreen__next">Növbəti</string>
+    <!-- Action button to switch keyboard type -->
+    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Klaviaturanı dəyiş</string>
+    <!-- Action button to create a new pin if we type the incorrect one -->
+    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Yeni PIN yarat</string>
+
+    <!-- MessageBackupsPinEducationScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN kodlar ehtiyat nüsxənizi qoruyur</string>
+    <!-- Notice about pin length. Placeholder is recommended pin length -->
+    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Signal PIN kodunuz siz Signal-ı təkrar quraşdırdıqda ehtiyat nüsxənizi bərpa etməyə imkan verir. Biz minimum %1$d rəqəmli PIN koddan istifadəni tövsiyə edirik.</string>
+    <!-- Notice about changing your pin. -->
+    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">PIN kodunuzu unutmusunuzsa, ehtiyat nüsxəsini bərpa edə bilməyəcəksiniz. PIN kodunuzu parametrlərdən istənilən vaxt dəyişə bilərsiniz.</string>
+    <!-- Action button label to utilize current pin -->
+    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Cari Signal PIN kodundan istifadə edin</string>
+    <!-- Action button to create a new pin -->
+    <string name="MessageBackupsPinEducationScreen__create_new_pin">Yeni PIN yarat</string>
+
+    <!-- MessagesBackupsTypeSelectionScreen -->
+    <!-- Screen headline -->
+    <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Ehtiyat nüsxə planınızı seçin</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Bütün ehtiyat nüsxələr tam şəkildə şifrələnib. Signal ehtiyat nüsxə xərclərinin ödənilməsi missiyamızı dəstəkləyən bir qeyri-kommersiya təşkilatıdır.</string>
+    <!-- Screen subhead highlighted read-more button -->
+    <string name="MessageBackupsTypeSelectionScreen__read_more">Daha çox oxu</string>
+    <!-- Primary action button label when selecting a backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__next">Növbəti</string>
+    <!-- Primary action button label when selecting a backup tier with a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Ehtiyat nüsxə növünü dəyişin</string>
+    <!-- Secondary action button label when selecting a backup tier with a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Abunəliyi ləğv et</string>
+
+    <!-- ConfirmBackupCancellationDialog -->
+    <!-- Dialog title -->
+    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Ləğvetməni təsdiqlə</string>
+    <!-- Dialog body -->
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Sizdən yenidən ödəniş tutulmayacaq. Faktura dövrünüzün sonunda ehtiyat nüsxələr qeyri-aktiv ediləcək. Bu tarixdən sonra hazırda ehtiyat nüsxəsini çıxardığınız media faylını endirmək üçün 30 gün vaxtınız olacaq.</string>
+    <!-- Action button label to cancel subscription and download now -->
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Təsdiqlə və indi endir</string>
+    <!-- Action button label to cancel subscription and download later -->
+    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Təsdiqlə və daha sonra endir</string>
+    <!-- Action button label to keep current subscription -->
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Abunəliyi saxla</string>
+
+    <!-- Accessible content description for the reminder view, describing the icon in the view. -->
+    <string name="ReminderView_icon_content_description">Xatırlatma piktoqramı</string>
     <!-- EOF -->
 </resources>

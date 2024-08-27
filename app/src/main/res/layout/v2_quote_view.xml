@@ -70,6 +70,7 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/quote_bar"
         app:layout_constraintTop_toBottomOf="@id/quote_attachment_name_stub"
+        app:layout_goneMarginBottom="8dp"
         tools:text="Photo"
         tools:visibility="visible" />
 

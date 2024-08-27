@@ -63,7 +63,7 @@ object SlowNotificationHeuristics {
   }
 
   @JvmStatic
-  fun shouldPromptUserForLogs(): Boolean {
+  fun shouldPromptUserForDelayedNotificationLogs(): Boolean {
     if (!LocaleRemoteConfig.isDelayedNotificationPromptEnabled() || SignalStore.uiHints.hasDeclinedToShareNotificationLogs()) {
       return false
     }
@@ -132,7 +132,7 @@ object SlowNotificationHeuristics {
    * true can most definitely be at fault.
    */
   @JvmStatic
-  fun isPotentiallyCausedByBatteryOptimizations(): Boolean {
+  fun isBatteryOptimizationsOn(): Boolean {
     val applicationContext = AppDependencies.application
     if (DeviceProperties.getDataSaverState(applicationContext) == DeviceProperties.DataSaverState.ENABLED) {
       return false
@@ -143,8 +143,12 @@ object SlowNotificationHeuristics {
     return true
   }
 
-  fun showPreemptively(): Boolean {
-    return DelayedNotificationConfig.currentConfig.showPreemptively
+  fun getDeviceSpecificShowCondition(): DeviceSpecificNotificationConfig.ShowCondition {
+    return DeviceSpecificNotificationConfig.currentConfig.showCondition
+  }
+
+  fun shouldShowDeviceSpecificDialog(): Boolean {
+    return LocaleRemoteConfig.isDeviceSpecificNotificationEnabled() && SignalStore.uiHints.lastSupportVersionSeen < DeviceSpecificNotificationConfig.currentConfig.version
   }
 
   private fun hasRepeatedFailedServiceStarts(metrics: List<LocalMetricsDatabase.EventMetrics>, minimumEventAgeMs: Long, minimumEventCount: Int, failurePercentage: Float): Boolean {
