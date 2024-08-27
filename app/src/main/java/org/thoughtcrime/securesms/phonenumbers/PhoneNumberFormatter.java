@@ -29,6 +29,8 @@ public class PhoneNumberFormatter {
 
   private static final String TAG = Log.tag(PhoneNumberFormatter.class);
 
+  private static final String UNKNOWN_NUMBER = "Unknown";
+
   private static final Set<String>  EXCLUDE_FROM_MANUAL_SHORTCODE_4 = SetUtil.newHashSet("AC", "NC", "NU", "TK");
   private static final Set<String>  MANUAL_SHORTCODE_6              = SetUtil.newHashSet("DE", "FI", "GB", "SK");
   private static final Set<Integer> NATIONAL_FORMAT_COUNTRY_CODES   = SetUtil.newHashSet(1 /*US*/, 44 /*UK*/);
@@ -105,9 +107,17 @@ public class PhoneNumberFormatter {
     return localNumber != null && localNumber.isPresent() ? localNumber.get().countryCode : 0;
   }
 
+  public @Nullable String formatOrNull(@Nullable String number) {
+    String formatted = format(number);
+    if (formatted.equals(UNKNOWN_NUMBER)) {
+      return null;
+    }
+    return formatted;
+  }
+
 
   public @NonNull String format(@Nullable String number) {
-    if (number == null)                       return "Unknown";
+    if (number == null)                       return UNKNOWN_NUMBER;
     if (GroupId.isEncodedGroup(number))       return number;
     if (ALPHA_PATTERN.matcher(number).find()) return number.trim();
 

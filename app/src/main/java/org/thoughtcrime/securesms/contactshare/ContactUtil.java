@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.contactshare.Contact.Email;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
 import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -35,6 +36,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public final class ContactUtil {
 
@@ -136,7 +138,13 @@ public final class ContactUtil {
   }
 
   public static List<RecipientId> getRecipients(@NonNull Context context, @NonNull Contact contact) {
-    return Stream.of(contact.getPhoneNumbers()).map(phone -> Recipient.external(context, phone.getNumber())).map(Recipient::getId).toList();
+    return contact
+        .getPhoneNumbers()
+        .stream()
+        .map(phone -> PhoneNumberFormatter.get(context).formatOrNull(phone.getNumber()))
+        .filter(number -> number != null)
+        .map(phone -> SignalDatabase.recipients().getOrInsertFromE164(phone))
+        .collect(Collectors.toList());
   }
 
   @WorkerThread
