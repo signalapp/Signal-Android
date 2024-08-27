@@ -41,7 +41,7 @@ object RestoreRepository {
   suspend fun restoreBackupAsynchronously(context: Context, backupFileUri: Uri, passphrase: String): BackupImportResult = withContext(Dispatchers.IO) {
     // TODO [regv2]: migrate this to a service
     try {
-      Log.i(TAG, "Starting backup restore.")
+      Log.i(TAG, "Initiating backup restore.")
       DataRestoreConstraint.isRestoringData = true
 
       val database = SignalDatabase.backupDatabase
@@ -49,9 +49,11 @@ object RestoreRepository {
       BackupPassphrase.set(context, passphrase)
 
       if (!FullBackupImporter.validatePassphrase(context, backupFileUri, passphrase)) {
-        // TODO [regv2]: implement a specific, user-visible error for wrong passphrase.
+        Log.i(TAG, "Restore failed due to invalid passphrase.")
         return@withContext BackupImportResult.FAILURE_UNKNOWN
       }
+
+      Log.i(TAG, "Passphrase validated.")
 
       FullBackupImporter.importFile(
         context,
@@ -60,6 +62,8 @@ object RestoreRepository {
         backupFileUri,
         passphrase
       )
+
+      Log.i(TAG, "Backup importer complete.")
 
       SignalDatabase.runPostBackupRestoreTasks(database)
       NotificationChannels.getInstance().restoreContactNotificationChannels()
@@ -81,7 +85,7 @@ object RestoreRepository {
       Log.w(TAG, "Failed due to foreign key constraint violations.", e)
       return@withContext BackupImportResult.FAILURE_FOREIGN_KEY
     } catch (e: IOException) {
-      Log.w(TAG, e)
+      Log.w(TAG, "Restore failed due to unknown error!", e)
       return@withContext BackupImportResult.FAILURE_UNKNOWN
     } finally {
       DataRestoreConstraint.isRestoringData = false
