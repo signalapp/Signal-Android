@@ -21,7 +21,7 @@ class PendingGroupJoinRequestsBanner(override val enabled: Boolean, private val 
     DefaultBanner(
       title = null,
       body = pluralStringResource(
-        id = R.plurals.GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group,
+        id = R.plurals.PendingGroupJoinRequestsReminder_d_pending_member_requests,
         count = suggestionsSize,
         suggestionsSize
       ),
