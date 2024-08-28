@@ -2,7 +2,10 @@
   ~ Copyright 2023 Signal Messenger, LLC
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
-<org.thoughtcrime.securesms.calls.links.CallLinkJoinButton
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/join_button"
+    style="@style/Widget.Material3.Button"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:text="@string/ConversationItem__join_call" />

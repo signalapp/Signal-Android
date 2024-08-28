@@ -4,17 +4,9 @@
   -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <View
-        android:id="@+id/join_stroke"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:background="@color/core_white" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/join_button"
-        style="@style/Widget.Signal.Button.TextButton"
+        style="@style/Widget.Material3.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ConversationItem__join_call" />
