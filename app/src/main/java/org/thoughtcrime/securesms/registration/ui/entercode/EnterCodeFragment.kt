@@ -286,7 +286,9 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
 
   private inner class PhoneStateCallback : SignalStrengthPhoneStateListener.Callback {
     override fun onNoCellSignalPresent() {
-      bottomSheet.showSafely(childFragmentManager, BOTTOM_SHEET_TAG)
+      if (isAdded) {
+        bottomSheet.showSafely(childFragmentManager, BOTTOM_SHEET_TAG)
+      }
     }
 
     override fun onCellSignalPresent() {
