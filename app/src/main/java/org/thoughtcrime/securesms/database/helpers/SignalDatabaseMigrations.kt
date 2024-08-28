@@ -99,6 +99,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V238_AddGroupSendEn
 import org.thoughtcrime.securesms.database.helpers.migration.V239_MessageFullTextSearchEmojiSupport
 import org.thoughtcrime.securesms.database.helpers.migration.V240_MessageFullTextSearchSecureDelete
 import org.thoughtcrime.securesms.database.helpers.migration.V241_ExpireTimerVersion
+import org.thoughtcrime.securesms.database.helpers.migration.V242_MessageFullTextSearchEmojiSupportV2
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -200,10 +201,11 @@ object SignalDatabaseMigrations {
     238 to V238_AddGroupSendEndorsementsColumns,
     239 to V239_MessageFullTextSearchEmojiSupport,
     240 to V240_MessageFullTextSearchSecureDelete,
-    241 to V241_ExpireTimerVersion
+    241 to V241_ExpireTimerVersion,
+    242 to V242_MessageFullTextSearchEmojiSupportV2
   )
 
-  const val DATABASE_VERSION = 241
+  const val DATABASE_VERSION = 242
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
