@@ -172,7 +172,7 @@ public final class AttachmentCompressionJob extends BaseJob {
     AttachmentTable    database           = SignalDatabase.attachments();
     DatabaseAttachment databaseAttachment = database.getAttachment(attachmentId);
     if (databaseAttachment == null) {
-      Log.i(TAG, "Could not find attachment in DB for compression job upon failure.");
+      Log.i(TAG, "Could not find attachment " + attachmentId.id + " in DB for compression job upon failure.");
       return;
     }
 

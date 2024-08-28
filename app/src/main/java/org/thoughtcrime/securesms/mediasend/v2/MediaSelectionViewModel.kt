@@ -286,6 +286,7 @@ class MediaSelectionViewModel(
     selectedMediaSubject.onNext(newMediaList)
     repository.deleteBlobs(listOf(media))
 
+    Log.d(TAG, "User removed ${media.uri} from message.")
     cancelUpload(media)
   }
 
