@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.video.TranscodingPreset
+import kotlin.time.Duration.Companion.seconds
 
 data class MediaSelectionState(
   val sendType: MessageSendType,
@@ -42,6 +43,14 @@ data class MediaSelectionState(
 
   fun getOrCreateVideoTrimData(uri: Uri): VideoTrimData {
     return editorStateMap[uri] as? VideoTrimData ?: VideoTrimData()
+  }
+
+  fun calculateMaxVideoDurationUs(maxFileSize: Long): Long {
+    return if (isStory && !MediaConstraints.isVideoTranscodeAvailable()) {
+      Stories.MAX_VIDEO_DURATION_MILLIS
+    } else {
+      transcodingPreset.calculateMaxVideoUploadDurationInSeconds(maxFileSize).seconds.inWholeMicroseconds
+    }
   }
 
   enum class ViewOnceToggleState(val code: Int) {

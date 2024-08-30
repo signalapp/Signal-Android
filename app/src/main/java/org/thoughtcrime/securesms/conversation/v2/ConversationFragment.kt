@@ -1941,6 +1941,10 @@ class ConversationFragment :
         onComplete = {
           onSendComplete()
           afterSendComplete()
+        },
+        onError = {
+          Log.w(TAG, "Error received during send!", it)
+          toast(R.string.ConversationActivity_error_sending_media)
         }
       )
   }

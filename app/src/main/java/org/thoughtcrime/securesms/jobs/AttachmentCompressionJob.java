@@ -227,12 +227,17 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                                               @NonNull TranscoderCancelationSignal cancelationSignal)
       throws UndeliverableMessageException
   {
+
+    if (cancelationSignal.isCanceled()) {
+      throw new UndeliverableMessageException("Job is canceled!");
+    }
+
     AttachmentTable.TransformProperties transformProperties = attachment.transformProperties;
 
     boolean allowSkipOnFailure = false;
 
     if (!MediaConstraints.isVideoTranscodeAvailable()) {
-      if (transformProperties.getVideoEdited()) {
+      if (transformProperties != null && transformProperties.getVideoEdited()) {
         throw new UndeliverableMessageException("Video edited, but transcode is not available");
       }
       return attachment;
@@ -284,6 +289,9 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                         PartProgressEvent.Type.COMPRESSION,
                                                         100,
                                                         100));
+              if (cancelationSignal.isCanceled()) {
+                throw new UndeliverableMessageException("Job is canceled!");
+              }
 
               final Mp4FaststartPostProcessor postProcessor = new Mp4FaststartPostProcessor(() -> {
                 try {
@@ -355,7 +363,7 @@ public final class AttachmentCompressionJob extends BaseJob {
         }
       }
     } catch (VideoSourceException | EncodingException | MemoryFileException e) {
-      if (attachment.size > constraints.getVideoMaxSize(context)) {
+      if (attachment.size > constraints.getVideoMaxSize()) {
         throw new UndeliverableMessageException("Duration not found, attachment too large to skip transcode", e);
       } else {
         if (allowSkipOnFailure) {

@@ -225,13 +225,17 @@ class ConversationRepository(
           emitter.onComplete()
         }
       } else {
-        MessageSender.sendPushWithPreUploadedMedia(
+        val sendSuccessful = MessageSender.sendPushWithPreUploadedMedia(
           AppDependencies.application,
           message,
           preUploadResults,
           threadId
         ) {
           emitter.onComplete()
+        }
+
+        if (!sendSuccessful) {
+          emitter.tryOnError(IllegalStateException("Could not send pre-uploaded attachments because they did not exist!"))
         }
       }
     }

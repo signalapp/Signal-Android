@@ -49,18 +49,18 @@ public abstract class MediaConstraints {
   public abstract int[] getImageDimensionTargets(Context context);
 
   public abstract long getGifMaxSize(Context context);
-  public abstract long getVideoMaxSize(Context context);
+  public abstract long getVideoMaxSize();
 
   public @IntRange(from = 0, to = 100) int getImageCompressionQualitySetting(@NonNull Context context) {
     return 70;
   }
 
   public long getUncompressedVideoMaxSize(Context context) {
-    return getVideoMaxSize(context);
+    return getVideoMaxSize();
   }
 
   public long getCompressedVideoMaxSize(Context context) {
-    return getVideoMaxSize(context);
+    return getVideoMaxSize();
   }
 
   public abstract long getAudioMaxSize(Context context);
@@ -79,7 +79,7 @@ public abstract class MediaConstraints {
       return (MediaUtil.isGif(attachment)    && size <= getGifMaxSize(context)   && isWithinBounds(context, attachment.getUri())) ||
              (MediaUtil.isImage(attachment)  && size <= getImageMaxSize(context) && isWithinBounds(context, attachment.getUri())) ||
              (MediaUtil.isAudio(attachment)  && size <= getAudioMaxSize(context)) ||
-             (MediaUtil.isVideo(attachment)  && size <= getVideoMaxSize(context)) ||
+             (MediaUtil.isVideo(attachment)  && size <= getVideoMaxSize()) ||
              (MediaUtil.isFile(attachment)   && size <= getDocumentMaxSize(context));
     } catch (IOException ioe) {
       Log.w(TAG, "Failed to determine if media's constraints are satisfied.", ioe);
@@ -95,7 +95,7 @@ public abstract class MediaConstraints {
       return (MediaUtil.isGif(contentType)       && size <= getGifMaxSize(context) && isWithinBounds(context, uri))   ||
              (MediaUtil.isImageType(contentType) && size <= getImageMaxSize(context) && isWithinBounds(context, uri)) ||
              (MediaUtil.isAudioType(contentType) && size <= getAudioMaxSize(context))                                 ||
-             (MediaUtil.isVideoType(contentType) && size <= getVideoMaxSize(context))                                 ||
+             (MediaUtil.isVideoType(contentType) && size <= getVideoMaxSize())                                        ||
              size <= getDocumentMaxSize(context);
     } catch (IOException ioe) {
       Log.w(TAG, "Failed to determine if media's constraints are satisfied.", ioe);

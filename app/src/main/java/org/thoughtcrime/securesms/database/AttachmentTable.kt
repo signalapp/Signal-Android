@@ -36,6 +36,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.ThreadUtil
+import org.signal.core.util.count
 import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
 import org.signal.core.util.drain
@@ -45,6 +46,7 @@ import org.signal.core.util.groupBy
 import org.signal.core.util.isNull
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBlob
@@ -431,6 +433,20 @@ class AttachmentTable(
       .exists(TABLE_NAME)
       .where("$ID = ?", id.id)
       .run()
+  }
+
+  /**
+   * Takes a list of attachment IDs and confirms they exist in the database.
+   */
+  fun hasAttachments(ids: List<AttachmentId>): Boolean {
+    return ids.size == SqlUtil.buildCollectionQuery(ID, ids.map { it.id }).sumOf { query ->
+      readableDatabase
+        .count()
+        .from(TABLE_NAME)
+        .where(query.where, query.whereArgs)
+        .run()
+        .readToSingleInt(defaultValue = 0)
+    }
   }
 
   fun getPendingAttachments(): List<DatabaseAttachment> {
@@ -1103,7 +1119,7 @@ class AttachmentTable(
 
   @Throws(MmsException::class)
   fun insertAttachmentForPreUpload(attachment: Attachment): DatabaseAttachment {
-    Log.d(TAG, "Inserting attachment $attachment for pre-upload.")
+    Log.d(TAG, "Inserting attachment ${attachment.uri} for pre-upload.")
     val result = insertAttachmentsForMessage(PREUPLOAD_MESSAGE_ID, listOf(attachment), emptyList())
 
     if (result.values.isEmpty()) {
