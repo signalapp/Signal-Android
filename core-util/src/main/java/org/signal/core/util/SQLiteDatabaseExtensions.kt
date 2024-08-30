@@ -13,7 +13,7 @@ import androidx.sqlite.db.SupportSQLiteQueryBuilder
  *
  * @return The value returned by [block] if any
  */
-fun <T : SupportSQLiteDatabase, R> T.withinTransaction(block: (T) -> R): R {
+inline fun <T : SupportSQLiteDatabase, R> T.withinTransaction(block: (T) -> R): R {
   beginTransaction()
   try {
     val toReturn = block(this)
