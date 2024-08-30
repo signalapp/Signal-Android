@@ -65,12 +65,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public long getCompressedVideoMaxSize(Context context) {
-    if (RemoteConfig.useStreamingVideoMuxer()) {
-      return getMaxAttachmentSize();
-    } else {
-      return Util.isLowMemory(context) ? 30 * MB
-                                       : 50 * MB;
-    }
+    return getMaxAttachmentSize();
   }
 
   @Override

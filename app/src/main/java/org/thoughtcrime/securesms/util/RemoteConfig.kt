@@ -521,15 +521,6 @@ object RemoteConfig {
     defaultValue = null
   )
 
-  /** Whether to use the custom streaming muxer or built in android muxer.  */
-  @JvmStatic
-  @get:JvmName("useStreamingVideoMuxer")
-  val useStreamingVideoMuxer: Boolean by remoteBoolean(
-    key = "android.customVideoMuxer.1",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** The time in between routine CDS refreshes, in seconds.  */
   @JvmStatic
   @get:JvmName("cdsRefreshIntervalSeconds")
