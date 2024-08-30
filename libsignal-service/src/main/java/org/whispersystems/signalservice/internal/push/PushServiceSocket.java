@@ -343,7 +343,7 @@ public class PushServiceSocket {
   private static final ResponseCodeHandler NO_HANDLER            = new EmptyResponseCodeHandler();
   private static final ResponseCodeHandler UNOPINIONATED_HANDLER = new UnopinionatedResponseCodeHandler();
 
-  private static final long CDN2_RESUMABLE_LINK_LIFETIME_MILLIS = TimeUnit.DAYS.toMillis(7);
+  public static final long CDN2_RESUMABLE_LINK_LIFETIME_MILLIS = TimeUnit.DAYS.toMillis(7);
 
   private static final int MAX_FOLLOW_UPS = 20;
 

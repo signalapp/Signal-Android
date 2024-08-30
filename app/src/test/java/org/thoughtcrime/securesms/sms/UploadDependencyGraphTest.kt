@@ -240,6 +240,7 @@ class UploadDependencyGraphTest {
       cdn = attachment.cdn,
       location = attachment.remoteLocation,
       key = attachment.remoteKey,
+      iv = attachment.remoteIv,
       digest = attachment.remoteDigest,
       incrementalDigest = attachment.incrementalDigest,
       incrementalMacChunkSize = attachment.incrementalMacChunkSize,

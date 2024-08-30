@@ -23,6 +23,7 @@ import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
+import org.whispersystems.signalservice.api.attachment.AttachmentApi;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent;
@@ -170,6 +171,7 @@ public class SignalServiceMessageSender {
   private static final int RETRY_COUNT = 4;
 
   private final PushServiceSocket             socket;
+  private final SignalWebSocket               webSocket;
   private final SignalServiceAccountDataStore aciStore;
   private final SignalSessionLock             sessionLock;
   private final SignalServiceAddress          localAddress;
@@ -198,6 +200,7 @@ public class SignalServiceMessageSender {
                                     boolean automaticNetworkRetry)
   {
     this.socket            = new PushServiceSocket(urls, credentialsProvider, signalAgent, clientZkProfileOperations, automaticNetworkRetry);
+    this.webSocket         = signalWebSocket;
     this.aciStore          = store.aci();
     this.sessionLock       = sessionLock;
     this.localAddress      = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
@@ -210,6 +213,10 @@ public class SignalServiceMessageSender {
     this.maxEnvelopeSize   = maxEnvelopeSize;
     this.localPniIdentity  = store.pni().getIdentityKeyPair();
     this.scheduler         = Schedulers.from(executor, false, false);
+  }
+
+  public AttachmentApi getAttachmentApi() {
+    return AttachmentApi.create(webSocket, socket);
   }
 
   /**
@@ -799,8 +806,8 @@ public class SignalServiceMessageSender {
   }
 
   public SignalServiceAttachmentPointer uploadAttachment(SignalServiceAttachmentStream attachment) throws IOException {
-    byte[]             attachmentKey    = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getSecretKey).orElseGet(() -> Util.getSecretBytes(64));
-    byte[]             attachmentIV     = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getIV).orElseGet(() -> Util.getSecretBytes(16));
+    byte[]             attachmentKey    = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getAttachmentKey).orElseGet(() -> Util.getSecretBytes(64));
+    byte[]             attachmentIV     = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getAttachmentIv).orElseGet(() -> Util.getSecretBytes(16));
     long               paddedLength     = PaddingInputStream.getPaddedSize(attachment.getLength());
     InputStream        dataStream       = new PaddingInputStream(attachment.getInputStream(), attachment.getLength());
     long               ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(paddedLength);
@@ -811,7 +818,7 @@ public class SignalServiceMessageSender {
                                                                  new AttachmentCipherOutputStreamFactory(attachmentKey, attachmentIV),
                                                                  attachment.getListener(),
                                                                  attachment.getCancelationSignal(),
-                                                                 attachment.getResumableUploadSpec().orElse(null));
+                                                                 attachment.getResumableUploadSpec().get());
 
     if (attachment.getResumableUploadSpec().isEmpty()) {
       throw new IllegalStateException("Attachment must have a resumable upload spec.");

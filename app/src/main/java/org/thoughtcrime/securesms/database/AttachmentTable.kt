@@ -90,7 +90,9 @@ import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.StorageUtil
+import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource
+import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.File
@@ -118,6 +120,7 @@ class AttachmentTable(
     const val MESSAGE_ID = "message_id"
     const val CONTENT_TYPE = "content_type"
     const val REMOTE_KEY = "remote_key"
+    const val REMOTE_IV = "remote_iv"
     const val REMOTE_LOCATION = "remote_location"
     const val REMOTE_DIGEST = "remote_digest"
     const val REMOTE_INCREMENTAL_DIGEST = "remote_incremental_digest"
@@ -178,6 +181,7 @@ class AttachmentTable(
       MESSAGE_ID,
       CONTENT_TYPE,
       REMOTE_KEY,
+      REMOTE_IV,
       REMOTE_LOCATION,
       REMOTE_DIGEST,
       REMOTE_INCREMENTAL_DIGEST,
@@ -263,7 +267,8 @@ class AttachmentTable(
         $THUMBNAIL_FILE TEXT DEFAULT NULL,
         $THUMBNAIL_RANDOM BLOB DEFAULT NULL,
         $THUMBNAIL_RESTORE_STATE INTEGER DEFAULT ${ThumbnailRestoreState.NONE.value},
-        $ATTACHMENT_UUID TEXT DEFAULT NULL
+        $ATTACHMENT_UUID TEXT DEFAULT NULL,
+        $REMOTE_IV BLOB DEFAULT NULL
       )
       """
 
@@ -1026,7 +1031,7 @@ class AttachmentTable(
    * it's ending hash, which is critical for backups.
    */
   @Throws(IOException::class)
-  fun finalizeAttachmentAfterUpload(id: AttachmentId, attachment: Attachment, uploadTimestamp: Long) {
+  fun finalizeAttachmentAfterUpload(id: AttachmentId, uploadResult: AttachmentUploadResult) {
     Log.i(TAG, "[finalizeAttachmentAfterUpload] Finalizing upload for $id.")
 
     val dataStream = getAttachmentStream(id, 0)
@@ -1040,17 +1045,14 @@ class AttachmentTable(
 
     val values = contentValuesOf(
       TRANSFER_STATE to TRANSFER_PROGRESS_DONE,
-      CDN_NUMBER to attachment.cdn.serialize(),
-      REMOTE_LOCATION to attachment.remoteLocation,
-      REMOTE_DIGEST to attachment.remoteDigest,
-      REMOTE_INCREMENTAL_DIGEST to attachment.incrementalDigest,
-      REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to attachment.incrementalMacChunkSize,
-      REMOTE_KEY to attachment.remoteKey,
-      DATA_SIZE to attachment.size,
+      CDN_NUMBER to uploadResult.cdnNumber,
+      REMOTE_LOCATION to uploadResult.remoteId.toString(),
+      REMOTE_DIGEST to uploadResult.digest,
+      REMOTE_INCREMENTAL_DIGEST to uploadResult.incrementalDigest,
+      REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to uploadResult.incrementalDigestChunkSize,
+      DATA_SIZE to uploadResult.dataSize,
       DATA_HASH_END to dataHashEnd,
-      FAST_PREFLIGHT_ID to attachment.fastPreflightId,
-      BLUR_HASH to attachment.getVisualHashStringOrNull(),
-      UPLOAD_TIMESTAMP to uploadTimestamp
+      UPLOAD_TIMESTAMP to uploadResult.uploadTimestamp
     )
 
     val dataFilePath = getDataFilePath(id) ?: throw IOException("No data file found for attachment!")
@@ -1150,6 +1152,25 @@ class AttachmentTable(
       }
 
       Log.d(TAG, "[updateMessageId] Updated $updatedCount out of $attachmentIdSize ids.")
+    }
+  }
+
+  fun createKeyIvIfNecessary(attachmentId: AttachmentId) {
+    val key = Util.getSecretBytes(64)
+    val iv = Util.getSecretBytes(16)
+
+    writableDatabase.withinTransaction {
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(REMOTE_KEY to Base64.encodeWithPadding(key))
+        .where("$ID = ? AND $REMOTE_KEY IS NULL", attachmentId.id)
+        .run()
+
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(REMOTE_IV to iv)
+        .where("$ID = ? AND $REMOTE_IV IS NULL", attachmentId.id)
+        .run()
     }
   }
 
@@ -1507,6 +1528,7 @@ class AttachmentTable(
               cdn = Cdn.deserialize(jsonObject.getInt(CDN_NUMBER)),
               location = jsonObject.getString(REMOTE_LOCATION),
               key = jsonObject.getString(REMOTE_KEY),
+              iv = null,
               digest = null,
               incrementalDigest = null,
               incrementalMacChunkSize = 0,
@@ -2040,6 +2062,7 @@ class AttachmentTable(
       contentValues.put(REMOTE_INCREMENTAL_DIGEST, uploadTemplate?.incrementalDigest)
       contentValues.put(REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE, uploadTemplate?.incrementalMacChunkSize ?: 0)
       contentValues.put(REMOTE_KEY, uploadTemplate?.remoteKey)
+      contentValues.put(REMOTE_IV, uploadTemplate?.remoteIv)
       contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.fileName))
       contentValues.put(FAST_PREFLIGHT_ID, attachment.fastPreflightId)
       contentValues.put(VOICE_NOTE, if (attachment.voiceNote) 1 else 0)
@@ -2120,6 +2143,7 @@ class AttachmentTable(
       cdn = cursor.requireObject(CDN_NUMBER, Cdn.Serializer),
       location = cursor.requireString(REMOTE_LOCATION),
       key = cursor.requireString(REMOTE_KEY),
+      iv = cursor.requireBlob(REMOTE_IV),
       digest = cursor.requireBlob(REMOTE_DIGEST),
       incrementalDigest = cursor.requireBlob(REMOTE_INCREMENTAL_DIGEST),
       incrementalMacChunkSize = cursor.requireInt(REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE),

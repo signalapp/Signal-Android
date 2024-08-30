@@ -8,11 +8,9 @@ package org.thoughtcrime.securesms.jobs
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.protos.resumableuploads.ResumableUpload
-import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -24,9 +22,8 @@ import org.thoughtcrime.securesms.jobs.protos.ArchiveAttachmentBackfillJobData
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaResponse
 import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
+import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import java.io.IOException
-import java.util.Optional
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -159,16 +156,16 @@ class ArchiveAttachmentBackfillJob private constructor(
       }
 
       Log.d(TAG, "Beginning upload...")
-      val remoteAttachment: SignalServiceAttachmentPointer = try {
-        AppDependencies.signalServiceMessageSender.uploadAttachment(attachmentStream)
-      } catch (e: IOException) {
-        Log.w(TAG, "Failed to upload $attachmentId", e)
-        return Result.retry(defaultBackoff())
+      val attachmentApi = AppDependencies.signalServiceMessageSender.attachmentApi
+      val uploadResult: AttachmentUploadResult = when (val result = attachmentApi.uploadAttachmentV4(attachmentStream)) {
+        is NetworkResult.Success -> result.result
+        is NetworkResult.ApplicationError -> throw result.throwable
+        is NetworkResult.NetworkError -> return Result.retry(defaultBackoff())
+        is NetworkResult.StatusCodeError -> return Result.retry(defaultBackoff())
       }
       Log.d(TAG, "Upload complete!")
 
-      val pointerAttachment: Attachment = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, attachmentRecord.fastPreflightId).get()
-      SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachmentRecord.attachmentId, pointerAttachment, remoteAttachment.uploadTimestamp)
+      SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachmentRecord.attachmentId, uploadResult)
       SignalDatabase.attachments.setArchiveTransferState(attachmentRecord.attachmentId, AttachmentTable.ArchiveTransferState.BACKFILL_UPLOADED)
 
       attachmentRecord = SignalDatabase.attachments.getAttachment(attachmentRecord.attachmentId)

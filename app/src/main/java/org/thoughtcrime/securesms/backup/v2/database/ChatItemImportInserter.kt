@@ -1030,6 +1030,7 @@ class ChatItemImportInserter(
         size = this.backupLocator.size.toLong(),
         cdn = this.backupLocator.transitCdnNumber ?: Cdn.CDN_0.cdnNumber,
         key = this.backupLocator.key.toByteArray(),
+        iv = null,
         cdnKey = this.backupLocator.transitCdnKey,
         archiveCdn = this.backupLocator.cdnNumber,
         archiveMediaName = this.backupLocator.mediaName,
