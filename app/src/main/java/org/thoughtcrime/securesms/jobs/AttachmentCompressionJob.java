@@ -283,6 +283,8 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                             100,
                                                             percent));
                 }, outputStream, cancelationSignal);
+              } catch (EncodingException e) {
+                throw new UndeliverableMessageException("Failure during encoding", e);
               }
 
               eventBus.postSticky(new PartProgressEvent(attachment,
