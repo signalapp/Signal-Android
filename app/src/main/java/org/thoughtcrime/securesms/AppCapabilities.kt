@@ -12,7 +12,7 @@ object AppCapabilities {
     return AccountAttributes.Capabilities(
       storage = storageCapable,
       deleteSync = true,
-      expireTimerVersion = true
+      versionedExpirationTimer = true
     )
   }
 }
