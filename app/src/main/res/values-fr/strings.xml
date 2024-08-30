@@ -3583,7 +3583,7 @@
     <string name="preferences__read_receipts">Confirmations de lecture</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si vous désactivez les confirmations de lecture, vous ne recevrez pas de confirmations de lecture de la part de vos contacts.</string>
     <string name="preferences__typing_indicators">Indicateurs de saisie</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si les indicateurs de saisie sont désactivés, vous ne serez pas en mesure de voir les indicateurs de saisie d’autrui.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si les indicateurs de saisie sont désactivés, vous ne verrez pas les indicateurs de saisie des autres utilisateurs.</string>
     <string name="preferences__request_keyboard_to_disable">Demander au clavier de désactiver l’apprentissage personnalisé.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Ce paramètre n’est pas une garantie et votre clavier peut l’ignorer.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
@@ -5422,14 +5422,14 @@
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
     <string name="MediaCaptureFragment_username_dialog_title">Utilisateur trouvé : %1$s</string>
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Démarrer une conversation avec « %1$s »</string>
+    <string name="MediaCaptureFragment_username_dialog_body">Démarrer une conversation avec %1$s</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
     <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Démarrer une conversation</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Associer l’appareil ?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">Vous tentez d’associer un appareil Signal ? Appuyez sur « Continuer » et rescannez le code QR.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">Vous tentez d’associer un appareil Signal ? Appuyez sur \"Continuer\" et rescannez le code QR.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Continuer</string>
 
@@ -6129,7 +6129,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">Supprimer la story personnalisée ?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">« %1$s » et les nouveaux contenus partagés dans cette story seront supprimés.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" et les nouveaux contenus partagés dans cette story seront supprimés.</string>
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Supprimer</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -6321,7 +6321,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Supprimer la story ?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Supprimer la story personnalisée « %1$s » ?</string>
+    <string name="ContactSearchMediator__delete_the_custom">Supprimer la story personnalisée\"%1$s\" ?</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">Supprimer</string>
     <!-- Donation for a friend expiry days remaining -->
@@ -6451,7 +6451,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">Qui peut voir cette story ?</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Les membres du groupe « %1$s » peuvent afficher votre story et la commenter. Vous pouvez modifier les participants du groupe en question."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Les membres du groupe \"%1$s\" peuvent afficher votre story et la commenter. Vous pouvez ajouter ou retirer des spectateurs depuis les paramètres du groupe."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">Supprimer cette story de groupe</string>
 
@@ -7148,7 +7148,7 @@
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">Le numéro %1$s est incorrect. Veuillez réessayer avec un numéro de téléphone valide.</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">« %1$s » ne correspond à aucun utilisateur Signal. Veuillez vérifier le nom d’utilisateur et réessayer.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ne correspond à aucun utilisateur Signal. Veuillez vérifier le nom d’utilisateur et réessayer.</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s n’utilise pas Signal. Voulez-vous inviter ce numéro ?</string>
     <!-- Dialog action to invite the phone number to Signal -->

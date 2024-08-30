@@ -147,7 +147,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Personas bloqueadas</string>
     <string name="BlockedUsersActivity__add_blocked_user">Añadir persona bloqueada</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Las personas bloqueadas no podrán llamarte ni enviarte mensajes.</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Las personas que bloquees no podrán llamarte ni enviarte mensajes.</string>
     <string name="BlockedUsersActivity__no_blocked_users">No hay personas bloqueadas</string>
     <string name="BlockedUsersActivity__block_user">¿Bloquear a esta persona?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">%1$s no podrá llamarte ni enviarte mensajes.</string>
@@ -205,8 +205,8 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podrás chatear y hablar por teléfono, y tu nombre y foto se compartirán con esta persona.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Podrás chatear con esta persona.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Las personas bloqueadas no podrán llamarte o enviarte mensajes.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Las personas bloqueadas no podrán llamarte ni enviarte mensajes.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Las personas que bloquees no podrán llamarte ni enviarte mensajes.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Las personas que bloquees no podrán llamarte ni enviarte mensajes.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">No recibir noticias y novedades de Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
@@ -266,9 +266,9 @@
     <!-- Button text asking for access to camera permissions -->
     <string name="CameraXFragment_allow_access">Permitir acceso</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="CameraXFragment_allow_access_camera_microphone">Permite acceso a tu cámara y micrófono</string>
+    <string name="CameraXFragment_allow_access_camera_microphone">Permitir acceso a tu cámara y micrófono</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="CameraXFragment_allow_access_camera">Permite acceso a tu cámara</string>
+    <string name="CameraXFragment_allow_access_camera">Permitir acceso a tu cámara</string>
     <!-- Dialog title asking users for microphone permission -->
     <string name="CameraXFragment_allow_access_microphone">Permitir acceso a tu micrófono</string>
     <!-- Text explaining why Signal needs camera access in order to take photos -->
@@ -614,7 +614,7 @@
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Cancelar</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Vetada</string>
+    <string name="ConversationFragment__blocked">Bloqueado</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
     <string name="ConversationFragment__update_build">Actualiza Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
@@ -2166,11 +2166,11 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Alguien te ha eliminado de la llamada.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">Permite acceso a tu cámara y micrófono</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">Permitir acceso a tu cámara y micrófono</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">Permite acceso a tu micrófono</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">Permitir acceso a tu micrófono</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">Permite acceso a tu cámara</string>
+    <string name="WebRtcCallActivity__allow_access_camera">Permitir acceso a tu cámara</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__to_start_call_camera_microphone">Para iniciar o unirte a una llamada, permite a Signal acceso a la cámara y al micrófono.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
@@ -2366,12 +2366,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s está bloqueadx</string>
+    <string name="CallParticipantView__s_is_blocked">Se ha bloqueado a %1$s</string>
     <string name="CallParticipantView__more_info">Más detalles</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">No recibirás el audio ni el vídeo de esta persona y ella no recibirá los tuyos.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto se puede deber a que no han verificado el cambio de tus cifras de seguridad, hay un problema con su dispositivo, o te han bloqueado.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto se puede deber a que no han verificado el cambio de tu número de seguridad, hay un problema con su dispositivo o te han bloqueado.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Desliza para ver la pantalla compartida</string>
@@ -2467,7 +2467,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">¿Activar el bloqueo de registro?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">¿Desactivar el bloqueo de registro?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si olvidas tu PIN de Signal al registrarte nuevamente en Signal, no podrás acceder a tu cuenta durante 7 días.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si olvidas tu PIN de Signal al volver a registrarte en Signal, no podrás acceder a tu cuenta durante 7 días.</string>
     <string name="RegistrationLockV2Dialog_turn_on">Activar</string>
     <string name="RegistrationLockV2Dialog_turn_off">Desactivar</string>
 
@@ -2533,7 +2533,7 @@
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_installed_stickers">Stickers instalados</string>
     <string name="StickerManagementAdapter_stickers_you_received">Stickers recibidos</string>
-    <string name="StickerManagementAdapter_signal_artist_series">Paquetes de artistas de Signal</string>
+    <string name="StickerManagementAdapter_signal_artist_series">Stickers de artistas de Signal</string>
     <string name="StickerManagementAdapter_no_stickers_installed">No hay ningún sticker instalado</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Los stickers que recibas en mensajes aparecerán aquí</string>
     <string name="StickerManagementAdapter_untitled">Sin nombre</string>
@@ -2895,7 +2895,7 @@
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Ahora no</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Configurar alias</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">Crear alias</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Reproducir vídeo</string>
@@ -2986,7 +2986,7 @@
     <!-- Row item title for finding people on Signal via your contacts -->
     <string name="contact_selection_activity__find_people_you_know">Encuentra a personas que conoces en Signal</string>
     <!-- Row item description asking users for access to their contacts to find people they know -->
-    <string name="contact_selection_activity__allow_access_to_contacts">Permite acceso a tus contactos</string>
+    <string name="contact_selection_activity__allow_access_to_contacts">Permite el acceso a tus contactos</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">Más</string>
 
@@ -3029,7 +3029,7 @@
     <!-- Text on button to dismiss Signal\'s request for contact permissions -->
     <string name="ContactSelectionListFragment__no_thanks">No, gracias</string>
     <!-- Text asking for user\'s contact permission -->
-    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Permite acceso a tus contactos. Tus contactos están cifrados y no son visibles para el servicio de Signal.</string>
+    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Permite el acceso a tus contactos. Tus contactos están cifrados y no son visibles para el servicio de Signal.</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal necesita acceso a tus contactos para poder mostrarlos.</string>
@@ -3329,7 +3329,7 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Para verificar el cifrado con %1$s, compara las cifras de arriba con las del dispositivo de esa persona. También puedes escanear el código de su dispositivo.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Para verificar el cifrado con %1$s, compara los números que aparecen arriba con los del dispositivo de esa persona. También puedes escanear el código de su dispositivo.</string>
     <string name="verify_display_fragment__tap_to_scan">Toca para escanear</string>
     <string name="verify_display_fragment__successful_match">Los números coinciden</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">No se ha podido verificar el número de seguridad</string>
@@ -3477,9 +3477,9 @@
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Dejar archivados chats silenciados</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Hacer que los chats silenciados que haya archivado permanezcan archivados aunque reciba un nuevo mensaje.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Los chats silenciados que hayas archivado permanecerán archivados aunque recibas un nuevo mensaje.</string>
     <string name="preferences__generate_link_previews">Generar vista previa de enlaces</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obtener vistas previas de enlaces directamente de los sitios web para los mensajes que envío.</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Elige mostrar las vistas previas de los enlaces directamente de los sitios web para los mensajes que envías.</string>
     <string name="preferences__change_passphrase">Cambiar clave de acceso</string>
     <string name="preferences__change_your_passphrase">Cambia tu clave de acceso</string>
     <string name="preferences__enable_passphrase">Activar bloqueo de pantalla con clave de acceso</string>
@@ -3627,7 +3627,7 @@
 
     <string name="preferences_storage__custom">Personalizado</string>
     <string name="preferences_advanced__use_system_emoji">Usar emojis del sistema</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirige todas las llamadas a través del servidor de Signal para evitar revelar tu dirección IP. Activar esta opción reducirá la calidad de las llamadas.</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirige todas las llamadas a través del servidor de Signal para evitar revelar tu dirección IP. Si activas esta opción, se reducirá la calidad de las llamadas.</string>
     <string name="preferences_advanced__always_relay_calls">Redirigir llamadas siempre</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Pagos</string>
@@ -4119,7 +4119,7 @@
         <item quantity="other">El PIN debe contener al menos %1$d dígitos</item>
     </plurals>
     <string name="CreateKbsPinFragment__create_a_new_pin">Crear nuevo PIN</string>
-    <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Puedes modificar tu PIN, siempre que este dispositivo esté registrado.</string>
+    <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Puedes cambiar tu PIN siempre que este dispositivo esté registrado.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Crea tu PIN</string>
     <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Los PINs pueden ayudarte a restaurar tu cuenta y mantener tu información encriptada con Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Elige un PIN más seguro</string>
@@ -4293,7 +4293,7 @@
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Número de teléfono</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Elegir quién puede ver mi número de teléfono y quién puede usarlo para buscarme en Signal.</string>
+    <string name="preferences_app_protection__choose_who_can_see">Elige quién puede ver tu número de teléfono y quién puede usarlo para buscarte en Signal.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Quién puede ver mi número</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
@@ -4325,7 +4325,7 @@
     <string name="preferences_app_protection__to_use_screen_lock">Para usar el bloqueo de pantalla, establece un PIN, un patrón o una contraseña en este dispositivo.</string>
     <string name="preferences_app_protection__signal_pin">PIN de Signal</string>
     <string name="preferences_app_protection__create_a_pin">Crear un PIN</string>
-    <string name="preferences_app_protection__change_your_pin">Modifica tu PIN</string>
+    <string name="preferences_app_protection__change_your_pin">Cambiar PIN</string>
     <string name="preferences_app_protection__pin_reminders">Recordatorios de PIN</string>
     <string name="preferences_app_protection__turn_off">Desactivar</string>
     <string name="preferences_app_protection__confirm_pin">Confirmar PIN</string>
@@ -4718,17 +4718,17 @@
     <string name="ChatWallpaperFragment__reset_chat_colors">Restablecer colores del chat</string>
     <string name="ChatWallpaperFragment__reset_chat_color">Restablecer color del chat</string>
     <string name="ChatWallpaperFragment__reset_chat_color_question">¿Restablecer color del chat?</string>
-    <string name="ChatWallpaperFragment__set_wallpaper">Establecer fondo de pantalla</string>
+    <string name="ChatWallpaperFragment__set_wallpaper">Elegir fondo de pantalla</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Tema oscuro atenúa el fondo</string>
     <string name="ChatWallpaperFragment__contact_name">Nombre del contacto</string>
     <string name="ChatWallpaperFragment__reset">Restablecer</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Vista previa del fondo</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">¿Deseas cambiar los colores de todos tus chats?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">¿Deseas cambiar los fondos de todos los chats?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Restablecer colores predeterminados</string>
-    <string name="ChatWallpaperFragment__reset_all_colors">Restablecer todos los colores</string>
-    <string name="ChatWallpaperFragment__reset_default_wallpaper">Restablecer fondo predeterminado</string>
-    <string name="ChatWallpaperFragment__reset_all_wallpapers">Restablecer todos los fondos</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Restablecer predeterminados</string>
+    <string name="ChatWallpaperFragment__reset_all_colors">Restablecer todos</string>
+    <string name="ChatWallpaperFragment__reset_default_wallpaper">Restablecer predeterminado</string>
+    <string name="ChatWallpaperFragment__reset_all_wallpapers">Restablecer todos</string>
     <string name="ChatWallpaperFragment__reset_wallpapers">Restablecer fondos de pantalla</string>
     <string name="ChatWallpaperFragment__reset_wallpaper">Restablecer fondo de pantalla</string>
     <string name="ChatWallpaperFragment__reset_wallpaper_question">¿Restablecer fondo de pantalla?</string>
@@ -4739,18 +4739,18 @@
 
     <!-- ChatWallpaperPreviewActivity -->
     <string name="ChatWallpaperPreviewActivity__preview">Vista previa</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper">Establecer fondo de pantalla</string>
-    <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Desliza para ver más fondos de pantalla</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Establecer para todos los chats</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Establecer fondo para %1$s</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper">Elegir fondo de pantalla</string>
+    <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Deslizar para ver más fondos de pantalla</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Elige un fondo para todos los chats</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Elegir fondo para %1$s</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Signal necesita acceso al almacenamiento para mostrar la galería.</string>
 
     <!-- WallpaperImageSelectionActivity -->
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pellizca la imagen para ampliarla y arrástrala para ajustar.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Establecer fondo para todos los chats.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_s">Establecer fondo para %1$s.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Elegir fondo para todos los chats.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_s">Elegir fondo para %1$s.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">No se ha podido establecer el fondo de pantalla.</string>
     <string name="WallpaperCropActivity__blur_photo">Difuminar foto</string>
 
@@ -4899,7 +4899,7 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Cuenta</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Te lo pediremos menos a menudo con el tiempo</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Necesitarás tu PIN de Signal si quieres volver a registrar tu número de teléfono en Signal.</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Usa tu PIN de Signal para volver a registrar tu número de teléfono en Signal.</string>
     <string name="AccountSettingsFragment__change_phone_number">Cambiar número de teléfono</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Datos de tu cuenta</string>
@@ -5025,7 +5025,7 @@
     <string name="NotificationProfilesFragment__create_profile">Crear perfil</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Personas bloqueadas</string>
+    <string name="PrivacySettingsFragment__blocked">Bloqueados</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
         <item quantity="one">%1$d contacto o grupo</item>
@@ -5038,7 +5038,7 @@
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquea capturas de pantalla en la lista de aplicaciones recientes y dentro de la aplicación</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Mensajes y llamadas de Signal: siempre redirigir las llamadas y usar remitente confidencial</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Duración predeterminada en chats nuevos</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Elegir una duración predeterminada de los mensajes temporales para todos los chats nuevos que inicio.</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Elige una duración predeterminada de los mensajes temporales para todos los chats nuevos que inicies.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Requiere el bloqueo de pantalla de Android o la huella dactilar para transferir fondos</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -5249,9 +5249,9 @@
 
     <!-- PlaybackSpeedToggleTextView -->
     <string name="PlaybackSpeedToggleTextView__p5x">0,5</string>
-    <string name="PlaybackSpeedToggleTextView__1x">1</string>
-    <string name="PlaybackSpeedToggleTextView__1p5x">1,5</string>
-    <string name="PlaybackSpeedToggleTextView__2x">2</string>
+    <string name="PlaybackSpeedToggleTextView__1x">x1</string>
+    <string name="PlaybackSpeedToggleTextView__1p5x">x1,5</string>
+    <string name="PlaybackSpeedToggleTextView__2x">x2</string>
 
     <!-- PaymentRecipientSelectionFragment -->
     <string name="PaymentRecipientSelectionFragment__new_payment">Nuevo pago</string>
@@ -6442,7 +6442,7 @@
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">Confirmaciones de visualización</string>
     <!-- Story view receipts toggle message -->
-    <string name="StoriesPrivacySettingsFragment__see_and_share">Mostrar y compartir cuándo se ven las historias. Si lo desactivas, no podrás saber cuándo otras personas ven tus historias.</string>
+    <string name="StoriesPrivacySettingsFragment__see_and_share">Mira y comparte cuándo se ven las historias. Si lo desactivas, no podrás saber cuándo otras personas ven tus historias.</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">Nueva historia</string>

@@ -3070,7 +3070,7 @@
     <string name="conversation_item__secure_message_description">Beveiligd bericht</string>
 
     <!-- conversation_item_sent -->
-    <string name="conversation_item_sent__send_failed_indicator_description">Verzenden mislukt</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">Verzenden is mislukt</string>
     <string name="conversation_item_sent__pending_approval_description">In afwachting van goedkeuring</string>
     <string name="conversation_item_sent__delivered_description">Afgeleverd</string>
     <string name="conversation_item_sent__message_read">Bericht gelezen</string>
@@ -3320,7 +3320,7 @@
     <string name="EditProfileNameFragment_first_name">Voornaam (verplicht)</string>
     <string name="EditProfileNameFragment_last_name_optional">Achternaam (optioneel)</string>
     <string name="EditProfileNameFragment_save">Opslaan</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Het opslaan van de aanpassingen is mislukt door netwerkproblemen. Probeer het later opnieuw.</string>
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Opslaan mislukt door netwerkproblemen. Probeer het later opnieuw.</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">Uitgewisselde media</string>
@@ -3472,8 +3472,8 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">Bèta</string>
     <string name="preferences__sms_mms">Sms en mms</string>
-    <string name="preferences__pref_use_address_book_photos">Profielfoto\'s uit systeemcontactenlijst gebruiken</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto\'s uit je eigen systeemcontactenlijst weer</string>
+    <string name="preferences__pref_use_address_book_photos">Profielfoto\'s uit de contactenlijst van je telefoon gebruiken</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto\'s uit de contactenlijst van je telefoon weer</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Gedempte chats gearchiveerd houden</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
@@ -5154,7 +5154,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Help Signal mogelijk maken</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij. Als je aan ons doneert dan krijg je de mogelijkheid om op je profielafbeelding een badge weer te geven.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij. Als je aan ons doneert dan krijg je de mogelijkheid om op je profielfoto een badge weer te geven.</string>
     <string name="BecomeASustainerMegaphone__not_now">Niet nu</string>
     <string name="BecomeASustainerMegaphone__donate">Doneren</string>
 
@@ -5305,7 +5305,7 @@
 
 
     <!-- AvatarPickerFragment -->
-    <string name="AvatarPickerFragment__avatar_preview">Voorbeeld van profielafbeelding</string>
+    <string name="AvatarPickerFragment__avatar_preview">Voorbeeld van profielfoto</string>
     <string name="AvatarPickerFragment__camera">Camera</string>
     <string name="AvatarPickerFragment__take_a_picture">Neem een foto</string>
     <string name="AvatarPickerFragment__choose_a_photo">Kies een afbeelding</string>
@@ -5313,8 +5313,8 @@
     <!-- Button label during avatar selection/creation that when tapped lets you generate an avatar from typed in text. -->
     <string name="AvatarPickerFragment__text">Tekst</string>
     <string name="AvatarPickerFragment__save">Opslaan</string>
-    <string name="AvatarPickerFragment__clear_avatar">Profielafbeelding verwijderen</string>
-    <string name="AvatarPickerRepository__failed_to_save_avatar">De profielafbeelding opslaan is mislukt</string>
+    <string name="AvatarPickerFragment__clear_avatar">Profielfoto verwijderen</string>
+    <string name="AvatarPickerRepository__failed_to_save_avatar">Profielfoto opslaan is mislukt</string>
 
     <!-- TextAvatarCreationFragment -->
     <string name="TextAvatarCreationFragment__preview">Voorbeeld</string>
