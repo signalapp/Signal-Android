@@ -474,6 +474,14 @@ public class SearchRepository {
       int         messageId               = CursorUtil.requireInt(cursor, SearchTable.MESSAGE_ID);
       boolean     isMms                   = CursorUtil.requireInt(cursor, SearchTable.IS_MMS) == 1;
 
+      if (body == null) {
+        body = "";
+      }
+
+      if (bodySnippet == null) {
+        bodySnippet = "";
+      }
+
       return new MessageResult(conversationRecipient, messageRecipient, body, bodySnippet, threadId, messageId, receivedMs, isMms);
     }
   }
