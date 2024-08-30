@@ -264,7 +264,7 @@ class AttachmentDownloadJob private constructor(
         }
       }
 
-      val stream = if (useArchiveCdn) {
+      val downloadResult = if (useArchiveCdn) {
         archiveFile = SignalDatabase.attachments.getOrCreateArchiveTransferFile(attachmentId)
         val cdnCredentials = BackupRepository.getCdnReadCredentials(attachment.archiveCdn).successOrThrow().headers
 
@@ -289,7 +289,7 @@ class AttachmentDownloadJob private constructor(
           )
       }
 
-      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, stream)
+      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, downloadResult.dataStream, downloadResult.iv)
     } catch (e: RangeException) {
       val transferFile = archiveFile ?: attachmentFile
       Log.w(TAG, "Range exception, file size " + transferFile.length(), e)
@@ -415,7 +415,7 @@ class AttachmentDownloadJob private constructor(
           if (body.contentLength() > RemoteConfig.maxAttachmentReceiveSizeBytes) {
             throw MmsException("Attachment too large, failing download")
           }
-          SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, (body.source() as Source).buffer().inputStream())
+          SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, (body.source() as Source).buffer().inputStream(), iv = null)
         }
       }
     } catch (e: MmsException) {

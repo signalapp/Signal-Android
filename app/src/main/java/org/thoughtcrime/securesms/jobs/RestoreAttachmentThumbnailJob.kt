@@ -216,7 +216,7 @@ class RestoreAttachmentThumbnailJob private constructor(
     val pointer = createThumbnailPointer(attachment)
 
     Log.w(TAG, "Downloading thumbnail for $attachmentId")
-    val stream = messageReceiver
+    val downloadResult = messageReceiver
       .retrieveArchivedAttachment(
         SignalStore.svr.getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(attachment.getThumbnailMediaName()),
         cdnCredentials,
@@ -224,11 +224,11 @@ class RestoreAttachmentThumbnailJob private constructor(
         pointer,
         thumbnailFile,
         maxThumbnailSize,
-        true, // TODO [backup] don't ignore
+        true,
         progressListener
       )
 
-    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.archiveMediaId!!, stream, thumbnailTransferFile)
+    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.archiveMediaId!!, downloadResult.dataStream, thumbnailTransferFile)
   }
 
   private fun markFailed(messageId: Long, attachmentId: AttachmentId) {

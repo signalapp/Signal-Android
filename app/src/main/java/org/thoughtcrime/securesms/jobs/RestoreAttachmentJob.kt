@@ -240,7 +240,7 @@ class RestoreAttachmentJob private constructor(
         }
       }
 
-      val stream = if (useArchiveCdn) {
+      val downloadResult = if (useArchiveCdn) {
         archiveFile = SignalDatabase.attachments.getOrCreateArchiveTransferFile(attachmentId)
         val cdnCredentials = BackupRepository.getCdnReadCredentials(attachment.archiveCdn).successOrThrow().headers
 
@@ -265,7 +265,7 @@ class RestoreAttachmentJob private constructor(
           )
       }
 
-      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, stream)
+      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, downloadResult.dataStream, downloadResult.iv)
     } catch (e: RangeException) {
       val transferFile = archiveFile ?: attachmentFile
       Log.w(TAG, "Range exception, file size " + transferFile.length(), e)
@@ -459,7 +459,7 @@ class RestoreAttachmentJob private constructor(
     val pointer = createThumbnailPointer(attachment)
 
     Log.w(TAG, "Downloading thumbnail for $attachmentId mediaName=${attachment.getThumbnailMediaName()}")
-    val stream = messageReceiver
+    val downloadResult = messageReceiver
       .retrieveArchivedAttachment(
         SignalStore.svr.getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(attachment.getThumbnailMediaName()),
         cdnCredentials,
@@ -467,11 +467,11 @@ class RestoreAttachmentJob private constructor(
         pointer,
         thumbnailFile,
         maxThumbnailSize,
-        true, // TODO [backup] don't ignore
+        true,
         progressListener
       )
 
-    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.archiveMediaId!!, stream, thumbnailTransferFile)
+    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.archiveMediaId!!, downloadResult.dataStream, thumbnailTransferFile)
   }
 
   private fun markFailed(messageId: Long, attachmentId: AttachmentId) {
