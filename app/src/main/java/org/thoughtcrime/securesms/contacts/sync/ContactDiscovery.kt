@@ -207,7 +207,7 @@ object ContactDiscovery {
     if (!SignalStore.settings.isNotifyWhenContactJoinsSignal) return
 
     Recipient.resolvedList(newUserIds)
-      .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) && it.hasE164 }
+      .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) && it.hasE164 && !it.isBlocked }
       .map {
         Log.i(TAG, "Inserting 'contact joined' message for ${it.id}. E164: ${it.e164}")
         val message = IncomingMessage.contactJoined(it.id, System.currentTimeMillis())
