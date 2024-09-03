@@ -130,6 +130,7 @@ import java.util.Optional
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 object SyncMessageProcessor {
 
@@ -669,7 +670,7 @@ object SyncMessageProcessor {
 
   @Throws(MmsException::class)
   private fun handleSynchronizeSentExpirationUpdate(sent: Sent, sideEffect: Boolean = false): Long {
-    log(sent.timestamp!!, "Synchronize sent expiration update.")
+    log(sent.timestamp!!, "Synchronize sent expiration update. sideEffect: $sideEffect")
 
     val groupId: GroupId? = getSyncMessageDestination(sent).groupId.orNull()
 
@@ -694,8 +695,12 @@ object SyncMessageProcessor {
       SignalDatabase.messages.markAsSent(messageId, true)
     } else if (sent.message!!.expireTimerVersion!! >= recipient.expireTimerVersion) {
       SignalDatabase.recipients.setExpireMessages(recipient.id, sent.message!!.expireTimerDuration.inWholeSeconds.toInt(), sent.message!!.expireTimerVersion!!)
-      val messageId: Long = SignalDatabase.messages.insertMessageOutbox(expirationUpdateMessage, threadId, false, null)
-      SignalDatabase.messages.markAsSent(messageId, true)
+
+      if (sent.message!!.expireTimerDuration != recipient.expiresInSeconds.seconds) {
+        log(sent.timestamp!!, "Not inserted update message as timer value did not change")
+        val messageId: Long = SignalDatabase.messages.insertMessageOutbox(expirationUpdateMessage, threadId, false, null)
+        SignalDatabase.messages.markAsSent(messageId, true)
+      }
     } else {
       warn(sent.timestamp!!, "[SynchronizeExpiration] Ignoring expire timer update with old version. Received: ${sent.message!!.expireTimerVersion}, Current: ${recipient.expireTimerVersion}")
     }

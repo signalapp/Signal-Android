@@ -343,7 +343,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       TextUtils.concat(
         colorize("DeleteSync", capabilities.deleteSync),
         ", ",
-        colorize("Expire Timer Version", capabilities.versionedExpirationTimer)
+        colorize("VersionedExpirationTimer", capabilities.versionedExpirationTimer)
       )
     } else {
       "Recipient not found!"
