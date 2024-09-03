@@ -281,7 +281,7 @@ public final class ConversationUtil {
     return new Person.Builder()
                      .setKey(getShortcutId(recipient.getId()))
                      .setName(recipient.getDisplayName(context))
-                     .setUri(recipient.isSystemContact() ? recipient.getContactUri().toString() : null)
+                     .setUri(recipient.isSystemContact() && Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS) ? recipient.getContactUri().toString() : null)
                      .build();
   }
 
