@@ -145,7 +145,9 @@ public class StorageUtil {
   }
 
   public static boolean canOnlyReadSelectedMediaStore() {
-    return Build.VERSION.SDK_INT >= 34 && Permissions.hasAll(AppDependencies.getApplication(), Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED);
+    return Build.VERSION.SDK_INT >= 34 &&
+           Permissions.hasAll(AppDependencies.getApplication(), Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) &&
+           !Permissions.hasAny(AppDependencies.getApplication(), Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO);
   }
 
   public static boolean canReadAllFromMediaStore() {

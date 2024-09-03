@@ -118,13 +118,7 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
   }
 
   public void onMediaChanged(@NonNull List<Media> media) {
-    if (StorageUtil.canReadAllFromMediaStore()) {
-      mediaList.setVisibility(VISIBLE);
-      mediaAdapter.setMedia(media, false);
-      permissionButton.setVisibility(GONE);
-      permissionText.setVisibility(GONE);
-      manageButton.setVisibility(GONE);
-    } else if (StorageUtil.canOnlyReadSelectedMediaStore() && media.isEmpty()) {
+    if (StorageUtil.canOnlyReadSelectedMediaStore() && media.isEmpty()) {
       mediaList.setVisibility(GONE);
       manageButton.setVisibility(GONE);
       permissionText.setVisibility(VISIBLE);
@@ -142,6 +136,12 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
       manageButton.setVisibility(VISIBLE);
       permissionText.setVisibility(GONE);
       permissionButton.setVisibility(GONE);
+    } else if (StorageUtil.canReadAnyFromMediaStore()) {
+      mediaList.setVisibility(VISIBLE);
+      mediaAdapter.setMedia(media, false);
+      permissionButton.setVisibility(GONE);
+      permissionText.setVisibility(GONE);
+      manageButton.setVisibility(GONE);
     } else {
       mediaList.setVisibility(GONE);
       manageButton.setVisibility(GONE);
