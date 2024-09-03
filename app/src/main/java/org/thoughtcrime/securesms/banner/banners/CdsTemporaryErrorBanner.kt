@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.banner.banners
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.FragmentManager
@@ -23,7 +24,7 @@ class CdsTemporaryErrorBanner(private val fragmentManager: FragmentManager) : Ba
   override val enabled: Boolean = SignalStore.misc.isCdsBlocked && timeUntilUnblock < CdsPermanentErrorBanner.PERMANENT_TIME_CUTOFF
 
   @Composable
-  override fun DisplayBanner() {
+  override fun DisplayBanner(contentPadding: PaddingValues) {
     DefaultBanner(
       title = null,
       body = stringResource(id = R.string.reminder_cds_warning_body),
@@ -32,7 +33,8 @@ class CdsTemporaryErrorBanner(private val fragmentManager: FragmentManager) : Ba
         Action(R.string.reminder_cds_warning_learn_more) {
           CdsTemporaryErrorBottomSheet.show(fragmentManager)
         }
-      )
+      ),
+      paddingValues = contentPadding
     )
   }
 

@@ -11,6 +11,7 @@ import androidx.documentfile.provider.DocumentFile
 import androidx.documentfile.provider.isTreeDocumentFile
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
@@ -29,7 +30,7 @@ object DocumentFileUtil {
   private const val FILE_SELECTION = "${DocumentsContract.Document.COLUMN_DISPLAY_NAME} = ?"
 
   private const val LIST_FILES_SELECTION = "${DocumentsContract.Document.COLUMN_MIME_TYPE} != ?"
-  private val LIST_FILES_SELECTION_ARS = arrayOf(DocumentsContract.Document.MIME_TYPE_DIR)
+  private val LIST_FILES_SELECTION_ARGS = arrayOf(DocumentsContract.Document.MIME_TYPE_DIR)
 
   private const val MAX_STORAGE_ATTEMPTS: Int = 5
   private val WAIT_FOR_SCOPED_STORAGE: LongArray = longArrayOf(0, 2.seconds.inWholeMilliseconds, 10.seconds.inWholeMilliseconds, 20.seconds.inWholeMilliseconds, 30.seconds.inWholeMilliseconds)
@@ -83,36 +84,34 @@ object DocumentFileUtil {
    * If direct queries fail to find the file, will fallback to using [DocumentFile.findFile].
    */
   fun DocumentFile.findFile(context: Context, fileName: String): DocumentFileInfo? {
-    val child = if (isTreeDocumentFile()) {
+    val child: List<DocumentFileInfo> = if (isTreeDocumentFile()) {
       val childrenUri = DocumentsContract.buildChildDocumentsUriUsingTree(uri, DocumentsContract.getDocumentId(uri))
 
       try {
         context
           .contentResolver
           .query(childrenUri, FILE_PROJECTION, FILE_SELECTION, arrayOf(fileName), null)
-          ?.use { cursor ->
-            if (cursor.count == 1) {
-              cursor.moveToFirst()
-              val uri = DocumentsContract.buildDocumentUriUsingTree(uri, cursor.requireString(DocumentsContract.Document.COLUMN_DOCUMENT_ID))
-              val displayName = cursor.requireNonNullString(DocumentsContract.Document.COLUMN_DISPLAY_NAME)
-              val length = cursor.requireLong(DocumentsContract.Document.COLUMN_SIZE)
+          ?.readToList(predicate = { it.name == fileName }) { cursor ->
+            val uri = DocumentsContract.buildDocumentUriUsingTree(uri, cursor.requireString(DocumentsContract.Document.COLUMN_DOCUMENT_ID))
+            val displayName = cursor.requireNonNullString(DocumentsContract.Document.COLUMN_DISPLAY_NAME)
+            val length = cursor.requireLong(DocumentsContract.Document.COLUMN_SIZE)
 
-              DocumentFileInfo(DocumentFile.fromSingleUri(context, uri)!!, displayName, length)
-            } else {
-              val message = if (cursor.count > 1) "Multiple files" else "No files"
-              Log.w(TAG, "$message returned with same name")
-              null
-            }
-          }
+            DocumentFileInfo(DocumentFile.fromSingleUri(context, uri)!!, displayName, length)
+          } ?: emptyList()
       } catch (e: Exception) {
         Log.d(TAG, "Unable to find file directly on ${javaClass.simpleName}, falling back to OS", e)
-        null
+        emptyList()
       }
     } else {
-      null
+      emptyList()
     }
 
-    return child ?: this.findFile(fileName)?.let { DocumentFileInfo(it, it.name!!, it.length()) }
+    return if (child.size == 1) {
+      child[0]
+    } else {
+      Log.w(TAG, "Did not find single file, found (${child.size}), falling back to OS")
+      this.findFile(fileName)?.let { DocumentFileInfo(it, it.name!!, it.length()) }
+    }
   }
 
   /**
@@ -128,7 +127,7 @@ object DocumentFileUtil {
       try {
         val results = context
           .contentResolver
-          .query(childrenUri, FILE_PROJECTION, LIST_FILES_SELECTION, LIST_FILES_SELECTION_ARS, null)
+          .query(childrenUri, FILE_PROJECTION, LIST_FILES_SELECTION, LIST_FILES_SELECTION_ARGS, null)
           ?.use { cursor ->
             val results = ArrayList<DocumentFileInfo>(cursor.count)
             while (cursor.moveToNext()) {

@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.jobmanager.JobLogger.format
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forConversation
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -232,11 +231,7 @@ class RestoreAttachmentThumbnailJob private constructor(
   }
 
   private fun markFailed(messageId: Long, attachmentId: AttachmentId) {
-    try {
-      SignalDatabase.attachments.setThumbnailRestoreProgressFailed(attachmentId, messageId)
-    } catch (e: MmsException) {
-      Log.w(TAG, e)
-    }
+    SignalDatabase.attachments.setThumbnailRestoreProgressFailed(attachmentId, messageId)
   }
 
   @VisibleForTesting

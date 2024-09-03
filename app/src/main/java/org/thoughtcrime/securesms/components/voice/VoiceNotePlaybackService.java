@@ -89,7 +89,7 @@ public class VoiceNotePlaybackService extends MediaSessionService {
 
     setMediaNotificationProvider(new VoiceNoteMediaNotificationProvider(this));
     setListener(new MediaSessionServiceListener());
-    AppDependencies.getDatabaseObserver().registerAttachmentObserver(attachmentDeletionObserver);
+    AppDependencies.getDatabaseObserver().registerAttachmentDeletedObserver(attachmentDeletionObserver);
   }
 
   @Override

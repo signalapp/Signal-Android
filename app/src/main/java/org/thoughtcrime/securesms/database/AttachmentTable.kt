@@ -53,6 +53,7 @@ import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
+import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
@@ -495,7 +496,7 @@ class AttachmentTable(
     return readableDatabase
       .select(*PROJECTION)
       .from(TABLE_NAME)
-      .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE.toString())
+      .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE)
       .limit(batchSize)
       .orderBy("$ID DESC")
       .run()
@@ -508,7 +509,7 @@ class AttachmentTable(
     return readableDatabase
       .select(*PROJECTION)
       .from(TABLE_NAME)
-      .where("$REMOTE_KEY IS NOT NULL AND $REMOTE_DIGEST IS NOT NULL AND $TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE.toString())
+      .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE)
       .limit(batchSize)
       .orderBy("$ID DESC")
       .run()
@@ -517,17 +518,17 @@ class AttachmentTable(
           attachmentId = AttachmentId(it.requireLong(ID)),
           mmsId = it.requireLong(MESSAGE_ID),
           size = it.requireLong(DATA_SIZE),
-          remoteDigest = it.requireBlob(REMOTE_DIGEST)!!,
-          remoteKey = it.requireBlob(REMOTE_KEY)!!
+          remoteDigest = it.requireBlob(REMOTE_DIGEST),
+          remoteKey = it.requireBlob(REMOTE_KEY)
         )
       }
   }
 
-  fun getTotalRestorableAttachmentSize(): Long {
+  fun getRemainingRestorableAttachmentSize(): Long {
     return readableDatabase
       .select("SUM($DATA_SIZE)")
       .from(TABLE_NAME)
-      .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE.toString())
+      .where("$TRANSFER_STATE = ? OR $TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE, TRANSFER_RESTORE_IN_PROGRESS)
       .run()
       .readToSingleLong()
   }
@@ -628,7 +629,7 @@ class AttachmentTable(
         .where("$MESSAGE_ID = ?", mmsId)
         .run()
 
-      notifyAttachmentListeners()
+      AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
 
       deleteCount > 0
     }
@@ -692,7 +693,7 @@ class AttachmentTable(
         .where("$MESSAGE_ID = ?", messageId)
         .run()
 
-      notifyAttachmentListeners()
+      AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
 
       val threadId = messages.getThreadIdForMessage(messageId)
       if (threadId > 0) {
@@ -729,7 +730,7 @@ class AttachmentTable(
             .run()
 
           deleteDataFileIfPossible(data, contentType, id)
-          notifyAttachmentListeners()
+          AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
         }
     }
   }
@@ -849,7 +850,7 @@ class AttachmentTable(
 
     FileUtils.deleteDirectoryContents(context.getDir(DIRECTORY, Context.MODE_PRIVATE))
 
-    notifyAttachmentListeners()
+    AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
   }
 
   fun setTransferState(messageId: Long, attachmentId: AttachmentId, transferState: Int) {
@@ -874,7 +875,6 @@ class AttachmentTable(
     notifyConversationListeners(threadId)
   }
 
-  @Throws(MmsException::class)
   fun setTransferProgressFailed(attachmentId: AttachmentId, mmsId: Long) {
     writableDatabase
       .update(TABLE_NAME)
@@ -885,7 +885,6 @@ class AttachmentTable(
     notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
   }
 
-  @Throws(MmsException::class)
   fun setThumbnailRestoreProgressFailed(attachmentId: AttachmentId, mmsId: Long) {
     writableDatabase
       .update(TABLE_NAME)
@@ -896,7 +895,6 @@ class AttachmentTable(
     notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
   }
 
-  @Throws(MmsException::class)
   fun setTransferProgressPermanentFailure(attachmentId: AttachmentId, mmsId: Long) {
     writableDatabase
       .update(TABLE_NAME)
@@ -905,6 +903,57 @@ class AttachmentTable(
       .run()
 
     notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
+  }
+
+  fun setRestoreInProgressTransferState(restorableAttachments: List<LocalRestorableAttachment>) {
+    setRestoreTransferState(
+      restorableAttachments = restorableAttachments,
+      prefix = "$TRANSFER_STATE = $TRANSFER_NEEDS_RESTORE",
+      state = TRANSFER_RESTORE_IN_PROGRESS
+    )
+  }
+
+  fun setRestoreFailedTransferState(notRestorableAttachments: List<LocalRestorableAttachment>) {
+    setRestoreTransferState(
+      restorableAttachments = notRestorableAttachments,
+      prefix = "$TRANSFER_STATE != $TRANSFER_PROGRESS_PERMANENT_FAILURE",
+      state = TRANSFER_PROGRESS_FAILED
+    )
+  }
+
+  private fun setRestoreTransferState(restorableAttachments: List<LocalRestorableAttachment>, prefix: String, state: Int) {
+    writableDatabase.withinTransaction {
+      val setQueries = SqlUtil.buildCollectionQuery(
+        column = ID,
+        values = restorableAttachments.map { it.attachmentId.id },
+        prefix = "$prefix AND"
+      )
+
+      setQueries.forEach { query ->
+        writableDatabase
+          .update(TABLE_NAME)
+          .values(TRANSFER_STATE to state)
+          .where(query.where, query.whereArgs)
+          .run()
+      }
+
+      val threadQueries = SqlUtil.buildCollectionQuery(
+        column = MessageTable.ID,
+        values = restorableAttachments.map { it.mmsId }
+      )
+
+      val threads = mutableSetOf<Long>()
+      threadQueries.forEach { query ->
+        threads += readableDatabase
+          .select("DISTINCT ${MessageTable.THREAD_ID}")
+          .from(MessageTable.TABLE_NAME)
+          .where(query.where, query.whereArgs)
+          .run()
+          .readToList { it.requireLongOrNull(MessageTable.THREAD_ID) ?: -1 }
+      }
+
+      notifyConversationListeners(threads)
+    }
   }
 
   /**
@@ -982,7 +1031,7 @@ class AttachmentTable(
 
     notifyConversationListeners(threadId)
     notifyConversationListListeners()
-    notifyAttachmentListeners()
+    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
 
     if (foundDuplicate) {
       if (!fileWriteResult.file.delete()) {
@@ -1020,7 +1069,7 @@ class AttachmentTable(
     }
 
     notifyConversationListListeners()
-    notifyAttachmentListeners()
+    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
 
     if (!transferFile.delete()) {
       Log.w(TAG, "Unable to delete transfer file.")
@@ -1904,7 +1953,7 @@ class AttachmentTable(
       AttachmentId(rowId)
     }
 
-    notifyAttachmentListeners()
+    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
     return attachmentId
   }
 
@@ -1961,7 +2010,7 @@ class AttachmentTable(
       AttachmentId(rowId)
     }
 
-    notifyAttachmentListeners()
+    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
     return attachmentId
   }
 
@@ -2101,7 +2150,7 @@ class AttachmentTable(
       }
     }
 
-    notifyAttachmentListeners()
+    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
     return attachmentId
   }
 
@@ -2460,7 +2509,7 @@ class AttachmentTable(
     val attachmentId: AttachmentId,
     val mmsId: Long,
     val size: Long,
-    val remoteDigest: ByteArray,
-    val remoteKey: ByteArray
+    val remoteDigest: ByteArray?,
+    val remoteKey: ByteArray?
   )
 }

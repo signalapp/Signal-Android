@@ -76,7 +76,7 @@ public class MediaUtil {
   public static final String UNKNOWN           = "*/*";
   public static final String OCTET             = "application/octet-stream";
 
-  public static SlideType getSlideTypeFromContentType(@Nullable String contentType) {
+  public static @NonNull SlideType getSlideTypeFromContentType(@Nullable String contentType) {
     if (isGif(contentType)) {
       return SlideType.GIF;
     } else if (isImageType(contentType)) {

@@ -175,11 +175,7 @@ public final class AttachmentCompressionJob extends BaseJob {
       return;
     }
 
-    try {
-      database.setTransferProgressFailed(attachmentId, databaseAttachment.mmsId);
-    } catch (MmsException e) {
-      Log.w(TAG, "Error marking attachment as failed upon failed compression.", e);
-    }
+    database.setTransferProgressFailed(attachmentId, databaseAttachment.mmsId);
   }
 
   @Override

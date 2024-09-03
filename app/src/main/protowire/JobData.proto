@@ -118,3 +118,10 @@ message GroupCallPeekJobData {
   uint64 senderRecipientId = 2;
   uint64 serverTimestamp   = 3;
 }
+
+message RestoreLocalAttachmentJobData {
+  uint64 attachmentId = 1;
+  uint64 messageId = 2;
+  string fileUri = 3;
+  uint64 fileSize = 4;
+}

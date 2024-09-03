@@ -6,7 +6,7 @@ import android.database.Cursor
 import androidx.compose.runtime.Immutable
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
-import org.signal.core.util.requireNonNullString
+import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -159,6 +159,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
           )
         )"""
     )
+
     private fun applyEqualityOperator(threadId: Long, query: String): String {
       return query.replace("__EQUALITY__", if (threadId == ALL_THREADS.toLong()) "!=" else "=")
     }
@@ -207,7 +208,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     readableDatabase.rawQuery(UNIQUE_MEDIA_QUERY, null).use { cursor ->
       while (cursor.moveToNext()) {
         val size: Int = cursor.requireInt(AttachmentTable.DATA_SIZE)
-        val type: String = cursor.requireNonNullString(AttachmentTable.CONTENT_TYPE)
+        val type: String? = cursor.requireString(AttachmentTable.CONTENT_TYPE)
 
         when (MediaUtil.getSlideTypeFromContentType(type)) {
           SlideType.GIF,
@@ -215,17 +216,21 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
           SlideType.MMS -> {
             photoSize += size.toLong()
           }
+
           SlideType.VIDEO -> {
             videoSize += size.toLong()
           }
+
           SlideType.AUDIO -> {
             audioSize += size.toLong()
           }
+
           SlideType.LONG_TEXT,
           SlideType.DOCUMENT -> {
             documentSize += size.toLong()
           }
-          else -> {}
+
+          SlideType.VIEW_ONCE -> Unit
         }
       }
     }

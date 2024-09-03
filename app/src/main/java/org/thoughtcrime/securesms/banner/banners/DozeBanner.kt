@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.banner.banners
 
 import android.content.Context
 import android.os.Build
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.flow.Flow
@@ -25,23 +26,24 @@ class DozeBanner(private val context: Context, val dismissed: Boolean, private v
     Build.VERSION.SDK_INT >= 23 && !SignalStore.account.fcmEnabled && !TextSecurePreferences.hasPromptedOptimizeDoze(context) && !ServiceUtil.getPowerManager(context).isIgnoringBatteryOptimizations(context.packageName)
 
   @Composable
-  override fun DisplayBanner() {
+  override fun DisplayBanner(contentPadding: PaddingValues) {
     if (Build.VERSION.SDK_INT < 23) {
       throw IllegalStateException("Showing a Doze banner for an OS prior to Android 6.0")
     }
     DefaultBanner(
       title = stringResource(id = R.string.DozeReminder_optimize_for_missing_play_services),
       body = stringResource(id = R.string.DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery),
+      onDismissListener = {
+        TextSecurePreferences.setPromptedOptimizeDoze(context, true)
+        onDismiss()
+      },
       actions = listOf(
         Action(android.R.string.ok) {
           TextSecurePreferences.setPromptedOptimizeDoze(context, true)
           PowerManagerCompat.requestIgnoreBatteryOptimizations(context)
         }
       ),
-      onDismissListener = {
-        TextSecurePreferences.setPromptedOptimizeDoze(context, true)
-        onDismiss()
-      }
+      paddingValues = contentPadding
     )
   }
 

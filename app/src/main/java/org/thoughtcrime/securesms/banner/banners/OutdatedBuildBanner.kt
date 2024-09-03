@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.banner.banners
 
 import android.content.Context
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -34,7 +35,7 @@ class OutdatedBuildBanner(val context: Context, private val daysUntilExpiry: Int
   }
 
   @Composable
-  override fun DisplayBanner() {
+  override fun DisplayBanner(contentPadding: PaddingValues) {
     val bodyText = when (status) {
       ExpiryStatus.OUTDATED_ONLY -> if (daysUntilExpiry == 0) {
         stringResource(id = R.string.OutdatedBuildReminder_your_version_of_signal_will_expire_today)
@@ -63,7 +64,8 @@ class OutdatedBuildBanner(val context: Context, private val daysUntilExpiry: Int
         Action(R.string.ExpiredBuildReminder_update_now) {
           PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(context)
         }
-      )
+      ),
+      paddingValues = contentPadding
     )
   }
 

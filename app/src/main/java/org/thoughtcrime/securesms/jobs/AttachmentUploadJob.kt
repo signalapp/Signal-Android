@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.protos.AttachmentUploadJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.AttachmentProgressService
@@ -235,11 +234,7 @@ class AttachmentUploadJob private constructor(
       return
     }
 
-    try {
-      database.setTransferProgressFailed(attachmentId, databaseAttachment.mmsId)
-    } catch (e: MmsException) {
-      Log.w(TAG, "Error marking attachment as failed upon failed/canceled upload.", e)
-    }
+    database.setTransferProgressFailed(attachmentId, databaseAttachment.mmsId)
   }
 
   override fun onShouldRetry(exception: Exception): Boolean {

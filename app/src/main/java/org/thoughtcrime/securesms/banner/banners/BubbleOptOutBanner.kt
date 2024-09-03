@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.banner.banners
 
 import android.os.Build
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +22,7 @@ class BubbleOptOutBanner(inBubble: Boolean, private val actionListener: (Boolean
   override val enabled: Boolean = inBubble && !SignalStore.tooltips.hasSeenBubbleOptOutTooltip() && Build.VERSION.SDK_INT > 29
 
   @Composable
-  override fun DisplayBanner() {
+  override fun DisplayBanner(contentPadding: PaddingValues) {
     DefaultBanner(
       title = null,
       body = stringResource(id = R.string.BubbleOptOutTooltip__description),
@@ -32,7 +33,8 @@ class BubbleOptOutBanner(inBubble: Boolean, private val actionListener: (Boolean
         Action(R.string.BubbleOptOutTooltip__not_now) {
           actionListener(false)
         }
-      )
+      ),
+      paddingValues = contentPadding
     )
   }
 

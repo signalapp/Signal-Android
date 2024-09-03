@@ -2115,7 +2115,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     AppDependencies.databaseObserver.notifyConversationListListeners()
 
     if (deletedAttachments) {
-      AppDependencies.databaseObserver.notifyAttachmentObservers()
+      AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
     }
   }
 

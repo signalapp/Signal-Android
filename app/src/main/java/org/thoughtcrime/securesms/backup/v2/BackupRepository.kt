@@ -365,8 +365,7 @@ object BackupRepository {
   private fun import(
     backupKey: BackupKey,
     frameReader: BackupImportReader,
-    selfData: SelfData,
-    importExtras: ((EventTimer) -> Unit)? = null
+    selfData: SelfData
   ): ImportResult {
     val eventTimer = EventTimer()
 
@@ -444,23 +443,27 @@ object BackupRepository {
         eventTimer.emit("chatItem")
       }
 
-      importExtras?.invoke(eventTimer)
-
       importState.chatIdToLocalThreadId.values.forEach {
         SignalDatabase.threads.update(it, unarchive = false, allowDeletion = false)
       }
     }
 
-    SignalDatabase.groups.getGroups().use { groups ->
-      while (groups.hasNext()) {
-        val group = groups.next()
-        if (group.id.isV2) {
-          AppDependencies.jobManager.add(RequestGroupV2InfoJob(group.id as GroupId.V2))
-        }
-      }
-    }
-
     Log.d(TAG, "import() ${eventTimer.stop().summary}")
+
+    val groupJobs = SignalDatabase.groups.getGroups().use { groups ->
+      groups
+        .asSequence()
+        .mapNotNull { group ->
+          if (group.id.isV2) {
+            RequestGroupV2InfoJob(group.id as GroupId.V2)
+          } else {
+            null
+          }
+        }
+        .toList()
+    }
+    AppDependencies.jobManager.addAll(groupJobs)
+
     return ImportResult.Success(backupTime = header.backupTimeMs)
   }
 

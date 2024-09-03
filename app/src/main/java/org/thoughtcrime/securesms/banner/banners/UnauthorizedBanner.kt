@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.banner.banners
 
 import android.content.Context
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.flow.Flow
@@ -29,7 +30,7 @@ class UnauthorizedBanner(val context: Context) : Banner() {
   override val enabled = TextSecurePreferences.isUnauthorizedReceived(context) || !SignalStore.account.isRegistered
 
   @Composable
-  override fun DisplayBanner() {
+  override fun DisplayBanner(contentPadding: PaddingValues) {
     DefaultBanner(
       title = null,
       body = stringResource(id = R.string.UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device),
@@ -39,7 +40,8 @@ class UnauthorizedBanner(val context: Context) : Banner() {
           val registrationIntent = RegistrationActivity.newIntentForReRegistration(context)
           context.startActivity(registrationIntent)
         }
-      )
+      ),
+      paddingValues = contentPadding
     )
   }
 

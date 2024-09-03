@@ -361,7 +361,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       MultiDeviceDeleteSyncJob.enqueueThreadDeletes(threadTrimsToSync, isFullDelete = false)
     }
 
-    notifyAttachmentListeners()
+    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
     notifyStickerPackListeners()
     OptimizeMessageSearchIndexJob.enqueue()
   }
@@ -395,7 +395,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       MultiDeviceDeleteSyncJob.enqueueThreadDeletes(listOf(threadTrimToSync!!), isFullDelete = false)
     }
 
-    notifyAttachmentListeners()
+    AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
     notifyStickerPackListeners()
     OptimizeMessageSearchIndexJob.enqueue()
   }

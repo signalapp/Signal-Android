@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.banner
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -44,5 +45,5 @@ abstract class Banner {
    * @see [org.thoughtcrime.securesms.banner.ui.compose.DefaultBanner]
    */
   @Composable
-  abstract fun DisplayBanner()
+  abstract fun DisplayBanner(contentPadding: PaddingValues)
 }

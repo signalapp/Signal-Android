@@ -6,11 +6,14 @@
 package org.thoughtcrime.securesms.banner
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.logging.Log
 
 /**
@@ -47,8 +50,10 @@ class BannerManager @JvmOverloads constructor(
 
         val bannerToDisplay = state.value.firstOrNull()
         if (bannerToDisplay != null) {
-          Box {
-            bannerToDisplay.DisplayBanner()
+          SignalTheme {
+            Box {
+              bannerToDisplay.DisplayBanner(PaddingValues(horizontal = 12.dp, vertical = 8.dp))
+            }
           }
 
           onNewBannerShownListener()

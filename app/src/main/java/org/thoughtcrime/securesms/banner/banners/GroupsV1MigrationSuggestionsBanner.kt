@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.banner.banners
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.pluralStringResource
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +19,7 @@ class GroupsV1MigrationSuggestionsBanner(private val suggestionsSize: Int, priva
   override val enabled: Boolean = suggestionsSize > 0
 
   @Composable
-  override fun DisplayBanner() {
+  override fun DisplayBanner(contentPadding: PaddingValues) {
     DefaultBanner(
       title = null,
       body = pluralStringResource(
@@ -29,7 +30,8 @@ class GroupsV1MigrationSuggestionsBanner(private val suggestionsSize: Int, priva
       actions = listOf(
         Action(R.plurals.GroupsV1MigrationSuggestionsReminder_add_members, isPluralizedLabel = true, pluralQuantity = suggestionsSize, onAddMembers),
         Action(R.string.GroupsV1MigrationSuggestionsReminder_no_thanks, onClick = onNoThanks)
-      )
+      ),
+      paddingValues = contentPadding
     )
   }
 

@@ -255,7 +255,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @Override
   public @NonNull DatabaseObserver provideDatabaseObserver() {
-    return new DatabaseObserver(context);
+    return new DatabaseObserver();
   }
 
   @SuppressWarnings("ConstantConditions")

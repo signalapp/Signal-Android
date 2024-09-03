@@ -71,7 +71,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
 
     PopulatedGroupedThreadMedia mediaGrouping = new PopulatedGroupedThreadMedia(groupingMethod);
 
-    AppDependencies.getDatabaseObserver().registerAttachmentObserver(observer);
+    AppDependencies.getDatabaseObserver().registerAttachmentUpdatedObserver(observer);
 
     try (Cursor cursor = ThreadMediaLoader.createThreadMediaCursor(context, threadId, mediaType, sorting)) {
       while (cursor != null && cursor.moveToNext()) {

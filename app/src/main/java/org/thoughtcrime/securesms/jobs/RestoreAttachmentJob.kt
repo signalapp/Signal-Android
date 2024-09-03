@@ -58,7 +58,7 @@ class RestoreAttachmentJob private constructor(
 
   companion object {
     const val KEY = "RestoreAttachmentJob"
-    val TAG = Log.tag(AttachmentDownloadJob::class.java)
+    val TAG = Log.tag(RestoreAttachmentJob::class.java)
 
     private const val KEY_MESSAGE_ID = "message_id"
     private const val KEY_ATTACHMENT_ID = "part_row_id"
@@ -153,7 +153,7 @@ class RestoreAttachmentJob private constructor(
       AppDependencies.messageNotifier.updateNotification(context, forConversation(0))
     }
 
-    if (SignalDatabase.attachments.getTotalRestorableAttachmentSize() == 0L) {
+    if (SignalDatabase.attachments.getRemainingRestorableAttachmentSize() == 0L) {
       SignalStore.backup.totalRestorableAttachmentSize = 0L
     }
   }
@@ -483,11 +483,7 @@ class RestoreAttachmentJob private constructor(
   }
 
   private fun markPermanentlyFailed(messageId: Long, attachmentId: AttachmentId) {
-    try {
-      SignalDatabase.attachments.setTransferProgressPermanentFailure(attachmentId, messageId)
-    } catch (e: MmsException) {
-      Log.w(TAG, e)
-    }
+    SignalDatabase.attachments.setTransferProgressPermanentFailure(attachmentId, messageId)
   }
 
   @VisibleForTesting

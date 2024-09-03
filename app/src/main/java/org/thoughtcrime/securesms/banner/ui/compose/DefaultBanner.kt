@@ -10,6 +10,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,7 +33,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
-import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.R
 
@@ -50,115 +50,116 @@ fun DefaultBanner(
   actions: List<Action> = emptyList(),
   showProgress: Boolean = false,
   progressText: String = "",
-  progressPercent: Int = -1
+  progressPercent: Int = -1,
+  paddingValues: PaddingValues
 ) {
-  SignalTheme {
-    Box(
+  Box(
+    modifier = Modifier
+      .padding(paddingValues)
+      .background(
+        color = when (importance) {
+          Importance.NORMAL -> MaterialTheme.colorScheme.surface
+          Importance.ERROR -> colorResource(id = R.color.reminder_background)
+        }
+      )
+      .border(
+        width = 1.dp,
+        color = colorResource(id = R.color.signal_colorOutline_38),
+        shape = RoundedCornerShape(12.dp)
+      )
+  ) {
+    Row(
+      verticalAlignment = Alignment.CenterVertically,
       modifier = Modifier
-        .padding(horizontal = 12.dp, vertical = 8.dp)
-        .background(
-          color = when (importance) {
-            Importance.NORMAL -> MaterialTheme.colorScheme.surface
-            Importance.ERROR -> colorResource(id = R.color.reminder_background)
-          }
-        )
-        .border(
-          width = 1.dp,
-          color = colorResource(id = R.color.signal_colorOutline_38),
-          shape = RoundedCornerShape(12.dp)
-        )
+        .defaultMinSize(minHeight = 74.dp)
     ) {
-      Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-          .defaultMinSize(minHeight = 74.dp)
-      ) {
-        Column {
-          Row(modifier = Modifier.fillMaxWidth()) {
-            Column(
-              modifier = Modifier
-                .weight(1f)
-                .padding(start = 16.dp, top = 16.dp)
-            ) {
-              if (title.isNotNullOrBlank()) {
-                Text(
-                  text = title,
-                  color = when (importance) {
-                    Importance.NORMAL -> MaterialTheme.colorScheme.onSurface
-                    Importance.ERROR -> colorResource(id = R.color.signal_light_colorOnSurface)
-                  },
-                  style = MaterialTheme.typography.bodyLarge
+      Column {
+        Row(modifier = Modifier.fillMaxWidth()) {
+          Column(
+            modifier = Modifier
+              .weight(1f)
+              .padding(start = 16.dp, top = 16.dp)
+          ) {
+            if (title.isNotNullOrBlank()) {
+              Text(
+                text = title,
+                color = when (importance) {
+                  Importance.NORMAL -> MaterialTheme.colorScheme.onSurface
+                  Importance.ERROR -> colorResource(id = R.color.signal_light_colorOnSurface)
+                },
+                style = MaterialTheme.typography.bodyLarge
+              )
+            }
+
+            Text(
+              text = body,
+              color = when (importance) {
+                Importance.NORMAL -> MaterialTheme.colorScheme.onSurfaceVariant
+                Importance.ERROR -> colorResource(id = R.color.signal_light_colorOnSurface)
+              },
+              style = MaterialTheme.typography.bodyMedium
+            )
+
+            if (showProgress) {
+              if (progressPercent >= 0) {
+                LinearProgressIndicator(
+                  progress = { progressPercent / 100f },
+                  color = MaterialTheme.colorScheme.primary,
+                  trackColor = MaterialTheme.colorScheme.primaryContainer,
+                  modifier = Modifier
+                    .padding(vertical = 12.dp)
+                    .fillMaxWidth()
+                )
+              } else {
+                LinearProgressIndicator(
+                  color = MaterialTheme.colorScheme.primary,
+                  trackColor = MaterialTheme.colorScheme.primaryContainer,
+                  modifier = Modifier.padding(vertical = 12.dp)
                 )
               }
-
               Text(
-                text = body,
+                text = progressText,
+                style = MaterialTheme.typography.bodySmall,
                 color = when (importance) {
                   Importance.NORMAL -> MaterialTheme.colorScheme.onSurfaceVariant
                   Importance.ERROR -> colorResource(id = R.color.signal_light_colorOnSurface)
-                },
-                style = MaterialTheme.typography.bodyMedium
+                }
               )
-
-              if (showProgress) {
-                if (progressPercent >= 0) {
-                  LinearProgressIndicator(
-                    progress = { progressPercent / 100f },
-                    color = MaterialTheme.colorScheme.primary,
-                    trackColor = MaterialTheme.colorScheme.primaryContainer,
-                    modifier = Modifier.padding(vertical = 12.dp)
-                  )
-                } else {
-                  LinearProgressIndicator(
-                    color = MaterialTheme.colorScheme.primary,
-                    trackColor = MaterialTheme.colorScheme.primaryContainer,
-                    modifier = Modifier.padding(vertical = 12.dp)
-                  )
-                }
-                Text(
-                  text = progressText,
-                  style = MaterialTheme.typography.bodySmall,
-                  color = when (importance) {
-                    Importance.NORMAL -> MaterialTheme.colorScheme.onSurfaceVariant
-                    Importance.ERROR -> colorResource(id = R.color.signal_light_colorOnSurface)
-                  }
-                )
-              }
             }
+          }
 
-            Box(modifier = Modifier.size(48.dp)) {
-              if (onDismissListener != null) {
-                IconButton(
-                  onClick = {
-                    onHideListener?.invoke()
-                    onDismissListener()
-                  },
-                  modifier = Modifier.size(48.dp)
-                ) {
-                  Icon(
-                    painter = painterResource(id = R.drawable.symbol_x_24),
-                    contentDescription = stringResource(id = R.string.InviteActivity_cancel)
-                  )
-                }
+          Box(modifier = Modifier.size(48.dp)) {
+            if (onDismissListener != null) {
+              IconButton(
+                onClick = {
+                  onHideListener?.invoke()
+                  onDismissListener()
+                },
+                modifier = Modifier.size(48.dp)
+              ) {
+                Icon(
+                  painter = painterResource(id = R.drawable.symbol_x_24),
+                  contentDescription = stringResource(id = R.string.InviteActivity_cancel)
+                )
               }
             }
           }
-          Row(
-            horizontalArrangement = Arrangement.End,
-            modifier = Modifier
-              .fillMaxWidth()
-              .padding(end = 8.dp)
-          ) {
-            for (action in actions) {
-              TextButton(onClick = action.onClick) {
-                Text(
-                  text = if (!action.isPluralizedLabel) {
-                    stringResource(id = action.label)
-                  } else {
-                    pluralStringResource(id = action.label, count = action.pluralQuantity)
-                  }
-                )
-              }
+        }
+        Row(
+          horizontalArrangement = Arrangement.End,
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(end = 8.dp)
+        ) {
+          for (action in actions) {
+            TextButton(onClick = action.onClick) {
+              Text(
+                text = if (!action.isPluralizedLabel) {
+                  stringResource(id = action.label)
+                } else {
+                  pluralStringResource(id = action.label, count = action.pluralQuantity)
+                }
+              )
             }
           }
         }
@@ -183,7 +184,8 @@ private fun BubblesOptOutPreview() {
       actions = listOf(
         Action(R.string.BubbleOptOutTooltip__turn_off) {},
         Action(R.string.BubbleOptOutTooltip__not_now) {}
-      )
+      ),
+      paddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
     )
   }
 }
@@ -196,9 +198,10 @@ private fun ForcedUpgradePreview() {
       title = null,
       body = stringResource(id = R.string.OutdatedBuildReminder_your_version_of_signal_will_expire_today),
       importance = Importance.ERROR,
-      actions = listOf(Action(R.string.ExpiredBuildReminder_update_now) {}),
+      onDismissListener = {},
       onHideListener = { },
-      onDismissListener = {}
+      actions = listOf(Action(R.string.ExpiredBuildReminder_update_now) {}),
+      paddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
     )
   }
 }
@@ -215,11 +218,12 @@ private fun FullyLoadedErrorPreview() {
       title = "Error",
       body = "Creating more errors.",
       importance = Importance.ERROR,
+      onDismissListener = {},
       actions = actions,
       showProgress = true,
       progressText = "4 out of 10 errors created.",
       progressPercent = 40,
-      onDismissListener = {}
+      paddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
     )
   }
 }

@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.banner.banners
 
 import android.content.Context
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.flow.Flow
@@ -25,11 +26,12 @@ class ServiceOutageBanner(outageInProgress: Boolean) : Banner() {
   override val enabled = outageInProgress
 
   @Composable
-  override fun DisplayBanner() {
+  override fun DisplayBanner(contentPadding: PaddingValues) {
     DefaultBanner(
       title = null,
       body = stringResource(id = R.string.reminder_header_service_outage_text),
-      importance = Importance.ERROR
+      importance = Importance.ERROR,
+      paddingValues = contentPadding
     )
   }
 

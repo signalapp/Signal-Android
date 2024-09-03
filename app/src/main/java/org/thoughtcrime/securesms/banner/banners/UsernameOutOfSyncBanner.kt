@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.banner.banners
 
 import android.content.Context
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +28,7 @@ class UsernameOutOfSyncBanner(private val context: Context, private val username
   }
 
   @Composable
-  override fun DisplayBanner() {
+  override fun DisplayBanner(contentPadding: PaddingValues) {
     DefaultBanner(
       title = null,
       body = if (usernameSyncState == UsernameSyncState.USERNAME_AND_LINK_CORRUPTED) {
@@ -40,7 +41,8 @@ class UsernameOutOfSyncBanner(private val context: Context, private val username
         Action(R.string.UsernameOutOfSyncReminder__fix_now) {
           onActionClick(usernameSyncState == UsernameSyncState.USERNAME_AND_LINK_CORRUPTED)
         }
-      )
+      ),
+      paddingValues = contentPadding
     )
   }
 

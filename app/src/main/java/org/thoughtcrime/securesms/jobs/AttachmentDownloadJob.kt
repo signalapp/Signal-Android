@@ -425,19 +425,11 @@ class AttachmentDownloadJob private constructor(
   }
 
   private fun markFailed(messageId: Long, attachmentId: AttachmentId) {
-    try {
-      SignalDatabase.attachments.setTransferProgressFailed(attachmentId, messageId)
-    } catch (e: MmsException) {
-      Log.w(TAG, e)
-    }
+    SignalDatabase.attachments.setTransferProgressFailed(attachmentId, messageId)
   }
 
   private fun markPermanentlyFailed(messageId: Long, attachmentId: AttachmentId) {
-    try {
-      SignalDatabase.attachments.setTransferProgressPermanentFailure(attachmentId, messageId)
-    } catch (e: MmsException) {
-      Log.w(TAG, e)
-    }
+    SignalDatabase.attachments.setTransferProgressPermanentFailure(attachmentId, messageId)
   }
 
   @VisibleForTesting

@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.banner.banners
 
 import android.content.Context
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +22,7 @@ class EnclaveFailureBanner(enclaveFailed: Boolean, private val context: Context)
   override val enabled: Boolean = enclaveFailed
 
   @Composable
-  override fun DisplayBanner() {
+  override fun DisplayBanner(contentPadding: PaddingValues) {
     DefaultBanner(
       title = null,
       body = stringResource(id = R.string.EnclaveFailureReminder_update_signal),
@@ -30,7 +31,8 @@ class EnclaveFailureBanner(enclaveFailed: Boolean, private val context: Context)
         Action(R.string.ExpiredBuildReminder_update_now) {
           PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(context)
         }
-      )
+      ),
+      paddingValues = contentPadding
     )
   }
 

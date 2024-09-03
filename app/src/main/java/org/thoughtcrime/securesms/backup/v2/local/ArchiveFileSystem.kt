@@ -63,6 +63,10 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
     fun fromFile(context: Context, backupDirectory: File): ArchiveFileSystem {
       return ArchiveFileSystem(context, DocumentFile.fromFile(backupDirectory))
     }
+
+    fun openInputStream(context: Context, uri: Uri): InputStream? {
+      return context.contentResolver.openInputStream(uri)
+    }
   }
 
   private val signalBackups: DocumentFile
@@ -284,17 +288,9 @@ class FilesFileSystem(private val context: Context, private val root: DocumentFi
    * undefined and should be avoided.
    */
   fun fileOutputStream(mediaName: MediaName): OutputStream? {
-    val subFileDirectoryName = mediaName.name.substring(0..1)
-    val subFileDirectory = subFolders[subFileDirectoryName]!!
+    val subFileDirectory = subFileDirectoryFor(mediaName)
     val file = subFileDirectory.createFile("application/octet-stream", mediaName.name)
     return file?.outputStream(context)
-  }
-
-  /**
-   * Given a [file], open and return an [InputStream].
-   */
-  fun fileInputStream(file: DocumentFileInfo): InputStream? {
-    return file.documentFile.inputStream(context)
   }
 
   /**
@@ -303,10 +299,11 @@ class FilesFileSystem(private val context: Context, private val root: DocumentFi
    * @return true if deleted, false if not, null if not found
    */
   fun delete(mediaName: MediaName): Boolean? {
-    val subFileDirectoryName = mediaName.name.substring(0..1)
-    val subFileDirectory = subFolders[subFileDirectoryName]!!
+    return subFileDirectoryFor(mediaName).delete(context, mediaName.name)
+  }
 
-    return subFileDirectory.delete(context, mediaName.name)
+  private fun subFileDirectoryFor(mediaName: MediaName): DocumentFile {
+    return subFolders[mediaName.name.substring(0..1)]!!
   }
 }
 

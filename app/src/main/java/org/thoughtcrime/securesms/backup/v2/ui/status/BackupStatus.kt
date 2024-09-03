@@ -9,13 +9,14 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -45,11 +46,13 @@ private const val NONE = -1
 @Composable
 fun BackupStatus(
   data: BackupStatusData,
-  onActionClick: () -> Unit = {}
+  onActionClick: () -> Unit = {},
+  contentPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
 ) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
+      .padding(contentPadding)
       .border(1.dp, color = MaterialTheme.colorScheme.outline.copy(alpha = 0.38f), shape = RoundedCornerShape(12.dp))
       .fillMaxWidth()
       .padding(14.dp)
@@ -71,7 +74,8 @@ fun BackupStatus(
     ) {
       Text(
         text = data.title,
-        style = MaterialTheme.typography.bodyMedium
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurface
       )
 
       if (data.progress >= 0f) {
@@ -108,16 +112,18 @@ fun BackupStatus(
 @Composable
 fun BackupStatusPreview() {
   Previews.Preview {
-    Column(
-      verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
+    Column {
       BackupStatus(
         data = BackupStatusData.CouldNotCompleteBackup
       )
 
+      HorizontalDivider()
+
       BackupStatus(
         data = BackupStatusData.NotEnoughFreeSpace("12 GB")
       )
+
+      HorizontalDivider()
 
       BackupStatus(
         data = BackupStatusData.RestoringMedia(50, 100)
@@ -201,7 +207,7 @@ sealed interface BackupStatusData {
       )
 
     override val statusRes: Int = when (status) {
-      Status.NONE -> R.string.default_error_msg
+      Status.NONE -> NONE
       Status.LOW_BATTERY -> R.string.default_error_msg
       Status.WAITING_FOR_INTERNET -> R.string.default_error_msg
       Status.WAITING_FOR_WIFI -> R.string.default_error_msg
