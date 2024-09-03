@@ -354,6 +354,7 @@ public class PushServiceSocket {
   private final Map<Integer, ConnectionHolder[]> cdnClientsMap;
   private final ConnectionHolder[]               storageClients;
 
+  private final SignalServiceConfiguration       configuration;
   private final CredentialsProvider              credentialsProvider;
   private final String                           signalAgent;
   private final SecureRandom                     random;
@@ -366,6 +367,7 @@ public class PushServiceSocket {
                            ClientZkProfileOperations clientZkProfileOperations,
                            boolean automaticNetworkRetry)
   {
+    this.configuration             = configuration;
     this.credentialsProvider       = credentialsProvider;
     this.signalAgent               = signalAgent;
     this.automaticNetworkRetry     = automaticNetworkRetry;
@@ -374,6 +376,14 @@ public class PushServiceSocket {
     this.storageClients            = createConnectionHolders(configuration.getSignalStorageUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.random                    = new SecureRandom();
     this.clientZkProfileOperations = clientZkProfileOperations;
+  }
+
+  public SignalServiceConfiguration getConfiguration() {
+    return configuration;
+  }
+
+  public CredentialsProvider getCredentialsProvider() {
+    return credentialsProvider;
   }
 
   public RegistrationSessionMetadataResponse createVerificationSession(@Nullable String pushToken, @Nullable String mcc, @Nullable String mnc) throws IOException {

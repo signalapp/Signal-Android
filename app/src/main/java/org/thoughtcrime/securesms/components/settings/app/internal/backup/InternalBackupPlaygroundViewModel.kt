@@ -171,7 +171,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
     disposables += Single
       .fromCallable {
-        BackupRepository.restoreBackupTier()
+        BackupRepository.restoreBackupTier(SignalStore.account.requireAci())
         BackupRepository.getRemoteBackupState()
       }
       .subscribeOn(Schedulers.io())

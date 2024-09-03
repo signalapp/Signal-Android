@@ -187,19 +187,17 @@ public class SignalServiceMessageSender {
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
 
-  public SignalServiceMessageSender(SignalServiceConfiguration urls,
-                                    CredentialsProvider credentialsProvider,
+  public SignalServiceMessageSender(PushServiceSocket pushServiceSocket,
                                     SignalServiceDataStore store,
                                     SignalSessionLock sessionLock,
-                                    String signalAgent,
                                     SignalWebSocket signalWebSocket,
                                     Optional<EventListener> eventListener,
-                                    ClientZkProfileOperations clientZkProfileOperations,
                                     ExecutorService executor,
-                                    long maxEnvelopeSize,
-                                    boolean automaticNetworkRetry)
+                                    long maxEnvelopeSize)
   {
-    this.socket            = new PushServiceSocket(urls, credentialsProvider, signalAgent, clientZkProfileOperations, automaticNetworkRetry);
+    CredentialsProvider credentialsProvider = pushServiceSocket.getCredentialsProvider();
+
+    this.socket            = pushServiceSocket;
     this.webSocket         = signalWebSocket;
     this.aciStore          = store.aci();
     this.sessionLock       = sessionLock;

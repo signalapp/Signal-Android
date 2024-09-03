@@ -24,7 +24,6 @@ import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
 import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
-import org.whispersystems.signalservice.api.archive.ArchiveApi;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
@@ -59,7 +58,6 @@ import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.api.storage.StorageManifestKey;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3;
-import org.whispersystems.signalservice.api.svr.SvrApi;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -130,7 +128,6 @@ public class SignalServiceAccountManager {
 
   private final PushServiceSocket          pushServiceSocket;
   private final CredentialsProvider        credentials;
-  private final String                     userAgent;
   private final GroupsV2Operations         groupsV2Operations;
   private final SignalServiceConfiguration configuration;
 
@@ -143,34 +140,30 @@ public class SignalServiceAccountManager {
    * @param password A Signal Service password.
    * @param signalAgent A string which identifies the client software.
    */
-  public SignalServiceAccountManager(SignalServiceConfiguration configuration,
-                                     ACI aci,
-                                     PNI pni,
-                                     String e164,
-                                     int deviceId,
-                                     String password,
-                                     String signalAgent,
-                                     boolean automaticNetworkRetry,
-                                     int maxGroupSize)
+  public static SignalServiceAccountManager createWithStaticCredentials(SignalServiceConfiguration configuration,
+                                                                        ACI aci,
+                                                                        PNI pni,
+                                                                        String e164,
+                                                                        int deviceId,
+                                                                        String password,
+                                                                        String signalAgent,
+                                                                        boolean automaticNetworkRetry,
+                                                                        int maxGroupSize)
   {
-    this(configuration,
-         new StaticCredentialsProvider(aci, pni, e164, deviceId, password),
-         signalAgent,
-         new GroupsV2Operations(ClientZkOperations.create(configuration), maxGroupSize),
-         automaticNetworkRetry);
+    StaticCredentialsProvider credentialProvider = new StaticCredentialsProvider(aci, pni, e164, deviceId, password);
+    GroupsV2Operations        gv2Operations      = new GroupsV2Operations(ClientZkOperations.create(configuration), maxGroupSize);
+
+    return new SignalServiceAccountManager(
+        new PushServiceSocket(configuration, credentialProvider, signalAgent, gv2Operations.getProfileOperations(), automaticNetworkRetry),
+        gv2Operations
+    );
   }
 
-  public SignalServiceAccountManager(SignalServiceConfiguration configuration,
-                                     CredentialsProvider credentialsProvider,
-                                     String signalAgent,
-                                     GroupsV2Operations groupsV2Operations,
-                                     boolean automaticNetworkRetry)
-  {
+  public SignalServiceAccountManager(PushServiceSocket pushServiceSocket, GroupsV2Operations groupsV2Operations) {
     this.groupsV2Operations = groupsV2Operations;
-    this.pushServiceSocket  = new PushServiceSocket(configuration, credentialsProvider, signalAgent, groupsV2Operations.getProfileOperations(), automaticNetworkRetry);
-    this.credentials        = credentialsProvider;
-    this.userAgent          = signalAgent;
-    this.configuration      = configuration;
+    this.pushServiceSocket  = pushServiceSocket;
+    this.credentials        = pushServiceSocket.getCredentialsProvider();
+    this.configuration      = pushServiceSocket.getConfiguration();
   }
 
   public byte[] getSenderCertificate() throws IOException {
@@ -869,20 +862,12 @@ public class SignalServiceAccountManager {
     return new GroupsV2Api(pushServiceSocket, groupsV2Operations);
   }
 
-  public ArchiveApi getArchiveApi() {
-    return ArchiveApi.create(pushServiceSocket, configuration.getBackupServerPublicParams(), credentials.getAci());
-  }
-
   public KeysApi getKeysApi() {
     return KeysApi.create(pushServiceSocket);
   }
 
   public RegistrationApi getRegistrationApi() {
     return new RegistrationApi(pushServiceSocket);
-  }
-
-  public SvrApi getSvrApi() {
-    return new SvrApi(pushServiceSocket);
   }
 
   public AuthCredentials getPaymentsAuthorization() throws IOException {

@@ -38,34 +38,6 @@ public class AccountManagerFactory {
   }
   private static final String TAG = Log.tag(AccountManagerFactory.class);
 
-  public @NonNull SignalServiceAccountManager createAuthenticated(@NonNull Context context,
-                                                                  @NonNull ACI aci,
-                                                                  @NonNull PNI pni,
-                                                                  @NonNull String e164,
-                                                                  int deviceId,
-                                                                  @NonNull String password)
-  {
-    if (AppDependencies.getSignalServiceNetworkAccess().isCensored(e164)) {
-      SignalExecutors.BOUNDED.execute(() -> {
-        try {
-          ProviderInstaller.installIfNeeded(context);
-        } catch (Throwable t) {
-          Log.w(TAG, t);
-        }
-      });
-    }
-
-    return new SignalServiceAccountManager(AppDependencies.getSignalServiceNetworkAccess().getConfiguration(e164),
-                                           aci,
-                                           pni,
-                                           e164,
-                                           deviceId,
-                                           password,
-                                           BuildConfig.SIGNAL_AGENT,
-                                           RemoteConfig.okHttpAutomaticRetry(),
-                                           RemoteConfig.groupLimits().getHardLimit());
-  }
-
   /**
    * Should only be used during registration when you haven't yet been assigned an ACI.
    */
@@ -84,15 +56,17 @@ public class AccountManagerFactory {
       });
     }
 
-    return new SignalServiceAccountManager(AppDependencies.getSignalServiceNetworkAccess().getConfiguration(e164),
-                                           null,
-                                           null,
-                                           e164,
-                                           deviceId,
-                                           password,
-                                           BuildConfig.SIGNAL_AGENT,
-                                           RemoteConfig.okHttpAutomaticRetry(),
-                                           RemoteConfig.groupLimits().getHardLimit());
+    return SignalServiceAccountManager.createWithStaticCredentials(
+        AppDependencies.getSignalServiceNetworkAccess().getConfiguration(e164),
+        null,
+        null,
+        e164,
+        deviceId,
+        password,
+        BuildConfig.SIGNAL_AGENT,
+        RemoteConfig.okHttpAutomaticRetry(),
+        RemoteConfig.groupLimits().getHardLimit()
+    );
   }
 
 }

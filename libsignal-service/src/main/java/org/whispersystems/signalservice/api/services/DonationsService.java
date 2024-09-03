@@ -57,19 +57,7 @@ public class DonationsService {
     }
   }
 
-  public DonationsService(
-      SignalServiceConfiguration configuration,
-      CredentialsProvider credentialsProvider,
-      String signalAgent,
-      GroupsV2Operations groupsV2Operations,
-      boolean automaticNetworkRetry
-  )
-  {
-    this(new PushServiceSocket(configuration, credentialsProvider, signalAgent, groupsV2Operations.getProfileOperations(), automaticNetworkRetry));
-  }
-
-  // Visible for testing.
-  DonationsService(@NonNull PushServiceSocket pushServiceSocket) {
+  public DonationsService(@NonNull PushServiceSocket pushServiceSocket) {
     this.pushServiceSocket = pushServiceSocket;
   }
 

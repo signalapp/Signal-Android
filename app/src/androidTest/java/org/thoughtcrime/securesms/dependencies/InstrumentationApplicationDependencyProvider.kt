@@ -34,6 +34,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl
 import org.whispersystems.signalservice.internal.configuration.SignalStorageUrl
 import org.whispersystems.signalservice.internal.configuration.SignalSvr2Url
+import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.util.Optional
 
 /**
@@ -112,10 +113,10 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
   override fun provideSignalServiceMessageSender(
     signalWebSocket: SignalWebSocket,
     protocolStore: SignalServiceDataStore,
-    signalServiceConfiguration: SignalServiceConfiguration
+    pushServiceSocket: PushServiceSocket
   ): SignalServiceMessageSender {
     if (signalServiceMessageSender == null) {
-      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(signalWebSocket, protocolStore, signalServiceConfiguration))
+      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(signalWebSocket, protocolStore, pushServiceSocket))
     }
     return signalServiceMessageSender!!
   }

@@ -46,12 +46,14 @@ import org.whispersystems.signalservice.api.SignalServiceDataStore
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.SignalWebSocket
+import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.services.CallLinksService
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
+import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.util.function.Supplier
 
 /**
@@ -291,6 +293,10 @@ object AppDependencies {
     get() = networkModule.donationsService
 
   @JvmStatic
+  val archiveApi: ArchiveApi
+    get() = networkModule.archiveApi
+
+  @JvmStatic
   val okHttpClient: OkHttpClient
     get() = networkModule.okHttpClient
 
@@ -310,10 +316,11 @@ object AppDependencies {
   }
 
   interface Provider {
+    fun providePushServiceSocket(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): PushServiceSocket
     fun provideGroupsV2Operations(signalServiceConfiguration: SignalServiceConfiguration): GroupsV2Operations
-    fun provideSignalServiceAccountManager(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): SignalServiceAccountManager
-    fun provideSignalServiceMessageSender(signalWebSocket: SignalWebSocket, protocolStore: SignalServiceDataStore, signalServiceConfiguration: SignalServiceConfiguration): SignalServiceMessageSender
-    fun provideSignalServiceMessageReceiver(signalServiceConfiguration: SignalServiceConfiguration): SignalServiceMessageReceiver
+    fun provideSignalServiceAccountManager(pushServiceSocket: PushServiceSocket, groupsV2Operations: GroupsV2Operations): SignalServiceAccountManager
+    fun provideSignalServiceMessageSender(signalWebSocket: SignalWebSocket, protocolStore: SignalServiceDataStore, pushServiceSocket: PushServiceSocket): SignalServiceMessageSender
+    fun provideSignalServiceMessageReceiver(pushServiceSocket: PushServiceSocket): SignalServiceMessageReceiver
     fun provideSignalServiceNetworkAccess(): SignalServiceNetworkAccess
     fun provideRecipientCache(): LiveRecipientCache
     fun provideJobManager(): JobManager
@@ -341,13 +348,14 @@ object AppDependencies {
     fun provideGiphyMp4Cache(): GiphyMp4Cache
     fun provideExoPlayerPool(): SimpleExoPlayerPool
     fun provideAndroidCallAudioManager(): AudioManagerCompat
-    fun provideDonationsService(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): DonationsService
-    fun provideCallLinksService(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): CallLinksService
+    fun provideDonationsService(pushServiceSocket: PushServiceSocket): DonationsService
+    fun provideCallLinksService(pushServiceSocket: PushServiceSocket): CallLinksService
     fun provideProfileService(profileOperations: ClientZkProfileOperations, signalServiceMessageReceiver: SignalServiceMessageReceiver, signalWebSocket: SignalWebSocket): ProfileService
     fun provideDeadlockDetector(): DeadlockDetector
     fun provideClientZkReceiptOperations(signalServiceConfiguration: SignalServiceConfiguration): ClientZkReceiptOperations
     fun provideScheduledMessageManager(): ScheduledMessageManager
     fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network
     fun provideBillingApi(): BillingApi
+    fun provideArchiveApi(pushServiceSocket: PushServiceSocket): ArchiveApi
   }
 }

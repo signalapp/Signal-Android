@@ -68,17 +68,9 @@ public class SignalServiceMessageReceiver {
 
   /**
    * Construct a SignalServiceMessageReceiver.
-   *
-   * @param urls The URL of the Signal Service.
-   * @param credentials The Signal Service user's credentials.
    */
-  public SignalServiceMessageReceiver(SignalServiceConfiguration urls,
-                                      CredentialsProvider credentials,
-                                      String signalAgent,
-                                      ClientZkProfileOperations clientZkProfileOperations,
-                                      boolean automaticNetworkRetry)
-  {
-    this.socket = new PushServiceSocket(urls, credentials, signalAgent, clientZkProfileOperations, automaticNetworkRetry);
+  public SignalServiceMessageReceiver(PushServiceSocket socket) {
+    this.socket = socket;
   }
 
   /**

@@ -39,27 +39,33 @@ import org.whispersystems.signalservice.api.SignalServiceDataStore
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.SignalWebSocket
+import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.services.CallLinksService
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
+import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.util.function.Supplier
 
 class MockApplicationDependencyProvider : AppDependencies.Provider {
+  override fun providePushServiceSocket(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): PushServiceSocket {
+    return mockk()
+  }
+
   override fun provideGroupsV2Operations(signalServiceConfiguration: SignalServiceConfiguration): GroupsV2Operations {
     return mockk()
   }
 
-  override fun provideSignalServiceAccountManager(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): SignalServiceAccountManager {
+  override fun provideSignalServiceAccountManager(pushServiceSocket: PushServiceSocket, groupsV2Operations: GroupsV2Operations): SignalServiceAccountManager {
     return mockk()
   }
 
-  override fun provideSignalServiceMessageSender(signalWebSocket: SignalWebSocket, protocolStore: SignalServiceDataStore, signalServiceConfiguration: SignalServiceConfiguration): SignalServiceMessageSender {
+  override fun provideSignalServiceMessageSender(signalWebSocket: SignalWebSocket, protocolStore: SignalServiceDataStore, pushServiceSocket: PushServiceSocket): SignalServiceMessageSender {
     return mockk()
   }
 
-  override fun provideSignalServiceMessageReceiver(signalServiceConfiguration: SignalServiceConfiguration): SignalServiceMessageReceiver {
+  override fun provideSignalServiceMessageReceiver(pushServiceSocket: PushServiceSocket): SignalServiceMessageReceiver {
     return mockk()
   }
 
@@ -171,11 +177,11 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk()
   }
 
-  override fun provideDonationsService(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): DonationsService {
+  override fun provideDonationsService(pushServiceSocket: PushServiceSocket): DonationsService {
     return mockk()
   }
 
-  override fun provideCallLinksService(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): CallLinksService {
+  override fun provideCallLinksService(pushServiceSocket: PushServiceSocket): CallLinksService {
     return mockk()
   }
 
@@ -200,6 +206,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideBillingApi(): BillingApi {
+    return mockk()
+  }
+
+  override fun provideArchiveApi(pushServiceSocket: PushServiceSocket): ArchiveApi {
     return mockk()
   }
 }
