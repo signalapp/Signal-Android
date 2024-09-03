@@ -58,10 +58,11 @@ sealed class NetworkResult<T>(
       request: WebSocketRequestMessage,
       clazz: KClass<T>
     ): NetworkResult<T> = try {
-      val result = signalWebSocket.request(request)
-        .map { response: WebsocketResponse -> JsonUtil.fromJson(response.body, clazz.java) }
+      val result: Result<T> = signalWebSocket.request(request)
+        .map { response: WebsocketResponse -> Result.success(JsonUtil.fromJson(response.body, clazz.java)) }
+        .onErrorReturn { Result.failure<T>(it) }
         .blockingGet()
-      Success(result)
+      Success(result.getOrThrow())
     } catch (e: NonSuccessfulResponseCodeException) {
       StatusCodeError(e)
     } catch (e: IOException) {
