@@ -165,7 +165,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     pnpInitialized = SignalStore.misc.hasPniInitializedDevices,
     useConversationItemV2ForMedia = SignalStore.internal.useConversationItemV2Media(),
     hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null,
-    hevcEncoding = SignalStore.internal.hevcEncoding
+    hevcEncoding = SignalStore.internal.hevcEncoding,
+    newCallingUi = SignalStore.internal.newCallingUi
   )
 
   fun onClearOnboardingState() {
@@ -174,6 +175,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     Stories.onStorySettingsChanged(Recipient.self().id)
     refresh()
     StoryOnboardingDownloadJob.enqueueIfNeeded()
+  }
+
+  fun setUseNewCallingUi(newCallingUi: Boolean) {
+    SignalStore.internal.newCallingUi = newCallingUi
+    refresh()
   }
 
   class Factory(private val repository: InternalSettingsRepository) : ViewModelProvider.Factory {

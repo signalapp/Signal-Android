@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -91,6 +92,7 @@ class CallActivity : BaseActivity(), CallControlsCallback {
     val callInfoCallbacks = CallInfoCallbacks(this, controlsAndInfoViewModel, compositeDisposable)
 
     observeCallEvents()
+    viewModel.processCallIntent(CallIntent(intent))
 
     setContent {
       val lifecycleOwner = LocalLifecycleOwner.current
@@ -179,6 +181,13 @@ class CallActivity : BaseActivity(), CallControlsCallback {
     }
   }
 
+  override fun onNewIntent(intent: Intent?) {
+    super.onNewIntent(intent)
+    if (intent != null) {
+      viewModel.processCallIntent(CallIntent(intent))
+    }
+  }
+
   override fun onResume() {
     Log.i(TAG, "onResume")
     super.onResume()
@@ -203,13 +212,9 @@ class CallActivity : BaseActivity(), CallControlsCallback {
       }
     }
 
-    /*
-    TODO
-    if (enterPipOnResume) {
-      enterPipOnResume = false;
-      enterPipModeIfPossible();
+    if (viewModel.consumeEnterPipOnResume()) {
+      // TODO enterPipModeIfPossible()
     }
-     */
   }
 
   override fun onPause() {

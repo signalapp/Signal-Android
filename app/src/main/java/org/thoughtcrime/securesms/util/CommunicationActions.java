@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.calls.links.CallLinks;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallActivity;
+import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.CallLinkTable;
@@ -397,11 +398,11 @@ public class CommunicationActions {
 
                  MessageSender.onMessageSent();
 
-                 Intent activityIntent = new Intent(callContext.getContext(), getCallActivityClass());
-
-                 activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                 callContext.startActivity(activityIntent);
+                 callContext.startActivity(
+                     new CallIntent.Builder(callContext.getContext())
+                         .withIntentFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                         .build()
+                 );
                })
                .execute();
   }
@@ -409,13 +410,13 @@ public class CommunicationActions {
   private static void startVideoCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean fromCallLink) {
     AppDependencies.getSignalCallManager().startPreJoinCall(recipient);
 
-    Intent activityIntent = new Intent(callContext.getContext(), getCallActivityClass());
-
-    activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                  .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true)
-                  .putExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_CALL_LINK, fromCallLink);
-
-    callContext.startActivity(activityIntent);
+    callContext.startActivity(
+        new CallIntent.Builder(callContext.getContext())
+            .withIntentFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            .withEnableVideoIfAvailable(true)
+            .withStartedFromCallLink(fromCallLink)
+            .build()
+    );
   }
 
   private static void handleE164Link(Activity activity, String e164) {
@@ -477,10 +478,6 @@ public class CommunicationActions {
             .show();
       }
     });
-  }
-
-  private static Class<? extends Activity> getCallActivityClass() {
-    return RemoteConfig.newCallUi() ? CallActivity.class : WebRtcCallActivity.class;
   }
 
   private interface CallContext {

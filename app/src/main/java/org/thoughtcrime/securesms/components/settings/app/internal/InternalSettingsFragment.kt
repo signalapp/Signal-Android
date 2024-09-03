@@ -506,6 +506,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       sectionHeaderPref(DSLSettingsText.from("Calling options"))
 
+      switchPref(
+        title = DSLSettingsText.from("Use new calling UI"),
+        isChecked = state.newCallingUi,
+        onClick = {
+          viewModel.setUseNewCallingUi(!state.newCallingUi)
+        }
+      )
+
       radioListPref(
         title = DSLSettingsText.from("Audio processing method"),
         listItems = CallManager.AudioProcessingMethod.values().map { it.name }.toTypedArray(),

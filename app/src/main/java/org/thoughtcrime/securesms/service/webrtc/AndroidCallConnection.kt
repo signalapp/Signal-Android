@@ -6,7 +6,7 @@ import android.telecom.CallAudioState
 import android.telecom.Connection
 import androidx.annotation.RequiresApi
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.WebRtcCallActivity
+import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -66,9 +66,10 @@ class AndroidCallConnection(
     if (Permissions.hasAll(context, android.Manifest.permission.RECORD_AUDIO)) {
       AppDependencies.signalCallManager.acceptCall(false)
     } else {
-      val intent = Intent(context, WebRtcCallActivity::class.java)
-      intent.action = if (isVideoCall) WebRtcCallActivity.ANSWER_VIDEO_ACTION else WebRtcCallActivity.ANSWER_ACTION
-      intent.flags = intent.flags or Intent.FLAG_ACTIVITY_NEW_TASK
+      val intent = CallIntent.Builder(context)
+        .withAddedIntentFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        .withAction(if (isVideoCall) CallIntent.Action.ANSWER_VIDEO else CallIntent.Action.ANSWER_AUDIO)
+        .build()
       context.startActivity(intent)
     }
   }

@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Presentation logic and state holder for information that was generally done
@@ -48,9 +49,17 @@ class CallViewModel(
 
   private var previousEvent: WebRtcViewModel? = null
   private var enableVideoIfAvailable = false
+  private var lastProcessedIntentTimestamp = 0L
+  private var enterPipOnResume = false
 
   private val internalCallScreenState = MutableStateFlow(CallScreenState())
   val callScreenState: StateFlow<CallScreenState> = internalCallScreenState
+
+  fun consumeEnterPipOnResume(): Boolean {
+    val enter = enterPipOnResume
+    enterPipOnResume = false
+    return enter
+  }
 
   fun unregisterEventBus() {
     EventBus.getDefault().unregister(this)
@@ -336,5 +345,32 @@ class CallViewModel(
 
       AppDependencies.signalCallManager.selectAudioDevice(SignalAudioManager.ChosenAudioDeviceIdentifier(managerDevice))
     }
+  }
+
+  fun processCallIntent(callIntent: CallIntent) {
+    if (callIntent.action == CallIntent.Action.ANSWER_VIDEO) {
+      enableVideoIfAvailable = true
+    } else if (callIntent.action == CallIntent.Action.ANSWER_AUDIO || callIntent.isStartedFromFullScreen) {
+      enableVideoIfAvailable = false
+    } else {
+      enableVideoIfAvailable = callIntent.shouldEnableVideoIfAvailable
+      callIntent.shouldEnableVideoIfAvailable = false
+    }
+
+    when (callIntent.action) {
+      CallIntent.Action.ANSWER_AUDIO -> startCall(false)
+      CallIntent.Action.ANSWER_VIDEO -> startCall(true)
+      CallIntent.Action.DENY -> deny()
+      CallIntent.Action.END_CALL -> hangup()
+      CallIntent.Action.VIEW -> Unit
+    }
+
+    // Prevents some issues around intent re-use when dealing with picture-in-picture.
+    val now = System.currentTimeMillis()
+    if (now - lastProcessedIntentTimestamp > 1.seconds.inWholeMilliseconds) {
+      enterPipOnResume = callIntent.shouldLaunchInPip
+    }
+
+    lastProcessedIntentTimestamp = now
   }
 }

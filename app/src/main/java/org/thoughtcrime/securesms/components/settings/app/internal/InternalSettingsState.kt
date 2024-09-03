@@ -24,5 +24,6 @@ data class InternalSettingsState(
   val pnpInitialized: Boolean,
   val useConversationItemV2ForMedia: Boolean,
   val hasPendingOneTimeDonation: Boolean,
-  val hevcEncoding: Boolean
+  val hevcEncoding: Boolean,
+  val newCallingUi: Boolean
 )

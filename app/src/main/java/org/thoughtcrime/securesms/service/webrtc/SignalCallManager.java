@@ -36,6 +36,7 @@ import org.signal.ringrtc.PeekInfo;
 import org.signal.ringrtc.Remote;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.CallLinkTable;
 import org.thoughtcrime.securesms.database.CallTable;
@@ -1253,10 +1254,12 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
             WebRtcViewModel.State callState = s.getCallInfoState().getCallState();
 
             if (callState.getInOngoingCall()) {
-              Intent intent = new Intent(context, WebRtcCallActivity.class);
-              intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-              intent.putExtra(WebRtcCallActivity.EXTRA_LAUNCH_IN_PIP, true);
-              context.startActivity(intent);
+              context.startActivity(
+                  new CallIntent.Builder(context)
+                      .withIntentFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                      .withLaunchInPip(true)
+                      .build()
+              );
             }
 
             return s;
