@@ -198,7 +198,7 @@
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">¿Bloquear y abandonar \"%1$s\"?</string>
     <string name="BlockUnblockDialog_block_s">¿Bloquear a %1$s?</string>
-    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">No podrás recibir más mensajes ni actualizaciones de este grupo y sus participantes no podrán añadirte de nuevo.</string>
+    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ya no recibirás mensajes ni actualizaciones de este grupo y sus participantes no podrán añadirte de nuevo.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Los participantes del grupo no podrán añadirte de nuevo.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Los participantes del grupo podrán añadirte de nuevo.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
@@ -608,7 +608,7 @@
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">¿Vetar solicitudes?</string>
     <!-- Dialog message for block group link join requests -->
-    <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s no podrá unirse al grupo ni solicitar unirse mediante el enlace al grupo, pero se le puede añadir manualmente.</string>
+    <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s no podrá unirse ni solicitar unirse al grupo mediante enlace, pero se le puede añadir manualmente.</string>
     <!-- Dialog confirm block request button -->
     <string name="ConversationFragment__block_request_button">Vetar solicitudes</string>
     <!-- Dialog cancel block request button -->
@@ -1005,7 +1005,7 @@
 
     <!-- DeviceListItem -->
     <string name="DeviceListItem_unnamed_device">Dispositivo sin nombre</string>
-    <string name="DeviceListItem_linked_s">%1$s vinculado</string>
+    <string name="DeviceListItem_linked_s">Vinculado: %1$s</string>
     <string name="DeviceListItem_last_active_s">Última actividad: %1$s</string>
     <string name="DeviceListItem_today">Hoy</string>
 
@@ -1426,7 +1426,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">No es posible unirse al grupo</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">No puedes volver a unirte a este grupo vía enlace porque un admin te ha vetado.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">No puedes volver a unirte a este grupo mediante enlace porque un admin te ha eliminado.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">El enlace a este grupo no es válido.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1461,11 +1461,11 @@
 
     <!-- GV2 Request confirmation dialog -->
     <string name="RequestConfirmationDialog_add_s_to_the_group">¿Añadir a %1$s al grupo?</string>
-    <string name="RequestConfirmationDialog_deny_request_from_s">¿Denegar la solicitud de %1$s?</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s">¿Rechazar la solicitud de %1$s?</string>
     <!-- Confirm dialog message shown when deny a group link join request and group link is enabled. -->
-    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">¿Denegar solicitudes de %1$s? Esta persona ya no podrá solicitar mediante enlace que la añadan al grupo.</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">¿Rechazar solicitudes de %1$s? Esta persona ya no podrá solicitar unirse al grupo mediante enlace.</string>
     <string name="RequestConfirmationDialog_add">Añadir</string>
-    <string name="RequestConfirmationDialog_deny">Denegar</string>
+    <string name="RequestConfirmationDialog_deny">Rechazar</string>
 
     <!-- ImageEditorHud -->
     <string name="ImageEditorHud_blur_faces">Difuminar caras</string>
@@ -1714,10 +1714,10 @@
         <item quantity="one">%1$s ha retirado la invitación a unirse al grupo.</item>
         <item quantity="other">%1$s ha retirado %2$d invitaciones a unirse al grupo.</item>
     </plurals>
-    <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguien ha rechazado la invitación al grupo.</string>
+    <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguien ha rechazado una invitación al grupo.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Has rechazado la invitación al grupo.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s ha retirado tu invitación al grupo.</string>
-    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un admin ha retirado tu invitación al grupo.</string>
+    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Alguien que es admin ha retirado tu invitación al grupo.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
         <item quantity="one">Se ha retirado 1 invitación a unirse al grupo.</item>
         <item quantity="other">Se han retirado %1$d invitaciones a unirse al grupo.</item>
@@ -1805,9 +1805,9 @@
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Se ha aprobado la solicitud de %1$s para unirse al grupo.</string>
 
     <!-- GV2 group link deny -->
-    <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Un admin ha denegado tu solicitud para unirte al grupo.</string>
-    <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ha denegado la solicitud de %2$s para unirse al grupo.</string>
-    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Se ha denegado la solicitud de %1$s para unirse al grupo.</string>
+    <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Alguien que es admin ha rechazado tu solicitud para unirte al grupo.</string>
+    <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ha rechazado la solicitud de %2$s para unirse al grupo.</string>
+    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Se ha rechazado la solicitud de %1$s para unirse al grupo.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Has cancelado tu solicitud para unirte al grupo.</string>
     <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s ha cancelado su solicitud para unirse al grupo.</string>
 
@@ -2137,8 +2137,8 @@
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
-        <item quantity="one">¿Denegar %1$d solicitud?</item>
-        <item quantity="other">¿Denegar %1$d solicitudes?</item>
+        <item quantity="one">¿Rechazar %1$d solicitud?</item>
+        <item quantity="other">¿Rechazar %1$d solicitudes?</item>
     </plurals>
     <!-- Message for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
@@ -2158,9 +2158,9 @@
         <item quantity="other">%1$d personas</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__join_request_denied">Solicitud para unirse denegada</string>
+    <string name="WebRtcCallActivity__join_request_denied">Solicitud para unirse rechazada</string>
     <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Se ha denegado tu solicitud para unirte a la llamada.</string>
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Se ha rechazado tu solicitud para unirte a la llamada.</string>
     <!-- Title of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__removed_from_call">Se ha eliminado de la llamada</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
@@ -3836,8 +3836,8 @@
     <string name="PaymentsDetailsFragment__network_fee">Comisión de red</string>
     <string name="PaymentsDetailsFragment__sent_by">Enviado por</string>
     <string name="PaymentsDetailsFragment__sent_to_s">Enviado a %1$s</string>
-    <string name="PaymentsDetailsFragment__you_on_s_at_s">Tú (fecha y hora: %1$s - %2$s)</string>
-    <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s (fecha y hora: %2$s - %3$s)</string>
+    <string name="PaymentsDetailsFragment__you_on_s_at_s">Tú (%2$s del %1$s)</string>
+    <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s (%3$s del %2$s)</string>
     <!-- Prefix to a name to indicate who a payment was sent to -->
     <string name="PaymentsDetailsFragment__to">Para</string>
     <string name="PaymentsDetailsFragment__from">De</string>
@@ -4558,7 +4558,7 @@
     <string name="GroupRecipientListItem_admin">Admin</string>
     <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">Aprobar</string>
-    <string name="GroupRecipientListItem_deny_description">Denegar</string>
+    <string name="GroupRecipientListItem_deny_description">Rechazar</string>
 
 
     <!-- GroupsLearnMoreBottomSheetDialogFragment -->
@@ -6954,9 +6954,9 @@
 
     <!-- CallLinkIncomingRequestSheet -->
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__approve_entry">Aprobar entrada</string>
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Aprobar solicitud</string>
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__deny_entry">Denegar entrada</string>
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Rechazar solicitud</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -7280,7 +7280,7 @@
 
     <!-- RemoteRestoreActivity -->
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Fecha y hora de tu última copia de seguridad: %1$s, %2$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at">Última copia de seguridad: %2$s del %1$s.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
