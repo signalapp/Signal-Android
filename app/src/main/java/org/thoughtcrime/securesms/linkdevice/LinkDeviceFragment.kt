@@ -152,7 +152,7 @@ class LinkDeviceFragment : ComposeFragment() {
         modifier = Modifier.padding(contentPadding),
         onLearnMore = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet) },
         onLinkDevice = {
-          if (biometricAuth.canAuthenticate()) {
+          if (biometricAuth.canAuthenticate(requireContext())) {
             navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceEducationSheet)
           } else {
             navController.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)

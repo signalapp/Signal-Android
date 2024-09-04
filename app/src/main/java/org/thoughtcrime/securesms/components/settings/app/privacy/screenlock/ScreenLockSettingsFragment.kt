@@ -118,12 +118,12 @@ class ScreenLockSettingsFragment : ComposeFragment() {
       ScreenLockScreen(
         state = state,
         onChecked = { checked ->
-          if (biometricAuth.canAuthenticate() && !checked) {
+          if (biometricAuth.canAuthenticate(requireContext()) && !checked) {
             biometricAuth.updatePromptInfo(disableLockPromptInfo)
             biometricAuth.authenticate(requireContext(), true) {
               biometricDeviceLockLauncher.launch(getString(R.string.ScreenLockSettingsFragment__turn_off_signal_lock))
             }
-          } else if (biometricAuth.canAuthenticate() && checked) {
+          } else if (biometricAuth.canAuthenticate(requireContext()) && checked) {
             biometricAuth.updatePromptInfo(enableLockPromptInfo)
             biometricAuth.authenticate(requireContext(), true) {
               biometricDeviceLockLauncher.launch(getString(R.string.ScreenLockSettingsFragment__use_screen_lock))
