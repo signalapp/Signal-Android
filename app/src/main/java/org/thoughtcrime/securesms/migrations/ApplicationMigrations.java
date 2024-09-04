@@ -154,9 +154,10 @@ public class ApplicationMigrations {
     static final int EXPIRE_TIMER_CAPABILITY       = 109;
     static final int REBUILD_MESSAGE_FTS_INDEX_6   = 110;
     static final int EXPIRE_TIMER_CAPABILITY_2     = 111;
+    static final int BACKFILL_DIGESTS              = 112;
   }
 
-  public static final int CURRENT_VERSION = 111;
+  public static final int CURRENT_VERSION = 112;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -701,6 +702,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.EXPIRE_TIMER_CAPABILITY_2) {
       jobs.put(Version.EXPIRE_TIMER_CAPABILITY_2, new AttributesMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.BACKFILL_DIGESTS) {
+      jobs.put(Version.BACKFILL_DIGESTS, new BackfillDigestsMigrationJob());
     }
 
     return jobs;

@@ -1225,6 +1225,58 @@ class AttachmentTable(
   }
 
   /**
+   * A query for a specific migration. Retrieves attachments that we'd need to create a new digest for.
+   * These are attachments that have finished downloading and have data to create a digest from.
+   */
+  fun getAttachmentsThatNeedNewDigests(): List<AttachmentId> {
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where(
+        """
+        (
+          $REMOTE_KEY IS NULL OR
+          $REMOTE_IV IS NULL OR
+          $REMOTE_DIGEST IS NULL
+        )
+        AND
+        (
+          $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND 
+          $DATA_FILE NOT NULL
+        )
+        """
+      )
+      .run()
+      .readToList { AttachmentId(it.requireLong(ID)) }
+  }
+
+  /**
+   * There was a temporary bug where we were saving the wrong size for attachments. This function can be used to correct that.
+   */
+  fun updateSize(attachmentId: AttachmentId, size: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(DATA_SIZE to size)
+      .where("$ID = ?", attachmentId.id)
+      .run()
+  }
+
+  /**
+   * As part of the digest backfill process, this updates the (key, IV, digest) tuple for an attachment.
+   */
+  fun updateKeyIvDigest(attachmentId: AttachmentId, key: ByteArray, iv: ByteArray, digest: ByteArray) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        REMOTE_KEY to Base64.encodeWithPadding(key),
+        REMOTE_IV to iv,
+        REMOTE_DIGEST to digest
+      )
+      .where("$ID = ?", attachmentId.id)
+      .run()
+  }
+
+  /**
    * Inserts new attachments in the table. The [Attachment]s may or may not have data, depending on whether it's an attachment we created locally or some
    * inbound attachment that we haven't fetched yet.
    *

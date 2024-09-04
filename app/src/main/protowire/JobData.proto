@@ -125,3 +125,7 @@ message RestoreLocalAttachmentJobData {
   string fileUri = 3;
   uint64 fileSize = 4;
 }
+
+message BackfillDigestJobData {
+  uint64 attachmentId = 1;
+}

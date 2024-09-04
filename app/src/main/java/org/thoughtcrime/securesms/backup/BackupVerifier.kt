@@ -2,13 +2,13 @@ package org.thoughtcrime.securesms.backup
 
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.logging.Log
+import org.signal.core.util.stream.NullOutputStream
 import org.thoughtcrime.securesms.backup.proto.Attachment
 import org.thoughtcrime.securesms.backup.proto.Avatar
 import org.thoughtcrime.securesms.backup.proto.BackupFrame
 import org.thoughtcrime.securesms.backup.proto.Sticker
 import java.io.IOException
 import java.io.InputStream
-import java.io.OutputStream
 
 /**
  * Given a backup file, run over it and verify it will decrypt properly when attempting to import it.
@@ -88,11 +88,5 @@ object BackupVerifier {
       return false
     }
     return true
-  }
-
-  private object NullOutputStream : OutputStream() {
-    override fun write(b: Int) = Unit
-    override fun write(b: ByteArray?) = Unit
-    override fun write(b: ByteArray?, off: Int, len: Int) = Unit
   }
 }
