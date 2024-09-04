@@ -191,4 +191,12 @@ class LinkDeviceViewModel : ViewModel() {
       )
     }
   }
+
+  fun markEducationSheetSeen(seen: Boolean) {
+    _state.update {
+      it.copy(
+        seenEducationSheet = seen
+      )
+    }
+  }
 }

@@ -249,6 +249,9 @@
         <action
             android:id="@+id/action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet"
             app:destination="@id/linkDeviceLearnMoreBottomSheet" />
+        <action
+            android:id="@+id/action_linkDeviceFragment_to_linkDeviceEducationSheet"
+            app:destination="@id/linkDeviceEducationSheet" />
     </fragment>
     <dialog
         android:id="@+id/linkDeviceFinishedSheet"
@@ -256,6 +259,9 @@
     <dialog
         android:id="@+id/linkDeviceLearnMoreBottomSheet"
         android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceLearnMoreBottomSheetFragment" />
+    <dialog
+        android:id="@+id/linkDeviceEducationSheet"
+        android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceEducationSheet" />
 
     <fragment
         android:id="@+id/addLinkDeviceFragment"
