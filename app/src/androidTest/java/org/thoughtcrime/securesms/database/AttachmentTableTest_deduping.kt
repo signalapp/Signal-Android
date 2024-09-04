@@ -111,15 +111,6 @@ class AttachmentTableTest_deduping {
       assertDataFilesAreDifferent(id1, id2)
       assertDataHashStartMatches(id1, id2)
     }
-
-    // Non-matching mp4 fast start
-    test {
-      val id1 = insertWithData(DATA_A, TransformProperties(mp4FastStart = true))
-      val id2 = insertWithData(DATA_A, TransformProperties(mp4FastStart = false))
-
-      assertDataFilesAreDifferent(id1, id2)
-      assertDataHashStartMatches(id1, id2)
-    }
   }
 
   /**

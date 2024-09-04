@@ -1950,10 +1950,6 @@ class AttachmentTable(
       return false
     }
 
-    if (newProperties.mp4FastStart != potentialMatchProperties.mp4FastStart) {
-      return false
-    }
-
     return true
   }
 
