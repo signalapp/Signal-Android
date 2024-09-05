@@ -5,8 +5,10 @@
 
 package org.signal.core.util
 
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
+import kotlin.math.min
 
 /**
  * Reads a 32-bit variable-length integer from the stream.
@@ -66,6 +68,29 @@ fun InputStream.readNBytesOrThrow(length: Int): ByteArray {
   val buffer = ByteArray(length)
   this.readFully(buffer)
   return buffer
+}
+
+/**
+ * Read at most [byteLimit] bytes from the stream.
+ */
+fun InputStream.readAtMostNBytes(byteLimit: Int): ByteArray {
+  val buffer = ByteArrayOutputStream()
+  val readBuffer = ByteArray(4096)
+
+  var remaining = byteLimit
+  while (remaining > 0) {
+    val bytesToRead = min(remaining, readBuffer.size)
+    val read = this.read(readBuffer, 0, bytesToRead)
+
+    if (read == -1) {
+      break
+    }
+
+    buffer.write(readBuffer, 0, read)
+    remaining -= read
+  }
+
+  return buffer.toByteArray()
 }
 
 @Throws(IOException::class)
