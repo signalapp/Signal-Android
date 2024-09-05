@@ -100,7 +100,7 @@ object TestUsers {
         val recipientId = RecipientId.from(SignalServiceAddress(aci, "+15555551%03d".format(i)))
         SignalDatabase.recipients.setProfileName(recipientId, ProfileName.fromParts("Buddy", "#$i"))
         SignalDatabase.recipients.setProfileKeyIfAbsent(recipientId, ProfileKeyUtil.createNew())
-        SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true))
+        SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true, true))
         SignalDatabase.recipients.setProfileSharing(recipientId, true)
         SignalDatabase.recipients.markRegistered(recipientId, aci)
         val otherIdentity = IdentityKeyUtil.generateIdentityKeyPair()
