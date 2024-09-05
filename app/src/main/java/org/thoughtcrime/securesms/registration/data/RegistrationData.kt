@@ -1,8 +1,7 @@
-package org.thoughtcrime.securesms.registration
+package org.thoughtcrime.securesms.registration.data
 
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 
-// TODO [regv2]: fold sessionId into this?
 data class RegistrationData(
   val code: String,
   val e164: String,

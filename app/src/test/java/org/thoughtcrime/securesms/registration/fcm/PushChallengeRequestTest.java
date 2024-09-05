@@ -1,4 +1,9 @@
-package org.thoughtcrime.securesms.registration;
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.thoughtcrime.securesms.registration.fcm;
 
 import android.app.Application;
 import android.os.AsyncTask;

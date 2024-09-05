@@ -10,7 +10,6 @@ import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
-import org.thoughtcrime.securesms.registration.RegistrationData
 import org.whispersystems.signalservice.api.account.PreKeyCollection
 
 /**
