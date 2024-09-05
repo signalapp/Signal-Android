@@ -23,7 +23,6 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.Collections
-import kotlin.random.Random
 
 typealias ArchiveResult = org.signal.core.util.Result<Unit, LocalArchiver.FailureCause>
 
@@ -70,10 +69,9 @@ object LocalArchiver {
           }
 
           source()?.use { sourceStream ->
-            val iv = Random.nextBytes(16) // todo [local-backup] but really do an iv from table
+            val iv = attachment.remoteIv
             val combinedKey = Base64.decode(attachment.remoteKey)
-
-            var destination: OutputStream? = filesFileSystem.fileOutputStream(mediaName)
+            val destination: OutputStream? = filesFileSystem.fileOutputStream(mediaName)
 
             if (destination == null) {
               Log.w(TAG, "Unable to create output file for attachment")

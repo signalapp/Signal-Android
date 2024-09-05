@@ -478,7 +478,7 @@ class AttachmentTable(
     return readableDatabase
       .select(*PROJECTION)
       .from(TABLE_NAME)
-      .where("$REMOTE_KEY IS NOT NULL AND $REMOTE_DIGEST IS NOT NULL AND $DATA_FILE IS NOT NULL")
+      .where("$REMOTE_KEY IS NOT NULL AND $REMOTE_DIGEST IS NOT NULL AND $REMOTE_IV IS NOT NULL AND $DATA_FILE IS NOT NULL")
       .orderBy("$ID DESC")
       .run()
       .readToList {
@@ -487,7 +487,8 @@ class AttachmentTable(
           random = it.requireNonNullBlob(DATA_RANDOM),
           size = it.requireLong(DATA_SIZE),
           remoteDigest = it.requireBlob(REMOTE_DIGEST)!!,
-          remoteKey = it.requireBlob(REMOTE_KEY)!!
+          remoteKey = it.requireBlob(REMOTE_KEY)!!,
+          remoteIv = it.requireBlob(REMOTE_IV)!!
         )
       }
   }
@@ -2550,7 +2551,8 @@ class AttachmentTable(
     val random: ByteArray,
     val size: Long,
     val remoteDigest: ByteArray,
-    val remoteKey: ByteArray
+    val remoteKey: ByteArray,
+    val remoteIv: ByteArray
   )
 
   class LocalRestorableAttachment(

@@ -6,6 +6,7 @@ package org.thoughtcrime.securesms.jobs
 
 import android.net.Uri
 import org.signal.core.util.Base64
+import org.signal.core.util.StreamUtil
 import org.signal.core.util.androidx.DocumentFileInfo
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
@@ -145,9 +146,10 @@ class RestoreLocalAttachmentJob private constructor(
     val streamSupplier = StreamSupplier { ArchiveFileSystem.openInputStream(context, restoreUri) ?: throw IOException("Unable to open stream") }
 
     try {
-      // TODO [local-backup] actually verify mac and save iv
-      AttachmentCipherInputStream.createForAttachment(streamSupplier, size, attachment.size, combinedKey, null, null, 0, true).use { input ->
-        SignalDatabase.attachments.finalizeAttachmentAfterDownload(attachment.mmsId, attachment.attachmentId, input, null)
+      val iv = ByteArray(16)
+      streamSupplier.openStream().use { StreamUtil.readFully(it, iv) }
+      AttachmentCipherInputStream.createForAttachment(streamSupplier, size, attachment.size, combinedKey, attachment.remoteDigest, null, 0, false).use { input ->
+        SignalDatabase.attachments.finalizeAttachmentAfterDownload(attachment.mmsId, attachment.attachmentId, input, iv)
       }
     } catch (e: InvalidMessageException) {
       Log.w(TAG, "Experienced an InvalidMessageException while trying to read attachment.", e)
