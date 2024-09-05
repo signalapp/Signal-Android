@@ -452,7 +452,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @Override
   public @NonNull BillingApi provideBillingApi() {
-    return BillingFactory.create(context, RemoteConfig.messageBackups());
+    return BillingFactory.create(GooglePlayBillingDependencies.INSTANCE, RemoteConfig.messageBackups());
   }
 
   @Override

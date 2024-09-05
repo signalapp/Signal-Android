@@ -5,17 +5,17 @@
 
 package org.signal.billing
 
-import android.content.Context
 import org.signal.core.util.billing.BillingApi
+import org.signal.core.util.billing.BillingDependencies
 
 /**
  * Play billing factory. Returns empty implementation if message backups are not enabled.
  */
 object BillingFactory {
   @JvmStatic
-  fun create(context: Context, isBackupsAvailable: Boolean): BillingApi {
+  fun create(billingDependencies: BillingDependencies, isBackupsAvailable: Boolean): BillingApi {
     return if (isBackupsAvailable) {
-      BillingApiImpl(context)
+      BillingApiImpl(billingDependencies)
     } else {
       BillingApi.Empty
     }

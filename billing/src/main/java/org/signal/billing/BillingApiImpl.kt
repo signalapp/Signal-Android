@@ -6,7 +6,6 @@
 package org.signal.billing
 
 import android.app.Activity
-import android.content.Context
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClient.BillingResponseCode
 import com.android.billingclient.api.BillingClient.ProductType
@@ -37,6 +36,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.billing.BillingApi
+import org.signal.core.util.billing.BillingDependencies
 import org.signal.core.util.logging.Log
 
 /**
@@ -46,7 +46,7 @@ import org.signal.core.util.logging.Log
  * Care should be taken here to ensure only one instance of this exists at a time.
  */
 internal class BillingApiImpl(
-  context: Context
+  private val billingDependencies: BillingDependencies
 ) : BillingApi {
 
   companion object {
@@ -74,7 +74,7 @@ internal class BillingApiImpl(
     }
   }
 
-  private val billingClient: BillingClient = BillingClient.newBuilder(context)
+  private val billingClient: BillingClient = BillingClient.newBuilder(billingDependencies.context)
     .setListener(purchasesUpdatedListener)
     .enablePendingPurchases(
       PendingPurchasesParams.newBuilder()
@@ -98,6 +98,7 @@ internal class BillingApiImpl(
 
   override suspend fun queryProducts() {
     val products = queryProductsInternal()
+    Log.d(TAG, "Retrieved products with result: $products")
   }
 
   override suspend fun queryPurchases() {
@@ -106,6 +107,7 @@ internal class BillingApiImpl(
       .build()
 
     val purchases = doOnConnectionReady {
+      Log.d(TAG, "Querying purchases.")
       billingClient.queryPurchasesAsync(param)
     }
 
@@ -143,6 +145,7 @@ internal class BillingApiImpl(
 
     doOnConnectionReady {
       withContext(Dispatchers.Main) {
+        Log.d(TAG, "Launching billing flow.")
         billingClient.launchBillingFlow(activity, billingFlowParams)
       }
     }
@@ -159,7 +162,7 @@ internal class BillingApiImpl(
   private suspend fun queryProductsInternal(): ProductDetailsResult {
     val productList = listOf(
       QueryProductDetailsParams.Product.newBuilder()
-        .setProductId("") // TODO [message-backups] where does the product id come from?
+        .setProductId(billingDependencies.getProductId())
         .setProductType(ProductType.SUBS)
         .build()
     )
@@ -170,6 +173,7 @@ internal class BillingApiImpl(
 
     return withContext(Dispatchers.IO) {
       doOnConnectionReady {
+        Log.d(TAG, "Querying product details.")
         billingClient.queryProductDetails(params)
       }
     }
