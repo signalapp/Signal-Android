@@ -40,7 +40,9 @@ object RemoteMegaphoneRepository {
 
   private val snooze: Action = Action { _, controller, remote ->
     controller.onMegaphoneSnooze(Megaphones.Event.REMOTE_MEGAPHONE)
-    db.snooze(remote)
+    SignalExecutors.BOUNDED_IO.execute {
+      db.snooze(remote)
+    }
   }
 
   private val finish: Action = Action { context, controller, remote ->
@@ -48,7 +50,9 @@ object RemoteMegaphoneRepository {
       BlobProvider.getInstance().delete(context, remote.imageUri)
     }
     controller.onMegaphoneSnooze(Megaphones.Event.REMOTE_MEGAPHONE)
-    db.markFinished(remote.uuid)
+    SignalExecutors.BOUNDED_IO.execute {
+      db.markFinished(remote.uuid)
+    }
   }
 
   private val donate: Action = Action { context, controller, remote ->
