@@ -322,7 +322,7 @@ private fun CallInfo(
         )
         Rows.ToggleRow(
           checked = controlAndInfoState.callLink.state.restrictions == CallLinkState.Restrictions.ADMIN_APPROVAL,
-          text = stringResource(id = R.string.CallLinkDetailsFragment__approve_all_members),
+          text = stringResource(id = R.string.CallLinkDetailsFragment__require_admin_approval),
           onCheckChanged = onToggleAdminApprovalClicked
         )
       }

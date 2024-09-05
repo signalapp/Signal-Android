@@ -276,7 +276,7 @@ private fun CallLinkDetails(
 
         Rows.ToggleRow(
           checked = state.callLink.state.restrictions == Restrictions.ADMIN_APPROVAL,
-          text = stringResource(id = R.string.CallLinkDetailsFragment__approve_all_members),
+          text = stringResource(id = R.string.CallLinkDetailsFragment__require_admin_approval),
           onCheckChanged = callback::onApproveAllMembersChanged
         )
 
