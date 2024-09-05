@@ -331,12 +331,17 @@ object BackupRepository {
   fun localImport(mainStreamFactory: () -> InputStream, mainStreamLength: Long, selfData: SelfData): ImportResult {
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
 
-    val frameReader = EncryptedBackupReader(
-      key = backupKey,
-      aci = selfData.aci,
-      length = mainStreamLength,
-      dataStream = mainStreamFactory
-    )
+    val frameReader = try {
+      EncryptedBackupReader(
+        key = backupKey,
+        aci = selfData.aci,
+        length = mainStreamLength,
+        dataStream = mainStreamFactory
+      )
+    } catch (e: IOException) {
+      Log.w(TAG, "Unable to import local archive", e)
+      return ImportResult.Failure
+    }
 
     return frameReader.use { reader ->
       import(backupKey, reader, selfData)

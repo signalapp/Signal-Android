@@ -22,6 +22,9 @@ object AttachmentTransformer : ColumnTransformer {
       AttachmentTable.TRANSFER_PROGRESS_FAILED -> "FAILED"
       AttachmentTable.TRANSFER_PROGRESS_STARTED -> "STARTED"
       AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE -> "PERMANENT_FAILURE"
+      AttachmentTable.TRANSFER_NEEDS_RESTORE -> "NEEDS_RESTORE"
+      AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS -> "RESTORE_IN_PROGRESS"
+      AttachmentTable.TRANSFER_RESTORE_OFFLOADED -> "RESTORE_OFFLOADED"
       else -> "UNKNOWN"
     }
     return "$string ($value)"

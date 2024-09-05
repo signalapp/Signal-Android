@@ -25,7 +25,6 @@ import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.StreamSupplier
 import java.io.IOException
-import java.util.concurrent.TimeUnit
 
 /**
  * Restore attachment from local backup storage.
@@ -41,6 +40,7 @@ class RestoreLocalAttachmentJob private constructor(
   companion object {
     const val KEY = "RestoreLocalAttachmentJob"
     val TAG = Log.tag(RestoreLocalAttachmentJob::class.java)
+    private const val CONCURRENT_QUEUES = 2
 
     fun enqueueRestoreLocalAttachmentsJobs(mediaNameToFileInfo: Map<String, DocumentFileInfo>) {
       var restoreAttachmentJobs: MutableList<Job>
@@ -63,7 +63,7 @@ class RestoreLocalAttachmentJob private constructor(
 
             if (fileInfo != null) {
               restorableAttachments += attachment
-              restoreAttachmentJobs += RestoreLocalAttachmentJob("RestoreLocalAttachmentJob_${index % 2}", attachment, fileInfo)
+              restoreAttachmentJobs += RestoreLocalAttachmentJob(queueName(index), attachment, fileInfo)
             } else {
               notRestorableAttachments += attachment
             }
@@ -77,14 +77,25 @@ class RestoreLocalAttachmentJob private constructor(
           AppDependencies.jobManager.addAll(restoreAttachmentJobs)
         }
       } while (restoreAttachmentJobs.isNotEmpty())
+
+      val checkDoneJobs = (0 until CONCURRENT_QUEUES)
+        .map {
+          CheckRestoreMediaLeftJob(queueName(it))
+        }
+
+      AppDependencies.jobManager.addAll(checkDoneJobs)
+    }
+
+    private fun queueName(index: Int): String {
+      return "RestoreLocalAttachmentJob_${index % CONCURRENT_QUEUES}"
     }
   }
 
   private constructor(queue: String, attachment: LocalRestorableAttachment, info: DocumentFileInfo) : this(
     Parameters.Builder()
       .setQueue(queue)
-      .setLifespan(TimeUnit.DAYS.toMillis(1))
-      .setMaxAttempts(Parameters.UNLIMITED)
+      .setLifespan(Parameters.IMMORTAL)
+      .setMaxAttempts(3)
       .build(),
     attachmentId = attachment.attachmentId,
     messageId = attachment.mmsId,

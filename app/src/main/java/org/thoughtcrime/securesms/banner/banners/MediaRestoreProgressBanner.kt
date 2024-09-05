@@ -79,10 +79,6 @@ class MediaRestoreProgressBanner(private val data: MediaRestoreEvent) : Banner()
       val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
       val completedBytes = totalRestoreSize - remainingAttachmentSize
 
-      if (remainingAttachmentSize == 0L) {
-        SignalStore.backup.totalRestorableAttachmentSize = 0
-      }
-
       MediaRestoreEvent(completedBytes, totalRestoreSize)
     }
   }
