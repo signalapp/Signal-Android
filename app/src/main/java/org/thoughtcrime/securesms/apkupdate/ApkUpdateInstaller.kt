@@ -17,6 +17,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ApkUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.FileUtils
 import java.io.FileInputStream
@@ -61,7 +62,7 @@ object ApkUpdateInstaller {
     }
 
     if (!userInitiated && !shouldAutoUpdate()) {
-      Log.w(TAG, "Not user-initiated and not eligible for auto-update. Prompting. (API=${Build.VERSION.SDK_INT}, Foreground=${AppDependencies.appForegroundObserver.isForegrounded}, AutoUpdate=${SignalStore.apkUpdate.autoUpdate})")
+      Log.w(TAG, "Not user-initiated and not eligible for auto-update. Prompting. (API=${Build.VERSION.SDK_INT}, Foreground=${AppForegroundObserver.isForegrounded()}, AutoUpdate=${SignalStore.apkUpdate.autoUpdate})")
       ApkUpdateNotifications.showInstallPrompt(context, downloadId)
       return
     }
@@ -145,6 +146,6 @@ object ApkUpdateInstaller {
 
   private fun shouldAutoUpdate(): Boolean {
     // TODO Auto-updates temporarily restricted to nightlies. Once we have designs for allowing users to opt-out of auto-updates, we can re-enable this
-    return Environment.IS_NIGHTLY && Build.VERSION.SDK_INT >= 31 && SignalStore.apkUpdate.autoUpdate && !AppDependencies.appForegroundObserver.isForegrounded
+    return Environment.IS_NIGHTLY && Build.VERSION.SDK_INT >= 31 && SignalStore.apkUpdate.autoUpdate && !AppForegroundObserver.isForegrounded()
   }
 }

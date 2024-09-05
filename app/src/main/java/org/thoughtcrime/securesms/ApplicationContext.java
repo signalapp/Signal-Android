@@ -167,7 +167,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addBlocking("scrubber", () -> Scrubber.setIdentifierHmacKeyProvider(() -> SignalStore.svr().getOrCreateMasterKey().deriveLoggingKey()))
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
-                            .addBlocking("lifecycle-observer", () -> AppDependencies.getAppForegroundObserver().addListener(this))
+                            .addBlocking("lifecycle-observer", () -> AppForegroundObserver.addListener(this))
                             .addBlocking("message-retriever", this::initializeMessageRetrieval)
                             .addBlocking("dynamic-theme", () -> DynamicTheme.setDefaultDayNightMode(this))
                             .addBlocking("proxy-init", () -> {
@@ -366,7 +366,11 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   @VisibleForTesting
   void initializeAppDependencies() {
-    AppDependencies.init(this, new ApplicationDependencyProvider(this));
+    if (!AppDependencies.isInitialized()) {
+      Log.i(TAG, "Initializing AppDependencies.");
+      AppDependencies.init(this, new ApplicationDependencyProvider(this));
+    }
+    AppForegroundObserver.begin();
   }
 
   private void initializeFirstEverAppLaunch() {

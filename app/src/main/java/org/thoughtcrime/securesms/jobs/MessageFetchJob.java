@@ -125,7 +125,7 @@ public final class MessageFetchJob extends BaseJob {
 
     @Override
     public void close() {
-      AppDependencies.getAppForegroundObserver().removeListener(this);
+      AppForegroundObserver.removeListener(this);
       closeNotificationController();
     }
 
@@ -157,7 +157,7 @@ public final class MessageFetchJob extends BaseJob {
 
     static ForegroundServiceController create(@NonNull Context context) {
       ForegroundServiceController instance = new ForegroundServiceController(context);
-      AppDependencies.getAppForegroundObserver().addListener(instance);
+      AppForegroundObserver.addListener(instance);
 
       return instance;
     }

@@ -130,7 +130,7 @@ class IncomingMessageObserver(private val context: Application) {
       }
     }
 
-    AppDependencies.appForegroundObserver.addListener(object : AppForegroundObserver.Listener {
+    AppForegroundObserver.addListener(object : AppForegroundObserver.Listener {
       override fun onForeground() {
         onAppForegrounded()
       }

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.dependencies
 
 import android.annotation.SuppressLint
 import android.app.Application
-import androidx.annotation.MainThread
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
@@ -35,7 +34,6 @@ import org.thoughtcrime.securesms.service.ScheduledMessageManager
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
 import org.thoughtcrime.securesms.shakereport.ShakeToReport
-import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.EarlyMessageCache
 import org.thoughtcrime.securesms.util.FrameRateTracker
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache
@@ -69,21 +67,15 @@ object AppDependencies {
   private lateinit var _application: Application
   private lateinit var provider: Provider
 
-  // Needs special initialization because it needs to be created on the main thread
-  private lateinit var _appForegroundObserver: AppForegroundObserver
-
   @JvmStatic
-  @MainThread
+  @Synchronized
   fun init(application: Application, provider: Provider) {
     if (this::_application.isInitialized || this::provider.isInitialized) {
-      throw IllegalStateException("Already initialized!")
+      return
     }
 
     _application = application
     AppDependencies.provider = provider
-
-    _appForegroundObserver = provider.provideAppForegroundObserver()
-    _appForegroundObserver.begin()
   }
 
   @JvmStatic
@@ -93,10 +85,6 @@ object AppDependencies {
   @JvmStatic
   val application: Application
     get() = _application
-
-  @JvmStatic
-  val appForegroundObserver: AppForegroundObserver
-    get() = _appForegroundObserver
 
   @JvmStatic
   val recipientCache: LiveRecipientCache by lazy {
@@ -339,7 +327,6 @@ object AppDependencies {
     fun provideDatabaseObserver(): DatabaseObserver
     fun providePayments(signalServiceAccountManager: SignalServiceAccountManager): Payments
     fun provideShakeToReport(): ShakeToReport
-    fun provideAppForegroundObserver(): AppForegroundObserver
     fun provideSignalCallManager(): SignalCallManager
     fun providePendingRetryReceiptManager(): PendingRetryReceiptManager
     fun providePendingRetryReceiptCache(): PendingRetryReceiptCache

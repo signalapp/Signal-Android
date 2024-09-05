@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
 import org.thoughtcrime.securesms.restore.RestoreActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -92,8 +93,8 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   @Override
   public void onMasterSecretCleared() {
     Log.d(TAG, "onMasterSecretCleared()");
-    if (AppDependencies.getAppForegroundObserver().isForegrounded()) routeApplicationState(true);
-    else                                                                     finish();
+    if (AppForegroundObserver.isForegrounded()) routeApplicationState(true);
+    else                                        finish();
   }
 
   protected <T extends Fragment> T initFragment(@IdRes int target,
@@ -209,7 +210,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private Intent getPromptPassphraseIntent() {
     Intent intent = getRoutedIntent(PassphrasePromptActivity.class, getIntent());
-    intent.putExtra(PassphrasePromptActivity.FROM_FOREGROUND, AppDependencies.getAppForegroundObserver().isForegrounded());
+    intent.putExtra(PassphrasePromptActivity.FROM_FOREGROUND, AppForegroundObserver.isForegrounded());
     return intent;
   }
 

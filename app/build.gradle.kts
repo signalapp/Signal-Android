@@ -91,6 +91,7 @@ android {
 
   kotlinOptions {
     jvmTarget = signalKotlinJvmTarget
+    freeCompilerArgs = listOf("-Xjvm-default=all")
   }
 
   keystores["debug"]?.let { properties ->

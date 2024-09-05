@@ -991,7 +991,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         Log.i(TAG, "Starting call activity from foreground listener");
         startCallCardActivityIfPossible();
       }
-      AppDependencies.getAppForegroundObserver().removeListener(this);
+      AppForegroundObserver.removeListener(this);
       return s;
     });
   }
@@ -1218,7 +1218,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void relaunchPipOnForeground() {
-    AppDependencies.getAppForegroundObserver().addListener(new RelaunchListener(AppDependencies.getAppForegroundObserver().isForegrounded()));
+    AppForegroundObserver.addListener(new RelaunchListener(AppForegroundObserver.isForegrounded()));
   }
 
   private void processSendMessageFailureWithChangeDetection(@NonNull RemotePeer remotePeer,
@@ -1265,7 +1265,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
             return s;
           });
         }
-        AppDependencies.getAppForegroundObserver().removeListener(this);
+        AppForegroundObserver.removeListener(this);
       }
     }
 

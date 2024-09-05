@@ -276,11 +276,6 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull AppForegroundObserver provideAppForegroundObserver() {
-    return new AppForegroundObserver();
-  }
-
-  @Override
   public @NonNull SignalCallManager provideSignalCallManager() {
     return new SignalCallManager(context);
   }
