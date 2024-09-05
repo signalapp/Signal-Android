@@ -2937,7 +2937,7 @@
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Vous avez refusé cet appel via un appareil associé.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Occupé sur un appareil associé.</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
-    <string name="WebRtcCallActivity__flip_camera_tooltip">L’icône « Changer de caméra » se trouve désormais ici. Touchez la vidéo pour l’essayer.</string>
+    <string name="WebRtcCallActivity__flip_camera_tooltip">L\'icône \"Changer de caméra\" se trouve désormais ici. Touchez la vidéo pour l\'essayer.</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Un utilisateur dont le numéro de sécurité a changé a rejoint cet appel.</string>
 
@@ -3162,7 +3162,7 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Pour recevoir les notifications d’appel, touchez cette option, activez les notifications et vérifiez que le son et les pop-ups sont bien activés.</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d’appel, touchez ici et activez l’activité d’arrière-plan dans la section « Batterie/Pile » des paramètres. </string>
     <string name="EnableCallNotificationSettingsDialog__settings">Paramètres</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Pour recevoir les notifications d’appel, appuyez sur Réglages et activez l’option « Afficher les notifications ».</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Pour recevoir les notifications d\'appel, accédez à Paramètres &gt; Notifications &gt; Appels et activez l\'option \"Notifications\".</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Pour recevoir les notifications d\'appel, touchez Paramètres, activez les notifications et vérifiez que le son et les pop-ups sont bien activés.</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d’appel, touchez Paramètres et activez l’activité d’arrière-plan dans la section « Batterie/Pile » des paramètres.</string>
 

@@ -391,7 +391,7 @@
 
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_sent_tap_for_details">No se ha enviado. Toca para ver más información.</string>
-    <string name="ConversationItem_error_partially_not_delivered">Enviado parcialmente. Toca para ver más información.</string>
+    <string name="ConversationItem_error_partially_not_delivered">No se ha enviado a todas las personas. Toca aquí para ver más información.</string>
     <string name="ConversationItem_error_network_not_delivered">No se ha podido enviar</string>
     <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
     <string name="ConversationItem_send_paused">Envío pausado</string>
@@ -717,7 +717,7 @@
     <string name="ConversationListFragment_pin">Fijar</string>
     <string name="ConversationListFragment_unpin">Desfijar</string>
     <string name="ConversationListFragment_mute">Silenciar</string>
-    <string name="ConversationListFragment_unmute">No silenciar</string>
+    <string name="ConversationListFragment_unmute">Reactivar</string>
     <string name="ConversationListFragment_select">Seleccionar</string>
     <string name="ConversationListFragment_archive">Archivar</string>
     <string name="ConversationListFragment_unarchive">Desarchivar</string>
@@ -1081,8 +1081,8 @@
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">¿Qué son los nuevos grupos?</string>
-    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Los nuevos grupos incluyen funciones como @menciones y admins, y se añadirán más en el futuro.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Todos los mensajes y adjuntos se han mantenido tras la actualización.</string>
+    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Los nuevos grupos incluyen funciones como @menciones y admins, y añadiremos más en el futuro.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Se ha conservado todo el historial de mensajes y todos los archivos multimedia que tenías antes de la actualización.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Deberás aceptar una invitación para volver a unirte a este grupo y no recibirás ningún mensaje del grupo hasta que aceptes.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">Esta persona tiene que aceptar la invitación para volver a unirse al grupo y no recibirá ningún mensaje del grupo hasta que acepte:</item>
@@ -1096,8 +1096,8 @@
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Actualizar al nuevo sistema de grupos</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Actualizar este grupo</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Los nuevos grupos incluyen funciones como @menciones y admins, y se añadirán más en el futuro.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Se conservará el historial de mensajes y los archivos que tenías antes de actualizar.</string>
+    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Los nuevos grupos incluyen funciones como @menciones y admins, y añadiremos más en el futuro.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Se conservará todo el historial de mensajes y todos los archivos multimedia que tenías antes de la actualización.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Error en la conexión de red. Inténtalo de nuevo más tarde.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">No se ha podido actualizar.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1144,7 +1144,7 @@
 
     <!-- LeaveGroupDialog -->
     <string name="LeaveGroupDialog_leave_group">¿Abandonar grupo?</string>
-    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">No podrás enviar ni recibir más mensajes en este grupo.</string>
+    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Ya no podrás enviar ni recibir mensajes en este grupo.</string>
     <string name="LeaveGroupDialog_leave">Abandonar</string>
     <string name="LeaveGroupDialog_choose_new_admin">Designa a otra persona como admin</string>
     <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de abandonar el grupo, designa a otra persona como admin.</string>
@@ -1338,7 +1338,7 @@
     <string name="ManageProfileFragment__username_footer_no_username">Ahora, las personas pueden enviarte mensajes usando tu alias opcional, con lo que no necesitas dar tu número de teléfono. </string>
     <string name="ManageProfileFragment_profile_name">Nombre de perfil</string>
     <string name="ManageProfileFragment_username">Alias</string>
-    <string name="ManageProfileFragment_about">Información</string>
+    <string name="ManageProfileFragment_about">Sobre mí</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">No se ha podido seleccionar la imagen</string>
     <string name="ManageProfileFragment_badges">Insignias</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
@@ -2072,7 +2072,7 @@
     <!-- Recipient -->
     <string name="Recipient_you">Tú</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
-    <string name="Recipient_my_story">Mi historia</string>
+    <string name="Recipient_my_story">Mis historias</string>
     <!-- Name of recipient for a call link without a name -->
     <string name="Recipient_signal_call">Llamada de Signal</string>
 
@@ -2341,7 +2341,7 @@
         <item quantity="other">%1$d grupos en común</item>
     </plurals>
     <!-- Text displayed in title for external recipients -->
-    <string name="AboutSheet__about">Información</string>
+    <string name="AboutSheet__about">Sobre mí</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">Tú</string>
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
@@ -4015,7 +4015,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">No silenciar</string>
+    <string name="conversation_muted__unmute">Reactivar notificaciones</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Silenciar notificaciones</string>
@@ -5056,8 +5056,8 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Se muestra un icono en los detalles del mensaje cuando se ha entregado con la opción de remitente confidencial.</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Con esta opción activa, los mensajes enviados y recibidos en chats que tú inicies desaparecerán tras ser vistos.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Si habilitas esta función, los mensajes enviados y recibidos en este chat desaparecerán tras ser vistos.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Si activas esta función, los mensajes enviados y recibidos en nuevos chats que tú inicies desaparecerán tras ser vistos.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Si activas esta función, los mensajes enviados y recibidos en este chat desaparecerán tras ser vistos.</string>
     <string name="ExpireTimerSettingsFragment__off">Desactivado</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 semanas</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 semana</string>
@@ -5085,7 +5085,7 @@
     <string name="HelpSettingsFragment__licenses">Licencias</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Términos y Política de privacidad</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">App liberada bajo GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licencia GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Calidad de fotos y vídeos</string>
@@ -5199,7 +5199,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">Silenciar</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">Silenciada</string>
+    <string name="ConversationSettingsFragment__muted">Silenciado</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Buscar</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Mensajes temporales</string>
@@ -5218,7 +5218,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Solicitudes e invitaciones</string>
     <string name="ConversationSettingsFragment__group_link">Enlace al grupo</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Añadir como contacto</string>
-    <string name="ConversationSettingsFragment__unmute">No silenciar</string>
+    <string name="ConversationSettingsFragment__unmute">Reactivar</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat silenciado hasta %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Chat silenciado para siempre</string>
@@ -5707,9 +5707,9 @@
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
     <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Se produjo un error al procesar esta donación; inténtalo de nuevo.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Los datos bancarios proporcionados no han podido ser procesados. Ponte en contacto con tu banco para obtener más información.</string>
+    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">No se han podido procesar los datos bancarios proporcionados. Contacta con tu banco para obtener más información.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Comprueba que los datos de tu banco son correctos e inténtalo de nuevo. Si el problema persiste, contacta con tu banco.</string>
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Comprueba que tus datos bancarios son correctos e inténtalo de nuevo. Si el problema persiste, contacta con tu banco.</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Asigna un nombre de perfil</string>
@@ -5933,7 +5933,7 @@
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">No se ha podido enviar</string>
     <!-- Label when a story fails to send due to identity mismatch -->
-    <string name="StoriesLandingItem__partially_sent">Enviado parcialmente</string>
+    <string name="StoriesLandingItem__partially_sent">No se ha enviado a todas las personas</string>
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Toca para reintentar</string>
     <!-- Title of dialog confirming decision to hide a story -->
@@ -5984,7 +5984,7 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Responder</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Parcialmente enviado. Toca aquí para ver los detalles</string>
+    <string name="StoryViewerPageFragment__partially_sent">No se ha enviado a todas las personas. Toca aquí para ver más información.</string>
     <!-- Displayed when viewing a post that has failed to send -->
     <string name="StoryViewerPageFragment__send_failed">No se ha podido enviar. Toca para reintentar</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
@@ -6025,7 +6025,7 @@
     <!-- Context menu item to delete a story response -->
     <string name="StoryGroupReplyItem__delete">Eliminar</string>
     <!-- Page title for My Story options -->
-    <string name="MyStorySettingsFragment__my_story">Mi historia</string>
+    <string name="MyStorySettingsFragment__my_story">Mis historias</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
         <item quantity="one">%1$d persona</item>
@@ -6180,7 +6180,7 @@
     <!-- Choose story type bottom sheet group story title -->
     <string name="ChooseStoryTypeBottomSheet__group_story">Historia de grupo</string>
     <!-- Choose story type bottom sheet group story summary -->
-    <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Compartir con un grupo</string>
+    <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Compartir en un grupo</string>
     <!-- Choose groups bottom sheet title -->
     <string name="ChooseGroupStoryBottomSheet__choose_groups">Elegir grupos</string>
     <!-- Displayed when copying group story reply text to clipboard -->
@@ -6398,9 +6398,9 @@
     <string name="SafetyNumberReviewConnectionsFragment__remove">Eliminar</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Privacidad de mi historia</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Privacidad de mis historias</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Elige quién puede ver lo que subes a tu historia. Siempre puedes hacer cambios en tus ajustes.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Elige quién puede ver tus historias. Siempre puedes hacer cambios en tus ajustes.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Mis contactos de Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -7294,7 +7294,7 @@
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_title">Aplicar límites a los dispositivos vinculados</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">Cuando los límites del chat están habilitados, también se eliminarán los mensajes de tus dispositivos vinculados.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Si activas los límites del chat, también se eliminarán los mensajes de tus dispositivos vinculados.</string>
     <!-- Setting section title header for storage optimization -->
     <string name="ManageStorageSettingsFragment__on_device_storage">Almacenamiento en el dispositivo</string>
     <!-- Setting row title for storage optimization -->

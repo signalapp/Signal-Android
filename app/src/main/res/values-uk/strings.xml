@@ -595,7 +595,7 @@
         <item quantity="many">Триває збереження %1$d вкладень у пам\'яті…</item>
         <item quantity="other">Триває збереження %1$d вкладення в пам\'яті…</item>
     </plurals>
-    <string name="ConversationFragment_pending">Очікування…</string>
+    <string name="ConversationFragment_pending">Надсилання триває…</string>
     <string name="ConversationFragment_push">інтернет (Signal)</string>
     <string name="ConversationFragment_mms">MMS-повідомлення</string>
     <string name="ConversationFragment_sms">SMS-повідомлення</string>
@@ -827,7 +827,7 @@
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Відновити з резервної копії?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Відновіть повідомлення та медіафайли з локальної резервної копії. Якщо ви не відновите їх зараз, то не зможете зробити цього пізніше.</string>
+    <string name="ChooseBackupFragment__restore_your_messages_and_media">Відновіть повідомлення й медіафайли з локальної резервної копії. Якщо ви не відновите їх зараз, то не зможете зробити цього пізніше.</string>
     <string name="ChooseBackupFragment__icon_content_description">Значок відновлення з резервної копії</string>
     <string name="ChooseBackupFragment__choose_backup">Обрати резервну копію</string>
     <string name="ChooseBackupFragment__learn_more">Докладніше</string>
@@ -1070,8 +1070,8 @@
     <string name="PendingGroupJoinRequestsReminder_view">Переглянути</string>
 
     <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Постійний збій зв\'язку Signal!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не зміг зареєструватись у сервісах Google Play. Виклики та повідомлення Signal наразі вимкнено, спробуйте перереєструватися у Налаштуваннях &gt; Додатково.</string>
+    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Постійний збій зв\'язку зі службою Signal!</string>
+    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не вдалося зареєструвати в сервісах Google Play, виклики та повідомлення Signal наразі деактивовано. Щоб перереєструватися, перейдіть у налаштування &gt; Додатково.</string>
 
 
     <!-- GiphyActivity -->
@@ -1120,11 +1120,11 @@
         <item quantity="other">Надіслано %1$d запрошення</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
-    <string name="GroupManagement_invite_single_user">Ви не можете автоматично додати \"%1$s\" в цю групу.\n\nЙому (їй) було відправлено запрошення приєднатися, і він (-а) не побачить повідомлення в групі, поки не прийме запрошення.</string>
-    <string name="GroupManagement_invite_multiple_users">Ви не можете автоматично додати цих користувачів до цієї групи.\n\nЇм було відправлено запрошення приєднатися, і вони не побачать повідомлення в групі, поки не приймуть запрошення.</string>
+    <string name="GroupManagement_invite_single_user">Ви не можете автоматично додати користувача %1$s в цю групу.\n\nКористувачеві було надіслано запрошення, він зможе бачити повідомлення в групі лише після його прийняття.</string>
+    <string name="GroupManagement_invite_multiple_users">Ви не можете автоматично додати цих користувачів у цю групу.\n\nЇм було надіслано запрошення, вони зможуть бачити повідомлення в групі лише після їх прийняття.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Що таке Нові Групи?</string>
+    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Що таке «Нові групи»?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Нові групи мають такі можливості як @згадки, адміністраторів груп, та підтримуватимуть більше можливостей у майбутньому.</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Уся історія повідомлень і медіа були збережені під час оновлення.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Вам потрібно прийняти запит, щоб приєднатись до цієї групи знов. Ви не отримуватимете повідомлень від групи поки не приймете запит.</string>

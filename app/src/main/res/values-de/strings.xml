@@ -3576,7 +3576,7 @@
     <string name="preferences__advanced_pin_settings">Erweiterte PIN-Einstellungen</string>
     <string name="preferences__free_private_messages_and_calls">Kostenlos und verschlüsselt mit Signal-Kontakten Nachrichten austauschen und telefonieren</string>
     <string name="preferences__submit_debug_log">Diagnoseprotokoll übermitteln</string>
-    <string name="preferences__delete_account">Dein Konto löschen</string>
+    <string name="preferences__delete_account">Konto löschen</string>
     <string name="preferences__support_wifi_calling">Kompatibilität WLAN-Telefonie</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivieren, falls das Gerät SMS/MMS über WLAN nutzt (nur bei aktivierter WLAN-Telefonie)</string>
     <string name="preferences__incognito_keyboard">Inkognito-Tastatur</string>
@@ -4664,7 +4664,7 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Das Löschen deines Kontos wird:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Gib deine Telefonnummer ein</string>
-    <string name="DeleteAccountFragment__delete_account">Dein Konto löschen</string>
+    <string name="DeleteAccountFragment__delete_account">Konto löschen</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Deine Kontodetails und dein Profilbild löschen</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Alle deine Nachrichten löschen</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Lösche %1$s in deinem Zahlungskonto</string>

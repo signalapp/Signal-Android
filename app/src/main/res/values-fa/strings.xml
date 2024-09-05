@@ -2899,7 +2899,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">پخش ویدئو</string>
-    <string name="ThumbnailView_Has_a_caption_description">دارای یک زیرنویس</string>
+    <string name="ThumbnailView_Has_a_caption_description">دارای یک متن</string>
 
     <!-- TransferControlView -->
     <plurals name="TransferControlView_n_items">
