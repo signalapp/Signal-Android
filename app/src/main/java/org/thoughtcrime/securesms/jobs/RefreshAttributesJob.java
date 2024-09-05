@@ -91,7 +91,7 @@ public class RefreshAttributesJob extends BaseJob {
     boolean   universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
     String    registrationLockV2          = null;
     SvrValues svrValues                   = SignalStore.svr();
-    int       pniRegistrationId           = new RegistrationRepository(AppDependencies.getApplication()).getPniRegistrationId();
+    int       pniRegistrationId           = new RegistrationRepository().getPniRegistrationId();
     String    recoveryPassword            = svrValues.getRecoveryPassword();
 
     if (svrValues.isRegistrationLockEnabled()) {
