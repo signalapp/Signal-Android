@@ -41,4 +41,3 @@ class VerifyResponseWithoutKbs(response: ServiceResponse<VerifyResponse>) : Veri
     return registrationLock() && getLockedException().svr2Credentials == null
   }
 }
-
