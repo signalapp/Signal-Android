@@ -14,11 +14,9 @@
         <ViewStub
             android:id="@+id/linkpreview_thumbnail"
             android:layout_width="72dp"
-            android:layout_height="0dp"
+            android:layout_height="72dp"
             android:layout="@layout/link_preview_thumbnail_stub"
-            android:maxHeight="72dp"
             app:layout_constraintBottom_toTopOf="@+id/linkpreview_divider"
-            app:layout_constraintHeight_min="72dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/linkpreview_title" />
 
