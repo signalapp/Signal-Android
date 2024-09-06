@@ -6,10 +6,12 @@
 package org.whispersystems.signalservice.api
 
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
 import java.io.IOException
+import java.util.concurrent.TimeoutException
 import kotlin.reflect.KClass
 
 typealias StatusCodeErrorAction = (NetworkResult.StatusCodeError<*>) -> Unit
@@ -67,6 +69,8 @@ sealed class NetworkResult<T>(
       StatusCodeError(e)
     } catch (e: IOException) {
       NetworkError(e)
+    } catch (e: TimeoutException) {
+      NetworkError(PushNetworkException(e))
     } catch (e: Throwable) {
       ApplicationError(e)
     }
