@@ -34,8 +34,6 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
 
     const val KEY = "BackupMessagesJob"
 
-    const val QUEUE = "BackupMessagesQueue"
-
     /**
      * Pruning abandoned remote media is relatively expensive, so we should
      * not do this every time we backup.
@@ -58,7 +56,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
       .addConstraint(if (SignalStore.backup.backupWithCellular) NetworkConstraint.KEY else WifiConstraint.KEY)
       .setMaxAttempts(3)
       .setMaxInstancesForFactory(1)
-      .setQueue(QUEUE)
+      .setQueue(BackfillDigestJob.QUEUE) // We want to ensure digests have been backfilled before this runs. Could eventually remove this constraint.b
       .build()
   )
 
@@ -131,12 +129,15 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
     FileInputStream(tempBackupFile).use {
       BackupRepository.uploadBackupFile(it, tempBackupFile.length())
     }
+
     val needBackfill = archiveAttachments()
     SignalStore.backup.lastBackupProtoSize = tempBackupFile.length()
     if (!tempBackupFile.delete()) {
       Log.e(TAG, "Failed to delete temp backup file")
     }
+
     SignalStore.backup.lastBackupTime = System.currentTimeMillis()
+
     if (!needBackfill) {
       EventBus.getDefault().postSticky(BackupV2Event(BackupV2Event.Type.FINISHED, 0, 0))
       try {

@@ -34,12 +34,13 @@ class BackfillDigestJob private constructor(
   companion object {
     private val TAG = Log.tag(BackfillDigestJob::class)
     const val KEY = "BackfillDigestJob"
+    const val QUEUE = "BackfillDigestJob"
   }
 
   constructor(attachmentId: AttachmentId) : this(
     attachmentId = attachmentId,
     params = Parameters.Builder()
-      .setQueue("BackfillDigestJob")
+      .setQueue(QUEUE)
       .setMaxAttempts(3)
       .setLifespan(Parameters.IMMORTAL)
       .build()
