@@ -6,6 +6,7 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
+import org.signal.core.util.stream.TruncatingInputStream;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidMessageException;
@@ -61,7 +62,7 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
 
     if (details.avatar != null && details.avatar.length != null) {
       long        avatarLength      = details.avatar.length;
-      InputStream avatarStream      = new LimitedInputStream(in, avatarLength);
+      InputStream avatarStream      = new TruncatingInputStream(in, avatarLength);
       String      avatarContentType = details.avatar.contentType != null ? details.avatar.contentType : "image/*";
 
       avatar = Optional.of(new DeviceContactAvatar(avatarStream, avatarLength, avatarContentType));

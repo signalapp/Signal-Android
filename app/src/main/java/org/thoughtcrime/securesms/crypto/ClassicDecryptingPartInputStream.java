@@ -19,7 +19,7 @@ package org.thoughtcrime.securesms.crypto;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.LimitedInputStream;
+import org.signal.core.util.stream.TruncatingInputStream;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
@@ -63,7 +63,7 @@ public class ClassicDecryptingPartInputStream {
       IvParameterSpec iv     = new IvParameterSpec(ivBytes);
       cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(attachmentSecret.getClassicCipherKey(), "AES"), iv);
 
-      return new CipherInputStreamWrapper(new LimitedInputStream(fileStream, file.length() - MAC_LENGTH - IV_LENGTH), cipher);
+      return new CipherInputStreamWrapper(new TruncatingInputStream(fileStream, file.length() - MAC_LENGTH - IV_LENGTH), cipher);
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
       throw new AssertionError(e);
     }
@@ -72,7 +72,7 @@ public class ClassicDecryptingPartInputStream {
   private static void verifyMac(AttachmentSecret attachmentSecret, File file) throws IOException {
     Mac             mac        = initializeMac(new SecretKeySpec(attachmentSecret.getClassicMacKey(), "HmacSHA1"));
     FileInputStream macStream  = new FileInputStream(file);
-    InputStream     dataStream = new LimitedInputStream(new FileInputStream(file), file.length() - MAC_LENGTH);
+    InputStream     dataStream = new TruncatingInputStream(new FileInputStream(file), file.length() - MAC_LENGTH);
     byte[]          theirMac   = new byte[MAC_LENGTH];
 
     if (macStream.skip(file.length() - MAC_LENGTH) != file.length() - MAC_LENGTH) {

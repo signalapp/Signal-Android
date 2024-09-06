@@ -6,12 +6,12 @@
 
 package org.whispersystems.signalservice.api.crypto;
 
+import org.signal.core.util.stream.TruncatingInputStream;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream;
 import org.signal.libsignal.protocol.kdf.HKDF;
 import org.whispersystems.signalservice.api.backup.BackupKey;
-import org.whispersystems.signalservice.internal.util.ContentLengthInputStream;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.ByteArrayInputStream;
@@ -25,7 +25,6 @@ import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.function.Supplier;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -118,7 +117,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], streamLength - BLOCK_SIZE - mac.getMacLength());
 
     if (plaintextLength != 0) {
-      inputStream = new ContentLengthInputStream(inputStream, plaintextLength);
+      inputStream = new TruncatingInputStream(inputStream, plaintextLength);
     }
 
     return inputStream;
@@ -143,7 +142,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     InputStream inputStream = new AttachmentCipherInputStream(new FileInputStream(file), archivedMediaKeyMaterial.getCipherKey(), file.length() - BLOCK_SIZE - mac.getMacLength());
 
     if (originalCipherTextLength != 0) {
-      inputStream = new ContentLengthInputStream(inputStream, originalCipherTextLength);
+      inputStream = new TruncatingInputStream(inputStream, originalCipherTextLength);
     }
 
     return inputStream;
@@ -180,7 +179,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
 
     if (plaintextLength != 0) {
-      inputStream = new ContentLengthInputStream(inputStream, plaintextLength);
+      inputStream = new TruncatingInputStream(inputStream, plaintextLength);
     }
 
     return inputStream;
