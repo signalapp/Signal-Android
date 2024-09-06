@@ -77,15 +77,17 @@ public class VoiceNotePlaybackService extends MediaSessionService {
     player.addListener(new VoiceNotePlayerEventListener());
 
     voiceNotePlayerCallback = new VoiceNotePlayerCallback(this, player);
-    mediaSession            = buildMediaSession(false);
 
-    if (mediaSession == null) {
+    final MediaSession session = buildMediaSession(false);
+    if (session == null) {
       Log.e(TAG, "Unable to create media session at all, stopping service to avoid crash.");
       stopSelf();
       return;
+    } else {
+      mediaSession = session;
     }
 
-    keyClearedReceiver = new KeyClearedReceiver(this, mediaSession.getToken());
+    keyClearedReceiver = new KeyClearedReceiver(this, session.getToken());
 
     setMediaNotificationProvider(new VoiceNoteMediaNotificationProvider(this));
     setListener(new MediaSessionServiceListener());
@@ -96,9 +98,10 @@ public class VoiceNotePlaybackService extends MediaSessionService {
   public void onTaskRemoved(Intent rootIntent) {
     super.onTaskRemoved(rootIntent);
 
-    if (mediaSession != null) {
-      mediaSession.getPlayer().stop();
-      mediaSession.getPlayer().clearMediaItems();
+    final MediaSession session = mediaSession;
+    if (session != null) {
+      session.getPlayer().stop();
+      session.getPlayer().clearMediaItems();
     }
   }
 
@@ -107,8 +110,9 @@ public class VoiceNotePlaybackService extends MediaSessionService {
     AppDependencies.getDatabaseObserver().unregisterObserver(attachmentDeletionObserver);
     player.release();
 
-    if (mediaSession != null) {
-      mediaSession.release();
+    final MediaSession session = mediaSession;
+    if (session != null) {
+      session.release();
       mediaSession = null;
     }
 
