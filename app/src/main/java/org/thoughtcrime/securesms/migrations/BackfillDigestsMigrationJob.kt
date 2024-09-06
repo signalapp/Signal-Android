@@ -27,6 +27,8 @@ internal class BackfillDigestsMigrationJob(
       .map { BackfillDigestJob(it) }
 
     AppDependencies.jobManager.addAll(jobs)
+
+    Log.i(TAG, "Enqueued ${jobs.size} backfill digest jobs.")
   }
 
   override fun shouldRetry(e: Exception): Boolean = false

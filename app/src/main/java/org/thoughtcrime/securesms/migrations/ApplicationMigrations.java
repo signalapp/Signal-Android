@@ -12,7 +12,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobmanager.migrations.RetrieveProfileJobMigration;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -154,10 +153,11 @@ public class ApplicationMigrations {
     static final int EXPIRE_TIMER_CAPABILITY       = 109;
     static final int REBUILD_MESSAGE_FTS_INDEX_6   = 110;
     static final int EXPIRE_TIMER_CAPABILITY_2     = 111;
-    static final int BACKFILL_DIGESTS              = 112;
+//    static final int BACKFILL_DIGESTS              = 112;
+    static final int BACKFILL_DIGESTS_V2           = 113;
   }
 
-  public static final int CURRENT_VERSION = 112;
+  public static final int CURRENT_VERSION = 113;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -704,8 +704,8 @@ public class ApplicationMigrations {
       jobs.put(Version.EXPIRE_TIMER_CAPABILITY_2, new AttributesMigrationJob());
     }
 
-    if (lastSeenVersion < Version.BACKFILL_DIGESTS) {
-      jobs.put(Version.BACKFILL_DIGESTS, new BackfillDigestsMigrationJob());
+    if (lastSeenVersion < Version.BACKFILL_DIGESTS_V2) {
+      jobs.put(Version.BACKFILL_DIGESTS_V2, new BackfillDigestsMigrationJob());
     }
 
     return jobs;

@@ -1252,7 +1252,7 @@ class AttachmentTable(
 
   /**
    * A query for a specific migration. Retrieves attachments that we'd need to create a new digest for.
-   * These are attachments that have finished downloading and have data to create a digest from.
+   * This is basically all attachments that have data and are finished downloading.
    */
   fun getAttachmentsThatNeedNewDigests(): List<AttachmentId> {
     return readableDatabase
@@ -1260,31 +1260,12 @@ class AttachmentTable(
       .from(TABLE_NAME)
       .where(
         """
-        (
-          $REMOTE_KEY IS NULL OR
-          $REMOTE_IV IS NULL OR
-          $REMOTE_DIGEST IS NULL
-        )
-        AND
-        (
-          $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND 
-          $DATA_FILE NOT NULL
-        )
+        $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND 
+        $DATA_FILE NOT NULL
         """
       )
       .run()
       .readToList { AttachmentId(it.requireLong(ID)) }
-  }
-
-  /**
-   * There was a temporary bug where we were saving the wrong size for attachments. This function can be used to correct that.
-   */
-  fun updateSize(attachmentId: AttachmentId, size: Long) {
-    writableDatabase
-      .update(TABLE_NAME)
-      .values(DATA_SIZE to size)
-      .where("$ID = ?", attachmentId.id)
-      .run()
   }
 
   /**
