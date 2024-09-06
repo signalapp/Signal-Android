@@ -6,7 +6,7 @@
 
 package org.whispersystems.signalservice.api.crypto;
 
-import org.signal.core.util.stream.TruncatingInputStream;
+import org.signal.core.util.stream.LimitedInputStream;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream;
@@ -117,7 +117,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], streamLength - BLOCK_SIZE - mac.getMacLength());
 
     if (plaintextLength != 0) {
-      inputStream = new TruncatingInputStream(inputStream, plaintextLength);
+      inputStream = new LimitedInputStream(inputStream, plaintextLength);
     }
 
     return inputStream;
@@ -142,7 +142,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     InputStream inputStream = new AttachmentCipherInputStream(new FileInputStream(file), archivedMediaKeyMaterial.getCipherKey(), file.length() - BLOCK_SIZE - mac.getMacLength());
 
     if (originalCipherTextLength != 0) {
-      inputStream = new TruncatingInputStream(inputStream, originalCipherTextLength);
+      inputStream = new LimitedInputStream(inputStream, originalCipherTextLength);
     }
 
     return inputStream;
@@ -179,7 +179,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
 
     if (plaintextLength != 0) {
-      inputStream = new TruncatingInputStream(inputStream, plaintextLength);
+      inputStream = new LimitedInputStream(inputStream, plaintextLength);
     }
 
     return inputStream;

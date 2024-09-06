@@ -15,21 +15,22 @@ import kotlin.math.min
 /**
  * An [InputStream] that will read from the target [InputStream] until it reaches the end, or until it has read [maxBytes] bytes.
  */
-class TruncatingInputStream(private val wrapped: InputStream, private val maxBytes: Long) : FilterInputStream(wrapped) {
+class LimitedInputStream(private val wrapped: InputStream, private val maxBytes: Long) : FilterInputStream(wrapped) {
 
-  private var bytesRead: Long = 0
+  private var totalBytesRead: Long = 0
   private var lastMark = -1L
 
   override fun read(): Int {
-    if (bytesRead >= maxBytes) {
+    if (totalBytesRead >= maxBytes) {
       return -1
     }
 
-    return wrapped.read().also {
-      if (it >= 0) {
-        bytesRead++
-      }
+    val read = wrapped.read()
+    if (read >= 0) {
+      totalBytesRead++
     }
+
+    return read
   }
 
   override fun read(destination: ByteArray): Int {
@@ -37,34 +38,33 @@ class TruncatingInputStream(private val wrapped: InputStream, private val maxByt
   }
 
   override fun read(destination: ByteArray, offset: Int, length: Int): Int {
-    if (bytesRead >= maxBytes) {
+    if (totalBytesRead >= maxBytes) {
       return -1
     }
 
-    val bytesRemaining: Long = maxBytes - bytesRead
-    val bytesToRead: Int = if (bytesRemaining > length) length else Math.toIntExact(bytesRemaining)
+    val bytesRemaining: Long = maxBytes - totalBytesRead
+    val bytesToRead: Int = min(length, Math.toIntExact(bytesRemaining))
     val bytesRead = wrapped.read(destination, offset, bytesToRead)
 
     if (bytesRead > 0) {
-      this.bytesRead += bytesRead
+      totalBytesRead += bytesRead
     }
 
     return bytesRead
   }
 
   override fun skip(requestedSkipCount: Long): Long {
-    val bytesRemaining: Long = maxBytes - bytesRead
+    val bytesRemaining: Long = maxBytes - totalBytesRead
     val bytesToSkip: Long = min(bytesRemaining, requestedSkipCount)
+    val skipCount = super.skip(bytesToSkip)
 
-    return super.skip(bytesToSkip).also { bytesSkipped ->
-      if (bytesSkipped > 0) {
-        this.bytesRead += bytesSkipped
-      }
-    }
+    totalBytesRead += skipCount
+
+    return skipCount
   }
 
   override fun available(): Int {
-    val bytesRemaining = Math.toIntExact(maxBytes - bytesRead)
+    val bytesRemaining = Math.toIntExact(maxBytes - totalBytesRead)
     return min(bytesRemaining, wrapped.available())
   }
 
@@ -78,7 +78,7 @@ class TruncatingInputStream(private val wrapped: InputStream, private val maxByt
     }
 
     wrapped.mark(readlimit)
-    lastMark = bytesRead
+    lastMark = totalBytesRead
   }
 
   override fun reset() {
@@ -91,7 +91,7 @@ class TruncatingInputStream(private val wrapped: InputStream, private val maxByt
     }
 
     wrapped.reset()
-    bytesRead = lastMark
+    totalBytesRead = lastMark
   }
 
   /**
@@ -100,6 +100,10 @@ class TruncatingInputStream(private val wrapped: InputStream, private val maxByt
    * @param byteLimit The maximum number of truncated bytes to read. Defaults to no limit.
    */
   fun readTruncatedBytes(byteLimit: Int = -1): ByteArray {
+    if (totalBytesRead < maxBytes) {
+      throw IllegalStateException("Stream has not been fully read")
+    }
+
     return if (byteLimit < 0) {
       wrapped.readFully()
     } else {

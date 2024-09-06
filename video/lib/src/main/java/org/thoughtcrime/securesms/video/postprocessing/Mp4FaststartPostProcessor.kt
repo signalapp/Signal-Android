@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.video.postprocessing
 
 import org.signal.core.util.readLength
-import org.signal.core.util.stream.TruncatingInputStream
+import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.media.Mp4Sanitizer
 import org.signal.libsignal.media.SanitizedMetadata
 import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException
@@ -34,7 +34,7 @@ class Mp4FaststartPostProcessor(private val inputStreamFactory: InputStreamFacto
     }
     val inputStream = inputStreamFactory.create()
     inputStream.skip(metadata.dataOffset)
-    return SequenceInputStream(ByteArrayInputStream(metadata.sanitizedMetadata), TruncatingInputStream(inputStream, metadata.dataLength))
+    return SequenceInputStream(ByteArrayInputStream(metadata.sanitizedMetadata), LimitedInputStream(inputStream, metadata.dataLength))
   }
 
   fun processAndWriteTo(outputStream: OutputStream, inputLength: Long = calculateStreamLength(inputStreamFactory.create())): Long {
