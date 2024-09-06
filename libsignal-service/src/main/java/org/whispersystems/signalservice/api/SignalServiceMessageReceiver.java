@@ -10,6 +10,7 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.FutureTransformers;
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
+import org.signal.core.util.stream.LimitedInputStream;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
@@ -220,7 +221,7 @@ public class SignalServiceMessageReceiver {
       StreamUtil.readFully(tempStream, iv);
     }
 
-    InputStream dataStream = AttachmentCipherInputStream.createForAttachment(
+    LimitedInputStream dataStream = AttachmentCipherInputStream.createForAttachment(
         attachmentDestination,
         pointer.getSize().orElse(0),
         pointer.getKey(),

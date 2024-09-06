@@ -5,12 +5,12 @@
 
 package org.whispersystems.signalservice.api.attachment
 
-import java.io.InputStream
+import org.signal.core.util.stream.LimitedInputStream
 
 /**
  * Holds the result of an attachment download.
  */
 class AttachmentDownloadResult(
-  val dataStream: InputStream,
+  val dataStream: LimitedInputStream,
   val iv: ByteArray
 )

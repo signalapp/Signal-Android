@@ -5,8 +5,6 @@
 
 package org.signal.core.util.stream
 
-import org.signal.core.util.readAtMostNBytes
-import org.signal.core.util.readFully
 import java.io.FilterInputStream
 import java.io.InputStream
 import java.lang.UnsupportedOperationException
@@ -22,8 +20,21 @@ class LimitedInputStream(private val wrapped: InputStream, private val maxBytes:
   private var totalBytesRead: Long = 0
   private var lastMark = -1L
 
+  companion object {
+
+    private const val UNLIMITED = -1L
+
+    /**
+     * Returns a [LimitedInputStream] that doesn't limit the stream at all -- it'll allow reading the full thing.
+     */
+    @JvmStatic
+    fun withoutLimits(wrapped: InputStream): LimitedInputStream {
+      return LimitedInputStream(wrapped = wrapped, maxBytes = UNLIMITED)
+    }
+  }
+
   override fun read(): Int {
-    if (maxBytes == -1L) {
+    if (maxBytes == UNLIMITED) {
       return wrapped.read()
     }
 
@@ -44,7 +55,7 @@ class LimitedInputStream(private val wrapped: InputStream, private val maxBytes:
   }
 
   override fun read(destination: ByteArray, offset: Int, length: Int): Int {
-    if (maxBytes == -1L) {
+    if (maxBytes == UNLIMITED) {
       return wrapped.read(destination, offset, length)
     }
 
@@ -64,7 +75,7 @@ class LimitedInputStream(private val wrapped: InputStream, private val maxBytes:
   }
 
   override fun skip(requestedSkipCount: Long): Long {
-    if (maxBytes == -1L) {
+    if (maxBytes == UNLIMITED) {
       return wrapped.skip(requestedSkipCount)
     }
 
@@ -78,7 +89,7 @@ class LimitedInputStream(private val wrapped: InputStream, private val maxBytes:
   }
 
   override fun available(): Int {
-    if (maxBytes == -1L) {
+    if (maxBytes == UNLIMITED) {
       return wrapped.available()
     }
 
@@ -97,7 +108,7 @@ class LimitedInputStream(private val wrapped: InputStream, private val maxBytes:
 
     wrapped.mark(readlimit)
 
-    if (maxBytes == -1L) {
+    if (maxBytes == UNLIMITED) {
       return
     }
 
@@ -109,13 +120,13 @@ class LimitedInputStream(private val wrapped: InputStream, private val maxBytes:
       throw UnsupportedOperationException("Mark not supported")
     }
 
-    if (lastMark == -1L) {
+    if (lastMark == UNLIMITED) {
       throw UnsupportedOperationException("Mark not set")
     }
 
     wrapped.reset()
 
-    if (maxBytes == -1L) {
+    if (maxBytes == UNLIMITED) {
       return
     }
 
@@ -123,24 +134,18 @@ class LimitedInputStream(private val wrapped: InputStream, private val maxBytes:
   }
 
   /**
-   * If the stream has been fully read, this will return all bytes that were truncated from the stream.
-   * If the stream was setup with no limit, this will always return an empty array.
-   *
-   * @param byteLimit The maximum number of truncated bytes to read. Defaults to no limit.
+   * If the stream has been fully read, this will return a stream that contains the remaining bytes that were truncated.
+   * If the stream was setup with no limit, this will always return an empty stream.
    */
-  fun readTruncatedBytes(byteLimit: Int = -1): ByteArray {
-    if (maxBytes == -1L) {
-      return ByteArray(0)
+  fun leftoverStream(): InputStream {
+    if (maxBytes == UNLIMITED) {
+      return ByteArray(0).inputStream()
     }
 
     if (totalBytesRead < maxBytes) {
       throw IllegalStateException("Stream has not been fully read")
     }
 
-    return if (byteLimit < 0) {
-      wrapped.readFully()
-    } else {
-      wrapped.readAtMostNBytes(byteLimit)
-    }
+    return wrapped
   }
 }

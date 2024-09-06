@@ -22,7 +22,7 @@ class LimitedInputStreamTest {
 
   @Test
   fun `when I fully read the stream via a buffer with no limit, I should get all bytes`() {
-    val inputStream = LimitedInputStream(ByteArray(100).inputStream(), maxBytes = -1)
+    val inputStream = LimitedInputStream.withoutLimits(ByteArray(100).inputStream())
     val data = inputStream.readFully()
 
     assertEquals(100, data.size)
@@ -44,7 +44,7 @@ class LimitedInputStreamTest {
 
   @Test
   fun `when I fully read the stream one byte at a time with no limit, I should only get maxBytes`() {
-    val inputStream = LimitedInputStream(ByteArray(100).inputStream(), maxBytes = -1)
+    val inputStream = LimitedInputStream.withoutLimits(ByteArray(100).inputStream())
 
     var count = 0
     var lastRead = inputStream.read()
@@ -88,35 +88,26 @@ class LimitedInputStreamTest {
   }
 
   @Test
-  fun `when I finish reading the stream, getTruncatedBytes gives me the rest`() {
+  fun `when I finish reading the stream, leftoverStream gives me the rest`() {
     val inputStream = LimitedInputStream(ByteArray(100).inputStream(), maxBytes = 75)
     inputStream.readFully()
 
-    val truncatedBytes = inputStream.readTruncatedBytes()
+    val truncatedBytes = inputStream.leftoverStream().readFully()
     assertEquals(25, truncatedBytes.size)
   }
 
-  @Test
-  fun `when I finish reading the stream, getTruncatedBytes gives me the rest, respecting the byte limit`() {
-    val inputStream = LimitedInputStream(ByteArray(100).inputStream(), maxBytes = 75)
-    inputStream.readFully()
-
-    val truncatedBytes = inputStream.readTruncatedBytes(byteLimit = 10)
-    assertEquals(10, truncatedBytes.size)
-  }
-
   @Test(expected = IllegalStateException::class)
-  fun `if I have not finished reading the stream, getTruncatedBytes throws IllegalStateException`() {
+  fun `if I have not finished reading the stream, leftoverStream throws IllegalStateException`() {
     val inputStream = LimitedInputStream(ByteArray(100).inputStream(), maxBytes = 75)
-    inputStream.readTruncatedBytes()
+    inputStream.leftoverStream()
   }
 
   @Test
-  fun `when call getTruncatedBytes on a stream with no limit, it returns an empty array`() {
-    val inputStream = LimitedInputStream(ByteArray(100).inputStream(), maxBytes = -1)
+  fun `when call leftoverStream on a stream with no limit, it returns an empty array`() {
+    val inputStream = LimitedInputStream.withoutLimits(ByteArray(100).inputStream())
     inputStream.readFully()
 
-    val truncatedBytes = inputStream.readTruncatedBytes()
+    val truncatedBytes = inputStream.leftoverStream().readFully()
     assertEquals(0, truncatedBytes.size)
   }
 
@@ -130,7 +121,7 @@ class LimitedInputStreamTest {
 
   @Test
   fun `when I call available with no limit, it should return the full length`() {
-    val inputStream = LimitedInputStream(ByteArray(100).inputStream(), maxBytes = -1)
+    val inputStream = LimitedInputStream.withoutLimits(ByteArray(100).inputStream())
     val available = inputStream.available()
 
     assertEquals(100, available)

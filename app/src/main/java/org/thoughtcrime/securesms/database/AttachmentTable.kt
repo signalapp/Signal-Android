@@ -36,6 +36,8 @@ import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.ThreadUtil
+import org.signal.core.util.allMatch
+import org.signal.core.util.copyTo
 import org.signal.core.util.count
 import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
@@ -59,6 +61,8 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
 import org.signal.core.util.requireString
 import org.signal.core.util.select
+import org.signal.core.util.stream.LimitedInputStream
+import org.signal.core.util.stream.NullOutputStream
 import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
@@ -94,7 +98,9 @@ import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream
 import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.File
 import java.io.FileNotFoundException
@@ -963,13 +969,31 @@ class AttachmentTable(
    * that the content of the attachment will never change.
    */
   @Throws(MmsException::class)
-  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: InputStream, iv: ByteArray?) {
+  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: LimitedInputStream, iv: ByteArray?) {
     Log.i(TAG, "[finalizeAttachmentAfterDownload] Finalizing downloaded data for $attachmentId. (MessageId: $mmsId, $attachmentId)")
 
     val existingPlaceholder: DatabaseAttachment = getAttachment(attachmentId) ?: throw MmsException("No attachment found for id: $attachmentId")
 
-    val fileWriteResult: DataFileWriteResult = writeToDataFile(newDataFile(context), inputStream, TransformProperties.empty())
+    val fileWriteResult: DataFileWriteResult = writeToDataFile(newDataFile(context), inputStream, TransformProperties.empty(), closeInputStream = false)
     val transferFile: File? = getTransferFile(databaseHelper.signalReadableDatabase, attachmentId)
+
+    val paddingAllZeroes = inputStream.use { limitStream ->
+      limitStream.leftoverStream().allMatch { it == 0x00.toByte() }
+    }
+
+    val digest = if (paddingAllZeroes) {
+      Log.d(TAG, "[finalizeAttachmentAfterDownload] $attachmentId has all-zero padding. Digest is good.")
+      existingPlaceholder.remoteDigest!!
+    } else {
+      Log.w(TAG, "[finalizeAttachmentAfterDownload] $attachmentId has non-zero padding bytes. Recomputing digest.")
+
+      val stream = PaddingInputStream(getDataStream(fileWriteResult.file, fileWriteResult.random, 0), fileWriteResult.length)
+      val key = Base64.decode(existingPlaceholder.remoteKey!!)
+      val cipherOutputStream = AttachmentCipherOutputStream(key, iv, NullOutputStream)
+
+      StreamUtil.copy(stream, cipherOutputStream)
+      cipherOutputStream.transmittedDigest
+    }
 
     val foundDuplicate = writableDatabase.withinTransaction { db ->
       // We can look and see if we have any exact matches on hash_ends and dedupe the file if we see one.
@@ -1013,6 +1037,7 @@ class AttachmentTable(
       values.put(TRANSFORM_PROPERTIES, TransformProperties.forSkipTransform().serialize())
       values.put(ARCHIVE_TRANSFER_FILE, null as String?)
       values.put(REMOTE_IV, iv)
+      values.put(REMOTE_DIGEST, digest)
 
       db.update(TABLE_NAME)
         .values(values)
@@ -1878,7 +1903,7 @@ class AttachmentTable(
    * Reads the entire stream and saves to disk and returns a bunch of metadat about the write.
    */
   @Throws(MmsException::class, IllegalStateException::class)
-  private fun writeToDataFile(destination: File, inputStream: InputStream, transformProperties: TransformProperties): DataFileWriteResult {
+  private fun writeToDataFile(destination: File, inputStream: InputStream, transformProperties: TransformProperties, closeInputStream: Boolean = true): DataFileWriteResult {
     return try {
       // Sometimes the destination is a file that's already in use, sometimes it's not.
       // To avoid writing to a file while it's in-use, we write to a temp file and then rename it to the destination file at the end.
@@ -1890,7 +1915,7 @@ class AttachmentTable(
       val random = encryptingStreamData.first
       val encryptingOutputStream = encryptingStreamData.second
 
-      val length = StreamUtil.copy(digestInputStream, encryptingOutputStream)
+      val length = digestInputStream.copyTo(encryptingOutputStream, closeInputStream)
       val hash = Base64.encodeWithPadding(digestInputStream.messageDigest.digest())
 
       if (!tempFile.renameTo(destination)) {

@@ -1,15 +1,23 @@
 package org.thoughtcrime.securesms.database
 
+import android.content.Context
 import android.net.Uri
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.FlakyTest
+import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.copyTo
+import org.signal.core.util.readFully
+import org.signal.core.util.stream.NullOutputStream
+import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.mms.MediaStream
 import org.thoughtcrime.securesms.mms.SentMediaQuality
@@ -17,6 +25,15 @@ import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.testing.assertIs
 import org.thoughtcrime.securesms.testing.assertIsNot
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream
+import org.whispersystems.signalservice.api.crypto.NoCipherOutputStream
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
+import java.io.ByteArrayOutputStream
+import java.io.File
 import java.util.Optional
 
 @RunWith(AndroidJUnit4::class)
@@ -163,6 +180,91 @@ class AttachmentTableTest {
     highInfo.file.exists() assertIs true
   }
 
+  @Test
+  fun finalizeAttachmentAfterDownload_fixDigestOnNonZeroPadding() {
+    // Insert attachment metadata for badly-padded attachment
+    val plaintext = byteArrayOf(1, 2, 3, 4)
+    val key = Util.getSecretBytes(64)
+    val iv = Util.getSecretBytes(16)
+
+    val badlyPaddedPlaintext = PaddingInputStream(plaintext.inputStream(), plaintext.size.toLong()).readFully().also { it[it.size - 1] = 0x42 }
+    val badlyPaddedCiphertext = encryptPrePaddedBytes(badlyPaddedPlaintext, key, iv)
+    val badlyPaddedDigest = getDigest(badlyPaddedCiphertext)
+
+    val cipherFile = getTempFile()
+    cipherFile.writeBytes(badlyPaddedCiphertext)
+
+    val mmsId = -1L
+    val attachmentId = SignalDatabase.attachments.insertAttachmentsForMessage(mmsId, listOf(createAttachmentPointer(key, badlyPaddedDigest, plaintext.size)), emptyList()).values.first()
+
+    // Give data to attachment table
+    val cipherInputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintext.size.toLong(), key, badlyPaddedDigest, null, 4, false)
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(mmsId, attachmentId, cipherInputStream, iv)
+
+    // Verify the digest has been updated to the properly padded one
+    val properlyPaddedPlaintext = PaddingInputStream(plaintext.inputStream(), plaintext.size.toLong()).readFully()
+    val properlyPaddedCiphertext = encryptPrePaddedBytes(properlyPaddedPlaintext, key, iv)
+    val properlyPaddedDigest = getDigest(properlyPaddedCiphertext)
+
+    val newDigest = SignalDatabase.attachments.getAttachment(attachmentId)!!.remoteDigest!!
+
+    assertArrayEquals(properlyPaddedDigest, newDigest)
+  }
+
+  @Test
+  fun finalizeAttachmentAfterDownload_leaveDigestAloneForAllZeroPadding() {
+    // Insert attachment metadata for properly-padded attachment
+    val plaintext = byteArrayOf(1, 2, 3, 4)
+    val key = Util.getSecretBytes(64)
+    val iv = Util.getSecretBytes(16)
+
+    val paddedPlaintext = PaddingInputStream(plaintext.inputStream(), plaintext.size.toLong()).readFully()
+    val ciphertext = encryptPrePaddedBytes(paddedPlaintext, key, iv)
+    val digest = getDigest(ciphertext)
+
+    val cipherFile = getTempFile()
+    cipherFile.writeBytes(ciphertext)
+
+    val mmsId = -1L
+    val attachmentId = SignalDatabase.attachments.insertAttachmentsForMessage(mmsId, listOf(createAttachmentPointer(key, digest, plaintext.size)), emptyList()).values.first()
+
+    // Give data to attachment table
+    val cipherInputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintext.size.toLong(), key, digest, null, 4, false)
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(mmsId, attachmentId, cipherInputStream, iv)
+
+    // Verify the digest hasn't changed
+    val newDigest = SignalDatabase.attachments.getAttachment(attachmentId)!!.remoteDigest!!
+    assertArrayEquals(digest, newDigest)
+  }
+
+  private fun createAttachmentPointer(key: ByteArray, digest: ByteArray, size: Int): Attachment {
+    return PointerAttachment.forPointer(
+      pointer = Optional.of(
+        SignalServiceAttachmentPointer(
+          cdnNumber = 3,
+          remoteId = SignalServiceAttachmentRemoteId.V4("asdf"),
+          contentType = MediaUtil.IMAGE_JPEG,
+          key = key,
+          size = Optional.of(size),
+          preview = Optional.empty(),
+          width = 2,
+          height = 2,
+          digest = Optional.of(digest),
+          incrementalDigest = Optional.empty(),
+          incrementalMacChunkSize = 0,
+          fileName = Optional.of("file.jpg"),
+          voiceNote = false,
+          isBorderless = false,
+          isGif = false,
+          caption = Optional.empty(),
+          blurHash = Optional.empty(),
+          uploadTimestamp = 0,
+          uuid = null
+        )
+      )
+    ).get()
+  }
+
   private fun createAttachment(id: Long, uri: Uri, transformProperties: AttachmentTable.TransformProperties): UriAttachment {
     return UriAttachmentBuilder.build(
       id,
@@ -178,5 +280,25 @@ class AttachmentTableTest {
 
   private fun createMediaStream(byteArray: ByteArray): MediaStream {
     return MediaStream(byteArray.inputStream(), MediaUtil.IMAGE_JPEG, 2, 2)
+  }
+
+  private fun getDigest(ciphertext: ByteArray): ByteArray {
+    val digestStream = NoCipherOutputStream(NullOutputStream)
+    ciphertext.inputStream().copyTo(digestStream)
+    return digestStream.transmittedDigest
+  }
+
+  private fun encryptPrePaddedBytes(plaintext: ByteArray, key: ByteArray, iv: ByteArray): ByteArray {
+    val outputStream = ByteArrayOutputStream()
+    val cipherStream = AttachmentCipherOutputStream(key, iv, outputStream)
+    plaintext.inputStream().copyTo(cipherStream)
+
+    return outputStream.toByteArray()
+  }
+
+  private fun getTempFile(): File {
+    val dir = InstrumentationRegistry.getInstrumentation().targetContext.getDir("temp", Context.MODE_PRIVATE)
+    dir.mkdir()
+    return File.createTempFile("transfer", ".mms", dir)
   }
 }

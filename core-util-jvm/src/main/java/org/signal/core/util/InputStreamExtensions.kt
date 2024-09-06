@@ -5,9 +5,11 @@
 
 package org.signal.core.util
 
+import org.signal.core.util.stream.LimitedInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
+import java.io.OutputStream
 import kotlin.math.min
 
 /**
@@ -111,4 +113,38 @@ fun InputStream.readLength(): Long {
 @Throws(IOException::class)
 fun InputStream.drain() {
   this.readLength()
+}
+
+/**
+ * Returns a [LimitedInputStream] that will limit the number of bytes read from this stream to [limit].
+ */
+fun InputStream.limit(limit: Long): LimitedInputStream {
+  return LimitedInputStream(this, limit)
+}
+
+/**
+ * Copies the contents of this stream to the [outputStream].
+ *
+ * @param closeInputStream If true, the input stream will be closed after the copy is complete.
+ */
+fun InputStream.copyTo(outputStream: OutputStream, closeInputStream: Boolean = true): Long {
+  return StreamUtil.copy(this, outputStream, closeInputStream)
+}
+
+/**
+ * Returns true if every byte in this stream matches the predicate, otherwise false.
+ */
+fun InputStream.allMatch(predicate: (Byte) -> Boolean): Boolean {
+  val buffer = ByteArray(4096)
+
+  var readCount: Int
+  while (this.read(buffer).also { readCount = it } != -1) {
+    for (i in 0 until readCount) {
+      if (!predicate(buffer[i])) {
+        return false
+      }
+    }
+  }
+
+  return true
 }

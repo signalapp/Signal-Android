@@ -12,6 +12,7 @@ import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
+import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.protocol.InvalidMacException
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -415,7 +416,12 @@ class AttachmentDownloadJob private constructor(
           if (body.contentLength() > RemoteConfig.maxAttachmentReceiveSizeBytes) {
             throw MmsException("Attachment too large, failing download")
           }
-          SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, (body.source() as Source).buffer().inputStream(), iv = null)
+          SignalDatabase.attachments.finalizeAttachmentAfterDownload(
+            messageId,
+            attachmentId,
+            LimitedInputStream.withoutLimits((body.source() as Source).buffer().inputStream()),
+            iv = null
+          )
         }
       }
     } catch (e: MmsException) {
