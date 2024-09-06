@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
@@ -200,12 +199,11 @@ private interface CallLinkDetailsCallback {
 @Preview
 @Composable
 private fun CallLinkDetailsPreview() {
-  val avatarColor = remember {
-    AvatarColor.random()
-  }
-
   val callLink = remember {
-    val credentials = CallLinkCredentials.generate()
+    val credentials = CallLinkCredentials(
+      byteArrayOf(1, 2, 3, 4),
+      byteArrayOf(3, 4, 5, 6)
+    )
     CallLinkTable.CallLink(
       recipientId = RecipientId.UNKNOWN,
       roomId = credentials.roomId,
@@ -258,6 +256,7 @@ private fun CallLinkDetails(
     Column(modifier = Modifier.padding(paddingValues)) {
       SignalCallRow(
         callLink = state.callLink,
+        callLinkPeekInfo = state.peekInfo,
         onJoinClicked = callback::onJoinClicked,
         modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
       )

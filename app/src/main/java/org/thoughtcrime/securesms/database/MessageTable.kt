@@ -1022,8 +1022,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     peekJoinedUuids: Collection<UUID>,
     isCallFull: Boolean,
     isRingingOnLocalDevice: Boolean
-  ): Boolean {
-    return writableDatabase.withinTransaction { db ->
+  ) {
+    writableDatabase.withinTransaction { db ->
       val cursor = db
         .select(*MMS_PROJECTION)
         .from(TABLE_NAME)
@@ -1058,8 +1058,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         if (updated) {
           notifyConversationListeners(threadId)
         }
-
-        sameEraId
       }
     }
   }

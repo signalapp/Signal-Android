@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.CallLinkPeekJob
 import org.thoughtcrime.securesms.jobs.CallLogEventSendJob
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
@@ -157,30 +156,5 @@ class CallLogRepository(
     }.doOnDispose {
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
     }
-  }
-
-  fun peekCallLinks(): Completable {
-    return Completable.fromAction {
-      val callLinks: List<CallLogRow.CallLink> = SignalDatabase.callLinks.getCallLinks(
-        query = null,
-        offset = 0,
-        limit = 10
-      )
-
-      val callEvents: List<CallLogRow.Call> = SignalDatabase.calls.getCalls(
-        offset = 0,
-        limit = 10,
-        searchTerm = null,
-        filter = CallLogFilter.AD_HOC
-      )
-
-      val recipients = (callLinks.map { it.recipient } + callEvents.map { it.peer }).toSet()
-
-      val jobs = recipients.take(10).map {
-        CallLinkPeekJob(it.id)
-      }
-
-      AppDependencies.jobManager.addAll(jobs)
-    }.subscribeOn(Schedulers.io())
   }
 }

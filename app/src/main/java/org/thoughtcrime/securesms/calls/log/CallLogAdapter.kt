@@ -228,13 +228,28 @@ class CallLogAdapter(
         )
       )
 
-      binding.callType.setImageResource(R.drawable.symbol_video_24)
-      binding.callType.contentDescription = context.getString(R.string.CallLogAdapter__start_a_video_call)
-      binding.callType.setOnClickListener {
-        onStartVideoCallClicked(model.callLink.recipient, true)
+      if (model.callLink.callLinkPeekInfo?.isActive == true) {
+        binding.groupCallButton.setText(
+          if (model.callLink.callLinkPeekInfo.isJoined) {
+            R.string.CallLogAdapter__return
+          } else {
+            R.string.CallLogAdapter__join
+          }
+        )
+        binding.groupCallButton.setOnClickListener {
+          onStartVideoCallClicked(model.callLink.recipient, true)
+        }
+        binding.callType.visible = false
+        binding.groupCallButton.visible = true
+      } else {
+        binding.callType.setImageResource(R.drawable.symbol_video_24)
+        binding.callType.contentDescription = context.getString(R.string.CallLogAdapter__start_a_video_call)
+        binding.callType.setOnClickListener {
+          onStartVideoCallClicked(model.callLink.recipient, true)
+        }
+        binding.callType.visible = true
+        binding.groupCallButton.visible = false
       }
-      binding.callType.visible = true
-      binding.groupCallButton.visible = false
     }
   }
 
@@ -338,7 +353,30 @@ class CallLogAdapter(
           binding.groupCallButton.visible = false
         }
 
-        CallTable.Type.GROUP_CALL, CallTable.Type.AD_HOC_CALL -> {
+        CallTable.Type.AD_HOC_CALL -> {
+          binding.callType.setImageResource(R.drawable.symbol_video_24)
+          binding.callType.contentDescription = context.getString(R.string.CallLogAdapter__start_a_video_call)
+          binding.callType.setOnClickListener { onStartVideoCallClicked(model.call.peer, model.call.canUserBeginCall) }
+          binding.groupCallButton.setOnClickListener { onStartVideoCallClicked(model.call.peer, model.call.canUserBeginCall) }
+
+          if (model.call.callLinkPeekInfo?.isActive == true) {
+            binding.callType.visible = false
+            binding.groupCallButton.visible = true
+
+            binding.groupCallButton.setText(
+              if (model.call.callLinkPeekInfo.isJoined) {
+                R.string.CallLogAdapter__return
+              } else {
+                R.string.CallLogAdapter__join
+              }
+            )
+          } else {
+            binding.callType.visible = true
+            binding.groupCallButton.visible = false
+          }
+        }
+
+        CallTable.Type.GROUP_CALL -> {
           binding.callType.setImageResource(R.drawable.symbol_video_24)
           binding.callType.contentDescription = context.getString(R.string.CallLogAdapter__start_a_video_call)
           binding.callType.setOnClickListener { onStartVideoCallClicked(model.call.peer, model.call.canUserBeginCall) }
@@ -401,6 +439,7 @@ class CallLogAdapter(
           call.direction == CallTable.Direction.OUTGOING -> R.string.CallLogAdapter__outgoing
           else -> throw AssertionError()
         }
+
         else -> if (call.isDisplayedAsMissedCallInUi) R.string.CallLogAdapter__missed else R.string.CallLogAdapter__incoming
       }
     }

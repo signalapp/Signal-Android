@@ -435,15 +435,19 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
             }
           }
 
-          linkPeekInfoStore.update(store -> {
-            Map<RecipientId, CallLinkPeekInfo> newHashMap = new HashMap<>(store);
-            newHashMap.put(id, CallLinkPeekInfo.fromPeekInfo(info));
-            return newHashMap;
-          });
+          emitCallLinkPeekInfoUpdate(id, info);
         });
       } catch (CallException | VerificationFailedException | InvalidInputException | IOException e) {
         Log.i(TAG, "error peeking call link", e);
       }
+    });
+  }
+
+  public void emitCallLinkPeekInfoUpdate(@NonNull RecipientId recipientId, @NonNull PeekInfo peekInfo) {
+    linkPeekInfoStore.update(store -> {
+      Map<RecipientId, CallLinkPeekInfo> newHashMap = new HashMap<>(store);
+      newHashMap.put(recipientId, CallLinkPeekInfo.fromPeekInfo(peekInfo));
+      return newHashMap;
     });
   }
 

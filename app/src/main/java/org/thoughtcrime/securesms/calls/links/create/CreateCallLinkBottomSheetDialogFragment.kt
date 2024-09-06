@@ -100,6 +100,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
 
       SignalCallRow(
         callLink = callLink,
+        callLinkPeekInfo = null,
         onJoinClicked = this@CreateCallLinkBottomSheetDialogFragment::onJoinClicked
       )
 

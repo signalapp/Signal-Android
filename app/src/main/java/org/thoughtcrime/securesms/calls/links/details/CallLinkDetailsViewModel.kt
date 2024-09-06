@@ -10,14 +10,17 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.UpdateCallLinkRepository
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
@@ -43,13 +46,33 @@ class CallLinkDetailsViewModel(
 
   init {
     disposables += repository.refreshCallLinkState(callLinkRoomId)
-    disposables += CallLinks.watchCallLink(callLinkRoomId).subscribeBy {
-      _state.value = _state.value.copy(callLink = it)
-    }
+    disposables += CallLinks.watchCallLink(callLinkRoomId)
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy {
+        _state.value = _state.value.copy(callLink = it)
+      }
 
     disposables += repository
       .watchCallLinkRecipient(callLinkRoomId)
       .subscribeBy(onNext = recipientSubject::onNext)
+
+    disposables += recipientSubject
+      .map { it.id }
+      .distinctUntilChanged()
+      .flatMap { recipientId ->
+        AppDependencies.signalCallManager.peekInfoCache
+          .distinctUntilChanged()
+          .filter { it.containsKey(recipientId) }
+          .map { it[recipientId]!! }
+          .distinctUntilChanged()
+          .toObservable()
+      }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy { callLinkPeekInfo ->
+        _state.value = _state.value.copy(peekInfo = callLinkPeekInfo)
+      }
   }
 
   override fun onCleared() {
