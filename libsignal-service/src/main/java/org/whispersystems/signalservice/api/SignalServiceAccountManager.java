@@ -862,10 +862,6 @@ public class SignalServiceAccountManager {
     return new GroupsV2Api(pushServiceSocket, groupsV2Operations);
   }
 
-  public KeysApi getKeysApi() {
-    return KeysApi.create(pushServiceSocket);
-  }
-
   public RegistrationApi getRegistrationApi() {
     return new RegistrationApi(pushServiceSocket);
   }

@@ -213,10 +213,6 @@ public class SignalServiceMessageSender {
     this.scheduler         = Schedulers.from(executor, false, false);
   }
 
-  public AttachmentApi getAttachmentApi() {
-    return AttachmentApi.create(webSocket, socket);
-  }
-
   /**
    * Send a read receipt for a received message.
    *

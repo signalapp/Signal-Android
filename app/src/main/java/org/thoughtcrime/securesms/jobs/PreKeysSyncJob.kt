@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.PreKeysSyncJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
@@ -261,7 +262,7 @@ class PreKeysSyncJob private constructor(
   @Throws(IOException::class)
   private fun checkPreKeyConsistency(serviceIdType: ServiceIdType, protocolStore: SignalServiceAccountDataStore, metadataStore: PreKeyMetadataStore): Boolean {
     val result: NetworkResult<Unit> = try {
-      AppDependencies.signalServiceAccountManager.keysApi.checkRepeatedUseKeys(
+      SignalNetwork.keys.checkRepeatedUseKeys(
         serviceIdType = serviceIdType,
         identityKey = protocolStore.identityKeyPair.publicKey,
         signedPreKeyId = metadataStore.activeSignedPreKeyId,

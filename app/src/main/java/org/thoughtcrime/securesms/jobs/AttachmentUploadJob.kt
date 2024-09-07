@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.protos.AttachmentUploadJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.AttachmentProgressService
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -138,7 +139,6 @@ class AttachmentUploadJob private constructor(
     SignalDatabase.attachments.createKeyIvIfNecessary(attachmentId)
 
     val messageSender = AppDependencies.signalServiceMessageSender
-    val attachmentApi = messageSender.attachmentApi
     val databaseAttachment = SignalDatabase.attachments.getAttachment(attachmentId) ?: throw InvalidAttachmentException("Cannot find the specified attachment.")
 
     val timeSinceUpload = System.currentTimeMillis() - databaseAttachment.uploadTimestamp
@@ -156,10 +156,10 @@ class AttachmentUploadJob private constructor(
 
     if (uploadSpec == null) {
       Log.d(TAG, "Need an upload spec. Fetching...")
-      uploadSpec = attachmentApi
+      uploadSpec = SignalNetwork.attachments
         .getAttachmentV4UploadForm()
         .then { form ->
-          attachmentApi.getResumableUploadSpec(
+          SignalNetwork.attachments.getResumableUploadSpec(
             key = Base64.decode(databaseAttachment.remoteKey!!),
             iv = databaseAttachment.remoteIv!!,
             uploadForm = form
@@ -175,7 +175,7 @@ class AttachmentUploadJob private constructor(
     try {
       getAttachmentNotificationIfNeeded(databaseAttachment).use { notification ->
         buildAttachmentStream(databaseAttachment, notification, uploadSpec!!).use { localAttachment ->
-          val uploadResult: AttachmentUploadResult = attachmentApi.uploadAttachmentV4(localAttachment).successOrThrow()
+          val uploadResult: AttachmentUploadResult = SignalNetwork.attachments.uploadAttachmentV4(localAttachment).successOrThrow()
           SignalDatabase.attachments.finalizeAttachmentAfterUpload(databaseAttachment.attachmentId, uploadResult)
           ArchiveThumbnailUploadJob.enqueueIfNecessary(databaseAttachment.attachmentId)
         }

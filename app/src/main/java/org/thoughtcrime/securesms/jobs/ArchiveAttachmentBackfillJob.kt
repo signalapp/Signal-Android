@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.ArchiveAttachmentBackfillJobData
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaResponse
 import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
@@ -156,8 +157,7 @@ class ArchiveAttachmentBackfillJob private constructor(
       }
 
       Log.d(TAG, "Beginning upload...")
-      val attachmentApi = AppDependencies.signalServiceMessageSender.attachmentApi
-      val uploadResult: AttachmentUploadResult = when (val result = attachmentApi.uploadAttachmentV4(attachmentStream)) {
+      val uploadResult: AttachmentUploadResult = when (val result = SignalNetwork.attachments.uploadAttachmentV4(attachmentStream)) {
         is NetworkResult.Success -> result.result
         is NetworkResult.ApplicationError -> throw result.throwable
         is NetworkResult.NetworkError -> return Result.retry(defaultBackoff())
