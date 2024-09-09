@@ -298,7 +298,7 @@ class FastJobStorageTest {
 
   @Test
   fun `updateJobAfterRetry - state updated`() {
-    val fullSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", isRunning = true), emptyList(), emptyList())
+    val fullSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", isRunning = true, serializedData = "a".toByteArray()), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec)))
     subject.init()
@@ -306,7 +306,7 @@ class FastJobStorageTest {
     subject.updateJobAfterRetry(
       id = "1",
       currentTime = 3,
-      runAttempt = 1,
+      runAttempt = 2,
       nextBackoffInterval = 10,
       serializedData = "a".toByteArray()
     )
@@ -315,7 +315,7 @@ class FastJobStorageTest {
     check(job != null)
     job.isRunning assertIs false
     job.lastRunAttemptTime assertIs 3
-    job.runAttempt assertIs 1
+    job.runAttempt assertIs 2
     job.nextBackoffInterval assertIs 10
     job.serializedData!!.toString(Charset.defaultCharset()) assertIs "a"
   }

@@ -200,12 +200,14 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     if (job == null || !job.isMemoryOnly) {
       jobDatabase.updateJobAfterRetry(id, currentTime, runAttempt, nextBackoffInterval, serializedData)
 
-      // Note: All other fields are accounted for in the min spec. We only need to update from disk if serialized data changes.
+      // Note: Serialized data and run attempt are the only JobSpec-specific fields that need to be updated -- the rest are in MinimalJobSpec and will be
+      //       updated below.
       val cached = jobSpecCache[id]
-      if (cached != null && !cached.serializedData.contentEquals(serializedData)) {
-        jobDatabase.getJobSpec(id)?.let {
-          jobSpecCache[id] = it
-        }
+      if (cached != null) {
+        jobSpecCache[id] = cached.copy(
+          serializedData = serializedData,
+          runAttempt = runAttempt
+        )
       }
     }
 
