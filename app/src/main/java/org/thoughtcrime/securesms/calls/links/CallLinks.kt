@@ -54,10 +54,6 @@ object CallLinks {
 
   @JvmStatic
   fun isCallLink(url: String): Boolean {
-    if (!RemoteConfig.adHocCalling) {
-      return false
-    }
-
     if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
       return false
     }
