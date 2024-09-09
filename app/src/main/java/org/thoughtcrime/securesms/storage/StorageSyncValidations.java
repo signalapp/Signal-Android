@@ -144,6 +144,11 @@ public final class StorageSyncValidations {
         throw new DuplicateDistributionListIdError();
       }
 
+      ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.CALL_LINK.getValue());
+      if (ids.size() != new HashSet<>(ids).size()) {
+        throw new DuplicateCallLinkError();
+      }
+
       throw new DuplicateRawIdAcrossTypesError();
     }
 
@@ -194,6 +199,9 @@ public final class StorageSyncValidations {
   }
 
   private static final class DuplicateDistributionListIdError extends Error {
+  }
+
+  private static final class DuplicateCallLinkError extends Error {
   }
 
   private static final class DuplicateInsertInWriteError extends Error {

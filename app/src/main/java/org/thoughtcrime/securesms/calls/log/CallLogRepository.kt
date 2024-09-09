@@ -150,7 +150,7 @@ class CallLogRepository(
         updateCallLinkRepository.deleteCallLink(it.credentials!!)
       }
     ).reduce(0) { acc, current ->
-      acc + (if (current is UpdateCallLinkResult.Update) 0 else 1)
+      acc + (if (current is UpdateCallLinkResult.Delete) 0 else 1)
     }.doOnTerminate {
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
     }.doOnDispose {

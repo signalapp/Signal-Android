@@ -53,7 +53,6 @@ class CallLinkUpdateSendJob private constructor(
     .type(
       when (callLinkUpdateType) {
         CallLinkUpdate.Type.UPDATE -> CallLinkUpdateSendJobData.Type.UPDATE
-        CallLinkUpdate.Type.DELETE -> CallLinkUpdateSendJobData.Type.DELETE
       }
     )
     .build()
@@ -83,10 +82,6 @@ class CallLinkUpdateSendJob private constructor(
 
     AppDependencies.signalServiceMessageSender
       .sendSyncMessage(SignalServiceSyncMessage.forCallLinkUpdate(callLinkUpdate))
-
-    if (callLinkUpdateType == CallLinkUpdate.Type.DELETE) {
-      SignalDatabase.callLinks.deleteCallLink(callLinkRoomId)
-    }
   }
 
   override fun onShouldRetry(e: Exception): Boolean {
@@ -102,7 +97,6 @@ class CallLinkUpdateSendJob private constructor(
       val jobData = CallLinkUpdateSendJobData.ADAPTER.decode(serializedData!!)
       val type: CallLinkUpdate.Type = when (jobData.type) {
         CallLinkUpdateSendJobData.Type.UPDATE, null -> CallLinkUpdate.Type.UPDATE
-        CallLinkUpdateSendJobData.Type.DELETE -> CallLinkUpdate.Type.DELETE
       }
 
       return CallLinkUpdateSendJob(

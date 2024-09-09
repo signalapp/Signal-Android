@@ -50,7 +50,9 @@ public final class SignalStorageModels {
       return SignalStorageRecord.forAccount(id, new SignalAccountRecord(id, record.account));
     } else if (record.storyDistributionList != null && type == ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST.getValue()) {
       return SignalStorageRecord.forStoryDistributionList(id, new SignalStoryDistributionListRecord(id, record.storyDistributionList));
-    } else {
+    } else if (record.callLink != null && type == ManifestRecord.Identifier.Type.CALL_LINK.getValue()) {
+      return SignalStorageRecord.forCallLink(id, new SignalCallLinkRecord(id, record.callLink));
+    }else {
       if (StorageId.isKnownType(type)) {
         Log.w(TAG, "StorageId is of known type (" + type + "), but the data is bad! Falling back to unknown.");
       }
@@ -71,6 +73,8 @@ public final class SignalStorageModels {
       builder.account(record.getAccount().get().toProto());
     } else if (record.getStoryDistributionList().isPresent()) {
       builder.storyDistributionList(record.getStoryDistributionList().get().toProto());
+    } else if (record.getCallLink().isPresent()) {
+      builder.callLink(record.getCallLink().get().toProto());
     } else {
       throw new InvalidStorageWriteError();
     }

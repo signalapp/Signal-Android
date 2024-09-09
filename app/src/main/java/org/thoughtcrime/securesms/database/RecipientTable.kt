@@ -574,13 +574,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     ).recipientId
   }
 
-  fun getOrInsertFromCallLinkRoomId(callLinkRoomId: CallLinkRoomId): RecipientId {
+  fun getOrInsertFromCallLinkRoomId(callLinkRoomId: CallLinkRoomId, storageId: ByteArray? = null): RecipientId {
     return getOrInsertByColumn(
       CALL_LINK_ROOM_ID,
       callLinkRoomId.serialize(),
       contentValuesOf(
         TYPE to RecipientType.CALL_LINK.id,
         CALL_LINK_ROOM_ID to callLinkRoomId.serialize(),
+        STORAGE_SERVICE_ID to Base64.encodeWithPadding(storageId ?: StorageSyncHelper.generateKey()),
         PROFILE_SHARING to 1
       )
     ).recipientId
@@ -1199,6 +1200,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
               SELECT ${DistributionListTables.ListTable.ID}
               FROM ${DistributionListTables.ListTable.TABLE_NAME}
             )
+            OR
+            $CALL_LINK_ROOM_ID NOT NULL AND $CALL_LINK_ROOM_ID IN (
+              SELECT ${CallLinkTable.ROOM_ID}
+              FROM ${CallLinkTable.TABLE_NAME}
+              WHERE (${CallLinkTable.ADMIN_KEY} NOT NULL OR ${CallLinkTable.DELETION_TIMESTAMP} > 0) AND ${CallLinkTable.ROOT_KEY} NOT NULL
+            )
         )
         """,
         RecipientType.INDIVIDUAL.id,
@@ -1217,6 +1224,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             RecipientType.INDIVIDUAL -> out[id] = StorageId.forContact(key)
             RecipientType.GV1 -> out[id] = StorageId.forGroupV1(key)
             RecipientType.DISTRIBUTION_LIST -> out[id] = StorageId.forStoryDistributionList(key)
+            RecipientType.CALL_LINK -> out[id] = StorageId.forCallLink(key)
             else -> throw AssertionError()
           }
         }
@@ -3870,8 +3878,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
     }
 
-    val query = "$ID = ? AND ($TYPE IN (?, ?, ?) OR $REGISTERED = ? OR $ID = ?)"
-    val args = SqlUtil.buildArgs(recipientId, RecipientType.GV1.id, RecipientType.GV2.id, RecipientType.DISTRIBUTION_LIST.id, RegisteredState.REGISTERED.id, selfId.toLong())
+    val query = "$ID = ? AND ($TYPE IN (?, ?, ?, ?) OR $REGISTERED = ? OR $ID = ?)"
+    val args = SqlUtil.buildArgs(recipientId, RecipientType.GV1.id, RecipientType.GV2.id, RecipientType.DISTRIBUTION_LIST.id, RecipientType.CALL_LINK.id, RegisteredState.REGISTERED.id, selfId.toLong())
 
     writableDatabase.update(TABLE_NAME, values, query, args).also { updateCount ->
       Log.d(TAG, "[rotateStorageId] updateCount: $updateCount")

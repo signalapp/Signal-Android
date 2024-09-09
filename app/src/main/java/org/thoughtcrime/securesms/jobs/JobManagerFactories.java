@@ -87,6 +87,7 @@ import org.thoughtcrime.securesms.migrations.StorageServiceSystemNameMigrationJo
 import org.thoughtcrime.securesms.migrations.StoryViewedReceiptsStateMigrationJob;
 import org.thoughtcrime.securesms.migrations.SubscriberIdMigrationJob;
 import org.thoughtcrime.securesms.migrations.Svr2MirrorMigrationJob;
+import org.thoughtcrime.securesms.migrations.SyncCallLinksMigrationJob;
 import org.thoughtcrime.securesms.migrations.SyncDistributionListsMigrationJob;
 import org.thoughtcrime.securesms.migrations.SyncKeysMigrationJob;
 import org.thoughtcrime.securesms.migrations.TrimByLengthSettingsMigrationJob;
@@ -299,6 +300,7 @@ public final class JobManagerFactories {
       put(StorageServiceSystemNameMigrationJob.KEY,  new StorageServiceSystemNameMigrationJob.Factory());
       put(StoryViewedReceiptsStateMigrationJob.KEY,  new StoryViewedReceiptsStateMigrationJob.Factory());
       put(Svr2MirrorMigrationJob.KEY,                new Svr2MirrorMigrationJob.Factory());
+      put(SyncCallLinksMigrationJob.KEY,             new SyncCallLinksMigrationJob.Factory());
       put(SyncDistributionListsMigrationJob.KEY,     new SyncDistributionListsMigrationJob.Factory());
       put(SyncKeysMigrationJob.KEY,                  new SyncKeysMigrationJob.Factory());
       put(TrimByLengthSettingsMigrationJob.KEY,      new TrimByLengthSettingsMigrationJob.Factory());

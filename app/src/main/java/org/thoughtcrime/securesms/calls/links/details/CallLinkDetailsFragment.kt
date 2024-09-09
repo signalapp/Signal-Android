@@ -140,7 +140,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
     viewModel.setDisplayRevocationDialog(false)
     lifecycleDisposable += viewModel.delete().observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
       when (it) {
-        is UpdateCallLinkResult.Update -> ActivityCompat.finishAfterTransition(requireActivity())
+        is UpdateCallLinkResult.Delete -> ActivityCompat.finishAfterTransition(requireActivity())
         else -> {
           Log.w(TAG, "Failed to revoke. $it")
           toastFailure()
@@ -213,7 +213,8 @@ private fun CallLinkDetailsPreview() {
         revoked = false,
         restrictions = Restrictions.NONE,
         expiration = Instant.MAX
-      )
+      ),
+      deletionTimestamp = 0L
     )
   }
 

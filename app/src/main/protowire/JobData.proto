@@ -41,7 +41,7 @@ message CallLogEventSendJobData {
 message CallLinkUpdateSendJobData {
   enum Type {
     UPDATE = 0;
-    DELETE = 1;
+    reserved 1; // was DELETE, superseded by storage service
   }
 
   string        callLinkRoomId = 1;

@@ -47,7 +47,8 @@ fun CallLinkTable.restoreFromBackup(callLink: CallLink): RecipientId? {
         name = callLink.name,
         restrictions = callLink.restrictions.toLocal(),
         expiration = Instant.ofEpochMilli(callLink.expirationMs)
-      )
+      ),
+      deletionTimestamp = 0L
     )
   )
 }

@@ -1336,12 +1336,6 @@ object SyncMessageProcessor {
     }
 
     val roomId = CallLinkRoomId.fromCallLinkRootKey(callLinkRootKey)
-    if (callLinkUpdate.type == CallLinkUpdate.Type.DELETE) {
-      log(envelopeTimestamp, "Synchronize call link deletion.")
-      SignalDatabase.callLinks.deleteCallLink(roomId)
-
-      return
-    }
 
     if (SignalDatabase.callLinks.callLinkExists(roomId)) {
       log(envelopeTimestamp, "Synchronize call link for a link we already know about. Updating credentials.")
@@ -1362,9 +1356,12 @@ object SyncMessageProcessor {
             linkKeyBytes = callLinkRootKey.keyBytes,
             adminPassBytes = callLinkUpdate.adminPassKey?.toByteArray()
           ),
-          state = SignalCallLinkState()
+          state = SignalCallLinkState(),
+          deletionTimestamp = 0L
         )
       )
+
+      StorageSyncHelper.scheduleSyncForDataChange()
     }
 
     AppDependencies.jobManager.add(RefreshCallLinkDetailsJob(callLinkUpdate))

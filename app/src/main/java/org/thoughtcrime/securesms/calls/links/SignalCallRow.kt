@@ -62,7 +62,8 @@ private fun SignalCallRowPreview() {
         restrictions = org.signal.ringrtc.CallLinkState.Restrictions.NONE,
         expiration = Instant.MAX,
         revoked = false
-      )
+      ),
+      deletionTimestamp = 0L
     )
   }
   Previews.Preview {

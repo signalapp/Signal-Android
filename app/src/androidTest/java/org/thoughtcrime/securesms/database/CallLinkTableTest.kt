@@ -86,7 +86,8 @@ class CallLinkTableTest {
           linkKeyBytes = roomId,
           adminPassBytes = null
         ),
-        state = SignalCallLinkState()
+        state = SignalCallLinkState(),
+        deletionTimestamp = 0L
       )
     )
 

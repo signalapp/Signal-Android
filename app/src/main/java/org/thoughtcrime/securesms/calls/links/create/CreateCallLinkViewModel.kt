@@ -39,7 +39,8 @@ class CreateCallLinkViewModel(
         restrictions = Restrictions.ADMIN_APPROVAL,
         revoked = false,
         expiration = Instant.MAX
-      )
+      ),
+      deletionTimestamp = 0L
     )
   )
 
