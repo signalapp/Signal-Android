@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.net.URLDecoder
 
 /**
@@ -63,10 +62,6 @@ object CallLinks {
 
   @JvmStatic
   fun parseUrl(url: String): CallLinkRootKey? {
-    if (!RemoteConfig.adHocCalling) {
-      return null
-    }
-
     if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
       Log.w(TAG, "Invalid url prefix.")
       return null

@@ -95,7 +95,6 @@ import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -1407,11 +1406,6 @@ object SyncMessageProcessor {
 
   @Throws(BadGroupIdException::class)
   private fun handleSynchronizeGroupOrAdHocCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
-    if (!RemoteConfig.adHocCalling && callEvent.type == SyncMessage.CallEvent.Type.AD_HOC_CALL) {
-      log(envelopeTimestamp, "Ad-Hoc calling is not currently supported by this client, ignoring.")
-      return
-    }
-
     val callId: Long = callEvent.id!!
     val timestamp: Long = callEvent.timestamp ?: 0L
     val type: CallTable.Type? = CallTable.Type.from(callEvent.type)

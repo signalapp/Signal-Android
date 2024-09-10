@@ -392,11 +392,6 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       return;
     }
 
-    if (!RemoteConfig.adHocCalling()) {
-      Log.i(TAG, "Ad Hoc Calling is disabled. Ignoring request to peek.");
-      return;
-    }
-
     networkExecutor.execute(() -> {
       try {
         Recipient              callLinkRecipient = Recipient.resolved(id);

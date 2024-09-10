@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.concurrent.TimeUnit
 
 /**
@@ -46,11 +45,6 @@ internal class CallLinkPeekJob private constructor(
   )
 
   override fun onRun() {
-    if (!RemoteConfig.adHocCalling) {
-      Log.i(TAG, "Ad hoc calling is disabled. Dropping peek for call link.")
-      return
-    }
-
     val recipient = Recipient.resolved(callLinkRecipientId)
     if (!recipient.isCallLink) {
       Log.w(TAG, "Recipient was not a call link. Ignoring.")

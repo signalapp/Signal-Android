@@ -312,11 +312,6 @@ public class CommunicationActions {
       return;
     }
 
-    if (!RemoteConfig.adHocCalling()) {
-      Toast.makeText(activity, R.string.CommunicationActions_cant_join_call, Toast.LENGTH_SHORT).show();
-      return;
-    }
-
     CallLinkRootKey rootKey = CallLinks.parseUrl(potentialUrl);
     if (rootKey == null) {
       Log.w(TAG, "Failed to parse root key from call link");
@@ -342,11 +337,6 @@ public class CommunicationActions {
   }
 
   private static void startVideoCall(@NonNull CallContext callContext, @NonNull CallLinkRootKey rootKey) {
-    if (!RemoteConfig.adHocCalling()) {
-      Toast.makeText(callContext.getContext(), R.string.CommunicationActions_cant_join_call, Toast.LENGTH_SHORT).show();
-      return;
-    }
-
     SimpleTask.run(() -> {
       CallLinkRoomId         roomId   = CallLinkRoomId.fromBytes(rootKey.deriveRoomId());
       CallLinkTable.CallLink callLink = SignalDatabase.callLinks().getOrCreateCallLinkByRootKey(rootKey);
