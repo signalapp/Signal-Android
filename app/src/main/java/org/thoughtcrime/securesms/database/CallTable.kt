@@ -1260,7 +1260,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     }
 
     val projection = if (isCount) {
-      "COUNT(*),"
+      "COUNT(*) OVER() as count,"
     } else {
       "p.$ID, p.$TIMESTAMP, $EVENT, $DIRECTION, $PEER, p.$TYPE, $CALL_ID, $MESSAGE_ID, $RINGER, $LOCAL_JOINED, $GROUP_CALL_ACTIVE, children, in_period, ${MessageTable.BODY},"
     }
@@ -1366,6 +1366,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       LEFT JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $MESSAGE_ID
       LEFT JOIN ${GroupTable.TABLE_NAME} ON ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
       WHERE true_parent = p.$ID ${if (queryClause.where.isNotEmpty()) "AND ${queryClause.where}" else ""}
+      GROUP BY CASE WHEN p.type = 4 THEN p.peer ELSE p._id END
       ORDER BY p.$TIMESTAMP DESC
       $offsetLimit
     """
