@@ -27,6 +27,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,6 +36,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import org.signal.core.ui.DarkPreview
 import org.signal.core.ui.Previews
 import kotlin.math.pow
@@ -63,6 +65,7 @@ fun PictureInPicture(
     val maxWidth = constraints.maxWidth
     val contentWidth = with(density) { contentSize.width.toPx().roundToInt() }
     val contentHeight = with(density) { contentSize.height.toPx().roundToInt() }
+    val coroutineScope = rememberCoroutineScope()
 
     var isDragging by remember {
       mutableStateOf(false)
@@ -114,6 +117,7 @@ fun PictureInPicture(
           IntOffset(offsetX, offsetY)
         }
         .draggable2D(
+          enabled = !isAnimating,
           state = rememberDraggable2DState { offset ->
             offsetX += offset.x.roundToInt()
             offsetY += offset.y.roundToInt()
@@ -122,8 +126,8 @@ fun PictureInPicture(
             isDragging = true
           },
           onDragStopped = { velocity ->
-            isAnimating = true
             isDragging = false
+            isAnimating = true
 
             val x = offsetX + project(velocity.x)
             val y = offsetY + project(velocity.y)
@@ -131,18 +135,20 @@ fun PictureInPicture(
             val projectedCoordinate = IntOffset(x.roundToInt(), y.roundToInt())
             val cornerCoordinate = getClosestCorner(projectedCoordinate, topLeft, topRight, bottomLeft, bottomRight)
 
-            animate(
-              typeConverter = IntOffsetConverter,
-              initialValue = IntOffset(offsetX, offsetY),
-              targetValue = cornerCoordinate,
-              initialVelocity = IntOffset(velocity.x.roundToInt(), velocity.y.roundToInt()),
-              animationSpec = tween()
-            ) { value, _ ->
-              offsetX = value.x
-              offsetY = value.y
-            }
+            coroutineScope.launch {
+              animate(
+                typeConverter = IntOffsetConverter,
+                initialValue = IntOffset(offsetX, offsetY),
+                targetValue = cornerCoordinate,
+                initialVelocity = IntOffset(velocity.x.roundToInt(), velocity.y.roundToInt()),
+                animationSpec = tween()
+              ) { value, _ ->
+                offsetX = value.x
+                offsetY = value.y
+              }
 
-            isAnimating = false
+              isAnimating = false
+            }
           }
         )
     ) {

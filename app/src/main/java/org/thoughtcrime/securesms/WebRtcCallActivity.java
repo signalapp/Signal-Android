@@ -349,6 +349,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   @Override
   protected void onUserLeaveHint() {
+    super.onUserLeaveHint();
     enterPipModeIfPossible();
   }
 

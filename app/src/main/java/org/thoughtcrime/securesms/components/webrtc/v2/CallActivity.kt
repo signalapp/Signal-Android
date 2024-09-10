@@ -181,11 +181,9 @@ class CallActivity : BaseActivity(), CallControlsCallback {
     }
   }
 
-  override fun onNewIntent(intent: Intent?) {
+  override fun onNewIntent(intent: Intent) {
     super.onNewIntent(intent)
-    if (intent != null) {
-      viewModel.processCallIntent(CallIntent(intent))
-    }
+    viewModel.processCallIntent(CallIntent(intent))
   }
 
   override fun onResume() {
@@ -265,7 +263,7 @@ class CallActivity : BaseActivity(), CallControlsCallback {
   }
 
   @SuppressLint("MissingSuperCall")
-  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }
 
