@@ -386,7 +386,7 @@ public class StorageSyncJob extends BaseJob {
       db.beginTransaction();
       try {
         processKnownRecords(context, records);
-        SignalDatabase.unknownStorageIds().getAllWithTypes(knownTypes);
+        SignalDatabase.unknownStorageIds().deleteAllWithTypes(knownTypes);
         db.setTransactionSuccessful();
       } finally {
         db.endTransaction();

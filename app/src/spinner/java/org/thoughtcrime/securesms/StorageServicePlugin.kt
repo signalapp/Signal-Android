@@ -37,6 +37,9 @@ class StorageServicePlugin : Plugin {
       } else if (record.storyDistributionList.isPresent) {
         row += "Distribution List"
         row += record.storyDistributionList.get().toProto().toString()
+      } else if (record.callLink.isPresent) {
+        row += "Call Link"
+        row += record.callLink.get().toProto().toString()
       } else {
         row += "Unknown"
         row += ""
