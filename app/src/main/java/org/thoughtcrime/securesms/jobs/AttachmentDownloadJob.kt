@@ -416,11 +416,15 @@ class AttachmentDownloadJob private constructor(
           if (body.contentLength() > RemoteConfig.maxAttachmentReceiveSizeBytes) {
             throw MmsException("Attachment too large, failing download")
           }
+
+          SignalDatabase.attachments.createKeyIvIfNecessary(attachmentId)
+          val updatedAttachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
+
           SignalDatabase.attachments.finalizeAttachmentAfterDownload(
             messageId,
             attachmentId,
             LimitedInputStream.withoutLimits((body.source() as Source).buffer().inputStream()),
-            iv = null
+            iv = updatedAttachment.remoteIv
           )
         }
       }

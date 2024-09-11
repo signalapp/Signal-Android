@@ -981,9 +981,10 @@ class AttachmentTable(
       limitStream.leftoverStream().allMatch { it == 0x00.toByte() }
     }
 
-    val digest = if (paddingAllZeroes) {
+    // Existing digest may be null for non-user attachments, like things pulled from S3
+    val digest = if (existingPlaceholder.remoteDigest != null && paddingAllZeroes) {
       Log.d(TAG, "[finalizeAttachmentAfterDownload] $attachmentId has all-zero padding. Digest is good.")
-      existingPlaceholder.remoteDigest!!
+      existingPlaceholder.remoteDigest
     } else {
       Log.w(TAG, "[finalizeAttachmentAfterDownload] $attachmentId has non-zero padding bytes. Recomputing digest.")
 
