@@ -83,7 +83,7 @@ class PendingParticipantsBottomSheet : ComposeBottomSheetDialogFragment() {
     }
 
     val participants = viewModel.pendingParticipants
-      .map { it.getAllPendingParticipants(launchTime).toList() }
+      .map { it.pendingParticipantCollection.getAllPendingParticipants(launchTime).toList() }
       .subscribeAsState(initial = emptyList())
 
     PendingParticipantsSheet(

@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection;
+import org.thoughtcrime.securesms.service.webrtc.state.PendingParticipantsState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
@@ -220,8 +221,12 @@ public class WebRtcCallViewModel extends ViewModel {
     return callStarting;
   }
 
-  public @NonNull Observable<PendingParticipantCollection> getPendingParticipants() {
-    return pendingParticipants.observeOn(AndroidSchedulers.mainThread());
+  public @NonNull Observable<PendingParticipantsState> getPendingParticipants() {
+    Observable<Boolean> isInPipMode = participantsState
+        .map(CallParticipantsState::isInPipMode)
+        .distinctUntilChanged();
+
+    return Observable.combineLatest(pendingParticipants, isInPipMode, PendingParticipantsState::new);
   }
 
   public @NonNull PendingParticipantCollection getPendingParticipantsSnapshot() {
