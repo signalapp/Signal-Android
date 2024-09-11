@@ -8,6 +8,7 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
@@ -28,7 +29,7 @@ import org.whispersystems.signalservice.internal.push.TypingMessage
  */
 object EnvelopeContentValidator {
 
-  fun validate(envelope: Envelope, content: Content): Result {
+  fun validate(envelope: Envelope, content: Content, localAci: ACI): Result {
     if (envelope.type == Envelope.Type.PLAINTEXT_CONTENT) {
       val result: Result? = createPlaintextResultIfInvalid(content)
 
@@ -54,7 +55,7 @@ object EnvelopeContentValidator {
     return when {
       envelope.story == true && !content.meetsStoryFlagCriteria() -> Result.Invalid("Envelope was flagged as a story, but it did not have any story-related content!")
       content.dataMessage != null -> validateDataMessage(envelope, content.dataMessage)
-      content.syncMessage != null -> validateSyncMessage(envelope, content.syncMessage)
+      content.syncMessage != null -> validateSyncMessage(envelope, content.syncMessage, localAci)
       content.callMessage != null -> Result.Valid
       content.nullMessage != null -> Result.Valid
       content.receiptMessage != null -> validateReceiptMessage(content.receiptMessage)
@@ -145,7 +146,14 @@ object EnvelopeContentValidator {
     return Result.Valid
   }
 
-  private fun validateSyncMessage(envelope: Envelope, syncMessage: SyncMessage): Result {
+  private fun validateSyncMessage(envelope: Envelope, syncMessage: SyncMessage, localAci: ACI): Result {
+    // Source serviceId was already determined to be a valid serviceId in general
+    val sourceServiceId = ServiceId.parseOrThrow(envelope.sourceServiceId!!)
+
+    if (sourceServiceId != localAci) {
+      return Result.Invalid("[SyncMessage] Source was not our own account!")
+    }
+
     if (syncMessage.sent != null) {
       val validAddress = syncMessage.sent.destinationServiceId.isValidServiceId()
       val hasDataGroup = syncMessage.sent.message?.groupV2 != null
