@@ -164,7 +164,7 @@ class JobController {
   }
 
   @WorkerThread
-  void submitJobs(@NonNull List<Job> jobs) {
+  <T extends Job> void submitJobs(@NonNull List<T> jobs) {
     List<Job> canRun = new ArrayList<>(jobs.size());
 
     synchronized (this) {

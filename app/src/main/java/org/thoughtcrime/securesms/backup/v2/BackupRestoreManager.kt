@@ -30,6 +30,7 @@ object BackupRestoreManager {
     SignalExecutors.BOUNDED.execute {
       synchronized(this) {
         val restoringAttachments = messageRecords
+          .asSequence()
           .mapNotNull { (it as? MmsMessageRecord?)?.slideDeck?.slides }
           .flatten()
           .mapNotNull { it.asAttachment() as? DatabaseAttachment }
@@ -41,10 +42,11 @@ object BackupRestoreManager {
           .toSet()
 
         reprioritizedAttachments += restoringAttachments.map { it.first }
-        val thumbnailJobs = restoringAttachments.map {
-          val (attachmentId, mmsId) = it
+
+        val thumbnailJobs = restoringAttachments.map { (attachmentId, mmsId) ->
           RestoreAttachmentThumbnailJob(attachmentId = attachmentId, messageId = mmsId, highPriority = true)
         }
+
         if (thumbnailJobs.isNotEmpty()) {
           AppDependencies.jobManager.addAll(thumbnailJobs)
         }

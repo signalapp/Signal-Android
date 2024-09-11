@@ -184,7 +184,8 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
           deleteArchivedMedia = { viewModel.deleteArchivedMedia(it) },
           batchArchiveAttachmentMedia = { viewModel.archiveAttachmentMedia(it) },
           batchDeleteBackupAttachmentMedia = { viewModel.deleteArchivedMedia(it) },
-          restoreArchivedMedia = { viewModel.restoreArchivedMedia(it) }
+          restoreArchivedMedia = { viewModel.restoreArchivedMedia(it, asThumbnail = false) },
+          restoreArchivedMediaThumbnail = { viewModel.restoreArchivedMedia(it, asThumbnail = true) }
         )
       }
     )
@@ -450,7 +451,8 @@ fun MediaList(
   deleteArchivedMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit,
   batchArchiveAttachmentMedia: (Set<AttachmentId>) -> Unit,
   batchDeleteBackupAttachmentMedia: (Set<AttachmentId>) -> Unit,
-  restoreArchivedMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit
+  restoreArchivedMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit,
+  restoreArchivedMediaThumbnail: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit
 ) {
   if (!enabled) {
     Text(
@@ -550,6 +552,14 @@ fun MediaList(
                   onClick = {
                     selectionState = selectionState.copy(expandedOption = null)
                     restoreArchivedMedia(attachment)
+                  }
+                )
+
+                DropdownMenuItem(
+                  text = { Text("Pseudo Restore Thumbnail") },
+                  onClick = {
+                    selectionState = selectionState.copy(expandedOption = null)
+                    restoreArchivedMediaThumbnail(attachment)
                   }
                 )
 

@@ -32,11 +32,12 @@ import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentJob
-import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
+import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
+import org.thoughtcrime.securesms.jobs.RestoreAttachmentThumbnailJob
 import org.thoughtcrime.securesms.jobs.RestoreLocalAttachmentJob
 import org.thoughtcrime.securesms.jobs.SyncArchivedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -346,7 +347,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
   }
 
-  fun restoreArchivedMedia(attachment: BackupAttachment) {
+  fun restoreArchivedMedia(attachment: BackupAttachment, asThumbnail: Boolean) {
     disposables += Completable
       .fromCallable {
         val recipientId = SignalStore.releaseChannel.releaseChannelRecipientId!!
@@ -365,20 +366,29 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
         val insertMessage = SignalDatabase.messages.insertMessageInbox(message, threadId).get()
 
         SignalDatabase.attachments.debugCopyAttachmentForArchiveRestore(
-          insertMessage.messageId,
-          attachment.dbAttachment
+          mmsId = insertMessage.messageId,
+          attachment = attachment.dbAttachment,
+          forThumbnail = asThumbnail
         )
 
         val archivedAttachment = SignalDatabase.attachments.getAttachmentsForMessage(insertMessage.messageId).first()
 
-        AppDependencies.jobManager.add(
-          AttachmentDownloadJob(
-            messageId = insertMessage.messageId,
-            attachmentId = archivedAttachment.attachmentId,
-            manual = false,
-            forceArchiveDownload = true
+        if (asThumbnail) {
+          AppDependencies.jobManager.add(
+            RestoreAttachmentThumbnailJob(
+              messageId = insertMessage.messageId,
+              attachmentId = archivedAttachment.attachmentId,
+              highPriority = false
+            )
           )
-        )
+        } else {
+          AppDependencies.jobManager.add(
+            RestoreAttachmentJob(
+              messageId = insertMessage.messageId,
+              attachmentId = archivedAttachment.attachmentId
+            )
+          )
+        }
       }
       .subscribeOn(Schedulers.io())
       .observeOn(Schedulers.single())

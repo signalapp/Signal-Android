@@ -129,3 +129,9 @@ message RestoreLocalAttachmentJobData {
 message BackfillDigestJobData {
   uint64 attachmentId = 1;
 }
+
+message RestoreAttachmentJobData {
+  uint64 messageId = 1;
+  uint64 attachmentId = 2;
+  bool offloaded = 3;
+}

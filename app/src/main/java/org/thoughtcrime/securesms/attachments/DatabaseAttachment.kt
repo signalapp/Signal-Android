@@ -30,9 +30,6 @@ class DatabaseAttachment : Attachment {
   val archiveCdn: Int
 
   @JvmField
-  val archiveThumbnailCdn: Int
-
-  @JvmField
   val archiveMediaName: String?
 
   @JvmField
@@ -78,7 +75,6 @@ class DatabaseAttachment : Attachment {
     uploadTimestamp: Long,
     dataHash: String?,
     archiveCdn: Int,
-    archiveThumbnailCdn: Int,
     archiveMediaName: String?,
     archiveMediaId: String?,
     thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState,
@@ -117,7 +113,6 @@ class DatabaseAttachment : Attachment {
     this.hasArchiveThumbnail = hasArchiveThumbnail
     this.displayOrder = displayOrder
     this.archiveCdn = archiveCdn
-    this.archiveThumbnailCdn = archiveThumbnailCdn
     this.archiveMediaName = archiveMediaName
     this.archiveMediaId = archiveMediaId
     this.thumbnailRestoreState = thumbnailRestoreState
@@ -131,7 +126,6 @@ class DatabaseAttachment : Attachment {
     mmsId = parcel.readLong()
     displayOrder = parcel.readInt()
     archiveCdn = parcel.readInt()
-    archiveThumbnailCdn = parcel.readInt()
     archiveMediaName = parcel.readString()
     archiveMediaId = parcel.readString()
     hasArchiveThumbnail = ParcelUtil.readBoolean(parcel)
@@ -147,7 +141,6 @@ class DatabaseAttachment : Attachment {
     dest.writeLong(mmsId)
     dest.writeInt(displayOrder)
     dest.writeInt(archiveCdn)
-    dest.writeInt(archiveThumbnailCdn)
     dest.writeString(archiveMediaName)
     dest.writeString(archiveMediaId)
     ParcelUtil.writeBoolean(dest, hasArchiveThumbnail)

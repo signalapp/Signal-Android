@@ -198,7 +198,7 @@ public class JobManager implements ConstraintObserver.Notifier {
     });
   }
 
-  public void addAll(@NonNull List<Job> jobs) {
+  public <T extends Job> void addAll(@NonNull List<T> jobs) {
     if (jobs.isEmpty()) {
       return;
     }

@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.BackupRepository.getMediaName
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.getThumbnailMediaName
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -29,7 +30,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStre
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.ByteArrayInputStream
 import java.io.IOException
-import java.lang.RuntimeException
 import java.util.Optional
 import kotlin.time.Duration.Companion.days
 
@@ -52,7 +52,7 @@ class ArchiveThumbnailUploadJob private constructor(
     }
   }
 
-  constructor(attachmentId: AttachmentId) : this(
+  private constructor(attachmentId: AttachmentId) : this(
     Parameters.Builder()
       .setQueue("ArchiveThumbnailUploadJob")
       .addConstraint(NetworkConstraint.KEY)
@@ -82,11 +82,15 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.success()
     }
 
+    // TODO [backups] Decide if we fail a job when associated attachment not already backed up
+    // TODO [backups] Determine if we actually need to upload or are reusing a thumbnail from another attachment
+
     val thumbnailResult = generateThumbnailIfPossible(attachment)
     if (thumbnailResult == null) {
       Log.w(TAG, "Unable to generate a thumbnail result for $attachmentId")
       return Result.success()
     }
+
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
 
     val resumableUpload = when (val result = BackupRepository.getMediaUploadSpec(secretKey = backupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName()))) {
@@ -123,6 +127,10 @@ class ArchiveThumbnailUploadJob private constructor(
 
     return when (val result = BackupRepository.archiveThumbnail(attachmentPointer, attachment)) {
       is NetworkResult.Success -> {
+        // save attachment thumbnail
+        val archiveMediaId = attachment.archiveMediaId ?: backupKey.deriveMediaId(attachment.getMediaName()).encode()
+        SignalDatabase.attachments.finalizeAttachmentThumbnailAfterUpload(attachmentId, archiveMediaId, mediaSecrets.id, thumbnailResult.data)
+
         Log.i(RestoreAttachmentJob.TAG, "Restore: Thumbnail mediaId=${mediaSecrets.id.encode()} backupDir=${backupDirectories.backupDir} mediaDir=${backupDirectories.mediaDir}")
         Log.d(TAG, "Successfully archived thumbnail for $attachmentId mediaName=${attachment.getThumbnailMediaName()}")
         Result.success()

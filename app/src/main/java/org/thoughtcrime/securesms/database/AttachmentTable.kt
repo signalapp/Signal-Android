@@ -55,7 +55,6 @@ import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
-import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
@@ -98,10 +97,12 @@ import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
+import org.whispersystems.signalservice.api.backup.MediaId
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.util.JsonUtil
+import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
@@ -163,7 +164,6 @@ class AttachmentTable(
     const val ARCHIVE_MEDIA_NAME = "archive_media_name"
     const val ARCHIVE_MEDIA_ID = "archive_media_id"
     const val ARCHIVE_THUMBNAIL_MEDIA_ID = "archive_thumbnail_media_id"
-    const val ARCHIVE_THUMBNAIL_CDN = "archive_thumbnail_cdn"
     const val ARCHIVE_TRANSFER_FILE = "archive_transfer_file"
     const val ARCHIVE_TRANSFER_STATE = "archive_transfer_state"
     const val THUMBNAIL_RESTORE_STATE = "thumbnail_restore_state"
@@ -219,7 +219,6 @@ class AttachmentTable(
       DATA_HASH_START,
       DATA_HASH_END,
       ARCHIVE_CDN,
-      ARCHIVE_THUMBNAIL_CDN,
       ARCHIVE_MEDIA_NAME,
       ARCHIVE_MEDIA_ID,
       ARCHIVE_TRANSFER_FILE,
@@ -269,7 +268,6 @@ class AttachmentTable(
         $ARCHIVE_MEDIA_ID TEXT DEFAULT NULL,
         $ARCHIVE_TRANSFER_FILE TEXT DEFAULT NULL,
         $ARCHIVE_TRANSFER_STATE INTEGER DEFAULT ${ArchiveTransferState.NONE.value},
-        $ARCHIVE_THUMBNAIL_CDN INTEGER DEFAULT 0,
         $ARCHIVE_THUMBNAIL_MEDIA_ID TEXT DEFAULT NULL,
         $THUMBNAIL_FILE TEXT DEFAULT NULL,
         $THUMBNAIL_RANDOM BLOB DEFAULT NULL,
@@ -499,29 +497,16 @@ class AttachmentTable(
       }
   }
 
-  fun getRestorableAttachments(batchSize: Int): List<DatabaseAttachment> {
+  fun getRestorableAttachments(batchSize: Int): List<RestorableAttachment> {
     return readableDatabase
-      .select(*PROJECTION)
+      .select(ID, MESSAGE_ID, DATA_SIZE, REMOTE_DIGEST, REMOTE_KEY)
       .from(TABLE_NAME)
       .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE)
       .limit(batchSize)
       .orderBy("$ID DESC")
       .run()
       .readToList {
-        it.readAttachment()
-      }
-  }
-
-  fun getLocalRestorableAttachments(batchSize: Int): List<LocalRestorableAttachment> {
-    return readableDatabase
-      .select(*PROJECTION)
-      .from(TABLE_NAME)
-      .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE)
-      .limit(batchSize)
-      .orderBy("$ID DESC")
-      .run()
-      .readToList {
-        LocalRestorableAttachment(
+        RestorableAttachment(
           attachmentId = AttachmentId(it.requireLong(ID)),
           mmsId = it.requireLong(MESSAGE_ID),
           size = it.requireLong(DATA_SIZE),
@@ -871,17 +856,6 @@ class AttachmentTable(
     notifyConversationListeners(threadId)
   }
 
-  fun setThumbnailTransferState(messageId: Long, attachmentId: AttachmentId, thumbnailRestoreState: ThumbnailRestoreState) {
-    writableDatabase
-      .update(TABLE_NAME)
-      .values(THUMBNAIL_RESTORE_STATE to thumbnailRestoreState.value)
-      .where("$ID = ?", attachmentId.id)
-      .run()
-
-    val threadId = messages.getThreadIdForMessage(messageId)
-    notifyConversationListeners(threadId)
-  }
-
   fun setTransferProgressFailed(attachmentId: AttachmentId, mmsId: Long) {
     writableDatabase
       .update(TABLE_NAME)
@@ -912,30 +886,46 @@ class AttachmentTable(
     notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
   }
 
-  fun setRestoreInProgressTransferState(restorableAttachments: List<LocalRestorableAttachment>) {
-    setRestoreTransferState(
-      restorableAttachments = restorableAttachments,
-      prefix = "$TRANSFER_STATE = $TRANSFER_NEEDS_RESTORE",
-      state = TRANSFER_RESTORE_IN_PROGRESS
-    )
-  }
+  fun setThumbnailRestoreState(thumbnailAttachmentIds: List<AttachmentId>, thumbnailRestoreState: ThumbnailRestoreState) {
+    val prefix: String = when (thumbnailRestoreState) {
+      ThumbnailRestoreState.IN_PROGRESS -> {
+        "($THUMBNAIL_RESTORE_STATE = ${ThumbnailRestoreState.NEEDS_RESTORE.value} OR $THUMBNAIL_RESTORE_STATE = ${ThumbnailRestoreState.IN_PROGRESS.value}) AND"
+      }
+      else -> ""
+    }
 
-  fun setRestoreFailedTransferState(notRestorableAttachments: List<LocalRestorableAttachment>) {
-    setRestoreTransferState(
-      restorableAttachments = notRestorableAttachments,
-      prefix = "$TRANSFER_STATE != $TRANSFER_PROGRESS_PERMANENT_FAILURE",
-      state = TRANSFER_PROGRESS_FAILED
+    val setQueries = SqlUtil.buildCollectionQuery(
+      column = ID,
+      values = thumbnailAttachmentIds.map { it.id },
+      prefix = prefix
     )
-  }
 
-  private fun setRestoreTransferState(restorableAttachments: List<LocalRestorableAttachment>, prefix: String, state: Int) {
     writableDatabase.withinTransaction {
-      val setQueries = SqlUtil.buildCollectionQuery(
-        column = ID,
-        values = restorableAttachments.map { it.attachmentId.id },
-        prefix = "$prefix AND"
-      )
+      setQueries.forEach { query ->
+        writableDatabase
+          .update(TABLE_NAME)
+          .values(THUMBNAIL_RESTORE_STATE to thumbnailRestoreState.value)
+          .where(query.where, query.whereArgs)
+          .run()
+      }
+    }
+  }
 
+  fun setRestoreTransferState(restorableAttachments: Collection<RestorableAttachment>, state: Int) {
+    val prefix = when (state) {
+      TRANSFER_RESTORE_OFFLOADED -> "$TRANSFER_STATE != $TRANSFER_PROGRESS_PERMANENT_FAILURE AND"
+      TRANSFER_RESTORE_IN_PROGRESS -> "($TRANSFER_STATE = $TRANSFER_NEEDS_RESTORE OR $TRANSFER_STATE = $TRANSFER_RESTORE_OFFLOADED) AND"
+      TRANSFER_PROGRESS_FAILED -> "$TRANSFER_STATE != $TRANSFER_PROGRESS_PERMANENT_FAILURE AND"
+      else -> ""
+    }
+
+    val setQueries = SqlUtil.buildCollectionQuery(
+      column = ID,
+      values = restorableAttachments.map { it.attachmentId.id },
+      prefix = prefix
+    )
+
+    writableDatabase.withinTransaction {
       setQueries.forEach { query ->
         writableDatabase
           .update(TABLE_NAME)
@@ -943,23 +933,6 @@ class AttachmentTable(
           .where(query.where, query.whereArgs)
           .run()
       }
-
-      val threadQueries = SqlUtil.buildCollectionQuery(
-        column = MessageTable.ID,
-        values = restorableAttachments.map { it.mmsId }
-      )
-
-      val threads = mutableSetOf<Long>()
-      threadQueries.forEach { query ->
-        threads += readableDatabase
-          .select("DISTINCT ${MessageTable.THREAD_ID}")
-          .from(MessageTable.TABLE_NAME)
-          .where(query.where, query.whereArgs)
-          .run()
-          .readToList { it.requireLongOrNull(MessageTable.THREAD_ID) ?: -1 }
-      }
-
-      notifyConversationListeners(threads)
     }
   }
 
@@ -1100,6 +1073,30 @@ class AttachmentTable(
 
     if (!transferFile.delete()) {
       Log.w(TAG, "Unable to delete transfer file.")
+    }
+  }
+
+  fun finalizeAttachmentThumbnailAfterUpload(
+    attachmentId: AttachmentId,
+    archiveMediaId: String,
+    archiveThumbnailMediaId: MediaId,
+    data: ByteArray
+  ) {
+    Log.i(TAG, "[finalizeAttachmentThumbnailAfterUpload] Finalizing archive data for $attachmentId thumbnail.")
+    val fileWriteResult: DataFileWriteResult = writeToDataFile(newDataFile(context), ByteArrayInputStream(data), TransformProperties.empty())
+
+    writableDatabase.withinTransaction { db ->
+      val values = contentValuesOf(
+        THUMBNAIL_FILE to fileWriteResult.file.absolutePath,
+        THUMBNAIL_RANDOM to fileWriteResult.random,
+        THUMBNAIL_RESTORE_STATE to ThumbnailRestoreState.FINISHED.value,
+        ARCHIVE_THUMBNAIL_MEDIA_ID to archiveThumbnailMediaId.encode()
+      )
+
+      db.update(TABLE_NAME)
+        .values(values)
+        .where("$ARCHIVE_MEDIA_ID = ? OR $ID = ?", archiveMediaId, attachmentId)
+        .run()
     }
   }
 
@@ -1334,7 +1331,8 @@ class AttachmentTable(
 
   fun debugCopyAttachmentForArchiveRestore(
     mmsId: Long,
-    attachment: DatabaseAttachment
+    attachment: DatabaseAttachment,
+    forThumbnail: Boolean
   ) {
     val copy =
       """
@@ -1365,7 +1363,9 @@ class AttachmentTable(
           $DATA_HASH_END,
           $ARCHIVE_MEDIA_ID,
           $ARCHIVE_MEDIA_NAME,
-          $ARCHIVE_CDN
+          $ARCHIVE_CDN,
+          $ARCHIVE_THUMBNAIL_MEDIA_ID,
+          $THUMBNAIL_RESTORE_STATE
         )
       SELECT
           $mmsId,
@@ -1393,7 +1393,9 @@ class AttachmentTable(
           $DATA_HASH_END,
           "${attachment.archiveMediaId}",
           "${attachment.archiveMediaName}",
-          ${attachment.archiveCdn}
+          ${attachment.archiveCdn},
+          $ARCHIVE_THUMBNAIL_MEDIA_ID,
+          ${if (forThumbnail) ThumbnailRestoreState.NEEDS_RESTORE.value else ThumbnailRestoreState.NONE.value}
         FROM $TABLE_NAME
         WHERE $ID = ${attachment.attachmentId.id}
     """
@@ -1667,7 +1669,6 @@ class AttachmentTable(
               uploadTimestamp = jsonObject.getLong(UPLOAD_TIMESTAMP),
               dataHash = jsonObject.getString(DATA_HASH_END),
               archiveCdn = jsonObject.getInt(ARCHIVE_CDN),
-              archiveThumbnailCdn = jsonObject.getInt(ARCHIVE_THUMBNAIL_CDN),
               archiveMediaName = jsonObject.getString(ARCHIVE_MEDIA_NAME),
               archiveMediaId = jsonObject.getString(ARCHIVE_MEDIA_ID),
               hasArchiveThumbnail = !TextUtils.isEmpty(jsonObject.getString(THUMBNAIL_FILE)),
@@ -1745,11 +1746,10 @@ class AttachmentTable(
   fun updateArchiveCdnByMediaId(archiveMediaId: String, archiveCdn: Int): Int {
     return writableDatabase.rawQuery(
       "UPDATE $TABLE_NAME SET " +
-        "$ARCHIVE_THUMBNAIL_CDN = CASE WHEN $ARCHIVE_THUMBNAIL_MEDIA_ID = ? THEN ? ELSE $ARCHIVE_THUMBNAIL_CDN END," +
         "$ARCHIVE_CDN = CASE WHEN $ARCHIVE_MEDIA_ID = ? THEN ? ELSE $ARCHIVE_CDN END " +
         "WHERE $ARCHIVE_MEDIA_ID = ? OR $ARCHIVE_THUMBNAIL_MEDIA_ID = ? " +
-        "RETURNING $ARCHIVE_CDN, $ARCHIVE_THUMBNAIL_CDN",
-      SqlUtil.buildArgs(archiveMediaId, archiveCdn, archiveMediaId, archiveCdn, archiveMediaId, archiveMediaId)
+        "RETURNING $ARCHIVE_CDN",
+      SqlUtil.buildArgs(archiveMediaId, archiveCdn, archiveMediaId, archiveMediaId)
     ).count
   }
 
@@ -2269,7 +2269,6 @@ class AttachmentTable(
       uploadTimestamp = cursor.requireLong(UPLOAD_TIMESTAMP),
       dataHash = cursor.requireString(DATA_HASH_END),
       archiveCdn = cursor.requireInt(ARCHIVE_CDN),
-      archiveThumbnailCdn = cursor.requireInt(ARCHIVE_THUMBNAIL_CDN),
       archiveMediaName = cursor.requireString(ARCHIVE_MEDIA_NAME),
       archiveMediaId = cursor.requireString(ARCHIVE_MEDIA_ID),
       hasArchiveThumbnail = !cursor.isNull(THUMBNAIL_FILE),
@@ -2562,11 +2561,19 @@ class AttachmentTable(
     val remoteIv: ByteArray
   )
 
-  class LocalRestorableAttachment(
+  class RestorableAttachment(
     val attachmentId: AttachmentId,
     val mmsId: Long,
     val size: Long,
     val remoteDigest: ByteArray?,
     val remoteKey: ByteArray?
-  )
+  ) {
+    override fun equals(other: Any?): Boolean {
+      return this === other || attachmentId == (other as? RestorableAttachment)?.attachmentId
+    }
+
+    override fun hashCode(): Int {
+      return attachmentId.hashCode()
+    }
+  }
 }

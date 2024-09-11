@@ -703,7 +703,6 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
       uploadTimestamp = this.uploadTimestamp,
       dataHash = this.dataHash,
       archiveCdn = this.archiveCdn,
-      archiveThumbnailCdn = this.archiveThumbnailCdn,
       archiveMediaName = this.archiveMediaName,
       archiveMediaId = this.archiveMediaId,
       thumbnailRestoreState = this.thumbnailRestoreState,

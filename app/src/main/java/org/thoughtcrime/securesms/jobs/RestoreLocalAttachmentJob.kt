@@ -15,7 +15,7 @@ import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.database.AttachmentTable.LocalRestorableAttachment
+import org.thoughtcrime.securesms.database.AttachmentTable.RestorableAttachment
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -47,9 +47,9 @@ class RestoreLocalAttachmentJob private constructor(
       var restoreAttachmentJobs: MutableList<Job>
 
       do {
-        val possibleRestorableAttachments: List<LocalRestorableAttachment> = SignalDatabase.attachments.getLocalRestorableAttachments(500)
-        val restorableAttachments = ArrayList<LocalRestorableAttachment>(possibleRestorableAttachments.size)
-        val notRestorableAttachments = ArrayList<LocalRestorableAttachment>(possibleRestorableAttachments.size)
+        val possibleRestorableAttachments: List<RestorableAttachment> = SignalDatabase.attachments.getRestorableAttachments(500)
+        val restorableAttachments = ArrayList<RestorableAttachment>(possibleRestorableAttachments.size)
+        val notRestorableAttachments = ArrayList<RestorableAttachment>(possibleRestorableAttachments.size)
 
         restoreAttachmentJobs = ArrayList(possibleRestorableAttachments.size)
 
@@ -71,8 +71,8 @@ class RestoreLocalAttachmentJob private constructor(
           }
 
         SignalDatabase.rawDatabase.withinTransaction {
-          SignalDatabase.attachments.setRestoreInProgressTransferState(restorableAttachments)
-          SignalDatabase.attachments.setRestoreFailedTransferState(notRestorableAttachments)
+          SignalDatabase.attachments.setRestoreTransferState(restorableAttachments, AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS)
+          SignalDatabase.attachments.setRestoreTransferState(notRestorableAttachments, AttachmentTable.TRANSFER_PROGRESS_FAILED)
 
           SignalStore.backup.totalRestorableAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
           AppDependencies.jobManager.addAll(restoreAttachmentJobs)
@@ -92,7 +92,7 @@ class RestoreLocalAttachmentJob private constructor(
     }
   }
 
-  private constructor(queue: String, attachment: LocalRestorableAttachment, info: DocumentFileInfo) : this(
+  private constructor(queue: String, attachment: RestorableAttachment, info: DocumentFileInfo) : this(
     Parameters.Builder()
       .setQueue(queue)
       .setLifespan(Parameters.IMMORTAL)
