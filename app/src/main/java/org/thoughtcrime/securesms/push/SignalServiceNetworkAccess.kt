@@ -70,6 +70,7 @@ open class SignalServiceNetworkAccess(context: Context) {
     private const val COUNTRY_CODE_RUSSIA = 7
     private const val COUNTRY_CODE_VENEZUELA = 58
     private const val COUNTRY_CODE_PAKISTAN = 92
+    private const val COUNTRY_CODE_CHINA = 86
 
     private const val G_HOST = "reflector-nrgwuv7kwq-uc.a.run.app"
     private const val F_SERVICE_HOST = "chat-signal.global.ssl.fastly.net"
@@ -217,7 +218,8 @@ open class SignalServiceNetworkAccess(context: Context) {
     ),
     COUNTRY_CODE_IRAN to fConfig,
     COUNTRY_CODE_CUBA to fConfig,
-    COUNTRY_CODE_RUSSIA to fConfig
+    COUNTRY_CODE_RUSSIA to fConfig,
+    COUNTRY_CODE_CHINA to fConfig
   )
 
   private val defaultCensoredConfiguration: SignalServiceConfiguration = buildGConfiguration(baseGHostConfigs) + fConfig
@@ -232,7 +234,8 @@ open class SignalServiceNetworkAccess(context: Context) {
     COUNTRY_CODE_UZBEKISTAN,
     COUNTRY_CODE_RUSSIA,
     COUNTRY_CODE_VENEZUELA,
-    COUNTRY_CODE_PAKISTAN
+    COUNTRY_CODE_PAKISTAN,
+    COUNTRY_CODE_CHINA
   )
 
   open val uncensoredConfiguration: SignalServiceConfiguration = SignalServiceConfiguration(
