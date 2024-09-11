@@ -420,7 +420,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">No se puede descargar el vídeo Tendrás que enviarlo de nuevo.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited within the last minute. -->
-    <string name="ConversationItem_edited_now_timestamp_footer">Editado ahora</string>
+    <string name="ConversationItem_edited_now_timestamp_footer">editado ahora</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
     <string name="ConversationItem_edited_relative_timestamp_footer">editado %1$s</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit occurred at least 1 hour ago. -->
@@ -851,7 +851,7 @@
     <string name="RestoreMediaReminder__Skip_restore">Omitir restauración</string>
 
     <!-- BackupsPreferenceFragment -->
-    <string name="BackupsPreferenceFragment__chat_backups">Copias de seguridad de chats</string>
+    <string name="BackupsPreferenceFragment__chat_backups">Copias de seguridad de los chats</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Las copias de seguridad se cifran con una clave y se guardan en tu dispositivo.</string>
     <string name="BackupsPreferenceFragment__create_backup">Crear copia de seguridad</string>
     <string name="BackupsPreferenceFragment__last_backup">Última copia: %1$s</string>
@@ -2688,7 +2688,7 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Si recuperas tu alias, se restablecerán tu código QR y tu enlace. ¿Quieres hacerlo de todos modos?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Si cambias tu alias, se restablecerán tu código QR y tu enlace. ¿Quieres cambiarlo de todos modos?</string>
+    <string name="UsernameEditFragment_change_confirmation_message">Si cambias tu alias, se restablecerán tu código QR y tu enlace actuales. ¿Cambiarlo de todos modos?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
     <string name="UsernameEditFragment_continue">Continuar</string>
 
@@ -2937,7 +2937,7 @@
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Rechazada en un dispositivo vinculado.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">No disponible en un dispositivo vinculado.</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
-    <string name="WebRtcCallActivity__flip_camera_tooltip">El botón para cambiar de cámara se ha movido para aquí; pulsa tu vídeo para probarlo</string>
+    <string name="WebRtcCallActivity__flip_camera_tooltip">El botón para cambiar de cámara ahora está aquí. Toca el vídeo para probarlo.</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">El número de seguridad de alguien que se ha unido a esta llamada ha cambiado.</string>
 
@@ -3128,7 +3128,7 @@
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">Ya no está disponible</string>
     <!-- Label for quoted gift -->
-    <string name="QuoteView__donation_for_a_friend">Donación en nombre de un amigo</string>
+    <string name="QuoteView__donation_for_a_friend">Donación a nombre de alguien</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desliza hasta el final</string>
@@ -3334,7 +3334,7 @@
     <string name="verify_display_fragment__successful_match">Los números coinciden</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">No se ha podido verificar el número de seguridad</string>
     <string name="verify_display_fragment__loading">Cargando…</string>
-    <string name="verify_display_fragment__mark_as_verified">Marcar persona como verificada</string>
+    <string name="verify_display_fragment__mark_as_verified">Verificar identidad</string>
     <string name="verify_display_fragment__clear_verification">Retirar marca de verificación</string>
 
     <!-- verity_scan_fragment -->
@@ -3746,7 +3746,7 @@
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">¿Activar el bloqueo de pagos para futuros envíos?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
-    <string name="PaymentsHomeFragment__add_an_additional_layer">Añade un nivel extra de seguridad y activa el bloqueo de pantalla o la huella dactilar de Android para transferir fondos.</string>
+    <string name="PaymentsHomeFragment__add_an_additional_layer">Añade una capa adicional de seguridad y activa el bloqueo de pantalla o la huella dactilar de Android para transferir fondos.</string>
     <!-- Alert dialog button to enable payment lock -->
     <string name="PaymentsHomeFragment__enable">Activar</string>
     <!-- Alert dialog button to not enable payment lock for now -->
@@ -5510,7 +5510,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Otras formas de aportar</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donar en nombre de un amigo</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Donar a nombre de alguien</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">No se ha podido confirmar la donación</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -5874,9 +5874,9 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Puntual</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">En nombre de un amigo</string>
+    <string name="DonationReceiptListFragment__for_a_friend">A nombre de alguien</string>
     <!-- Donation receipts gift tab label -->
-    <string name="DonationReceiptListFragment__donation_for_a_friend">Donación en nombre de un amigo</string>
+    <string name="DonationReceiptListFragment__donation_for_a_friend">Donación a nombre de alguien</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Tipo de donación</string>
     <!-- Donation receipts date paid heading -->
@@ -6229,11 +6229,11 @@
         <item quantity="other">%1$s · %2$d días</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__donate_for_a_friend">Donar en nombre de un amigo</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">Donar a nombre de alguien</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
-        <item quantity="one">Apoya a Signal haciendo una donación en nombre de un amigo o familiar que use Signal. Recibirán una insignia para mostrar en su perfil durante %1$d día</item>
-        <item quantity="other">Apoya a Signal haciendo una donación en nombre de un amigo o familiar que use Signal. Recibirán una insignia para mostrar en su perfil durante %1$d días</item>
+        <item quantity="one">Apoya a Signal haciendo una donación en nombre de un amigo o familiar que use Signal. La persona que elijas recibirá una insignia para mostrar en su perfil durante %1$d día.</item>
+        <item quantity="other">Apoya a Signal haciendo una donación en nombre de un amigo o familiar que use Signal. La persona que elijas recibirá una insignia para mostrar en su perfil durante %1$d días.</item>
     </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Siguiente</string>
@@ -6530,7 +6530,7 @@
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Tarjeta de crédito o débito</string>
     <!-- Sheet summary when giving donating for a friend -->
-    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donar en nombre de un amigo</string>
+    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donar a nombre de alguien</string>
     <!-- Button label for paying with iDEAL -->
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 

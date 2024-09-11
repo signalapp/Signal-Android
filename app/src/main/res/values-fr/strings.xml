@@ -106,8 +106,8 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une appli pour sélectionner le média.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Pour joindre des photos, des vidéos ou de l\'audio, Signal doit accéder au stockage de l\'appareil, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations &gt; Stockage.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Pour joindre les coordonnées d\'un contact, Signal doit accéder à l\'application Contacts, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations &gt; Contacts &gt; Autoriser.</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Pour joindre une position géographique, Signal doit accéder à l’application Position, mais vous lui en avez interdit l’accès. Ouvrez l’application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations &gt; Position et activez cette option.</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Pour joindre les coordonnées d\'un contact, Signal doit accéder à l\'application Contacts, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez \"Contacts\" .</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Pour joindre une position géographique, Signal doit accéder à l\'application Position, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez \"Position\".</string>
 
     <!-- Dialog title asking users for location permission -->
     <string name="AttachmentManager_signal_allow_access_location">Autoriser l’accès à votre position</string>
@@ -482,11 +482,11 @@
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Pour envoyer des messages vocaux, autorisez Signal à accéder au microphone.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
     <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Pour enregistrer un message vocal, autorisez Signal à accéder au microphone de votre téléphone.</string>
-    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Pour envoyer des messages audio, Signal doit être autorisé à accéder à l’application Microphone, mais vous lui en avez interdit l’accès. Accédez à l’application Paramètres de votre appareil &gt; Applications &gt; Autorisations et activez \"Microphone\".</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Pour envoyer des messages audio, Signal doit accéder à l\'application Microphone, mais vous lui en avez interdit l’accès. Accédez à l’application Paramètres de votre appareil &gt; Applications &gt; Autorisations et activez \"Microphone\".</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal a besoin des autorisations Microphone et Appareil photo pour appeler %1$s, mais elles ont été refusées définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Microphone et Appareil photo.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pour prendre des photos et des vidéos, autorisez l’accès de Signal à l’appareil photo.</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal a besoin de l’autorisation Appareil photo afin de prendre des photos ou des vidéos, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Pour prendre des photos et des vidéos, Signal doit accéder à l\'appareil photo, mais vous lui en avez interdit l’accès. Accédez à l’application Paramètres de votre appareil &gt; Applications &gt; Autorisations et activez \"Appareil photo\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal a besoin de l’autorisation Appareil photo pour prendre des photos ou des vidéos</string>
     <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Autoriser l’accès au microphone afin de prendre des vidéos avec du son.</string>
     <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Pour enregistrer des vidéos, Signal doit accéder à l\'application Microphone, mais vous lui en avez interdit l’accès. Dans les paramètres Android, touchez Applications &gt; Signal &gt; Autorisations, puis activez \"Microphone\" et \"Appareil photo\".</string>
@@ -862,7 +862,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Essayez la phrase de passe de la sauvegarde et confirmez qu’elle correspond</string>
     <string name="BackupsPreferenceFragment__turn_on">Activer</string>
     <string name="BackupsPreferenceFragment__turn_off">Désactiver</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Pour restaurer une sauvegarde, installez un nouvel exemplaire de Signal. Ouvrez l’appli, touchez « Restaurer la sauvegarde », puis trouvez un fichier de sauvegarde. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Pour restaurer une sauvegarde, réinstallez Signal. Ouvrez l\'appli, touchez \"Restaurer la sauvegarde\", puis recherchez votre fichier de sauvegarde. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">En savoir plus</string>
     <string name="BackupsPreferenceFragment__in_progress">En cours…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -870,7 +870,7 @@
     <string name="BackupsPreferenceFragment__d_so_far">%1$d jusqu’à présent…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% jusqu’à présent…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal exige l’autorisation d’accès à l\'espace de stockage externe afin de créer des sauvegardes, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pour créer des sauvegardes, Signal doit accéder au stockage externe, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez l\'option \"Stockage\".</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
     <string name="BackupsPreferenceFragment__set_backup_time">Définir l’heure de sauvegarde</string>
 
@@ -1014,7 +1014,7 @@
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimiser pour palier l’absence des Services Play</string>
-    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas les Services Google Play en charge. Touchez pour désactiver les optimisations système de la batterie/pile qui empêchent à Signal de récupérer les messages lors d’inactivité.</string>
+    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas en charge les services Google Play. Pour désactiver les optimisations système de la batterie qui empêchent Signal de récupérer les messages lorsque l\'application est inactive, appuyez ici.</string>
 
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Votre version de Signal est expirée. Mettez-la à jour maintenant afin d’échanger des messages.</string>
@@ -1513,7 +1513,7 @@
 
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
-    <string name="MessageRetrievalService_background_connection_enabled">La connexion d’arrière-plan est activée</string>
+    <string name="MessageRetrievalService_background_connection_enabled">La connexion en arrière-plan est activée</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Médias</string>
@@ -1751,7 +1751,7 @@
 
     <!-- GV2 membership access level change -->
     <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Vous avez défini l\'autorisation d\'ajouter des membres sur \"%1$s\".</string>
-    <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s a  défini l\'autorisation d\'ajouter des membres sur \"%2$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s a défini l\'autorisation d\'ajouter des membres sur \"%2$s\".</string>
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">L\'autorisation d\'ajouter des membres a été définie sur \"%1$s\".</string>
 
     <!-- GV2 announcement group change -->
@@ -1982,7 +1982,7 @@
     <string name="DeviceProvisioningActivity_link_a_signal_device">Associer un appareil Signal ?</string>
     <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Il semble que vous tentiez d’associer un appareil Signal via un lecteur tiers. Pour votre sécurité, veuillez rescanner le code à partir de Signal.</string>
 
-    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal a besoin de l’autorisation Appareil photo afin de lire un code QR, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
+    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Pour scanner un code QR, Signal doit accéder à l\'appareil photo, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez \"Appareil photo\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Impossible de lire un code QR sans l’autorisation Appareil photo</string>
 
     <!-- OutdatedBuildReminder -->
@@ -2568,7 +2568,7 @@
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">Filtre :</string>
-    <string name="SupportEmailUtil_device_info">Info sur l’appareil :</string>
+    <string name="SupportEmailUtil_device_info">Infos sur l\'appareil :</string>
     <string name="SupportEmailUtil_android_version">Version d’Android :</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
@@ -2708,7 +2708,7 @@
     <string name="VerifyIdentityActivity_our_signal_safety_number">Notre numéro de sécurité Signal :</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">Vous semblez n’avoir aucune appli vers laquelle partager.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Aucun numéro de sécurité à comparer n’a été trouvé dans le presse-papiers</string>
-    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Appareil photo afin de lire un code QR, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
+    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Pour scanner un code QR, Signal doit accéder à l\'appareil photo, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez \"Appareil photo\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossible de lire le code QR sans l’autorisation Appareil photo</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Vous devez d’abord échanger des messages afin d’afficher le numéro de sécurité de %1$s.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
@@ -2745,7 +2745,7 @@
     <string name="MediaPreviewActivity_you">Vous</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Type de média non pris en charge</string>
     <string name="MediaPreviewActivity_draft">Brouillon</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Stockage afin d’enregistrer sur l\'espace de stockage externe, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Stockage.</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Pour enregistrer des données sur un stockage externe, Signal doit accéder à l\'application Stockage, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez l\'option \"Stockage\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossible d’enregistrer sur l\'espace de stockage sans autorisation</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Supprimer le message ?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Ce message sera irrémédiablement supprimé.</string>
@@ -2845,7 +2845,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Alertes d’applications critiques</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Notifications supplémentaires de messages</string>
+    <string name="NotificationChannel_additional_message_notifications">Autres notifications de messages</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2932,7 +2932,7 @@
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Pour répondre à l’appel, accordez à Signal l’accès à votre microphone.</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Pour répondre à l’appel vidéo, veuillez autoriser Signal à accéder à votre micro et votre appareil photo.</string>
-    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal exige les autorisations Microphone et Appareil photo afin d’effectuer et de recevoir des appels, mais elles ont été refusées définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Microphone » et « Appareil photo ».</string>
+    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Pour passer et recevoir des appels, Signal doit accéder au microphone et à l\'appareil photo, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez les options \"Microphone\" et \"Appareil photo\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Vous avez répondu à cet appel sur un appareil associé.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Vous avez refusé cet appel via un appareil associé.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Occupé sur un appareil associé.</string>
@@ -3003,10 +3003,10 @@
     <string name="SingleContactSelectionActivity_contact_photo">Photo du contact</string>
 
     <!-- ContactSelectionListFragment-->
-    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal exige l’autorisation Contacts afin d’afficher vos contacts, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Contacts ».</string>
+    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Pour afficher vos contacts, Signal doit accéder à l\'application Contacts, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez l\'option \"Contacts\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Erreur de récupération des contacts, veuillez vérifier votre connexion réseau</string>
     <string name="ContactSelectionListFragment_username_not_found">Le nom d’utilisateur est introuvable</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"« %1$s » n’utilise pas Signal. Veuillez vérifier le nom d’utilisateur et réessayer."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s n\'utilise pas Signal. Veuillez vérifier le nom d\'utilisateur et réessayer."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Vous n’avez pas besoin de vous ajouter au groupe</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">La taille maximale du groupe est atteinte</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Les groupes Signal ne peuvent pas comporter plus de %1$d membres.</string>
@@ -3156,15 +3156,15 @@
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
     <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Notifications d’appels activées.</string>
     <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Activer les notifications d’appels</string>
-    <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Activer l’activité d’arrière-plan</string>
+    <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Autoriser l\'activité en arrière-plan</string>
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Tout semble en ordre maintenant !</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Pour recevoir les notifications d’appel, appuyez ici et activez l’option « Afficher les notifications ».</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Pour recevoir les notifications d\'appel, appuyez ici et activez l\'option \"Notifications\".</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Pour recevoir les notifications d’appel, touchez cette option, activez les notifications et vérifiez que le son et les pop-ups sont bien activés.</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d’appel, touchez ici et activez l’activité d’arrière-plan dans la section « Batterie/Pile » des paramètres. </string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d\'appel, appuyez ici et autorisez l\'activité en arrière-plan sous Paramètres &gt; Batterie. </string>
     <string name="EnableCallNotificationSettingsDialog__settings">Paramètres</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Pour recevoir les notifications d\'appel, accédez à Paramètres &gt; Notifications &gt; Appels et activez l\'option \"Notifications\".</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Pour recevoir les notifications d\'appel, appuyez sur \"Paramètres\" et activez l\'option \"Notifications\".</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Pour recevoir les notifications d\'appel, touchez Paramètres, activez les notifications et vérifiez que le son et les pop-ups sont bien activés.</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d’appel, touchez Paramètres et activez l’activité d’arrière-plan dans la section « Batterie/Pile » des paramètres.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d\'appel, appuyez sur Paramètres &gt; Batterie et autorisez l\'activité en arrière-plan.</string>
 
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Chargement des pays…</string>
@@ -3264,7 +3264,7 @@
         <item quantity="one">%1$s a rejoint le groupe.</item>
         <item quantity="other">%1$s ont rejoint le groupe.</item>
     </plurals>
-    <string name="GroupUtil_group_name_is_now">Le nom du groupe est désormais « %1$s ».</string>
+    <string name="GroupUtil_group_name_is_now">Le groupe s\'appelle maintenant \"%1$s\".</string>
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
@@ -3373,7 +3373,7 @@
     <string name="AndroidManifest__change_passphrase">Changer la phrase de passe</string>
     <string name="AndroidManifest__verify_safety_number">Confirmer le numéro de sécurité</string>
     <string name="AndroidManifest__media_preview">Aperçu du média</string>
-    <string name="AndroidManifest__message_details">Détails du message</string>
+    <string name="AndroidManifest__message_details">Infos du message</string>
     <string name="AndroidManifest__linked_devices">Appareils associés</string>
     <string name="AndroidManifest__invite_friends">Inviter des amis</string>
     <string name="AndroidManifest_archived_conversations">Conversations archivées</string>
@@ -3394,7 +3394,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
-    <string name="HelpFragment__support_info">Info d’assistance</string>
+    <string name="HelpFragment__support_info">Infos d\'assistance</string>
     <string name="HelpFragment__signal_android_support_request">Demande d’assistance – Signal pour Android</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Impossible d’importer les journaux.</string>
@@ -3517,7 +3517,7 @@
     <string name="preferences__normal">Normal</string>
     <string name="preferences__slow">Lent</string>
     <string name="preferences__help">Aide</string>
-    <string name="preferences__advanced">Avancés</string>
+    <string name="preferences__advanced">Paramètres avancés</string>
     <string name="preferences__donate_to_signal">Faire un don à Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">Confidentialité</string>
@@ -3553,7 +3553,7 @@
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">Annuler</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Remplacer l’icône et le nom de l’appli par « %1$s »</string>
+    <string name="preferences__app_icon_dialog_title">Remplacer l\'icône et le nom de l\'appli par \"%1$s\"</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
     <string name="preferences__app_icon_dialog_description">L’icône et le nom de l’appli seront modifiés au redémarrage de Signal. Les notifications afficheront toujours l’icône et le nom par défaut de Signal.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
@@ -3577,8 +3577,8 @@
     <string name="preferences__free_private_messages_and_calls">Messages et appels gratuits et confidentiels vers les utilisateurs de Signal</string>
     <string name="preferences__submit_debug_log">Envoyer le journal de débogage</string>
     <string name="preferences__delete_account">Supprimer le compte</string>
-    <string name="preferences__support_wifi_calling">Mode de compatibilité « Appels Wi-Fi »</string>
-    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil transmet les textos et les messages multimédias par Wi-Fi (n’activer que si les « Appels Wi-Fi » sont activés sur votre appareil)</string>
+    <string name="preferences__support_wifi_calling">Mode de compatibilité \"Appels Wi-Fi\"</string>
+    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer cette option si votre appareil transmet les SMS et MMS via le Wi-Fi (ne l\'activer que si l\'option \"Appels Wi-Fi\" est activée sur votre appareil)</string>
     <string name="preferences__incognito_keyboard">Clavier incognito</string>
     <string name="preferences__read_receipts">Confirmations de lecture</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si vous désactivez les confirmations de lecture, vous ne recevrez pas de confirmations de lecture de la part de vos contacts.</string>
@@ -3661,7 +3661,7 @@
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Le contournement de la censure ne peut être activé qu’une fois connecté à Internet.</string>
     <string name="preferences_communication__category_sealed_sender">Expéditeur scellé</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Autoriser de n’importe qui</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activer l’option « expéditeur scellé » pour les messages entrants provenant d’expéditeurs qui ne sont pas dans vos contacts et de personnes avec qui vous n’avez pas partagé votre profil.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activer l\'option \"Expéditeur scellé\" pour les messages provenant d\'expéditeurs qui ne figurent pas dans vos contacts ou avec qui vous n\'avez pas partagé votre profil.</string>
     <string name="preferences_proxy">Proxy</string>
     <string name="preferences_use_proxy">Utiliser un proxy</string>
     <string name="preferences_off">Désactivé</string>
@@ -3916,7 +3916,7 @@
     <!-- Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
     <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Le blocage du paiement a été activé dans les paramètres, mais il ne peut pas être affiché.</string>
     <!-- Button in a dialog that will take the user to the privacy settings -->
-    <string name="ConfirmPaymentFragment__go_to_settings">Rendez-vous dans les Paramètres</string>
+    <string name="ConfirmPaymentFragment__go_to_settings">Accéder aux paramètres</string>
     <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Cette personne n’a pas activé les paiements</string>
     <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Impossible de demander des frais de réseau. Pour réessayer et poursuivre ce paiement, touchez \"OK\".</string>
 
@@ -3966,7 +3966,7 @@
 
     <!-- conversation_selection -->
     <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_message_details">Info</string>
+    <string name="conversation_selection__menu_message_details">Infos</string>
     <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">Copier</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -4309,11 +4309,11 @@
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Personne ne saura que vous utilisez Signal, hormis les utilisateurs à qui vous envoyez un message ou avec qui vous avez déjà démarré une conversation.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Pour changer ce paramètre, réglez l’option « Qui peut voir mon numéro » sur « Personne »."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Pour modifier ce paramètre, définissez l\'option \"Qui peut voir mon numéro\" sur \"Personne\"."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Voulez-vous vraiment continuer ?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Si vous définissez le paramètre « Qui peut me trouver grâce à mon numéro de téléphone » sur « Personne », les autres utilisateurs auront plus de difficulté à vous trouver sur Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Si vous définissez le paramètre \"Qui peut me trouver grâce à mon numéro de téléphone\" sur \"Personne\", les autres utilisateurs auront plus de difficulté à vous trouver sur Signal.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">Annuler</string>
     <string name="PhoneNumberPrivacy_everyone">Tout le monde</string>
@@ -4423,9 +4423,9 @@
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
     <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Appuyez sur votre photo de profil dans le coin supérieur gauche pour ouvrir les paramètres</string>
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Appuyez sur « Compte »"</string>
+    <string name="NewDeviceTransferInstructions__tap_on_account">"Appuyez sur \"Compte\"."</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Appuyez sur « Transfert de compte » puis « Poursuivre » sur les deux appareils"</string>
+    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Appuyez sur \"Transfert de compte\", puis sur \"Poursuivre\" sur les deux appareils."</string>
 
     <!-- NewDeviceTransferSetupFragment -->
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Préparation de la connexion à votre ancien appareil Android…</string>
@@ -4455,7 +4455,7 @@
     <string name="DeviceTransferSetup__error_connecting">Erreur de connexion</string>
     <string name="DeviceTransferSetup__retry">Réessayer</string>
     <string name="DeviceTransferSetup__submit_debug_logs">Envoyer les journaux de débogage</string>
-    <string name="DeviceTransferSetup__verify_code">Code de confirmation</string>
+    <string name="DeviceTransferSetup__verify_code">Vérifier le code</string>
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Confirmez que le code ci-dessous est le même sur chacun de vos appareils. Puis appuyez sur Poursuivre.</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">Les chiffres ne correspondent pas</string>
     <string name="DeviceTransferSetup__continue">Poursuivre</string>
@@ -4500,9 +4500,9 @@
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Téléchargez Signal sur votre nouvel appareil Android</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Appuyez sur « Transférer ou restaurer le compte »"</string>
+    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Appuyez sur \"Transférer ou restaurer le compte\"."</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Sélectionnez « Transférer depuis un appareil Android » quand vous y êtes invité, puis « Poursuivre ». Gardez les deux appareils à proximité."</string>
+    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Sélectionnez \"Transférer depuis un appareil Android\" quand vous y êtes invité, puis \"Poursuivre\". Gardez les deux appareils à proximité."</string>
     <string name="OldDeviceTransferInstructions__continue">Poursuivre</string>
 
     <!-- OldDeviceTransferComplete -->
@@ -4589,9 +4589,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">« %1$s » a été bloqué.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Échec de blocage de « %1$s »</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">« %1$s » a été débloqué.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">Vous avez bloqué %1$s.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Impossible de bloquer %1$s pour le moment.</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">Vous avez débloqué %1$s.</string>
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
@@ -5036,7 +5036,7 @@
     <string name="PrivacySettingsFragment__app_security">Sécurité de l’appli</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquer les captures d’écran dans la liste des récents et dans l’appli</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Messages et appels Signal, toujours relayer les appels et expéditeur scellé</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Messages et appels Signal : \"Toujours relayer les appels\" et \"Expéditeur scellé\"</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Délai avant disparition</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Définissez le délai après lequel les messages éphémères disparaissent des nouvelles conversations que vous avez initiées.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
@@ -5053,7 +5053,7 @@
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Afficher l’icône d’état</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Afficher une icône dans les détails des messages qui ont été remis avec l’option « expéditeur scellé ».</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Afficher une icône dans les infos des messages lorsqu\'ils sont remis avec l\'option \"Expéditeur scellé\".</string>
 
     <!-- ExpireTimerSettingsFragment -->
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Si cette option est activée, les nouveaux messages envoyés et reçus dans les nouvelles conversations disparaîtront après avoir été lus.</string>
@@ -5768,7 +5768,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Supprimer le profil</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">« %1$s » retiré.</string>
+    <string name="NotificationProfileDetails__s_removed">Vous avez retiré %1$s.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Annuler</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -5925,7 +5925,7 @@
     <!-- Context menu option to go to story chat -->
     <string name="StoriesLandingItem__go_to_chat">Accéder à la conversation</string>
     <!-- Context menu option to go to story info -->
-    <string name="StoriesLandingItem__info">Info</string>
+    <string name="StoriesLandingItem__info">Infos</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Envoi…</string>
     <!-- Label when multiple stories are pending sending -->
@@ -5994,7 +5994,7 @@
     <!-- Displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Activer les confirmations de vue pour savoir qui a consulté vos Stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__go_to_settings">Rendez-vous dans les Paramètres</string>
+    <string name="StoryViewsFragment__go_to_settings">Accéder aux paramètres</string>
     <!-- Dialog action to remove viewer from a story -->
     <string name="StoryViewsFragment__remove">Retirer</string>
     <!-- Dialog title when removing a viewer from a story -->
@@ -6123,7 +6123,7 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Supprimer cette story de groupe ?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">« %1$s » sera supprimée.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" sera supprimée.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Supprimer</string>
     <!-- Dialog title for deleting a custom story -->
@@ -6480,9 +6480,9 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Appuyez sur \"Accéder aux paramètres\" ci-dessous.</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Activez « Autoriser les réglages des alarmes et des rappels. »</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Activez \"Autoriser à définir des alarmes et des rappels\".</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
-    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Rendez-vous dans les Paramètres</string>
+    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Accéder aux paramètres</string>
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
@@ -6815,7 +6815,7 @@
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">Accéder à la conversation</string>
     <!-- Displayed as a context menu item to see call info -->
-    <string name="CallContextMenu__info">Info</string>
+    <string name="CallContextMenu__info">Infos</string>
     <!-- Displayed as a context menu item to select multiple calls -->
     <string name="CallContextMenu__select">Sélectionner</string>
     <!-- Displayed as a context menu item to delete this call -->
