@@ -169,8 +169,6 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       return STATE_WELCOME_PUSH_SCREEN;
     } else if (SignalStore.storageService().needsAccountRestore()) {
       return STATE_ENTER_SIGNAL_PIN;
-    } else if (userHasSkippedOrForgottenPin()) {
-      return STATE_CREATE_SIGNAL_PIN;
     } else if (userCanTransferOrRestore()) {
       return STATE_TRANSFER_OR_RESTORE;
     } else if (userMustSetProfileName()) {
