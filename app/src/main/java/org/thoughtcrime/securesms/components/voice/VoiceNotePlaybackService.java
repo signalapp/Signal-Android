@@ -108,17 +108,25 @@ public class VoiceNotePlaybackService extends MediaSessionService {
   @Override
   public void onDestroy() {
     AppDependencies.getDatabaseObserver().unregisterObserver(attachmentDeletionObserver);
-    player.release();
 
-    final MediaSession session = mediaSession;
+    final VoiceNotePlayer voiceNotePlayer = player;
+    if (voiceNotePlayer != null) {
+      voiceNotePlayer.release();
+    }
+
+    MediaSession session = mediaSession;
     if (session != null) {
       session.release();
       mediaSession = null;
     }
 
+    KeyClearedReceiver receiver = keyClearedReceiver;
+    if (receiver != null) {
+      receiver.unregister();
+    }
+
     clearListener();
     super.onDestroy();
-    keyClearedReceiver.unregister();
   }
 
   @Nullable
