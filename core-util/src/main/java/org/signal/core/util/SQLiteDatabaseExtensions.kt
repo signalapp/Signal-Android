@@ -17,10 +17,14 @@ inline fun <T : SupportSQLiteDatabase, R> T.withinTransaction(block: (T) -> R): 
   beginTransaction()
   try {
     val toReturn = block(this)
-    setTransactionSuccessful()
+    if (inTransaction()) {
+      setTransactionSuccessful()
+    }
     return toReturn
   } finally {
-    endTransaction()
+    if (inTransaction()) {
+      endTransaction()
+    }
   }
 }
 
