@@ -706,6 +706,7 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
       archiveMediaName = this.archiveMediaName,
       archiveMediaId = this.archiveMediaId,
       thumbnailRestoreState = this.thumbnailRestoreState,
+      archiveTransferState = this.archiveTransferState,
       uuid = uuid
     )
   }

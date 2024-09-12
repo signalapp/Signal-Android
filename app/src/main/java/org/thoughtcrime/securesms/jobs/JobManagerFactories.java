@@ -106,7 +106,7 @@ public final class JobManagerFactories {
     return new HashMap<String, Job.Factory>() {{
       put(AccountConsistencyWorkerJob.KEY,           new AccountConsistencyWorkerJob.Factory());
       put(AnalyzeDatabaseJob.KEY,                    new AnalyzeDatabaseJob.Factory());
-      put(ArchiveAttachmentJob.KEY,                  new ArchiveAttachmentJob.Factory());
+      put(ApkUpdateJob.KEY,                          new ApkUpdateJob.Factory());
       put(ArchiveAttachmentBackfillJob.KEY,          new ArchiveAttachmentBackfillJob.Factory());
       put(ArchiveThumbnailUploadJob.KEY,             new ArchiveThumbnailUploadJob.Factory());
       put(AttachmentCompressionJob.KEY,              new AttachmentCompressionJob.Factory());
@@ -134,6 +134,7 @@ public final class JobManagerFactories {
       put(ContactLinkRebuildMigrationJob.KEY,        new ContactLinkRebuildMigrationJob.Factory());
       put(ConversationShortcutRankingUpdateJob.KEY,  new ConversationShortcutRankingUpdateJob.Factory());
       put(ConversationShortcutUpdateJob.KEY,         new ConversationShortcutUpdateJob.Factory());
+      put(CopyAttachmentToArchiveJob.KEY,            new CopyAttachmentToArchiveJob.Factory());
       put(CreateReleaseChannelJob.KEY,               new CreateReleaseChannelJob.Factory());
       put(DirectoryRefreshJob.KEY,                   new DirectoryRefreshJob.Factory());
       put(DonationReceiptRedemptionJob.KEY,          new DonationReceiptRedemptionJob.Factory());
@@ -251,7 +252,7 @@ public final class JobManagerFactories {
       put(ThreadUpdateJob.KEY,                       new ThreadUpdateJob.Factory());
       put(TrimThreadJob.KEY,                         new TrimThreadJob.Factory());
       put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
-      put(ApkUpdateJob.KEY,                          new ApkUpdateJob.Factory());
+      put(UploadAttachmentToArchiveJob.KEY,          new UploadAttachmentToArchiveJob.Factory());
 
       // Migrations
       put(AccountConsistencyMigrationJob.KEY,        new AccountConsistencyMigrationJob.Factory());

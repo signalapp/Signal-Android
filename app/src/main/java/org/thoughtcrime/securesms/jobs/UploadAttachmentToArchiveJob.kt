@@ -1,0 +1,204 @@
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.thoughtcrime.securesms.jobs
+
+import org.signal.core.util.logging.Log
+import org.signal.protos.resumableuploads.ResumableUpload
+import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobs.protos.UploadAttachmentToArchiveJobData
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
+import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
+import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
+import java.io.IOException
+import kotlin.time.Duration.Companion.days
+
+/**
+ * Given an attachmentId, this will upload the corresponding attachment to the archive cdn.
+ * To do this, it must first upload it to the attachment cdn, and then copy it to the archive cdn.
+ */
+class UploadAttachmentToArchiveJob private constructor(
+  private val attachmentId: AttachmentId,
+  private var uploadSpec: ResumableUpload?,
+  private val forBackfill: Boolean,
+  parameters: Parameters
+) : Job(parameters) {
+
+  companion object {
+    private val TAG = Log.tag(UploadAttachmentToArchiveJob::class)
+    const val KEY = "UploadAttachmentToArchiveJob"
+
+    fun buildQueueKey(attachmentId: AttachmentId) = "ArchiveAttachmentJobs_${attachmentId.id}"
+  }
+
+  constructor(attachmentId: AttachmentId, forBackfill: Boolean = false) : this(
+    attachmentId = attachmentId,
+    uploadSpec = null,
+    forBackfill = forBackfill,
+    parameters = Parameters.Builder()
+      .addConstraint(NetworkConstraint.KEY)
+      .setLifespan(30.days.inWholeMilliseconds)
+      .setMaxAttempts(Parameters.UNLIMITED)
+      .setQueue(buildQueueKey(attachmentId))
+      .build()
+  )
+
+  override fun serialize(): ByteArray = UploadAttachmentToArchiveJobData(
+    attachmentId = attachmentId.id,
+    forBackfill = forBackfill
+  ).encode()
+
+  override fun getFactoryKey(): String = KEY
+
+  override fun onAdded() {
+    val transferStatus = SignalDatabase.attachments.getArchiveTransferState(attachmentId) ?: return
+
+    if (transferStatus == AttachmentTable.ArchiveTransferState.NONE) {
+      Log.d(TAG, "[$attachmentId] Updating archive transfer state to ${AttachmentTable.ArchiveTransferState.UPLOAD_IN_PROGRESS}")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.UPLOAD_IN_PROGRESS)
+    }
+  }
+
+  override fun run(): Result {
+    if (!SignalStore.backup.backsUpMedia) {
+      Log.w(TAG, "[$attachmentId] This user does not back up media. Skipping.")
+      return Result.success()
+    }
+
+    val attachment: DatabaseAttachment? = SignalDatabase.attachments.getAttachment(attachmentId)
+
+    if (attachment == null) {
+      Log.w(TAG, "[$attachmentId] Attachment no longer exists! Skipping.")
+      return Result.failure()
+    }
+
+    if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
+      Log.i(TAG, "[$attachmentId] Already finished. Skipping.")
+      return Result.success()
+    }
+
+    if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE) {
+      Log.i(TAG, "[$attachmentId] Already marked as a permanent failure. Skipping.")
+      return Result.failure()
+    }
+
+    if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.COPY_PENDING) {
+      Log.i(TAG, "[$attachmentId] Already marked as pending transfer. Enqueueing a copy job just in case.")
+      AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachment.attachmentId, forBackfill = forBackfill))
+      return Result.success()
+    }
+
+    if (uploadSpec != null && System.currentTimeMillis() > uploadSpec!!.timeout) {
+      Log.w(TAG, "[$attachmentId] Upload spec expired! Clearing.")
+      uploadSpec = null
+    }
+
+    if (uploadSpec == null) {
+      Log.d(TAG, "[$attachmentId] Need an upload spec. Fetching...")
+
+      val (spec, result) = fetchResumableUploadSpec()
+      if (result != null) {
+        return result
+      }
+
+      uploadSpec = spec
+    } else {
+      Log.d(TAG, "[$attachmentId] Already have an upload spec. Continuing...")
+    }
+
+    val attachmentStream = try {
+      AttachmentUploadUtil.buildSignalServiceAttachmentStream(
+        context = context,
+        attachment = attachment,
+        uploadSpec = uploadSpec!!,
+        cancellationSignal = { this.isCanceled }
+      )
+    } catch (e: IOException) {
+      Log.e(TAG, "[$attachmentId] Failed to get attachment stream.", e)
+      return Result.retry(defaultBackoff())
+    }
+
+    Log.d(TAG, "[$attachmentId] Beginning upload...")
+    val uploadResult: AttachmentUploadResult = when (val result = SignalNetwork.attachments.uploadAttachmentV4(attachmentStream)) {
+      is NetworkResult.Success -> result.result
+      is NetworkResult.ApplicationError -> throw result.throwable
+      is NetworkResult.NetworkError -> {
+        Log.w(TAG, "[$attachmentId] Failed to upload due to network error.", result.exception)
+        return Result.retry(defaultBackoff())
+      }
+      is NetworkResult.StatusCodeError -> {
+        Log.w(TAG, "[$attachmentId] Failed to upload due to status code error. Code: ${result.code}", result.exception)
+        return Result.retry(defaultBackoff())
+      }
+    }
+    Log.d(TAG, "[$attachmentId] Upload complete!")
+
+    SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachment.attachmentId, uploadResult)
+
+    AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachment.attachmentId, forBackfill = forBackfill))
+
+    return Result.success()
+  }
+
+  override fun onFailure() = Unit
+
+  private fun fetchResumableUploadSpec(): Pair<ResumableUpload?, Result?> {
+    return when (val spec = BackupRepository.getMediaUploadSpec()) {
+      is NetworkResult.Success -> {
+        Log.d(TAG, "[$attachmentId] Got an upload spec!")
+        spec.result.toProto() to null
+      }
+
+      is NetworkResult.ApplicationError -> {
+        Log.w(TAG, "[$attachmentId] Failed to get an upload spec due to an application error. Retrying.", spec.throwable)
+        return null to Result.retry(defaultBackoff())
+      }
+
+      is NetworkResult.NetworkError -> {
+        Log.w(TAG, "[$attachmentId] Encountered a transient network error. Retrying.")
+        return null to Result.retry(defaultBackoff())
+      }
+
+      is NetworkResult.StatusCodeError -> {
+        Log.w(TAG, "[$attachmentId] Failed request with status code ${spec.code}")
+
+        when (ArchiveMediaUploadFormStatusCodes.from(spec.code)) {
+          ArchiveMediaUploadFormStatusCodes.BadArguments,
+          ArchiveMediaUploadFormStatusCodes.InvalidPresentationOrSignature,
+          ArchiveMediaUploadFormStatusCodes.InsufficientPermissions,
+          ArchiveMediaUploadFormStatusCodes.RateLimited -> {
+            return null to Result.retry(defaultBackoff())
+          }
+
+          ArchiveMediaUploadFormStatusCodes.Unknown -> {
+            return null to Result.retry(defaultBackoff())
+          }
+        }
+      }
+    }
+  }
+
+  class Factory : Job.Factory<UploadAttachmentToArchiveJob> {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): UploadAttachmentToArchiveJob {
+      val data = UploadAttachmentToArchiveJobData.ADAPTER.decode(serializedData!!)
+      return UploadAttachmentToArchiveJob(
+        attachmentId = AttachmentId(data.attachmentId),
+        uploadSpec = data.uploadSpec,
+        forBackfill = data.forBackfill,
+        parameters = parameters
+      )
+    }
+  }
+}

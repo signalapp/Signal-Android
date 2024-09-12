@@ -541,7 +541,7 @@ object BackupRepository {
    *
    * @return True if successful, otherwise false.
    */
-  fun uploadBackupFile(backupStream: InputStream, backupStreamLength: Long): Boolean {
+  fun uploadBackupFile(backupStream: InputStream, backupStreamLength: Long): NetworkResult<Unit> {
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
 
     return initBackupAndFetchAuth(backupKey)
@@ -559,7 +559,6 @@ object BackupRepository {
         SignalNetwork.archive.uploadBackupFile(form, resumableUploadUrl, backupStream, backupStreamLength)
           .also { Log.i(TAG, "UploadBackupFileResult: $it") }
       }
-      .also { Log.i(TAG, "OverallResult: $it") } is NetworkResult.Success
   }
 
   fun downloadBackupFile(destination: File, listener: ProgressListener? = null): Boolean {

@@ -58,17 +58,6 @@ message PreKeysSyncJobData {
   bool forceRefreshRequested = 1;
 }
 
-message ArchiveAttachmentJobData {
-  uint64 attachmentId = 1;
-}
-
-message ArchiveAttachmentBackfillJobData {
-  optional uint64 attachmentId = 1;
-  ResumableUpload uploadSpec = 2;
-  optional uint32 count = 3;
-  optional uint32 totalCount = 4;
-}
-
 message ArchiveThumbnailUploadJobData {
   uint64 attachmentId = 1;
 }
@@ -134,4 +123,15 @@ message RestoreAttachmentJobData {
   uint64 messageId = 1;
   uint64 attachmentId = 2;
   bool offloaded = 3;
+}
+
+message CopyAttachmentToArchiveJobData {
+  uint64 attachmentId = 1;
+  bool forBackfill = 2;
+}
+
+message UploadAttachmentToArchiveJobData {
+  uint64 attachmentId = 1;
+  ResumableUpload uploadSpec = 2;
+  bool forBackfill = 3;
 }

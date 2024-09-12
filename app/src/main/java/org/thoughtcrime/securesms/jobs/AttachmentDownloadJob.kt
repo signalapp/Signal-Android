@@ -210,16 +210,34 @@ class AttachmentDownloadJob private constructor(
     Log.i(TAG, "Downloading push part $attachmentId")
     SignalDatabase.attachments.setTransferState(messageId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_STARTED)
 
-    when (attachment.cdn) {
-      Cdn.S3 -> retrieveAttachmentForReleaseChannel(messageId, attachmentId, attachment)
-      else -> retrieveAttachment(messageId, attachmentId, attachment)
+    val digestChanged = when (attachment.cdn) {
+      Cdn.S3 -> {
+        retrieveAttachmentForReleaseChannel(messageId, attachmentId, attachment)
+        false
+      }
+      else -> {
+        retrieveAttachment(messageId, attachmentId, attachment)
+      }
     }
 
-    if ((attachment.cdn == Cdn.CDN_2 || attachment.cdn == Cdn.CDN_3) &&
-      attachment.archiveMediaId == null &&
-      SignalStore.backup.backsUpMedia
-    ) {
-      AppDependencies.jobManager.add(ArchiveAttachmentJob(attachmentId))
+    if (SignalStore.backup.backsUpMedia) {
+      when {
+        attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED -> {
+          Log.i(TAG, "[$attachmentId] Already archived. Skipping.")
+        }
+        digestChanged -> {
+          Log.i(TAG, "[$attachmentId] Digest for attachment changed after download. Re-uploading to archive.")
+          AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId))
+        }
+        attachment.cdn !in CopyAttachmentToArchiveJob.ALLOWED_SOURCE_CDNS -> {
+          Log.i(TAG, "[$attachmentId] Attachment CDN doesn't support copying to archive. Re-uploading to archive.")
+          AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId))
+        }
+        else -> {
+          Log.i(TAG, "[$attachmentId] Enqueuing job to copy to archive.")
+          AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachmentId))
+        }
+      }
     }
   }
 
@@ -234,12 +252,15 @@ class AttachmentDownloadJob private constructor(
       exception is RetryLaterException
   }
 
+  /**
+   * @return True if the digest changed as part of downloading, otherwise false.
+   */
   @Throws(IOException::class, RetryLaterException::class)
   private fun retrieveAttachment(
     messageId: Long,
     attachmentId: AttachmentId,
     attachment: DatabaseAttachment
-  ) {
+  ): Boolean {
     val maxReceiveSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val attachmentFile: File = SignalDatabase.attachments.getOrCreateTransferFile(attachmentId)
 
@@ -269,7 +290,7 @@ class AttachmentDownloadJob private constructor(
           progressListener
         )
 
-      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, downloadResult.dataStream, downloadResult.iv)
+      return SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, downloadResult.dataStream, downloadResult.iv)
     } catch (e: RangeException) {
       Log.w(TAG, "Range exception, file size " + attachmentFile.length(), e)
       if (attachmentFile.delete()) {
@@ -285,7 +306,7 @@ class AttachmentDownloadJob private constructor(
       if (SignalStore.backup.backsUpMedia && e.code == 404 && attachment.archiveMediaName?.isNotEmpty() == true) {
         Log.i(TAG, "Retrying download from archive CDN")
         RestoreAttachmentJob.restoreAttachment(attachment)
-        return
+        return false
       }
 
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
@@ -305,6 +326,8 @@ class AttachmentDownloadJob private constructor(
         markFailed(messageId, attachmentId)
       }
     }
+
+    return false
   }
 
   @Throws(InvalidAttachmentException::class)

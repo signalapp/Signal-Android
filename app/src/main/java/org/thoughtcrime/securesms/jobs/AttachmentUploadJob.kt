@@ -177,7 +177,17 @@ class AttachmentUploadJob private constructor(
         buildAttachmentStream(databaseAttachment, notification, uploadSpec!!).use { localAttachment ->
           val uploadResult: AttachmentUploadResult = SignalNetwork.attachments.uploadAttachmentV4(localAttachment).successOrThrow()
           SignalDatabase.attachments.finalizeAttachmentAfterUpload(databaseAttachment.attachmentId, uploadResult)
-          ArchiveThumbnailUploadJob.enqueueIfNecessary(databaseAttachment.attachmentId)
+          if (SignalStore.backup.backsUpMedia) {
+            when {
+              databaseAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED -> {
+                Log.i(TAG, "[$attachmentId] Already archived. Skipping.")
+              }
+              else -> {
+                Log.i(TAG, "[$attachmentId] Enqueuing job to copy to archive.")
+                AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachmentId))
+              }
+            }
+          }
         }
       }
     } catch (e: StreamResetException) {

@@ -5,10 +5,8 @@
 
 package org.thoughtcrime.securesms.jobs
 
-import android.database.Cursor
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -21,13 +19,12 @@ import org.thoughtcrime.securesms.providers.BlobProvider
 import org.whispersystems.signalservice.api.NetworkResult
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import java.io.IOException
 
 /**
  * Job that is responsible for exporting the DB as a backup proto and
  * also uploading the resulting proto.
  */
-class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(parameters) {
+class BackupMessagesJob private constructor(parameters: Parameters) : Job(parameters) {
 
   companion object {
     private val TAG = Log.tag(BackupMessagesJob::class.java)
@@ -66,60 +63,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
 
   override fun onFailure() = Unit
 
-  private fun archiveAttachments(): Boolean {
-    if (!SignalStore.backup.backsUpMedia) return false
-
-    val batchSize = 100
-    var needToBackfill = 0
-    var totalCount: Int
-    var progress = 0
-    SignalDatabase.attachments.getArchivableAttachments().use { cursor ->
-      totalCount = cursor.count
-      while (!cursor.isAfterLast) {
-        val attachments = cursor.readAttachmentBatch(batchSize)
-
-        when (val archiveResult = BackupRepository.archiveMedia(attachments)) {
-          is NetworkResult.Success -> {
-            Log.i(TAG, "Archive call successful")
-            for (notFound in archiveResult.result.sourceNotFoundResponses) {
-              val attachmentId = archiveResult.result.mediaIdToAttachmentId(notFound.mediaId)
-              Log.i(TAG, "Attachment $attachmentId not found on cdn, will need to re-upload")
-              needToBackfill++
-            }
-            for (success in archiveResult.result.successfulResponses) {
-              val attachmentId = archiveResult.result.mediaIdToAttachmentId(success.mediaId)
-              ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
-            }
-            progress += attachments.size
-          }
-
-          else -> {
-            Log.e(TAG, "Failed to archive $archiveResult")
-          }
-        }
-        EventBus.getDefault().postSticky(BackupV2Event(BackupV2Event.Type.PROGRESS_ATTACHMENTS, (progress - needToBackfill).toLong(), totalCount.toLong()))
-      }
-    }
-    if (needToBackfill > 0) {
-      AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob(totalCount = totalCount, progress = progress - needToBackfill))
-      return true
-    }
-    return false
-  }
-
-  private fun Cursor.readAttachmentBatch(batchSize: Int): List<DatabaseAttachment> {
-    val attachments = ArrayList<DatabaseAttachment>()
-    for (i in 0 until batchSize) {
-      if (this.moveToNext()) {
-        attachments.addAll(SignalDatabase.attachments.getAttachments(this))
-      } else {
-        break
-      }
-    }
-    return attachments
-  }
-
-  override fun onRun() {
+  override fun run(): Result {
     EventBus.getDefault().postSticky(BackupV2Event(type = BackupV2Event.Type.PROGRESS_MESSAGES, count = 0, estimatedTotalCount = 0))
     val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
 
@@ -127,28 +71,40 @@ class BackupMessagesJob private constructor(parameters: Parameters) : BaseJob(pa
     BackupRepository.export(outputStream = outputStream, append = { tempBackupFile.appendBytes(it) }, plaintext = false)
 
     FileInputStream(tempBackupFile).use {
-      BackupRepository.uploadBackupFile(it, tempBackupFile.length())
+      when (val result = BackupRepository.uploadBackupFile(it, tempBackupFile.length())) {
+        is NetworkResult.Success -> Log.i(TAG, "Successfully uploaded backup file.")
+        is NetworkResult.NetworkError -> return Result.retry(defaultBackoff())
+        is NetworkResult.StatusCodeError -> return Result.retry(defaultBackoff())
+        is NetworkResult.ApplicationError -> throw result.throwable
+      }
     }
 
-    val needBackfill = archiveAttachments()
     SignalStore.backup.lastBackupProtoSize = tempBackupFile.length()
     if (!tempBackupFile.delete()) {
       Log.e(TAG, "Failed to delete temp backup file")
     }
 
     SignalStore.backup.lastBackupTime = System.currentTimeMillis()
-
-    if (!needBackfill) {
-      EventBus.getDefault().postSticky(BackupV2Event(BackupV2Event.Type.FINISHED, 0, 0))
-      try {
-        SignalStore.backup.usedBackupMediaSpace = (BackupRepository.getRemoteBackupUsedSpace().successOrThrow() ?: 0)
-      } catch (e: IOException) {
-        Log.e(TAG, "Failed to update used space")
+    SignalStore.backup.usedBackupMediaSpace = when (val result = BackupRepository.getRemoteBackupUsedSpace()) {
+      is NetworkResult.Success -> result.result ?: 0
+      is NetworkResult.NetworkError -> SignalStore.backup.usedBackupMediaSpace // TODO enqueue a secondary job to fetch the latest number -- no need to fail this one
+      is NetworkResult.StatusCodeError -> {
+        Log.w(TAG, "Failed to get used space: ${result.code}")
+        SignalStore.backup.usedBackupMediaSpace
       }
+      is NetworkResult.ApplicationError -> throw result.throwable
     }
-  }
 
-  override fun onShouldRetry(e: Exception): Boolean = false
+    if (SignalDatabase.attachments.doAnyAttachmentsNeedArchiveUpload()) {
+      Log.i(TAG, "Enqueuing attachment backfill job.")
+      AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob())
+    } else {
+      Log.i(TAG, "No attachments need to be uploaded, we can finish.")
+      EventBus.getDefault().postSticky(BackupV2Event(BackupV2Event.Type.FINISHED, 0, 0))
+    }
+
+    return Result.success()
+  }
 
   class Factory : Job.Factory<BackupMessagesJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): BackupMessagesJob {

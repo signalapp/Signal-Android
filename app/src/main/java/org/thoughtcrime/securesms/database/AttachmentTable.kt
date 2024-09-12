@@ -224,6 +224,7 @@ class AttachmentTable(
       ARCHIVE_TRANSFER_FILE,
       THUMBNAIL_FILE,
       THUMBNAIL_RESTORE_STATE,
+      ARCHIVE_TRANSFER_STATE,
       ATTACHMENT_UUID
     )
 
@@ -526,30 +527,26 @@ class AttachmentTable(
   }
 
   /**
-   * Finds the next eligible attachment that needs to be uploaded to the archive service.
-   * If it exists, it'll also atomically be marked as [ArchiveTransferState.BACKFILL_UPLOAD_IN_PROGRESS].
+   * Finds all of the attachmentIds of attachments that need to be uploaded to the archive cdn.
    */
-  fun getNextAttachmentToArchiveAndMarkUploadInProgress(): DatabaseAttachment? {
-    return writableDatabase.withinTransaction {
-      val record: DatabaseAttachment? = readableDatabase
-        .select(*PROJECTION)
-        .from(TABLE_NAME)
-        .where("$ARCHIVE_TRANSFER_STATE = ? AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value)
-        .orderBy("$ID DESC")
-        .limit(1)
-        .run()
-        .readToSingleObject { it.readAttachment() }
+  fun getAttachmentsThatNeedArchiveUpload(): List<AttachmentId> {
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$ARCHIVE_TRANSFER_STATE = ? AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value)
+      .orderBy("$ID DESC")
+      .run()
+      .readToList { AttachmentId(it.requireLong(ID)) }
+  }
 
-      if (record != null) {
-        writableDatabase
-          .update(TABLE_NAME)
-          .values(ARCHIVE_TRANSFER_STATE to ArchiveTransferState.BACKFILL_UPLOAD_IN_PROGRESS.value)
-          .where("$ID = ?", record.attachmentId)
-          .run()
-      }
-
-      record
-    }
+  /**
+   * Similar to [getAttachmentsThatNeedArchiveUpload], but returns if the list would be non-null in a more efficient way.
+   */
+  fun doAnyAttachmentsNeedArchiveUpload(): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$ARCHIVE_TRANSFER_STATE = ? AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value)
+      .run()
   }
 
   /**
@@ -582,19 +579,6 @@ class AttachmentTable(
         .where("$DATA_FILE = ?", dataFile)
         .run()
     }
-  }
-
-  /**
-   * Resets any in-progress archive backfill states to [ArchiveTransferState.NONE], returning the number that had to be reset.
-   * This should only be called if you believe the backfill process has finished. In this case, if this returns a value > 0,
-   * it indicates that state was mis-tracked and you should try uploading again.
-   */
-  fun resetPendingArchiveBackfills(): Int {
-    return writableDatabase
-      .update(TABLE_NAME)
-      .values(ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value)
-      .where("$ARCHIVE_TRANSFER_STATE == ${ArchiveTransferState.BACKFILL_UPLOAD_IN_PROGRESS.value} || $ARCHIVE_TRANSFER_STATE == ${ArchiveTransferState.BACKFILL_UPLOADED.value}")
-      .run()
   }
 
   fun deleteAttachmentsForMessage(mmsId: Long): Boolean {
@@ -940,9 +924,11 @@ class AttachmentTable(
    * When we find out about a new inbound attachment pointer, we insert a row for it that contains all the info we need to download it via [insertAttachmentWithData].
    * Later, we download the data for that pointer. Call this method once you have the data to associate it with the attachment. At this point, it is assumed
    * that the content of the attachment will never change.
+   *
+   * @return True if we had to change the digest as part of saving the file, otherwise false.
    */
   @Throws(MmsException::class)
-  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: LimitedInputStream, iv: ByteArray?) {
+  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: LimitedInputStream, iv: ByteArray?): Boolean {
     Log.i(TAG, "[finalizeAttachmentAfterDownload] Finalizing downloaded data for $attachmentId. (MessageId: $mmsId, $attachmentId)")
 
     val existingPlaceholder: DatabaseAttachment = getAttachment(attachmentId) ?: throw MmsException("No attachment found for id: $attachmentId")
@@ -968,6 +954,8 @@ class AttachmentTable(
       StreamUtil.copy(stream, cipherOutputStream)
       cipherOutputStream.transmittedDigest
     }
+
+    val digestChanged = !digest.contentEquals(existingPlaceholder.remoteDigest)
 
     val foundDuplicate = writableDatabase.withinTransaction { db ->
       // We can look and see if we have any exact matches on hash_ends and dedupe the file if we see one.
@@ -1048,6 +1036,8 @@ class AttachmentTable(
     if (MediaUtil.isAudio(existingPlaceholder)) {
       GenerateAudioWaveFormJob.enqueue(existingPlaceholder.attachmentId)
     }
+
+    return digestChanged
   }
 
   @Throws(IOException::class)
@@ -1673,6 +1663,7 @@ class AttachmentTable(
               archiveMediaId = jsonObject.getString(ARCHIVE_MEDIA_ID),
               hasArchiveThumbnail = !TextUtils.isEmpty(jsonObject.getString(THUMBNAIL_FILE)),
               thumbnailRestoreState = ThumbnailRestoreState.deserialize(jsonObject.getInt(THUMBNAIL_RESTORE_STATE)),
+              archiveTransferState = ArchiveTransferState.deserialize(jsonObject.getInt(ARCHIVE_TRANSFER_STATE)),
               uuid = UuidUtil.parseOrNull(jsonObject.getString(ATTACHMENT_UUID))
             )
           }
@@ -2273,6 +2264,7 @@ class AttachmentTable(
       archiveMediaId = cursor.requireString(ARCHIVE_MEDIA_ID),
       hasArchiveThumbnail = !cursor.isNull(THUMBNAIL_FILE),
       thumbnailRestoreState = ThumbnailRestoreState.deserialize(cursor.requireInt(THUMBNAIL_RESTORE_STATE)),
+      archiveTransferState = ArchiveTransferState.deserialize(cursor.requireInt(ARCHIVE_TRANSFER_STATE)),
       uuid = UuidUtil.parseOrNull(cursor.requireString(ATTACHMENT_UUID))
     )
   }
@@ -2513,13 +2505,13 @@ class AttachmentTable(
    *
    * The first is the backfill process, which will happen after newly-enabling backups. That process will go:
    * 1. [NONE]
-   * 2. [BACKFILL_UPLOAD_IN_PROGRESS]
-   * 3. [BACKFILL_UPLOADED]
+   * 2. [UPLOAD_IN_PROGRESS]
+   * 3. [COPY_PENDING]
    * 4. [FINISHED] or [PERMANENT_FAILURE]
    *
    * The second is when newly sending/receiving an attachment after enabling backups. That process will go:
    * 1. [NONE]
-   * 2. [ATTACHMENT_TRANSFER_PENDING]
+   * 2. [COPY_PENDING]
    * 3. [FINISHED] or [PERMANENT_FAILURE]
    */
   enum class ArchiveTransferState(val value: Int) {
@@ -2527,19 +2519,16 @@ class AttachmentTable(
     NONE(0),
 
     /** The upload to the attachment service is in progress. */
-    BACKFILL_UPLOAD_IN_PROGRESS(1),
+    UPLOAD_IN_PROGRESS(1),
 
-    /** Successfully uploaded to the attachment service during the backfill process. Still need to tell the service to move the file over to the archive service. */
-    BACKFILL_UPLOADED(2),
+    /** We sent/received this attachment after enabling backups, but still need to transfer the file to the archive service. */
+    COPY_PENDING(2),
 
     /** Completely finished backing up the attachment. */
     FINISHED(3),
 
     /** It is impossible to upload this attachment. */
-    PERMANENT_FAILURE(4),
-
-    /** We sent/received this attachment after enabling backups, but still need to transfer the file to the archive service. */
-    ATTACHMENT_TRANSFER_PENDING(5);
+    PERMANENT_FAILURE(4);
 
     companion object {
       fun deserialize(value: Int): ArchiveTransferState {

@@ -87,6 +87,12 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
 
   /**
    * Fetches an upload form you can use to upload your main message backup file to cloud storage.
+   *
+   * Responses
+   *   200: Success
+   *   400: Bad args, or made on an authenticated channel
+   *   403: Insufficient permissions
+   *   429: Rate-limited
    */
   fun getMessageBackupUploadForm(backupKey: BackupKey, aci: ACI, serviceCredential: ArchiveServiceCredential): NetworkResult<AttachmentUploadForm> {
     return NetworkResult.fromFetch {
@@ -200,6 +206,7 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    *   400: Bad arguments, or made on an authenticated channel
    *   401: Invalid presentation or signature
    *   403: Insufficient permissions
+   *   410: The source object was not found
    *   413: No media space remaining
    *   429: Rate-limited
    */

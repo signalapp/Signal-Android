@@ -31,11 +31,11 @@ import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.ArchiveAttachmentJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
+import org.thoughtcrime.securesms.jobs.CopyAttachmentToArchiveJob
 import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
 import org.thoughtcrime.securesms.jobs.RestoreAttachmentThumbnailJob
 import org.thoughtcrime.securesms.jobs.RestoreLocalAttachmentJob
@@ -175,7 +175,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     _state.value = _state.value.copy(uploadState = BackupUploadState.UPLOAD_IN_PROGRESS)
 
     disposables += Single
-      .fromCallable { BackupRepository.uploadBackupFile(backupData!!.inputStream(), backupData!!.size.toLong()) }
+      .fromCallable { BackupRepository.uploadBackupFile(backupData!!.inputStream(), backupData!!.size.toLong()) is NetworkResult.Success }
       .subscribeOn(Schedulers.io())
       .subscribe { success ->
         _state.value = _state.value.copy(uploadState = if (success) BackupUploadState.UPLOAD_DONE else BackupUploadState.UPLOAD_FAILED)
@@ -295,7 +295,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
         AppDependencies
           .jobManager
           .startChain(AttachmentUploadJob(attachmentId))
-          .then(ArchiveAttachmentJob(attachmentId))
+          .then(CopyAttachmentToArchiveJob(attachmentId))
           .enqueueAndBlockUntilCompletion(15.seconds.inWholeMilliseconds)
       }
       .subscribeOn(Schedulers.io())

@@ -37,6 +37,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
     private const val KEY_BACKUPS_INITIALIZED = "backup.initialized"
 
+    private const val KEY_TOTAL_ATTACHMENTS_UPLOAD_COUNT = "backup.totalAttachmentsUploadCount"
+    private const val KEY_CURRENT_ATTACHMENT_UPLOAD_COUNT = "backup.currentAttachmentUploadCount"
+
     /**
      * Specifies whether remote backups are enabled on this device.
      */
@@ -65,6 +68,16 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var totalRestorableAttachmentSize: Long by longValue(KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE, 0)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
   var backupTier: MessageBackupTier? by enumValue(KEY_BACKUP_TIER, null, MessageBackupTier.Serializer)
+
+  /**
+   * When uploading attachments to the archive CDN, this tracks the total number of attachments that are pending upload.
+   */
+  var totalAttachmentUploadCount: Long by longValue(KEY_TOTAL_ATTACHMENTS_UPLOAD_COUNT, 0)
+
+  /**
+   * When uploading attachments to the archive CDN, this tracks the total number of attachments that have currently been uploaded.
+   */
+  var currentAttachmentUploadCount: Long by longValue(KEY_CURRENT_ATTACHMENT_UPLOAD_COUNT, 0)
 
   val totalBackupSize: Long get() = lastBackupProtoSize + usedBackupMediaSpace
 

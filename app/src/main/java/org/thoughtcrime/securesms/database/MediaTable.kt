@@ -57,6 +57,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_MEDIA_NAME},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_MEDIA_ID},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.THUMBNAIL_RESTORE_STATE},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_TRANSFER_STATE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ATTACHMENT_UUID},
         ${MessageTable.TABLE_NAME}.${MessageTable.TYPE}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SENT}, 
