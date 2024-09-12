@@ -4,6 +4,7 @@
  */
 
 val signalJavaVersion: JavaVersion by rootProject.extra
+val signalKotlinJvmTarget: String by rootProject.extra
 
 plugins {
   id("java-library")
@@ -14,6 +15,12 @@ plugins {
 java {
   sourceCompatibility = signalJavaVersion
   targetCompatibility = signalJavaVersion
+}
+
+kotlin {
+  jvmToolchain {
+    languageVersion = JavaLanguageVersion.of(signalKotlinJvmTarget)
+  }
 }
 
 dependencies {
