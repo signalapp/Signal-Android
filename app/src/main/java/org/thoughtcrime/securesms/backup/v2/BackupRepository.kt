@@ -99,13 +99,15 @@ object BackupRepository {
   private val resetInitializedStateErrorAction: StatusCodeErrorAction = { error ->
     when (error.code) {
       401 -> {
-        Log.i(TAG, "Resetting initialized state due to 401.")
+        Log.w(TAG, "Received status 401. Resetting initialized state + auth credentials.", error.exception)
         SignalStore.backup.backupsInitialized = false
+        SignalStore.backup.clearAllCredentials()
       }
 
       403 -> {
-        Log.i(TAG, "Bad auth credential. Clearing stored credentials.")
-        SignalStore.backup.clearAllCredentials()
+        Log.w(TAG, "Received status 403. The user is not in the media tier. Updating local state.", error.exception)
+        SignalStore.backup.backupTier = MessageBackupTier.FREE
+        // TODO [backup] If the user thought they were in media tier but aren't, feels like we should have a special UX flow for this?
       }
     }
   }
