@@ -1074,6 +1074,7 @@ class ConversationFragment :
 
     viewModel
       .inputReadyState
+      .take(1)
       .flatMapMaybe { inputReadyState ->
         draftViewModel.loadShareOrDraftData(shareDataTimestampViewModel.timestamp)
           .map { inputReadyState to it }
