@@ -340,7 +340,13 @@ internal class UsernameEditViewModel private constructor(private val mode: Usern
                 UsernameStatus.TAKEN
               }
 
-              uiState.update { State(ButtonState.SUBMIT_DISABLED, status, UsernameState.NoUsername) }
+              uiState.update {
+                State(
+                  ButtonState.SUBMIT_DISABLED,
+                  status,
+                  usernameState = UsernameState.CaseChange(Username("${state.nickname}${Usernames.DELIMITER}$discriminator"))
+                )
+              }
             }
 
             UsernameSetResult.NETWORK_ERROR -> {
