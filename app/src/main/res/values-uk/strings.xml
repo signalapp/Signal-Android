@@ -1937,7 +1937,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ви позначили, що код безпеки для чатів з користувачем %1$s не перевірено</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ви позначили з іншого пристрою, що код безпеки для чатів з користувачем %1$s не перевірено</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Не вдалося доставити повідомлення від користувача %1$s</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s змінює номер телефону.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">Користувач %1$s змінив номер телефону.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Подобається нова функція? Підтримайте Signal, зробивши разовий донат.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -2048,14 +2048,14 @@
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Отримувати оновлення та новини від %1$s? Ви не отримуватимете оновлень, поки не розблокуєте користувача.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продовжувати спілкуватися з цією групою та ділитися своїм ім’ям та фото з її учасниками?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Цю застарілу групу більше не можна використовувати. Створіть нову групу, щоб активувати такі функції, як @згадки та адміністрування.</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ця Застаріла Група більше не може використовуватись, тому що вона занадто велика. Максимальний розмір групи це - %1$d.</string>
+    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ви більше не можете користуватися цією застарілою групою, бо вона завелика. Максимальна кількість учасників групи — %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Продовжити спілкування в чаті з користувачем %1$s та поділитись іменем і фотографією?</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатися до цієї групи та поділитися своїм ім’ям та фото з її учасниками? Вони не знатимуть, що ви бачили їхні повідомлення, поки ви не приймете.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Приєднатися до цієї групи та поділитися своїм ім’ям і фото з її учасниками? Ви не будете бачити повідомлення групи, доки не погодитесь.</string>
-    <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатись до групи? Вони не дізнаються, що ви бачили їх повідомлення допоки ви не приймете запит.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатися до цієї групи й поділитися своїм ім’ям і фото з її учасниками? Вони не знатимуть, що ви бачите їхні повідомлення, поки ви не приймете запрошення.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Приєднатися до цієї групи й поділитися своїм ім’ям і фото з її учасниками? Ви не зможете бачити повідомлень у груповому чаті, доки не приймете запрошення.</string>
+    <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатися до групи? Учасники не знатимуть, що ви бачите їхні повідомлення, доки ви не приймете запрошення.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Розблокувати цю групу та ділитися своїм ім’ям і фото з її учасниками? Ви не отримаєте повідомлень, поки не розблокуєте групу.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="MessageRequestProfileView_view">Детальніше</string>
+    <string name="MessageRequestProfileView_view">Показати</string>
     <string name="MessageRequestProfileView_member_of_one_group">Учасник «%1$s»</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Учасник «%1$s» і «%2$s»</string>
     <string name="MessageRequestProfileView_member_of_many_groups">Учасник «%1$s», «%2$s» і «%3$s»</string>
@@ -2081,42 +2081,42 @@
     </plurals>
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="one">%1$d додаткова група</item>
-        <item quantity="few">%1$d додаткова група</item>
+        <item quantity="few">%1$d додаткові групи</item>
         <item quantity="many">%1$d додаткові групи</item>
-        <item quantity="other">%1$d додаткові групи</item>
+        <item quantity="other">%1$d додаткової групи</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Це спам</string>
 
     <!-- PassphraseChangeActivity -->
-    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Фрази-паролі не збігаються!</string>
-    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Хибна стара фраза-пароль!</string>
-    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Введіть нову фразу-пароль!</string>
+    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролі не збігаються!</string>
+    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Старий пароль неправильний!</string>
+    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Введіть новий пароль!</string>
 
     <!-- DeviceProvisioningActivity -->
-    <string name="DeviceProvisioningActivity_link_this_device">З\'язати цей пристрій?</string>
+    <string name="DeviceProvisioningActivity_link_this_device">Зв\'язати цей пристрій?</string>
     <string name="DeviceProvisioningActivity_continue">Продовжити</string>
 
     <string name="DeviceProvisioningActivity_content_intro">Він зможе</string>
     <string name="DeviceProvisioningActivity_content_bullets">
-        • Читати усі ваші повідомлення \n• Надсилати повідомлення від вашого імені
+        • Читати всі ваші повідомлення \n• Надсилати повідомлення від вашого імені
     </string>
-    <string name="DeviceProvisioningActivity_content_progress_title">З\'язування пристрою</string>
-    <string name="DeviceProvisioningActivity_content_progress_content">З\'язування нового пристрою…</string>
-    <string name="DeviceProvisioningActivity_content_progress_success">Пристрій затверджено!</string>
-    <string name="DeviceProvisioningActivity_content_progress_no_device">Пристрій не знайдено.</string>
+    <string name="DeviceProvisioningActivity_content_progress_title">Зв\'язування пристрою</string>
+    <string name="DeviceProvisioningActivity_content_progress_content">Зв\'язування нового пристрою…</string>
+    <string name="DeviceProvisioningActivity_content_progress_success">Пристрій схвалено!</string>
+    <string name="DeviceProvisioningActivity_content_progress_no_device">Пристрою не знайдено.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Помилка мережі.</string>
-    <string name="DeviceProvisioningActivity_content_progress_key_error">Хибний QR-код.</string>
-    <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Вибачте, Ви вже з\'язали забагато пристроїв, спробуйте видалити декілька</string>
+    <string name="DeviceProvisioningActivity_content_progress_key_error">Недійсний QR-код.</string>
+    <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">На жаль, у вас забагато зв\'язаних пристроїв. Спробуйте відв\'язати якісь із них</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Це не QR-код для зв\'язування пристрою.</string>
-    <string name="DeviceProvisioningActivity_link_a_signal_device">З\'язати пристрій Signal?</string>
-    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Здається, ви намагаєтеся з\'язати пристрій Signal, використовуючи сканер від 3-ї особи. Для вашого захисту, відскануйте код знову, використовуючи Signal.</string>
+    <string name="DeviceProvisioningActivity_link_a_signal_device">Зв\'язати пристрій Signal?</string>
+    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Схоже, для зв\'язування пристрою Signal ви використовуєте сторонній сканер. З міркувань безпеки просимо вас зісканувати код ще раз, використовуючи Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Для сканування QR-кодів Signal потребує доступу до камери, але його не надано. Перейдіть у налаштування застосунку, відкрийте «Дозволи» та виберіть камеру.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Для сканування QR-коду необхідний доступ до камери</string>
 
     <!-- OutdatedBuildReminder -->
-    <string name="OutdatedBuildReminder_update_now">Оновитись зараз</string>
+    <string name="OutdatedBuildReminder_update_now">Оновити зараз</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Сьогодні ця версія Signal перестане функціонувати. Оновіть застосунок до останньої версії.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
         <item quantity="one">Завтра ця версія Signal перестане функціонувати. Оновіть застосунок до останньої версії.</item>
@@ -2126,10 +2126,10 @@
     </plurals>
 
     <!-- PassphrasePromptActivity -->
-    <string name="PassphrasePromptActivity_enter_passphrase">Введіть фразу-пароль</string>
+    <string name="PassphrasePromptActivity_enter_passphrase">Введіть пароль</string>
     <string name="PassphrasePromptActivity_watermark_content_description">Значок Signal</string>
-    <string name="PassphrasePromptActivity_ok_button_content_description">Ввести фразу-пароль</string>
-    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Хибна фраза-пароль!</string>
+    <string name="PassphrasePromptActivity_ok_button_content_description">Завершити введення</string>
+    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Неправильний пароль!</string>
     <string name="PassphrasePromptActivity_unlock_signal">Розблокувати Signal</string>
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Екран блокування</string>
 

@@ -531,7 +531,7 @@
     <!-- Dialog description that will explain the steps needed to give microphone permissions for a voice call -->
     <string name="ConversationActivity__to_start_call">لبدء مكالمة:</string>
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
-    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">لبدء مكالمة، امنح سيجنال الوصول إلى ميكروفونك.</string>
+    <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">لبدء مكالمة، اسمح لسيجنال بالوصول إلى الميكروفون.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
     <string name="ConversationActivity_signal_needs_microphone_access_voice_call">يَحتاج سيجنال إلى الوصول للميكروفون لبدء المكالمة.</string>
 
@@ -543,7 +543,7 @@
     <string name="ConversationActivity_error_sending_media">خطأُ في إرسال الوسائط</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">لم تعُد رسائل SMS مُدعّمة من طرف سيجنال.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">لم تعُد الرسائل القصيرة (SMS) مدعومة من طرف سيجنال.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">لم تعُد رسائل SMS مدعومة من طرف سيجنال. قُم بدعوة %1$s إلى سيجنال لإبقاء المحادثة هنا.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
@@ -554,11 +554,11 @@
     <string name="ConversationActivity__you_will_be_reminded_again_soon">سنُذكّرك مرة أخرى قريبًا.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">إرسال نص منسق</string>
+    <string name="SendingFormattingTextDialog_title">إرسال نص بتنسيق مُعيَّن</string>
     <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">قد يستخدم بعض الناس إصدارًا من سيجنال لا يتوفر على دعم للنص المنسق. لن يتمكنوا من رؤية تغييرات التنسيق التي أحدثتها على رسالتك.</string>
+    <string name="SendingFormattingTextDialog_message">قد يستخدم بعض الأشخاص إصدارًا من سيجنال لا يدعم النص المُنسَّق. لن يتمكنوا من رؤية تغييرات التنسيق التي أحدثتها على رسالتك.</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">أرسل على كل حال</string>
+    <string name="SendingFormattingTextDialog_send_anyway_button">أرسِل على كل حال</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
     <string name="SendingFormattingTextDialog_cancel_send_button">إلغاء</string>
 
@@ -585,45 +585,45 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">أترغبُ بالحفظ في الذاكرة؟</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="zero">إن حفظ %1$d ملف متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
-        <item quantity="one">إن حفظ الملف متعدد الوسائط هذا في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
-        <item quantity="two">إن حفظ %1$d ملفات متعددة الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
+        <item quantity="zero">إن حفظ أي ملف متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
+        <item quantity="one">إن حفظ ملف متعدد الوسائط هذا في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
+        <item quantity="two">إن حفظ ملفين متعددين الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
         <item quantity="few">إن حفظ %1$d ملفات متعددة الوسائط في سعة التخزين سيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
         <item quantity="many">إن حفظ %1$d ملفًا متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
         <item quantity="other">إن حفظ %1$d ملفٍ متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-        <item quantity="zero">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
-        <item quantity="one">وقع خطأ أثناء حفظ المرفق في مساحة التخزين!</item>
-        <item quantity="two">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
-        <item quantity="few">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
-        <item quantity="many">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
-        <item quantity="other">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
+        <item quantity="zero">حدث خطأ أثناء حفظ الملفات المُرفَقة في مساحة التخزين!</item>
+        <item quantity="one">حدث خطأ أثناء حفظ الملفات المُرفَقة في مساحة التخزين!</item>
+        <item quantity="two">حدث خطأ أثناء حفظ الملفات المُرفَقة في مساحة التخزين!</item>
+        <item quantity="few">حدث خطأ أثناء حفظ الملفات المُرفَقة في مساحة التخزين!</item>
+        <item quantity="many">حدث خطأ أثناء حفظ الملفات المُرفَقة في مساحة التخزين!</item>
+        <item quantity="other">حدث خطأ أثناء حفظ الملفات المُرفَقة في مساحة التخزين!</item>
     </plurals>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">تعذر الإضافة إلى الذاكرة!</string>
+    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">تعذَّرت الإضافة إلى الذاكرة!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="zero">جارٍ حفظ %1$d مرفق</item>
-        <item quantity="one">جارٍ حفظ مرفق واحد</item>
-        <item quantity="two">جارٍ حفظ %1$d مرفقين</item>
-        <item quantity="few">جارٍ حفظ %1$d مرفقات</item>
-        <item quantity="many">جارٍ حفظ %1$d مرفقًا</item>
-        <item quantity="other">جارٍ حفظ %1$d مرفقٍ</item>
+        <item quantity="zero">جارٍ حفظ ملف مُرفَق</item>
+        <item quantity="one">جارٍ حفظ ملف مُرفَق واحد</item>
+        <item quantity="two">جارٍ حفظ ملفين مُرفَقين</item>
+        <item quantity="few">جارٍ حفظ %1$d ملفات مُرفَقة</item>
+        <item quantity="many">جارٍ حفظ %1$d ملفًا مُرفَقًا</item>
+        <item quantity="other">جارٍ حفظ %1$d ملفٍ مُرفَقٍ</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="zero">جارٍ حفظ %1$d مرفق في ذاكرة التخزين…</item>
-        <item quantity="one">جارٍ حفظ مرفق واحد في ذاكرة التخزين…</item>
-        <item quantity="two">جارٍ حفظ %1$d مرفقين في ذاكرة التخزين…</item>
-        <item quantity="few">جارٍ حفظ %1$d مرفقات في ذاكرة التخزين…</item>
-        <item quantity="many">جارٍ حفظ %1$d مرفقًا في ذاكرة التخزين…</item>
-        <item quantity="other">جارٍ حفظ %1$d مرفقٍ في ذاكرة التخزين…</item>
+        <item quantity="zero">جارٍ حفظ ملف مُرفَق في ذاكرة التخزين…</item>
+        <item quantity="one">جارٍ حفظ ملف مُرفَق واحد في ذاكرة التخزين…</item>
+        <item quantity="two">جارٍ حفظ %1$d ملفين مُرفَقين في ذاكرة التخزين…</item>
+        <item quantity="few">جارٍ حفظ %1$d ملفاتٍ مُرفَقة في ذاكرة التخزين…</item>
+        <item quantity="many">جارٍ حفظ %1$d ملفًا مُرفَقًا في ذاكرة التخزين…</item>
+        <item quantity="other">جارٍ حفظ %1$d ملفٍ مُرفَقٍ في ذاكرة التخزين…</item>
     </plurals>
-    <string name="ConversationFragment_pending">معلق…</string>
+    <string name="ConversationFragment_pending">في حالة انتظار…</string>
     <string name="ConversationFragment_push">بيانات (سيجنال)</string>
-    <string name="ConversationFragment_mms">رسالة وسائط متعددة</string>
-    <string name="ConversationFragment_sms">رسالة SMS</string>
-    <string name="ConversationFragment_deleting">يجري الحذف</string>
+    <string name="ConversationFragment_mms">رسالة وسائط متعددة (MMS)</string>
+    <string name="ConversationFragment_sms">رسالة قصيرة (SMS)</string>
+    <string name="ConversationFragment_deleting">جارٍ الحذف</string>
     <string name="ConversationFragment_deleting_messages">يجري حذف الرسائل…</string>
-    <string name="ConversationFragment_delete_for_me">احذف بالنسبة لي</string>
+    <string name="ConversationFragment_delete_for_me">احذف من طرفي</string>
     <string name="ConversationFragment_delete_for_everyone">احذف للجميع</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">حذف من هذا الجهاز</string>
@@ -631,26 +631,26 @@
     <string name="ConversationFragment_delete">حذف</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">احذف من كل مكان</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ستُحذَف هذه الرسالة لكل من كان في هذه الدردشة إن كانوا يستخدمون إصدارًا حديثًا مِن سيجنال. سيتمكّنون من رؤية أنك قد حذفت رسالة.</string>
-    <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ستُحذَف هذه الرسالة لكل من كان في هذه المحادثة إن كانوا يستخدمون إصدارًا حديثًا مِن سيجنال. سيتمكّنون من رؤية أنك قد حذفت رسالة.</string>
+    <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية.</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة.</string>
     <string name="ConversationFragment_failed_to_open_message">فشل في فتح الرسالة</string>
-    <string name="ConversationFragment_you_can_swipe_to_the_right_reply">يمكنك السحب إلى اليمين على أي رسالة للرد بسرعة</string>
-    <string name="ConversationFragment_you_can_swipe_to_the_left_reply">يمكنك السحب إلى اليسار فوق أي رسالة للرد بسرعة</string>
+    <string name="ConversationFragment_you_can_swipe_to_the_right_reply">يمكنك السحب إلى اليسار فوق أي رسالة للرد بسرعة.</string>
+    <string name="ConversationFragment_you_can_swipe_to_the_left_reply">يمكنك السحب إلى اليمين فوق أي رسالة للرد بسرعة.</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">تُحذف وسائط العرض لِمرة واحدة بعد الإرسال</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">لقد سبق لك رؤية هذه الرسالة</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">يُمكِنُك إضافة مُلاحظات لنفسك في هذه الدردشة. إذا كان حسابك يحتوي على أي أجهزة مُرتبطة، ستتم مُزامنة المُلاحظات.</string>
-    <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d عضوا بالمجموعة لهم نفس اﻻسم.</string>
-    <string name="ConversationFragment__tap_to_review">يُرجى اللمس للمراجعة</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">سبَق لك رؤية هذه الرسالة.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">يُمكِنُك إضافة مُلاحظات لنفسك في هذه الدردشة. إذا كان حسابك يحتوي على أي أجهزة مُرتبطة، ستتم مُزامنة المُلاحظات الجديدة.</string>
+    <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d أعضاء بالمجموعة لهم نفس اﻻسم.</string>
+    <string name="ConversationFragment__tap_to_review">يُرجى النقر للمراجعة</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">هذا الشخص له نفس الاسم الذي لدى جهة اتصال أخرى</string>
-    <string name="ConversationFragment_contact_us">تواصل معنا</string>
-    <string name="ConversationFragment_verify">تحقق</string>
+    <string name="ConversationFragment_contact_us">تواصَل معنا</string>
+    <string name="ConversationFragment_verify">تحقَّق</string>
     <string name="ConversationFragment_not_now">ليس الآن</string>
-    <string name="ConversationFragment_your_safety_number_with_s_changed">‫لقد تغير رقم أمانك مع %1$s</string>
-    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">‫لقد تغير رقم أمانك مع %1$s، يُحتَمل أن يكون هذا الشخص قد أعاد تثبيت سيجنال أو أنه غيَّر جهازه. يُرجى لمس زر التحقق للتأكيد على رقم اﻷمان الجديد. إن هذا اﻹجراء اختياري.</string>
+    <string name="ConversationFragment_your_safety_number_with_s_changed">تغيَّر رقم الأمان الخاص بك مع جهة الاتصال %1$s</string>
+    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">تغيَّر رقم الأمان الخاص بك مع جهة الاتصال %1$s. يُحتَمل أن يكون هذا الشخص قد أعاد تثبيت سيجنال أو أنه غيَّر جهازه. يُرجى النقر على زر التحقُّق للتأكيد على رقم اﻷمان الجديد. هذا اﻹجراء اختياري.</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">حظر الطلب؟</string>
+    <string name="ConversationFragment__block_request">أترغبُ بحظر الطلب؟</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">لن يتمكن المستخدم %1$s من الانضمام إلى هذه المجموعة أو حتى إرسال طلب للانضمام إليها من خلال رابط المجموعة. لكن يمكن إضافته يدويًا للمجموعة.</string>
     <!-- Dialog confirm block request button -->
@@ -658,7 +658,7 @@
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">إلغاء</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">محظور</string>
+    <string name="ConversationFragment__blocked">الجهات المحظورة</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
     <string name="ConversationFragment__update_build">تحديث سيجنال</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
@@ -748,7 +748,7 @@
         <item quantity="many">سيؤدي هذا إلى حذف كل الـ %1$d دردشة المُختارة بشكل نهائي من كل أجهزتك.</item>
         <item quantity="other">سيؤدي هذا إلى حذف كل الـ %1$d دردشة المُختارة بشكل نهائي من كل أجهزتك.</item>
     </plurals>
-    <string name="ConversationListFragment_deleting">يجري الحذف</string>
+    <string name="ConversationListFragment_deleting">جارٍالحذف</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
         <item quantity="zero">جارٍ حذف الدردشات المُحدّدة…</item>
         <item quantity="one">جارٍ حذف دردشة مُحدّدة…</item>
@@ -765,7 +765,7 @@
         <item quantity="many">%1$d دردشة مؤرشفة</item>
         <item quantity="other">%1$d دردشة مؤرشفة</item>
     </plurals>
-    <string name="ConversationListFragment_undo">تراجع</string>
+    <string name="ConversationListFragment_undo">تراجُع</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
         <item quantity="zero">تم نقل %1$d دردشات إلى الوارد</item>
         <item quantity="one">تم نقل دردشة واحدة إلى الوارد</item>

@@ -2020,8 +2020,8 @@
     <string name="PinRestoreEntryFragment_incorrect_pin">PIN incorrecto</string>
     <string name="PinRestoreEntryFragment_skip_pin_entry">¿No introducir PIN?</string>
     <string name="PinRestoreEntryFragment_need_help">¿Necesitas ayuda?</string>
-    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Tu PIN es un código numérico o alfanumérico de %1$d o más dígitos que has creado.\n\nSi no recuerdas tu PIN, puedes crear uno nuevo. Podrás registrar y usar tu cuenta, pero se perderán algunos ajustes ya guardados, como tu información de perfil.</string>
-    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Si no recuerdas tu PIN, puedes crear uno nuevo. Podrás registrar y usar tu cuenta, pero se perderán algunos ajustes ya guardados, como tu información de perfil.</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Tu PIN es un código numérico o alfanumérico de %1$d o más dígitos que has creado.\n\nSi olvidas tu PIN, puedes crear uno nuevo. Podrás registrarte y usar tu cuenta, pero se perderán algunos ajustes ya guardados, como tu información de perfil.</string>
+    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Si olvidas tu PIN, puedes crear uno nuevo. Podrás registrarte y usar tu cuenta, pero se perderán algunos ajustes ya guardados, como tu información de perfil.</string>
     <string name="PinRestoreEntryFragment_create_new_pin">Crear nuevo PIN</string>
     <string name="PinRestoreEntryFragment_contact_support">Contactar con asistencia</string>
     <string name="PinRestoreEntryFragment_cancel">Cancelar</string>
@@ -2043,9 +2043,9 @@
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
     <string name="ReRegisterWithPinFragment_support_email_subject">Registro en Signal - Ayuda para volver a registrarse con el PIN en Android</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Tu PIN es un código de %1$d+ caracteres creado por ti, que puede constar de dígitos o caracteres alfanuméricos.\n\nSi no puedes recordar tu PIN, puedes crear uno nuevo.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">Tu PIN es un código numérico o alfanumérico de %1$d o más dígitos que has creado.\n\nSi olvidas tu PIN, puedes crear uno nuevo.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Si no puedes recordar tu PIN, puedes crear uno nuevo.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">Si olvidas tu PIN, puedes crear uno nuevo.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
     <string name="ReRegisterWithPinFragment_out_of_guesses_local">Se te han acabado los intentos para introducir tu PIN, pero aún puedes acceder a tu cuenta de Signal creando un nuevo PIN.</string>
 
