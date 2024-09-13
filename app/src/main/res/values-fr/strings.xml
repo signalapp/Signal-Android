@@ -971,6 +971,12 @@
     <string name="LinkDeviceFragment__no_linked_devices">Aucun appareil associé</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">Déverrouiller pour associer un appareil</string>
+    <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
+    <string name="LinkDeviceFragment__before_linking">Before linking, confirm it\'s you</string>
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">Continue</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1210,11 +1216,11 @@
     <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Il n’y a aucune invitation par d’autres membres du groupe en attente.</string>
     <string name="PendingMembersActivity_missing_detail_explanation">Nous n’affichons pas les infos relatives aux personnes invitées par des membres du groupe. Ces infos ne sont communiquées au groupe que si les invités choisissent de le rejoindre. Ces derniers n’ont accès à aucun des messages publiés dans le groupe tant qu’ils ne l’ont pas rejoint.</string>
 
-    <string name="PendingMembersActivity_revoke_invite">Révoquer l’invitation</string>
-    <string name="PendingMembersActivity_revoke_invites">Révoquer les invitations</string>
+    <string name="PendingMembersActivity_revoke_invite">Annuler l\'invitation</string>
+    <string name="PendingMembersActivity_revoke_invites">Annuler les invitations</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Révoquer l\'invitation</item>
-        <item quantity="other">Révoquer %1$d invitations</item>
+        <item quantity="one">Annuler l\'invitation</item>
+        <item quantity="other">Annuler %1$d invitations</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Erreur de révocation de l\'invitation</item>
@@ -1410,10 +1416,10 @@
     <string name="GroupLinkShareQrDialogFragment__share_code">Partager le code</string>
 
     <!-- GV2 Invite Revoke confirmation dialog -->
-    <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Voulez-vous révoquer l’invitation envoyée à %1$s ?</string>
+    <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Voulez-vous annuler l\'invitation envoyée à %1$s  ?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Voulez-vous révoquer l\'invitation envoyée par %1$s  ?</item>
-        <item quantity="other">Voulez-vous révoquer %2$d invitations envoyées par %1$s  ?</item>
+        <item quantity="one">Voulez-vous annuler l\'invitation envoyée par %1$s  ?</item>
+        <item quantity="other">Voulez-vous annuler %2$d invitations envoyées par %1$s  ?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1684,9 +1690,9 @@
     <string name="MessageRecord_you_made_s_an_admin">Vous avez nommé %1$s en tant qu’administrateur.</string>
     <string name="MessageRecord_s_made_s_an_admin">%1$s a nommé %2$s en tant qu’administrateur.</string>
     <string name="MessageRecord_s_made_you_an_admin">%1$s vous a nommé administrateur.</string>
-    <string name="MessageRecord_you_revoked_admin_privileges_from_s">Vous avez révoqué les privilèges d’administrateur de %1$s.</string>
-    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a révoqué vos privilèges d’administrateur.</string>
-    <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s a révoqué les privilèges d’administrateur de %2$s.</string>
+    <string name="MessageRecord_you_revoked_admin_privileges_from_s">Vous avez révoqué les privilèges d\'admin de %1$s.</string>
+    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a révoqué vos privilèges d\'admin.</string>
+    <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s a révoqué les privilèges d\'admin de %2$s.</string>
     <string name="MessageRecord_s_is_now_an_admin">%1$s est désormais administrateur.</string>
     <string name="MessageRecord_you_are_now_an_admin">Vous êtes désormais administrateur.</string>
     <string name="MessageRecord_s_is_no_longer_an_admin">%1$s n’est plus administrateur.</string>
@@ -1707,20 +1713,20 @@
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">Vous avez révoqué une invitation au groupe.</item>
-        <item quantity="other">Vous avez révoqué %1$d invitations au groupe.</item>
+        <item quantity="one">Vous avez annulé une invitation au groupe.</item>
+        <item quantity="other">Vous avez annulé %1$d invitations au groupe.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s a révoqué une invitation au groupe.</item>
-        <item quantity="other">%1$s a révoqué %2$d invitations au groupe.</item>
+        <item quantity="one">%1$s a annulé une invitation au groupe.</item>
+        <item quantity="other">%1$s a annulé %2$d invitations au groupe.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Quelqu’un a décliné une invitation au groupe.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Vous avez décliné l’invitation au groupe.</string>
-    <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s a révoqué votre invitation au groupe.</string>
-    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un administrateur a révoqué votre invitation au groupe.</string>
+    <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s a annulé votre invitation au groupe.</string>
+    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un admin a annulé votre invitation au groupe.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">Une invitation au groupe a été révoquée.</item>
-        <item quantity="other">%1$d invitations au groupe ont été révoquées.</item>
+        <item quantity="one">Une invitation au groupe a été annulée.</item>
+        <item quantity="other">%1$d invitations au groupe ont été annulées.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -3006,7 +3012,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Pour afficher vos contacts, Signal doit accéder à l\'application Contacts, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez l\'option \"Contacts\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Erreur de récupération des contacts, veuillez vérifier votre connexion réseau</string>
     <string name="ContactSelectionListFragment_username_not_found">Le nom d’utilisateur est introuvable</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s n\'utilise pas Signal. Veuillez vérifier le nom d\'utilisateur et réessayer."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ne correspond à aucun utilisateur Signal. Veuillez vérifier le nom d\'utilisateur et réessayer."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Vous n’avez pas besoin de vous ajouter au groupe</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">La taille maximale du groupe est atteinte</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Les groupes Signal ne peuvent pas comporter plus de %1$d membres.</string>
@@ -3428,7 +3434,7 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboles</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Drapeaux</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Émoticônes</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Aucun résultat trouvé</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Aucun résultat</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Utiliser la valeur par défaut</string>
@@ -3843,7 +3849,7 @@
     <string name="PaymentsDetailsFragment__from">De</string>
     <string name="PaymentsDetailsFragment__information">Le détail des transactions, dont le montant des paiements et l’heure des transactions font partie du Grand-livre MobileCoin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Frais de nettoyage des pièces</string>
-    <string name="PaymentsDetailsFragment__coin_cleanup_information">Des « frais de nettoyage des pièces » sont facturés quand les pièces en votre possession ne peuvent pas être combinées pour finaliser une transaction. Le nettoyage vous permettra de poursuivre l’envoi de paiements.</string>
+    <string name="PaymentsDetailsFragment__coin_cleanup_information">Lorsque les jetons en votre possession ne peuvent pas être combinés pour finaliser une transaction, ils doivent être agrégés et des frais vous sont facturés. Cette agrégation vous permet de continuer à effectuer des paiements.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Aucun autre détail disponible pour cette transaction</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
   <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
@@ -5173,8 +5179,8 @@
 
     <!-- StickerSearchDialogFragment -->
     <string name="StickerSearchDialogFragment_search_stickers">Rechercher des stickers</string>
-    <string name="StickerSearchDialogFragment_no_results_found">Aucun résultat trouvé</string>
-    <string name="EmojiSearchFragment__no_results_found">Aucun résultat trouvé</string>
+    <string name="StickerSearchDialogFragment_no_results_found">Aucun résultat</string>
+    <string name="EmojiSearchFragment__no_results_found">Aucun résultat</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Sonnerie inconnue</string>
 
     <!-- ConversationSettingsFragment -->
@@ -5283,9 +5289,9 @@
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Voir les Contacts</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s n’utilise pas Signal</string>
+    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s n\'utilise pas Signal.</string>
     <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s n’utilise pas Signal</string>
+    <string name="NewConversationActivity__">%1$s  ne correspond à aucun utilisateur Signal.</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
         <item quantity="one">%1$s personne n’utilise pas Signal</item>
@@ -6938,7 +6944,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Renommer l’appel</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Approuver tous les membres</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Require admin approval</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Partager le lien via Signal</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -6994,7 +7000,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Nommer l’appel</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approuver tous les membres</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">Require admin approval</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Partager le lien</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7148,9 +7154,9 @@
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">Le numéro %1$s est incorrect. Veuillez réessayer avec un numéro de téléphone valide.</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ne correspond à aucun utilisateur Signal. Veuillez vérifier le nom d’utilisateur et réessayer.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">\"%1$s\" ne correspond à aucun utilisateur Signal. Veuillez vérifier le nom d\'utilisateur et réessayer.</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s n’utilise pas Signal. Voulez-vous inviter ce numéro ?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s n\'utilise pas Signal. Voulez-vous inviter ce numéro ?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Inviter</string>
     <!-- Button label for a button that will launch a camera to scan a username QR code -->

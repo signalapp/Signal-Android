@@ -501,7 +501,7 @@
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">لإرسال رسائل صوتية، اسمح لسيجنال بالوصول إلى الميكروفون.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">يحتاج سيجال إلى الوصول للميكروفون لتسجيل رسالة صوتية.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">يحتاج سيجنال إلى الوصول للميكروفون لتسجيل رسالة صوتية.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">يحتاج سيجنال إلى إذن الوصول إلى الميكروفون لإرسال الرسائل الصوتية، ولكن تمَّ إيقاف الإذن على نحو دائم. يُرجى الاطِّلاع على إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الميكروفون\".</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">يحتاج سيجنال إلى إذنَي الوصول إلى الميكروفون والكاميرا من أجل الاتصال بـ %1$s، ولكن تمَّ إيقافهما على نحو دائم. يُرجى الاطِّلاع على إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الميكروفون\" و\"الكاميرا\".</string>
@@ -521,7 +521,7 @@
     <string name="ConversationActivity_new_say_it_with_stickers">جديد! عبَّر عمّا تحب بالمُلصقَات</string>
 
     <string name="ConversationActivity_cancel">إلغاء</string>
-    <string name="ConversationActivity_delete_conversation">حذف الدردشة؟</string>
+    <string name="ConversationActivity_delete_conversation">أترغبُ بحذف الدردشة؟</string>
     <string name="ConversationActivity_delete_and_leave_group">أترغبُ بالحذف ثم مغادرة المجموعة؟</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ستُحذَف هذه الدردشة من جميع أجهزتك.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">سَتغادر هذه المجموعة، ثم ستُحذَف من كل أجهزتك.</string>
@@ -538,14 +538,14 @@
 
     <string name="ConversationActivity_join">انضم</string>
     <!-- Button text for an active group call but the call is currently full and unjoinable -->
-    <string name="ConversationActivity_full">ممتليء</string>
+    <string name="ConversationActivity_full">مُمتلِئة</string>
 
     <string name="ConversationActivity_error_sending_media">خطأُ في إرسال الوسائط</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">لم تعُد رسائل SMS مُدعّمة من طرف سيجنال.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">لم تعُد رسائل SMS مُدعّمة من طرف سيجنال. قم بدعوة %1$s إلى سيجنال لإبقاء المحادثة هنا.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">لم تعُد رسائل SMS مدعومة من طرف سيجنال. قُم بدعوة %1$s إلى سيجنال لإبقاء المحادثة هنا.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">‫لم يعُد هذا الشخصي يستخدم سيجنال. ادعُه إلى سيجنال لإبقاء المحادثة هنا.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -574,16 +574,16 @@
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
-    <string name="ConversationFragment__contacts_app_not_found">لم يتم العثور على تطبيق جهات الاتصال</string>
+    <string name="ConversationFragment__contacts_app_not_found">لم يتم العثور على تطبيق جهات الاتصال.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="zero">حذف الرسائل المختارة؟</item>
-        <item quantity="one">حذف الرسالة المختارة؟</item>
-        <item quantity="two">حذف الرسائل المختارة؟</item>
-        <item quantity="few">حذف الرسائل المختارة؟</item>
-        <item quantity="many">حذف الرسائل المختارة؟</item>
-        <item quantity="other">حذف الرسائل المختارة؟</item>
+        <item quantity="zero">أترغبُ بحذف الرسائل المختارة؟</item>
+        <item quantity="one">أترغبُ بحذف الرسالة المختارة؟</item>
+        <item quantity="two">أترغبُ بحذف الرسائل المختارة؟</item>
+        <item quantity="few">أترغبُ بحذف الرسائل المختارة؟</item>
+        <item quantity="many">أترغبُ بحذف الرسائل المختارة؟</item>
+        <item quantity="other">أترغبُ بحذف الرسائل المختارة؟</item>
     </plurals>
-    <string name="ConversationFragment_save_to_sd_card">أحفظ في الذاكرة؟</string>
+    <string name="ConversationFragment_save_to_sd_card">أترغبُ بالحفظ في الذاكرة؟</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="zero">إن حفظ %1$d ملف متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
         <item quantity="one">إن حفظ الملف متعدد الوسائط هذا في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
@@ -1051,6 +1051,12 @@
     <string name="LinkDeviceFragment__no_linked_devices">لا توجد أجهزة مرتبطة</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">افتح لربط جهاز</string>
+    <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
+    <string name="LinkDeviceFragment__before_linking">Before linking, confirm it\'s you</string>
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">Continue</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -7550,7 +7556,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">تعديل اسم المكالمة</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">الموافقة على جميع الأعضاء</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Require admin approval</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">مشاركة الرابط عبر سيجنال</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -7606,7 +7612,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">إضافة اسم المكالمة</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">الموافقة على جميع الأعضاء</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">Require admin approval</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">مشاركة الرابط</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
