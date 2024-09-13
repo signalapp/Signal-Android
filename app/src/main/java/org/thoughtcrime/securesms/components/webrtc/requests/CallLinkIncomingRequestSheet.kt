@@ -15,7 +15,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rxjava3.subscribeAsState
@@ -25,19 +24,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import org.signal.core.ui.BottomSheets
+import org.signal.core.ui.DarkPreview
 import org.signal.core.ui.Dividers
+import org.signal.core.ui.Previews
 import org.signal.core.ui.Rows
-import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -100,22 +102,20 @@ class CallLinkIncomingRequestSheet : ComposeBottomSheetDialogFragment() {
   }
 }
 
-@Preview
+@DarkPreview
 @Composable
 private fun CallLinkIncomingRequestSheetContentPreview() {
-  SignalTheme(isDarkMode = true) {
-    Surface {
-      CallLinkIncomingRequestSheetContent(
-        state = CallLinkIncomingRequestState(
-          name = "Miles Morales",
-          subtitle = "+1 (555) 555-5555",
-          groupsInCommon = "Member of Webheads",
-          isSystemContact = true
-        ),
-        onApproveEntry = {},
-        onDenyEntry = {}
-      )
-    }
+  Previews.BottomSheetPreview {
+    CallLinkIncomingRequestSheetContent(
+      state = CallLinkIncomingRequestState(
+        name = "Miles Morales",
+        subtitle = "+1 (555) 555-5555",
+        groupsInCommon = "Member of Webheads, Group B, Group C, Group D, and 83 others.",
+        isSystemContact = true
+      ),
+      onApproveEntry = {},
+      onDenyEntry = {}
+    )
   }
 }
 
@@ -130,7 +130,7 @@ private fun CallLinkIncomingRequestSheetContent(
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
     item { BottomSheets.Handle() }
-    item { Avatar(state.recipient) }
+    item { AvatarImage(recipient = state.recipient, modifier = Modifier.size(80.dp)) }
     item {
       Title(
         recipientName = state.name,
@@ -151,8 +151,9 @@ private fun CallLinkIncomingRequestSheetContent(
       item {
         Text(
           text = state.groupsInCommon,
+          textAlign = TextAlign.Center,
           style = MaterialTheme.typography.bodyMedium,
-          modifier = Modifier.padding(6.dp)
+          modifier = Modifier.padding(vertical = 6.dp, horizontal = dimensionResource(R.dimen.core_ui__gutter))
         )
       }
     }

@@ -60,12 +60,14 @@ class PendingParticipantsView @JvmOverloads constructor(
 
     name.text = SpannableStringBuilder(firstRecipient.getShortDisplayName(context))
       .append(" ")
-      .append(SpanUtil.ofSize(
-        SignalSymbols.getSpannedString(context, SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.CHEVRON_RIGHT),
-        16
-      ))
+      .append(
+        SpanUtil.ofSize(
+          SignalSymbols.getSpannedString(context, SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.CHEVRON_RIGHT),
+          16
+        )
+      )
     name.setOnClickListener { listener?.onLaunchRecipientSheet(firstRecipient) }
-     
+
     allow.setOnClickListener { listener?.onAllowPendingRecipient(firstRecipient) }
     reject.setOnClickListener { listener?.onRejectPendingRecipient(firstRecipient) }
 
