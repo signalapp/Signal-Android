@@ -22,7 +22,8 @@ object SignalSymbols {
   }
 
   enum class Weight {
-    BOLD
+    BOLD,
+    REGULAR
   }
 
   private val cache = mutableMapOf<Weight, Typeface>()
@@ -45,6 +46,7 @@ object SignalSymbols {
   private fun getTypeface(context: Context, weight: Weight): Typeface {
     return when (weight) {
       Weight.BOLD -> getBoldWeightedFont(context)
+      Weight.REGULAR -> getRegularWeightedFont(context)
       else -> error("Unsupported weight: $weight")
     }
   }
@@ -56,6 +58,17 @@ object SignalSymbols {
       Typeface.createFromAsset(
         context.assets,
         "fonts/SignalSymbols-Bold.otf"
+      )
+    }
+  }
+
+  private fun getRegularWeightedFont(context: Context): Typeface {
+    return cache.getOrPut(
+      Weight.REGULAR
+    ) {
+      Typeface.createFromAsset(
+        context.assets,
+        "fonts/SignalSymbols-Regular.otf"
       )
     }
   }
