@@ -2,10 +2,11 @@ package org.thoughtcrime.securesms.database.helpers
 
 import android.app.Application
 import android.content.Context
+import android.database.sqlite.SQLiteException
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.areForeignKeyConstraintsEnabled
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.helpers.migration.SignalDatabaseMigration
 import org.thoughtcrime.securesms.database.helpers.migration.V149_LegacyMigrations
 import org.thoughtcrime.securesms.database.helpers.migration.V150_UrgentMslFlagMigration
@@ -226,10 +227,28 @@ object SignalDatabaseMigrations {
         Log.i(TAG, "Running migration for version $version: ${migration.javaClass.simpleName}. Foreign keys: ${migration.enableForeignKeys}")
         val startTime = System.currentTimeMillis()
 
+        var ftsException: SQLiteException? = null
+
         db.setForeignKeyConstraintsEnabled(migration.enableForeignKeys)
-        db.withinTransaction {
+        db.beginTransaction()
+        try {
           migration.migrate(context, db, oldVersion, newVersion)
           db.version = version
+          db.setTransactionSuccessful()
+        } catch (e: SQLiteException) {
+          if (e.message?.contains("invalid fts5 file format") == true || e.message?.contains("vtable constructor failed") == true) {
+            ftsException = e
+          } else {
+            throw e
+          }
+        } finally {
+          db.endTransaction()
+        }
+
+        if (ftsException != null) {
+          Log.w(TAG, "Encountered FTS format issue! Attempting to repair.", ftsException)
+          SignalDatabase.messageSearch.fullyResetTables(db)
+          throw ftsException
         }
 
         Log.i(TAG, "Successfully completed migration for version $version in ${System.currentTimeMillis() - startTime} ms")

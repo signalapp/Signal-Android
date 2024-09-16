@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteException
@@ -11,6 +12,8 @@ import org.signal.core.util.SqlUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider
 import org.thoughtcrime.securesms.jobs.RebuildMessageSearchIndexJob
 
 /**
@@ -287,6 +290,11 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       Log.w(TAG, "[fullyResetTables] Recreating triggers...")
       CREATE_TRIGGERS.forEach { db.execSQL(it) }
+
+      // There are specific error recovery paths where this is run inside of database initialization, before the job manager is initialized
+      if (!AppDependencies.isInitialized) {
+        AppDependencies.init(context as Application, ApplicationDependencyProvider(context))
+      }
 
       RebuildMessageSearchIndexJob.enqueue()
 
