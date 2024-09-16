@@ -10,6 +10,8 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -27,6 +29,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.CallLinkDisconnectReason
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
@@ -48,12 +51,22 @@ class CallViewModel(
   }
 
   private var previousEvent: WebRtcViewModel? = null
+
   private var enableVideoIfAvailable = false
+
   private var lastProcessedIntentTimestamp = 0L
+  private var lastCallLinkDisconnectDialogShowTime = 0L
+
   private var enterPipOnResume = false
 
   private val internalCallScreenState = MutableStateFlow(CallScreenState())
   val callScreenState: StateFlow<CallScreenState> = internalCallScreenState
+
+  private val internalDialog = MutableStateFlow(CallScreenDialogType.NONE)
+  val dialog: StateFlow<CallScreenDialogType> = internalDialog
+
+  private val internalCallActions = MutableSharedFlow<Action>()
+  val callActions: Flow<Action> = internalCallActions
 
   fun consumeEnterPipOnResume(): Boolean {
     val enter = enterPipOnResume
@@ -127,6 +140,10 @@ class CallViewModel(
     }
   }
 
+  fun onCallScreenDialogDismissed() {
+    internalDialog.update { CallScreenDialogType.NONE }
+  }
+
   fun onCallEvent(event: CallEvent) {
     when (event) {
       CallEvent.DismissSwitchCameraTooltip -> Unit // TODO
@@ -175,12 +192,24 @@ class CallViewModel(
       WebRtcViewModel.State.CALL_ONGOING_ELSEWHERE -> handleCallTerminated(HangupMessage.Type.BUSY)
     }
 
-    // TODO [alex] -- Call link handling block
+    if (event.callLinkDisconnectReason != null && event.callLinkDisconnectReason.postedAt > lastCallLinkDisconnectDialogShowTime) {
+      lastCallLinkDisconnectDialogShowTime = System.currentTimeMillis()
+
+      when (event.callLinkDisconnectReason) {
+        is CallLinkDisconnectReason.RemovedFromCall -> internalDialog.update { CallScreenDialogType.REMOVED_FROM_CALL_LINK }
+        is CallLinkDisconnectReason.DeniedRequestToJoinCall -> internalDialog.update { CallScreenDialogType.DENIED_REQUEST_TO_JOIN_CALL_LINK }
+      }
+    }
 
     val enableVideo = event.localParticipant.cameraState.cameraCount > 0 && enableVideoIfAvailable
     webRtcCallViewModel.updateFromWebRtcViewModel(event, enableVideo)
 
-    // TODO [alex] -- handle enable video
+    if (enableVideo) {
+      enableVideoIfAvailable = false
+      viewModelScope.launch {
+        internalCallActions.emit(Action.EnableVideo)
+      }
+    }
 
     // TODO [alex] -- handle denied bluetooth permission
   }
@@ -372,5 +401,16 @@ class CallViewModel(
     }
 
     lastProcessedIntentTimestamp = now
+  }
+
+  /**
+   * Actions that require activity-level context (for example, to request permissions.)
+   */
+  enum class Action {
+    /**
+     * Tries to enable local video via the normal toggle callback. Should display permissions
+     * dialogs as necessary.
+     */
+    EnableVideo
   }
 }

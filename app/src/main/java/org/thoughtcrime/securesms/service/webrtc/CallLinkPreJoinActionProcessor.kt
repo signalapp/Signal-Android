@@ -33,6 +33,11 @@ class CallLinkPreJoinActionProcessor(
     private val TAG = Log.tag(CallLinkPreJoinActionProcessor::class.java)
   }
 
+  override fun handleSetRingGroup(currentState: WebRtcServiceState, ringGroup: Boolean): WebRtcServiceState {
+    Log.i(TAG, "handleSetRingGroup(): Ignoring.")
+    return currentState
+  }
+
   override fun handlePreJoinCall(currentState: WebRtcServiceState, remotePeer: RemotePeer): WebRtcServiceState {
     Log.i(TAG, "handlePreJoinCall():")
 

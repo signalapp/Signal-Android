@@ -86,11 +86,13 @@ fun CallScreen(
   overflowParticipants: List<CallParticipant>,
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
+  callScreenDialogType: CallScreenDialogType,
   callInfoView: @Composable (Float) -> Unit,
   raiseHandSnackbar: @Composable (Modifier) -> Unit,
   onNavigationClick: () -> Unit,
   onLocalPictureInPictureClicked: () -> Unit,
-  onControlsToggled: (Boolean) -> Unit
+  onControlsToggled: (Boolean) -> Unit,
+  onCallScreenDialogDismissed: () -> Unit = {}
 ) {
   var peekPercentage by remember {
     mutableFloatStateOf(0f)
@@ -250,6 +252,8 @@ fun CallScreen(
       )
     }
   }
+
+  CallScreenDialog(callScreenDialogType, onCallScreenDialogDismissed)
 }
 
 /**
@@ -503,6 +507,7 @@ private fun CallScreenPreview() {
       callParticipantsPagerState = CallParticipantsPagerState(),
       localParticipant = CallParticipant(),
       localRenderState = WebRtcLocalRenderState.LARGE,
+      callScreenDialogType = CallScreenDialogType.NONE,
       callInfoView = {
         Text(text = "Call Info View Preview", modifier = Modifier.alpha(it))
       },

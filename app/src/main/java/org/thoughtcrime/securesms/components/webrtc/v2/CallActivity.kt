@@ -25,8 +25,10 @@ import androidx.compose.runtime.rxjava3.subscribeAsState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -94,6 +96,16 @@ class CallActivity : BaseActivity(), CallControlsCallback {
     observeCallEvents()
     viewModel.processCallIntent(CallIntent(intent))
 
+    lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.CREATED) {
+        viewModel.callActions.collect {
+          when (it) {
+            CallViewModel.Action.EnableVideo -> onVideoToggleClick(true)
+          }
+        }
+      }
+    }
+
     setContent {
       val lifecycleOwner = LocalLifecycleOwner.current
       val callControlsState by webRtcCallViewModel.getCallControlsState(lifecycleOwner).subscribeAsState(initial = CallControlsState())
@@ -139,6 +151,8 @@ class CallActivity : BaseActivity(), CallControlsCallback {
         }
       }
 
+      val callScreenDialogType by viewModel.dialog.collectAsState(CallScreenDialogType.NONE)
+
       SignalTheme {
         Surface {
           CallScreen(
@@ -156,6 +170,7 @@ class CallActivity : BaseActivity(), CallControlsCallback {
             overflowParticipants = callParticipantsState.listParticipants,
             localParticipant = callParticipantsState.localParticipant,
             localRenderState = callParticipantsState.localRenderState,
+            callScreenDialogType = callScreenDialogType,
             callInfoView = {
               CallInfoView.View(
                 webRtcCallViewModel = webRtcCallViewModel,
@@ -174,7 +189,8 @@ class CallActivity : BaseActivity(), CallControlsCallback {
             },
             onNavigationClick = { finish() },
             onLocalPictureInPictureClicked = webRtcCallViewModel::onLocalPictureInPictureClicked,
-            onControlsToggled = { areControlsVisible = it }
+            onControlsToggled = { areControlsVisible = it },
+            onCallScreenDialogDismissed = viewModel::onCallScreenDialogDismissed
           )
         }
       }
