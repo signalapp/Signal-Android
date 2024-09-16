@@ -156,7 +156,6 @@ object SvrRepository {
             SignalStore.svr.isRegistrationLockEnabled = false
             SignalStore.pin.resetPinReminders()
             SignalStore.svr.isPinForgottenOrSkipped = false
-            SignalStore.storageService.setNeedsAccountRestore(false)
             SignalStore.pin.keyboardType = pinKeyboardType
             SignalStore.storageService.setNeedsAccountRestore(false)
 

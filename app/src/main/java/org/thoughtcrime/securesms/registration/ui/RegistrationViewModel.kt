@@ -827,25 +827,24 @@ class RegistrationViewModel : ViewModel() {
 
     if (reglockEnabled) {
       SignalStore.onboarding.clearAll()
-      val stopwatch = Stopwatch("RegistrationLockRestore")
+    }
+
+    if (reglockEnabled || SignalStore.storageService.lastSyncTime == 0L) {
+      val stopwatch = Stopwatch("post-reg-storage-service")
 
       AppDependencies.jobManager.runSynchronously(StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN)
-      stopwatch.split("AccountRestore")
+      stopwatch.split("account-restore")
 
       AppDependencies.jobManager
         .startChain(StorageSyncJob())
         .then(ReclaimUsernameAndLinkJob())
         .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
-      stopwatch.split("ContactRestore")
-
-      refreshRemoteConfig()
-
-      stopwatch.split("RemoteConfig")
+      stopwatch.split("storage-sync")
 
       stopwatch.stop(TAG)
-    } else {
-      refreshRemoteConfig()
     }
+
+    refreshRemoteConfig()
 
     store.update {
       it.copy(
