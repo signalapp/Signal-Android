@@ -346,6 +346,8 @@
     <string name="CommunicationActions_invalid_link">Invalid link</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">This is not a valid call link. Make sure the entire link is intact and correct before attempting to join.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">You are already in a call</string>
 
     <!-- ConfirmIdentityDialog -->
 

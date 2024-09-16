@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
@@ -72,7 +73,9 @@ class CallLogContextMenu(
       iconRes = R.drawable.symbol_video_24,
       title = fragment.getString(R.string.CallContextMenu__video_call)
     ) {
-      CommunicationActions.startVideoCall(fragment, peer)
+      CommunicationActions.startVideoCall(fragment, peer) {
+        YouAreAlreadyInACallSnackbar.show(fragment.requireView())
+      }
     }
   }
 
@@ -85,7 +88,9 @@ class CallLogContextMenu(
       iconRes = R.drawable.symbol_phone_24,
       title = fragment.getString(R.string.CallContextMenu__audio_call)
     ) {
-      CommunicationActions.startVoiceCall(fragment, call.peer)
+      CommunicationActions.startVoiceCall(fragment, call.peer) {
+        YouAreAlreadyInACallSnackbar.show(fragment.requireView())
+      }
     }
   }
 

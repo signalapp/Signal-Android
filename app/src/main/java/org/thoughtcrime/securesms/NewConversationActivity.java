@@ -39,6 +39,7 @@ import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
 import org.thoughtcrime.securesms.contacts.management.ContactsManagementRepository;
@@ -305,7 +306,9 @@ public class NewConversationActivity extends ContactSelectionActivity
           R.drawable.ic_phone_right_24,
           getString(R.string.NewConversationActivity__audio_call),
           R.color.signal_colorOnSurface,
-          () -> CommunicationActions.startVoiceCall(this, recipient)
+          () -> CommunicationActions.startVoiceCall(this, recipient, () -> {
+            YouAreAlreadyInACallSnackbar.show(findViewById(android.R.id.content));
+          })
       );
     } else {
       return null;
@@ -321,7 +324,9 @@ public class NewConversationActivity extends ContactSelectionActivity
         R.drawable.ic_video_call_24,
         getString(R.string.NewConversationActivity__video_call),
         R.color.signal_colorOnSurface,
-        () -> CommunicationActions.startVideoCall(this, recipient)
+        () -> CommunicationActions.startVideoCall(this, recipient, () -> {
+          YouAreAlreadyInACallSnackbar.show(findViewById(android.R.id.content));
+        })
     );
   }
 

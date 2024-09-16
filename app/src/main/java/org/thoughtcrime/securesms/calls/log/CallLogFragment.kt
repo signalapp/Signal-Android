@@ -35,6 +35,7 @@ import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.calls.new.NewCallActivity
 import org.thoughtcrime.securesms.components.Material3SearchToolbar
@@ -391,12 +392,16 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   }
 
   override fun onStartAudioCallClicked(recipient: Recipient) {
-    CommunicationActions.startVoiceCall(this, recipient)
+    CommunicationActions.startVoiceCall(this, recipient) {
+      YouAreAlreadyInACallSnackbar.show(requireView())
+    }
   }
 
   override fun onStartVideoCallClicked(recipient: Recipient, canUserBeginCall: Boolean) {
     if (canUserBeginCall) {
-      CommunicationActions.startVideoCall(this, recipient)
+      CommunicationActions.startVideoCall(this, recipient) {
+        YouAreAlreadyInACallSnackbar.show(requireView())
+      }
     } else {
       ConversationDialogs.displayCannotStartGroupCallDueToPermissionsDialog(requireContext())
     }

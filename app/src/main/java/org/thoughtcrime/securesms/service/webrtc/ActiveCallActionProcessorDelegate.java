@@ -51,7 +51,7 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
   @Override
   protected @NonNull WebRtcServiceState handleIsInCallQuery(@NonNull WebRtcServiceState currentState, @Nullable ResultReceiver resultReceiver) {
     if (resultReceiver != null) {
-      resultReceiver.send(1, null);
+      resultReceiver.send(1, ActiveCallData.fromCallState(currentState).toBundle());
     }
     return currentState;
   }

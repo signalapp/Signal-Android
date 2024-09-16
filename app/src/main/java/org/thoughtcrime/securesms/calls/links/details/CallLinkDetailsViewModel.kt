@@ -17,6 +17,9 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.UpdateCallLinkRepository
@@ -43,6 +46,9 @@ class CallLinkDetailsViewModel(
   private val recipientSubject = BehaviorSubject.create<Recipient>()
   val recipientSnapshot: Recipient?
     get() = recipientSubject.value
+
+  private val internalShowAlreadyInACall = MutableStateFlow(false)
+  val showAlreadyInACall: StateFlow<Boolean> = internalShowAlreadyInACall
 
   init {
     disposables += repository.refreshCallLinkState(callLinkRoomId)
@@ -78,6 +84,10 @@ class CallLinkDetailsViewModel(
   override fun onCleared() {
     super.onCleared()
     disposables.dispose()
+  }
+
+  fun showAlreadyInACall(showAlreadyInACall: Boolean) {
+    internalShowAlreadyInACall.update { showAlreadyInACall }
   }
 
   fun setDisplayRevocationDialog(displayRevocationDialog: Boolean) {

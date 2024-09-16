@@ -108,6 +108,7 @@ import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGif
 import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomSheet
 import org.thoughtcrime.securesms.banner.banners.ServiceOutageBanner
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
+import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.components.AnimatingToggle
 import org.thoughtcrime.securesms.components.ComposeText
 import org.thoughtcrime.securesms.components.ConversationSearchBottomBar
@@ -1494,7 +1495,9 @@ class ConversationFragment :
   private fun handleVideoCall() {
     val recipient = viewModel.recipientSnapshot ?: return
     if (!recipient.isGroup) {
-      CommunicationActions.startVideoCall(this, recipient)
+      CommunicationActions.startVideoCall(this, recipient) {
+        YouAreAlreadyInACallSnackbar.show(requireView())
+      }
       return
     }
 
@@ -1510,7 +1513,9 @@ class ConversationFragment :
         if (notAllowed) {
           ConversationDialogs.displayCannotStartGroupCallDueToPermissionsDialog(requireContext())
         } else {
-          CommunicationActions.startVideoCall(this, recipient)
+          CommunicationActions.startVideoCall(this, recipient) {
+            YouAreAlreadyInACallSnackbar.show(requireView())
+          }
         }
       }
   }
@@ -2962,7 +2967,9 @@ class ConversationFragment :
     override fun onJoinGroupCallClicked() {
       val activity = activity ?: return
       val recipient = viewModel.recipientSnapshot ?: return
-      CommunicationActions.startVideoCall(activity, recipient)
+      CommunicationActions.startVideoCall(activity, recipient) {
+        YouAreAlreadyInACallSnackbar.show(requireView())
+      }
     }
 
     override fun onInviteFriendsToGroupClicked(groupId: GroupId.V2) {
@@ -3280,7 +3287,9 @@ class ConversationFragment :
     }
 
     override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) {
-      CommunicationActions.startVideoCall(this@ConversationFragment, callLinkRootKey)
+      CommunicationActions.startVideoCall(this@ConversationFragment, callLinkRootKey) {
+        YouAreAlreadyInACallSnackbar.show(requireView())
+      }
     }
 
     override fun onShowSafetyTips(forGroup: Boolean) {
@@ -3420,7 +3429,9 @@ class ConversationFragment :
 
     override fun handleDial() {
       val recipient: Recipient = viewModel.recipientSnapshot ?: return
-      CommunicationActions.startVoiceCall(this@ConversationFragment, recipient)
+      CommunicationActions.startVoiceCall(this@ConversationFragment, recipient) {
+        YouAreAlreadyInACallSnackbar.show(requireView())
+      }
     }
 
     override fun handleViewMedia() {

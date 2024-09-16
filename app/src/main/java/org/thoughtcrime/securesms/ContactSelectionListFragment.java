@@ -53,6 +53,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.RxExtensions;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
 import org.thoughtcrime.securesms.contacts.ContactChipViewModel;
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode;
@@ -1009,12 +1010,16 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   private class CallButtonClickCallbacks implements ContactSearchAdapter.CallButtonClickCallbacks {
     @Override
     public void onVideoCallButtonClicked(@NonNull Recipient recipient) {
-      CommunicationActions.startVideoCall(ContactSelectionListFragment.this, recipient);
+      CommunicationActions.startVideoCall(ContactSelectionListFragment.this, recipient, () -> {
+        YouAreAlreadyInACallSnackbar.show(requireView());
+      });
     }
 
     @Override
     public void onAudioCallButtonClicked(@NonNull Recipient recipient) {
-      CommunicationActions.startVoiceCall(ContactSelectionListFragment.this, recipient);
+      CommunicationActions.startVoiceCall(ContactSelectionListFragment.this, recipient, () -> {
+        YouAreAlreadyInACallSnackbar.show(requireView());
+      });
     }
   }
 
