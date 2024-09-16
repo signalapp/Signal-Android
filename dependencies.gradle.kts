@@ -47,6 +47,8 @@ dependencyResolutionManagement {
       library("kotlin-reflect", "org.jetbrains.kotlin", "kotlin-reflect").versionRef("kotlin")
       library("kotlin-gradle-plugin", "org.jetbrains.kotlin", "kotlin-gradle-plugin").versionRef("kotlin")
       library("ktlint", "org.jlleitschuh.gradle:ktlint-gradle:12.1.1")
+      library("kotlinx-coroutines-core", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
+      library("kotlinx-coroutines-core-jvm", "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0")
       library("kotlinx-coroutines-play-services", "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
       library("kotlinx-coroutines-rx3", "org.jetbrains.kotlinx:kotlinx-coroutines-rx3:1.3.9")
 
@@ -196,6 +198,7 @@ dependencyResolutionManagement {
       library("androidx-test-orchestrator", "androidx.test:orchestrator:1.4.1")
       library("androidx-test-runner", "androidx.test", "runner").versionRef("androidx-test")
       library("espresso-core", "androidx.test.espresso", "espresso-core").versionRef("espresso")
+      library("kotlinx-coroutines-test", "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
       library("mockito-core", "org.mockito:mockito-inline:4.6.1")
       library("mockito-kotlin", "org.mockito.kotlin:mockito-kotlin:4.0.0")
       library("mockito-android", "org.mockito:mockito-android:4.6.1")

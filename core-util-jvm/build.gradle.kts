@@ -25,7 +25,11 @@ kotlin {
 
 dependencies {
   implementation(libs.kotlin.reflect)
+  implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.kotlinx.coroutines.core.jvm)
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertj.core)
+  testImplementation(testLibs.junit.junit)
+  testImplementation(testLibs.kotlinx.coroutines.test)
 }

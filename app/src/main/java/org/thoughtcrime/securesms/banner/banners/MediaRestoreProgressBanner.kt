@@ -10,17 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.withContext
+import org.signal.core.util.throttleLatest
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatus
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
 import org.thoughtcrime.securesms.banner.Banner
@@ -67,8 +64,7 @@ class MediaRestoreProgressBanner(private val data: MediaRestoreEvent) : Banner()
 
       return flow
         .flowWithLifecycle(lifecycleOwner.lifecycle)
-        .buffer(1, BufferOverflow.DROP_OLDEST)
-        .onEach { delay(1.seconds) }
+        .throttleLatest(1.seconds)
         .map { MediaRestoreProgressBanner(loadData()) }
         .flowOn(Dispatchers.IO)
     }
