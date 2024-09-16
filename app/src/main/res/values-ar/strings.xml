@@ -547,7 +547,7 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">لم تعُد رسائل SMS مدعومة من طرف سيجنال. قُم بدعوة %1$s إلى سيجنال لإبقاء المحادثة هنا.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
-    <string name="ConversationActivity__this_person_is_no_longer_using_signal">‫لم يعُد هذا الشخصي يستخدم سيجنال. ادعُه إلى سيجنال لإبقاء المحادثة هنا.</string>
+    <string name="ConversationActivity__this_person_is_no_longer_using_signal">‫لم يعُد هذا الشخص يستخدم سيجنال. ادعُه إلى سيجنال لإبقاء الدردشة هنا.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">ادعُ إلى سيجنال</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
@@ -630,25 +630,25 @@
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
     <string name="ConversationFragment_delete">حذف</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">احذف من كل مكان</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ستُحذَف هذه الرسالة لكل من كان في هذه المحادثة إن كانوا يستخدمون إصدارًا حديثًا مِن سيجنال. سيتمكّنون من رؤية أنك قد حذفت رسالة.</string>
+    <string name="ConversationFragment_delete_everywhere">حذف من كل مكان</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ستُحذَف هذه الرسالة لكل من كان في هذه الدردشة إن كانوا يستخدمون إصدارًا حديثًا مِن سيجنال. سيتمكّنون من رؤية أنك قد حذفت رسالة.</string>
     <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية.</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة.</string>
     <string name="ConversationFragment_failed_to_open_message">فشل في فتح الرسالة</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">يمكنك السحب إلى اليسار فوق أي رسالة للرد بسرعة.</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">يمكنك السحب إلى اليمين فوق أي رسالة للرد بسرعة.</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">تُحذف وسائط العرض لِمرة واحدة بعد الإرسال</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">تُحذف \"وسائط العرض لِمرة واحدة\" بعد الإرسال.</string>
     <string name="ConversationFragment_you_already_viewed_this_message">سبَق لك رؤية هذه الرسالة.</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">يُمكِنُك إضافة مُلاحظات لنفسك في هذه الدردشة. إذا كان حسابك يحتوي على أي أجهزة مُرتبطة، ستتم مُزامنة المُلاحظات الجديدة.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d أعضاء بالمجموعة لهم نفس اﻻسم.</string>
-    <string name="ConversationFragment__tap_to_review">يُرجى النقر للمراجعة</string>
+    <string name="ConversationFragment__tap_to_review">انقر للمراجعة</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">هذا الشخص له نفس الاسم الذي لدى جهة اتصال أخرى</string>
+    <string name="ConversationFragment__review_banner_body">هذا الشخص له نفس الاسم الذي لدى جهة اتصال أخرى.</string>
     <string name="ConversationFragment_contact_us">تواصَل معنا</string>
     <string name="ConversationFragment_verify">تحقَّق</string>
     <string name="ConversationFragment_not_now">ليس الآن</string>
-    <string name="ConversationFragment_your_safety_number_with_s_changed">تغيَّر رقم الأمان الخاص بك مع جهة الاتصال %1$s</string>
-    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">تغيَّر رقم الأمان الخاص بك مع جهة الاتصال %1$s. يُحتَمل أن يكون هذا الشخص قد أعاد تثبيت سيجنال أو أنه غيَّر جهازه. يُرجى النقر على زر التحقُّق للتأكيد على رقم اﻷمان الجديد. هذا اﻹجراء اختياري.</string>
+    <string name="ConversationFragment_your_safety_number_with_s_changed">تغيَّر رقم الأمان الخاص بك المُقترِن بالمستخدم %1$s</string>
+    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">تغيَّر رقم الأمان الخاص بك المُقترِن بالمستخدم %1$s. يُحتَمل أن يكون هذا الشخص قد أعاد تثبيت سيجنال أو أنه غيَّر جهازه. يُرجى النقر على زر التحقُّق للتأكيد على رقم اﻷمان الجديد. هذا اﻹجراء اختياري.</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">أترغبُ بحظر الطلب؟</string>
     <!-- Dialog message for block group link join requests -->
@@ -662,17 +662,17 @@
     <!-- Action shown to allow a user to update their application because it has expired -->
     <string name="ConversationFragment__update_build">تحديث سيجنال</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">إعادة-تسجيل سيجنال</string>
+    <string name="ConversationFragment__reregister_signal">إعادة تسجيل سيجنال</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
     <string name="ConversationFragment__content_description_back_button">رجوع إلى الوراء.</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
-    <string name="ConversationFragment__content_description_launch_signal_button">يُرجى فتح سيجنال</string>
+    <string name="ConversationFragment__content_description_launch_signal_button">فتح سيجنال</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">لم يعد هناك علامة تحقق</string>
+    <string name="ConversationFragment__no_longer_verified">لم يعد هناك علامة تحقُّق</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
     <string name="ConversationFragment_safety_tips">نصائح السلامة</string>
     <!-- Menu option to report spam in a conversation -->
-    <string name="ConversationFragment_report_spam">الإبلاغ عن رسائل غير مرغوب فيها</string>
+    <string name="ConversationFragment_report_spam">الإبلاغ كرسالة غير مرغوب فيها</string>
     <!-- Menu option to block in a conversation -->
     <string name="ConversationFragment_block">حظر</string>
     <!-- Menu otpion to accept a message request in a conversation -->
@@ -682,30 +682,30 @@
     <!-- Menu option to unblock in a conversation -->
     <string name="ConversationFragment_unblock">رفع الحظر</string>
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam">تم الإبلاغ عن رسائل غير مرغوب فيها</string>
+    <string name="ConversationFragment_reported_spam">تمَّ الإبلاغ كرسالة غير مرغوب بها</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">تم إشعار سيجنال بأن هذا الشخص قد يكون أرسل رسائل غير مرغوب فيها. لا يُمكن لسيجنال رؤية محتوى أي دردشات.</string>
+    <string name="ConversationFragment_reported_spam_message">تمَّ إشعار سيجنال بأن هذا الشخص قد يكون يقوم بإرسال رسائل غير مرغوب فيها. لا يُمكن لسيجنال رؤية محتوى أي دردشات.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_as_spam">تم الإبلاغ عنها كرسالة غير مرغوب فيها</string>
+    <string name="ConversationFragment_reported_as_spam">تمَّ الإبلاغ كرسالة غير مرغوب بها</string>
     <!-- Toast shown after reporting and blocking a conversation -->
-    <string name="ConversationFragment_reported_as_spam_and_blocked">تم الإبلاغ عنها كرسالة غير مرغوب فيها وتم حظرها</string>
+    <string name="ConversationFragment_reported_as_spam_and_blocked">تمَّ الإبلاغ كرسالة غير مرغوب بها وتمَّ حظرها</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
-    <string name="ConversationFragment_you_accepted_a_message_request_from_s">لقد قبلت طلب مراسلة من %1$s. إذا حدث هذا عن طريق الخطأ، يمكنك اختيار إجراء أسفله.</string>
+    <string name="ConversationFragment_you_accepted_a_message_request_from_s">قبلتَ طلب مراسلة من %1$s. إذا حدث هذا عن طريق الخطأ، يمكنك اختيار أحد الإجراءات التالية.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">نصائح السلامة</string>
     <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
     <string name="SafetyTips_subtitle_individual">احذر عند قبول طلب مراسلة من أشخاص لا تعرفهم. احذر من:</string>
     <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">مراجعة هذا الطلب بعناية. لا توجد أية جهات اتصال أو أشخاص تُدردش معهم في هذه المجموعة. إليك بعض الأمور التي عليك الانتباه إليها:</string>
+    <string name="SafetyTips_subtitle_group">راجِع هذا الطلب بعناية. لا يتواجد في هذه المجموعة أية جهات اتصال أو أشخاص من الذين تدردش معهم عادةً. إليك بعض الأمور التي عليك الانتباه إليها:</string>
     <!-- Button text to move to the previous tip-->
     <string name="SafetyTips_previous_tip">النصيحة السابقة</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">النصيحة القادمة</string>
+    <string name="SafetyTips_next_tip">النصيحة التالية</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">عمليات الاحتيال المالية أو من خلال العملات المشفرة</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">إذا راسلك شخص لا تعرفُه بخصوص العملات المشفرة (مثل بيتكوين) أو فرصة مالية، احذر—إنها حتمًا رسالة غير مرغوب فيها.</string>
+    <string name="SafetyTips_tip1_message">إذا راسلك شخص لا تعرفُه بخصوص العملات المشفرة (مثل بيتكوين) أو فرصة مالية، احذر— هي حتمًا رسالة غير مرغوب بها.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">الرسائل الغامضة أو غير ذات الصلة</string>
     <!-- Message of tip 2 -->
@@ -713,23 +713,23 @@
     <!-- Title of tip 3 -->
     <string name="SafetyTips_tip3_title">الرسائل التي تتضمّن روابط</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">احذر من الرسائل الواردة من الأشخاص الذين لا تعرفهم والتي تتضمّن روابط تقودك إلى مواقع. لا تزر أبدًا روابط من الأشخاص الذين لا تثق بهم.</string>
+    <string name="SafetyTips_tip3_message">احذر من الرسائل الواردة من الأشخاص الذين لا تعرفهم والتي تتضمّن روابط إلى مواقع. لا تزر أبدًا روابط من الأشخاص الذين لا تثق بهم.</string>
     <!-- Title of tip 4 -->
     <string name="SafetyTips_tip4_title">الشركات والمُؤسسات الوهمية</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">احذر من الشركات أو الوكالات الحكومية التي تتواصل معك. قد تكون الرسائل التي تتعلق بوكالات الضرائب وشركات التوصيل والمزيد رسائل غير مرغوب فيها.</string>
+    <string name="SafetyTips_tip4_message">تأكَّد من الشركات أو الوكالات الحكومية التي تتواصل معك. قد تكون الرسائل التي تُظهِر معلومات عن وكالات الضرائب وشركات التوصيل وغيرها رسائل غير مرغوب بها.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
-    <string name="ConversationListFragment__clear_filter">مَحوُ تصفية الدردشة</string>
+    <string name="ConversationListFragment__clear_filter">إزالة الفلتر</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">لا توجد دردشات غير مقروءة</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="zero">حذف الدردشات المُحدّدة؟</item>
-        <item quantity="one">حذف دردشة مُحدّدة؟</item>
-        <item quantity="two">حذف الدردشتين المُحدّدتين؟</item>
-        <item quantity="few">حذف الدردشات المُحدّدة؟</item>
-        <item quantity="many">حذف الدردشات المُحدّدة؟</item>
-        <item quantity="other">حذف الدردشات المُحدّدة؟</item>
+        <item quantity="zero">أترغبُ بحذف الدردشات المُحدّدة؟</item>
+        <item quantity="one">أترغبُ بحذف الدردشة المُحدّدة؟</item>
+        <item quantity="two">أترغبُ بحذف الدردشتين المُحدّدتين؟</item>
+        <item quantity="few">أترغبُ بحذف الدردشات المُحدّدة؟</item>
+        <item quantity="many">أترغبُ بحذف الدردشات المُحدّدة؟</item>
+        <item quantity="other">أترغبُ بحذف الدردشات المُحدّدة؟</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
         <item quantity="zero">سيؤدي هذا إلى حذف %1$d دردشات مختارة بشكل نهائي.</item>
@@ -750,12 +750,12 @@
     </plurals>
     <string name="ConversationListFragment_deleting">جارٍالحذف</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
-        <item quantity="zero">جارٍ حذف الدردشات المُحدّدة…</item>
-        <item quantity="one">جارٍ حذف دردشة مُحدّدة…</item>
-        <item quantity="two">جارٍ حذف الدردشتين المُحدّدتين…</item>
-        <item quantity="few">جارٍ حذف الدردشات المُحدّدة…</item>
-        <item quantity="many">جارٍ حذف الدردشات المُحدّدة…</item>
-        <item quantity="other">جارٍ حذف الدردشات المُحدّدة…</item>
+        <item quantity="zero">جارٍ حذف الدردشات المُحدَّدة…</item>
+        <item quantity="one">جارٍ حذف دردشة مُحدَّدة…</item>
+        <item quantity="two">جارٍ حذف الدردشتين المُحدَّدتين…</item>
+        <item quantity="few">جارٍ حذف الدردشات المُحدَّدة…</item>
+        <item quantity="many">جارٍ حذف الدردشات المُحدَّدة…</item>
+        <item quantity="other">جارٍ حذف الدردشات المُحدَّدة…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="zero">%1$d دردشات مؤرشفة</item>
@@ -767,31 +767,31 @@
     </plurals>
     <string name="ConversationListFragment_undo">تراجُع</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="zero">تم نقل %1$d دردشات إلى الوارد</item>
-        <item quantity="one">تم نقل دردشة واحدة إلى الوارد</item>
-        <item quantity="two">تم نقل %1$d دردشتين إلى الوارد</item>
-        <item quantity="few">تم نقل %1$d دردشات إلى الوارد</item>
-        <item quantity="many">تم نقل %1$d دردشة إلى الوارد</item>
-        <item quantity="other">تم نقل %1$d دردشة إلى الوارد</item>
+        <item quantity="zero">تمَّ نقل %1$d دردشات إلى صندوق الوارد</item>
+        <item quantity="one">تمَّ نقل دردشة واحدة إلى صندوق الوارد</item>
+        <item quantity="two">تمَّ نقل %1$d دردشتين إلى صندوق الوارد</item>
+        <item quantity="few">تمَّ نقل %1$d دردشات إلى صندوق الوارد</item>
+        <item quantity="many">تمَّ نقل %1$d دردشة إلى صندوق الوارد</item>
+        <item quantity="other">تمَّ نقل %1$d دردشة إلى صندوق الوارد</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="zero">مقروءة</item>
-        <item quantity="one">مقروء</item>
+        <item quantity="one">مقروءة</item>
         <item quantity="two">مقروءة</item>
         <item quantity="few">مقروءة</item>
         <item quantity="many">مقروءة</item>
         <item quantity="other">مقروءة</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="zero">لا مقروء</item>
-        <item quantity="one">لا مقروء</item>
-        <item quantity="two">لا مقروء</item>
-        <item quantity="few">لا مقروء</item>
-        <item quantity="many">لا مقروء</item>
-        <item quantity="other">لا مقروء</item>
+        <item quantity="zero">غير مقروءة</item>
+        <item quantity="one">غير مقروءة</item>
+        <item quantity="two">غير مقروءة</item>
+        <item quantity="few">غير مقروءة</item>
+        <item quantity="many">غير مقروءة</item>
+        <item quantity="other">غير مقروءة</item>
     </plurals>
     <string name="ConversationListFragment_pin">تثبيت</string>
-    <string name="ConversationListFragment_unpin">فَكّ التَّثبيت</string>
+    <string name="ConversationListFragment_unpin">إزالة التثبيت</string>
     <string name="ConversationListFragment_mute">كتم</string>
     <string name="ConversationListFragment_unmute">إلغاء الكتم</string>
     <string name="ConversationListFragment_select">تحديد</string>
@@ -801,42 +801,42 @@
     <string name="ConversationListFragment_select_all">تحديد الكل</string>
     <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
-        <item quantity="zero">تم تحديد %1$d</item>
-        <item quantity="one">تم تحديد %1$d</item>
-        <item quantity="two">تم تحديد %1$d</item>
-        <item quantity="few">تم تحديد %1$d</item>
-        <item quantity="many">تم تحديد %1$d</item>
-        <item quantity="other">تم تحديد %1$d</item>
+        <item quantity="zero">تمَّ تحديد %1$d</item>
+        <item quantity="one">تمَّ تحديد %1$d</item>
+        <item quantity="two">تمَّ تحديد %1$d</item>
+        <item quantity="few">تمَّ تحديد %1$d</item>
+        <item quantity="many">تمَّ تحديد %1$d</item>
+        <item quantity="other">تمَّ تحديد %1$d</item>
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
-    <string name="ConversationListFragment__notification_profile">الملف الشخصي للإشعارات</string>
+    <string name="ConversationListFragment__notification_profile">مركز الإشعارات</string>
     <!-- Tooltip shown after you have created your first notification profile -->
-    <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">يٌرجى تشغيل الملف الشخصي للإشعارات أو إيقاف تشغيله من هنا.</string>
+    <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">شغِّل مركز الإشعارات أو قُم بإيقاف تشغيله من هنا.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
-    <string name="ConversationListFragment__s_on">%1$s مشغّل</string>
+    <string name="ConversationListFragment__s_on">%1$s مُشغَّل</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">تمت إعادة تعيين رمز ورابط الاستجابة السريعة واسم المُستخدم الخاص بك هو %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">تمَّت إعادة تعيين رابط وكود الـ QR، واسم المُستخدم الخاص بك هو %1$s</string>
 
     <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
+    <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح السرية</string>
 
     <!-- ConversationListItemAction -->
     <string name="ConversationListItemAction_archived_conversations_d">الدردشات المؤرشفة (%1$d)</string>
 
     <!-- ConversationTitleView -->
-    <string name="ConversationTitleView_verified">متحقق منه</string>
+    <string name="ConversationTitleView_verified">مُتحقَّق منه</string>
     <string name="ConversationTitleView_you">أنت</string>
 
     <!-- ConversationTypingView -->
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">أعد ربط أجهزتك</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">أعِد ربط أجهزتك</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">تم إلغاء ربط الأجهزة التي أضفتها عند إلغاء تسجيل جهازك. انتقل إلى الإعدادات لتعيد ربط أي أجهزة.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">تمَّ إلغاء ربط الأجهزة التي أضفتها عند إلغاء تسجيل جهازك. انتقِل إلى \"الإعدادات\" لتعيد ربط أي أجهزة.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">فتح الإعدادات</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">فتح \"الإعدادات\"</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">لاحقًا</string>
 
@@ -844,46 +844,46 @@
     <string name="CreateGroupActivity__select_members">حدِّد الأعضاء</string>
 
     <!-- CreateProfileActivity -->
-    <string name="CreateProfileActivity__profile">الملف الشخصي</string>
-    <string name="CreateProfileActivity_error_setting_profile_photo">خطأ في اختيار صورة الملف الشخصي</string>
-    <string name="CreateProfileActivity_problem_setting_profile">خطأ في إعداد الملف الشخصي</string>
-    <string name="CreateProfileActivity_set_up_your_profile">إعداد الملف الشخصي</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">سيَظهر حسابك الشخصي والتغييرات التي طرأت عليه للأشخاص الذين تُراسلهم وجهات الاتصال والمجموعات.</string>
-    <string name="CreateProfileActivity_set_avatar_description">تعيين صورة ملفك الشخصي</string>
+    <string name="CreateProfileActivity__profile">الحساب الشخصي</string>
+    <string name="CreateProfileActivity_error_setting_profile_photo">خطأ في اختيار صورة الحساب الشخصي</string>
+    <string name="CreateProfileActivity_problem_setting_profile">خطأ في إعداد الحساب الشخصي</string>
+    <string name="CreateProfileActivity_set_up_your_profile">إعداد الحساب الشخصي</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">سيَظهر حسابك الشخصي والتغييرات التي طرأت عليه للأشخاص الذين تُراسلهم وجهات الاتصال والمجموعات لديك.</string>
+    <string name="CreateProfileActivity_set_avatar_description">تعيين صورة رمزية</string>
 
     <!-- ProfileCreateFragment -->
     <!-- Displayed at the top of the screen and explains how profiles can be viewed. -->
-    <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">تًظهر الحسابات الشخصية للأشخاص الذين تُراسلهم وجهات الاتصال والمجموعات.</string>
+    <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">الحسابات الشخصية مرئية للأشخاص الذين تُراسلهم وجهات الاتصال والمجموعات لديك.</string>
     <!-- Title of clickable row to select phone number privacy settings -->
-    <string name="ProfileCreateFragment__who_can_find_me">مَن يُمكنه العثور عليَّ باستخدام رقمي الخاص؟</string>
+    <string name="ProfileCreateFragment__who_can_find_me">مَن يُمكنه إيجادي من خلال رقمي؟</string>
 
     <!-- WhoCanSeeMyPhoneNumberFragment -->
     <!-- Toolbar title for this screen -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">مَن يُمكنه العثور عليَّ باستخدام رقمي الخاص؟</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">مَن يُمكنه إيجادي من خلال رقمي؟</string>
     <!-- Description for radio item stating anyone can see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">أي شخص لديه رقم هاتفك سَيرى أنك متواجد على سيجنال وسَيتمكن من بدء دردشات معك.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">أي شخص لديه رقم هاتفك سَيرى أنك متواجد على سيجنال وسَيتمكن من بدء دردشاتٍ معك.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">لن يتمكّن أي أحد من رؤيتك على سيجنال إلاّ إذا راسلته أو كانت لديك دردشة موجودة معه.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">الاستعادة مِن نسخة احتياطية؟</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">استعادة الرسائل والوسائط من نسخة احتياطية محلية. إن لم تتم استعادتها الآن، لن يكون بإمكانك ذلك لاحقا.</string>
+    <string name="ChooseBackupFragment__restore_from_backup">أترغبُ بالاستعادة مِن نسخة احتياطية؟</string>
+    <string name="ChooseBackupFragment__restore_your_messages_and_media">استعِد الرسائل والوسائط الخاصة بك من نسخة احتياطية محلية. إن لم تقم باستعادتها الآن، لن يكون بإمكانك ذلك لاحقًا.</string>
     <string name="ChooseBackupFragment__icon_content_description">الاستعادة من أيقونة النسخة الاحتياطية</string>
     <string name="ChooseBackupFragment__choose_backup">اختيار النسخة الاحتياطية</string>
-    <string name="ChooseBackupFragment__learn_more">لمعرفة المزيد</string>
-    <string name="ChooseBackupFragment__no_file_browser_available">إن مدير الملفات غير متاح</string>
+    <string name="ChooseBackupFragment__learn_more">اعرف المزيد</string>
+    <string name="ChooseBackupFragment__no_file_browser_available">مدير الملفات غير متاح</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">تمت الاستعادة</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">للاستمرار في استخدام النسخ اﻻحتياطية، يُرجى اختيار المجلد. سوف تُخزَّن النسخ اﻻحتياطية الجديدة في هذا الموقع.</string>
-    <string name="RestoreBackupFragment__choose_folder">اختر مجلدا</string>
+    <string name="RestoreBackupFragment__restore_complete">اكتملَت عملية الاستعادة.</string>
+    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">للاستمرار في استخدام النسخ اﻻحتياطية، يُرجى اختيار مجلد. سوف تُخزَّن النسخ اﻻحتياطية الجديدة في هذا الموقع.</string>
+    <string name="RestoreBackupFragment__choose_folder">اختر مجلد</string>
     <string name="RestoreBackupFragment__not_now">ليس الآن</string>
     <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">لم يعثر على نسخة احتياطية.</string>
+    <string name="RestoreBackupFragment__backup_not_found">لا يوجد نسخة احتياطية.</string>
     <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">لم يتمكن من قراءة النسخة الاحتياطية.</string>
+    <string name="RestoreBackupFragment__backup_could_not_be_read">لم يكن من الممكن قراءة النسخة الاحتياطية.</string>
     <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">امتداد ملف النسخة الاحتياطية باطل.</string>
+    <string name="RestoreBackupFragment__backup_has_a_bad_extension">يضم ملف النسخة الاحتياطية امتداد غير صالح.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -932,25 +932,25 @@
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">النسخ الاحتياطية للدردشات</string>
-    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">تُعمَّى النسخ الاحتياطية بعبارة السر ثم تُخزَّن في جهازك.</string>
+    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">تتم حماية النسخ الاحتياطية بعبارة سر ثم تُخزَّن في جهازك.</string>
     <string name="BackupsPreferenceFragment__create_backup">إنشاء نسخة احتياطية</string>
-    <string name="BackupsPreferenceFragment__last_backup">أحدث نسخة احتياطية : %1$s</string>
+    <string name="BackupsPreferenceFragment__last_backup">أحدث نسخة احتياطية: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">مجلد النسخ الاحتياطية</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
     <string name="BackupsPreferenceFragment__backup_time">اختيار وقت النسخ الاحتياطي</string>
-    <string name="BackupsPreferenceFragment__verify_backup_passphrase">التحقق من رمز أمان النسخة اﻻحتياطية</string>
-    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">جرب النسخة الاحتياطية لعبارة السر وتأكد من موافقتها</string>
-    <string name="BackupsPreferenceFragment__turn_on">شغّل</string>
-    <string name="BackupsPreferenceFragment__turn_off">أطفىء</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"لاستعادة نسخة احتياطية، يُرجى تثبيت نسخة سيجنال جديدة. يُرجى فتح التطبيق ولمس «استعادة نسخة احتياطية»، ثم تحديد مكان ملف النسخة الاحتياطية. %1$s"</string>
-    <string name="BackupsPreferenceFragment__learn_more">لمعرفة المزيد</string>
-    <string name="BackupsPreferenceFragment__in_progress">يجري الآن…</string>
+    <string name="BackupsPreferenceFragment__verify_backup_passphrase">التحقُّق من كلمة سر النسخة اﻻحتياطية</string>
+    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">اختبر عبارة السر للنسخة الاحتياطية الخاصة بك وتأكَّد من تطابقها.</string>
+    <string name="BackupsPreferenceFragment__turn_on">تشغيل</string>
+    <string name="BackupsPreferenceFragment__turn_off">إيقاف</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"لاستعادة نسخة احتياطية، قُم بتثبيت نسخة جديدة من سيجنال. افتح التطبيق وانقر على \"استعادة نسخة احتياطية\"، ثم حدِّد مكان ملف النسخة الاحتياطية. %1$s"</string>
+    <string name="BackupsPreferenceFragment__learn_more">اعرف المزيد</string>
+    <string name="BackupsPreferenceFragment__in_progress">قيد المعالجة…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
-    <string name="BackupsPreferenceFragment__verifying_backup">جارٍ التحقّق من النسخة الاحتياطية…</string>
+    <string name="BackupsPreferenceFragment__verifying_backup">جارٍ التحقُّق من النسخة الاحتياطية…</string>
     <string name="BackupsPreferenceFragment__d_so_far">%1$d حتى الآن…‏</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">‫%1$s%% إلى الآن…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">يحتاج سيجنال إلى إذن الوصول إلى سعة التخزين الخارجية لإنشاء نسخ احتياطية، ولكن رُفض الإذن على نحو دائم. الرجاء الاطلاع على إعدادات التطبيق ثم اختيار \"الصلاحيات\"، ثم تفعيل \"سعة التخزين\".</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">يحتاج سيجنال إلى إذن الوصول إلى مساحة تخزين خارجية لإنشاء نسخ احتياطية، ولكن رُفِض الإذن على نحو دائم. يُرجى الاطِّلاع على إعدادات التطبيق واختيار \"الصلاحيات\"، ثم تفعيل \"مساحة التخزين\".</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
     <string name="BackupsPreferenceFragment__set_backup_time">ضبط وقت النسخ الاحتياطي</string>
 
@@ -1825,9 +1825,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">مكالمة فيديو فائتة</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">مكالمة صوتية فائتة أثناء تشغيل الحساب الشخصي للإشعارات</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">مكالمة صوتية فائتة بينما كان مركز الإشعارات في وضع تشغيل</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">اتصال فيديو فائت أثناء تشغيل الحساب الشخصي للإشعار</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">مكالمة فيديو فائتة بينما كان مركز الإشعارات في وضع تشغيل</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s . %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s قام بتحديث المجموعة.</string>
@@ -5494,7 +5494,7 @@
     <string name="NotificationsSettingsFragment__notify_when">أخبرني بـ.…</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">انضمام جهة اتصال لسيجنال</string>
     <!-- Notification preference header -->
-    <string name="NotificationsSettingsFragment__notification_profiles">هيئات الإشعار</string>
+    <string name="NotificationsSettingsFragment__notification_profiles">أنماط الإشعارات</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">الهيئات</string>
     <!-- Notification preference summary text -->
@@ -5502,7 +5502,7 @@
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="NotificationProfilesFragment__notification_profiles">هيئات الإشعار</string>
+    <string name="NotificationProfilesFragment__notification_profiles">أنماط الإشعارات</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">إنشاء هيئة للإشعار</string>
 
@@ -6298,7 +6298,7 @@
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">حذف</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
-    <string name="NotificationProfileDetails__edit_notification_profile">تحرير هيئة الإشعار</string>
+    <string name="NotificationProfileDetails__edit_notification_profile">تحرير نمط الإشعار</string>
     <!-- Schedule description if all days are selected -->
     <string name="NotificationProfileDetails__everyday">كل يوم</string>
     <!-- Profile status on if it is the active profile -->
@@ -6321,7 +6321,7 @@
     <!-- Title for add schedule to profile in create flow -->
     <string name="EditNotificationProfileSchedule__add_a_schedule">إضافة جدولة</string>
     <!-- Descriptor text indicating what the user can do with this screen -->
-    <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">يمكنك إضافة جدولة لتفعيل هيئة لهذا الإشعار تلقائيا.</string>
+    <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">يمكنك إضافة جدولة لتفعيل نمط الإشعار هذا تلقائيًا.</string>
     <!-- Text shown next to toggle switch to enable/disable schedule -->
     <string name="EditNotificationProfileSchedule__schedule">الجدولة</string>
     <!-- Label for showing the start time for the schedule -->
@@ -7399,7 +7399,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">فائتة</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">فائتة عند تشغيل الحساب الشخصي للإشعارات</string>
+    <string name="CallLogAdapter__missed_notification_profile">فائتة بينما كان مركز الإشعارات في وضع تشغيل</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">انضم</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -7456,7 +7456,7 @@
     <!-- Action bar menu item to open settings -->
     <string name="CallLogFragment__settings">الإعدادات</string>
     <!-- Action bar menu item to open notification profile settings -->
-    <string name="CallLogFragment__notification_profile">الحساب الشخصي للإشعارات</string>
+    <string name="CallLogFragment__notification_profile">مركز الإشعارات</string>
     <!-- Call log new call content description -->
     <string name="CallLogFragment__start_a_new_call">بدء مكالمة جديدة</string>
     <!-- Filter pull text when pulled -->
@@ -7520,7 +7520,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">مكالمة جماعية فائتة</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">اتصال جماعي فائت أثناء تشغيل الحساب الشخصي للإشعار</string>
+    <string name="CallPreference__missed_group_call_notification_profile">اتصال جماعي فائت بينما كان مركز الإشعارات في وضع تشغيل</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">مكالمة جماعية واردة</string>
     <!-- Outgoing group call in call info -->

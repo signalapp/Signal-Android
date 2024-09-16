@@ -1584,7 +1584,7 @@
     <string name="Megaphones_add_a_profile_photo">Profielfoto</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
-    <string name="MessageQuotesBottomSheet_replies">Reacties</string>
+    <string name="MessageQuotesBottomSheet_replies">Antwoorden</string>
 
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
@@ -2801,7 +2801,7 @@
     <string name="MessageNotifier_turn_off_these_notifications">Dit nooit melden</string>
     <string name="MessageNotifier_view_once_photo">Eenmaligeweergave-afbeelding</string>
     <string name="MessageNotifier_view_once_video">Eenmaligeweergave-video</string>
-    <string name="MessageNotifier_reply">Reageren</string>
+    <string name="MessageNotifier_reply">Beantwoorden</string>
     <string name="MessageNotifier_signal_message">Signal-bericht</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contact</string>
@@ -2827,7 +2827,7 @@
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
     <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tik op ‘Instellingen’ hieronder</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Meldingen inschakelen</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Schakel meldingen in</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Instellingen</string>
 
@@ -3175,7 +3175,7 @@
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Landen aan het laden…</string>
     <string name="country_selection_fragment__search">Zoeken</string>
-    <string name="country_selection_fragment__no_matching_countries">Geen overeenkomstige landen</string>
+    <string name="country_selection_fragment__no_matching_countries">Geen overeenkomende landen</string>
 
     <!-- device_add_fragment -->
     <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan de QR-code die wordt weergegeven op het te koppelen apparaat</string>
@@ -3645,7 +3645,7 @@
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij zowel wifi als mobiele data</string>
     <string name="preferences_data_and_storage__mobile_data_only">Alleen bij mobiele data</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Door minder data te gebruiken kan de kwaliteit van oproepen op slechte netwerken verbeteren</string>
-    <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend chat</string>
+    <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopende chat</string>
     <string name="preferences_notifications__show">Laat zien</string>
     <string name="preferences_notifications__ringtone">Beltoon</string>
     <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
@@ -3707,8 +3707,8 @@
     <string name="PaymentsAllActivityFragment__received">Ontvangen</string>
 
     <!-- Displayed on a welcome screen for payments -->
-    <string name="PaymentsHomeFragment_introducing_payments">Signal introduceert Betalingen</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Je kunt Signal ook gebruiken om een nieuwe privacygerichte valuta genaamd MobileCoin te versturen en ontvangen. Activeer om te beginnen.</string>
+    <string name="PaymentsHomeFragment_introducing_payments">Betalingen via Signal</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Je kunt Signal ook gebruiken om een privacygerichte valuta genaamd MobileCoin te versturen en ontvangen. Activeer om te beginnen.</string>
     <string name="PaymentsHomeFragment__activate_payments">Betalingen inschakelen</string>
     <string name="PaymentsHomeFragment__activating_payments">Betalingen aan het inschakelen…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Betalingsaccount herstellen</string>
@@ -3880,7 +3880,7 @@
     <string name="CreatePaymentFragment__request">Verzoek</string>
     <string name="CreatePaymentFragment__pay">Betalen</string>
     <string name="CreatePaymentFragment__available_balance_s">Beschikbaar krediet: %1$s</string>
-    <string name="CreatePaymentFragment__toggle_content_description">Schuifschakelaar</string>
+    <string name="CreatePaymentFragment__toggle_content_description">Schakelaar</string>
     <string name="CreatePaymentFragment__1">1</string>
     <string name="CreatePaymentFragment__2">2</string>
     <string name="CreatePaymentFragment__3">3</string>
@@ -3980,7 +3980,7 @@
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Doorsturen</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_reply">Reageren</string>
+    <string name="conversation_selection__menu_reply">Antwoorden</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_edit">Bewerken</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -4762,7 +4762,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">Over MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin is een nieuw privacygericht digitaal betaalmiddel.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin is een privacygericht digitaal betaalmiddel.</string>
     <string name="payment_info_card_adding_funds">Krediet toevoegen</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">Je kunt krediet aan Signal toevoegen door MobileCoin naar je portemonnee-adres te sturen.</string>
     <string name="payment_info_card_cashing_out">Uitbetalen</string>
@@ -5022,7 +5022,7 @@
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Meldingsprofielen instellen</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Maak een meldingsprofiel aan waardoor je meldingen van bepaalde personen of groepen alleen krijgt op momenten dat jij daar zin in hebt</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Maak een meldingsprofiel aan om tijdens een ingestelde periode alleen van bepaalde personen of groepen meldingen te krijgen</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -5533,7 +5533,7 @@
     <string name="MySupportPreference__processing_transaction">Transactie aan het verwerken…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Kan badge niet toevoegen. %1$s</string>
-    <string name="MySupportPreference__please_contact_support">Neem contact op met de ondersteuning.</string>
+    <string name="MySupportPreference__please_contact_support">Neem contact op met ondersteuning.</string>
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Betaling in behandeling</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
@@ -5626,7 +5626,7 @@
     <string name="DonationsErrors__donation_failed">Doneren is mislukt</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__your_payment_was_processed_but">Je betaling is verwerkt, maar Signal kan je donatiebericht niet versturen. Neem contact op met support.</string>
-    <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met support.</string>
+    <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je account, maar je hebt misschien al wel betaald. Neem contact op met support.</string>
     <string name="DonationsErrors__your_payment_is_still">Je donatie wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Het stopzetten van je maandelijkse donatie is mislukt</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donatie stop te zetten moet je toegang hebben tot internet.</string>
@@ -5763,7 +5763,7 @@
     <string name="SelectRecipientsFragment__add">Toevoegen</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
-    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Maak een meldingsprofiel aan waardoor je meldingen van bepaalde personen of groepen alleen krijgt op momenten dat jij daar zin in hebt.</string>
+    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Maak een meldingsprofiel aan om alleen meldingen en oproepen te ontvangen van de mensen en groepen van wie je wilt horen.</string>
     <!-- Header shown above list of all notification profiles -->
     <string name="NotificationProfilesFragment__profiles">Meldingsprofielen</string>
     <!-- Button that starts the create new notification profile flow -->
@@ -5980,9 +5980,9 @@
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">Toevoegen</string>
     <!-- Used when view receipts are disabled -->
-    <string name="StoryViewerPageFragment__views_off">Weergaven uit</string>
+    <string name="StoryViewerPageFragment__views_off">Kijkbevestigingen uit</string>
     <!-- Used to join views and replies when both exist on a story item -->
-    <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
+    <string name="StoryViewerFragment__s_s">%1$s  %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">Jij</string>
     <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
@@ -6188,7 +6188,7 @@
     <!-- Choose story type bottom sheet group story summary -->
     <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Delen naar een bestaande Signal-groep</string>
     <!-- Choose groups bottom sheet title -->
-    <string name="ChooseGroupStoryBottomSheet__choose_groups">Groepen kiezen</string>
+    <string name="ChooseGroupStoryBottomSheet__choose_groups">Groep kiezen</string>
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Gekopieerd naar klembord</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
@@ -6231,7 +6231,7 @@
 
     <!-- Gift price and duration, formatted as: {price} dot {n} day duration -->
     <plurals name="GiftRowItem_s_dot_d_day_duration">
-        <item quantity="one">%1$s · %2$d dagen geldig</item>
+        <item quantity="one">%1$s · %2$d dag geldig</item>
         <item quantity="other">%1$s · %2$d dagen geldig</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
@@ -6256,7 +6256,7 @@
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">Berichttekst toevoegen</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__verifying_recipient">Ontvanger aan het nagaan…</string>
+    <string name="GiftFlowConfirmationFragment__verifying_recipient">Ontvanger verifiëren…</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s heeft een donatie voor je gedaan</string>
     <!-- Title for sheet shown when opening a sent gift -->
@@ -6307,8 +6307,8 @@
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_excluded">
-        <item quantity="one">%1$s - verborgen voor %2$d</item>
-        <item quantity="other">%1$s - verborgen voor %2$d</item>
+        <item quantity="one">%1$s · Verborgen voor %2$d</item>
+        <item quantity="other">%1$s · Verborgen voor %2$d</item>
     </plurals>
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">Tik om te kiezen wie je verhaal mag bekijken</string>
@@ -6367,9 +6367,9 @@
     <!-- Message of safety number changes bottom sheet when showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__the_following_people">De volgende personen hebben Signal mogelijk opnieuw geïnstalleerd of kunnen van toestel zijn veranderd. Tik op een ontvanger om het nieuwe veiligheidsnummer te bevestigen. Dit is optioneel.</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Veiligheidsnummer checken</string>
+    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Veiligheidsnummercontrole</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
-    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Check van het veiligheidsnummer afgerond</string>
+    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Controle van het veiligheidsnummer afgerond</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alle contacten zijn beoordeeld, tik op versturen om verder te gaan.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
@@ -6723,7 +6723,7 @@
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
     <string name="GroupStoryEducationSheet__anyone_in_the_group">Iedereen in de groepschat kan een verhaal toevoegen.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">Alle leden van de groepschat kunnen antwoorden op verhalen bekijken.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">Alle leden van de groepschat kunnen reacties op verhalen bekijken.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Volgende</string>
     <string name="Registration_country_code_entry_hint">+0</string>
@@ -6834,8 +6834,8 @@
     <string name="CallLogFragment__deletion_failed">Verwijderen mislukt.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Link kan niet verwijderd worden. Controleer je internetverbinding en probeer het opnieuw.</item>
-        <item quantity="other">Niet alle oproeplinks konden verwijderd worden. Controleer je internetverbinding en probeer het opnieuw.</item>
+        <item quantity="one">Link kan niet worden verwijderd. Controleer je internetverbinding en probeer het opnieuw.</item>
+        <item quantity="other">Niet alle oproeplinks konden worden verwijderd. Controleer je internetverbinding en probeer het opnieuw.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Oproepgeschiedenis gewist</string>
@@ -6918,7 +6918,7 @@
     <!-- Call link creation item title on calls tab -->
     <string name="CreateCallLink__create_a_call_link">Oproeplink maken</string>
     <!-- Call link creation item description on calls tab -->
-    <string name="CreateCallLink__share_a_link_for">Deel een link voor een Signal-oproep</string>
+    <string name="CreateCallLink__share_a_link_for">Een link delen voor een Signal-oproep</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
     <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Gebruik deze link om deel te nemen aan een Signal-oproep: %1$s</string>
 

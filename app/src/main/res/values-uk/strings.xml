@@ -2134,21 +2134,21 @@
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Екран блокування</string>
 
     <!-- PlacePickerActivity -->
-    <string name="PlacePickerActivity_title">Карта</string>
+    <string name="PlacePickerActivity_title">Мапа</string>
 
     <string name="PlacePickerActivity_drop_pin">Поставити мітку</string>
-    <string name="PlacePickerActivity_accept_address">Прийняти адреса</string>
+    <string name="PlacePickerActivity_accept_address">Підтвердити адресу</string>
 
     <!-- PlayServicesProblemFragment -->
-    <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Встановлена версія сервісів Google Play працює некоректно. Перевстановіть сервіси Google Play та спробуйте знову.</string>
+    <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Установлена версія сервісів Google Play працює некоректно. Перевстановіть сервіси Google Play і повторіть спробу.</string>
 
     <!-- PinRestoreEntryFragment -->
     <string name="PinRestoreEntryFragment_incorrect_pin">Неправильний PIN-код</string>
-    <string name="PinRestoreEntryFragment_skip_pin_entry">Пропустити введення PIN-коду?</string>
+    <string name="PinRestoreEntryFragment_skip_pin_entry">Не вводити PIN-код?</string>
     <string name="PinRestoreEntryFragment_need_help">Потрібна допомога?</string>
     <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN-код – це створений вами пароль, мінімальна довжина якого — %1$d символи. Він може складатися з цифр або з цифр і букв.\n\nЯкщо ви забули свій PIN-код, то можете створити новий. Ви можете зареєструватись і використовувати свій акаунт, але ви втратите частину збережених налаштувань, як-от інформацію профілю.</string>
     <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Якщо ви забули свій PIN-код, то можете створити новий. Ви можете зареєструватись і використовувати свій акаунт, але ви втратите частину збережених налаштувань, як-от інформацію профілю.</string>
-    <string name="PinRestoreEntryFragment_create_new_pin">Створити Новий PIN-код</string>
+    <string name="PinRestoreEntryFragment_create_new_pin">Створіть новий PIN-код</string>
     <string name="PinRestoreEntryFragment_contact_support">Звернутися в службу підтримки</string>
     <string name="PinRestoreEntryFragment_cancel">Закрити</string>
     <string name="PinRestoreEntryFragment_skip">Пропустити</string>
@@ -2158,12 +2158,12 @@
         <item quantity="many">У вас лишилося %1$d спроб. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструватись і використовувати свій акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
         <item quantity="other">У вас лишилося %1$d спроби. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструватись і використовувати свій акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
     </plurals>
-    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Реєстрація в Signal - Потрібна допомога з PIN-кодом для Android</string>
+    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Реєстрація в Signal: потрібна допомога з PIN-кодом для Android</string>
 
     <!-- PinRestoreLockedFragment -->
-    <string name="PinRestoreLockedFragment_create_your_pin">Створити PIN-код</string>
+    <string name="PinRestoreLockedFragment_create_your_pin">Створіть PIN-код</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ви використали всі спроби введення PIN-коду, але все одно можете отримати доступ до свого акаунту Signal, якщо створите новий PIN-код. З міркувань конфіденційності та безпеки ваш акаунт буде відновлено без збереженої інформації профілю й налаштувань.</string>
-    <string name="PinRestoreLockedFragment_create_new_pin">Створити новий PIN-код</string>
+    <string name="PinRestoreLockedFragment_create_new_pin">Створіть новий PIN-код</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
@@ -2178,7 +2178,7 @@
     <string name="ReRegisterWithPinFragment_out_of_guesses_local">Ви використали всі спроби введення PIN-коду, але все одно можете отримати доступ до свого акаунту Signal, якщо створите новий PIN-код.</string>
 
     <!-- PinOptOutDialog -->
-    <string name="PinOptOutDialog_warning">Попередження</string>
+    <string name="PinOptOutDialog_warning">Зверніть увагу</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Якщо ви вимкнете PIN-код, то в разі повторної реєстрації в Signal усі ваші дані буде втрачено. Щоб цього уникнути, необхідно заздалегідь вручну створити їхню резервну копію. З вимкненим PIN-кодом неможливо ввімкнути блокування реєстрації.</string>
     <string name="PinOptOutDialog_disable_pin">Вимкнути PIN-код</string>
 
@@ -2199,9 +2199,9 @@
     <string name="ReactionsRecipientAdapter_you">Ви</string>
 
     <!-- RecaptchaRequiredBottomSheetFragment -->
-    <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Підтвердити для продовження спілкування</string>
-    <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Для запобігання поширення спаму у Signal, будь ласка, здійсніть підтвердження особи.</string>
-    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Після підтвердження ви зможете продовжити спілкування. Усі призупинені повідомлення відправляться автоматично.</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Пройдіть перевірку, щоб продовжити спілкування</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Просимо вас пройти перевірку. Це необхідно для запобігання поширенню спаму в Signal.</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Ви зможете продовжити спілкування після перевірки. Усі зупинені повідомлення буде надіслано автоматично.</string>
 
     <!-- Recipient -->
     <string name="Recipient_you">Ви</string>
@@ -2221,7 +2221,7 @@
     <string name="RedPhone_ending_call">Завершення виклику…</string>
     <string name="RedPhone_ringing">Лунає дзвінок…</string>
     <string name="RedPhone_busy">Зайнято</string>
-    <string name="RedPhone_recipient_unavailable">Одержувач недоступний</string>
+    <string name="RedPhone_recipient_unavailable">Користувач недоступний</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
     <string name="RedPhone_network_failed">Помилка мережі! Перевірте з\'єднання з мережею і спробуйте знову.</string>
     <string name="RedPhone_number_not_registered">Номер не зареєстровано!</string>
@@ -2243,14 +2243,14 @@
     <string name="CallScreenPreJoinOverlay__your_camera_is_off">Камера вимкнена</string>
 
     <!-- WebRtcCallActivity -->
-    <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Щоб увімкнути відео натисніть тут</string>
+    <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Торкніться, щоб увімкнути відео</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Для виклику користувача %1$s Signal потребує доступу до камери</string>
     <string name="WebRtcCallActivity__signal_s">Виклик у Signal: %1$s</string>
     <string name="WebRtcCallActivity__calling">Здійснюємо виклик…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">Триває відновлення з\'єднання…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
-    <string name="WebRtcCallActivity__bluetooth_permission_denied">Доступ до Bluetooth не отримано</string>
+    <string name="WebRtcCallActivity__bluetooth_permission_denied">Доступ до Bluetooth не надано</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
     <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Увімкніть функцію «Шукати пристрої поблизу», щоб використовувати Bluetooth під час виклику.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
@@ -2339,10 +2339,10 @@
     <string name="WebRtcCallView__join_call">Приєднатися</string>
     <string name="WebRtcCallView__call_is_full">Немає місць</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">У виклику вже бере участь максимальна кількість учасників: %1$d. Спробуйте пізніше.</string>
-    <string name="WebRtcCallView__your_video_is_off">Відео вимкнено</string>
+    <string name="WebRtcCallView__your_video_is_off">У вас вимкнено відео</string>
     <string name="WebRtcCallView__reconnecting">Триває відновлення з\'єднання…</string>
     <string name="WebRtcCallView__joining">Приєднання…</string>
-    <string name="WebRtcCallView__disconnected">Від\'єднано</string>
+    <string name="WebRtcCallView__disconnected">З\'єднання розірвано</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Посилання на виклик у Signal</string>
     <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
@@ -2361,13 +2361,13 @@
         <item quantity="other">Буде здійснено виклик користувачів %1$s, %2$s та ще %3$d інших у Signal</item>
     </plurals>
 
-    <string name="WebRtcCallView__s_will_be_notified">%1$s буде сповіщено</string>
-    <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s та %2$s будуть сповіщені</string>
+    <string name="WebRtcCallView__s_will_be_notified">%1$s отримає сповіщення</string>
+    <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s і %2$s отримають сповіщення</string>
     <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
-        <item quantity="one">%1$s, %2$s та %3$d інший будуть оповіщені</item>
-        <item quantity="few">%1$s, %2$s та %3$d інших будуть оповіщені</item>
-        <item quantity="many">%1$s, %2$s та %3$d інших будуть оповіщені</item>
-        <item quantity="other">%1$s, %2$s та %3$d інших будуть оповіщені</item>
+        <item quantity="one">%1$s, %2$s і ще %3$d користувач отримають сповіщення</item>
+        <item quantity="few">%1$s, %2$s і ще %3$d користувачі отримають сповіщення</item>
+        <item quantity="many">%1$s, %2$s і ще %3$d користувачів отримають сповіщення</item>
+        <item quantity="other">%1$s, %2$s і ще %3$d користувача отримають сповіщення</item>
     </plurals>
 
     <string name="WebRtcCallView__ringing_s">У користувача %1$s лунає дзвінок</string>
@@ -2541,33 +2541,33 @@
 
     <!-- CallParticipantView -->
     <string name="CallParticipantView__s_is_blocked">Користувача %1$s заблоковано</string>
-    <string name="CallParticipantView__more_info">Детальніше</string>
-    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Ви не отримаєте аудіо або відео від цього користувача, а користувач не отримає ваші.</string>
-    <string name="CallParticipantView__cant_receive_audio_video_from_s">Не вдається отримати аудіо та підсилювач; відео з %1$s</string>
-    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Неможливо отримати аудіо та відео від %1$s</string>
+    <string name="CallParticipantView__more_info">Подробиці</string>
+    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Ви не зможете чути й бачити цього користувача, а користувач не зможе чути й бачити вас.</string>
+    <string name="CallParticipantView__cant_receive_audio_video_from_s">Ви не можете чути й бачити користувача %1$s</string>
+    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ви не можете чути й бачити користувача %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Це могло статися через те, що користувач не позначив ваш змінений код безпеки як перевірений, має проблему з пристроєм або заблокував вас.</string>
 
     <!-- CallToastPopupWindow -->
-    <string name="CallToastPopupWindow__swipe_to_view_screen_share">Потягніть вгору, щоб побачити поширення екрану</string>
+    <string name="CallToastPopupWindow__swipe_to_view_screen_share">Свайпніть, щоб побачити демонстрацію екрана</string>
 
     <!-- ProxyBottomSheetFragment -->
     <string name="ProxyBottomSheetFragment_proxy_server">Проксі-сервер</string>
-    <string name="ProxyBottomSheetFragment_proxy_address">Проксі адреса</string>
-    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Бажаєте використовувати цю проксі адресу?</string>
-    <string name="ProxyBottomSheetFragment_use_proxy">Використати проксі</string>
-    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Успішне з\'єднання з проксі.</string>
+    <string name="ProxyBottomSheetFragment_proxy_address">Адреса проксі-сервера</string>
+    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Використовувати цю адресу проксі-сервера?</string>
+    <string name="ProxyBottomSheetFragment_use_proxy">Використати проксі-сервер</string>
+    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Ви під\'єдналися до проксі-сервера.</string>
 
     <!-- RecaptchaProofActivity -->
-    <string name="RecaptchaProofActivity_failed_to_submit">Не вдалось передати</string>
-    <string name="RecaptchaProofActivity_complete_verification">Завершити підтвердження особи</string>
+    <string name="RecaptchaProofActivity_failed_to_submit">Не вдалося надіслати</string>
+    <string name="RecaptchaProofActivity_complete_verification">Завершіть перевірку</string>
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">Оберіть країну</string>
-    <string name="RegistrationActivity_you_must_specify_your_country_code">Ви повинні вказати код вашої країни
+    <string name="RegistrationActivity_you_must_specify_your_country_code">Необхідно зазначити код країни
     </string>
     <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Щоб зареєструватися, введіть дійсний номер телефону.</string>
-    <string name="RegistrationActivity_invalid_number">Хибний номер</string>
-    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Номер, що ви ввели (%1$s) хибний.
+    <string name="RegistrationActivity_invalid_number">Такого номера не існує</string>
+    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ви ввели номер, якого не існує: %1$s.
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
@@ -2577,14 +2577,14 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Ми надішлемо код підтвердження на цей номер. Може стягуватися плата згідно з тарифами.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">На цей номер буде здійснено виклик для його перевірки.</string>
-    <string name="RegistrationActivity_edit_number">Редагувати номер</string>
+    <string name="RegistrationActivity_edit_number">Змінити номер</string>
     <string name="RegistrationActivity_missing_google_play_services">Відсутні сервіси Google Play</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">На цьому пристрої не встановлені сервіси Google Play. То ж ви можете не отримувати оновлення своєчасно.</string>
+    <string name="RegistrationActivity_this_device_is_missing_google_play_services">На цьому пристрої не встановлено сервіси Google Play. Ви все одно можете використовувати Signal, проте з такою конфігурацією надійність і ефективність роботи застосунку може знизитися.\n\nЯкщо ви недосвідчений користувач, не використовуєте додатково придбаний ПЗП для Android чи вважаєте, що це повідомлення — помилка, просимо вас написати в службу підтримки за адресою support@signal.org для з\'ясування причин цієї проблеми.</string>
     <string name="RegistrationActivity_i_understand">Я розумію</string>
-    <string name="RegistrationActivity_play_services_error">Помилка служби Google Play</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services оновлюються або тимчасово недоступні. Будь-ласка, спробуйте знов.</string>
+    <string name="RegistrationActivity_play_services_error">Помилка із сервісами Google Play</string>
+    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Триває оновлення сервісів Google Play або вони тимчасово недоступні. Спробуйте пізніше.</string>
     <string name="RegistrationActivity_terms_and_privacy">Умови надання послуг і Політика конфіденційності</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal потребує дозволів на перегляд контактів та медіа, щоб допомогти вам зв’язуватися з друзями та надсилати повідомлення. Ваші контакти завантажуються за допомогою функції виявлення приватних контактів Signal, що означає, що вони зашифровані наскрізним методом і є невидимі для служби Signal.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal потребує доступу до ваших контактів і медіафайлів, щоб ви могли зв\'язуватися з друзями й надсилати повідомлення. Ваші контакти буде вивантажено з використанням функції конфіденційного виявлення контактів Signal, тобто їх буде зашифровано наскрізним методом і вони будуть невидимі для служби Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal потребує дозволу для перегляду контактів, щоб допомогти вам зв’язатися з друзями. Ваші контакти завантажуються за допомогою функції виявлення приватних контактів Signal, що означає, що вони наскрізне зашифровані і ніколи не відображаються службою Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Ви зробили надто багато спроб зареєструвати цей номер. Будь ласка, спробуйте ще раз пізніше.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
