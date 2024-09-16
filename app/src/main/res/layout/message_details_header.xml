@@ -130,7 +130,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/message_details_header_internal_details_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
