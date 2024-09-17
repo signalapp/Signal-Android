@@ -438,7 +438,7 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
                                                                        pendingMembers.getInviteCount(),
                                                                        displayName, pendingMembers.getInviteCount());
 
-      bindImageAndText(inviter, displayText, inviter.getAbout());
+      bindImageAndText(inviter, displayText, inviter.getFilteredAbout());
 
       if (pendingMembers.isCancellable() && adminActionsListener != null) {
         popupMenu.setMenu(R.menu.others_invite_pending_menu,

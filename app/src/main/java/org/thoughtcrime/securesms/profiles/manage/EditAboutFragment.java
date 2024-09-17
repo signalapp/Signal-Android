@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -25,11 +27,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.EditTextUtil;
 import org.signal.core.util.StringUtil;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.AlwaysChangedDiffUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -63,6 +65,7 @@ public class EditAboutFragment extends Fragment implements EditProfileActivity.E
   private ImageView                      emojiView;
   private EditText                       bodyView;
   private TextView                       countView;
+  private TextView                       errorView;
   private CircularProgressMaterialButton saveButton;
   private EditAboutViewModel             viewModel;
   private LifecycleDisposable            lifecycleDisposable;
@@ -79,6 +82,7 @@ public class EditAboutFragment extends Fragment implements EditProfileActivity.E
     this.emojiView  = view.findViewById(R.id.edit_about_emoji);
     this.bodyView   = view.findViewById(R.id.edit_about_body);
     this.countView  = view.findViewById(R.id.edit_about_count);
+    this.errorView  = view.findViewById(R.id.edit_about_error);
     this.saveButton = view.findViewById(R.id.edit_about_save);
 
     lifecycleDisposable = new LifecycleDisposable();
@@ -92,6 +96,7 @@ public class EditAboutFragment extends Fragment implements EditProfileActivity.E
 
     EditTextUtil.addGraphemeClusterLimitFilter(bodyView, ABOUT_MAX_GLYPHS);
     this.bodyView.addTextChangedListener(new AfterTextChanged(editable -> {
+      checkValidText(editable.toString());
       trimFieldToMaxByteLength(editable);
       presentCount(editable.toString());
     }));
@@ -124,6 +129,21 @@ public class EditAboutFragment extends Fragment implements EditProfileActivity.E
     }
 
     ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(bodyView);
+  }
+
+  private void checkValidText(String text) {
+    boolean isInvalid = false;
+    for (Character emoji : StringUtil.FILTERED_EMOJIS) {
+      if (text.contains(Character.toString(emoji))) {
+        isInvalid = true;
+        break;
+      }
+    }
+
+    int colorRes = isInvalid ? R.color.signal_colorError : R.color.signal_colorPrimary;
+    bodyView.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), colorRes)));
+    errorView.setVisibility(isInvalid ? View.VISIBLE : View.GONE);
+    saveButton.setEnabled(!isInvalid);
   }
 
   @Override

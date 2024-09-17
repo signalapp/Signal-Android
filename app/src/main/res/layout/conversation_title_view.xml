@@ -85,7 +85,7 @@
             android:layout_marginEnd="3dp"
             android:tint="@color/signal_inverse_transparent_80"
             android:visibility="gone"
-            app:srcCompat="@drawable/ic_check_24"
+            app:srcCompat="@drawable/symbol_safety_number_24"
             tools:visibility="visible" />
 
         <TextView

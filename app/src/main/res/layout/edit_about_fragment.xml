@@ -60,6 +60,17 @@
       app:layout_constraintBottom_toBottomOf="@id/edit_about_body"/>
 
   <TextView
+      android:id="@+id/edit_about_error"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="6dp"
+      style="@style/Signal.Text.Caption"
+      android:textColor="@color/signal_colorError"
+      app:layout_constraintTop_toBottomOf="@id/edit_about_body"
+      app:layout_constraintStart_toStartOf="@id/edit_about_body"
+      android:text="@string/EditAboutFragment_one_or_more_characters" />
+
+  <TextView
       android:id="@+id/edit_about_count"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"

@@ -1,6 +1,5 @@
 package org.signal.core.util;
 
-import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
@@ -11,6 +10,7 @@ import androidx.core.text.BidiFormatter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -22,6 +22,7 @@ public final class StringUtil {
                                                                       '\u200B',  // zero-width space
                                                                       '\u2800'); // braille blank
 
+  public static final List<Character> FILTERED_EMOJIS = List.of('\u2713', '\u2714', '\u2611', '\u221A', '\u26C9', '\u26CA', '\u26DB');
 
   private static final Pattern ALL_ASCII_PATTERN = Pattern.compile("^[\\x00-\\x7F]*$");
 

@@ -96,7 +96,7 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
           displayName = recipient.get().getDisplayName(requireContext()),
           shortName = recipient.get().getShortDisplayName(requireContext()),
           profileName = recipient.get().profileName.toString(),
-          about = recipient.get().about,
+          about = recipient.get().filteredAbout,
           verified = verified,
           hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
           recipientForAvatar = recipient.get(),
@@ -220,7 +220,7 @@ private fun Content(
 
     if (!model.isSelf && model.verified) {
       AboutRow(
-        startIcon = painterResource(id = R.drawable.check),
+        startIcon = painterResource(id = R.drawable.symbol_safety_number_24),
         text = stringResource(id = R.string.AboutSheet__verified),
         modifier = Modifier.align(alignment = Alignment.Start),
         onClick = onClickSignalConnections

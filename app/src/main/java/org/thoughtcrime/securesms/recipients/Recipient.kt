@@ -367,8 +367,11 @@ class Recipient(
   /** The badge to feature on a recipient's avatar, if any. */
   val featuredBadge: Badge? = badges.firstOrNull()
 
+  /** A string filtering out banned emojis from the about text */
+  val filteredAbout: String? by lazy { about?.filterNot { StringUtil.FILTERED_EMOJIS.contains(it) } }
+
   /** A string combining the about emoji + text for displaying various places. */
-  val combinedAboutAndEmoji: String? by lazy { listOf(aboutEmoji, about).filter { it.isNotNullOrBlank() }.joinToString(separator = " ").nullIfBlank() }
+  val combinedAboutAndEmoji: String? by lazy { listOf(aboutEmoji, filteredAbout).filter { it.isNotNullOrBlank() }.joinToString(separator = " ").nullIfBlank() }
 
   /** Whether or not we should blur the recipient's avatar when showing it in the chat list and other locations. */
   val shouldBlurAvatar: Boolean
