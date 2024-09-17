@@ -19,6 +19,7 @@ class CallLogRepository(
   private val updateCallLinkRepository: UpdateCallLinkRepository = UpdateCallLinkRepository(),
   private val callLogPeekHelper: CallLogPeekHelper
 ) : CallLogPagedDataSource.CallRepository {
+
   override fun getCallsCount(query: String?, filter: CallLogFilter): Int {
     return SignalDatabase.calls.getCallsCount(query, filter)
   }

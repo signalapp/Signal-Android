@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.databinding.CallLogAdapterItemBinding
 import org.thoughtcrime.securesms.databinding.CallLogCreateCallLinkItemBinding
 import org.thoughtcrime.securesms.databinding.ConversationListItemClearFilterBinding
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.SearchUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory
@@ -84,14 +85,15 @@ class CallLogAdapter(
   fun submitCallRows(
     rows: List<CallLogRow?>,
     selectionState: CallLogSelectionState,
+    localCallRecipientId: RecipientId,
     onCommit: () -> Unit
   ): Int {
     val filteredRows = rows
       .filterNotNull()
       .map {
         when (it) {
-          is CallLogRow.Call -> CallModel(it, selectionState, itemCount)
-          is CallLogRow.CallLink -> CallLinkModel(it, selectionState, itemCount)
+          is CallLogRow.Call -> CallModel(it, selectionState, itemCount, it.peer.id == localCallRecipientId)
+          is CallLogRow.CallLink -> CallLinkModel(it, selectionState, itemCount, it.recipient.id == localCallRecipientId)
           is CallLogRow.ClearFilter -> ClearFilterModel()
           is CallLogRow.CreateCallLink -> CreateCallLinkModel()
         }
@@ -105,14 +107,16 @@ class CallLogAdapter(
   private class CallModel(
     val call: CallLogRow.Call,
     val selectionState: CallLogSelectionState,
-    val itemCount: Int
+    val itemCount: Int,
+    val isLocalDeviceInCall: Boolean
   ) : MappingModel<CallModel> {
 
     override fun areItemsTheSame(newItem: CallModel): Boolean = call.id == newItem.call.id
     override fun areContentsTheSame(newItem: CallModel): Boolean {
       return call == newItem.call &&
         isSelectionStateTheSame(newItem) &&
-        isItemCountTheSame(newItem)
+        isItemCountTheSame(newItem) &&
+        isLocalDeviceInCall == newItem.isLocalDeviceInCall
     }
 
     override fun getChangePayload(newItem: CallModel): Any? {
@@ -136,7 +140,8 @@ class CallLogAdapter(
   private class CallLinkModel(
     val callLink: CallLogRow.CallLink,
     val selectionState: CallLogSelectionState,
-    val itemCount: Int
+    val itemCount: Int,
+    val isLocalDeviceInCall: Boolean
   ) : MappingModel<CallLinkModel> {
 
     override fun areItemsTheSame(newItem: CallLinkModel): Boolean {
@@ -146,7 +151,8 @@ class CallLogAdapter(
     override fun areContentsTheSame(newItem: CallLinkModel): Boolean {
       return callLink == newItem.callLink &&
         isSelectionStateTheSame(newItem) &&
-        isItemCountTheSame(newItem)
+        isItemCountTheSame(newItem) &&
+        isLocalDeviceInCall == newItem.isLocalDeviceInCall
     }
 
     override fun getChangePayload(newItem: CallLinkModel): Any? {
@@ -230,7 +236,7 @@ class CallLogAdapter(
 
       if (model.callLink.callLinkPeekInfo?.isActive == true) {
         binding.groupCallButton.setText(
-          if (model.callLink.callLinkPeekInfo.isJoined) {
+          if (model.callLink.callLinkPeekInfo.isJoined && model.isLocalDeviceInCall) {
             R.string.CallLogAdapter__return
           } else {
             R.string.CallLogAdapter__join
@@ -364,7 +370,7 @@ class CallLogAdapter(
             binding.groupCallButton.visible = true
 
             binding.groupCallButton.setText(
-              if (model.call.callLinkPeekInfo.isJoined) {
+              if (model.call.callLinkPeekInfo.isJoined && model.isLocalDeviceInCall) {
                 R.string.CallLogAdapter__return
               } else {
                 R.string.CallLogAdapter__join
@@ -393,7 +399,7 @@ class CallLogAdapter(
               binding.groupCallButton.visible = true
 
               binding.groupCallButton.setText(
-                if (model.call.groupCallState == CallLogRow.GroupCallState.LOCAL_USER_JOINED) {
+                if (model.call.groupCallState == CallLogRow.GroupCallState.LOCAL_USER_JOINED && model.isLocalDeviceInCall) {
                   R.string.CallLogAdapter__return
                 } else {
                   R.string.CallLogAdapter__join

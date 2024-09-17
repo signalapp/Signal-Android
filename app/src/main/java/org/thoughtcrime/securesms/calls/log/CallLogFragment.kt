@@ -152,6 +152,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
         val filteredCount = callLogAdapter.submitCallRows(
           data,
           selected,
+          viewModel.callLogPeekHelper.localDeviceCallRecipientId,
           scrollToPositionDelegate::notifyListCommitted
         )
         binding.emptyState.visible = filteredCount == 0

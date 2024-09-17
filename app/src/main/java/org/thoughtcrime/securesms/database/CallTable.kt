@@ -1365,7 +1365,12 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       INNER JOIN ${RecipientTable.TABLE_NAME} ON ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} = $PEER
       LEFT JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $MESSAGE_ID
       LEFT JOIN ${GroupTable.TABLE_NAME} ON ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
-      WHERE true_parent = p.$ID ${if (queryClause.where.isNotEmpty()) "AND ${queryClause.where}" else ""}
+      WHERE true_parent = p.$ID 
+        AND CASE 
+          WHEN p.$TYPE = ${Type.serialize(Type.AD_HOC_CALL)} THEN EXISTS (SELECT * FROM ${CallLinkTable.TABLE_NAME} WHERE ${CallLinkTable.RECIPIENT_ID} = $PEER AND ${CallLinkTable.ROOT_KEY} NOT NULL) 
+          ELSE 1
+        END 
+        ${if (queryClause.where.isNotEmpty()) "AND ${queryClause.where}" else ""}
       GROUP BY CASE WHEN p.type = 4 THEN p.peer ELSE p._id END
       ORDER BY p.$TIMESTAMP DESC
       $offsetLimit
