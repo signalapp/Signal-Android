@@ -1492,7 +1492,7 @@ class AttachmentTable(
       .where("$ID = ?", attachmentId.id)
       .run()
       .readToSingleObject { cursor ->
-        if (cursor.isNull(DATA_FILE)) {
+        if (cursor.isNull(DATA_FILE) || cursor.isNull(DATA_RANDOM)) {
           null
         } else {
           cursor.readDataFileInfo()
