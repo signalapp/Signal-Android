@@ -16,7 +16,7 @@ import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.banner.BannerManager
-import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner
+import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -35,8 +35,6 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.SharedPreferencesLifecycleObserver
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -53,6 +51,7 @@ class AppSettingsFragment : DSLSettingsFragment(
 
   private val viewModel: AppSettingsViewModel by viewModels()
 
+  private var bannerManager: BannerManager? = null
   private lateinit var bannerView: Stub<ComposeView>
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,7 +60,7 @@ class AppSettingsFragment : DSLSettingsFragment(
     super.onViewCreated(view, savedInstanceState)
     bannerView = ViewUtil.findStubById(view, R.id.banner_stub)
 
-    updateBanners()
+    initializeBanners()
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {
@@ -74,22 +73,12 @@ class AppSettingsFragment : DSLSettingsFragment(
     }
   }
 
-  private fun updateBanners() {
-    val unauthorizedProducer = UnauthorizedBanner.Producer(requireContext())
-    lifecycle.addObserver(
-      SharedPreferencesLifecycleObserver(
-        requireContext(),
-        mapOf(
-          TextSecurePreferences.UNAUTHORIZED_RECEIVED to { unauthorizedProducer.queryAndEmit() }
-        )
-      )
-    )
-    val bannerFlows = listOf(
-      OutdatedBuildBanner.createFlow(requireContext(), OutdatedBuildBanner.ExpiryStatus.EXPIRED_ONLY),
-      unauthorizedProducer.flow
-    )
-    val bannerManager = BannerManager(
-      bannerFlows,
+  private fun initializeBanners() {
+    this.bannerManager = BannerManager(
+      banners = listOf(
+        DeprecatedBuildBanner(),
+        UnauthorizedBanner(requireContext())
+      ),
       onNewBannerShownListener = {
         if (bannerView.resolved()) {
           bannerView.get().addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
@@ -102,13 +91,16 @@ class AppSettingsFragment : DSLSettingsFragment(
         recyclerView?.clipToPadding = true
       }
     )
-    bannerManager.setContent(bannerView.get())
+
+    this.bannerManager?.updateContent(bannerView.get())
+
     viewModel.refreshDeprecatedOrUnregistered()
   }
 
   override fun onResume() {
     super.onResume()
     viewModel.refreshExpiredGiftBadge()
+    this.bannerManager?.updateContent(bannerView.get())
   }
 
   private fun getConfiguration(state: AppSettingsState): DSLConfiguration {

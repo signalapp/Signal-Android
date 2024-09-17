@@ -8,8 +8,11 @@ package org.thoughtcrime.securesms.banner.banners
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentManager
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+import org.signal.core.ui.Previews
+import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.ui.compose.Action
@@ -18,31 +21,45 @@ import org.thoughtcrime.securesms.banner.ui.compose.Importance
 import org.thoughtcrime.securesms.contacts.sync.CdsTemporaryErrorBottomSheet
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
-class CdsTemporaryErrorBanner(private val fragmentManager: FragmentManager) : Banner() {
-  private val timeUntilUnblock = SignalStore.misc.cdsBlockedUtil - System.currentTimeMillis()
+class CdsTemporaryErrorBanner(private val fragmentManager: FragmentManager) : Banner<Unit>() {
 
-  override val enabled: Boolean = SignalStore.misc.isCdsBlocked && timeUntilUnblock < CdsPermanentErrorBanner.PERMANENT_TIME_CUTOFF
+  override val enabled: Boolean
+    get() {
+      val timeUntilUnblock = SignalStore.misc.cdsBlockedUtil - System.currentTimeMillis()
+      return SignalStore.misc.isCdsBlocked && timeUntilUnblock < CdsPermanentErrorBanner.PERMANENT_TIME_CUTOFF
+    }
+
+  override val dataFlow
+    get() = flowOf(Unit)
 
   @Composable
-  override fun DisplayBanner(contentPadding: PaddingValues) {
-    DefaultBanner(
-      title = null,
-      body = stringResource(id = R.string.reminder_cds_warning_body),
-      importance = Importance.ERROR,
-      actions = listOf(
-        Action(R.string.reminder_cds_warning_learn_more) {
-          CdsTemporaryErrorBottomSheet.show(fragmentManager)
-        }
-      ),
-      paddingValues = contentPadding
+  override fun DisplayBanner(model: Unit, contentPadding: PaddingValues) {
+    Banner(
+      contentPadding = contentPadding,
+      onLearnMoreClicked = { CdsTemporaryErrorBottomSheet.show(fragmentManager) }
     )
   }
+}
 
-  companion object {
+@Composable
+private fun Banner(contentPadding: PaddingValues, onLearnMoreClicked: () -> Unit = {}) {
+  DefaultBanner(
+    title = null,
+    body = stringResource(id = R.string.reminder_cds_warning_body),
+    importance = Importance.ERROR,
+    actions = listOf(
+      Action(R.string.reminder_cds_warning_learn_more) {
+        onLearnMoreClicked()
+      }
+    ),
+    paddingValues = contentPadding
+  )
+}
 
-    @JvmStatic
-    fun createFlow(childFragmentManager: FragmentManager): Flow<CdsTemporaryErrorBanner> = createAndEmit {
-      CdsTemporaryErrorBanner(childFragmentManager)
-    }
+@SignalPreview
+@Composable
+private fun BannerPreview() {
+  Previews.Preview {
+    Banner(PaddingValues(0.dp))
   }
 }

@@ -7,16 +7,13 @@ package org.thoughtcrime.securesms.banner.banners
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.flowWithLifecycle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
 import org.signal.core.util.throttleLatest
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatus
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
@@ -27,29 +24,18 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import kotlin.time.Duration.Companion.seconds
 
-class MediaRestoreProgressBanner(private val data: MediaRestoreEvent) : Banner() {
+class MediaRestoreProgressBanner : Banner<BackupStatusData>() {
 
-  companion object {
-    /**
-     * Create a Lifecycle-aware [Flow] of [MediaRestoreProgressBanner] that observes the database for changes in attachments and emits banners when attachments are updated.
-     */
-    @JvmStatic
-    fun createLifecycleAwareFlow(lifecycleOwner: LifecycleOwner): Flow<MediaRestoreProgressBanner> {
-      return if (SignalStore.backup.isRestoreInProgress) {
-        restoreFlow(lifecycleOwner)
-      } else {
-        flow {
-          emit(MediaRestoreProgressBanner(MediaRestoreEvent(0L, 0L)))
-        }
+  override val enabled: Boolean
+    get() = SignalStore.backup.isRestoreInProgress
+
+  override val dataFlow: Flow<BackupStatusData>
+    get() {
+      if (!SignalStore.backup.isRestoreInProgress) {
+        return flowOf(BackupStatusData.RestoringMedia(0, 0))
       }
-    }
 
-    /**
-     * Create a flow that listens for all attachment changes in the db and emits a new banner at most
-     * once every 1 second.
-     */
-    private fun restoreFlow(lifecycleOwner: LifecycleOwner): Flow<MediaRestoreProgressBanner> {
-      val flow = callbackFlow {
+      val dbNotificationFlow = callbackFlow {
         val queryObserver = DatabaseObserver.Observer {
           trySend(Unit)
         }
@@ -62,29 +48,20 @@ class MediaRestoreProgressBanner(private val data: MediaRestoreEvent) : Banner()
         }
       }
 
-      return flow
-        .flowWithLifecycle(lifecycleOwner.lifecycle)
+      return dbNotificationFlow
         .throttleLatest(1.seconds)
-        .map { MediaRestoreProgressBanner(loadData()) }
+        .map {
+          val totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize
+          val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
+          val completedBytes = totalRestoreSize - remainingAttachmentSize
+
+          BackupStatusData.RestoringMedia(completedBytes, totalRestoreSize)
+        }
         .flowOn(Dispatchers.IO)
     }
 
-    private suspend fun loadData() = withContext(Dispatchers.IO) {
-      // TODO [backups]: define and query data for interrupted/paused restores
-      val totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize
-      val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
-      val completedBytes = totalRestoreSize - remainingAttachmentSize
-
-      MediaRestoreEvent(completedBytes, totalRestoreSize)
-    }
-  }
-
-  override var enabled: Boolean = data.totalBytes > 0L && data.totalBytes != data.completedBytes
-
   @Composable
-  override fun DisplayBanner(contentPadding: PaddingValues) {
-    BackupStatus(data = BackupStatusData.RestoringMedia(data.completedBytes, data.totalBytes))
+  override fun DisplayBanner(model: BackupStatusData, contentPadding: PaddingValues) {
+    BackupStatus(data = model)
   }
-
-  data class MediaRestoreEvent(val completedBytes: Long, val totalBytes: Long)
 }

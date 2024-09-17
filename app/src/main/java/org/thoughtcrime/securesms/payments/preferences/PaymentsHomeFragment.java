@@ -40,15 +40,14 @@ import org.thoughtcrime.securesms.payments.backup.RecoveryPhraseStates;
 import org.thoughtcrime.securesms.payments.backup.confirm.PaymentsRecoveryPhraseConfirmFragment;
 import org.thoughtcrime.securesms.payments.preferences.model.InfoCard;
 import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
-import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.Stub;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -265,11 +264,11 @@ public class PaymentsHomeFragment extends LoggingFragment {
       if (failure) {
         showUpdateIsRequiredDialog();
       }
+
+      BannerManager bannerManager = new BannerManager(List.of(new EnclaveFailureBanner(failure)));
+      bannerManager.updateContent(bannerView.get());
     });
-    final Flow<Boolean>                enclaveFailureFlow = FlowLiveDataConversions.asFlow(viewModel.getEnclaveFailure());
-    final List<Flow<? extends Banner>> bannerRepositories = List.of(EnclaveFailureBanner.Companion.mapBooleanFlowToBannerFlow(enclaveFailureFlow, requireContext()));
-    final BannerManager      bannerManager      = new BannerManager(bannerRepositories);
-    bannerManager.setContent(bannerView.get());
+
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressed());
   }
 

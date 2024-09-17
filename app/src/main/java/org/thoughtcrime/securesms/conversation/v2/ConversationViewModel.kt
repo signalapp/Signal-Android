@@ -29,12 +29,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flatMapConcat
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
-import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
@@ -309,30 +310,42 @@ class ConversationViewModel(
       })
   }
 
-  @OptIn(ExperimentalCoroutinesApi::class)
-  fun getBannerFlows(context: Context, unauthorizedFlow: Flow<UnauthorizedBanner>, serviceOutageStatusFlow: Flow<ServiceOutageBanner>, groupJoinClickListener: () -> Unit, onAddMembers: () -> Unit, onNoThanks: () -> Unit, bubbleClickListener: (Boolean) -> Unit): List<Flow<Banner>> {
-    val pendingGroupJoinFlow: Flow<PendingGroupJoinRequestsBanner> = merge(
-      flow {
-        emit(PendingGroupJoinRequestsBanner(false, 0, {}, {}))
-      },
-      groupRecordFlow.flatMapConcat { PendingGroupJoinRequestsBanner.createFlow(it.actionableRequestingMembersCount, groupJoinClickListener) }
-    )
+  fun getBannerFlows(
+    context: Context,
+    groupJoinClickListener: () -> Unit,
+    onSuggestionAddMembers: () -> Unit,
+    onSuggestionNoThanks: () -> Unit,
+    bubbleClickListener: (Boolean) -> Unit
+  ): Flow<List<Banner<*>>> {
+    val pendingGroupJoinFlow: Flow<PendingGroupJoinRequestsBanner> = groupRecordFlow
+      .map {
+        PendingGroupJoinRequestsBanner(
+          suggestionsSize = it.actionableRequestingMembersCount,
+          onViewClicked = groupJoinClickListener
+        )
+      }
 
-    val groupV1SuggestionsFlow = merge(
-      flow {
-        emit(GroupsV1MigrationSuggestionsBanner(0, {}, {}))
-      },
-      groupRecordFlow.flatMapConcat { GroupsV1MigrationSuggestionsBanner.createFlow(it.gv1MigrationSuggestions.size, onAddMembers, onNoThanks) }
-    )
+    val groupV1SuggestionsFlow = groupRecordFlow
+      .map {
+        GroupsV1MigrationSuggestionsBanner(
+          suggestionsSize = it.gv1MigrationSuggestions.size,
+          onAddMembers = onSuggestionAddMembers,
+          onNoThanks = onSuggestionNoThanks
+        )
+      }
 
-    return listOf(
-      OutdatedBuildBanner.createFlow(context, OutdatedBuildBanner.ExpiryStatus.EXPIRED_ONLY),
-      unauthorizedFlow,
-      serviceOutageStatusFlow,
-      pendingGroupJoinFlow,
-      groupV1SuggestionsFlow,
-      BubbleOptOutBanner.createFlow(inBubble = repository.isInBubble, bubbleClickListener)
+    return combine(
+      listOf(
+        flowOf(OutdatedBuildBanner()),
+        flowOf(UnauthorizedBanner(context)),
+        flowOf(ServiceOutageBanner(context)),
+        pendingGroupJoinFlow,
+        groupV1SuggestionsFlow,
+        flowOf(BubbleOptOutBanner(inBubble = repository.isInBubble, actionListener = bubbleClickListener))
+      ),
+      transform = { it.toList() }
     )
+      .flowOn(Dispatchers.IO)
   }
 
   fun onChatBoundsChanged(bounds: Rect) {

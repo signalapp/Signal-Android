@@ -27,7 +27,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.BannerManager
-import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner
+import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.components.Material3SearchToolbar
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -55,8 +55,6 @@ import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
-import org.thoughtcrime.securesms.util.SharedPreferencesLifecycleObserver
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -141,21 +139,11 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
   }
 
   private fun initializeBanners() {
-    val unauthorizedProducer = UnauthorizedBanner.Producer(requireContext())
-    lifecycle.addObserver(
-      SharedPreferencesLifecycleObserver(
-        requireContext(),
-        mapOf(
-          TextSecurePreferences.UNAUTHORIZED_RECEIVED to { unauthorizedProducer.queryAndEmit() }
-        )
-      )
-    )
-    val bannerFlows = listOf(
-      OutdatedBuildBanner.createFlow(requireContext(), OutdatedBuildBanner.ExpiryStatus.EXPIRED_ONLY),
-      unauthorizedProducer.flow
-    )
     val bannerManager = BannerManager(
-      bannerFlows,
+      banners = listOf(
+        DeprecatedBuildBanner(),
+        UnauthorizedBanner(requireContext())
+      ),
       onNewBannerShownListener = {
         if (bannerView.resolved()) {
           bannerView.get().addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
@@ -168,7 +156,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
         recyclerView?.clipToPadding = true
       }
     )
-    bannerManager.setContent(bannerView.get())
+    bannerManager.updateContent(bannerView.get())
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {

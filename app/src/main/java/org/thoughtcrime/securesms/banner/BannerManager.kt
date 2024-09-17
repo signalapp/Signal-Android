@@ -7,12 +7,13 @@ package org.thoughtcrime.securesms.banner
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.logging.Log
 
@@ -21,7 +22,7 @@ import org.signal.core.util.logging.Log
  * Usually, the [Flow]s will come from [Banner.BannerFactory] instances, but may also be produced by the other properties of the host.
  */
 class BannerManager @JvmOverloads constructor(
-  allFlows: Iterable<Flow<Banner>>,
+  private val banners: List<Banner<*>>,
   private val onNewBannerShownListener: () -> Unit = {},
   private val onNoBannerShownListener: () -> Unit = {}
 ) {
@@ -31,35 +32,31 @@ class BannerManager @JvmOverloads constructor(
   }
 
   /**
-   * Takes the flows and combines them into one so that a new [Flow] value from any of them will trigger an update to the UI.
-   *
-   * **NOTE**: This will **not** emit its first value until **all** of the input flows have each emitted *at least one value*.
+   * Re-evaluates the [Banner]s, choosing one to render (if any) and updating the view.
    */
-  private val combinedFlow: Flow<List<Banner>> = combine(allFlows) { banners: Array<Banner> ->
-    banners.filter { it.enabled }.toList()
-  }
+  fun updateContent(composeView: ComposeView) {
+    val banner: Banner<Any>? = banners.firstOrNull { it.enabled } as Banner<Any>?
 
-  /**
-   * Sets the content of the provided [ComposeView] to one that consumes the lists emitted by [combinedFlow] and displays them.
-   */
-  fun setContent(composeView: ComposeView) {
     composeView.apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
-        val state = combinedFlow.collectAsStateWithLifecycle(initialValue = emptyList())
+        if (banner == null) {
+          onNoBannerShownListener()
+          return@setContent
+        }
 
-        val bannerToDisplay = state.value.firstOrNull()
-        if (bannerToDisplay != null) {
+        val state: State<Any?> = banner.dataFlow.collectAsStateWithLifecycle(initialValue = null)
+        val bannerState by state
+
+        bannerState?.let { model ->
           SignalTheme {
             Box {
-              bannerToDisplay.DisplayBanner(PaddingValues(horizontal = 12.dp, vertical = 8.dp))
+              banner.DisplayBanner(model, PaddingValues(horizontal = 12.dp, vertical = 8.dp))
             }
           }
 
           onNewBannerShownListener()
-        } else {
-          onNoBannerShownListener()
-        }
+        } ?: onNoBannerShownListener()
       }
     }
   }

@@ -16,7 +16,6 @@ import android.view.View
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.transition.addListener
-import kotlinx.coroutines.flow.Flow
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.BannerManager
@@ -58,10 +57,10 @@ class ConversationBannerView @JvmOverloads constructor(
     orientation = VERTICAL
   }
 
-  fun collectAndShowBanners(flows: Iterable<Flow<Banner>>) {
+  fun collectAndShowBanners(flows: List<Banner<*>>) {
     val bannerManager = BannerManager(flows)
     show(stub = bannerStub) {
-      bannerManager.setContent(this)
+      bannerManager.updateContent(this)
     }
   }
 
