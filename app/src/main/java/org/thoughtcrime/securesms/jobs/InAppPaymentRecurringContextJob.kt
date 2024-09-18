@@ -60,6 +60,10 @@ class InAppPaymentRecurringContextJob private constructor(
       )
     }
 
+    /**
+     * Creates a job chain using data from the given InAppPayment. This object is passed by ID to the job,
+     * meaning the job will always load the freshest data it can about the payment.
+     */
     fun createJobChain(inAppPayment: InAppPaymentTable.InAppPayment, makePrimary: Boolean = false): Chain {
       return AppDependencies.jobManager
         .startChain(create(inAppPayment))

@@ -1121,6 +1121,12 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"/>
 
+    <activity android:name=".backup.v2.ui.subscription.MessageBackupsCheckoutActivity"
+            android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:exported="false"/>
+
     <service
         android:enabled="true"
         android:name=".service.webrtc.WebRtcCallService"

@@ -323,12 +323,13 @@ message DonationErrorValue {
 message InAppPaymentData {
 
     enum PaymentMethodType {
-        UNKNOWN    = 0;
-        GOOGLE_PAY = 1;
-        CARD       = 2;
-        SEPA_DEBIT = 3;
-        IDEAL      = 4;
-        PAYPAL     = 5;
+        UNKNOWN             = 0;
+        GOOGLE_PAY          = 1;
+        CARD                = 2;
+        SEPA_DEBIT          = 3;
+        IDEAL               = 4;
+        PAYPAL              = 5;
+        GOOGLE_PLAY_BILLING = 6;
     }
 
     /**
@@ -375,6 +376,7 @@ message InAppPaymentData {
         optional bool   keepAlive                       = 3; // Only present for recurring donations, specifies this redemption started from a keep-alive
         optional bytes  receiptCredentialRequestContext = 4; // Reusable context for retrieving a presentation
         optional bytes  receiptCredentialPresentation   = 5; // Redeemable presentation
+        optional string googlePlayBillingPurchaseToken  = 6; // Only present for backups
     }
 
     message Error {

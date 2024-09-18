@@ -27,6 +27,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.filter
@@ -37,7 +38,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.billing.BillingDependencies
+import org.signal.core.util.billing.BillingProduct
+import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.logging.Log
+import org.signal.core.util.money.FiatMoney
+import java.math.BigDecimal
+import java.util.Currency
 
 /**
  * BillingApi serves as the core location for interacting with the Google Billing API. Use of this API is required
@@ -56,22 +62,78 @@ internal class BillingApiImpl(
   private val connectionState = MutableStateFlow<State>(State.Init)
   private val coroutineScope = CoroutineScope(Dispatchers.Default)
 
+  private val internalResults = MutableSharedFlow<BillingPurchaseResult>()
+
   private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
-    when {
-      billingResult.responseCode == BillingResponseCode.OK && purchases != null -> {
-        Log.d(TAG, "purchasesUpdatedListener: ${purchases.size} purchases.")
-        purchases.forEach {
-          // Handle purchases.
+    val result = when (billingResult.responseCode) {
+      BillingResponseCode.OK -> {
+        if (purchases == null) {
+          Log.d(TAG, "purchasesUpdatedListener: No purchases.")
+          BillingPurchaseResult.None
+        } else {
+          Log.d(TAG, "purchasesUpdatedListener: ${purchases.size} purchases.")
+          val newestPurchase = purchases.maxByOrNull { it.purchaseTime }
+          if (newestPurchase == null) {
+            BillingPurchaseResult.None
+          } else {
+            BillingPurchaseResult.Success(
+              purchaseToken = newestPurchase.purchaseToken,
+              isAcknowledged = newestPurchase.isAcknowledged,
+              purchaseTime = newestPurchase.purchaseTime
+            )
+          }
         }
       }
-      billingResult.responseCode == BillingResponseCode.USER_CANCELED -> {
-        // Handle user cancelled
+      BillingResponseCode.BILLING_UNAVAILABLE -> {
+        Log.d(TAG, "purchasesUpdatedListener: Billing unavailable.")
+        BillingPurchaseResult.BillingUnavailable
+      }
+      BillingResponseCode.USER_CANCELED -> {
         Log.d(TAG, "purchasesUpdatedListener: User cancelled.")
+        BillingPurchaseResult.UserCancelled
+      }
+      BillingResponseCode.ERROR -> {
+        Log.d(TAG, "purchasesUpdatedListener: error.")
+        BillingPurchaseResult.GenericError
+      }
+      BillingResponseCode.NETWORK_ERROR -> {
+        Log.d(TAG, "purchasesUpdatedListener: Network error.")
+        BillingPurchaseResult.NetworkError
+      }
+      BillingResponseCode.DEVELOPER_ERROR -> {
+        Log.d(TAG, "purchasesUpdatedListener: Developer error.")
+        BillingPurchaseResult.GenericError
+      }
+      BillingResponseCode.FEATURE_NOT_SUPPORTED -> {
+        Log.d(TAG, "purchasesUpdatedListener: Feature not supported.")
+        BillingPurchaseResult.FeatureNotSupported
+      }
+      BillingResponseCode.ITEM_ALREADY_OWNED -> {
+        Log.d(TAG, "purchasesUpdatedListener: Already owned.")
+        BillingPurchaseResult.AlreadySubscribed
+      }
+      BillingResponseCode.ITEM_NOT_OWNED -> {
+        error("This shouldn't happen during the purchase process")
+      }
+      BillingResponseCode.ITEM_UNAVAILABLE -> {
+        Log.d(TAG, "purchasesUpdatedListener: Item is unavailable")
+        BillingPurchaseResult.TryAgainLater
+      }
+      BillingResponseCode.SERVICE_UNAVAILABLE -> {
+        Log.d(TAG, "purchasesUpdatedListener: Service is unavailable.")
+        BillingPurchaseResult.TryAgainLater
+      }
+      BillingResponseCode.SERVICE_DISCONNECTED -> {
+        Log.d(TAG, "purchasesUpdatedListener: Service is disconnected.")
+        BillingPurchaseResult.TryAgainLater
       }
       else -> {
         Log.d(TAG, "purchasesUpdatedListener: No purchases.")
+        BillingPurchaseResult.None
       }
     }
+
+    coroutineScope.launch { internalResults.emit(result) }
   }
 
   private val billingClient: BillingClient = BillingClient.newBuilder(billingDependencies.context)
@@ -96,9 +158,24 @@ internal class BillingApiImpl(
     }
   }
 
-  override suspend fun queryProducts() {
+  override fun getBillingPurchaseResults(): Flow<BillingPurchaseResult> {
+    return internalResults
+  }
+
+  override suspend fun queryProduct(): BillingProduct? {
     val products = queryProductsInternal()
-    Log.d(TAG, "Retrieved products with result: $products")
+
+    val details: ProductDetails? = products.productDetailsList?.firstOrNull { it.productId == billingDependencies.getProductId() }
+    val pricing: ProductDetails.PricingPhase? = details?.subscriptionOfferDetails?.firstOrNull()?.pricingPhases?.pricingPhaseList?.firstOrNull()
+
+    if (pricing == null) {
+      Log.d(TAG, "No pricing available.")
+      return null
+    }
+
+    return BillingProduct(
+      price = FiatMoney(BigDecimal.valueOf(pricing.priceAmountMicros, 6), Currency.getInstance(pricing.priceCurrencyCode))
+    )
   }
 
   override suspend fun queryPurchases() {

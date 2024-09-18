@@ -30,11 +30,10 @@ import org.signal.core.ui.Rows
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.signal.core.util.money.FiatMoney
-import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentCheckoutLauncher.createBackupsCheckoutLauncher
+import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -58,7 +57,7 @@ class BackupsTypeSettingsFragment : ComposeFragment() {
     BackupsTypeSettingsViewModel()
   }
 
-  private lateinit var checkoutLauncher: ActivityResultLauncher<InAppPaymentType>
+  private lateinit var checkoutLauncher: ActivityResultLauncher<Unit>
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -92,7 +91,7 @@ class BackupsTypeSettingsFragment : ComposeFragment() {
     }
 
     override fun onChangeOrCancelSubscriptionClick() {
-      checkoutLauncher.launch(InAppPaymentType.RECURRING_BACKUP)
+      checkoutLauncher.launch(Unit)
     }
   }
 
@@ -195,6 +194,7 @@ private fun BackupsTypeRow(
 private fun PaymentSourceRow(paymentSourceType: PaymentSourceType) {
   val paymentSourceTextResId = remember(paymentSourceType) {
     when (paymentSourceType) {
+      is PaymentSourceType.GooglePlayBilling -> R.string.BackupsTypeSettingsFragment__google_play
       is PaymentSourceType.Stripe.CreditCard -> R.string.BackupsTypeSettingsFragment__credit_or_debit_card
       is PaymentSourceType.Stripe.IDEAL -> R.string.BackupsTypeSettingsFragment__iDEAL
       is PaymentSourceType.Stripe.GooglePay -> R.string.BackupsTypeSettingsFragment__google_pay

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig
@@ -25,12 +26,17 @@ object InAppDonations {
   }
 
   fun isPaymentSourceAvailable(paymentSourceType: PaymentSourceType, inAppPaymentType: InAppPaymentType): Boolean {
+    if (inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
+      return paymentSourceType == PaymentSourceType.GooglePlayBilling && AppDependencies.billingApi.isApiAvailable()
+    }
+
     return when (paymentSourceType) {
       PaymentSourceType.PayPal -> isPayPalAvailableForDonateToSignalType(inAppPaymentType)
       PaymentSourceType.Stripe.CreditCard -> isCreditCardAvailable()
       PaymentSourceType.Stripe.GooglePay -> isGooglePayAvailable()
       PaymentSourceType.Stripe.SEPADebit -> isSEPADebitAvailableForDonateToSignalType(inAppPaymentType)
       PaymentSourceType.Stripe.IDEAL -> isIDEALAvailbleForDonateToSignalType(inAppPaymentType)
+      PaymentSourceType.GooglePlayBilling -> false
       PaymentSourceType.Unknown -> false
     }
   }
@@ -40,7 +46,7 @@ object InAppDonations {
       InAppPaymentType.UNKNOWN -> error("Unsupported type UNKNOWN")
       InAppPaymentType.ONE_TIME_DONATION, InAppPaymentType.ONE_TIME_GIFT -> RemoteConfig.paypalOneTimeDonations
       InAppPaymentType.RECURRING_DONATION -> RemoteConfig.paypalRecurringDonations
-      InAppPaymentType.RECURRING_BACKUP -> RemoteConfig.messageBackups && RemoteConfig.paypalRecurringDonations
+      InAppPaymentType.RECURRING_BACKUP -> false
     } && !LocaleRemoteConfig.isPayPalDisabled()
   }
 

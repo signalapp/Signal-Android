@@ -235,6 +235,7 @@ object InAppPaymentsRepository {
    */
   fun PaymentSourceType.toPaymentMethodType(): InAppPaymentData.PaymentMethodType {
     return when (this) {
+      PaymentSourceType.GooglePlayBilling -> InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING
       PaymentSourceType.PayPal -> InAppPaymentData.PaymentMethodType.PAYPAL
       PaymentSourceType.Stripe.CreditCard -> InAppPaymentData.PaymentMethodType.CARD
       PaymentSourceType.Stripe.GooglePay -> InAppPaymentData.PaymentMethodType.GOOGLE_PAY
@@ -255,6 +256,7 @@ object InAppPaymentsRepository {
       InAppPaymentData.PaymentMethodType.IDEAL -> PaymentSourceType.Stripe.IDEAL
       InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> PaymentSourceType.Stripe.SEPADebit
       InAppPaymentData.PaymentMethodType.UNKNOWN -> PaymentSourceType.Unknown
+      InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING -> PaymentSourceType.GooglePlayBilling
     }
   }
 
@@ -571,6 +573,7 @@ object InAppPaymentsRepository {
         InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT
         InAppPaymentData.PaymentMethodType.IDEAL -> PendingOneTimeDonation.PaymentMethodType.IDEAL
         InAppPaymentData.PaymentMethodType.PAYPAL -> PendingOneTimeDonation.PaymentMethodType.PAYPAL
+        InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING -> error("One-time donation do not support purchase via Google Play Billing.")
       },
       amount = data.amount!!,
       badge = data.badge!!,
@@ -661,6 +664,7 @@ object InAppPaymentsRepository {
       InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> DonationProcessor.STRIPE
       InAppPaymentData.PaymentMethodType.IDEAL -> DonationProcessor.STRIPE
       InAppPaymentData.PaymentMethodType.PAYPAL -> DonationProcessor.PAYPAL
+      InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING -> error("Google Play Billing does not support donation payments.")
     }
   }
 

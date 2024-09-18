@@ -28,7 +28,6 @@ dependencyResolutionManagement {
       // Compose
       library("androidx-compose-bom", "androidx.compose:compose-bom:2024.09.00")
       library("androidx-compose-material3", "androidx.compose.material3", "material3").withoutVersion()
-      library("androidx-compose-material-navigation", "androidx.compose.material", "material-navigation").withoutVersion()
       library("androidx-compose-ui-tooling-preview", "androidx.compose.ui", "ui-tooling-preview").withoutVersion()
       library("androidx-compose-ui-tooling-core", "androidx.compose.ui", "ui-tooling").withoutVersion()
       library("androidx-compose-ui-test-manifest", "androidx.compose.ui", "ui-test-manifest").withoutVersion()

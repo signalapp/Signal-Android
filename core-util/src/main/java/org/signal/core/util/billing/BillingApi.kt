@@ -6,13 +6,22 @@
 package org.signal.core.util.billing
 
 import android.app.Activity
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 
 /**
  * Variant interface for the BillingApi.
  */
 interface BillingApi {
+  /**
+   * Listenable stream of billing purchase results. It's up to the user
+   * to call queryPurchases after subscription.
+   */
+  fun getBillingPurchaseResults(): Flow<BillingPurchaseResult> = emptyFlow()
+
   fun isApiAvailable(): Boolean = false
-  suspend fun queryProducts() = Unit
+
+  suspend fun queryProduct(): BillingProduct? = null
 
   /**
    * Queries the user's current purchases. This enqueues a check and will

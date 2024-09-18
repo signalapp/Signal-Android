@@ -52,13 +52,13 @@ object Scaffolds {
       snackbarHost = snackbarHost,
       topBar = {
         DefaultTopAppBar(
-          title,
-          titleContent,
-          scrollBehavior,
-          onNavigationClick,
-          navigationIconPainter,
-          navigationContentDescription,
-          actions
+          title = title,
+          titleContent = titleContent,
+          onNavigationClick = onNavigationClick,
+          navigationIconPainter = navigationIconPainter,
+          navigationContentDescription = navigationContentDescription,
+          actions = actions,
+          scrollBehavior = scrollBehavior
         )
       },
       modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -67,14 +67,14 @@ object Scaffolds {
   }
 
   @Composable
-  private fun DefaultTopAppBar(
+  fun DefaultTopAppBar(
     title: String,
     titleContent: @Composable (Float, String) -> Unit,
-    scrollBehavior: TopAppBarScrollBehavior,
     onNavigationClick: () -> Unit,
     navigationIconPainter: Painter,
-    navigationContentDescription: String?,
-    actions: @Composable RowScope.() -> Unit
+    navigationContentDescription: String? = null,
+    actions: @Composable RowScope.() -> Unit = {},
+    scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
   ) {
     TopAppBar(
       title = {

@@ -62,13 +62,12 @@ import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.Snackbars
 import org.signal.core.ui.Texts
 import org.signal.core.util.money.FiatMoney
-import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.chats.backups.type.BackupsTypeSettingsFragment
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentCheckoutLauncher.createBackupsCheckoutLauncher
+import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
@@ -92,7 +91,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
 
   private val args: RemoteBackupsSettingsFragmentArgs by navArgs()
 
-  private lateinit var checkoutLauncher: ActivityResultLauncher<InAppPaymentType>
+  private lateinit var checkoutLauncher: ActivityResultLauncher<Unit>
 
   @Composable
   override fun FragmentContent() {
@@ -119,7 +118,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onEnableBackupsClick() {
-      checkoutLauncher.launch(InAppPaymentType.RECURRING_BACKUP)
+      checkoutLauncher.launch(Unit)
     }
 
     override fun onBackUpUsingCellularClick(canUseCellular: Boolean) {

@@ -22,7 +22,6 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -71,8 +70,7 @@ fun MessageBackupsTypeSelectionScreen(
   onMessageBackupsTierSelected: (MessageBackupTier) -> Unit,
   onNavigationClick: () -> Unit,
   onReadMoreClicked: () -> Unit,
-  onNextClicked: () -> Unit,
-  onCancelSubscriptionClicked: () -> Unit
+  onNextClicked: () -> Unit
 ) {
   Scaffolds.Settings(
     title = "",
@@ -170,17 +168,6 @@ fun MessageBackupsTypeSelectionScreen(
           )
         )
       }
-
-      if (hasCurrentBackupTier) {
-        TextButton(
-          onClick = onCancelSubscriptionClicked,
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 14.dp)
-        ) {
-          Text(text = stringResource(id = R.string.MessageBackupsTypeSelectionScreen__cancel_subscription))
-        }
-      }
     }
   }
 }
@@ -198,7 +185,6 @@ private fun MessageBackupsTypeSelectionScreenPreview() {
       onNavigationClick = {},
       onReadMoreClicked = {},
       onNextClicked = {},
-      onCancelSubscriptionClicked = {},
       currentBackupTier = null
     )
   }
@@ -217,7 +203,6 @@ private fun MessageBackupsTypeSelectionScreenWithCurrentTierPreview() {
       onNavigationClick = {},
       onReadMoreClicked = {},
       onNextClicked = {},
-      onCancelSubscriptionClicked = {},
       currentBackupTier = MessageBackupTier.PAID
     )
   }

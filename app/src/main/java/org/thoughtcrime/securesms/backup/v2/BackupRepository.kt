@@ -15,7 +15,6 @@ import org.signal.core.util.concurrent.LimitedWorker
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.fullWalCheckpoint
 import org.signal.core.util.logging.Log
-import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.messagebackup.MessageBackup
@@ -82,7 +81,6 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.time.ZonedDateTime
-import java.util.Currency
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.time.Duration.Companion.milliseconds
@@ -883,10 +881,9 @@ object BackupRepository {
   }
 
   suspend fun getBackupsType(tier: MessageBackupTier): MessageBackupsType {
-    val backupCurrency = SignalStore.inAppPayments.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.BACKUP)
     return when (tier) {
       MessageBackupTier.FREE -> getFreeType()
-      MessageBackupTier.PAID -> getPaidType(backupCurrency)
+      MessageBackupTier.PAID -> getPaidType()
     }
   }
 
@@ -898,11 +895,12 @@ object BackupRepository {
     )
   }
 
-  private suspend fun getPaidType(currency: Currency): MessageBackupsType {
+  private suspend fun getPaidType(): MessageBackupsType {
     val config = getSubscriptionsConfiguration()
+    val product = AppDependencies.billingApi.queryProduct()
 
     return MessageBackupsType.Paid(
-      pricePerMonth = FiatMoney(config.currencies[currency.currencyCode.lowercase()]!!.backupSubscription[SubscriptionsConfiguration.BACKUPS_LEVEL]!!, currency),
+      pricePerMonth = product!!.price,
       storageAllowanceBytes = config.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL]!!.storageAllowanceBytes
     )
   }

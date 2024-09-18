@@ -32,13 +32,12 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.Icons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
-import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeBlock
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.testBackupTypes
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentCheckoutLauncher.createBackupsCheckoutLauncher
+import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 
 /**
@@ -50,7 +49,7 @@ class UpgradeToEnableOptimizedStorageSheet : ComposeBottomSheetDialogFragment() 
 
   private val viewModel: UpgradeToEnableOptimizedStorageViewModel by viewModels()
 
-  private lateinit var checkoutLauncher: ActivityResultLauncher<InAppPaymentType>
+  private lateinit var checkoutLauncher: ActivityResultLauncher<Unit>
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -63,7 +62,7 @@ class UpgradeToEnableOptimizedStorageSheet : ComposeBottomSheetDialogFragment() 
     UpgradeToEnableOptimizedStorageSheetContent(
       messageBackupsType = type,
       onUpgradeNowClick = {
-        checkoutLauncher.launch(InAppPaymentType.RECURRING_BACKUP)
+        checkoutLauncher.launch(Unit)
         dismissAllowingStateLoss()
       },
       onCancelClick = {

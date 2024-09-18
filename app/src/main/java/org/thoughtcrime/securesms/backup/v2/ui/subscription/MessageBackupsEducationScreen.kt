@@ -49,7 +49,7 @@ fun MessageBackupsEducationScreen(
   Scaffolds.Settings(
     onNavigationClick = onNavigationClick,
     navigationIconPainter = painterResource(id = R.drawable.symbol_x_24),
-    title = stringResource(id = R.string.RemoteBackupsSettingsFragment__signal_backups)
+    title = ""
   ) {
     Column(
       modifier = Modifier
