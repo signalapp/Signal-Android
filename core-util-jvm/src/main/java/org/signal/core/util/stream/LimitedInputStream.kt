@@ -5,6 +5,7 @@
 
 package org.signal.core.util.stream
 
+import org.signal.core.util.logging.Log
 import java.io.FilterInputStream
 import java.io.InputStream
 import java.lang.UnsupportedOperationException
@@ -23,6 +24,8 @@ class LimitedInputStream(private val wrapped: InputStream, private val maxBytes:
   companion object {
 
     private const val UNLIMITED = -1L
+
+    private val TAG = Log.tag(LimitedInputStream::class)
 
     /**
      * Returns a [LimitedInputStream] that doesn't limit the stream at all -- it'll allow reading the full thing.
@@ -143,7 +146,7 @@ class LimitedInputStream(private val wrapped: InputStream, private val maxBytes:
     }
 
     if (totalBytesRead < maxBytes) {
-      throw IllegalStateException("Stream has not been fully read")
+      Log.w(TAG, "Reading leftover stream when the stream has not been fully read! maxBytes is $maxBytes, but we've only read $totalBytesRead")
     }
 
     return wrapped

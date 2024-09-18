@@ -96,12 +96,6 @@ class LimitedInputStreamTest {
     assertEquals(25, truncatedBytes.size)
   }
 
-  @Test(expected = IllegalStateException::class)
-  fun `if I have not finished reading the stream, leftoverStream throws IllegalStateException`() {
-    val inputStream = LimitedInputStream(ByteArray(100).inputStream(), maxBytes = 75)
-    inputStream.leftoverStream()
-  }
-
   @Test
   fun `when call leftoverStream on a stream with no limit, it returns an empty array`() {
     val inputStream = LimitedInputStream.withoutLimits(ByteArray(100).inputStream())
