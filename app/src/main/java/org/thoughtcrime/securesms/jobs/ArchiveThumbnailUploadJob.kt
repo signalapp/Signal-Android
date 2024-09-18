@@ -131,7 +131,6 @@ class ArchiveThumbnailUploadJob private constructor(
         val archiveMediaId = attachment.archiveMediaId ?: backupKey.deriveMediaId(attachment.getMediaName()).encode()
         SignalDatabase.attachments.finalizeAttachmentThumbnailAfterUpload(attachmentId, archiveMediaId, mediaSecrets.id, thumbnailResult.data)
 
-        Log.i(RestoreAttachmentJob.TAG, "Restore: Thumbnail mediaId=${mediaSecrets.id.encode()} backupDir=${backupDirectories.backupDir} mediaDir=${backupDirectories.mediaDir}")
         Log.d(TAG, "Successfully archived thumbnail for $attachmentId mediaName=${attachment.getThumbnailMediaName()}")
         Result.success()
       }

@@ -218,6 +218,7 @@ public class PartAuthority {
     int match = uriMatcher.match(uri);
     switch (match) {
     case PART_ROW:
+    case THUMBNAIL_ROW:
     case PERSISTENT_ROW:
     case BLOB_ROW:
       return true;
@@ -226,7 +227,8 @@ public class PartAuthority {
   }
 
   public static boolean isAttachmentUri(@NonNull Uri uri) {
-    return uriMatcher.match(uri) == PART_ROW;
+    int match = uriMatcher.match(uri);
+    return match == PART_ROW || match == THUMBNAIL_ROW;
   }
 
   public static @NonNull AttachmentId requireAttachmentId(@NonNull Uri uri) {

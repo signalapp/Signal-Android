@@ -70,7 +70,7 @@ object MediaIntentFactory {
       MediaPreviewArgs(
         threadId = mediaRecord.threadId,
         date = mediaRecord.date,
-        initialMediaUri = attachment.uri!!,
+        initialMediaUri = attachment.displayUri!!,
         initialMediaType = attachment.contentType,
         initialMediaSize = attachment.size,
         initialCaption = attachment.caption,

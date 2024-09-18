@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MediaUtil.SlideType
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 @SuppressLint("RecipientIdDatabaseReferenceUsage", "ThreadIdDatabaseReferenceUsage") // Not a real table, just a view
 class MediaTable internal constructor(context: Context?, databaseHelper: SignalDatabase?) : DatabaseTable(context, databaseHelper) {
@@ -111,16 +110,6 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     private val GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS = String.format(
       BASE_MEDIA_QUERY,
       """
-        (${AttachmentTable.DATA_FILE} IS NOT NULL OR (${AttachmentTable.CONTENT_TYPE} LIKE 'video/%' AND ${AttachmentTable.REMOTE_INCREMENTAL_DIGEST} IS NOT NULL)) AND
-        ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND 
-        (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%') AND
-        ${MessageTable.LINK_PREVIEWS} IS NULL
-      """
-    )
-
-    private val GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS_AND_THUMBNAILS = String.format(
-      BASE_MEDIA_QUERY,
-      """
         (${AttachmentTable.DATA_FILE} IS NOT NULL OR (${AttachmentTable.CONTENT_TYPE} LIKE 'video/%' AND ${AttachmentTable.REMOTE_INCREMENTAL_DIGEST} IS NOT NULL) OR (${AttachmentTable.THUMBNAIL_FILE} IS NOT NULL)) AND
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND 
         (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%') AND
@@ -167,11 +156,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   @JvmOverloads
   fun getGalleryMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0): Cursor {
-    var query = if (RemoteConfig.messageBackups) {
-      sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS_AND_THUMBNAILS))
-    } else {
-      sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS))
-    }
+    var query = sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS))
     val args = arrayOf(threadId.toString() + "")
 
     if (limit > 0) {

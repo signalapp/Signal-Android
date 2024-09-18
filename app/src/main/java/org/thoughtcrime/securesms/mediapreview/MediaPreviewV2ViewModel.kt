@@ -68,6 +68,17 @@ class MediaPreviewV2ViewModel : ViewModel() {
     }
   }
 
+  fun refetchAttachments(context: Context, startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting) {
+    val state = store.state
+    val currentAttachmentId = if (state.position in state.mediaRecords.indices) {
+      state.mediaRecords[state.position].attachment?.attachmentId
+    } else {
+      null
+    }
+
+    fetchAttachments(context, currentAttachmentId ?: startingAttachmentId, threadId, sorting, true)
+  }
+
   fun initialize(showThread: Boolean, allMediaInAlbumRail: Boolean, leftIsRecent: Boolean) {
     if (store.state.loadState == MediaPreviewV2State.LoadState.INIT) {
       store.update { oldState ->

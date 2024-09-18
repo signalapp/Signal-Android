@@ -151,7 +151,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     val startingAttachmentId = PartAuthority.requireAttachmentId(args.initialMediaUri)
     val threadId = args.threadId
     viewModel.fetchAttachments(requireContext(), startingAttachmentId, threadId, sorting)
-    val dbObserver = DatabaseObserver.Observer { viewModel.fetchAttachments(requireContext(), startingAttachmentId, threadId, sorting, true) }
+    val dbObserver = DatabaseObserver.Observer { viewModel.refetchAttachments(requireContext(), startingAttachmentId, threadId, sorting) }
     AppDependencies.databaseObserver.registerAttachmentUpdatedObserver(dbObserver)
     this.dbChangeObserver = dbObserver
   }

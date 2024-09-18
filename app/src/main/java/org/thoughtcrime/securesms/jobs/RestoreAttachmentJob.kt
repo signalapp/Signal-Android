@@ -48,7 +48,7 @@ class RestoreAttachmentJob private constructor(
 
   companion object {
     const val KEY = "RestoreAttachmentJob"
-    val TAG = Log.tag(RestoreAttachmentJob::class.java)
+    private val TAG = Log.tag(RestoreAttachmentJob::class.java)
 
     @JvmStatic
     fun constructQueueString(): String {
