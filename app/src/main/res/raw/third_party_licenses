@@ -356,7 +356,6 @@ The following dependencies are licensed under The MIT License:
 * mockito-android (https://github.com/mockito/mockito)
 * mockito-core (https://github.com/mockito/mockito)
 * mockito-inline (https://github.com/mockito/mockito)
-* multidex (http://robolectric.org)
 * nativeruntime (http://robolectric.org)
 * pluginapi (http://robolectric.org)
 * reflector (http://robolectric.org)
