@@ -68,7 +68,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         $REVOKED INTEGER NOT NULL,
         $EXPIRATION INTEGER NOT NULL,
         $RECIPIENT_ID INTEGER UNIQUE REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
-        $DELETION_TIMESTAMP INTEGER NOT NULL
+        $DELETION_TIMESTAMP INTEGER DEFAULT 0 NOT NULL
       )
     """
 
