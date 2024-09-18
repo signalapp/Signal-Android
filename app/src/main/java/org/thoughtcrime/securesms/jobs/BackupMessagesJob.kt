@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.BackupV2Event
@@ -64,11 +65,17 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
   override fun onFailure() = Unit
 
   override fun run(): Result {
+    val stopwatch = Stopwatch("BackupMessagesJob")
+
+    SignalDatabase.attachments.createKeyIvDigestForAttachmentsThatNeedArchiveUpload().takeIf { it > 0 }?.let { count -> Log.w(TAG, "Needed to create $count key/iv/digests.") }
+    stopwatch.split("key-iv-digest")
+
     EventBus.getDefault().postSticky(BackupV2Event(type = BackupV2Event.Type.PROGRESS_MESSAGES, count = 0, estimatedTotalCount = 0))
     val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
 
     val outputStream = FileOutputStream(tempBackupFile)
     BackupRepository.export(outputStream = outputStream, append = { tempBackupFile.appendBytes(it) }, plaintext = false)
+    stopwatch.split("export")
 
     FileInputStream(tempBackupFile).use {
       when (val result = BackupRepository.uploadBackupFile(it, tempBackupFile.length())) {
@@ -78,6 +85,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
         is NetworkResult.ApplicationError -> throw result.throwable
       }
     }
+    stopwatch.split("upload")
 
     SignalStore.backup.lastBackupProtoSize = tempBackupFile.length()
     if (!tempBackupFile.delete()) {
@@ -94,6 +102,8 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
       }
       is NetworkResult.ApplicationError -> throw result.throwable
     }
+    stopwatch.split("used-space")
+    stopwatch.stop(TAG)
 
     if (SignalDatabase.attachments.doAnyAttachmentsNeedArchiveUpload()) {
       Log.i(TAG, "Enqueuing attachment backfill job.")

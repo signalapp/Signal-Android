@@ -50,7 +50,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob;
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
-import org.thoughtcrime.securesms.jobs.AttachmentMarkUploadedJob;
+import org.thoughtcrime.securesms.jobs.MarkNoteToSelfAttachmentUploadedJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.IndividualSendJob;
 import org.thoughtcrime.securesms.jobs.ProfileKeySendJob;
@@ -643,9 +643,9 @@ public class MessageSender {
                                                              .map(a -> AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
                                                              .toList();
 
-      List<AttachmentMarkUploadedJob> fakeUploadJobs = Stream.of(attachments)
-                                                             .map(a -> new AttachmentMarkUploadedJob(messageId, ((DatabaseAttachment) a).attachmentId))
-                                                             .toList();
+      List<MarkNoteToSelfAttachmentUploadedJob> fakeUploadJobs = Stream.of(attachments)
+                                                                       .map(a -> new MarkNoteToSelfAttachmentUploadedJob(messageId, ((DatabaseAttachment) a).attachmentId))
+                                                                       .toList();
 
       AppDependencies.getJobManager().startChain(compressionJobs)
                      .then(fakeUploadJobs)

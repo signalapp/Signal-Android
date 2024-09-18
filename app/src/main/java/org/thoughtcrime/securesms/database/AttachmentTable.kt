@@ -540,6 +540,54 @@ class AttachmentTable(
   }
 
   /**
+   * At archive creation time, we need to ensure that all relevant attachments have populated (key, iv, digest) tuples.
+   * This does that.
+   */
+  fun createKeyIvDigestForAttachmentsThatNeedArchiveUpload(): Int {
+    var count = 0
+
+    writableDatabase.select(ID, REMOTE_KEY, REMOTE_IV, REMOTE_DIGEST, DATA_FILE, DATA_RANDOM)
+      .from(TABLE_NAME)
+      .where(
+        """
+        $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.NONE.value} AND
+        $DATA_FILE NOT NULL AND
+        $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
+        (
+          $REMOTE_KEY IS NULL OR
+          $REMOTE_IV IS NULL OR
+          $REMOTE_DIGEST IS NULL
+        )
+        """
+      )
+      .run()
+      .forEach { cursor ->
+        val attachmentId = AttachmentId(cursor.requireLong(ID))
+        Log.w(TAG, "[createKeyIvDigestForAttachmentsThatNeedArchiveUpload][$attachmentId] Missing key, iv, or digest. Generating.")
+
+        val key = cursor.requireString(REMOTE_KEY)?.let { Base64.decode(it) } ?: Util.getSecretBytes(64)
+        val iv = cursor.requireBlob(REMOTE_IV) ?: Util.getSecretBytes(16)
+        val digest = run {
+          val fileInfo = getDataFileInfo(attachmentId)!!
+          calculateDigest(fileInfo, key, iv)
+        }
+
+        writableDatabase.update(TABLE_NAME)
+          .values(
+            REMOTE_KEY to Base64.encodeWithPadding(key),
+            REMOTE_IV to iv,
+            REMOTE_DIGEST to digest
+          )
+          .where("$ID = ?", attachmentId.id)
+          .run()
+
+        count++
+      }
+
+    return count
+  }
+
+  /**
    * Similar to [getAttachmentsThatNeedArchiveUpload], but returns if the list would be non-null in a more efficient way.
    */
   fun doAnyAttachmentsNeedArchiveUpload(): Boolean {
@@ -928,7 +976,7 @@ class AttachmentTable(
    * @return True if we had to change the digest as part of saving the file, otherwise false.
    */
   @Throws(MmsException::class)
-  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: LimitedInputStream, iv: ByteArray?): Boolean {
+  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: LimitedInputStream, iv: ByteArray): Boolean {
     Log.i(TAG, "[finalizeAttachmentAfterDownload] Finalizing downloaded data for $attachmentId. (MessageId: $mmsId, $attachmentId)")
 
     val existingPlaceholder: DatabaseAttachment = getAttachment(attachmentId) ?: throw MmsException("No attachment found for id: $attachmentId")
@@ -947,12 +995,8 @@ class AttachmentTable(
     } else {
       Log.w(TAG, "[finalizeAttachmentAfterDownload] $attachmentId has non-zero padding bytes. Recomputing digest.")
 
-      val stream = PaddingInputStream(getDataStream(fileWriteResult.file, fileWriteResult.random, 0), fileWriteResult.length)
       val key = Base64.decode(existingPlaceholder.remoteKey!!)
-      val cipherOutputStream = AttachmentCipherOutputStream(key, iv, NullOutputStream)
-
-      StreamUtil.copy(stream, cipherOutputStream)
-      cipherOutputStream.transmittedDigest
+      calculateDigest(fileWriteResult, key, iv)
     }
 
     val digestChanged = !digest.contentEquals(existingPlaceholder.remoteDigest)
@@ -1606,6 +1650,37 @@ class AttachmentTable(
     notifyConversationListeners(threadId)
   }
 
+  /**
+   * This will ensure that a (key/iv/digest) tuple exists for an attachment, filling each one if necessary.
+   */
+  @Throws(IOException::class)
+  fun createKeyIvDigestIfNecessary(attachment: DatabaseAttachment) {
+    if (attachment.remoteKey != null && attachment.remoteIv != null && attachment.remoteDigest != null) {
+      return
+    }
+
+    val attachmentId = attachment.attachmentId
+
+    Log.w(TAG, "[createKeyIvDigestIfNecessary][$attachmentId] Missing one of (key, iv, digest). Filling in the gaps.")
+
+    val key = attachment.remoteKey?.let { Base64.decode(it) } ?: Util.getSecretBytes(64)
+    val iv = attachment.remoteIv ?: Util.getSecretBytes(16)
+    val digest: ByteArray = run {
+      val fileInfo = getDataFileInfo(attachmentId) ?: throw IOException("No data file found for $attachmentId!")
+      calculateDigest(fileInfo, key, iv)
+    }
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        REMOTE_KEY to Base64.encodeWithPadding(key),
+        REMOTE_IV to iv,
+        REMOTE_DIGEST to digest
+      )
+      .where("$ID = ?", attachmentId.id)
+      .run()
+  }
+
   fun getAttachments(cursor: Cursor): List<DatabaseAttachment> {
     return try {
       if (cursor.getColumnIndex(ATTACHMENT_JSON_ALIAS) != -1) {
@@ -1773,6 +1848,22 @@ class AttachmentTable(
       )
       .where("$ARCHIVE_CDN > 0 OR $ARCHIVE_MEDIA_ID IS NOT NULL OR $ARCHIVE_MEDIA_NAME IS NOT NULL")
       .run()
+  }
+
+  private fun calculateDigest(fileInfo: DataFileWriteResult, key: ByteArray, iv: ByteArray): ByteArray {
+    return calculateDigest(file = fileInfo.file, random = fileInfo.random, length = fileInfo.length, key = key, iv = iv)
+  }
+
+  private fun calculateDigest(fileInfo: DataFileInfo, key: ByteArray, iv: ByteArray): ByteArray {
+    return calculateDigest(file = fileInfo.file, random = fileInfo.random, length = fileInfo.length, key = key, iv = iv)
+  }
+
+  private fun calculateDigest(file: File, random: ByteArray, length: Long, key: ByteArray, iv: ByteArray): ByteArray {
+    val stream = PaddingInputStream(getDataStream(file, random, 0), length)
+    val cipherOutputStream = AttachmentCipherOutputStream(key, iv, NullOutputStream)
+
+    StreamUtil.copy(stream, cipherOutputStream)
+    return cipherOutputStream.transmittedDigest
   }
 
   /**

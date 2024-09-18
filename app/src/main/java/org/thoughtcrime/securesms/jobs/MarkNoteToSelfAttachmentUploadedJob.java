@@ -11,18 +11,18 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Only marks an attachment as uploaded.
+ * Marks a note to self attachment (that didn't need to be uploaded, because there's no linked devices) as being uploaded for UX purposes.
+ * Also generates a key/iv/digest that otherwise wouldn't exist due to the lack of upload.
  */
-public final class AttachmentMarkUploadedJob extends BaseJob {
+public final class MarkNoteToSelfAttachmentUploadedJob extends BaseJob {
 
   public static final String KEY = "AttachmentMarkUploadedJob";
 
   @SuppressWarnings("unused")
-  private static final String TAG = Log.tag(AttachmentMarkUploadedJob.class);
+  private static final String TAG = Log.tag(MarkNoteToSelfAttachmentUploadedJob.class);
 
   private static final String KEY_ATTACHMENT_ID = "row_id";
   private static final String KEY_MESSAGE_ID    = "message_id";
@@ -30,7 +30,7 @@ public final class AttachmentMarkUploadedJob extends BaseJob {
   private final AttachmentId attachmentId;
   private final long         messageId;
 
-  public AttachmentMarkUploadedJob(long messageId, @NonNull AttachmentId attachmentId) {
+  public MarkNoteToSelfAttachmentUploadedJob(long messageId, @NonNull AttachmentId attachmentId) {
     this(new Parameters.Builder()
                        .setLifespan(TimeUnit.DAYS.toMillis(1))
                        .setMaxAttempts(Parameters.UNLIMITED)
@@ -39,7 +39,7 @@ public final class AttachmentMarkUploadedJob extends BaseJob {
          attachmentId);
   }
 
-  private AttachmentMarkUploadedJob(@NonNull Parameters parameters, long messageId, @NonNull AttachmentId attachmentId) {
+  private MarkNoteToSelfAttachmentUploadedJob(@NonNull Parameters parameters, long messageId, @NonNull AttachmentId attachmentId) {
     super(parameters);
     this.attachmentId = attachmentId;
     this.messageId    = messageId;
@@ -59,14 +59,14 @@ public final class AttachmentMarkUploadedJob extends BaseJob {
 
   @Override
   public void onRun() throws Exception {
-    AttachmentTable    database           = SignalDatabase.attachments();
-    DatabaseAttachment databaseAttachment = database.getAttachment(attachmentId);
+    DatabaseAttachment databaseAttachment = SignalDatabase.attachments().getAttachment(attachmentId);
 
     if (databaseAttachment == null) {
       throw new InvalidAttachmentException("Cannot find the specified attachment.");
     }
 
-    database.markAttachmentUploaded(messageId, databaseAttachment);
+    SignalDatabase.attachments().markAttachmentUploaded(messageId, databaseAttachment);
+    SignalDatabase.attachments().createKeyIvDigestIfNecessary(databaseAttachment);
   }
 
   @Override
@@ -75,7 +75,7 @@ public final class AttachmentMarkUploadedJob extends BaseJob {
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception exception) {
-    return exception instanceof IOException;
+    return false;
   }
 
   private class InvalidAttachmentException extends Exception {
@@ -84,14 +84,14 @@ public final class AttachmentMarkUploadedJob extends BaseJob {
     }
   }
 
-  public static final class Factory implements Job.Factory<AttachmentMarkUploadedJob> {
+  public static final class Factory implements Job.Factory<MarkNoteToSelfAttachmentUploadedJob> {
     @Override
-    public @NonNull AttachmentMarkUploadedJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+    public @NonNull MarkNoteToSelfAttachmentUploadedJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       JsonJobData data = JsonJobData.deserialize(serializedData);
 
-      return new AttachmentMarkUploadedJob(parameters,
-                                           data.getLong(KEY_MESSAGE_ID),
-                                           new AttachmentId(data.getLong(KEY_ATTACHMENT_ID)));
+      return new MarkNoteToSelfAttachmentUploadedJob(parameters,
+                                                     data.getLong(KEY_MESSAGE_ID),
+                                                     new AttachmentId(data.getLong(KEY_ATTACHMENT_ID)));
     }
   }
 }

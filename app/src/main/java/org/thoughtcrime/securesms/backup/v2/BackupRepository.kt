@@ -73,8 +73,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.Pro
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
+import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
-import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
@@ -606,27 +606,30 @@ object BackupRepository {
   }
 
   /**
-   * Retrieves an upload spec that can be used to upload attachment media.
+   * Retrieves an [AttachmentUploadForm] that can be used to upload an attachment to the transit cdn.
+   * To continue the upload, use [org.whispersystems.signalservice.api.attachment.AttachmentApi.getResumableUploadSpec].
+   *
+   * It's important to note that in order to get this to the archive cdn, you still need to use [copyAttachmentToArchive].
    */
-  fun getMediaUploadSpec(secretKey: ByteArray? = null): NetworkResult<ResumableUploadSpec> {
+  fun getAttachmentUploadForm(): NetworkResult<AttachmentUploadForm> {
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
         SignalNetwork.archive.getMediaUploadForm(backupKey, SignalStore.account.requireAci(), credential)
       }
-      .then { form ->
-        SignalNetwork.archive.getResumableUploadSpec(form, secretKey)
-      }
   }
 
-  fun archiveThumbnail(thumbnailAttachment: Attachment, parentAttachment: DatabaseAttachment): NetworkResult<ArchiveMediaResponse> {
+  /**
+   * Copies a thumbnail that has been uploaded to the transit cdn to the archive cdn.
+   */
+  fun copyThumbnailToArchive(thumbnailAttachment: Attachment, parentAttachment: DatabaseAttachment): NetworkResult<ArchiveMediaResponse> {
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
     val request = thumbnailAttachment.toArchiveMediaRequest(parentAttachment.getThumbnailMediaName(), backupKey)
 
     return initBackupAndFetchAuth(backupKey)
       .then { credential ->
-        SignalNetwork.archive.archiveAttachmentMedia(
+        SignalNetwork.archive.copyAttachmentToArchive(
           backupKey = backupKey,
           aci = SignalStore.account.requireAci(),
           serviceCredential = credential,
@@ -635,7 +638,10 @@ object BackupRepository {
       }
   }
 
-  fun archiveMedia(attachment: DatabaseAttachment): NetworkResult<Unit> {
+  /**
+   * Copies an attachment that has been uploaded to the transit cdn to the archive cdn.
+   */
+  fun copyAttachmentToArchive(attachment: DatabaseAttachment): NetworkResult<Unit> {
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
 
     return initBackupAndFetchAuth(backupKey)
@@ -643,7 +649,7 @@ object BackupRepository {
         val mediaName = attachment.getMediaName()
         val request = attachment.toArchiveMediaRequest(mediaName, backupKey)
         SignalNetwork.archive
-          .archiveAttachmentMedia(
+          .copyAttachmentToArchive(
             backupKey = backupKey,
             aci = SignalStore.account.requireAci(),
             serviceCredential = credential,
@@ -658,7 +664,7 @@ object BackupRepository {
       .also { Log.i(TAG, "archiveMediaResult: $it") }
   }
 
-  fun archiveMedia(databaseAttachments: List<DatabaseAttachment>): NetworkResult<BatchArchiveMediaResult> {
+  fun copyAttachmentToArchive(databaseAttachments: List<DatabaseAttachment>): NetworkResult<BatchArchiveMediaResult> {
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
 
     return initBackupAndFetchAuth(backupKey)
@@ -676,7 +682,7 @@ object BackupRepository {
         }
 
         SignalNetwork.archive
-          .archiveAttachmentMedia(
+          .copyAttachmentToArchive(
             backupKey = backupKey,
             aci = SignalStore.account.requireAci(),
             serviceCredential = credential,

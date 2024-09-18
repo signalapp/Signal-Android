@@ -408,7 +408,7 @@ class AttachmentDownloadJob private constructor(
             messageId,
             attachmentId,
             LimitedInputStream.withoutLimits((body.source() as Source).buffer().inputStream()),
-            iv = updatedAttachment.remoteIv
+            iv = updatedAttachment.remoteIv!!
           )
         }
       }

@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -100,6 +101,12 @@ class UploadAttachmentToArchiveJob private constructor(
       return Result.success()
     }
 
+    if (attachment.remoteKey == null || attachment.remoteIv == null) {
+      Log.w(TAG, "[$attachmentId] Attachment is missing remote key or IV! Cannot upload.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.failure()
+    }
+
     if (uploadSpec != null && System.currentTimeMillis() > uploadSpec!!.timeout) {
       Log.w(TAG, "[$attachmentId] Upload spec expired! Clearing.")
       uploadSpec = null
@@ -108,7 +115,7 @@ class UploadAttachmentToArchiveJob private constructor(
     if (uploadSpec == null) {
       Log.d(TAG, "[$attachmentId] Need an upload spec. Fetching...")
 
-      val (spec, result) = fetchResumableUploadSpec()
+      val (spec, result) = fetchResumableUploadSpec(key = Base64.decode(attachment.remoteKey), iv = attachment.remoteIv)
       if (result != null) {
         return result
       }
@@ -154,15 +161,19 @@ class UploadAttachmentToArchiveJob private constructor(
 
   override fun onFailure() = Unit
 
-  private fun fetchResumableUploadSpec(): Pair<ResumableUpload?, Result?> {
-    return when (val spec = BackupRepository.getMediaUploadSpec()) {
+  private fun fetchResumableUploadSpec(key: ByteArray, iv: ByteArray): Pair<ResumableUpload?, Result?> {
+    val uploadSpec = BackupRepository
+      .getAttachmentUploadForm()
+      .then { form -> SignalNetwork.attachments.getResumableUploadSpec(key, iv, form) }
+
+    return when (uploadSpec) {
       is NetworkResult.Success -> {
         Log.d(TAG, "[$attachmentId] Got an upload spec!")
-        spec.result.toProto() to null
+        uploadSpec.result.toProto() to null
       }
 
       is NetworkResult.ApplicationError -> {
-        Log.w(TAG, "[$attachmentId] Failed to get an upload spec due to an application error. Retrying.", spec.throwable)
+        Log.w(TAG, "[$attachmentId] Failed to get an upload spec due to an application error. Retrying.", uploadSpec.throwable)
         return null to Result.retry(defaultBackoff())
       }
 
@@ -172,9 +183,9 @@ class UploadAttachmentToArchiveJob private constructor(
       }
 
       is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "[$attachmentId] Failed request with status code ${spec.code}")
+        Log.w(TAG, "[$attachmentId] Failed request with status code ${uploadSpec.code}")
 
-        when (ArchiveMediaUploadFormStatusCodes.from(spec.code)) {
+        when (ArchiveMediaUploadFormStatusCodes.from(uploadSpec.code)) {
           ArchiveMediaUploadFormStatusCodes.BadArguments,
           ArchiveMediaUploadFormStatusCodes.InvalidPresentationOrSignature,
           ArchiveMediaUploadFormStatusCodes.InsufficientPermissions,

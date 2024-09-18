@@ -42,6 +42,8 @@ class ArchiveAttachmentBackfillJob private constructor(parameters: Parameters) :
     val jobs = SignalDatabase.attachments.getAttachmentsThatNeedArchiveUpload()
       .map { attachmentId -> UploadAttachmentToArchiveJob(attachmentId, forBackfill = true) }
 
+    SignalDatabase.attachments.createKeyIvDigestForAttachmentsThatNeedArchiveUpload()
+
     SignalStore.backup.totalAttachmentUploadCount = jobs.size.toLong()
     SignalStore.backup.currentAttachmentUploadCount = 0
 

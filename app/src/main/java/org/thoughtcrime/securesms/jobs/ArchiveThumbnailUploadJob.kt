@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.ArchiveThumbnailUploadJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.NetworkResult
@@ -93,13 +94,23 @@ class ArchiveThumbnailUploadJob private constructor(
 
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
 
-    val resumableUpload = when (val result = BackupRepository.getMediaUploadSpec(secretKey = backupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName()))) {
+    val specResult = BackupRepository
+      .getAttachmentUploadForm()
+      .then { form ->
+        SignalNetwork.attachments.getResumableUploadSpec(
+          key = backupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName()),
+          iv = attachment.remoteIv!!,
+          uploadForm = form
+        )
+      }
+
+    val resumableUpload = when (specResult) {
       is NetworkResult.Success -> {
         Log.d(TAG, "Got an upload spec!")
-        result.result.toProto()
+        specResult.result.toProto()
       }
       is NetworkResult.ApplicationError -> {
-        Log.w(TAG, "Failed to get an upload spec due to an application error. Retrying.", result.throwable)
+        Log.w(TAG, "Failed to get an upload spec due to an application error. Retrying.", specResult.throwable)
         return Result.retry(defaultBackoff())
       }
       is NetworkResult.NetworkError -> {
@@ -107,7 +118,7 @@ class ArchiveThumbnailUploadJob private constructor(
         return Result.retry(defaultBackoff())
       }
       is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "Failed to get an upload spec with status code ${result.code}")
+        Log.w(TAG, "Failed to get an upload spec with status code ${specResult.code}")
         return Result.retry(defaultBackoff())
       }
     }
@@ -125,7 +136,7 @@ class ArchiveThumbnailUploadJob private constructor(
     val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
     val mediaSecrets = backupKey.deriveMediaSecrets(attachment.getThumbnailMediaName())
 
-    return when (val result = BackupRepository.archiveThumbnail(attachmentPointer, attachment)) {
+    return when (val result = BackupRepository.copyThumbnailToArchive(attachmentPointer, attachment)) {
       is NetworkResult.Success -> {
         // save attachment thumbnail
         val archiveMediaId = attachment.archiveMediaId ?: backupKey.deriveMediaId(attachment.getMediaName()).encode()

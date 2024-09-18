@@ -17,7 +17,6 @@ import org.whispersystems.signalservice.api.backup.BackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
-import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.InputStream
 import java.time.Instant
 
@@ -146,23 +145,17 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
 
   /**
    * Retrieves an [AttachmentUploadForm] that can be used to upload pre-existing media to the archive.
-   * After uploading, the media still needs to be copied via [archiveAttachmentMedia].
+   *
+   * This is basically the same as [org.whispersystems.signalservice.api.attachment.AttachmentApi.getAttachmentV4UploadForm], but with a relaxed rate limit
+   * so we can request them more often (which is required for backfilling).
+   *
+   * After uploading, the media still needs to be copied via [copyAttachmentToArchive].
    */
   fun getMediaUploadForm(backupKey: BackupKey, aci: ACI, serviceCredential: ArchiveServiceCredential): NetworkResult<AttachmentUploadForm> {
     return NetworkResult.fromFetch {
       val zkCredential = getZkCredential(backupKey, aci, serviceCredential)
       val presentationData = CredentialPresentationData.from(backupKey, aci, zkCredential, backupServerPublicParams)
       pushServiceSocket.getArchiveMediaUploadForm(presentationData.toArchiveCredentialPresentation())
-    }
-  }
-
-  fun getResumableUploadSpec(uploadForm: AttachmentUploadForm, secretKey: ByteArray?): NetworkResult<ResumableUploadSpec> {
-    return NetworkResult.fromFetch {
-      if (secretKey == null) {
-        pushServiceSocket.getResumableUploadSpec(uploadForm)
-      } else {
-        pushServiceSocket.getResumableUploadSpecWithKey(uploadForm, secretKey)
-      }
     }
   }
 
@@ -210,7 +203,7 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    *   413: No media space remaining
    *   429: Rate-limited
    */
-  fun archiveAttachmentMedia(
+  fun copyAttachmentToArchive(
     backupKey: BackupKey,
     aci: ACI,
     serviceCredential: ArchiveServiceCredential,
@@ -227,7 +220,7 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
   /**
    * Copy and re-encrypt media from the attachments cdn into the backup cdn.
    */
-  fun archiveAttachmentMedia(
+  fun copyAttachmentToArchive(
     backupKey: BackupKey,
     aci: ACI,
     serviceCredential: ArchiveServiceCredential,

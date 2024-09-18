@@ -91,7 +91,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       return Result.success()
     }
 
-    val result = when (val archiveResult = BackupRepository.archiveMedia(attachment)) {
+    val result = when (val archiveResult = BackupRepository.copyAttachmentToArchive(attachment)) {
       is NetworkResult.Success -> {
         Log.i(TAG, "[$attachmentId] Successfully copied the archive tier.")
         Result.success()
