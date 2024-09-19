@@ -116,6 +116,7 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -226,9 +227,12 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_dark_colorSurface));
 
     if (!hasCameraPermission() & !hasAudioPermission()) {
-      askCameraAudioPermissions(() -> handleSetMuteVideo(false));
+      askCameraAudioPermissions(() -> {
+        callScreen.setMicEnabled(viewModel.getMicrophoneEnabled().getValue());
+        handleSetMuteVideo(false);
+      });
     } else if (!hasAudioPermission()) {
-      askAudioPermissions(() -> {});
+      askAudioPermissions(() -> callScreen.setMicEnabled(viewModel.getMicrophoneEnabled().getValue()));
     }
   }
 
