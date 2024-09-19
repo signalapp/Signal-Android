@@ -10,6 +10,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toDecimalValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.DonationRedemptionJobStatus
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.DonationRedemptionJobWatcher
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -276,6 +277,19 @@ class InAppPaymentKeepAliveJob private constructor(
       SignalDatabase.inAppPayments.update(
         current.copy(
           data = current.data.copy(
+            error = null
+          )
+        )
+      )
+
+      SignalDatabase.inAppPayments.getById(current.id)
+    } else if (current.state == InAppPaymentTable.State.END && current.data.error != null && current.data.paymentMethodType == InAppPaymentData.PaymentMethodType.UNKNOWN && subscriber.paymentMethodType.toPaymentSourceType().isBankTransfer) {
+      info(type, "Found failed SEPA payment but there's no payment method assigned. Assigning payment method and retrying.")
+      SignalDatabase.inAppPayments.update(
+        current.copy(
+          state = InAppPaymentTable.State.PENDING,
+          data = current.data.copy(
+            paymentMethodType = subscriber.paymentMethodType,
             error = null
           )
         )
