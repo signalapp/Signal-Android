@@ -250,6 +250,7 @@ class InAppPaymentKeepAliveJob private constructor(
         subscriberId = subscriber.subscriberId,
         endOfPeriod = endOfCurrentPeriod,
         inAppPaymentData = InAppPaymentData(
+          paymentMethodType = subscriber.paymentMethodType,
           badge = badge,
           amount = FiatValue(
             currencyCode = subscriber.currency.currencyCode,
