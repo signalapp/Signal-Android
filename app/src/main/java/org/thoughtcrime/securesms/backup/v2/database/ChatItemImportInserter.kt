@@ -69,6 +69,7 @@ import org.thoughtcrime.securesms.payments.CryptoValueUtil
 import org.thoughtcrime.securesms.payments.Direction
 import org.thoughtcrime.securesms.payments.State
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData
+import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
@@ -531,7 +532,7 @@ class ChatItemImportInserter(
             ReactionTable.MESSAGE_ID to messageId,
             ReactionTable.AUTHOR_ID to authorId,
             ReactionTable.DATE_SENT to it.sentTimestamp,
-            ReactionTable.DATE_RECEIVED to (it.receivedTimestamp ?: it.sortOrder),
+            ReactionTable.DATE_RECEIVED to it.sortOrder,
             ReactionTable.EMOJI to it.emoji
           )
         } else {
@@ -571,9 +572,9 @@ class ChatItemImportInserter(
 
   private fun ChatItem.getMessageType(): Long {
     var type: Long = if (this.outgoing != null) {
-      if (this.outgoing.sendStatus.count { it.failed?.identityKeyMismatch == true } > 0) {
+      if (this.outgoing.sendStatus.count { it.failed?.reason == SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH } > 0) {
         MessageTypes.BASE_SENT_FAILED_TYPE
-      } else if (this.outgoing.sendStatus.count { it.failed?.network == true } > 0) {
+      } else if (this.outgoing.sendStatus.count { it.failed?.reason == SendStatus.Failed.FailureReason.NETWORK } > 0) {
         MessageTypes.BASE_SENDING_TYPE
       } else {
         MessageTypes.BASE_SENT_TYPE
@@ -812,10 +813,10 @@ class ChatItemImportInserter(
   private fun ContentValues.addQuote(quote: Quote) {
     this.put(MessageTable.QUOTE_ID, quote.targetSentTimestamp ?: MessageTable.QUOTE_TARGET_MISSING_ID)
     this.put(MessageTable.QUOTE_AUTHOR, importState.remoteToLocalRecipientId[quote.authorId]!!.serialize())
-    this.put(MessageTable.QUOTE_BODY, quote.text)
+    this.put(MessageTable.QUOTE_BODY, quote.text?.body)
     this.put(MessageTable.QUOTE_TYPE, quote.type.toLocalQuoteType())
-    this.put(MessageTable.QUOTE_BODY_RANGES, quote.bodyRanges.toLocalBodyRanges()?.encode())
-    // TODO quote attachments
+    this.put(MessageTable.QUOTE_BODY_RANGES, quote.text?.bodyRanges?.toLocalBodyRanges()?.encode())
+    // TODO [backup] quote attachments
     this.put(MessageTable.QUOTE_MISSING, (quote.targetSentTimestamp == null).toInt())
   }
 
@@ -842,7 +843,7 @@ class ChatItemImportInserter(
     }
 
     val networkFailures = chatItem.outgoing.sendStatus
-      .filter { status -> status.failed?.network ?: false }
+      .filter { status -> status.failed?.reason == SendStatus.Failed.FailureReason.NETWORK }
       .mapNotNull { status -> importState.remoteToLocalRecipientId[status.recipientId] }
       .map { recipientId -> NetworkFailure(recipientId) }
       .toSet()
@@ -858,7 +859,7 @@ class ChatItemImportInserter(
     }
 
     val mismatches = chatItem.outgoing.sendStatus
-      .filter { status -> status.failed?.identityKeyMismatch ?: false }
+      .filter { status -> status.failed?.reason == SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH }
       .mapNotNull { status -> importState.remoteToLocalRecipientId[status.recipientId] }
       .map { recipientId -> IdentityKeyMismatch(recipientId, null) } // TODO We probably want the actual identity key in this status situation?
       .toSet()
@@ -1057,7 +1058,8 @@ class ChatItemImportInserter(
   }
 
   private fun ContactAttachment.Name?.toLocal(): Contact.Name {
-    return Contact.Name(this?.displayName, this?.givenName, this?.familyName, this?.prefix, this?.suffix, this?.middleName)
+    val displayName = ProfileName.fromParts(this?.givenName, this?.familyName).toString()
+    return Contact.Name(displayName, this?.givenName, this?.familyName, this?.prefix, this?.suffix, this?.middleName)
   }
 
   private fun ContactAttachment.Phone.Type?.toLocal(): Contact.Phone.Type {

@@ -11,6 +11,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
+import org.signal.core.util.emptyIfNull
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.requireBlob
@@ -636,8 +637,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       familyName = familyName,
       prefix = prefix,
       suffix = suffix,
-      middleName = middleName,
-      displayName = displayName
+      middleName = middleName
     )
   }
 
@@ -699,9 +699,11 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       Quote(
         targetSentTimestamp = this.quoteTargetSentTimestamp.takeIf { !this.quoteMissing && it != MessageTable.QUOTE_TARGET_MISSING_ID },
         authorId = this.quoteAuthor,
-        text = this.quoteBody,
+        text = Text(
+          body = this.quoteBody.emptyIfNull(),
+          bodyRanges = this.quoteBodyRanges?.toBackupBodyRanges() ?: emptyList()
+        ),
         attachments = attachments?.toBackupQuoteAttachments() ?: emptyList(),
-        bodyRanges = this.quoteBodyRanges?.toBackupBodyRanges() ?: emptyList(),
         type = when (type) {
           QuoteModel.Type.NORMAL -> Quote.Type.NORMAL
           QuoteModel.Type.GIFT_BADGE -> Quote.Type.GIFTBADGE
@@ -906,8 +908,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           emoji = it.emoji,
           authorId = it.author.toLong(),
           sentTimestamp = it.dateSent,
-          receivedTimestamp = it.dateReceived,
-          sortOrder = 0 // TODO [backup] make this it.dateReceived once comparator support is added
+          sortOrder = it.dateReceived
         )
       } ?: emptyList()
   }
@@ -928,12 +929,12 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     when {
       this.identityMismatchRecipientIds.contains(this.toRecipientId) -> {
         statusBuilder.failed = SendStatus.Failed(
-          identityKeyMismatch = true
+          reason = SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH
         )
       }
       this.networkFailureRecipientIds.contains(this.toRecipientId) -> {
         statusBuilder.failed = SendStatus.Failed(
-          network = true
+          reason = SendStatus.Failed.FailureReason.NETWORK
         )
       }
       this.baseType == MessageTypes.BASE_SENT_TYPE -> {
@@ -973,12 +974,12 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       when {
         identityMismatchRecipientIds.contains(it.recipientId.toLong()) -> {
           statusBuilder.failed = SendStatus.Failed(
-            identityKeyMismatch = true
+            reason = SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH
           )
         }
         networkFailureRecipientIds.contains(it.recipientId.toLong()) -> {
           statusBuilder.failed = SendStatus.Failed(
-            network = true
+            reason = SendStatus.Failed.FailureReason.NETWORK
           )
         }
         it.status == GroupReceiptTable.STATUS_UNKNOWN -> {

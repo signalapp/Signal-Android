@@ -160,7 +160,8 @@ public class Contact implements Parcelable {
     @JsonProperty
     private final String middleName;
 
-    public Name(@JsonProperty("displayName") @Nullable String displayName,
+    public Name(
+         @JsonProperty("displayName") @Nullable String displayName,
          @JsonProperty("givenName")   @Nullable String givenName,
          @JsonProperty("familyName")  @Nullable String familyName,
          @JsonProperty("prefix")      @Nullable String prefix,

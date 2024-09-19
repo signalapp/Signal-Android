@@ -39,6 +39,7 @@ fun ThreadTable.getThreadsForBackup(): ChatExportIterator {
         ${ThreadTable.READ}, 
         ${ThreadTable.ARCHIVED},
         ${RecipientTable.TABLE_NAME}.${RecipientTable.MESSAGE_EXPIRATION_TIME},
+        ${RecipientTable.TABLE_NAME}.${RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION},
         ${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL},
         ${RecipientTable.TABLE_NAME}.${RecipientTable.MENTION_SETTING}, 
         ${RecipientTable.TABLE_NAME}.${RecipientTable.CHAT_COLORS},
@@ -73,6 +74,7 @@ fun ThreadTable.restoreFromBackup(chat: Chat, recipientId: RecipientId, importSt
       ThreadTable.ACTIVE to 1
     )
     .run()
+
   writableDatabase
     .update(
       RecipientTable.TABLE_NAME,
@@ -80,6 +82,7 @@ fun ThreadTable.restoreFromBackup(chat: Chat, recipientId: RecipientId, importSt
         RecipientTable.MENTION_SETTING to (if (chat.dontNotifyForMentionsIfMuted) RecipientTable.MentionSetting.DO_NOT_NOTIFY.id else RecipientTable.MentionSetting.ALWAYS_NOTIFY.id),
         RecipientTable.MUTE_UNTIL to chat.muteUntilMs,
         RecipientTable.MESSAGE_EXPIRATION_TIME to chat.expirationTimerMs,
+        RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION to chat.expireTimerVersion,
         RecipientTable.CHAT_COLORS to chatColor?.serialize()?.encode(),
         RecipientTable.CUSTOM_CHAT_COLORS_ID to (chatColor?.id ?: ChatColors.Id.NotSet).longValue
       ),
@@ -116,6 +119,7 @@ class ChatExportIterator(private val cursor: Cursor) : Iterator<Chat>, Closeable
       archived = cursor.requireBoolean(ThreadTable.ARCHIVED),
       pinnedOrder = cursor.requireInt(ThreadTable.PINNED),
       expirationTimerMs = cursor.requireLong(RecipientTable.MESSAGE_EXPIRATION_TIME),
+      expireTimerVersion = cursor.requireInt(RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION),
       muteUntilMs = cursor.requireLong(RecipientTable.MUTE_UNTIL),
       markedUnread = ThreadTable.ReadStatus.deserialize(cursor.requireInt(ThreadTable.READ)) == ThreadTable.ReadStatus.FORCED_UNREAD,
       dontNotifyForMentionsIfMuted = RecipientTable.MentionSetting.DO_NOT_NOTIFY.id == cursor.requireInt(RecipientTable.MENTION_SETTING),
