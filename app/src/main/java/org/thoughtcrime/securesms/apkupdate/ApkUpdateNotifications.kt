@@ -83,7 +83,7 @@ object ApkUpdateNotifications {
     ServiceUtil.getNotificationManager(context).notify(NotificationIds.APK_UPDATE_FAILED_INSTALL, notification)
   }
 
-  fun showAutoUpdateSuccess(context: Context) {
+  fun showUpdateSuccess(context: Context, userInitiated: Boolean) {
     val pendingIntent = PendingIntent.getActivity(
       context,
       0,
@@ -93,9 +93,15 @@ object ApkUpdateNotifications {
 
     val appVersionName = context.packageManager.getPackageInfo(context.packageName, 0).versionName
 
+    val body = if (userInitiated) {
+      context.getString(R.string.ApkUpdateNotifications_manual_update_success_body, appVersionName)
+    } else {
+      context.getString(R.string.ApkUpdateNotifications_auto_update_success_body, appVersionName)
+    }
+
     val notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().APP_UPDATES)
       .setContentTitle(context.getString(R.string.ApkUpdateNotifications_auto_update_success_title))
-      .setContentText(context.getString(R.string.ApkUpdateNotifications_auto_update_success_body, appVersionName))
+      .setContentText(body)
       .setSmallIcon(R.drawable.ic_notification)
       .setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
       .setContentIntent(pendingIntent)

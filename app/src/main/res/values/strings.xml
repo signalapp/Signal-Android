@@ -2651,6 +2651,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">You updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Send message?</string>
