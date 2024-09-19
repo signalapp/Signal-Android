@@ -741,12 +741,12 @@
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="zero">سَيؤدي هذا إلى حذف كل %1$d الدردشات المُختارة بشكل نهائي من كل أجهزتك.</item>
-        <item quantity="one">سيؤدي هذا إلى حذف الدردشة المُختارة بشكل نهائي من كل أجهزتك.</item>
-        <item quantity="two">سيؤدي هذا إلى حذف كلتا %1$d الدردشتين المُختارتين بشكل نهائي من كل أجهزتك.</item>
-        <item quantity="few">سيؤدي هذا إلى حذف كل الـ %1$d دردشات المُختارة بشكل نهائي من كل أجهزتك.</item>
-        <item quantity="many">سيؤدي هذا إلى حذف كل الـ %1$d دردشة المُختارة بشكل نهائي من كل أجهزتك.</item>
-        <item quantity="other">سيؤدي هذا إلى حذف كل الـ %1$d دردشة المُختارة بشكل نهائي من كل أجهزتك.</item>
+        <item quantity="zero">سَيؤدي هذا إلى حذف كل %1$d الدردشات المُحدَّدة بشكل نهائي من كل أجهزتك.</item>
+        <item quantity="one">سيؤدي هذا إلى حذف الدردشة المُحدَّدة بشكل نهائي من كل أجهزتك.</item>
+        <item quantity="two">سيؤدي هذا إلى حذف كلتا %1$d الدردشتين المُحدَّدتين بشكل نهائي من كل أجهزتك.</item>
+        <item quantity="few">سيؤدي هذا إلى حذف كل الـ %1$d دردشات المُحدَّدة بشكل نهائي من كل أجهزتك.</item>
+        <item quantity="many">سيؤدي هذا إلى حذف كل الـ %1$d دردشة المُحدَّدة بشكل نهائي من كل أجهزتك.</item>
+        <item quantity="other">سيؤدي هذا إلى حذف كل الـ %1$d دردشة المُحدَّدة بشكل نهائي من كل أجهزتك.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">جارٍالحذف</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -863,7 +863,7 @@
     <!-- Description for radio item stating anyone can see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">أي شخص لديه رقم هاتفك سَيرى أنك متواجد على سيجنال وسَيتمكن من بدء دردشاتٍ معك.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">لن يتمكّن أي أحد من رؤيتك على سيجنال إلاّ إذا راسلته أو كانت لديك دردشة موجودة معه.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">لن يتمكّن أي أحد من رؤيتك على سيجنال إلّا إذا راسلته أو كانت لديك دردشة موجودة معه.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">أترغبُ بالاستعادة مِن نسخة احتياطية؟</string>
@@ -937,7 +937,7 @@
     <string name="BackupsPreferenceFragment__last_backup">أحدث نسخة احتياطية: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">مجلد النسخ الاحتياطية</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">اختيار وقت النسخ الاحتياطي</string>
+    <string name="BackupsPreferenceFragment__backup_time">وقت النسخ الاحتياطي</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">التحقُّق من كلمة سر النسخة اﻻحتياطية</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">اختبر عبارة السر للنسخة الاحتياطية الخاصة بك وتأكَّد من تطابقها.</string>
     <string name="BackupsPreferenceFragment__turn_on">تشغيل</string>
@@ -961,8 +961,8 @@
     <string name="CustomDefaultPreference_none">لا شيء</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">أخذ صورة يتطلب إذن الوصول إلى الكاميرا.</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">عرض معرض صورك يتطلب الإذن بالتخزين.</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">التقاط صورة يتطلَّب إذن الوصول إلى الكاميرا.</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">الوصول إلى معرض الصور يتطلَّب السماح بالوصول إلى ذاكرة التخزين.</string>
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">الآن</string>
@@ -1016,8 +1016,8 @@
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">جارٍ حذف الرسائل المُجدولة…</string>
 
     <!-- DecryptionFailedDialog -->
-    <string name="DecryptionFailedDialog_chat_session_refreshed">لقد تم إنعاش جلسة الدردشة</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">يَستخدم سيجنال التعمية من طرف لطرف ويحتاج بعض الأحيان لإنعاش جلسات الدردشات. إن هذا لا يؤثر على أمان دردشتك، لكن قد تفوتك رسالة من جهة الاتصال هذه، لكن يمكن الطلب منها إعادة إرسالها.</string>
+    <string name="DecryptionFailedDialog_chat_session_refreshed">تمَّ تحديث جلسة الدردشة</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">يَستخدم سيجنال التشفير من طرف لطرف، وقد يتطلَّب الأمر منك تحديث جلسة الدردشة في بعض الأحيان. وهذا لا يؤثِّر على أمان دردشتك، لكن قد تفوتك رسالة من جهة الاتصال هذه، حيث يمكن الطلب منهم إعادة إرسالها.</string>
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
@@ -1081,17 +1081,17 @@
     <string name="AddLinkDeviceFragment__retry">إعادة المُحاولة</string>
 
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">إلغاء ربط \'%1$s\'؟</string>
-    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل ممكنا بمجرد إلغاء ربط الجهاز.</string>
-    <string name="DeviceListActivity_network_connection_failed">فشل الاتصال بالشبكة</string>
-    <string name="DeviceListActivity_try_again">حاول مجددا</string>
-    <string name="DeviceListActivity_unlinking_device">يجري فك الارتباط بالجهاز…</string>
-    <string name="DeviceListActivity_unlinking_device_no_ellipsis">يجري فك الارتباط بالجهاز</string>
-    <string name="DeviceListActivity_network_failed">فشل في الشبكة!</string>
+    <string name="DeviceListActivity_unlink_s">أترغبُ بإلغاء ربط \'%1$s\'؟</string>
+    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل مُمكِنًا بمُجرَّد إلغاء ربط الجهاز.</string>
+    <string name="DeviceListActivity_network_connection_failed">فَشِلَ الاتصال بالشبكة</string>
+    <string name="DeviceListActivity_try_again">حاوِل مرة أخرى.</string>
+    <string name="DeviceListActivity_unlinking_device">جارٍ إلغاء الارتباط بالجهاز…</string>
+    <string name="DeviceListActivity_unlinking_device_no_ellipsis">جارٍ إلغاء الارتباط بالجهاز</string>
+    <string name="DeviceListActivity_network_failed">فَشِلَ الاتصال بالشبكة!</string>
 
     <!-- DeviceListItem -->
-    <string name="DeviceListItem_unnamed_device">جهاز غير مسمى</string>
-    <string name="DeviceListItem_linked_s">مقترن %1$s</string>
+    <string name="DeviceListItem_unnamed_device">جهاز غير مُسمَّى</string>
+    <string name="DeviceListItem_linked_s">مُرتبِط %1$s</string>
     <string name="DeviceListItem_last_active_s">آخر مرة %1$s</string>
     <string name="DeviceListItem_today">اليوم</string>
 

@@ -2005,7 +2005,7 @@
     <string name="PassphrasePromptActivity_ok_button_content_description">Wachtwoord instellen</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
     <string name="PassphrasePromptActivity_unlock_signal">Signal ontgrendelen</string>
-    <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal-Android - Vergrendelingsscherm</string>
+    <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal-Android - Vergrendelscherm</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">Kaart</string>
@@ -3048,8 +3048,8 @@
     </plurals>
     <!-- Displays number of viewers for a story -->
     <plurals name="contact_selection_list_item__number_of_viewers">
-        <item quantity="one">Door %1$d persoon gezien</item>
-        <item quantity="other">Door %1$d personen gezien</item>
+        <item quantity="one">%1$d kijker</item>
+        <item quantity="other">%1$d kijkers</item>
     </plurals>
 
     <!-- conversation_activity -->
@@ -3478,7 +3478,7 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">Bèta</string>
     <string name="preferences__sms_mms">Sms en mms</string>
-    <string name="preferences__pref_use_address_book_photos">Profielfoto\'s uit de contactenlijst van je telefoon gebruiken</string>
+    <string name="preferences__pref_use_address_book_photos">Profielfoto\'s uit telefooncontacten gebruiken</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto\'s uit de contactenlijst van je telefoon weer</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Gedempte chats gearchiveerd houden</string>
@@ -3772,9 +3772,9 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">Volgende</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Geef toestemmingen</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Toestemming geven</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Om je te helpen berichten te sturen naar mensen die je kent, vraagt Signal deze toestemmingen. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Om je te helpen berichten te sturen naar mensen die je kent, vraagt Signal deze machtigingen. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Meldingen</string>
     <!-- Notifications permission row description -->
@@ -5954,8 +5954,8 @@
     <string name="StoriesLandingFragment__hidden_stories">Verborgen verhalen</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
-        <item quantity="one">Door %1$d persoon gezien</item>
-        <item quantity="other">Door %1$d personen gezien</item>
+        <item quantity="one">%1$d weergave</item>
+        <item quantity="other">%1$d weergaven</item>
     </plurals>
     <!-- Forward story label, displayed in My Stories context menu -->
     <string name="MyStories_forward">Doorsturen</string>
@@ -5969,8 +5969,8 @@
     <string name="MyStories__unable_to_save">Kan niet opslaan</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
     <plurals name="StoryViewerFragment__d_views">
-        <item quantity="one">Door %1$d persoon gezien</item>
-        <item quantity="other">Door %1$d personen gezien</item>
+        <item quantity="one">%1$d weergave</item>
+        <item quantity="other">%1$d weergaven</item>
     </plurals>
     <!-- Displayed at bottom of story viewer when current item has replies -->
     <plurals name="StoryViewerFragment__d_replies">
@@ -5980,9 +5980,9 @@
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">Toevoegen</string>
     <!-- Used when view receipts are disabled -->
-    <string name="StoryViewerPageFragment__views_off">Kijkbevestigingen uit</string>
+    <string name="StoryViewerPageFragment__views_off">Weergaven uit</string>
     <!-- Used to join views and replies when both exist on a story item -->
-    <string name="StoryViewerFragment__s_s">%1$s  %2$s</string>
+    <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">Jij</string>
     <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->

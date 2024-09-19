@@ -6960,9 +6960,9 @@
 
     <!-- CallLinkIncomingRequestSheet -->
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__approve_entry">Anfrage bestätigen</string>
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Beitritt zulassen</string>
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__deny_entry">Anfrage ablehnen</string>
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Beitritt ablehnen</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->

@@ -54,7 +54,7 @@
     <string name="ApplicationPreferencesActivity_pin_created">PIN creado.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivado.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrar frase de recuperación de pagos</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">Registrar clave</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">Registrar frase</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desactivar tu PIN, debes registrar la frase de recuperación de tu cartera de pagos para asegurarte de que puedas recuperar tu cuenta de pagos si lo necesitas.</string>
 
     <!-- NumericKeyboardView -->
@@ -202,7 +202,7 @@
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Los participantes del grupo no podrán añadirte de nuevo.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Los participantes del grupo podrán añadirte de nuevo.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podrás chatear y hablar por teléfono, y tu nombre y foto se compartirán con esta persona.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podrás chatear y hablar por teléfono, y se compartirán tu nombre y foto con esta persona.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Podrás chatear con esta persona.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Las personas que bloquees no podrán llamarte ni enviarte mensajes.</string>
@@ -250,7 +250,7 @@
     <!-- Unknown people row icon content description -->
     <string name="CallInfoView__more_information">Más información</string>
     <!-- Unknown people row info dialog message -->
-    <string name="CallInfoView__before_joining_a_call">Antes de unirte a una llamada, solo podrás ver los nombres de las personas que tengas como contactos en tu teléfono, con las que estás en un grupo o con las que hayas chateado en privado. Verás todos los nombres y las fotos una vez que te hayas unido a la llamada.</string>
+    <string name="CallInfoView__before_joining_a_call">Antes de unirte a una llamada, solo podrás ver los nombres de las personas que tengas como contactos en tu teléfono, con las que estés en un grupo o con las que hayas chateado en privado. Verás todos los nombres y las fotos una vez que te hayas unido a la llamada.</string>
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">Entendido</string>
 
@@ -262,7 +262,7 @@
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Toca para hacer una foto o mantén pulsado para grabar un vídeo</string>
     <string name="CameraXFragment_capture_description">Capturar</string>
     <string name="CameraXFragment_change_camera_description">Cambiar cámara</string>
-    <string name="CameraXFragment_open_gallery_description">Abrir galería de fotos</string>
+    <string name="CameraXFragment_open_gallery_description">Abrir galería</string>
     <!-- Button text asking for access to camera permissions -->
     <string name="CameraXFragment_allow_access">Permitir acceso</string>
     <!-- Dialog title asking users for camera and microphone permission -->
@@ -282,11 +282,11 @@
     <!-- Text explaining why Signal needs camera access to scan QR codes -->
     <string name="CameraXFragment_to_scan_qr_code_allow_camera">Para escanear el código QR, permite que Signal acceda a la cámara.</string>
     <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
-    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">Signal necesita acceder a la cámara para hacer fotos</string>
+    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">Signal necesita acceso a la cámara para hacer fotos</string>
     <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
-    <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">Signal necesita acceder a la cámara para escanear códigos QR</string>
+    <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">Signal necesita acceso a la cámara para escanear códigos QR</string>
     <!-- Toast dialog explaining why Signal needs microphone permissions -->
-    <string name="CameraXFragment_signal_needs_microphone_access_video">Signal necesita acceder al micrófono para grabar vídeos</string>
+    <string name="CameraXFragment_signal_needs_microphone_access_video">Signal necesita acceso al micrófono para grabar vídeos</string>
     <!-- Dialog description that explains the steps needed to give camera permission -->
     <string name="CameraXFragment_to_capture_photos">Para hacer fotos en Signal:</string>
     <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
@@ -391,7 +391,7 @@
 
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_sent_tap_for_details">No se ha enviado. Toca para ver más información.</string>
-    <string name="ConversationItem_error_partially_not_delivered">No se ha enviado a todas las personas. Toca aquí para ver más información.</string>
+    <string name="ConversationItem_error_partially_not_delivered">No se ha enviado a todas las personas. Toca para ver más información.</string>
     <string name="ConversationItem_error_network_not_delivered">No se ha podido enviar</string>
     <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
     <string name="ConversationItem_send_paused">Envío pausado</string>
@@ -399,7 +399,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">¿Enviar como MMS no cifrado?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Este mensaje <b>no</b> se cifrará porque esta persona ya no usa Signal.\n\n¿Enviar mensaje sin cifrar?</string>
     <string name="ConversationItem_unable_to_open_media">No se puede encontrar una aplicación para mostrar este archivo.</string>
-    <string name="ConversationItem_copied_text">Se ha copiado: %1$s</string>
+    <string name="ConversationItem_copied_text">URL copiada: %1$s</string>
     <string name="ConversationItem_from_s">de %1$s</string>
     <string name="ConversationItem_to_s">a %1$s</string>
     <string name="ConversationItem_read_more">  Leer más</string>
@@ -432,9 +432,9 @@
     <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Enviar versión editada</string>
-    <string name="ConversationActivity_compose_message">Redactar mensaje</string>
+    <string name="ConversationActivity_compose_message">Escribir mensaje</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">No se ha podido adjuntar el archivo.</string>
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">La persona que intentas contactar no tiene un número de teléfono móvil o una dirección de correo electrónico válidos.</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">La persona que intentas contactar no puede recibir SMS en su teléfono o no cuenta con una dirección de correo electrónico válida.</string>
     <string name="ConversationActivity_message_is_empty_exclamation">El mensaje está vacío.</string>
     <string name="ConversationActivity_group_members">Participantes del grupo</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
@@ -463,7 +463,7 @@
     <string name="ConversationActivity_lets_switch_to_signal">Pasémonos a Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Selecciona un contacto</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">El archivo adjunto excede el límite de tamaño para el tipo de mensaje que intentas enviar.</string>
-    <string name="ConversationActivity_unable_to_record_audio">No se ha podido grabar el mensaje de voz</string>
+    <string name="ConversationActivity_unable_to_record_audio">No se ha podido grabar el audio</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">No puedes enviar mensajes porque ya no formas parte de este grupo.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Solo %1$s pueden enviar mensajes.</string>
     <string name="ConversationActivity_admins">admins</string>
@@ -852,14 +852,14 @@
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Copias de seguridad de los chats</string>
-    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Las copias de seguridad se cifran con una clave y se guardan en tu dispositivo.</string>
+    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Las copias de seguridad se cifran con una clave de acceso y se guardan en tu dispositivo.</string>
     <string name="BackupsPreferenceFragment__create_backup">Crear copia de seguridad</string>
     <string name="BackupsPreferenceFragment__last_backup">Última copia: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Carpeta de copias de seguridad</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
     <string name="BackupsPreferenceFragment__backup_time">Hora de la copia de seguridad</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar clave de copia de seguridad</string>
-    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Verifica que la clave de tu copia de seguridad sea correcta</string>
+    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Prueba tu clave de acceso a la copia de seguridad y comprueba que coincida</string>
     <string name="BackupsPreferenceFragment__turn_on">Activar</string>
     <string name="BackupsPreferenceFragment__turn_off">Desactivar</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Para restaurar una copia de seguridad, reinstala Signal. Abre Signal, toca \"Restaurar copia\" y busca la copia de seguridad. %1$s"</string>
@@ -1480,7 +1480,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Toca sobre la foto para difuminar más caras o zonas</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Mantén pulsado para grabar un audio y suelta para enviarlo</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Mantén pulsado para grabar un mensaje de voz y suelta para enviarlo</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Editar mensaje</string>
     <!-- Dialog title shown if users are about to discard their draft message -->
@@ -1621,9 +1621,9 @@
     <string name="MessageRecord_you_updated_group">Has actualizado el grupo.</string>
     <string name="MessageRecord_the_group_was_updated">Se ha actualizado el grupo.</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
-    <string name="MessageRecord_outgoing_voice_call">Llamada realizada</string>
+    <string name="MessageRecord_outgoing_voice_call">Llamada saliente</string>
     <!-- Update message shown when placing an outgoing 1:1 video call -->
-    <string name="MessageRecord_outgoing_video_call">Videollamada realizada</string>
+    <string name="MessageRecord_outgoing_video_call">Videollamada saliente</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered or ringing -->
     <string name="MessageRecord_incoming_voice_call">Llamada entrante</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered or ringing -->
@@ -1965,8 +1965,8 @@
     <string name="MessageRequestBottomView_report">Denunciar</string>
 
     <!-- PassphraseChangeActivity -->
-    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Las claves no coinciden.</string>
-    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Clave de acceso antigua incorrecta</string>
+    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Las claves de acceso no coinciden.</string>
+    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">La clave de acceso anterior es incorrecta.</string>
     <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Introduce una clave de acceso nueva.</string>
 
     <!-- DeviceProvisioningActivity -->
@@ -2979,8 +2979,8 @@
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">Clave de acceso anterior</string>
-    <string name="change_passphrase_activity__new_passphrase">Nueva clave de acceso</string>
-    <string name="change_passphrase_activity__repeat_new_passphrase">Repetir nueva clave de acceso</string>
+    <string name="change_passphrase_activity__new_passphrase">Clave de acceso nueva</string>
+    <string name="change_passphrase_activity__repeat_new_passphrase">Repetir clave de acceso nueva</string>
 
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__invite_to_signal">Invitar a Signal</string>
@@ -3134,7 +3134,7 @@
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">Ya no está disponible</string>
     <!-- Label for quoted gift -->
-    <string name="QuoteView__donation_for_a_friend">Donación a nombre de alguien</string>
+    <string name="QuoteView__donation_for_a_friend">Donación en nombre de alguien</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desliza hasta el final</string>
@@ -3456,7 +3456,7 @@
 
     <string name="arrays__images">Imágenes</string>
     <string name="arrays__audio">Audios</string>
-    <string name="arrays__video">Vídeos</string>
+    <string name="arrays__video">Vídeo</string>
     <string name="arrays__documents">Documentos</string>
 
     <string name="arrays__small">Pequeño</string>
@@ -4236,7 +4236,7 @@
     <string name="Permissions_continue">Continuar</string>
     <string name="Permissions_not_now">Ahora no</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrar base de datos de Signal</string>
-    <string name="enter_backup_passphrase_dialog__backup_passphrase">Clave de la copia de seguridad</string>
+    <string name="enter_backup_passphrase_dialog__backup_passphrase">Clave de acceso a la copia de seguridad</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Las copias de seguridad se guardarán en una unidad de almacenamiento externo y se cifrarán con la clave de acceso que aparece debajo. Necesitas esta clave para poder restaurar la copia de seguridad.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Necesitas esta clave para poder restaurar la copia de seguridad.</string>
     <string name="backup_enable_dialog__folder">Carpeta</string>
@@ -4248,7 +4248,7 @@
     <string name="preferences_chats__chat_backups">Copias de seguridad de los chats</string>
     <string name="preferences_chats__transfer_account">Transferir cuenta</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Transferir cuenta a un dispositivo Android nuevo</string>
-    <string name="RegistrationActivity_enter_backup_passphrase">Introduce la clave de la copia de seguridad</string>
+    <string name="RegistrationActivity_enter_backup_passphrase">Introducir clave de la copia de seguridad</string>
     <string name="RegistrationActivity_restore">Restaurar</string>
     <string name="RegistrationActivity_backup_failure_downgrade">No se pueden importar nuevas copias de seguridad</string>
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
@@ -4270,10 +4270,10 @@
     <string name="BackupDialog_choose_folder">Seleccionar carpeta</string>
     <string name="BackupDialog_copied_to_clipboard">Se ha copiado al portapapeles</string>
     <string name="BackupDialog_no_file_picker_available">No hay un selector de archivos disponible.</string>
-    <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduce la clave de la copia de seguridad para verificar</string>
+    <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduce tu clave de acceso a la copia de seguridad para verificarla</string>
     <string name="BackupDialog_verify">Verificar</string>
-    <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">¡Clave correcta!</string>
-    <string name="BackupDialog_passphrase_was_not_correct">La clave es incorrecta</string>
+    <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">¡Clave de acceso correcta!</string>
+    <string name="BackupDialog_passphrase_was_not_correct">Clave de acceso incorrecta</string>
     <string name="LocalBackupJob_creating_signal_backup">Creando copia de seguridad…</string>
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Verificando copia de seguridad de Signal…</string>
@@ -5516,7 +5516,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Otras formas de aportar</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donar a nombre de alguien</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Donar en nombre de alguien</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">No se ha podido confirmar la donación</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -5880,9 +5880,9 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Puntual</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">A nombre de alguien</string>
+    <string name="DonationReceiptListFragment__for_a_friend">En nombre de alguien</string>
     <!-- Donation receipts gift tab label -->
-    <string name="DonationReceiptListFragment__donation_for_a_friend">Donación a nombre de alguien</string>
+    <string name="DonationReceiptListFragment__donation_for_a_friend">Donación en nombre de alguien</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Tipo de donación</string>
     <!-- Donation receipts date paid heading -->
@@ -6235,7 +6235,7 @@
         <item quantity="other">%1$s · %2$d días</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__donate_for_a_friend">Donar a nombre de alguien</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">Donar en nombre de alguien</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
         <item quantity="one">Apoya a Signal haciendo una donación en nombre de un amigo o familiar que use Signal. La persona que elijas recibirá una insignia para mostrar en su perfil durante %1$d día.</item>
@@ -6536,7 +6536,7 @@
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Tarjeta de crédito o débito</string>
     <!-- Sheet summary when giving donating for a friend -->
-    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donar a nombre de alguien</string>
+    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donar en nombre de alguien</string>
     <!-- Button label for paying with iDEAL -->
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 

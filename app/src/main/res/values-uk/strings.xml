@@ -4578,7 +4578,7 @@
     <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
     <string name="prompt_passphrase_activity__screen_lock_is_on">Увімкнено блокування екрана, тому Signal надійно захищено відповідно до налаштувань блокування вашого пристрою. Розблокуйте Signal так, як ви зазвичай розблоковуєте телефон (розпізнаванням обличчя, відбитком пальця, PIN-кодом, паролем або графічним ключем).</string>
     <!-- Button in a dialog that will contact Signal support if pressed -->
-    <string name="prompt_passphrase_activity__contact_support">Звернутись у службу підтримки</string>
+    <string name="prompt_passphrase_activity__contact_support">Звернутися в службу підтримки</string>
     <!-- Button text to try again after unlocking has previously failed -->
     <string name="prompt_passphrase_activity__try_again">Повторити спробу</string>
 

@@ -1827,7 +1827,7 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un message de %1$s n’a pas pu être remis</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s a changé de numéro de téléphone</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Vous aimez cette nouvelle fonction ? Soutenez Signal avec un don ponctuel.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Vous aimez cette nouvelle fonctionnalité ? Faites un don ponctuel pour soutenir Signal.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">L\'historique de vos messages avec %1$s et son numéro %2$s ont été fusionnés.</string>
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
