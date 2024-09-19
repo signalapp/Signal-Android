@@ -883,10 +883,10 @@ object BackupRepository {
   }
 
   suspend fun getAvailableBackupsTypes(availableBackupTiers: List<MessageBackupTier>): List<MessageBackupsType> {
-    return availableBackupTiers.map { getBackupsType(it) }
+    return availableBackupTiers.mapNotNull { getBackupsType(it) }
   }
 
-  suspend fun getBackupsType(tier: MessageBackupTier): MessageBackupsType {
+  suspend fun getBackupsType(tier: MessageBackupTier): MessageBackupsType? {
     return when (tier) {
       MessageBackupTier.FREE -> getFreeType()
       MessageBackupTier.PAID -> getPaidType()
@@ -901,12 +901,12 @@ object BackupRepository {
     )
   }
 
-  private suspend fun getPaidType(): MessageBackupsType {
+  private suspend fun getPaidType(): MessageBackupsType? {
     val config = getSubscriptionsConfiguration()
-    val product = AppDependencies.billingApi.queryProduct()
+    val product = AppDependencies.billingApi.queryProduct() ?: return null
 
     return MessageBackupsType.Paid(
-      pricePerMonth = product!!.price,
+      pricePerMonth = product.price,
       storageAllowanceBytes = config.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL]!!.storageAllowanceBytes
     )
   }

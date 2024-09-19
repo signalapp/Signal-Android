@@ -163,19 +163,24 @@ internal class BillingApiImpl(
   }
 
   override suspend fun queryProduct(): BillingProduct? {
-    val products = queryProductsInternal()
+    try {
+      val products = queryProductsInternal()
 
-    val details: ProductDetails? = products.productDetailsList?.firstOrNull { it.productId == billingDependencies.getProductId() }
-    val pricing: ProductDetails.PricingPhase? = details?.subscriptionOfferDetails?.firstOrNull()?.pricingPhases?.pricingPhaseList?.firstOrNull()
+      val details: ProductDetails? = products.productDetailsList?.firstOrNull { it.productId == billingDependencies.getProductId() }
+      val pricing: ProductDetails.PricingPhase? = details?.subscriptionOfferDetails?.firstOrNull()?.pricingPhases?.pricingPhaseList?.firstOrNull()
 
-    if (pricing == null) {
-      Log.d(TAG, "No pricing available.")
+      if (pricing == null) {
+        Log.d(TAG, "No pricing available.")
+        return null
+      }
+
+      return BillingProduct(
+        price = FiatMoney(BigDecimal.valueOf(pricing.priceAmountMicros, 6), Currency.getInstance(pricing.priceCurrencyCode))
+      )
+    } catch (e: BillingError) {
+      Log.w(TAG, "Failed to query product. Returning null. Error code: ${e.billingResponseCode}", e)
       return null
     }
-
-    return BillingProduct(
-      price = FiatMoney(BigDecimal.valueOf(pricing.priceAmountMicros, 6), Currency.getInstance(pricing.priceCurrencyCode))
-    )
   }
 
   override suspend fun queryPurchases() {
@@ -291,7 +296,7 @@ internal class BillingApiImpl(
               billingResponseCode = billingResult.responseCode
             )
             trySend(State.Failure(billingError))
-            cancel(CancellationException("Failed to connect to Google Play Billing", billingError))
+            channel.close()
           }
         }
       })
