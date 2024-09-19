@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.components.settings.app.chats.backups
 
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
-import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 
 data class RemoteBackupsSettingsState(
@@ -16,8 +15,7 @@ data class RemoteBackupsSettingsState(
   val backupsFrequency: BackupFrequency = BackupFrequency.DAILY,
   val lastBackupTimestamp: Long = 0,
   val dialog: Dialog = Dialog.NONE,
-  val snackbar: Snackbar = Snackbar.NONE,
-  val backupProgress: BackupV2Event? = null
+  val snackbar: Snackbar = Snackbar.NONE
 ) {
   enum class Dialog {
     NONE,

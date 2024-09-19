@@ -15,3 +15,16 @@ message LeastActiveLinkedDevice {
     string name = 1;
     uint64 lastActiveTimestamp = 2;
 }
+
+message ArchiveUploadProgressState {
+    enum State {
+        None = 0;
+        BackingUpMessages = 1;
+        UploadingMessages = 2;
+        UploadingAttachments = 3;
+    }
+
+    State state = 1;
+    uint64 completedAttachments = 2;
+    uint64 totalAttachments = 3;
+}

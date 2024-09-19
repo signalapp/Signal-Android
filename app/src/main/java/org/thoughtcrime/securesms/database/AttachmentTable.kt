@@ -286,7 +286,8 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_start_index ON $TABLE_NAME ($DATA_HASH_START);",
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_end_index ON $TABLE_NAME ($DATA_HASH_END);",
       "CREATE INDEX IF NOT EXISTS attachment_data_index ON $TABLE_NAME ($DATA_FILE);",
-      "CREATE INDEX IF NOT EXISTS attachment_archive_media_id_index ON $TABLE_NAME ($ARCHIVE_MEDIA_ID);"
+      "CREATE INDEX IF NOT EXISTS attachment_archive_media_id_index ON $TABLE_NAME ($ARCHIVE_MEDIA_ID);",
+      "CREATE INDEX IF NOT EXISTS attachment_archive_transfer_state ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);"
     )
 
     @JvmStatic
@@ -627,6 +628,18 @@ class AttachmentTable(
         .where("$DATA_FILE = ?", dataFile)
         .run()
     }
+  }
+
+  /**
+   * Returns the number of attachments that are in pending upload states to the archive cdn.
+   */
+  fun getPendingArchiveUploadCount(): Long {
+    return readableDatabase
+      .count()
+      .from(TABLE_NAME)
+      .where("$ARCHIVE_TRANSFER_STATE IN (${ArchiveTransferState.UPLOAD_IN_PROGRESS.value}, ${ArchiveTransferState.COPY_PENDING.value})")
+      .run()
+      .readToSingleLong()
   }
 
   fun deleteAttachmentsForMessage(mmsId: Long): Boolean {

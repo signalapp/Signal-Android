@@ -1,12 +1,11 @@
 package org.thoughtcrime.securesms.jobs
 
-import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -24,7 +23,7 @@ import java.util.concurrent.TimeUnit
  * Copies and re-encrypts attachments from the attachment cdn to the archive cdn.
  * If it's discovered that the attachment no longer exists on the attachment cdn, this job will schedule a re-upload via [UploadAttachmentToArchiveJob].
  */
-class CopyAttachmentToArchiveJob private constructor(private val attachmentId: AttachmentId, private val forBackfill: Boolean, parameters: Parameters) : Job(parameters) {
+class CopyAttachmentToArchiveJob private constructor(private val attachmentId: AttachmentId, parameters: Parameters) : Job(parameters) {
 
   companion object {
     private val TAG = Log.tag(CopyAttachmentToArchiveJob::class.java)
@@ -35,9 +34,8 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
     val ALLOWED_SOURCE_CDNS = setOf(Cdn.CDN_2, Cdn.CDN_3)
   }
 
-  constructor(attachmentId: AttachmentId, forBackfill: Boolean = false) : this(
+  constructor(attachmentId: AttachmentId) : this(
     attachmentId = attachmentId,
-    forBackfill = forBackfill,
     parameters = Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
       .setLifespan(TimeUnit.DAYS.toMillis(1))
@@ -47,8 +45,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
   )
 
   override fun serialize(): ByteArray = CopyAttachmentToArchiveJobData(
-    attachmentId = attachmentId.id,
-    forBackfill = forBackfill
+    attachmentId = attachmentId.id
   ).encode()
 
   override fun getFactoryKey(): String = KEY
@@ -139,32 +136,14 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
       SignalStore.backup.usedBackupMediaSpace += AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size))
 
-      incrementBackfillProgressIfNecessary()
+      ArchiveUploadProgress.onAttachmentFinished()
     }
 
     return result
   }
 
   override fun onFailure() {
-    incrementBackfillProgressIfNecessary()
-  }
-
-  private fun incrementBackfillProgressIfNecessary() {
-    if (!forBackfill) {
-      return
-    }
-
-    if (SignalStore.backup.totalAttachmentUploadCount > 0) {
-      SignalStore.backup.currentAttachmentUploadCount++
-
-      if (SignalStore.backup.currentAttachmentUploadCount >= SignalStore.backup.totalAttachmentUploadCount) {
-        EventBus.getDefault().postSticky(BackupV2Event(BackupV2Event.Type.FINISHED, count = 0, estimatedTotalCount = 0))
-        SignalStore.backup.currentAttachmentUploadCount = 0
-        SignalStore.backup.totalAttachmentUploadCount = 0
-      } else {
-        EventBus.getDefault().postSticky(BackupV2Event(BackupV2Event.Type.PROGRESS_ATTACHMENTS, count = SignalStore.backup.currentAttachmentUploadCount, estimatedTotalCount = SignalStore.backup.totalAttachmentUploadCount))
-      }
-    }
+    ArchiveUploadProgress.onAttachmentFinished()
   }
 
   class Factory : Job.Factory<CopyAttachmentToArchiveJob> {
@@ -172,7 +151,6 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       val jobData = CopyAttachmentToArchiveJobData.ADAPTER.decode(serializedData!!)
       return CopyAttachmentToArchiveJob(
         attachmentId = AttachmentId(jobData.attachmentId),
-        forBackfill = jobData.forBackfill,
         parameters = parameters
       )
     }

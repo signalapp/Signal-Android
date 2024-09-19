@@ -127,11 +127,9 @@ message RestoreAttachmentJobData {
 
 message CopyAttachmentToArchiveJobData {
   uint64 attachmentId = 1;
-  bool forBackfill = 2;
 }
 
 message UploadAttachmentToArchiveJobData {
   uint64 attachmentId = 1;
   ResumableUpload uploadSpec = 2;
-  bool forBackfill = 3;
 }

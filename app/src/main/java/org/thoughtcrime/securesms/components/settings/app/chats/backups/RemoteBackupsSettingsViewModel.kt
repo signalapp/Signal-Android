@@ -17,7 +17,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -28,7 +27,7 @@ import kotlin.time.Duration.Companion.milliseconds
  * ViewModel for state management of RemoteBackupsSettingsFragment
  */
 class RemoteBackupsSettingsViewModel : ViewModel() {
-  private val internalState = MutableStateFlow(
+  private val _state = MutableStateFlow(
     RemoteBackupsSettingsState(
       messageBackupsType = null,
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
@@ -37,7 +36,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     )
   )
 
-  val state: StateFlow<RemoteBackupsSettingsState> = internalState
+  val state: StateFlow<RemoteBackupsSettingsState> = _state
 
   init {
     refresh()
@@ -45,22 +44,22 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   fun setCanBackUpUsingCellular(canBackUpUsingCellular: Boolean) {
     SignalStore.backup.backupWithCellular = canBackUpUsingCellular
-    internalState.update { it.copy(canBackUpUsingCellular = canBackUpUsingCellular) }
+    _state.update { it.copy(canBackUpUsingCellular = canBackUpUsingCellular) }
   }
 
   fun setBackupsFrequency(backupsFrequency: BackupFrequency) {
     SignalStore.backup.backupFrequency = backupsFrequency
-    internalState.update { it.copy(backupsFrequency = backupsFrequency) }
+    _state.update { it.copy(backupsFrequency = backupsFrequency) }
     MessageBackupListener.setNextBackupTimeToIntervalFromNow()
     MessageBackupListener.schedule(AppDependencies.application)
   }
 
   fun requestDialog(dialog: RemoteBackupsSettingsState.Dialog) {
-    internalState.update { it.copy(dialog = dialog) }
+    _state.update { it.copy(dialog = dialog) }
   }
 
   fun requestSnackbar(snackbar: RemoteBackupsSettingsState.Snackbar) {
-    internalState.update { it.copy(snackbar = snackbar) }
+    _state.update { it.copy(snackbar = snackbar) }
   }
 
   fun refresh() {
@@ -68,7 +67,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       val tier = SignalStore.backup.backupTier
       val backupType = if (tier != null) BackupRepository.getBackupsType(tier) else null
 
-      internalState.update {
+      _state.update {
         it.copy(
           messageBackupsType = backupType,
           lastBackupTimestamp = SignalStore.backup.lastBackupTime,
@@ -96,13 +95,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     }
   }
 
-  fun updateBackupProgress(backupEvent: BackupV2Event?) {
-    internalState.update { it.copy(backupProgress = backupEvent) }
-    refreshBackupState()
-  }
-
   private fun refreshBackupState() {
-    internalState.update {
+    _state.update {
       it.copy(
         lastBackupTimestamp = SignalStore.backup.lastBackupTime,
         backupSize = SignalStore.backup.totalBackupSize
@@ -111,8 +105,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun onBackupNowClick() {
-    if (internalState.value.backupProgress == null || internalState.value.backupProgress?.type == BackupV2Event.Type.FINISHED) {
-      BackupMessagesJob.enqueue()
-    }
+    BackupMessagesJob.enqueue()
   }
 }

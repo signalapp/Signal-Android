@@ -5,13 +5,11 @@
 
 package org.thoughtcrime.securesms.jobs
 
-import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.backup.v2.BackupV2Event
+import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -40,14 +38,11 @@ class ArchiveAttachmentBackfillJob private constructor(parameters: Parameters) :
 
   override fun run(): Result {
     val jobs = SignalDatabase.attachments.getAttachmentsThatNeedArchiveUpload()
-      .map { attachmentId -> UploadAttachmentToArchiveJob(attachmentId, forBackfill = true) }
+      .map { attachmentId -> UploadAttachmentToArchiveJob(attachmentId) }
 
     SignalDatabase.attachments.createKeyIvDigestForAttachmentsThatNeedArchiveUpload()
 
-    SignalStore.backup.totalAttachmentUploadCount = jobs.size.toLong()
-    SignalStore.backup.currentAttachmentUploadCount = 0
-
-    EventBus.getDefault().postSticky(BackupV2Event(BackupV2Event.Type.PROGRESS_ATTACHMENTS, count = 0, estimatedTotalCount = jobs.size.toLong()))
+    ArchiveUploadProgress.onAttachmentsStarted(jobs.size.toLong())
 
     Log.i(TAG, "Adding ${jobs.size} jobs to backfill attachments.")
     AppDependencies.jobManager.addAll(jobs)

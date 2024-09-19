@@ -5,6 +5,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
 import org.whispersystems.signalservice.internal.util.JsonUtil
@@ -37,8 +38,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
     private const val KEY_BACKUPS_INITIALIZED = "backup.initialized"
 
-    private const val KEY_TOTAL_ATTACHMENTS_UPLOAD_COUNT = "backup.totalAttachmentsUploadCount"
-    private const val KEY_CURRENT_ATTACHMENT_UPLOAD_COUNT = "backup.currentAttachmentUploadCount"
+    private const val KEY_ARCHIVE_UPLOAD_STATE = "backup.archiveUploadState"
 
     /**
      * Specifies whether remote backups are enabled on this device.
@@ -70,14 +70,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var backupTier: MessageBackupTier? by enumValue(KEY_BACKUP_TIER, null, MessageBackupTier.Serializer)
 
   /**
-   * When uploading attachments to the archive CDN, this tracks the total number of attachments that are pending upload.
+   * When uploading a backup, we store the progress state here so that I can remain across app restarts.
    */
-  var totalAttachmentUploadCount: Long by longValue(KEY_TOTAL_ATTACHMENTS_UPLOAD_COUNT, 0)
-
-  /**
-   * When uploading attachments to the archive CDN, this tracks the total number of attachments that have currently been uploaded.
-   */
-  var currentAttachmentUploadCount: Long by longValue(KEY_CURRENT_ATTACHMENT_UPLOAD_COUNT, 0)
+  var archiveUploadState: ArchiveUploadProgressState? by protoValue(KEY_ARCHIVE_UPLOAD_STATE, ArchiveUploadProgressState.ADAPTER)
 
   val totalBackupSize: Long get() = lastBackupProtoSize + usedBackupMediaSpace
 

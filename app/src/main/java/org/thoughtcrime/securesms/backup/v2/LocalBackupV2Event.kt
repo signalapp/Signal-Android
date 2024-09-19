@@ -5,14 +5,6 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
-class BackupV2Event(val type: Type, val count: Long, val estimatedTotalCount: Long) {
-  enum class Type {
-    PROGRESS_MESSAGES,
-    PROGRESS_ATTACHMENTS,
-    FINISHED
-  }
-}
-
 class LocalBackupV2Event(val type: Type, val count: Long = 0, val estimatedTotalCount: Long = 0) {
   enum class Type {
     PROGRESS_ACCOUNT,

@@ -49,9 +49,6 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
@@ -63,15 +60,15 @@ import org.signal.core.ui.Snackbars
 import org.signal.core.ui.Texts
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
-import org.thoughtcrime.securesms.backup.v2.BackupV2Event
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.chats.backups.type.BackupsTypeSettingsFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Util
@@ -96,6 +93,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
   @Composable
   override fun FragmentContent() {
     val state by viewModel.state.collectAsState()
+    val backupProgress by ArchiveUploadProgress.progress.collectAsState(initial = null)
     val callbacks = remember { Callbacks() }
 
     RemoteBackupsSettingsContent(
@@ -106,7 +104,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       requestedDialog = state.dialog,
       requestedSnackbar = state.snackbar,
       contentCallbacks = callbacks,
-      backupProgress = state.backupProgress,
+      backupProgress = backupProgress,
       backupSize = state.backupSize
     )
   }
@@ -162,14 +160,8 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-  fun onEvent(backupEvent: BackupV2Event) {
-    viewModel.updateBackupProgress(backupEvent)
-  }
-
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    EventBus.getDefault().registerForLifecycle(subscriber = this, lifecycleOwner = viewLifecycleOwner)
     checkoutLauncher = createBackupsCheckoutLauncher { backUpLater ->
       if (backUpLater) {
         viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.BACKUP_WILL_BE_CREATED_OVERNIGHT)
@@ -221,7 +213,7 @@ private fun RemoteBackupsSettingsContent(
   requestedDialog: RemoteBackupsSettingsState.Dialog,
   requestedSnackbar: RemoteBackupsSettingsState.Snackbar,
   contentCallbacks: ContentCallbacks,
-  backupProgress: BackupV2Event?,
+  backupProgress: ArchiveUploadProgressState?,
   backupSize: Long
 ) {
   val snackbarHostState = remember {
@@ -264,7 +256,7 @@ private fun RemoteBackupsSettingsContent(
           Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
         }
 
-        if (backupProgress == null || backupProgress.type == BackupV2Event.Type.FINISHED) {
+        if (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None) {
           item {
             LastBackupRow(
               lastBackupTimestamp = lastBackupTimestamp,
@@ -273,7 +265,7 @@ private fun RemoteBackupsSettingsContent(
           }
         } else {
           item {
-            InProgressBackupRow(progress = backupProgress.count.toInt(), totalProgress = backupProgress.estimatedTotalCount.toInt())
+            InProgressBackupRow(progress = backupProgress.completedAttachments.toInt(), totalProgress = backupProgress.totalAttachments.toInt())
           }
         }
 

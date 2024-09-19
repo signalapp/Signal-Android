@@ -33,7 +33,6 @@ import kotlin.time.Duration.Companion.days
 class UploadAttachmentToArchiveJob private constructor(
   private val attachmentId: AttachmentId,
   private var uploadSpec: ResumableUpload?,
-  private val forBackfill: Boolean,
   parameters: Parameters
 ) : Job(parameters) {
 
@@ -44,10 +43,9 @@ class UploadAttachmentToArchiveJob private constructor(
     fun buildQueueKey(attachmentId: AttachmentId) = "ArchiveAttachmentJobs_${attachmentId.id}"
   }
 
-  constructor(attachmentId: AttachmentId, forBackfill: Boolean = false) : this(
+  constructor(attachmentId: AttachmentId) : this(
     attachmentId = attachmentId,
     uploadSpec = null,
-    forBackfill = forBackfill,
     parameters = Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
       .setLifespan(30.days.inWholeMilliseconds)
@@ -57,8 +55,7 @@ class UploadAttachmentToArchiveJob private constructor(
   )
 
   override fun serialize(): ByteArray = UploadAttachmentToArchiveJobData(
-    attachmentId = attachmentId.id,
-    forBackfill = forBackfill
+    attachmentId = attachmentId.id
   ).encode()
 
   override fun getFactoryKey(): String = KEY
@@ -97,7 +94,7 @@ class UploadAttachmentToArchiveJob private constructor(
 
     if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.COPY_PENDING) {
       Log.i(TAG, "[$attachmentId] Already marked as pending transfer. Enqueueing a copy job just in case.")
-      AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachment.attachmentId, forBackfill = forBackfill))
+      AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachment.attachmentId))
       return Result.success()
     }
 
@@ -154,7 +151,7 @@ class UploadAttachmentToArchiveJob private constructor(
 
     SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachment.attachmentId, uploadResult)
 
-    AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachment.attachmentId, forBackfill = forBackfill))
+    AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachment.attachmentId))
 
     return Result.success()
   }
@@ -207,7 +204,6 @@ class UploadAttachmentToArchiveJob private constructor(
       return UploadAttachmentToArchiveJob(
         attachmentId = AttachmentId(data.attachmentId),
         uploadSpec = data.uploadSpec,
-        forBackfill = data.forBackfill,
         parameters = parameters
       )
     }
