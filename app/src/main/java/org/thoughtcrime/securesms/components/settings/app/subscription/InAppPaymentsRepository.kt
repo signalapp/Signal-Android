@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.push.DonationProcessor
-import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError
+import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError
 import java.security.SecureRandom
 import java.util.Currency
 import java.util.Optional
@@ -95,7 +95,7 @@ object InAppPaymentsRepository {
 
     val donationError: DonationError = when (error) {
       is DonationError -> error
-      is DonationProcessorError -> error.toDonationError(donationErrorSource, paymentSourceType)
+      is InAppPaymentProcessorError -> error.toDonationError(donationErrorSource, paymentSourceType)
       else -> DonationError.genericBadgeRedemptionFailure(donationErrorSource)
     }
 

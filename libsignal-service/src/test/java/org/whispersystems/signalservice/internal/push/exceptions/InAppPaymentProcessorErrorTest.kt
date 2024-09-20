@@ -10,7 +10,7 @@ import org.junit.Test
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.internal.util.JsonUtil
 
-class DonationProcessorErrorTest {
+class InAppPaymentProcessorErrorTest {
 
   companion object {
     private val TEST_PROCESSOR = ActiveSubscription.Processor.STRIPE
@@ -36,7 +36,7 @@ class DonationProcessorErrorTest {
 
   @Test
   fun givenTestJson_whenIFromJson_thenIExpectProperlyParsedError() {
-    val result = JsonUtil.fromJson(TEST_JSON, DonationProcessorError::class.java)
+    val result = JsonUtil.fromJson(TEST_JSON, InAppPaymentProcessorError::class.java)
 
     assertEquals(TEST_PROCESSOR, result.processor)
     assertEquals(TEST_CODE, result.chargeFailure.code)

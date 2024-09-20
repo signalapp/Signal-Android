@@ -32,7 +32,7 @@ import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.DonationProcessor;
-import org.whispersystems.signalservice.internal.push.exceptions.DonationReceiptCredentialError;
+import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentReceiptCredentialError;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -325,8 +325,8 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         Log.w(TAG, "User payment failed.", applicationException, true);
         DonationError.routeBackgroundError(context, DonationError.genericPaymentFailure(donationErrorSource), terminalDonation.isLongRunningPaymentMethod);
 
-        if (applicationException instanceof DonationReceiptCredentialError) {
-          setPendingOneTimeDonationChargeFailureError(((DonationReceiptCredentialError) applicationException).getChargeFailure());
+        if (applicationException instanceof InAppPaymentReceiptCredentialError) {
+          setPendingOneTimeDonationChargeFailureError(((InAppPaymentReceiptCredentialError) applicationException).getChargeFailure());
         } else {
           setPendingOneTimeDonationGenericRedemptionError(response.getStatus());
         }

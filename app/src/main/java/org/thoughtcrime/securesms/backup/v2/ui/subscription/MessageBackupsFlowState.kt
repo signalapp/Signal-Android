@@ -18,5 +18,6 @@ data class MessageBackupsFlowState(
   val inAppPayment: InAppPaymentTable.InAppPayment? = null,
   val startScreen: MessageBackupsStage,
   val stage: MessageBackupsStage = startScreen,
-  val backupKey: BackupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
+  val backupKey: BackupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey(),
+  val failure: Throwable? = null
 )

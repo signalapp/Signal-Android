@@ -19,7 +19,8 @@ enum class MessageBackupsStage(
   CREATING_IN_APP_PAYMENT(route = Route.TYPE_SELECTION),
   PROCESS_PAYMENT(route = Route.TYPE_SELECTION),
   PROCESS_FREE(route = Route.TYPE_SELECTION),
-  COMPLETED(route = Route.TYPE_SELECTION);
+  COMPLETED(route = Route.TYPE_SELECTION),
+  FAILURE(route = Route.TYPE_SELECTION);
 
   /**
    * Compose navigation route to display while in a given stage.

@@ -184,6 +184,16 @@ public class DonationsService {
     });
   }
 
+  public ServiceResponse<EmptyResponse> linkGooglePlayBillingPurchaseTokenToSubscriberId(SubscriberId subscriberId, String purchaseToken, Object mutex) {
+    return wrapInServiceResponse(() -> {
+      synchronized (mutex) {
+        pushServiceSocket.linkPlayBillingPurchaseToken(subscriberId.serialize(), purchaseToken);
+      }
+
+      return new Pair<>(EmptyResponse.INSTANCE, 200);
+    });
+  }
+
   /**
    * Synchronously returns information about the current subscription if one exists.
    */

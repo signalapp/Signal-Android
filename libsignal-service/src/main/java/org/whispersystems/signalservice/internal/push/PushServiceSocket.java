@@ -131,8 +131,8 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.configuration.SignalUrl;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.push.exceptions.CaptchaRejectedException;
-import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError;
-import org.whispersystems.signalservice.internal.push.exceptions.DonationReceiptCredentialError;
+import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError;
+import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentReceiptCredentialError;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException;
@@ -306,6 +306,7 @@ public class PushServiceSocket {
   private static final String BOOST_RECEIPT_CREDENTIALS                  = "/v1/subscription/boost/receipt_credentials";
   private static final String DONATIONS_CONFIGURATION                    = "/v1/subscription/configuration";
   private static final String BANK_MANDATE                               = "/v1/subscription/bank_mandate/%s";
+  private static final String LINK_PLAY_BILLING_PURCHASE_TOKEN           = "/v1/subscription/%s/playbilling/%s";
 
   private static final String VERIFICATION_SESSION_PATH = "/v1/verification/session";
   private static final String VERIFICATION_CODE_PATH    = "/v1/verification/session/%s/code";
@@ -1369,7 +1370,7 @@ public class PushServiceSocket {
 
   public PayPalConfirmPaymentIntentResponse confirmPayPalOneTimePaymentIntent(String currency, String amount, long level, String payerId, String paymentId, String paymentToken) throws IOException {
     String payload = JsonUtil.toJson(new PayPalConfirmOneTimePaymentIntentPayload(amount, currency, level, payerId, paymentId, paymentToken));
-    String result  = makeServiceRequestWithoutAuthentication(CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT, "POST", payload, NO_HEADERS, new DonationResponseHandler());
+    String result  = makeServiceRequestWithoutAuthentication(CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT, "POST", payload, NO_HEADERS, new InAppPaymentResponseCodeHandler());
     return JsonUtil.fromJsonResponse(result, PayPalConfirmPaymentIntentResponse.class);
   }
 
@@ -1390,14 +1391,14 @@ public class PushServiceSocket {
         (code, body) -> {
           if (code == 204) throw new NonSuccessfulResponseCodeException(204);
           if (code == 402) {
-            DonationReceiptCredentialError donationReceiptCredentialError;
+            InAppPaymentReceiptCredentialError inAppPaymentReceiptCredentialError;
             try {
-              donationReceiptCredentialError = JsonUtil.fromJson(body.string(), DonationReceiptCredentialError.class);
+              inAppPaymentReceiptCredentialError = JsonUtil.fromJson(body.string(), InAppPaymentReceiptCredentialError.class);
             } catch (IOException e) {
               throw new NonSuccessfulResponseCodeException(402);
             }
 
-            throw donationReceiptCredentialError;
+            throw inAppPaymentReceiptCredentialError;
           }
         });
 
@@ -1430,8 +1431,12 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(result, BankMandate.class);
   }
 
+  public void linkPlayBillingPurchaseToken(String subscriberId, String purchaseToken) throws IOException {
+    makeServiceRequestWithoutAuthentication(String.format(LINK_PLAY_BILLING_PURCHASE_TOKEN, subscriberId, purchaseToken), "PUT", "", NO_HEADERS, new LinkGooglePlayBillingPurchaseTokenResponseCodeHandler());
+  }
+
   public void updateSubscriptionLevel(String subscriberId, String level, String currencyCode, String idempotencyKey) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(UPDATE_SUBSCRIPTION_LEVEL, subscriberId, level, currencyCode, idempotencyKey), "PUT", "", NO_HEADERS, new DonationResponseHandler());
+    makeServiceRequestWithoutAuthentication(String.format(UPDATE_SUBSCRIPTION_LEVEL, subscriberId, level, currencyCode, idempotencyKey), "PUT", "", NO_HEADERS, new InAppPaymentResponseCodeHandler());
   }
 
   public ActiveSubscription getSubscription(String subscriberId) throws IOException {
@@ -3001,9 +3006,23 @@ public class PushServiceSocket {
   }
 
   /**
-   * Handler for a couple donation endpoints.
+   * Handler for Google Play Billing purchase token linking
    */
-  private static class DonationResponseHandler implements ResponseCodeHandler {
+  private static class LinkGooglePlayBillingPurchaseTokenResponseCodeHandler implements ResponseCodeHandler {
+    @Override
+    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+      if (responseCode < 400) {
+        return;
+      }
+
+      throw new NonSuccessfulResponseCodeException(responseCode);
+    }
+  }
+
+  /**
+   * Handler for a couple in app payment endpoints.
+   */
+  private static class InAppPaymentResponseCodeHandler implements ResponseCodeHandler {
     @Override
     public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
       if (responseCode < 400) {
@@ -3011,9 +3030,9 @@ public class PushServiceSocket {
       }
 
       if (responseCode == 440) {
-        DonationProcessorError exception;
+        InAppPaymentProcessorError exception;
         try {
-          exception = JsonUtil.fromJson(body.string(), DonationProcessorError.class);
+          exception = JsonUtil.fromJson(body.string(), InAppPaymentProcessorError.class);
         } catch (IOException e) {
           throw new NonSuccessfulResponseCodeException(440);
         }

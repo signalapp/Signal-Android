@@ -14,7 +14,7 @@ import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.Pro
  * HTTP 440 Exception when something bad happens while updating a user's subscription level or
  * confirming a PayPal intent.
  */
-class DonationProcessorError @JsonCreator constructor(
+class InAppPaymentProcessorError @JsonCreator constructor(
   val processor: Processor,
   val chargeFailure: ChargeFailure
 ) : NonSuccessfulResponseCodeException(440) {
