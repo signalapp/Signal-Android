@@ -77,6 +77,18 @@ public class FiatMoney {
     return formatter.format(amount.multiply(multiplicand));
   }
 
+  /**
+   * Transforms the given currency / amount pair from a signal network amount to a FiatMoney, accounting for the special
+   * cased multiplicands for ISK and UGX
+   */
+  public static @NonNull FiatMoney fromSignalNetworkAmount(@NonNull BigDecimal amount, @NonNull Currency currency) {
+    String     currencyCode  = currency.getCurrencyCode();
+    int        shift         = SPECIAL_CASE_MULTIPLICANDS.contains(currencyCode) ? 2: currency.getDefaultFractionDigits();
+    BigDecimal shiftedAmount = amount.movePointLeft(shift);
+
+    return new FiatMoney(shiftedAmount, currency);
+  }
+
   public static boolean equals(FiatMoney left, FiatMoney right) {
     return Objects.equals(left.amount, right.amount) &&
            Objects.equals(left.currency, right.currency) &&

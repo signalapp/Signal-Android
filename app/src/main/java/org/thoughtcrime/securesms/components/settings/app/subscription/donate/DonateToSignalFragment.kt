@@ -410,10 +410,7 @@ class DonateToSignalFragment :
           val isActive = state.activeLevel == subscription.level && state.isSubscriptionActive
 
           val activePrice = state.activeSubscription?.let { sub ->
-            val activeCurrency = Currency.getInstance(sub.currency)
-            val activeAmount = sub.amount.movePointLeft(activeCurrency.defaultFractionDigits)
-
-            FiatMoney(activeAmount, activeCurrency)
+            FiatMoney.fromSignalNetworkAmount(sub.amount, Currency.getInstance(sub.currency))
           }
 
           customPref(

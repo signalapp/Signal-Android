@@ -265,12 +265,9 @@ class ManageDonationsFragment :
     state: ManageDonationsState
   ) {
     presentSubscriptionSettingsWithState(state) {
-      val activeCurrency = Currency.getInstance(activeSubscription.currency)
-      val activeAmount = activeSubscription.amount.movePointLeft(activeCurrency.defaultFractionDigits)
-
       customPref(
         ActiveSubscriptionPreference.Model(
-          price = FiatMoney(activeAmount, activeCurrency),
+          price = FiatMoney.fromSignalNetworkAmount(activeSubscription.amount, Currency.getInstance(activeSubscription.currency)),
           subscription = subscription,
           renewalTimestamp = TimeUnit.SECONDS.toMillis(activeSubscription.endOfCurrentPeriod),
           redemptionState = state.getMonthlyDonorRedemptionState(),
