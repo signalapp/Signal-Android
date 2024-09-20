@@ -383,7 +383,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
           )
         } else {
           AppDependencies.jobManager.add(
-            RestoreAttachmentJob(
+            RestoreAttachmentJob.forInitialRestore(
               messageId = insertMessage.messageId,
               attachmentId = archivedAttachment.attachmentId
             )

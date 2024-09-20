@@ -35,6 +35,7 @@ import org.whispersystems.signalservice.api.push.exceptions.RangeException
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Download attachment from locations as specified in their record.
@@ -43,45 +44,80 @@ class RestoreAttachmentJob private constructor(
   parameters: Parameters,
   private val messageId: Long,
   private val attachmentId: AttachmentId,
-  private val offloaded: Boolean
+  private val manual: Boolean
 ) : BaseJob(parameters) {
 
   companion object {
     const val KEY = "RestoreAttachmentJob"
     private val TAG = Log.tag(RestoreAttachmentJob::class.java)
 
-    @JvmStatic
-    fun constructQueueString(): String {
-      // TODO: decide how many queues
-      return "RestoreAttachmentJob"
+    /**
+     * Create a restore job for the initial large batch of media on a fresh restore
+     */
+    fun forInitialRestore(attachmentId: AttachmentId, messageId: Long): RestoreAttachmentJob {
+      return RestoreAttachmentJob(
+        attachmentId = attachmentId,
+        messageId = messageId,
+        manual = false,
+        queue = constructQueueString(RestoreOperation.INITIAL_RESTORE)
+      )
     }
 
+    /**
+     * Create a restore job for the large batch of media on a full media restore after disabling optimize media.
+     *
+     * See [RestoreOptimizedMediaJob].
+     */
+    fun forOffloadedRestore(attachmentId: AttachmentId, messageId: Long): RestoreAttachmentJob {
+      return RestoreAttachmentJob(
+        attachmentId = attachmentId,
+        messageId = messageId,
+        manual = false,
+        queue = constructQueueString(RestoreOperation.RESTORE_OFFLOADED)
+      )
+    }
+
+    /**
+     * Restore an attachment when manually triggered by user interaction.
+     *
+     * @return job id of the restore
+     */
     @JvmStatic
     fun restoreAttachment(attachment: DatabaseAttachment): String {
       val restoreJob = RestoreAttachmentJob(
         messageId = attachment.mmsId,
         attachmentId = attachment.attachmentId,
-        offloaded = true
+        manual = true,
+        queue = constructQueueString(RestoreOperation.MANUAL)
       )
+
       AppDependencies.jobManager.add(restoreJob)
       return restoreJob.id
     }
+
+    /**
+     * There are three modes of restore and we use separate queues for each to facilitate canceling if necessary.
+     */
+    @JvmStatic
+    fun constructQueueString(restoreOperation: RestoreOperation): String {
+      return "RestoreAttachmentJob::${restoreOperation.name}"
+    }
   }
 
-  constructor(messageId: Long, attachmentId: AttachmentId, offloaded: Boolean = false) : this(
+  private constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, queue: String) : this(
     Parameters.Builder()
-      .setQueue(constructQueueString())
+      .setQueue(queue)
       .addConstraint(NetworkConstraint.KEY)
-      .setLifespan(TimeUnit.DAYS.toMillis(1))
-      .setMaxAttempts(Parameters.UNLIMITED)
+      .setLifespan(TimeUnit.DAYS.toMillis(30))
+      .setMaxAttempts(3)
       .build(),
     messageId,
     attachmentId,
-    offloaded
+    manual
   )
 
-  override fun serialize(): ByteArray? {
-    return RestoreAttachmentJobData(messageId = messageId, attachmentId = attachmentId.id, offloaded = offloaded).encode()
+  override fun serialize(): ByteArray {
+    return RestoreAttachmentJobData(messageId = messageId, attachmentId = attachmentId.id, manual = manual).encode()
   }
 
   override fun getFactoryKey(): String {
@@ -89,15 +125,7 @@ class RestoreAttachmentJob private constructor(
   }
 
   override fun onAdded() {
-    if (offloaded) {
-      Log.i(TAG, "onAdded() messageId: $messageId  attachmentId: $attachmentId")
-
-      val attachment = SignalDatabase.attachments.getAttachment(attachmentId)
-      if (attachment?.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE || attachment?.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
-        Log.i(TAG, "onAdded() Marking attachment restore progress as 'started'")
-        SignalDatabase.attachments.setTransferState(messageId, attachmentId, AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS)
-      }
-    }
+    SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS)
   }
 
   @Throws(Exception::class)
@@ -137,9 +165,13 @@ class RestoreAttachmentJob private constructor(
   }
 
   override fun onFailure() {
-    Log.w(TAG, format(this, "onFailure() messageId: $messageId  attachmentId: $attachmentId"))
+    if (isCanceled) {
+      SignalDatabase.attachments.setTransferState(messageId, attachmentId, AttachmentTable.TRANSFER_RESTORE_OFFLOADED)
+    } else {
+      Log.w(TAG, format(this, "onFailure() messageId: $messageId  attachmentId: $attachmentId"))
 
-    markFailed(messageId, attachmentId)
+      markFailed(messageId, attachmentId)
+    }
   }
 
   override fun onShouldRetry(exception: Exception): Boolean {
@@ -211,7 +243,7 @@ class RestoreAttachmentJob private constructor(
           )
       }
 
-      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, downloadResult.dataStream, downloadResult.iv)
+      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, downloadResult.dataStream, downloadResult.iv, if (manual) System.currentTimeMillis().milliseconds else null)
     } catch (e: RangeException) {
       val transferFile = archiveFile ?: attachmentFile
       Log.w(TAG, "Range exception, file size " + transferFile.length(), e)
@@ -270,8 +302,12 @@ class RestoreAttachmentJob private constructor(
         parameters = parameters,
         messageId = data.messageId,
         attachmentId = AttachmentId(data.attachmentId),
-        offloaded = data.offloaded
+        manual = data.manual
       )
     }
+  }
+
+  enum class RestoreOperation {
+    MANUAL, RESTORE_OFFLOADED, INITIAL_RESTORE
   }
 }

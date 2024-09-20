@@ -188,6 +188,7 @@ public final class JobManagerFactories {
       put(MultiDeviceViewOnceOpenJob.KEY,            new MultiDeviceViewOnceOpenJob.Factory());
       put(MultiDeviceViewedUpdateJob.KEY,            new MultiDeviceViewedUpdateJob.Factory());
       put(NullMessageSendJob.KEY,                    new NullMessageSendJob.Factory());
+      put(OptimizeMediaJob.KEY,                      new OptimizeMediaJob.Factory());
       put(OptimizeMessageSearchIndexJob.KEY,         new OptimizeMessageSearchIndexJob.Factory());
       put(PaymentLedgerUpdateJob.KEY,                new PaymentLedgerUpdateJob.Factory());
       put(PaymentNotificationSendJob.KEY,            new PaymentNotificationSendJob.Factory());
@@ -223,6 +224,7 @@ public final class JobManagerFactories {
       put(RestoreAttachmentJob.KEY,                  new RestoreAttachmentJob.Factory());
       put(RestoreAttachmentThumbnailJob.KEY,         new RestoreAttachmentThumbnailJob.Factory());
       put(RestoreLocalAttachmentJob.KEY,             new RestoreLocalAttachmentJob.Factory());
+      put(RestoreOptimizedMediaJob.KEY,              new RestoreOptimizedMediaJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory());
       put(RetrieveProfileJob.KEY,                    new RetrieveProfileJob.Factory());
       put(RetrieveRemoteAnnouncementsJob.KEY,        new RetrieveRemoteAnnouncementsJob.Factory());

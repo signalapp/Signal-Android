@@ -106,11 +106,11 @@ class ManageStorageSettingsFragment : ComposeFragment() {
             onSetChatLengthLimit = { navController.navigate("set-chat-length-limit") },
             onSyncTrimThreadDeletes = { viewModel.setSyncTrimDeletes(it) },
             onDeleteChatHistory = { navController.navigate("confirm-delete-chat-history") },
-            onToggleOnDeviceStorageOptimization = {
+            onToggleOnDeviceStorageOptimization = { enabled ->
               if (state.onDeviceStorageOptimizationState == ManageStorageSettingsViewModel.OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER) {
                 UpgradeToEnableOptimizedStorageSheet().show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
               } else {
-                viewModel.setOptimizeStorage(it)
+                viewModel.setOptimizeStorage(enabled)
               }
             }
           )
@@ -535,6 +535,7 @@ private fun ManageStorageSettingsScreenPreview() {
       state = ManageStorageSettingsViewModel.ManageStorageState(
         keepMessagesDuration = KeepMessagesDuration.FOREVER,
         lengthLimit = ManageStorageSettingsViewModel.ManageStorageState.NO_LIMIT,
+        syncTrimDeletes = true,
         onDeviceStorageOptimizationState = ManageStorageSettingsViewModel.OnDeviceStorageOptimizationState.DISABLED
       )
     )

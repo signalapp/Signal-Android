@@ -73,6 +73,10 @@ class RestoreAttachmentThumbnailJob private constructor(
     return KEY
   }
 
+  override fun onAdded() {
+    SignalDatabase.attachments.setThumbnailRestoreState(attachmentId, AttachmentTable.ThumbnailRestoreState.IN_PROGRESS)
+  }
+
   @Throws(Exception::class, IOException::class, InvalidAttachmentException::class, InvalidMessageException::class, MissingConfigurationException::class)
   public override fun onRun() {
     Log.i(TAG, "onRun() messageId: $messageId  attachmentId: $attachmentId")

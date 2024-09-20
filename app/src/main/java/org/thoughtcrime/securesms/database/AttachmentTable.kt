@@ -79,7 +79,6 @@ import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.stickers
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -114,6 +113,9 @@ import java.security.NoSuchAlgorithmException
 import java.util.LinkedList
 import java.util.Optional
 import java.util.UUID
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 
 class AttachmentTable(
   context: Context,
@@ -169,6 +171,7 @@ class AttachmentTable(
     const val ARCHIVE_TRANSFER_STATE = "archive_transfer_state"
     const val THUMBNAIL_RESTORE_STATE = "thumbnail_restore_state"
     const val ATTACHMENT_UUID = "attachment_uuid"
+    const val OFFLOAD_RESTORED_AT = "offload_restored_at"
 
     const val ATTACHMENT_JSON_ALIAS = "attachment_json"
 
@@ -276,7 +279,8 @@ class AttachmentTable(
         $THUMBNAIL_RANDOM BLOB DEFAULT NULL,
         $THUMBNAIL_RESTORE_STATE INTEGER DEFAULT ${ThumbnailRestoreState.NONE.value},
         $ATTACHMENT_UUID TEXT DEFAULT NULL,
-        $REMOTE_IV BLOB DEFAULT NULL
+        $REMOTE_IV BLOB DEFAULT NULL,
+        $OFFLOAD_RESTORED_AT INTEGER DEFAULT 0
       )
       """
 
@@ -473,15 +477,6 @@ class AttachmentTable(
       .flatten()
   }
 
-  fun getArchivableAttachments(): Cursor {
-    return readableDatabase
-      .select(*PROJECTION)
-      .from(TABLE_NAME)
-      .where("$ARCHIVE_MEDIA_ID IS NULL AND $REMOTE_DIGEST IS NOT NULL AND ($TRANSFER_STATE = ? OR $TRANSFER_STATE = ?)", TRANSFER_PROGRESS_DONE.toString(), TRANSFER_NEEDS_RESTORE.toString())
-      .orderBy("$ID DESC")
-      .run()
-  }
-
   fun getLocalArchivableAttachments(): List<LocalArchivableAttachment> {
     return readableDatabase
       .select(*PROJECTION)
@@ -507,6 +502,24 @@ class AttachmentTable(
       .from(TABLE_NAME)
       .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE)
       .limit(batchSize)
+      .orderBy("$ID DESC")
+      .run()
+      .readToList {
+        RestorableAttachment(
+          attachmentId = AttachmentId(it.requireLong(ID)),
+          mmsId = it.requireLong(MESSAGE_ID),
+          size = it.requireLong(DATA_SIZE),
+          remoteDigest = it.requireBlob(REMOTE_DIGEST),
+          remoteKey = it.requireBlob(REMOTE_KEY)
+        )
+      }
+  }
+
+  fun getRestorableOptimizedAttachments(): List<RestorableAttachment> {
+    return readableDatabase
+      .select(ID, MESSAGE_ID, DATA_SIZE, REMOTE_DIGEST, REMOTE_KEY)
+      .from(TABLE_NAME)
+      .where("$TRANSFER_STATE = ?", TRANSFER_RESTORE_OFFLOADED)
       .orderBy("$ID DESC")
       .run()
       .readToList {
@@ -630,6 +643,52 @@ class AttachmentTable(
         .where("$DATA_FILE = ?", dataFile)
         .run()
     }
+  }
+
+  /**
+   * Marks eligible attachments as offloaded based on their received at timestamp, their last restore time,
+   * presence of thumbnail if media, and the full file being available in the archive.
+   *
+   * Marking offloaded only clears the strong references to the on disk file and clears other local file data like hashes.
+   * Another operation must run to actually delete the data from disk. See [deleteAbandonedAttachmentFiles].
+   */
+  fun markEligibleAttachmentsAsOptimized() {
+    val now = System.currentTimeMillis()
+
+    val subSelect = """
+      SELECT $TABLE_NAME.$ID 
+      FROM $TABLE_NAME 
+      INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID 
+      WHERE
+      (
+        $TABLE_NAME.$OFFLOAD_RESTORED_AT < ${now - 24.hours.inWholeMilliseconds} AND
+        $TABLE_NAME.$TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
+        $TABLE_NAME.$ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND
+        (
+          $TABLE_NAME.$THUMBNAIL_FILE IS NOT NULL OR 
+          NOT ($TABLE_NAME.$CONTENT_TYPE like 'image/%' OR $TABLE_NAME.$CONTENT_TYPE like 'video/%')
+        ) AND
+        $TABLE_NAME.$DATA_FILE IS NOT NULL
+      )
+      AND
+      (
+        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < ${now - 30.days.inWholeMilliseconds}
+      )
+    """
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        TRANSFER_STATE to TRANSFER_RESTORE_OFFLOADED,
+        DATA_FILE to null,
+        DATA_RANDOM to null,
+        TRANSFORM_PROPERTIES to null,
+        DATA_HASH_START to null,
+        DATA_HASH_END to null,
+        OFFLOAD_RESTORED_AT to 0
+      )
+      .where("$ID in ($subSelect)")
+      .run()
   }
 
   /**
@@ -834,13 +893,18 @@ class AttachmentTable(
       .map { file: File -> file.absolutePath }
       .toSet()
 
-    val filesInDb: Set<String> = readableDatabase
-      .select(DATA_FILE)
+    val filesInDb: MutableSet<String> = HashSet(filesOnDisk.size)
+
+    readableDatabase
+      .select(DATA_FILE, THUMBNAIL_FILE)
       .from(TABLE_NAME)
       .run()
-      .readToList { it.requireString(DATA_FILE) }
-      .filterNotNull()
-      .toSet() + stickers.allStickerFiles
+      .forEach { cursor ->
+        cursor.requireString(DATA_FILE)?.let { filesInDb += it }
+        cursor.requireString(THUMBNAIL_FILE)?.let { filesInDb += it }
+      }
+
+    filesInDb += SignalDatabase.stickers.allStickerFiles
 
     val onDiskButNotInDatabase: Set<String> = filesOnDisk - filesInDb
 
@@ -933,6 +997,10 @@ class AttachmentTable(
     notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
   }
 
+  fun setThumbnailRestoreState(thumbnailAttachmentId: AttachmentId, thumbnailRestoreState: ThumbnailRestoreState) {
+    setThumbnailRestoreState(listOf(thumbnailAttachmentId), thumbnailRestoreState)
+  }
+
   fun setThumbnailRestoreState(thumbnailAttachmentIds: List<AttachmentId>, thumbnailRestoreState: ThumbnailRestoreState) {
     val prefix: String = when (thumbnailRestoreState) {
       ThumbnailRestoreState.IN_PROGRESS -> {
@@ -958,7 +1026,11 @@ class AttachmentTable(
     }
   }
 
-  fun setRestoreTransferState(restorableAttachments: Collection<RestorableAttachment>, state: Int) {
+  fun setRestoreTransferState(attachmentId: AttachmentId, state: Int) {
+    setRestoreTransferState(listOf(attachmentId), state)
+  }
+
+  fun setRestoreTransferState(restorableAttachments: Collection<AttachmentId>, state: Int) {
     val prefix = when (state) {
       TRANSFER_RESTORE_OFFLOADED -> "$TRANSFER_STATE != $TRANSFER_PROGRESS_PERMANENT_FAILURE AND"
       TRANSFER_RESTORE_IN_PROGRESS -> "($TRANSFER_STATE = $TRANSFER_NEEDS_RESTORE OR $TRANSFER_STATE = $TRANSFER_RESTORE_OFFLOADED) AND"
@@ -968,7 +1040,7 @@ class AttachmentTable(
 
     val setQueries = SqlUtil.buildCollectionQuery(
       column = ID,
-      values = restorableAttachments.map { it.attachmentId.id },
+      values = restorableAttachments,
       prefix = prefix
     )
 
@@ -991,7 +1063,7 @@ class AttachmentTable(
    * @return True if we had to change the digest as part of saving the file, otherwise false.
    */
   @Throws(MmsException::class)
-  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: LimitedInputStream, iv: ByteArray): Boolean {
+  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: LimitedInputStream, iv: ByteArray, offloadRestoredAt: Duration? = null): Boolean {
     Log.i(TAG, "[finalizeAttachmentAfterDownload] Finalizing downloaded data for $attachmentId. (MessageId: $mmsId, $attachmentId)")
 
     val existingPlaceholder: DatabaseAttachment = getAttachment(attachmentId) ?: throw MmsException("No attachment found for id: $attachmentId")
@@ -1062,6 +1134,10 @@ class AttachmentTable(
 
       if (digestChanged) {
         values.put(UPLOAD_TIMESTAMP, 0)
+      }
+
+      if (offloadRestoredAt != null) {
+        values.put(OFFLOAD_RESTORED_AT, offloadRestoredAt.inWholeMilliseconds)
       }
 
       db.update(TABLE_NAME)

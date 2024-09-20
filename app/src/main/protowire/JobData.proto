@@ -122,7 +122,7 @@ message BackfillDigestJobData {
 message RestoreAttachmentJobData {
   uint64 messageId = 1;
   uint64 attachmentId = 2;
-  bool offloaded = 3;
+  bool manual = 3;
 }
 
 message CopyAttachmentToArchiveJobData {

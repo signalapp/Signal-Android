@@ -37,14 +37,18 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
      */
     fun enqueue(pruneAbandonedRemoteMedia: Boolean = false) {
       val jobManager = AppDependencies.jobManager
+
+      val chain = jobManager.startChain(BackupMessagesJob())
+
       if (pruneAbandonedRemoteMedia) {
-        jobManager
-          .startChain(BackupMessagesJob())
-          .then(SyncArchivedMediaJob())
-          .enqueue()
-      } else {
-        jobManager.add(BackupMessagesJob())
+        chain.then(SyncArchivedMediaJob())
       }
+
+      if (SignalStore.backup.optimizeStorage && SignalStore.backup.backsUpMedia) {
+        chain.then(OptimizeMediaJob())
+      }
+
+      chain.enqueue()
     }
   }
 
@@ -53,7 +57,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
       .addConstraint(if (SignalStore.backup.backupWithCellular) NetworkConstraint.KEY else WifiConstraint.KEY)
       .setMaxAttempts(3)
       .setMaxInstancesForFactory(1)
-      .setQueue(BackfillDigestJob.QUEUE) // We want to ensure digests have been backfilled before this runs. Could eventually remove this constraint.b
+      .setQueue(BackfillDigestJob.QUEUE) // We want to ensure digests have been backfilled before this runs. Could eventually remove this constraint.
       .build()
   )
 

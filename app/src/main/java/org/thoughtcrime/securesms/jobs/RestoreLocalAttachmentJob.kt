@@ -9,7 +9,6 @@ import org.signal.core.util.Base64
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.androidx.DocumentFileInfo
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.InvalidMacException
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -44,14 +43,12 @@ class RestoreLocalAttachmentJob private constructor(
     private const val CONCURRENT_QUEUES = 2
 
     fun enqueueRestoreLocalAttachmentsJobs(mediaNameToFileInfo: Map<String, DocumentFileInfo>) {
-      var restoreAttachmentJobs: MutableList<Job>
+      val jobManager = AppDependencies.jobManager
 
       do {
         val possibleRestorableAttachments: List<RestorableAttachment> = SignalDatabase.attachments.getRestorableAttachments(500)
-        val restorableAttachments = ArrayList<RestorableAttachment>(possibleRestorableAttachments.size)
-        val notRestorableAttachments = ArrayList<RestorableAttachment>(possibleRestorableAttachments.size)
-
-        restoreAttachmentJobs = ArrayList(possibleRestorableAttachments.size)
+        val notRestorableAttachments = ArrayList<AttachmentId>(possibleRestorableAttachments.size)
+        val restoreAttachmentJobs: MutableList<Job> = ArrayList(possibleRestorableAttachments.size)
 
         possibleRestorableAttachments
           .forEachIndexed { index, attachment ->
@@ -63,21 +60,20 @@ class RestoreLocalAttachmentJob private constructor(
             }
 
             if (fileInfo != null) {
-              restorableAttachments += attachment
               restoreAttachmentJobs += RestoreLocalAttachmentJob(queueName(index), attachment, fileInfo)
             } else {
-              notRestorableAttachments += attachment
+              notRestorableAttachments += attachment.attachmentId
             }
           }
 
-        SignalDatabase.rawDatabase.withinTransaction {
-          SignalDatabase.attachments.setRestoreTransferState(restorableAttachments, AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS)
-          SignalDatabase.attachments.setRestoreTransferState(notRestorableAttachments, AttachmentTable.TRANSFER_PROGRESS_FAILED)
+        // Mark not restorable attachments as failed
+        SignalDatabase.attachments.setRestoreTransferState(notRestorableAttachments, AttachmentTable.TRANSFER_PROGRESS_FAILED)
 
-          SignalStore.backup.totalRestorableAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
-          AppDependencies.jobManager.addAll(restoreAttachmentJobs)
-        }
+        // Intentionally enqueues one at a time for safer attachment transfer state management
+        restoreAttachmentJobs.forEach { jobManager.add(it) }
       } while (restoreAttachmentJobs.isNotEmpty())
+
+      SignalStore.backup.totalRestorableAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
 
       val checkDoneJobs = (0 until CONCURRENT_QUEUES)
         .map {
