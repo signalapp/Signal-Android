@@ -27,7 +27,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-final class UriChatWallpaper implements ChatWallpaper, Parcelable {
+public final class UriChatWallpaper implements ChatWallpaper, Parcelable {
 
   private static final LruCache<Uri, Bitmap> CACHE = new LruCache<Uri, Bitmap>((int) Runtime.getRuntime().maxMemory() / 8) {
     @Override
@@ -116,6 +116,10 @@ final class UriChatWallpaper implements ChatWallpaper, Parcelable {
     }
 
     return false;
+  }
+
+  public @NonNull Uri getUri() {
+    return uri;
   }
 
   @Override

@@ -39,7 +39,7 @@ object ChatBackupProcessor {
       return
     }
 
-    SignalDatabase.threads.restoreFromBackup(chat, recipientId, importState)?.let { threadId ->
+    SignalDatabase.threads.restoreFromBackup(chat, recipientId, importState).let { threadId ->
       importState.chatIdToLocalRecipientId[chat.id] = recipientId
       importState.chatIdToLocalThreadId[chat.id] = threadId
       importState.chatIdToBackupRecipientId[chat.id] = chat.recipientId

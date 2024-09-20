@@ -94,6 +94,7 @@ import org.thoughtcrime.securesms.migrations.TrimByLengthSettingsMigrationJob;
 import org.thoughtcrime.securesms.migrations.UpdateSmsJobsMigrationJob;
 import org.thoughtcrime.securesms.migrations.UserNotificationMigrationJob;
 import org.thoughtcrime.securesms.migrations.UuidMigrationJob;
+import org.thoughtcrime.securesms.migrations.WallpaperStorageMigrationJob;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -309,6 +310,7 @@ public final class JobManagerFactories {
       put(UpdateSmsJobsMigrationJob.KEY,             new UpdateSmsJobsMigrationJob.Factory());
       put(UserNotificationMigrationJob.KEY,          new UserNotificationMigrationJob.Factory());
       put(UuidMigrationJob.KEY,                      new UuidMigrationJob.Factory());
+      put(WallpaperStorageMigrationJob.KEY,          new WallpaperStorageMigrationJob.Factory());
 
       // Dead jobs
       put(FailingJob.KEY,                            new FailingJob.Factory());

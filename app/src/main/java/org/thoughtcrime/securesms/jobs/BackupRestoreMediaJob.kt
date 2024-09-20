@@ -66,9 +66,11 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
       val messageMap = SignalDatabase.messages.getMessages(messageIds).associate { it.id to (it as MmsMessageRecord) }
 
       for (attachment in attachmentBatch) {
+        val isWallpaper = attachment.mmsId == AttachmentTable.WALLPAPER_MESSAGE_ID
+
         val message = messageMap[attachment.mmsId]
-        if (message == null) {
-          Log.w(TAG, "Unable to find message for ${attachment.attachmentId}")
+        if (message == null && !isWallpaper) {
+          Log.w(TAG, "Unable to find message for ${attachment.attachmentId}, mmsId: ${attachment.mmsId}")
           notRestorable += attachment
           continue
         }
@@ -79,7 +81,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
           highPriority = false
         )
 
-        if (shouldRestoreFullSize(message, restoreTime, SignalStore.backup.optimizeStorage)) {
+        if (isWallpaper || shouldRestoreFullSize(message!!, restoreTime, SignalStore.backup.optimizeStorage)) {
           restoreFullAttachmentJobs += attachment to RestoreAttachmentJob(
             messageId = attachment.mmsId,
             attachmentId = attachment.attachmentId

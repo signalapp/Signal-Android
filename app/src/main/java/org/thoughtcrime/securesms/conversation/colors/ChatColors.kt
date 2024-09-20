@@ -33,6 +33,7 @@ class ChatColors(
 ) : Parcelable {
 
   fun isGradient(): Boolean = linearGradient != null
+  fun isSolid(): Boolean = singleColor != null
 
   /**
    * Returns the Drawable to render the linear gradient, or null if this ChatColors is a single color.

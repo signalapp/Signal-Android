@@ -621,7 +621,7 @@ message FilePointer {
 
   oneof locator {
     BackupLocator backupLocator = 1;
-    AttachmentLocator attachmentLocator= 2;
+    AttachmentLocator attachmentLocator = 2;
     InvalidAttachmentLocator invalidAttachmentLocator = 3;
   }
 

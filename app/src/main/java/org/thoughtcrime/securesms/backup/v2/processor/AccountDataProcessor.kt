@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.backup.v2.proto.ChatStyle
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
-import org.thoughtcrime.securesms.backup.v2.util.BackupConverters
+import org.thoughtcrime.securesms.backup.v2.util.ChatStyleConverter
 import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
@@ -50,6 +50,7 @@ object AccountDataProcessor {
     val donationSubscriber = db.inAppPaymentSubscriberTable.getByCurrencyCode(donationCurrency.currencyCode, InAppPaymentSubscriberRecord.Type.DONATION)
 
     val chatColors = SignalStore.chatColors.chatColors
+    val chatWallpaper = SignalStore.wallpaper.currentRawWallpaper
 
     emitter.emit(
       Frame(
@@ -87,12 +88,12 @@ object AccountDataProcessor {
             hasSeenGroupStoryEducationSheet = signalStore.storyValues.userHasSeenGroupStoryEducationSheet,
             hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding(),
             customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors(),
-            defaultChatStyle = BackupConverters.constructRemoteChatStyle(chatColors, chatColors?.id ?: ChatColors.Id.NotSet)?.also {
-              it.newBuilder().apply {
-                // TODO [backup] We should do this elsewhere once we handle wallpaper better
-                dimWallpaperInDarkMode = (SignalStore.wallpaper.wallpaper?.dimLevelForDarkTheme ?: 0f) > 0f
-              }.build()
-            }
+            defaultChatStyle = ChatStyleConverter.constructRemoteChatStyle(
+              readableDatabase = db.signalReadableDatabase,
+              chatColors = chatColors,
+              chatColorId = chatColors?.id ?: ChatColors.Id.NotSet,
+              chatWallpaper = chatWallpaper
+            )
           ),
           donationSubscriberData = donationSubscriber?.toSubscriberData(signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled())
         )

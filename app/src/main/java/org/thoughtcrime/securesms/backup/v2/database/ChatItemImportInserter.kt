@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.backup.v2.database
 
 import android.content.ContentValues
 import androidx.core.content.contentValuesOf
-import okio.ByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.SqlUtil
@@ -17,17 +16,13 @@ import org.signal.core.util.orNull
 import org.signal.core.util.requireLong
 import org.signal.core.util.toInt
 import org.signal.core.util.update
-import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
-import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
-import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ContactAttachment
-import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCall
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
 import org.thoughtcrime.securesms.backup.v2.proto.LinkPreview
@@ -39,8 +34,8 @@ import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
 import org.thoughtcrime.securesms.backup.v2.proto.SimpleChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Sticker
+import org.thoughtcrime.securesms.backup.v2.util.toLocalAttachment
 import org.thoughtcrime.securesms.contactshare.Contact
-import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
@@ -74,9 +69,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.JsonUtils
-import org.whispersystems.signalservice.api.backup.MediaName
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import org.whispersystems.signalservice.api.payments.Money
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -342,7 +334,7 @@ class ChatItemImportInserter(
               address.country
             )
           },
-          Contact.Avatar(null, backupContact.avatar.toLocalAttachment(), true)
+          Contact.Avatar(null, backupContact.avatar.toLocalAttachment(importState = importState, voiceNote = false, borderless = false, gif = false, wasDownloaded = true), true)
         )
       }
 
@@ -917,29 +909,6 @@ class ChatItemImportInserter(
         ?: false
     }
 
-  private fun LinkPreview.toLocalLinkPreview(): org.thoughtcrime.securesms.linkpreview.LinkPreview {
-    return org.thoughtcrime.securesms.linkpreview.LinkPreview(
-      this.url,
-      this.title ?: "",
-      this.description ?: "",
-      this.date ?: 0,
-      Optional.ofNullable(this.image?.toLocalAttachment())
-    )
-  }
-
-  private fun MessageAttachment.toLocalAttachment(contentType: String? = this.pointer?.contentType, fileName: String? = this.pointer?.fileName): Attachment? {
-    return this.pointer?.toLocalAttachment(
-      voiceNote = this.flag == MessageAttachment.Flag.VOICE_MESSAGE,
-      borderless = this.flag == MessageAttachment.Flag.BORDERLESS,
-      gif = this.flag == MessageAttachment.Flag.GIF,
-      wasDownloaded = this.wasDownloaded,
-      stickerLocator = null,
-      contentType = contentType,
-      fileName = fileName,
-      uuid = this.clientUuid
-    )
-  }
-
   private fun Quote.QuotedAttachment.toLocalAttachment(): Attachment? {
     val thumbnail = this.thumbnail?.toLocalAttachment(this.contentType, this.fileName)
 
@@ -962,6 +931,11 @@ class ChatItemImportInserter(
     if (this == null) return null
 
     return data_.toLocalAttachment(
+      importState = importState,
+      voiceNote = false,
+      gif = false,
+      borderless = false,
+      wasDownloaded = true,
       stickerLocator = StickerLocator(
         packId = Hex.toStringCondensed(packId.toByteArray()),
         packKey = Hex.toStringCondensed(packKey.toByteArray()),
@@ -971,90 +945,38 @@ class ChatItemImportInserter(
     )
   }
 
-  private fun FilePointer?.toLocalAttachment(
-    borderless: Boolean = false,
-    gif: Boolean = false,
-    voiceNote: Boolean = false,
-    wasDownloaded: Boolean = true,
-    stickerLocator: StickerLocator? = null,
-    contentType: String? = this?.contentType,
-    fileName: String? = this?.fileName,
-    uuid: ByteString? = null
-  ): Attachment? {
-    return if (this == null) {
-      null
-    } else if (this.attachmentLocator != null) {
-      val signalAttachmentPointer = SignalServiceAttachmentPointer(
-        cdnNumber = this.attachmentLocator.cdnNumber,
-        remoteId = SignalServiceAttachmentRemoteId.from(this.attachmentLocator.cdnKey),
-        contentType = contentType,
-        key = this.attachmentLocator.key.toByteArray(),
-        size = Optional.ofNullable(this.attachmentLocator.size),
-        preview = Optional.empty(),
-        width = this.width ?: 0,
-        height = this.height ?: 0,
-        digest = Optional.ofNullable(this.attachmentLocator.digest.toByteArray()),
-        incrementalDigest = Optional.ofNullable(this.incrementalMac?.toByteArray()),
-        incrementalMacChunkSize = this.incrementalMacChunkSize ?: 0,
-        fileName = Optional.ofNullable(fileName),
-        voiceNote = voiceNote,
-        isBorderless = borderless,
-        isGif = gif,
-        caption = Optional.ofNullable(this.caption),
-        blurHash = Optional.ofNullable(this.blurHash),
-        uploadTimestamp = this.attachmentLocator.uploadTimestamp,
-        uuid = UuidUtil.fromByteStringOrNull(uuid)
-      )
-      PointerAttachment.forPointer(
-        pointer = Optional.of(signalAttachmentPointer),
-        stickerLocator = stickerLocator,
-        transferState = if (wasDownloaded) AttachmentTable.TRANSFER_NEEDS_RESTORE else AttachmentTable.TRANSFER_PROGRESS_PENDING
-      ).orNull()
-    } else if (this.invalidAttachmentLocator != null) {
-      TombstoneAttachment(
-        contentType = contentType,
-        incrementalMac = this.incrementalMac?.toByteArray(),
-        incrementalMacChunkSize = this.incrementalMacChunkSize,
-        width = this.width,
-        height = this.height,
-        caption = this.caption,
-        blurHash = this.blurHash,
-        voiceNote = voiceNote,
-        borderless = borderless,
-        gif = gif,
-        quote = false,
-        uuid = UuidUtil.fromByteStringOrNull(uuid)
-      )
-    } else if (this.backupLocator != null) {
-      ArchivedAttachment(
-        contentType = contentType,
-        size = this.backupLocator.size.toLong(),
-        cdn = this.backupLocator.transitCdnNumber ?: Cdn.CDN_0.cdnNumber,
-        key = this.backupLocator.key.toByteArray(),
-        iv = null,
-        cdnKey = this.backupLocator.transitCdnKey,
-        archiveCdn = this.backupLocator.cdnNumber,
-        archiveMediaName = this.backupLocator.mediaName,
-        archiveMediaId = importState.backupKey.deriveMediaId(MediaName(this.backupLocator.mediaName)).encode(),
-        archiveThumbnailMediaId = importState.backupKey.deriveMediaId(MediaName.forThumbnailFromMediaName(this.backupLocator.mediaName)).encode(),
-        digest = this.backupLocator.digest.toByteArray(),
-        incrementalMac = this.incrementalMac?.toByteArray(),
-        incrementalMacChunkSize = this.incrementalMacChunkSize,
-        width = this.width,
-        height = this.height,
-        caption = this.caption,
-        blurHash = this.blurHash,
-        voiceNote = voiceNote,
-        borderless = borderless,
-        gif = gif,
-        quote = false,
-        stickerLocator = stickerLocator,
-        uuid = UuidUtil.fromByteStringOrNull(uuid),
-        fileName = fileName
-      )
-    } else {
-      null
-    }
+  private fun LinkPreview.toLocalLinkPreview(): org.thoughtcrime.securesms.linkpreview.LinkPreview {
+    return org.thoughtcrime.securesms.linkpreview.LinkPreview(
+      this.url,
+      this.title ?: "",
+      this.description ?: "",
+      this.date ?: 0,
+      Optional.ofNullable(this.image?.toLocalAttachment(importState = importState, voiceNote = false, borderless = false, gif = false, wasDownloaded = true))
+    )
+  }
+
+  private fun MessageAttachment.toLocalAttachment(): Attachment? {
+    return pointer?.toLocalAttachment(
+      importState = importState,
+      voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
+      gif = flag == MessageAttachment.Flag.GIF,
+      borderless = flag == MessageAttachment.Flag.BORDERLESS,
+      wasDownloaded = wasDownloaded,
+      uuid = clientUuid
+    )
+  }
+
+  private fun MessageAttachment.toLocalAttachment(contentType: String?, fileName: String?): Attachment? {
+    return pointer?.toLocalAttachment(
+      importState = importState,
+      voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
+      gif = flag == MessageAttachment.Flag.GIF,
+      borderless = flag == MessageAttachment.Flag.BORDERLESS,
+      wasDownloaded = wasDownloaded,
+      contentType = contentType,
+      fileName = fileName,
+      uuid = clientUuid
+    )
   }
 
   private fun ContactAttachment.Name?.toLocal(): Contact.Name {

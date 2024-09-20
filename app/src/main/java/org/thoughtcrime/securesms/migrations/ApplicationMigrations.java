@@ -156,9 +156,10 @@ public class ApplicationMigrations {
 //    static final int BACKFILL_DIGESTS              = 112;
     static final int BACKFILL_DIGESTS_V2           = 113;
     static final int CALL_LINK_STORAGE_SYNC        = 114;
+    static final int WALLPAPER_MIGRATION           = 115;
   }
 
-  public static final int CURRENT_VERSION = 114;
+  public static final int CURRENT_VERSION = 115;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -711,6 +712,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.CALL_LINK_STORAGE_SYNC) {
       jobs.put(Version.CALL_LINK_STORAGE_SYNC, new SyncCallLinksMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.WALLPAPER_MIGRATION) {
+      jobs.put(Version.WALLPAPER_MIGRATION, new WallpaperStorageMigrationJob());
     }
 
     return jobs;

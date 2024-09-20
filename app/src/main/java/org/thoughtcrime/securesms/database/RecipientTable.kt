@@ -98,6 +98,7 @@ import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -1968,7 +1969,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         for (pair in idWithWallpaper) {
           AppDependencies.databaseObserver.notifyRecipientChanged(pair.first)
           if (pair.second != null) {
-            WallpaperStorage.onWallpaperDeselected(context, Uri.parse(pair.second))
+            WallpaperStorage.onWallpaperDeselected(Uri.parse(pair.second))
           }
         }
       } else {
@@ -1980,11 +1981,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun setWallpaper(id: RecipientId, chatWallpaper: ChatWallpaper?) {
-    setWallpaper(id, chatWallpaper?.serialize())
+  fun setWallpaper(id: RecipientId, chatWallpaper: ChatWallpaper?, notifyDeselected: Boolean) {
+    setWallpaper(id, chatWallpaper?.serialize(), notifyDeselected)
   }
 
-  private fun setWallpaper(id: RecipientId, wallpaper: Wallpaper?) {
+  private fun setWallpaper(id: RecipientId, wallpaper: Wallpaper?, notifyDeselected: Boolean) {
     val existingWallpaperUri = getWallpaperUri(id)
     val values = ContentValues().apply {
       put(WALLPAPER, wallpaper?.encode())
@@ -1999,8 +2000,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
     }
 
-    if (existingWallpaperUri != null) {
-      WallpaperStorage.onWallpaperDeselected(context, existingWallpaperUri)
+    if (notifyDeselected && existingWallpaperUri != null) {
+      WallpaperStorage.onWallpaperDeselected(existingWallpaperUri)
     }
   }
 
@@ -2010,7 +2011,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .dimLevelInDarkTheme(if (enabled) ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME else 0f)
       .build()
 
-    setWallpaper(id, updated)
+    setWallpaper(id, updated, false)
   }
 
   private fun getWallpaper(id: RecipientId): Wallpaper? {
@@ -2053,6 +2054,23 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     return 0
+  }
+
+  /**
+   * Migrates all recipients using [legacyUri] for their wallpaper to [newUri].
+   * Needed for an app migration.
+   */
+  fun migrateWallpaperUri(legacyUri: Uri, newUri: Uri): Int {
+    val newWallpaper = ChatWallpaperFactory.create(newUri)
+
+    return writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        WALLPAPER to newWallpaper.serialize().encode(),
+        WALLPAPER_URI to newUri.toString()
+      )
+      .where("$WALLPAPER_URI = ?", legacyUri)
+      .run()
   }
 
   fun getPhoneNumberDiscoverability(id: RecipientId): PhoneNumberDiscoverableState? {

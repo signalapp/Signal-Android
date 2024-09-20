@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.attachments.WallpaperAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
@@ -182,6 +183,7 @@ class AttachmentTable(
     const val TRANSFER_RESTORE_IN_PROGRESS = 6
     const val TRANSFER_RESTORE_OFFLOADED = 7
     const val PREUPLOAD_MESSAGE_ID: Long = -8675309
+    const val WALLPAPER_MESSAGE_ID: Long = -8675308
 
     private val PROJECTION = arrayOf(
       ID,
@@ -816,7 +818,7 @@ class AttachmentTable(
   fun trimAllAbandonedAttachments() {
     val deleteCount = writableDatabase
       .delete(TABLE_NAME)
-      .where("$MESSAGE_ID != $PREUPLOAD_MESSAGE_ID AND $MESSAGE_ID NOT IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME})")
+      .where("$MESSAGE_ID != $PREUPLOAD_MESSAGE_ID AND $MESSAGE_ID != $WALLPAPER_MESSAGE_ID AND $MESSAGE_ID NOT IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME})")
       .run()
 
     if (deleteCount > 0) {
@@ -2184,6 +2186,16 @@ class AttachmentTable(
       throw MmsException(e)
     }
 
+    return insertAttachmentWithData(messageId, dataStream, attachment, quote)
+  }
+
+  /**
+   * Inserts an attachment with existing data. This is likely an outgoing attachment that we're in the process of sending.
+   *
+   * @param dataStream The stream to read the data from. This stream will be closed by this method.
+   */
+  @Throws(MmsException::class)
+  private fun insertAttachmentWithData(messageId: Long, dataStream: InputStream, attachment: Attachment, quote: Boolean): AttachmentId {
     // To avoid performing long-running operations in a transaction, we write the data to an independent file first in a way that doesn't rely on db state.
     val fileWriteResult: DataFileWriteResult = writeToDataFile(newDataFile(context), dataStream, attachment.transformProperties ?: TransformProperties.empty())
     Log.d(TAG, "[insertAttachmentWithData] Wrote data to file: ${fileWriteResult.file.absolutePath} (MessageId: $messageId, ${attachment.uri})")
@@ -2212,12 +2224,16 @@ class AttachmentTable(
         }
 
       if (hashMatch != null) {
-        if (fileWriteResult.hash == hashMatch.hashStart) {
-          Log.i(TAG, "[insertAttachmentWithData] Found that the new attachment hash matches the DATA_HASH_START of ${hashMatch.id}. Using all of it's fields. (MessageId: $messageId, ${attachment.uri})")
-        } else if (fileWriteResult.hash == hashMatch.hashEnd) {
-          Log.i(TAG, "[insertAttachmentWithData] Found that the new attachment hash matches the DATA_HASH_END of ${hashMatch.id}. Using all of it's fields. (MessageId: $messageId, ${attachment.uri})")
-        } else {
-          throw IllegalStateException("Should not be possible based on query.")
+        when (fileWriteResult.hash) {
+          hashMatch.hashStart -> {
+            Log.i(TAG, "[insertAttachmentWithData] Found that the new attachment hash matches the DATA_HASH_START of ${hashMatch.id}. Using all of it's fields. (MessageId: $messageId, ${attachment.uri})")
+          }
+          hashMatch.hashEnd -> {
+            Log.i(TAG, "[insertAttachmentWithData] Found that the new attachment hash matches the DATA_HASH_END of ${hashMatch.id}. Using all of it's fields. (MessageId: $messageId, ${attachment.uri})")
+          }
+          else -> {
+            throw IllegalStateException("Should not be possible based on query.")
+          }
         }
 
         contentValues.put(DATA_FILE, hashMatch.file.absolutePath)
@@ -2307,6 +2323,21 @@ class AttachmentTable(
 
     AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
     return attachmentId
+  }
+
+  fun insertWallpaper(dataStream: InputStream): AttachmentId {
+    return insertAttachmentWithData(WALLPAPER_MESSAGE_ID, dataStream, WallpaperAttachment(), quote = false).also { id ->
+      createKeyIvIfNecessary(id)
+    }
+  }
+
+  fun getAllWallpapers(): List<AttachmentId> {
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$MESSAGE_ID = $WALLPAPER_MESSAGE_ID")
+      .run()
+      .readToList { AttachmentId(it.requireLong(ID)) }
   }
 
   private fun getTransferFile(db: SQLiteDatabase, attachmentId: AttachmentId): File? {
