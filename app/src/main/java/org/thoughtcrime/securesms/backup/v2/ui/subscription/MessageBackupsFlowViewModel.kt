@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.withContext
 import org.signal.core.util.billing.BillingPurchaseResult
-import org.signal.core.util.money.FiatMoney
+import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -38,10 +38,13 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
-import java.math.BigDecimal
 import kotlin.time.Duration.Companion.seconds
 
 class MessageBackupsFlowViewModel : ViewModel() {
+
+  companion object {
+    private val TAG = Log.tag(MessageBackupsFlowViewModel::class)
+  }
 
   private val internalStateFlow = MutableStateFlow(
     MessageBackupsFlowState(
@@ -59,13 +62,13 @@ class MessageBackupsFlowViewModel : ViewModel() {
     viewModelScope.launch {
       try {
         ensureSubscriberIdForBackups()
-      } catch (e: Exception) {
         internalStateFlow.update {
           it.copy(
-            stage = MessageBackupsStage.FAILURE,
-            failure = e
+            hasBackupSubscriberAvailable = true
           )
         }
+      } catch (e: Exception) {
+        Log.w(TAG, "Failed to ensure a subscriber id exists.", e)
       }
 
       internalStateFlow.update {
@@ -168,7 +171,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
         SignalStore.backup.areBackupsEnabled = true
         SignalStore.backup.backupTier = MessageBackupTier.FREE
 
-        state.copy(stage = MessageBackupsStage.PROCESS_FREE)
+        state.copy(stage = MessageBackupsStage.COMPLETED)
       }
 
       MessageBackupTier.PAID -> state.copy(stage = MessageBackupsStage.CHECKOUT_SHEET)
@@ -176,7 +179,9 @@ class MessageBackupsFlowViewModel : ViewModel() {
   }
 
   private fun validateGatewayAndUpdateState(state: MessageBackupsFlowState): MessageBackupsFlowState {
-    val backupsType = state.availableBackupTypes.first { it.tier == state.selectedMessageBackupTier }
+    check(state.selectedMessageBackupTier == MessageBackupTier.PAID)
+    check(state.availableBackupTypes.any { it.tier == state.selectedMessageBackupTier })
+    check(state.hasBackupSubscriberAvailable)
 
     viewModelScope.launch(Dispatchers.IO) {
       withContext(Dispatchers.Main) {
@@ -194,7 +199,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
         inAppPaymentData = InAppPaymentData(
           badge = null,
           label = state.selectedMessageBackupTierLabel!!,
-          amount = if (backupsType is MessageBackupsType.Paid) paidFiat.toFiatValue() else FiatMoney(BigDecimal.ZERO, paidFiat.currency).toFiatValue(),
+          amount = paidFiat.toFiatValue(),
           level = SubscriptionsConfiguration.BACKUPS_LEVEL.toLong(),
           recipientId = Recipient.self().id.serialize(),
           paymentMethodType = InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING,

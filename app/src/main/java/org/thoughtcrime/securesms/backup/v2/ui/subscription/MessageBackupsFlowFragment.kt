@@ -16,6 +16,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.Nav
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -84,7 +85,7 @@ class MessageBackupsFlowFragment : ComposeFragment() {
         MessageBackupsTypeSelectionScreen(
           currentBackupTier = state.currentMessageBackupTier,
           selectedBackupTier = state.selectedMessageBackupTier,
-          availableBackupTypes = state.availableBackupTypes,
+          availableBackupTypes = state.availableBackupTypes.filter { it.tier == MessageBackupTier.FREE || state.hasBackupSubscriberAvailable },
           onMessageBackupsTierSelected = { tier ->
             val type = state.availableBackupTypes.first { it.tier == tier }
             val label = when (type) {
