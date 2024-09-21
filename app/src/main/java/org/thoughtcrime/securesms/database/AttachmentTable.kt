@@ -1626,13 +1626,7 @@ class AttachmentTable(
       .from(TABLE_NAME)
       .where("$ID = ?", attachmentId.id)
       .run()
-      .readToSingleObject { cursor ->
-        if (cursor.isNull(DATA_FILE) || cursor.isNull(DATA_RANDOM)) {
-          null
-        } else {
-          cursor.readDataFileInfo()
-        }
-      }
+      .readToSingleObject { cursor -> cursor.readDataFileInfo() }
   }
 
   fun getThumbnailFileInfo(attachmentId: AttachmentId): ThumbnailFileInfo? {
@@ -2289,6 +2283,7 @@ class AttachmentTable(
         .where("$DATA_FILE NOT NULL AND ($DATA_HASH_START = ? OR $DATA_HASH_END = ?)", fileWriteResult.hash, fileWriteResult.hash)
         .run()
         .readToList { it.readDataFileInfo() }
+        .filterNotNull()
         .sortedByDescending { it.uploadTimestamp }
         .firstOrNull { existingMatch ->
           areTransformationsCompatible(
@@ -2493,12 +2488,15 @@ class AttachmentTable(
     return getAttachment(this)
   }
 
-  private fun Cursor.readDataFileInfo(): DataFileInfo {
+  private fun Cursor.readDataFileInfo(): DataFileInfo? {
+    val filePath: String = this.requireString(DATA_FILE) ?: return null
+    val random: ByteArray = this.requireBlob(DATA_RANDOM) ?: return null
+
     return DataFileInfo(
       id = AttachmentId(this.requireLong(ID)),
-      file = File(this.requireNonNullString(DATA_FILE)),
+      file = File(filePath),
       length = this.requireLong(DATA_SIZE),
-      random = this.requireNonNullBlob(DATA_RANDOM),
+      random = random,
       hashStart = this.requireString(DATA_HASH_START),
       hashEnd = this.requireString(DATA_HASH_END),
       transformProperties = TransformProperties.parse(this.requireString(TRANSFORM_PROPERTIES)),
