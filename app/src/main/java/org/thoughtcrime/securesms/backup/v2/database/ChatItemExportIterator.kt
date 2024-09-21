@@ -11,7 +11,6 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
-import org.signal.core.util.emptyIfNull
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.requireBlob
@@ -697,10 +696,12 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       Quote(
         targetSentTimestamp = this.quoteTargetSentTimestamp.takeIf { !this.quoteMissing && it != MessageTable.QUOTE_TARGET_MISSING_ID },
         authorId = this.quoteAuthor,
-        text = Text(
-          body = this.quoteBody.emptyIfNull(),
-          bodyRanges = this.quoteBodyRanges?.toBackupBodyRanges() ?: emptyList()
-        ),
+        text = this.quoteBody?.let { body ->
+          Text(
+            body = body,
+            bodyRanges = this.quoteBodyRanges?.toBackupBodyRanges() ?: emptyList()
+          )
+        },
         attachments = attachments?.toBackupQuoteAttachments() ?: emptyList(),
         type = when (type) {
           QuoteModel.Type.NORMAL -> Quote.Type.NORMAL
@@ -750,7 +751,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       Quote.QuotedAttachment(
         contentType = attachment.contentType,
         fileName = attachment.fileName,
-        thumbnail = attachment.toRemoteMessageAttachment()
+        thumbnail = attachment.toRemoteMessageAttachment().takeUnless { it.pointer?.invalidAttachmentLocator != null }
       )
     }
   }
