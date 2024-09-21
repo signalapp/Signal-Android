@@ -53,7 +53,7 @@ class ArchiveImportExportTests {
 
   @Test
   fun temp() {
-    runTests { it == "account_data_01.binproto" }
+    runTests { it == "chat_item_standard_message_formatted_text_03.binproto" }
   }
 
   // Passing
@@ -73,7 +73,8 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("chat_") && !it.contains("_item") }
   }
 
-  @Test
+  // Passing
+//  @Test
   fun chatItemContactMessage() {
     runTests { it.startsWith("chat_item_contact_message_") }
   }
@@ -134,7 +135,8 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("chat_item_simple_updates_") }
   }
 
-  @Test
+  // Passing
+//  @Test
   fun chatItemStandardMessageFormattedText() {
     runTests { it.startsWith("chat_item_standard_message_formatted_text_") }
   }

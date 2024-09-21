@@ -554,7 +554,7 @@ class ChatItemImportInserter(
           GroupReceiptTable.RECIPIENT_ID to recipientId.serialize(),
           GroupReceiptTable.STATUS to sendStatus.toLocalSendStatus(),
           GroupReceiptTable.TIMESTAMP to sendStatus.timestamp,
-          GroupReceiptTable.UNIDENTIFIED to sendStatus.sealedSender
+          GroupReceiptTable.UNIDENTIFIED to sendStatus.sealedSender.toInt()
         )
       } else {
         Log.w(TAG, "[GroupReceipts] Could not find a local recipient for backup recipient ID ${sendStatus.recipientId}! Skipping.")

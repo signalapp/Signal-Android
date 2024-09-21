@@ -274,7 +274,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         directionless = ChatItem.DirectionlessMessageDetails()
       } else if (MessageTypes.isOutgoingMessageType(record.type)) {
         outgoing = ChatItem.OutgoingMessageDetails(
-          sendStatus = record.toBackupSendStatus(groupReceipts)
+          sendStatus = record.toRemoteSendStatus(groupReceipts)
         )
       } else {
         incoming = ChatItem.IncomingMessageDetails(
@@ -875,13 +875,13 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       } ?: emptyList()
   }
 
-  private fun BackupMessageRecord.toBackupSendStatus(groupReceipts: List<GroupReceiptTable.GroupReceiptInfo>?): List<SendStatus> {
+  private fun BackupMessageRecord.toRemoteSendStatus(groupReceipts: List<GroupReceiptTable.GroupReceiptInfo>?): List<SendStatus> {
     if (!MessageTypes.isOutgoingMessageType(this.type)) {
       return emptyList()
     }
 
     if (!groupReceipts.isNullOrEmpty()) {
-      return groupReceipts.toBackupSendStatus(this.networkFailureRecipientIds, this.identityMismatchRecipientIds)
+      return groupReceipts.toRemoteSendStatus(this, this.networkFailureRecipientIds, this.identityMismatchRecipientIds)
     }
 
     val statusBuilder = SendStatus.Builder()
@@ -935,7 +935,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     return listOf(statusBuilder.build())
   }
 
-  private fun List<GroupReceiptTable.GroupReceiptInfo>.toBackupSendStatus(networkFailureRecipientIds: Set<Long>, identityMismatchRecipientIds: Set<Long>): List<SendStatus> {
+  private fun List<GroupReceiptTable.GroupReceiptInfo>.toRemoteSendStatus(messageRecord: BackupMessageRecord, networkFailureRecipientIds: Set<Long>, identityMismatchRecipientIds: Set<Long>): List<SendStatus> {
     return this.map {
       val statusBuilder = SendStatus.Builder()
         .recipientId(it.recipientId.toLong())
@@ -950,6 +950,11 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         networkFailureRecipientIds.contains(it.recipientId.toLong()) -> {
           statusBuilder.failed = SendStatus.Failed(
             reason = SendStatus.Failed.FailureReason.NETWORK
+          )
+        }
+        messageRecord.baseType == MessageTypes.BASE_SENT_FAILED_TYPE -> {
+          statusBuilder.failed = SendStatus.Failed(
+            reason = SendStatus.Failed.FailureReason.UNKNOWN
           )
         }
         it.status == GroupReceiptTable.STATUS_UNKNOWN -> {
