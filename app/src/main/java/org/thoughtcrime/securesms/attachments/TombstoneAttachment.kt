@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Parcel
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.stickers.StickerLocator
 import java.util.UUID
 
 /**
@@ -53,6 +54,7 @@ class TombstoneAttachment : Attachment {
     voiceNote: Boolean = false,
     borderless: Boolean = false,
     gif: Boolean = false,
+    stickerLocator: StickerLocator? = null,
     quote: Boolean,
     uuid: UUID?
   ) : super(
@@ -76,7 +78,7 @@ class TombstoneAttachment : Attachment {
     incrementalMacChunkSize = incrementalMacChunkSize ?: 0,
     uploadTimestamp = 0,
     caption = caption,
-    stickerLocator = null,
+    stickerLocator = stickerLocator,
     blurHash = BlurHash.parseOrNull(blurHash),
     audioHash = null,
     transformProperties = null,

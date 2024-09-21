@@ -83,6 +83,7 @@ fun FilePointer?.toLocalAttachment(
       borderless = borderless,
       gif = gif,
       quote = false,
+      stickerLocator = stickerLocator,
       uuid = UuidUtil.fromByteStringOrNull(uuid)
     )
   } else if (this.backupLocator != null) {
