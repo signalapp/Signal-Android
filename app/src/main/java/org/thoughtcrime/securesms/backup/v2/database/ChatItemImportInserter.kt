@@ -419,8 +419,6 @@ class ChatItemImportInserter(
     return MessageInsert(contentValues, followUp)
   }
 
-  private class BatchInsert(val inserts: List<MessageInsert>, val query: SqlUtil.Query)
-
   private fun ChatItem.toMessageContentValues(fromRecipientId: RecipientId, chatRecipientId: RecipientId, threadId: Long): ContentValues {
     val contentValues = ContentValues()
 
@@ -435,8 +433,8 @@ class ChatItemImportInserter(
     contentValues.putNull(MessageTable.LATEST_REVISION_ID)
     contentValues.putNull(MessageTable.ORIGINAL_MESSAGE_ID)
     contentValues.put(MessageTable.REVISION_NUMBER, 0)
-    contentValues.put(MessageTable.EXPIRES_IN, this.expiresInMs ?: 0)
-    contentValues.put(MessageTable.EXPIRE_STARTED, this.expireStartDate ?: 0)
+    contentValues.put(MessageTable.EXPIRES_IN, this.expiresInMs)
+    contentValues.put(MessageTable.EXPIRE_STARTED, this.expireStartDate)
 
     if (this.outgoing != null) {
       val viewed = this.outgoing.sendStatus.any { it.viewed != null }
@@ -632,7 +630,9 @@ class ChatItemImportInserter(
           SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST or typeWithoutBase
           SimpleChatUpdate.Type.UNSUPPORTED_PROTOCOL_MESSAGE -> MessageTypes.UNSUPPORTED_MESSAGE_TYPE or typeWithoutBase
           SimpleChatUpdate.Type.REPORTED_SPAM -> MessageTypes.SPECIAL_TYPE_REPORTED_SPAM or typeWithoutBase
-          else -> throw NotImplementedError()
+          SimpleChatUpdate.Type.BLOCKED -> MessageTypes.SPECIAL_TYPE_BLOCKED or typeWithoutBase
+          SimpleChatUpdate.Type.UNBLOCKED -> MessageTypes.SPECIAL_TYPE_UNBLOCKED or typeWithoutBase
+          SimpleChatUpdate.Type.MESSAGE_REQUEST_ACCEPTED -> MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED or typeWithoutBase
         }
       }
       updateMessage.expirationTimerChange != null -> {

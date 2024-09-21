@@ -180,6 +180,15 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         MessageTypes.isReportedSpam(record.type) -> {
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.REPORTED_SPAM)
         }
+        MessageTypes.isMessageRequestAccepted(record.type) -> {
+          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.MESSAGE_REQUEST_ACCEPTED)
+        }
+        MessageTypes.isBlocked(record.type) -> {
+          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.BLOCKED)
+        }
+        MessageTypes.isUnblocked(record.type) -> {
+          builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.UNBLOCKED)
+        }
         MessageTypes.isExpirationTimerUpdate(record.type) -> {
           builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate(record.expiresIn))
           builder.expiresInMs = 0
@@ -1058,7 +1067,10 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       MessageTypes.isPaymentsActivated(this) ||
       MessageTypes.isPaymentsRequestToActivate(this) ||
       MessageTypes.isUnsupportedMessageType(this) ||
-      MessageTypes.isReportedSpam(this)
+      MessageTypes.isReportedSpam(this) ||
+      MessageTypes.isMessageRequestAccepted(this) ||
+      MessageTypes.isBlocked(this) ||
+      MessageTypes.isUnblocked(this)
   }
 
   private fun String.e164ToLong(): Long? {
