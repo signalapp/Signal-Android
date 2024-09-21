@@ -39,16 +39,16 @@ public class StickerTable extends DatabaseTable {
 
   public  static final String TABLE_NAME   = "sticker";
   public  static final String _ID          = "_id";
-          static final String PACK_ID      = "pack_id";
-  private static final String PACK_KEY     = "pack_key";
-  private static final String PACK_TITLE   = "pack_title";
-  private static final String PACK_AUTHOR  = "pack_author";
+  public  static final String PACK_ID      = "pack_id";
+  public  static final String PACK_KEY     = "pack_key";
+  public  static final String PACK_TITLE   = "pack_title";
+  public  static final String PACK_AUTHOR  = "pack_author";
   private static final String STICKER_ID   = "sticker_id";
-  private static final String EMOJI        = "emoji";
+  public  static final String EMOJI        = "emoji";
   public  static final String CONTENT_TYPE = "content_type";
-  private static final String COVER        = "cover";
+  public  static final String COVER        = "cover";
   private static final String PACK_ORDER   = "pack_order";
-  private static final String INSTALLED    = "installed";
+  public  static final String INSTALLED    = "installed";
   private static final String LAST_USED    = "last_used";
   public  static final String FILE_PATH    = "file_path";
   public  static final String FILE_LENGTH  = "file_length";
