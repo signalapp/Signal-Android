@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.storage;
 
+import org.signal.core.util.ProtoUtil;
 import org.signal.libsignal.protocol.logging.Log;
-import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record;
 
 import java.io.IOException;

@@ -10,6 +10,7 @@ plugins {
   id("java-library")
   id("org.jetbrains.kotlin.jvm")
   id("ktlint")
+  id("com.squareup.wire")
 }
 
 java {
@@ -20,6 +21,16 @@ java {
 kotlin {
   jvmToolchain {
     languageVersion = JavaLanguageVersion.of(signalKotlinJvmTarget)
+  }
+}
+
+wire {
+  kotlin {
+    javaInterop = true
+  }
+
+  sourcePath {
+    srcDir("src/main/protowire")
   }
 }
 

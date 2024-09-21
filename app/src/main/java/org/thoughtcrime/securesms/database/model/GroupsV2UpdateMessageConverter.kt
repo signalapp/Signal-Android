@@ -5,9 +5,9 @@
 
 package org.thoughtcrime.securesms.database.model
 
-import ProtoUtil.isNullOrEmpty
 import okio.ByteString
 import org.signal.core.util.StringUtil
+import org.signal.core.util.isNullOrEmpty
 import org.signal.storageservice.protos.groups.AccessControl
 import org.signal.storageservice.protos.groups.AccessControl.AccessRequired
 import org.signal.storageservice.protos.groups.Member

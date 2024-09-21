@@ -1,9 +1,9 @@
 package org.whispersystems.signalservice.api.storage;
 
+import org.signal.core.util.ProtoUtil;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
-import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.StorageItem;
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;

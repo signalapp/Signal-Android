@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.messages
 
-import ProtoUtil.isNotEmpty
 import com.squareup.wire.Message
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.isNotEmpty
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey

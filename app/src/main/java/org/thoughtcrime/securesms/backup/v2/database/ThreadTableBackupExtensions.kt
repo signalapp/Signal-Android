@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.database
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.decodeOrNull
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBlob
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.decodeOrNull
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
 import org.thoughtcrime.securesms.wallpaper.UriChatWallpaper

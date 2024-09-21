@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.messages
 
-import ProtoUtil.isNotEmpty
 import android.content.Context
 import com.mobilecoin.lib.exceptions.SerializationException
 import okio.ByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
+import org.signal.core.util.isNotEmpty
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.InvalidKeyException
