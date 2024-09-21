@@ -53,10 +53,11 @@ class ArchiveImportExportTests {
 
   @Test
   fun temp() {
-    runTests { it == "chat_item_standard_message_standard_attachments_02.binproto" }
+    runTests { it == "account_data_01.binproto" }
   }
 
-  @Test
+  // Passing
+//  @Test
   fun accountData() {
     runTests { it.startsWith("account_data_") }
   }

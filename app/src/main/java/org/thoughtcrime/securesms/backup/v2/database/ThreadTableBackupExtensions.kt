@@ -19,8 +19,8 @@ import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.Chat
-import org.thoughtcrime.securesms.backup.v2.proto.ChatStyle
 import org.thoughtcrime.securesms.backup.v2.util.ChatStyleConverter
+import org.thoughtcrime.securesms.backup.v2.util.parseChatWallpaper
 import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.backup.v2.util.toLocalAttachment
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -29,10 +29,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper
-import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
-import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
 import org.thoughtcrime.securesms.wallpaper.UriChatWallpaper
 import java.io.Closeable
 
@@ -78,13 +75,7 @@ fun ThreadTable.restoreFromBackup(chat: Chat, recipientId: RecipientId, importSt
     }
   }
 
-  val chatWallpaper = chat.style?.parseChatWallpaper(wallpaperAttachmentId)?.let {
-    if (chat.style.dimWallpaperInDarkMode) {
-      ChatWallpaperFactory.updateWithDimming(it, ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME)
-    } else {
-      it
-    }
-  }
+  val chatWallpaper = chat.style?.parseChatWallpaper(wallpaperAttachmentId)
 
   val threadId = writableDatabase
     .insertInto(ThreadTable.TABLE_NAME)
@@ -160,16 +151,4 @@ class ChatExportIterator(private val cursor: Cursor, private val db: SignalDatab
   override fun close() {
     cursor.close()
   }
-}
-
-private fun ChatStyle.parseChatWallpaper(wallpaperAttachmentId: AttachmentId?): ChatWallpaper? {
-  if (this.wallpaperPreset != null) {
-    return this.wallpaperPreset.toLocal()
-  }
-
-  if (wallpaperAttachmentId != null) {
-    return UriChatWallpaper(PartAuthority.getAttachmentDataUri(wallpaperAttachmentId), 0f)
-  }
-
-  return null
 }

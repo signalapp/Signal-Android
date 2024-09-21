@@ -13,11 +13,14 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper
+import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.PartUriParser
 import org.thoughtcrime.securesms.util.UriUtil
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
 import org.thoughtcrime.securesms.wallpaper.GradientChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.SingleColorChatWallpaper
+import org.thoughtcrime.securesms.wallpaper.UriChatWallpaper
 
 /**
  * Contains a collection of methods to chat styles to and from their archive format.
@@ -171,6 +174,22 @@ fun ChatStyle.WallpaperPreset.toLocal(): ChatWallpaper? {
     ChatStyle.WallpaperPreset.GRADIENT_SKY -> GradientChatWallpaper.SKY
     ChatStyle.WallpaperPreset.GRADIENT_PEACH -> GradientChatWallpaper.PEACH
     else -> null
+  }
+}
+
+fun ChatStyle.parseChatWallpaper(wallpaperAttachmentId: AttachmentId?): ChatWallpaper? {
+  val chatWallpaper = if (this.wallpaperPreset != null) {
+    this.wallpaperPreset.toLocal()
+  } else if (wallpaperAttachmentId != null) {
+    UriChatWallpaper(PartAuthority.getAttachmentDataUri(wallpaperAttachmentId), 0f)
+  } else {
+    null
+  }
+
+  return if (chatWallpaper != null && this.dimWallpaperInDarkMode) {
+    ChatWallpaperFactory.updateWithDimming(chatWallpaper, ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME)
+  } else {
+    chatWallpaper
   }
 }
 
