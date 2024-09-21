@@ -5,24 +5,13 @@
 
 package org.thoughtcrime.securesms.backup.v2.util
 
-import android.database.Cursor
-import okio.ByteString
-import okio.ByteString.Companion.toByteString
-import org.signal.core.util.Base64
-import org.signal.core.util.readToSingleObject
-import org.signal.core.util.requireBlob
-import org.signal.core.util.requireInt
-import org.signal.core.util.requireLong
-import org.signal.core.util.requireString
-import org.signal.core.util.select
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.ChatStyle
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
-import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.database.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper
 import org.thoughtcrime.securesms.mms.PartUriParser
 import org.thoughtcrime.securesms.util.UriUtil
@@ -36,7 +25,7 @@ import org.thoughtcrime.securesms.wallpaper.SingleColorChatWallpaper
  */
 object ChatStyleConverter {
   fun constructRemoteChatStyle(
-    readableDatabase: SQLiteDatabase,
+    db: SignalDatabase,
     chatColors: ChatColors?,
     chatColorId: ChatColors.Id,
     chatWallpaper: Wallpaper?
@@ -73,7 +62,7 @@ object ChatStyleConverter {
           chatStyleBuilder.wallpaperPreset = chatWallpaper.linearGradient.toRemoteWallpaperPreset()
         }
         chatWallpaper.file_ != null -> {
-          chatStyleBuilder.wallpaperPhoto = chatWallpaper.file_.toFilePointer(readableDatabase)
+          chatStyleBuilder.wallpaperPhoto = chatWallpaper.file_.toFilePointer(db)
         }
       }
 
@@ -219,61 +208,8 @@ private fun Wallpaper.LinearGradient.toRemoteWallpaperPreset(): ChatStyle.Wallpa
   }
 }
 
-private fun Wallpaper.File.toFilePointer(readableDatabase: SQLiteDatabase): FilePointer? {
+private fun Wallpaper.File.toFilePointer(db: SignalDatabase): FilePointer? {
   val attachmentId: AttachmentId = UriUtil.parseOrNull(this.uri)?.let { PartUriParser(it).partId } ?: return null
-
-  val wallpaperAttachment: ArchiveAttachmentData? = readableDatabase
-    .select(
-      AttachmentTable.ARCHIVE_MEDIA_NAME,
-      AttachmentTable.ARCHIVE_CDN,
-      AttachmentTable.REMOTE_KEY,
-      AttachmentTable.REMOTE_DIGEST,
-      AttachmentTable.DATA_SIZE,
-      AttachmentTable.CONTENT_TYPE,
-      AttachmentTable.WIDTH,
-      AttachmentTable.HEIGHT
-    )
-    .from(AttachmentTable.TABLE_NAME)
-    .where("${AttachmentTable.ID} = ?", attachmentId.id)
-    .run()
-    .readToSingleObject { cursor -> cursor.toArchiveAttachmentData() }
-
-  return wallpaperAttachment?.let { attachment ->
-    FilePointer(
-      backupLocator = FilePointer.BackupLocator(
-        mediaName = attachment.archiveMediaName ?: "",
-        cdnNumber = attachment.archiveCdn,
-        key = attachment.remoteKey?.toByteString() ?: ByteString.EMPTY,
-        size = attachment.size.toInt(),
-        digest = attachment.remoteDigest?.toByteString() ?: ByteString.EMPTY
-      ),
-      contentType = attachment.contentType,
-      width = attachment.width,
-      height = attachment.height
-    )
-  }
+  val attachment = db.attachmentTable.getAttachment(attachmentId)
+  return attachment?.toRemoteFilePointer(mediaArchiveEnabled = true)
 }
-
-private fun Cursor.toArchiveAttachmentData(): ArchiveAttachmentData {
-  return ArchiveAttachmentData(
-    archiveMediaName = this.requireString(AttachmentTable.ARCHIVE_MEDIA_NAME),
-    archiveCdn = this.requireInt(AttachmentTable.ARCHIVE_CDN),
-    remoteKey = this.requireString(AttachmentTable.REMOTE_KEY)?.let { Base64.decodeOrNull(it) },
-    remoteDigest = this.requireBlob(AttachmentTable.REMOTE_DIGEST),
-    size = this.requireLong(AttachmentTable.DATA_SIZE),
-    contentType = this.requireString(AttachmentTable.CONTENT_TYPE),
-    width = this.requireInt(AttachmentTable.WIDTH),
-    height = this.requireInt(AttachmentTable.HEIGHT)
-  )
-}
-
-private class ArchiveAttachmentData(
-  val archiveMediaName: String?,
-  val archiveCdn: Int,
-  val remoteKey: ByteArray?,
-  val remoteDigest: ByteArray?,
-  val size: Long,
-  val contentType: String?,
-  val width: Int,
-  val height: Int
-)

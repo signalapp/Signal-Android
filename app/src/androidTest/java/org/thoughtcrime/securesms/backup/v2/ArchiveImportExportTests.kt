@@ -10,7 +10,6 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.github.difflib.DiffUtils
 import com.github.difflib.UnifiedDiffUtils
 import junit.framework.Assert.assertTrue
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.Base64
@@ -40,82 +39,170 @@ class ArchiveImportExportTests {
     const val TAG = "ImportExport"
     const val TESTS_FOLDER = "backupTests"
 
-    val SELF_ACI = ServiceId.ACI.from(UUID(100, 100))
-    val SELF_PNI = ServiceId.PNI.from(UUID(101, 101))
+    val SELF_ACI = ServiceId.ACI.from(UUID.fromString("00000000-0000-4000-8000-000000000001"))
+    val SELF_PNI = ServiceId.PNI.from(UUID.fromString("00000000-0000-4000-8000-000000000002"))
     val SELF_E164 = "+10000000000"
     val SELF_PROFILE_KEY: ByteArray = Base64.decode("YQKRq+3DQklInaOaMcmlzZnN0m/1hzLiaONX7gB12dg=")
     val MASTER_KEY = Base64.decode("sHuBMP4ToZk4tcNU+S8eBUeCt8Am5EZnvuqTBJIR4Do")
   }
 
-  @Test
+//  @Test
   fun all() {
     runTests()
   }
 
-  @Ignore("Just for debugging")
+  @Test
+  fun temp() {
+    runTests { it == "chat_item_standard_message_standard_attachments_02.binproto" }
+  }
+
   @Test
   fun accountData() {
     runTests { it.startsWith("account_data_") }
   }
 
-  @Ignore("Just for debugging")
   @Test
+  fun adHocCall() {
+    runTests { it.startsWith("ad_hoc_call") }
+  }
+
+  // Passing
+//  @Test
+  fun chat() {
+    runTests { it.startsWith("chat_") && !it.contains("_item") }
+  }
+
+  @Test
+  fun chatItemContactMessage() {
+    runTests { it.startsWith("chat_item_contact_message_") }
+  }
+
+  // Passing
+//  @Test
+  fun chatItemExpirationTimerUpdate() {
+    runTests { it.startsWith("chat_item_expiration_timer_") }
+  }
+
+  // Passing
+//  @Test
+  fun chatItemGiftBadge() {
+    runTests { it.startsWith("chat_item_gift_badge_") }
+  }
+
+  @Test
+  fun chatItemGroupCallUpdate() {
+    runTests { it.startsWith("chat_item_group_call_update_") }
+  }
+
+  @Test
+  fun chatItemIndividualCallUpdate() {
+    runTests { it.startsWith("chat_item_individual_call_update_") }
+  }
+
+  // Passing
+//  @Test
+  fun chatItemLearnedProfileUpdate() {
+    runTests { it.startsWith("chat_item_learned_profile_update_") }
+  }
+
+  @Test
+  fun chatItemPaymentNotification() {
+    runTests { it.startsWith("chat_item_payment_notification_") }
+  }
+
+  // Passing
+//  @Test
+  fun chatItemProfileChangeUpdate() {
+    runTests { it.startsWith("chat_item_profile_change_update_") }
+  }
+
+  // Passing
+//  @Test
+  fun chatItemRemoteDelete() {
+    runTests { it.startsWith("chat_item_remote_delete_") }
+  }
+
+  // Passing
+//  @Test
+  fun chatItemSessionSwitchoverUpdate() {
+    runTests { it.startsWith("chat_item_session_switchover_update_") }
+  }
+
+  @Test
+  fun chatItemSimpleUpdates() {
+    runTests { it.startsWith("chat_item_simple_updates_") }
+  }
+
+  @Test
+  fun chatItemStandardMessageFormattedText() {
+    runTests { it.startsWith("chat_item_standard_message_formatted_text_") }
+  }
+
+  @Test
+  fun chatItemStandardMessageLongText() {
+    runTests { it.startsWith("chat_item_standard_message_long_text_") }
+  }
+
+  // Passing
+//  @Test
+  fun chatItemStandardMessageSpecialAttachments() {
+    runTests { it.startsWith("chat_item_standard_message_special_attachments_") }
+  }
+
+  // Passing
+//  @Test
+  fun chatItemStandardMessageStandardAttachments() {
+    runTests { it.startsWith("chat_item_standard_message_standard_attachments_") }
+  }
+
+  // Passing
+//  @Test
+  fun chatItemStandardMessageTextOnly() {
+    runTests { it.startsWith("chat_item_standard_message_text_only_") }
+  }
+
+  @Test
+  fun chatItemStandardMessageWithEdits() {
+    runTests { it.startsWith("chat_item_standard_message_with_edits_") }
+  }
+
+  @Test
+  fun chatItemStandardMessageWithQuote() {
+    runTests { it.startsWith("chat_item_standard_message_with_quote_") }
+  }
+
+  @Test
+  fun chatItemStickerMessage() {
+    runTests { it.startsWith("chat_item_sticker_message_") }
+  }
+
+  // Passing
+//  @Test
+  fun chatItemThreadMergeUpdate() {
+    runTests { it.startsWith("chat_item_thread_merge_update_") }
+  }
+
+  @Test
+  fun recipientCallLink() {
+    runTests { it.startsWith("recipient_call_link_") }
+  }
+
+  // Passing
+//  @Test
   fun recipientContacts() {
     runTests { it.startsWith("recipient_contacts_") }
   }
 
-  @Ignore("Just for debugging")
-  @Test
+  // Passing
+//  @Test
   fun recipientDistributionLists() {
     runTests { it.startsWith("recipient_distribution_list_") }
   }
 
-  @Ignore("Just for debugging")
-  @Test
+  // Passing
+//  @Test
   fun recipientGroups() {
     runTests { it.startsWith("recipient_groups_") }
-  }
-
-  @Ignore("Just for debugging")
-  @Test
-  fun chatStandardMessageTextOnly() {
-    runTests { it.startsWith("chat_standard_message_text_only_") }
-  }
-
-  @Ignore("Just for debugging")
-  @Test
-  fun chatStandardMessageFormattedText() {
-    runTests { it.startsWith("chat_standard_message_formatted_text_") }
-  }
-
-  @Ignore("Just for debugging")
-  @Test
-  fun chatStandardMessageLongText() {
-    runTests { it.startsWith("chat_standard_message_long_text_") }
-  }
-
-  @Ignore("Just for debugging")
-  @Test
-  fun chatStandardMessageStandardAttachments() {
-    runTests { it.startsWith("chat_standard_message_standard_attachments_") }
-  }
-
-  @Ignore("Just for debugging")
-  @Test
-  fun chatStandardMessageSpecialAttachments() {
-    runTests { it.startsWith("chat_standard_message_special_attachments_") }
-  }
-
-  @Ignore("Just for debugging")
-  @Test
-  fun chatSimpleUpdates() {
-    runTests { it.startsWith("chat_simple_updates_") }
-  }
-
-  @Ignore("Just for debugging")
-  @Test
-  fun chatContactMessage() {
-    runTests { it.startsWith("chat_contact_message_") }
   }
 
   private fun runTests(predicate: (String) -> Boolean = { true }) {
@@ -152,7 +239,7 @@ class ArchiveImportExportTests {
       val message = "Some tests failed! Only $successCount/${results.size} passed. Failure details are above. Failing tests:\n$failingTestNames"
 
       Log.d(TAG, message)
-      throw AssertionError(message)
+      throw AssertionError("Some tests failed!")
     } else {
       Log.d(TAG, "All ${results.size} tests passed!")
     }

@@ -89,7 +89,7 @@ object AccountDataProcessor {
             hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding(),
             customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors(),
             defaultChatStyle = ChatStyleConverter.constructRemoteChatStyle(
-              readableDatabase = db.signalReadableDatabase,
+              db = db,
               chatColors = chatColors,
               chatColorId = chatColors?.id ?: ChatColors.Id.NotSet,
               chatWallpaper = chatWallpaper

@@ -20,7 +20,7 @@ object ChatBackupProcessor {
   val TAG = Log.tag(ChatBackupProcessor::class.java)
 
   fun export(db: SignalDatabase, exportState: ExportState, emitter: BackupFrameEmitter) {
-    db.threadTable.getThreadsForBackup().use { reader ->
+    db.threadTable.getThreadsForBackup(db).use { reader ->
       for (chat in reader) {
         if (exportState.recipientIds.contains(chat.recipientId)) {
           exportState.threadIds.add(chat.id)

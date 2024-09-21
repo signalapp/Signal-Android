@@ -60,12 +60,14 @@ public interface MessageTypes {
   long BASE_PENDING_SECURE_SMS_FALLBACK   = 25;
   long BASE_PENDING_INSECURE_SMS_FALLBACK = 26;
   long BASE_DRAFT_TYPE                    = 27;
+  long BASE_SENDING_SKIPPED_TYPE          = 28;
 
   long[] OUTGOING_MESSAGE_TYPES = { BASE_OUTBOX_TYPE, BASE_SENT_TYPE,
                                     BASE_SENDING_TYPE, BASE_SENT_FAILED_TYPE,
                                     BASE_PENDING_SECURE_SMS_FALLBACK,
                                     BASE_PENDING_INSECURE_SMS_FALLBACK,
-                                    OUTGOING_AUDIO_CALL_TYPE, OUTGOING_VIDEO_CALL_TYPE };
+                                    OUTGOING_AUDIO_CALL_TYPE, OUTGOING_VIDEO_CALL_TYPE,
+                                    BASE_SENDING_SKIPPED_TYPE };
 
   // Message attributes
   long MESSAGE_ATTRIBUTE_MASK   = 0xE0;

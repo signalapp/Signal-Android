@@ -94,6 +94,7 @@ class ChatItemImportInserter(
       MessageTable.DATE_SENT,
       MessageTable.DATE_RECEIVED,
       MessageTable.DATE_SERVER,
+      MessageTable.RECEIPT_TIMESTAMP,
       MessageTable.TYPE,
       MessageTable.THREAD_ID,
       MessageTable.READ,
@@ -566,8 +567,19 @@ class ChatItemImportInserter(
     var type: Long = if (this.outgoing != null) {
       if (this.outgoing.sendStatus.count { it.failed?.reason == SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH } > 0) {
         MessageTypes.BASE_SENT_FAILED_TYPE
+      } else if (this.outgoing.sendStatus.count { it.failed?.reason == SendStatus.Failed.FailureReason.UNKNOWN } > 0) {
+        MessageTypes.BASE_SENT_FAILED_TYPE
       } else if (this.outgoing.sendStatus.count { it.failed?.reason == SendStatus.Failed.FailureReason.NETWORK } > 0) {
         MessageTypes.BASE_SENDING_TYPE
+      } else if (this.outgoing.sendStatus.count { it.pending != null } > 0) {
+        MessageTypes.BASE_SENDING_TYPE
+      } else if (this.outgoing.sendStatus.count { it.skipped != null } > 0) {
+        val count = this.outgoing.sendStatus.count { it.skipped != null }
+        if (count == this.outgoing.sendStatus.size) {
+          MessageTypes.BASE_SENDING_SKIPPED_TYPE
+        } else {
+          MessageTypes.BASE_SENDING_TYPE
+        }
       } else {
         MessageTypes.BASE_SENT_TYPE
       }

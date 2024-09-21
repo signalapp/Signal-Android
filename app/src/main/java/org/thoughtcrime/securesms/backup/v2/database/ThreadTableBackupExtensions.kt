@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.backup.v2.util.toLocalAttachment
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.RecipientTable
-import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
@@ -39,7 +38,7 @@ import java.io.Closeable
 
 private val TAG = Log.tag(ThreadTable::class.java)
 
-fun ThreadTable.getThreadsForBackup(): ChatExportIterator {
+fun ThreadTable.getThreadsForBackup(db: SignalDatabase): ChatExportIterator {
   //language=sql
   val query = """
       SELECT 
@@ -61,7 +60,7 @@ fun ThreadTable.getThreadsForBackup(): ChatExportIterator {
     """
   val cursor = readableDatabase.query(query)
 
-  return ChatExportIterator(cursor, readableDatabase)
+  return ChatExportIterator(cursor, db)
 }
 
 fun ThreadTable.clearAllDataForBackupRestore() {
@@ -72,13 +71,6 @@ fun ThreadTable.clearAllDataForBackupRestore() {
 
 fun ThreadTable.restoreFromBackup(chat: Chat, recipientId: RecipientId, importState: ImportState): Long {
   val chatColor = chat.style?.toLocal(importState)
-  val chatColorWithId = if (chatColor != null && chatColor.id is ChatColors.Id.NotSet) {
-    val savedColors = SignalDatabase.chatColors.getSavedChatColors()
-    val match = savedColors.find { it.matchesWithoutId(chatColor) }
-    match ?: SignalDatabase.chatColors.saveChatColors(chatColor)
-  } else {
-    chatColor
-  }
 
   val wallpaperAttachmentId: AttachmentId? = chat.style?.wallpaperPhoto?.let { filePointer ->
     filePointer.toLocalAttachment(importState)?.let {
@@ -125,7 +117,7 @@ fun ThreadTable.restoreFromBackup(chat: Chat, recipientId: RecipientId, importSt
   return threadId
 }
 
-class ChatExportIterator(private val cursor: Cursor, private val readableDatabase: SQLiteDatabase) : Iterator<Chat>, Closeable {
+class ChatExportIterator(private val cursor: Cursor, private val db: SignalDatabase) : Iterator<Chat>, Closeable {
   override fun hasNext(): Boolean {
     return cursor.count > 0 && !cursor.isLast
   }
@@ -157,7 +149,7 @@ class ChatExportIterator(private val cursor: Cursor, private val readableDatabas
       markedUnread = ThreadTable.ReadStatus.deserialize(cursor.requireInt(ThreadTable.READ)) == ThreadTable.ReadStatus.FORCED_UNREAD,
       dontNotifyForMentionsIfMuted = RecipientTable.MentionSetting.DO_NOT_NOTIFY.id == cursor.requireInt(RecipientTable.MENTION_SETTING),
       style = ChatStyleConverter.constructRemoteChatStyle(
-        readableDatabase = readableDatabase,
+        db = db,
         chatColors = chatColors,
         chatColorId = customChatColorsId,
         chatWallpaper = chatWallpaper

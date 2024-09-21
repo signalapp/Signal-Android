@@ -310,7 +310,7 @@ private fun DecryptedGroup.toSnapshot(): Group.GroupSnapshot? {
   return Group.GroupSnapshot(
     title = Group.GroupAttributeBlob(title = this.title),
     avatarUrl = this.avatar,
-    disappearingMessagesTimer = Group.GroupAttributeBlob(disappearingMessagesDuration = this.disappearingMessagesTimer?.duration ?: 0),
+    disappearingMessagesTimer = this.disappearingMessagesTimer?.takeIf { it.duration > 0 }?.let { Group.GroupAttributeBlob(disappearingMessagesDuration = it.duration) },
     accessControl = this.accessControl?.toSnapshot(),
     version = this.revision,
     members = this.members.map { it.toSnapshot() },

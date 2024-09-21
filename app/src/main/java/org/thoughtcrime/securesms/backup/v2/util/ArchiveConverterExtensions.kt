@@ -6,12 +6,16 @@
 package org.thoughtcrime.securesms.backup.v2.util
 
 import okio.ByteString
+import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Base64
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
+import org.thoughtcrime.securesms.backup.v2.BackupRepository.getMediaName
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -73,6 +77,7 @@ fun FilePointer?.toLocalAttachment(
       width = this.width,
       height = this.height,
       caption = this.caption,
+      fileName = this.fileName,
       blurHash = this.blurHash,
       voiceNote = voiceNote,
       borderless = borderless,
@@ -109,4 +114,59 @@ fun FilePointer?.toLocalAttachment(
     )
   }
   return null
+}
+
+/**
+ * @param mediaArchiveEnabled True if this user has enable media backup, otherwise false.
+ */
+fun DatabaseAttachment.toRemoteFilePointer(mediaArchiveEnabled: Boolean): FilePointer {
+  val builder = FilePointer.Builder()
+  builder.contentType = this.contentType?.takeUnless { it.isBlank() }
+  builder.incrementalMac = this.incrementalDigest?.toByteString()
+  builder.incrementalMacChunkSize = this.incrementalMacChunkSize.takeIf { it > 0 }
+  builder.fileName = this.fileName
+  builder.width = this.width.takeIf { it > 0 }
+  builder.height = this.height.takeIf { it > 0 }
+  builder.caption = this.caption
+  builder.blurHash = this.blurHash?.hash
+
+  if (this.remoteKey.isNullOrBlank() || this.remoteDigest == null || this.size == 0L) {
+    builder.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
+    return builder.build()
+  }
+
+  if (this.transferState == AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE && this.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED) {
+    builder.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
+    return builder.build()
+  }
+
+  val pending = this.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED && (this.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && this.transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED)
+
+  if (mediaArchiveEnabled && !pending) {
+    builder.backupLocator = FilePointer.BackupLocator(
+      mediaName = this.archiveMediaName ?: this.getMediaName().toString(),
+      cdnNumber = if (this.archiveMediaName != null) this.archiveCdn else Cdn.CDN_3.cdnNumber, // TODO [backup]: Update when new proto with optional cdn is landed
+      key = Base64.decode(remoteKey).toByteString(),
+      size = this.size.toInt(),
+      digest = this.remoteDigest.toByteString(),
+      transitCdnNumber = this.cdn.cdnNumber.takeIf { this.remoteLocation != null },
+      transitCdnKey = this.remoteLocation
+    )
+    return builder.build()
+  }
+
+  if (this.remoteLocation.isNullOrBlank()) {
+    builder.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
+    return builder.build()
+  }
+
+  builder.attachmentLocator = FilePointer.AttachmentLocator(
+    cdnKey = this.remoteLocation,
+    cdnNumber = this.cdn.cdnNumber,
+    uploadTimestamp = this.uploadTimestamp,
+    key = Base64.decode(remoteKey).toByteString(),
+    size = this.size.toInt(),
+    digest = this.remoteDigest.toByteString()
+  )
+  return builder.build()
 }

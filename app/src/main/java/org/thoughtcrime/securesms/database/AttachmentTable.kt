@@ -2227,6 +2227,7 @@ class AttachmentTable(
         put(ARCHIVE_MEDIA_NAME, attachment.archiveMediaName)
         put(ARCHIVE_MEDIA_ID, attachment.archiveMediaId)
         put(ARCHIVE_THUMBNAIL_MEDIA_ID, attachment.archiveThumbnailMediaId)
+        put(ARCHIVE_TRANSFER_STATE, ArchiveTransferState.FINISHED.value)
         put(THUMBNAIL_RESTORE_STATE, ThumbnailRestoreState.NEEDS_RESTORE.value)
         put(ATTACHMENT_UUID, attachment.uuid?.toString())
         put(BLUR_HASH, attachment.blurHash?.hash)

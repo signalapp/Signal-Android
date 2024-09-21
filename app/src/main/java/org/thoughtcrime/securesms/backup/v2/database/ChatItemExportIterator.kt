@@ -21,15 +21,12 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.attachments.AttachmentId
-import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.backup.v2.BackupRepository.getMediaName
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ContactAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.ContactMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCall
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
 import org.thoughtcrime.securesms.backup.v2.proto.LearnedProfileChatUpdate
@@ -47,6 +44,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.Sticker
 import org.thoughtcrime.securesms.backup.v2.proto.StickerMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Text
 import org.thoughtcrime.securesms.backup.v2.proto.ThreadMergeChatUpdate
+import org.thoughtcrime.securesms.backup.v2.util.toRemoteFilePointer
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.CallTable
@@ -96,7 +94,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
  *
  * All of this complexity is hidden from the user -- they just get a normal iterator interface.
  */
-class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: Int, private val archiveMedia: Boolean) : Iterator<ChatItem?>, Closeable {
+class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: Int, private val mediaArchiveEnabled: Boolean) : Iterator<ChatItem?>, Closeable {
 
   companion object {
     private val TAG = Log.tag(ChatItemExportIterator::class.java)
@@ -582,7 +580,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     return org.thoughtcrime.securesms.backup.v2.proto.LinkPreview(
       url = url,
       title = title,
-      image = (thumbnail.orNull() as? DatabaseAttachment)?.toBackupAttachment()?.pointer,
+      image = (thumbnail.orNull() as? DatabaseAttachment)?.toRemoteMessageAttachment()?.pointer,
       description = description,
       date = date
     )
@@ -594,7 +592,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     val contacts = sharedContacts.map {
       ContactAttachment(
         name = it.name.toBackup(),
-        avatar = (it.avatar?.attachment as? DatabaseAttachment)?.toBackupAttachment()?.pointer,
+        avatar = (it.avatar?.attachment as? DatabaseAttachment)?.toRemoteMessageAttachment()?.pointer,
         organization = it.organization,
         number = it.phoneNumbers.map { phone ->
           ContactAttachment.Phone(
@@ -741,7 +739,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         packKey = Hex.fromStringCondensed(stickerLocator.packKey).toByteString(),
         stickerId = stickerLocator.stickerId,
         emoji = stickerLocator.emoji,
-        data_ = this.toBackupAttachment().pointer
+        data_ = this.toRemoteMessageAttachment().pointer
       ),
       reactions = reactions.toBackupReactions()
     )
@@ -752,50 +750,14 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       Quote.QuotedAttachment(
         contentType = attachment.contentType,
         fileName = attachment.fileName,
-        thumbnail = attachment.toBackupAttachment()
+        thumbnail = attachment.toRemoteMessageAttachment()
       )
     }
   }
 
-  private fun DatabaseAttachment.toBackupAttachment(): MessageAttachment {
-    val builder = FilePointer.Builder()
-    builder.contentType = this.contentType?.takeUnless { it.isBlank() }
-    builder.incrementalMac = this.incrementalDigest?.toByteString()
-    builder.incrementalMacChunkSize = this.incrementalMacChunkSize.takeIf { it > 0 }
-    builder.fileName = this.fileName
-    builder.width = this.width.takeUnless { it == 0 }
-    builder.height = this.height.takeUnless { it == 0 }
-    builder.caption = this.caption
-    builder.blurHash = this.blurHash?.hash
-
-    if (this.remoteKey.isNullOrBlank() || this.remoteDigest == null || this.size == 0L) {
-      builder.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
-    } else {
-      if (archiveMedia) {
-        builder.backupLocator = FilePointer.BackupLocator(
-          mediaName = this.archiveMediaName ?: this.getMediaName().toString(),
-          cdnNumber = if (this.archiveMediaName != null) this.archiveCdn else Cdn.CDN_3.cdnNumber, // TODO (clark): Update when new proto with optional cdn is landed
-          key = Base64.decode(remoteKey).toByteString(),
-          size = this.size.toInt(),
-          digest = this.remoteDigest.toByteString()
-        )
-      } else {
-        if (this.remoteLocation.isNullOrBlank()) {
-          builder.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
-        } else {
-          builder.attachmentLocator = FilePointer.AttachmentLocator(
-            cdnKey = this.remoteLocation,
-            cdnNumber = this.cdn.cdnNumber,
-            uploadTimestamp = this.uploadTimestamp,
-            key = Base64.decode(remoteKey).toByteString(),
-            size = this.size.toInt(),
-            digest = this.remoteDigest.toByteString()
-          )
-        }
-      }
-    }
+  private fun DatabaseAttachment.toRemoteMessageAttachment(): MessageAttachment {
     return MessageAttachment(
-      pointer = builder.build(),
+      pointer = this.toRemoteFilePointer(mediaArchiveEnabled),
       wasDownloaded = this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE,
       flag = if (this.voiceNote) {
         MessageAttachment.Flag.VOICE_MESSAGE
@@ -812,7 +774,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
 
   private fun List<DatabaseAttachment>.toBackupAttachments(): List<MessageAttachment> {
     return this.map { attachment ->
-      attachment.toBackupAttachment()
+      attachment.toRemoteMessageAttachment()
     }
   }
 
@@ -937,13 +899,8 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           reason = SendStatus.Failed.FailureReason.NETWORK
         )
       }
-      this.baseType == MessageTypes.BASE_SENT_TYPE -> {
-        statusBuilder.sent = SendStatus.Sent(
-          sealedSender = this.sealedSender
-        )
-      }
-      this.hasDeliveryReceipt -> {
-        statusBuilder.delivered = SendStatus.Delivered(
+      this.viewed -> {
+        statusBuilder.viewed = SendStatus.Viewed(
           sealedSender = this.sealedSender
         )
       }
@@ -952,8 +909,21 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           sealedSender = this.sealedSender
         )
       }
-      this.viewed -> {
-        statusBuilder.viewed = SendStatus.Viewed(
+      this.hasDeliveryReceipt -> {
+        statusBuilder.delivered = SendStatus.Delivered(
+          sealedSender = this.sealedSender
+        )
+      }
+      this.baseType == MessageTypes.BASE_SENT_FAILED_TYPE -> {
+        statusBuilder.failed = SendStatus.Failed(
+          reason = SendStatus.Failed.FailureReason.UNKNOWN
+        )
+      }
+      this.baseType == MessageTypes.BASE_SENDING_SKIPPED_TYPE -> {
+        statusBuilder.skipped = SendStatus.Skipped()
+      }
+      this.baseType == MessageTypes.BASE_SENT_TYPE -> {
+        statusBuilder.sent = SendStatus.Sent(
           sealedSender = this.sealedSender
         )
       }
