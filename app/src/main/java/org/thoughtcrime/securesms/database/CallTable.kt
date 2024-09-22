@@ -1408,8 +1408,11 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
   fun getCallsCount(searchTerm: String?, filter: CallLogFilter): Int {
     return getCallsCursor(true, 0, 0, searchTerm, filter).use {
-      it.moveToFirst()
-      it.getInt(0)
+      if (it.moveToFirst()) {
+        it.getInt(0)
+      } else {
+        0
+      }
     }
   }
 
