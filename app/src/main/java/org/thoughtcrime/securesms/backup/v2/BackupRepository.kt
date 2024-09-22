@@ -165,6 +165,8 @@ object BackupRepository {
   private fun createSignalStoreSnapshot(baseName: String): SignalStore {
     val context = AppDependencies.application
 
+    SignalStore.blockUntilAllWritesFinished()
+
     // Need to do a WAL checkpoint to ensure that the database file we're copying has all pending writes
     if (!KeyValueDatabase.getInstance(context).writableDatabase.fullWalCheckpoint()) {
       Log.w(TAG, "Failed to checkpoint WAL for KeyValueDatabase! Not guaranteed to be using the most recent data.")

@@ -32,10 +32,6 @@ class ReleaseChannelValues(store: KeyValueStore) : SignalStoreValues(store) {
     putString(KEY_RELEASE_CHANNEL_RECIPIENT_ID, id.serialize())
   }
 
-  fun clearReleaseChannelRecipientId() {
-    putString(KEY_RELEASE_CHANNEL_RECIPIENT_ID, "")
-  }
-
   var nextScheduledCheck by longValue(KEY_NEXT_SCHEDULED_CHECK, 0)
   var previousManifestMd5 by blobValue(KEY_PREVIOUS_MANIFEST_MD5, ByteArray(0))
   var highestVersionNoteReceived by integerValue(KEY_HIGHEST_VERSION_NOTE_RECEIVED, 0)

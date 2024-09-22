@@ -59,6 +59,7 @@ public class JobManager implements ConstraintObserver.Notifier {
   private final Set<EmptyQueueListener> emptyQueueListeners = new CopyOnWriteArraySet<>();
 
   private volatile boolean initialized = false;
+  private volatile boolean shutdown    = false;
 
   public JobManager(@NonNull Application application, @NonNull Configuration configuration) {
     this.application   = application;
@@ -121,6 +122,13 @@ public class JobManager implements ConstraintObserver.Notifier {
 
       jobController.wakeUp();
     });
+  }
+
+  /**
+   * Shuts down the job manager entirely. Should only be used for testing!
+   */
+  public void shutdown() {
+    shutdown = true;
   }
 
   /**
@@ -456,6 +464,10 @@ public class JobManager implements ConstraintObserver.Notifier {
    * it through here.
    */
   private void runOnExecutor(@NonNull Runnable runnable) {
+    if (shutdown) {
+      return;
+    }
+
     executor.execute(() -> {
       waitUntilInitialized();
       runnable.run();

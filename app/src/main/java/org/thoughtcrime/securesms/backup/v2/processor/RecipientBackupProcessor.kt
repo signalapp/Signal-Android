@@ -41,6 +41,8 @@ object RecipientBackupProcessor {
           )
         )
       )
+    } else {
+      Log.w(TAG, "Missing release channel id on export!")
     }
 
     db.recipientTable.getContactsForBackup(selfId).use { reader ->
