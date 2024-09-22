@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.payments.CryptoValueUtil
 import org.thoughtcrime.securesms.payments.Direction
+import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -494,6 +495,7 @@ class ChatItemImportInserter(
       chatRecipientId,
       transaction.timestamp ?: 0,
       transaction.blockIndex ?: 0,
+      transaction.blockTimestamp ?: 0,
       paymentNotification.note ?: "",
       if (chatItem.outgoing != null) Direction.SENT else Direction.RECEIVED,
       transaction.status.toLocalStatus(),
@@ -502,7 +504,8 @@ class ChatItemImportInserter(
       transaction.transaction?.toByteArray(),
       transaction.receipt?.toByteArray(),
       mobileCoinIdentification,
-      chatItem.incoming?.read ?: true
+      chatItem.incoming?.read ?: true,
+      null
     )
   }
 
@@ -710,17 +713,17 @@ class ChatItemImportInserter(
   private fun ContentValues.addPaymentNotification(chatItem: ChatItem, chatRecipientId: RecipientId) {
     val paymentNotification = chatItem.paymentNotification!!
     if (chatItem.paymentNotification.amountMob.isNullOrEmpty()) {
-      addPaymentTombstoneNoAmount()
+      this.addPaymentTombstoneNoAmount()
       return
     }
-    val amount = paymentNotification.amountMob?.tryParseMoney() ?: return addPaymentTombstoneNoAmount()
-    val fee = paymentNotification.feeMob?.tryParseMoney() ?: return addPaymentTombstoneNoAmount()
+    val amount = paymentNotification.amountMob?.tryParseMoney() ?: return this.addPaymentTombstoneNoAmount()
+    val fee = paymentNotification.feeMob?.tryParseMoney() ?: return this.addPaymentTombstoneNoAmount()
 
     if (chatItem.paymentNotification.transactionDetails?.failedTransaction != null) {
-      addFailedPaymentNotification(chatItem, amount, fee, chatRecipientId)
+      this.addFailedPaymentNotification(chatItem, amount, fee, chatRecipientId)
       return
     }
-    addPaymentTombstoneNoMetadata(chatItem.paymentNotification)
+    this.addPaymentTombstoneNoMetadata(chatItem.paymentNotification)
   }
 
   private fun PaymentNotification.TransactionDetails.MobileCoinTxoIdentification.toLocal(): PaymentMetaData {
@@ -737,6 +740,7 @@ class ChatItemImportInserter(
       chatRecipientId,
       0,
       0,
+      0,
       chatItem.paymentNotification?.note ?: "",
       if (chatItem.outgoing != null) Direction.SENT else Direction.RECEIVED,
       State.FAILED,
@@ -745,13 +749,22 @@ class ChatItemImportInserter(
       null,
       null,
       null,
-      chatItem.incoming?.read ?: true
+      chatItem.incoming?.read ?: true,
+      chatItem.paymentNotification?.transactionDetails?.failedTransaction?.reason?.toLocalPaymentFailureReason()
     )
     if (uuid != null) {
       put(MessageTable.BODY, uuid.toString())
       put(MessageTable.TYPE, getAsLong(MessageTable.TYPE) or MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION)
     } else {
       addPaymentTombstoneNoMetadata(chatItem.paymentNotification!!)
+    }
+  }
+
+  private fun PaymentNotification.TransactionDetails.FailedTransaction.FailureReason.toLocalPaymentFailureReason(): FailureReason {
+    return when (this) {
+      PaymentNotification.TransactionDetails.FailedTransaction.FailureReason.GENERIC -> FailureReason.UNKNOWN
+      PaymentNotification.TransactionDetails.FailedTransaction.FailureReason.NETWORK -> FailureReason.NETWORK
+      PaymentNotification.TransactionDetails.FailedTransaction.FailureReason.INSUFFICIENT_FUNDS -> FailureReason.INSUFFICIENT_FUNDS
     }
   }
 

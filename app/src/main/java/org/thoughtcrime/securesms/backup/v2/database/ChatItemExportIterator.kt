@@ -503,7 +503,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       PaymentNotification(
         amountMob = payment.amount.serializeAmountString(),
         feeMob = payment.fee.serializeAmountString(),
-        note = payment.note,
+        note = payment.note.takeUnless { it.isEmpty() },
         transactionDetails = payment.getTransactionDetails()
       )
     }
@@ -789,16 +789,18 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
   }
 
   private fun PaymentTable.PaymentTransaction.getTransactionDetails(): PaymentNotification.TransactionDetails? {
-    if (failureReason != null || state == State.FAILED) {
-      return PaymentNotification.TransactionDetails(failedTransaction = PaymentNotification.TransactionDetails.FailedTransaction(reason = failureReason.toBackupFailureReason()))
+    if (this.failureReason != null || this.state == State.FAILED) {
+      return PaymentNotification.TransactionDetails(failedTransaction = PaymentNotification.TransactionDetails.FailedTransaction(reason = this.failureReason.toBackupFailureReason()))
     }
     return PaymentNotification.TransactionDetails(
       transaction = PaymentNotification.TransactionDetails.Transaction(
         status = this.state.toBackupState(),
-        timestamp = timestamp,
-        blockIndex = blockIndex,
-        blockTimestamp = blockTimestamp,
-        mobileCoinIdentification = paymentMetaData.mobileCoinTxoIdentification?.toBackup()
+        timestamp = this.timestamp,
+        blockIndex = this.blockIndex,
+        blockTimestamp = this.blockTimestamp,
+        mobileCoinIdentification = this.paymentMetaData.mobileCoinTxoIdentification?.toBackup(),
+        transaction = this.transaction?.toByteString(),
+        receipt = this.receipt?.toByteString()
       )
     )
   }
