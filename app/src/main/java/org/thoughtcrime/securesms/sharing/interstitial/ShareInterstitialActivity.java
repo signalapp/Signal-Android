@@ -113,13 +113,13 @@ public class ShareInterstitialActivity extends PassphraseRequiredActivity {
     toolbar.setNavigationOnClickListener(unused -> finish());
 
     text.addTextChangedListener(new AfterTextChanged(editable -> {
-      linkPreviewViewModel.onTextChanged(this, editable.toString(), text.getSelectionStart(), text.getSelectionEnd());
+      linkPreviewViewModel.onTextChanged(editable.toString(), text.getSelectionStart(), text.getSelectionEnd());
       viewModel.onDraftTextChanged(editable.toString());
     }));
 
     //noinspection CodeBlock2Expr
     text.setOnSelectionChangedListener(((selStart, selEnd) -> {
-      linkPreviewViewModel.onTextChanged(this, text.getText().toString(), text.getSelectionStart(), text.getSelectionEnd());
+      linkPreviewViewModel.onTextChanged(Objects.requireNonNull(text.getText()).toString(), text.getSelectionStart(), text.getSelectionEnd());
     }));
 
     preview.setCloseClickedListener(linkPreviewViewModel::onUserCancel);
