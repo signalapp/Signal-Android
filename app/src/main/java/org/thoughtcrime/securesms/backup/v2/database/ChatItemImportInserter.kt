@@ -381,18 +381,25 @@ class ChatItemImportInserter(
         }
       }
       val linkPreviews = this.standardMessage.linkPreview.map { it.toLocalLinkPreview() }
-      val linkPreviewAttachments = linkPreviews.mapNotNull { it.thumbnail.orNull() }
-      val attachments = this.standardMessage.attachments.mapNotNull { attachment ->
+      val linkPreviewAttachments: List<Attachment> = linkPreviews.mapNotNull { it.thumbnail.orNull() }
+      val attachments: List<Attachment> = this.standardMessage.attachments.mapNotNull { attachment ->
         attachment.toLocalAttachment()
       }
 
-      val quoteAttachments = this.standardMessage.quote?.attachments?.mapNotNull {
+      val longTextAttachments: List<Attachment> = this.standardMessage.longText?.let { longTextPointer ->
+        longTextPointer.toLocalAttachment(
+          importState = importState,
+          contentType = "text/x-signal-plain"
+        )
+      }?.let { listOf(it) } ?: emptyList()
+
+      val quoteAttachments: List<Attachment> = this.standardMessage.quote?.attachments?.mapNotNull {
         it.toLocalAttachment()
       } ?: emptyList()
 
-      if (attachments.isNotEmpty() || linkPreviewAttachments.isNotEmpty() || quoteAttachments.isNotEmpty()) {
+      if (attachments.isNotEmpty() || linkPreviewAttachments.isNotEmpty() || quoteAttachments.isNotEmpty() || longTextAttachments.isNotEmpty()) {
         followUp = { messageRowId ->
-          val attachmentMap = SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments + linkPreviewAttachments, quoteAttachments)
+          val attachmentMap = SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments + linkPreviewAttachments + longTextAttachments, quoteAttachments)
           if (linkPreviews.isNotEmpty()) {
             db.update(
               MessageTable.TABLE_NAME,
@@ -981,13 +988,13 @@ class ChatItemImportInserter(
   }
 
   private fun MessageAttachment.toLocalAttachment(): Attachment? {
-    return pointer?.toLocalAttachment(
+    return this.pointer?.toLocalAttachment(
       importState = importState,
-      voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
-      gif = flag == MessageAttachment.Flag.GIF,
-      borderless = flag == MessageAttachment.Flag.BORDERLESS,
-      wasDownloaded = wasDownloaded,
-      uuid = clientUuid
+      voiceNote = this.flag == MessageAttachment.Flag.VOICE_MESSAGE,
+      gif = this.flag == MessageAttachment.Flag.GIF,
+      borderless = this.flag == MessageAttachment.Flag.BORDERLESS,
+      wasDownloaded = this.wasDownloaded,
+      uuid = this.clientUuid
     )
   }
 

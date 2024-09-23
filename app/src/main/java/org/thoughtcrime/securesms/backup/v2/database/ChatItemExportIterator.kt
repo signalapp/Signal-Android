@@ -685,16 +685,18 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     val linkPreviews = parseLinkPreviews(attachments)
     val linkPreviewAttachments = linkPreviews.mapNotNull { it.thumbnail.orElse(null) }.toSet()
     val quotedAttachments = attachments?.filter { it.quote } ?: emptyList()
+    val longTextAttachment = attachments?.firstOrNull { it.contentType == "text/x-signal-plain" }
     val messageAttachments = attachments
       ?.filterNot { it.quote }
       ?.filterNot { linkPreviewAttachments.contains(it) }
+      ?.filterNot { it == longTextAttachment }
       ?: emptyList()
     return StandardMessage(
       quote = this.toQuote(quotedAttachments),
       text = text,
       attachments = messageAttachments.toBackupAttachments(),
       linkPreview = linkPreviews.map { it.toBackupLinkPreview() },
-      longText = null,
+      longText = longTextAttachment?.toRemoteFilePointer(mediaArchiveEnabled),
       reactions = reactionRecords.toBackupReactions()
     )
   }
