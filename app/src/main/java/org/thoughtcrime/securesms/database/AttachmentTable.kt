@@ -2331,7 +2331,7 @@ class AttachmentTable(
 
       // Our hashMatch already represents a transform-compatible attachment with the most recent upload timestamp. We just need to make sure it has all of the
       // other necessary fields, and if so, we can use that to skip the upload.
-      var uploadTemplate: Attachment? = null
+      var uploadTemplate: DatabaseAttachment? = null
       if (hashMatch?.hashEnd != null && System.currentTimeMillis() - hashMatch.uploadTimestamp < AttachmentUploadJob.UPLOAD_REUSE_THRESHOLD) {
         uploadTemplate = readableDatabase
           .select(*PROJECTION)
@@ -2342,7 +2342,7 @@ class AttachmentTable(
       }
 
       if (uploadTemplate != null) {
-        Log.i(TAG, "[insertAttachmentWithData] Found a valid template we could use to skip upload. (MessageId: $messageId, ${attachment.uri})")
+        Log.i(TAG, "[insertAttachmentWithData] Found a valid template we could use to skip upload. Template: ${uploadTemplate.attachmentId}, TemplateUploadTimestamp: ${hashMatch?.uploadTimestamp}, CurrentTime: ${System.currentTimeMillis()}, InsertingAttachment: (MessageId: $messageId, ${attachment.uri})")
         transformProperties = (uploadTemplate.transformProperties ?: transformProperties).copy(skipTransform = true)
       }
 
