@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.util.RemoteConfig
  */
 @Composable
 fun CallControls(
+  displayVideoTooltip: Boolean,
   callControlsState: CallControlsState,
   callControlsCallback: CallControlsCallback,
   modifier: Modifier = Modifier
@@ -96,10 +97,16 @@ fun CallControls(
 
       val hasCameraPermission = ContextCompat.checkSelfPermission(LocalContext.current, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
       if (callControlsState.displayVideoToggle) {
-        ToggleVideoButton(
-          isVideoEnabled = callControlsState.isVideoEnabled && hasCameraPermission,
-          onChange = callControlsCallback::onVideoToggleClick
-        )
+        CallScreenTooltipBox(
+          text = stringResource(R.string.WebRtcCallActivity__tap_here_to_turn_on_your_video),
+          displayTooltip = displayVideoTooltip,
+          onTooltipDismissed = callControlsCallback::onVideoTooltipDismissed
+        ) {
+          ToggleVideoButton(
+            isVideoEnabled = callControlsState.isVideoEnabled && hasCameraPermission,
+            onChange = callControlsCallback::onVideoToggleClick
+          )
+        }
       }
 
       val hasRecordAudioPermission = ContextCompat.checkSelfPermission(LocalContext.current, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
@@ -162,6 +169,7 @@ fun CallControlsPreview() {
         startCallButtonText = R.string.WebRtcCallView__start_call,
         displayEndCallButton = true
       ),
+      displayVideoTooltip = false,
       callControlsCallback = CallControlsCallback.Empty
     )
   }
@@ -179,6 +187,7 @@ interface CallControlsCallback {
   fun onAdditionalActionsClick()
   fun onStartCallClick(isVideoCall: Boolean)
   fun onEndCallClick()
+  fun onVideoTooltipDismissed()
 
   object Empty : CallControlsCallback {
     override fun onAudioDeviceSheetDisplayChanged(displayed: Boolean) = Unit
@@ -189,6 +198,7 @@ interface CallControlsCallback {
     override fun onAdditionalActionsClick() = Unit
     override fun onStartCallClick(isVideoCall: Boolean) = Unit
     override fun onEndCallClick() = Unit
+    override fun onVideoTooltipDismissed() = Unit
   }
 }
 

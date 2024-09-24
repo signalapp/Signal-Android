@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.messagerequests.CalleeMustAcceptMessageRequestActivity
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.viewModel
@@ -101,6 +102,8 @@ class CallActivity : BaseActivity(), CallControlsCallback {
         viewModel.callActions.collect {
           when (it) {
             CallViewModel.Action.EnableVideo -> onVideoToggleClick(true)
+            is CallViewModel.Action.ShowGroupCallSafetyNumberChangeDialog -> SafetyNumberBottomSheet.forGroupCall(it.untrustedIdentities).show(supportFragmentManager)
+            CallViewModel.Action.SwitchToSpeaker -> Unit // TODO - Switch user to speaker view.
           }
         }
       }
@@ -322,6 +325,10 @@ class CallActivity : BaseActivity(), CallControlsCallback {
 
   override fun onEndCallClick() {
     viewModel.hangup()
+  }
+
+  override fun onVideoTooltipDismissed() {
+    viewModel.onVideoTooltipDismissed()
   }
 
   private fun observeCallEvents() {

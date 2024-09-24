@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel
+import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -144,17 +145,30 @@ class CallViewModel(
     internalDialog.update { CallScreenDialogType.NONE }
   }
 
+  fun onVideoTooltipDismissed() {
+    webRtcCallViewModel.onDismissedVideoTooltip()
+    internalCallScreenState.update { it.copy(displayVideoTooltip = false) }
+  }
+
   fun onCallEvent(event: CallEvent) {
     when (event) {
-      CallEvent.DismissSwitchCameraTooltip -> Unit // TODO
-      CallEvent.DismissVideoTooltip -> Unit // TODO
-      is CallEvent.ShowGroupCallSafetyNumberChange -> Unit // TODO
-      CallEvent.ShowSwipeToSpeakerHint -> Unit // TODO
-      CallEvent.ShowSwitchCameraTooltip -> Unit // TODO
-      CallEvent.ShowVideoTooltip -> Unit // TODO
-      CallEvent.ShowWifiToCellularPopup -> Unit // TODO
+      CallEvent.DismissSwitchCameraTooltip -> internalCallScreenState.update { it.copy(displaySwitchCameraTooltip = false) }
+      CallEvent.DismissVideoTooltip -> internalCallScreenState.update { it.copy(displayVideoTooltip = false) }
+      is CallEvent.ShowGroupCallSafetyNumberChange -> {
+        viewModelScope.launch {
+          internalCallActions.emit(Action.ShowGroupCallSafetyNumberChangeDialog(event.identityRecords))
+        }
+      }
+      CallEvent.ShowSwipeToSpeakerHint -> internalCallScreenState.update { it.copy(displaySwipeToSpeakerHint = true) }
+      CallEvent.ShowSwitchCameraTooltip -> internalCallScreenState.update { it.copy(displaySwitchCameraTooltip = true) }
+      CallEvent.ShowVideoTooltip -> internalCallScreenState.update { it.copy(displayVideoTooltip = true) }
+      CallEvent.ShowWifiToCellularPopup -> internalCallScreenState.update { it.copy(displayWifiToCellularPopup = true) }
       is CallEvent.StartCall -> startCall(event.isVideoCall)
-      CallEvent.SwitchToSpeaker -> Unit // TODO
+      CallEvent.SwitchToSpeaker -> {
+        viewModelScope.launch {
+          internalCallActions.emit(Action.SwitchToSpeaker)
+        }
+      }
     }
   }
 
@@ -406,11 +420,22 @@ class CallViewModel(
   /**
    * Actions that require activity-level context (for example, to request permissions.)
    */
-  enum class Action {
+  sealed interface Action {
     /**
      * Tries to enable local video via the normal toggle callback. Should display permissions
      * dialogs as necessary.
      */
-    EnableVideo
+    data object EnableVideo : Action
+
+    /**
+     * Display the safety number change dialog for the given untrusted identities. Since this dialog
+     * is not in compose-land, we delegate this as an action instead of embedding it in the screen state.
+     */
+    data class ShowGroupCallSafetyNumberChangeDialog(val untrustedIdentities: List<IdentityRecord>) : Action
+
+    /**
+     * Immediately switch the user to speaker view
+     */
+    data object SwitchToSpeaker : Action
   }
 }

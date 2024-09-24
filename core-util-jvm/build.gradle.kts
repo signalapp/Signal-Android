@@ -45,6 +45,10 @@ wire {
   }
 }
 
+tasks.runKtlintCheckOverMainSourceSet {
+  dependsOn(":core-util-jvm:generateMainProtos")
+}
+
 dependencies {
   implementation(libs.kotlin.reflect)
   implementation(libs.kotlinx.coroutines.core)

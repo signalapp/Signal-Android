@@ -25,7 +25,11 @@ data class CallScreenState(
   val hangup: Hangup? = null,
   val callControlsChange: CallControlsChange? = null,
   val callStatus: CallString? = null,
-  val isDisplayingAudioToggleSheet: Boolean = false
+  val isDisplayingAudioToggleSheet: Boolean = false,
+  val displaySwitchCameraTooltip: Boolean = false,
+  val displayVideoTooltip: Boolean = false,
+  val displaySwipeToSpeakerHint: Boolean = false,
+  val displayWifiToCellularPopup: Boolean = false
 ) {
   data class Hangup(
     val hangupMessageType: HangupMessage.Type,

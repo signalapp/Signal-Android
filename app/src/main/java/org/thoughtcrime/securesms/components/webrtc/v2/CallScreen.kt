@@ -154,6 +154,7 @@ fun CallScreen(
             CallControls(
               callControlsState = callControlsState,
               callControlsCallback = callControlsCallback,
+              displayVideoTooltip = callScreenState.displayVideoTooltip,
               modifier = Modifier
                 .fillMaxWidth()
                 .alpha(callControlsAlpha)
