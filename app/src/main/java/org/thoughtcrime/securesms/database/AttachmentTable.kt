@@ -1140,8 +1140,13 @@ class AttachmentTable(
       values.put(TRANSFER_FILE, null as String?)
       values.put(TRANSFORM_PROPERTIES, TransformProperties.forSkipTransform().serialize())
       values.put(ARCHIVE_TRANSFER_FILE, null as String?)
+      values.put(REMOTE_LOCATION, existingPlaceholder.remoteLocation)
+      values.put(CDN_NUMBER, existingPlaceholder.cdn.serialize())
+      values.put(REMOTE_KEY, existingPlaceholder.remoteKey!!)
       values.put(REMOTE_IV, iv)
       values.put(REMOTE_DIGEST, digest)
+      values.put(REMOTE_INCREMENTAL_DIGEST, existingPlaceholder.incrementalDigest)
+      values.put(REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE, existingPlaceholder.incrementalMacChunkSize)
 
       if (digestChanged) {
         values.put(UPLOAD_TIMESTAMP, 0)
@@ -1151,9 +1156,11 @@ class AttachmentTable(
         values.put(OFFLOAD_RESTORED_AT, offloadRestoredAt.inWholeMilliseconds)
       }
 
+      val dataFilePath = hashMatch?.file?.absolutePath ?: fileWriteResult.file.absolutePath
+
       db.update(TABLE_NAME)
         .values(values)
-        .where("$ID = ?", attachmentId.id)
+        .where("$ID = ? OR $DATA_FILE = ?", attachmentId.id, dataFilePath)
         .run()
 
       Log.i(TAG, "[finalizeAttachmentAfterDownload] Finalized downloaded data for $attachmentId. (MessageId: $mmsId, $attachmentId)")
