@@ -24,6 +24,17 @@ kotlin {
   }
 }
 
+afterEvaluate {
+  listOf(
+    "runKtlintCheckOverMainSourceSet",
+    "runKtlintFormatOverMainSourceSet"
+  ).forEach { taskName ->
+    tasks.named(taskName) {
+      mustRunAfter(tasks.named("generateMainProtos"))
+    }
+  }
+}
+
 wire {
   kotlin {
     javaInterop = true
