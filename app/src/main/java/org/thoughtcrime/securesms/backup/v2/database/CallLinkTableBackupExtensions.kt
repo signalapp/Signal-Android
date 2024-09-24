@@ -76,7 +76,9 @@ class BackupCallLinkIterator(private val cursor: Cursor) : Iterator<BackupRecipi
         name = callLink.state.name,
         expirationMs = try {
           callLink.state.expiration.toEpochMilli()
-        } catch (e: ArithmeticException) { Long.MAX_VALUE },
+        } catch (e: ArithmeticException) {
+          Long.MAX_VALUE
+        },
         restrictions = callLink.state.restrictions.toBackup()
       )
     )

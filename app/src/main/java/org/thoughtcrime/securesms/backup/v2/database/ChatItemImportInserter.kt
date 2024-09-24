@@ -262,12 +262,15 @@ class ChatItemImportInserter(
         }
       } else if (this.updateMessage.groupCall != null && this.updateMessage.groupCall.callId != null) {
         followUp = { messageRowId ->
+          val ringer: RecipientId? = this.updateMessage.groupCall.ringerRecipientId?.let { importState.remoteToLocalRecipientId[it] }
+
           val values = contentValuesOf(
             CallTable.CALL_ID to updateMessage.groupCall.callId,
             CallTable.MESSAGE_ID to messageRowId,
             CallTable.PEER to chatRecipientId.serialize(),
+            CallTable.RINGER to ringer?.serialize(),
             CallTable.TYPE to CallTable.Type.serialize(CallTable.Type.GROUP_CALL),
-            CallTable.DIRECTION to CallTable.Direction.serialize(if (importState.remoteToLocalRecipientId[updateMessage.groupCall.ringerRecipientId] == selfId) CallTable.Direction.OUTGOING else CallTable.Direction.INCOMING),
+            CallTable.DIRECTION to CallTable.Direction.serialize(if (ringer == selfId) CallTable.Direction.OUTGOING else CallTable.Direction.INCOMING),
             CallTable.EVENT to CallTable.Event.serialize(
               when (updateMessage.groupCall.state) {
                 GroupCall.State.ACCEPTED -> CallTable.Event.ACCEPTED
@@ -673,15 +676,26 @@ class ChatItemImportInserter(
       }
       updateMessage.individualCall != null -> {
         if (updateMessage.individualCall.state == IndividualCall.State.MISSED || updateMessage.individualCall.state == IndividualCall.State.MISSED_NOTIFICATION_PROFILE) {
-          typeFlags = if (updateMessage.individualCall.type == IndividualCall.Type.AUDIO_CALL) MessageTypes.MISSED_AUDIO_CALL_TYPE else MessageTypes.MISSED_VIDEO_CALL_TYPE
+          typeFlags = if (updateMessage.individualCall.type == IndividualCall.Type.AUDIO_CALL) {
+            MessageTypes.MISSED_AUDIO_CALL_TYPE
+          } else {
+            MessageTypes.MISSED_VIDEO_CALL_TYPE
+          }
         } else {
           typeFlags = if (updateMessage.individualCall.direction == IndividualCall.Direction.OUTGOING) {
-            if (updateMessage.individualCall.type == IndividualCall.Type.AUDIO_CALL) MessageTypes.OUTGOING_AUDIO_CALL_TYPE else MessageTypes.OUTGOING_VIDEO_CALL_TYPE
+            if (updateMessage.individualCall.type == IndividualCall.Type.AUDIO_CALL) {
+              MessageTypes.OUTGOING_AUDIO_CALL_TYPE
+            } else {
+              MessageTypes.OUTGOING_VIDEO_CALL_TYPE
+            }
           } else {
-            if (updateMessage.individualCall.type == IndividualCall.Type.AUDIO_CALL) MessageTypes.INCOMING_AUDIO_CALL_TYPE else MessageTypes.INCOMING_VIDEO_CALL_TYPE
+            if (updateMessage.individualCall.type == IndividualCall.Type.AUDIO_CALL) {
+              MessageTypes.INCOMING_AUDIO_CALL_TYPE
+            } else {
+              MessageTypes.INCOMING_VIDEO_CALL_TYPE
+            }
           }
         }
-        this.put(MessageTable.TYPE, typeFlags)
       }
       updateMessage.groupCall != null -> {
         val startedCallRecipientId = if (updateMessage.groupCall.startedCallRecipientId != null) {
@@ -695,7 +709,8 @@ class ChatItemImportInserter(
           null
         }
         this.put(MessageTable.BODY, GroupCallUpdateDetailsUtil.createBodyFromBackup(updateMessage.groupCall, startedCall))
-        this.put(MessageTable.TYPE, MessageTypes.GROUP_CALL_TYPE)
+        this.put(MessageTable.READ, updateMessage.groupCall.read.toInt())
+        typeFlags = MessageTypes.GROUP_CALL_TYPE
       }
       updateMessage.groupChange != null -> {
         put(MessageTable.BODY, "")

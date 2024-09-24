@@ -365,127 +365,120 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
   private fun BackupMessageRecord.toCallUpdate(): ChatUpdateMessage? {
     val call = calls.getCallByMessageId(this.id)
 
-    return if (call != null) {
-      call.toCallUpdate()
-    } else {
-      when {
-        MessageTypes.isMissedAudioCall(this.type) -> {
-          ChatUpdateMessage(
-            individualCall = IndividualCall(
-              type = IndividualCall.Type.AUDIO_CALL,
-              state = IndividualCall.State.MISSED,
-              direction = IndividualCall.Direction.INCOMING
-            )
+    if (call != null) {
+      return call.toCallUpdate(this)
+    }
+
+    return when {
+      MessageTypes.isMissedAudioCall(this.type) -> {
+        ChatUpdateMessage(
+          individualCall = IndividualCall(
+            type = IndividualCall.Type.AUDIO_CALL,
+            state = IndividualCall.State.MISSED,
+            direction = IndividualCall.Direction.INCOMING
           )
-        }
-        MessageTypes.isMissedVideoCall(this.type) -> {
-          ChatUpdateMessage(
-            individualCall = IndividualCall(
-              type = IndividualCall.Type.VIDEO_CALL,
-              state = IndividualCall.State.MISSED,
-              direction = IndividualCall.Direction.INCOMING
-            )
+        )
+      }
+      MessageTypes.isMissedVideoCall(this.type) -> {
+        ChatUpdateMessage(
+          individualCall = IndividualCall(
+            type = IndividualCall.Type.VIDEO_CALL,
+            state = IndividualCall.State.MISSED,
+            direction = IndividualCall.Direction.INCOMING
           )
-        }
-        MessageTypes.isIncomingAudioCall(this.type) -> {
-          ChatUpdateMessage(
-            individualCall = IndividualCall(
-              type = IndividualCall.Type.AUDIO_CALL,
-              state = IndividualCall.State.ACCEPTED,
-              direction = IndividualCall.Direction.INCOMING
-            )
+        )
+      }
+      MessageTypes.isIncomingAudioCall(this.type) -> {
+        ChatUpdateMessage(
+          individualCall = IndividualCall(
+            type = IndividualCall.Type.AUDIO_CALL,
+            state = IndividualCall.State.ACCEPTED,
+            direction = IndividualCall.Direction.INCOMING
           )
-        }
-        MessageTypes.isIncomingVideoCall(this.type) -> {
-          ChatUpdateMessage(
-            individualCall = IndividualCall(
-              type = IndividualCall.Type.VIDEO_CALL,
-              state = IndividualCall.State.ACCEPTED,
-              direction = IndividualCall.Direction.INCOMING
-            )
+        )
+      }
+      MessageTypes.isIncomingVideoCall(this.type) -> {
+        ChatUpdateMessage(
+          individualCall = IndividualCall(
+            type = IndividualCall.Type.VIDEO_CALL,
+            state = IndividualCall.State.ACCEPTED,
+            direction = IndividualCall.Direction.INCOMING
           )
-        }
-        MessageTypes.isOutgoingAudioCall(this.type) -> {
-          ChatUpdateMessage(
-            individualCall = IndividualCall(
-              type = IndividualCall.Type.AUDIO_CALL,
-              state = IndividualCall.State.ACCEPTED,
-              direction = IndividualCall.Direction.OUTGOING
-            )
+        )
+      }
+      MessageTypes.isOutgoingAudioCall(this.type) -> {
+        ChatUpdateMessage(
+          individualCall = IndividualCall(
+            type = IndividualCall.Type.AUDIO_CALL,
+            state = IndividualCall.State.ACCEPTED,
+            direction = IndividualCall.Direction.OUTGOING
           )
-        }
-        MessageTypes.isOutgoingVideoCall(this.type) -> {
-          ChatUpdateMessage(
-            individualCall = IndividualCall(
-              type = IndividualCall.Type.VIDEO_CALL,
-              state = IndividualCall.State.ACCEPTED,
-              direction = IndividualCall.Direction.OUTGOING
-            )
+        )
+      }
+      MessageTypes.isOutgoingVideoCall(this.type) -> {
+        ChatUpdateMessage(
+          individualCall = IndividualCall(
+            type = IndividualCall.Type.VIDEO_CALL,
+            state = IndividualCall.State.ACCEPTED,
+            direction = IndividualCall.Direction.OUTGOING
           )
-        }
-        MessageTypes.isGroupCall(this.type) -> {
-          try {
-            val groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(this.body)
-            ChatUpdateMessage(
-              groupCall = GroupCall(
-                state = GroupCall.State.GENERIC,
-                startedCallRecipientId = UuidUtil.parseOrNull(groupCallUpdateDetails.startedCallUuid)?.let { recipients.getByAci(ACI.from(it)).getOrNull()?.toLong() },
-                startedCallTimestamp = groupCallUpdateDetails.startedCallTimestamp,
-                endedCallTimestamp = groupCallUpdateDetails.endedCallTimestamp
-              )
-            )
-          } catch (exception: IOException) {
-            null
-          }
-        }
-        else -> {
-          null
-        }
+        )
+      }
+      else -> {
+        null
       }
     }
   }
 
-  private fun CallTable.Call.toCallUpdate(): ChatUpdateMessage? {
-    return if (this.type == CallTable.Type.GROUP_CALL) {
-      ChatUpdateMessage(
-        groupCall = GroupCall(
-          callId = this.messageId,
-          state = when (this.event) {
-            CallTable.Event.MISSED -> GroupCall.State.MISSED
-            CallTable.Event.ONGOING -> GroupCall.State.GENERIC
-            CallTable.Event.ACCEPTED -> GroupCall.State.ACCEPTED
-            CallTable.Event.NOT_ACCEPTED -> GroupCall.State.GENERIC
-            CallTable.Event.MISSED_NOTIFICATION_PROFILE -> GroupCall.State.MISSED_NOTIFICATION_PROFILE
-            CallTable.Event.GENERIC_GROUP_CALL -> GroupCall.State.GENERIC
-            CallTable.Event.JOINED -> GroupCall.State.JOINED
-            CallTable.Event.RINGING -> GroupCall.State.RINGING
-            CallTable.Event.DECLINED -> GroupCall.State.DECLINED
-            CallTable.Event.OUTGOING_RING -> GroupCall.State.OUTGOING_RING
-            CallTable.Event.DELETE -> return null
-          },
-          ringerRecipientId = this.ringerRecipient?.toLong(),
-          startedCallRecipientId = this.ringerRecipient?.toLong(),
-          startedCallTimestamp = this.timestamp
+  private fun CallTable.Call.toCallUpdate(messageRecord: BackupMessageRecord): ChatUpdateMessage? {
+    return when (this.type) {
+      CallTable.Type.GROUP_CALL -> {
+        val groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(messageRecord.body)
+
+        ChatUpdateMessage(
+          groupCall = GroupCall(
+            callId = this.callId,
+            state = when (this.event) {
+              CallTable.Event.MISSED -> GroupCall.State.MISSED
+              CallTable.Event.ONGOING -> GroupCall.State.GENERIC
+              CallTable.Event.ACCEPTED -> GroupCall.State.ACCEPTED
+              CallTable.Event.NOT_ACCEPTED -> GroupCall.State.GENERIC
+              CallTable.Event.MISSED_NOTIFICATION_PROFILE -> GroupCall.State.MISSED_NOTIFICATION_PROFILE
+              CallTable.Event.GENERIC_GROUP_CALL -> GroupCall.State.GENERIC
+              CallTable.Event.JOINED -> GroupCall.State.JOINED
+              CallTable.Event.RINGING -> GroupCall.State.RINGING
+              CallTable.Event.DECLINED -> GroupCall.State.DECLINED
+              CallTable.Event.OUTGOING_RING -> GroupCall.State.OUTGOING_RING
+              CallTable.Event.DELETE -> return null
+            },
+            ringerRecipientId = this.ringerRecipient?.toLong(),
+            startedCallRecipientId = ACI.parseOrNull(groupCallUpdateDetails.startedCallUuid)?.let { recipients.getByAci(it).getOrNull()?.toLong() },
+            startedCallTimestamp = this.timestamp,
+            endedCallTimestamp = groupCallUpdateDetails.endedCallTimestamp,
+            read = messageRecord.read
+          )
         )
-      )
-    } else if (this.type != CallTable.Type.AD_HOC_CALL) {
-      ChatUpdateMessage(
-        individualCall = IndividualCall(
-          callId = this.callId,
-          type = if (this.type == CallTable.Type.VIDEO_CALL) IndividualCall.Type.VIDEO_CALL else IndividualCall.Type.AUDIO_CALL,
-          direction = if (this.direction == CallTable.Direction.INCOMING) IndividualCall.Direction.INCOMING else IndividualCall.Direction.OUTGOING,
-          state = when (this.event) {
-            CallTable.Event.MISSED -> IndividualCall.State.MISSED
-            CallTable.Event.MISSED_NOTIFICATION_PROFILE -> IndividualCall.State.MISSED_NOTIFICATION_PROFILE
-            CallTable.Event.ACCEPTED -> IndividualCall.State.ACCEPTED
-            CallTable.Event.NOT_ACCEPTED -> IndividualCall.State.NOT_ACCEPTED
-            else -> IndividualCall.State.UNKNOWN_STATE
-          },
-          startedCallTimestamp = this.timestamp
+      }
+
+      CallTable.Type.AD_HOC_CALL -> {
+        ChatUpdateMessage(
+          individualCall = IndividualCall(
+            callId = this.callId,
+            type = if (this.type == CallTable.Type.VIDEO_CALL) IndividualCall.Type.VIDEO_CALL else IndividualCall.Type.AUDIO_CALL,
+            direction = if (this.direction == CallTable.Direction.INCOMING) IndividualCall.Direction.INCOMING else IndividualCall.Direction.OUTGOING,
+            state = when (this.event) {
+              CallTable.Event.MISSED -> IndividualCall.State.MISSED
+              CallTable.Event.MISSED_NOTIFICATION_PROFILE -> IndividualCall.State.MISSED_NOTIFICATION_PROFILE
+              CallTable.Event.ACCEPTED -> IndividualCall.State.ACCEPTED
+              CallTable.Event.NOT_ACCEPTED -> IndividualCall.State.NOT_ACCEPTED
+              else -> IndividualCall.State.UNKNOWN_STATE
+            },
+            startedCallTimestamp = this.timestamp
+          )
         )
-      )
-    } else {
-      null
+      }
+
+      else -> null
     }
   }
 
@@ -1074,7 +1067,8 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       MessageTypes.isReportedSpam(this) ||
       MessageTypes.isMessageRequestAccepted(this) ||
       MessageTypes.isBlocked(this) ||
-      MessageTypes.isUnblocked(this)
+      MessageTypes.isUnblocked(this) ||
+      MessageTypes.isGroupCall(this)
   }
 
   private fun String.e164ToLong(): Long? {
