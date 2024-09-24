@@ -266,16 +266,28 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       try {
         db.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
       } catch (e: SQLiteException) {
-        Log.w(TAG, "Failed to drop $FTS_TABLE_NAME! Attempting to do so a safer way.", e)
+        Log.w(TAG, "[fullyResetTables] Failed to drop $FTS_TABLE_NAME! Attempting to do so a safer way.", e)
 
         // Due to issues we've had in the past, the delete sequence here is very particular. It mimics the "safe drop" process in the SQLite source code
         // that prevents weird vtable constructor issues when dropping potentially-corrupt tables. https://sqlite.org/src/info/4db9258a78?ln=1549-1592
         db.withinTransaction {
           if (SqlUtil.tableExists(db, FTS_TABLE_NAME)) {
-            db.execSQL("DELETE FROM ${FTS_TABLE_NAME}_data")
-            db.execSQL("DELETE FROM ${FTS_TABLE_NAME}_config")
-            db.execSQL("INSERT INTO ${FTS_TABLE_NAME}_data VALUES(10, X'0000000000')")
-            db.execSQL("INSERT INTO ${FTS_TABLE_NAME}_config VALUES('version', 4)")
+            val dataExists = SqlUtil.tableExists(db, "${FTS_TABLE_NAME}_data")
+            val configExists = SqlUtil.tableExists(db, "${FTS_TABLE_NAME}_config")
+
+            if (!dataExists) {
+              Log.w(TAG, "[fullyResetTables] Main FTS table exists, but _data does not!")
+            }
+
+            if (!configExists) {
+              Log.w(TAG, "[fullyResetTables] Main FTS table exists, but _config does not!")
+            }
+
+            if (dataExists) db.execSQL("DELETE FROM ${FTS_TABLE_NAME}_data")
+            if (configExists) db.execSQL("DELETE FROM ${FTS_TABLE_NAME}_config")
+            if (dataExists) db.execSQL("INSERT INTO ${FTS_TABLE_NAME}_data VALUES(10, X'0000000000')")
+            if (configExists) db.execSQL("INSERT INTO ${FTS_TABLE_NAME}_config VALUES('version', 4)")
+
             db.execSQL("DROP TABLE $FTS_TABLE_NAME")
           }
         }
