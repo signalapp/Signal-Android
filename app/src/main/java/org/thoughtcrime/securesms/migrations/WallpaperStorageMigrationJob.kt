@@ -11,6 +11,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.PartAuthority
@@ -74,6 +75,9 @@ internal class WallpaperStorageMigrationJob(parameters: Parameters = Parameters.
         Log.w(TAG, "Failed to delete wallpaper file: $file")
       }
     }
+
+    AppDependencies.recipientCache.clear()
+    AppDependencies.recipientCache.warmUp()
 
     Log.i(TAG, "Successfully migrated ${wallpaperFileNames.size} wallpapers.")
   }
