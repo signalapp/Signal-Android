@@ -357,6 +357,8 @@
     <string name="CommunicationActions_invalid_link">رابط غير صالح</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">رابط المكالمة هذا غير صالح. تأكَّد من سلامة وصحة الرابط بأكمله قبل مُحاولة الانضمام.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">You are already in a call</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -889,36 +891,36 @@
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__create_backup">إنشاء نسخة احتياطية</string>
     <!-- Bottom sheet message -->
-    <string name="CreateBackupBottomSheet__depending_on_the_size">قد يستغرق هذا وقتًا طويلا حسب حجم النسخة الاحتياطية الخاصة بك. يُمكنك استخدام هاتفك بشكل اعتيادي أثناء إجراء عملية النسخ الاحتياطي.</string>
+    <string name="CreateBackupBottomSheet__depending_on_the_size">قد يستغرق هذا وقتًا طويلًا حسب حجم النسخة الاحتياطية الخاصة بك. يُمكنك استخدام هاتفك بشكل اعتيادي أثناء إجراء عملية النسخ الاحتياطي.</string>
     <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">إجراء النسخ الاحتياطي</string>
+    <string name="CreateBackupBottomSheet__back_up_later">إجراء النسخ الاحتياطي لاحقًا</string>
     <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">أنشيء نُسخة اِحتياطية الآن</string>
+    <string name="CreateBackupBottomSheet__back_up_now">قُم بالنسخ الاحتياطي الآن</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
-    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">تعذّر استرجاع الوسائط</string>
+    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">تعذَّر استرجاع الوسائط.</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">لا يتوفّر جهازك على مساحة كافية. حرّر مساحة تخزين لاسترجاع وسائطك.\n\nإذا اخترت \"تخطّى استرجاع\" فسيتم حذف الوسائط في نسختك الاحتياطية في المرة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">لا يتوفَّر في جهازك مساحة كافية. وفِّر مساحة تخزين لاسترجاع وسائطك.\n\nإذا اخترت \"تخطّى الاسترجاع\"، فسيتمُّ حذف الوسائط في نسختك الاحتياطية في المرة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">لا يتوفّر جهازك على مساحة كافية. حرّر %1$s من المساحة لاسترجاع وسائطك.\n\nإذا اخترت \"تخطّى استرجاع\" فسَيتم حذف الوسائط في نسختك الاحتياطية في المرة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">لا يتوفَّر في جهازك مساحة كافية. وفِّر %1$s من المساحة لاسترجاع وسائطك.\n\nإذا اخترت \"تخطّى الاسترجاع\"، فسَيمُّ حذف الوسائط في نسختك الاحتياطية في المرة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
     <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
     <string name="RestoreMediaFailedBottomSheet__Okay">موافق</string>
     <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
     <string name="RestoreMediaFailedBottomSheet__Skip_restore">تخطى الاسترجاع</string>
     <!-- Accessibility content description for the "Backup Error" icon -->
-    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">أيقونة خطأ النسخ الاحتياطي</string>
+    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">أيقونة خطأ في النسخ الاحتياطي</string>
 
     <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
-    <string name="RestoreMediaErrorBanner__Free_up_storage_space">حرّر مساحة تخزين لاسترجاع وسائطك.</string>
+    <string name="RestoreMediaErrorBanner__Free_up_storage_space">وفِّر مساحة تخزين لاسترجاع وسائطك.</string>
     <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaErrorBanner__Free_up_of_space">حرّر %1$s من المساحة لاسترجاع وسائطك.</string>
+    <string name="RestoreMediaErrorBanner__Free_up_of_space">حرِّر %1$s من المساحة لاسترجاع وسائطك.</string>
 
     <!-- Remote media restoration in-process status title. -->
-    <string name="RestoreMediaReminder__Restoring_media">جاري استرجاع الوسائط</string>
+    <string name="RestoreMediaReminder__Restoring_media">جارٍ استرجاع الوسائط</string>
     <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
     <string name="RestoreMediaReminder__Progress_filesize">%1$s من %2$s (%3$d%%)</string>
     <!-- Remote media restoration paused status title. -->
-    <string name="RestoreMediaReminder__Restoring_media_paused">تم إيقاف استرجاع الوسائط</string>
+    <string name="RestoreMediaReminder__Restoring_media_paused">تمَّ إيقاف استرجاع الوسائط مؤقَّتًا</string>
     <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
     <string name="RestoreMediaReminder__Waiting_for_Wifi">في انتظار الاتصال بالواي فاي…</string>
     <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
@@ -926,7 +928,7 @@
     <!-- Remote media restoration paused status description for when the device\'s battery is low -->
     <string name="RestoreMediaReminder__low_battery">البطارية منخفضة. يُرجى شحن جهازك.</string>
     <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
-    <string name="RestoreMediaReminder__Free_up_space">حرّر %1$s لاسترجاع وسائطك.</string>
+    <string name="RestoreMediaReminder__Free_up_space">وفِّر %1$s لاسترجاع وسائطك.</string>
     <!-- Button label to abort media restoration -->
     <string name="RestoreMediaReminder__Skip_restore">تخطّى الاسترجاع</string>
 
@@ -970,7 +972,7 @@
     <string name="DateUtils_today">اليوم</string>
     <string name="DateUtils_yesterday">الأمس</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s على %2$s</string>
+    <string name="DateUtils_schedule_at">%1$s عند الساعة %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
     <string name="DateUtils_tomorrow">غدًا</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
@@ -980,40 +982,40 @@
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
     <string name="ScheduledMessagesBottomSheet__schedules_messages">الرسائل المُجدولة</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">اختر التاريخ &amp; الوقت</string>
+    <string name="ScheduledMessages_pick_time">اختر التاريخ والوقت</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
     <string name="ScheduleMessageFTUXBottomSheet__title">الرسائل المُجدولة</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">عند إرسال رسالة مُجدولة، تأكد من أن جهازك سيكون مُشتغلًا ومتصلاً بالإنترنت وقت الإرسال. إذا لم يكن الأمر كذلك، فسيتم إرسال رسالتك عند إعادة اتّصال جهازك.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">عند إرسال رسالة مُجدولة، تأكَّد من أن جهازك في حالة تشغيل ومتّصِل بالإنترنت وقت الإرسال. إذا لم يكن الأمر كذلك، فسيتم إرسال رسالتك عند إعادة اتّصال جهازك بالإنترنت.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
-    <string name="ScheduleMessageFTUXBottomSheet__okay">حسنا</string>
+    <string name="ScheduleMessageFTUXBottomSheet__okay">حسنًا</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">لإعادة تفعيل جدولة رسالة:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">لإعادة تفعيل جدولة الرسائل:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">حدّد التاريخ</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">حدِّد التاريخ</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">حدّد الوقت</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">حدِّد الوقت</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
     <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">جدولة رسالة</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">جدولة رسالة</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">جدولة الإرسال</string>
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">جميع الأوقات في (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">الوقت المُحدّد في الماضي. سيُؤدي ذلك إلى إرسال الرسالة فورًا.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">الوقت المُحدَّد هو في الماضي. سيُؤدي هذا إلى إرسال الرسالة فورًا.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">أرسل فورًا</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">أرسِل فورًا</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">أرسل الآن</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">أرسِل الآن</string>
     <!-- Context menu option to reschedule a selected message -->
     <string name="ScheduledMessagesBottomSheet_menu_reschedule">تحديد موعد آخر</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">حذف</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">حذف الرسائل المُجدولة المُحَدّدة؟</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">أترغبُ بحذف الرسالة المُجدولة المُحَدّدة؟</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">جارٍ حذف الرسائل المُجدولة…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">جارٍ حذف الرسالة المُجدولة…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">تمَّ تحديث جلسة الدردشة</string>
@@ -1021,9 +1023,9 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">استخدام سيجنال على الحاسوب أو لوحة الآيباد. ستتم مُزامنة رسائلك مع أجهزتك المرتبطة.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">استخدام سيجنال على الكمبيوتر المكتبي أو جهاز الآيباد. ستتمُّ مُزامنة رسائلك مع أجهزتك المرتبطة.</string>
     <!-- Button prompting users to link a new device to their account -->
-    <string name="LinkDeviceFragment__link_a_new_device">يُرجى ربط جهاز جديد</string>
+    <string name="LinkDeviceFragment__link_a_new_device">قُم بربط جهازٍ جديد</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s الرسائل والدردشات محمية من خلال التشفير من طرف إلى طرف على جميع الأجهزة</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
@@ -1056,7 +1058,7 @@
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
     <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">Continue</string>
+    <string name="LinkDeviceFragment__continue">مواصلة</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1100,7 +1102,7 @@
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">الإعداد الأمثل عند غياب خدمات Play Services</string>
-    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">هذا الهاتف لا يدعم خدمات Play. أنقر لإلغاء تفعيل ميزة الأداء الأمثل للبطارية والتي تمنع سيجنال من استقبال الرسائل عند عدم النشاط.</string>
+    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">هذا الهاتف لا يدعم خدمات Google Play. انقر لإلغاء تفعيل ميزة تحسين استخدام بطارية النظام والتي تمنع سيجنال من استقبال الرسائل في حالة عدم النشاط.</string>
 
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">انتهت صلاحية هذا الإصدار من سيجنال. يُرجى التحديث الآن لإرسال واستلام الرسائل.</string>
@@ -1108,39 +1110,39 @@
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
-        <item quantity="zero">%1$d طلب العضوية معلق</item>
-        <item quantity="one">%1$d طلب العضوية معلق</item>
-        <item quantity="two">%1$d طلبات العضوية معلقة</item>
-        <item quantity="few">%1$d طلبات العضوية معلقة</item>
-        <item quantity="many">%1$d طلب العضوية معلق</item>
-        <item quantity="other">%1$d طلب العضوية معلق</item>
+        <item quantity="zero">%1$d طلب عضوية مُعلَّق.</item>
+        <item quantity="one">%1$d طلب عضوية مُعلَّق.</item>
+        <item quantity="two">%1$d طلبان عضوية مُعلَّقان.</item>
+        <item quantity="few">%1$d طلبات عضوية مُعلَّقة.</item>
+        <item quantity="many">%1$d طلب عضوية مُعلَّقة.</item>
+        <item quantity="other">%1$d طلب عضوية مُعلَّق.</item>
     </plurals>
     <string name="PendingGroupJoinRequestsReminder_view">إظهار</string>
 
     <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائم في الاتصال ب سيجنال!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">لم يتمكن سيجنال من التسجيل عبر خدمات Google Play، وتم تعطيل رسائل ومكالمات سيجنال. الرجاء محاولة إعادة التسجيل عبر قائمة الإعدادات &gt; ثم اختيار متقدم.</string>
+    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائم في الاتصال بـ سيجنال!</string>
+    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">لم يتمكن سيجنال من التسجيل عبر خدمات Google Play، وتمَّ تعطيل رسائل ومكالمات سيجنال. الرجاء محاولة إعادة التسجيل عبر قائمة \"الإعدادات\" &gt; ثم اختيار \"مُتقدِّم\".</string>
 
 
     <!-- GiphyActivity -->
-    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">حدث خطأ أثناء جلب صورة متحركة ذات الدقة العالية</string>
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">حدث خطأ أثناء عرض صورة متحركة ذات دقة عالية.</string>
 
     <!-- GiphyFragmentPageAdapter -->
 
     <!-- AddToGroupActivity -->
-    <string name="AddToGroupActivity_add_member">إضافة العضو؟</string>
-    <string name="AddToGroupActivity_add_s_to_s">إضافة \"%1$s\" إلى \"%2$s\" ؟</string>
-    <string name="AddToGroupActivity_s_added_to_s">%1$s أضاف إلى %2$s</string>
-    <string name="AddToGroupActivity_add_to_group">أضف إلى مجموعة</string>
-    <string name="AddToGroupActivity_add_to_groups">أضف إلى مجموعات</string>
-    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات من الطراز القديم.</string>
+    <string name="AddToGroupActivity_add_member">أترغبُ بإضافة عضو؟</string>
+    <string name="AddToGroupActivity_add_s_to_s">أترغبُ بإضافة \"%1$s\" إلى \"%2$s\"؟</string>
+    <string name="AddToGroupActivity_s_added_to_s">تمَّت إضافة %1$s إلى %2$s.</string>
+    <string name="AddToGroupActivity_add_to_group">أضِف إلى مجموعة</string>
+    <string name="AddToGroupActivity_add_to_groups">أضِف إلى مجموعات</string>
+    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات السابقة.</string>
     <string name="AddToGroupActivity_add">إضافة</string>
     <string name="AddToGroupActivity_add_to_a_group">إضافة إلى مجموعة</string>
 
     <!-- ChooseNewAdminActivity -->
-    <string name="ChooseNewAdminActivity_choose_new_admin">اختر مشرفا جديدا</string>
+    <string name="ChooseNewAdminActivity_choose_new_admin">اختر مُشرِفًا جديدًا</string>
     <string name="ChooseNewAdminActivity_done">تم</string>
-    <string name="ChooseNewAdminActivity_you_left">لقد غادرت \"%1$s\".</string>
+    <string name="ChooseNewAdminActivity_you_left">غادرتَ \"%1$s\".</string>
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_you">أنت</string>
@@ -1148,7 +1150,7 @@
     <!-- GV2 access levels -->
     <string name="GroupManagement_access_level_anyone">أي شخص</string>
     <string name="GroupManagement_access_level_all_members">جميع الأعضاء</string>
-    <string name="GroupManagement_access_level_only_admins">للمشرفين فقط</string>
+    <string name="GroupManagement_access_level_only_admins">للمُشرِفين فقط</string>
     <string name="GroupManagement_access_level_no_one">لا أحد</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
@@ -1162,53 +1164,53 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="zero">تم إرسال %1$d دعوة</item>
-        <item quantity="one">تم إرسال دعوة واحدة</item>
-        <item quantity="two">تم إرسال %1$d دعوتين</item>
-        <item quantity="few">تم إرسال %1$d دعوات</item>
-        <item quantity="many">تم إرسال %1$d دعوة</item>
-        <item quantity="other">تم إرسال %1$d دعوة</item>
+        <item quantity="zero">تمَّ إرسال %1$d دعوة.</item>
+        <item quantity="one">تمَّ إرسال دعوة واحدة.</item>
+        <item quantity="two">تمَّ إرسال %1$d دعوتين.</item>
+        <item quantity="few">تمَّ إرسال %1$d دعوات.</item>
+        <item quantity="many">تمَّ إرسال %1$d دعوة.</item>
+        <item quantity="other">تمَّ إرسال %1$d دعوة.</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
-    <string name="GroupManagement_invite_single_user">لا يمكنك إضافة \"%1$s\" تلقائياً إلى هذه المجموعة. \n\n لقد تمت دعوة ذلك الشخص للانضمام، ولن يرى أيّة رسالة من رسائل المجموعة حتى يقبلها.</string>
-    <string name="GroupManagement_invite_multiple_users">لا يمكنك إضافة هؤلاء المستخدمين تلقائياً إلى هذه المجموعة . \n\n لقد تمت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون.</string>
+    <string name="GroupManagement_invite_single_user">لا يمكنك إضافة \"%1$s\" تلقائيًا إلى هذه المجموعة. \n\n تمَّت دعوة ذلك الشخص للانضمام، ولن يرى أيّة رسالة من رسائل المجموعة حتى يقبل الدعوة.</string>
+    <string name="GroupManagement_invite_multiple_users">لا يمكنك إضافة هؤلاء المستخدمين تلقائيًا إلى هذه المجموعة . \n \n تمَّت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون الدعوة.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">ما هي المجموعات الجديدة ؟</string>
-    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">تحوي المجموعات الجديدة ميزات كـ ‎@mentions‎ والمشرفين على المجموعة، كما ستدعم مستقبلا المزيد من الميزات.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">سيُحتفظ بكل محفوظات الرسائل والوسائط التي كانت قبل الترقية.</string>
-    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى ضروري، ولن تصلك أي رسائل من المجموعة إلى حين موافقتك علي الانضمام إليها.</string>
+    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">ما هي المجموعات الجديدة؟</string>
+    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">تحوي المجموعات الجديدة ميزات كالإشارة بتاغ ‎@mentions‎ والمشرفين على المجموعة، كما ستدعم مستقبلًا المزيد من الميزات.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">تمَّ الاحتفاظ بكل سجل الرسائل والوسائط التي كانت قبل الترقية.</string>
+    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى ضروري، ولن تصلك أي رسائل من المجموعة إلى حين موافقتك على الانضمام إليها.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-        <item quantity="zero">يحتاج هذا العضو قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها :</item>
-        <item quantity="one">يحتاج هذا العضو قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها :</item>
-        <item quantity="two">يحتاج هذان العضوان قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهما أي رسائل من المجموعة إلى حين موافقتهما على الانضمام إليها :</item>
-        <item quantity="few">يحتاج هؤﻻء اﻷعضاء قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها :</item>
-        <item quantity="many">يحتاج هؤﻻء اﻷعضاء قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها :</item>
-        <item quantity="other">يحتاج هؤﻻء اﻷعضاء قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها :</item>
+        <item quantity="zero">يحتاج هذا العضو إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها:</item>
+        <item quantity="one">يحتاج هذا العضو إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها:</item>
+        <item quantity="two">يحتاج هذان العضوان إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهما أي رسائل من المجموعة إلى حين موافقتهما على الانضمام إليها:</item>
+        <item quantity="few">يحتاج هؤﻻء اﻷعضاء إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها:</item>
+        <item quantity="many">يحتاج هؤﻻء اﻷعضاء إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها:</item>
+        <item quantity="other">يحتاج هؤﻻء اﻷعضاء إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="zero">تمت إزالة هذا العضو من المجموعة ولن يتمكن من الانضمام إليها مرة أخرى حتى يقوم بالترقية:</item>
-        <item quantity="one">تمت إزالة هذا العضو من المجموعة ولن يتمكن من الانضمام إليها مرة أخرى حتى يقوم بالترقية:</item>
-        <item quantity="two">تمت إزالة هذين العضويْن من المجموعة ولن يتمكنا من الانضمام إليها مرة أخرى حتى يقوما بالترقية:</item>
-        <item quantity="few">تمت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
-        <item quantity="many">تمت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
-        <item quantity="other">تمت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
+        <item quantity="zero">تمَّت إزالة هذا العضو من المجموعة ولن يتمكن من الانضمام إليها مرة أخرى حتى يقوم بالترقية:</item>
+        <item quantity="one">تمَّت إزالة هذا العضو من المجموعة ولن يتمكن من الانضمام إليها مرة أخرى حتى يقوم بالترقية:</item>
+        <item quantity="two">تمَّت إزالة هذين العضويْن من المجموعة ولن يتمكنا من الانضمام إليها مرة أخرى حتى يقوما بالترقية:</item>
+        <item quantity="few">تمَّت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
+        <item quantity="many">تمَّت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
+        <item quantity="other">تمَّت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">قم بالترقية إلى مجموعة جديدة</string>
-    <string name="GroupsV1MigrationInitiation_upgrade_this_group">يُرجى ترقية هذه المجموعة</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">تحوي المجموعات الجديدة ميزات كـ ‎@mentions‎ والمشرفين على المجموعة، كما ستدعم مستقبلا المزيد من الميزات.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">سيُحتفظ بكل محفوظات الرسائل والوسائط التي كانت قبل الترقية.</string>
-    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">حدث خطأ في الشبكة. يُرجى المحاولة مرة أخرى لاحقا.</string>
+    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">قُم بالترقية إلى مجموعة جديدة</string>
+    <string name="GroupsV1MigrationInitiation_upgrade_this_group">قُم بترقية هذه المجموعة</string>
+    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">تحوي المجموعات الجديدة ميزات كالإشارة بتاغ ‎@mentions‎ والمشرفين على المجموعة، كما ستدعم مستقبلًا المزيد من الميزات.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">سيُحتفَظ بكل سجل الرسائل والوسائط التي كانت قبل الترقية.</string>
+    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">حدث خطأ في الشبكة. يُرجى المحاولة مرة أخرى لاحقًا.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">فشلت الترقية.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-        <item quantity="zero">يحتاج هذا العضو قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها :</item>
-        <item quantity="one">يحتاج هذا العضو قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها :</item>
-        <item quantity="two">يحتاج هذان العضوان قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهما أي رسائل من المجموعة إلى حين موافقتهما على الانضمام إليها :</item>
-        <item quantity="few">يحتاج هؤﻻء اﻷعضاء قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها :</item>
-        <item quantity="many">يحتاج هؤﻻء اﻷعضاء قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها :</item>
-        <item quantity="other">يحتاج هؤﻻء اﻷعضاء قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها :</item>
+        <item quantity="zero">يحتاج هذا العضو إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها:</item>
+        <item quantity="one">يحتاج هذا العضو إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها:</item>
+        <item quantity="two">يحتاج هذان العضوان إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهما أي رسائل من المجموعة إلى حين موافقتهما على الانضمام إليها:</item>
+        <item quantity="few">يحتاج هؤﻻء اﻷعضاء إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها:</item>
+        <item quantity="many">يحتاج هؤﻻء اﻷعضاء إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها:</item>
+        <item quantity="other">يحتاج هؤﻻء اﻷعضاء إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
         <item quantity="zero">هذا العضو غير قادر على الانضمام إلى المجموعات الجديدة، وستتم إزالته من المجموعة:</item>
@@ -1221,12 +1223,12 @@
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-        <item quantity="zero">تعذرت إضافة %1$d عضو مرة ثانية إلى المجموعة الجديدة. ألديك نية ﻹضافة الشخص الآن ؟</item>
-        <item quantity="one">تعذرت إضافة %1$d عضو مرة ثانية إلى المجموعة الجديدة. ألديك نية ﻹضافة الشخص الآن ؟</item>
-        <item quantity="two">تعذرت إضافة %1$d أعضاء مرة ثانية إلى المجموعة الجديدة. ألديك نية ﻹضافة الشخصيْن الآن ؟</item>
-        <item quantity="few">تعذرت إضافة %1$d أعضاء مرة ثانية إلى المجموعة الجديدة. ألديك نية ﻹضافة الأشخاص الآن ؟</item>
-        <item quantity="many">تعذرت إضافة %1$d عضوا مرة ثانية إلى المجموعة الجديدة. ألديك نية ﻹضافة الأشخاص الآن ؟</item>
-        <item quantity="other">تعذرت إضافة %1$d عضو مرة ثانية إلى المجموعة الجديدة. ألديك نية ﻹضافة الأشخاص الآن ؟</item>
+        <item quantity="zero">تعذَّرت إضافة %1$d عضو مرة ثانية إلى المجموعة الجديدة. هل ترغب بإضافة الشخص الآن؟</item>
+        <item quantity="one">تعذَّرت إضافة %1$d عضو مرة ثانية إلى المجموعة الجديدة. هل ترغب بإضافة الشخص الآن؟</item>
+        <item quantity="two">تعذَّرت إضافة %1$d عضوين مرة ثانية إلى المجموعة الجديدة. هل ترغب بإضافة الشخصين الآن؟</item>
+        <item quantity="few">تعذَّرت إضافة %1$d أعضاء مرة ثانية إلى المجموعة الجديدة. هل ترغب بإضافة الأشخاص الآن؟</item>
+        <item quantity="many">تعذَّرت إضافة %1$d عضوًا مرة ثانية إلى المجموعة الجديدة. هل ترغب بإضافة الأشخاص الآن؟</item>
+        <item quantity="other">تعذَّرت إضافة %1$d عضو مرة ثانية إلى المجموعة الجديدة. هل ترغب بإضافة الأشخاص الآن؟</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
         <item quantity="zero">غياب إضافة عضو</item>
@@ -1236,24 +1238,24 @@
         <item quantity="many">إضافة أعضاء</item>
         <item quantity="other">إضافة أعضاء</item>
     </plurals>
-    <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">لا شكرا</string>
+    <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">لا، شكرًا</string>
 
     <!-- GroupsV1MigrationSuggestionsDialog -->
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
-        <item quantity="zero">غياب إضافة أعضاء ؟</item>
-        <item quantity="one">إضافة عضو واحد ؟</item>
-        <item quantity="two">إضافة عضويْن ؟</item>
-        <item quantity="few">إضافة أعضاء ؟</item>
-        <item quantity="many">إضافة أعضاء ؟</item>
-        <item quantity="other">إضافة أعضاء ؟</item>
+        <item quantity="zero">أترغب بإضافة أعضاء؟</item>
+        <item quantity="one">أترغب بإضافة عضو واحد؟</item>
+        <item quantity="two">أترغب بإضافة عضوين؟</item>
+        <item quantity="few">أترغب بإضافة أعضاء؟</item>
+        <item quantity="many">أترغب بإضافة أعضاء؟</item>
+        <item quantity="other">أترغب بإضافة أعضاء؟</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-        <item quantity="zero">لا يمكن إضافة هذا العضو تلقائيا إلى المجموعة الجديدة عندما تمت ترقيتها :</item>
-        <item quantity="one">لا يمكن إضافة هذا العضو تلقائيا إلى المجموعة الجديدة عندما تمت ترقيتها :</item>
-        <item quantity="two">لا يمكن إضافة هذين العضويْن تلقائيا إلى المجموعة الجديدة عندما تمت ترقيتها :</item>
-        <item quantity="few">لا يمكن إضافة هؤلاء الأعضاء تلقائيا إلى المجموعة الجديدة عندما تمت ترقيتها :</item>
-        <item quantity="many">لا يمكن إضافة هؤلاء الأعضاء تلقائيا إلى المجموعة الجديدة عندما تمت ترقيتها :</item>
-        <item quantity="other">لا يمكن إضافة هؤلاء الأعضاء تلقائيا إلى المجموعة الجديدة عندما تمت ترقيتها :</item>
+        <item quantity="zero">لا يمكن إضافة هذا العضو تلقائيًا إلى المجموعة الجديدة عندما تمت ترقيتها:</item>
+        <item quantity="one">لا يمكن إضافة هذا العضو تلقائيًا إلى المجموعة الجديدة عندما تمت ترقيتها:</item>
+        <item quantity="two">لا يمكن إضافة هذين العضويْن تلقائيًا إلى المجموعة الجديدة عندما تمت ترقيتها:</item>
+        <item quantity="few">لا يمكن إضافة هؤلاء الأعضاء تلقائيًا إلى المجموعة الجديدة عندما تمت ترقيتها:</item>
+        <item quantity="many">لا يمكن إضافة هؤلاء الأعضاء تلقائيًا إلى المجموعة الجديدة عندما تمت ترقيتها:</item>
+        <item quantity="other">لا يمكن إضافة هؤلاء الأعضاء تلقائيًا إلى المجموعة الجديدة عندما تمت ترقيتها:</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
         <item quantity="zero">غياب إضافة عضو</item>
@@ -1264,12 +1266,12 @@
         <item quantity="other">إضافة أعضاء</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
-        <item quantity="zero">فشل انعدام إضافة الأعضاء. يُرجى المحاولة ﻻحقا.</item>
-        <item quantity="one">فشلت إضافة العضو. يُرجى المحاولة ﻻحقا.</item>
-        <item quantity="two">فشلت إضافة العضويْن. يُرجى المحاولة ﻻحقا.</item>
-        <item quantity="few">فشلت إضافة الأعضاء. يُرجى المحاولة ﻻحقا.</item>
-        <item quantity="many">فشلت إضافة الأعضاء. يُرجى المحاولة ﻻحقا.</item>
-        <item quantity="other">فشلت إضافة الأعضاء. يُرجى المحاولة ﻻحقا.</item>
+        <item quantity="zero">فشل انعدام إضافة الأعضاء. يُرجى المحاولة ﻻحقًا.</item>
+        <item quantity="one">فشلت إضافة العضو. يُرجى المحاولة ﻻحقًا.</item>
+        <item quantity="two">فشلت إضافة العضويْن. يُرجى المحاولة ﻻحقًا.</item>
+        <item quantity="few">فشلت إضافة الأعضاء. يُرجى المحاولة ﻻحقًا.</item>
+        <item quantity="many">فشلت إضافة الأعضاء. يُرجى المحاولة ﻻحقًا.</item>
+        <item quantity="other">فشلت إضافة الأعضاء. يُرجى المحاولة ﻻحقًا.</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
         <item quantity="zero">لا يمكن إضافة عضو.</item>
@@ -1281,16 +1283,16 @@
     </plurals>
 
     <!-- LeaveGroupDialog -->
-    <string name="LeaveGroupDialog_leave_group">مغادرة المجموعة ؟</string>
-    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">لن تتمكن من إرسال أو استلام رسائل لهذه المجموعة بعد اﻵن.</string>
+    <string name="LeaveGroupDialog_leave_group">أترغبُ بمغادرة المجموعة؟</string>
+    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">لن تتمكن بعد الآن من إرسال أو استلام رسائل لهذه المجموعة.</string>
     <string name="LeaveGroupDialog_leave">مغادرة</string>
-    <string name="LeaveGroupDialog_choose_new_admin">اختر مشرفا جديدا</string>
-    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">قبل أن تغادر، يجب عليك أن تختار على الأقل مشرفا واحدا لهذه المجموعة.</string>
-    <string name="LeaveGroupDialog_choose_admin">اختر المشرف</string>
+    <string name="LeaveGroupDialog_choose_new_admin">اختَر مُشرِفًا جديدًا</string>
+    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">قبل أن تغادر، يجب عليك أن تختار مُشرِفًا واحدًا لهذه المجموعة.</string>
+    <string name="LeaveGroupDialog_choose_admin">اختر المُشرِف</string>
 
     <!-- LinkPreviewView -->
-    <string name="LinkPreviewView_no_link_preview_available">استعراض الرابط عير متاح</string>
-    <string name="LinkPreviewView_this_group_link_is_not_active">رابط هذه المجموعة غير مُفعَّل</string>
+    <string name="LinkPreviewView_no_link_preview_available">معاينة الرابط غير متاحة.</string>
+    <string name="LinkPreviewView_this_group_link_is_not_active">رابط هذه المجموعة غير مُفعَّل.</string>
     <string name="LinkPreviewView_domain_date">%1$s . %2$s</string>
     <!-- Description for Call Link url previews -->
     <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">اِستخدم هذا الرابط للانضمام إلى مكالمة Signal</string>
@@ -1299,9 +1301,9 @@
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="zero">%1$d عضو</item>
         <item quantity="one">%1$d عضو</item>
-        <item quantity="two">%1$d أعضاء</item>
+        <item quantity="two">%1$d عضوان</item>
         <item quantity="few">%1$d أعضاء</item>
-        <item quantity="many">%1$d عضوا</item>
+        <item quantity="many">%1$d عضوًا</item>
         <item quantity="other">%1$d عضو</item>
     </plurals>
 
@@ -1352,8 +1354,8 @@
     <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">لا توجد دعوات مُعلَّقة من أعضاء المجموعة الآخرين.</string>
     <string name="PendingMembersActivity_missing_detail_explanation">لا تظهر تفاصيل الأشخاص المدعوين من قِبل أعضاء المجموعة الآخرين. إذا اختار المدعوون الانضمام، حينها ستتم مشاركة معلوماتهم مع المجموعة. لن يروا أي رسائل في المجموعة حتى ينضموا إليها.</string>
 
-    <string name="PendingMembersActivity_revoke_invite">سحب الدعوة</string>
-    <string name="PendingMembersActivity_revoke_invites">سحب الدعوات</string>
+    <string name="PendingMembersActivity_revoke_invite">إلغاء الدعوة</string>
+    <string name="PendingMembersActivity_revoke_invites">إلغاء الدعوات</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
         <item quantity="zero">سحب %1$d دعوة</item>
         <item quantity="one">سحب دعوة واحدة</item>
@@ -1363,9 +1365,9 @@
         <item quantity="other">سحب %1$d دعوة</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
-        <item quantity="zero">حدث خطأ أثناء سحب الدعوات</item>
-        <item quantity="one">حدث خطأ أثناء سحب الدعوة</item>
-        <item quantity="two">حدث خطأ أثناء سحب الدعوات</item>
+        <item quantity="zero">حدث خطأ أثناء إلغاء الدعوات</item>
+        <item quantity="one">حدث خطأ أثناء إلغاء الدعوة</item>
+        <item quantity="two">حدث خطأ أثناء إلغاء الدعوتين</item>
         <item quantity="few">حدث خطأ أثناء سحب الدعوات</item>
         <item quantity="many">حدث خطأ أثناء سحب الدعوات</item>
         <item quantity="other">حدث خطأ أثناء سحب الدعوات</item>
@@ -1373,36 +1375,36 @@
 
     <!-- RequestingMembersFragment -->
     <string name="RequestingMembersFragment_pending_member_requests">طلبات الأعضاء المُعلَّقة</string>
-    <string name="RequestingMembersFragment_no_member_requests_to_show">لا وجود لأي طلبات العضوية.</string>
-    <string name="RequestingMembersFragment_explanation">يحاول الأشخاص الموجودون في هذه القائمة الانضمام إلى هذه المجموعة عبر وصلة المجموعة.‏</string>
-    <string name="RequestingMembersFragment_added_s">"تمت إضافة \"%1$s\""</string>
-    <string name="RequestingMembersFragment_denied_s">"تم رفض \"%1$s\""</string>
+    <string name="RequestingMembersFragment_no_member_requests_to_show">لا وجود لأي طلبات عضوية.</string>
+    <string name="RequestingMembersFragment_explanation">يحاول الأشخاص الموجودون في هذه القائمة الانضمام إلى هذه المجموعة عبر رابط المجموعة.‏</string>
+    <string name="RequestingMembersFragment_added_s">"تمَّت إضافة \"%1$s\""</string>
+    <string name="RequestingMembersFragment_denied_s">"تمَّ رفض \"%1$s\""</string>
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">تم</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات من الطراز القديم.</string>
+    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات السابقة.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="zero">إضافة %3$d عضوًا إلى \"%2$s\"؟</item>
-        <item quantity="one">إضافة \"%1$s\" إلى \"%2$s\"؟</item>
-        <item quantity="two">إضافة %3$d عضوين إلى \"%2$s\"؟</item>
-        <item quantity="few">إضافة %3$d أعضاء إلى \"%2$s\"؟</item>
-        <item quantity="many">إضافة %3$d عضوًا إلى \"%2$s\"؟</item>
-        <item quantity="other">إضافة %3$d عضو إلى \"%2$s\" ؟</item>
+        <item quantity="zero">أترغبُ بإضافة %3$d عضوًا إلى \"%2$s\"؟</item>
+        <item quantity="one">أترغبُ بإضافة \"%1$s\" إلى \"%2$s\"؟</item>
+        <item quantity="two">أترغبُ بإضافة %3$d عضوين إلى \"%2$s\"؟</item>
+        <item quantity="few">أترغبُ بإضافة %3$d أعضاء إلى \"%2$s\"؟</item>
+        <item quantity="many">أترغبُ بإضافة %3$d عضوًا إلى \"%2$s\"؟</item>
+        <item quantity="other">أترغبُ بإضافة %3$d عضو إلى \"%2$s\"؟</item>
     </plurals>
     <string name="AddMembersActivity__add">إضافة</string>
     <string name="AddMembersActivity__add_members">إضافة أعضاء</string>
 
     <!-- AddGroupDetailsFragment -->
-    <string name="AddGroupDetailsFragment__name_this_group">سمّ هذه المجموعة</string>
+    <string name="AddGroupDetailsFragment__name_this_group">أضِف اسمًا لهذه المجموعة</string>
     <string name="AddGroupDetailsFragment__create_group">إنشاء مجموعة</string>
     <string name="AddGroupDetailsFragment__create">إنشاء</string>
     <string name="AddGroupDetailsFragment__members">الأعضاء</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">يمكنك إضافة أو دعوة أصدقاء بعد إنشاء هذه المجموعة.</string>
-    <string name="AddGroupDetailsFragment__group_name_required">اسم المجموعة (ضروري)</string>
+    <string name="AddGroupDetailsFragment__group_name_required">اسم المجموعة (مطلوب)</string>
     <string name="AddGroupDetailsFragment__group_name_optional">اسم المجموعة (اختياري)</string>
     <string name="AddGroupDetailsFragment__this_field_is_required">هذا الحقل مطلوب.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">فشل إنشاء المجموعة.</string>
-    <string name="AddGroupDetailsFragment__try_again_later">يُرجى المحاولة مرة أخرى لاحقا.</string>
+    <string name="AddGroupDetailsFragment__try_again_later">حاوِل مرّة أخرى لاحقًا.</string>
     <string name="AddGroupDetailsFragment__remove">إزالة</string>
     <string name="AddGroupDetailsFragment__sms_contact">جهة اتصال عبر الرسائل القصيرة (SMS)</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">إزالة %1$s من هذه المجموعة؟</string>
@@ -1566,7 +1568,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">وصلة المجموعة</string>
     <string name="ShareableGroupLinkDialogFragment__share">شارك</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">إعادة تعيين الوصلة</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">الموافقة على الأعضاء الجدد</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Require admin approval</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">يتطلب هذا اﻹجراء موافقة المشرف لقبول انضمام أعضاء جدد عبر وصلة المجموعة.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">أأنت على يقين من قيامك بإعادة تعيين وصلة المجموعة ؟ لن يتمكن الأشخاص بعد الآن من الانضمام إلى المجموعة باستخدام الوصلة الحالية.</string>
 
@@ -2985,6 +2987,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">سنحاول من جديد لاحقًا.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">تم تحديث سيجنال بنجاح</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">تم تحديثك تلقائيًا إلى الإصدار %1$s.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">You updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">هل تود إرسال الرسالة ؟</string>
@@ -3698,6 +3701,8 @@
     <string name="EditAboutFragment_free_to_chat">مُتفرّغ للدردشة</string>
     <string name="EditAboutFragment_taking_a_break">أنا في استراحة</string>
     <string name="EditAboutFragment_working_on_something_new">أعمل حاليا على شيء جديد</string>
+    <!-- Error text shown when the About text contains an invalid character -->
+    <string name="EditAboutFragment_one_or_more_characters">One or more characters is invalid.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">تعديل المجموعة</string>
@@ -7556,7 +7561,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">تعديل اسم المكالمة</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Require admin approval</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">يشترط موافقة المُشرِف</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">مشاركة الرابط عبر سيجنال</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -7612,7 +7617,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">إضافة اسم المكالمة</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__require_admin_approval">Require admin approval</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">يشترط موافقة المُشرِف</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">مشاركة الرابط</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7898,6 +7903,8 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">بطاقة الائتمان أو الخصم</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
@@ -8035,12 +8042,6 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">يُرجى إدخال الرقم التعريفي الشخصي أو كلمة المرور أو نمط تعطيل كلمة المرور لجهازك.</string>
 
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">دفع %1$s/الشهر لسيجنال</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">سَتحصل على:</string>
-
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">انسخ رسائلك ووسائطك باستخدام خدمة التخزين الآمنة المشفرة من طرف إلى طرف. لا تفقد رسالة عندما تستخدم هاتفًا جديدًا أو تعيد تثبيت سيجنال.</string>
@@ -8055,29 +8056,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">معرفة المزيد</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">أدخل الرقم التعريفي الشخصي</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">أدخل رقم التعريف الشخصي لسيجنال لتفعيل النسخ الاحتياطية</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">التالي</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">تغيير لوحة المفاتيح</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">إنشاء رقم تعريف شخصي جديد</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">تحمي الأرقام التعريفية الشخصية نُسختك الاحتياطية</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">يُمكّنُك رقمُك التعريفي الشخصي لسيجنال من استعادة النسخة الاحتياطية عندما تعيد تثبيت تطبيق سيجنال. نوصي باستخدام رقم تعريفي يتكوّن من %1$d رقمًا على الأقل.</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">إذا نسيت رقم التعريف الشخصي الخاص بك، لن تتمكّن من استعادة نسختك الاحتياطية. يُمكنُك تغيير رقم التعريف الشخصي الخاص بك في أي وقت عبر إعداداتك.</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">استخدم رقم التعريف الشخصي لسيجنال الحالي</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">إنشاء رقم تعريف شخصي جديد</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your backup key</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-digit code that lets you restore your backup when you re-install Signal.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">If you forget your key, you will not be able to restore your backup. Signal cannot help you recover your backup.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">Next</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your backup key</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">This key is required to recover your account and data. Store this key somewhere safe. If you lose it, you won’t be able to recover your account.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copy to clipboard</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">Next</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Keep your key safe</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal will not be able to help you restore your backup if you lose your key. Store it somewhere safe and secure, and do not share it with others.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">I\'ve recorded my key</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">Continue</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">See key again</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->

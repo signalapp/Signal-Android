@@ -345,6 +345,8 @@
     <string name="CommunicationActions_invalid_link">پیوند نامعتبر</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">این پیوند تماس معتبری نیست. قبل از تلاش برای پیوستن، مطمئن شوید که پیوند کامل و درست است.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">You are already in a call</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -972,11 +974,11 @@
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">برای متصل کردن دستگاه، قفل را باز کنید</string>
     <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
-    <string name="LinkDeviceFragment__before_linking">Before linking, confirm it\'s you</string>
+    <string name="LinkDeviceFragment__before_linking">قبل از متصل کردن، تأیید کنید که خودتان هستید</string>
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">روی «ادامه» ضربه بزنید و برای تأیید، قفل تلفنتان را باز کنید. پین سیگنال خود را وارد نکنید.</string>
     <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">Continue</string>
+    <string name="LinkDeviceFragment__continue">ادامه</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1406,7 +1408,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">پیوند گروه</string>
     <string name="ShareableGroupLinkDialogFragment__share">اشتراک‌گذاری</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">بازنشانی پیوند</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">تأیید اعضای جدید</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Require admin approval</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">نیاز به یک مدیر برای تأیید اعضای جدیدی که از طریق پیوند گروه می‌پیوندند.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">آیا از بازنشانی پیوند گروه اطمینان دارید؟ افراد دیگر نمی‌توانند با استفاده از پیوند فعلی به گروه بپیوندند.</string>
 
@@ -2645,6 +2647,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">بعداً دوباره امتحان خواهیم کرد.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">سیگنال به‌روز شد</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">به‌طور خودکار به نسخۀ %1$s به‌روزرسانی شده‌اید.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">You updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">ارسال پیام؟</string>
@@ -3302,6 +3305,8 @@
     <string name="EditAboutFragment_free_to_chat">آمادهٔ گفتگو</string>
     <string name="EditAboutFragment_taking_a_break">در حال استراحت</string>
     <string name="EditAboutFragment_working_on_something_new">در حال کار روی یک چیز جدید</string>
+    <!-- Error text shown when the About text contains an invalid character -->
+    <string name="EditAboutFragment_one_or_more_characters">One or more characters is invalid.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">ویرایش گروه</string>
@@ -5583,7 +5588,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">به Google Pay بروید</string>
 
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">امکان پردازش پرداخت اشتراک وجود ندارد</string>
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">ما در جمع‌آوری پرداخت حمایت از سیگنال شما دچار مشکل هستیم. مطمئن شوید که روش پرداختی شما به‌روز است. در غیر این صورت، آن را در Google Play به‌روزرسانی کنید. سیگنال پردازش پرداخت را دوباره طی چند روز آینده امتحان خواهد کرد.</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">ما در جمع‌آوری پرداخت حمایت از سیگنال شما دچار مشکل هستیم. مطمئن شوید که روش پرداختی شما به‌روز است. در غیر این صورت، آن را در Google Pay به‌روزرسانی کنید. سیگنال پردازش پرداخت را دوباره طی چند روز آینده امتحان خواهد کرد.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">این را دیگر نمایش نده</string>
 
     <string name="Subscription__contact_support">تماس با پشتیبانی</string>
@@ -5661,7 +5666,7 @@
     <!-- PayPal decline code for payment declined -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">روش پرداخت دیگری را امتحان کنید یا با بانک خود برای اطلاعات بیشتر تماس بگیرید. اگر تراکنش PayPal بود، با PayPal تماس بگیرید.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
-    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">مطمئن شوید که روش پرداختی شما در Google Play به‌روز است و دوباره امتحان کنید.</string>
+    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">مطمئن شوید که روش پرداختی شما در Google Pay به‌روز است و دوباره امتحان کنید.</string>
     <!-- Stripe decline code learn more action label -->
     <string name="DeclineCode__learn_more">بیشتر یاد بگیرید</string>
     <!-- Stripe decline code contact issuer -->
@@ -6944,7 +6949,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">ویرایش نام تماس</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Require admin approval</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">الزام تأیید مدیر</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">اشتراک‌گذاری پیوند از طریق سیگنال</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -7000,7 +7005,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">افزودن نام تماس</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__require_admin_approval">Require admin approval</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">الزام تأیید مدیر</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">اشتراک‌گذاری پیوند</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7266,6 +7271,8 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">کارت اعتباری یا دبیت کارت</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
@@ -7403,12 +7410,6 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">لطفا پین، رمز عبور یا الگوی دستگاه خود را وارد کنید.</string>
 
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">با پرداخت %1$s در ماه به سیگنال</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">موارد زیر را دریافت خواهید کرد:</string>
-
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">با استفاده از سرویس ذخیره‌سازی سرتاسر رمزگذاری‌شده و امن سیگنال، از پیام‌ها و رسانه‌های خود پشتیبان‌گیری کنید. وقتی تلفن جدید می‌گیرید یا سیگنال را دوباره نصب می‌کنید، هرگز پیامی را از دست ندهید.</string>
@@ -7423,29 +7424,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">اطلاعات بیشتر</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">پین خود را وارد کنید</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">برای فعال کردن پشتیبان‌گیری، پین سیگنال خود را وارد کنید</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">بعدی</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">تغییر صفحه‌کلید</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">ایجاد پین جدید</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">پین‌ها از نسخه پشتیبان شما محافظت می‌کنند</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">پین سیگنال به شما امکان می‌دهد هنگام نصب مجدد سیگنال، نسخه پشتیبان خود را بازیابی کنید. توصیه می‌کنیم از یک پین حداقل %1$d رقمی استفاده کنید.</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">اگر پین خود را فراموش کنید، نمی‌توانید نسخه پشتیبان خود را بازیابی کنید. می‌توانید پین خود را در هر زمانی در تنظیمات تغییر دهید.</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">از پین سیگنال فعلی استفاده کنید</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">ایجاد پین جدید</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your backup key</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-digit code that lets you restore your backup when you re-install Signal.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">If you forget your key, you will not be able to restore your backup. Signal cannot help you recover your backup.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">Next</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your backup key</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">This key is required to recover your account and data. Store this key somewhere safe. If you lose it, you won’t be able to recover your account.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copy to clipboard</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">Next</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Keep your key safe</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal will not be able to help you restore your backup if you lose your key. Store it somewhere safe and secure, and do not share it with others.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">I\'ve recorded my key</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">Continue</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">See key again</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->

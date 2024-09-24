@@ -345,6 +345,8 @@
     <string name="CommunicationActions_invalid_link">അസാധുവായ ലിങ്ക്</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">ഇത് സാധുതയുള്ളൊരു കോൾ ലിങ്കല്ല. ചേരാൻ ശ്രമിക്കുന്നതിന് മുമ്പ് മുഴുവൻ ലിങ്കും ശരിയാണെന്ന് ഉറപ്പ് വരുത്തുക.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">You are already in a call</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -972,11 +974,11 @@
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">ഒരു ഉപകരണം ലിങ്ക് ചെയ്യാൻ അൺലോക്ക് ചെയ്യുക</string>
     <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
-    <string name="LinkDeviceFragment__before_linking">Before linking, confirm it\'s you</string>
+    <string name="LinkDeviceFragment__before_linking">ലിങ്ക് ചെയ്യുന്നതിനുമുമ്പ്, ഇത് നിങ്ങളാണെന്ന് സ്ഥിരീകരിക്കുക</string>
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">സ്ഥിരീകരിക്കാൻ തുടരുക ടാപ്പുചെയ്‌ത് നിങ്ങളുടെ ഫോണിൻ്റെ ലോക്ക് നൽകുക. നിങ്ങളുടെ Signal PIN നൽകരുത്.</string>
     <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">Continue</string>
+    <string name="LinkDeviceFragment__continue">തുടരുക</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1406,7 +1408,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക്</string>
     <string name="ShareableGroupLinkDialogFragment__share">പങ്കിടുക</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">ലിങ്ക് പുനഃസജ്ജമാക്കുക്ക</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">പുതിയ അംഗങ്ങളെ അംഗീകരിക്കുക</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Require admin approval</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ഗ്രൂപ്പ് ലിങ്ക് വഴി ചേരുന്ന പുതിയ അംഗങ്ങളെ അംഗീകരിക്കുന്നതിന് ഒരു അഡ്മിൻ ആവശ്യമാണ്.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">ഗ്രൂപ്പ് ലിങ്ക് പുനസജ്ജമാക്കണമെന്ന് നിങ്ങള്‍ക്ക് ഉറപ്പാണ‍ോ? നിലവിലെ ലിങ്ക് ഉപയോഗിച്ച് ആളുകൾക്ക് മേലിൽ ഗ്രൂപ്പിൽ ചേരാനാവില്ല.</string>
 
@@ -2645,6 +2647,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">ഞങ്ങൾ പിന്നീട് വീണ്ടും ശ്രമിക്കും.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal അപ്ഡേറ്റ് ആയി</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">%1$s പതിപ്പിലേക്ക് ഓട്ടോമാറ്റിക്കായി അപ്ഡേറ്റ് ആയി.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">You updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">സന്ദേശം അയക്കണോ?</string>
@@ -3302,6 +3305,8 @@
     <string name="EditAboutFragment_free_to_chat">ചാറ്റ് ചെയ്യാൻ സമയമുണ്ടേ</string>
     <string name="EditAboutFragment_taking_a_break">ഒരു ഇടവേളയിലാണ്</string>
     <string name="EditAboutFragment_working_on_something_new">പുതിയ ഒരു കാര്യം ചെയ്യുന്നു</string>
+    <!-- Error text shown when the About text contains an invalid character -->
+    <string name="EditAboutFragment_one_or_more_characters">One or more characters is invalid.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">ഗ്രൂപ്പ് എഡിറ്റുചെയ്യുക</string>
@@ -6944,7 +6949,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">കോളിന്റെ പേര് എഡിറ്റ് ചെയ്യുക</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Require admin approval</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">അഡ്മിൻ അംഗീകാരം ആവശ്യമാണ്</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Signal-ലൂടെ ലിങ്ക് പങ്കിടൂ</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -7000,7 +7005,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">കോളിന്‍റെ പേര് ചേർക്കുക</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__require_admin_approval">Require admin approval</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">അഡ്മിൻ അംഗീകാരം ആവശ്യമാണ്</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">ലിങ്ക് പങ്കിടുക</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7266,6 +7271,8 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">ക്രെഡിറ്റ് കാർഡ് അല്ലെങ്കിൽ ഡെബിറ്റ് കാർഡ്</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
@@ -7403,12 +7410,6 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">നിങ്ങളുടെ ഉപകരണ PIN, പാസ്‌വേഡ് അല്ലെങ്കിൽ പാറ്റേൺ നൽകുക.</string>
 
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Signal-ന് പ്രതിമാസം %1$s അടയ്ക്കുക</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">നിങ്ങൾക്ക് ഇത്രയും ലഭിക്കും:</string>
-
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">നിങ്ങളുടെ സന്ദേശങ്ങളും മീഡിയയും ബാക്കപ്പ് ചെയ്‌ത് Signal-ൻ്റെ സുരക്ഷിതവും എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റ് ചെയ്തതുമായ സ്റ്റോറേജ് സേവനം ഉപയോഗിക്കുകയും ചെയ്യുന്നു. നിങ്ങൾക്ക് ഒരു പുതിയ ഫോൺ ലഭിക്കുമ്പോഴോ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോഴോ ഒരിക്കലും ഒരു സന്ദേശം നഷ്‌ടപ്പെടുത്തരുത്.</string>
@@ -7423,29 +7424,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">കൂടുതലറിയുക</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">നിങ്ങളുടെ PIN നൽകുക</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">ബാക്കപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കാൻ നിങ്ങളുടെ Signal PIN നൽകുക</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">അടുത്തത്</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">കീബോർഡ് സ്വിച്ച് ചെയ്യുക</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">പുതിയ PIN സൃഷ്ടിക്കുക</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN-കൾ നിങ്ങളുടെ ബാക്കപ്പ് സംരക്ഷിക്കുന്നു</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">നിങ്ങൾ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കാൻ നിങ്ങളുടെ Signal PIN നിങ്ങളെ അനുവദിക്കുന്നു. കുറഞ്ഞത് %1$d അക്കങ്ങളെങ്കിലും ഉള്ള ഒരു PIN ഉപയോഗിക്കാൻ ഞങ്ങൾ ശുപാർശ ചെയ്യുന്നു.</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">നിങ്ങളുടെ PIN മറന്നുപോയാല്‍, നിങ്ങളുടെ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കാൻ നിങ്ങൾക്ക് കഴിയില്ല. ക്രമീകരണത്തിൽ നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും PIN മാറ്റാം.</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">നിലവിലെ Signal PIN ഉപയോഗിക്കുക</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">പുതിയ PIN സൃഷ്ടിക്കുക</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your backup key</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-digit code that lets you restore your backup when you re-install Signal.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">If you forget your key, you will not be able to restore your backup. Signal cannot help you recover your backup.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">Next</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your backup key</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">This key is required to recover your account and data. Store this key somewhere safe. If you lose it, you won’t be able to recover your account.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copy to clipboard</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">Next</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Keep your key safe</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal will not be able to help you restore your backup if you lose your key. Store it somewhere safe and secure, and do not share it with others.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">I\'ve recorded my key</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">Continue</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">See key again</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->

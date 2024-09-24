@@ -342,6 +342,8 @@
     <string name="CommunicationActions_invalid_link">無效的連結</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">這不是有效的通話連結。在嘗試加入之前，請確保整個連結是完整且正確的。</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">You are already in a call</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -952,11 +954,11 @@
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">解鎖以連結裝置</string>
     <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
-    <string name="LinkDeviceFragment__before_linking">Before linking, confirm it\'s you</string>
+    <string name="LinkDeviceFragment__before_linking">在連結之前，請確認這是你本人</string>
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">輕按繼續並輸入手機的鎖定密碼以確認。請勿輸入你的 Signal PIN 碼。</string>
     <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">Continue</string>
+    <string name="LinkDeviceFragment__continue">繼續</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1366,7 +1368,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">群組連結</string>
     <string name="ShareableGroupLinkDialogFragment__share">分享</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">重設連結</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">核准新成員</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Require admin approval</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">要求透過群組連結加入的新成員須經管理員核准。</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">您確定要重設群組連結嗎？別人將無法再以目前的連結加入群組。</string>
 
@@ -2560,6 +2562,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">我們將稍後再試。</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal 已成功更新</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">已自動更新到版本 %1$s。</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">You updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">要傳送訊息嗎？</string>
@@ -3203,6 +3206,8 @@
     <string name="EditAboutFragment_free_to_chat">即使要蒙著我嘴 我亦可高呼</string>
     <string name="EditAboutFragment_taking_a_break">人間有味是清歡</string>
     <string name="EditAboutFragment_working_on_something_new">新世紀 我請你要有準備</string>
+    <!-- Error text shown when the About text contains an invalid character -->
+    <string name="EditAboutFragment_one_or_more_characters">One or more characters is invalid.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">編輯群組</string>
@@ -6791,7 +6796,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">編輯通話名稱</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Require admin approval</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">需要管理員核准</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">透過 Signal 分享連結</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -6847,7 +6852,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">新增通話名稱</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__require_admin_approval">Require admin approval</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">需要管理員核准</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">分享連結</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7108,6 +7113,8 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">信用卡或簽帳金融卡</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
@@ -7245,12 +7252,6 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">請輸入你的裝置 PIN 碼、密碼或圖案。</string>
 
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">每月向 Signal 支付 %1$s</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">你會得到：</string>
-
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">備份你的訊息和媒體均使用 Signal 的端對端加密儲存服務進行儲存。當你使用新手機或重新安裝 Signal 時，絕不會遺失訊息。</string>
@@ -7265,29 +7266,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">了解更多</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">輸入你的 PIN 碼</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">輸入你的 Signal PIN 碼以啟用備份</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">下一步</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">切換鍵盤</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">建立新的 PIN 碼</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN 碼可保護你的備份</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">當你重新安裝 Signal 時，你的 Signal PIN 碼可讓你還原備份。我們建議使用至少 %1$d 位數字的 PIN 碼。</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">如果你忘記了 PIN 碼，你將會無法還原備份。你可以隨時在設定中更改你的 PIN 碼。</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">使用目前 Signal PIN 碼</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">建立新的 PIN 碼</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your backup key</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-digit code that lets you restore your backup when you re-install Signal.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">If you forget your key, you will not be able to restore your backup. Signal cannot help you recover your backup.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">Next</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your backup key</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">This key is required to recover your account and data. Store this key somewhere safe. If you lose it, you won’t be able to recover your account.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copy to clipboard</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">Next</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Keep your key safe</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal will not be able to help you restore your backup if you lose your key. Store it somewhere safe and secure, and do not share it with others.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">I\'ve recorded my key</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">Continue</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">See key again</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->

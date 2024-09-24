@@ -351,6 +351,8 @@
     <string name="CommunicationActions_invalid_link">Хибне посилання</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Це посилання на виклик недійсне. Перевірте, чи посилання повне й правильне, і повторіть спробу приєднатися до виклику.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">You are already in a call</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -1016,7 +1018,7 @@
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
     <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">Continue</string>
+    <string name="LinkDeviceFragment__continue">Продовжити</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1486,7 +1488,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">Посилання на групу</string>
     <string name="ShareableGroupLinkDialogFragment__share">Поділитися</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Скинути посилання</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">Затверджувати нових учасників</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Require admin approval</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Нових учасників, які приєднуються до групи за посиланням, повинен затверджувати адміністратор.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ви точно хочете скинути посилання на цю групу? Долучатися до групи за поточним посиланням стане неможливо.</string>
 
@@ -2146,17 +2148,17 @@
     <string name="PinRestoreEntryFragment_incorrect_pin">Неправильний PIN-код</string>
     <string name="PinRestoreEntryFragment_skip_pin_entry">Не вводити PIN-код?</string>
     <string name="PinRestoreEntryFragment_need_help">Потрібна допомога?</string>
-    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN-код – це створений вами пароль, мінімальна довжина якого — %1$d символи. Він може складатися з цифр або з цифр і букв.\n\nЯкщо ви забули свій PIN-код, то можете створити новий. Ви можете зареєструватись і використовувати свій акаунт, але ви втратите частину збережених налаштувань, як-от інформацію профілю.</string>
-    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Якщо ви забули свій PIN-код, то можете створити новий. Ви можете зареєструватись і використовувати свій акаунт, але ви втратите частину збережених налаштувань, як-от інформацію профілю.</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN-код – це створений вами пароль, мінімальна довжина якого — %1$d символи. Він може складатися з цифр або з цифр і букв.\n\nЯкщо ви забули свій PIN-код, то можете створити новий. Ви можете зареєструвати й використовувати акаунт, але ви втратите частину збережених налаштувань, як-от інформацію профілю.</string>
+    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Якщо ви забули свій PIN-код, то можете створити новий. Ви можете зареєструвати й використовувати акаунт, але ви втратите частину збережених налаштувань, як-от інформацію профілю.</string>
     <string name="PinRestoreEntryFragment_create_new_pin">Створіть новий PIN-код</string>
     <string name="PinRestoreEntryFragment_contact_support">Звернутися в службу підтримки</string>
     <string name="PinRestoreEntryFragment_cancel">Закрити</string>
     <string name="PinRestoreEntryFragment_skip">Пропустити</string>
     <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-        <item quantity="one">У вас лишилася %1$d спроба. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструватись і використовувати свій акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
-        <item quantity="few">У вас лишилося %1$d спроби. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструватись і використовувати свій акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
-        <item quantity="many">У вас лишилося %1$d спроб. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструватись і використовувати свій акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
-        <item quantity="other">У вас лишилося %1$d спроби. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструватись і використовувати свій акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
+        <item quantity="one">У вас лишилася %1$d спроба. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструвати й використовувати акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
+        <item quantity="few">У вас лишилося %1$d спроби. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструвати й використовувати акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
+        <item quantity="many">У вас лишилося %1$d спроб. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструвати й використовувати акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
+        <item quantity="other">У вас лишилося %1$d спроби. Якщо ви вичерпаєте спроби, то зможете створити новий PIN-код. Ви зможете зареєструвати й використовувати акаунт, але втратите частину збережених налаштувань, як-от інформацію профілю.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Реєстрація в Signal: потрібна допомога з PIN-кодом для Android</string>
 
@@ -2815,6 +2817,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">Ми спробуємо знову пізніше.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal успішно оновлено</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">Ваш застосунок автоматично оновлено до версії %1$s.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">You updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Надіслати повідомлення?</string>
@@ -3500,6 +3503,8 @@
     <string name="EditAboutFragment_free_to_chat">Маю час початитися</string>
     <string name="EditAboutFragment_taking_a_break">Відпочиваю</string>
     <string name="EditAboutFragment_working_on_something_new">Працюю над чимось новим</string>
+    <!-- Error text shown when the About text contains an invalid character -->
+    <string name="EditAboutFragment_one_or_more_characters">One or more characters is invalid.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Редагувати групу</string>
@@ -7250,7 +7255,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Змінити назву виклику</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Require admin approval</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Адміністратор затверджує учасників</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Поділитися посиланням через Signal</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -7306,7 +7311,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Додати назву виклику</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__require_admin_approval">Require admin approval</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">Адміністратор затверджує учасників</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Поділитися посиланням</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7582,6 +7587,8 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Кредитна / Дебетова картка</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
@@ -7719,12 +7726,6 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Уведіть PIN-код пристрою, пароль або графічний ключ.</string>
 
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Платіж %1$s/місяць на користь Signal</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">Ви отримаєте:</string>
-
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Зберігайте свої повідомлення і медіафайли в резервній копії завдяки надійному сервісу зберігання Signal, захищеному наскрізним шифруванням. Ви не втратите повідомлення, навіть якщо зміните телефон або перевстановите Signal.</string>
@@ -7739,29 +7740,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">Дізнатися більше</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">Введіть свій PIN-код</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Введіть свій PIN-код Signal, щоб увімкнути резервне копіювання</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">Далі</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Перемкнути клавіатуру</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Створити новий PIN-код</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN-код — захист резервної копії</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">За допомогою PIN-коду Signal ви зможете відновити резервну копію в разі перевстановлення Signal. Ми рекомендуємо використовувати PIN-код принаймні з %1$d цифр.</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Якщо ви забудете PIN-код, то не зможете відновити резервну копію. Змінити PIN-код можна в будь-який момент у налаштуваннях.</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Використати поточний PIN-код Signal</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">Створити новий PIN-код</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your backup key</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-digit code that lets you restore your backup when you re-install Signal.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">If you forget your key, you will not be able to restore your backup. Signal cannot help you recover your backup.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">Next</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your backup key</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">This key is required to recover your account and data. Store this key somewhere safe. If you lose it, you won’t be able to recover your account.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copy to clipboard</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">Next</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Keep your key safe</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal will not be able to help you restore your backup if you lose your key. Store it somewhere safe and secure, and do not share it with others.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">I\'ve recorded my key</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">Continue</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">See key again</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->

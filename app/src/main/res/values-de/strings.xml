@@ -345,6 +345,8 @@
     <string name="CommunicationActions_invalid_link">Ungültiger Link</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Dies ist kein gültiger Anruflink. Vergewissere dich, dass der Link vollständig und fehlerfrei ist, bevor du versuchst, teilzunehmen.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">You are already in a call</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -844,7 +846,7 @@
     <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
     <string name="RestoreMediaReminder__Waiting_for_internet_connection">Verbindet mit Internet …</string>
     <!-- Remote media restoration paused status description for when the device\'s battery is low -->
-    <string name="RestoreMediaReminder__low_battery">Niedriger Akkustand. Lade dein Gerät auf.</string>
+    <string name="RestoreMediaReminder__low_battery">Niedriger Akkustand. Gerät bitte aufladen.</string>
     <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
     <string name="RestoreMediaReminder__Free_up_space">Du musst %1$s freigeben, um deine Medien wiederherzustellen.</string>
     <!-- Button label to abort media restoration -->
@@ -943,7 +945,7 @@
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
     <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Signal auf dem Computer oder iPad verwenden. Deine Nachrichten werden mit deinen gekoppelten Geräten synchronisiert.</string>
     <!-- Button prompting users to link a new device to their account -->
-    <string name="LinkDeviceFragment__link_a_new_device">Ein neues Gerät koppeln</string>
+    <string name="LinkDeviceFragment__link_a_new_device">Neues Gerät koppeln</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Nachrichten und Chat-Infos sind auf allen Geräten durch eine Ende-zu-Ende-Verschlüsselung geschützt</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
@@ -976,7 +978,7 @@
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
     <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">Continue</string>
+    <string name="LinkDeviceFragment__continue">Fortfahren</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1406,7 +1408,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">Gruppen-Link</string>
     <string name="ShareableGroupLinkDialogFragment__share">Teilen</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Link zurücksetzen</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">Neue Mitglieder bestätigen</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Require admin approval</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Ein Admin muss Beitrittsanfragen von neuen Mitgliedern über den Gruppen-Link bestätigen.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Möchtest du den Gruppen-Link wirklich zurücksetzen? Über den derzeitigen Link wird der Gruppe dann niemand mehr beitreten können.</string>
 
@@ -2645,6 +2647,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">Wir versuchen es später erneut.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal wurde erfolgreich aktualisiert</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">Du wurdest automatisch auf Version %1$s aktualisiert.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">You updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Nachricht senden?</string>
@@ -3302,6 +3305,8 @@
     <string name="EditAboutFragment_free_to_chat">Frei für Chats</string>
     <string name="EditAboutFragment_taking_a_break">Mache eine Pause</string>
     <string name="EditAboutFragment_working_on_something_new">Arbeite an etwas Neuem</string>
+    <!-- Error text shown when the About text contains an invalid character -->
+    <string name="EditAboutFragment_one_or_more_characters">One or more characters is invalid.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Gruppe bearbeiten</string>
@@ -4328,7 +4333,7 @@
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zugriff auf Signal mit Android-Bildschirmsperre oder Fingerabdruck sperren</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Automatische Sperre bei Inaktivität</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">Um die Bildschirmsperre zu aktivieren, lege auf diesem Gerät eine PIN, ein Sperrmuster oder ein Passwort fest.</string>
+    <string name="preferences_app_protection__to_use_screen_lock">Um die Bildschirmsperre zu aktivieren, lege auf diesem Gerät eine PIN, ein Entsperrmuster oder ein Passwort fest.</string>
     <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
     <string name="preferences_app_protection__create_a_pin">Erstelle eine PIN</string>
     <string name="preferences_app_protection__change_your_pin">PIN ändern</string>
@@ -4352,9 +4357,9 @@
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal entsperren</string>
     <!-- Description text explaining how to unlock Signal -->
-    <string name="prompt_passphrase_activity__use_your_android_device">So verwendest du die Signal Sperreinstellungen auf deinem Android-Gerät.</string>
+    <string name="prompt_passphrase_activity__use_your_android_device">Verwende die Sperreinstellungen auf deinem Android-Gerät um Signal zu entsperren.</string>
     <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
-    <string name="prompt_passphrase_activity__screen_lock_is_on">Die Bildschirmsperre ist aktiviert und Signal ist durch deine Displaysperre ebenfalls geschützt. Signal lässt sich genauso entsperren wie dein Mobiltelefon, d. h., durch Face ID, Fingerabdruck-ID, Geräte-PIN, Passwort oder ein Sperrmuster.</string>
+    <string name="prompt_passphrase_activity__screen_lock_is_on">Die Bildschirmsperre ist aktiviert und Signal ist durch deine Displaysperre ebenfalls geschützt. Signal lässt sich genauso entsperren wie dein Mobiltelefon, d. h., durch Face ID, Fingerabdruck-ID, Geräte-PIN, Passwort oder ein Entsperrmuster.</string>
     <!-- Button in a dialog that will contact Signal support if pressed -->
     <string name="prompt_passphrase_activity__contact_support">Support kontaktieren</string>
     <!-- Button text to try again after unlocking has previously failed -->
@@ -4366,7 +4371,7 @@
     <!-- Text shown with toggle that when switched on will enable screen lock -->
     <string name="ScreenLockSettingsFragment__use_screen_lock">Bildschirmsperre verwenden</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Zum Entsperren von Signal ist die Sperreinstellung deines Android-Geräts erforderlich, wenn du Apps verlässt oder zwischen Apps wechselst. Wenn dein Gerät gesperrt ist, wird der Inhalt in Benachrichtigungen nicht angezeigt.</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">Zum Entsperren von Signal wird die Entsperrfunktion deines Android-Geräts verwendet, wenn du Apps verlässt oder zwischen Apps wechselst. Wenn dein Gerät gesperrt ist, wird der Inhalt in Benachrichtigungen nicht angezeigt.</string>
     <!-- Title text explaining when users should start the screen lock -->
     <string name="ScreenLockSettingsFragment__start_screen_lock">Bildschirmsperre aktivieren</string>
     <!-- Option text explaining that screen lock should start immediately -->
@@ -6944,7 +6949,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Anrufnamen bearbeiten</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Require admin approval</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Administrator-Genehmigung benötigt</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Link über Signal teilen</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -7000,7 +7005,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Anrufnamen hinzufügen</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__require_admin_approval">Require admin approval</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">Administrator-Genehmigung benötigt</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Link teilen</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7254,7 +7259,7 @@
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Medien werden gelöscht</string>
     <!-- Dialog message for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Die in deiner Datensicherung gespeicherten Medien werden heute endgültig gelöscht. Nutze deine letzte Chance zum Herunterladen.</string>
+    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Die in deiner Datensicherung gespeicherten Medien werden heute endgültig gelöscht. Das ist deine letzte Chance zum Herunterladen.</string>
     <!-- Dialog action to download now -->
     <string name="BackupAlertBottomSheet__download">Herunterladen</string>
     <!-- Dialog action to not download now -->
@@ -7265,6 +7270,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Du musst %1$s Speicherplatz freigeben, um deine Medien herunterladen zu können.</string>
 
     <!-- BackupsTypeSettingsFragment -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Kredit- oder Debitkarte</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7403,12 +7410,6 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Bitte gib deine Geräte-Pin, dein Passwort oder dein Sperrmuster ein.</string>
 
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Spende %1$s pro Monat an Signal</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">Das bekommst du:</string>
-
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Sichere deine Nachrichten und Medien mit der bewährten Ende-zu-Ende-Verschlüsselung von Signal. Verliere keine alten Nachrichten, wenn du ein neues Mobiltelefon hast bzw. Signal erneut installierst.</string>
@@ -7423,29 +7424,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">Mehr erfahren</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">PIN eingeben</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Gib deine Signal-PIN ein, um die Datensicherung zu aktivieren</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">Weiter</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Tastatur umschalten</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Neue PIN erstellen</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PINs schützen deine Datensicherung</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Mit deiner Signal-PIN kannst du deine Datensicherung wiederherstellen, wenn du Signal erneut installierst. Wir empfehlen die Verwendung einer PIN mit mindestens %1$d Ziffern.</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Solltest du deine PIN nicht mehr wissen, kannst du deine Datensicherung nicht wiederherstellen. Du kannst deine PIN jederzeit in deinen Einstellungen ändern.</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Aktuelle Signal-PIN verwenden</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">Neue PIN erstellen</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your backup key</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-digit code that lets you restore your backup when you re-install Signal.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">If you forget your key, you will not be able to restore your backup. Signal cannot help you recover your backup.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">Next</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your backup key</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">This key is required to recover your account and data. Store this key somewhere safe. If you lose it, you won’t be able to recover your account.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copy to clipboard</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">Next</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Keep your key safe</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal will not be able to help you restore your backup if you lose your key. Store it somewhere safe and secure, and do not share it with others.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">I\'ve recorded my key</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">Continue</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">See key again</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->

@@ -345,6 +345,8 @@
     <string name="CommunicationActions_invalid_link">Le lien est invalide</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Ce lien d’appel n’est pas valide. Vérifiez qu’il n’est pas tronqué et qu’il s’agit du bon lien.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">You are already in a call</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -603,8 +605,8 @@
     <string name="ConversationFragment_contact_us">Nous contacter</string>
     <string name="ConversationFragment_verify">Confirmer</string>
     <string name="ConversationFragment_not_now">Plus tard</string>
-    <string name="ConversationFragment_your_safety_number_with_s_changed">Votre numéro de sécurité avec %1$s a changé</string>
-    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Votre numéro de sécurité avec %1$s a changé, car cette personne a probablement réinstallé Signal ou changé d’appareil. Touchez Confirmer pour valider le nouveau numéro de sécurité. Cette action est facultative.</string>
+    <string name="ConversationFragment_your_safety_number_with_s_changed">Le numéro de sécurité associé à %1$s a changé.</string>
+    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Le numéro de sécurité associé à %1$s a changé : ce contact a probablement réinstallé Signal ou changé d\'appareil. Si vous le souhaitez, vous pouvez toucher \"Confirmer\" pour vérifier le nouveau numéro de sécurité.</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">Bloquer la demande ?</string>
     <!-- Dialog message for block group link join requests -->
@@ -976,7 +978,7 @@
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
     <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">Continue</string>
+    <string name="LinkDeviceFragment__continue">Continuer</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1406,7 +1408,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">Lien de groupe</string>
     <string name="ShareableGroupLinkDialogFragment__share">Partager</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Réinitialiser le lien</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">Approuver les nouveaux membres</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Require admin approval</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Un administrateur doit approuver les nouveaux membres qui rejoignent le groupe via le lien.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Voulez-vous vraiment réinitialiser le lien du groupe ? Personne ne pourra plus rejoindre le groupe via le lien actuel.</string>
 
@@ -1674,7 +1676,7 @@
     <string name="MessageRecord_you_added_s">Vous avez ajouté %1$s.</string>
     <string name="MessageRecord_s_added_s">%1$s a ajouté %2$s.</string>
     <string name="MessageRecord_s_added_you">%1$s vous a ajouté au groupe.</string>
-    <string name="MessageRecord_you_joined_the_group">Vous vous êtes joint au groupe.</string>
+    <string name="MessageRecord_you_joined_the_group">Vous avez rejoint le groupe.</string>
     <string name="MessageRecord_s_joined_the_group">%1$s a rejoint le groupe.</string>
 
     <!-- GV2 member removals -->
@@ -1791,7 +1793,7 @@
     <string name="MessageRecord_the_group_link_has_been_reset">Le lien du groupe a été réinitialisé.</string>
 
     <!-- GV2 group link joins -->
-    <string name="MessageRecord_you_joined_the_group_via_the_group_link">Vous vous êtes joint au groupe grâce au lien du groupe.</string>
+    <string name="MessageRecord_you_joined_the_group_via_the_group_link">Vous avez rejoint le groupe via le lien du groupe.</string>
     <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s a rejoint le groupe grâce via le lien du groupe.</string>
 
     <!-- GV2 group link requests -->
@@ -1819,11 +1821,11 @@
 
     <!-- End of GV2 specific update messages -->
 
-    <string name="MessageRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %1$s a changé.</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Vous avez marqué votre numéro de sécurité avec %1$s comme confirmé</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Vous avez marqué votre numéro de sécurité avec %1$s comme confirmé à partir d’un autre appareil</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Vous avez marqué votre numéro de sécurité avec %1$s comme non confirmé</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vous avez marqué votre numéro de sécurité avec %1$s comme non confirmé à partir d’un autre appareil</string>
+    <string name="MessageRecord_your_safety_number_with_s_has_changed">Le numéro de sécurité associé à %1$s a changé.</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Vous avez confirmé le numéro de sécurité associé à %1$s.</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Vous avez confirmé le numéro de sécurité associé à %1$s depuis un autre appareil.</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Vous avez marqué le numéro de sécurité associé à %1$s comme non confirmé.</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vous avez marqué le numéro de sécurité associé à %1$s comme non confirmé depuis un autre appareil.</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un message de %1$s n’a pas pu être remis</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s a changé de numéro de téléphone</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
@@ -2605,8 +2607,8 @@
     <string name="ThreadRecord_disappearing_messages_disabled">Messages éphémères désactivés</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">L’expiration des messages éphémères a été définie à %1$s</string>
     <string name="ThreadRecord_safety_number_changed">Le numéro de sécurité a changé</string>
-    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %1$s a changé.</string>
-    <string name="ThreadRecord_you_marked_verified">Vous avez marqué comme confirmé</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Le numéro de sécurité associé à %1$s a changé.</string>
+    <string name="ThreadRecord_you_marked_verified">Vous avez confirmé le numéro de sécurité</string>
     <string name="ThreadRecord_you_marked_unverified">Vous avez marqué comme non confirmé</string>
     <string name="ThreadRecord_message_could_not_be_processed">Le message n’a pas pu être traité</string>
     <string name="ThreadRecord_delivery_issue">Problème de remise</string>
@@ -2645,6 +2647,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">Nous réessaierons plus tard.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal a été mis à jour avec succès</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">La version %1$s a été automatiquement installée.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">You updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Envoyer le message ?</string>
@@ -3154,7 +3157,7 @@
     <string name="safety_number_change_dialog__join_call">Rejoindre l’appel</string>
     <string name="safety_number_change_dialog__continue_call">Poursuivre l’appel</string>
     <string name="safety_number_change_dialog__leave_call">Quitter l’appel</string>
-    <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Les personnes suivantes ont peut-être réinstallé Signal ou changé d’appareil. Pour assurer la confidentialité, confirmez votre numéro de sécurité avec elles.</string>
+    <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Les contacts suivants ont peut-être réinstallé Signal ou changé d\'appareil. Pour assurer la confidentialité de vos échanges, vérifiez les numéros de sécurité associés à ces personnes.</string>
     <string name="safety_number_change_dialog__view">Afficher</string>
     <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">Confirmé précédemment</string>
@@ -3227,15 +3230,15 @@
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- unverified safety numbers -->
-    <string name="IdentityUtil_unverified_banner_one">Votre numéro de sécurité avec %1$s a changé et n’est plus confirmé</string>
+    <string name="IdentityUtil_unverified_banner_one">Le numéro de sécurité associé à %1$s a changé et n\'est plus confirmé.</string>
     <string name="IdentityUtil_unverified_banner_two">Vos numéros de sécurité avec %1$s et %2$s ont changé et ne sont plus confirmés</string>
     <string name="IdentityUtil_unverified_banner_many">Vos numéros de sécurité avec %1$s, %2$s et %3$s ont changé et ne sont plus confirmés</string>
 
-    <string name="IdentityUtil_unverified_dialog_one">Votre numéro de sécurité avec %1$s a changé et n’est plus confirmé. Cela pourrait signifier soit que quelqu’un tente d’intercepter votre communication, soit que %1$s a simplement réinstallé Signal.</string>
+    <string name="IdentityUtil_unverified_dialog_one">Le numéro de sécurité associé à %1$s a changé et n\'est plus confirmé. Cela peut signifier que quelqu\'un tente d\'intercepter vos communications. Mais il est aussi possible que %1$s ait tout simplement réinstallé Signal.</string>
     <string name="IdentityUtil_unverified_dialog_two">Vos numéros de sécurité avec %1$s et %2$s ont changé et ne sont plus confirmés. Cela pourrait signifier soit que quelqu’un tente d’intercepter vos communications, soit qu’ils ont simplement réinstallé Signal.</string>
     <string name="IdentityUtil_unverified_dialog_many">Vos numéros de sécurité avec %1$s, %2$s et %3$s ont changé et ne sont plus confirmés. Cela pourrait signifier soit que quelqu’un tente d’intercepter vos communications, soit qu’ils ont simplement réinstallé Signal.</string>
 
-    <string name="IdentityUtil_untrusted_dialog_one">Votre numéro de sécurité avec %1$s vient de changer.</string>
+    <string name="IdentityUtil_untrusted_dialog_one">Le numéro de sécurité associé à %1$s vient de changer.</string>
     <string name="IdentityUtil_untrusted_dialog_two">Vos numéros de sécurité avec %1$s et %2$s viennent de changer.</string>
     <string name="IdentityUtil_untrusted_dialog_many">Vos numéros de sécurité avec %1$s, %2$s et %3$s viennent de changer.</string>
 
@@ -3302,6 +3305,8 @@
     <string name="EditAboutFragment_free_to_chat">Prêt à converser</string>
     <string name="EditAboutFragment_taking_a_break">Je prends une pause</string>
     <string name="EditAboutFragment_working_on_something_new">Je travaille sur quelque chose de nouveau</string>
+    <!-- Error text shown when the About text contains an invalid character -->
+    <string name="EditAboutFragment_one_or_more_characters">One or more characters is invalid.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Modifier le groupe</string>
@@ -6944,7 +6949,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Renommer l’appel</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Require admin approval</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Exiger l\'approbation d\'un admin</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Partager le lien via Signal</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -7000,7 +7005,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Nommer l’appel</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__require_admin_approval">Require admin approval</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">Exiger l\'approbation d\'un admin</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Partager le lien</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7266,6 +7271,8 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Carte de crédit ou de débit</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
@@ -7403,12 +7410,6 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Saisissez le code PIN, mot de passe ou schéma de déverrouillage de votre appareil.</string>
 
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Avec un forfait Signal de %1$s/mois,</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">vous bénéficiez de :</string>
-
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Sécurisé et chiffré de bout en bout, le service de stockage Signal vous permet de sauvegarder vos messages et médias. Besoin de changer de téléphone ou de réinstaller Signal ? Vos contenus restent à portée de main.</string>
@@ -7423,29 +7424,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">En savoir plus</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">Saisissez votre PIN</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Pour activer les sauvegardes, veuillez saisir votre code PIN Signal.</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">Suivant</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Changer de clavier</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Créer un nouveau code PIN</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">Les codes PIN protègent votre sauvegarde</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Votre code PIN Signal vous permet de restaurer votre sauvegarde lorsque vous réinstallez Signal. Nous recommandons d’en créer un qui comporte au moins %1$d chiffres.</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Vous ne pourrez pas restaurer votre sauvegarde si vous oubliez votre code PIN. Pour le modifier, accédez aux paramètres.</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Utiliser mon code PIN Signal actuel</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">Créer un nouveau code PIN</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your backup key</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-digit code that lets you restore your backup when you re-install Signal.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">If you forget your key, you will not be able to restore your backup. Signal cannot help you recover your backup.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">Next</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your backup key</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">This key is required to recover your account and data. Store this key somewhere safe. If you lose it, you won’t be able to recover your account.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copy to clipboard</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">Next</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Keep your key safe</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal will not be able to help you restore your backup if you lose your key. Store it somewhere safe and secure, and do not share it with others.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">I\'ve recorded my key</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">Continue</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">See key again</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
