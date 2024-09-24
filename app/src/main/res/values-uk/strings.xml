@@ -1014,9 +1014,9 @@
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">Розблокуйте, щоб зв\'язати пристрій</string>
     <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
-    <string name="LinkDeviceFragment__before_linking">Before linking, confirm it\'s you</string>
+    <string name="LinkDeviceFragment__before_linking">Ми хочемо переконатися, що це дійсно ви</string>
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Натисніть «Продовжити» та введіть свій пароль для розблокування телефона. Не вводьте PIN-коду Signal.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Продовжити</string>
 
@@ -5556,7 +5556,7 @@
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
     <string name="VoiceNotePlayerView__stop_voice_message">Зупинити голосове повідомлення</string>
     <string name="VoiceNotePlayerView__change_voice_message_speed">Змінити швидкість відтворення голосового повідомлення</string>
-    <string name="VoiceNotePlayerView__pause_voice_message">Призупинити голосове повідомлення</string>
+    <string name="VoiceNotePlayerView__pause_voice_message">Поставити голосове повідомлення на паузу</string>
     <string name="VoiceNotePlayerView__play_voice_message">Відтворити голосове повідомлення</string>
     <string name="VoiceNotePlayerView__navigate_to_voice_message">Перейти до голосового повідомлення</string>
 

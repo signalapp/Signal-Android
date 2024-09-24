@@ -2449,7 +2449,7 @@
     <string name="RegistrationActivity_cancel">Annuleren</string>
     <string name="RegistrationActivity_next">Volgende</string>
     <string name="RegistrationActivity_continue">Doorgaan</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Neem je privacy met je mee.\nWees jezelf in elk bericht.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Neem privacy met je mee.\nWees jezelf in elk bericht.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Telefoonnummer</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -4478,7 +4478,7 @@
     <string name="DeviceTransferSetup__location_permission">Machtiging voor Signal om je locatie te lezen</string>
     <string name="DeviceTransferSetup__location_services">Locatiebepaling</string>
     <string name="DeviceTransferSetup__wifi">Wifi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Verwijder in het wifi-directscherm alle onthouden groepen en verbreek de verbinding met alle verbonden of uitgenodigde apparaten.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Verwijder in het WiFi Direct-scherm alle onthouden groepen en verbreek de verbinding met alle verbonden of uitgenodigde apparaten.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct-scherm</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Probeer of het helpt om wifi uit te schakelen en weer in te schakelen op beide apparaten.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Zorg ervoor dat beide apparaten in overzet-modus staan.</string>
@@ -4741,7 +4741,7 @@
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Standaardachtergrond resetten</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Alle achtergronden resetten</string>
     <string name="ChatWallpaperFragment__reset_wallpapers">Achtergronden resetten</string>
-    <string name="ChatWallpaperFragment__reset_wallpaper">Achtergrond verwijderen</string>
+    <string name="ChatWallpaperFragment__reset_wallpaper">Achtergrond resetten</string>
     <string name="ChatWallpaperFragment__reset_wallpaper_question">Achtergrond verwijderen voor deze chat?</string>
 
     <!-- ChatWallpaperSelectionFragment -->
@@ -5165,7 +5165,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Help Signal mogelijk maken</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij. Als je aan ons doneert dan krijg je de mogelijkheid om op je profielfoto een badge weer te geven.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij. Als je ons steunt krijg je een badge.</string>
     <string name="BecomeASustainerMegaphone__not_now">Niet nu</string>
     <string name="BecomeASustainerMegaphone__donate">Doneren</string>
 
@@ -6440,7 +6440,7 @@
     <!-- Preference title to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__turn_on_stories">Verhalen aanzetten</string>
     <!-- Preference summary to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__share_and_view">Deel en bekijk verhalen van anderen. Verhalen verdwijnen automatisch na 24 uur.</string>
+    <string name="StoriesPrivacySettingsFragment__share_and_view">Deel verhalen en bekijk verhalen van anderen. Verhalen verdwijnen automatisch na 24 uur.</string>
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Verhalen uitzetten?</string>
     <!-- Dialog message to turn off stories -->
@@ -6699,7 +6699,7 @@
     <!-- The title of a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_title">Je contacten kunnen niet worden verwerkt.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_body">Het aantal contacten op je telefoon overschrijdt de limiet die Signal kan verwerken. Om contacten op Signal te vinden, kun je overwegen contacten of accounts op je telefoon te verwijderen die veel contacten synchroniseren.</string>
+    <string name="CdsPermanentErrorBottomSheet_body">Het aantal contacten op je telefoon overschrijdt de limiet die Signal kan verwerken. Om toch contacten op Signal te kunnen vinden, kun je overwegen contacten of accounts op je telefoon te verwijderen die veel contacten synchroniseren.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">Meer informatie</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->

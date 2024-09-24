@@ -1027,58 +1027,58 @@
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">قُم بربط جهازٍ جديد</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
-    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s الرسائل والدردشات محمية من خلال التشفير من طرف إلى طرف على جميع الأجهزة</string>
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s الرسائل والدردشات محمية من خلال التشفير من طرف لطرف على جميع الأجهزة</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">تطبيق سيجنال على الحاسوب أو لوحة آيباد</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">تطبيق سيجنال على الكمبيوتر المكتبي أو جهاز الآيباد</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
-    <string name="LinkDeviceFragment__all_messaging_is_private">تتّسم جميع الرسائل في الأجهزة المرتبطة بالسرية</string>
+    <string name="LinkDeviceFragment__all_messaging_is_private">تتّسم جميع المراسلات في الأجهزة المرتبطة بالخصوصية.</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">تتم مُزامنة رسائل تطبيق Signal مع تطبيق Signal على هاتفك المحمول بعد ربطه. لن تظهر محفوظات رسائلك السابقة.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">تتم مُزامنة رسائل سيجنال مع تطبيق سيجنال على هاتفك المحمول بعد ربطه. لن تظهر سجلات رسائلك السابقة.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">على الجهاز الذي ترغب بربطه، تفضّل بزيارة %1$s لتثبيت سيجنال</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">الأجهزة المرتبطة</string>
     <!-- Dialog confirmation to unlink a device -->
-    <string name="LinkDeviceFragment__unlink">فصل الارتباط</string>
+    <string name="LinkDeviceFragment__unlink">إلغاء الارتباط</string>
     <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
     <string name="LinkDeviceFragment__s_unlinked">%1$s غير مرتبط</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">جارٍ ربط جهاز…</string>
     <!-- Toast message shown after a device has been linked -->
-    <string name="LinkDeviceFragment__device_approved">تمت المصادقة على الجهاز</string>
+    <string name="LinkDeviceFragment__device_approved">تمَّت الموافقة على الجهاز</string>
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
-    <string name="LinkDeviceFragment__loading">قيد التحميل…</string>
+    <string name="LinkDeviceFragment__loading">جارٍ التحميل…</string>
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">لا توجد أجهزة مرتبطة</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">افتح لربط جهاز</string>
     <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
-    <string name="LinkDeviceFragment__before_linking">Before linking, confirm it\'s you</string>
+    <string name="LinkDeviceFragment__before_linking">قبل الربط، قُم بتأكيد هويتك.</string>
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">انقر على \"متابعة\" وأدخِل قفل هاتفك للتأكيد. لا تُدخِل رقم التعريف الشخصي (PIN) لسيجنال الخاص بك.</string>
     <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">مواصلة</string>
+    <string name="LinkDeviceFragment__continue">متابعة</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
-    <string name="AddLinkDeviceFragment__scan_the_qr_code">امسح رمز الاستجابة السريع المُبين على الجهاز للربط.</string>
+    <string name="AddLinkDeviceFragment__scan_the_qr_code">امسح كود الـ QR الظاهر على الجهاز للربط.</string>
     <!-- Bottom sheet title telling users to scan a qr code -->
-    <string name="AddLinkDeviceFragment__scan_qr_code">تصوير الرمز المربع</string>
+    <string name="AddLinkDeviceFragment__scan_qr_code">مسح كود الـ QR</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
-    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">استخدم هذا الجهاز لِمسح رمز الاستجابة السريعة المعروض على الجهاز الذي تريد ربطه</string>
+    <string name="AddLinkDeviceFragment__use_this_device_to_scan_qr_code">استخدِم هذا الجهاز لِمسح كود الـ QR المعروض على الجهاز الذي تريد ربطه.</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
-    <string name="AddLinkDeviceFragment__okay">حسنا</string>
+    <string name="AddLinkDeviceFragment__okay">حسنًا</string>
     <!-- Dialog text describing the consequences of linking a device -->
     <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">سيتمكن هذا الجهاز من رؤية مجموعاتك وجهات اتصالك، والوصول إلى دردشاتك، وإرسال الرسائل باسمك.</string>
     <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
-    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">يُرجى إنهاء الربط على جهازك الآخر</string>
+    <string name="AddLinkDeviceFragment__finish_linking_on_other_device">استكمِل إنهاء الربط على جهازك الآخر.</string>
     <!-- Bottom sheet description telling users to complete the linking process -->
-    <string name="AddLinkDeviceFragment__finish_linking_signal">يُرجى إنهاء ربط سيجنال على جهازك الآخر.</string>
+    <string name="AddLinkDeviceFragment__finish_linking_signal">استكمِل إنهاء ربط سيجنال على جهازك الآخر.</string>
     <!-- Title of dialog when the QR code being scanned is invalid -->
     <string name="AddLinkDeviceFragment__linking_device_failed">فشل ربط الجهاز</string>
     <!-- Text shown in a dialog when the QR code being scanned is invalid -->
-    <string name="AddLinkDeviceFragment__this_qr_code_not_valid">رمز الاستجابة السريعة هذا غير صالح. فضلاً تأكد من أنك تقوم بمسح رمز الاستجابة السريعة المعروض على الجهاز الذي تريد ربطه.</string>
+    <string name="AddLinkDeviceFragment__this_qr_code_not_valid">كود الـ QR هذا غير صالح. تأكَّد من أنك تقوم بمسح كود الـ QR المعروض على الجهاز الذي تريد ربطه.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">إعادة المُحاولة</string>
 
@@ -1295,7 +1295,7 @@
     <string name="LinkPreviewView_this_group_link_is_not_active">رابط هذه المجموعة غير مُفعَّل.</string>
     <string name="LinkPreviewView_domain_date">%1$s . %2$s</string>
     <!-- Description for Call Link url previews -->
-    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">اِستخدم هذا الرابط للانضمام إلى مكالمة Signal</string>
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">استخدِم هذا الرابط للانضمام إلى مكالمة سيجنال</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1308,19 +1308,19 @@
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title">لاحظنا تأخر الإشعارات. إرسال سِجل التصحيح؟</string>
+    <string name="PromptLogsSlowNotificationsDialog__title">لاحظنا تأخُّر الإشعارات. أترغبُ بالإبلاغ عن المشكلة؟</string>
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
-    <string name="PromptLogsSlowNotificationsDialog__message">تساعدنا سجلات التصحيح في تشخيص المشكلة وإصلاحها ولا تحتوي على معلومات تعريفية.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">تساعدنا الإبلاغات عن المشاكل في تشخيص المشكلة وإصلاحها، وهي لا تحتوي على معلومات تعريفية عن المستخدم.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title_crash">لقد واجه سيجنال مشكلة. إرسال سِجل التصحيح؟</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">واجه تطبيق سيجنال مشكلة. أترغبُ بالإبلاغ عن المشكلة؟</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
-    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">قد تكون غير قادر على التوصل بالرسائل. إرسال سِجل التصحيح؟</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">قد تكون غير قادر على استلام الرسائل. أترغبُ بالإبلاغ عن المشكلة؟</string>
 
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">قد تتأخر الإشعارات في الوصول بسبب بعض التحسينات في البطارية</string>
+    <string name="PromptBatterySaverBottomSheet__title">قد تتأخر الإشعارات في الوصول بسبب بعض التحسينات في استخدام البطارية.</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">يُمكنك إيقاف تحسينات البطارية لسيجنال لضمان وصول إشعارات الرسائل في مواعيدها.</string>
+    <string name="PromptBatterySaverBottomSheet__message">يُمكنك إيقاف تحسينات استخدام البطارية لتطبيق سيجنال لضمان عدم تأخُّر إشعارات الرسائل.</string>
 
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">قد تتأخر الإشعارات في الوصول بسبب بعض التحسينات في البطارية</string>
@@ -1339,7 +1339,7 @@
     <string name="ConnectivityWarningBottomSheet_dismiss_button">عُلم</string>
 
     <!-- Button to continue to try and disable battery saver -->
-    <string name="PromptBatterySaverBottomSheet__continue">مواصلة</string>
+    <string name="PromptBatterySaverBottomSheet__continue">متابعة</string>
     <!-- Button to dismiss battery saver dialog prompt-->
     <string name="PromptBatterySaverBottomSheet__no_thanks">لا شكراً</string>
   <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
@@ -1407,35 +1407,35 @@
     <string name="AddGroupDetailsFragment__try_again_later">حاوِل مرّة أخرى لاحقًا.</string>
     <string name="AddGroupDetailsFragment__remove">إزالة</string>
     <string name="AddGroupDetailsFragment__sms_contact">جهة اتصال عبر الرسائل القصيرة (SMS)</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">إزالة %1$s من هذه المجموعة؟</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">أترغبُ بإزالة %1$s من هذه المجموعة؟</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">لقد حدّدتَ جهة اتصال لا تدعم مجموعات سيجنال، لذلك ستُحوّل هذه المجموعة إلى رسائل الوسائط المتعددة المخصصة (MMS). ستكون أسماء وصور مجموعة رسائل الوسائط المتعددة المخصصة (MMS) مرئية لك فقط.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">حدّدتَ جهة اتصال لا تدعم مجموعات سيجنال، لذلك ستُحوّل هذه المجموعة إلى رسائل الوسائط المتعددة المخصصة (MMS). ستكون أسماء وصور مجموعة رسائل الوسائط المتعددة المخصصة (MMS) مرئية لك فقط.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">لقد اخترت جهة اتصال لا تدعم مجموعات سيجنال، لِذلك هذه المجموعة ستتواصل بتقنية MMS. أسماء وصور مجموعة MMS المُخصصة ستكون مرئية لك فقط. سَتتم إزالة دعم مجموعات MMS قريبًا للتركيز على الرسائل المشفرة.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_who_can_add_new_members">من يمكنه إضافة أعضاء جدد ؟</string>
-    <string name="ManageGroupActivity_who_can_edit_this_groups_info">من يمكنه تعديل معلومات هذه المجموعة ؟</string>
+    <string name="ManageGroupActivity_who_can_add_new_members">من يمكنه إضافة أعضاء جدد؟</string>
+    <string name="ManageGroupActivity_who_can_edit_this_groups_info">من يمكنه تعديل معلومات هذه المجموعة؟</string>
 
     <plurals name="ManageGroupActivity_added">
-        <item quantity="zero">تمت إضافة %1$d عضو.</item>
-        <item quantity="one">تمت إضافة %1$d عضو.</item>
-        <item quantity="two">تمت إضافة %1$d أعضاء.</item>
-        <item quantity="few">تمت إضافة %1$d أعضاء.</item>
-        <item quantity="many">تمت إضافة %1$d عضوا.</item>
-        <item quantity="other">تمت إضافة %1$d عضو.</item>
+        <item quantity="zero">تمَّت إضافة %1$d عضو.</item>
+        <item quantity="one">تمَّت إضافة %1$d عضو.</item>
+        <item quantity="two">تمَّت إضافة %1$d عضوين.</item>
+        <item quantity="few">تمَّت إضافة %1$d أعضاء.</item>
+        <item quantity="many">تمَّت إضافة %1$d عضوًا.</item>
+        <item quantity="other">تمَّت إضافة %1$d عضو.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ليس لديك الصلاحية للقيام بذلك</string>
-    <string name="ManageGroupActivity_not_capable">أحد الذين دعوتهم لا يدعم المجموعات الجديدة ويتعيّن عليه تحديث سيجنال</string>
-    <string name="ManageGroupActivity_not_announcement_capable">أحد الذين أضفتهم لا يدعم مجموعات الإعلان ويتعيّن عليه تحديث سيجنال</string>
+    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ليس لديك الصلاحية للقيام بذلك.</string>
+    <string name="ManageGroupActivity_not_capable">أحد الذين أضفتهم لا يدعم المجموعات الجديدة ويتعيّن عليه تحديث تطبيق سيجنال.</string>
+    <string name="ManageGroupActivity_not_announcement_capable">أحد الذين أضفتهم لا يدعم مجموعات الإعلان ويتعيّن عليه تحديث سيجنال.</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">فشل تحديث المجموعة</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">لست عضوا في المجموعة</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">فشل تحديث المجموعة، الرجاء المحاولة لاحقاً</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">فشل تحديث المجموعة بسبب خلل في الشبكة، الرجاء المحاولة لاحقاً</string>
+    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">لست عضوًا في المجموعة</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">فشل تحديث المجموعة. يُرجى المحاولة لاحقًا.</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">فشل تحديث المجموعة بسبب خلل في الشبكة. يُرجى المحاولة لاحقًا.</string>
 
-    <string name="ManageGroupActivity_edit_name_and_picture">عدّل الاسم والصورة</string>
-    <string name="ManageGroupActivity_legacy_group">مجموعة من الطراز القديم</string>
+    <string name="ManageGroupActivity_edit_name_and_picture">تعديل الاسم والصورة</string>
+    <string name="ManageGroupActivity_legacy_group">مجموعة سابقة</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">هذه مجموعة من الطراز القديم. إن الميزات مثل خاصية المشرفين على المجموعة، متاحة فقط في المجموعات الجديدة.</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
@@ -7561,7 +7561,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">تعديل اسم المكالمة</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">يشترط موافقة المُشرِف</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">يتطلَّب موافقة المُشرِف.</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">مشاركة الرابط عبر سيجنال</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -7617,7 +7617,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">إضافة اسم المكالمة</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__require_admin_approval">يشترط موافقة المُشرِف</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">يتطلَّب موافقة المُشرِف.</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">مشاركة الرابط</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
