@@ -119,6 +119,10 @@ message BackfillDigestJobData {
   uint64 attachmentId = 1;
 }
 
+message BackfillDigestsForDataFileJobData {
+  string dataFile = 1;
+}
+
 message RestoreAttachmentJobData {
   uint64 messageId = 1;
   uint64 attachmentId = 2;

@@ -446,6 +446,17 @@ class AttachmentTable(
       }
   }
 
+  fun getMostRecentValidAttachmentUsingDataFile(dataFile: String): DatabaseAttachment? {
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$DATA_FILE = ? AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", dataFile)
+      .orderBy("$ID DESC")
+      .limit(1)
+      .run()
+      .readToSingleObject { it.readAttachment() }
+  }
+
   fun hasAttachment(id: AttachmentId): Boolean {
     return readableDatabase
       .exists(TABLE_NAME)
@@ -1398,6 +1409,31 @@ class AttachmentTable(
   }
 
   /**
+   * A query for a specific migration. Retrieves attachments that we'd need to create a new digest for.
+   * This is basically all attachments that have data and are finished downloading.
+   */
+  fun getDataFilesWithMultipleValidAttachments(): List<String> {
+    val targetDataFile = "target_data_file"
+    return readableDatabase
+      .select("DISTINCT($DATA_FILE) AS $targetDataFile")
+      .from(TABLE_NAME)
+      .where(
+        """
+        $targetDataFile NOT NULL AND 
+        $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND (
+          SELECT COUNT(*) 
+          FROM $TABLE_NAME 
+          WHERE 
+            $DATA_FILE = $targetDataFile AND
+            $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE
+        ) > 1
+        """
+      )
+      .run()
+      .readToList { it.requireNonNullString(targetDataFile) }
+  }
+
+  /**
    * As part of the digest backfill process, this updates the (key, IV, digest) tuple for an attachment.
    */
   fun updateKeyIvDigest(attachmentId: AttachmentId, key: ByteArray, iv: ByteArray, digest: ByteArray) {
@@ -1409,6 +1445,21 @@ class AttachmentTable(
         REMOTE_DIGEST to digest
       )
       .where("$ID = ?", attachmentId.id)
+      .run()
+  }
+
+  /**
+   * As part of the digest backfill process, this updates the (key, IV, digest) tuple for all attachments that share a data file (and are done downloading).
+   */
+  fun updateKeyIvDigestByDataFile(dataFile: String, key: ByteArray, iv: ByteArray, digest: ByteArray) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        REMOTE_KEY to Base64.encodeWithPadding(key),
+        REMOTE_IV to iv,
+        REMOTE_DIGEST to digest
+      )
+      .where("$DATA_FILE = ? AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", dataFile)
       .run()
   }
 
