@@ -9,11 +9,11 @@ import android.app.Application
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 
 /**
- * Adds an index to improve the perf of counting and filtering attachment rows by their transfer state.
+ * Turns out we need to run [V247_ClearUploadTimestamp] again, because there was another situation where we had mismatching transit data across duplicates.
  */
 @Suppress("ClassName")
-object V248_ArchiveTransferStateIndex : SignalDatabaseMigration {
+object V250_ClearUploadTimestampV2 : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-    db.execSQL("CREATE INDEX IF NOT EXISTS attachment_archive_transfer_state ON attachment (archive_transfer_state)")
+    db.execSQL("UPDATE attachment SET upload_timestamp = 1 WHERE upload_timestamp > 0")
   }
 }

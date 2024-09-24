@@ -1250,6 +1250,8 @@ class AttachmentTable(
       TRANSFER_STATE to TRANSFER_PROGRESS_DONE,
       CDN_NUMBER to uploadResult.cdnNumber,
       REMOTE_LOCATION to uploadResult.remoteId.toString(),
+      REMOTE_KEY to Base64.encodeWithPadding(uploadResult.key),
+      REMOTE_IV to uploadResult.iv,
       REMOTE_DIGEST to uploadResult.digest,
       REMOTE_INCREMENTAL_DIGEST to uploadResult.incrementalDigest,
       REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to uploadResult.incrementalDigestChunkSize,
