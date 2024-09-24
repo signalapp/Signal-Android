@@ -23,6 +23,13 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
       val job = RestoreOptimizedMediaJob()
       AppDependencies.jobManager.add(job)
     }
+
+    @JvmStatic
+    fun enqueueIfNecessary() {
+      if (SignalStore.backup.backsUpMedia && !SignalStore.backup.optimizeStorage) {
+        AppDependencies.jobManager.add(RestoreOptimizedMediaJob())
+      }
+    }
   }
 
   private constructor() : this(
@@ -34,11 +41,19 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
   )
 
   override fun run(): Result {
+    if (SignalStore.backup.optimizeStorage) {
+      return Result.success()
+    }
+
+    val restorableAttachments = SignalDatabase.attachments.getRestorableOptimizedAttachments()
+
+    if (restorableAttachments.isEmpty()) {
+      return Result.success()
+    }
+
     val jobManager = AppDependencies.jobManager
 
-    SignalDatabase
-      .attachments
-      .getRestorableOptimizedAttachments()
+    restorableAttachments
       .forEach {
         val job = RestoreAttachmentJob.forOffloadedRestore(
           messageId = it.mmsId,
