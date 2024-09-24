@@ -253,6 +253,15 @@ class AttachmentTableTest_deduping {
 
       assertDoesNotHaveRemoteFields(id2)
       assertArchiveFieldsMatch(id1, id2)
+
+      upload(id2)
+
+      assertDataFilesAreTheSame(id1, id2)
+      assertDataHashStartMatches(id1, id2)
+      assertDataHashEndMatches(id1, id2)
+      assertSkipTransform(id1, true)
+      assertSkipTransform(id2, true)
+      assertRemoteFieldsMatch(id1, id2)
     }
 
     // This isn't so much "desirable behavior" as it is documenting how things work.
@@ -653,6 +662,7 @@ class AttachmentTableTest_deduping {
     }
 
     fun upload(attachmentId: AttachmentId, uploadTimestamp: Long = System.currentTimeMillis()) {
+      SignalDatabase.attachments.createKeyIvIfNecessary(attachmentId)
       SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachmentId, createUploadResult(attachmentId, uploadTimestamp))
 
       val attachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
