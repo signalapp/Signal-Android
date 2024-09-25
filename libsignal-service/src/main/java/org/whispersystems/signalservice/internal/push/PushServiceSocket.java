@@ -1432,7 +1432,7 @@ public class PushServiceSocket {
   }
 
   public void linkPlayBillingPurchaseToken(String subscriberId, String purchaseToken) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(LINK_PLAY_BILLING_PURCHASE_TOKEN, subscriberId, purchaseToken), "PUT", "", NO_HEADERS, new LinkGooglePlayBillingPurchaseTokenResponseCodeHandler());
+    makeServiceRequestWithoutAuthentication(String.format(LINK_PLAY_BILLING_PURCHASE_TOKEN, subscriberId, purchaseToken), "POST", "", NO_HEADERS, new LinkGooglePlayBillingPurchaseTokenResponseCodeHandler());
   }
 
   public void updateSubscriptionLevel(String subscriberId, String level, String currencyCode, String idempotencyKey) throws IOException {

@@ -45,6 +45,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.Buttons
+import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
@@ -64,6 +65,7 @@ import java.util.Currency
 @OptIn(ExperimentalTextApi::class)
 @Composable
 fun MessageBackupsTypeSelectionScreen(
+  stage: MessageBackupsStage,
   currentBackupTier: MessageBackupTier?,
   selectedBackupTier: MessageBackupTier?,
   availableBackupTypes: List<MessageBackupsType>,
@@ -168,6 +170,13 @@ fun MessageBackupsTypeSelectionScreen(
           )
         )
       }
+
+      when (stage) {
+        MessageBackupsStage.CREATING_IN_APP_PAYMENT -> Dialogs.IndeterminateProgressDialog()
+        MessageBackupsStage.PROCESS_PAYMENT -> Dialogs.IndeterminateProgressDialog()
+        MessageBackupsStage.PROCESS_FREE -> Dialogs.IndeterminateProgressDialog()
+        else -> Unit
+      }
     }
   }
 }
@@ -179,6 +188,7 @@ private fun MessageBackupsTypeSelectionScreenPreview() {
 
   Previews.Preview {
     MessageBackupsTypeSelectionScreen(
+      stage = MessageBackupsStage.TYPE_SELECTION,
       selectedBackupTier = MessageBackupTier.FREE,
       availableBackupTypes = testBackupTypes(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },
@@ -197,6 +207,7 @@ private fun MessageBackupsTypeSelectionScreenWithCurrentTierPreview() {
 
   Previews.Preview {
     MessageBackupsTypeSelectionScreen(
+      stage = MessageBackupsStage.TYPE_SELECTION,
       selectedBackupTier = MessageBackupTier.FREE,
       availableBackupTypes = testBackupTypes(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },

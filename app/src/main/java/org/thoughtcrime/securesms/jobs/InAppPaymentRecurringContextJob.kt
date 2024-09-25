@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.jobs
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
+import org.signal.donations.InAppPaymentType
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
@@ -65,11 +66,17 @@ class InAppPaymentRecurringContextJob private constructor(
      * meaning the job will always load the freshest data it can about the payment.
      */
     fun createJobChain(inAppPayment: InAppPaymentTable.InAppPayment, makePrimary: Boolean = false): Chain {
-      return AppDependencies.jobManager
-        .startChain(create(inAppPayment))
-        .then(InAppPaymentRedemptionJob.create(inAppPayment, makePrimary))
-        .then(RefreshOwnProfileJob())
-        .then(MultiDeviceProfileContentUpdateJob())
+      return if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+        AppDependencies.jobManager
+          .startChain(create(inAppPayment))
+          .then(InAppPaymentRedemptionJob.create(inAppPayment, makePrimary))
+      } else {
+        AppDependencies.jobManager
+          .startChain(create(inAppPayment))
+          .then(InAppPaymentRedemptionJob.create(inAppPayment, makePrimary))
+          .then(RefreshOwnProfileJob())
+          .then(MultiDeviceProfileContentUpdateJob())
+      }
     }
   }
 

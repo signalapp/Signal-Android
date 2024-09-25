@@ -74,8 +74,10 @@ internal class BillingApiImpl(
           Log.d(TAG, "purchasesUpdatedListener: ${purchases.size} purchases.")
           val newestPurchase = purchases.maxByOrNull { it.purchaseTime }
           if (newestPurchase == null) {
+            Log.d(TAG, "purchasesUpdatedListener: no purchase.")
             BillingPurchaseResult.None
           } else {
+            Log.d(TAG, "purchasesUpdatedListener: successful purchase at ${newestPurchase.purchaseTime}")
             BillingPurchaseResult.Success(
               purchaseToken = newestPurchase.purchaseToken,
               isAcknowledged = newestPurchase.isAcknowledged,

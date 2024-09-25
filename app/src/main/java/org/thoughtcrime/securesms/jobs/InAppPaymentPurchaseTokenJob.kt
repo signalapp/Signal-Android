@@ -177,6 +177,11 @@ class InAppPaymentPurchaseTokenJob private constructor(
         info("Scheduling retry.")
         throw InAppPaymentRetryException()
       }
+
+      else -> {
+        warning("An unknown error occurred.", applicationError)
+        throw IOException(applicationError)
+      }
     }
   }
 

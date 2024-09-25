@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.take
@@ -22,12 +24,15 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
+import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
@@ -84,13 +89,12 @@ class MessageBackupsFlowViewModel : ViewModel() {
       AppDependencies.billingApi.getBillingPurchaseResults().collect { result ->
         when (result) {
           is BillingPurchaseResult.Success -> {
-            internalStateFlow.update { it.copy(stage = MessageBackupsStage.PROCESS_PAYMENT) }
+            Log.d(TAG, "Got successful purchase result for purchase at ${result.purchaseTime}")
+            val id = internalStateFlow.value.inAppPayment!!.id
 
             try {
-              handleSuccess(
-                result,
-                internalStateFlow.value.inAppPayment!!.id
-              )
+              Log.d(TAG, "Attempting to handle successful purchase.")
+              handleSuccess(result, id)
 
               internalStateFlow.update {
                 it.copy(
@@ -98,6 +102,14 @@ class MessageBackupsFlowViewModel : ViewModel() {
                 )
               }
             } catch (e: Exception) {
+              Log.d(TAG, "Failed to handle purchase.", e)
+              InAppPaymentsRepository.handlePipelineError(
+                inAppPaymentId = id,
+                donationErrorSource = DonationErrorSource.BACKUPS,
+                paymentSourceType = PaymentSourceType.GooglePlayBilling,
+                error = e
+              )
+
               internalStateFlow.update {
                 it.copy(
                   stage = MessageBackupsStage.FAILURE,
@@ -123,7 +135,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
         MessageBackupsStage.BACKUP_KEY_EDUCATION -> it.copy(stage = MessageBackupsStage.BACKUP_KEY_RECORD)
         MessageBackupsStage.BACKUP_KEY_RECORD -> it.copy(stage = MessageBackupsStage.TYPE_SELECTION)
         MessageBackupsStage.TYPE_SELECTION -> validateTypeAndUpdateState(it)
-        MessageBackupsStage.CHECKOUT_SHEET -> validateGatewayAndUpdateState(it)
+        MessageBackupsStage.CHECKOUT_SHEET -> it.copy(stage = MessageBackupsStage.PROCESS_PAYMENT)
         MessageBackupsStage.CREATING_IN_APP_PAYMENT -> error("This is driven by an async coroutine.")
         MessageBackupsStage.PROCESS_PAYMENT -> error("This is driven by an async coroutine.")
         MessageBackupsStage.PROCESS_FREE -> error("This is driven by an async coroutine.")
@@ -174,49 +186,44 @@ class MessageBackupsFlowViewModel : ViewModel() {
         state.copy(stage = MessageBackupsStage.COMPLETED)
       }
 
-      MessageBackupTier.PAID -> state.copy(stage = MessageBackupsStage.CHECKOUT_SHEET)
-    }
-  }
+      MessageBackupTier.PAID -> {
+        check(state.selectedMessageBackupTier == MessageBackupTier.PAID)
+        check(state.availableBackupTypes.any { it.tier == state.selectedMessageBackupTier })
+        check(state.hasBackupSubscriberAvailable)
 
-  private fun validateGatewayAndUpdateState(state: MessageBackupsFlowState): MessageBackupsFlowState {
-    check(state.selectedMessageBackupTier == MessageBackupTier.PAID)
-    check(state.availableBackupTypes.any { it.tier == state.selectedMessageBackupTier })
-    check(state.hasBackupSubscriberAvailable)
+        viewModelScope.launch(Dispatchers.IO) {
+          internalStateFlow.update { it.copy(inAppPayment = null) }
 
-    viewModelScope.launch(Dispatchers.IO) {
-      withContext(Dispatchers.Main) {
-        internalStateFlow.update { it.copy(inAppPayment = null) }
-      }
+          val paidFiat = AppDependencies.billingApi.queryProduct()!!.price
 
-      val paidFiat = AppDependencies.billingApi.queryProduct()!!.price
-
-      SignalDatabase.inAppPayments.clearCreated()
-      val id = SignalDatabase.inAppPayments.insert(
-        type = InAppPaymentType.RECURRING_BACKUP,
-        state = InAppPaymentTable.State.CREATED,
-        subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId,
-        endOfPeriod = null,
-        inAppPaymentData = InAppPaymentData(
-          badge = null,
-          label = state.selectedMessageBackupTierLabel!!,
-          amount = paidFiat.toFiatValue(),
-          level = SubscriptionsConfiguration.BACKUPS_LEVEL.toLong(),
-          recipientId = Recipient.self().id.serialize(),
-          paymentMethodType = InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING,
-          redemption = InAppPaymentData.RedemptionState(
-            stage = InAppPaymentData.RedemptionState.Stage.INIT
+          SignalDatabase.inAppPayments.clearCreated()
+          val id = SignalDatabase.inAppPayments.insert(
+            type = InAppPaymentType.RECURRING_BACKUP,
+            state = InAppPaymentTable.State.CREATED,
+            subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId,
+            endOfPeriod = null,
+            inAppPaymentData = InAppPaymentData(
+              badge = null,
+              label = state.selectedMessageBackupTierLabel!!,
+              amount = paidFiat.toFiatValue(),
+              level = SubscriptionsConfiguration.BACKUPS_LEVEL.toLong(),
+              recipientId = Recipient.self().id.serialize(),
+              paymentMethodType = InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING,
+              redemption = InAppPaymentData.RedemptionState(
+                stage = InAppPaymentData.RedemptionState.Stage.INIT
+              )
+            )
           )
-        )
-      )
 
-      val inAppPayment = SignalDatabase.inAppPayments.getById(id)!!
+          val inAppPayment = SignalDatabase.inAppPayments.getById(id)!!
+          internalStateFlow.update {
+            it.copy(inAppPayment = inAppPayment, stage = MessageBackupsStage.CHECKOUT_SHEET)
+          }
+        }
 
-      withContext(Dispatchers.Main) {
-        internalStateFlow.update { it.copy(inAppPayment = inAppPayment, stage = MessageBackupsStage.PROCESS_PAYMENT) }
+        state.copy(stage = MessageBackupsStage.CREATING_IN_APP_PAYMENT)
       }
     }
-
-    return state.copy(stage = MessageBackupsStage.CREATING_IN_APP_PAYMENT)
   }
 
   /**
@@ -237,6 +244,8 @@ class MessageBackupsFlowViewModel : ViewModel() {
   @OptIn(FlowPreview::class)
   private suspend fun handleSuccess(result: BillingPurchaseResult.Success, inAppPaymentId: InAppPaymentTable.InAppPaymentId) {
     withContext(Dispatchers.IO) {
+      Log.d(TAG, "Setting purchase token data on InAppPayment.")
+
       val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
@@ -248,20 +257,30 @@ class MessageBackupsFlowViewModel : ViewModel() {
         )
       )
 
+      Log.d(TAG, "Enqueueing InAppPaymentPurchaseTokenJob chain.")
       InAppPaymentPurchaseTokenJob.createJobChain(inAppPayment).enqueue()
     }
 
     val terminalInAppPayment = withContext(Dispatchers.IO) {
+      Log.d(TAG, "Awaiting completion of job chain for up to 10 seconds.")
       InAppPaymentsRepository.observeUpdates(inAppPaymentId).asFlow()
         .filter { it.state == InAppPaymentTable.State.END }
         .take(1)
         .timeout(10.seconds)
+        .catch { exception ->
+          if (exception is TimeoutCancellationException) {
+            throw DonationError.BadgeRedemptionError.TimeoutWaitingForTokenError(DonationErrorSource.BACKUPS)
+          }
+        }
         .first()
     }
 
     if (terminalInAppPayment.data.error != null) {
-      throw InAppPaymentError(terminalInAppPayment.data.error)
+      val err = InAppPaymentError(terminalInAppPayment.data.error)
+      Log.d(TAG, "An error occurred during the job chain!", err)
+      throw err
     } else {
+      Log.d(TAG, "Job chain completed successfully.")
       return
     }
   }
