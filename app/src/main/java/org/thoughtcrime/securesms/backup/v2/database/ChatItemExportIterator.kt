@@ -674,7 +674,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     } else {
       Text(
         body = this.body,
-        bodyRanges = (this.bodyRanges?.toBackupBodyRanges() ?: emptyList()) + (mentions?.toBackupBodyRanges() ?: emptyList())
+        bodyRanges = (this.bodyRanges?.toRemoteBodyRanges() ?: emptyList()) + (mentions?.toRemoteBodyRanges() ?: emptyList())
       )
     }
     val linkPreviews = parseLinkPreviews(attachments)
@@ -697,26 +697,26 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
   }
 
   private fun BackupMessageRecord.toQuote(attachments: List<DatabaseAttachment>? = null): Quote? {
-    return if (this.quoteTargetSentTimestamp != MessageTable.QUOTE_NOT_PRESENT_ID && this.quoteAuthor > 0) {
-      val type = QuoteModel.Type.fromCode(this.quoteType)
-      Quote(
-        targetSentTimestamp = this.quoteTargetSentTimestamp.takeIf { !this.quoteMissing && it != MessageTable.QUOTE_TARGET_MISSING_ID },
-        authorId = this.quoteAuthor,
-        text = this.quoteBody?.let { body ->
-          Text(
-            body = body,
-            bodyRanges = this.quoteBodyRanges?.toBackupBodyRanges() ?: emptyList()
-          )
-        },
-        attachments = attachments?.toBackupQuoteAttachments() ?: emptyList(),
-        type = when (type) {
-          QuoteModel.Type.NORMAL -> Quote.Type.NORMAL
-          QuoteModel.Type.GIFT_BADGE -> Quote.Type.GIFTBADGE
-        }
-      )
-    } else {
-      null
+    if (this.quoteTargetSentTimestamp == MessageTable.QUOTE_NOT_PRESENT_ID || this.quoteAuthor <= 0) {
+      return null
     }
+
+    val type = QuoteModel.Type.fromCode(this.quoteType)
+    return Quote(
+      targetSentTimestamp = this.quoteTargetSentTimestamp.takeIf { !this.quoteMissing && it != MessageTable.QUOTE_TARGET_MISSING_ID },
+      authorId = this.quoteAuthor,
+      text = this.quoteBody?.let { body ->
+        Text(
+          body = body,
+          bodyRanges = this.quoteBodyRanges?.toRemoteBodyRanges() ?: emptyList()
+        )
+      },
+      attachments = attachments?.toRemoteQuoteAttachments() ?: emptyList(),
+      type = when (type) {
+        QuoteModel.Type.NORMAL -> Quote.Type.NORMAL
+        QuoteModel.Type.GIFT_BADGE -> Quote.Type.GIFTBADGE
+      }
+    )
   }
 
   private fun BackupMessageRecord.toGiftBadgeUpdate(): BackupGiftBadge {
@@ -752,19 +752,19 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     )
   }
 
-  private fun List<DatabaseAttachment>.toBackupQuoteAttachments(): List<Quote.QuotedAttachment> {
+  private fun List<DatabaseAttachment>.toRemoteQuoteAttachments(): List<Quote.QuotedAttachment> {
     return this.map { attachment ->
       Quote.QuotedAttachment(
         contentType = attachment.contentType,
         fileName = attachment.fileName,
-        thumbnail = attachment.toRemoteMessageAttachment().takeUnless { it.pointer?.invalidAttachmentLocator != null }
+        thumbnail = attachment.toRemoteMessageAttachment(contentTypeOverride = "image/jpeg").takeUnless { it.pointer?.invalidAttachmentLocator != null }
       )
     }
   }
 
-  private fun DatabaseAttachment.toRemoteMessageAttachment(): MessageAttachment {
+  private fun DatabaseAttachment.toRemoteMessageAttachment(contentTypeOverride: String? = null): MessageAttachment {
     return MessageAttachment(
-      pointer = this.toRemoteFilePointer(mediaArchiveEnabled),
+      pointer = this.toRemoteFilePointer(mediaArchiveEnabled, contentTypeOverride),
       wasDownloaded = this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE,
       flag = if (this.voiceNote) {
         MessageAttachment.Flag.VOICE_MESSAGE
@@ -827,7 +827,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
-  private fun List<Mention>.toBackupBodyRanges(): List<BackupBodyRange> {
+  private fun List<Mention>.toRemoteBodyRanges(): List<BackupBodyRange> {
     return this.map {
       BackupBodyRange(
         start = it.start,
@@ -837,7 +837,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
-  private fun ByteArray.toBackupBodyRanges(): List<BackupBodyRange> {
+  private fun ByteArray.toRemoteBodyRanges(): List<BackupBodyRange> {
     val decoded: BodyRangeList = try {
       BodyRangeList.ADAPTER.decode(this)
     } catch (e: IOException) {

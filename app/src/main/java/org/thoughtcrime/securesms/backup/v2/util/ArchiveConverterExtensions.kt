@@ -120,9 +120,9 @@ fun FilePointer?.toLocalAttachment(
 /**
  * @param mediaArchiveEnabled True if this user has enable media backup, otherwise false.
  */
-fun DatabaseAttachment.toRemoteFilePointer(mediaArchiveEnabled: Boolean): FilePointer {
+fun DatabaseAttachment.toRemoteFilePointer(mediaArchiveEnabled: Boolean, contentTypeOverride: String? = null): FilePointer {
   val builder = FilePointer.Builder()
-  builder.contentType = this.contentType?.takeUnless { it.isBlank() }
+  builder.contentType = contentTypeOverride ?: this.contentType?.takeUnless { it.isBlank() }
   builder.incrementalMac = this.incrementalDigest?.toByteString()
   builder.incrementalMacChunkSize = this.incrementalMacChunkSize.takeIf { it > 0 }
   builder.fileName = this.fileName

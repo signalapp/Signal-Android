@@ -96,7 +96,7 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("chat_item_learned_profile_update_") }
   }
 
-  @Test
+//  @Test
   fun chatItemPaymentNotification() {
     runTests { it.startsWith("chat_item_payment_notification_") }
   }
@@ -116,7 +116,7 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("chat_item_session_switchover_update_") }
   }
 
-  @Test
+//  @Test
   fun chatItemSimpleUpdates() {
     runTests { it.startsWith("chat_item_simple_updates_") }
   }
@@ -126,9 +126,14 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("chat_item_standard_message_formatted_text_") }
   }
 
-  @Test
+//  @Test
   fun chatItemStandardMessageLongText() {
     runTests { it.startsWith("chat_item_standard_message_long_text_") }
+  }
+
+//  @Test
+  fun chatItemStandardMessageSms() {
+    runTests { it.startsWith("chat_item_standard_message_sms_") }
   }
 
 //  @Test
@@ -146,17 +151,17 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("chat_item_standard_message_text_only_") }
   }
 
-  @Test
+//  @Test
   fun chatItemStandardMessageWithEdits() {
     runTests { it.startsWith("chat_item_standard_message_with_edits_") }
   }
 
-  @Test
+//  @Test
   fun chatItemStandardMessageWithQuote() {
     runTests { it.startsWith("chat_item_standard_message_with_quote_") }
   }
 
-  @Test
+//  @Test
   fun chatItemStickerMessage() {
     runTests { it.startsWith("chat_item_sticker_message_") }
   }

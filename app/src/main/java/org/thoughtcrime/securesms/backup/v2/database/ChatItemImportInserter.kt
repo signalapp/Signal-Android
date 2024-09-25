@@ -856,7 +856,6 @@ class ChatItemImportInserter(
     this.put(MessageTable.QUOTE_BODY, quote.text?.body)
     this.put(MessageTable.QUOTE_TYPE, quote.type.toLocalQuoteType())
     this.put(MessageTable.QUOTE_BODY_RANGES, quote.text?.bodyRanges?.toLocalBodyRanges()?.encode())
-    // TODO [backup] quote attachments
     this.put(MessageTable.QUOTE_MISSING, (quote.targetSentTimestamp == null).toInt())
   }
 
@@ -958,21 +957,23 @@ class ChatItemImportInserter(
     }
 
   private fun Quote.QuotedAttachment.toLocalAttachment(): Attachment? {
-    val thumbnail = this.thumbnail?.toLocalAttachment(this.contentType, this.fileName)
+    val thumbnail = this.thumbnail?.toLocalAttachment()
 
-    return if (thumbnail != null) {
-      thumbnail
-    } else if (this.contentType == null) {
-      null
-    } else {
-      PointerAttachment.forPointer(
-        quotedAttachment = DataMessage.Quote.QuotedAttachment(
-          contentType = this.contentType,
-          fileName = this.fileName,
-          thumbnail = null
-        )
-      ).orNull()
+    if (thumbnail != null) {
+      return thumbnail
     }
+
+    if (this.contentType == null) {
+      return null
+    }
+
+    return PointerAttachment.forPointer(
+      quotedAttachment = DataMessage.Quote.QuotedAttachment(
+        contentType = this.contentType,
+        fileName = this.fileName,
+        thumbnail = null
+      )
+    ).orNull()
   }
 
   private fun Sticker?.toLocalAttachment(): Attachment? {
@@ -1004,25 +1005,14 @@ class ChatItemImportInserter(
   }
 
   private fun MessageAttachment.toLocalAttachment(): Attachment? {
-    return this.pointer?.toLocalAttachment(
-      importState = importState,
-      voiceNote = this.flag == MessageAttachment.Flag.VOICE_MESSAGE,
-      gif = this.flag == MessageAttachment.Flag.GIF,
-      borderless = this.flag == MessageAttachment.Flag.BORDERLESS,
-      wasDownloaded = this.wasDownloaded,
-      uuid = this.clientUuid
-    )
-  }
-
-  private fun MessageAttachment.toLocalAttachment(contentType: String?, fileName: String?): Attachment? {
     return pointer?.toLocalAttachment(
       importState = importState,
       voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
       gif = flag == MessageAttachment.Flag.GIF,
       borderless = flag == MessageAttachment.Flag.BORDERLESS,
       wasDownloaded = wasDownloaded,
-      contentType = contentType,
-      fileName = fileName,
+      contentType = pointer.contentType,
+      fileName = pointer.fileName,
       uuid = clientUuid
     )
   }
