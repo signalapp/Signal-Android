@@ -157,6 +157,11 @@ class ArchiveImportExportTests {
   }
 
 //  @Test
+  fun chatItemStandardMessageWithLinkPreview() {
+    runTests { it.startsWith("chat_item_standard_message_with_link_preview_") }
+  }
+
+//  @Test
   fun chatItemStandardMessageWithQuote() {
     runTests { it.startsWith("chat_item_standard_message_with_quote_") }
   }

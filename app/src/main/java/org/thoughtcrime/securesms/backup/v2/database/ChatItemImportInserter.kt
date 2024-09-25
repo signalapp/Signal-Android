@@ -400,18 +400,21 @@ class ChatItemImportInserter(
         it.toLocalAttachment()
       } ?: emptyList()
 
-      if (attachments.isNotEmpty() || linkPreviewAttachments.isNotEmpty() || quoteAttachments.isNotEmpty() || longTextAttachments.isNotEmpty()) {
+      val hasAttachments = attachments.isNotEmpty() || linkPreviewAttachments.isNotEmpty() || quoteAttachments.isNotEmpty() || longTextAttachments.isNotEmpty()
+
+      if (hasAttachments || linkPreviews.isNotEmpty()) {
         followUp = { messageRowId ->
-          val attachmentMap = SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments + linkPreviewAttachments + longTextAttachments, quoteAttachments)
+          val attachmentMap = if (hasAttachments) {
+            SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments + linkPreviewAttachments + longTextAttachments, quoteAttachments)
+          } else {
+            emptyMap()
+          }
+
           if (linkPreviews.isNotEmpty()) {
-            db.update(
-              MessageTable.TABLE_NAME,
-              contentValuesOf(
-                MessageTable.LINK_PREVIEWS to SignalDatabase.messages.getSerializedLinkPreviews(attachmentMap, linkPreviews)
-              ),
-              "${MessageTable.ID} = ?",
-              SqlUtil.buildArgs(messageRowId)
-            )
+            db.update(MessageTable.TABLE_NAME)
+              .values(MessageTable.LINK_PREVIEWS to SignalDatabase.messages.getSerializedLinkPreviews(attachmentMap, linkPreviews))
+              .where("${MessageTable.ID} = ?", messageRowId)
+              .run()
           }
         }
       }

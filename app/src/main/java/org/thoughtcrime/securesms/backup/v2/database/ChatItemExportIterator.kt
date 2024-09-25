@@ -12,6 +12,7 @@ import org.json.JSONException
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
+import org.signal.core.util.nullIfEmpty
 import org.signal.core.util.orNull
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
@@ -579,12 +580,12 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     return emptyList()
   }
 
-  private fun LinkPreview.toBackupLinkPreview(): org.thoughtcrime.securesms.backup.v2.proto.LinkPreview {
+  private fun LinkPreview.toRemoteLinkPreview(): org.thoughtcrime.securesms.backup.v2.proto.LinkPreview {
     return org.thoughtcrime.securesms.backup.v2.proto.LinkPreview(
       url = url,
-      title = title,
+      title = title.nullIfEmpty(),
       image = (thumbnail.orNull() as? DatabaseAttachment)?.toRemoteMessageAttachment()?.pointer,
-      description = description,
+      description = description.nullIfEmpty(),
       date = date
     )
   }
@@ -690,7 +691,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       quote = this.toQuote(quotedAttachments),
       text = text,
       attachments = messageAttachments.toBackupAttachments(),
-      linkPreview = linkPreviews.map { it.toBackupLinkPreview() },
+      linkPreview = linkPreviews.map { it.toRemoteLinkPreview() },
       longText = longTextAttachment?.toRemoteFilePointer(mediaArchiveEnabled),
       reactions = reactionRecords.toBackupReactions()
     )
