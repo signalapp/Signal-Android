@@ -6,8 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.database
 
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
-import androidx.core.content.contentValuesOf
+import org.signal.core.util.insertInto
 import org.signal.core.util.requireLong
 import org.signal.core.util.select
 import org.thoughtcrime.securesms.backup.v2.ImportState
@@ -21,7 +20,7 @@ fun CallTable.getAdhocCallsForBackup(): CallLogIterator {
     readableDatabase
       .select()
       .from(CallTable.TABLE_NAME)
-      .where("${CallTable.TYPE}=?", CallTable.Type.AD_HOC_CALL)
+      .where("${CallTable.TYPE} = ?", CallTable.Type.serialize(CallTable.Type.AD_HOC_CALL))
       .run()
   )
 }
@@ -32,16 +31,18 @@ fun CallTable.restoreCallLogFromBackup(call: AdHocCall, importState: ImportState
     AdHocCall.State.UNKNOWN_STATE -> CallTable.Event.GENERIC_GROUP_CALL
   }
 
-  val values = contentValuesOf(
-    CallTable.CALL_ID to call.callId,
-    CallTable.PEER to importState.remoteToLocalRecipientId[call.recipientId]!!.serialize(),
-    CallTable.TYPE to CallTable.Type.serialize(CallTable.Type.AD_HOC_CALL),
-    CallTable.DIRECTION to CallTable.Direction.serialize(CallTable.Direction.OUTGOING),
-    CallTable.EVENT to CallTable.Event.serialize(event),
-    CallTable.TIMESTAMP to call.callTimestamp
-  )
-
-  writableDatabase.insert(CallTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, values)
+  val result = writableDatabase
+    .insertInto(CallTable.TABLE_NAME)
+    .values(
+      CallTable.CALL_ID to call.callId,
+      CallTable.PEER to importState.remoteToLocalRecipientId[call.recipientId]!!.serialize(),
+      CallTable.TYPE to CallTable.Type.serialize(CallTable.Type.AD_HOC_CALL),
+      CallTable.DIRECTION to CallTable.Direction.serialize(CallTable.Direction.OUTGOING),
+      CallTable.EVENT to CallTable.Event.serialize(event),
+      CallTable.TIMESTAMP to call.callTimestamp
+    )
+    .run()
+  return Unit
 }
 
 /**

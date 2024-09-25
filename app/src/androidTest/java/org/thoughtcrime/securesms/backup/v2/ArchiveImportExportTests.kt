@@ -46,62 +46,51 @@ class ArchiveImportExportTests {
     val MASTER_KEY = Base64.decode("sHuBMP4ToZk4tcNU+S8eBUeCt8Am5EZnvuqTBJIR4Do")
   }
 
-//  @Test
+  @Test
   fun all() {
     runTests()
   }
 
-  @Test
-  fun temp() {
-    runTests { it == "chat_item_standard_message_formatted_text_03.binproto" }
-  }
-
-  // Passing
 //  @Test
   fun accountData() {
     runTests { it.startsWith("account_data_") }
   }
 
-  @Test
+//  @Test
   fun adHocCall() {
-    runTests { it.startsWith("ad_hoc_call") }
+    runTests { it.startsWith("ad_hoc_call_") }
   }
 
-  // Passing
 //  @Test
   fun chat() {
     runTests { it.startsWith("chat_") && !it.contains("_item") }
   }
 
-  // Passing
 //  @Test
   fun chatItemContactMessage() {
     runTests { it.startsWith("chat_item_contact_message_") }
   }
 
-  // Passing
 //  @Test
   fun chatItemExpirationTimerUpdate() {
     runTests { it.startsWith("chat_item_expiration_timer_") }
   }
 
-  // Passing
 //  @Test
   fun chatItemGiftBadge() {
     runTests { it.startsWith("chat_item_gift_badge_") }
   }
 
-  @Test
+//  @Test
   fun chatItemGroupCallUpdate() {
     runTests { it.startsWith("chat_item_group_call_update_") }
   }
 
-  @Test
+//  @Test
   fun chatItemIndividualCallUpdate() {
     runTests { it.startsWith("chat_item_individual_call_update_") }
   }
 
-  // Passing
 //  @Test
   fun chatItemLearnedProfileUpdate() {
     runTests { it.startsWith("chat_item_learned_profile_update_") }
@@ -112,19 +101,16 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("chat_item_payment_notification_") }
   }
 
-  // Passing
 //  @Test
   fun chatItemProfileChangeUpdate() {
     runTests { it.startsWith("chat_item_profile_change_update_") }
   }
 
-  // Passing
 //  @Test
   fun chatItemRemoteDelete() {
     runTests { it.startsWith("chat_item_remote_delete_") }
   }
 
-  // Passing
 //  @Test
   fun chatItemSessionSwitchoverUpdate() {
     runTests { it.startsWith("chat_item_session_switchover_update_") }
@@ -135,7 +121,6 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("chat_item_simple_updates_") }
   }
 
-  // Passing
 //  @Test
   fun chatItemStandardMessageFormattedText() {
     runTests { it.startsWith("chat_item_standard_message_formatted_text_") }
@@ -146,19 +131,16 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("chat_item_standard_message_long_text_") }
   }
 
-  // Passing
 //  @Test
   fun chatItemStandardMessageSpecialAttachments() {
     runTests { it.startsWith("chat_item_standard_message_special_attachments_") }
   }
 
-  // Passing
 //  @Test
   fun chatItemStandardMessageStandardAttachments() {
     runTests { it.startsWith("chat_item_standard_message_standard_attachments_") }
   }
 
-  // Passing
 //  @Test
   fun chatItemStandardMessageTextOnly() {
     runTests { it.startsWith("chat_item_standard_message_text_only_") }
@@ -179,30 +161,26 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("chat_item_sticker_message_") }
   }
 
-  // Passing
 //  @Test
   fun chatItemThreadMergeUpdate() {
     runTests { it.startsWith("chat_item_thread_merge_update_") }
   }
 
-  @Test
+//  @Test
   fun recipientCallLink() {
     runTests { it.startsWith("recipient_call_link_") }
   }
 
-  // Passing
 //  @Test
   fun recipientContacts() {
     runTests { it.startsWith("recipient_contacts_") }
   }
 
-  // Passing
 //  @Test
   fun recipientDistributionLists() {
     runTests { it.startsWith("recipient_distribution_list_") }
   }
 
-  // Passing
 //  @Test
   fun recipientGroups() {
     runTests { it.startsWith("recipient_groups_") }

@@ -696,6 +696,7 @@ class ChatItemImportInserter(
             }
           }
         }
+        this.put(MessageTable.READ, updateMessage.individualCall.read.toInt())
       }
       updateMessage.groupCall != null -> {
         val startedCallRecipientId = if (updateMessage.groupCall.startedCallRecipientId != null) {

@@ -460,7 +460,8 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         )
       }
 
-      CallTable.Type.AD_HOC_CALL -> {
+      CallTable.Type.AUDIO_CALL,
+      CallTable.Type.VIDEO_CALL -> {
         ChatUpdateMessage(
           individualCall = IndividualCall(
             callId = this.callId,
@@ -473,12 +474,13 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
               CallTable.Event.NOT_ACCEPTED -> IndividualCall.State.NOT_ACCEPTED
               else -> IndividualCall.State.UNKNOWN_STATE
             },
-            startedCallTimestamp = this.timestamp
+            startedCallTimestamp = this.timestamp,
+            read = messageRecord.read
           )
         )
       }
 
-      else -> null
+      CallTable.Type.AD_HOC_CALL -> throw IllegalArgumentException("AdHoc calls are not update messages!")
     }
   }
 
