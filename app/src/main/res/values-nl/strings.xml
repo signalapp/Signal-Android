@@ -5572,7 +5572,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Je ‘Boost’-badge is verlopen en is daarom niet langer zichtbaar op je profiel</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Je kunt je ‘Boost’-badge opnieuw voor 30 dagen activeren met een nieuwe eenmalige donatie.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Je kunt Signal blijven gebruiken, maar als je Signal wilt blijven steunen overweeg dan om een maandelijkse donateur te worden.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Je kunt Signal gewoon blijven gebruiken, maar als je technologie die écht voor jou is gemaakt wilt blijven ondersteunen, overweeg dan om een maandelijkse donateur te worden.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Help Signal mogelijk maken</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Nogmaals eenmalig doneren</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
@@ -5630,7 +5630,7 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Doneren is mislukt</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Je betaling is verwerkt, maar Signal kan je donatiebericht niet versturen. Neem contact op met support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Je betaling is verwerkt, maar Signal kan je donatiebericht niet versturen. Neem contact op met ondersteuning.</string>
     <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je account, maar je hebt misschien al wel betaald. Neem contact op met support.</string>
     <string name="DonationsErrors__your_payment_is_still">Je donatie wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Het stopzetten van je maandelijkse donatie is mislukt</string>
@@ -6283,7 +6283,7 @@
     <!-- Expired gift sheet top description text -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Je badge is verlopen en is daarom niet langer voor anderen zichtbaar op je profiel.</string>
     <!-- Expired gift sheet bottom description text -->
-    <string name="ExpiredGiftSheetConfiguration__to_continue">Overweeg een maandelijkse donatie in te stellen om technologie die is gemaakt voor jou in plaats van voor het verzamelen van gegevens te blijven ondersteunen.</string>
+    <string name="ExpiredGiftSheetConfiguration__to_continue">Overweeg om een maandelijkse donateur te worden om technologie die écht voor jou is gemaakt te blijven ondersteunen</string>
     <!-- Expired gift sheet make a monthly donation button -->
     <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Maandelijks doneren</string>
     <!-- Expired gift sheet not now button -->
