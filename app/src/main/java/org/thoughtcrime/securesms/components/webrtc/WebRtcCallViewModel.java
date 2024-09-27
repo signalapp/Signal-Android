@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModel;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallControlsState;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallEvent;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -74,6 +75,7 @@ public class WebRtcCallViewModel extends ViewModel {
   private final LiveData<Integer>                             groupMemberCount          = Transformations.map(groupMembers, List::size);
   private final Observable<Boolean>                           shouldShowSpeakerHint     = participantsState.map(this::shouldShowSpeakerHint);
   private final MutableLiveData<Boolean>                      isLandscapeEnabled        = new MutableLiveData<>();
+  private final MutableLiveData<Boolean>                      canEnterPipMode           = new MutableLiveData<>(false);
   private final Observer<List<GroupMemberEntry.FullMember>>   groupMemberStateUpdater   = m -> participantsState.onNext(CallParticipantsState.update(participantsState.getValue(), m));
   private final MutableLiveData<WebRtcEphemeralState>         ephemeralState            = new MutableLiveData<>();
   private final BehaviorProcessor<RecipientId>                recipientId               = BehaviorProcessor.createDefault(RecipientId.UNKNOWN);
@@ -91,7 +93,6 @@ public class WebRtcCallViewModel extends ViewModel {
   private boolean               wasInOutgoingRingingMode              = false;
   private long                  callConnectedTime                     = -1;
   private boolean               answerWithVideoAvailable              = false;
-  private boolean               canEnterPipMode                       = false;
   private List<CallParticipant> previousParticipantsList              = Collections.emptyList();
   private boolean               callStarting                          = false;
   private boolean               switchOnFirstScreenShare              = true;
@@ -209,7 +210,7 @@ public class WebRtcCallViewModel extends ViewModel {
     return ephemeralState;
   }
 
-  public boolean canEnterPipMode() {
+  public LiveData<Boolean> canEnterPipMode() {
     return canEnterPipMode;
   }
 
@@ -280,7 +281,7 @@ public class WebRtcCallViewModel extends ViewModel {
 
   @MainThread
   public void updateFromWebRtcViewModel(@NonNull WebRtcViewModel webRtcViewModel, boolean enableVideo) {
-    canEnterPipMode = !webRtcViewModel.getState().isPreJoinOrNetworkUnavailable();
+    canEnterPipMode.setValue(!webRtcViewModel.getState().isPreJoinOrNetworkUnavailable());
     if (callStarting && webRtcViewModel.getState().isPassedPreJoin()) {
       callStarting = false;
     }
