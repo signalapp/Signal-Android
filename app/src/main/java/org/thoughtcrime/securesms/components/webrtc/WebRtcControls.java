@@ -166,7 +166,7 @@ public final class WebRtcControls {
   }
 
   public boolean displayOverflow() {
-    return isAtLeastOutgoing() && hasAtLeastOneRemote && isGroupCall();
+    return isAtLeastOutgoing() && hasAtLeastOneRemote && isGroupCall() && groupCallState == GroupCallState.CONNECTED;
   }
 
   public boolean displayMuteAudio() {
