@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc.controls
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.graphics.Color
@@ -201,22 +202,35 @@ class ControlsAndInfoController private constructor(
     BottomSheetBehaviorHack.setNestedScrollingChild(behavior, callInfoComposeView)
 
     behavior.addBottomSheetCallback(object : BottomSheetCallback() {
+      @SuppressLint("SwitchIntDef")
       override fun onStateChanged(bottomSheet: View, newState: Int) {
         overflowPopupWindow.dismiss()
-        if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
-          controlsAndInfoViewModel.resetScrollState()
-          if (controlState.isFadeOutEnabled) {
-            hide(delay = HIDE_CONTROL_DELAY)
+        when (newState) {
+          BottomSheetBehavior.STATE_COLLAPSED -> {
+            controlsAndInfoViewModel.resetScrollState()
+            if (controlState.isFadeOutEnabled) {
+              hide(delay = HIDE_CONTROL_DELAY)
+            }
+            updateCallSheetVisibilities(0f)
           }
-        } else if (newState == BottomSheetBehavior.STATE_EXPANDED || newState == BottomSheetBehavior.STATE_DRAGGING) {
-          cancelScheduledHide()
-        } else if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-          controlsAndInfoViewModel.resetScrollState()
+          BottomSheetBehavior.STATE_EXPANDED -> {
+            cancelScheduledHide()
+            updateCallSheetVisibilities(1f)
+          }
+          BottomSheetBehavior.STATE_DRAGGING -> {
+            cancelScheduledHide()
+          }
+          BottomSheetBehavior.STATE_HIDDEN -> {
+            controlsAndInfoViewModel.resetScrollState()
+            updateCallSheetVisibilities(-1f)
+          }
         }
       }
 
       override fun onSlide(bottomSheet: View, slideOffset: Float) {
-        updateCallSheetVisibilities(slideOffset)
+        if (slideOffset <= 1 || slideOffset >= -1) {
+          updateCallSheetVisibilities(slideOffset)
+        }
       }
     })
 
