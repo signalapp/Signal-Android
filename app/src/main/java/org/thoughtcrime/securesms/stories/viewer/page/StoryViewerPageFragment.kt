@@ -35,6 +35,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.progressindicator.CircularProgressIndicatorSpec
 import com.google.android.material.progressindicator.IndeterminateDrawable
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -1157,6 +1158,13 @@ class StoryViewerPageFragment :
           lifecycleDisposable += viewModel.hideStory().subscribe {
             callback.onStoryHidden(storyViewerPageArgs.recipientId)
           }
+        }
+      },
+      onUnhide = {
+        lifecycleDisposable += viewModel.unhideStory().subscribe {
+          Snackbar
+            .make(requireView(), R.string.StoryViewerPageFragment__story_no_longer_hidden, Snackbar.LENGTH_SHORT)
+            .show()
         }
       },
       onShare = {

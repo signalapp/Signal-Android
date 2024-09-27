@@ -117,6 +117,10 @@ class StoryViewerPageViewModel(
     return repository.hideStory(args.recipientId)
   }
 
+  fun unhideStory(): Completable {
+    return repository.unhideStory(args.recipientId).observeOn(AndroidSchedulers.mainThread())
+  }
+
   fun markViewed(storyPost: StoryPost) {
     repository.markViewed(storyPost)
   }

@@ -171,6 +171,12 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
     }.subscribeOn(Schedulers.io())
   }
 
+  fun unhideStory(recipientId: RecipientId): Completable {
+    return Completable.fromAction {
+      SignalDatabase.recipients.setHideStory(recipientId, false)
+    }.subscribeOn(Schedulers.io())
+  }
+
   fun markViewed(storyPost: StoryPost) {
     if (!storyPost.conversationMessage.messageRecord.isOutgoing) {
       SignalExecutors.SERIAL.execute {
