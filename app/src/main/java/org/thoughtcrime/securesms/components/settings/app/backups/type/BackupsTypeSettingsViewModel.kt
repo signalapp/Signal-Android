@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.chats.backups.type
+package org.thoughtcrime.securesms.components.settings.app.backups.type
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

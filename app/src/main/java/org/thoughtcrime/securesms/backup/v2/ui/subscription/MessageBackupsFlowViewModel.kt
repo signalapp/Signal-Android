@@ -182,6 +182,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
       MessageBackupTier.FREE -> {
         SignalStore.backup.areBackupsEnabled = true
         SignalStore.backup.backupTier = MessageBackupTier.FREE
+        SignalStore.uiHints.markHasEverEnabledRemoteBackups()
 
         state.copy(stage = MessageBackupsStage.COMPLETED)
       }

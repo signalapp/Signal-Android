@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.chats.backups
+package org.thoughtcrime.securesms.components.settings.app.backups.remote
 
 import android.os.Bundle
 import android.view.View
@@ -18,9 +18,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -44,6 +46,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.setFragmentResultListener
@@ -58,16 +61,18 @@ import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.Snackbars
 import org.signal.core.ui.Texts
+import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
-import org.thoughtcrime.securesms.components.settings.app.chats.backups.type.BackupsTypeSettingsFragment
+import org.thoughtcrime.securesms.components.settings.app.backups.type.BackupsTypeSettingsFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.fonts.SignalSymbols
+import org.thoughtcrime.securesms.fonts.SignalSymbols.SignalSymbol
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
@@ -75,7 +80,10 @@ import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
 import java.math.BigDecimal
+import java.util.Currency
 import java.util.Locale
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Remote backups settings fragment.
@@ -105,7 +113,8 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       requestedSnackbar = state.snackbar,
       contentCallbacks = callbacks,
       backupProgress = backupProgress,
-      backupSize = state.backupSize
+      backupSize = state.backupSize,
+      renewalTime = state.renewalTime
     )
   }
 
@@ -115,16 +124,12 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       findNavController().popBackStack()
     }
 
-    override fun onEnableBackupsClick() {
-      checkoutLauncher.launch(Unit)
+    override fun onBackupTypeActionClick(tier: MessageBackupTier) {
+      // TODO [message-backups]
     }
 
     override fun onBackUpUsingCellularClick(canUseCellular: Boolean) {
       viewModel.setCanBackUpUsingCellular(canUseCellular)
-    }
-
-    override fun onViewPaymentHistory() {
-      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_remoteBackupsPaymentHistoryFragment)
     }
 
     override fun onBackupNowClick() {
@@ -191,10 +196,9 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
  */
 private interface ContentCallbacks {
   fun onNavigationClick() = Unit
-  fun onEnableBackupsClick() = Unit
   fun onBackupsTypeClick() = Unit
+  fun onBackupTypeActionClick(tier: MessageBackupTier) = Unit
   fun onBackUpUsingCellularClick(canUseCellular: Boolean) = Unit
-  fun onViewPaymentHistory() = Unit
   fun onBackupNowClick() = Unit
   fun onTurnOffAndDeleteBackupsClick() = Unit
   fun onChangeBackupFrequencyClick() = Unit
@@ -207,6 +211,7 @@ private interface ContentCallbacks {
 @Composable
 private fun RemoteBackupsSettingsContent(
   messageBackupsType: MessageBackupsType?,
+  renewalTime: Duration,
   lastBackupTimestamp: Long,
   canBackUpUsingCellular: Boolean,
   backupsFrequency: BackupFrequency,
@@ -232,99 +237,88 @@ private fun RemoteBackupsSettingsContent(
       modifier = Modifier
         .padding(it)
     ) {
-      item {
-        BackupTypeRow(
-          messageBackupsType = messageBackupsType,
-          onEnableBackupsClick = contentCallbacks::onEnableBackupsClick,
-          onChangeBackupsTypeClick = contentCallbacks::onBackupsTypeClick
-        )
+      if (messageBackupsType != null) {
+        item {
+          BackupTypeRow(
+            messageBackupsType = messageBackupsType,
+            renewalTime = renewalTime,
+            onBackupTypeActionButtonClicked = contentCallbacks::onBackupTypeActionClick
+          )
+        }
       }
 
-      if (messageBackupsType == null) {
+      item {
+        Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
+      }
+
+      if (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None) {
         item {
-          Rows.TextRow(
-            text = stringResource(id = R.string.RemoteBackupsSettingsFragment__payment_history),
-            onClick = contentCallbacks::onViewPaymentHistory
+          LastBackupRow(
+            lastBackupTimestamp = lastBackupTimestamp,
+            onBackupNowClick = contentCallbacks::onBackupNowClick
           )
         }
       } else {
         item {
-          Dividers.Default()
+          InProgressBackupRow(progress = backupProgress.completedAttachments.toInt(), totalProgress = backupProgress.totalAttachments.toInt())
         }
+      }
 
-        item {
-          Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
-        }
-
-        if (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None) {
-          item {
-            LastBackupRow(
-              lastBackupTimestamp = lastBackupTimestamp,
-              onBackupNowClick = contentCallbacks::onBackupNowClick
+      item {
+        Rows.TextRow(text = {
+          Column {
+            Text(
+              text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_size),
+              style = MaterialTheme.typography.bodyLarge,
+              color = MaterialTheme.colorScheme.onSurface
+            )
+            Text(
+              text = Util.getPrettyFileSize(backupSize),
+              style = MaterialTheme.typography.bodyMedium,
+              color = MaterialTheme.colorScheme.onSurfaceVariant
             )
           }
-        } else {
-          item {
-            InProgressBackupRow(progress = backupProgress.completedAttachments.toInt(), totalProgress = backupProgress.totalAttachments.toInt())
-          }
-        }
+        })
+      }
 
-        item {
-          Rows.TextRow(text = {
+      item {
+        Rows.TextRow(
+          text = {
             Column {
               Text(
-                text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_size),
+                text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_frequency),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface
               )
               Text(
-                text = Util.getPrettyFileSize(backupSize),
+                text = getTextForFrequency(backupsFrequency = backupsFrequency),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
               )
             }
-          })
-        }
+          },
+          onClick = contentCallbacks::onChangeBackupFrequencyClick
+        )
+      }
 
-        item {
-          Rows.TextRow(
-            text = {
-              Column {
-                Text(
-                  text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_frequency),
-                  style = MaterialTheme.typography.bodyLarge,
-                  color = MaterialTheme.colorScheme.onSurface
-                )
-                Text(
-                  text = getTextForFrequency(backupsFrequency = backupsFrequency),
-                  style = MaterialTheme.typography.bodyMedium,
-                  color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-              }
-            },
-            onClick = contentCallbacks::onChangeBackupFrequencyClick
-          )
-        }
+      item {
+        Rows.ToggleRow(
+          checked = canBackUpUsingCellular,
+          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__back_up_using_cellular),
+          onCheckChanged = contentCallbacks::onBackUpUsingCellularClick
+        )
+      }
 
-        item {
-          Rows.ToggleRow(
-            checked = canBackUpUsingCellular,
-            text = stringResource(id = R.string.RemoteBackupsSettingsFragment__back_up_using_cellular),
-            onCheckChanged = contentCallbacks::onBackUpUsingCellularClick
-          )
-        }
+      item {
+        Dividers.Default()
+      }
 
-        item {
-          Dividers.Default()
-        }
-
-        item {
-          Rows.TextRow(
-            text = stringResource(id = R.string.RemoteBackupsSettingsFragment__turn_off_and_delete_backup),
-            foregroundTint = MaterialTheme.colorScheme.error,
-            onClick = contentCallbacks::onTurnOffAndDeleteBackupsClick
-          )
-        }
+      item {
+        Rows.TextRow(
+          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__turn_off_and_delete_backup),
+          foregroundTint = MaterialTheme.colorScheme.error,
+          onClick = contentCallbacks::onTurnOffAndDeleteBackupsClick
+        )
       }
     }
   }
@@ -383,63 +377,71 @@ private fun RemoteBackupsSettingsContent(
 
 @Composable
 private fun BackupTypeRow(
-  messageBackupsType: MessageBackupsType?,
-  onEnableBackupsClick: () -> Unit,
-  onChangeBackupsTypeClick: () -> Unit
+  messageBackupsType: MessageBackupsType,
+  renewalTime: Duration,
+  onBackupTypeActionButtonClicked: (MessageBackupTier) -> Unit = {}
 ) {
-  Row(
+  Column(
     modifier = Modifier
       .fillMaxWidth()
-      .clickable(enabled = messageBackupsType != null, onClick = onChangeBackupsTypeClick)
-      .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
-      .padding(top = 16.dp, bottom = 14.dp)
+      .padding(horizontal = 16.dp, vertical = 12.dp)
+      .background(color = SignalTheme.colors.colorSurface2, shape = RoundedCornerShape(12.dp))
+      .padding(24.dp)
   ) {
-    Column(
-      modifier = Modifier.weight(1f)
-    ) {
-      Text(
-        text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_type),
-        style = MaterialTheme.typography.bodyLarge,
-        color = MaterialTheme.colorScheme.onSurface
-      )
-
-      if (messageBackupsType == null) {
-        Text(
-          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backups_disabled),
-          style = MaterialTheme.typography.bodyMedium,
-          color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-      } else if (messageBackupsType is MessageBackupsType.Paid) {
-        val localResources = LocalContext.current.resources
-        val formattedCurrency = remember(messageBackupsType.pricePerMonth) {
-          FiatMoneyUtil.format(localResources, messageBackupsType.pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+    Row {
+      Column {
+        val title = when (messageBackupsType) {
+          is MessageBackupsType.Paid -> stringResource(R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media)
+          is MessageBackupsType.Free -> pluralStringResource(R.plurals.MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media, messageBackupsType.mediaRetentionDays, messageBackupsType.mediaRetentionDays)
         }
 
         Text(
-          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__s_dot_s_per_month, stringResource(id = R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media), formattedCurrency)
+          text = buildAnnotatedString {
+            SignalSymbol(SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.CHECKMARK)
+            append(" ")
+            append(title)
+          },
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          style = MaterialTheme.typography.bodyMedium
         )
-      } else {
-        val retentionDays = (messageBackupsType as MessageBackupsType.Free).mediaRetentionDays
-        val localResources = LocalContext.current.resources
-        val formattedCurrency = remember {
-          val currency = SignalStore.inAppPayments.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.BACKUP)
-          FiatMoneyUtil.format(localResources, FiatMoney(BigDecimal.ZERO, currency), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+
+        val cost = when (messageBackupsType) {
+          is MessageBackupsType.Paid -> stringResource(R.string.RemoteBackupsSettingsFragment__s_per_month, FiatMoneyUtil.format(LocalContext.current.resources, messageBackupsType.pricePerMonth))
+          is MessageBackupsType.Free -> stringResource(R.string.RemoteBackupsSettingsFragment__your_backup_plan_is_free)
         }
 
         Text(
-          text = stringResource(
-            id = R.string.RemoteBackupsSettingsFragment__s_dot_s_per_month,
-            pluralStringResource(id = R.plurals.MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media, retentionDays, retentionDays),
-            formattedCurrency
-          )
+          text = cost,
+          modifier = Modifier.padding(top = 12.dp)
         )
+
+        if (messageBackupsType is MessageBackupsType.Paid) {
+          if (renewalTime > 0.seconds) {
+            Text(
+              text = stringResource(R.string.RemoteBackupsSettingsFragment__renews_s, DateUtils.formatDateWithYear(Locale.getDefault(), renewalTime.inWholeMilliseconds))
+            )
+          }
+        }
       }
+
+      // Icon
     }
 
-    if (messageBackupsType == null) {
-      Buttons.Small(onClick = onEnableBackupsClick) {
-        Text(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__enable_backups))
-      }
+    val buttonText = when (messageBackupsType) {
+      is MessageBackupsType.Paid -> stringResource(R.string.RemoteBackupsSettingsFragment__manage_or_cancel)
+      is MessageBackupsType.Free -> stringResource(R.string.RemoteBackupsSettingsFragment__upgrade)
+    }
+
+    Buttons.LargeTonal(
+      onClick = { onBackupTypeActionButtonClicked(messageBackupsType.tier) },
+      colors = ButtonDefaults.filledTonalButtonColors().copy(
+        containerColor = SignalTheme.colors.colorTransparent5
+      ),
+      modifier = Modifier.padding(top = 12.dp)
+    ) {
+      Text(
+        text = buttonText
+      )
     }
   }
 }
@@ -668,7 +670,7 @@ private fun getTextForFrequency(backupsFrequency: BackupFrequency): String {
 private fun RemoteBackupsSettingsContentPreview() {
   Previews.Preview {
     RemoteBackupsSettingsContent(
-      messageBackupsType = null,
+      messageBackupsType = MessageBackupsType.Free(mediaRetentionDays = 30),
       lastBackupTimestamp = -1,
       canBackUpUsingCellular = false,
       backupsFrequency = BackupFrequency.MANUAL,
@@ -676,6 +678,7 @@ private fun RemoteBackupsSettingsContentPreview() {
       requestedSnackbar = RemoteBackupsSettingsState.Snackbar.NONE,
       contentCallbacks = object : ContentCallbacks {},
       backupProgress = null,
+      renewalTime = 1727193018.seconds,
       backupSize = 2300000
     )
   }
@@ -685,13 +688,22 @@ private fun RemoteBackupsSettingsContentPreview() {
 @Composable
 private fun BackupTypeRowPreview() {
   Previews.Preview {
-    BackupTypeRow(
-      messageBackupsType = MessageBackupsType.Free(
-        mediaRetentionDays = 30
-      ),
-      onChangeBackupsTypeClick = {},
-      onEnableBackupsClick = {}
-    )
+    Column {
+      BackupTypeRow(
+        messageBackupsType = MessageBackupsType.Paid(
+          pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
+          storageAllowanceBytes = 100_000_000
+        ),
+        renewalTime = 1727193018.seconds
+      )
+
+      BackupTypeRow(
+        messageBackupsType = MessageBackupsType.Free(
+          mediaRetentionDays = 30
+        ),
+        renewalTime = 0.seconds
+      )
+    }
   }
 }
 

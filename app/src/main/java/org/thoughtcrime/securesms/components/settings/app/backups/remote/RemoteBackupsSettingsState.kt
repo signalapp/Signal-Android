@@ -3,10 +3,12 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.chats.backups
+package org.thoughtcrime.securesms.components.settings.app.backups.remote
 
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 data class RemoteBackupsSettingsState(
   val messageBackupsType: MessageBackupsType? = null,
@@ -14,6 +16,7 @@ data class RemoteBackupsSettingsState(
   val backupSize: Long = 0,
   val backupsFrequency: BackupFrequency = BackupFrequency.DAILY,
   val lastBackupTimestamp: Long = 0,
+  val renewalTime: Duration = 0.seconds,
   val dialog: Dialog = Dialog.NONE,
   val snackbar: Snackbar = Snackbar.NONE
 ) {

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.chats.backups.type
+package org.thoughtcrime.securesms.components.settings.app.backups.type
 
 import android.os.Bundle
 import android.view.View
@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
 import java.math.BigDecimal
 import java.util.Locale
@@ -84,10 +83,6 @@ class BackupsTypeSettingsFragment : ComposeFragment() {
   private inner class Callbacks : ContentCallbacks {
     override fun onNavigationClick() {
       findNavController().popBackStack()
-    }
-
-    override fun onPaymentHistoryClick() {
-      findNavController().safeNavigate(R.id.action_backupsTypeSettingsFragment_to_remoteBackupsPaymentHistoryFragment)
     }
 
     override fun onChangeOrCancelSubscriptionClick() {

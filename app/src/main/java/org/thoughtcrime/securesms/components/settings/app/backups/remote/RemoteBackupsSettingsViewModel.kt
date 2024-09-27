@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.chats.backups
+package org.thoughtcrime.securesms.components.settings.app.backups.remote
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,11 +17,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.service.MessageBackupListener
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * ViewModel for state management of RemoteBackupsSettingsFragment
@@ -40,6 +43,19 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   init {
     refresh()
+
+    viewModelScope.launch {
+      val activeSubscription = withContext(Dispatchers.IO) {
+        RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
+      }
+
+      if (activeSubscription.isSuccess) {
+        val subscription = activeSubscription.getOrThrow().activeSubscription
+        if (subscription.isActive && subscription != null) {
+          _state.update { it.copy(renewalTime = subscription.endOfCurrentPeriod.seconds) }
+        }
+      }
+    }
   }
 
   fun setCanBackUpUsingCellular(canBackUpUsingCellular: Boolean) {

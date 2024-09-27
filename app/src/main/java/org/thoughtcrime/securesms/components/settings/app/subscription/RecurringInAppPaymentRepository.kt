@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import androidx.annotation.CheckResult
+import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -46,18 +47,26 @@ object RecurringInAppPaymentRepository {
   private val donationsService = AppDependencies.donationsService
 
   fun getActiveSubscription(type: InAppPaymentSubscriberRecord.Type): Single<ActiveSubscription> {
-    val localSubscription = InAppPaymentsRepository.getSubscriber(type)
-    return if (localSubscription != null) {
-      Single.fromCallable { donationsService.getSubscription(localSubscription.subscriberId) }
-        .subscribeOn(Schedulers.io())
-        .flatMap(ServiceResponse<ActiveSubscription>::flattenResult)
-        .doOnSuccess { activeSubscription ->
-          if (activeSubscription.isActive && activeSubscription.activeSubscription.endOfCurrentPeriod > SignalStore.inAppPayments.getLastEndOfPeriod()) {
-            InAppPaymentKeepAliveJob.enqueueAndTrackTime(System.currentTimeMillis().milliseconds)
-          }
-        }
-    } else {
-      Single.just(ActiveSubscription.EMPTY)
+    return Single.fromCallable {
+      getActiveSubscriptionSync(type).getOrThrow()
+    }.subscribeOn(Schedulers.io())
+  }
+
+  @WorkerThread
+  fun getActiveSubscriptionSync(type: InAppPaymentSubscriberRecord.Type): Result<ActiveSubscription> {
+    val response = InAppPaymentsRepository.getSubscriber(type)?.let {
+      donationsService.getSubscription(it.subscriberId)
+    } ?: return Result.success(ActiveSubscription.EMPTY)
+
+    return try {
+      val result = response.resultOrThrow
+      if (result.isActive && result.activeSubscription.endOfCurrentPeriod > SignalStore.inAppPayments.getLastEndOfPeriod()) {
+        InAppPaymentKeepAliveJob.enqueueAndTrackTime(System.currentTimeMillis().milliseconds)
+      }
+
+      Result.success(result)
+    } catch (e: Exception) {
+      Result.failure(e)
     }
   }
 

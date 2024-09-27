@@ -258,6 +258,7 @@ class InAppPaymentRedemptionJob private constructor(
       Log.i(TAG, "Enabling backups and setting backup tier to PAID", true)
       SignalStore.backup.areBackupsEnabled = true
       SignalStore.backup.backupTier = MessageBackupTier.PAID
+      SignalStore.uiHints.markHasEverEnabledRemoteBackups()
     }
   }
 

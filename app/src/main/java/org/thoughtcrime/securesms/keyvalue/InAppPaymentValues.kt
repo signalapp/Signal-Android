@@ -516,6 +516,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
 
         SignalStore.backup.areBackupsEnabled = true
         SignalStore.backup.backupTier = MessageBackupTier.PAID
+        SignalStore.uiHints.markHasEverEnabledRemoteBackups()
       }
 
       val subscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
