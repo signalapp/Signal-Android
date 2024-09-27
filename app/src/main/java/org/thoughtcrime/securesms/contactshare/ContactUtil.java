@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SpanUtil;
@@ -65,8 +66,12 @@ public final class ContactUtil {
       return "";
     }
 
-    if (!TextUtils.isEmpty(contact.getName().getDisplayName())) {
-      return contact.getName().getDisplayName();
+    if (!TextUtils.isEmpty(contact.getName().getNickname())) {
+      return contact.getName().getNickname();
+    }
+
+    if (!TextUtils.isEmpty(contact.getName().getGivenName())) {
+      return ProfileName.fromParts(contact.getName().getGivenName(), contact.getName().getFamilyName()).toString();
     }
 
     if (!TextUtils.isEmpty(contact.getOrganization())) {
@@ -152,8 +157,11 @@ public final class ContactUtil {
     Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
     intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
 
-    if (!TextUtils.isEmpty(contact.getName().getDisplayName())) {
-      intent.putExtra(ContactsContract.Intents.Insert.NAME, contact.getName().getDisplayName());
+    if (!TextUtils.isEmpty(contact.getName().getNickname())) {
+      intent.putExtra(ContactsContract.Intents.Insert.NAME, contact.getName().getNickname());
+    } else if (!TextUtils.isEmpty(contact.getName().getGivenName())) {
+      String displayName = ProfileName.fromParts(contact.getName().getGivenName(), contact.getName().getFamilyName()).toString();
+      intent.putExtra(ContactsContract.Intents.Insert.NAME, displayName);
     }
 
     if (!TextUtils.isEmpty(contact.getOrganization())) {

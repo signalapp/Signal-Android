@@ -177,7 +177,8 @@ message DataMessage {
       optional string prefix      = 3;
       optional string suffix      = 4;
       optional string middleName  = 5;
-      optional string displayName = 6;
+      reserved      /*displayName*/ 6;
+      optional string nickname    = 7;
     }
 
     message Phone {

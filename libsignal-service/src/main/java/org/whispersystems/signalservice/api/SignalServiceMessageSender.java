@@ -1754,12 +1754,12 @@ public class SignalServiceMessageSender {
     for (SharedContact contact : contacts) {
       DataMessage.Contact.Name.Builder nameBuilder = new DataMessage.Contact.Name.Builder();
 
-      if (contact.getName().getFamily().isPresent())  nameBuilder.familyName(contact.getName().getFamily().get());
-      if (contact.getName().getGiven().isPresent())   nameBuilder.givenName(contact.getName().getGiven().get());
-      if (contact.getName().getMiddle().isPresent())  nameBuilder.middleName(contact.getName().getMiddle().get());
-      if (contact.getName().getPrefix().isPresent())  nameBuilder.prefix(contact.getName().getPrefix().get());
-      if (contact.getName().getSuffix().isPresent())  nameBuilder.suffix(contact.getName().getSuffix().get());
-      if (contact.getName().getDisplay().isPresent()) nameBuilder.displayName(contact.getName().getDisplay().get());
+      if (contact.getName().getFamily().isPresent())   nameBuilder.familyName(contact.getName().getFamily().get());
+      if (contact.getName().getGiven().isPresent())    nameBuilder.givenName(contact.getName().getGiven().get());
+      if (contact.getName().getMiddle().isPresent())   nameBuilder.middleName(contact.getName().getMiddle().get());
+      if (contact.getName().getPrefix().isPresent())   nameBuilder.prefix(contact.getName().getPrefix().get());
+      if (contact.getName().getSuffix().isPresent())   nameBuilder.suffix(contact.getName().getSuffix().get());
+      if (contact.getName().getNickname().isPresent()) nameBuilder.nickname(contact.getName().getNickname().get());
 
       DataMessage.Contact.Builder contactBuilder = new DataMessage.Contact.Builder().name(nameBuilder.build());
 

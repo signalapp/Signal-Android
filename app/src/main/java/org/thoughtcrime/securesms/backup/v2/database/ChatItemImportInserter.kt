@@ -65,7 +65,6 @@ import org.thoughtcrime.securesms.payments.Direction
 import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData
-import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
@@ -1021,8 +1020,7 @@ class ChatItemImportInserter(
   }
 
   private fun ContactAttachment.Name?.toLocal(): Contact.Name {
-    val displayName = ProfileName.fromParts(this?.givenName, this?.familyName).toString()
-    return Contact.Name(displayName, this?.givenName, this?.familyName, this?.prefix, this?.suffix, this?.middleName)
+    return Contact.Name(this?.givenName, this?.familyName, this?.prefix, this?.suffix, this?.middleName, null)
   }
 
   private fun ContactAttachment.Phone.Type?.toLocal(): Contact.Phone.Type {

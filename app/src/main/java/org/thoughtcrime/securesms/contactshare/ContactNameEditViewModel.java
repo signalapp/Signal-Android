@@ -36,7 +36,7 @@ public class ContactNameEditViewModel extends ViewModel {
   }
 
   Name getName() {
-    return new Name(displayName.getValue(), givenName, familyName, prefix, suffix, middleName);
+    return new Name(givenName, familyName, prefix, suffix, middleName, null);
   }
 
   void updateGivenName(@NonNull String givenName) {
