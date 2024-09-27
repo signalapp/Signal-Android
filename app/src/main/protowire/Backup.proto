@@ -476,6 +476,7 @@ message ContactAttachment {
     optional string prefix = 3;
     optional string suffix = 4;
     optional string middleName = 5;
+    optional string nickname = 6;
   }
 
   message Phone {
@@ -621,7 +622,7 @@ message FilePointer {
 
   oneof locator {
     BackupLocator backupLocator = 1;
-    AttachmentLocator attachmentLocator = 2;
+    AttachmentLocator attachmentLocator= 2;
     InvalidAttachmentLocator invalidAttachmentLocator = 3;
   }
 

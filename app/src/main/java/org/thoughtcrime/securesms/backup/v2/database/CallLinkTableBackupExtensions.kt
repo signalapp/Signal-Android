@@ -79,7 +79,7 @@ class BackupCallLinkIterator(private val cursor: Cursor) : Iterator<BackupRecipi
         } catch (e: ArithmeticException) {
           Long.MAX_VALUE
         },
-        restrictions = callLink.state.restrictions.toBackup()
+        restrictions = callLink.state.restrictions.toRemote()
       )
     )
   }
@@ -89,7 +89,7 @@ class BackupCallLinkIterator(private val cursor: Cursor) : Iterator<BackupRecipi
   }
 }
 
-private fun CallLinkState.Restrictions.toBackup(): CallLink.Restrictions {
+private fun CallLinkState.Restrictions.toRemote(): CallLink.Restrictions {
   return when (this) {
     CallLinkState.Restrictions.ADMIN_APPROVAL -> CallLink.Restrictions.ADMIN_APPROVAL
     CallLinkState.Restrictions.NONE -> CallLink.Restrictions.NONE

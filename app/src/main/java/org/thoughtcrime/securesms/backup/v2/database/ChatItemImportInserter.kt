@@ -1020,7 +1020,7 @@ class ChatItemImportInserter(
   }
 
   private fun ContactAttachment.Name?.toLocal(): Contact.Name {
-    return Contact.Name(this?.givenName, this?.familyName, this?.prefix, this?.suffix, this?.middleName, null)
+    return Contact.Name(this?.givenName, this?.familyName, this?.prefix, this?.suffix, this?.middleName, this?.nickname)
   }
 
   private fun ContactAttachment.Phone.Type?.toLocal(): Contact.Phone.Type {

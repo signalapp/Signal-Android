@@ -595,13 +595,13 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
 
     val contacts = sharedContacts.map {
       ContactAttachment(
-        name = it.name.toBackup(),
+        name = it.name.toRemote(),
         avatar = (it.avatar?.attachment as? DatabaseAttachment)?.toRemoteMessageAttachment()?.pointer,
         organization = it.organization,
         number = it.phoneNumbers.map { phone ->
           ContactAttachment.Phone(
             value_ = phone.number,
-            type = phone.type.toBackup(),
+            type = phone.type.toRemote(),
             label = phone.label
           )
         },
@@ -609,12 +609,12 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
           ContactAttachment.Email(
             value_ = email.email,
             label = email.label,
-            type = email.type.toBackup()
+            type = email.type.toRemote()
           )
         },
         address = it.postalAddresses.map { address ->
           ContactAttachment.PostalAddress(
-            type = address.type.toBackup(),
+            type = address.type.toRemote(),
             label = address.label,
             street = address.street,
             pobox = address.poBox,
@@ -629,21 +629,22 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
     return ContactMessage(
       contact = contacts,
-      reactions = reactionRecords.toBackupReactions()
+      reactions = reactionRecords.toRemoteReactions()
     )
   }
 
-  private fun Contact.Name.toBackup(): ContactAttachment.Name {
+  private fun Contact.Name.toRemote(): ContactAttachment.Name {
     return ContactAttachment.Name(
       givenName = givenName,
       familyName = familyName,
       prefix = prefix,
       suffix = suffix,
-      middleName = middleName
+      middleName = middleName,
+      nickname = nickname
     )
   }
 
-  private fun Contact.Phone.Type.toBackup(): ContactAttachment.Phone.Type {
+  private fun Contact.Phone.Type.toRemote(): ContactAttachment.Phone.Type {
     return when (this) {
       Contact.Phone.Type.HOME -> ContactAttachment.Phone.Type.HOME
       Contact.Phone.Type.MOBILE -> ContactAttachment.Phone.Type.MOBILE
@@ -652,7 +653,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
-  private fun Contact.Email.Type.toBackup(): ContactAttachment.Email.Type {
+  private fun Contact.Email.Type.toRemote(): ContactAttachment.Email.Type {
     return when (this) {
       Contact.Email.Type.HOME -> ContactAttachment.Email.Type.HOME
       Contact.Email.Type.MOBILE -> ContactAttachment.Email.Type.MOBILE
@@ -661,7 +662,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
-  private fun Contact.PostalAddress.Type.toBackup(): ContactAttachment.PostalAddress.Type {
+  private fun Contact.PostalAddress.Type.toRemote(): ContactAttachment.PostalAddress.Type {
     return when (this) {
       Contact.PostalAddress.Type.HOME -> ContactAttachment.PostalAddress.Type.HOME
       Contact.PostalAddress.Type.WORK -> ContactAttachment.PostalAddress.Type.WORK
@@ -693,7 +694,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
       attachments = messageAttachments.toBackupAttachments(),
       linkPreview = linkPreviews.map { it.toRemoteLinkPreview() },
       longText = longTextAttachment?.toRemoteFilePointer(mediaArchiveEnabled),
-      reactions = reactionRecords.toBackupReactions()
+      reactions = reactionRecords.toRemoteReactions()
     )
   }
 
@@ -749,7 +750,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         emoji = stickerLocator.emoji,
         data_ = this.toRemoteMessageAttachment().pointer
       ),
-      reactions = reactions.toBackupReactions()
+      reactions = reactions.toRemoteReactions()
     )
   }
 
@@ -796,14 +797,14 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
         timestamp = this.timestamp,
         blockIndex = this.blockIndex,
         blockTimestamp = this.blockTimestamp,
-        mobileCoinIdentification = this.paymentMetaData.mobileCoinTxoIdentification?.toBackup(),
+        mobileCoinIdentification = this.paymentMetaData.mobileCoinTxoIdentification?.toRemote(),
         transaction = this.transaction?.toByteString(),
         receipt = this.receipt?.toByteString()
       )
     )
   }
 
-  private fun PaymentMetaData.MobileCoinTxoIdentification.toBackup(): PaymentNotification.TransactionDetails.MobileCoinTxoIdentification {
+  private fun PaymentMetaData.MobileCoinTxoIdentification.toRemote(): PaymentNotification.TransactionDetails.MobileCoinTxoIdentification {
     return PaymentNotification.TransactionDetails.MobileCoinTxoIdentification(
       publicKey = this.publicKey,
       keyImages = this.keyImages
@@ -873,7 +874,7 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
     }
   }
 
-  private fun List<ReactionRecord>?.toBackupReactions(): List<Reaction> {
+  private fun List<ReactionRecord>?.toRemoteReactions(): List<Reaction> {
     return this
       ?.map {
         Reaction(
