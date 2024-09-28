@@ -2367,7 +2367,8 @@ class ConversationFragment :
   }
 
   private fun handleEditMessage(conversationMessage: ConversationMessage) {
-    if (!MessageConstraintsUtil.isWithinMaxEdits(conversationMessage.messageRecord)) {
+    val isNoteToSelf = viewModel.recipientSnapshot?.isSelf ?: false
+    if (!isNoteToSelf && !MessageConstraintsUtil.isWithinMaxEdits(conversationMessage.messageRecord)) {
       Log.i(TAG, "Too many edits to the message")
       Dialogs.showAlertDialog(requireContext(), null, resources.getQuantityString(R.plurals.ConversationActivity_edit_message_too_many_edits, MessageConstraintsUtil.MAX_EDIT_COUNT, MessageConstraintsUtil.MAX_EDIT_COUNT))
 
