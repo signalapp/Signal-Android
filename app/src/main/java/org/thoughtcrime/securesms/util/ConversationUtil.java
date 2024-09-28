@@ -142,7 +142,7 @@ public final class ConversationUtil {
   }
 
   public static int getMaxShortcuts(@NonNull Context context) {
-    return Math.min(ShortcutManagerCompat.getMaxShortcutCountPerActivity(context), 150);
+    return Math.min(ShortcutManagerCompat.getMaxShortcutCountPerActivity(context), 10);
   }
 
   /**
