@@ -7,6 +7,9 @@ permissions:
   contents: read # to fetch code (actions/checkout)
   pull-requests: write # to comment on PR
 
+env:
+  NDK_VERSION: '27.0.12077973'
+
 jobs:
   assemble-base:
     if: ${{ github.repository != 'signalapp/Signal-Android' }}
@@ -25,6 +28,9 @@ jobs:
         java-version: 17
         cache: gradle
 
+    - name: Install NDK
+      run: echo "y" | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "ndk;${{ env.NDK_VERSION }}"
+
     - name: Validate Gradle Wrapper
       uses: gradle/wrapper-validation-action@v1
 
@@ -34,7 +40,6 @@ jobs:
       with:
         path: diffuse-base.apk
         key: diffuse-${{ github.event.pull_request.base.sha }}
-
 
     - name: Build with Gradle
       if: steps.cache-base.outputs.cache-hit != 'true'
@@ -70,7 +75,7 @@ jobs:
     - uses: peter-evans/create-or-update-comment@v3
       with:
         body: |
-          Diffuse output: 
+          Diffuse output:
 
           ${{ steps.diffuse.outputs.diff-gh-comment }}
         edit-mode: replace

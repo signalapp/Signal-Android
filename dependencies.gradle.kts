@@ -127,7 +127,7 @@ dependencyResolutionManagement {
       library("libsignal-client", "org.signal", "libsignal-client").versionRef("libsignal-client")
       library("libsignal-android", "org.signal", "libsignal-android").versionRef("libsignal-client")
       library("signal-aesgcmprovider", "org.signal:aesgcmprovider:0.0.3")
-      library("signal-ringrtc", "org.signal:ringrtc-android:2.48.0")
+      library("signal-ringrtc", "org.signal:ringrtc-android:2.48.1")
       library("signal-android-database-sqlcipher", "org.signal:sqlcipher-android:4.6.0-S1")
 
       // Third Party
