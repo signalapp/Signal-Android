@@ -261,6 +261,7 @@
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Tap for photo, hold for video</string>
+    <!-- Accessibility content description to describe the capture button when taking an image/video -->
     <string name="CameraXFragment_capture_description">Capture</string>
     <string name="CameraXFragment_change_camera_description">Change camera</string>
     <string name="CameraXFragment_open_gallery_description">Open gallery</string>
@@ -404,6 +405,7 @@
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
     <string name="ConversationItem_copied_text">Copied %s</string>
     <string name="ConversationItem_from_s">from %s</string>
+    <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">to %s</string>
     <string name="ConversationItem_read_more">&#160; Read More</string>
     <string name="ConversationItem_download_more">&#160; Download More</string>
@@ -437,6 +439,7 @@
     <string name="ConversationActivity_send_edit">Send edit</string>
     <string name="ConversationActivity_compose_message">Compose message</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sorry, there was an error setting your attachment.</string>
+    <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Recipient is not a valid SMS or email address!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Message is empty!</string>
     <string name="ConversationActivity_group_members">Group members</string>
@@ -577,6 +580,7 @@
         <item quantity="other">Saving %1$d attachments to storage…</item>
     </plurals>
     <string name="ConversationFragment_pending">Pending…</string>
+    <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">Data (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
@@ -1509,6 +1513,7 @@
         <item quantity="other">Send %d SMS invites?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
+    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
 
     <!-- LearnMoreTextView -->
@@ -1933,6 +1938,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Let %1$s message you and share your name and photo with them? You won\'t receive any messages until you unblock them.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Let %1$s message you? You won\'t receive any messages until you unblock them.</string>
+    <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Get updates and news from %1$s? You won\'t receive any updates until you unblock them.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">This Legacy Group can no longer be used. Create a new group to activate new features like @mentions and admins.</string>
@@ -2248,6 +2254,7 @@
 
     <string name="WebRtcCallView__no_one_else_is_here">No one else is here</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s is in this call</string>
+    <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
     <string name="WebRtcCallView__s_are_in_this_call">%1$s are in this call</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s and %2$s are in this call</string>
 
@@ -3091,6 +3098,7 @@
     <string name="conversation_item_sent__message_read">Message read</string>
 
     <!-- conversation_item_received -->
+    <!-- Content description for profile pictures -->
     <string name="conversation_item_received__contact_photo_description">Contact photo</string>
 
     <!-- ConversationUpdateItem -->
@@ -3175,6 +3183,7 @@
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Everything looks good now!</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">To receive call notifications, tap here and turn on \"Show notifications.\"</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">To receive call notifications, tap here and turn on notifications and make sure Sound and Pop-up are enabled.</string>
+    <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">To receive call notifications, tap here and enable background activity in \"Battery\" settings. </string>
     <string name="EnableCallNotificationSettingsDialog__settings">Settings</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">To receive call notifications, tap Settings and turn on \"Show notifications.\"</string>
@@ -3411,6 +3420,7 @@
     <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
     <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
     <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+    <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">Support Info</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android Support Request</string>
     <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string>
@@ -3499,6 +3509,7 @@
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
     <string name="preferences__change_passphrase">Change passphrase</string>
     <string name="preferences__change_your_passphrase">Change your passphrase</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
     <string name="preferences__enable_passphrase">Enable passphrase screen lock</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock screen and notifications with a passphrase</string>
     <string name="preferences__screen_security">Screen security</string>
@@ -3511,6 +3522,7 @@
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>
     <string name="preferences__customize">Customize</string>
     <string name="preferences__change_sound_and_vibration">Change sound and vibration</string>
+    <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Sound</string>
     <string name="preferences__silent">Silent</string>
     <string name="preferences__default">Default</string>
