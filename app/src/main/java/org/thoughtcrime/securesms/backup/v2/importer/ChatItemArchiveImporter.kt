@@ -1,9 +1,9 @@
 /*
- * Copyright 2023 Signal Messenger, LLC
+ * Copyright 2024 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.backup.v2.database
+package org.thoughtcrime.securesms.backup.v2.importer
 
 import android.content.ContentValues
 import androidx.core.content.contentValuesOf
@@ -82,13 +82,13 @@ import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
  * An object that will ingest all fo the [ChatItem]s you want to write, buffer them until hitting a specified batch size, and then batch insert them
  * for fast throughput.
  */
-class ChatItemImportInserter(
+class ChatItemArchiveImporter(
   private val db: SQLiteDatabase,
   private val importState: ImportState,
   private val batchSize: Int
 ) {
   companion object {
-    private val TAG = Log.tag(ChatItemImportInserter::class.java)
+    private val TAG = Log.tag(ChatItemArchiveImporter::class.java)
 
     private val MESSAGE_COLUMNS = arrayOf(
       MessageTable.DATE_SENT,
@@ -150,7 +150,7 @@ class ChatItemImportInserter(
    * Indicate that you want to insert the [ChatItem] into the database.
    * If this item causes the buffer to hit the batch size, then a batch of items will actually be inserted.
    */
-  fun insert(chatItem: ChatItem) {
+  fun import(chatItem: ChatItem) {
     val fromLocalRecipientId: RecipientId? = importState.remoteToLocalRecipientId[chatItem.authorId]
     if (fromLocalRecipientId == null) {
       Log.w(TAG, "[insert] Could not find a local recipient for backup recipient ID ${chatItem.authorId}! Skipping.")

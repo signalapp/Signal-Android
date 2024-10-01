@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
 /**
  * Handles importing/exporting [StickerPack] frames for an archive.
  */
-object StickerBackupProcessor {
+object StickerArchiveProcessor {
   fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
     StickerPackRecordReader(db.stickerTable.allStickerPacks).use { reader ->
       var record: StickerPackRecord? = reader.next

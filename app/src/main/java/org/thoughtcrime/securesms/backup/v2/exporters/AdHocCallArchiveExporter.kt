@@ -15,7 +15,7 @@ import java.io.Closeable
  * Provides a nice iterable interface over a [RecipientTable] cursor, converting rows to [BackupRecipient]s.
  * Important: Because this is backed by a cursor, you must close it. It's recommended to use `.use()` or try-with-resources.
  */
-class AdHocCallArchiveExportIterator(private val cursor: Cursor) : Iterator<AdHocCall>, Closeable {
+class AdHocCallArchiveExporter(private val cursor: Cursor) : Iterator<AdHocCall>, Closeable {
   override fun hasNext(): Boolean {
     return cursor.count > 0 && !cursor.isLast
   }

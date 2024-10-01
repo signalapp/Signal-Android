@@ -248,6 +248,14 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       get() = instance!!.rawWritableDatabase
 
     @JvmStatic
+    val readableDatabase: SQLiteDatabase
+      get() = instance!!.signalReadableDatabase
+
+    @JvmStatic
+    val writableDatabase: SQLiteDatabase
+      get() = instance!!.signalWritableDatabase
+
+    @JvmStatic
     val backupDatabase: net.zetetic.database.sqlcipher.SQLiteDatabase
       get() = instance!!.rawReadableDatabase
 

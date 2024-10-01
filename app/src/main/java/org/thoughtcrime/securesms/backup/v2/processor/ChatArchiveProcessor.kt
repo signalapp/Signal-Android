@@ -9,7 +9,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.database.getThreadsForBackup
-import org.thoughtcrime.securesms.backup.v2.database.restoreFromBackup
+import org.thoughtcrime.securesms.backup.v2.importer.ChatArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.proto.Chat
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
@@ -19,8 +19,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 /**
  * Handles importing/exporting [Chat] frames for an archive.
  */
-object ChatBackupProcessor {
-  val TAG = Log.tag(ChatBackupProcessor::class.java)
+object ChatArchiveProcessor {
+  val TAG = Log.tag(ChatArchiveProcessor::class.java)
 
   fun export(db: SignalDatabase, exportState: ExportState, emitter: BackupFrameEmitter) {
     db.threadTable.getThreadsForBackup(db).use { reader ->
@@ -42,10 +42,9 @@ object ChatBackupProcessor {
       return
     }
 
-    SignalDatabase.threads.restoreFromBackup(chat, recipientId, importState).let { threadId ->
-      importState.chatIdToLocalRecipientId[chat.id] = recipientId
-      importState.chatIdToLocalThreadId[chat.id] = threadId
-      importState.chatIdToBackupRecipientId[chat.id] = chat.recipientId
-    }
+    val threadId = ChatArchiveImporter.import(chat, recipientId, importState)
+    importState.chatIdToLocalRecipientId[chat.id] = recipientId
+    importState.chatIdToLocalThreadId[chat.id] = threadId
+    importState.chatIdToBackupRecipientId[chat.id] = chat.recipientId
   }
 }

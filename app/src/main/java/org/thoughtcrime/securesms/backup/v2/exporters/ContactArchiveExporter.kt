@@ -26,7 +26,7 @@ import java.io.Closeable
  * Provides a nice iterable interface over a [RecipientTable] cursor, converting rows to [ArchiveRecipient]s.
  * Important: Because this is backed by a cursor, you must close it. It's recommended to use `.use()` or try-with-resources.
  */
-class ContactArchiveExportIterator(private val cursor: Cursor, private val selfId: Long) : Iterator<ArchiveRecipient>, Closeable {
+class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Long) : Iterator<ArchiveRecipient>, Closeable {
   override fun hasNext(): Boolean {
     return cursor.count > 0 && !cursor.isLast
   }

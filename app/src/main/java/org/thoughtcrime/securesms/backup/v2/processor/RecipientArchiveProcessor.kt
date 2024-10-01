@@ -13,10 +13,11 @@ import org.thoughtcrime.securesms.backup.v2.database.getAllForBackup
 import org.thoughtcrime.securesms.backup.v2.database.getCallLinksForBackup
 import org.thoughtcrime.securesms.backup.v2.database.getContactsForBackup
 import org.thoughtcrime.securesms.backup.v2.database.getGroupsForBackup
-import org.thoughtcrime.securesms.backup.v2.database.restoreContactFromBackup
-import org.thoughtcrime.securesms.backup.v2.database.restoreFromBackup
-import org.thoughtcrime.securesms.backup.v2.database.restoreGroupFromBackup
 import org.thoughtcrime.securesms.backup.v2.database.restoreReleaseNotes
+import org.thoughtcrime.securesms.backup.v2.importer.CallLinkArchiveImporter
+import org.thoughtcrime.securesms.backup.v2.importer.ContactArchiveImporter
+import org.thoughtcrime.securesms.backup.v2.importer.DistributionListArchiveImporter
+import org.thoughtcrime.securesms.backup.v2.importer.GroupArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.proto.ReleaseNotes
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
@@ -27,9 +28,9 @@ import org.thoughtcrime.securesms.recipients.Recipient
 /**
  * Handles importing/exporting [ArchiveRecipient] frames for an archive.
  */
-object RecipientBackupProcessor {
+object RecipientArchiveProcessor {
 
-  val TAG = Log.tag(RecipientBackupProcessor::class.java)
+  val TAG = Log.tag(RecipientArchiveProcessor::class.java)
 
   fun export(db: SignalDatabase, signalStore: SignalStore, exportState: ExportState, emitter: BackupFrameEmitter) {
     val selfId = db.recipientTable.getByAci(signalStore.accountValues.aci!!).get().toLong()
@@ -79,12 +80,12 @@ object RecipientBackupProcessor {
 
   fun import(recipient: ArchiveRecipient, importState: ImportState) {
     val newId = when {
-      recipient.contact != null -> SignalDatabase.recipients.restoreContactFromBackup(recipient.contact)
-      recipient.group != null -> SignalDatabase.recipients.restoreGroupFromBackup(recipient.group)
-      recipient.distributionList != null -> SignalDatabase.distributionLists.restoreFromBackup(recipient.distributionList, importState)
+      recipient.contact != null -> ContactArchiveImporter.import(recipient.contact)
+      recipient.group != null -> GroupArchiveImporter.import(recipient.group)
+      recipient.distributionList != null -> DistributionListArchiveImporter.import(recipient.distributionList, importState)
       recipient.self != null -> Recipient.self().id
       recipient.releaseNotes != null -> SignalDatabase.recipients.restoreReleaseNotes()
-      recipient.callLink != null -> SignalDatabase.callLinks.restoreFromBackup(recipient.callLink)
+      recipient.callLink != null -> CallLinkArchiveImporter.import(recipient.callLink)
       else -> {
         Log.w(TAG, "Unrecognized recipient type!")
         null

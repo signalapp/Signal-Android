@@ -10,8 +10,6 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.core.app.ShareCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.CallLinks
@@ -27,7 +25,7 @@ import org.thoughtcrime.securesms.events.CallParticipant
  */
 class CallInfoCallbacks(
   private val activity: BaseActivity,
-  private val controlsAndInfoViewModel: ControlsAndInfoViewModel,
+  private val controlsAndInfoViewModel: ControlsAndInfoViewModel
 ) : CallInfoView.Callbacks {
 
   override fun onShareLinkClicked() {

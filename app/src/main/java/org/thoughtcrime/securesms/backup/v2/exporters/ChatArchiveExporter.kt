@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper
 import java.io.Closeable
 
-class ChatArchiveExportIterator(private val cursor: Cursor, private val db: SignalDatabase) : Iterator<Chat>, Closeable {
+class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalDatabase) : Iterator<Chat>, Closeable {
   override fun hasNext(): Boolean {
     return cursor.count > 0 && !cursor.isLast
   }

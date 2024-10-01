@@ -85,7 +85,7 @@ import kotlin.jvm.optionals.getOrNull
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange as BackupBodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
 
-private val TAG = Log.tag(ChatItemArchiveExportIterator::class.java)
+private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
 private const val COLUMN_BASE_TYPE = "base_type"
 
 /**
@@ -95,7 +95,7 @@ private const val COLUMN_BASE_TYPE = "base_type"
  *
  * All of this complexity is hidden from the user -- they just get a normal iterator interface.
  */
-class ChatItemArchiveExportIterator(
+class ChatItemArchiveExporter(
   private val db: SignalDatabase,
   private val cursor: Cursor,
   private val batchSize: Int,

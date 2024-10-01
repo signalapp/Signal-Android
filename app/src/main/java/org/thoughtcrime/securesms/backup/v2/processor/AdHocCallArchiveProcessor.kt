@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.processor
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.database.getAdhocCallsForBackup
-import org.thoughtcrime.securesms.backup.v2.database.restoreCallLogFromBackup
+import org.thoughtcrime.securesms.backup.v2.importer.AdHodCallArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.proto.AdHocCall
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
@@ -17,9 +17,9 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 /**
  * Handles importing/exporting [AdHocCall] frames for an archive.
  */
-object AdHocCallBackupProcessor {
+object AdHocCallArchiveProcessor {
 
-  val TAG = Log.tag(AdHocCallBackupProcessor::class.java)
+  val TAG = Log.tag(AdHocCallArchiveProcessor::class.java)
 
   fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
     db.callTable.getAdhocCallsForBackup().use { reader ->
@@ -30,6 +30,6 @@ object AdHocCallBackupProcessor {
   }
 
   fun import(call: AdHocCall, importState: ImportState) {
-    SignalDatabase.calls.restoreCallLogFromBackup(call, importState)
+    AdHodCallArchiveImporter.import(call, importState)
   }
 }

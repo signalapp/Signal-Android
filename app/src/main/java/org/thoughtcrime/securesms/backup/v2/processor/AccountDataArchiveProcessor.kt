@@ -44,9 +44,9 @@ import java.util.Currency
 /**
  * Handles importing/exporting [AccountData] frames for an archive.
  */
-object AccountDataBackupProcessor {
+object AccountDataArchiveProcessor {
 
-  private val TAG = Log.tag(AccountDataBackupProcessor::class)
+  private val TAG = Log.tag(AccountDataArchiveProcessor::class)
 
   fun export(db: SignalDatabase, signalStore: SignalStore, emitter: BackupFrameEmitter) {
     val context = AppDependencies.application

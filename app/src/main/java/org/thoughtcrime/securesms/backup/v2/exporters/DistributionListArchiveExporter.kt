@@ -24,7 +24,7 @@ import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.Closeable
 
-class DistributionListArchiveExportIterator(
+class DistributionListArchiveExporter(
   private val cursor: Cursor,
   private val distributionListTables: DistributionListTables
 ) : Iterator<ArchiveRecipient>, Closeable {
