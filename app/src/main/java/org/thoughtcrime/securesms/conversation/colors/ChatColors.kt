@@ -148,9 +148,17 @@ class ChatColors(
   }
 
   companion object {
+    /**
+     * Converts a network chat color into our domain model object.
+     *
+     * Has additional protection to ensure that a rogue client can't send us a malformed
+     * color.
+     */
     @JvmStatic
     fun forChatColor(id: Id, chatColor: ChatColor): ChatColors {
-      assert((chatColor.singleColor != null) xor (chatColor.linearGradient != null))
+      if (chatColor.singleColor == null && chatColor.linearGradient == null) {
+        return ChatColorsPalette.Bubbles.ULTRAMARINE
+      }
 
       return if (chatColor.linearGradient != null) {
         val linearGradient = LinearGradient(
@@ -160,10 +168,12 @@ class ChatColors(
         )
 
         forGradient(id, linearGradient)
-      } else {
-        val singleColor = chatColor.singleColor!!.color
+      } else if (chatColor.singleColor != null) {
+        val singleColor = chatColor.singleColor.color
 
         forColor(id, singleColor)
+      } else {
+        ChatColorsPalette.Bubbles.ULTRAMARINE
       }
     }
 
