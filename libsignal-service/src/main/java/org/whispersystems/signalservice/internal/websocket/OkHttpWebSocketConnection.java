@@ -11,6 +11,7 @@ import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl;
+import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -40,6 +41,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.BehaviorSubject;
 import io.reactivex.rxjava3.subjects.SingleSubject;
 import okhttp3.ConnectionSpec;
+import okhttp3.Credentials;
 import okhttp3.Dns;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -115,11 +117,7 @@ public class OkHttpWebSocketConnection extends WebSocketListener implements WebS
     SignalServiceUrl serviceUrl = serviceUrls[random.nextInt(serviceUrls.length)];
     String           uri        = serviceUrl.getUrl().replace("https://", "wss://").replace("http://", "ws://");
 
-    if (credentialsProvider.isPresent()) {
-      return new Pair<>(serviceUrl, uri + "/v1/websocket/" + extraPathUri + "?login=%s&password=%s");
-    } else {
-      return new Pair<>(serviceUrl, uri + "/v1/websocket/" + extraPathUri);
-    }
+    return new Pair<>(serviceUrl, uri + "/v1/websocket/" + extraPathUri);
   }
 
   @Override
@@ -130,13 +128,6 @@ public class OkHttpWebSocketConnection extends WebSocketListener implements WebS
       Pair<SignalServiceUrl, String> connectionInfo = getConnectionInfo();
       SignalServiceUrl               serviceUrl     = connectionInfo.first();
       String                         wsUri          = connectionInfo.second();
-      String                         filledUri;
-
-      if (credentialsProvider.isPresent()) {
-        filledUri = String.format(wsUri, credentialsProvider.get().getUsername(), credentialsProvider.get().getPassword());
-      } else {
-        filledUri = wsUri;
-      }
 
       Pair<SSLSocketFactory, X509TrustManager> socketFactory = createTlsSocketFactory(trustStore);
 
@@ -157,10 +148,18 @@ public class OkHttpWebSocketConnection extends WebSocketListener implements WebS
 
       OkHttpClient okHttpClient = clientBuilder.build();
 
-      Request.Builder requestBuilder = new Request.Builder().url(filledUri);
+      Request.Builder requestBuilder = new Request.Builder().url(wsUri);
 
       if (signalAgent != null) {
         requestBuilder.addHeader("X-Signal-Agent", signalAgent);
+      }
+
+      if (credentialsProvider.isPresent()) {
+        if (credentialsProvider.get().getUsername() != null && credentialsProvider.get().getPassword() != null) {
+          requestBuilder.addHeader("Authorization", Credentials.basic(credentialsProvider.get().getUsername(), credentialsProvider.get().getPassword()));
+        } else {
+          Log.w(TAG, "CredentialsProvider was present, but username or password was missing!");
+        }
       }
 
       requestBuilder.addHeader("X-Signal-Receive-Stories", allowStories ? "true" : "false");
