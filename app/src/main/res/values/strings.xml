@@ -1007,6 +1007,7 @@
     <string name="DeviceListActivity_unlink_s">Unlink \'%s\'?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">By unlinking this device, it will no longer be able to send or receive messages.</string>
     <string name="DeviceListActivity_network_connection_failed">Network connection failed</string>
+    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
     <string name="DeviceListActivity_try_again">Try again</string>
     <string name="DeviceListActivity_unlinking_device">Unlinking device…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">Unlinking device</string>
@@ -3071,6 +3072,7 @@
     <string name="conversation_activity__attachment_thumbnail">Attachment Thumbnail</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Toggle quick camera attachment drawer</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Record and send audio attachment</string>
+    <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lock recording of audio attachment</string>
     <string name="conversation_activity__message_could_not_be_sent">Message could not be sent. Check your connection and try again.</string>
 
@@ -5382,6 +5384,7 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name ="MediaReviewFragment__add_to_story">Add to story</string>
     <string name="MediaReviewFragment__add_a_message">Add a message</string>
+    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">Add a reply</string>
     <string name="MediaReviewFragment__send_to">Send to</string>
     <string name="MediaReviewFragment__view_once_message">View once media</string>
