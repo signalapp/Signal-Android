@@ -1,0 +1,109 @@
+name: 🛠️ Bug report
+description:  Let us know that something isn't working as intended
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Our bug tracker is ONLY for bugs. It is not for feature requests, questions, or comments.
+        
+        Please fill out this template with all the information you have. We can't do much without
+        both the logs and a detailed description of what you've encountered. Please do your best!
+        
+        Please note that this tracker is only for bugs. Please try these locations if you have a question or comment:
+        
+          https://community.signalusers.org/
+          https://support.signal.org/
+          support@signal.org
+  - type: checkboxes
+    id: guidelines
+    attributes:
+      label: "Guidelines"
+      description: "Search issues here: https://github.com/signalapp/Signal-Android/issues"
+      options:
+        - label: I have searched searched open and closed issues for duplicates
+          required: true
+        - label: I am submitting a bug report for existing functionality that does not work as intended
+          required: true
+        - label: I have read https://github.com/signalapp/Signal-Android/wiki/Submitting-useful-bug-reports
+          required: true
+        - label: This isn't a feature request or a discussion topic
+          required: true
+  - type: textarea
+    id: description-of-bug
+    attributes:
+      label: Bug description
+      description: A clear and concise description of what the problem is that made you submit this report.
+      placeholder: When trying to do this, then...
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: List the steps to reproduce the issue you are encountering.
+      placeholder: |
+        1. Go to any chat.
+        2. Do thing A.
+        3. Do thing B.
+        4. Things look off.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: Expected result
+      description: Describe in detail what the correct behavior should be.
+      placeholder: It would display things correctly.
+    validations:
+      required: true
+  - type: textarea
+    id: actual-result
+    attributes:
+      label: Actual result
+      description: Describe the details of the buggy behavior.
+      placeholder: "It fails and displays the following error:"
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: "How to take screenshots on Android: https://support.google.com/android/answer/9075928"
+      placeholder: You can drag and drop images into this text box.
+    validations:
+      required: false
+  - type: input
+    id: device-model
+    attributes:
+      label: Device
+      description: Usually located in system settings -> About Phone
+      placeholder: Manufacturer and model
+    validations:
+      required: true
+  - type: input
+    id: android-version
+    attributes:
+      label: Android version
+      description: Usually located in system settings -> About Phone
+      placeholder: "14"
+    validations:
+      required: true
+  - type: input
+    id: signal-version
+    attributes:
+      label: Signal version
+      description: You can see Signal's version number at Settings -> Help
+      placeholder: 7.17.6
+    validations:
+      required: true
+  - type: textarea
+    id: debug-log
+    attributes:
+      label: Link to debug log
+      description: |
+        Immediately after the bug has happened, submit a debug log via Settings -> Help -> Debug Log, then copy that URL here.
+        See https://support.signal.org/hc/en-us/articles/360007318591#android_debug
+      placeholder: Paste your link or debug log file here.
+    validations:
+      required: false
