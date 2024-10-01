@@ -73,13 +73,7 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
   @Override
   public void onCreate(SQLiteDatabase db) {
     Log.i(TAG, "onCreate()");
-
     db.execSQL(CREATE_TABLE);
-
-    if (SignalDatabase.hasTable("megaphone")) {
-      Log.i(TAG, "Found old megaphone table. Migrating data.");
-      migrateDataFromPreviousDatabase(SignalDatabase.getRawDatabase(), db);
-    }
   }
 
   @Override
@@ -90,15 +84,7 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
   @Override
   public void onOpen(SQLiteDatabase db) {
     Log.i(TAG, "onOpen()");
-
     db.setForeignKeyConstraintsEnabled(true);
-
-    SignalExecutors.BOUNDED.execute(() -> {
-      if (SignalDatabase.hasTable("megaphone")) {
-        Log.i(TAG, "Dropping original megaphone table from the main database.");
-        SignalDatabase.getRawDatabase().execSQL("DROP TABLE megaphone");
-      }
-    });
   }
 
   public void insert(@NonNull Collection<Event> events) {
@@ -200,21 +186,5 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
   @Override
   public @NonNull SQLiteDatabase getSqlCipherDatabase() {
     return getWritableDatabase();
-  }
-
-  private static void migrateDataFromPreviousDatabase(@NonNull SQLiteDatabase oldDb, @NonNull SQLiteDatabase newDb) {
-    try (Cursor cursor = oldDb.rawQuery("SELECT * FROM megaphone", null)) {
-      while (cursor.moveToNext()) {
-        ContentValues values = new ContentValues();
-
-        values.put(EVENT, CursorUtil.requireString(cursor, "event"));
-        values.put(SEEN_COUNT, CursorUtil.requireInt(cursor, "seen_count"));
-        values.put(LAST_SEEN, CursorUtil.requireLong(cursor, "last_seen"));
-        values.put(FIRST_VISIBLE, CursorUtil.requireLong(cursor, "first_visible"));
-        values.put(FINISHED, CursorUtil.requireInt(cursor, "finished"));
-
-        newDb.insert(TABLE_NAME, null, values);
-      }
-    }
   }
 }

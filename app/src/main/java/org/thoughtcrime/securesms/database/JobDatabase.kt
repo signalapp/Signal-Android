@@ -7,9 +7,7 @@ import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
-import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
-import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.delete
 import org.signal.core.util.forEach
 import org.signal.core.util.insertInto
@@ -128,21 +126,6 @@ class JobDatabase(
     db.execSQL(Jobs.CREATE_TABLE)
     db.execSQL(Constraints.CREATE_TABLE)
     db.execSQL(Dependencies.CREATE_TABLE)
-
-    if (SignalDatabase.hasTable("job_spec")) {
-      Log.i(TAG, "Found old job_spec table. Migrating data.")
-      migrateJobSpecsFromPreviousDatabase(SignalDatabase.rawDatabase, db)
-    }
-
-    if (SignalDatabase.hasTable("constraint_spec")) {
-      Log.i(TAG, "Found old constraint_spec table. Migrating data.")
-      migrateConstraintSpecsFromPreviousDatabase(SignalDatabase.rawDatabase, db)
-    }
-
-    if (SignalDatabase.hasTable("dependency_spec")) {
-      Log.i(TAG, "Found old dependency_spec table. Migrating data.")
-      migrateDependencySpecsFromPreviousDatabase(SignalDatabase.rawDatabase, db)
-    }
   }
 
   override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -161,14 +144,7 @@ class JobDatabase(
 
   override fun onOpen(db: SQLiteDatabase) {
     Log.i(TAG, "onOpen()")
-
     db.setForeignKeyConstraintsEnabled(true)
-
-    SignalExecutors.BOUNDED.execute {
-      dropTableIfPresent("job_spec")
-      dropTableIfPresent("constraint_spec")
-      dropTableIfPresent("dependency_spec")
-    }
   }
 
   @Synchronized
@@ -488,13 +464,6 @@ class JobDatabase(
     return writableDatabase
   }
 
-  private fun dropTableIfPresent(table: String) {
-    if (SignalDatabase.hasTable(table)) {
-      Log.i(TAG, "Dropping original $table table from the main database.")
-      SignalDatabase.rawDatabase.execSQL("DROP TABLE $table")
-    }
-  }
-
   /** Should only be used for debugging! */
   fun debugResetBackoffInterval() {
     writableDatabase.update(Jobs.TABLE_NAME, contentValuesOf(Jobs.NEXT_BACKOFF_INTERVAL to 0), null, null)
@@ -538,49 +507,6 @@ class JobDatabase(
         }
       }
       return instance!!
-    }
-
-    private fun migrateJobSpecsFromPreviousDatabase(oldDb: SQLiteDatabase, newDb: SQLiteDatabase) {
-      oldDb.rawQuery("SELECT * FROM job_spec", null).use { cursor ->
-        while (cursor.moveToNext()) {
-          val values = ContentValues()
-          values.put(Jobs.JOB_SPEC_ID, CursorUtil.requireString(cursor, "job_spec_id"))
-          values.put(Jobs.FACTORY_KEY, CursorUtil.requireString(cursor, "factory_key"))
-          values.put(Jobs.QUEUE_KEY, CursorUtil.requireString(cursor, "queue_key"))
-          values.put(Jobs.CREATE_TIME, CursorUtil.requireLong(cursor, "create_time"))
-          values.put(Jobs.LAST_RUN_ATTEMPT_TIME, 0)
-          values.put(Jobs.NEXT_BACKOFF_INTERVAL, 0)
-          values.put(Jobs.RUN_ATTEMPT, CursorUtil.requireInt(cursor, "run_attempt"))
-          values.put(Jobs.MAX_ATTEMPTS, CursorUtil.requireInt(cursor, "max_attempts"))
-          values.put(Jobs.LIFESPAN, CursorUtil.requireLong(cursor, "lifespan"))
-          values.put(Jobs.SERIALIZED_DATA, CursorUtil.requireString(cursor, "serialized_data"))
-          values.put(Jobs.SERIALIZED_INPUT_DATA, CursorUtil.requireString(cursor, "serialized_input_data"))
-          values.put(Jobs.IS_RUNNING, CursorUtil.requireInt(cursor, "is_running"))
-          newDb.insert(Jobs.TABLE_NAME, null, values)
-        }
-      }
-    }
-
-    private fun migrateConstraintSpecsFromPreviousDatabase(oldDb: SQLiteDatabase, newDb: SQLiteDatabase) {
-      oldDb.rawQuery("SELECT * FROM constraint_spec", null).use { cursor ->
-        while (cursor.moveToNext()) {
-          val values = ContentValues()
-          values.put(Constraints.JOB_SPEC_ID, CursorUtil.requireString(cursor, "job_spec_id"))
-          values.put(Constraints.FACTORY_KEY, CursorUtil.requireString(cursor, "factory_key"))
-          newDb.insert(Constraints.TABLE_NAME, null, values)
-        }
-      }
-    }
-
-    private fun migrateDependencySpecsFromPreviousDatabase(oldDb: SQLiteDatabase, newDb: SQLiteDatabase) {
-      oldDb.rawQuery("SELECT * FROM dependency_spec", null).use { cursor ->
-        while (cursor.moveToNext()) {
-          val values = ContentValues()
-          values.put(Dependencies.JOB_SPEC_ID, CursorUtil.requireString(cursor, "job_spec_id"))
-          values.put(Dependencies.DEPENDS_ON_JOB_SPEC_ID, CursorUtil.requireString(cursor, "depends_on_job_spec_id"))
-          newDb.insert(Dependencies.TABLE_NAME, null, values)
-        }
-      }
     }
   }
 }
