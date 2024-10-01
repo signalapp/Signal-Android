@@ -135,7 +135,9 @@ class LinkDeviceFragment : ComposeFragment() {
 
     LaunchedEffect(state.seenEducationSheet) {
       if (state.seenEducationSheet) {
-        biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link)) }
+        if (!biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link)) }) {
+          navController.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
+        }
         viewModel.markEducationSheetSeen(false)
       }
     }
