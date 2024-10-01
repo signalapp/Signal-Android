@@ -133,7 +133,7 @@ class ControlsAndInfoController private constructor(
   private var previousCallControlHeightData = HeightData()
   private var controlState: WebRtcControls = WebRtcControls.NONE
 
-  private val callInfoCallbacks = CallInfoCallbacks(webRtcCallActivity, controlsAndInfoViewModel, disposables)
+  private val callInfoCallbacks = CallInfoCallbacks(webRtcCallActivity, controlsAndInfoViewModel)
 
   init {
     raiseHandComposeView.apply {

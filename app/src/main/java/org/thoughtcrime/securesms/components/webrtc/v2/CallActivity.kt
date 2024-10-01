@@ -29,7 +29,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
@@ -89,10 +88,8 @@ class CallActivity : BaseActivity(), CallControlsCallback {
     val fullscreenHelper = FullscreenHelper(this)
 
     lifecycleDisposable.bindTo(this)
-    val compositeDisposable = CompositeDisposable()
-    lifecycleDisposable.add(compositeDisposable)
 
-    val callInfoCallbacks = CallInfoCallbacks(this, controlsAndInfoViewModel, compositeDisposable)
+    val callInfoCallbacks = CallInfoCallbacks(this, controlsAndInfoViewModel)
 
     observeCallEvents()
     viewModel.processCallIntent(CallIntent(intent))
