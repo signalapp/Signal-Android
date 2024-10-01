@@ -6,9 +6,9 @@
 package org.thoughtcrime.securesms.backup.v2.processor
 
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
-import org.thoughtcrime.securesms.backup.v2.database.BackupRecipient
 import org.thoughtcrime.securesms.backup.v2.database.getAllForBackup
 import org.thoughtcrime.securesms.backup.v2.database.getCallLinksForBackup
 import org.thoughtcrime.securesms.backup.v2.database.getContactsForBackup
@@ -24,6 +24,9 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 
+/**
+ * Handles importing/exporting [ArchiveRecipient] frames for an archive.
+ */
 object RecipientBackupProcessor {
 
   val TAG = Log.tag(RecipientBackupProcessor::class.java)
@@ -35,7 +38,7 @@ object RecipientBackupProcessor {
       exportState.recipientIds.add(releaseChannelId.toLong())
       emitter.emit(
         Frame(
-          recipient = BackupRecipient(
+          recipient = ArchiveRecipient(
             id = releaseChannelId.toLong(),
             releaseNotes = ReleaseNotes()
           )
@@ -46,33 +49,35 @@ object RecipientBackupProcessor {
     }
 
     db.recipientTable.getContactsForBackup(selfId).use { reader ->
-      for (backupRecipient in reader) {
-        if (backupRecipient != null) {
-          exportState.recipientIds.add(backupRecipient.id)
-          emitter.emit(Frame(recipient = backupRecipient))
-        }
+      for (recipient in reader) {
+        exportState.recipientIds.add(recipient.id)
+        emitter.emit(Frame(recipient = recipient))
       }
     }
 
     db.recipientTable.getGroupsForBackup().use { reader ->
-      for (backupRecipient in reader) {
-        exportState.recipientIds.add(backupRecipient.id)
-        emitter.emit(Frame(recipient = backupRecipient))
+      for (recipient in reader) {
+        exportState.recipientIds.add(recipient.id)
+        emitter.emit(Frame(recipient = recipient))
       }
     }
 
-    db.distributionListTables.getAllForBackup().forEach {
-      exportState.recipientIds.add(it.id)
-      emitter.emit(Frame(recipient = it))
+    db.distributionListTables.getAllForBackup().use { reader ->
+      for (recipient in reader) {
+        exportState.recipientIds.add(recipient.id)
+        emitter.emit(Frame(recipient = recipient))
+      }
     }
 
-    db.callLinkTable.getCallLinksForBackup().forEach {
-      exportState.recipientIds.add(it.id)
-      emitter.emit(Frame(recipient = it))
+    db.callLinkTable.getCallLinksForBackup().use { reader ->
+      for (recipient in reader) {
+        exportState.recipientIds.add(recipient.id)
+        emitter.emit(Frame(recipient = recipient))
+      }
     }
   }
 
-  fun import(recipient: BackupRecipient, importState: ImportState) {
+  fun import(recipient: ArchiveRecipient, importState: ImportState) {
     val newId = when {
       recipient.contact != null -> SignalDatabase.recipients.restoreContactFromBackup(recipient.contact)
       recipient.group != null -> SignalDatabase.recipients.restoreGroupFromBackup(recipient.group)

@@ -19,6 +19,9 @@ import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
 
+/**
+ * Handles importing/exporting [StickerPack] frames for an archive.
+ */
 object StickerBackupProcessor {
   fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
     StickerPackRecordReader(db.stickerTable.allStickerPacks).use { reader ->

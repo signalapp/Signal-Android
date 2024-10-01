@@ -16,6 +16,9 @@ import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.recipients.RecipientId
 
+/**
+ * Handles importing/exporting [Chat] frames for an archive.
+ */
 object ChatBackupProcessor {
   val TAG = Log.tag(ChatBackupProcessor::class.java)
 

@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.processor
 
+import android.content.Context
 import okio.ByteString.Companion.EMPTY
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
@@ -40,9 +41,12 @@ import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.util.Currency
 
-object AccountDataProcessor {
+/**
+ * Handles importing/exporting [AccountData] frames for an archive.
+ */
+object AccountDataBackupProcessor {
 
-  private val TAG = Log.tag(AccountDataProcessor::class)
+  private val TAG = Log.tag(AccountDataBackupProcessor::class)
 
   fun export(db: SignalDatabase, signalStore: SignalStore, emitter: BackupFrameEmitter) {
     val context = AppDependencies.application
@@ -68,7 +72,7 @@ object AccountDataProcessor {
             AccountData.UsernameLink(
               entropy = signalStore.accountValues.usernameLink?.entropy?.toByteString() ?: EMPTY,
               serverId = signalStore.accountValues.usernameLink?.serverId?.toByteArray()?.toByteString() ?: EMPTY,
-              color = signalStore.miscValues.usernameQrCodeColorScheme.toBackupUsernameColor()
+              color = signalStore.miscValues.usernameQrCodeColorScheme.toRemoteUsernameColor()
             )
           } else {
             null
@@ -80,7 +84,7 @@ object AccountDataProcessor {
             sealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
             linkPreviews = signalStore.settingsValues.isLinkPreviewsEnabled,
             notDiscoverableByPhoneNumber = signalStore.phoneNumberPrivacyValues.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE,
-            phoneNumberSharingMode = signalStore.phoneNumberPrivacyValues.phoneNumberSharingMode.toBackupPhoneNumberSharingMode(),
+            phoneNumberSharingMode = signalStore.phoneNumberPrivacyValues.phoneNumberSharingMode.toRemotePhoneNumberSharingMode(),
             preferContactAvatars = signalStore.settingsValues.isPreferSystemContactPhotos,
             universalExpireTimerSeconds = signalStore.settingsValues.universalExpireTimer,
             preferredReactionEmoji = signalStore.emojiValues.rawReactions,
@@ -114,107 +118,42 @@ object AccountDataProcessor {
     val settings = accountData.accountSettings
 
     if (settings != null) {
-      TextSecurePreferences.setReadReceiptsEnabled(context, settings.readReceipts)
-      TextSecurePreferences.setTypingIndicatorsEnabled(context, settings.typingIndicators)
-      TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, settings.sealedSenderIndicators)
-      SignalStore.settings.isLinkPreviewsEnabled = settings.linkPreviews
-      SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (settings.notDiscoverableByPhoneNumber) PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberDiscoverabilityMode.DISCOVERABLE
-      SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = settings.phoneNumberSharingMode.toLocalPhoneNumberMode()
-      SignalStore.settings.isPreferSystemContactPhotos = settings.preferContactAvatars
-      SignalStore.settings.universalExpireTimer = settings.universalExpireTimerSeconds
-      SignalStore.emoji.reactions = settings.preferredReactionEmoji
-      SignalStore.inAppPayments.setDisplayBadgesOnProfile(settings.displayBadgesOnProfile)
-      SignalStore.settings.setKeepMutedChatsArchived(settings.keepMutedChatsArchived)
-      SignalStore.story.userHasBeenNotifiedAboutStories = settings.hasSetMyStoriesPrivacy
-      SignalStore.story.userHasViewedOnboardingStory = settings.hasViewedOnboardingStory
-      SignalStore.story.isFeatureDisabled = settings.storiesDisabled
-      SignalStore.story.userHasSeenGroupStoryEducationSheet = settings.hasSeenGroupStoryEducationSheet
-      SignalStore.story.viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
+      importSettings(context, settings, importState)
+    }
 
-      settings.customChatColors
-        .mapNotNull { chatColor ->
-          val id = ChatColors.Id.forLongValue(chatColor.id)
-          when {
-            chatColor.solid != null -> {
-              ChatColors.forColor(id, chatColor.solid)
-            }
-            chatColor.gradient != null -> {
-              ChatColors.forGradient(
-                id,
-                ChatColors.LinearGradient(
-                  degrees = chatColor.gradient.angle.toFloat(),
-                  colors = chatColor.gradient.colors.toIntArray(),
-                  positions = chatColor.gradient.positions.toFloatArray()
-                )
-              )
-            }
-            else -> null
-          }
-        }
-        .forEach { chatColor ->
-          // We need to use the "NotSet" chatId so that this operation is treated as an insert rather than an update
-          val saved = SignalDatabase.chatColors.saveChatColors(chatColor.withId(ChatColors.Id.NotSet))
-          importState.remoteToLocalColorId[chatColor.id.longValue] = saved.id.longValue
-        }
+    if (accountData.donationSubscriberData != null) {
+      if (accountData.donationSubscriberData.subscriberId.size > 0) {
+        val remoteSubscriberId = SubscriberId.fromBytes(accountData.donationSubscriberData.subscriberId.toByteArray())
+        val localSubscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
 
-      if (settings.defaultChatStyle != null) {
-        val chatColors = settings.defaultChatStyle.toLocal(importState)
-        SignalStore.chatColors.chatColors = chatColors
-
-        val wallpaperAttachmentId: AttachmentId? = settings.defaultChatStyle.wallpaperPhoto?.let { filePointer ->
-          filePointer.toLocalAttachment(importState)?.let {
-            SignalDatabase.attachments.restoreWallpaperAttachment(it)
-          }
-        }
-
-        SignalStore.wallpaper.wallpaper = settings.defaultChatStyle.parseChatWallpaper(wallpaperAttachmentId)
-      } else {
-        SignalStore.chatColors.chatColors = null
-        SignalStore.wallpaper.wallpaper = null
-      }
-
-      if (accountData.donationSubscriberData != null) {
-        if (accountData.donationSubscriberData.subscriberId.size > 0) {
-          val remoteSubscriberId = SubscriberId.fromBytes(accountData.donationSubscriberData.subscriberId.toByteArray())
-          val localSubscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
-
-          val subscriber = InAppPaymentSubscriberRecord(
-            remoteSubscriberId,
-            Currency.getInstance(accountData.donationSubscriberData.currencyCode),
-            InAppPaymentSubscriberRecord.Type.DONATION,
-            localSubscriber?.requiresCancel ?: accountData.donationSubscriberData.manuallyCancelled,
-            InAppPaymentsRepository.getLatestPaymentMethodType(InAppPaymentSubscriberRecord.Type.DONATION)
-          )
-
-          InAppPaymentsRepository.setSubscriber(subscriber)
-        }
-
-        if (accountData.donationSubscriberData.manuallyCancelled) {
-          SignalStore.inAppPayments.updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
-        }
-      }
-
-      if (accountData.avatarUrlPath.isNotEmpty()) {
-        AppDependencies.jobManager.add(RetrieveProfileAvatarJob(Recipient.self().fresh(), accountData.avatarUrlPath))
-      }
-
-      if (accountData.usernameLink != null) {
-        SignalStore.account.usernameLink = UsernameLinkComponents(
-          accountData.usernameLink.entropy.toByteArray(),
-          UuidUtil.parseOrThrow(accountData.usernameLink.serverId.toByteArray())
+        val subscriber = InAppPaymentSubscriberRecord(
+          remoteSubscriberId,
+          Currency.getInstance(accountData.donationSubscriberData.currencyCode),
+          InAppPaymentSubscriberRecord.Type.DONATION,
+          localSubscriber?.requiresCancel ?: accountData.donationSubscriberData.manuallyCancelled,
+          InAppPaymentsRepository.getLatestPaymentMethodType(InAppPaymentSubscriberRecord.Type.DONATION)
         )
-        SignalStore.misc.usernameQrCodeColorScheme = accountData.usernameLink.color.toLocalUsernameColor()
-      } else {
-        SignalStore.account.usernameLink = null
+
+        InAppPaymentsRepository.setSubscriber(subscriber)
       }
 
-      if (settings.preferredReactionEmoji.isNotEmpty()) {
-        SignalStore.emoji.reactions = settings.preferredReactionEmoji
+      if (accountData.donationSubscriberData.manuallyCancelled) {
+        SignalStore.inAppPayments.updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
       }
+    }
 
-      if (settings.hasCompletedUsernameOnboarding) {
-        SignalStore.uiHints.setHasCompletedUsernameOnboarding(true)
-      }
+    if (accountData.avatarUrlPath.isNotEmpty()) {
+      AppDependencies.jobManager.add(RetrieveProfileAvatarJob(Recipient.self().fresh(), accountData.avatarUrlPath))
+    }
+
+    if (accountData.usernameLink != null) {
+      SignalStore.account.usernameLink = UsernameLinkComponents(
+        accountData.usernameLink.entropy.toByteArray(),
+        UuidUtil.parseOrThrow(accountData.usernameLink.serverId.toByteArray())
+      )
+      SignalStore.misc.usernameQrCodeColorScheme = accountData.usernameLink.color.toLocalUsernameColor()
+    } else {
+      SignalStore.account.usernameLink = null
     }
 
     SignalDatabase.runPostSuccessfulTransaction { ProfileUtil.handleSelfProfileKeyChange() }
@@ -222,7 +161,76 @@ object AccountDataProcessor {
     Recipient.self().live().refresh()
   }
 
-  private fun PhoneNumberPrivacyValues.PhoneNumberSharingMode.toBackupPhoneNumberSharingMode(): AccountData.PhoneNumberSharingMode {
+  private fun importSettings(context: Context, settings: AccountData.AccountSettings, importState: ImportState) {
+    TextSecurePreferences.setReadReceiptsEnabled(context, settings.readReceipts)
+    TextSecurePreferences.setTypingIndicatorsEnabled(context, settings.typingIndicators)
+    TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, settings.sealedSenderIndicators)
+    SignalStore.settings.isLinkPreviewsEnabled = settings.linkPreviews
+    SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (settings.notDiscoverableByPhoneNumber) PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberDiscoverabilityMode.DISCOVERABLE
+    SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = settings.phoneNumberSharingMode.toLocalPhoneNumberMode()
+    SignalStore.settings.isPreferSystemContactPhotos = settings.preferContactAvatars
+    SignalStore.settings.universalExpireTimer = settings.universalExpireTimerSeconds
+    SignalStore.emoji.reactions = settings.preferredReactionEmoji
+    SignalStore.inAppPayments.setDisplayBadgesOnProfile(settings.displayBadgesOnProfile)
+    SignalStore.settings.setKeepMutedChatsArchived(settings.keepMutedChatsArchived)
+    SignalStore.story.userHasBeenNotifiedAboutStories = settings.hasSetMyStoriesPrivacy
+    SignalStore.story.userHasViewedOnboardingStory = settings.hasViewedOnboardingStory
+    SignalStore.story.isFeatureDisabled = settings.storiesDisabled
+    SignalStore.story.userHasSeenGroupStoryEducationSheet = settings.hasSeenGroupStoryEducationSheet
+    SignalStore.story.viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
+
+    settings.customChatColors
+      .mapNotNull { chatColor ->
+        val id = ChatColors.Id.forLongValue(chatColor.id)
+        when {
+          chatColor.solid != null -> {
+            ChatColors.forColor(id, chatColor.solid)
+          }
+          chatColor.gradient != null -> {
+            ChatColors.forGradient(
+              id,
+              ChatColors.LinearGradient(
+                degrees = chatColor.gradient.angle.toFloat(),
+                colors = chatColor.gradient.colors.toIntArray(),
+                positions = chatColor.gradient.positions.toFloatArray()
+              )
+            )
+          }
+          else -> null
+        }
+      }
+      .forEach { chatColor ->
+        // We need to use the "NotSet" chatId so that this operation is treated as an insert rather than an update
+        val saved = SignalDatabase.chatColors.saveChatColors(chatColor.withId(ChatColors.Id.NotSet))
+        importState.remoteToLocalColorId[chatColor.id.longValue] = saved.id.longValue
+      }
+
+    if (settings.defaultChatStyle != null) {
+      val chatColors = settings.defaultChatStyle.toLocal(importState)
+      SignalStore.chatColors.chatColors = chatColors
+
+      val wallpaperAttachmentId: AttachmentId? = settings.defaultChatStyle.wallpaperPhoto?.let { filePointer ->
+        filePointer.toLocalAttachment(importState)?.let {
+          SignalDatabase.attachments.restoreWallpaperAttachment(it)
+        }
+      }
+
+      SignalStore.wallpaper.wallpaper = settings.defaultChatStyle.parseChatWallpaper(wallpaperAttachmentId)
+    } else {
+      SignalStore.chatColors.chatColors = null
+      SignalStore.wallpaper.wallpaper = null
+    }
+
+    if (settings.preferredReactionEmoji.isNotEmpty()) {
+      SignalStore.emoji.reactions = settings.preferredReactionEmoji
+    }
+
+    if (settings.hasCompletedUsernameOnboarding) {
+      SignalStore.uiHints.setHasCompletedUsernameOnboarding(true)
+    }
+  }
+
+  private fun PhoneNumberPrivacyValues.PhoneNumberSharingMode.toRemotePhoneNumberSharingMode(): AccountData.PhoneNumberSharingMode {
     return when (this) {
       PhoneNumberPrivacyValues.PhoneNumberSharingMode.DEFAULT -> AccountData.PhoneNumberSharingMode.EVERYBODY
       PhoneNumberPrivacyValues.PhoneNumberSharingMode.EVERYBODY -> AccountData.PhoneNumberSharingMode.EVERYBODY
@@ -252,7 +260,7 @@ object AccountDataProcessor {
     }
   }
 
-  private fun UsernameQrCodeColorScheme.toBackupUsernameColor(): AccountData.UsernameLink.Color {
+  private fun UsernameQrCodeColorScheme.toRemoteUsernameColor(): AccountData.UsernameLink.Color {
     return when (this) {
       UsernameQrCodeColorScheme.Blue -> AccountData.UsernameLink.Color.BLUE
       UsernameQrCodeColorScheme.White -> AccountData.UsernameLink.Color.WHITE

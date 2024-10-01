@@ -14,6 +14,9 @@ import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.database.SignalDatabase
 
+/**
+ * Handles importing/exporting [AdHocCall] frames for an archive.
+ */
 object AdHocCallBackupProcessor {
 
   val TAG = Log.tag(AdHocCallBackupProcessor::class.java)
@@ -21,9 +24,7 @@ object AdHocCallBackupProcessor {
   fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
     db.callTable.getAdhocCallsForBackup().use { reader ->
       for (callLog in reader) {
-        if (callLog != null) {
-          emitter.emit(Frame(adHocCall = callLog))
-        }
+        emitter.emit(Frame(adHocCall = callLog))
       }
     }
   }

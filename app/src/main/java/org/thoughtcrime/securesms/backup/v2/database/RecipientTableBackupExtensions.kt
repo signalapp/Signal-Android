@@ -6,20 +6,12 @@
 package org.thoughtcrime.securesms.backup.v2.database
 
 import android.content.ContentValues
-import android.database.Cursor
 import androidx.core.content.contentValuesOf
-import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.deleteAll
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
-import org.signal.core.util.requireBlob
-import org.signal.core.util.requireBoolean
-import org.signal.core.util.requireInt
-import org.signal.core.util.requireLong
-import org.signal.core.util.requireNonNullBlob
-import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.toInt
 import org.signal.core.util.update
@@ -35,14 +27,14 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
 import org.signal.storageservice.protos.groups.local.DecryptedTimer
 import org.signal.storageservice.protos.groups.local.EnabledState
+import org.thoughtcrime.securesms.backup.v2.exporters.ContactArchiveExportIterator
+import org.thoughtcrime.securesms.backup.v2.exporters.GroupArchiveExportIterator
 import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.backup.v2.proto.Contact
 import org.thoughtcrime.securesms.backup.v2.proto.Group
-import org.thoughtcrime.securesms.backup.v2.proto.Self
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
-import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -58,18 +50,15 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
-import org.whispersystems.signalservice.api.util.toByteArray
-import java.io.Closeable
 
-typealias BackupRecipient = org.thoughtcrime.securesms.backup.v2.proto.Recipient
-typealias BackupGroup = Group
+private typealias BackupRecipient = org.thoughtcrime.securesms.backup.v2.proto.Recipient
 
 /**
  * Fetches all individual contacts for backups and returns the result as an iterator.
  * It's important to note that the iterator still needs to be closed after it's used.
  * It's recommended to use `.use` or a try-with-resources pattern.
  */
-fun RecipientTable.getContactsForBackup(selfId: Long): BackupContactIterator {
+fun RecipientTable.getContactsForBackup(selfId: Long): ContactArchiveExportIterator {
   val cursor = readableDatabase
     .select(
       RecipientTable.ID,
@@ -104,10 +93,10 @@ fun RecipientTable.getContactsForBackup(selfId: Long): BackupContactIterator {
     )
     .run()
 
-  return BackupContactIterator(cursor, selfId)
+  return ContactArchiveExportIterator(cursor, selfId)
 }
 
-fun RecipientTable.getGroupsForBackup(): BackupGroupIterator {
+fun RecipientTable.getGroupsForBackup(): GroupArchiveExportIterator {
   val cursor = readableDatabase
     .select(
       "${RecipientTable.TABLE_NAME}.${RecipientTable.ID}",
@@ -129,7 +118,7 @@ fun RecipientTable.getGroupsForBackup(): BackupGroupIterator {
     .where("${GroupTable.TABLE_NAME}.${GroupTable.V2_MASTER_KEY} IS NOT NULL")
     .run()
 
-  return BackupGroupIterator(cursor)
+  return GroupArchiveExportIterator(cursor)
 }
 
 /**
@@ -226,7 +215,7 @@ fun RecipientTable.restoreGroupFromBackup(group: Group): RecipientId {
   val decryptedState = if (group.snapshot == null) {
     DecryptedGroup(revision = GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
   } else {
-    group.snapshot.toDecryptedGroup(operations)
+    group.snapshot.toLocal(operations)
   }
 
   val values = ContentValues().apply {
@@ -244,10 +233,28 @@ fun RecipientTable.restoreGroupFromBackup(group: Group): RecipientId {
   val recipientId = writableDatabase.insert(RecipientTable.TABLE_NAME, null, values)
   val restoredId = SignalDatabase.groups.create(masterKey, decryptedState, groupSendEndorsements = null)
   if (restoredId != null) {
-    SignalDatabase.groups.setShowAsStoryState(restoredId, group.storySendMode.toGroupShowAsStoryState())
+    SignalDatabase.groups.setShowAsStoryState(restoredId, group.storySendMode.toLocal())
   }
 
   return RecipientId.from(recipientId)
+}
+
+private fun Group.StorySendMode.toLocal(): GroupTable.ShowAsStoryState {
+  return when (this) {
+    Group.StorySendMode.ENABLED -> GroupTable.ShowAsStoryState.ALWAYS
+    Group.StorySendMode.DISABLED -> GroupTable.ShowAsStoryState.NEVER
+    Group.StorySendMode.DEFAULT -> GroupTable.ShowAsStoryState.IF_ACTIVE
+  }
+}
+
+private fun Group.MemberPendingProfileKey.toLocal(operations: GroupsV2Operations.GroupOperations): DecryptedPendingMember {
+  return DecryptedPendingMember(
+    serviceIdBytes = member!!.userId,
+    role = member.role.toLocal(),
+    addedByAci = addedByUserId,
+    timestamp = timestamp,
+    serviceIdCipherText = operations.encryptServiceId(ServiceId.Companion.parseOrNull(member.userId))
+  )
 }
 
 private fun Contact.Visibility.toLocal(): Recipient.HiddenState {
@@ -280,88 +287,13 @@ private fun Group.Member.Role.toLocal(): Member.Role {
   }
 }
 
-private fun AccessControl.AccessRequired.toSnapshot(): Group.AccessControl.AccessRequired {
-  return when (this) {
-    AccessControl.AccessRequired.UNKNOWN -> Group.AccessControl.AccessRequired.UNKNOWN
-    AccessControl.AccessRequired.ANY -> Group.AccessControl.AccessRequired.ANY
-    AccessControl.AccessRequired.MEMBER -> Group.AccessControl.AccessRequired.MEMBER
-    AccessControl.AccessRequired.ADMINISTRATOR -> Group.AccessControl.AccessRequired.ADMINISTRATOR
-    AccessControl.AccessRequired.UNSATISFIABLE -> Group.AccessControl.AccessRequired.UNSATISFIABLE
-  }
-}
-
-private fun AccessControl.toSnapshot(): Group.AccessControl {
-  return Group.AccessControl(members = members.toSnapshot(), attributes = attributes.toSnapshot(), addFromInviteLink = addFromInviteLink.toSnapshot())
-}
-
-private fun Member.Role.toSnapshot(): Group.Member.Role {
-  return when (this) {
-    Member.Role.UNKNOWN -> Group.Member.Role.UNKNOWN
-    Member.Role.DEFAULT -> Group.Member.Role.DEFAULT
-    Member.Role.ADMINISTRATOR -> Group.Member.Role.ADMINISTRATOR
-  }
-}
-
-private fun DecryptedGroup.toSnapshot(): Group.GroupSnapshot? {
-  if (this.revision == GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION || this.revision == GroupsV2StateProcessor.PLACEHOLDER_REVISION) {
-    return null
-  }
-
-  return Group.GroupSnapshot(
-    title = Group.GroupAttributeBlob(title = this.title),
-    avatarUrl = this.avatar,
-    disappearingMessagesTimer = this.disappearingMessagesTimer?.takeIf { it.duration > 0 }?.let { Group.GroupAttributeBlob(disappearingMessagesDuration = it.duration) },
-    accessControl = this.accessControl?.toSnapshot(),
-    version = this.revision,
-    members = this.members.map { it.toSnapshot() },
-    membersPendingProfileKey = this.pendingMembers.map { it.toSnapshot() },
-    membersPendingAdminApproval = this.requestingMembers.map { it.toSnapshot() },
-    inviteLinkPassword = this.inviteLinkPassword,
-    description = this.description.takeUnless { it.isBlank() }?.let { Group.GroupAttributeBlob(descriptionText = it) },
-    announcements_only = this.isAnnouncementGroup == EnabledState.ENABLED,
-    members_banned = this.bannedMembers.map { it.toSnapshot() }
-  )
-}
-
 private fun Group.Member.toLocal(): DecryptedMember {
   return DecryptedMember(aciBytes = userId, role = role.toLocal(), joinedAtRevision = joinedAtVersion)
-}
-
-private fun DecryptedMember.toSnapshot(): Group.Member {
-  return Group.Member(userId = aciBytes, role = role.toSnapshot(), joinedAtVersion = joinedAtRevision)
-}
-
-private fun Group.MemberPendingProfileKey.toLocal(operations: GroupsV2Operations.GroupOperations): DecryptedPendingMember {
-  return DecryptedPendingMember(
-    serviceIdBytes = member!!.userId,
-    role = member.role.toLocal(),
-    addedByAci = addedByUserId,
-    timestamp = timestamp,
-    serviceIdCipherText = operations.encryptServiceId(ServiceId.Companion.parseOrNull(member.userId))
-  )
-}
-
-private fun DecryptedPendingMember.toSnapshot(): Group.MemberPendingProfileKey {
-  return Group.MemberPendingProfileKey(
-    member = Group.Member(
-      userId = this.serviceIdBytes,
-      role = this.role.toSnapshot()
-    ),
-    addedByUserId = this.addedByAci,
-    timestamp = this.timestamp
-  )
 }
 
 private fun Group.MemberPendingAdminApproval.toLocal(): DecryptedRequestingMember {
   return DecryptedRequestingMember(
     aciBytes = this.userId,
-    timestamp = this.timestamp
-  )
-}
-
-private fun DecryptedRequestingMember.toSnapshot(): Group.MemberPendingAdminApproval {
-  return Group.MemberPendingAdminApproval(
-    userId = this.aciBytes,
     timestamp = this.timestamp
   )
 }
@@ -373,14 +305,7 @@ private fun Group.MemberBanned.toLocal(): DecryptedBannedMember {
   )
 }
 
-private fun DecryptedBannedMember.toSnapshot(): Group.MemberBanned {
-  return Group.MemberBanned(
-    userId = this.serviceIdBytes,
-    timestamp = this.timestamp
-  )
-}
-
-private fun Group.GroupSnapshot.toDecryptedGroup(operations: GroupsV2Operations.GroupOperations): DecryptedGroup {
+private fun Group.GroupSnapshot.toLocal(operations: GroupsV2Operations.GroupOperations): DecryptedGroup {
   return DecryptedGroup(
     title = this.title?.title ?: "",
     avatar = this.avatarUrl,
@@ -401,139 +326,6 @@ private fun Contact.toLocalExtras(): RecipientExtras {
   return RecipientExtras(
     hideStory = this.hideStory
   )
-}
-
-/**
- * Provides a nice iterable interface over a [RecipientTable] cursor, converting rows to [BackupRecipient]s.
- * Important: Because this is backed by a cursor, you must close it. It's recommended to use `.use()` or try-with-resources.
- */
-class BackupContactIterator(private val cursor: Cursor, private val selfId: Long) : Iterator<BackupRecipient?>, Closeable {
-  override fun hasNext(): Boolean {
-    return cursor.count > 0 && !cursor.isLast
-  }
-
-  override fun next(): BackupRecipient? {
-    if (!cursor.moveToNext()) {
-      throw NoSuchElementException()
-    }
-
-    val id = cursor.requireLong(RecipientTable.ID)
-    if (id == selfId) {
-      return BackupRecipient(
-        id = id,
-        self = Self()
-      )
-    }
-
-    val aci = ACI.parseOrNull(cursor.requireString(RecipientTable.ACI_COLUMN))
-    val pni = PNI.parseOrNull(cursor.requireString(RecipientTable.PNI_COLUMN))
-    val e164 = cursor.requireString(RecipientTable.E164)?.e164ToLong()
-    val registeredState = RecipientTable.RegisteredState.fromId(cursor.requireInt(RecipientTable.REGISTERED))
-    val profileKey = cursor.requireString(RecipientTable.PROFILE_KEY)
-    val extras = RecipientTableCursorUtil.getExtras(cursor)
-
-    if (aci == null && pni == null && e164 == null) {
-      return null
-    }
-
-    val contactBuilder = Contact.Builder()
-      .aci(aci?.rawUuid?.toByteArray()?.toByteString())
-      .pni(pni?.rawUuid?.toByteArray()?.toByteString())
-      .username(cursor.requireString(RecipientTable.USERNAME))
-      .e164(cursor.requireString(RecipientTable.E164)?.e164ToLong())
-      .blocked(cursor.requireBoolean(RecipientTable.BLOCKED))
-      .visibility(Recipient.HiddenState.deserialize(cursor.requireInt(RecipientTable.HIDDEN)).toRemote())
-      .profileKey(if (profileKey != null) Base64.decode(profileKey).toByteString() else null)
-      .profileSharing(cursor.requireBoolean(RecipientTable.PROFILE_SHARING))
-      .profileGivenName(cursor.requireString(RecipientTable.PROFILE_GIVEN_NAME))
-      .profileFamilyName(cursor.requireString(RecipientTable.PROFILE_FAMILY_NAME))
-      .hideStory(extras?.hideStory() ?: false)
-
-    if (registeredState == RecipientTable.RegisteredState.REGISTERED) {
-      contactBuilder.registered = Contact.Registered()
-    } else {
-      contactBuilder.notRegistered = Contact.NotRegistered(unregisteredTimestamp = cursor.requireLong(RecipientTable.UNREGISTERED_TIMESTAMP))
-    }
-
-    return BackupRecipient(
-      id = id,
-      contact = contactBuilder.build()
-    )
-  }
-
-  override fun close() {
-    cursor.close()
-  }
-}
-
-private fun Recipient.HiddenState.toRemote(): Contact.Visibility {
-  return when (this) {
-    Recipient.HiddenState.NOT_HIDDEN -> return Contact.Visibility.VISIBLE
-    Recipient.HiddenState.HIDDEN -> return Contact.Visibility.HIDDEN
-    Recipient.HiddenState.HIDDEN_MESSAGE_REQUEST -> return Contact.Visibility.HIDDEN_MESSAGE_REQUEST
-  }
-}
-
-/**
- * Provides a nice iterable interface over a [RecipientTable] cursor, converting rows to [BackupRecipient]s.
- * Important: Because this is backed by a cursor, you must close it. It's recommended to use `.use()` or try-with-resources.
- */
-class BackupGroupIterator(private val cursor: Cursor) : Iterator<BackupRecipient>, Closeable {
-  override fun hasNext(): Boolean {
-    return cursor.count > 0 && !cursor.isLast
-  }
-
-  override fun next(): BackupRecipient {
-    if (!cursor.moveToNext()) {
-      throw NoSuchElementException()
-    }
-
-    val extras = RecipientTableCursorUtil.getExtras(cursor)
-    val showAsStoryState: GroupTable.ShowAsStoryState = GroupTable.ShowAsStoryState.deserialize(cursor.requireInt(GroupTable.SHOW_AS_STORY_STATE))
-
-    val decryptedGroup: DecryptedGroup = DecryptedGroup.ADAPTER.decode(cursor.requireBlob(GroupTable.V2_DECRYPTED_GROUP)!!)
-
-    return BackupRecipient(
-      id = cursor.requireLong(RecipientTable.ID),
-      group = BackupGroup(
-        masterKey = cursor.requireNonNullBlob(GroupTable.V2_MASTER_KEY).toByteString(),
-        whitelisted = cursor.requireBoolean(RecipientTable.PROFILE_SHARING),
-        hideStory = extras?.hideStory() ?: false,
-        storySendMode = showAsStoryState.toGroupStorySendMode(),
-        snapshot = decryptedGroup.toSnapshot()
-      )
-    )
-  }
-
-  override fun close() {
-    cursor.close()
-  }
-}
-
-private fun String.e164ToLong(): Long? {
-  val fixed = if (this.startsWith("+")) {
-    this.substring(1)
-  } else {
-    this
-  }
-
-  return fixed.toLongOrNull()
-}
-
-private fun GroupTable.ShowAsStoryState.toGroupStorySendMode(): Group.StorySendMode {
-  return when (this) {
-    GroupTable.ShowAsStoryState.ALWAYS -> Group.StorySendMode.ENABLED
-    GroupTable.ShowAsStoryState.NEVER -> Group.StorySendMode.DISABLED
-    GroupTable.ShowAsStoryState.IF_ACTIVE -> Group.StorySendMode.DEFAULT
-  }
-}
-
-private fun Group.StorySendMode.toGroupShowAsStoryState(): GroupTable.ShowAsStoryState {
-  return when (this) {
-    Group.StorySendMode.ENABLED -> GroupTable.ShowAsStoryState.ALWAYS
-    Group.StorySendMode.DISABLED -> GroupTable.ShowAsStoryState.NEVER
-    Group.StorySendMode.DEFAULT -> GroupTable.ShowAsStoryState.IF_ACTIVE
-  }
 }
 
 private val Contact.formattedE164: String?

@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.database.ChatItemImportInserter
 import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackupRestore
-import org.thoughtcrime.securesms.backup.v2.processor.AccountDataProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.AccountDataBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.AdHocCallBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatBackupProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatItemBackupProcessor
@@ -285,7 +285,7 @@ object BackupRepository {
         // We're using a snapshot, so the transaction is more for perf than correctness
         dbSnapshot.rawWritableDatabase.withinTransaction {
           progressEmitter?.onAccount()
-          AccountDataProcessor.export(dbSnapshot, signalStoreSnapshot) {
+          AccountDataBackupProcessor.export(dbSnapshot, signalStoreSnapshot) {
             writer.write(it)
             eventTimer.emit("account")
           }
@@ -412,7 +412,7 @@ object BackupRepository {
       for (frame in frameReader) {
         when {
           frame.account != null -> {
-            AccountDataProcessor.import(frame.account, selfId, importState)
+            AccountDataBackupProcessor.import(frame.account, selfId, importState)
             eventTimer.emit("account")
           }
 

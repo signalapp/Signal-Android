@@ -5,18 +5,14 @@
 
 package org.thoughtcrime.securesms.backup.v2.database
 
-import android.database.Cursor
 import org.signal.core.util.insertInto
-import org.signal.core.util.requireLong
 import org.signal.core.util.select
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.AdHocCall
 import org.thoughtcrime.securesms.database.CallTable
-import org.thoughtcrime.securesms.database.RecipientTable
-import java.io.Closeable
 
-fun CallTable.getAdhocCallsForBackup(): CallLogIterator {
-  return CallLogIterator(
+fun CallTable.getAdhocCallsForBackup(): AdHocCallArchiveExportIterator {
+  return AdHocCallArchiveExportIterator(
     readableDatabase
       .select()
       .from(CallTable.TABLE_NAME)
@@ -31,7 +27,7 @@ fun CallTable.restoreCallLogFromBackup(call: AdHocCall, importState: ImportState
     AdHocCall.State.UNKNOWN_STATE -> CallTable.Event.GENERIC_GROUP_CALL
   }
 
-  val result = writableDatabase
+  writableDatabase
     .insertInto(CallTable.TABLE_NAME)
     .values(
       CallTable.CALL_ID to call.callId,
@@ -42,34 +38,4 @@ fun CallTable.restoreCallLogFromBackup(call: AdHocCall, importState: ImportState
       CallTable.TIMESTAMP to call.callTimestamp
     )
     .run()
-  return Unit
-}
-
-/**
- * Provides a nice iterable interface over a [RecipientTable] cursor, converting rows to [BackupRecipient]s.
- * Important: Because this is backed by a cursor, you must close it. It's recommended to use `.use()` or try-with-resources.
- */
-class CallLogIterator(private val cursor: Cursor) : Iterator<AdHocCall?>, Closeable {
-  override fun hasNext(): Boolean {
-    return cursor.count > 0 && !cursor.isLast
-  }
-
-  override fun next(): AdHocCall? {
-    if (!cursor.moveToNext()) {
-      throw NoSuchElementException()
-    }
-
-    val callId = cursor.requireLong(CallTable.CALL_ID)
-
-    return AdHocCall(
-      callId = callId,
-      recipientId = cursor.requireLong(CallTable.PEER),
-      state = AdHocCall.State.GENERIC,
-      callTimestamp = cursor.requireLong(CallTable.TIMESTAMP)
-    )
-  }
-
-  override fun close() {
-    cursor.close()
-  }
 }

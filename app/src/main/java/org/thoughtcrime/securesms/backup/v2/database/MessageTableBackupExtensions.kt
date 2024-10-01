@@ -6,17 +6,17 @@
 package org.thoughtcrime.securesms.backup.v2.database
 
 import org.signal.core.util.SqlUtil
-import org.signal.core.util.logging.Log
 import org.signal.core.util.select
 import org.thoughtcrime.securesms.backup.v2.ImportState
+import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExportIterator
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
+import org.thoughtcrime.securesms.database.SignalDatabase
 import java.util.concurrent.TimeUnit
 
-private val TAG = Log.tag(MessageTable::class.java)
-private const val BASE_TYPE = "base_type"
+private const val COLUMN_BASE_TYPE = "base_type"
 
-fun MessageTable.getMessagesForBackup(backupTime: Long, mediaBackupEnabled: Boolean): ChatItemExportIterator {
+fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, mediaBackupEnabled: Boolean): ChatItemArchiveExportIterator {
   val cursor = readableDatabase
     .select(
       MessageTable.ID,
@@ -50,7 +50,7 @@ fun MessageTable.getMessagesForBackup(backupTime: Long, mediaBackupEnabled: Bool
       MessageTable.READ,
       MessageTable.NETWORK_FAILURES,
       MessageTable.MISMATCHED_IDENTITIES,
-      "${MessageTable.TYPE} & ${MessageTypes.BASE_TYPE_MASK} AS ${ChatItemExportIterator.COLUMN_BASE_TYPE}",
+      "${MessageTable.TYPE} & ${MessageTypes.BASE_TYPE_MASK} AS $COLUMN_BASE_TYPE",
       MessageTable.MESSAGE_EXTRAS
     )
     .from(MessageTable.TABLE_NAME)
@@ -66,7 +66,7 @@ fun MessageTable.getMessagesForBackup(backupTime: Long, mediaBackupEnabled: Bool
     .orderBy("${MessageTable.DATE_RECEIVED} ASC")
     .run()
 
-  return ChatItemExportIterator(cursor, 100, mediaBackupEnabled)
+  return ChatItemArchiveExportIterator(db, cursor, 100, mediaBackupEnabled)
 }
 
 fun MessageTable.createChatItemInserter(importState: ImportState): ChatItemImportInserter {
