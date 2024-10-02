@@ -5,6 +5,9 @@
 
 package org.signal.core.util
 
+import java.text.NumberFormat
+import kotlin.math.min
+
 inline val Long.bytes: ByteSize
   get() = ByteSize(this)
 
@@ -15,41 +18,41 @@ inline val Long.kibiBytes: ByteSize
   get() = (this * 1024).bytes
 
 inline val Int.kibiBytes: ByteSize
-  get() = (this * 1024).bytes
+  get() = (this.toLong() * 1024L).bytes
 
 inline val Long.mebiBytes: ByteSize
-  get() = (this * 1024).kibiBytes
+  get() = (this * 1024L).kibiBytes
 
 inline val Int.mebiBytes: ByteSize
-  get() = (this * 1024).kibiBytes
+  get() = (this.toLong() * 1024L).kibiBytes
 
 inline val Long.gibiBytes: ByteSize
-  get() = (this * 1024).mebiBytes
+  get() = (this * 1024L).mebiBytes
 
 inline val Int.gibiBytes: ByteSize
-  get() = (this * 1024).mebiBytes
+  get() = (this.toLong() * 1024L).mebiBytes
 
 inline val Long.tebiBytes: ByteSize
-  get() = (this * 1024).gibiBytes
+  get() = (this * 1024L).gibiBytes
 
 inline val Int.tebiBytes: ByteSize
-  get() = (this * 1024).gibiBytes
+  get() = (this.toLong() * 1024L).gibiBytes
 
 class ByteSize(val bytes: Long) {
   val inWholeBytes: Long
     get() = bytes
 
   val inWholeKibiBytes: Long
-    get() = bytes / 1024
+    get() = bytes / 1024L
 
   val inWholeMebiBytes: Long
-    get() = inWholeKibiBytes / 1024
+    get() = inWholeKibiBytes / 1024L
 
   val inWholeGibiBytes: Long
-    get() = inWholeMebiBytes / 1024
+    get() = inWholeMebiBytes / 1024L
 
   val inWholeTebiBytes: Long
-    get() = inWholeGibiBytes / 1024
+    get() = inWholeGibiBytes / 1024L
 
   val inKibiBytes: Float
     get() = bytes / 1024f
@@ -63,14 +66,33 @@ class ByteSize(val bytes: Long) {
   val inTebiBytes: Float
     get() = inGibiBytes / 1024f
 
-  fun getLargestNonZeroValue(): Pair<Long, Size> {
+  fun getLargestNonZeroValue(): Pair<Float, Size> {
     return when {
-      inWholeTebiBytes > 0L -> inWholeTebiBytes to Size.TEBIBYTE
-      inWholeGibiBytes > 0L -> inWholeGibiBytes to Size.GIBIBYTE
-      inWholeMebiBytes > 0L -> inWholeMebiBytes to Size.MEBIBYTE
-      inWholeKibiBytes > 0L -> inWholeKibiBytes to Size.KIBIBYTE
-      else -> inWholeBytes to Size.BYTE
+      inWholeTebiBytes > 0L -> inTebiBytes to Size.TEBIBYTE
+      inWholeGibiBytes > 0L -> inGibiBytes to Size.GIBIBYTE
+      inWholeMebiBytes > 0L -> inMebiBytes to Size.MEBIBYTE
+      inWholeKibiBytes > 0L -> inKibiBytes to Size.KIBIBYTE
+      else -> inWholeBytes.toFloat() to Size.BYTE
     }
+  }
+
+  fun toUnitString(maxPlaces: Int = 1, spaced: Boolean = true): String {
+    val (size, unit) = getLargestNonZeroValue()
+
+    val formatter = NumberFormat.getInstance().apply {
+      minimumFractionDigits = 0
+      maximumFractionDigits = when (unit) {
+        Size.BYTE,
+        Size.KIBIBYTE -> 0
+
+        Size.MEBIBYTE -> min(1, maxPlaces)
+
+        Size.GIBIBYTE,
+        Size.TEBIBYTE -> min(2, maxPlaces)
+      }
+    }
+
+    return "${formatter.format(size)}${if (spaced) " " else ""}${unit.label}"
   }
 
   enum class Size(val label: String) {

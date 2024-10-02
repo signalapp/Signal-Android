@@ -323,7 +323,7 @@ private fun getFeatures(messageBackupsType: MessageBackupsType): List<MessageBac
     is MessageBackupsType.Paid -> {
       val photoCount = messageBackupsType.storageAllowanceBytes / ByteUnit.MEGABYTES.toBytes(2)
       val photoCountThousands = photoCount / 1000
-      val (count, size) = messageBackupsType.storageAllowanceBytes.bytes.getLargestNonZeroValue()
+      val sizeUnitString = messageBackupsType.storageAllowanceBytes.bytes.toUnitString(spaced = false)
 
       persistentListOf(
         MessageBackupsTypeFeature(
@@ -338,7 +338,7 @@ private fun getFeatures(messageBackupsType: MessageBackupsType): List<MessageBac
           iconResourceId = R.drawable.symbol_thread_compact_bold_16,
           label = stringResource(
             id = R.string.MessageBackupsTypeSelectionScreen__s_of_storage_s_photos,
-            "${count}${size.label}",
+            sizeUnitString,
             "~${photoCountThousands}K"
           )
         ),

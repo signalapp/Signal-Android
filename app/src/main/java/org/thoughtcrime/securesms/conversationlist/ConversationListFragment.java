@@ -868,7 +868,17 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           }
           return Unit.INSTANCE;
         }),
-        new MediaRestoreProgressBanner()
+        new MediaRestoreProgressBanner(new MediaRestoreProgressBanner.RestoreProgressBannerListener() {
+          @Override
+          public void onSkip() {
+            // TODO [backups] add skip restore ability
+          }
+
+          @Override
+          public void onDismissComplete() {
+            bannerManager.updateContent(bannerView.get());
+          }
+        })
     );
 
     this.bannerManager = new BannerManager(bannerRepositories);

@@ -7,31 +7,41 @@ package org.thoughtcrime.securesms.backup.v2.ui.status
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
-import org.signal.core.ui.Icons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
+import org.signal.core.util.ByteSize
+import org.signal.core.util.bytes
+import org.signal.core.util.kibiBytes
+import org.signal.core.util.mebiBytes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
 import kotlin.math.max
@@ -43,10 +53,12 @@ private const val NONE = -1
  * Displays a "heads up" widget containing information about the current
  * status of the user's backup.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun BackupStatus(
   data: BackupStatusData,
-  onActionClick: () -> Unit = {},
+  onSkipClick: () -> Unit = {},
+  onDismissClick: () -> Unit = {},
   contentPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
 ) {
   Row(
@@ -55,55 +67,80 @@ fun BackupStatus(
       .padding(contentPadding)
       .border(1.dp, color = MaterialTheme.colorScheme.outline.copy(alpha = 0.38f), shape = RoundedCornerShape(12.dp))
       .fillMaxWidth()
-      .padding(14.dp)
+      .defaultMinSize(minHeight = 48.dp)
+      .padding(12.dp)
   ) {
-    val foreground: Brush = data.iconColors.foreground
-    Icons.BrushedForeground(
+    Icon(
       painter = painterResource(id = data.iconRes),
       contentDescription = null,
-      foregroundBrush = foreground,
+      tint = data.iconColors.foreground,
       modifier = Modifier
-        .background(color = data.iconColors.background, shape = CircleShape)
-        .padding(8.dp)
+        .padding(start = 4.dp)
+        .size(24.dp)
     )
 
-    Column(
+    FlowRow(
+      horizontalArrangement = Arrangement.SpaceBetween,
+      verticalArrangement = Arrangement.Center,
       modifier = Modifier
         .padding(start = 12.dp)
         .weight(1f)
     ) {
       Text(
         text = data.title,
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onSurface
+        style = MaterialTheme.typography.bodyLarge,
+        color = MaterialTheme.colorScheme.onSurface,
+        modifier = Modifier
+          .padding(end = 20.dp)
+          .align(Alignment.CenterVertically)
       )
 
-      if (data.progress >= 0f) {
-        LinearProgressIndicator(
-          progress = { data.progress },
-          strokeCap = StrokeCap.Round,
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 6.dp)
-        )
-      }
-
-      if (data.statusRes != NONE) {
+      data.status?.let { status ->
         Text(
-          text = stringResource(id = data.statusRes),
+          text = status,
           style = MaterialTheme.typography.bodySmall,
-          color = MaterialTheme.colorScheme.onSurfaceVariant
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          modifier = Modifier
+            .padding(end = 12.dp)
+            .align(Alignment.CenterVertically)
         )
       }
     }
 
+    if (data.progress >= 0f) {
+      CircularProgressIndicator(
+        progress = { data.progress },
+        strokeWidth = 3.dp,
+        strokeCap = StrokeCap.Round,
+        modifier = Modifier
+          .size(24.dp, 24.dp)
+      )
+    }
+
     if (data.actionRes != NONE) {
       Buttons.Small(
-        onClick = onActionClick,
+        onClick = onSkipClick,
         modifier = Modifier.padding(start = 8.dp)
       ) {
         Text(text = stringResource(id = data.actionRes))
       }
+    }
+
+    if (data.showDismissAction) {
+      val interactionSource = remember { MutableInteractionSource() }
+
+      Icon(
+        painter = painterResource(id = R.drawable.symbol_x_24),
+        contentDescription = stringResource(R.string.Material3SearchToolbar__close),
+        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier
+          .size(24.dp)
+          .clickable(
+            interactionSource = interactionSource,
+            indication = ripple(bounded = false),
+            onClick = onDismissClick
+          )
+      )
     }
   }
 }
@@ -114,19 +151,29 @@ fun BackupStatusPreview() {
   Previews.Preview {
     Column {
       BackupStatus(
+        data = BackupStatusData.RestoringMedia(5755000.bytes, 1253.mebiBytes)
+      )
+
+      HorizontalDivider()
+
+      BackupStatus(
+        data = BackupStatusData.RestoringMedia(
+          bytesDownloaded = 55000.bytes,
+          bytesTotal = 1253.mebiBytes,
+          restoreStatus = BackupStatusData.RestoreStatus.FINISHED
+        )
+      )
+
+      HorizontalDivider()
+
+      BackupStatus(
+        data = BackupStatusData.NotEnoughFreeSpace(40900.kibiBytes)
+      )
+
+      HorizontalDivider()
+
+      BackupStatus(
         data = BackupStatusData.CouldNotCompleteBackup
-      )
-
-      HorizontalDivider()
-
-      BackupStatus(
-        data = BackupStatusData.NotEnoughFreeSpace("12 GB")
-      )
-
-      HorizontalDivider()
-
-      BackupStatus(
-        data = BackupStatusData.RestoringMedia(50, 100)
       )
     }
   }
@@ -134,8 +181,6 @@ fun BackupStatusPreview() {
 
 /**
  * Sealed interface describing status data to display in BackupStatus widget.
- *
- * TODO [message-requests] - Finalize assets and text
  */
 sealed interface BackupStatusData {
 
@@ -150,16 +195,18 @@ sealed interface BackupStatusData {
   @get:StringRes
   val actionRes: Int get() = NONE
 
-  @get:StringRes
-  val statusRes: Int get() = NONE
+  @get:Composable
+  val status: String? get() = null
 
   val progress: Float get() = NONE.toFloat()
+
+  val showDismissAction: Boolean get() = false
 
   /**
    * Generic failure
    */
   data object CouldNotCompleteBackup : BackupStatusData {
-    override val iconRes: Int = R.drawable.symbol_backup_light
+    override val iconRes: Int = R.drawable.symbol_backup_error_24
 
     override val title: String
       @Composable
@@ -172,9 +219,11 @@ sealed interface BackupStatusData {
    * User does not have enough space on their device to complete backup restoration
    */
   class NotEnoughFreeSpace(
-    private val requiredSpace: String
+    requiredSpace: ByteSize
   ) : BackupStatusData {
-    override val iconRes: Int = R.drawable.symbol_backup_light
+    private val requiredSpace = requiredSpace.toUnitString(maxPlaces = 2)
+
+    override val iconRes: Int = R.drawable.symbol_backup_error_24
 
     override val title: String
       @Composable
@@ -188,44 +237,51 @@ sealed interface BackupStatusData {
    * Restoring media, finished, and paused states.
    */
   data class RestoringMedia(
-    val bytesDownloaded: Long,
-    val bytesTotal: Long,
-    val status: Status = Status.NONE
+    val bytesDownloaded: ByteSize = 0.bytes,
+    val bytesTotal: ByteSize = 0.bytes,
+    val restoreStatus: RestoreStatus = RestoreStatus.NORMAL
   ) : BackupStatusData {
     override val iconRes: Int = R.drawable.symbol_backup_light
-    override val iconColors: BackupsIconColors = BackupsIconColors.Normal
+    override val iconColors: BackupsIconColors = if (restoreStatus == RestoreStatus.FINISHED) BackupsIconColors.Success else BackupsIconColors.Normal
+    override val showDismissAction: Boolean = restoreStatus == RestoreStatus.FINISHED
 
     override val title: String
       @Composable get() = stringResource(
-        when (status) {
-          Status.NONE -> R.string.default_error_msg
-          Status.LOW_BATTERY -> R.string.default_error_msg
-          Status.WAITING_FOR_INTERNET -> R.string.default_error_msg
-          Status.WAITING_FOR_WIFI -> R.string.default_error_msg
-          Status.FINISHED -> R.string.default_error_msg
+        when (restoreStatus) {
+          RestoreStatus.NORMAL -> R.string.BackupStatus__restoring_media
+          RestoreStatus.LOW_BATTERY -> R.string.BackupStatus__restore_paused
+          RestoreStatus.WAITING_FOR_INTERNET -> R.string.BackupStatus__restore_paused
+          RestoreStatus.WAITING_FOR_WIFI -> R.string.BackupStatus__restore_paused
+          RestoreStatus.FINISHED -> R.string.BackupStatus__restore_complete
         }
       )
 
-    override val statusRes: Int = when (status) {
-      Status.NONE -> NONE
-      Status.LOW_BATTERY -> R.string.default_error_msg
-      Status.WAITING_FOR_INTERNET -> R.string.default_error_msg
-      Status.WAITING_FOR_WIFI -> R.string.default_error_msg
-      Status.FINISHED -> R.string.default_error_msg
-    }
+    override val status: String
+      @Composable get() = when (restoreStatus) {
+        RestoreStatus.NORMAL -> stringResource(
+          R.string.BackupStatus__status_size_of_size,
+          bytesDownloaded.toUnitString(maxPlaces = 2),
+          bytesTotal.toUnitString(maxPlaces = 2)
+        )
 
-    override val progress: Float = if (bytesTotal > 0) {
-      min(1f, max(0f, bytesDownloaded.toFloat() / bytesTotal))
+        RestoreStatus.LOW_BATTERY -> stringResource(R.string.BackupStatus__status_device_has_low_battery)
+        RestoreStatus.WAITING_FOR_INTERNET -> stringResource(R.string.BackupStatus__status_no_internet)
+        RestoreStatus.WAITING_FOR_WIFI -> stringResource(R.string.BackupStatus__status_waiting_for_wifi)
+        RestoreStatus.FINISHED -> bytesTotal.toUnitString()
+      }
+
+    override val progress: Float = if (bytesTotal.bytes > 0 && restoreStatus == RestoreStatus.NORMAL) {
+      min(1f, max(0f, bytesDownloaded.bytes.toFloat() / bytesTotal.bytes.toFloat()))
     } else {
-      0f
+      NONE.toFloat()
     }
   }
 
   /**
    * Describes the status of an in-progress media download session.
    */
-  enum class Status {
-    NONE,
+  enum class RestoreStatus {
+    NORMAL,
     LOW_BATTERY,
     WAITING_FOR_INTERNET,
     WAITING_FOR_WIFI,

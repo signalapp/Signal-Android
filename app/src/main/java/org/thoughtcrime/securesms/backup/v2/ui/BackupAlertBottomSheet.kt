@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -35,7 +36,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.parcelize.Parcelize
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
-import org.signal.core.ui.Icons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
@@ -144,10 +144,10 @@ private fun BackupAlertSheetContent(
     Spacer(modifier = Modifier.size(26.dp))
 
     val iconColors = rememberBackupsIconColors(backupAlert = backupAlert)
-    Icons.BrushedForeground(
+    Icon(
       painter = painterResource(id = R.drawable.symbol_backup_light), // TODO [message-backups] final asset
       contentDescription = null,
-      foregroundBrush = iconColors.foreground,
+      tint = iconColors.foreground,
       modifier = Modifier
         .size(88.dp)
         .background(color = iconColors.background, shape = CircleShape)

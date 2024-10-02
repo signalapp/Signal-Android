@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.keyvalue
 
 import com.squareup.wire.ProtoAdapter
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.signal.core.util.LongSerializer
 import kotlin.reflect.KProperty
 
@@ -45,12 +47,22 @@ internal fun <M> SignalStoreValues.protoValue(key: String, adapter: ProtoAdapter
  * class to callers and protect the individual implementations as private behind the various extension functions.
  */
 sealed class SignalStoreValueDelegate<T>(private val store: KeyValueStore) {
+
+  private var flow: Lazy<MutableStateFlow<T>> = lazy { MutableStateFlow(getValue(store)) }
+
   operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
     return getValue(store)
   }
 
   operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
     setValue(store, value)
+    if (flow.isInitialized()) {
+      flow.value.tryEmit(value)
+    }
+  }
+
+  fun toFlow(): Flow<T> {
+    return flow.value
   }
 
   internal abstract fun getValue(values: KeyValueStore): T

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.keyvalue
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.coroutines.flow.Flow
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
@@ -65,7 +66,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var nextBackupTime: Long by longValue(KEY_NEXT_BACKUP_TIME, -1)
   var lastBackupTime: Long by longValue(KEY_LAST_BACKUP_TIME, -1)
   var lastMediaSyncTime: Long by longValue(KEY_LAST_BACKUP_MEDIA_SYNC_TIME, -1)
-  var totalRestorableAttachmentSize: Long by longValue(KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE, 0)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
   var backupTier: MessageBackupTier? by enumValue(KEY_BACKUP_TIER, null, MessageBackupTier.Serializer)
 
@@ -95,6 +95,11 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     }
 
   var backupsInitialized: Boolean by booleanValue(KEY_BACKUPS_INITIALIZED, false)
+
+  private val totalRestorableAttachmentSizeValue = longValue(KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE, 0)
+  var totalRestorableAttachmentSize: Long by totalRestorableAttachmentSizeValue
+  val totalRestorableAttachmentSizeFlow: Flow<Long>
+    get() = totalRestorableAttachmentSizeValue.toFlow()
 
   val isRestoreInProgress: Boolean
     get() = totalRestorableAttachmentSize > 0

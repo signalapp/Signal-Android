@@ -19,7 +19,8 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobLogger.format
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
 import org.thoughtcrime.securesms.jobs.protos.RestoreAttachmentJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MmsException
@@ -107,9 +108,9 @@ class RestoreAttachmentJob private constructor(
   private constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, queue: String) : this(
     Parameters.Builder()
       .setQueue(queue)
-      .addConstraint(NetworkConstraint.KEY)
+      .addConstraint(WifiConstraint.KEY)
+      .addConstraint(BatteryNotLowConstraint.KEY)
       .setLifespan(TimeUnit.DAYS.toMillis(30))
-      .setMaxAttempts(3)
       .build(),
     messageId,
     attachmentId,
@@ -129,7 +130,7 @@ class RestoreAttachmentJob private constructor(
   }
 
   @Throws(Exception::class)
-  public override fun onRun() {
+  override fun onRun() {
     doWork()
 
     if (!SignalDatabase.messages.isStory(messageId)) {
@@ -170,7 +171,7 @@ class RestoreAttachmentJob private constructor(
     } else {
       Log.w(TAG, format(this, "onFailure() messageId: $messageId  attachmentId: $attachmentId"))
 
-      markFailed(messageId, attachmentId)
+      markFailed(attachmentId)
     }
   }
 
@@ -255,7 +256,7 @@ class RestoreAttachmentJob private constructor(
       }
     } catch (e: InvalidAttachmentException) {
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
-      markFailed(messageId, attachmentId)
+      markFailed(attachmentId)
     } catch (e: NonSuccessfulResponseCodeException) {
       if (SignalStore.backup.backsUpMedia) {
         if (e.code == 404 && !forceTransitTier && attachment.remoteLocation?.isNotBlank() == true) {
@@ -269,30 +270,30 @@ class RestoreAttachmentJob private constructor(
       }
 
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
-      markFailed(messageId, attachmentId)
+      markFailed(attachmentId)
     } catch (e: MmsException) {
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
-      markFailed(messageId, attachmentId)
+      markFailed(attachmentId)
     } catch (e: MissingConfigurationException) {
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
-      markFailed(messageId, attachmentId)
+      markFailed(attachmentId)
     } catch (e: InvalidMessageException) {
       Log.w(TAG, "Experienced an InvalidMessageException while trying to download an attachment.", e)
       if (e.cause is InvalidMacException) {
         Log.w(TAG, "Detected an invalid mac. Treating as a permanent failure.")
-        markPermanentlyFailed(messageId, attachmentId)
+        markPermanentlyFailed(attachmentId)
       } else {
-        markFailed(messageId, attachmentId)
+        markFailed(attachmentId)
       }
     }
   }
 
-  private fun markFailed(messageId: Long, attachmentId: AttachmentId) {
-    SignalDatabase.attachments.setTransferProgressFailed(attachmentId, messageId)
+  private fun markFailed(attachmentId: AttachmentId) {
+    SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_PROGRESS_FAILED)
   }
 
-  private fun markPermanentlyFailed(messageId: Long, attachmentId: AttachmentId) {
-    SignalDatabase.attachments.setTransferProgressPermanentFailure(attachmentId, messageId)
+  private fun markPermanentlyFailed(attachmentId: AttachmentId) {
+    SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE)
   }
 
   class Factory : Job.Factory<RestoreAttachmentJob?> {
