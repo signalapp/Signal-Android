@@ -18,6 +18,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -208,7 +209,15 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
   }
 
-  fun restoreFromRemote() {
+  fun wipeAllDataAndRestoreFromRemote() {
+    SignalExecutors.BOUNDED_IO.execute {
+      SignalDatabase.threads.deleteAllConversations()
+      AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
+      restoreFromRemote()
+    }
+  }
+
+  private fun restoreFromRemote() {
     _state.value = _state.value.copy(backupState = BackupState.IMPORT_IN_PROGRESS)
 
     disposables += Single.fromCallable {
