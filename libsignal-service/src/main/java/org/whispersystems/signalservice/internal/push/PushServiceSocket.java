@@ -131,14 +131,14 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.configuration.SignalUrl;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.push.exceptions.CaptchaRejectedException;
-import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError;
-import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentReceiptCredentialError;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupStaleDevicesException;
+import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError;
+import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentReceiptCredentialError;
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
@@ -1007,7 +1007,9 @@ public class PushServiceSocket {
     if (cdnPath instanceof SignalServiceAttachmentRemoteId.V2) {
       path = String.format(Locale.US, ATTACHMENT_ID_DOWNLOAD_PATH, ((SignalServiceAttachmentRemoteId.V2) cdnPath).getCdnId());
     } else if (cdnPath instanceof SignalServiceAttachmentRemoteId.V4) {
-      path = String.format(Locale.US, ATTACHMENT_KEY_DOWNLOAD_PATH, ((SignalServiceAttachmentRemoteId.V4) cdnPath).getCdnKey());
+      //noinspection CharsetObjectCanBeUsed
+      String urlEncodedKey = URLEncoder.encode(((SignalServiceAttachmentRemoteId.V4) cdnPath).getCdnKey(), StandardCharsets.UTF_8.name());
+      path = String.format(Locale.US, ATTACHMENT_KEY_DOWNLOAD_PATH, urlEncodedKey);
     } else if (cdnPath instanceof SignalServiceAttachmentRemoteId.Backup) {
       SignalServiceAttachmentRemoteId.Backup backupCdnId = (SignalServiceAttachmentRemoteId.Backup) cdnPath;
       path = String.format(Locale.US, ARCHIVE_MEDIA_DOWNLOAD_PATH, backupCdnId.getBackupDir(), backupCdnId.getMediaDir(), backupCdnId.getMediaId());
