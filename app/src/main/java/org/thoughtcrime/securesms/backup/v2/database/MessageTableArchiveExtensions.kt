@@ -62,6 +62,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
         OR 
         (${MessageTable.EXPIRES_IN} > 0 AND (${MessageTable.EXPIRE_STARTED} + ${MessageTable.EXPIRES_IN}) > $backupTime + ${TimeUnit.DAYS.toMillis(1)})
       )
+      AND ${MessageTable.STORY_TYPE} = 0
       """
     )
     .orderBy("${MessageTable.DATE_RECEIVED} ASC")
