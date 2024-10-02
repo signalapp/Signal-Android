@@ -89,13 +89,16 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
       "CREATE INDEX msl_payload_date_sent_index ON $TABLE_NAME ($DATE_SENT)"
     )
 
+    const val AFTER_MESSAGE_DELETE_TRIGGER_NAME = "msl_message_delete"
+    const val AFTER_MESSAGE_DELETE_TRIGGER = """
+      CREATE TRIGGER $AFTER_MESSAGE_DELETE_TRIGGER_NAME AFTER DELETE ON ${MessageTable.TABLE_NAME} 
+      BEGIN 
+        DELETE FROM $TABLE_NAME WHERE $ID IN (SELECT ${MslMessageTable.PAYLOAD_ID} FROM ${MslMessageTable.TABLE_NAME} WHERE ${MslMessageTable.MESSAGE_ID} = old.${MessageTable.ID});
+      END
+    """
+
     val CREATE_TRIGGERS = arrayOf(
-      """
-        CREATE TRIGGER msl_message_delete AFTER DELETE ON ${MessageTable.TABLE_NAME} 
-        BEGIN 
-          DELETE FROM $TABLE_NAME WHERE $ID IN (SELECT ${MslMessageTable.PAYLOAD_ID} FROM ${MslMessageTable.TABLE_NAME} WHERE ${MslMessageTable.MESSAGE_ID} = old.${MessageTable.ID});
-        END
-      """,
+      AFTER_MESSAGE_DELETE_TRIGGER,
       """
         CREATE TRIGGER msl_attachment_delete AFTER DELETE ON ${AttachmentTable.TABLE_NAME}
         BEGIN
@@ -379,6 +382,41 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     val args = SqlUtil.buildArgs(currentTime - maxAge)
 
     db.delete(MslPayloadTable.TABLE_NAME, query, args)
+  }
+
+  /**
+   * Drop the trigger for updating the [MslPayloadTable] on message deletes. Should only be used for expected large deletes.
+   * The caller must be in a transaction and called with a matching [restoreAfterMessageDeleteTrigger] before the transaction
+   * completes.
+   *
+   * Note: The caller is not responsible for performing the missing trigger operations and they will be performed in
+   * [restoreAfterMessageDeleteTrigger].
+   */
+  fun dropAfterMessageDeleteTrigger() {
+    check(SignalDatabase.inTransaction)
+    writableDatabase.execSQL("DROP TRIGGER IF EXISTS ${MslPayloadTable.AFTER_MESSAGE_DELETE_TRIGGER_NAME}")
+  }
+
+  /**
+   * Restore the trigger for updating the [MslPayloadTable] on message deletes. Must only be called within the same transaction after calling
+   * [dropAfterMessageDeleteTrigger].
+   */
+  fun restoreAfterMessageDeleteTrigger() {
+    check(SignalDatabase.inTransaction)
+
+    val restoreDeleteMessagesOperation = """
+      DELETE FROM ${MslPayloadTable.TABLE_NAME} 
+      WHERE ${MslPayloadTable.TABLE_NAME}.${MslPayloadTable.ID} IN (
+        SELECT ${MslMessageTable.TABLE_NAME}.${MslMessageTable.PAYLOAD_ID} 
+        FROM ${MslMessageTable.TABLE_NAME} 
+        WHERE ${MslMessageTable.TABLE_NAME}.${MslMessageTable.MESSAGE_ID} NOT IN (
+          SELECT ${MessageTable.TABLE_NAME}.${MessageTable.ID} FROM ${MessageTable.TABLE_NAME}
+        )
+      )
+    """
+
+    writableDatabase.execSQL(restoreDeleteMessagesOperation)
+    writableDatabase.execSQL(MslPayloadTable.AFTER_MESSAGE_DELETE_TRIGGER)
   }
 
   override fun remapRecipient(oldRecipientId: RecipientId, newRecipientId: RecipientId) {

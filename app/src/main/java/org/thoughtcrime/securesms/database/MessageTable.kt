@@ -77,7 +77,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.distribution
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groupReceipts
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.mentions
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.reactions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
@@ -2099,7 +2098,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
       deletedAttachments = attachments.deleteAttachmentsForMessage(messageId)
       mentions.deleteMentionsForMessage(messageId)
-      messageLog.deleteAllRelatedToMessage(messageId)
+      SignalDatabase.messageLog.deleteAllRelatedToMessage(messageId)
       reactions.deleteReactions(MessageId(messageId))
       deleteGroupStoryReplies(messageId)
       disassociateStoryQuotes(messageId)
@@ -3456,17 +3455,62 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun deleteMessagesInThreadBeforeDate(threadId: Long, date: Long, inclusive: Boolean): Int {
     val condition = if (inclusive) "<=" else "<"
+    val extraWhere = "AND ${TABLE_NAME}.$DATE_RECEIVED $condition $date"
 
-    return writableDatabase
-      .delete(TABLE_NAME)
-      .where("$THREAD_ID = ? AND $DATE_RECEIVED $condition $date", threadId)
-      .run()
+    return deleteMessagesInThread(listOf(threadId), extraWhere)
   }
 
-  fun deleteAbandonedMessages(): Int {
+  fun deleteMessagesInThread(threadIds: Collection<Long>, extraWhere: String = ""): Int {
+    var deletedCount = 0
+
+    writableDatabase.withinTransaction { db ->
+      SignalDatabase.messageSearch.dropAfterMessageDeleteTrigger()
+      SignalDatabase.messageLog.dropAfterMessageDeleteTrigger()
+
+      for (threadId in threadIds) {
+        val subSelect = "SELECT ${TABLE_NAME}.$ID FROM $TABLE_NAME WHERE ${TABLE_NAME}.$THREAD_ID = $threadId $extraWhere"
+
+        // Bulk deleting FK tables for large message delete efficiency
+        db.delete(StorySendTable.TABLE_NAME)
+          .where("${StorySendTable.TABLE_NAME}.${StorySendTable.MESSAGE_ID} IN ($subSelect)")
+          .run()
+
+        db.delete(ReactionTable.TABLE_NAME)
+          .where("${ReactionTable.TABLE_NAME}.${ReactionTable.MESSAGE_ID} IN ($subSelect)")
+          .run()
+
+        db.delete(CallTable.TABLE_NAME)
+          .where("${CallTable.TABLE_NAME}.${CallTable.MESSAGE_ID} IN ($subSelect)")
+          .run()
+
+        // Must delete rows from FTS table before deleting from main table due to FTS requirement when deleting by rowid
+        db.delete(SearchTable.FTS_TABLE_NAME)
+          .where("${SearchTable.FTS_TABLE_NAME}.${SearchTable.ID} IN ($subSelect)")
+          .run()
+
+        // Actually delete messages
+        deletedCount += db.delete(TABLE_NAME)
+          .where("$THREAD_ID = ? $extraWhere", threadId)
+          .run()
+      }
+
+      SignalDatabase.messageSearch.restoreAfterMessageDeleteTrigger()
+      SignalDatabase.messageLog.restoreAfterMessageDeleteTrigger()
+    }
+
+    return deletedCount
+  }
+
+  fun deleteAbandonedMessages(threadId: Long? = null): Int {
+    val where = if (threadId == null) {
+      "$THREAD_ID NOT IN (SELECT ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.ACTIVE} = 1)"
+    } else {
+      "$THREAD_ID = $threadId AND (SELECT ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} = $threadId) != 1"
+    }
+
     val deletes = writableDatabase
       .delete(TABLE_NAME)
-      .where("$THREAD_ID NOT IN (SELECT _id FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.ACTIVE} = 1)")
+      .where(where)
       .run()
 
     if (deletes > 0) {
@@ -3494,7 +3538,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .readToSingleLongOrNull()
   }
 
-  fun deleteMessages(messagesToDelete: List<MessageTable.SyncMessageId>): List<SyncMessageId> {
+  fun deleteMessages(messagesToDelete: List<SyncMessageId>): List<SyncMessageId> {
     val threads = mutableSetOf<Long>()
     val unhandled = mutableListOf<SyncMessageId>()
 

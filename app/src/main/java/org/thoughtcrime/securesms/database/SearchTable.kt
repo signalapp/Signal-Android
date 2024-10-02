@@ -46,6 +46,11 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     private const val TRIGGER_AFTER_INSERT = "message_ai"
     private const val TRIGGER_AFTER_DELETE = "message_ad"
     private const val TRIGGER_AFTER_UPDATE = "message_au"
+    private const val AFTER_MESSAGE_DELETE_TRIGGER = """
+      CREATE TRIGGER $TRIGGER_AFTER_DELETE AFTER DELETE ON ${MessageTable.TABLE_NAME} BEGIN
+        INSERT INTO $FTS_TABLE_NAME($FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MessageTable.ID}, old.${MessageTable.BODY}, old.${MessageTable.THREAD_ID});
+      END;
+    """
 
     @Language("sql")
     val CREATE_TRIGGERS = arrayOf(
@@ -54,11 +59,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           INSERT INTO $FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${MessageTable.ID}, new.${MessageTable.BODY}, new.${MessageTable.THREAD_ID});
         END;
       """,
-      """
-        CREATE TRIGGER $TRIGGER_AFTER_DELETE AFTER DELETE ON ${MessageTable.TABLE_NAME} BEGIN
-          INSERT INTO $FTS_TABLE_NAME($FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MessageTable.ID}, old.${MessageTable.BODY}, old.${MessageTable.THREAD_ID});
-        END;
-      """,
+      AFTER_MESSAGE_DELETE_TRIGGER,
       """
         CREATE TRIGGER $TRIGGER_AFTER_UPDATE AFTER UPDATE ON ${MessageTable.TABLE_NAME} BEGIN
           INSERT INTO $FTS_TABLE_NAME($FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MessageTable.ID}, old.${MessageTable.BODY}, old.${MessageTable.THREAD_ID});
@@ -135,6 +136,25 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     } else {
       readableDatabase.rawQuery(MESSAGES_FOR_THREAD_QUERY, SqlUtil.buildArgs(fullTextSearchQuery, threadId))
     }
+  }
+
+  /**
+   * Drop the trigger for updating the search table on deletes. Should only be used for expected large deletes.
+   * The caller must be in a transaction, update the search table manually before message deletes because of FTS indexing
+   * requirements, and be called with a matching [restoreAfterMessageDeleteTrigger] before the transaction completes.
+   */
+  fun dropAfterMessageDeleteTrigger() {
+    check(SignalDatabase.inTransaction)
+    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
+  }
+
+  /**
+   * Restore the trigger for updating the search table on message deletes. Must only be called within the same transaction
+   * after calling [dropAfterMessageDeleteTrigger] and performing the dropped trigger's actions manually.
+   */
+  fun restoreAfterMessageDeleteTrigger() {
+    check(SignalDatabase.inTransaction)
+    writableDatabase.execSQL(AFTER_MESSAGE_DELETE_TRIGGER)
   }
 
   /**
