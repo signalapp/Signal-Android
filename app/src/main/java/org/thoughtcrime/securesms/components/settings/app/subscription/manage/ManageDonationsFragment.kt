@@ -278,9 +278,7 @@ class ManageDonationsFragment :
           activeSubscription = activeSubscription,
           subscriberRequiresCancel = state.subscriberRequiresCancel,
           onRowClick = {
-            if (it != ManageDonationsState.RedemptionState.IN_PROGRESS) {
-              launcher.launch(InAppPaymentType.RECURRING_DONATION)
-            }
+            launcher.launch(InAppPaymentType.RECURRING_DONATION)
           },
           onPendingClick = {
             displayPendingDialog(it)

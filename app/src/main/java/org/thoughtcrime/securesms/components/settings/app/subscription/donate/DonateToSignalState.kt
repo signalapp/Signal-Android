@@ -82,7 +82,7 @@ data class DonateToSignalState(
   val canUpdate: Boolean
     get() = when (inAppPaymentType) {
       InAppPaymentType.ONE_TIME_DONATION -> false
-      InAppPaymentType.RECURRING_DONATION -> areFieldsEnabled && monthlyDonationState.isSelectionValid
+      InAppPaymentType.RECURRING_DONATION -> areFieldsEnabled && monthlyDonationState.isSelectionValid && monthlyDonationState.isSubscriptionActive && !monthlyDonationState.transactionState.isInProgress
       else -> error("This flow does not support $inAppPaymentType")
     }
 
@@ -124,6 +124,7 @@ data class DonateToSignalState(
     val transactionState: TransactionState = TransactionState()
   ) {
     val isSubscriptionActive: Boolean = _activeSubscription?.isActive == true
+    val isSubscriptionInProgress: Boolean = _activeSubscription?.isInProgress == true
     val activeLevel: Int? = _activeSubscription?.activeSubscription?.level
     val activeSubscription: ActiveSubscription.Subscription? = _activeSubscription?.activeSubscription
     val isActiveSubscriptionEnding: Boolean = _activeSubscription?.isActive == true && _activeSubscription.activeSubscription.willCancelAtPeriodEnd()

@@ -119,6 +119,8 @@ class DonateToSignalViewModel(
 
   fun updateSubscription() {
     val snapshot = store.state
+
+    check(snapshot.canUpdate)
     if (snapshot.areFieldsEnabled) {
       actionDisposable += createInAppPayment(snapshot).subscribeBy {
         _actions.onNext(DonateToSignalAction.UpdateSubscription(it, snapshot.isUpdateLongRunning))

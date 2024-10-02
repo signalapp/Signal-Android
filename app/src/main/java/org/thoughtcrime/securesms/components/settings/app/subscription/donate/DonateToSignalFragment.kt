@@ -277,7 +277,7 @@ class DonateToSignalFragment :
 
       space(20.dp)
 
-      if (state.inAppPaymentType == InAppPaymentType.RECURRING_DONATION && state.monthlyDonationState.isSubscriptionActive) {
+      if (state.inAppPaymentType == InAppPaymentType.RECURRING_DONATION && (state.monthlyDonationState.isSubscriptionActive || state.monthlyDonationState.isSubscriptionInProgress)) {
         primaryButton(
           text = DSLSettingsText.from(R.string.SubscribeFragment__update_subscription),
           isEnabled = state.canUpdate,

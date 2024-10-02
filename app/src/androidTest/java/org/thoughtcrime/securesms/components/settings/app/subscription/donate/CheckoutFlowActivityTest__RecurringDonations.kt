@@ -5,6 +5,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.isNotEnabled
 import androidx.test.espresso.matcher.ViewMatchers.isSelected
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -79,6 +80,16 @@ class CheckoutFlowActivityTest__RecurringDonations {
     onView(withText(R.string.StripePaymentInProgressFragment__cancelling)).check(matches(isDisplayed()))
   }
 
+  @Test
+  fun givenAPendingRecurringDonation_whenILoadScreen_thenIExpectDisabledUpgradeButton() {
+    initialiseConfigurationResponse()
+    initialisePendingSubscription()
+
+    ActivityScenario.launch<CheckoutFlowActivity>(intent)
+    onView(withText(R.string.SubscribeFragment__update_subscription)).check(matches(isDisplayed()))
+    onView(withText(R.string.SubscribeFragment__update_subscription)).check(matches(isNotEnabled()))
+  }
+
   private fun initialiseConfigurationResponse() {
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Get("/v1/subscription/configuration") {
@@ -127,6 +138,43 @@ class CheckoutFlowActivityTest__RecurringDonations {
       Delete("/v1/subscription/${subscriber.subscriberId.serialize()}") {
         Thread.sleep(10000)
         MockResponse().success()
+      }
+    )
+  }
+
+  private fun initialisePendingSubscription() {
+    val currency = Currency.getInstance("USD")
+    val subscriber = InAppPaymentSubscriberRecord(
+      subscriberId = SubscriberId.generate(),
+      currency = currency,
+      type = InAppPaymentSubscriberRecord.Type.DONATION,
+      requiresCancel = false,
+      paymentMethodType = InAppPaymentData.PaymentMethodType.CARD
+    )
+
+    InAppPaymentsRepository.setSubscriber(subscriber)
+    SignalStore.inAppPayments.setSubscriberCurrency(currency, subscriber.type)
+
+    InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
+      Get("/v1/subscription/${subscriber.subscriberId.serialize()}") {
+        MockResponse().success(
+          ActiveSubscription(
+            ActiveSubscription.Subscription(
+              200,
+              currency.currencyCode,
+              BigDecimal.ONE,
+              System.currentTimeMillis().milliseconds.inWholeSeconds + 30.days.inWholeSeconds,
+              false,
+              System.currentTimeMillis().milliseconds.inWholeSeconds + 30.days.inWholeSeconds,
+              false,
+              "incomplete",
+              "STRIPE",
+              "CARD",
+              false
+            ),
+            null
+          )
+        )
       }
     )
   }
