@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.Sticker
 import org.thoughtcrime.securesms.backup.v2.proto.StickerMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Text
 import org.thoughtcrime.securesms.backup.v2.proto.ThreadMergeChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.ViewOnceMessage
 import org.thoughtcrime.securesms.backup.v2.util.toRemoteFilePointer
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -243,6 +244,10 @@ class ChatItemArchiveExporter(
 
         !record.sharedContacts.isNullOrEmpty() -> {
           builder.contactMessage = record.toRemoteContactMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = reactionsById[id], attachments = attachmentsById[id])
+        }
+
+        record.viewOnce -> {
+          builder.viewOnceMessage = record.toRemoteViewOnceMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = reactionsById[id], attachments = attachmentsById[id])
         }
 
         else -> {
@@ -553,6 +558,15 @@ private fun LinkPreview.toRemoteLinkPreview(mediaArchiveEnabled: Boolean): org.t
     image = (thumbnail.orNull() as? DatabaseAttachment)?.toRemoteMessageAttachment(mediaArchiveEnabled)?.pointer,
     description = description.nullIfEmpty(),
     date = date
+  )
+}
+
+private fun BackupMessageRecord.toRemoteViewOnceMessage(mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): ViewOnceMessage {
+  val attachment: DatabaseAttachment? = attachments?.firstOrNull()
+
+  return ViewOnceMessage(
+    attachment = attachment?.toRemoteMessageAttachment(mediaArchiveEnabled),
+    reactions = reactionRecords?.toRemote() ?: emptyList()
   )
 }
 
@@ -1082,7 +1096,8 @@ private fun Cursor.toBackupMessageRecord(): BackupMessageRecord {
     networkFailureRecipientIds = this.requireString(MessageTable.NETWORK_FAILURES).parseNetworkFailures(),
     identityMismatchRecipientIds = this.requireString(MessageTable.MISMATCHED_IDENTITIES).parseIdentityMismatches(),
     baseType = this.requireLong(COLUMN_BASE_TYPE),
-    messageExtras = this.requireBlob(MessageTable.MESSAGE_EXTRAS).parseMessageExtras()
+    messageExtras = this.requireBlob(MessageTable.MESSAGE_EXTRAS).parseMessageExtras(),
+    viewOnce = this.requireBoolean(MessageTable.VIEW_ONCE)
   )
 }
 
@@ -1119,5 +1134,6 @@ private class BackupMessageRecord(
   val networkFailureRecipientIds: Set<Long>,
   val identityMismatchRecipientIds: Set<Long>,
   val baseType: Long,
-  val messageExtras: MessageExtras?
+  val messageExtras: MessageExtras?,
+  val viewOnce: Boolean
 )

@@ -182,7 +182,12 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("chat_item_thread_merge_update_") }
   }
 
-//  @Test
+  @Test
+  fun chatItemViewOnce() {
+    runTests { it.startsWith("chat_item_view_once_") }
+  }
+
+  //  @Test
   fun recipientCallLink() {
     runTests { it.startsWith("recipient_call_link_") }
   }

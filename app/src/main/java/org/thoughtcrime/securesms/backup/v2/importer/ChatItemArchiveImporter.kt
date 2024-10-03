@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
 import org.thoughtcrime.securesms.backup.v2.proto.SimpleChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Sticker
+import org.thoughtcrime.securesms.backup.v2.proto.ViewOnceMessage
 import org.thoughtcrime.securesms.backup.v2.util.toLocalAttachment
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.CallTable
@@ -429,6 +430,15 @@ class ChatItemArchiveImporter(
       }
     }
 
+    if (this.viewOnceMessage != null) {
+      val attachment = this.viewOnceMessage.attachment?.toLocalAttachment()
+      if (attachment != null) {
+        followUp = { messageRowId ->
+          SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, listOf(attachment), emptyList())
+        }
+      }
+    }
+
     return MessageInsert(contentValues, followUp)
   }
 
@@ -484,6 +494,7 @@ class ChatItemArchiveImporter(
       this.updateMessage != null -> contentValues.addUpdateMessage(this.updateMessage)
       this.paymentNotification != null -> contentValues.addPaymentNotification(this, chatRecipientId)
       this.giftBadge != null -> contentValues.addGiftBadge(this.giftBadge)
+      this.viewOnceMessage != null -> contentValues.addViewOnce(this.viewOnceMessage)
     }
 
     return contentValues
@@ -526,6 +537,7 @@ class ChatItemArchiveImporter(
       this.standardMessage != null -> this.standardMessage.reactions
       this.contactMessage != null -> this.contactMessage.reactions
       this.stickerMessage != null -> this.stickerMessage.reactions
+      this.viewOnceMessage != null -> this.viewOnceMessage.reactions
       else -> emptyList()
     }
 
@@ -820,6 +832,10 @@ class ChatItemArchiveImporter(
     )
 
     put(MessageTable.BODY, Base64.encodeWithPadding(GiftBadge.ADAPTER.encode(dbGiftBadge)))
+  }
+
+  private fun ContentValues.addViewOnce(viewOnce: ViewOnceMessage) {
+    put(MessageTable.VIEW_ONCE, true.toInt())
   }
 
   private fun String?.tryParseMoney(): Money? {

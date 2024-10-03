@@ -52,7 +52,8 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
       MessageTable.NETWORK_FAILURES,
       MessageTable.MISMATCHED_IDENTITIES,
       "${MessageTable.TYPE} & ${MessageTypes.BASE_TYPE_MASK} AS $COLUMN_BASE_TYPE",
-      MessageTable.MESSAGE_EXTRAS
+      MessageTable.MESSAGE_EXTRAS,
+      MessageTable.VIEW_ONCE
     )
     .from(MessageTable.TABLE_NAME)
     .where(
