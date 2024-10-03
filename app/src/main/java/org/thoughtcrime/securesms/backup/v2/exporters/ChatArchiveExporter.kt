@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper
 import java.io.Closeable
+import kotlin.time.Duration.Companion.seconds
 
 class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalDatabase) : Iterator<Chat>, Closeable {
   override fun hasNext(): Boolean {
@@ -47,7 +48,7 @@ class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalData
       recipientId = cursor.requireLong(ThreadTable.RECIPIENT_ID),
       archived = cursor.requireBoolean(ThreadTable.ARCHIVED),
       pinnedOrder = cursor.requireInt(ThreadTable.PINNED),
-      expirationTimerMs = cursor.requireLong(RecipientTable.MESSAGE_EXPIRATION_TIME),
+      expirationTimerMs = cursor.requireLong(RecipientTable.MESSAGE_EXPIRATION_TIME).seconds.inWholeMilliseconds,
       expireTimerVersion = cursor.requireInt(RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION),
       muteUntilMs = cursor.requireLong(RecipientTable.MUTE_UNTIL),
       markedUnread = ThreadTable.ReadStatus.deserialize(cursor.requireInt(ThreadTable.READ)) == ThreadTable.ReadStatus.FORCED_UNREAD,

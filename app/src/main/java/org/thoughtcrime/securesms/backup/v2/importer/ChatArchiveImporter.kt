@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.wallpaper.UriChatWallpaper
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Handles the importing of [Chat] models into the local database.
@@ -55,7 +56,7 @@ object ChatArchiveImporter {
         contentValuesOf(
           RecipientTable.MENTION_SETTING to (if (chat.dontNotifyForMentionsIfMuted) RecipientTable.MentionSetting.DO_NOT_NOTIFY.id else RecipientTable.MentionSetting.ALWAYS_NOTIFY.id),
           RecipientTable.MUTE_UNTIL to chat.muteUntilMs,
-          RecipientTable.MESSAGE_EXPIRATION_TIME to chat.expirationTimerMs,
+          RecipientTable.MESSAGE_EXPIRATION_TIME to chat.expirationTimerMs.milliseconds.inWholeSeconds,
           RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION to chat.expireTimerVersion,
           RecipientTable.CHAT_COLORS to chatColor?.serialize()?.encode(),
           RecipientTable.CUSTOM_CHAT_COLORS_ID to (chatColor?.id ?: ChatColors.Id.NotSet).longValue,
