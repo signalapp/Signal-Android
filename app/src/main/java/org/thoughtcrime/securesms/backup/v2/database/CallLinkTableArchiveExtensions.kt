@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.backup.v2.database
 
+import org.signal.core.util.SqlUtil
+import org.signal.core.util.deleteAll
 import org.signal.core.util.select
 import org.thoughtcrime.securesms.database.CallLinkTable
 
@@ -15,4 +17,9 @@ fun CallLinkTable.getCallLinksForBackup(): CallLinkArchiveExporter {
     .run()
 
   return CallLinkArchiveExporter(cursor)
+}
+
+fun CallLinkTable.clearAllDataForBackup() {
+  writableDatabase.deleteAll(CallLinkTable.TABLE_NAME)
+  SqlUtil.resetAutoIncrementValue(writableDatabase, CallLinkTable.TABLE_NAME)
 }

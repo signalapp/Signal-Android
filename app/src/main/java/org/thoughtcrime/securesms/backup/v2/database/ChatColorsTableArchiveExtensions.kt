@@ -5,9 +5,11 @@
 
 package org.thoughtcrime.securesms.backup.v2.database
 
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.deleteAll
 import org.thoughtcrime.securesms.database.ChatColorsTable
 
 fun ChatColorsTable.clearAllDataForBackupRestore() {
   writableDatabase.deleteAll(ChatColorsTable.TABLE_NAME)
+  SqlUtil.resetAutoIncrementValue(writableDatabase, ChatColorsTable.TABLE_NAME)
 }

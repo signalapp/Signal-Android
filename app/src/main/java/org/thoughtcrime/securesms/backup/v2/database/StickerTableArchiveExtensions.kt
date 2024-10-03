@@ -5,9 +5,11 @@
 
 package org.thoughtcrime.securesms.backup.v2.database
 
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.deleteAll
 import org.thoughtcrime.securesms.database.StickerTable
 
 fun StickerTable.clearAllDataForBackupRestore() {
   writableDatabase.deleteAll(StickerTable.TABLE_NAME)
+  SqlUtil.resetAutoIncrementValue(writableDatabase, StickerTable.TABLE_NAME)
 }

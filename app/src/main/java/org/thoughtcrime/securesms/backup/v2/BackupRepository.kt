@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackup
 import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackupRestore
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataArchiveProcessor
@@ -386,8 +387,6 @@ object BackupRepository {
       return ImportResult.Failure
     }
 
-    // Note: Without a transaction, bad imports could lead to lost data. But because we have a transaction,
-    // writes from other threads are blocked. This is something to think more about.
     SignalDatabase.rawDatabase.withinTransaction {
       SignalDatabase.recipients.clearAllDataForBackupRestore()
       SignalDatabase.distributionLists.clearAllDataForBackupRestore()
@@ -398,6 +397,8 @@ object BackupRepository {
       SignalDatabase.reactions.clearAllDataForBackupRestore()
       SignalDatabase.inAppPayments.clearAllDataForBackupRestore()
       SignalDatabase.chatColors.clearAllDataForBackupRestore()
+      SignalDatabase.calls.clearAllDataForBackup()
+      SignalDatabase.callLinks.clearAllDataForBackup()
 
       // Add back self after clearing data
       val selfId: RecipientId = SignalDatabase.recipients.getAndPossiblyMerge(selfData.aci, selfData.pni, selfData.e164, pniVerified = true, changeSelf = true)
