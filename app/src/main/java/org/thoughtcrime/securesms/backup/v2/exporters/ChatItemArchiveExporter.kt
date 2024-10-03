@@ -854,10 +854,6 @@ private fun List<ReactionRecord>?.toRemote(): List<Reaction> {
 }
 
 private fun BackupMessageRecord.toRemoteSendStatus(groupReceipts: List<GroupReceiptTable.GroupReceiptInfo>?): List<SendStatus> {
-  if (!MessageTypes.isOutgoingMessageType(this.type)) {
-    return emptyList()
-  }
-
   if (!groupReceipts.isNullOrEmpty()) {
     return groupReceipts.toRemoteSendStatus(this, this.networkFailureRecipientIds, this.identityMismatchRecipientIds)
   }
@@ -925,12 +921,12 @@ private fun List<GroupReceiptTable.GroupReceiptInfo>.toRemoteSendStatus(messageR
           reason = SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH
         )
       }
-      networkFailureRecipientIds.contains(it.recipientId.toLong()) -> {
+      MessageTypes.isFailedMessageType(messageRecord.type) && networkFailureRecipientIds.contains(it.recipientId.toLong()) -> {
         statusBuilder.failed = SendStatus.Failed(
           reason = SendStatus.Failed.FailureReason.NETWORK
         )
       }
-      messageRecord.baseType == MessageTypes.BASE_SENT_FAILED_TYPE -> {
+      MessageTypes.isFailedMessageType(messageRecord.type) -> {
         statusBuilder.failed = SendStatus.Failed(
           reason = SendStatus.Failed.FailureReason.UNKNOWN
         )

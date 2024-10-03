@@ -578,21 +578,16 @@ class ChatItemArchiveImporter(
 
   private fun ChatItem.getMessageType(): Long {
     var type: Long = if (this.outgoing != null) {
-      if (this.outgoing.sendStatus.count { it.failed?.reason == SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH } > 0) {
+      if (this.outgoing.sendStatus.any { it.failed?.reason == SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH }) {
         MessageTypes.BASE_SENT_FAILED_TYPE
-      } else if (this.outgoing.sendStatus.count { it.failed?.reason == SendStatus.Failed.FailureReason.UNKNOWN } > 0) {
+      } else if (this.outgoing.sendStatus.any { it.failed?.reason == SendStatus.Failed.FailureReason.UNKNOWN }) {
         MessageTypes.BASE_SENT_FAILED_TYPE
-      } else if (this.outgoing.sendStatus.count { it.failed?.reason == SendStatus.Failed.FailureReason.NETWORK } > 0) {
+      } else if (this.outgoing.sendStatus.any { it.failed?.reason == SendStatus.Failed.FailureReason.NETWORK }) {
+        MessageTypes.BASE_SENT_FAILED_TYPE
+      } else if (this.outgoing.sendStatus.any { it.pending != null }) {
         MessageTypes.BASE_SENDING_TYPE
-      } else if (this.outgoing.sendStatus.count { it.pending != null } > 0) {
-        MessageTypes.BASE_SENDING_TYPE
-      } else if (this.outgoing.sendStatus.count { it.skipped != null } > 0) {
-        val count = this.outgoing.sendStatus.count { it.skipped != null }
-        if (count == this.outgoing.sendStatus.size) {
-          MessageTypes.BASE_SENDING_SKIPPED_TYPE
-        } else {
-          MessageTypes.BASE_SENDING_TYPE
-        }
+      } else if (this.outgoing.sendStatus.all { it.skipped != null }) {
+        MessageTypes.BASE_SENDING_SKIPPED_TYPE
       } else {
         MessageTypes.BASE_SENT_TYPE
       }
