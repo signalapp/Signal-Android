@@ -5,9 +5,14 @@
 
 package org.thoughtcrime.securesms.components.settings.app.backups.remote
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -49,9 +54,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
-import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
@@ -62,20 +69,23 @@ import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.Snackbars
 import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
-import org.thoughtcrime.securesms.components.settings.app.backups.type.BackupsTypeSettingsFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.dependencies.GooglePlayBillingDependencies
 import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.fonts.SignalSymbols.SignalSymbol
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
@@ -90,13 +100,19 @@ import kotlin.time.Duration.Companion.seconds
  */
 class RemoteBackupsSettingsFragment : ComposeFragment() {
 
+  companion object {
+    private val TAG = Log.tag(RemoteBackupsSettingsFragment::class)
+    private const val AUTHENTICATE_REQUEST_CODE = 1
+  }
+
   private val viewModel by viewModel {
     RemoteBackupsSettingsViewModel()
   }
 
   private val args: RemoteBackupsSettingsFragmentArgs by navArgs()
 
-  private lateinit var checkoutLauncher: ActivityResultLauncher<Unit>
+  private lateinit var checkoutLauncher: ActivityResultLauncher<MessageBackupTier?>
+  private lateinit var biometricDeviceAuthentication: BiometricDeviceAuthentication
 
   @Composable
   override fun FragmentContent() {
@@ -125,7 +141,21 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onBackupTypeActionClick(tier: MessageBackupTier) {
-      // TODO [message-backups]
+      when (tier) {
+        MessageBackupTier.FREE -> checkoutLauncher.launch(MessageBackupTier.PAID)
+        MessageBackupTier.PAID -> lifecycleScope.launch(Dispatchers.Main) {
+          val uri = Uri.parse(
+            getString(
+              R.string.backup_subscription_management_url,
+              GooglePlayBillingDependencies.getProductId(),
+              requireContext().applicationInfo.packageName
+            )
+          )
+
+          val intent = Intent(Intent.ACTION_VIEW, uri)
+          startActivity(intent)
+        }
+      }
     }
 
     override fun onBackUpUsingCellularClick(canUseCellular: Boolean) {
@@ -160,9 +190,22 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       viewModel.turnOffAndDeleteBackups()
     }
 
-    override fun onBackupsTypeClick() {
-      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_backupsTypeSettingsFragment)
+    override fun onViewBackupKeyClick() {
+      if (!biometricDeviceAuthentication.authenticate(requireContext(), true, this@RemoteBackupsSettingsFragment::showConfirmDeviceCredentialIntent)) {
+        displayBackupKey()
+      }
     }
+  }
+
+  private fun displayBackupKey() {
+    findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment)
+  }
+
+  private fun showConfirmDeviceCredentialIntent() {
+    val keyguardManager = ServiceUtil.getKeyguardManager(requireContext())
+    val intent = keyguardManager.createConfirmDeviceCredentialIntent(getString(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key), "")
+
+    startActivityForResult(intent, AUTHENTICATE_REQUEST_CODE)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -173,21 +216,40 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       }
     }
 
-    setFragmentResultListener(BackupsTypeSettingsFragment.REQUEST_KEY) { _, bundle ->
-      val backUpLater = bundle.getBoolean(BackupsTypeSettingsFragment.REQUEST_KEY)
-      if (backUpLater) {
-        viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.BACKUP_WILL_BE_CREATED_OVERNIGHT)
-      }
-    }
-
     if (savedInstanceState == null && args.backupLaterSelected) {
       viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.BACKUP_WILL_BE_CREATED_OVERNIGHT)
     }
+
+    val biometricManager = BiometricManager.from(requireContext())
+    val biometricPrompt = BiometricPrompt(this, AuthListener())
+    val promptInfo: BiometricPrompt.PromptInfo = BiometricPrompt.PromptInfo.Builder()
+      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
+      .setTitle(getString(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key))
+      .build()
+
+    biometricDeviceAuthentication = BiometricDeviceAuthentication(biometricManager, biometricPrompt, promptInfo)
   }
 
   override fun onResume() {
     super.onResume()
     viewModel.refresh()
+  }
+
+  private inner class AuthListener : BiometricPrompt.AuthenticationCallback() {
+    override fun onAuthenticationFailed() {
+      Log.w(TAG, "onAuthenticationFailed")
+      Toast.makeText(requireContext(), R.string.authentication_required, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+      Log.i(TAG, "onAuthenticationSucceeded")
+      displayBackupKey()
+    }
+
+    override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+      Log.w(TAG, "onAuthenticationError: $errorCode, $errString")
+      onAuthenticationFailed()
+    }
   }
 }
 
@@ -196,7 +258,6 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
  */
 private interface ContentCallbacks {
   fun onNavigationClick() = Unit
-  fun onBackupsTypeClick() = Unit
   fun onBackupTypeActionClick(tier: MessageBackupTier) = Unit
   fun onBackUpUsingCellularClick(canUseCellular: Boolean) = Unit
   fun onBackupNowClick() = Unit
@@ -206,6 +267,7 @@ private interface ContentCallbacks {
   fun onSnackbarDismissed() = Unit
   fun onSelectBackupsFrequencyChange(newFrequency: BackupFrequency) = Unit
   fun onTurnOffAndDeleteBackupsConfirm() = Unit
+  fun onViewBackupKeyClick() = Unit
 }
 
 @Composable
@@ -306,6 +368,13 @@ private fun RemoteBackupsSettingsContent(
           checked = canBackUpUsingCellular,
           text = stringResource(id = R.string.RemoteBackupsSettingsFragment__back_up_using_cellular),
           onCheckChanged = contentCallbacks::onBackUpUsingCellularClick
+        )
+      }
+
+      item {
+        Rows.TextRow(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__view_backup_key),
+          onClick = contentCallbacks::onViewBackupKeyClick
         )
       }
 

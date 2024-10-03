@@ -51,7 +51,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
       if (activeSubscription.isSuccess) {
         val subscription = activeSubscription.getOrThrow().activeSubscription
-        if (subscription.isActive && subscription != null) {
+        if (subscription != null) {
           _state.update { it.copy(renewalTime = subscription.endOfCurrentPeriod.seconds) }
         }
       }

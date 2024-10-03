@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
@@ -17,7 +18,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__chats) {
 
   private lateinit var viewModel: ChatsSettingsViewModel
-  private lateinit var checkoutLauncher: ActivityResultLauncher<Unit>
+  private lateinit var checkoutLauncher: ActivityResultLauncher<MessageBackupTier?>
 
   override fun onResume() {
     super.onResume()
@@ -98,7 +99,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
             if (state.canAccessRemoteBackupsSettings) {
               Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_remoteBackupsSettingsFragment)
             } else {
-              checkoutLauncher.launch(Unit)
+              checkoutLauncher.launch(null)
             }
           }
         )

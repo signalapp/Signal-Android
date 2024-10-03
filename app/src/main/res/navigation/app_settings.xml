@@ -985,8 +985,8 @@
         android:name="org.thoughtcrime.securesms.components.settings.app.backups.remote.RemoteBackupsSettingsFragment">
 
         <action
-            android:id="@+id/action_remoteBackupsSettingsFragment_to_backupsTypeSettingsFragment"
-            app:destination="@id/backupsTypeSettingsFragment"
+            android:id="@+id/action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment"
+            app:destination="@id/backupKeyDisplayFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -999,10 +999,8 @@
     </fragment>
 
     <fragment
-        android:id="@+id/backupsTypeSettingsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.backups.type.BackupsTypeSettingsFragment">
-
-    </fragment>
+        android:id="@+id/backupKeyDisplayFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyDisplayFragment" />
 
     <include app:graph="@navigation/username_link_settings" />
     <include app:graph="@navigation/story_privacy_settings" />

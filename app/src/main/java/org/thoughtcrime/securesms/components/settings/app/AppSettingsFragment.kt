@@ -204,7 +204,7 @@ class AppSettingsFragment : DSLSettingsFragment(
       if (RemoteConfig.messageBackups) {
         clickPref(
           title = DSLSettingsText.from(R.string.preferences_chats__backups),
-          // TODO [message-backups] -- icon
+          icon = DSLSettingsIcon.from(R.drawable.symbol_backup_24),
           onClick = {
             findNavController().safeNavigate(R.id.action_appSettingsFragment_to_backupsSettingsFragment)
           },

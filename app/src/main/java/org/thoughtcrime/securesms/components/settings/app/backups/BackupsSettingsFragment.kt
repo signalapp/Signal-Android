@@ -41,6 +41,7 @@ import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.Texts
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -57,7 +58,7 @@ import kotlin.time.Duration.Companion.seconds
  */
 class BackupsSettingsFragment : ComposeFragment() {
 
-  private lateinit var checkoutLauncher: ActivityResultLauncher<Unit>
+  private lateinit var checkoutLauncher: ActivityResultLauncher<MessageBackupTier?>
 
   private val viewModel: BackupsSettingsViewModel by viewModels()
 
@@ -86,7 +87,7 @@ class BackupsSettingsFragment : ComposeFragment() {
           }
 
           BackupsSettingsState.EnabledState.Never -> {
-            checkoutLauncher.launch(Unit)
+            checkoutLauncher.launch(null)
           }
 
           else -> Unit

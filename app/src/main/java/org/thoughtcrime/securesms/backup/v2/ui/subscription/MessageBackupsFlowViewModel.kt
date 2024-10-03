@@ -45,7 +45,9 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import kotlin.time.Duration.Companion.seconds
 
-class MessageBackupsFlowViewModel : ViewModel() {
+class MessageBackupsFlowViewModel(
+  initialTierSelection: MessageBackupTier?
+) : ViewModel() {
 
   companion object {
     private val TAG = Log.tag(MessageBackupsFlowViewModel::class)
@@ -54,7 +56,7 @@ class MessageBackupsFlowViewModel : ViewModel() {
   private val internalStateFlow = MutableStateFlow(
     MessageBackupsFlowState(
       availableBackupTypes = emptyList(),
-      selectedMessageBackupTier = SignalStore.backup.backupTier,
+      selectedMessageBackupTier = initialTierSelection ?: SignalStore.backup.backupTier,
       startScreen = if (SignalStore.backup.backupTier == null) MessageBackupsStage.EDUCATION else MessageBackupsStage.TYPE_SELECTION
     )
   )

@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
 import org.signal.core.util.getSerializableCompat
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.CreateBackupBottomSheet
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsCheckoutActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
@@ -17,7 +18,7 @@ object MessageBackupsCheckoutLauncher {
 
   fun Fragment.createBackupsCheckoutLauncher(
     onCreateBackupBottomSheetResultListener: OnCreateBackupBottomSheetResultListener = {} as OnCreateBackupBottomSheetResultListener
-  ): ActivityResultLauncher<Unit> {
+  ): ActivityResultLauncher<MessageBackupTier?> {
     childFragmentManager.setFragmentResultListener(CreateBackupBottomSheet.REQUEST_KEY, viewLifecycleOwner) { requestKey, bundle ->
       if (requestKey == CreateBackupBottomSheet.REQUEST_KEY) {
         val result = bundle.getSerializableCompat(CreateBackupBottomSheet.REQUEST_KEY, CreateBackupBottomSheet.Result::class.java)
