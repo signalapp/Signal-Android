@@ -10,6 +10,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.github.difflib.DiffUtils
 import com.github.difflib.UnifiedDiffUtils
 import junit.framework.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.Base64
@@ -44,6 +45,11 @@ class ArchiveImportExportTests {
     val SELF_E164 = "+10000000000"
     val SELF_PROFILE_KEY: ByteArray = Base64.decode("YQKRq+3DQklInaOaMcmlzZnN0m/1hzLiaONX7gB12dg=")
     val MASTER_KEY = Base64.decode("sHuBMP4ToZk4tcNU+S8eBUeCt8Am5EZnvuqTBJIR4Do")
+  }
+
+  @Before
+  fun setup() {
+    AppDependencies.jobManager.shutdown()
   }
 
   @Test
