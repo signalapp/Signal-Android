@@ -22,6 +22,9 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
+    <!-- First placeholder is productId, second placeholder is app package -->
+    <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
+
     <string name="yes">ಹೌದು</string>
     <string name="no">ಇಲ್ಲ</string>
     <string name="delete">ಅಳಿಸಿ</string>
@@ -260,6 +263,7 @@
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">ಫೋಟೋಕ್ಕಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ, ವೀಡಿಯೊಗಾಗಿ ಹಿಡಿದುಕೊಳ್ಳಿ</string>
+    <!-- Accessibility content description to describe the capture button when taking an image/video -->
     <string name="CameraXFragment_capture_description">ಸೆರೆಹಿಡಿಯಿರಿ</string>
     <string name="CameraXFragment_change_camera_description">ಕ್ಯಾಮರಾ ಬದಲಾಯಿಸಿ</string>
     <string name="CameraXFragment_open_gallery_description">ಗ್ಯಾಲರಿ ತೆರೆಯಿರಿ</string>
@@ -346,7 +350,7 @@
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">ಇದು ಮಾನ್ಯವಾದ ಕರೆ ಲಿಂಕ್ ಅಲ್ಲ. ಸೇರಲು ಪ್ರಯತ್ನಿಸುವ ಮೊದಲು ಸಂಪೂರ್ಣ ಲಿಂಕ್ ಅಖಂಡವಾಗಿದೆ ಮತ್ತು ಸರಿಯಾಗಿದೆ ಎನ್ನುವುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
-    <string name="CommunicationActions__you_are_already_in_a_call">You are already in a call</string>
+    <string name="CommunicationActions__you_are_already_in_a_call">ನೀವು ಈಗಾಗಲೇ ಕಾಲ್‌ನಲ್ಲಿದ್ದೀರಿ</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -403,6 +407,7 @@
     <string name="ConversationItem_unable_to_open_media">ಈ ಮೀಡಿಯಾ ತೆರೆಯಲು ಸಾಮರ್ಥ್ಯವಿರುವ ಅಪ್ಲಿಕೇಶನ್ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.</string>
     <string name="ConversationItem_copied_text">%1$s ನಕಲಿಸಲಾಗಿದೆ</string>
     <string name="ConversationItem_from_s">ಇಂದ %1$s</string>
+    <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">ಗೆ %1$s</string>
     <string name="ConversationItem_read_more"> ಮತ್ತಷ್ಟು ಓದಿ</string>
     <string name="ConversationItem_download_more"> ಇನ್ನಷ್ಟು ಇಳಿಕೆ ಮಾಡಿ</string>
@@ -436,6 +441,7 @@
     <string name="ConversationActivity_send_edit">ಎಡಿಟ್ ಮಾಡಿದ್ದನ್ನು ಕಳುಹಿಸಿ</string>
     <string name="ConversationActivity_compose_message">ಸಂದೇಶ ರಚಿಸಿ</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ಕ್ಷಮಿಸಿ, ನಿಮ್ಮ ಲಗತ್ತನ್ನು ಹೊಂದಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ.</string>
+    <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">ಸ್ವೀಕರಿಸುವವರ ಎಸ್‌‌ಎಂಸ್ ಅಥವಾ ಇಮೇಲ್ ವಿಳಾಸ ಮಾನ್ಯವಾದುದಲ್ಲ!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">ಸಂದೇಶ ಖಾಲಿಯಾಗಿದೆ!</string>
     <string name="ConversationActivity_group_members">ಗುಂಪಿನ ಸದಸ್ಯರು</string>
@@ -576,6 +582,7 @@
         <item quantity="other">ಸ್ಟೋರೇಜ್‍ ಗೆ %1$d ಲಗತ್ತುಗಳನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ…</item>
     </plurals>
     <string name="ConversationFragment_pending">ಬಾಕಿ ಇದೆ…</string>
+    <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">ದತ್ತಾಂಶ (Signal)</string>
     <string name="ConversationFragment_mms">ಎಂಎಂಎಸ್</string>
     <string name="ConversationFragment_sms">ಎಸ್‌ಎಂಎಸ್‌</string>
@@ -1006,6 +1013,7 @@
     <string name="DeviceListActivity_unlink_s">%1$sಯನ್ನು ಅನ್‌ಲಿಂಕ್‌ ಮಾಡುವುದೇ?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ಈ ಸಾಧನವನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡುವ ಮೂಲಕ, ಇದು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಥವಾ ಪಡೆಯಲು ಇನ್ನು ಮುಂದೆ ಸಮರ್ಥವಾಗಿರುವುದಿಲ್ಲ.</string>
     <string name="DeviceListActivity_network_connection_failed">ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕ ವಿಫಲವಾಗಿದೆ</string>
+    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
     <string name="DeviceListActivity_try_again">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
     <string name="DeviceListActivity_unlinking_device">ಸಾಧನ ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">ಸಾಧನ ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
@@ -1408,7 +1416,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">ಗುಂಪಿನ ಲಿಂಕ್</string>
     <string name="ShareableGroupLinkDialogFragment__share">ಹಂಚಿಕೊಳ್ಳಿ</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">ರೀಸೆಟ್ ಲಿಂಕ್</string>
-    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Require admin approval</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">ಅಡ್ಮಿನ್ ಅನುಮೋದನೆ ಅಗತ್ಯವಿದೆ</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ಗುಂಪಿನ ಲಿಂಕ್ ಮೂಲಕ ಹೊಸ ಸದಸ್ಯರು ಸೇರುವುದನ್ನು ಅನುಮೋದಿಸಲು ಅಡ್ಮಿನ್ ಅಗತ್ಯವಿರುತ್ತದೆ.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">ನೀವು ಖಚಿತವಾಗಿ ಗುಂಪಿನ ಲಿಂಕ್ ಅನ್ನು ಮರುಹೊಂದಿಸಲು ಬಯಸುತ್ತೀರಾ? ಪ್ರಸ್ತುತ ಲಿಂಕ್ ಅನ್ನು ಬಳಸಿ ಇನ್ನು ಮುಂದೆ ಗುಂಪನ್ನು ಸೇರಲು ಜನರಿಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
 
@@ -1507,6 +1515,7 @@
         <item quantity="other">ಎಸ್‌ಎಂಎಸ್‌ ಆಹ್ವಾನಗಳನ್ನು %1$dಗೆ ಕಳುಹಿಸುವುದೇ?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Signal ಗೆ ಬದಲಾಯಿಸೋಣ: %1$s</string>
+    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">ಹಂಚಿಕೊಳ್ಳಲು ತಾವು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್ ಗಳನ್ನು ಹೊಂದಿಲ್ಲ ಎಂದು ಕಂಡುಬರುತ್ತಿದೆ.</string>
 
     <!-- LearnMoreTextView -->
@@ -1931,6 +1940,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s ಅವರು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಲು ಮತ್ತು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲು ಅನುಮತಿಸುತ್ತೀರಾ? ನೀವು ಅವರನ್ನು ಅನ್‌ಬ್ಲಾಕ್ ಮಾಡುವವರೆಗೆ ನೀವು ಯಾವುದೇ ಮೆಸೇಜ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s ಅವರು ನಿಮಗೆ ಮೆಸೇಜ್ ಕಳುಹಿಸಬಹುದೇ? ನೀವು ಅವರನ್ನು ಅನ್‌ಬ್ಲಾಕ್ ಮಾಡುವವರೆಗೆ ನೀವು ಯಾವುದೇ ಮೆಸೇಜ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ.</string>
+    <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s ಅವರಿಂದ ಅಪ್‌ಡೇಟ್‌ಗಳು ಮತ್ತು ಸುದ್ದಿ ಪಡೆಯಬೇಕೇ? ನೀವು ಅವರನ್ನು ಅನ್‌ಬ್ಲಾಕ್ ಮಾಡುವವರೆಗೆ ನೀವು ಯಾವುದೇ ಅಪ್‌ಡೇಟ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ಈ ಗುಂಪಿನೊಂದಿಗೆ ನಿಮ್ಮ ಚಾಟ್ ಅನ್ನು ಮುಂದುವರಿಸುವುದೇ ಹಾಗೂ ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಇದರ ಸದಸ್ಯರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಬೇಕೇ?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">ಈ ಲೆಗಸಿ ಗ್ರೂಪ್ ಅನ್ನು ಇನ್ನು ಮುಂದೆ ಬಳಸಲಾಗುವುದಿಲ್ಲ. @mentions ಮತ್ತು admins ನಂತಹ ಹೊಸ ಫೀಚರ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ಹೊಸ ಗುಂಪನ್ನು ರಚಿಸಿ.</string>
@@ -2245,6 +2255,7 @@
 
     <string name="WebRtcCallView__no_one_else_is_here">ಇಲ್ಲಿ ಯಾರೂ ಇಲ್ಲ</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s ಅವರು ಈ ಕರೆಯಲ್ಲಿದ್ದಾರೆ</string>
+    <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
     <string name="WebRtcCallView__s_are_in_this_call">%1$s ಅವರು ಈ ಕರೆಯಲ್ಲಿದ್ದಾರೆ</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ಮತ್ತು %2$s ಈ ಕರೆಯಲ್ಲಿದ್ದಾರೆ</string>
 
@@ -2647,7 +2658,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">ನಾವು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸುತ್ತೇವೆ.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಣಗೊಂಡಿದೆ</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">ನೀವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆವೃತ್ತಿ %1$s ಗೆ ನವೀಕರಣಗೊಂಡಿದ್ದೀರಿ.</string>
-    <string name="ApkUpdateNotifications_manual_update_success_body">You updated to version %1$s.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">ನೀವು ಆವೃತ್ತಿ %1$s ಗೆ ಅಪ್‌ಡೇಟ್ ಮಾಡಿದ್ದೀರಿ.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">ಸಂದೇಶ ಕಳುಹಿಸುವುದೇ?</string>
@@ -3067,6 +3078,7 @@
     <string name="conversation_activity__attachment_thumbnail">ಥಂಬ್‌ನೇಲ್ ಲಗತ್ತು</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">ತ್ವರಿತ ಕ್ಯಾಮರಾ ಅಟ್ಯಾಚ್‌ಮೆಂಟ್ ಡ್ರಾಯರ್ ಟಾಗಲ್ ಮಾಡಿ</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ಆಡಿಯೊ ಲಗತ್ತು ರೆಕಾರ್ಡ್ ಮಾಡಿ ಮತ್ತು ಕಳುಹಿಸಿ</string>
+    <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ಆಡಿಯೊ ಲಗತ್ತು ರೆಕಾರ್ಡಿಂಗ್ ಲಾಕ್ ಮಾಡಿ</string>
     <string name="conversation_activity__message_could_not_be_sent">ಮೆಸೇಜ್ ಕಳುಹಿಸಲಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
 
@@ -3085,6 +3097,7 @@
     <string name="conversation_item_sent__message_read">ಸಂದೇಶವನ್ನು ಓದಲಾಗಿದೆ</string>
 
     <!-- conversation_item_received -->
+    <!-- Content description for profile pictures -->
     <string name="conversation_item_received__contact_photo_description">ಸಂಪರ್ಕದ ಫೋಟೊ</string>
 
     <!-- ConversationUpdateItem -->
@@ -3169,6 +3182,7 @@
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">ಈಗ ಎಲ್ಲವೂ ಚೆನ್ನಾಗಿ ಕಾಣಿಸುತ್ತದೆ!</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸಲು, ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು \"ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ತೋರಿಸಿ\" ಆನ್ ಮಾಡಿ.</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಪಡೆಯಲು, ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಆನ್ ಮಾಡಿ ಮತ್ತು ಧ್ವನಿ ಮತ್ತು ಪಾಪ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಿ.</string>
+    <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಪಡೆಯಲು, ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು \"ಬ್ಯಾಟರಿ\" ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಹಿನ್ನೆಲೆ ಚಟುವಟಿಕೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
     <string name="EnableCallNotificationSettingsDialog__settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸಲು, ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು \"ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ತೋರಿಸಿ\" ಆನ್ ಮಾಡಿ</string>
@@ -3306,7 +3320,7 @@
     <string name="EditAboutFragment_taking_a_break">ವಿರಾಮ ತೆಗೆದುಕೊಳ್ಳುವುದು</string>
     <string name="EditAboutFragment_working_on_something_new">ಏನೋ ಹೊಸದರ ಕುರಿತು ಕೆಲಸ ಮಾಡುವುದು</string>
     <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">One or more characters is invalid.</string>
+    <string name="EditAboutFragment_one_or_more_characters">ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಅಕ್ಷರಗಳು ಅಮಾನ್ಯವಾಗಿವೆ.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">ಗುಂಪನ್ನು ಬದಲಾಯಿಸಿ</string>
@@ -3405,6 +3419,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">ಬೆಂಬಲ ಮಾಹಿತಿ</string>
     <string name="HelpFragment__signal_android_support_request">Signal ಆಂಡ್ರಾಯ್ಡ್ ಬೆಂಬಲ ವಿನಂತಿ</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
@@ -3493,6 +3508,7 @@
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">ನೀವು ಕಳುಹಿಸುವ ಸಂದೇಶಗಳಿಗಾಗಿ ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ವೆಬ್‌ಸೈಟ್‌ಗಳಿಂದ ನೇರವಾಗಿ ಹಿಂಪಡೆಯಿರಿ.</string>
     <string name="preferences__change_passphrase">ಪಾಸ್‌‌ಫ್ರೇಸ್ ಬದಲಾಯಿಸಿ</string>
     <string name="preferences__change_your_passphrase">ನಿಮ್ಮ ಪಾಸ್‌‌ಫ್ರೇಸ್ ಬದಲಾಯಿಸಿ</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
     <string name="preferences__enable_passphrase">ಪಾಸ್‌‌ಫ್ರೇಸ್ ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ಪಾಸ್‌ಫ್ರೇಸ್ ಜೊತೆಯಲ್ಲಿ ಲಾಕ್ ಸ್ಕ್ರೀನ್ ಮತ್ತು ಅಧಿಸೂಚನೆಗಳು</string>
     <string name="preferences__screen_security">ಸ್ಕ್ರೀನ್ ಸುರಕ್ಷತೆ</string>
@@ -3505,6 +3521,7 @@
     <string name="preferences__pref_led_blink_title">ಎಲ್‌ಇಡಿ ಮಿನುಗುವ ಪ್ಯಾಟರ್ನ್‌</string>
     <string name="preferences__customize">ಕಸ್ಟಮೈಝ್ ಮಾಡಿ</string>
     <string name="preferences__change_sound_and_vibration">ಶಬ್ದ ಮತ್ತು ವೈಬ್ರೇಶನ್ ಬದಲಾಯಿಸಿ</string>
+    <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">ಶಬ್ದ</string>
     <string name="preferences__silent">ಮೌನ</string>
     <string name="preferences__default">ಡೀಫಾಲ್ಟ್</string>
@@ -5378,6 +5395,7 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">ಸ್ಟೋರಿಗೆ ಸೇರಿಸಿ</string>
     <string name="MediaReviewFragment__add_a_message">ಮೆಸೇಜ್ ಸೇರಿಸಿ</string>
+    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">ಉತ್ತರ ಸೇರಿಸಿ</string>
     <string name="MediaReviewFragment__send_to">ಇವರಿಗೆ ಕಳುಹಿಸಿ</string>
     <string name="MediaReviewFragment__view_once_message">ಒಮ್ಮೆ ವೀಕ್ಷಿಸಬಹುದಾದ ಮೀಡಿಯಾ</string>
@@ -5982,6 +6000,8 @@
         <item quantity="one">%1$d reply</item>
         <item quantity="other">%1$d ಉತ್ತರಗಳು</item>
     </plurals>
+    <!-- Toast / Snackbar label when unhiding a story during viewer -->
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">Story no longer hidden</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">ಸೇರಿಸಿ</string>
     <!-- Used when view receipts are disabled -->
@@ -7267,7 +7287,23 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">ನಿಮ್ಮ ಮೀಡಿಯಾವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು %1$s ಸ್ಥಳಾವಕಾಶವನ್ನು ಮುಕ್ತಗೊಳಿಸಿ.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to restore your media.</string>
+    <!-- Status title for banner when user is actively restoring media from a backup -->
+    <string name="BackupStatus__restoring_media">Restoring media</string>
+    <!-- Status title for banner when user has paused restore media from a backup -->
+    <string name="BackupStatus__restore_paused">Restore paused</string>
+    <!-- Status title for banner when user has completed restoring restore media from a backup -->
+    <string name="BackupStatus__restore_complete">Restore complete</string>
+
+    <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
+    <!-- Status subtitle for banner when restoring media pauses for internet in general -->
+    <string name="BackupStatus__status_no_internet">No internet…</string>
+    <!-- Status subtitle for banner when restoring media pauses for low battery -->
+    <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
+    <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
+    <string name="BackupStatus__status_size_of_size">%1$s of %2$s</string>
+
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7330,19 +7366,15 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">ಓಕೆ</string>
 
-    <!-- RemoteBackupsPaymentHistoryFragment -->
-    <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">ಪಾವತಿ ಇತಿಹಾಸ</string>
-    <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">ಪಠ್ಯ ಮತ್ತು ಎಲ್ಲಾ ಮೀಡಿಯಾ ಬ್ಯಾಕಪ್</string>
-    <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">ಪಾವತಿ ವಿವರಗಳು</string>
-    <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">ಬ್ಯಾಕಪ್ ಪ್ರಕಾರ</string>
-    <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">ಪಾವತಿಸಿದ ದಿನಾಂಕ</string>
-    <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <!-- BackupsSettingsFragment -->
+    <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/month, renews %2$s</string>
+    <!-- Subtitle for row for active backup, placeholder is last date of backup -->
+    <string name="BackupsSettingsFragment_last_backup_s">Last backup %1$s</string>
+    <!-- Subtitle for row for no backup ever created -->
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
+    <!-- Action button label to set up backups -->
+    <string name="BackupsSettingsFragment_set_up">Set up</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7357,6 +7389,10 @@
     <string name="RemoteBackupsSettingsFragment__backup_frequency">ಬ್ಯಾಕಪ್ ಆವರ್ತನ</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">ಸೆಲ್ಯುಲರ್ ಬಳಸಿಕೊಂಡು ಬ್ಯಾಕಪ್ ಮಾಡಿ</string>
+    <!-- Row label for viewing backup key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">View backup key</string>
+    <!-- Prompt title for unlocking device to view backup key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view backup key</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ಬ್ಯಾಕಪ್ ಆಫ್ ಮಾಡಿ ಮತ್ತು ಅಳಿಸಿ</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7370,13 +7406,27 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ರಾತ್ರಿಯಲ್ಲಿ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ.</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_type">ಬ್ಯಾಕಪ್ ಪ್ರಕಾರ</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">Backup plan</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
-    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/ತಿಂಗಳು</string>
-    <!-- Button label to enable backups -->
-    <string name="RemoteBackupsSettingsFragment__enable_backups">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <!-- Format string for backup and cost. First placeholder is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/month</string>
+    <!-- String for free backups -->
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
+    <!-- Displays the date the subscription will renew -->
+    <string name="RemoteBackupsSettingsFragment__renews_s">Renews %1$s</string>
+    <!-- Displayed at the top of the screen when no backup is currently enabled -->
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
+    <!-- Section header for other ways to back up -->
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Other ways to backup</string>
+    <!-- Row title for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">On-device backups</string>
+    <!-- Row label for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Save your backups to a folder on this device</string>
+    <!-- Button label to manage or cancel backups -->
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
+    <!-- button label to upgrade backups -->
+    <string name="RemoteBackupsSettingsFragment__upgrade">Upgrade</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d/</string>
     <!-- Title text in row detailing last backup -->
@@ -7426,33 +7476,33 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your backup key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಕೀ</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-digit code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಕೀ 64-ಅಂಕಿಯ ಕೋಡ್ ಆಗಿದ್ದು, ನೀವು Signal ಅನ್ನು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು ನಿಮಗೆ ಅನುಮತಿಸುತ್ತದೆ.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">If you forget your key, you will not be able to restore your backup. Signal cannot help you recover your backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">ನಿಮ್ಮ ಕೀಯನ್ನು ನೀವು ಮರೆತರೆ, ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಕವರ್ ಮಾಡಲು Signal ನಿಮಗೆ ಸಹಾಯ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Next</string>
+    <string name="MessageBackupsKeyEducationScreen__next">ಮುಂದೆ</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your backup key</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಕೀಯನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಿ</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">This key is required to recover your account and data. Store this key somewhere safe. If you lose it, you won’t be able to recover your account.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">ನಿಮ್ಮ ಖಾತೆ ಮತ್ತು ಡೇಟಾವನ್ನು ರಿಕವರ್ ಮಾಡಲು ಈ ಕೀ ಅಗತ್ಯವಿದೆ. ಈ ಕೀಯನ್ನು ಎಲ್ಲಾದರೂ ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಿ. ನೀವು ಅದನ್ನು ಕಳೆದುಕೊಂಡರೆ, ನಿಮ್ಮ ಖಾತೆಯನ್ನು ರಿಕವರ್ ಮಾಡಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <!-- Copy to clipboard button label -->
-    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copy to clipboard</string>
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸು</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyRecordScreen__next">Next</string>
+    <string name="MessageBackupsKeyRecordScreen__next">ಮುಂದೆ</string>
     <!-- Bottom sheet title -->
-    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Keep your key safe</string>
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">ನಿಮ್ಮ ಕೀಯನ್ನು ಸುರಕ್ಷಿತವಾಗಿರಿಸಿ</string>
     <!-- Bottom sheet subtitle -->
-    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal will not be able to help you restore your backup if you lose your key. Store it somewhere safe and secure, and do not share it with others.</string>
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">ನಿಮ್ಮ ಕೀಯನ್ನು ನೀವು ಕಳೆದುಕೊಂಡರೆ ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು Signal ನಿಮಗೆ ಸಹಾಯ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ಅದನ್ನು ಎಲ್ಲೋ ಸುರಕ್ಷಿತವಾಗಿ ಮತ್ತು ಭದ್ರವಾಗಿ ಸಂಗ್ರಹಿಸಿ ಹಾಗೂ ಅದನ್ನು ಇತರರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ.</string>
     <!-- Checkbox label -->
-    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">I\'ve recorded my key</string>
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">ನಾನು ನನ್ನ ಕೀಯನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಿದ್ದೇನೆ</string>
     <!-- Sheet action button label -->
-    <string name="MessageBackupsKeyRecordScreen__continue">Continue</string>
+    <string name="MessageBackupsKeyRecordScreen__continue">ಮುಂದುವರಿಸಿ</string>
     <!-- Sheet secondary action button label -->
-    <string name="MessageBackupsKeyRecordScreen__see_key_again">See key again</string>
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">ಕೀಯನ್ನು ಮತ್ತೊಮ್ಮೆ ನೋಡಿ</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->

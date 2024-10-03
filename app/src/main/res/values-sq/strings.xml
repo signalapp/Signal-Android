@@ -22,6 +22,9 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
+    <!-- First placeholder is productId, second placeholder is app package -->
+    <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
+
     <string name="yes">Po</string>
     <string name="no">Jo</string>
     <string name="delete">Fshije</string>
@@ -260,6 +263,7 @@
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Prekni për foto, mbajeni shtypur për video</string>
+    <!-- Accessibility content description to describe the capture button when taking an image/video -->
     <string name="CameraXFragment_capture_description">Shkrep</string>
     <string name="CameraXFragment_change_camera_description">Ndërroni kameran</string>
     <string name="CameraXFragment_open_gallery_description">Hap albumet</string>
@@ -346,7 +350,7 @@
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Kjo nuk është një lidhje e vlefshme telefonate. Sigurohu që e gjithë lidhja të jetë e paprekur dhe e saktë para se të përpiqesh t\'i bashkohesh.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
-    <string name="CommunicationActions__you_are_already_in_a_call">You are already in a call</string>
+    <string name="CommunicationActions__you_are_already_in_a_call">Jeni tashmë në një thirrje</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -403,6 +407,7 @@
     <string name="ConversationItem_unable_to_open_media">Nuk gjendet një aplikacion që mund ta hapë këtë media.</string>
     <string name="ConversationItem_copied_text">U kopjua %1$s</string>
     <string name="ConversationItem_from_s">nga%1$s</string>
+    <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">për %1$s</string>
     <string name="ConversationItem_read_more">  Lexoni më shumë</string>
     <string name="ConversationItem_download_more">  Shkarkoni më shumë</string>
@@ -436,6 +441,7 @@
     <string name="ConversationActivity_send_edit">Dërgo përpunimin</string>
     <string name="ConversationActivity_compose_message">Shkruaj mesazhin</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Na vjen keq, ka ndodhur një gabim në vendosjen e bashkëngjitjes tuaj.</string>
+    <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Marrësi nuk është një adresë e vlefshme mesazhi ose emaili!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Mesazhi është bosh!</string>
     <string name="ConversationActivity_group_members">Anëtarët e grupit</string>
@@ -576,6 +582,7 @@
         <item quantity="other">Duke ruajtur %1$d bashkëngjitjet në magazinë…</item>
     </plurals>
     <string name="ConversationFragment_pending">Në pritje…</string>
+    <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">Të dhëna (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
@@ -1006,6 +1013,7 @@
     <string name="DeviceListActivity_unlink_s">Të shkëputet \'%1$s\'?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Duke e shkëputur këtë pajisje, s\\’do të jetë më në gjendje të dërgojë ose marrë mesazhe.</string>
     <string name="DeviceListActivity_network_connection_failed">Dështoi lidhja me rrjetin</string>
+    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
     <string name="DeviceListActivity_try_again">Riprovo</string>
     <string name="DeviceListActivity_unlinking_device">Po shkëputet pajisja…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">Po shkëputet pajisja</string>
@@ -1408,7 +1416,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">Lidhje grupi</string>
     <string name="ShareableGroupLinkDialogFragment__share">Ndajeni Me të Tjerë</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Ricaktoni lidhje</string>
-    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Require admin approval</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Kërkohet miratimi i administratorit</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Kërko doemos që një përgjegjës të miratojë anëtarë të rinj që vijnë prej një lidhjeje grupi.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Jeni i sigurt se doni të ricaktohet lidhja e grupit? Njerëzit s\\’do të jenë më në gjendje të bëhen pjesë e grupit duke përdorur lidhjen e tanishme.</string>
 
@@ -1507,6 +1515,7 @@
         <item quantity="other">Të dërgohen %1$d ftesa SMS?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Le të kalojmë në Signal: %1$s</string>
+    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">Duket sikur s\\’keni aplikacione me të cilat të ndani.</string>
 
     <!-- LearnMoreTextView -->
@@ -1931,6 +1940,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Dëshiron që %1$s të të dërgojnë mesazh dhe të ndash emrin dhe foton tënde me ta? Nuk do të marrësh asnjë mesazh derisa t\'i zhbllokosh.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Dëshiron që %1$s të të dërgojnë mesazh? Nuk do të marrësh asnjë mesazh derisa t\'i zhbllokosh.</string>
+    <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Dëshiron të marrësh përditësime dhe lajme nga %1$s? Nuk do të marrësh asnjë përditësim derisa t\'i zhbllokosh.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Dëshiron të vazhdosh bisedën me këtë grup dhe të ndash me anëtarët e tij emri dhe foton tënde?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Grupi i trashëguar nuk mund të përdoret më. Krijo grup të ri për të aktivizuar veçori të reja si @përmendjet dhe administratorët.</string>
@@ -2245,6 +2255,7 @@
 
     <string name="WebRtcCallView__no_one_else_is_here">S\\’ka tjetër këtu</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s është në këtë thirrje</string>
+    <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
     <string name="WebRtcCallView__s_are_in_this_call">Në këtë thirrje gjenden %1$s</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s dhe %2$s janë në këtë thirrje</string>
 
@@ -2647,7 +2658,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">Do të provojmë përsëri më vonë.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal u përditësua me sukses</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">Je përditësuar automatikisht në versionin %1$s.</string>
-    <string name="ApkUpdateNotifications_manual_update_success_body">You updated to version %1$s.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">U përditësove në versionin %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Të dërgohet mesazhi?</string>
@@ -3067,6 +3078,7 @@
     <string name="conversation_activity__attachment_thumbnail">Miniaturë Bashkëngjitjeje</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Hap/mbyll sirtar të shpejtë bashkëngjitjesh nga kamera</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Incizoni dhe dërgoni bashkëngjitje zanore</string>
+    <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blloko incizim bashkëngjitjeje audio</string>
     <string name="conversation_activity__message_could_not_be_sent">Mesazhi s\\’u dërgua dot. Kontrolloni lidhjen tuaj dhe riprovoni.</string>
 
@@ -3085,6 +3097,7 @@
     <string name="conversation_item_sent__message_read">Mesazhi u lexua</string>
 
     <!-- conversation_item_received -->
+    <!-- Content description for profile pictures -->
     <string name="conversation_item_received__contact_photo_description">Foto kontakti</string>
 
     <!-- ConversationUpdateItem -->
@@ -3169,6 +3182,7 @@
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Tani gjithçka duket në rregull!</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Për të marrë njoftime thirrjesh, prekeni këtu dhe aktivizoni “Shfaq njoftime”.</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Për të marrë njoftime thirrjes, prekeni këtu dhe aktivizoni njoftimet dhe sigurohuni se Tinguj dhe Flluska janë të aktivizuara.</string>
+    <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Për të marrë njoftime thirrjesh, prekeni këtu dhe aktivizoni veprimtari në prapaskenë, te parametrat e “Baterisë”. </string>
     <string name="EnableCallNotificationSettingsDialog__settings">Parametrat</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Për të marrë njoftime thirrjesh, prekni parametrat dhe aktivizoni “Shfaq njoftime”.</string>
@@ -3306,7 +3320,7 @@
     <string name="EditAboutFragment_taking_a_break">Pushoni ca</string>
     <string name="EditAboutFragment_working_on_something_new">Po merrem me diçka të re</string>
     <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">One or more characters is invalid.</string>
+    <string name="EditAboutFragment_one_or_more_characters">Një ose më shumë karaktere janë të pavlefshme.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Përpunoni grup</string>
@@ -3405,6 +3419,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">Të dhëna Asistence</string>
     <string name="HelpFragment__signal_android_support_request">Kërkesë Për Asistencë për Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
@@ -3493,6 +3508,7 @@
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Merrni, për mesazhet që dërgoni, paraparje lidhjesh drejt e nga sajtet.</string>
     <string name="preferences__change_passphrase">Ndryshoje frazëkalimin</string>
     <string name="preferences__change_your_passphrase">Ndryshoni frazëkalimin tuaj</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
     <string name="preferences__enable_passphrase">Aktivizoni kyçje ekrani me frazëkalim</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Kyçje ekrani dhe njoftime me frazëkalim</string>
     <string name="preferences__screen_security">Siguri ekrani</string>
@@ -3505,6 +3521,7 @@
     <string name="preferences__pref_led_blink_title">Rregullsi xixëllimi LED-i</string>
     <string name="preferences__customize">Përshtateni</string>
     <string name="preferences__change_sound_and_vibration">Ndryshoni tingull dhe dridhje</string>
+    <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Tingull</string>
     <string name="preferences__silent">Heshtazi</string>
     <string name="preferences__default">Parazgjedhje</string>
@@ -5378,6 +5395,7 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Shto në postimin e përkohshëm</string>
     <string name="MediaReviewFragment__add_a_message">Shtoni një mesazh</string>
+    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">Shtoni një përgjigje</string>
     <string name="MediaReviewFragment__send_to">Dërguar</string>
     <string name="MediaReviewFragment__view_once_message">Media që mund të shihet vetëm një herë</string>
@@ -5982,6 +6000,8 @@
         <item quantity="one">%1$d përgjigje</item>
         <item quantity="other">%1$d përgjigje</item>
     </plurals>
+    <!-- Toast / Snackbar label when unhiding a story during viewer -->
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">Story no longer hidden</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">Shtoje</string>
     <!-- Used when view receipts are disabled -->
@@ -7267,7 +7287,23 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Liro %1$s hapësirë për të shkarkuar media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to restore your media.</string>
+    <!-- Status title for banner when user is actively restoring media from a backup -->
+    <string name="BackupStatus__restoring_media">Restoring media</string>
+    <!-- Status title for banner when user has paused restore media from a backup -->
+    <string name="BackupStatus__restore_paused">Restore paused</string>
+    <!-- Status title for banner when user has completed restoring restore media from a backup -->
+    <string name="BackupStatus__restore_complete">Restore complete</string>
+
+    <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
+    <!-- Status subtitle for banner when restoring media pauses for internet in general -->
+    <string name="BackupStatus__status_no_internet">No internet…</string>
+    <!-- Status subtitle for banner when restoring media pauses for low battery -->
+    <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
+    <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
+    <string name="BackupStatus__status_size_of_size">%1$s of %2$s</string>
+
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7330,19 +7366,15 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
-    <!-- RemoteBackupsPaymentHistoryFragment -->
-    <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Historia e pagesave</string>
-    <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Kopjeruajtje për tekst dhe për të gjitha mediat</string>
-    <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Detajet e pagesës</string>
-    <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Lloji i kopjeruajtjeve</string>
-    <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Datë pagese</string>
-    <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">Ndajeni Me të Tjerë</string>
+    <!-- BackupsSettingsFragment -->
+    <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/month, renews %2$s</string>
+    <!-- Subtitle for row for active backup, placeholder is last date of backup -->
+    <string name="BackupsSettingsFragment_last_backup_s">Last backup %1$s</string>
+    <!-- Subtitle for row for no backup ever created -->
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
+    <!-- Action button label to set up backups -->
+    <string name="BackupsSettingsFragment_set_up">Set up</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7357,6 +7389,10 @@
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Frekuenca e kopjeruajtjes</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Kopjeruaj duke perdorur internetin celular</string>
+    <!-- Row label for viewing backup key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">View backup key</string>
+    <!-- Prompt title for unlocking device to view backup key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view backup key</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Të çaktivizohen dhe fshihen kopjeruajtjet</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7370,13 +7406,27 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Kopjeruajtja do të krijohet brenda natës.</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_type">Lloji i kopjeruajtjeve</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">Backup plan</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Kopjeruajtjet u çaktivizuan</string>
-    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/muaj</string>
-    <!-- Button label to enable backups -->
-    <string name="RemoteBackupsSettingsFragment__enable_backups">Aktivizoji kopjeruajtjet</string>
+    <!-- Format string for backup and cost. First placeholder is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/month</string>
+    <!-- String for free backups -->
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
+    <!-- Displays the date the subscription will renew -->
+    <string name="RemoteBackupsSettingsFragment__renews_s">Renews %1$s</string>
+    <!-- Displayed at the top of the screen when no backup is currently enabled -->
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
+    <!-- Section header for other ways to back up -->
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Other ways to backup</string>
+    <!-- Row title for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">On-device backups</string>
+    <!-- Row label for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Save your backups to a folder on this device</string>
+    <!-- Button label to manage or cancel backups -->
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
+    <!-- button label to upgrade backups -->
+    <string name="RemoteBackupsSettingsFragment__upgrade">Upgrade</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
@@ -7426,33 +7476,33 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your backup key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Kodi yt i kopjeruajtjes</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-digit code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Kodi i kopjeruajtjes është 64-shifror dhe të lejon të rikthesh kopjeruajtjen kur riinstalon Signal.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">If you forget your key, you will not be able to restore your backup. Signal cannot help you recover your backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Nëse harron kodin, nuk do të jesh në gjendje të rikthesh kopjeruajtjen. Signal nuk mund të të ndihmojë të rikuperosh kopjeruajtjen.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Next</string>
+    <string name="MessageBackupsKeyEducationScreen__next">Tjetër</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your backup key</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Regjistro kodin e kopjeruajtjes</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">This key is required to recover your account and data. Store this key somewhere safe. If you lose it, you won’t be able to recover your account.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Ky kod kërkohet për të rikuperuar llogarinë dhe të dhënat e tua. Ruaje kodin në një vend të sigurt. Nëse e humb, nuk do të mund të rikuperosh llogarinë.</string>
     <!-- Copy to clipboard button label -->
-    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copy to clipboard</string>
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopjoje në të papastër</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyRecordScreen__next">Next</string>
+    <string name="MessageBackupsKeyRecordScreen__next">Tjetër</string>
     <!-- Bottom sheet title -->
-    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Keep your key safe</string>
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Ruaj kodin në mënyrë të sigurt</string>
     <!-- Bottom sheet subtitle -->
-    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal will not be able to help you restore your backup if you lose your key. Store it somewhere safe and secure, and do not share it with others.</string>
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal nuk do të jetë në gjendje të të ndihmojë në rikthimin e kopjeruajtjes nëse humb kodin. Ruaje në një vend të sigurt dhe mos e ndaj me të tjerët.</string>
     <!-- Checkbox label -->
-    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">I\'ve recorded my key</string>
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">E kam regjistruar kodin tim</string>
     <!-- Sheet action button label -->
-    <string name="MessageBackupsKeyRecordScreen__continue">Continue</string>
+    <string name="MessageBackupsKeyRecordScreen__continue">Vazhdo</string>
     <!-- Sheet secondary action button label -->
-    <string name="MessageBackupsKeyRecordScreen__see_key_again">See key again</string>
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">Shiko sërish kodin</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->

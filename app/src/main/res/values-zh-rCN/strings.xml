@@ -22,6 +22,9 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
+    <!-- First placeholder is productId, second placeholder is app package -->
+    <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
+
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="delete">删除</string>
@@ -258,6 +261,7 @@
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">点击拍照，长按录像</string>
+    <!-- Accessibility content description to describe the capture button when taking an image/video -->
     <string name="CameraXFragment_capture_description">拍照</string>
     <string name="CameraXFragment_change_camera_description">切换相机</string>
     <string name="CameraXFragment_open_gallery_description">打开相册</string>
@@ -343,7 +347,7 @@
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">这不是一个有效的通话链接，加入前请确保链接完整正确。</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
-    <string name="CommunicationActions__you_are_already_in_a_call">You are already in a call</string>
+    <string name="CommunicationActions__you_are_already_in_a_call">您已在通话中</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -400,6 +404,7 @@
     <string name="ConversationItem_unable_to_open_media">未找到可打开该媒体的应用。</string>
     <string name="ConversationItem_copied_text">已复制 %1$s</string>
     <string name="ConversationItem_from_s">来自 %1$s</string>
+    <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">发至 %1$s</string>
     <string name="ConversationItem_read_more">  查看更多</string>
     <string name="ConversationItem_download_more">  下载更多</string>
@@ -433,6 +438,7 @@
     <string name="ConversationActivity_send_edit">发送已编辑消息</string>
     <string name="ConversationActivity_compose_message">撰写消息</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">抱歉，设置附件时出现错误。</string>
+    <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人不是有效的短信或电子邮件地址！</string>
     <string name="ConversationActivity_message_is_empty_exclamation">消息为空！</string>
     <string name="ConversationActivity_group_members">群组成员</string>
@@ -565,6 +571,7 @@
         <item quantity="other">正在保存 %1$d 附件到存储…</item>
     </plurals>
     <string name="ConversationFragment_pending">待处理…</string>
+    <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">数据 (Signal)</string>
     <string name="ConversationFragment_mms">彩信</string>
     <string name="ConversationFragment_sms">短信</string>
@@ -986,6 +993,7 @@
     <string name="DeviceListActivity_unlink_s">取消关联“%1$s”？</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">取消关联之后，将不能再通过该设备发送或接收消息。</string>
     <string name="DeviceListActivity_network_connection_failed">网络连接失败</string>
+    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
     <string name="DeviceListActivity_try_again">重试</string>
     <string name="DeviceListActivity_unlinking_device">取消关联设备中…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">正在取消关联设备</string>
@@ -1368,7 +1376,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">群组链接</string>
     <string name="ShareableGroupLinkDialogFragment__share">分享</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">重置链接</string>
-    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Require admin approval</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">需要管理员批准</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">通过群组链接的新成员需要经过管理员同意才能入群。</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">确定要重置群组链接吗？重置后他人将无法通过原来的链接加入群组。</string>
 
@@ -1464,6 +1472,7 @@
         <item quantity="other">发送 %1$d 个短信邀请？</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">用 Signal 来聊天吧：%1$s</string>
+    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">看起来设备上没有可用于分享的应用。</string>
 
     <!-- LearnMoreTextView -->
@@ -1873,6 +1882,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">是否允许%1$s给您发送消息并向其显示您的名称和照片？在取消屏蔽之前，您不会收到对方的任何消息。</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">是否允许%1$s给您发送消息？在取消屏蔽之前，您不会收到对方的任何消息。</string>
+    <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">是否要接收%1$s的更新和新闻？在取消屏蔽之前，您不会收到对方的任何更新消息。</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">要参与此群组对话并向其成员分享您的昵称和头像吗？</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">此旧版群组已无法使用。请创建新群组以激活“@提及”和“管理员”等新功能。</string>
@@ -2171,6 +2181,7 @@
 
     <string name="WebRtcCallView__no_one_else_is_here">没有人在这里</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s 在此通话中</string>
+    <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
     <string name="WebRtcCallView__s_are_in_this_call">%1$s正在此通话中</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 和 %2$s 在此通话中</string>
 
@@ -2562,7 +2573,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">我们稍后会再试一次。</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal 已成功更新</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">您已自动更新到 %1$s 版本。</string>
-    <string name="ApkUpdateNotifications_manual_update_success_body">You updated to version %1$s.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">您已更新到 %1$s 版本。</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">发送消息？</string>
@@ -2975,6 +2986,7 @@
     <string name="conversation_activity__attachment_thumbnail">附件缩略图</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">切换快速相机附件抽屉</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">录音并分享附件</string>
+    <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">锁定音频附件录音状态</string>
     <string name="conversation_activity__message_could_not_be_sent">无法发送消息，请检查您的网络后再试。</string>
 
@@ -2993,6 +3005,7 @@
     <string name="conversation_item_sent__message_read">消息已读</string>
 
     <!-- conversation_item_received -->
+    <!-- Content description for profile pictures -->
     <string name="conversation_item_received__contact_photo_description">联系人图片</string>
 
     <!-- ConversationUpdateItem -->
@@ -3077,6 +3090,7 @@
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">目前看起来一切正常！</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">为了接收通话通知，请点击此处并开启“显示通知”。</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">为了接收通话通知，请点击此处并开启通知，以及确保已启用“声音”和“弹出”。</string>
+    <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">为了接收通话通知，请点击此处并启用“电池”设置下的背景活动。 </string>
     <string name="EnableCallNotificationSettingsDialog__settings">设置</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">为了接收通话通知，请点击设置并开启“显示通知”。</string>
@@ -3207,7 +3221,7 @@
     <string name="EditAboutFragment_taking_a_break">休息一下下</string>
     <string name="EditAboutFragment_working_on_something_new">打磨新玩意儿</string>
     <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">One or more characters is invalid.</string>
+    <string name="EditAboutFragment_one_or_more_characters">一个或多个字符无效。</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">编辑群组</string>
@@ -3306,6 +3320,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">支持信息</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android支持请求</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
@@ -3393,6 +3408,7 @@
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">直接从您发送的链接网站中生成预览。</string>
     <string name="preferences__change_passphrase">修改密码</string>
     <string name="preferences__change_your_passphrase">修改您的密码</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
     <string name="preferences__enable_passphrase">启用屏幕锁定密码</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用密码锁定屏幕和通知</string>
     <string name="preferences__screen_security">屏幕安全</string>
@@ -3405,6 +3421,7 @@
     <string name="preferences__pref_led_blink_title">LED 闪烁模式</string>
     <string name="preferences__customize">自定义</string>
     <string name="preferences__change_sound_and_vibration">更改音效和振动模式</string>
+    <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">声音</string>
     <string name="preferences__silent">无提示</string>
     <string name="preferences__default">默认</string>
@@ -5251,6 +5268,7 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">添加到动态</string>
     <string name="MediaReviewFragment__add_a_message">添加消息</string>
+    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">添加回复</string>
     <string name="MediaReviewFragment__send_to">发送给</string>
     <string name="MediaReviewFragment__view_once_message">阅后即焚媒体</string>
@@ -5850,6 +5868,8 @@
     <plurals name="StoryViewerFragment__d_replies">
         <item quantity="other">%1$d 个回复</item>
     </plurals>
+    <!-- Toast / Snackbar label when unhiding a story during viewer -->
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">Story no longer hidden</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">添加</string>
     <!-- Used when view receipts are disabled -->
@@ -7109,7 +7129,23 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">至少释放 %1$s 的空间以下载媒体。</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to restore your media.</string>
+    <!-- Status title for banner when user is actively restoring media from a backup -->
+    <string name="BackupStatus__restoring_media">Restoring media</string>
+    <!-- Status title for banner when user has paused restore media from a backup -->
+    <string name="BackupStatus__restore_paused">Restore paused</string>
+    <!-- Status title for banner when user has completed restoring restore media from a backup -->
+    <string name="BackupStatus__restore_complete">Restore complete</string>
+
+    <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
+    <!-- Status subtitle for banner when restoring media pauses for internet in general -->
+    <string name="BackupStatus__status_no_internet">No internet…</string>
+    <!-- Status subtitle for banner when restoring media pauses for low battery -->
+    <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
+    <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
+    <string name="BackupStatus__status_size_of_size">%1$s of %2$s</string>
+
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7172,19 +7208,15 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">好</string>
 
-    <!-- RemoteBackupsPaymentHistoryFragment -->
-    <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">付款历史</string>
-    <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">文本和所有媒体备份</string>
-    <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">付款详情</string>
-    <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">备份类型</string>
-    <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">付款日期</string>
-    <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">分享</string>
+    <!-- BackupsSettingsFragment -->
+    <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/month, renews %2$s</string>
+    <!-- Subtitle for row for active backup, placeholder is last date of backup -->
+    <string name="BackupsSettingsFragment_last_backup_s">Last backup %1$s</string>
+    <!-- Subtitle for row for no backup ever created -->
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
+    <!-- Action button label to set up backups -->
+    <string name="BackupsSettingsFragment_set_up">Set up</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7199,6 +7231,10 @@
     <string name="RemoteBackupsSettingsFragment__backup_frequency">备份频率</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">使用蜂窝网络备份</string>
+    <!-- Row label for viewing backup key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">View backup key</string>
+    <!-- Prompt title for unlocking device to view backup key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view backup key</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">关闭并删除备份</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7212,13 +7248,27 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">备份将在夜间创建。</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_type">备份类型</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">Backup plan</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">已停用备份</string>
-    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/月</string>
-    <!-- Button label to enable backups -->
-    <string name="RemoteBackupsSettingsFragment__enable_backups">启用备份</string>
+    <!-- Format string for backup and cost. First placeholder is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/month</string>
+    <!-- String for free backups -->
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
+    <!-- Displays the date the subscription will renew -->
+    <string name="RemoteBackupsSettingsFragment__renews_s">Renews %1$s</string>
+    <!-- Displayed at the top of the screen when no backup is currently enabled -->
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
+    <!-- Section header for other ways to back up -->
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Other ways to backup</string>
+    <!-- Row title for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">On-device backups</string>
+    <!-- Row label for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Save your backups to a folder on this device</string>
+    <!-- Button label to manage or cancel backups -->
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
+    <!-- button label to upgrade backups -->
+    <string name="RemoteBackupsSettingsFragment__upgrade">Upgrade</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
@@ -7268,33 +7318,33 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your backup key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">您的备份密钥</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-digit code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">您的备份密钥是一个 64 位代码，可让您在重新安装 Signal 时恢复备份。</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">If you forget your key, you will not be able to restore your backup. Signal cannot help you recover your backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">如果您忘记了自己的密钥，您将无法恢复备份。Signal 无法帮助您恢复备份。</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Next</string>
+    <string name="MessageBackupsKeyEducationScreen__next">下一步</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your backup key</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">记录您的备份密钥</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">This key is required to recover your account and data. Store this key somewhere safe. If you lose it, you won’t be able to recover your account.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">这是恢复您的账户和数据时所需的密钥，请将其保存在安全的地方。如果密钥丢失，您将无法恢复您的账户。</string>
     <!-- Copy to clipboard button label -->
-    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copy to clipboard</string>
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">复制到剪切板</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyRecordScreen__next">Next</string>
+    <string name="MessageBackupsKeyRecordScreen__next">下一步</string>
     <!-- Bottom sheet title -->
-    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Keep your key safe</string>
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">安全保存您的密钥</string>
     <!-- Bottom sheet subtitle -->
-    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal will not be able to help you restore your backup if you lose your key. Store it somewhere safe and secure, and do not share it with others.</string>
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">如果密钥丢失，Signal 将无法帮助您恢复备份。请将其保存在安全的地方，并避免与他人共享该密钥。</string>
     <!-- Checkbox label -->
-    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">I\'ve recorded my key</string>
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">我已记录我的密钥</string>
     <!-- Sheet action button label -->
-    <string name="MessageBackupsKeyRecordScreen__continue">Continue</string>
+    <string name="MessageBackupsKeyRecordScreen__continue">继续</string>
     <!-- Sheet secondary action button label -->
-    <string name="MessageBackupsKeyRecordScreen__see_key_again">See key again</string>
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">再次查看密钥</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
