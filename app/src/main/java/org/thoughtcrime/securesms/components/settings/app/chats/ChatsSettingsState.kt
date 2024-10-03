@@ -6,6 +6,5 @@ data class ChatsSettingsState(
   val keepMutedChatsArchived: Boolean,
   val useSystemEmoji: Boolean,
   val enterKeySends: Boolean,
-  val localBackupsEnabled: Boolean,
-  val canAccessRemoteBackupsSettings: Boolean
+  val localBackupsEnabled: Boolean
 )

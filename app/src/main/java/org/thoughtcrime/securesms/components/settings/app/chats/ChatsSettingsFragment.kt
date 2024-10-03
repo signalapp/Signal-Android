@@ -1,15 +1,12 @@
 package org.thoughtcrime.securesms.components.settings.app.chats
 
-import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -18,7 +15,6 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__chats) {
 
   private lateinit var viewModel: ChatsSettingsViewModel
-  private lateinit var checkoutLauncher: ActivityResultLauncher<MessageBackupTier?>
 
   override fun onResume() {
     super.onResume()
@@ -27,10 +23,6 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
   @Suppress("ReplaceGetOrSet")
   override fun bindAdapter(adapter: MappingAdapter) {
-    checkoutLauncher = createBackupsCheckoutLauncher {
-      findNavController().safeNavigate(ChatsSettingsFragmentDirections.actionChatsSettingsFragmentToRemoteBackupsSettingsFragment().setBackupLaterSelected(it))
-    }
-
     viewModel = ViewModelProvider(this).get(ChatsSettingsViewModel::class.java)
 
     viewModel.state.observe(viewLifecycleOwner) {
@@ -87,31 +79,19 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
         }
       )
 
-      dividerPref()
+      if (!RemoteConfig.messageBackups) {
+        dividerPref()
 
-      sectionHeaderPref(R.string.preferences_chats__backups)
+        sectionHeaderPref(R.string.preferences_chats__backups)
 
-      if (RemoteConfig.messageBackups || state.canAccessRemoteBackupsSettings) {
         clickPref(
-          title = DSLSettingsText.from(R.string.RemoteBackupsSettingsFragment__signal_backups),
-          summary = DSLSettingsText.from(if (state.canAccessRemoteBackupsSettings) R.string.arrays__enabled else R.string.arrays__disabled),
+          title = DSLSettingsText.from(R.string.preferences_chats__chat_backups),
+          summary = DSLSettingsText.from(if (state.localBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),
           onClick = {
-            if (state.canAccessRemoteBackupsSettings) {
-              Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_remoteBackupsSettingsFragment)
-            } else {
-              checkoutLauncher.launch(null)
-            }
+            Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_backupsPreferenceFragment)
           }
         )
       }
-
-      clickPref(
-        title = DSLSettingsText.from(R.string.preferences_chats__chat_backups),
-        summary = DSLSettingsText.from(if (state.localBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),
-        onClick = {
-          Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_backupsPreferenceFragment)
-        }
-      )
     }
   }
 }
