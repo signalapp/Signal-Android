@@ -456,6 +456,9 @@ object BackupRepository {
       }
     }
 
+    AppDependencies.recipientCache.clear()
+    AppDependencies.recipientCache.warmUp()
+
     Log.d(TAG, "import() ${eventTimer.stop().summary}")
 
     val groupJobs = SignalDatabase.groups.getGroups().use { groups ->
