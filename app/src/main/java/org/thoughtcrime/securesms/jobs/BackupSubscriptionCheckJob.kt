@@ -29,6 +29,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
     const val KEY = "BackupSubscriptionCheckJob"
 
+    @JvmStatic
     fun create(): BackupSubscriptionCheckJob {
       return BackupSubscriptionCheckJob(
         Parameters.Builder()
