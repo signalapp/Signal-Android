@@ -113,20 +113,6 @@ object BackupRepository {
   }
 
   @WorkerThread
-  fun canAccessRemoteBackupSettings(): Boolean {
-    // TODO [message-backups]
-
-    // We need to check whether the user can access remote backup settings.
-
-    // 1. Do they have a receipt they need to be able to view?
-    // 2. Do they have a backup they need to be able to manage?
-
-    // The easy thing to do here would actually be to set a ui hint.
-
-    return SignalStore.backup.areBackupsEnabled
-  }
-
-  @WorkerThread
   fun turnOffAndDeleteBackup() {
     RecurringInAppPaymentRepository.cancelActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
     SignalStore.backup.areBackupsEnabled = false

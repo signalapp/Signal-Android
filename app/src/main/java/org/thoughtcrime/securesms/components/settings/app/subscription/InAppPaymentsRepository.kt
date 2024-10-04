@@ -178,8 +178,12 @@ object InAppPaymentsRepository {
     return when (inAppPayment.type) {
       InAppPaymentType.UNKNOWN -> error("Unsupported type UNKNOWN.")
       InAppPaymentType.ONE_TIME_GIFT, InAppPaymentType.ONE_TIME_DONATION -> "$JOB_PREFIX${inAppPayment.id.serialize()}"
-      InAppPaymentType.RECURRING_DONATION, InAppPaymentType.RECURRING_BACKUP -> "$JOB_PREFIX${inAppPayment.type.code}"
+      InAppPaymentType.RECURRING_DONATION, InAppPaymentType.RECURRING_BACKUP -> getRecurringJobQueueKey(inAppPayment.type)
     }
+  }
+
+  fun getRecurringJobQueueKey(inAppPaymentType: InAppPaymentType): String {
+    return "$JOB_PREFIX${inAppPaymentType.code}"
   }
 
   /**

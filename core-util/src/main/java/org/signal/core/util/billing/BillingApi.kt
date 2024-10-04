@@ -27,7 +27,7 @@ interface BillingApi {
    * Queries the user's current purchases. This enqueues a check and will
    * propagate it to the normal callbacks in the api.
    */
-  suspend fun queryPurchases() = Unit
+  suspend fun queryPurchases(): BillingPurchaseResult = BillingPurchaseResult.None
 
   suspend fun launchBillingFlow(activity: Activity) = Unit
 

@@ -255,10 +255,8 @@ class InAppPaymentRedemptionJob private constructor(
     )
 
     if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
-      Log.i(TAG, "Enabling backups and setting backup tier to PAID", true)
-      SignalStore.backup.areBackupsEnabled = true
+      Log.i(TAG, "Setting backup tier to PAID", true)
       SignalStore.backup.backupTier = MessageBackupTier.PAID
-      SignalStore.uiHints.markHasEverEnabledRemoteBackups()
     }
   }
 

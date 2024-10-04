@@ -260,7 +260,9 @@ class MessageBackupsFlowViewModel(
         )
       )
 
-      Log.d(TAG, "Enqueueing InAppPaymentPurchaseTokenJob chain.")
+      Log.d(TAG, "Enabling backups and enqueueing InAppPaymentPurchaseTokenJob chain.")
+      SignalStore.backup.areBackupsEnabled = true
+      SignalStore.uiHints.markHasEverEnabledRemoteBackups()
       InAppPaymentPurchaseTokenJob.createJobChain(inAppPayment).enqueue()
     }
 
