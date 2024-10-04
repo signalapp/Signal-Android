@@ -30,3 +30,4 @@ pkcs11.password
 dev.keystore
 maps.key
 /local/
+kls_database.db
