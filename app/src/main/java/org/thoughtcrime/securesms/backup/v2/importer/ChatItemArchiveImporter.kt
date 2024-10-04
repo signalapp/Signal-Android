@@ -459,26 +459,36 @@ class ChatItemArchiveImporter(
     contentValues.put(MessageTable.EXPIRES_IN, this.expiresInMs)
     contentValues.put(MessageTable.EXPIRE_STARTED, this.expireStartDate)
 
-    if (this.outgoing != null) {
-      val viewed = this.outgoing.sendStatus.any { it.viewed != null }
-      val hasReadReceipt = viewed || this.outgoing.sendStatus.any { it.read != null }
-      val hasDeliveryReceipt = viewed || hasReadReceipt || this.outgoing.sendStatus.any { it.delivered != null }
+    when {
+      this.outgoing != null -> {
+        val viewed = this.outgoing.sendStatus.any { it.viewed != null }
+        val hasReadReceipt = viewed || this.outgoing.sendStatus.any { it.read != null }
+        val hasDeliveryReceipt = viewed || hasReadReceipt || this.outgoing.sendStatus.any { it.delivered != null }
 
-      contentValues.put(MessageTable.VIEWED_COLUMN, viewed.toInt())
-      contentValues.put(MessageTable.HAS_READ_RECEIPT, hasReadReceipt.toInt())
-      contentValues.put(MessageTable.HAS_DELIVERY_RECEIPT, hasDeliveryReceipt.toInt())
-      contentValues.put(MessageTable.UNIDENTIFIED, this.outgoing.sendStatus.count { it.sealedSender })
-      contentValues.put(MessageTable.READ, 1)
+        contentValues.put(MessageTable.VIEWED_COLUMN, viewed.toInt())
+        contentValues.put(MessageTable.HAS_READ_RECEIPT, hasReadReceipt.toInt())
+        contentValues.put(MessageTable.HAS_DELIVERY_RECEIPT, hasDeliveryReceipt.toInt())
+        contentValues.put(MessageTable.UNIDENTIFIED, this.outgoing.sendStatus.count { it.sealedSender })
+        contentValues.put(MessageTable.READ, 1)
 
-      contentValues.addNetworkFailures(this, importState)
-      contentValues.addIdentityKeyMismatches(this, importState)
-    } else {
-      contentValues.put(MessageTable.VIEWED_COLUMN, 0)
-      contentValues.put(MessageTable.HAS_READ_RECEIPT, 0)
-      contentValues.put(MessageTable.HAS_DELIVERY_RECEIPT, 0)
-      contentValues.put(MessageTable.UNIDENTIFIED, this.incoming?.sealedSender?.toInt() ?: 0)
-      contentValues.put(MessageTable.READ, this.incoming?.read?.toInt() ?: 0)
-      contentValues.put(MessageTable.NOTIFIED, 1)
+        contentValues.addNetworkFailures(this, importState)
+        contentValues.addIdentityKeyMismatches(this, importState)
+      }
+      this.incoming != null -> {
+        contentValues.put(MessageTable.VIEWED_COLUMN, 0)
+        contentValues.put(MessageTable.HAS_READ_RECEIPT, 0)
+        contentValues.put(MessageTable.HAS_DELIVERY_RECEIPT, 0)
+        contentValues.put(MessageTable.UNIDENTIFIED, this.incoming.sealedSender.toInt())
+        contentValues.put(MessageTable.READ, this.incoming.read.toInt())
+        contentValues.put(MessageTable.NOTIFIED, 1)
+      }
+      this.directionless != null -> {
+        contentValues.put(MessageTable.VIEWED_COLUMN, 0)
+        contentValues.put(MessageTable.HAS_READ_RECEIPT, 0)
+        contentValues.put(MessageTable.HAS_DELIVERY_RECEIPT, 0)
+        contentValues.put(MessageTable.READ, 1)
+        contentValues.put(MessageTable.NOTIFIED, 1)
+      }
     }
 
     contentValues.put(MessageTable.QUOTE_ID, 0)
