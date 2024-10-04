@@ -48,8 +48,8 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal se está actualizando…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Todavía no has creado una clave de acceso.</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">¿Desactivar clave de acceso?</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Todavía no has creado una frase de contraseña.</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">¿Desactivar frase de contraseña?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Se desbloqueará Signal y las notificaciones de mensajes de forma permanente.</string>
     <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error de conexión con el servidor</string>
@@ -861,14 +861,14 @@
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Copias de seguridad de los chats</string>
-    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Las copias de seguridad se cifran con una clave de acceso y se guardan en tu dispositivo.</string>
+    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Las copias de seguridad se cifran con una frase de contraseña y se guardan en tu dispositivo.</string>
     <string name="BackupsPreferenceFragment__create_backup">Crear copia de seguridad</string>
     <string name="BackupsPreferenceFragment__last_backup">Última copia: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Carpeta de copias de seguridad</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
     <string name="BackupsPreferenceFragment__backup_time">Hora de la copia de seguridad</string>
-    <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar clave de copia de seguridad</string>
-    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Prueba tu clave de acceso a la copia de seguridad y comprueba que coincida</string>
+    <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar contraseña de copia de seguridad</string>
+    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Prueba tu frase de contraseña de la copia de seguridad y comprueba que coincida</string>
     <string name="BackupsPreferenceFragment__turn_on">Activar</string>
     <string name="BackupsPreferenceFragment__turn_off">Desactivar</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Para restaurar una copia de seguridad, reinstala Signal. Abre la aplicación, toca \"Restaurar copia\" y busca el archivo de copia de seguridad. %1$s"</string>
@@ -1977,9 +1977,9 @@
     <string name="MessageRequestBottomView_report">Denunciar</string>
 
     <!-- PassphraseChangeActivity -->
-    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Las claves de acceso no coinciden.</string>
-    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">La clave de acceso anterior es incorrecta.</string>
-    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Introduce una clave de acceso nueva.</string>
+    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Las contraseñas no coinciden.</string>
+    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">La frase de contraseña anterior es incorrecta.</string>
+    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Introduce una frase de contraseña nueva.</string>
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">¿Vincular este dispositivo?</string>
@@ -2012,10 +2012,10 @@
     </plurals>
 
     <!-- PassphrasePromptActivity -->
-    <string name="PassphrasePromptActivity_enter_passphrase">Introducir clave de acceso</string>
+    <string name="PassphrasePromptActivity_enter_passphrase">Introducir frase de contraseña</string>
     <string name="PassphrasePromptActivity_watermark_content_description">Icono de Signal</string>
-    <string name="PassphrasePromptActivity_ok_button_content_description">Enviar clave de acceso</string>
-    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Clave de acceso no válida.</string>
+    <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase de contraseña</string>
+    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase de contraseña no válida.</string>
     <string name="PassphrasePromptActivity_unlock_signal">Desbloquear Signal</string>
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android: Pantalla de bloqueo</string>
 
@@ -2992,9 +2992,9 @@
     <string name="WebRtcCallControls_reject_call_description">Rechazar llamada</string>
 
     <!-- change_passphrase_activity -->
-    <string name="change_passphrase_activity__old_passphrase">Clave de acceso anterior</string>
-    <string name="change_passphrase_activity__new_passphrase">Clave de acceso nueva</string>
-    <string name="change_passphrase_activity__repeat_new_passphrase">Repetir clave de acceso nueva</string>
+    <string name="change_passphrase_activity__old_passphrase">Frase de contraseña anterior</string>
+    <string name="change_passphrase_activity__new_passphrase">Frase de contraseña nueva</string>
+    <string name="change_passphrase_activity__repeat_new_passphrase">Repetir frase de contraseña nueva</string>
 
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__invite_to_signal">Invitar a Signal</string>
@@ -3393,9 +3393,9 @@
     <string name="MessageDetails__view_edit_history">Ver historial de cambios</string>
 
     <!-- AndroidManifest.xml -->
-    <string name="AndroidManifest__create_passphrase">Crear clave de acceso</string>
+    <string name="AndroidManifest__create_passphrase">Crear frase de contraseña</string>
     <string name="AndroidManifest__select_contacts">Seleccionar contactos</string>
-    <string name="AndroidManifest__change_passphrase">Cambiar clave de acceso</string>
+    <string name="AndroidManifest__change_passphrase">Cambiar frase de contraseña</string>
     <string name="AndroidManifest__verify_safety_number">Verificar número de seguridad</string>
     <string name="AndroidManifest__media_preview">Vista previa del archivo</string>
     <string name="AndroidManifest__message_details">Detalles del mensaje</string>
@@ -3506,11 +3506,11 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Los chats silenciados que hayas archivado permanecerán archivados aunque recibas un nuevo mensaje.</string>
     <string name="preferences__generate_link_previews">Generar vista previa de enlaces</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Elige mostrar las vistas previas de los enlaces directamente de los sitios web para los mensajes que envías.</string>
-    <string name="preferences__change_passphrase">Cambiar clave de acceso</string>
-    <string name="preferences__change_your_passphrase">Cambia tu clave de acceso</string>
+    <string name="preferences__change_passphrase">Cambiar frase de contraseña</string>
+    <string name="preferences__change_your_passphrase">Cambia tu frase de contraseña</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Activar bloqueo de pantalla con clave de acceso</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea la pantalla y las notificaciones con una clave de acceso</string>
+    <string name="preferences__enable_passphrase">Activar bloqueo de pantalla con frase de contraseña</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea la pantalla y las notificaciones con una frase de contraseña</string>
     <string name="preferences__screen_security">Seguridad de la pantalla</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquea automáticamente Signal tras el intervalo de inactividad que especifiques</string>
     <string name="preferences__inactivity_timeout_passphrase">Contraseña de tiempo de inactividad</string>
@@ -4258,11 +4258,11 @@
     <string name="Permissions_continue">Continuar</string>
     <string name="Permissions_not_now">Ahora no</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrar base de datos de Signal</string>
-    <string name="enter_backup_passphrase_dialog__backup_passphrase">Clave de acceso a la copia de seguridad</string>
-    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Las copias de seguridad se guardarán en una unidad de almacenamiento externo y se cifrarán con la clave de acceso que aparece más abajo. Necesitas esta clave para poder restaurar la copia de seguridad.</string>
-    <string name="backup_enable_dialog__you_must_have_this_passphrase">Necesitas esta clave para poder restaurar la copia de seguridad.</string>
+    <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase de contraseña de la copia de seguridad</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Las copias de seguridad se guardarán en una unidad de almacenamiento externo y se cifrarán con la frase de contraseña que aparece más abajo. Necesitas esta contraseña para poder restaurar la copia de seguridad.</string>
+    <string name="backup_enable_dialog__you_must_have_this_passphrase">Necesitas esta contraseña para poder restaurar la copia de seguridad.</string>
     <string name="backup_enable_dialog__folder">Carpeta</string>
-    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">He anotado esta clave. Comprendo que sin ella no podré restaurar la copia de seguridad.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">He anotado esta contraseña. Comprendo que sin ella no podré restaurar la copia de seguridad.</string>
     <string name="registration_activity__restore_backup">Restaurar copia</string>
     <string name="registration_activity__transfer_or_restore_account">Transferir o restaurar cuenta</string>
     <string name="registration_activity__transfer_account">Transferir cuenta</string>
@@ -4270,12 +4270,12 @@
     <string name="preferences_chats__chat_backups">Copias de seguridad de los chats</string>
     <string name="preferences_chats__transfer_account">Transferir cuenta</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Transferir cuenta a un dispositivo Android nuevo</string>
-    <string name="RegistrationActivity_enter_backup_passphrase">Introducir clave de la copia de seguridad</string>
+    <string name="RegistrationActivity_enter_backup_passphrase">Introducir contraseña de la copia de seguridad</string>
     <string name="RegistrationActivity_restore">Restaurar</string>
     <string name="RegistrationActivity_backup_failure_downgrade">No se pueden importar nuevas copias de seguridad</string>
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
     <string name="RegistrationActivity_backup_failure_foreign_key">La copia de seguridad contiene datos mal formados</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Clave de acceso a la copia de seguridad incorrecta</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Frase de contraseña la copia de seguridad incorrecta</string>
     <string name="RegistrationActivity_checking">Comprobando…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d mensajes completados…</string>
     <string name="RegistrationActivity_restore_from_backup">¿Restaurar desde copia de seguridad?</string>
@@ -4292,10 +4292,10 @@
     <string name="BackupDialog_choose_folder">Seleccionar carpeta</string>
     <string name="BackupDialog_copied_to_clipboard">Se ha copiado al portapapeles</string>
     <string name="BackupDialog_no_file_picker_available">No hay selector de archivos disponible.</string>
-    <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduce tu clave de acceso a la copia de seguridad para verificarla</string>
+    <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduce tu frase de contraseña de la copia de seguridad para verificarla</string>
     <string name="BackupDialog_verify">Verificar</string>
-    <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">¡Clave de acceso correcta!</string>
-    <string name="BackupDialog_passphrase_was_not_correct">Clave de acceso incorrecta</string>
+    <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">¡Frase de contraseña correcta!</string>
+    <string name="BackupDialog_passphrase_was_not_correct">Frase de contraseña incorrecta</string>
     <string name="LocalBackupJob_creating_signal_backup">Creando copia de seguridad…</string>
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Verificando copia de seguridad de Signal…</string>
@@ -4575,7 +4575,7 @@
     <string name="RecipientBottomSheet_remove_from_group">Eliminar del grupo</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">¿Retirar los permisos de admin a %1$s?</string>
-    <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s podrá modificar los detalles de este grupo y la lista de participantes."</string>
+    <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s podrá editar los detalles de este grupo y la lista de participantes."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">¿Eliminar a %1$s del grupo?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
@@ -4687,7 +4687,7 @@
 
     <!-- WifiToCellularPopupWindow -->
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
-    <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">La conexión Wi-Fi es débil. Se ha cambiado a datos del teléfono.</string>
+    <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">La conexión Wi-Fi es débil. Se ha cambiado a datos móviles.</string>
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Eliminar tu cuenta significa:</string>
@@ -4719,7 +4719,7 @@
     <string name="DeleteAccountFragment__there_was_a_problem">No se ha podido completar el proceso de eliminación de tu cuenta. Comprueba tu conexión de red e inténtalo de nuevo.</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
-    <string name="DeleteAccountCountryPickerFragment__search_countries">Buscar países</string>
+    <string name="DeleteAccountCountryPickerFragment__search_countries">Buscar país</string>
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Omitir</string>
@@ -4747,12 +4747,12 @@
     <string name="ChatWallpaperFragment__reset_chat_color">Restablecer color del chat</string>
     <string name="ChatWallpaperFragment__reset_chat_color_question">¿Restablecer color del chat?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">Elegir fondo de pantalla</string>
-    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Tema oscuro atenúa el fondo</string>
-    <string name="ChatWallpaperFragment__contact_name">Nombre del contacto</string>
+    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Atenuar fondo con tema oscuro</string>
+    <string name="ChatWallpaperFragment__contact_name">Nombre de contacto</string>
     <string name="ChatWallpaperFragment__reset">Restablecer</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Vista previa del fondo</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">¿Quieres cambiar los colores de todos tus chats?</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">¿Quieres cambiar los fondos de todos los chats?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">¿Quieres cambiar los fondos de todos tus chats?</string>
     <string name="ChatWallpaperFragment__reset_default_colors">Restablecer predeterminados</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Restablecer todos</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Restablecer predeterminado</string>
@@ -4769,7 +4769,7 @@
     <string name="ChatWallpaperPreviewActivity__preview">Vista previa</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">Elegir fondo de pantalla</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Deslizar para ver más fondos de pantalla</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Elige un fondo para todos los chats</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Elige un fondo para todos los chats.</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Elegir fondo para %1$s</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Signal necesita acceso al almacenamiento para mostrar la galería.</string>
 
@@ -7287,13 +7287,13 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to restore your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Libera %1$s de espacio para restaurar tus archivos multimedia.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
-    <string name="BackupStatus__restoring_media">Restoring media</string>
+    <string name="BackupStatus__restoring_media">Restaurando archivos multimedia</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">Restore paused</string>
+    <string name="BackupStatus__restore_paused">Restauración en pausa</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
-    <string name="BackupStatus__restore_complete">Restore complete</string>
+    <string name="BackupStatus__restore_complete">Restauración completada</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
@@ -7302,7 +7302,7 @@
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
     <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
-    <string name="BackupStatus__status_size_of_size">%1$s of %2$s</string>
+    <string name="BackupStatus__status_size_of_size">%1$s de %2$s</string>
 
 
     <!-- BackupsTypeSettingsFragment -->
@@ -7374,7 +7374,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
     <!-- Action button label to set up backups -->
-    <string name="BackupsSettingsFragment_set_up">Set up</string>
+    <string name="BackupsSettingsFragment_set_up">Configurar</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7410,11 +7410,11 @@
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Copias de seguridad desactivadas</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/month</string>
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/mes</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
     <!-- Displays the date the subscription will renew -->
-    <string name="RemoteBackupsSettingsFragment__renews_s">Renews %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__renews_s">Se renueva el %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
     <!-- Section header for other ways to back up -->
@@ -7426,7 +7426,7 @@
     <!-- Button label to manage or cancel backups -->
     <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
     <!-- button label to upgrade backups -->
-    <string name="RemoteBackupsSettingsFragment__upgrade">Upgrade</string>
+    <string name="RemoteBackupsSettingsFragment__upgrade">Actualizar</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->

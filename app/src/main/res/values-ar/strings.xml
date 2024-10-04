@@ -2116,9 +2116,9 @@
     <!-- Chat log text for a group call that ended that the local user started with a placeholder for formatted time -->
     <string name="MessageRecord__outgoing_video_call_s">مكالمة فيديو صادرة · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user started -->
-    <string name="MessageRecord__you_started_a_video_call">بدأت مكالمة فيديو</string>
+    <string name="MessageRecord__you_started_a_video_call">بدأتَ مكالمة فيديو.</string>
     <!-- Chat log text for an ongoing group call that the local user started with a placeholder for formatted time -->
-    <string name="MessageRecord__you_started_a_video_call_s">بدأت مكالمة فيديو · %1$s</string>
+    <string name="MessageRecord__you_started_a_video_call_s">بدأتَ مكالمة فيديو · %1$s</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name -->
     <string name="MessageRecord__s_started_a_video_call">%1$s بدأ مكالمة فيديو</string>
     <!-- Chat log text for an ongoing group call that the local user has not joined with a placeholder for user\'s short display name and a placeholder for formatted time -->
@@ -2130,7 +2130,7 @@
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
         <item quantity="zero">الأعضاء %1$s و %2$s و%3$d آخر موجودون في المكالمة الجماعية · %4$s</item>
         <item quantity="one">الأعضاء %1$s و %2$s و%3$d آخر موجودون في المكالمة الجماعية · %4$s</item>
-        <item quantity="two">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية · %4$s</item>
+        <item quantity="two">الأعضاء %1$s و %2$s و%3$d اثنان آخران موجودان في المكالمة الجماعية · %4$s</item>
         <item quantity="few">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية · %4$s</item>
         <item quantity="many">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية · %4$s</item>
         <item quantity="other">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية · %4$s</item>
@@ -2140,7 +2140,7 @@
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
         <item quantity="zero">الأعضاء %1$s و %2$s و%3$d آخر موجودون في المكالمة الجماعية</item>
         <item quantity="one">الأعضاء %1$s و %2$s و%3$d آخر موجود في المكالمة الجماعية</item>
-        <item quantity="two">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية</item>
+        <item quantity="two">الأعضاء %1$s و %2$s و%3$d آخران موجودان في المكالمة الجماعية</item>
         <item quantity="few">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية</item>
         <item quantity="many">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية</item>
         <item quantity="other">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في المكالمة الجماعية</item>
@@ -2151,13 +2151,13 @@
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">لن تتمكن بعد الآن من إرسال رسائل SMS من سيجنال. قُم بدعوة %1$s إلى سيجنال لإبقاء المحادثة هنا.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
-    <string name="MessageRecord__payment_s">عمليات الدفع: %1$s</string>
+    <string name="MessageRecord__payment_s">المدفوعات: %1$s</string>
     <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
     <string name="MessageRecord__payment_tombstone">عمليات الدفع</string>
     <!-- Update message shown in chat after reporting it as spam -->
-    <string name="MessageRecord_reported_as_spam">تم الإبلاغ عنها كرِسالة غير مرغوب فيها</string>
+    <string name="MessageRecord_reported_as_spam">تمَّ الإبلاغ عنها كرِسالة غير مرغوب فيها</string>
     <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">لقد قبِلت طلب المراسلة</string>
+    <string name="MessageRecord_you_accepted_the_message_request">قبِلتَ طلب المراسلة</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">موافقة</string>
@@ -2231,7 +2231,7 @@
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">هل ترغبُ بربط هذا الجهاز؟</string>
-    <string name="DeviceProvisioningActivity_continue">مواصلة</string>
+    <string name="DeviceProvisioningActivity_continue">متابعة</string>
 
     <string name="DeviceProvisioningActivity_content_intro">سوف يتمكن من</string>
     <string name="DeviceProvisioningActivity_content_bullets">
@@ -2248,8 +2248,8 @@
     <string name="DeviceProvisioningActivity_link_a_signal_device">هل ترغبُ بربط جهاز يستخدم سيجنال؟</string>
     <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">يبدو أنك تحاول ربط جهاز يستخدم سيجنال باستخدام ماسح ضوئي من طرف ثالث. للحماية، امسح الكود مرّة أخرى باستخدام سيجنال.</string>
 
-    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">يحتاج سيجنال إلى إذن الوصول إلى الكاميرا من أجل مسح كود الـ QR ضوئيًا، ولكن رُفِض الإذن على نحو دائم. يُرجى زيارة \"الإعدادات\" في جهازك، وتحديد \"التطبيقات\"، ثم اختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
-    <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">لا يمكن مسح كود الـ QR بدون منح إذن الوصول إلى الكاميرا</string>
+    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">يحتاج سيجنال إلى إذن الوصول إلى الكاميرا من أجل مسح كود الـ QR ضوئيًا، ولكن رُفِض الإذن بشكلٍ دائم. يُرجى زيارة \"الإعدادات\" في جهازك، وتحديد \"التطبيقات\"، ثم اختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
+    <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">لا يمكن مسح كود الـ QR بدون منح إذن الوصول إلى الكاميرا.</string>
 
     <!-- OutdatedBuildReminder -->
     <string name="OutdatedBuildReminder_update_now">حدِّث الآن</string>
@@ -2264,45 +2264,45 @@
     </plurals>
 
     <!-- PassphrasePromptActivity -->
-    <string name="PassphrasePromptActivity_enter_passphrase">أدخل العبارة السرية</string>
+    <string name="PassphrasePromptActivity_enter_passphrase">أدخِل العبارة السرية</string>
     <string name="PassphrasePromptActivity_watermark_content_description">أيقونة سيجنال</string>
-    <string name="PassphrasePromptActivity_ok_button_content_description">أدخل العبارة السرية</string>
+    <string name="PassphrasePromptActivity_ok_button_content_description">أدخِل العبارة السرية</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
-    <string name="PassphrasePromptActivity_unlock_signal">فك قفل سيجنال</string>
-    <string name="PassphrasePromptActivity_signal_android_lock_screen">سيجنال Android - قفل الشاشة</string>
+    <string name="PassphrasePromptActivity_unlock_signal">فتح قفل سيجنال</string>
+    <string name="PassphrasePromptActivity_signal_android_lock_screen">سيجنال أندرويد - قفل الشاشة</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">الخريطة</string>
 
-    <string name="PlacePickerActivity_drop_pin">إدخال إشارة</string>
-    <string name="PlacePickerActivity_accept_address">قبول العنوان</string>
+    <string name="PlacePickerActivity_drop_pin">ضع علامة</string>
+    <string name="PlacePickerActivity_accept_address">اقبل العنوان</string>
 
     <!-- PlayServicesProblemFragment -->
-    <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخة خدمات Google Play التي قمت بتثبيتها لا تعمل بشكل صحيح. الرجاء إعادة تثبيت خدمات Google Play والمحاولة مرة أخرى.</string>
+    <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخة خدمات Google Play التي قمت بتثبيتها لا تعمل بشكل صحيح. يُرجى إعادة تثبيت خدمات Google Play والمحاولة مرّة أُخرى.</string>
 
     <!-- PinRestoreEntryFragment -->
-    <string name="PinRestoreEntryFragment_incorrect_pin">الرقم التعريفي الشخصي غير صحيح</string>
-    <string name="PinRestoreEntryFragment_skip_pin_entry">تخطي إدخال الرمز الشخصي ؟</string>
-    <string name="PinRestoreEntryFragment_need_help">بحاجة إلى مساعدة ؟</string>
-    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">رمزك التعريفي الشخصي هو سلسلة مكونة من %1$d حروف قد تكون أرقاما فقط أو حروفا أبجَدرَقمية.\n\nإذا نسيت رمزك التعريفي الشخصي، تستطيع إنشاء رمز جديد، ثم التسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</string>
-    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">إذا كنت لا تتذكر رقمك التعريفي الشخصي، يمكنك إنشاء واحد جديد. يمكنك التسجيل واستخدام حسابك لكن سوف تفقد بعض الإعدادات المحفوظة، مثل معلومات حسابك.</string>
-    <string name="PinRestoreEntryFragment_create_new_pin">إنشاء رقم تعريفي شخصي جديد</string>
+    <string name="PinRestoreEntryFragment_incorrect_pin">رقم التعريف الشخصي (PIN) غير صحيح</string>
+    <string name="PinRestoreEntryFragment_skip_pin_entry">أترغبُ بتخطي إدخال رقم التعريف الشخصي (PIN)؟</string>
+    <string name="PinRestoreEntryFragment_need_help">هل تحتاج إلى مساعدة؟</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">رقم التعريف الشخصي الخاص بك هو سلسلة مكونة من %1$d حروف قد تكون أرقامًا فقط أو مزيج من الحروف والأرقام.\n\nإذا كنتَ لا تتذكر رمز التعريف الشخصي الخاص بك، يمكنك إنشاء رمز جديد. يمكنك بعدها التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</string>
+    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">إذا كنتَ لا تتذكر رقم التعريف الشخصي الخاص بك، يمكنك إنشاء واحد جديد. يمكنك بعدها التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</string>
+    <string name="PinRestoreEntryFragment_create_new_pin">إنشاء رقم تعريفي شخصي (PIN) جديد</string>
     <string name="PinRestoreEntryFragment_contact_support">الاتصال بالدعم</string>
     <string name="PinRestoreEntryFragment_cancel">إلغاء</string>
     <string name="PinRestoreEntryFragment_skip">تخطّي</string>
     <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-        <item quantity="zero">بقيت لديك %1$d محاولة. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
-        <item quantity="one">بقيت لديك %1$d محاولة. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
-        <item quantity="two">بقيت لديك%1$d محاولات. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
-        <item quantity="few">بقيت لديك %1$d محاولات. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
-        <item quantity="many">بقيت لديك %1$d محاولة. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
-        <item quantity="other">بقيت لديك %1$d محاولة. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+        <item quantity="zero">بقيت لديك %1$d محاولة. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريف شخصي جديد. يمكنك أيضًا التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+        <item quantity="one">بقيت لديك %1$d محاولة. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريف شخصي جديد. يمكنك أيضًا التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+        <item quantity="two">بقيت لديك %1$d محاولتان. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريف شخصي جديد. يمكنك أيضًا التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+        <item quantity="few">بقيت لديك %1$d محاولاتٍ. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريف شخصي جديد. يمكنك أيضًا التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+        <item quantity="many">بقيت لديك %1$d محاولة. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريف شخصي جديد. يمكنك أيضًا التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+        <item quantity="other">بقيت لديك %1$d محاولة. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريف شخصي جديد. يمكنك أيضًا التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
     </plurals>
-    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">التسجيل في سيجنال - تحتاج مساعدة بالرقم التعريفي الشخصي في أندرويد</string>
+    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">التسجيل في سيجنال - تحتاج مساعدة لرقم التعريف الشخصي في أندرويد</string>
 
     <!-- PinRestoreLockedFragment -->
-    <string name="PinRestoreLockedFragment_create_your_pin">إنشاء رقمك التعريفي الشخصي</string>
-    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">لقد نفذت تخميناتك للرقم التعريفي الشخصي، لكن مازال بوسعك الوصول إلى حسابك على سيجنال من خلال إنشاء رقم تعريفي شخصي جديد. للحفاظ على خصوصيتك وأمن معلوماتك، سيتم استرجاع حسابك لكن بدون أية معلومات شخصية عن الحساب أو الإعدادات.</string>
+    <string name="PinRestoreLockedFragment_create_your_pin">إنشاء رقم التعريف الشخصي</string>
+    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">نفدَت تخميناتك لرقم التعريف الشخصي، لكن مازال بوسعك الوصول إلى حسابك على سيجنال من خلال إنشاء رقم تعريف شخصي جديد. للحفاظ على خصوصيتك وأمن معلوماتك، سيتم استرجاع حسابك لكن بدون أية معلومات أو إعدادات محفوظة عن الحساب.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">إنشاء رقم تعريف شخصي جديد</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -2319,15 +2319,15 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">تحذير</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرمز التعريفي الشخصي، ستضيع جميع بياناتك عند قيامك بإعادة التسجيل إلى سيجنال إلا إذا قمت باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرمز التعريفي الشخصي.</string>
-    <string name="PinOptOutDialog_disable_pin">إلغاء الرقم التعريفي الشخصي</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">إذا قمتَ بتعطيل رمز التعريف الشخصي، ستفقد جميع بياناتك عند قيامك بإعادة التسجيل في سيجنال، إلّا إذا قمتَ باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل رمز التعريف الشخصي.</string>
+    <string name="PinOptOutDialog_disable_pin">إلغاء رقم التعريف الشخصي</string>
 
     <!-- RatingManager -->
     <string name="RatingManager_rate_this_app">تقييم التطبيق</string>
-    <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">إذا كنت مستمتع باستخدام التطبيق رجاء مساعدتنا بتقييمه</string>
-    <string name="RatingManager_rate_now">قَيّم الآن</string>
-    <string name="RatingManager_no_thanks">لا، شكرا</string>
-    <string name="RatingManager_later">لاحقا</string>
+    <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">إذا كنتَ تستمتع باستخدام التطبيق، يُرجى مساعدتنا من خلال تقييمه.</string>
+    <string name="RatingManager_rate_now">قَيِّم الآن</string>
+    <string name="RatingManager_no_thanks">لا، شكرًا</string>
+    <string name="RatingManager_later">لاحقًا</string>
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">الكل · %1$d</string>
@@ -2339,8 +2339,8 @@
     <string name="ReactionsRecipientAdapter_you">أنت</string>
 
     <!-- RecaptchaRequiredBottomSheetFragment -->
-    <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">التأكد لمواصلة التراسُل</string>
-    <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">للتمكّن من الوقاية من الإزعاج في سيجنال، يُرجى إتمام التحقق.</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">قُم بالتحقُّق لمواصلة المراسلة</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">لمنع وصول الرسائل غير المرغوب فيها في سيجنال، يُرجى إتمام التحقُّق.</string>
     <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">بعد التحقق، يمكنك مواصلة التراسل. ستُرسَل تلقائيًا لك كل رسالة متوقفة مؤقتًا.</string>
 
     <!-- Recipient -->
@@ -7919,13 +7919,13 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to restore your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">حرِّر %1$s من المساحة لاسترجاع وسائطك.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
-    <string name="BackupStatus__restoring_media">Restoring media</string>
+    <string name="BackupStatus__restoring_media">جارٍ استرجاع الوسائط</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">Restore paused</string>
+    <string name="BackupStatus__restore_paused">تمَّ إيقاف الاسترجاع</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
-    <string name="BackupStatus__restore_complete">Restore complete</string>
+    <string name="BackupStatus__restore_complete">اكتملَت عملية الاستعادة.</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
@@ -7934,7 +7934,7 @@
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
     <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
-    <string name="BackupStatus__status_size_of_size">%1$s of %2$s</string>
+    <string name="BackupStatus__status_size_of_size">%1$s من %2$s</string>
 
 
     <!-- BackupsTypeSettingsFragment -->
@@ -8006,7 +8006,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
     <!-- Action button label to set up backups -->
-    <string name="BackupsSettingsFragment_set_up">Set up</string>
+    <string name="BackupsSettingsFragment_set_up">إعداد</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -8042,11 +8042,11 @@
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">تعطيل النُسخ الاحتياطية</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/month</string>
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/شهر</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
     <!-- Displays the date the subscription will renew -->
-    <string name="RemoteBackupsSettingsFragment__renews_s">Renews %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__renews_s">تجديد %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
     <!-- Section header for other ways to back up -->
@@ -8058,7 +8058,7 @@
     <!-- Button label to manage or cancel backups -->
     <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
     <!-- button label to upgrade backups -->
-    <string name="RemoteBackupsSettingsFragment__upgrade">Upgrade</string>
+    <string name="RemoteBackupsSettingsFragment__upgrade">الترقية</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->

@@ -7287,11 +7287,11 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to restore your media.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Magbawas ng %1$s ng space para ma-restore ang iyong media.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
-    <string name="BackupStatus__restoring_media">Restoring media</string>
+    <string name="BackupStatus__restoring_media">Nire-restore ang media</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">Restore paused</string>
+    <string name="BackupStatus__restore_paused">Naka-pause ang pag-restore</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">Restore complete</string>
 
@@ -7302,7 +7302,7 @@
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
     <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
-    <string name="BackupStatus__status_size_of_size">%1$s of %2$s</string>
+    <string name="BackupStatus__status_size_of_size">%1$s sa %2$s</string>
 
 
     <!-- BackupsTypeSettingsFragment -->
@@ -7410,11 +7410,11 @@
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Naka-disable ang backups</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/month</string>
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/buwan</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
     <!-- Displays the date the subscription will renew -->
-    <string name="RemoteBackupsSettingsFragment__renews_s">Renews %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__renews_s">Mare-renew sa %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
     <!-- Section header for other ways to back up -->
