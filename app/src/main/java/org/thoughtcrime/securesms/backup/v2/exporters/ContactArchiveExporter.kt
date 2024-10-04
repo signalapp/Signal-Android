@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.exporters
 import android.database.Cursor
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
@@ -26,12 +27,17 @@ import java.io.Closeable
  * Provides a nice iterable interface over a [RecipientTable] cursor, converting rows to [ArchiveRecipient]s.
  * Important: Because this is backed by a cursor, you must close it. It's recommended to use `.use()` or try-with-resources.
  */
-class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Long) : Iterator<ArchiveRecipient>, Closeable {
+class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Long) : Iterator<ArchiveRecipient?>, Closeable {
+
+  companion object {
+    private val TAG = Log.tag(ContactArchiveExporter::class)
+  }
+
   override fun hasNext(): Boolean {
     return cursor.count > 0 && !cursor.isLast
   }
 
-  override fun next(): ArchiveRecipient {
+  override fun next(): ArchiveRecipient? {
     if (!cursor.moveToNext()) {
       throw NoSuchElementException()
     }
@@ -49,7 +55,8 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
     val e164 = cursor.requireString(RecipientTable.E164)?.e164ToLong()
 
     if (aci == null && pni == null && e164 == null) {
-      throw IllegalStateException("Should not happen! Query guards against this.")
+      Log.w(TAG, "All identifiers are null! Before parsing, ACI: ${cursor.requireString(RecipientTable.ACI_COLUMN) != null}, PNI: ${cursor.requireString(RecipientTable.PNI_COLUMN) != null},  E164: ${cursor.requireString(RecipientTable.E164) != null}")
+      return null
     }
 
     val contactBuilder = Contact.Builder()

@@ -51,8 +51,10 @@ object RecipientArchiveProcessor {
 
     db.recipientTable.getContactsForBackup(selfId).use { reader ->
       for (recipient in reader) {
-        exportState.recipientIds.add(recipient.id)
-        emitter.emit(Frame(recipient = recipient))
+        if (recipient != null) {
+          exportState.recipientIds.add(recipient.id)
+          emitter.emit(Frame(recipient = recipient))
+        }
       }
     }
 
