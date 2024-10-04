@@ -284,6 +284,8 @@ class AttachmentTable(
       )
       """
 
+    private const val DATA_FILE_INDEX = "attachment_data_index"
+
     @JvmField
     val CREATE_INDEXS = arrayOf(
       "CREATE INDEX IF NOT EXISTS attachment_message_id_index ON $TABLE_NAME ($MESSAGE_ID);",
@@ -291,7 +293,7 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS attachment_sticker_pack_id_index ON $TABLE_NAME ($STICKER_PACK_ID);",
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_start_index ON $TABLE_NAME ($DATA_HASH_START);",
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_end_index ON $TABLE_NAME ($DATA_HASH_END);",
-      "CREATE INDEX IF NOT EXISTS attachment_data_index ON $TABLE_NAME ($DATA_FILE);",
+      "CREATE INDEX IF NOT EXISTS $DATA_FILE_INDEX ON $TABLE_NAME ($DATA_FILE);",
       "CREATE INDEX IF NOT EXISTS attachment_archive_media_id_index ON $TABLE_NAME ($ARCHIVE_MEDIA_ID);",
       "CREATE INDEX IF NOT EXISTS attachment_archive_transfer_state ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);"
     )
@@ -1420,24 +1422,24 @@ class AttachmentTable(
    * This is basically all attachments that have data and are finished downloading.
    */
   fun getDataFilesWithMultipleValidAttachments(): List<String> {
-    val targetDataFile = "target_data_file"
     return readableDatabase
-      .select("DISTINCT($DATA_FILE) AS $targetDataFile")
-      .from(TABLE_NAME)
+      .select("DISTINCT(a1.$DATA_FILE)")
+      .from("$TABLE_NAME a1 INDEXED BY $DATA_FILE_INDEX")
       .where(
         """
-        $targetDataFile NOT NULL AND 
-        $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND (
-          SELECT COUNT(*) 
-          FROM $TABLE_NAME 
+        a1.$DATA_FILE NOT NULL AND
+        a1.$TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND EXISTS (
+          SELECT 1
+          FROM $TABLE_NAME a2 INDEXED BY $DATA_FILE_INDEX
           WHERE 
-            $DATA_FILE = $targetDataFile AND
-            $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE
-        ) > 1
+            a1.$DATA_FILE = a2.$DATA_FILE AND
+            a2.$TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
+            a2.$ID != a1.$ID
+        )
         """
       )
       .run()
-      .readToList { it.requireNonNullString(targetDataFile) }
+      .readToList { it.requireNonNullString(DATA_FILE) }
   }
 
   /**
