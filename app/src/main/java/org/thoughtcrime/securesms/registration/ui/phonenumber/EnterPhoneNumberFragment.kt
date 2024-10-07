@@ -422,7 +422,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     }
   }
 
-  private fun handleNonNormalizedNumberError(originalNumber: String, normalizedNumber: String, mode: RegistrationRepository.Mode) {
+  private fun handleNonNormalizedNumberError(originalNumber: String, normalizedNumber: String, mode: RegistrationRepository.E164VerificationMode) {
     try {
       val phoneNumber = PhoneNumberUtil.getInstance().parse(normalizedNumber, null)
 
@@ -441,9 +441,9 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
           spinnerView.setText(phoneNumber.countryCode.toString())
           phoneNumberInputLayout.setText(phoneNumber.nationalNumber.toString())
           when (mode) {
-            RegistrationRepository.Mode.SMS_WITH_LISTENER,
-            RegistrationRepository.Mode.SMS_WITHOUT_LISTENER -> sharedViewModel.requestSmsCode(requireContext())
-            RegistrationRepository.Mode.PHONE_CALL -> sharedViewModel.requestVerificationCall(requireContext())
+            RegistrationRepository.E164VerificationMode.SMS_WITH_LISTENER,
+            RegistrationRepository.E164VerificationMode.SMS_WITHOUT_LISTENER -> sharedViewModel.requestSmsCode(requireContext())
+            RegistrationRepository.E164VerificationMode.PHONE_CALL -> sharedViewModel.requestVerificationCall(requireContext())
           }
           dialogInterface.dismiss()
         }

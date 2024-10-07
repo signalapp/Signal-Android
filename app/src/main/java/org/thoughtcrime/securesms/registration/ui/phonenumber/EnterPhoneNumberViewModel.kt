@@ -47,7 +47,7 @@ class EnterPhoneNumberViewModel : ViewModel() {
     .map { CountryPrefix(it, PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(it)) }
     .sortedBy { it.digits }
 
-  var mode: RegistrationRepository.Mode
+  var mode: RegistrationRepository.E164VerificationMode
     get() = store.value.mode
     set(value) = store.update {
       it.copy(mode = value)

@@ -321,7 +321,7 @@ class RegistrationViewModel : ViewModel() {
         sessionId = validSession.body.id,
         e164 = e164,
         password = password,
-        mode = RegistrationRepository.Mode.PHONE_CALL
+        mode = RegistrationRepository.E164VerificationMode.PHONE_CALL
       )
       Log.d(TAG, "Voice code request network call completed.")
 
@@ -348,7 +348,7 @@ class RegistrationViewModel : ViewModel() {
     }
 
     Log.d(TAG, "Requesting SMS code…")
-    val transportMode = if (smsListenerReady) RegistrationRepository.Mode.SMS_WITH_LISTENER else RegistrationRepository.Mode.SMS_WITHOUT_LISTENER
+    val transportMode = if (smsListenerReady) RegistrationRepository.E164VerificationMode.SMS_WITH_LISTENER else RegistrationRepository.E164VerificationMode.SMS_WITHOUT_LISTENER
     val codeRequestResponse = RegistrationRepository.requestSmsCode(
       context = context,
       sessionId = sessionId,
@@ -820,9 +820,6 @@ class RegistrationViewModel : ViewModel() {
   private suspend fun onSuccessfulRegistration(context: Context, registrationData: RegistrationData, remoteResult: RegistrationRepository.AccountRegistrationResult, reglockEnabled: Boolean) {
     Log.v(TAG, "onSuccessfulRegistration()")
     val metadata = LocalRegistrationMetadataUtil.createLocalRegistrationMetadata(SignalStore.account.aciIdentityKey, SignalStore.account.pniIdentityKey, registrationData, remoteResult, reglockEnabled)
-    if (RemoteConfig.restoreAfterRegistration) {
-      SignalStore.registration.localRegistrationMetadata = metadata
-    }
     RegistrationRepository.registerAccountLocally(context, metadata)
 
     if (reglockEnabled) {

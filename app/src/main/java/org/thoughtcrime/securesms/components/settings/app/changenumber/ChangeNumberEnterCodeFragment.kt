@@ -101,14 +101,14 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
     binding.codeEntryLayout.callMeCountDown.apply {
       setTextResources(R.string.RegistrationActivity_call, R.string.RegistrationActivity_call_me_instead_available_in)
       setOnClickListener {
-        viewModel.initiateChangeNumberSession(requireContext(), RegistrationRepository.Mode.PHONE_CALL)
+        viewModel.initiateChangeNumberSession(requireContext(), RegistrationRepository.E164VerificationMode.PHONE_CALL)
       }
     }
 
     binding.codeEntryLayout.resendSmsCountDown.apply {
       setTextResources(R.string.RegistrationActivity_resend_code, R.string.RegistrationActivity_resend_sms_available_in)
       setOnClickListener {
-        viewModel.initiateChangeNumberSession(requireContext(), RegistrationRepository.Mode.SMS_WITHOUT_LISTENER)
+        viewModel.initiateChangeNumberSession(requireContext(), RegistrationRepository.E164VerificationMode.SMS_WITHOUT_LISTENER)
       }
     }
 

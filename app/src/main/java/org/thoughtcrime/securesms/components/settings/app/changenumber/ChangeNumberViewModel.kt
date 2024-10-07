@@ -336,7 +336,7 @@ class ChangeNumberViewModel : ViewModel() {
     }
   }
 
-  fun initiateChangeNumberSession(context: Context, mode: RegistrationRepository.Mode) {
+  fun initiateChangeNumberSession(context: Context, mode: RegistrationRepository.E164VerificationMode) {
     Log.v(TAG, "changeNumber()")
     store.update { it.copy(inProgress = true) }
     viewModelScope.launch {
@@ -465,7 +465,7 @@ class ChangeNumberViewModel : ViewModel() {
     numberChangeErrorHandler(result)
   }
 
-  private suspend fun requestVerificationCode(context: Context, mode: RegistrationRepository.Mode) {
+  private suspend fun requestVerificationCode(context: Context, mode: RegistrationRepository.E164VerificationMode) {
     Log.v(TAG, "requestVerificationCode()")
     val e164 = number.e164Number
 

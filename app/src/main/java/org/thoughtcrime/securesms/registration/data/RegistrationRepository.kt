@@ -351,7 +351,7 @@ object RegistrationRepository {
   /**
    * Asks the service to send a verification code through one of our supported channels (SMS, phone call).
    */
-  suspend fun requestSmsCode(context: Context, sessionId: String, e164: String, password: String, mode: Mode): VerificationCodeRequestResult =
+  suspend fun requestSmsCode(context: Context, sessionId: String, e164: String, password: String, mode: E164VerificationMode): VerificationCodeRequestResult =
     withContext(Dispatchers.IO) {
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
 
@@ -605,7 +605,7 @@ object RegistrationRepository {
     fun produceMasterKey(): MasterKey
   }
 
-  enum class Mode(val isSmsRetrieverSupported: Boolean, val transport: PushServiceSocket.VerificationCodeTransport) {
+  enum class E164VerificationMode(val isSmsRetrieverSupported: Boolean, val transport: PushServiceSocket.VerificationCodeTransport) {
     SMS_WITH_LISTENER(true, PushServiceSocket.VerificationCodeTransport.SMS),
     SMS_WITHOUT_LISTENER(false, PushServiceSocket.VerificationCodeTransport.SMS),
     PHONE_CALL(false, PushServiceSocket.VerificationCodeTransport.VOICE)
