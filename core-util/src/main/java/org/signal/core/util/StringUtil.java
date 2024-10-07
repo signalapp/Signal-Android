@@ -22,8 +22,6 @@ public final class StringUtil {
                                                                       '\u200B',  // zero-width space
                                                                       '\u2800'); // braille blank
 
-  public static final List<Character> FILTERED_EMOJIS = List.of('\u2713', '\u2714', '\u2611', '\u221A', '\u26C9', '\u26CA', '\u26DB');
-
   private static final Pattern ALL_ASCII_PATTERN = Pattern.compile("^[\\x00-\\x7F]*$");
 
   private static final class Bidi {

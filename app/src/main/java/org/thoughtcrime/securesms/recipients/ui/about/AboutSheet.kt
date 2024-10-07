@@ -96,7 +96,7 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
           displayName = recipient.get().getDisplayName(requireContext()),
           shortName = recipient.get().getShortDisplayName(requireContext()),
           profileName = recipient.get().profileName.toString(),
-          about = recipient.get().filteredAbout,
+          about = recipient.get().about,
           verified = verified,
           hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
           recipientForAvatar = recipient.get(),

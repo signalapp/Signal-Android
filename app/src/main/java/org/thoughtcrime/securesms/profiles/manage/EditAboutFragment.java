@@ -65,7 +65,6 @@ public class EditAboutFragment extends Fragment implements EditProfileActivity.E
   private ImageView                      emojiView;
   private EditText                       bodyView;
   private TextView                       countView;
-  private TextView                       errorView;
   private CircularProgressMaterialButton saveButton;
   private EditAboutViewModel             viewModel;
   private LifecycleDisposable            lifecycleDisposable;
@@ -82,7 +81,6 @@ public class EditAboutFragment extends Fragment implements EditProfileActivity.E
     this.emojiView  = view.findViewById(R.id.edit_about_emoji);
     this.bodyView   = view.findViewById(R.id.edit_about_body);
     this.countView  = view.findViewById(R.id.edit_about_count);
-    this.errorView  = view.findViewById(R.id.edit_about_error);
     this.saveButton = view.findViewById(R.id.edit_about_save);
 
     lifecycleDisposable = new LifecycleDisposable();
@@ -96,7 +94,6 @@ public class EditAboutFragment extends Fragment implements EditProfileActivity.E
 
     EditTextUtil.addGraphemeClusterLimitFilter(bodyView, ABOUT_MAX_GLYPHS);
     this.bodyView.addTextChangedListener(new AfterTextChanged(editable -> {
-      checkValidText(editable.toString());
       trimFieldToMaxByteLength(editable);
       presentCount(editable.toString());
     }));
@@ -129,21 +126,6 @@ public class EditAboutFragment extends Fragment implements EditProfileActivity.E
     }
 
     ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(bodyView);
-  }
-
-  private void checkValidText(String text) {
-    boolean isInvalid = false;
-    for (Character emoji : StringUtil.FILTERED_EMOJIS) {
-      if (text.contains(Character.toString(emoji))) {
-        isInvalid = true;
-        break;
-      }
-    }
-
-    int colorRes = isInvalid ? R.color.signal_colorError : R.color.signal_colorPrimary;
-    bodyView.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), colorRes)));
-    errorView.setVisibility(isInvalid ? View.VISIBLE : View.GONE);
-    saveButton.setEnabled(!isInvalid);
   }
 
   @Override
