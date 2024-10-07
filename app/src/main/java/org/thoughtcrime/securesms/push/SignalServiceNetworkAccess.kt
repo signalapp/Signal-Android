@@ -173,7 +173,7 @@ open class SignalServiceNetworkAccess(context: Context) {
     HostConfig("https://inbox.google.com", G_HOST, GMAIL_CONNECTION_SPEC)
   )
 
-  private val fUrls = arrayOf("https://github.githubassets.com", "https://pinterest.com", "https://www.redditstatic.com")
+  private val fUrls = arrayOf("https://slate.com", "https://www.zesty.io", "https://www.redditstatic.com")
 
   private val fConfig: SignalServiceConfiguration = SignalServiceConfiguration(
     signalServiceUrls = fUrls.map { SignalServiceUrl(it, F_SERVICE_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
