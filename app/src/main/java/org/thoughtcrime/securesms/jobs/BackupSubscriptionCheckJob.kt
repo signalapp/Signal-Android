@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.VisibleForTesting
 import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
@@ -29,7 +30,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
     const val KEY = "BackupSubscriptionCheckJob"
 
-    @JvmStatic
+    @VisibleForTesting
     fun create(): BackupSubscriptionCheckJob {
       return BackupSubscriptionCheckJob(
         Parameters.Builder()
@@ -39,6 +40,17 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
           .setMaxInstancesForFactory(1)
           .build()
       )
+    }
+
+    @JvmStatic
+    fun enqueueIfAble() {
+      if (!RemoteConfig.messageBackups) {
+        return
+      }
+
+      val job = create()
+
+      AppDependencies.jobManager.add(job)
     }
   }
 

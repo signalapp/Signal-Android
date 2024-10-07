@@ -254,10 +254,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
       AppDependencies.getShakeToReport().enable();
       checkBuildExpiration();
       MemoryTracker.start();
-
-      if (RemoteConfig.messageBackups()) {
-        AppDependencies.getJobManager().add(BackupSubscriptionCheckJob.create());
-      }
+      BackupSubscriptionCheckJob.enqueueIfAble();
 
       long lastForegroundTime = SignalStore.misc().getLastForegroundTime();
       long currentTime        = System.currentTimeMillis();
