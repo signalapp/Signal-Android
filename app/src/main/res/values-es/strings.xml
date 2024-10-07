@@ -1591,7 +1591,7 @@
     <string name="Megaphones_get_started">Comenzar</string>
     <string name="Megaphones_new_group">Nuevo grupo</string>
     <string name="Megaphones_invite_friends">Invitar personas</string>
-    <string name="Megaphones_chat_colors">Colores del chat</string>
+    <string name="Megaphones_chat_colors">Colores</string>
     <string name="Megaphones_add_a_profile_photo">Foto de perfil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -3319,8 +3319,6 @@
     <string name="EditAboutFragment_free_to_chat">Libre para chatear</string>
     <string name="EditAboutFragment_taking_a_break">Tomándome un descanso</string>
     <string name="EditAboutFragment_working_on_something_new">Trabajando en cosas nuevas</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">Uno o más caracteres no son válidos.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Editar grupo</string>
@@ -4376,7 +4374,7 @@
     <!-- Description text explaining how to unlock Signal -->
     <string name="prompt_passphrase_activity__use_your_android_device">Usa los ajustes de bloqueo de tu dispositivo Android para desbloquear Signal.</string>
     <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
-    <string name="prompt_passphrase_activity__screen_lock_is_on">El bloqueo de pantalla está activado y Signal está protegido con los ajustes de bloqueo de tu dispositivo. Desbloquea Signal del mismo modo que desbloqueas normalmente tu teléfono, ya sea con el reconocimiento facial, el desbloqueo por huella dactilar, un PIN, una contraseña o un patrón.</string>
+    <string name="prompt_passphrase_activity__screen_lock_is_on">El bloqueo de pantalla está activado y Signal está protegido con los ajustes de bloqueo de tu dispositivo. Desbloquea Signal del mismo modo que desbloqueas normalmente tu teléfono, ya sea mediante reconocimiento facial, huella dactilar, PIN, contraseña o patrón.</string>
     <!-- Button in a dialog that will contact Signal support if pressed -->
     <string name="prompt_passphrase_activity__contact_support">Contactar con asistencia</string>
     <!-- Button text to try again after unlocking has previously failed -->
@@ -4437,13 +4435,13 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restaura tus mensajes desde una copia de seguridad local. Si no los restauras ahora, no podrás hacerlo más tarde.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Restaurar copia de seguridad local</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restaurar copia de seguridad de Signal</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Restaurar todos tus mensajes de texto y tus archivos multimedia de los últimos 30 días</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Restaura todos tus mensajes de texto y tus archivos multimedia de los últimos 30 días</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Más opciones</string>
 
     <string name="TransferOrRestoreFragment__cancel">Cancelar</string>
     <string name="TransferOrRestoreFragment__skip_transfer">Iniciar sesión sin transferir</string>
-    <string name="TransferOrRestoreFragment__skip_transfer_description">Continuar sin transferir tus mensajes ni archivos multimedia</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">Continúa sin transferir tus mensajes ni archivos multimedia</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Abre Signal en tu dispositivo Android anterior</string>
@@ -4497,7 +4495,7 @@
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
     <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">En la pantalla de Wi-Fi Direct, elimina todos los grupos guardados y desvincula cualquier dispositivo invitado o conectado.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Pantalla Wi-Fi Direct</string>
-    <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Desactiva y vuelve a activar Wi-Fi en ambos dispositivos.</string>
+    <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Desactiva y vuelve a activar la conexión Wi-Fi en ambos dispositivos.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Asegúrate de que ambos dispositivos estén en modo de transferencia.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Ir a la página de asistencia</string>
     <string name="DeviceTransferSetup__try_again">Reintentar</string>
@@ -4743,7 +4741,7 @@
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">Color del chat</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">Restablecer colores del chat</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">Restablecer colores de los chats</string>
     <string name="ChatWallpaperFragment__reset_chat_color">Restablecer color del chat</string>
     <string name="ChatWallpaperFragment__reset_chat_color_question">¿Restablecer color del chat?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">Elegir fondo de pantalla</string>
@@ -4770,22 +4768,22 @@
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">Elegir fondo de pantalla</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Deslizar para ver más fondos de pantalla</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Elige un fondo para todos los chats.</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Elegir fondo para %1$s</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Elige un fondo para \"%1$s\".</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Signal necesita acceso al almacenamiento para mostrar la galería.</string>
 
     <!-- WallpaperImageSelectionActivity -->
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pellizca la imagen para ampliarla y arrástrala para ajustar.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Elegir fondo para todos los chats.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_s">Elegir fondo para %1$s.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Elige un fondo para todos los chats.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_s">Elige un fondo para \"%1$s\".</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">No se ha podido establecer el fondo de pantalla.</string>
     <string name="WallpaperCropActivity__blur_photo">Difuminar foto</string>
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">Acerca de MobileCoin</string>
     <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin es una nueva moneda digital enfocada en la privacidad.</string>
-    <string name="payment_info_card_adding_funds">Añadir fondos</string>
+    <string name="payment_info_card_adding_funds">Añadiendo fondos</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">Puedes añadir fondos para usar en Signal enviando MobileCoin a la dirección de tu cartera.</string>
     <string name="payment_info_card_cashing_out">Retirar fondos</string>
     <string name="payment_info_card_you_can_cash_out_mobilecoin">Puedes transferir tus fondos en cualquier momento a una plataforma de intercambio que acepte MobileCoin. Tan solo tienes que hacer una transferencia a tu cuenta en esa plataforma.</string>
@@ -4797,7 +4795,7 @@
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">Guardar tu frase</string>
     <string name="payment_info_card_update_your_pin">Actualiza tu PIN</string>
-    <string name="payment_info_card_with_a_high_balance">Si tienes un saldo elevado, te recomendamos cambiar tu PIN por un PIN alfanumérico que añada protección extra a tu cuenta.</string>
+    <string name="payment_info_card_with_a_high_balance">Si tienes un saldo elevado, te recomendamos cambiar tu PIN de Signal a un PIN alfanumérico que añada protección extra a tu cuenta.</string>
     <string name="payment_info_card_update_pin">Actualizar PIN</string>
 
   <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
@@ -4830,7 +4828,7 @@
     <string name="PaymentsRecoveryStartFragment__got_balance">¡Tienes saldo! Es el momento de guardar tu frase de recuperación, una clave de 24 palabras que puedes usar para restaurar tu saldo.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
     <string name="PaymentsRecoveryStartFragment__time_to_save">Es el momento de guardar tu frase de recuperación, una clave de 24 palabras que puedes usar para restaurar tu saldo.</string>
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Tu frase de recuperación es una clave de %1$d palabras que es única para ti. Úsala para restaurar tu saldo.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Tu frase de recuperación es una clave de %1$d palabras que es única para ti. Úsala para restaurar tu saldo.</string>
     <string name="PaymentsRecoveryStartFragment__start">Comenzar</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Introducir manualmente</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Pegar del portapapeles</string>
@@ -4848,7 +4846,7 @@
     <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Frase de recuperación</string>
     <string name="PaymentsRecoveryPasteFragment__next">Siguiente</string>
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frase de recuperación no válida</string>
-    <string name="PaymentsRecoveryPasteFragment__make_sure">Comprueba que hayas introducido %1$d palabras e inténtalo de nuevo.</string>
+    <string name="PaymentsRecoveryPasteFragment__make_sure">Comprueba que hayas introducido %1$d palabras e inténtalo de nuevo.</string>
 
   <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
   <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
@@ -4857,7 +4855,7 @@
     <string name="PaymentsRecoveryPhraseFragment__next">Siguiente</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">Editar</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Tu frase de recuperación</string>
-    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Anota las siguientes %1$d palabras en orden. Guárdalas en un lugar seguro.</string>
+    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Anota las siguientes %1$d palabras en orden. Guárdalas en un lugar seguro.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Comprueba que hayas introducido la frase de recuperación correctamente.</string>
     <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">No hagas una captura de pantalla ni la envíes por correo electrónico.</string>
     <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Cuenta de pagos restaurada.</string>
@@ -4871,7 +4869,7 @@
     <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Confirmar frase de recuperación</string>
     <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Introduce las siguientes palabras de tu frase de recuperación.</string>
     <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Palabra n.° %1$d</string>
-    <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Mostrar la frase otra vez</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Ver la frase otra vez</string>
     <string name="PaymentRecoveryPhraseConfirmFragment__done">Listo</string>
     <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Frase de recuperación confirmada</string>
 
@@ -6001,7 +5999,7 @@
         <item quantity="other">%1$d respuestas</item>
     </plurals>
     <!-- Toast / Snackbar label when unhiding a story during viewer -->
-    <string name="StoryViewerPageFragment__story_no_longer_hidden">Story no longer hidden</string>
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">La historia ya no está oculta</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">Añadir</string>
     <!-- Used when view receipts are disabled -->
@@ -7296,11 +7294,11 @@
     <string name="BackupStatus__restore_complete">Restauración completada</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
+    <string name="BackupStatus__status_waiting_for_wifi">Esperando red Wi-Fi…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
-    <string name="BackupStatus__status_no_internet">No internet…</string>
+    <string name="BackupStatus__status_no_internet">Sin conexión a Internet</string>
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
-    <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
+    <string name="BackupStatus__status_device_has_low_battery">El dispositivo tiene poca batería</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s de %2$s</string>
 
@@ -7368,11 +7366,11 @@
 
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
-    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/month, renews %2$s</string>
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/mes · Se renueva el %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
-    <string name="BackupsSettingsFragment_last_backup_s">Last backup %1$s</string>
+    <string name="BackupsSettingsFragment_last_backup_s">Última copia de seguridad %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
-    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Copias de seguridad automáticas con el servicio de almacenamiento seguro y cifrado de extremo a extremo de Signal.</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Configurar</string>
 
@@ -7390,9 +7388,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Copia de seguridad con conexión móvil</string>
     <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View backup key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Ver clave de copia de seguridad</string>
     <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view backup key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Desbloquear para ver clave de copia de seguridad</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Desactivar y eliminar copias de seguridad</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7406,25 +7404,25 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">La copia de seguridad se creará durante la noche.</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_plan">Backup plan</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">Plan de copias de seguridad</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Copias de seguridad desactivadas</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/mes</string>
     <!-- String for free backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Tu plan de copias de seguridad es gratis</string>
     <!-- Displays the date the subscription will renew -->
     <string name="RemoteBackupsSettingsFragment__renews_s">Se renueva el %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
-    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Haz una copia de seguridad de tu historial de mensajes para no perder ningún dato cuando compras un teléfono nuevo o reinstalas Signal.</string>
     <!-- Section header for other ways to back up -->
-    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Other ways to backup</string>
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Otras formas de hacer copias de seguridad</string>
     <!-- Row title for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__on_device_backups">On-device backups</string>
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">Copias de seguridad en el dispositivo</string>
     <!-- Row label for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Save your backups to a folder on this device</string>
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Guarda tus copias de seguridad en una carpeta de este dispositivo</string>
     <!-- Button label to manage or cancel backups -->
-    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Gestionar o cancelar</string>
     <!-- button label to upgrade backups -->
     <string name="RemoteBackupsSettingsFragment__upgrade">Actualizar</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->

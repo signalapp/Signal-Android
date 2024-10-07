@@ -3220,8 +3220,6 @@
     <string name="EditAboutFragment_free_to_chat">陪聊不收费</string>
     <string name="EditAboutFragment_taking_a_break">休息一下下</string>
     <string name="EditAboutFragment_working_on_something_new">打磨新玩意儿</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">一个或多个字符无效。</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">编辑群组</string>
@@ -5869,7 +5867,7 @@
         <item quantity="other">%1$d 个回复</item>
     </plurals>
     <!-- Toast / Snackbar label when unhiding a story during viewer -->
-    <string name="StoryViewerPageFragment__story_no_longer_hidden">Story no longer hidden</string>
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">动态已公开</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">添加</string>
     <!-- Used when view receipts are disabled -->
@@ -7138,11 +7136,11 @@
     <string name="BackupStatus__restore_complete">还原完成</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
+    <string name="BackupStatus__status_waiting_for_wifi">正在等待 Wi-Fi 连接…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
-    <string name="BackupStatus__status_no_internet">No internet…</string>
+    <string name="BackupStatus__status_no_internet">没有网络…</string>
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
-    <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
+    <string name="BackupStatus__status_device_has_low_battery">设备电池电量不足</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s / %2$s 匹配</string>
 
@@ -7210,11 +7208,11 @@
 
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
-    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/month, renews %2$s</string>
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/月，%2$s续期</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
-    <string name="BackupsSettingsFragment_last_backup_s">Last backup %1$s</string>
+    <string name="BackupsSettingsFragment_last_backup_s">上次备份 %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
-    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">通过 Signal 的安全端对端加密存储服务自动备份。</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">设置</string>
 
@@ -7232,9 +7230,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">使用蜂窝网络备份</string>
     <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View backup key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">查看备份密钥</string>
     <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view backup key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">解锁以查看备份密钥</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">关闭并删除备份</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7248,25 +7246,25 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">备份将在夜间创建。</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_plan">Backup plan</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">备份套餐</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">已停用备份</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/月</string>
     <!-- String for free backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">您使用的是免费备份套餐</string>
     <!-- Displays the date the subscription will renew -->
     <string name="RemoteBackupsSettingsFragment__renews_s">到 %1$s 续期</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
-    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">备份消息记录可以确保您在更换手机或重装 Signal 时不会丢失数据。</string>
     <!-- Section header for other ways to back up -->
-    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Other ways to backup</string>
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">其他备份方式</string>
     <!-- Row title for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__on_device_backups">On-device backups</string>
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">设备本地备份</string>
     <!-- Row label for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Save your backups to a folder on this device</string>
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">将您的备份保存在本设备的文件夹中</string>
     <!-- Button label to manage or cancel backups -->
-    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">管理或取消</string>
     <!-- button label to upgrade backups -->
     <string name="RemoteBackupsSettingsFragment__upgrade">升级</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->

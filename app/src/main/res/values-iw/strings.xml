@@ -3517,8 +3517,6 @@
     <string name="EditAboutFragment_free_to_chat">פנוי/ה לצ\'אט</string>
     <string name="EditAboutFragment_taking_a_break">לוקח הפסקה</string>
     <string name="EditAboutFragment_working_on_something_new">עובד על משהו חדש</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">תו אחד או יותר אינו חוקי.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">ערוך קבוצה</string>

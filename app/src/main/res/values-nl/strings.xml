@@ -3319,8 +3319,6 @@
     <string name="EditAboutFragment_free_to_chat">Beschikbaar om te praten</string>
     <string name="EditAboutFragment_taking_a_break">Ik wil even offline zijn</string>
     <string name="EditAboutFragment_working_on_something_new">Ik werk aan iets nieuws</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">Een of meer karakters zijn ongeldig.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Groep bewerken</string>
@@ -5269,7 +5267,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Niet gedempt</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Vermeldingen</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Altijd een melding bij vermeldingen</string>
-    <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Geen meldingen over vermeldingen</string>
+    <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Geen meldingen als gedempt</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Aangepaste meldingen</string>
 
     <!-- StickerKeyboard -->

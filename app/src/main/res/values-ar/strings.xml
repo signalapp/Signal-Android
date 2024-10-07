@@ -2153,7 +2153,7 @@
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">المدفوعات: %1$s</string>
     <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
-    <string name="MessageRecord__payment_tombstone">عمليات الدفع</string>
+    <string name="MessageRecord__payment_tombstone">المدفوعات</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">تمَّ الإبلاغ عنها كرِسالة غير مرغوب فيها</string>
     <!-- Update message shown in chat after accept a message request -->
@@ -2222,7 +2222,7 @@
         <item quantity="other">%1$d مجموعة إضافية</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">الإبلاغ…</string>
+    <string name="MessageRequestBottomView_report">إبلاغ…</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
@@ -2307,19 +2307,19 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">أرسل رسالة قصيرة</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">أرسِل كود رسالة قصيرة</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">التسجيل في سيجنال - بحاجة إلى مساعدة مع الرقم التعريفي الشخصي في أندرويد</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">التسجيل في سيجنال - تحتاج مساعدة لتسجيل رقم التعريف الشخصي (PIN) في أندرويد</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">إنَّ الـPIN الخاص بك عِبارة عَن رمز مكون من %1$d+ خانات أو أكثر والتي يُمكن أن تكون إما أرقامًا أو حُروفًا.\n\nإذا لم تستطع تَذكُر الـPIN الخاص بك، يمكنك إنشاء رقم جديد.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">رقم التعريف الشخصي (PIN) الخاص بك عِبارة عَن كود مُكوَّن من %1$d+ خانات أو أكثر والتي يُمكن أن تكون إما أرقامًا أو حُروفًا.\n\nإذا لم تستطع تَذكُّر رقم التعريف الشخصي (PIN) الخاص بك، يمكنك إنشاء رقم جديد.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">إذا لم تستطع تَذكُر الـPIN الخاص بك، يمكنك إنشاء رقم جديد.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">إذا لم تستطع تَذكُّر رقم التعريف الشخصي (PIN) الخاص بك، يمكنك إنشاء رقم جديد.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">لم تعد تتوفر على تخمينات الرقم التعريفي الشخصي، لكن يمكنك الوصول إلى حساب سيجنال الخاص بك عبر إنشاء رقم جديد.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">نفدَت تخميناتك لرقم التعريف الشخصي (PIN)، لكن يمكنك الوصول إلى حساب سيجنال الخاص بك عبر إنشاء رقم تعريف شخصي (PIN) جديد.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">تحذير</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">إذا قمتَ بتعطيل رمز التعريف الشخصي، ستفقد جميع بياناتك عند قيامك بإعادة التسجيل في سيجنال، إلّا إذا قمتَ باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل رمز التعريف الشخصي.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">إذا قمتَ بتعطيل رقم التعريف الشخصي (PIN)، ستفقد جميع بياناتك عند قيامك بإعادة التسجيل في سيجنال، إلّا إذا قمتَ باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل رقم التعريف الشخصي (PIN).</string>
     <string name="PinOptOutDialog_disable_pin">إلغاء رقم التعريف الشخصي</string>
 
     <!-- RatingManager -->
@@ -2341,7 +2341,7 @@
     <!-- RecaptchaRequiredBottomSheetFragment -->
     <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">قُم بالتحقُّق لمواصلة المراسلة</string>
     <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">لمنع وصول الرسائل غير المرغوب فيها في سيجنال، يُرجى إتمام التحقُّق.</string>
-    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">بعد التحقق، يمكنك مواصلة التراسل. ستُرسَل تلقائيًا لك كل رسالة متوقفة مؤقتًا.</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">بعد التحقُّق، يمكنك مواصلة التراسل. ستُرسَل تلقائيًا كل رسالة متوقفة مؤقتًا.</string>
 
     <!-- Recipient -->
     <string name="Recipient_you">أنت</string>
@@ -2364,9 +2364,9 @@
     <string name="RedPhone_recipient_unavailable">المتلقي غير متاح</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
     <string name="RedPhone_network_failed">فشل في الشبكة! يُرجى التحقّق من اتصالك بالانترنت ثم حاول مرة أُخرى.</string>
-    <string name="RedPhone_number_not_registered">الرقم غير مسجل!</string>
-    <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">الرقم المطلوب لا يدعم مكالمات صوتية مشفرة!</string>
-    <string name="RedPhone_got_it">عُلم</string>
+    <string name="RedPhone_number_not_registered">الرقم غير مُسجَّل!</string>
+    <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">الرقم المطلوب لا يدعم مكالمات صوتية آمنة!</string>
+    <string name="RedPhone_got_it">تم</string>
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
@@ -2383,28 +2383,28 @@
     <string name="CallScreenPreJoinOverlay__your_camera_is_off">الكاميرا غير مشغلة</string>
 
     <!-- WebRtcCallActivity -->
-    <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">يُرجى اللمس هنا لتشغيل مكالمتك بالصورة.</string>
-    <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">للاتصال بـ%1$s، يحتاج سيجنال صلاحية الوصول إلى الكاميرا</string>
+    <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">يُرجى النقر هنا لتشغيل مكالمة الفيديو لديك.</string>
+    <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">للاتصال بـ %1$s، يحتاج سيجنال صلاحية الوصول إلى الكاميرا</string>
     <string name="WebRtcCallActivity__signal_s">سيجنال‏ %1$s</string>
     <string name="WebRtcCallActivity__calling">يتصل…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
-    <string name="WebRtcCallActivity__reconnecting">يَجري إعادة الاِتصال..</string>
+    <string name="WebRtcCallActivity__reconnecting">تجري إعادة الاتصال…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
-    <string name="WebRtcCallActivity__bluetooth_permission_denied">تم رفض إذن بلوتوث</string>
+    <string name="WebRtcCallActivity__bluetooth_permission_denied">تمَّ رفض إذن بلوتوث</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
-    <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">يُرجى تمكين إذن \"الأجهزة المجاورة\" لاستخدام البلوتوث أثناء المكالمة.</string>
+    <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">يُرجى تمكين إذن \"الأجهزة القريبة\" لاستخدام البلوتوث أثناء المكالمة.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
     <string name="WebRtcCallActivity__open_settings">فتح الإعدادات</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">ليس الآن</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
-        <item quantity="zero">الموافقة على %1$d طلب؟</item>
-        <item quantity="one">الموافقة على %1$d طلب؟</item>
-        <item quantity="two">الموافقة على %1$d طلبين؟</item>
-        <item quantity="few">الموافقة على %1$d طلبات؟</item>
-        <item quantity="many">الموافقة على %1$d طلبًا؟</item>
-        <item quantity="other">الموافقة على %1$d طلب؟</item>
+        <item quantity="zero">أترغبُ بالموافقة على %1$d طلب؟</item>
+        <item quantity="one">أترغبُ بالموافقة على %1$d طلب؟</item>
+        <item quantity="two">أترغبُ بالموافقة على %1$d طلبين؟</item>
+        <item quantity="few">أترغبُ بالموافقة على %1$d طلباتٍ؟</item>
+        <item quantity="many">أترغبُ بالموافقة على %1$d طلبًا؟</item>
+        <item quantity="other">أترغبُ بالموافقة على %1$d طلب؟</item>
     </plurals>
     <!-- Positive action for call link approve all dialog -->
     <string name="WebRtcCallActivity__approve_all">موافقة على الكل</string>
@@ -2415,23 +2415,23 @@
         <item quantity="two">سيُضاف %1$d شخصين إلى المكالمة.</item>
         <item quantity="few">سيُضاف %1$d أشخاص إلى المكالمة.</item>
         <item quantity="many">سيُضاف %1$d شخصًا إلى المكالمة.</item>
-        <item quantity="other">سيُضاف %1$d شخص إلى المكالمة.</item>
+        <item quantity="other">سيُضاف %1$d شخصٍ إلى المكالمة.</item>
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
-        <item quantity="zero">رفض %1$d طلب؟</item>
-        <item quantity="one">رفض %1$d طلب؟</item>
-        <item quantity="two">رفض %1$d طلبين؟</item>
-        <item quantity="few">رفض %1$d طلبات؟</item>
-        <item quantity="many">رفض %1$d طلبًا؟</item>
-        <item quantity="other">رفض %1$d طلب؟</item>
+        <item quantity="zero">أترغبُ برفض %1$d طلب؟</item>
+        <item quantity="one">أترغبُ برفض %1$d طلب؟</item>
+        <item quantity="two">أترغبُ برفض %1$d طلبين؟</item>
+        <item quantity="few">أترغبُ برفض %1$d طلبات؟</item>
+        <item quantity="many">أترغبُ برفض %1$d طلبًا؟</item>
+        <item quantity="other">أترغبُ برفض %1$d طلب؟</item>
     </plurals>
     <!-- Message for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
         <item quantity="zero">لن يتم إضافة %1$d شخص إلى المكالمة.</item>
         <item quantity="one">لن يتم إضافة %1$d شخص إلى المكالمة.</item>
         <item quantity="two">لن يتم إضافة %1$d شخصين إلى المكالمة.</item>
-        <item quantity="few">لن يتم إضافة %1$d أشخاص إلى المكالمة.</item>
+        <item quantity="few">لن يتم إضافة %1$d أشخاصٍ إلى المكالمة.</item>
         <item quantity="many">لن يتم إضافة %1$d شخصًا إلى المكالمة.</item>
         <item quantity="other">لن يتم إضافة %1$d شخص إلى المكالمة.</item>
     </plurals>
@@ -2451,16 +2451,16 @@
         <item quantity="zero">لا أحد (%1$d)</item>
         <item quantity="one">شخص واحد (%1$d)</item>
         <item quantity="two">شخصان (%1$d)</item>
-        <item quantity="few">%1$d أفراد</item>
-        <item quantity="many">%1$d فردا</item>
-        <item quantity="other">%1$d فرد</item>
+        <item quantity="few">%1$d أشخاص</item>
+        <item quantity="many">%1$d شخصًا</item>
+        <item quantity="other">%1$d شخصٍ</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__join_request_denied">رُفض طلب الانضمام</string>
+    <string name="WebRtcCallActivity__join_request_denied">رُفِضَ طلب الانضمام</string>
     <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">لقد رُفضَ طلب انضمامك إلى هذه المكالمة.</string>
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">رُفِضَ طلب انضمامك إلى هذه المكالمة.</string>
     <!-- Title of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__removed_from_call">إزالة من المكالمة</string>
+    <string name="WebRtcCallActivity__removed_from_call">تمَّت الإزالة من المكالمة</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">قام شخص ما بإزالتك من المكالمة.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
@@ -2490,11 +2490,11 @@
     <string name="WebRtcCallView__start_call">بدء المكالمة</string>
     <string name="WebRtcCallView__join_call">الانضمام للمكالمة</string>
     <string name="WebRtcCallView__call_is_full">المكالمة ممتلئة</string>
-    <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">وصل عدد المشاركين إلى %1$d مشاركا، وهو الحد الأقصى في هذه المكالمة. يُرجى المحاولة مرة أخرى لاحقا.</string>
-    <string name="WebRtcCallView__your_video_is_off">الفيديو الخاص بك غير مشغل</string>
+    <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">وصل عدد المشاركين إلى %1$d مشاركًا، وهو الحد الأقصى في هذه المكالمة. يُرجى المحاولة مرّة أخرى لاحقًا.</string>
+    <string name="WebRtcCallView__your_video_is_off">توقَّف الفيديو لديك</string>
     <string name="WebRtcCallView__reconnecting">إعادة الاتصال جارية…</string>
-    <string name="WebRtcCallView__joining">قيد الانضمام…</string>
-    <string name="WebRtcCallView__disconnected">غير متّصل</string>
+    <string name="WebRtcCallView__joining">يجري الانضمام…</string>
+    <string name="WebRtcCallView__disconnected">توقَّف الاتصال</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">رابط مكالمة سيجنال</string>
     <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
@@ -2504,49 +2504,49 @@
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">في انتظار السماح بالانضمام…</string>
 
-    <string name="WebRtcCallView__signal_will_ring_s">سَيتصل سيجنال بـ%1$s</string>
+    <string name="WebRtcCallView__signal_will_ring_s">سَيتصل سيجنال بـ %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">سَيتصل سيجنال بـ %1$s و%2$s</string>
     <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
-        <item quantity="zero">سوف يرن سيجنال على %1$s و%2$s و%3$d</item>
-        <item quantity="one">سوف يرن سيجنال على %1$s و%2$s و%3$d آخر</item>
-        <item quantity="two">سوف يرن سيجنال على %1$s و%2$s و%3$d آخريْن</item>
-        <item quantity="few">سوف يرن سيجنال على %1$s و%2$s و%3$d آخرين</item>
-        <item quantity="many">سوف يرن سيجنال على %1$s و%2$s و%3$d آخرين</item>
+        <item quantity="zero">سَيتصل سيجنال بـ %1$s و%2$s و%3$d</item>
+        <item quantity="one">سَيتصل سيجنال بـ %1$s و%2$s و%3$d آخر</item>
+        <item quantity="two">سَيتصل سيجنال بـ %1$s و%2$s و%3$d آخريْن</item>
+        <item quantity="few">سَيتصل سيجنال بـ %1$s و%2$s و%3$d آخرين</item>
+        <item quantity="many">سَيتصل سيجنال بـ %1$s و%2$s و%3$d آخرين</item>
         <item quantity="other">سَيتصل سيجنال بـ %1$s و%2$s و%3$d آخرين</item>
     </plurals>
 
-    <string name="WebRtcCallView__s_will_be_notified">سيتم إشعار %1$s</string>
-    <string name="WebRtcCallView__s_and_s_will_be_notified">سيتم إشعار %1$s و%2$s</string>
+    <string name="WebRtcCallView__s_will_be_notified">سيتمُّ إشعار %1$s</string>
+    <string name="WebRtcCallView__s_and_s_will_be_notified">سيتمُّ إشعار %1$s و%2$s</string>
     <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
-        <item quantity="zero">سيتم إشعار %1$s و%2$s. (%3$d)</item>
-        <item quantity="one">سيتم إشعار %1$s و%2$s و%3$d آخر</item>
-        <item quantity="two">سيتم إشعار %1$s و%2$s و%3$d آخريْن</item>
-        <item quantity="few">سيتم إشعار %1$s و%2$s و%3$d آخرين</item>
-        <item quantity="many">سيتم إشعار %1$s و%2$s و%3$d آخرين</item>
-        <item quantity="other">سيتم إشعار %1$s و%2$s و%3$d آخرين</item>
+        <item quantity="zero">سيتمُّ إشعار %1$s و%2$s. (%3$d)</item>
+        <item quantity="one">سيتمُّ إشعار %1$s و%2$s و%3$d آخر</item>
+        <item quantity="two">سيتمُّ إشعار %1$s و%2$s و%3$d آخريْن</item>
+        <item quantity="few">سيتمُّ إشعار %1$s و%2$s و%3$d آخرين</item>
+        <item quantity="many">سيتمُّ إشعار %1$s و%2$s و%3$d آخرين</item>
+        <item quantity="other">سيتمُّ إشعار %1$s و%2$s و%3$d آخرين</item>
     </plurals>
 
-    <string name="WebRtcCallView__ringing_s">الإتصال بـ %1$s</string>
-    <string name="WebRtcCallView__ringing_s_and_s">الإتصال بـ %1$s و%2$s</string>
+    <string name="WebRtcCallView__ringing_s">جارٍ الاتصال بـ %1$s</string>
+    <string name="WebRtcCallView__ringing_s_and_s">جارٍ الاتصال بـ %1$s و%2$s</string>
     <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-        <item quantity="zero">يرن على %1$s و%2$s. (%3$d)</item>
-        <item quantity="one">يرن على %1$sو %2$s و%3$d آخر</item>
-        <item quantity="two">يرن على %1$s و%2$s و%3$d آخريْن</item>
-        <item quantity="few">يرن على %1$s و%2$s و%3$d آخرين</item>
-        <item quantity="many">يرن على %1$s و%2$s و%3$d آخرين</item>
-        <item quantity="other">الإتصال بـ %1$s و%2$s و%3$d آخرين</item>
+        <item quantity="zero">جارٍ الاتصال بـ %1$s و%2$s و(%3$d)</item>
+        <item quantity="one">جارٍ الاتصال بـ %1$sو %2$s و%3$d آخر</item>
+        <item quantity="two">جارٍ الاتصال بـ %1$s و%2$s و%3$d آخريْن</item>
+        <item quantity="few">جارٍ الاتصال بـ %1$s و%2$s و%3$d آخرين</item>
+        <item quantity="many">جارٍ الاتصال بـ %1$s و%2$s و%3$d آخرين</item>
+        <item quantity="other">جارٍ الاتصال بـ %1$s و%2$s و%3$d آخرين</item>
     </plurals>
 
-    <string name="WebRtcCallView__s_is_calling_you">يتصل بك %1$s</string>
+    <string name="WebRtcCallView__s_is_calling_you">%1$s يتصل بك</string>
     <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s يتصل بك وبـ %2$s</string>
-    <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s يتصل بك وبـ%2$s وبـ %3$s</string>
+    <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s يتصل بك وبـ %2$s وبـ %3$s</string>
     <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
-        <item quantity="zero">إن %1$s يتصل بك وبـ%2$s وبـ %3$s. (%4$d)</item>
-        <item quantity="one">إن %1$s يتصل بك وبـ%2$s وبـ %3$s ويـ %4$d آخر</item>
-        <item quantity="two">إن %1$s يتصل بك وبـ%2$s وبـ %3$s و بـ %4$d آخريْن</item>
-        <item quantity="few">إن %1$s يتصل بك وبـ%2$s وبـ %3$s وبـ %4$d آخرين</item>
-        <item quantity="many">إن %1$s يتصل بك وبـ%2$s وبـ %3$s وبـ %4$d آخرين</item>
-        <item quantity="other">%1$s يتصل بك وبـ%2$s وبـ %3$s وبـ %4$d آخرين</item>
+        <item quantity="zero">%1$s يتصل بك وبـ %2$s وبـ %3$s و(%4$d) آخرين</item>
+        <item quantity="one">%1$s يتصل بك وبـ %2$s وبـ %3$s وبـ %4$d آخرين</item>
+        <item quantity="two">%1$s يتصل بك وبـ %2$s وبـ %3$s و بـ %4$d آخريْن</item>
+        <item quantity="few">%1$s يتصل بك وبـ %2$s وبـ %3$s وبـ %4$d آخرين</item>
+        <item quantity="many">%1$s يتصل بك وبـ %2$s وبـ %3$s وبـ %4$d آخرين</item>
+        <item quantity="other">%1$s يتصل بك وبـ %2$s وبـ %3$s وبـ %4$d آخرين</item>
     </plurals>
 
     <string name="WebRtcCallView__no_one_else_is_here">لا يوجد أحد هنا</string>
@@ -2556,12 +2556,12 @@
     <string name="WebRtcCallView__s_and_s_are_in_this_call">العضوان %1$s و %2$s موجودان في هذه المكالمة</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-        <item quantity="zero">الأعضاء %1$s و %2$s و%3$d آخر موجود في هذه مكالمة جماعية</item>
-        <item quantity="one">الأعضاء %1$s و %2$s و%3$d آخر موجود في هذه مكالمة جماعية</item>
-        <item quantity="two">الأعضاء %1$s و %2$s و%3$d آخران موجودان في هذه مكالمة جماعية</item>
-        <item quantity="few">الأعضاء %1$s و%2$s و%3$d آخرون موجودون في هذه مكالمة جماعية</item>
-        <item quantity="many">الأعضاء %1$s و%2$s و%3$d آخرون موجودون في هذه مكالمة جماعية</item>
-        <item quantity="other">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في هذه مكالمة جماعية</item>
+        <item quantity="zero">الأعضاء %1$s و%2$s و%3$d آخر موجود في هذه المكالمة</item>
+        <item quantity="one">الأعضاء %1$s و %2$s و%3$d آخر موجود في هذه المكالمة</item>
+        <item quantity="two">الأعضاء %1$s و %2$s و%3$d آخران موجودان في هذه المكالمة</item>
+        <item quantity="few">الأعضاء %1$s و%2$s و%3$d آخرون موجودون في هذه المكالمة</item>
+        <item quantity="many">الأعضاء %1$s و%2$s و%3$d آخرون موجودون في هذه المكالمة</item>
+        <item quantity="other">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في هذه المكالمة</item>
     </plurals>
 
     <!-- Toggle content description for toggling camera direction  -->
@@ -2571,7 +2571,7 @@
     <!-- Toggle content description for toggling camera state  -->
     <string name="WebRtcCallView__toggle_camera">تبديل الكاميرا</string>
     <!-- Toggle content description for toggling mute state  -->
-    <string name="WebRtcCallView__toggle_mute">تبديل الكتم</string>
+    <string name="WebRtcCallView__toggle_mute">وضع الكتم</string>
     <!-- Content description for additional actions menu button -->
     <string name="WebRtcCallView__additional_actions">إجراءات إضافية</string>
     <!-- Content description for end-call button -->
@@ -2580,17 +2580,17 @@
     <string name="WebRtcCallView__toggle_group_ringing">تفعيل الرنين الجماعي</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">حدث خطأ في واجهة المستخدم. يُرجى الإبلاغ عن هذا الخطأ للمطورين.</string>
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">حدث خطأ في واجهة المستخدم. يُرجى الإبلاغ عن هذا الخطأ للمطوِّرين.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
-    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">تعذّر اكتشاف إدخال / إخراج صوتي مؤهل.</string>
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">تعذّر اكتشاف إدخال/إخراج صوتي مُؤهَّل.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">أيقونة تمثل جهاز البلوتوث.</string>
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">أيقونة تُمثِّل جهاز البلوتوث.</string>
     <!-- A text description of the headset icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">أيقونة تمثل سماعة رأس سلكية.</string>
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">أيقونة تمثِّل سماعة رأس سلكية.</string>
     <!-- A text description of the speaker icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">أيقونة تمثل مكبر صوت.</string>
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">أيقونة تمثِّل مُكبِّر صوت.</string>
     <!-- A text description of the earpiece icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">أيقونة تمثل سماعة الجهاز.</string>
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">أيقونة تمثِّل سماعة الجهاز.</string>
 
     <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
     <string name="CallOverflowPopupWindow__raise_hand">رفع اليد</string>
@@ -2721,30 +2721,30 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">تم حظر %1$s</string>
+    <string name="CallParticipantView__s_is_blocked">تمَّ حظر %1$s</string>
     <string name="CallParticipantView__more_info">المزيد من المعلومات</string>
-    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">كلاكما لن يتلقى صوت الآخر ولا صورته.</string>
-    <string name="CallParticipantView__cant_receive_audio_video_from_s">لا يمكن تلقي الصوت والصورة من %1$s</string>
-    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">لا يمكن تلقي الصوت والصورة من %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ربما يكون ذلك بسبب عدم تحقّق الشخص من تغيير رقم أمانك أو بسبب وجود مشكلة في جهازه أو قيامه بحظرك.</string>
+    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">كلاكما لن يتلقَّى الصوت أو الفيديو من الآخر.</string>
+    <string name="CallParticipantView__cant_receive_audio_video_from_s">لا يمكن تلقِّي الصوت والفيديو من %1$s</string>
+    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">لا يمكن تلقِّي الصوت والفيديو من %1$s</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ربما يكون ذلك بسبب عدم تحقُّق الشخص من تغيير رقم أمانك أو بسبب وجود مشكلة في جهازه أو بسبب قيامه بحظرك.</string>
 
     <!-- CallToastPopupWindow -->
-    <string name="CallToastPopupWindow__swipe_to_view_screen_share">سحب لعرض الشاشة المُشارَكة</string>
+    <string name="CallToastPopupWindow__swipe_to_view_screen_share">اسحب لعرض مشاركة الشاشة</string>
 
     <!-- ProxyBottomSheetFragment -->
-    <string name="ProxyBottomSheetFragment_proxy_server">الخادم الوكيل</string>
-    <string name="ProxyBottomSheetFragment_proxy_address">عنوان الوكيل</string>
-    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">ألديك رغبة في استخدام عنوان الوكيل هذا ؟</string>
-    <string name="ProxyBottomSheetFragment_use_proxy">استخدم الوكيل</string>
-    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">نجح في الاتصال بالوكيل.</string>
+    <string name="ProxyBottomSheetFragment_proxy_server">خادم الوكيل</string>
+    <string name="ProxyBottomSheetFragment_proxy_address">عنوان البروكسي</string>
+    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">ألديك رغبة في استخدام عنوان البروكسي هذا؟</string>
+    <string name="ProxyBottomSheetFragment_use_proxy">استخدم البروكسي</string>
+    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">تمَّ الاتصال بنجاح بالبروكسي.</string>
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">فشل الإرسال</string>
-    <string name="RecaptchaProofActivity_complete_verification">إتمام التَحَقُق</string>
+    <string name="RecaptchaProofActivity_complete_verification">إتمام التحقُّق</string>
 
     <!-- RegistrationActivity -->
-    <string name="RegistrationActivity_select_your_country">يجب عليك اختيار بلدك</string>
-    <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد رمز دولتك
+    <string name="RegistrationActivity_select_your_country">يجب عليك تحديد بلدك</string>
+    <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد رمز دولتك.
     </string>
     <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">يُرجى إدخال رقم هاتف صحيح للتسجيل.</string>
     <string name="RegistrationActivity_invalid_number">الرقم غير صحيح</string>
@@ -2757,30 +2757,30 @@
     <string name="RegistrationActivity_additional_verification_required">التحقق الإضافي ضروري</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">سيُرسل رمز تحقق إلى هذا الرقم. قد يتم تطبيق أسعار الناقل.</string>
-    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ستأتيك مكالمة هاتفية للتحقق من هذا الرقم.</string>
+    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ستأتيك مكالمة هاتفية للتحقُّق من هذا الرقم.</string>
     <string name="RegistrationActivity_edit_number">تعديل الرقم</string>
     <string name="RegistrationActivity_missing_google_play_services">خدمات Google Play غير موجودة</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">خدمات Google Play غير موجودة في هذا الجهاز. لا زال بإمكانك استخدام سيجنال، ولكن هذا الضبط قد يؤدي إلى ضعف في موثوقية أو أداء البرنامج ان لم تكن مستخدما متقدما، أو لم تكن مشغلا ل Android ROM من سوق ثانوية، أو تعتقد أن رؤيتك لهذه الرسالة ناجم عن خطأ، يرجى التواصل مع support@signal.org للمساعدة فى اكتشاف المشكلة واصلاحها.</string>
+    <string name="RegistrationActivity_this_device_is_missing_google_play_services">خدمات Google Play غير موجودة في هذا الجهاز. لا زال بإمكانك استخدام سيجنال، ولكن هذا الضبط قد يؤدي إلى ضعف في الموثوقية أو الأداء. إن لم تكن مستخدمًا مُتقدمًا، أو لم تكن مُشغِّلًا لـ Android ROM من جهة خارجية، أو تعتقد أن رؤيتك لهذه الرسالة ناجمة عن خطأ، يُرجى التواصل مع support@signal.org للمساعدة في اكتشاف الأخطاء وإصلاحها.</string>
     <string name="RegistrationActivity_i_understand">فهمت</string>
-    <string name="RegistrationActivity_play_services_error">خطأ في خدمات Play</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جاري تحديث خدمات Google Play أو أنها غير موجودة مؤقتاً. يرجى المحاولة مجدداً.</string>
+    <string name="RegistrationActivity_play_services_error">خطأ في خدمات Google Play</string>
+    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جارٍ تحديث خدمات Google Play أو أنها غير موجودة مؤقتًا. يُرجى المحاولة مرّة أخرى.</string>
     <string name="RegistrationActivity_terms_and_privacy">الشروط وسياسة الخصوصية</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">يحتاج سيجنال إلى أذونات جهات الاتصال والوسائط للمساعدة في التواصل مع أصدقائك وإرسال الرسائل. يتم تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في سيجنال، مما يعني أنها مشفرة من الطرفين وغير مرئية على الإطلاق لخدمة سيجنال.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج سيجنال إلى أذونات جهات الاتصال للمساعدة في التواصل مع أصدقائك. يتم تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في سيجنال، مما يعني أنها مشفرة من الطرفين وغير مرئية على الإطلاق لخدمة سيجنال.</string>
-    <string name="RegistrationActivity_rate_limited_to_service">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. الرجاء المحاولة لاحقاً.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">يحتاج سيجنال إلى أذونات جهات الاتصال والوسائط للمساعدة في التواصل مع أصدقائك وإرسال الرسائل. يتم تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في سيجنال، وهذا يعني أنها مُشفَّرة من الطرفين وغير مرئية على الإطلاق لخدمة سيجنال.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج سيجنال إلى أذونات جهات الاتصال للمساعدة في التواصل مع أصدقائك. يتم تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في سيجنال، وهذا يعني أنها مُشفَّرة من الطرفين وغير مرئية على الإطلاق لخدمة سيجنال.</string>
+    <string name="RegistrationActivity_rate_limited_to_service">قمتَ بمحاولات كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقاً %1$s.</string>
-    <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. الرجاء التأكد من الإتصال بالشبكة والمحاولة مرة أخرى.</string>
+    <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. يُرجى التأكُّد من الاتصال بالشبكة والمحاولة مرّة أخرى.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">تعذّر إرسال رمز التحقق عبر رسالة SMS. حاول الحصول على رمزك عبر مكالمة نصية بدلاً من ذلك.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">تعذّر طلب رمز تحقق. يُرجى التحقّق من اتصالك بالانترنت ثم حاول مرة أُخرى.</string>
-    <string name="RegistrationActivity_non_standard_number_format">نسق العدد غير المعياري</string>
+    <string name="RegistrationActivity_non_standard_number_format">تنسيق العدد غير قياسي</string>
     <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">‫يظهر أن العدد الذي قمت بإدخاله (%1$s) ليس بالنسق المعياري.\n\nأ قصدك هو %2$s ؟</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">سيجنال Android - نسق رقم الهاتف</string>
+    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">‫يظهر أن العدد الذي قمتَ بإدخاله (%1$s) ليس بتنسيق قياسي.\n\nهل تقصد هو %2$s؟</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">سيجنال أندرويد - تنسيق رقم الهاتف</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
-    <string name="RegistrationActivity_call_requested">طُلبَت مكالمة</string>
+    <string name="RegistrationActivity_call_requested">طُلِبَت مكالمة</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
     <string name="RegistrationActivity_sms_requested">تم طلب رسالة قصيرة</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
@@ -2810,7 +2810,7 @@
     <string name="RegistrationActivity_phone_number_description">رقم الهاتف</string>
     <string name="RegistrationActivity_country_code_description">رمز البلد</string>
     <string name="RegistrationActivity_call">اتصال</string>
-    <string name="RegistrationActivity_verification_code">رمز التحقق</string>
+    <string name="RegistrationActivity_verification_code">رمز التحقُّق</string>
     <string name="RegistrationActivity_resend_code">أعِد إرسال الرمز</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">هل تواجه مشكلة في التسجيل؟</string>
@@ -3715,8 +3715,6 @@
     <string name="EditAboutFragment_free_to_chat">مُتفرّغ للدردشة</string>
     <string name="EditAboutFragment_taking_a_break">أنا في استراحة</string>
     <string name="EditAboutFragment_working_on_something_new">أعمل حاليا على شيء جديد</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">رمز واحد أو أكثر غير صالح.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">تعديل المجموعة</string>
@@ -6529,7 +6527,7 @@
         <item quantity="other">%1$d جواب</item>
     </plurals>
     <!-- Toast / Snackbar label when unhiding a story during viewer -->
-    <string name="StoryViewerPageFragment__story_no_longer_hidden">Story no longer hidden</string>
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">لم تعد القصة مخفية</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">إضافة</string>
     <!-- Used when view receipts are disabled -->
@@ -7928,11 +7926,11 @@
     <string name="BackupStatus__restore_complete">اكتملَت عملية الاستعادة.</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
+    <string name="BackupStatus__status_waiting_for_wifi">في انتظار شبكة الواي فاي…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
-    <string name="BackupStatus__status_no_internet">No internet…</string>
+    <string name="BackupStatus__status_no_internet">لا يوجد اتصال بالإنترنت…</string>
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
-    <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
+    <string name="BackupStatus__status_device_has_low_battery">بطارية الجهاز منخفضة</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s من %2$s</string>
 
@@ -8000,11 +7998,11 @@
 
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
-    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/month, renews %2$s</string>
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/شهريًا، التجديد في %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
-    <string name="BackupsSettingsFragment_last_backup_s">Last backup %1$s</string>
+    <string name="BackupsSettingsFragment_last_backup_s">أحدث نسخة احتياطية %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
-    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">نسخ احتياطية تلقائية مع خدمة سيجنال للتخزين المُشفَّر من طرف إلى طرف.</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">إعداد</string>
 
@@ -8022,9 +8020,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">إجراء النسخ الاحتياطي باستخدام البيانات الخلوية</string>
     <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View backup key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">عرض مفتاح النسخ الاحتياطي</string>
     <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view backup key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">افتح القفل لعرض مفتاح النسخ الاحتياطي</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">إيقاف وحذف النسخ الاحتياطية</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8038,25 +8036,25 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">سيتم إنشاء نسخة احتياطية خلال الليل.</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_plan">Backup plan</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">خطة النسخ الاحتياطي</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">تعطيل النُسخ الاحتياطية</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/شهر</string>
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/شهريًا</string>
     <!-- String for free backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">خطة النسخ الاحتياطي الخاصة بك مجانية</string>
     <!-- Displays the date the subscription will renew -->
-    <string name="RemoteBackupsSettingsFragment__renews_s">تجديد %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__renews_s">التجديد في %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
-    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">انسخ سجل رسائلك كي لا تفقد بياناتك أبدًا عندما تستخدم هاتفًا جديدًا أو تعيد تثبيت سيجنال.</string>
     <!-- Section header for other ways to back up -->
-    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Other ways to backup</string>
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">طرق أخرى للنسخ الاحتياطي</string>
     <!-- Row title for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__on_device_backups">On-device backups</string>
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">النسخ الاحتياطية على الجهاز</string>
     <!-- Row label for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Save your backups to a folder on this device</string>
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">احفظ نسخك الاحتياطية في مجلد على هذا الجهاز</string>
     <!-- Button label to manage or cancel backups -->
-    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">إدارة أو إلغاء</string>
     <!-- button label to upgrade backups -->
     <string name="RemoteBackupsSettingsFragment__upgrade">الترقية</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->

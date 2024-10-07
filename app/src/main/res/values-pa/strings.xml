@@ -3319,8 +3319,6 @@
     <string name="EditAboutFragment_free_to_chat">ਗੱਲਾਂ ਕਰਨ ਲਈ ਵੇਹਲੇ</string>
     <string name="EditAboutFragment_taking_a_break">ਸਾਹ ਲਵੋ</string>
     <string name="EditAboutFragment_working_on_something_new">ਕੁਝ ਨਵਾਂ ਬਣਾ ਰਹੇ ਹਾਂ</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">ਇੱਕ ਜਾਂ ਵੱਧ ਅੱਖਰ ਅਵੈਧ ਹਨ।</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">ਗਰੁੱਪ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰੋ</string>
@@ -6001,7 +5999,7 @@
         <item quantity="other">%1$d ਜਵਾਬ</item>
     </plurals>
     <!-- Toast / Snackbar label when unhiding a story during viewer -->
-    <string name="StoryViewerPageFragment__story_no_longer_hidden">Story no longer hidden</string>
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">ਸਟੋਰੀ ਹੁਣ ਲੁਕੀ ਹੋਈ ਨਹੀਂ ਹੈ</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">ਜੋੜੋ</string>
     <!-- Used when view receipts are disabled -->
@@ -7287,22 +7285,22 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">ਆਪਣਾ ਮੀਡੀਆ ਰੀਸਟੋਰ ਕਰਨ ਲਈ %1$s ਥਾਂ ਖਾਲੀ ਕਰੋ।\n\n</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">ਆਪਣਾ ਮੀਡੀਆ ਰੀਸਟੋਰ ਕਰਨ ਲਈ %1$s ਥਾਂ ਖਾਲੀ ਕਰੋ।</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">ਮੀਡੀਆ ਰੀਸਟੋਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">ਰੀਸਟੋਰ ਕਰਨਾ ਰੋਕਿਆ ਗਿਆ</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
-    <string name="BackupStatus__restore_complete">ਬਹਾਲ ਕਰਨ ਦਾ ਕਾਰਜ ਪੂਰਾ ਹੋਇਆ</string>
+    <string name="BackupStatus__restore_complete">ਰੀਸਟੋਰ ਕਰਨ ਦਾ ਕਾਰਜ ਪੂਰਾ ਹੋਇਆ</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
+    <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
-    <string name="BackupStatus__status_no_internet">No internet…</string>
+    <string name="BackupStatus__status_no_internet">ਇੰਟਰਨੈੱਟ ਉਪਲਬਧ ਨਹੀਂ ਹੈ…</string>
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
-    <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
+    <string name="BackupStatus__status_device_has_low_battery">ਡਿਵਾਈਸ ਦੀ ਬੈਟਰੀ ਘੱਟ ਹੈ</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
-    <string name="BackupStatus__status_size_of_size">%2$s ਚੋਂ %1$s</string>
+    <string name="BackupStatus__status_size_of_size">%2$s ਵਿੱਚੋਂ %1$s</string>
 
 
     <!-- BackupsTypeSettingsFragment -->
@@ -7368,13 +7366,13 @@
 
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
-    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/month, renews %2$s</string>
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/ਮਹੀਨਾ, ਰੀਨਿਊ ਹੋਣ ਦੀ ਮਿਤੀ: %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
-    <string name="BackupsSettingsFragment_last_backup_s">Last backup %1$s</string>
+    <string name="BackupsSettingsFragment_last_backup_s">ਆਖਰੀ ਬੈਕਅੱਪ ਦੀ ਮਿਤੀ: %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
-    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal ਦੀ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟਡ ਸਟੋਰੇਜ ਸੇਵਾ ਦੇ ਨਾਲ ਆਟੋਮੈਟਿਕ ਬੈਕਅੱਪ।</string>
     <!-- Action button label to set up backups -->
-    <string name="BackupsSettingsFragment_set_up">Set up</string>
+    <string name="BackupsSettingsFragment_set_up">ਸੈੱਟ ਅੱਪ ਕਰੋ</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7390,9 +7388,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">ਸੈਲੂਲਰ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਬੈਕਅੱਪ ਲਓ</string>
     <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View backup key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">ਬੈਕਅੱਪ ਕੁੰਜੀ ਦੇਖੋ</string>
     <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view backup key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">ਬੈਕਅੱਪ ਕੁੰਜੀ ਦੇਖਣ ਲਈ ਅਨਲੌਕ ਕਰੋ</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ਬੈਕਅੱਪ ਬੰਦ ਕਰੋ ਅਤੇ ਮਿਟਾਓ</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7406,25 +7404,25 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ਬੈਕਅੱਪ ਰਾਤੋ-ਰਾਤ ਬਣਾਇਆ ਜਾਵੇਗਾ।</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_plan">Backup plan</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">ਬੈਕਅੱਪ ਪਲਾਨ</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">ਬੈਕਅੱਪ ਨੂੰ ਅਸਮਰੱਥ ਕੀਤਾ ਗਿਆ</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/ਮਹੀਨਾ</string>
     <!-- String for free backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">ਤੁਹਾਡਾ ਬੈਕਅੱਪ ਪਲਾਨ ਮੁਫ਼ਤ ਹੈ</string>
     <!-- Displays the date the subscription will renew -->
-    <string name="RemoteBackupsSettingsFragment__renews_s">%1$s ਨੂੰ ਰੀਨਿਊ ਹੁੰਦੀ ਹੈ</string>
+    <string name="RemoteBackupsSettingsFragment__renews_s">ਰੀਨਿਊ ਹੋਣ ਦੀ ਮਿਤੀ: %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
-    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">ਆਪਣੇ ਪੁਰਾਣੇ ਸੁਨੇਹਿਆਂ ਦਾ ਬੈਕਅੱਪ ਲਓ ਤਾਂ ਜੋ ਨਵਾਂ ਫ਼ੋਨ ਲੈਣ \'ਤੇ ਜਾਂ Signal ਨੂੰ ਦੁਬਾਰਾ ਇੰਸਟਾਲ ਕਰਨ \'ਤੇ ਵੀ ਤੁਹਾਡਾ ਡਾਟਾ ਸੁਰੱਖਿਅਤ ਰਹੇ।</string>
     <!-- Section header for other ways to back up -->
-    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Other ways to backup</string>
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">ਬੈਕਅੱਪ ਲੈਣ ਦੇ ਹੋਰ ਤਰੀਕੇ</string>
     <!-- Row title for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__on_device_backups">On-device backups</string>
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">ਡਿਵਾਈਸ-ਉੱਤੇ ਬੈਕਅੱਪ</string>
     <!-- Row label for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Save your backups to a folder on this device</string>
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">ਆਪਣੇ ਬੈਕਅੱਪ ਨੂੰ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਇੱਕ ਫੋਲਡਰ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰੋ</string>
     <!-- Button label to manage or cancel backups -->
-    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">ਪ੍ਰਬੰਧਿਤ ਕਰੋ ਜਾਂ ਰੱਦ ਕਰੋ</string>
     <!-- button label to upgrade backups -->
     <string name="RemoteBackupsSettingsFragment__upgrade">ਅੱਪਗ੍ਰੇਡ ਕਰੋ</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->

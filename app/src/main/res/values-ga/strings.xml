@@ -3616,8 +3616,6 @@
     <string name="EditAboutFragment_free_to_chat">Tá le fáil chun comhrá a bheith agam</string>
     <string name="EditAboutFragment_taking_a_break">Ag glacadh sosa</string>
     <string name="EditAboutFragment_working_on_something_new">Táim ag obair ar rud nua</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">Tá carachtar amháin nó níos mó neamhbhailí.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Cuir an Grúpa in Eagar</string>

@@ -3319,8 +3319,6 @@
     <string name="EditAboutFragment_free_to_chat">चॅट करण्यासाठी मोकळा</string>
     <string name="EditAboutFragment_taking_a_break">आराम करत आहे</string>
     <string name="EditAboutFragment_working_on_something_new">काहीतरी नवीन काम करत आहे</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">एक किंवा अधिक वर्ण अवैध आहेत.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">गट संपादन करा</string>

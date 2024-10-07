@@ -547,7 +547,7 @@
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Ця людина більше не використовує Signal. Запросіть її в Signal, щоб спілкуватися тут і надалі.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__invite_to_signal">Запросити до Signal</string>
+    <string name="ConversationActivity__invite_to_signal">Запросити в Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Незабаром ви отримаєте нове нагадування.</string>
 
@@ -1592,7 +1592,7 @@
     <string name="InviteActivity_cancel">Закрити</string>
     <string name="InviteActivity_sending">Надсилання…</string>
     <string name="InviteActivity_invitations_sent">Запрошення надіслано!</string>
-    <string name="InviteActivity_invite_to_signal">Запросити до Signal</string>
+    <string name="InviteActivity_invite_to_signal">Запросити в Signal</string>
     <string name="InviteActivity_send_sms">Надіслати SMS (%1$d)</string>
     <plurals name="InviteActivity_send_sms_invites">
         <item quantity="one">Надіслати %1$d SMS-запрошення?</item>
@@ -2567,8 +2567,8 @@
     <string name="ProxyBottomSheetFragment_proxy_server">Проксі-сервер</string>
     <string name="ProxyBottomSheetFragment_proxy_address">Адреса проксі-сервера</string>
     <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Використовувати цю адресу проксі-сервера?</string>
-    <string name="ProxyBottomSheetFragment_use_proxy">Використати проксі-сервер</string>
-    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Ви під\'єдналися до проксі-сервера.</string>
+    <string name="ProxyBottomSheetFragment_use_proxy">Використовувати проксі-сервер</string>
+    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Ви з\'єдналися з проксі-сервером.</string>
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Не вдалося надіслати</string>
@@ -2685,13 +2685,13 @@
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Додати до контактів</string>
-    <string name="SharedContactDetailsActivity_invite_to_signal">Запросити до Signal</string>
+    <string name="SharedContactDetailsActivity_invite_to_signal">Запросити в Signal</string>
     <string name="SharedContactDetailsActivity_signal_message">Повідомлення Signal</string>
     <string name="SharedContactDetailsActivity_signal_call">Виклик у Signal</string>
 
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Додати до контактів</string>
-    <string name="SharedContactView_invite_to_signal">Запросити до Signal</string>
+    <string name="SharedContactView_invite_to_signal">Запросити в Signal</string>
     <string name="SharedContactView_message">Повідомлення Signal</string>
 
     <!-- SignalBottomActionBar -->
@@ -3175,7 +3175,7 @@
     <string name="change_passphrase_activity__repeat_new_passphrase">Повторіть нову фразу-пароль</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__invite_to_signal">Запросити до Signal</string>
+    <string name="contact_selection_activity__invite_to_signal">Запросити в Signal</string>
     <string name="contact_selection_activity__new_group">Нова група</string>
     <!-- Row item title for refreshing contacts -->
     <string name="contact_selection_activity__refresh_contacts">Оновити контакти</string>
@@ -3517,8 +3517,6 @@
     <string name="EditAboutFragment_free_to_chat">Маю час початитися</string>
     <string name="EditAboutFragment_taking_a_break">Відпочиваю</string>
     <string name="EditAboutFragment_working_on_something_new">Працюю над чимось новим</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">Ви використали принаймні один недозволений символ.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Редагувати групу</string>
@@ -3815,10 +3813,10 @@
     <string name="preferences__request_keyboard_to_disable">Вимкнути персоналізоване навчання клавіатури.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Це налаштування спрацьовує не у всіх випадках. Ваша клавіатура може його ігнорувати.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">При використанні мобільних даних</string>
-    <string name="preferences_chats__when_using_wifi">При використанні Wi-Fi</string>
-    <string name="preferences_chats__when_roaming">Під час роумінгу</string>
-    <string name="preferences_chats__media_auto_download">Автозавантаження медіа</string>
+    <string name="preferences_chats__when_using_mobile_data">Через мобільний інтернет</string>
+    <string name="preferences_chats__when_using_wifi">Через Wi-Fi</string>
+    <string name="preferences_chats__when_roaming">У роумінгу</string>
+    <string name="preferences_chats__media_auto_download">Автозавантаження медіафайлів</string>
     <string name="preferences_chats__message_history">Історія повідомлень</string>
     <string name="preferences_storage__storage_usage">Використання пам\'яті</string>
     <string name="preferences_storage__photos">Фото</string>
@@ -3894,22 +3892,22 @@
     <string name="preferences_communication__category_sealed_sender">Захищений відправник</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Дозволити від будь-кого</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Отримувати повідомлення від захищених відправників, які не з вашого списку контактів, або з якими ви не поділилися профілем.</string>
-    <string name="preferences_proxy">Проксі</string>
-    <string name="preferences_use_proxy">Використати проксі</string>
+    <string name="preferences_proxy">Проксі-сервер</string>
+    <string name="preferences_use_proxy">Використовувати проксі-сервер</string>
     <string name="preferences_off">Вимк.</string>
     <string name="preferences_on">Увімк.</string>
-    <string name="preferences_proxy_address">Адреса проксі</string>
-    <string name="preferences_only_use_a_proxy_if">Використовуйте проксі тільки якщо ви не можете підключитися до Signal через мобільні дані або Wi-Fi.</string>
+    <string name="preferences_proxy_address">Адреса проксі-сервера</string>
+    <string name="preferences_only_use_a_proxy_if">Використовуйте проксі-сервер, тільки якщо не можете встановити з\'єднання з Signal через мобільний інтернет або Wi-Fi.</string>
     <string name="preferences_share">Поділитися</string>
     <string name="preferences_save">Зберегти</string>
     <string name="preferences_connecting_to_proxy">Триває з\'єднання з проксі-сервером…</string>
-    <string name="preferences_connected_to_proxy">Під\'єднано до проксі</string>
+    <string name="preferences_connected_to_proxy">З\'єднання з проксі-сервером установлено</string>
     <string name="preferences_connection_failed">З\'єднання не вдалася!</string>
-    <string name="preferences_couldnt_connect_to_the_proxy">Помилка з\'єднання із проксі. Перевірте адресу проксі і спробуйте ще раз.</string>
+    <string name="preferences_couldnt_connect_to_the_proxy">Помилка з\'єднання з проксі-сервером. Перевірте, чи правильно введено адресу, й повторіть спробу.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Ви з\'єднані з проксі-сервером. Проксі-сервер можна завжди вимкнути в налаштуваннях.</string>
     <string name="preferences_success">Успіх</string>
     <string name="preferences_failed_to_connect">Не вдалось підключитися</string>
-    <string name="preferences_enter_proxy_address">Введіть адресу проксі</string>
+    <string name="preferences_enter_proxy_address">Введіть адресу проксі-сервера</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
     <string name="preferences_navigation_bar_size">Розмір панелі навігації</string>
     <!-- Preference summary for normal navigation bar size -->
@@ -5358,7 +5356,7 @@
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Якість медіафайлів</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Якість медіафайлів, які ви надсилаєте</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Відправлення медіа високої якості споживатиме більше даних.</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Надсилання медіафайлів високої якості споживатиме більше трафіку.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">Висока</string>
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
@@ -5475,7 +5473,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Пошук</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Тимчасові повідомлення</string>
-    <string name="ConversationSettingsFragment__sounds_and_notifications">Звуки та сповіщення</string>
+    <string name="ConversationSettingsFragment__sounds_and_notifications">Звуки і сповіщення</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Дані з контактів телефона</string>
     <string name="ConversationSettingsFragment__view_safety_number">Переглянути код безпеки</string>
@@ -6865,7 +6863,7 @@
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Покинути Signal для підтвердження доната?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Після підтвердження поверніться до Signal, щоб завершити обробку доната.</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Після підтвердження поверніться в Signal, щоб завершити обробку доната.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -7481,7 +7479,7 @@
     <!-- Dialog title for invalid phone number -->
     <string name="FindByActivity__invalid_phone_number">Невірний номер телефону</string>
     <!-- Dialog title when phone number is not a registered signal user -->
-    <string name="FindByActivity__invite_to_signal">Запросити до Signal</string>
+    <string name="FindByActivity__invite_to_signal">Запросити в Signal</string>
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Ім\'я користувача не знайдено</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->

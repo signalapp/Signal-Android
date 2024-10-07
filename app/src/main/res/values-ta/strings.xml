@@ -3319,8 +3319,6 @@
     <string name="EditAboutFragment_free_to_chat">சாட் செய்ய நேரம் இருக்கிறது</string>
     <string name="EditAboutFragment_taking_a_break">ஓய்வெடுத்து கொண்டிருக்கிறேன்</string>
     <string name="EditAboutFragment_working_on_something_new">ஒரு புதிய விஷயத்தில் ஈடுபட்டுள்ளேன்</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">ஒன்று அல்லது அதற்கு மேற்பட்ட எழுத்துக்கள் தவறாக உள்ளன.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">குழுவைத் திருத்து</string>

@@ -3319,8 +3319,6 @@
     <string name="EditAboutFragment_free_to_chat">Kan nou klets</string>
     <string name="EditAboutFragment_taking_a_break">Ek rus tans</string>
     <string name="EditAboutFragment_working_on_something_new">Werk tans aan iets nuuts</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">Een of meer karakters is ongeldig.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Redigeer groep</string>

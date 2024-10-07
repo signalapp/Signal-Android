@@ -3319,8 +3319,6 @@
     <string name="EditAboutFragment_free_to_chat">ಚಾಟ್ ಮಾಡಲು ಮುಕ್ತ</string>
     <string name="EditAboutFragment_taking_a_break">ವಿರಾಮ ತೆಗೆದುಕೊಳ್ಳುವುದು</string>
     <string name="EditAboutFragment_working_on_something_new">ಏನೋ ಹೊಸದರ ಕುರಿತು ಕೆಲಸ ಮಾಡುವುದು</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಅಕ್ಷರಗಳು ಅಮಾನ್ಯವಾಗಿವೆ.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">ಗುಂಪನ್ನು ಬದಲಾಯಿಸಿ</string>
@@ -6001,7 +5999,7 @@
         <item quantity="other">%1$d ಉತ್ತರಗಳು</item>
     </plurals>
     <!-- Toast / Snackbar label when unhiding a story during viewer -->
-    <string name="StoryViewerPageFragment__story_no_longer_hidden">Story no longer hidden</string>
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">ಸ್ಟೋರಿ ಇನ್ನು ಮುಂದೆ ಮರೆಯಾಗಿರುವುದಿಲ್ಲ</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">ಸೇರಿಸಿ</string>
     <!-- Used when view receipts are disabled -->
@@ -7296,11 +7294,11 @@
     <string name="BackupStatus__restore_complete">ಮರುಸ್ಥಾಪನೆ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
+    <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi ಗಾಗಿ ಕಾಯುತ್ತಿದೆ…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
-    <string name="BackupStatus__status_no_internet">No internet…</string>
+    <string name="BackupStatus__status_no_internet">ಇಂಟರ್ ನೆಟ್ ಇಲ್ಲ…</string>
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
-    <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
+    <string name="BackupStatus__status_device_has_low_battery">ಡಿವೈಸ್‍ನ ಬ್ಯಾಟರಿ ಕಡಿಮೆ ಇದೆ</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%2$s ನಲ್ಲಿ %1$s</string>
 
@@ -7368,13 +7366,13 @@
 
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
-    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/month, renews %2$s</string>
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/ತಿಂಗಳು, ನವೀಕರಣಗೊಳ್ಳುತ್ತದೆ %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
-    <string name="BackupsSettingsFragment_last_backup_s">Last backup %1$s</string>
+    <string name="BackupsSettingsFragment_last_backup_s">ಕೊನೆಯ ಬ್ಯಾಕಪ್%1$s</string>
     <!-- Subtitle for row for no backup ever created -->
-    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal ನ ಸುರಕ್ಷಿತ ಎಂಡ್ ಟು ಎಂಡ್ ಎನ್ಕ್ರಿಪ್ಟ್ ಆಗಿರುವ ಸ್ಟೋರೇಜ್ ಸೇವೆಯೊಂದಿಗೆ ಅಟೋಮ್ಯಾಟಿಕ್ ಬ್ಯಾಕಪ್‌ಗಳು</string>
     <!-- Action button label to set up backups -->
-    <string name="BackupsSettingsFragment_set_up">Set up</string>
+    <string name="BackupsSettingsFragment_set_up">ಸೆಟ್ ಅಪ್</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7390,9 +7388,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">ಸೆಲ್ಯುಲರ್ ಬಳಸಿಕೊಂಡು ಬ್ಯಾಕಪ್ ಮಾಡಿ</string>
     <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View backup key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">ಬ್ಯಾಕಪ್ ಕೀ ವೀಕ್ಷಿಸಿ</string>
     <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view backup key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">ಬ್ಯಾಕಪ್ ಕೀ ವೀಕ್ಷಿಸಲು ಅನ್ ಲಾಕ್ ಮಾಡಿ</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ಬ್ಯಾಕಪ್ ಆಫ್ ಮಾಡಿ ಮತ್ತು ಅಳಿಸಿ</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7406,25 +7404,25 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ರಾತ್ರಿಯಲ್ಲಿ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ.</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_plan">Backup plan</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">ಬ್ಯಾಕಪ್ ಪ್ಲಾನ್</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/ತಿಂಗಳು</string>
     <!-- String for free backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಪ್ಲಾನ್ ಉಚಿತ</string>
     <!-- Displays the date the subscription will renew -->
     <string name="RemoteBackupsSettingsFragment__renews_s">ನವೀಕರಿಸುತ್ತದೆ %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
-    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">ನಿಮ್ಮ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡಿ, ಇದರಿಂದ ನೀವು ಹೊಸ ಫೋನ್ ಪಡೆದಾಗ ಅಥವಾ Signal ರೀಇನ್‍ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ಡೇಟಾವನ್ನು ಕಳೆದುಕೊಳ್ಳುವುದಿಲ್ಲ.</string>
     <!-- Section header for other ways to back up -->
-    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Other ways to backup</string>
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">ಬ್ಯಾಕಪ್ ಮಾಡುವ ಇತರೆ ಮಾರ್ಗಗಳು</string>
     <!-- Row title for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__on_device_backups">On-device backups</string>
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">ಆನ್-ಡಿವೈಸ್ ಬ್ಯಾಕಪ್‌ಗಳು</string>
     <!-- Row label for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Save your backups to a folder on this device</string>
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ನ್ನು ಈ ಡಿವೈಸ್‌ನಲ್ಲಿ ಒಂದು ಫೋಲ್ಡರಿನಲ್ಲಿ ಸೇವ್ ಮಾಡಿ</string>
     <!-- Button label to manage or cancel backups -->
-    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">ನಿರ್ವಹಿಸಿ ಅಥವಾ ರದ್ದು ಮಾಡಿ</string>
     <!-- button label to upgrade backups -->
     <string name="RemoteBackupsSettingsFragment__upgrade">ಅಪ್ಗ್ರೇಡ್</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->

@@ -3319,8 +3319,6 @@
     <string name="EditAboutFragment_free_to_chat">ചാറ്റ് ചെയ്യാൻ സമയമുണ്ടേ</string>
     <string name="EditAboutFragment_taking_a_break">ഒരു ഇടവേളയിലാണ്</string>
     <string name="EditAboutFragment_working_on_something_new">പുതിയ ഒരു കാര്യം ചെയ്യുന്നു</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">ഒന്നോ അതിലധികമോ പ്രതീകങ്ങൾ അസാധുവാണ്.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">ഗ്രൂപ്പ് എഡിറ്റുചെയ്യുക</string>
@@ -6001,7 +5999,7 @@
         <item quantity="other">%1$d മറുപടികൾ</item>
     </plurals>
     <!-- Toast / Snackbar label when unhiding a story during viewer -->
-    <string name="StoryViewerPageFragment__story_no_longer_hidden">Story no longer hidden</string>
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">സ്റ്റോറി ഇനി മറയ്ക്കില്ല</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">ചേർക്കുക</string>
     <!-- Used when view receipts are disabled -->
@@ -7293,14 +7291,14 @@
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">പുനഃസ്ഥാപിക്കൽ താൽക്കാലികമായി നിർത്തി</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
-    <string name="BackupStatus__restore_complete">വീണ്ടെടുക്കൽ പൂർത്തിയായി</string>
+    <string name="BackupStatus__restore_complete">പുനഃസ്ഥാപിക്കൽ പൂർത്തിയായി</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
+    <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi-യ്‌ക്കായി കാത്തിരിക്കുന്നു…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
-    <string name="BackupStatus__status_no_internet">No internet…</string>
+    <string name="BackupStatus__status_no_internet">ഇൻ്റർനെറ്റ് ഇല്ല…</string>
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
-    <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
+    <string name="BackupStatus__status_device_has_low_battery">ഉപകരണത്തിലെ ബാറ്ററി കുറവാണ്</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%2$s ൽ %1$s</string>
 
@@ -7368,13 +7366,13 @@
 
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
-    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/month, renews %2$s</string>
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/മാസം, പുതുക്കുന്ന തീയതി: %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
-    <string name="BackupsSettingsFragment_last_backup_s">Last backup %1$s</string>
+    <string name="BackupsSettingsFragment_last_backup_s">അവസാന ബാക്കപ്പ്: %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
-    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal-ൻ്റെ സുരക്ഷിതമായ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റഡ് സ്റ്റോറേജ് സേവനത്തോടുകൂടിയ സ്വയമേവയുള്ള ബാക്കപ്പുകൾ.</string>
     <!-- Action button label to set up backups -->
-    <string name="BackupsSettingsFragment_set_up">Set up</string>
+    <string name="BackupsSettingsFragment_set_up">സജ്ജമാക്കുക</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7390,9 +7388,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">മൊബൈൽ ഡാറ്റ ഉപയോഗിച്ച് ബാക്കപ്പ് ചെയ്യുക</string>
     <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View backup key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">ബാക്കപ്പ് കീ കാണുക</string>
     <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view backup key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">ബാക്കപ്പ് കീ കാണുന്നതിന് അൺലോക്ക് ചെയ്യുക</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ബാക്കപ്പ് ഓഫാക്കി ഇല്ലാതാക്കുക</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7406,25 +7404,25 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ഒറ്റരാത്രികൊണ്ട് ബാക്കപ്പ് സൃഷ്ടിക്കപ്പെടും.</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_plan">Backup plan</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">ബാക്കപ്പ് പ്ലാൻ</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">ബാക്കപ്പുകൾ പ്രവർത്തനരഹിതമാക്കി</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/ മാസം</string>
     <!-- String for free backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">നിങ്ങളുടെ ബാക്കപ്പ് പ്ലാൻ സൗജന്യമാണ്</string>
     <!-- Displays the date the subscription will renew -->
     <string name="RemoteBackupsSettingsFragment__renews_s">%1$s പുതുക്കുന്നു</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
-    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">നിങ്ങളുടെ സന്ദേശ ചരിത്രം ബാക്കപ്പ് ചെയ്യുക, അതുവഴി നിങ്ങൾക്ക് ഒരു പുതിയ ഫോൺ ലഭിക്കുമ്പോഴോ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോഴോ ഒരിക്കലും ഡാറ്റ നഷ്‌ടപ്പെടില്ല.</string>
     <!-- Section header for other ways to back up -->
-    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Other ways to backup</string>
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">ബാക്കപ്പ് ചെയ്യാനുള്ള മറ്റ് വഴികൾ</string>
     <!-- Row title for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__on_device_backups">On-device backups</string>
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">ഉപകരണത്തിലെ ബാക്കപ്പുകൾ</string>
     <!-- Row label for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Save your backups to a folder on this device</string>
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">ഈ ഉപകരണത്തിലെ ഒരു ഫോൾഡറിലേക്ക് നിങ്ങളുടെ ബാക്കപ്പുകൾ സംരക്ഷിക്കുക</string>
     <!-- Button label to manage or cancel backups -->
-    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">നിയന്ത്രിക്കുക അല്ലെങ്കിൽ റദ്ദാക്കുക</string>
     <!-- button label to upgrade backups -->
     <string name="RemoteBackupsSettingsFragment__upgrade">അപ്‌ഗ്രേഡ് ചെയ്യുക</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->

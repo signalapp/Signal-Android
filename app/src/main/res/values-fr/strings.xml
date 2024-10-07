@@ -98,7 +98,7 @@
     <!-- Option in menu to go to settings -->
     <string name="AttachmentKeyboard_go_to_settings">Accéder aux paramètres</string>
     <!-- Text explaining that Signal has limited access to photos -->
-    <string name="AttachmentKeyboard_signal_has_limited_access">Vous n’avez accordé à Signal  qu’un accès limité à vos photos et vidéos.</string>
+    <string name="AttachmentKeyboard_signal_has_limited_access">Vous n\'avez accordé à Signal  qu\'un accès limité à vos photos et vidéos.</string>
     <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
     <string name="AttachmentKeyboard_no_photos_found">Aucune photo disponible. Sélectionnez des photos et des vidéos à afficher ici ou modifiez les autorisations.</string>
 
@@ -468,7 +468,7 @@
     <string name="ConversationActivity_transport_signal">Message Signal</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">Envoyer un message</string>
-    <string name="ConversationActivity_lets_switch_to_signal">Passons à Signal %1$s</string>
+    <string name="ConversationActivity_lets_switch_to_signal">Et si on passait à Signal ? %1$s</string>
     <string name="ConversationActivity_specify_recipient">Veuillez choisir un contact</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Le fichier joint dépasse la limite de taille pour le type de message que vous envoyez.</string>
     <string name="ConversationActivity_unable_to_record_audio">Enregistrement audio impossible.</string>
@@ -537,7 +537,7 @@
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Ce contact n’utilise plus Signal. Invitez-le à rejoindre la plateforme pour reprendre votre conversation.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__invite_to_signal">Inviter à Signal</string>
+    <string name="ConversationActivity__invite_to_signal">Inviter sur Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Vous recevrez un rappel bientôt.</string>
 
@@ -1508,13 +1508,13 @@
     <string name="InviteActivity_cancel">Annuler</string>
     <string name="InviteActivity_sending">Envoi…</string>
     <string name="InviteActivity_invitations_sent">L’invitation a été envoyée.</string>
-    <string name="InviteActivity_invite_to_signal">Inviter à Signal</string>
+    <string name="InviteActivity_invite_to_signal">Inviter sur Signal</string>
     <string name="InviteActivity_send_sms">Envoyer un texto (%1$d)</string>
     <plurals name="InviteActivity_send_sms_invites">
         <item quantity="one">Envoyer %1$d invitation par SMS ?</item>
         <item quantity="other">Envoyer %1$d invitations par SMS ?</item>
     </plurals>
-    <string name="InviteActivity_lets_switch_to_signal">Passons à Signal : %1$s</string>
+    <string name="InviteActivity_lets_switch_to_signal">Et si on passait à Signal ? %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">Vous semblez n’avoir aucune appli vers laquelle partager.</string>
 
@@ -1860,7 +1860,7 @@
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
     <string name="PaymentTombstoneLearnMoreDialog_title">Infos de paiement indisponibles</string>
     <!-- Message for dialog explaining why a specific mobile coin payment does not have any transaction details because it was restored from a backup-->
-    <string name="PaymentTombstoneLearnMoreDialog_message">Les informations de paiement sont indisponibles, car Signal a récupéré vos messages à partir d’un appareil qui ne contenait pas l’historique de cette transaction. Cela n’a aucune incidence sur le solde de votre compte, ni sur l’état de vos anciens paiements.</string>
+    <string name="PaymentTombstoneLearnMoreDialog_message">Les informations relatives à ce paiement sont indisponibles, car Signal a récupéré vos messages à partir d\'un appareil qui ne contenait pas l\'historique de cette transaction. Cela n\'a aucune incidence sur le solde de votre compte, ni sur l\'état de vos anciens paiements.</string>
 
     <!-- Group Calling update messages -->
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
@@ -2053,7 +2053,7 @@
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
     <string name="ReRegisterWithPinFragment_send_sms_code">Envoyer un code par SMS</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Inscription à Signal - Besoin d’aide pour inscrire un PIN sur un appareil Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Inscription à Signal – Besoin d\'aide : code PIN sous Android</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
     <string name="ReRegisterWithPinFragment_need_help_local">Votre PIN est un code numérique ou alphanumérique d’au moins %1$d caractères que vous avez créé.\n\nSi vous avez oublié votre PIN, vous pouvez en créer un autre.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
@@ -2515,13 +2515,13 @@
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Ajouter aux contacts</string>
-    <string name="SharedContactDetailsActivity_invite_to_signal">Inviter à Signal</string>
+    <string name="SharedContactDetailsActivity_invite_to_signal">Inviter sur Signal</string>
     <string name="SharedContactDetailsActivity_signal_message">Message Signal</string>
     <string name="SharedContactDetailsActivity_signal_call">Appel Signal</string>
 
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Ajouter aux contacts</string>
-    <string name="SharedContactView_invite_to_signal">Inviter à Signal</string>
+    <string name="SharedContactView_invite_to_signal">Inviter sur Signal</string>
     <string name="SharedContactView_message">Message Signal</string>
 
     <!-- SignalBottomActionBar -->
@@ -2949,7 +2949,7 @@
     <!-- Banner button to update now -->
 
     <!-- WebRtcCallActivity -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Pour répondre à l’appel, accordez à Signal l’accès à votre microphone.</string>
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Pour répondre à l\'appel, autorisez Signal à accéder à votre microphone.</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Pour répondre à l’appel vidéo, veuillez autoriser Signal à accéder à votre micro et votre appareil photo.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Pour passer et recevoir des appels, Signal doit accéder au microphone et à l\'appareil photo, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez les options \"Microphone\" et \"Appareil photo\".</string>
@@ -2997,7 +2997,7 @@
     <string name="change_passphrase_activity__repeat_new_passphrase">Répéter la nouvelle phrase de passe</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__invite_to_signal">Inviter à Signal</string>
+    <string name="contact_selection_activity__invite_to_signal">Inviter sur Signal</string>
     <string name="contact_selection_activity__new_group">Nouveau groupe</string>
     <!-- Row item title for refreshing contacts -->
     <string name="contact_selection_activity__refresh_contacts">Actualiser la liste des contacts</string>
@@ -3319,8 +3319,6 @@
     <string name="EditAboutFragment_free_to_chat">Prêt à converser</string>
     <string name="EditAboutFragment_taking_a_break">Je prends une pause</string>
     <string name="EditAboutFragment_working_on_something_new">Je travaille sur quelque chose de nouveau</string>
-    <!-- Error text shown when the About text contains an invalid character -->
-    <string name="EditAboutFragment_one_or_more_characters">Au moins un des caractères n\'est pas valide.</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Modifier le groupe</string>
@@ -3695,7 +3693,7 @@
     <string name="preferences_off">Désactivé</string>
     <string name="preferences_on">Activé</string>
     <string name="preferences_proxy_address">Adresse du proxy</string>
-    <string name="preferences_only_use_a_proxy_if">N’utilisez un proxy que s’il vous est impossible de vous connecter à Signal via les données mobiles ou via le Wi-Fi.</string>
+    <string name="preferences_only_use_a_proxy_if">N\'utilisez un proxy que s\'il vous est impossible de vous connecter à Signal via les données mobiles ou le Wi-Fi.</string>
     <string name="preferences_share">Partager</string>
     <string name="preferences_save">Enregistrer</string>
     <string name="preferences_connecting_to_proxy">Connexion au proxy…</string>
@@ -3765,7 +3763,7 @@
     <string name="PaymentsHomeFragment__details">Détails</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Vous pouvez désormais utiliser Signal pour envoyer et recevoir des MobileCoin. Tous les paiements sont soumis aux conditions d’utilisation de MobileCoins et de MobileCoin Wallet. Des problèmes pourraient survenir. Les paiements et les soldes que vous pourriez perdre sont irrécupérables. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Vous pouvez utiliser Signal pour envoyer et recevoir des MobileCoins. Tous les paiements sont soumis aux conditions d\'utilisation de MobileCoin et de MobileCoin Wallet. Avertissement : des problèmes peuvent se produire et entraîner la perte de paiements et de soldes. De telles pertes sont irrécupérables. </string>
     <string name="PaymentsHomeFragment__activate">Activer</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Afficher les CGU de MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Les paiements ne sont plus proposés dans Signal. Vous pouvez encore transférer des fonds vers une plateforme de change, mais vous ne pouvez plus ni envoyer, ni recevoir de paiements, ni ajouter de fonds.</string>
@@ -3848,10 +3846,10 @@
 
     <!-- PaymentsAddMoneyFragment -->
     <string name="PaymentsAddMoneyFragment__add_funds">Ajouter des fonds</string>
-    <string name="PaymentsAddMoneyFragment__your_wallet_address">L’adresse de votre portefeuille</string>
+    <string name="PaymentsAddMoneyFragment__your_wallet_address">Adresse de votre portefeuille</string>
     <string name="PaymentsAddMoneyFragment__copy">Copier</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">A été copié dans le presse-papiers</string>
-    <string name="PaymentsAddMoneyFragment__to_add_funds">Pour ajouter des fonds, envoyez des MobileCoins à l’adresse de votre porte-monnaie. Lancez une transaction de votre compte vers une plateforme de change qui accepte les MobileCoins, puis lisez le code QR ou copiez l’adresse de votre porte-monnaie.</string>
+    <string name="PaymentsAddMoneyFragment__to_add_funds">Pour ajouter des fonds, envoyez des MobileCoins à l\'adresse de votre portefeuille. Démarrez une transaction depuis votre compte sur une plateforme de change qui accepte les MobileCoins, puis scannez le code QR ou copiez l\'adresse de votre portefeuille.</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
@@ -3883,12 +3881,12 @@
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Transférer</string>
     <string name="PaymentsTransferFragment__scan_qr_code">Lire le code QR</string>
-    <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">À : lisez ou saisissez l’adresse du portefeuille</string>
-    <string name="PaymentsTransferFragment__you_can_transfer">Vous pouvez transférer des MobileCoins en finalisant un transfert vers l’adresse de porte-monnaie indiquée par la plateforme de change. L’adresse de porte-monnaie est une chaîne de chiffres et de lettres généralement située sous le code QR.</string>
+    <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Destinataire : scannez ou saisissez l\'adresse du portefeuille</string>
+    <string name="PaymentsTransferFragment__you_can_transfer">Pour virer des MobileCoins, effectuez un virement vers l\'adresse de portefeuille fournie par la plateforme de change. L\'adresse de portefeuille est une suite de chiffres et de lettres qui s\'affiche généralement sous le code QR.</string>
     <string name="PaymentsTransferFragment__next">Suivant</string>
     <string name="PaymentsTransferFragment__invalid_address">Adresse invalide</string>
-    <string name="PaymentsTransferFragment__check_the_wallet_address">Vérifiez l’adresse de porte-monnaie vers laquelle vous tentez de faire un transfert, puis réessayez.</string>
-    <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Vous ne pouvez pas effectuer de transferts vers l’adresse de votre propre porte-monnaie Signal. Saisissez l’adresse de porte-monnaie de votre compte sur une plateforme de change prise en charge.</string>
+    <string name="PaymentsTransferFragment__check_the_wallet_address">Veuillez vérifier l\'adresse de portefeuille vers laquelle vous tentez d\'effectuer un virement et réessayer.</string>
+    <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Vous ne pouvez pas effectuer de virements vers l\'adresse de votre propre portefeuille Signal. Saisissez l\'adresse de portefeuille associée à votre autre compte. Celui-ci doit être hébergé sur une plateforme de change compatible.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Pour lire un code QR, Signal a besoin d’accéder à l’appareil photo.</string>
     <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal a besoin de l\'autorisation Appareil photo pour scanner un code QR. Accédez à Paramètres &gt; Autorisations et activez \"Appareil photo\".</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Pour lire un code QR, Signal a besoin d’accéder à l’appareil photo.</string>
@@ -4535,7 +4533,7 @@
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Allez sur votre nouvel appareil</string>
-    <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Vos données relatives à Signal ont été transférées vers votre nouvel appareil. Pour terminer le processus de transfert, vous devez poursuivre l’inscription sur votre nouvel appareil.</string>
+    <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Vos données Signal ont été transférées vers votre nouvel appareil. Pour terminer le processus de transfert, poursuivez l\'inscription sur votre nouvel appareil.</string>
     <string name="OldDeviceTransferComplete__close">Fermer</string>
 
     <!-- NewDeviceTransferComplete -->
@@ -4786,7 +4784,7 @@
     <string name="payment_info_card_about_mobilecoin">À propos de MobileCoin</string>
     <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin est une nouvelle monnaie numérique axée sur la protection des données personnelles.</string>
     <string name="payment_info_card_adding_funds">Ajouter des fonds</string>
-    <string name="payment_info_card_you_can_add_funds_for_use_in">Vous pouvez ajouter des fonds à utiliser dans Signal en envoyant des MobileCoin à l’adresse de votre portefeuille.</string>
+    <string name="payment_info_card_you_can_add_funds_for_use_in">Pour virer des fonds à utiliser dans Signal, envoyez des MobileCoins à l\'adresse de votre portefeuille.</string>
     <string name="payment_info_card_cashing_out">Encaisser</string>
     <string name="payment_info_card_you_can_cash_out_mobilecoin">Vous pouvez encaisser des MobileCoins n’importe quand sur une plateforme de change qui accepte les MobileCoins. Il vous suffit d’effectuer un transfert vers votre compte sur cette plateforme de change.</string>
     <string name="payment_info_card_hide_this_card">Masquer cette carte ?</string>
@@ -4807,13 +4805,13 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Désactiver le portefeuille</string>
     <string name="DeactivateWalletFragment__your_balance">Votre solde</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Il est recommandé de transférer vos fonds vers une autre adresse de portefeuille avant de désactiver les paiements. Si vous choisissez de ne pas transférer vos fonds maintenant, ils resteront dans votre portefeuille lié à Signal si vous réactivez les paiements.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Il est recommandé de transférer vos fonds vers une autre adresse de portefeuille avant de désactiver les paiements. Si vous choisissez de ne pas transférer vos fonds maintenant, ils seront conservés dans le portefeuille associé à Signal si vous réactivez les paiements.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Transférer le solde restant</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Désactiver dans transférer</string>
     <string name="DeactivateWalletFragment__deactivate">Désactiver</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Désactiver sans transférer ?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Votre solde restera dans votre porte-monnaie lié à Signal si vous choisissez de réactiver les paiements.</string>
-    <string name="DeactivateWalletFragment__error_deactivating_wallet">Erreur lors de la désactivation du portefeuille.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Votre solde sera conservé dans le portefeuille associé à Signal si vous réactivez les paiements..</string>
+    <string name="DeactivateWalletFragment__error_deactivating_wallet">Une erreur s\'est produite lors de la désactivation du portefeuille.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
@@ -5606,7 +5604,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Allez sur Google Pay</string>
 
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Impossible de traiter le paiement de l’abonnement</string>
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Nous avons des difficultés à encaisser le paiement de votre don mensuel à Signal. Vérifiez que votre mode de paiement est à jour. Si ce n’est pas le cas, mettez-le à jour dans Google Pay. Signal essaiera de traiter à nouveau le paiement dans quelques jours.</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Nous ne parvenons pas à encaisser le paiement de votre don mensuel à Signal. Votre mode de paiement est-il à jour ? Si tel n\'est pas le cas, nous vous invitons à le mettre à jour dans Google Pay. Signal réessaiera de traiter le paiement dans quelques jours. Merci !</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ne plus afficher</string>
 
     <string name="Subscription__contact_support">Contacter l’assistance</string>
@@ -5919,7 +5917,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Montant</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Nous vous remercions de votre soutien à Signal. Votre contribution aide à alimenter la mission de développement d’une technologie ouverte de protection de la vie privée et des données personnelles, qui protège la liberté d’expression et permet à des millions de personnes une communication sécurisée à l’échelle planétaire. Si vous êtes résident des États-Unis d\'Amérique, veuillez conserver ce reçu pour vos dossiers fiscaux. La Fondation de la technologie Signal (Signal Technology Foundation) est un organisme exempt de taxes aux États-Unis d’Amérique conformément à la section 501c du code des taxes intérieures des É.-U.. Notre ID fiscal fédéral est 82-4506840.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Merci de soutenir Signal. Votre contribution nous aide à mener à bien notre mission : développer une technologie open source axée sur la confidentialité, qui favorise la liberté d\'expression et offre des communications sécurisées à des millions de personnes du monde entier. Si vous résidez aux États-Unis, conservez ce reçu pour le communiquer aux services fiscaux. La Signal Technology Foundation est un organisme à but non lucratif, régi par le code fédéral des impôts des États-Unis. Notre numéro d\'identification fiscale est le suivant : 82-4506840.</string>
     <!-- Donation receipt type -->
     <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
@@ -6001,7 +5999,7 @@
         <item quantity="other">%1$d réponses</item>
     </plurals>
     <!-- Toast / Snackbar label when unhiding a story during viewer -->
-    <string name="StoryViewerPageFragment__story_no_longer_hidden">Story no longer hidden</string>
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">La story n\'est plus masquée.</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">Ajouter</string>
     <!-- Used when view receipts are disabled -->
@@ -6287,9 +6285,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Merci pour votre soutien !</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s a effectué un don à Signal de votre part ! Affichez votre soutien à Signal sur votre profil.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s a fait un don à Signal pour vous ! Vous pouvez afficher votre soutien à Signal sur votre profil.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Vous avez effectué un don à Signal de la part de %1$s. Il/elle aura la possibilité d\'afficher son soutien sur son profil.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Vous avez fait un don à Signal pour %1$s. Cette personne aura la possibilité d\'afficher son soutien sur son profil.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Échanger</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -6297,7 +6295,7 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">Récupération du macaron…</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">Vous avez effectué un don à Signal de la part de %1$s. Il/elle aura la possibilité d\'afficher son soutien sur son profil.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">Vous avez effectué un don à Signal pour %1$s. Cette personne aura la possibilité d\'afficher son soutien sur son profil.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Votre macaron est arrivé à expiration</string>
     <!-- Expired gift sheet top description text -->
@@ -7293,14 +7291,14 @@
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">Restauration mise en pause</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
-    <string name="BackupStatus__restore_complete">La restauration est terminée.</string>
+    <string name="BackupStatus__restore_complete">Restauration terminée</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>
+    <string name="BackupStatus__status_waiting_for_wifi">En attente de Wi-Fi…</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
-    <string name="BackupStatus__status_no_internet">No internet…</string>
+    <string name="BackupStatus__status_no_internet">Aucune connexion Internet…</string>
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
-    <string name="BackupStatus__status_device_has_low_battery">Device has low battery</string>
+    <string name="BackupStatus__status_device_has_low_battery">Batterie faible</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s sur %2$s</string>
 
@@ -7355,7 +7353,7 @@
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Cette fonctionnalité nécessite une mise à niveau</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">L’optimisation de l’espace de stockage n’est disponible qu’avec la version payante du forfait de sauvegarde Signal. Donnez un coup de pouce à Signal et passez à la version payante pour utiliser cette fonctionnalité.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">L\'optimisation de l\'espace de stockage n\'est disponible qu\'avec la version payante du forfait de sauvegarde Signal. Donnez un coup de pouce à Signal et passez à la version payante pour utiliser cette fonctionnalité.</string>
     <!-- Primary action to launch upgrade flow -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">Mettre à niveau</string>
 
@@ -7368,11 +7366,11 @@
 
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
-    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/month, renews %2$s</string>
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/mois, prochaine échéance le %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
-    <string name="BackupsSettingsFragment_last_backup_s">Last backup %1$s</string>
+    <string name="BackupsSettingsFragment_last_backup_s">Dernière sauvegarde : %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
-    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal sauvegarde automatiquement vos données avec son service de stockage sécurisé et chiffré de bout en bout.</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Configurer</string>
 
@@ -7384,15 +7382,15 @@
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">Détails de la sauvegarde</string>
     <!-- Row label for backup size -->
-    <string name="RemoteBackupsSettingsFragment__backup_size">Taille de la sauvegarde</string>
+    <string name="RemoteBackupsSettingsFragment__backup_size">Taille de la sauvegarde :</string>
     <!-- Row label for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__backup_frequency">Fréquence de sauvegarde</string>
+    <string name="RemoteBackupsSettingsFragment__backup_frequency">Fréquence de sauvegarde :</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Sauvegarder via les données cellulaires</string>
     <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View backup key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Afficher la clé de sauvegarde</string>
     <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view backup key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Déverrouillez l\'appareil pour afficher la clé de sauvegarde</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Désactiver et supprimer la sauvegarde</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7406,27 +7404,27 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Signal créera une sauvegarde cette nuit.</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_plan">Backup plan</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">Forfait de sauvegarde</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Sauvegardes désactivées</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/mois</string>
     <!-- String for free backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Your backup plan is free</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Votre forfait de sauvegarde est gratuit</string>
     <!-- Displays the date the subscription will renew -->
-    <string name="RemoteBackupsSettingsFragment__renews_s">Renouvellement %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__renews_s">Prochaine échéance le %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
-    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Back up your message history so you never lose data when you get a new phone or reinstall Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Sauvegardez l\'historique de vos messages pour conserver toutes vos données – même si vous changez de téléphone ou réinstallez Signal.</string>
     <!-- Section header for other ways to back up -->
-    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Other ways to backup</string>
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Autres méthodes de sauvegarde</string>
     <!-- Row title for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__on_device_backups">On-device backups</string>
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">Sauvegardes sur l\'appareil</string>
     <!-- Row label for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Save your backups to a folder on this device</string>
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Enregistrez vos sauvegardes dans un dossier sur cet appareil</string>
     <!-- Button label to manage or cancel backups -->
-    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Manage or cancel</string>
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Gérer ou résilier</string>
     <!-- button label to upgrade backups -->
-    <string name="RemoteBackupsSettingsFragment__upgrade">Convertir</string>
+    <string name="RemoteBackupsSettingsFragment__upgrade">Mettre à niveau</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
