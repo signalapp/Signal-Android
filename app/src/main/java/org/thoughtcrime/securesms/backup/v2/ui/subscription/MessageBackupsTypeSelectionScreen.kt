@@ -93,7 +93,7 @@ fun MessageBackupsTypeSelectionScreen(
       ) {
         item {
           Image(
-            painter = painterResource(id = R.drawable.ic_signal_logo_large), // TODO [message-backups] Finalized art asset
+            painter = painterResource(id = R.drawable.image_signal_backups_plans),
             contentDescription = null,
             modifier = Modifier.size(88.dp)
           )

@@ -16,6 +16,11 @@ sealed interface BackupsIconColors {
   @get:Composable
   val background: Color
 
+  data object None : BackupsIconColors {
+    override val foreground: Color @Composable get() = error("No coloring should be applied.")
+    override val background: Color @Composable get() = error("No coloring should be applied.")
+  }
+
   data object Normal : BackupsIconColors {
     override val foreground: Color @Composable get() = MaterialTheme.colorScheme.onSurface
     override val background: Color @Composable get() = MaterialTheme.colorScheme.primaryContainer

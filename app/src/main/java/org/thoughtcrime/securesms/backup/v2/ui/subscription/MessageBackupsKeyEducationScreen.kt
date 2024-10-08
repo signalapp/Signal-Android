@@ -5,15 +5,13 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -50,18 +48,12 @@ fun MessageBackupsKeyEducationScreen(
         .fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
-      Icon(
-        painter = painterResource(R.drawable.symbol_key_24),
+      Image(
+        painter = painterResource(R.drawable.image_signal_backups_key),
         contentDescription = null,
-        tint = MaterialTheme.colorScheme.primary,
         modifier = Modifier
           .padding(top = 24.dp)
           .size(80.dp)
-          .background(
-            color = MaterialTheme.colorScheme.primaryContainer,
-            shape = CircleShape
-          )
-          .padding(16.dp)
       )
 
       Text(

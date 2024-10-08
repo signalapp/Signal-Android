@@ -16,13 +16,13 @@ import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 
 class UpgradeToEnableOptimizedStorageViewModel : ViewModel() {
-  private val internalMessageBackupsType = mutableStateOf<MessageBackupsType?>(null)
-  val messageBackupsType: State<MessageBackupsType?> = internalMessageBackupsType
+  private val internalMessageBackupsType = mutableStateOf<MessageBackupsType.Paid?>(null)
+  val messageBackupsType: State<MessageBackupsType.Paid?> = internalMessageBackupsType
 
   init {
     viewModelScope.launch {
       val backupsType = withContext(Dispatchers.IO) {
-        BackupRepository.getBackupsType(MessageBackupTier.PAID)
+        BackupRepository.getBackupsType(MessageBackupTier.PAID) as? MessageBackupsType.Paid
       }
 
       withContext(Dispatchers.Main) {

@@ -5,19 +5,19 @@
 
 package org.thoughtcrime.securesms.components.settings.app.backups.remote
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -47,6 +47,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -54,11 +55,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
@@ -77,9 +75,9 @@ import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
+import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.dependencies.GooglePlayBillingDependencies
 import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.fonts.SignalSymbols.SignalSymbol
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
@@ -143,18 +141,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     override fun onBackupTypeActionClick(tier: MessageBackupTier) {
       when (tier) {
         MessageBackupTier.FREE -> checkoutLauncher.launch(MessageBackupTier.PAID)
-        MessageBackupTier.PAID -> lifecycleScope.launch(Dispatchers.Main) {
-          val uri = Uri.parse(
-            getString(
-              R.string.backup_subscription_management_url,
-              GooglePlayBillingDependencies.getProductId(),
-              requireContext().applicationInfo.packageName
-            )
-          )
-
-          val intent = Intent(Intent.ACTION_VIEW, uri)
-          startActivity(intent)
-        }
+        MessageBackupTier.PAID -> launchManageBackupsSubscription()
       }
     }
 
@@ -457,7 +444,7 @@ private fun BackupTypeRow(
       .background(color = SignalTheme.colors.colorSurface2, shape = RoundedCornerShape(12.dp))
       .padding(24.dp)
   ) {
-    Row {
+    Row(modifier = Modifier.fillMaxWidth()) {
       Column {
         val title = when (messageBackupsType) {
           is MessageBackupsType.Paid -> stringResource(R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media)
@@ -493,7 +480,13 @@ private fun BackupTypeRow(
         }
       }
 
-      // Icon
+      Spacer(modifier = Modifier.weight(1f))
+
+      Image(
+        painter = painterResource(R.drawable.image_signal_backups),
+        contentDescription = null,
+        modifier = Modifier.size(64.dp)
+      )
     }
 
     val buttonText = when (messageBackupsType) {
@@ -504,7 +497,8 @@ private fun BackupTypeRow(
     Buttons.LargeTonal(
       onClick = { onBackupTypeActionButtonClicked(messageBackupsType.tier) },
       colors = ButtonDefaults.filledTonalButtonColors().copy(
-        containerColor = SignalTheme.colors.colorTransparent5
+        containerColor = SignalTheme.colors.colorTransparent5,
+        contentColor = colorResource(R.color.signal_light_colorOnSurface)
       ),
       modifier = Modifier.padding(top = 12.dp)
     ) {

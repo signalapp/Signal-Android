@@ -7,7 +7,9 @@ package org.thoughtcrime.securesms.backup.v2.ui
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
@@ -20,10 +22,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -39,12 +46,13 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
-import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
+import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 
 /**
  * Notifies the user of an issue with their backup.
@@ -67,6 +75,14 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
 
   @Composable
   override fun SheetContent() {
+    var pricePerMonth by remember { mutableStateOf("-") }
+    val resources = LocalContext.current.resources
+
+    LaunchedEffect(Unit) {
+      val price = AppDependencies.billingApi.queryProduct()?.price ?: return@LaunchedEffect
+      pricePerMonth = FiatMoneyUtil.format(resources, price, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+    }
+
     BackupAlertSheetContent(
       backupAlert = backupAlert,
       onPrimaryActionClick = this::performPrimaryAction,
@@ -81,10 +97,12 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
         BackupMessagesJob.enqueue()
         startActivity(AppSettingsActivity.remoteBackups(requireContext()))
       }
-      BackupAlert.PAYMENT_PROCESSING -> Unit
+
+      BackupAlert.PAYMENT_PROCESSING -> launchManageBackupsSubscription()
       BackupAlert.MEDIA_BACKUPS_ARE_OFF, BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> {
         performFullMediaDownload()
       }
+
       BackupAlert.DISK_FULL -> Unit
     }
 
@@ -97,13 +115,16 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
       BackupAlert.COULD_NOT_COMPLETE_BACKUP -> {
         // TODO [message-backups] - Dismiss and notify later
       }
-      BackupAlert.PAYMENT_PROCESSING -> error("PAYMENT_PROCESSING state does not support a secondary action.")
+
+      BackupAlert.PAYMENT_PROCESSING -> Unit
       BackupAlert.MEDIA_BACKUPS_ARE_OFF -> {
         // TODO [message-backups] - Silence and remind on last day
       }
+
       BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> {
         displayLastChanceDialog()
       }
+
       BackupAlert.DISK_FULL -> Unit
     }
 
@@ -130,8 +151,9 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
 @Composable
 private fun BackupAlertSheetContent(
   backupAlert: BackupAlert,
-  onPrimaryActionClick: () -> Unit,
-  onSecondaryActionClick: () -> Unit
+  pricePerMonth: String = "",
+  onPrimaryActionClick: () -> Unit = {},
+  onSecondaryActionClick: () -> Unit = {}
 ) {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
@@ -143,20 +165,43 @@ private fun BackupAlertSheetContent(
 
     Spacer(modifier = Modifier.size(26.dp))
 
-    val iconColors = rememberBackupsIconColors(backupAlert = backupAlert)
-    Icon(
-      painter = painterResource(id = R.drawable.symbol_backup_light), // TODO [message-backups] final asset
-      contentDescription = null,
-      tint = iconColors.foreground,
-      modifier = Modifier
-        .size(88.dp)
-        .background(color = iconColors.background, shape = CircleShape)
-        .padding(20.dp)
-    )
+    when (backupAlert) {
+      BackupAlert.PAYMENT_PROCESSING, BackupAlert.MEDIA_BACKUPS_ARE_OFF -> {
+        Box {
+          Image(
+            painter = painterResource(id = R.drawable.image_signal_backups),
+            contentDescription = null,
+            modifier = Modifier
+              .size(80.dp)
+              .padding(2.dp)
+          )
+          Icon(
+            painter = painterResource(R.drawable.symbol_error_circle_fill_24),
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.error,
+            modifier = Modifier.align(Alignment.TopEnd)
+          )
+        }
+      }
+
+      else -> {
+        val iconColors = rememberBackupsIconColors(backupAlert = backupAlert)
+        Icon(
+          painter = painterResource(id = R.drawable.symbol_backup_light),
+          contentDescription = null,
+          tint = iconColors.foreground,
+          modifier = Modifier
+            .size(80.dp)
+            .background(color = iconColors.background, shape = CircleShape)
+            .padding(20.dp)
+        )
+      }
+    }
 
     Text(
       text = stringResource(id = rememberTitleResource(backupAlert = backupAlert)),
       style = MaterialTheme.typography.titleLarge,
+      textAlign = TextAlign.Center,
       modifier = Modifier.padding(top = 16.dp, bottom = 6.dp)
     )
 
@@ -164,9 +209,8 @@ private fun BackupAlertSheetContent(
       BackupAlert.COULD_NOT_COMPLETE_BACKUP -> CouldNotCompleteBackup(
         daysSinceLastBackup = 7 // TODO [message-backups]
       )
-      BackupAlert.PAYMENT_PROCESSING -> PaymentProcessingBody(
-        paymentMethodType = InAppPaymentData.PaymentMethodType.GOOGLE_PAY // TODO [message-backups] -- Get this data from elsewhere... The active subscription object?
-      )
+
+      BackupAlert.PAYMENT_PROCESSING -> PaymentProcessingBody()
       BackupAlert.MEDIA_BACKUPS_ARE_OFF -> MediaBackupsAreOffBody(30) // TODO [message-backups] -- Get this value from backend
       BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> MediaWillBeDeletedTodayBody()
       BackupAlert.DISK_FULL -> DiskFullBody(
@@ -184,7 +228,7 @@ private fun BackupAlertSheetContent(
         .defaultMinSize(minWidth = 220.dp)
         .padding(bottom = padBottom)
     ) {
-      Text(text = stringResource(id = rememberPrimaryActionResource(backupAlert = backupAlert)))
+      Text(text = primaryActionString(backupAlert = backupAlert, pricePerMonth = pricePerMonth))
     }
 
     if (secondaryActionResource > 0) {
@@ -201,15 +245,18 @@ private fun CouldNotCompleteBackup(
 ) {
   Text(
     text = stringResource(id = R.string.BackupAlertBottomSheet__your_device_hasnt, daysSinceLastBackup),
+    textAlign = TextAlign.Center,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 60.dp)
   )
 }
 
 @Composable
-private fun PaymentProcessingBody(paymentMethodType: InAppPaymentData.PaymentMethodType) {
+private fun PaymentProcessingBody() {
   Text(
-    text = stringResource(id = R.string.BackupAlertBottomSheet__were_having_trouble_collecting__google_pay),
+    text = stringResource(id = R.string.BackupAlertBottomSheet__check_to_make_sure_your_payment_method),
     textAlign = TextAlign.Center,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 60.dp)
   )
 }
@@ -219,14 +266,16 @@ private fun MediaBackupsAreOffBody(
   daysUntilDeletion: Long
 ) {
   Text(
-    text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__your_signal_media_backup_plan, daysUntilDeletion.toInt(), daysUntilDeletion),
+    text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__your_backup_plan_has_expired, daysUntilDeletion.toInt(), daysUntilDeletion),
     textAlign = TextAlign.Center,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 24.dp)
   )
 
   Text(
     text = stringResource(id = R.string.BackupAlertBottomSheet__you_can_begin_paying_for_backups_again),
     textAlign = TextAlign.Center,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 36.dp)
   )
 }
@@ -236,12 +285,14 @@ private fun MediaWillBeDeletedTodayBody() {
   Text(
     text = stringResource(id = R.string.BackupAlertBottomSheet__your_signal_media_backup_plan_has_been),
     textAlign = TextAlign.Center,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 24.dp)
   )
 
   Text(
     text = stringResource(id = R.string.BackupAlertBottomSheet__you_can_begin_paying_for_backups_again),
     textAlign = TextAlign.Center,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 36.dp)
   )
 }
@@ -254,12 +305,14 @@ private fun DiskFullBody(
   Text(
     text = stringResource(id = R.string.BackupAlertBottomSheet__your_device_does_not_have_enough_free_space, requiredSpace),
     textAlign = TextAlign.Center,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 24.dp)
   )
 
   Text(
     text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__if_you_choose_skip, daysUntilDeletion.toInt(), daysUntilDeletion), // TODO [message-backups] Learn More link
     textAlign = TextAlign.Center,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 36.dp)
   )
 }
@@ -268,8 +321,9 @@ private fun DiskFullBody(
 private fun rememberBackupsIconColors(backupAlert: BackupAlert): BackupsIconColors {
   return remember(backupAlert) {
     when (backupAlert) {
-      BackupAlert.COULD_NOT_COMPLETE_BACKUP, BackupAlert.PAYMENT_PROCESSING, BackupAlert.DISK_FULL -> BackupsIconColors.Warning
-      BackupAlert.MEDIA_BACKUPS_ARE_OFF, BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> BackupsIconColors.Error
+      BackupAlert.PAYMENT_PROCESSING, BackupAlert.MEDIA_BACKUPS_ARE_OFF -> error("Not icon-based options.")
+      BackupAlert.COULD_NOT_COMPLETE_BACKUP, BackupAlert.DISK_FULL -> BackupsIconColors.Warning
+      BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> BackupsIconColors.Error
     }
   }
 }
@@ -280,8 +334,8 @@ private fun rememberTitleResource(backupAlert: BackupAlert): Int {
   return remember(backupAlert) {
     when (backupAlert) {
       BackupAlert.COULD_NOT_COMPLETE_BACKUP -> R.string.BackupAlertBottomSheet__couldnt_complete_backup
-      BackupAlert.PAYMENT_PROCESSING -> R.string.BackupAlertBottomSheet__cant_process_backup_payment
-      BackupAlert.MEDIA_BACKUPS_ARE_OFF -> R.string.BackupAlertBottomSheet__media_backups_are_off
+      BackupAlert.PAYMENT_PROCESSING -> R.string.BackupAlertBottomSheet__your_backups_subscription_failed_to_renew
+      BackupAlert.MEDIA_BACKUPS_ARE_OFF -> R.string.BackupAlertBottomSheet__your_backups_subscription_expired
       BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> R.string.BackupAlertBottomSheet__your_media_will_be_deleted_today
       BackupAlert.DISK_FULL -> R.string.BackupAlertBottomSheet__cant_complete_download
     }
@@ -289,15 +343,16 @@ private fun rememberTitleResource(backupAlert: BackupAlert): Int {
 }
 
 @Composable
-private fun rememberPrimaryActionResource(backupAlert: BackupAlert): Int {
-  return remember(backupAlert) {
-    when (backupAlert) {
-      BackupAlert.COULD_NOT_COMPLETE_BACKUP -> android.R.string.ok // TODO [message-backups] -- Finalized copy
-      BackupAlert.PAYMENT_PROCESSING -> android.R.string.ok
-      BackupAlert.MEDIA_BACKUPS_ARE_OFF -> R.string.BackupAlertBottomSheet__download_media_now
-      BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> R.string.BackupAlertBottomSheet__download_media_now
-      BackupAlert.DISK_FULL -> android.R.string.ok
-    }
+private fun primaryActionString(
+  backupAlert: BackupAlert,
+  pricePerMonth: String
+): String {
+  return when (backupAlert) {
+    BackupAlert.COULD_NOT_COMPLETE_BACKUP -> stringResource(android.R.string.ok) // TODO [message-backups] -- Finalized copy
+    BackupAlert.PAYMENT_PROCESSING -> stringResource(R.string.BackupAlertBottomSheet__manage_subscription)
+    BackupAlert.MEDIA_BACKUPS_ARE_OFF -> stringResource(R.string.BackupAlertBottomSheet__subscribe_for_s_month, pricePerMonth)
+    BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> stringResource(R.string.BackupAlertBottomSheet__download_media_now)
+    BackupAlert.DISK_FULL -> stringResource(android.R.string.ok)
   }
 }
 
@@ -306,8 +361,8 @@ private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
   return remember(backupAlert) {
     when (backupAlert) {
       BackupAlert.COULD_NOT_COMPLETE_BACKUP -> android.R.string.cancel // TODO [message-backups] -- Finalized copy
-      BackupAlert.PAYMENT_PROCESSING -> -1
-      BackupAlert.MEDIA_BACKUPS_ARE_OFF -> R.string.BackupAlertBottomSheet__download_later
+      BackupAlert.PAYMENT_PROCESSING -> R.string.BackupAlertBottomSheet__not_now
+      BackupAlert.MEDIA_BACKUPS_ARE_OFF -> R.string.BackupAlertBottomSheet__not_now
       BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> R.string.BackupAlertBottomSheet__dont_download_media
       BackupAlert.DISK_FULL -> R.string.BackupAlertBottomSheet__skip
     }
@@ -319,9 +374,7 @@ private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
 private fun BackupAlertSheetContentPreviewGeneric() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.COULD_NOT_COMPLETE_BACKUP,
-      onPrimaryActionClick = {},
-      onSecondaryActionClick = {}
+      backupAlert = BackupAlert.COULD_NOT_COMPLETE_BACKUP
     )
   }
 }
@@ -331,9 +384,7 @@ private fun BackupAlertSheetContentPreviewGeneric() {
 private fun BackupAlertSheetContentPreviewPayment() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.PAYMENT_PROCESSING,
-      onPrimaryActionClick = {},
-      onSecondaryActionClick = {}
+      backupAlert = BackupAlert.PAYMENT_PROCESSING
     )
   }
 }
@@ -344,8 +395,7 @@ private fun BackupAlertSheetContentPreviewMedia() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
       backupAlert = BackupAlert.MEDIA_BACKUPS_ARE_OFF,
-      onPrimaryActionClick = {},
-      onSecondaryActionClick = {}
+      pricePerMonth = "$2.99"
     )
   }
 }
@@ -355,9 +405,7 @@ private fun BackupAlertSheetContentPreviewMedia() {
 private fun BackupAlertSheetContentPreviewDelete() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.MEDIA_WILL_BE_DELETED_TODAY,
-      onPrimaryActionClick = {},
-      onSecondaryActionClick = {}
+      backupAlert = BackupAlert.MEDIA_WILL_BE_DELETED_TODAY
     )
   }
 }
@@ -367,9 +415,7 @@ private fun BackupAlertSheetContentPreviewDelete() {
 private fun BackupAlertSheetContentPreviewDiskFull() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.DISK_FULL,
-      onPrimaryActionClick = {},
-      onSecondaryActionClick = {}
+      backupAlert = BackupAlert.DISK_FULL
     )
   }
 }

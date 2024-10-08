@@ -8,20 +8,20 @@ package org.thoughtcrime.securesms.components.settings.app.storage
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -34,12 +34,12 @@ import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeBlock
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.testBackupTypes
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
+import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 
 /**
  * Sheet describing how users must upgrade to enable optimized storage.
@@ -75,7 +75,7 @@ class UpgradeToEnableOptimizedStorageSheet : ComposeBottomSheetDialogFragment() 
 
 @Composable
 private fun UpgradeToEnableOptimizedStorageSheetContent(
-  messageBackupsType: MessageBackupsType?,
+  messageBackupsType: MessageBackupsType.Paid?,
   onUpgradeNowClick: () -> Unit = {},
   onCancelClick: () -> Unit = {}
 ) {
@@ -90,18 +90,12 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
   ) {
     BottomSheets.Handle()
 
-    Icon(
-      painter = painterResource(id = R.drawable.symbol_backup_light),
+    Image(
+      painter = painterResource(id = R.drawable.image_signal_backups),
       contentDescription = null,
-      tint = BackupsIconColors.Normal.foreground,
       modifier = Modifier
-        .padding(top = 8.dp, bottom = 12.dp)
-        .size(88.dp)
-        .background(
-          color = BackupsIconColors.Normal.background,
-          shape = CircleShape
-        )
-        .padding(20.dp)
+        .padding(top = 8.dp, bottom = 24.dp)
+        .size(80.dp)
     )
 
     Text(
@@ -140,8 +134,13 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
         .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
         .padding(bottom = 8.dp)
     ) {
+      val resources = LocalContext.current.resources
+      val formattedPrice = remember(messageBackupsType.pricePerMonth) {
+        FiatMoneyUtil.format(resources, messageBackupsType.pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+      }
+
       Text(
-        text = stringResource(id = R.string.UpgradeToEnableOptimizedStorageSheet__upgrade_now)
+        text = stringResource(id = R.string.UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month, formattedPrice)
       )
     }
 
@@ -164,7 +163,7 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
 private fun UpgradeToEnableOptimizedStorageSheetContentPreview() {
   Previews.BottomSheetPreview {
     UpgradeToEnableOptimizedStorageSheetContent(
-      messageBackupsType = testBackupTypes()[1]
+      messageBackupsType = testBackupTypes()[1] as MessageBackupsType.Paid?
     )
   }
 }
