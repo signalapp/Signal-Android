@@ -24,6 +24,7 @@ import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import java.io.IOException
+import kotlin.random.Random
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -40,7 +41,11 @@ class UploadAttachmentToArchiveJob private constructor(
     private val TAG = Log.tag(UploadAttachmentToArchiveJob::class)
     const val KEY = "UploadAttachmentToArchiveJob"
 
-    fun buildQueueKey(attachmentId: AttachmentId) = "ArchiveAttachmentJobs_${attachmentId.id}"
+    /**
+     * This randomly selects between one of two queues. It's a fun way of limiting the concurrency of the upload jobs to
+     * take up at most two job runners.
+     */
+    fun buildQueueKey() = "ArchiveAttachmentJobs_${Random.nextInt(0, 2)}"
   }
 
   constructor(attachmentId: AttachmentId) : this(
@@ -50,7 +55,7 @@ class UploadAttachmentToArchiveJob private constructor(
       .addConstraint(NetworkConstraint.KEY)
       .setLifespan(30.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
-      .setQueue(buildQueueKey(attachmentId))
+      .setQueue(buildQueueKey())
       .build()
   )
 
@@ -72,6 +77,7 @@ class UploadAttachmentToArchiveJob private constructor(
   override fun run(): Result {
     if (!SignalStore.backup.backsUpMedia) {
       Log.w(TAG, "[$attachmentId] This user does not back up media. Skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
       return Result.success()
     }
 

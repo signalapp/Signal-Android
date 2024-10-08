@@ -22,6 +22,9 @@ import java.util.concurrent.TimeUnit
 /**
  * Copies and re-encrypts attachments from the attachment cdn to the archive cdn.
  * If it's discovered that the attachment no longer exists on the attachment cdn, this job will schedule a re-upload via [UploadAttachmentToArchiveJob].
+ *
+ * This job runs at high priority within its queue, which it shares with [UploadAttachmentToArchiveJob]. Therefore, copies are given priority over new uploads,
+ * which allows the two-part archive upload process to finish quickly.
  */
 class CopyAttachmentToArchiveJob private constructor(private val attachmentId: AttachmentId, parameters: Parameters) : Job(parameters) {
 
@@ -40,7 +43,8 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       .addConstraint(NetworkConstraint.KEY)
       .setLifespan(TimeUnit.DAYS.toMillis(1))
       .setMaxAttempts(Parameters.UNLIMITED)
-      .setQueue(UploadAttachmentToArchiveJob.buildQueueKey(attachmentId))
+      .setQueue(UploadAttachmentToArchiveJob.buildQueueKey())
+      .setQueuePriority(Parameters.PRIORITY_HIGH)
       .build()
   )
 
@@ -131,6 +135,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
     }
 
     if (result.isSuccess) {
+      Log.d(TAG, "[$attachmentId] Updating archive transfer state to ${AttachmentTable.ArchiveTransferState.FINISHED}")
       SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
 
       ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
