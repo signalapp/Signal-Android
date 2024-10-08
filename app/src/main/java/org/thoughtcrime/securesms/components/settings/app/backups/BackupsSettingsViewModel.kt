@@ -108,9 +108,9 @@ class BackupsSettingsViewModel : ViewModel() {
 
   private fun getEnabledStateForNoTier(): BackupsSettingsState.EnabledState {
     return if (SignalStore.uiHints.hasEverEnabledRemoteBackups) {
-      BackupsSettingsState.EnabledState.Never
-    } else {
       BackupsSettingsState.EnabledState.Inactive
+    } else {
+      BackupsSettingsState.EnabledState.Never
     }
   }
 }
