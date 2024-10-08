@@ -2,12 +2,14 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
+import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +48,7 @@ import java.text.NumberFormat;
 import java.time.LocalTime;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 public class BackupsPreferenceFragment extends Fragment {
 
@@ -259,22 +262,40 @@ public class BackupsPreferenceFragment extends Fragment {
   }
 
   private void pickTime() {
-    int timeFormat = DateFormat.is24HourFormat(requireContext()) ? TimeFormat.CLOCK_24H : TimeFormat.CLOCK_12H;
-    final MaterialTimePicker timePickerFragment = new MaterialTimePicker.Builder()
-        .setTimeFormat(timeFormat)
-        .setHour(SignalStore.settings().getBackupHour())
-        .setMinute(SignalStore.settings().getBackupMinute())
-        .setTitleText(R.string.BackupsPreferenceFragment__set_backup_time)
-        .build();
-    timePickerFragment.addOnPositiveButtonClickListener(v -> {
-      int hour = timePickerFragment.getHour();
-      int minute = timePickerFragment.getMinute();
-      SignalStore.settings().setBackupSchedule(hour, minute);
-      updateTimeLabel();
-      TextSecurePreferences.setNextBackupTime(requireContext(), 0);
-      LocalBackupListener.schedule(requireContext());
+    // User should select the backup frequency first, and then the time of day to do the backups.
+    final BackupFrequencyPickerDialogFragment frequencyPickerDialogFragment = new BackupFrequencyPickerDialogFragment(SignalStore.settings().getBackupFrequency());
+    frequencyPickerDialogFragment.setOnPositiveButtonClickListener((unused1, unused2) -> {
+      int timeFormat = DateFormat.is24HourFormat(requireContext()) ? TimeFormat.CLOCK_24H : TimeFormat.CLOCK_12H;
+      final MaterialTimePicker timePickerFragment = new MaterialTimePicker.Builder()
+          .setTimeFormat(timeFormat)
+          .setHour(SignalStore.settings().getBackupHour())
+          .setMinute(SignalStore.settings().getBackupMinute())
+          .setTitleText(R.string.BackupsPreferenceFragment__set_backup_time)
+          .build();
+      timePickerFragment.addOnPositiveButtonClickListener(v -> {
+        int days = frequencyPickerDialogFragment.getValue();
+        int hour = timePickerFragment.getHour();
+        int minute = timePickerFragment.getMinute();
+        Log.i(TAG, "Setting backup schedule: every " + days + " days at" + hour + "h" + minute + "m");
+        SignalStore.settings().setBackupSchedule(days, hour, minute);
+        updateTimeLabel();
+        // Schedule the next backup using the newly set frequency, but relative to the time of the
+        // last backup. This should only kick off a new backup to be created immediately if the
+        // last backup was long enough ago (or doesn't exist at all).
+        long lastBackupTime = 0;
+        try {
+          lastBackupTime = Optional.ofNullable(BackupUtil.getLatestBackup())
+                                   .map(BackupUtil.BackupInfo::getTimestamp)
+                                   .orElse(0L);
+        } catch (NoExternalStorageException ignored) {}
+        TextSecurePreferences.setNextBackupTime(requireContext(), lastBackupTime + days * 24 * 60 * 60 * 1000L);
+        LocalBackupListener.schedule(requireContext());
+      });
+
+      timePickerFragment.show(getChildFragmentManager(), "TIME_PICKER");
     });
-    timePickerFragment.show(getChildFragmentManager(), "TIME_PICKER");
+
+    frequencyPickerDialogFragment.show(getChildFragmentManager(), "FREQUENCY_PICKER");
   }
 
   private void onCreateClickedLegacy() {
@@ -290,10 +311,17 @@ public class BackupsPreferenceFragment extends Fragment {
   }
 
   private void updateTimeLabel() {
-    final int backupHour   = SignalStore.settings().getBackupHour();
-    final int backupMinute = SignalStore.settings().getBackupMinute();
-    LocalTime time         = LocalTime.of(backupHour, backupMinute);
-    timeLabel.setText(JavaTimeExtensionsKt.formatHours(time, requireContext()));
+    final int backupFrequency = SignalStore.settings().getBackupFrequency();
+    final int backupHour      = SignalStore.settings().getBackupHour();
+    final int backupMinute    = SignalStore.settings().getBackupMinute();
+    LocalTime time            = LocalTime.of(backupHour, backupMinute);
+
+    String backupTimeString = JavaTimeExtensionsKt.formatHours(time, requireContext());
+    timeLabel.setText(backupFrequency == 1 ? getString(R.string.BackupsPreferenceFragment__time_label_daily, backupTimeString)
+                                           : getResources().getQuantityString(R.plurals.BackupsPreferenceFragment__time_label_n_days,
+                                                                              backupFrequency,
+                                                                              backupTimeString, backupFrequency)
+    );
   }
 
   private void setBackupsEnabled() {

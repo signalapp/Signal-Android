@@ -45,6 +45,7 @@ public final class SettingsValues extends SignalStoreValues {
   public static final  String PREFER_SYSTEM_EMOJI                     = "settings.use.system.emoji";
   public static final  String ENTER_KEY_SENDS                         = "settings.enter.key.sends";
   public static final  String BACKUPS_ENABLED                         = "settings.backups.enabled";
+  public static final  String BACKUPS_SCHEDULE_FREQUENCY              = "settings.backups.schedule.frequency"; // days
   public static final  String BACKUPS_SCHEDULE_HOUR                   = "settings.backups.schedule.hour";
   public static final  String BACKUPS_SCHEDULE_MINUTE                 = "settings.backups.schedule.minute";
   public static final  String SMS_DELIVERY_REPORTS_ENABLED            = "settings.sms.delivery.reports.enabled";
@@ -73,8 +74,9 @@ public final class SettingsValues extends SignalStoreValues {
   private static final String SCREEN_LOCK_ENABLED                     = "settings.screen.lock.enabled";
   private static final String SCREEN_LOCK_TIMEOUT                     = "settings.screen.lock.timeout";
 
-  public static final int BACKUP_DEFAULT_HOUR   = 2;
-  public static final int BACKUP_DEFAULT_MINUTE = 0;
+  public static final int BACKUP_DEFAULT_FREQUENCY = 30; // days
+  public static final int BACKUP_DEFAULT_HOUR      = 2;
+  public static final int BACKUP_DEFAULT_MINUTE    = 0;
 
   private final SingleLiveEvent<String> onConfigurationSettingChanged = new SingleLiveEvent<>();
 
@@ -106,7 +108,7 @@ public final class SettingsValues extends SignalStoreValues {
     }
     if (!store.containsKey(BACKUPS_SCHEDULE_HOUR)) {
       // Initialize backup time to a 5min interval between 1-5am
-      setBackupSchedule(new Random().nextInt(5) + 1, new Random().nextInt(12) * 5);
+      setBackupSchedule(BACKUP_DEFAULT_FREQUENCY, new Random().nextInt(5) + 1, new Random().nextInt(12) * 5);
     }
   }
 
@@ -307,6 +309,10 @@ public final class SettingsValues extends SignalStoreValues {
     putBoolean(BACKUPS_ENABLED, backupEnabled);
   }
 
+  public int getBackupFrequency() {
+    return getInteger(BACKUPS_SCHEDULE_FREQUENCY, BACKUP_DEFAULT_FREQUENCY);
+  }
+
   public int getBackupHour() {
     return getInteger(BACKUPS_SCHEDULE_HOUR, BACKUP_DEFAULT_HOUR);
   }
@@ -315,7 +321,8 @@ public final class SettingsValues extends SignalStoreValues {
     return getInteger(BACKUPS_SCHEDULE_MINUTE, BACKUP_DEFAULT_MINUTE);
   }
 
-  public void setBackupSchedule(int hour, int minute) {
+  public void setBackupSchedule(int days, int hour, int minute) {
+    putInteger(BACKUPS_SCHEDULE_FREQUENCY, days);
     putInteger(BACKUPS_SCHEDULE_HOUR, hour);
     putInteger(BACKUPS_SCHEDULE_MINUTE, minute);
   }
