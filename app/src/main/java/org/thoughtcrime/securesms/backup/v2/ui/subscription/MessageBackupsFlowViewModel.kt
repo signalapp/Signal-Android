@@ -46,7 +46,8 @@ import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import kotlin.time.Duration.Companion.seconds
 
 class MessageBackupsFlowViewModel(
-  initialTierSelection: MessageBackupTier?
+  initialTierSelection: MessageBackupTier?,
+  startScreen: MessageBackupsStage = if (SignalStore.backup.backupTier == null) MessageBackupsStage.EDUCATION else MessageBackupsStage.TYPE_SELECTION
 ) : ViewModel() {
 
   companion object {
@@ -57,7 +58,7 @@ class MessageBackupsFlowViewModel(
     MessageBackupsFlowState(
       availableBackupTypes = emptyList(),
       selectedMessageBackupTier = initialTierSelection ?: SignalStore.backup.backupTier,
-      startScreen = if (SignalStore.backup.backupTier == null) MessageBackupsStage.EDUCATION else MessageBackupsStage.TYPE_SELECTION
+      startScreen = startScreen
     )
   )
 

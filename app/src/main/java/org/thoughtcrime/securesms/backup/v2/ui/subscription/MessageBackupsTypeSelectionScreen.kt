@@ -23,6 +23,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -226,7 +227,8 @@ fun MessageBackupsTypeBlock(
   isSelected: Boolean,
   onSelected: () -> Unit,
   modifier: Modifier = Modifier,
-  enabled: Boolean = true
+  enabled: Boolean = true,
+  iconColors: MessageBackupsTypeIconColors = MessageBackupsTypeIconColors.default()
 ) {
   val borderColor = if (isSelected) {
     MaterialTheme.colorScheme.primary
@@ -264,9 +266,9 @@ fun MessageBackupsTypeBlock(
       )
 
       val featureIconTint = if (isSelected) {
-        MaterialTheme.colorScheme.primary
+        iconColors.iconColorSelected
       } else {
-        MaterialTheme.colorScheme.onSurfaceVariant
+        iconColors.iconColorNormal
       }
 
       Column(
@@ -361,4 +363,23 @@ fun testBackupTypes(): List<MessageBackupsType> {
       storageAllowanceBytes = 107374182400
     )
   )
+}
+
+/**
+ * Feature row iconography coloring
+ */
+@Immutable
+data class MessageBackupsTypeIconColors(
+  val iconColorNormal: Color,
+  val iconColorSelected: Color
+) {
+  companion object {
+    @Composable
+    fun default(): MessageBackupsTypeIconColors {
+      return MessageBackupsTypeIconColors(
+        iconColorNormal = MaterialTheme.colorScheme.onSurfaceVariant,
+        iconColorSelected = MaterialTheme.colorScheme.primary
+      )
+    }
+  }
 }

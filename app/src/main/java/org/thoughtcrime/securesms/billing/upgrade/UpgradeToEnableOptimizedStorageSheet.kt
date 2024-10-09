@@ -3,13 +3,11 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.storage
+package org.thoughtcrime.securesms.billing.upgrade
 
-import android.os.Bundle
-import android.view.View
-import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,7 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,45 +24,33 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.viewModels
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeBlock
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeIconColors
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.testBackupTypes
-import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 
 /**
  * Sheet describing how users must upgrade to enable optimized storage.
  */
-class UpgradeToEnableOptimizedStorageSheet : ComposeBottomSheetDialogFragment() {
-
-  override val peekHeightPercentage: Float = 1f
-
-  private val viewModel: UpgradeToEnableOptimizedStorageViewModel by viewModels()
-
-  private lateinit var checkoutLauncher: ActivityResultLauncher<MessageBackupTier?>
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    checkoutLauncher = createBackupsCheckoutLauncher()
-  }
+class UpgradeToEnableOptimizedStorageSheet : UpgradeToPaidTierBottomSheet() {
 
   @Composable
-  override fun SheetContent() {
-    val type by viewModel.messageBackupsType
+  override fun UpgradeSheetContent(
+    paidBackupType: MessageBackupsType.Paid,
+    freeBackupType: MessageBackupsType.Free,
+    isSubscribeEnabled: Boolean,
+    onSubscribeClick: () -> Unit
+  ) {
     UpgradeToEnableOptimizedStorageSheetContent(
-      messageBackupsType = type,
-      onUpgradeNowClick = {
-        checkoutLauncher.launch(MessageBackupTier.PAID)
-        dismissAllowingStateLoss()
-      },
+      messageBackupsType = paidBackupType,
+      isSubscribeEnabled = isSubscribeEnabled,
+      onSubscribeClick = onSubscribeClick,
       onCancelClick = {
         dismissAllowingStateLoss()
       }
@@ -75,15 +60,11 @@ class UpgradeToEnableOptimizedStorageSheet : ComposeBottomSheetDialogFragment() 
 
 @Composable
 private fun UpgradeToEnableOptimizedStorageSheetContent(
-  messageBackupsType: MessageBackupsType.Paid?,
-  onUpgradeNowClick: () -> Unit = {},
+  messageBackupsType: MessageBackupsType.Paid,
+  isSubscribeEnabled: Boolean,
+  onSubscribeClick: () -> Unit = {},
   onCancelClick: () -> Unit = {}
 ) {
-  if (messageBackupsType == null) {
-    // TODO [message-backups] -- network error?
-    return
-  }
-
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier.fillMaxWidth()
@@ -94,7 +75,7 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
       painter = painterResource(id = R.drawable.image_signal_backups),
       contentDescription = null,
       modifier = Modifier
-        .padding(top = 8.dp, bottom = 24.dp)
+        .padding(top = 8.dp, bottom = 16.dp)
         .size(80.dp)
     )
 
@@ -122,15 +103,19 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
       isSelected = false,
       onSelected = {},
       enabled = false,
+      iconColors = MessageBackupsTypeIconColors.default().let {
+        it.copy(iconColorNormal = it.iconColorSelected)
+      },
       modifier = Modifier
         .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
         .padding(bottom = 50.dp)
     )
 
     Buttons.LargePrimary(
-      onClick = onUpgradeNowClick,
+      enabled = isSubscribeEnabled,
+      onClick = onSubscribeClick,
       modifier = Modifier
-        .fillMaxWidth()
+        .defaultMinSize(minWidth = 256.dp)
         .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
         .padding(bottom = 8.dp)
     ) {
@@ -145,9 +130,10 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
     }
 
     TextButton(
+      enabled = isSubscribeEnabled,
       onClick = onCancelClick,
       modifier = Modifier
-        .fillMaxWidth()
+        .defaultMinSize(minWidth = 256.dp)
         .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
         .padding(bottom = 16.dp)
     ) {
@@ -163,7 +149,8 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
 private fun UpgradeToEnableOptimizedStorageSheetContentPreview() {
   Previews.BottomSheetPreview {
     UpgradeToEnableOptimizedStorageSheetContent(
-      messageBackupsType = testBackupTypes()[1] as MessageBackupsType.Paid?
+      messageBackupsType = testBackupTypes()[1] as MessageBackupsType.Paid,
+      isSubscribeEnabled = true
     )
   }
 }
