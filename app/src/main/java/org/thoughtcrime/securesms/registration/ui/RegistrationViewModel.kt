@@ -824,9 +824,7 @@ class RegistrationViewModel : ViewModel() {
 
     if (reglockEnabled) {
       SignalStore.onboarding.clearAll()
-    }
 
-    if (reglockEnabled || SignalStore.storageService.lastSyncTime == 0L) {
       val stopwatch = Stopwatch("post-reg-storage-service")
 
       AppDependencies.jobManager.runSynchronously(StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN)
