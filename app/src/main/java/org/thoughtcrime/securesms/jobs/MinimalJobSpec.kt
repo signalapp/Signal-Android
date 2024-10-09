@@ -16,7 +16,8 @@ data class MinimalJobSpec(
   val createTime: Long,
   val lastRunAttemptTime: Long,
   val nextBackoffInterval: Long,
-  val priority: Int,
+  val globalPriority: Int,
+  val queuePriority: Int,
   val isRunning: Boolean,
   val isMemoryOnly: Boolean
 )

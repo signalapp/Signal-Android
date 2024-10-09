@@ -56,7 +56,7 @@ class RestoreAttachmentThumbnailJob private constructor(
       .addConstraint(NetworkConstraint.KEY)
       .setLifespan(TimeUnit.DAYS.toMillis(1))
       .setMaxAttempts(Parameters.UNLIMITED)
-      .setPriority(if (highPriority) Parameters.PRIORITY_HIGH else Parameters.PRIORITY_DEFAULT)
+      .setGlobalPriority(if (highPriority) Parameters.PRIORITY_HIGH else Parameters.PRIORITY_DEFAULT)
       .build(),
     messageId,
     attachmentId
