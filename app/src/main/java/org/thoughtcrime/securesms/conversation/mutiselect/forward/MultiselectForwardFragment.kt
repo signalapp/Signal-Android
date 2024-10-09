@@ -247,7 +247,7 @@ class MultiselectForwardFragment :
         MultiselectForwardState.Stage.SendPending -> {
           handler?.removeCallbacksAndMessages(null)
           dismissibleDialog?.dismiss()
-          dismissibleDialog = SimpleProgressDialog.showDelayed(requireContext())
+          dismissibleDialog = SimpleProgressDialog.showDelayed(requireContext(), viewLifecycleOwner)
         }
         MultiselectForwardState.Stage.SomeFailed -> dismissWithSuccess(R.plurals.MultiselectForwardFragment_messages_sent)
         MultiselectForwardState.Stage.AllFailed -> dismissAndShowToast(R.plurals.MultiselectForwardFragment_messages_failed_to_send)
