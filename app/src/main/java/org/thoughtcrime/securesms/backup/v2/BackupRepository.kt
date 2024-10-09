@@ -115,8 +115,7 @@ object BackupRepository {
   @WorkerThread
   fun turnOffAndDeleteBackup() {
     RecurringInAppPaymentRepository.cancelActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
-    SignalStore.backup.areBackupsEnabled = false
-    SignalStore.backup.backupTier = null
+    SignalStore.backup.disableBackups()
   }
 
   private fun createSignalDatabaseSnapshot(baseName: String): SignalDatabase {

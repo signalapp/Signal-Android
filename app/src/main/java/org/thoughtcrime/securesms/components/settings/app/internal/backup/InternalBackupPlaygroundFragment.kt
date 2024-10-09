@@ -37,6 +37,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -57,6 +58,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -72,6 +74,7 @@ import org.signal.core.util.getLength
 import org.signal.core.util.roundedString
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.BackupState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.BackupUploadState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
@@ -181,7 +184,8 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               .setMessage("This will delete all of your chats! Make sure you've finished a backup first, we don't check for you. Only do this on a test device!")
               .setPositiveButton("Wipe and restore") { _, _ -> viewModel.wipeAllDataAndRestoreFromRemote() }
               .show()
-          }
+          },
+          onBackupTierSelected = { tier -> viewModel.onBackupTierSelected(tier) }
         )
       },
       mediaContent = { snackbarHostState ->
@@ -274,9 +278,17 @@ fun Screen(
   onUploadToRemoteClicked: () -> Unit = {},
   onCheckRemoteBackupStateClicked: () -> Unit = {},
   onTriggerBackupJobClicked: () -> Unit = {},
-  onWipeDataAndRestoreClicked: () -> Unit = {}
+  onWipeDataAndRestoreClicked: () -> Unit = {},
+  onBackupTierSelected: (MessageBackupTier?) -> Unit = {}
 ) {
   val scrollState = rememberScrollState()
+  val options = remember {
+    mapOf(
+      "None" to null,
+      "Free" to MessageBackupTier.FREE,
+      "Paid" to MessageBackupTier.PAID
+    )
+  }
 
   Surface {
     Column(
@@ -287,6 +299,21 @@ fun Screen(
         .verticalScroll(scrollState)
         .padding(16.dp)
     ) {
+      Row(verticalAlignment = Alignment.CenterVertically) {
+        Text("Tier", fontWeight = FontWeight.Bold)
+        options.forEach { option ->
+          Row(verticalAlignment = Alignment.CenterVertically) {
+            RadioButton(
+              selected = option.value == state.backupTier,
+              onClick = { onBackupTierSelected(option.value) }
+            )
+            Text(option.key)
+          }
+        }
+      }
+
+      Dividers.Default()
+
       Buttons.LargePrimary(
         onClick = onTriggerBackupJobClicked
       ) {

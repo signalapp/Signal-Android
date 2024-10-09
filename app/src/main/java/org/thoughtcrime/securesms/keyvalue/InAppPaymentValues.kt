@@ -471,8 +471,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
       } else {
         markBackupSubscriptionpManuallyCancelled()
 
-        SignalStore.backup.areBackupsEnabled = false
-        SignalStore.backup.backupTier = null
+        SignalStore.backup.disableBackups()
       }
 
       val subscriber = InAppPaymentsRepository.getSubscriber(subscriberType)
@@ -514,7 +513,6 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
       } else {
         clearBackupSubscriptionManuallyCancelled()
 
-        SignalStore.backup.areBackupsEnabled = true
         SignalStore.backup.backupTier = MessageBackupTier.PAID
         SignalStore.uiHints.markHasEverEnabledRemoteBackups()
       }

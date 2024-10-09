@@ -182,7 +182,6 @@ class MessageBackupsFlowViewModel(
   private fun validateTypeAndUpdateState(state: MessageBackupsFlowState): MessageBackupsFlowState {
     return when (state.selectedMessageBackupTier!!) {
       MessageBackupTier.FREE -> {
-        SignalStore.backup.areBackupsEnabled = true
         SignalStore.backup.backupTier = MessageBackupTier.FREE
         SignalStore.uiHints.markHasEverEnabledRemoteBackups()
 
@@ -260,8 +259,7 @@ class MessageBackupsFlowViewModel(
         )
       )
 
-      Log.d(TAG, "Enabling backups and enqueueing InAppPaymentPurchaseTokenJob chain.")
-      SignalStore.backup.areBackupsEnabled = true
+      Log.d(TAG, "Enqueueing InAppPaymentPurchaseTokenJob chain.")
       SignalStore.uiHints.markHasEverEnabledRemoteBackups()
       InAppPaymentPurchaseTokenJob.createJobChain(inAppPayment).enqueue()
     }

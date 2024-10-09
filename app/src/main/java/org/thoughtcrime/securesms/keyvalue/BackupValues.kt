@@ -41,13 +41,13 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
     private const val KEY_ARCHIVE_UPLOAD_STATE = "backup.archiveUploadState"
 
-    /**
-     * Specifies whether remote backups are enabled on this device.
-     */
-    private const val KEY_BACKUPS_ENABLED = "backup.enabled"
+    private const val KEY_BACKUP_UPLOADED = "backup.backupUploaded"
 
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
   }
+
+  override fun onFirstEverAppLaunch() = Unit
+  override fun getKeysToIncludeInBackup(): List<String> = emptyList()
 
   private var cachedCdnCredentialsTimestamp: Long by longValue(KEY_CDN_READ_CREDENTIALS_TIMESTAMP, 0L)
   private var cachedCdnCredentials: String? by stringValue(KEY_CDN_READ_CREDENTIALS, null)
@@ -55,9 +55,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var cachedBackupMediaDirectory: String? by stringValue(KEY_CDN_BACKUP_MEDIA_DIRECTORY, null)
   var usedBackupMediaSpace: Long by longValue(KEY_BACKUP_USED_MEDIA_SPACE, 0L)
   var lastBackupProtoSize: Long by longValue(KEY_BACKUP_LAST_PROTO_SIZE, 0L)
-
-  override fun onFirstEverAppLaunch() = Unit
-  override fun getKeysToIncludeInBackup(): List<String> = emptyList()
 
   var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
   var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false)
@@ -81,18 +78,25 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     @JvmName("backsUpMedia")
     get() = backupTier == MessageBackupTier.PAID
 
-  var areBackupsEnabled: Boolean
-    get() {
-      return getBoolean(KEY_BACKUPS_ENABLED, false)
-    }
-    set(value) {
-      store
-        .beginWrite()
-        .putBoolean(KEY_BACKUPS_ENABLED, value)
-        .putLong(KEY_NEXT_BACKUP_TIME, -1)
-        .putBoolean(KEY_BACKUPS_INITIALIZED, false)
-        .apply()
-    }
+  /** True if the user has backups enabled, otherwise false. */
+  val areBackupsEnabled: Boolean
+    get() = backupTier != null
+
+  /** True if we believe we have successfully uploaded a backup, otherwise false. */
+  var hasBackupBeenUploaded: Boolean by booleanValue(KEY_BACKUP_UPLOADED, false)
+
+  /**
+   * Call when the user disables backups. Clears/resets all relevant fields.
+   */
+  fun disableBackups() {
+    store
+      .beginWrite()
+      .putLong(KEY_NEXT_BACKUP_TIME, -1)
+      .putBoolean(KEY_BACKUPS_INITIALIZED, false)
+      .putBoolean(KEY_BACKUP_UPLOADED, false)
+      .apply()
+    backupTier = null
+  }
 
   var backupsInitialized: Boolean by booleanValue(KEY_BACKUPS_INITIALIZED, false)
 

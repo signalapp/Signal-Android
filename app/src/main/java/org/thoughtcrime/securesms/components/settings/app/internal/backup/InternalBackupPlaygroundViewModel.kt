@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupMetadata
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveResult
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
@@ -65,7 +66,8 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       canReadWriteBackupDirectory = SignalStore.settings.signalBackupDirectory?.let {
         val file = DocumentFile.fromTreeUri(AppDependencies.application, it)
         file != null && file.canWrite() && file.canRead()
-      } ?: false
+      } ?: false,
+      backupTier = SignalStore.backup.backupTier
     )
   )
   val state: State<ScreenState> = _state
@@ -215,6 +217,11 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
       restoreFromRemote()
     }
+  }
+
+  fun onBackupTierSelected(backupTier: MessageBackupTier?) {
+    SignalStore.backup.backupTier = backupTier
+    _state.value = _state.value.copy(backupTier = backupTier)
   }
 
   private fun restoreFromRemote() {
@@ -417,7 +424,8 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     val uploadState: BackupUploadState = BackupUploadState.NONE,
     val remoteBackupState: RemoteBackupState = RemoteBackupState.Unknown,
     val plaintext: Boolean,
-    val canReadWriteBackupDirectory: Boolean = false
+    val canReadWriteBackupDirectory: Boolean = false,
+    val backupTier: MessageBackupTier? = null
   )
 
   enum class BackupState(val inProgress: Boolean = false) {
