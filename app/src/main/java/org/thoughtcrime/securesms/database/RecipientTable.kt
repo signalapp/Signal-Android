@@ -2073,6 +2073,36 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .run()
   }
 
+  /**
+   * A follow up to [migrateWallpaperUri]. This clears out any remaining wallpapers using the old URI scheme, which implies
+   * that they were not migrated, which would only happen if they could not be read or were no longer found (the latter being
+   * more common, as this would happen after restoring a backup).
+   */
+  fun clearMissingFileWallpapersPostMigration(): Int {
+    return writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        WALLPAPER to null,
+        WALLPAPER_URI to null
+      )
+      .where("$WALLPAPER_URI LIKE ?", "%wallpaper%")
+      .run()
+  }
+
+  /**
+   * Our current backup system does not backup file wallpapers. So we should clear them post-restore to avoid any weird UI issues.
+   */
+  fun clearFileWallpapersPostBackupRestore() {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        WALLPAPER to null,
+        WALLPAPER_URI to null
+      )
+      .where("$WALLPAPER_URI NOT NULL")
+      .run()
+  }
+
   fun getPhoneNumberDiscoverability(id: RecipientId): PhoneNumberDiscoverableState? {
     return readableDatabase
       .select(PHONE_NUMBER_DISCOVERABLE)
