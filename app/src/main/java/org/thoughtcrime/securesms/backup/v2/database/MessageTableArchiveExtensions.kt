@@ -18,6 +18,12 @@ import java.util.concurrent.TimeUnit
 private const val COLUMN_BASE_TYPE = "base_type"
 
 fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, mediaBackupEnabled: Boolean): ChatItemArchiveExporter {
+  // We create a temporary index on date_received to drastically speed up perf here.
+  // Remember that we're working on a temporary snapshot of the database, so we can create an index and not worry about cleaning it up.
+
+  val dateReceivedIndex = "message_date_received"
+  writableDatabase.execSQL("CREATE INDEX $dateReceivedIndex ON ${MessageTable.TABLE_NAME} (${MessageTable.DATE_RECEIVED} DESC)")
+
   val cursor = readableDatabase
     .select(
       MessageTable.ID,
@@ -55,7 +61,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
       MessageTable.MESSAGE_EXTRAS,
       MessageTable.VIEW_ONCE
     )
-    .from(MessageTable.TABLE_NAME)
+    .from("${MessageTable.TABLE_NAME} INDEXED BY $dateReceivedIndex")
     .where(
       """
       (
