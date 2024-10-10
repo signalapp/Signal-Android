@@ -896,7 +896,7 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__create_backup">إنشاء نسخة احتياطية</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">You\'re all set. Start your backup now.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">قد يستغرق هذا وقتًا طويلًا حسب حجم النسخة الاحتياطية الخاصة بك. يُمكنك استخدام هاتفك بشكل اعتيادي أثناء إجراء عملية النسخ الاحتياطي.</string>
     <!-- Action button to dismiss sheet and back up later -->
@@ -2363,7 +2363,7 @@
     <string name="RedPhone_busy">مشغول</string>
     <string name="RedPhone_recipient_unavailable">المتلقي غير متاح</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
-    <string name="RedPhone_network_failed">فشل في الشبكة! يُرجى التحقّق من اتصالك بالانترنت ثم حاول مرة أُخرى.</string>
+    <string name="RedPhone_network_failed">فشل في الشبكة! يُرجى التحقُّق من اتصالك بالانترنت ثم حاول مرّة أُخرى.</string>
     <string name="RedPhone_number_not_registered">الرقم غير مُسجَّل!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">الرقم المطلوب لا يدعم مكالمات صوتية آمنة!</string>
     <string name="RedPhone_got_it">تم</string>
@@ -2464,17 +2464,17 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">قام شخص ما بإزالتك من المكالمة.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">امنح الوصول إلى الكاميرا والميكروفون الخاصين بك</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">اسمح بالوصول إلى الكاميرا والميكروفون على جهازك</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">امنح الوصول إلى ميكروفونك</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">اسمح بالوصول إلى الميكروفون على جهازك</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">اسمح بالوصول إلى الكاميرا</string>
+    <string name="WebRtcCallActivity__allow_access_camera">اسمح بالوصول إلى الكاميرا على جهازك</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_camera_microphone">لبدء مكالمة أو الانضمام إليها، اسمح لسيجنال بالوصول إلى الكاميرا والميكروفون.</string>
+    <string name="WebRtcCallActivity__to_start_call_camera_microphone">لبدء مكالمة أو الانضمام إليها، اسمح لسيجنال بالوصول إلى الكاميرا والميكروفون على جهازك.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__to_start_call_microphone">لبدء مكالمة أو الانضمام إليها، اسمح لسيجنال بالوصول إلى الميكروفون.</string>
+    <string name="WebRtcCallActivity__to_start_call_microphone">لبدء مكالمة أو الانضمام إليها، اسمح لسيجنال بالوصول إلى الميكروفون على جهازك.</string>
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
-    <string name="WebRtcCallActivity__to_enable_video_allow_camera">لتفعيل الفيديو، امنح سيجنال صلاحية الوصول إلى الكاميرا.</string>
+    <string name="WebRtcCallActivity__to_enable_video_allow_camera">لتفعيل الفيديو، اسمح لسيجنال بالوصول إلى الكاميرا على جهازك.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__signal_needs_microphone_start_call">يَحتاج سيجنال إلى أذونات الميكروفون لبدء مكالمة أو الانضمام إليها.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
@@ -2498,9 +2498,9 @@
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">رابط مكالمة سيجنال</string>
     <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy disabled-->
-    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">سيرى أي شخص انضم إلى هذه المكالمة عبر الرابط اسمك وصورتك ورقم هاتفك.</string>
+    <string name="WebRtcCallView__anyone_who_joins_pnp_disabled">سيرى أي شخص ينضم إلى هذه المكالمة عبر الرابط اسمك وصورتك ورقم هاتفك.</string>
     <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
-    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">سَيرى أي شخص انضم إلى هذه المكالمة عبر الرابط اسمك وصورتك.</string>
+    <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">سَيرى أي شخص ينضم إلى هذه المكالمة عبر الرابط اسمك وصورتك.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">في انتظار السماح بالانضمام…</string>
 
@@ -2597,13 +2597,13 @@
     <!-- A description of a clickable image representing a raised hand -->
     <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">رفع اليد</string>
     <!-- A dialog prompt to confirm you want to lower your hand -->
-    <string name="CallOverflowPopupWindow__lower_your_hand">تريد خفض يدك؟</string>
+    <string name="CallOverflowPopupWindow__lower_your_hand">هل تريد خفض يدك؟</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_hand">اخفض</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">إلغاء</string>
     <!-- A button to take you to a list of participants with raised hands -->
-    <string name="CallOverflowPopupWindow__view">إظهار</string>
+    <string name="CallOverflowPopupWindow__view">عرض</string>
 
 
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
@@ -2661,26 +2661,26 @@
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">جهة اتصال سيجنال</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
-    <string name="AboutSheet__verified">متحقق منه</string>
+    <string name="AboutSheet__verified">تمَّ التحقُّق</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">لا توجد رسائل مباشرة مع %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
-    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s موجود في جهات اتصال هاتفك</string>
+    <string name="AboutSheet__s_is_in_your_system_contacts">%1$s موجود في جهات الاتصال على هاتفك</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">لا توجد مجموعات مُشتركة بينكم</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">لا توجد مجموعات مُشترَكة بينكم.</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">مراجعة الطلبات بعناية</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
     <plurals name="AboutSheet__d_groups_in">
         <item quantity="zero">%1$d مجموعة مشتركة</item>
-        <item quantity="one">%1$dمجموعة مشتركة</item>
-        <item quantity="two">%1$d مجموعات مشتركة</item>
-        <item quantity="few">%1$d مجموعات مشتركة</item>
-        <item quantity="many">%1$d مجموعة مشتركة</item>
-        <item quantity="other">%1$d مجموعة مشتركة</item>
+        <item quantity="one">%1$d مجموعة مشتركة</item>
+        <item quantity="two">%1$d مجموعتان مشتركتان</item>
+        <item quantity="few">%1$d مجموعاتٍ مشتركة</item>
+        <item quantity="many">%1$d مجموعةً مشتركة</item>
+        <item quantity="other">%1$d مجموعةٍ مشتركة</item>
     </plurals>
     <!-- Text displayed in title for external recipients -->
-    <string name="AboutSheet__about">حوْل</string>
+    <string name="AboutSheet__about">معلومات عامة</string>
     <!-- Text displayed in title for you -->
     <string name="AboutSheet__you">أنت</string>
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
@@ -2696,25 +2696,25 @@
         <item quantity="other">في هذه المكالمة (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_ring">
-        <item quantity="zero">سيرنّ سيجنال على (%1$d)</item>
-        <item quantity="one">سيرنّ سيجنال على (%1$d)</item>
-        <item quantity="two">سيرنّ سيجنال على (%1$d)</item>
-        <item quantity="few">سيرنّ سيجنال على (%1$d)</item>
-        <item quantity="many">سيرنّ سيجنال على (%1$d)</item>
-        <item quantity="other">سيرنّ سيجنال على (%1$d)</item>
+        <item quantity="zero">سيتصل سيجنال بـ (%1$d)</item>
+        <item quantity="one">سيتصل سيجنال بـ (%1$d)</item>
+        <item quantity="two">سيتصل سيجنال بـ (%1$d)</item>
+        <item quantity="few">سيتصل سيجنال بـ (%1$d)</item>
+        <item quantity="many">سيتصل سيجنال بـ (%1$d)</item>
+        <item quantity="other">سيتصل سيجنال بـ (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_notify">
-        <item quantity="zero">سينبّه سيجنال (%1$d)</item>
-        <item quantity="one">سينبّه سيجنال (%1$d)</item>
-        <item quantity="two">سينبّه سيجنال (%1$d)</item>
-        <item quantity="few">سينبّه سيجنال (%1$d)</item>
-        <item quantity="many">سينبّه سيجنال (%1$d)</item>
+        <item quantity="zero">سيُنبِّه سيجنال (%1$d)</item>
+        <item quantity="one">سيُنبِّه سيجنال (%1$d)</item>
+        <item quantity="two">سيُنبِّه سيجنال (%1$d)</item>
+        <item quantity="few">سيُنبِّه سيجنال (%1$d)</item>
+        <item quantity="many">سيُنبِّه سيجنال (%1$d)</item>
         <item quantity="other">سينبّه سيجنال (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__raised_hands">
         <item quantity="zero">أيادي مرفوعة (%1$d)</item>
-        <item quantity="one">أيادي مرفوعة (%1$d)</item>
-        <item quantity="two">أيادي مرفوعة (%1$d)</item>
+        <item quantity="one">يد مرفوعة (%1$d)</item>
+        <item quantity="two">يدان مرفوعتان (%1$d)</item>
         <item quantity="few">أيادي مرفوعة (%1$d)</item>
         <item quantity="many">أيادي مرفوعة (%1$d)</item>
         <item quantity="other">أيادي مرفوعة (%1$d)</item>
@@ -2754,9 +2754,9 @@
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
     <string name="RegistrationActivity_phone_number_verification_dialog_title">هل رقم الهاتف أدناه صحيح؟</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">التحقق الإضافي ضروري</string>
+    <string name="RegistrationActivity_additional_verification_required">التحقُّق الإضافي مطلوب</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">سيُرسل رمز تحقق إلى هذا الرقم. قد يتم تطبيق أسعار الناقل.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">سيُرسَل رمز التحقُّق إلى هذا الرقم. قد يتم تطبيق رسوم من قِبَل شركة الاتصالات المُستخدَمة.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ستأتيك مكالمة هاتفية للتحقُّق من هذا الرقم.</string>
     <string name="RegistrationActivity_edit_number">تعديل الرقم</string>
     <string name="RegistrationActivity_missing_google_play_services">خدمات Google Play غير موجودة</string>
@@ -2769,12 +2769,12 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج سيجنال إلى أذونات جهات الاتصال للمساعدة في التواصل مع أصدقائك. يتم تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في سيجنال، وهذا يعني أنها مُشفَّرة من الطرفين وغير مرئية على الإطلاق لخدمة سيجنال.</string>
     <string name="RegistrationActivity_rate_limited_to_service">قمتَ بمحاولات كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقاً %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">قمتَ بمحاولاتٍ كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. يُرجى التأكُّد من الاتصال بالشبكة والمحاولة مرّة أخرى.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">تعذّر إرسال رمز التحقق عبر رسالة SMS. حاول الحصول على رمزك عبر مكالمة نصية بدلاً من ذلك.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">تعذَّر إرسال رمز التحقُّق عبر رسالة نصية. حاوِل الحصول على رمزك عبر مكالمة صوتية بدلًا من ذلك.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">تعذّر طلب رمز تحقق. يُرجى التحقّق من اتصالك بالانترنت ثم حاول مرة أُخرى.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">تعذَّر طلب رمز التحقُّق. يُرجى التحقُّق من اتصالك بالانترنت ثم حاول مرّة أُخرى.</string>
     <string name="RegistrationActivity_non_standard_number_format">تنسيق العدد غير قياسي</string>
     <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">‫يظهر أن العدد الذي قمتَ بإدخاله (%1$s) ليس بتنسيق قياسي.\n\nهل تقصد هو %2$s؟</string>
@@ -2782,30 +2782,30 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">طُلِبَت مكالمة</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">تم طلب رسالة قصيرة</string>
+    <string name="RegistrationActivity_sms_requested">تمَّ طلب رسالة قصيرة</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">تم طلب رقم التحقق</string>
+    <string name="RegistrationActivity_code_requested">تمَّ طلب رمز التحقُّق</string>
     <plurals name="RegistrationActivity_debug_log_hint">
-        <item quantity="zero">أنت الآن على بعد %1$d خطوة من إرسال سجل التصحيح.</item>
-        <item quantity="one">أنت الآن على بعد %1$d خطوة من إرسال سجل التصحيح.</item>
-        <item quantity="two">أنت الآن على بعد %1$d خطوة من إرسال سجل التصحيح.</item>
-        <item quantity="few">أنت الآن على بعد %1$d خطوات من إرسال سجل التصحيح.</item>
-        <item quantity="many">أنت الآن على بعد %1$d خطوة من إرسال سجل التصحيح.</item>
-        <item quantity="other">أنت الآن على بعد %1$d خطوة من إرسال سجل التصحيح.</item>
+        <item quantity="zero">أنت الآن على بعد %1$d خطوة من الإبلاغ عن مشكلة.</item>
+        <item quantity="one">أنت الآن على بعد %1$d خطوة من الإبلاغ عن مشكلة.</item>
+        <item quantity="two">أنت الآن على بعد %1$d خطوتان من الإبلاغ عن مشكلة.</item>
+        <item quantity="few">أنت الآن على بعد %1$d خطواتٍ من الإبلاغ عن مشكلة.</item>
+        <item quantity="many">أنت الآن على بعد %1$d خطوةً من الإبلاغ عن مشكلة.</item>
+        <item quantity="other">أنت الآن على بعد %1$d خطوةٍ من الإبلاغ عن مشكلة.</item>
     </plurals>
-    <string name="RegistrationActivity_we_need_to_verify_that_youre_human">علينا التحقق من أنك إنسان.</string>
+    <string name="RegistrationActivity_we_need_to_verify_that_youre_human">علينا التحقُّق من أنك إنسان.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">مكالمة صوتية</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">إلغاء</string>
     <string name="RegistrationActivity_next">التالي</string>
-    <string name="RegistrationActivity_continue">استمرار</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حافظ على خصوصيتك اينما كنت. كن على طبيعتك في كل رسالة.</string>
+    <string name="RegistrationActivity_continue">متابعة</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حافِظ على خصوصيتك أينما كنت. كُن على طبيعتك في كل رسالة.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">رقم الهاتف</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">أدخل رقم هاتفك للبدء.</string>
-    <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخل الرمز الذي أرسلناه إلى%1$s</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">أدخِل رقم هاتفك للبدء.</string>
+    <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخِل الكود الذي أرسلناه إلى %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">رقم الهاتف</string>
     <string name="RegistrationActivity_country_code_description">رمز البلد</string>
@@ -2815,25 +2815,25 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">هل تواجه مشكلة في التسجيل؟</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• تأكد من أن هاتفك يتوفر على إشارة خلوية للتوصل بالرسالة القصيرة أو الاتصال\n • قم بتأكيد إمكانية استقبالك اتصال على الرقم\n • تحقق من أنك أدخلت رقم هاتفك بشكل صحيح.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• تأكَّد من أن هاتفك يستقبل إشارة خلوية لتتمكَّن من استلام رسالة قصيرة أو مكالمة\n • قُم بتأكيد إمكانية استقبالك اتصال على الرقم\n • تحقَّق من أنك أدخلتَ رقم هاتفك بشكلٍ صحيح.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">للمزيد من المعلومات، يُرجى زيارة %1$s أو %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">خطوات المُساعفة هذه</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">هذه الخطوات لاستكشاف الأخطاء وإصلاحها</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">الاتصال بالدعم</string>
 
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">هل تريد تشغيل قفل التسجيل ؟</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">هل تريد إيقاف قفل التسجيل ؟</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">إدا نسيت الرقم التعريفي الشخصي وقمت بالتسجيل مرة أخرى في سيجنال، سوف يُقفَل حسابك لسبعة أيام.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">شغّل</string>
-    <string name="RegistrationLockV2Dialog_turn_off">أطفىء</string>
+    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">هل تريد تشغيل قفل التسجيل؟</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">هل تريد إيقاف قفل التسجيل؟</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">إدا نسيت رقم التعريف الشخصي (PIN) وقمت بالتسجيل مرّة أخرى في سيجنال، سوف يُقفَل حسابك لسبعة أيام.</string>
+    <string name="RegistrationLockV2Dialog_turn_on">تشغيل</string>
+    <string name="RegistrationLockV2Dialog_turn_off">إيقاف</string>
 
     <!-- RevealableMessageView -->
-    <string name="RevealableMessageView_view_photo">مشاهدة الصورة</string>
-    <string name="RevealableMessageView_view_video">مشاهدة الفيديو</string>
-    <string name="RevealableMessageView_viewed">تمت المشاهدة</string>
+    <string name="RevealableMessageView_view_photo">عرض الصورة</string>
+    <string name="RevealableMessageView_view_video">عرض الفيديو</string>
+    <string name="RevealableMessageView_viewed">تمَّت المشاهدة</string>
     <string name="RevealableMessageView_media">الوسائط</string>
 
     <!-- ReviewBannerView -->
@@ -2854,7 +2854,7 @@
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
-    <string name="SharedContactDetailsActivity_add_to_contacts">الإضافة إلى جهات الاتصال</string>
+    <string name="SharedContactDetailsActivity_add_to_contacts">إضافة إلى جهات الاتصال</string>
     <string name="SharedContactDetailsActivity_invite_to_signal">الدعوة إلى سيجنال</string>
     <string name="SharedContactDetailsActivity_signal_message">‫رسالة سيجنال</string>
     <string name="SharedContactDetailsActivity_signal_call">مكالمة سيجنال</string>
@@ -2868,38 +2868,38 @@
     <string name="SignalBottomActionBar_more">المزيد</string>
 
     <!-- SignalPinReminders -->
-    <string name="SignalPinReminders_well_remind_you_again_later">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى لاحقا.</string>
-    <string name="SignalPinReminders_well_remind_you_again_tomorrow">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى غدا.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى خلال بضع أيام.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_week">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى خلال أسبوع.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى بضع أسابيع.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_month">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى خلال شهر.</string>
+    <string name="SignalPinReminders_well_remind_you_again_later">تمَّ التحقُّق بنجاح من رقم التعريف الشخصي (PIN). سوف نُذكِّرك بإدخاله مرّة أخرى لاحقًا.</string>
+    <string name="SignalPinReminders_well_remind_you_again_tomorrow">تمَّ التحقُّق بنجاح من رقم التعريف الشخصي (PIN). سوف نُذكِّرك بإدخاله مرّة أخرى لاحقًا.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">تمَّ التحقُّق بنجاح من رقم التعريف الشخصي. سوف نُذكِّرك بإدخاله مرّة أخرى خلال بضعة أيام.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_week">تمَّ التحقُّق بنجاح من رقم التعريف الشخصي (PIN). سوف نُذكِّرك بإدخاله مرّة أخرى خلال أسبوع.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">تمَّ التحقُّق بنجاح من رقم التعريف الشخصي (PIN). سوف نُذكِّرك بإدخاله مرّة أخرى خلال بضعة أسابيع.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_month">تمَّ التحقُّق بنجاح من رقم التعريف الشخصي (PIN). سوف نُذكِّرك بإدخاله مرّة أخرى خلال شهر.</string>
 
     <!-- Slide -->
     <string name="Slide_image">صورة</string>
-    <string name="Slide_sticker">ملصق</string>
+    <string name="Slide_sticker">مُلصَق</string>
     <string name="Slide_audio">صوت</string>
     <string name="Slide_video">فيديو</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_secure_session_reset">لقد قمت بإعادة ضبط المحادثة الآمنة.</string>
+    <string name="SmsMessageRecord_secure_session_reset">قمتَ بإعادة ضبط المحادثة الآمنة.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s أعاد ضبط المحادثة الآمنة.</string>
-    <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
+    <string name="SmsMessageRecord_duplicate_message">رسالة مُكرَّرة.</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">ملصقات</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">الملصقات المثبتة</string>
+    <string name="StickerManagementAdapter_installed_stickers">الملصقات المُثبَّتة</string>
     <string name="StickerManagementAdapter_stickers_you_received">الملصقات المستلمة</string>
-    <string name="StickerManagementAdapter_signal_artist_series">سلسلة فنانو سيجنال</string>
-    <string name="StickerManagementAdapter_no_stickers_installed">لم يتم تثبيت أية ملصقات</string>
+    <string name="StickerManagementAdapter_signal_artist_series">سلسلة فناني سيجنال</string>
+    <string name="StickerManagementAdapter_no_stickers_installed">لا يوجد ملصقات مُثبَّتة</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">ستظهر هنا الملصقات القادمة من الرسائل الواردة</string>
     <string name="StickerManagementAdapter_untitled">بدون عنوان</string>
-    <string name="StickerManagementAdapter_unknown">مجهول</string>
+    <string name="StickerManagementAdapter_unknown">غير معروف</string>
 
     <!-- StickerPackPreviewActivity -->
-    <string name="StickerPackPreviewActivity_untitled">بدون عنوان</string>
+    <string name="StickerPackPreviewActivity_untitled">غير معروف</string>
     <string name="StickerPackPreviewActivity_unknown">مجهول</string>
     <string name="StickerPackPreviewActivity_install">تثبيت</string>
     <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
@@ -2908,7 +2908,7 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">فشل في تحميل مجموعة الملصقات</string>
 
     <!-- SubmitDebugLogActivity -->
-    <string name="SubmitDebugLogActivity_edit">عدّل</string>
+    <string name="SubmitDebugLogActivity_edit">تعديل</string>
     <string name="SubmitDebugLogActivity_done">تم</string>
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">حفظ</string>
@@ -7859,15 +7859,15 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">النسخ الاحتياطي للوسائط غير مُشغل</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Your backups subscription expired</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
-    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="zero">أُلغي اشتراك النسخ الاحتياطي لوسائط سيجنال الخاص بك لأننا لم نتمكّن من معالجة عملية الدفع الخاصة بك. أمامك %1$d يومًا لتنزيل أي وسائط مخزنة في النسخة الاحتياطية. بعد %1$d يوم، سَيتم حذف الوسائط الموجودة في النسخة الاحتياطية.</item>
-        <item quantity="one">أُلغي اشتراك النسخ الاحتياطي لوسائط سيجنال الخاص بك لأننا لم نتمكّن من معالجة عملية الدفع الخاصة بك. أمامك %1$d يوم لتنزيل أي وسائط مُخزنة في النسخة الاحتياطية. بعد %1$d يوم، سَيتم حذف الوسائط الموجودة في النسخة الاحتياطية.</item>
-        <item quantity="two">أُلغي اشتراك النسخ الاحتياطي لوسائط سيجنال الخاص بك لأننا لم نتمكن من معالجة عملية الدفع الخاصة بك. أمامك %1$d يومان لتنزيل أي وسائط مخزنة في النسخة الاحتياطية. بعد %1$d يومين، سيتم حذف الوسائط الموجودة في النسخة الاحتياطية.</item>
-        <item quantity="few">أُلغي اشتراك النسخ الاحتياطي لوسائط سيجنال الخاص بك لأننا لم نتمكن من معالجة عملية الدفع الخاصة بك. أمامك %1$d أيام لتنزيل أي وسائط مخزنة في النسخة الاحتياطية. بعد %1$d أيام، سيتم حذف الوسائط الموجودة في النسخة الاحتياطية.</item>
-        <item quantity="many">أُلغي اشتراك النسخ الاحتياطي لوسائط سيجنال الخاص بك لأننا لم نتمكن من معالجة عملية الدفع الخاصة بك. أمامك %1$d يومًا لتنزيل أي وسائط مخزنة في النسخة الاحتياطية. بعد %1$d يومًا، سيتم حذف الوسائط الموجودة في النسخة الاحتياطية.</item>
-        <item quantity="other">أُلغي اشتراك النسخ الاحتياطي لوسائط سيجنال الخاص بك لأننا لم نتمكن من معالجة عملية الدفع الخاصة بك. أمامك %1$d يوم لتنزيل أي وسائط مخزنة في النسخة الاحتياطية. بعد %1$d يوم، سيتم حذف الوسائط الموجودة في النسخة الاحتياطية.</item>
+    <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
+        <item quantity="zero">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="one">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d day, the media in your backup will be deleted.</item>
+        <item quantity="two">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="few">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="many">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="other">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">يُمكنك دفع ثمن النسخ الاحتياطية مرة أخرى في أي وقت لمواصلة نسخ جميع وسائطك الاحتياطية. </string>
@@ -7889,9 +7889,9 @@
         <item quantity="other">إذا اخترت \"تخطي\" فسيتم حذف الوسائط في النسخ الاحتياطي الخاص بك في %1$d يوم.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">لقد تعذرت معالجة عملية دفع النَسخ الاحتياطي</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Your backups subscription failed to renew</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">نواجه مشكلة في تحصيل عملية دفع النَسخ الاحتياطي الشهرية. يُرجى التأكد من أن طريقة قيامك بالدفوعات حديثة. إن لم تكن كذلك، يُرجى تحديثها في Google Pay. سيُحاول سيجنال معالجة عملية الدفع مرة أخرى خلال بضعة أيام.</string>
+    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Check to make sure your payment method is up to date. Tap Manage subscription and under Payment methods tap Update.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">تعذّر إكمال النسخ الاحتياطي</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7900,12 +7900,16 @@
     <string name="BackupAlertBottomSheet__learn_more">معرفة المزيد</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">تخطّي</string>
+    <!-- Primary action button to manage subscription in Google Play -->
+    <string name="BackupAlertBottomSheet__manage_subscription">Manage subscription</string>
+    <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_media_now">تنزيل الوسائط الآن</string>
-    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">التنزيل لاحقًا</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">لا تُنزّل الوسائط</string>
+    <!-- Secondary generic action button to dismiss sheet without performing an action -->
+    <string name="BackupAlertBottomSheet__not_now">Not now</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">سيتم حذف الوسائط</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7986,8 +7990,23 @@
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">يُرجى الترقية لتفعيل هذه الخاصية</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">لا يمكن استخدام ميزة تحسين التخزين إلا مع المستوى المدفوع لنسخ سيجنال الاحتياطية. يُرجى ترقية خطة نسخك الاحتياطية لتفعيل هذه الميزة.</string>
-    <!-- Primary action to launch upgrade flow -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">ارتق بالتطبيق الآن</string>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
+
+    <!-- UpgradeToStartMediaBackupSheet -->
+    <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">This media is no longer available</string>
+    <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
+    <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
+        <item quantity="zero">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
+        <item quantity="one">Your current Signal backup plan includes your most recent %1$d day of media. To start backing up all your media, upgrade now.</item>
+        <item quantity="two">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
+        <item quantity="few">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
+        <item quantity="many">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
+        <item quantity="other">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
+    </plurals>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">عملية الحذف تتم في تزامن عبر جميع أجهزتك الآن</string>

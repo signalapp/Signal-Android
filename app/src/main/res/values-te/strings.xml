@@ -816,7 +816,7 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__create_backup">ప్రత్యామ్నాయ సృష్టించు</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">You\'re all set. Start your backup now.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">మీ బ్యాకప్ పరిమాణంపై ఆధారపడి, దీనికి ఎక్కువ సమయం పట్టవచ్చు. బ్యాకప్ జరుగుతున్నప్పుడు మీరు మీ ఫోన్‌ను ఎప్పటిలానే మామూలుగా ఉపయోగించవచ్చు.</string>
     <!-- Action button to dismiss sheet and back up later -->
@@ -7235,11 +7235,11 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">మీడియా బ్యాకప్‌లు ఆఫ్‌లో ఉన్నాయి</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Your backups subscription expired</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
-    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="one">మేము మీ చెల్లింపును ప్రాసెస్ చేయలేకపోయాము కాబట్టి మీ Signal మీడియా బ్యాకప్ ప్లాన్ రద్దు అయ్యింది. మీ బ్యాకప్‌లో నిల్వ చేయబడిన ఏదైనా మీడియాను డౌన్‌లోడ్ చేసుకోవడానికి మీకు %1$d రోజు ఉంది. %1$d రోజు తర్వాత, మీ బ్యాకప్‌లో ఉన్న మీడియా తొలగించబడుతుంది.</item>
-        <item quantity="other">మేము మీ చెల్లింపును ప్రాసెస్ చేయలేకపోయాము కాబట్టి మీ Signal మీడియా బ్యాకప్ ప్లాన్ రద్దు అయ్యింది. మీ బ్యాకప్‌లో నిల్వ చేయబడిన ఏదైనా మీడియాను డౌన్‌లోడ్ చేసుకోవడానికి మీకు %1$d రోజులు ఉన్నాయి. %1$d రోజుల తర్వాత, మీ బ్యాకప్‌లో ఉన్న మీడియా తొలగించబడుతుంది.</item>
+    <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
+        <item quantity="one">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d day, the media in your backup will be deleted.</item>
+        <item quantity="other">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">మీ మీడియాను అంతా బ్యాకప్ చేయడం కొనసాగించడానికి మీరు ఏ సమయంలోనైనా బ్యాకప్‌ల కోసం మళ్ళీ చెల్లించడం ప్రారంభించవచ్చు. </string>
@@ -7257,9 +7257,9 @@
         <item quantity="other">ఒక వేళ మీరు \"స్కిప్\" ను ఎంచుకుంటే మీ బ్యాకప్లో ఉన్న మీడియా %1$d రోజులలో తొలగించబడుతుంది.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">బ్యాకప్ చెల్లింపును ప్రాసెస్ చేయడం సాధ్యపడదు</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Your backups subscription failed to renew</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">మీ పునరావృత నెలవారీ బ్యాకప్ చెల్లింపును సేకరించడంలో మాకు ఇబ్బంది ఉంది. మీ చెల్లింపు విధానం అప్ టూ డేట్ ఉందో లేదో నిర్ధారించుకోండి. ఒకవేళ అది లేకపోతే, దానిని Google Pay లో అప్‌డేట్ చేయండి. Signal కొన్ని రోజుల్లో మళ్లీ చెల్లింపును ప్రాసెస్ చేయడానికి ప్రయత్నిస్తుంది.</string>
+    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Check to make sure your payment method is up to date. Tap Manage subscription and under Payment methods tap Update.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">బ్యాకప్‌ను పూర్తి చేయలేకపోయాము</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7268,12 +7268,16 @@
     <string name="BackupAlertBottomSheet__learn_more">మరింత తెలుసుకోండి</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">దాటవేయి</string>
+    <!-- Primary action button to manage subscription in Google Play -->
+    <string name="BackupAlertBottomSheet__manage_subscription">Manage subscription</string>
+    <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_media_now">ఇప్పుడే మీడియాను డౌన్‌లోడ్ చేయండి</string>
-    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">తర్వాత డౌన్‌లోడ్ చేసుకోండి</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">మీడియాను డౌన్‌లోడ్ చేయవద్దు</string>
+    <!-- Secondary generic action button to dismiss sheet without performing an action -->
+    <string name="BackupAlertBottomSheet__not_now">Not now</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">మీడియా తొలగించబడుతుంది</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7354,8 +7358,19 @@
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">ఈ విలక్షణత ప్రారంభించడానికి అప్‌గ్రేడ్ చేయండి</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">నిల్వ అనుకూలత Signal బ్యాకప్‌ల చెల్లింపు శ్రేణితో మాత్రమే ఉపయోగించడానికి సాధ్యం అవుతుంది. ఈ విలక్షణత ఉపయోగించడం ప్రారంభించడానికి మీ బ్యాకప్ ప్లాన్ అప్‌గ్రేడ్ చేయండి.</string>
-    <!-- Primary action to launch upgrade flow -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">ఇప్పుడే అప్‌గ్రేడ్ చేయండి</string>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
+
+    <!-- UpgradeToStartMediaBackupSheet -->
+    <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">This media is no longer available</string>
+    <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
+    <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
+        <item quantity="one">Your current Signal backup plan includes your most recent %1$d day of media. To start backing up all your media, upgrade now.</item>
+        <item quantity="other">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
+    </plurals>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">తొలగించడం ఇప్పుడు మీ అన్ని పరికరాలలో సింక్ చేయబడింది</string>

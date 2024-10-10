@@ -796,7 +796,7 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__create_backup">បង្កើតការបម្រុងទុក</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">You\'re all set. Start your backup now.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">វាអាចចំណាយពេលយូរ អាស្រ័យលើទំហំនៃការបម្រុងទុករបស់អ្នក។ អ្នកអាចប្រើទូរសព្ទរបស់អ្នកបានធម្មតា ពេលកំពុងធ្វើការបម្រុងទុក។</string>
     <!-- Action button to dismiss sheet and back up later -->
@@ -7079,10 +7079,10 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">ការបម្រុងទុកមេឌៀត្រូវបានបិទ</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Your backups subscription expired</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
-    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="other">គម្រោងបម្រុងទុកមេឌៀ Signal របស់អ្នកត្រូវបានបោះបង់ ដោយសារយើងមិនអាចដំណើរការការបង់ប្រាក់របស់អ្នកបានទេ។ អ្នកមានរយៈពេល %1$d ថ្ងៃដើម្បីទាញយកមេឌៀណាមួយដែលបានរក្សាទុកនៅក្នុងការបម្រុងទុករបស់អ្នក។ បន្ទាប់ពីរយៈពេល %1$d ថ្ងៃ មេឌៀនៅក្នុងការបម្រុងទុករបស់អ្នកនឹងត្រូវបានលុបចោល។</item>
+    <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
+        <item quantity="other">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">អ្នកអាចចាប់ផ្តើមបង់ប្រាក់សម្រាប់ការបម្រុងទុកម្តងទៀតនៅពេលណាក៏បាន ដើម្បីបន្តការបម្រុងទុកមេឌៀរបស់អ្នកទាំងអស់។ </string>
@@ -7099,9 +7099,9 @@
         <item quantity="other">ប្រសិនបើអ្នកជ្រើសរើស \"រំលង\" នោះមេឌៀនៅក្នុងការបម្រុងទុករបស់អ្នកនឹងត្រូវបានលុបក្នុងរយៈពេល %1$d ថ្ងៃ។</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">មិនអាចដំណើរការការបង់ប្រាក់លើការបម្រុងទុកបានទេ</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Your backups subscription failed to renew</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">យើងកំពុងមានបញ្ហាក្នុងការប្រមូលការបង់ប្រាក់ឡើងវិញប្រចាំខែសម្រាប់ការបម្រុងទុករបស់អ្នក។ ត្រូវប្រាកដថាវិធីបង់ប្រាក់របស់អ្នកជាវិធីបង់ប្រាក់ទាន់សម័យ។ ប្រសិនបើវាមិនទាន់សម័យទេ សូមធ្វើបច្ចុប្បន្នភាពវានៅក្នុង Google Pay។ Signal នឹងព្យាយាមដំណើរការការបង់ប្រាក់ម្តងទៀតក្នុងរយៈពេលពីរបីថ្ងៃទៀត។</string>
+    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Check to make sure your payment method is up to date. Tap Manage subscription and under Payment methods tap Update.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">មិនអាចបញ្ចប់ការបម្រុងទុកបានទេ</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7110,12 +7110,16 @@
     <string name="BackupAlertBottomSheet__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">រំលង</string>
+    <!-- Primary action button to manage subscription in Google Play -->
+    <string name="BackupAlertBottomSheet__manage_subscription">Manage subscription</string>
+    <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_media_now">ទាញយកមេឌៀឥឡូវនេះ</string>
-    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">ទាញយកនៅពេលក្រោយ</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">កុំទាញយកមេឌៀ</string>
+    <!-- Secondary generic action button to dismiss sheet without performing an action -->
+    <string name="BackupAlertBottomSheet__not_now">Not now</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">មេឌៀនឹងត្រូវបានលុបចោល</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7196,8 +7200,18 @@
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">ដំឡើងកម្រិតដើម្បីបើកមុខងារនេះ</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">ការបង្កើនប្រសិទ្ធភាពទំហំផ្ទុកអាចប្រើបានតែជាមួយការបម្រុងទុក Signal នៅក្នុងកម្រិតបង់ប្រាក់ប៉ុណ្ណោះ។ ដំឡើងកម្រិតនៃគម្រោងបម្រុងទុករបស់អ្នក ដើម្បីចាប់ផ្តើមប្រើមុខងារនេះ។</string>
-    <!-- Primary action to launch upgrade flow -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">ដំឡើងកម្រិតឥឡូវនេះ</string>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
+
+    <!-- UpgradeToStartMediaBackupSheet -->
+    <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">This media is no longer available</string>
+    <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
+    <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
+        <item quantity="other">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
+    </plurals>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">ឥឡូវនេះការលុបត្រូវបានធ្វើសមកាលកម្មនៅលើឧបករណ៍របស់អ្នកទាំងអស់</string>
