@@ -90,6 +90,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
   private lateinit var exportFileLauncher: ActivityResultLauncher<Intent>
   private lateinit var importFileLauncher: ActivityResultLauncher<Intent>
   private lateinit var validateFileLauncher: ActivityResultLauncher<Intent>
+  private lateinit var savePlaintextcopyLauncher: ActivityResultLauncher<Intent>
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -121,6 +122,15 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
           requireContext().contentResolver.getLength(uri)?.let { length ->
             viewModel.validate(length) { requireContext().contentResolver.openInputStream(uri)!! }
           }
+        } ?: Toast.makeText(requireContext(), "No URI selected", Toast.LENGTH_SHORT).show()
+      }
+    }
+
+    savePlaintextcopyLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+      if (result.resultCode == RESULT_OK) {
+        result.data?.data?.let { uri ->
+          viewModel.fetchRemoteBackupAndWritePlaintext(requireContext().contentResolver.openOutputStream(uri))
+          Toast.makeText(requireContext(), "Check logs for progress.", Toast.LENGTH_SHORT).show()
         } ?: Toast.makeText(requireContext(), "No URI selected", Toast.LENGTH_SHORT).show()
       }
     }
@@ -188,7 +198,17 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               .show()
           },
           onBackupTierSelected = { tier -> viewModel.onBackupTierSelected(tier) },
-          onHaltAllJobs = { viewModel.haltAllJobs() }
+          onHaltAllJobs = { viewModel.haltAllJobs() },
+          onSavePlaintextCopy = {
+            val intent = Intent().apply {
+              action = Intent.ACTION_CREATE_DOCUMENT
+              type = "application/octet-stream"
+              addCategory(Intent.CATEGORY_OPENABLE)
+              putExtra(Intent.EXTRA_TITLE, "backup-plaintext-${System.currentTimeMillis()}.binproto")
+            }
+
+            savePlaintextcopyLauncher.launch(intent)
+          }
         )
       },
       mediaContent = { snackbarHostState ->
@@ -283,7 +303,8 @@ fun Screen(
   onTriggerBackupJobClicked: () -> Unit = {},
   onWipeDataAndRestoreClicked: () -> Unit = {},
   onBackupTierSelected: (MessageBackupTier?) -> Unit = {},
-  onHaltAllJobs: () -> Unit = {}
+  onHaltAllJobs: () -> Unit = {},
+  onSavePlaintextCopy: () -> Unit = {}
 ) {
   val scrollState = rememberScrollState()
   val options = remember {
@@ -335,6 +356,12 @@ fun Screen(
         onClick = onHaltAllJobs
       ) {
         Text("Halt all backup jobs")
+      }
+
+      Buttons.LargeTonal(
+        onClick = onSavePlaintextCopy
+      ) {
+        Text("Save plaintext copy of remote backup")
       }
 
       Dividers.Default()

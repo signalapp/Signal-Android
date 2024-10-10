@@ -19,6 +19,10 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.copyTo
+import org.signal.core.util.logging.Log
+import org.signal.core.util.readNBytesOrThrow
+import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -30,6 +34,7 @@ import org.thoughtcrime.securesms.backup.v2.local.ArchiveResult
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver.FailureCause
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
+import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader.Companion.MAC_SIZE
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -45,15 +50,27 @@ import org.thoughtcrime.securesms.jobs.RestoreLocalAttachmentJob
 import org.thoughtcrime.securesms.jobs.SyncArchivedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
+import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.backup.MediaName
 import java.io.ByteArrayInputStream
+import java.io.IOException
 import java.io.InputStream
+import java.io.OutputStream
 import java.util.UUID
+import java.util.zip.GZIPInputStream
+import javax.crypto.Cipher
+import javax.crypto.CipherInputStream
+import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.SecretKeySpec
 import kotlin.time.Duration.Companion.seconds
 
 class InternalBackupPlaygroundViewModel : ViewModel() {
+
+  companion object {
+    private val TAG = Log.tag(InternalBackupPlaygroundViewModel::class)
+  }
 
   var backupData: ByteArray? = null
 
@@ -519,5 +536,40 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     AppDependencies.jobManager.cancelAllInQueue("ArchiveAttachmentJobs_0")
     AppDependencies.jobManager.cancelAllInQueue("ArchiveAttachmentJobs_1")
     AppDependencies.jobManager.cancelAllInQueue("ArchiveThumbnailUploadJob")
+  }
+
+  fun fetchRemoteBackupAndWritePlaintext(outputStream: OutputStream?) {
+    check(outputStream != null)
+
+    SignalExecutors.BOUNDED_IO.execute {
+      Log.d(TAG, "Downloading file...")
+      val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
+      if (!BackupRepository.downloadBackupFile(tempBackupFile)) {
+        Log.e(TAG, "Failed to download backup file")
+        throw IOException()
+      }
+
+      val encryptedStream = tempBackupFile.inputStream()
+      val iv = encryptedStream.readNBytesOrThrow(16)
+      val backupKey = SignalStore.svr.orCreateMasterKey.deriveBackupKey()
+      val keyMaterial = backupKey.deriveBackupSecrets(Recipient.self().aci.get())
+      val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding").apply {
+        init(Cipher.DECRYPT_MODE, SecretKeySpec(keyMaterial.cipherKey, "AES"), IvParameterSpec(iv))
+      }
+
+      val plaintextStream = GZIPInputStream(
+        CipherInputStream(
+          LimitedInputStream(
+            wrapped = encryptedStream,
+            maxBytes = tempBackupFile.length() - MAC_SIZE
+          ),
+          cipher
+        )
+      )
+
+      Log.d(TAG, "Copying...")
+      plaintextStream.copyTo(outputStream)
+      Log.d(TAG, "Done!")
+    }
   }
 }
