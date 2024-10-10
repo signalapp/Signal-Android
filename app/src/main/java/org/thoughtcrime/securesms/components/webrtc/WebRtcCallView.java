@@ -491,7 +491,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
     if (state.getGroupCallState().isNotIdle()) {
       if (state.getCallState() == WebRtcViewModel.State.CALL_PRE_JOIN) {
-        if (callParticipantsViewState.isStartedFromCallLink()) {
+        if (state.isCallLink()) {
           TextView warningTextView = callLinkWarningCard.get().findViewById(R.id.call_screen_call_link_warning_textview);
           warningTextView.setText(SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled() ? R.string.WebRtcCallView__anyone_who_joins_pnp_enabled : R.string.WebRtcCallView__anyone_who_joins_pnp_disabled);
           callLinkWarningCard.setVisibility(View.VISIBLE);
