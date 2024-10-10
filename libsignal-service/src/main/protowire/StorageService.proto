@@ -219,6 +219,8 @@ message AccountRecord {
            string                 username                        = 33;
            bool                   hasCompletedUsernameOnboarding  = 34;
            UsernameLink           usernameLink                    = 35;
+           bytes                  backupsSubscriberId             = 36;
+           string                 backupsSubscriberCurrencyCode   = 37;
 }
 
 message StoryDistributionListRecord {

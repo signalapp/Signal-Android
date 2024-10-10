@@ -157,6 +157,7 @@ public final class StorageSyncHelper {
                                                                  .setUniversalExpireTimer(SignalStore.settings().getUniversalExpireTimer())
                                                                  .setDefaultReactions(SignalStore.emoji().getReactions())
                                                                  .setSubscriber(StorageSyncModels.localToRemoteSubscriber(InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)))
+                                                                 .setBackupsSubscriber(StorageSyncModels.localToRemoteSubscriber(InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)))
                                                                  .setDisplayBadgesOnProfile(SignalStore.inAppPayments().getDisplayBadgesOnProfile())
                                                                  .setSubscriptionManuallyCancelled(InAppPaymentsRepository.isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION))
                                                                  .setKeepMutedChatsArchived(SignalStore.settings().shouldKeepMutedChatsArchived())
