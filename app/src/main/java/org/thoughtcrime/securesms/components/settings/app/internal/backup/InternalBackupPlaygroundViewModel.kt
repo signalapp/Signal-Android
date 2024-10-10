@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
+import org.thoughtcrime.securesms.jobs.BackfillDigestJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
@@ -513,5 +514,12 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
   fun <T> MutableState<T>.set(update: T.() -> T) {
     this.value = this.value.update()
+  }
+
+  fun haltAllJobs() {
+    AppDependencies.jobManager.cancelAllInQueue(BackfillDigestJob.QUEUE)
+    AppDependencies.jobManager.cancelAllInQueue("ArchiveAttachmentJobs_0")
+    AppDependencies.jobManager.cancelAllInQueue("ArchiveAttachmentJobs_1")
+    AppDependencies.jobManager.cancelAllInQueue("ArchiveThumbnailUploadJob")
   }
 }

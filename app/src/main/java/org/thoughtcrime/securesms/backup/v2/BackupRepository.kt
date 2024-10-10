@@ -219,7 +219,7 @@ object BackupRepository {
     }
   }
 
-  fun export(outputStream: OutputStream, append: (ByteArray) -> Unit, plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis()) {
+  fun export(outputStream: OutputStream, append: (ByteArray) -> Unit, plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis(), cancellationSignal: () -> Boolean = { false }) {
     val writer: BackupExportWriter = if (plaintext) {
       PlainTextBackupWriter(outputStream)
     } else {
@@ -231,7 +231,7 @@ object BackupRepository {
       )
     }
 
-    export(currentTime = currentTime, isLocal = false, writer = writer)
+    export(currentTime = currentTime, isLocal = false, writer = writer, cancellationSignal = cancellationSignal)
   }
 
   /**
@@ -248,6 +248,7 @@ object BackupRepository {
     isLocal: Boolean,
     writer: BackupExportWriter,
     progressEmitter: ExportProgressListener? = null,
+    cancellationSignal: () -> Boolean = { false },
     exportExtras: ((SignalDatabase) -> Unit)? = null
   ) {
     val eventTimer = EventTimer()
@@ -260,6 +261,8 @@ object BackupRepository {
 
       val exportState = ExportState(backupTime = currentTime, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
 
+      var frameCount = 0L
+
       writer.use {
         writer.write(
           BackupInfo(
@@ -267,6 +270,7 @@ object BackupRepository {
             backupTimeMs = exportState.backupTime
           )
         )
+        frameCount++
 
         // We're using a snapshot, so the transaction is more for perf than correctness
         dbSnapshot.rawWritableDatabase.withinTransaction {
@@ -274,43 +278,64 @@ object BackupRepository {
           AccountDataArchiveProcessor.export(dbSnapshot, signalStoreSnapshot) {
             writer.write(it)
             eventTimer.emit("account")
+            frameCount++
+          }
+          if (cancellationSignal()) {
+            Log.w(TAG, "[import] Cancelled! Stopping")
+            return@export
           }
 
           progressEmitter?.onRecipient()
           RecipientArchiveProcessor.export(dbSnapshot, signalStoreSnapshot, exportState) {
             writer.write(it)
             eventTimer.emit("recipient")
+            frameCount++
+          }
+          if (cancellationSignal()) {
+            Log.w(TAG, "[import] Cancelled! Stopping")
+            return@export
           }
 
           progressEmitter?.onThread()
           ChatArchiveProcessor.export(dbSnapshot, exportState) { frame ->
             writer.write(frame)
             eventTimer.emit("thread")
+            frameCount++
+          }
+          if (cancellationSignal()) {
+            return@export
           }
 
           progressEmitter?.onCall()
           AdHocCallArchiveProcessor.export(dbSnapshot) { frame ->
             writer.write(frame)
             eventTimer.emit("call")
+            frameCount++
           }
 
           progressEmitter?.onSticker()
           StickerArchiveProcessor.export(dbSnapshot) { frame ->
             writer.write(frame)
             eventTimer.emit("sticker-pack")
+            frameCount++
           }
 
           progressEmitter?.onMessage()
-          ChatItemArchiveProcessor.export(dbSnapshot, exportState) { frame ->
+          ChatItemArchiveProcessor.export(dbSnapshot, exportState, cancellationSignal) { frame ->
             writer.write(frame)
             eventTimer.emit("message")
+            frameCount++
+
+            if (frameCount % 1000 == 0L) {
+              Log.d(TAG, "[export] Exported $frameCount frames so far.")
+            }
           }
         }
       }
 
       exportExtras?.invoke(dbSnapshot)
 
-      Log.d(TAG, "export() ${eventTimer.stop().summary}")
+      Log.d(TAG, "[export] totalFrames: $frameCount | ${eventTimer.stop().summary}")
     } finally {
       deleteDatabaseSnapshot(mainDbName)
       deleteDatabaseSnapshot(keyValueDbName)

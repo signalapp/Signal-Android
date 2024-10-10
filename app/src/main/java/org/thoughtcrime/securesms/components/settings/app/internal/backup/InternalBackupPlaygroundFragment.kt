@@ -29,6 +29,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
@@ -56,6 +57,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -185,7 +187,8 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               .setPositiveButton("Wipe and restore") { _, _ -> viewModel.wipeAllDataAndRestoreFromRemote() }
               .show()
           },
-          onBackupTierSelected = { tier -> viewModel.onBackupTierSelected(tier) }
+          onBackupTierSelected = { tier -> viewModel.onBackupTierSelected(tier) },
+          onHaltAllJobs = { viewModel.haltAllJobs() }
         )
       },
       mediaContent = { snackbarHostState ->
@@ -279,7 +282,8 @@ fun Screen(
   onCheckRemoteBackupStateClicked: () -> Unit = {},
   onTriggerBackupJobClicked: () -> Unit = {},
   onWipeDataAndRestoreClicked: () -> Unit = {},
-  onBackupTierSelected: (MessageBackupTier?) -> Unit = {}
+  onBackupTierSelected: (MessageBackupTier?) -> Unit = {},
+  onHaltAllJobs: () -> Unit = {}
 ) {
   val scrollState = rememberScrollState()
   val options = remember {
@@ -320,10 +324,17 @@ fun Screen(
         Text("Enqueue remote backup")
       }
 
-      Buttons.LargeTonal(
-        onClick = onWipeDataAndRestoreClicked
+      Button(
+        onClick = onWipeDataAndRestoreClicked,
+        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFC33C00))
       ) {
         Text("Wipe data and restore")
+      }
+
+      Buttons.LargeTonal(
+        onClick = onHaltAllJobs
+      ) {
+        Text("Halt all backup jobs")
       }
 
       Dividers.Default()

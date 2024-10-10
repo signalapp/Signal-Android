@@ -148,6 +148,14 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
   }
 
   override fun onFailure() {
+    if (this.isCanceled) {
+      Log.w(TAG, "[$attachmentId] Job was canceled, updating archive transfer state to ${AttachmentTable.ArchiveTransferState.COPY_PENDING}.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.COPY_PENDING)
+    } else {
+      Log.w(TAG, "[$attachmentId] Job failed, updating archive transfer state to ${AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE}.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+    }
+
     ArchiveUploadProgress.onAttachmentFinished()
   }
 

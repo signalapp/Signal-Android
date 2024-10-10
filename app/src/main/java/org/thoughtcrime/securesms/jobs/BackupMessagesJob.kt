@@ -77,8 +77,12 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
     val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
 
     val outputStream = FileOutputStream(tempBackupFile)
-    BackupRepository.export(outputStream = outputStream, append = { tempBackupFile.appendBytes(it) }, plaintext = false)
+    BackupRepository.export(outputStream = outputStream, append = { tempBackupFile.appendBytes(it) }, plaintext = false, cancellationSignal = { this.isCanceled })
     stopwatch.split("export")
+
+    if (isCanceled) {
+      return Result.failure()
+    }
 
     ArchiveUploadProgress.onMessageBackupCreated()
 
