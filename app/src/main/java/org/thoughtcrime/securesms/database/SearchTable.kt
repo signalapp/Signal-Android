@@ -180,10 +180,11 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         writableDatabase.withinTransaction { db ->
           db.execSQL(
             """
-            INSERT INTO $FTS_TABLE_NAME ($ID, $BODY)
+            INSERT INTO $FTS_TABLE_NAME ($ID, $BODY, $THREAD_ID)
                 SELECT
                   ${MessageTable.ID},
-                  ${MessageTable.BODY}
+                  ${MessageTable.BODY},
+                  ${MessageTable.THREAD_ID}
                 FROM
                   ${MessageTable.TABLE_NAME}
                 WHERE

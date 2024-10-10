@@ -14,7 +14,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.Base64
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readFully
 import org.signal.libsignal.messagebackup.ComparableBackup
@@ -22,12 +21,9 @@ import org.signal.libsignal.messagebackup.MessageBackup
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
-import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.KeyValueDatabase
-import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.ByteArrayInputStream
@@ -263,21 +259,7 @@ class ArchiveImportExportTests {
   }
 
   private fun resetAllData() {
-    // Need to delete these first to prevent foreign key crash
-    SignalDatabase.rawDatabase.execSQL("DELETE FROM ${DistributionListTables.ListTable.TABLE_NAME}")
-    SignalDatabase.rawDatabase.execSQL("DELETE FROM ${DistributionListTables.MembershipTable.TABLE_NAME}")
-
-    SqlUtil.getAllTables(SignalDatabase.rawDatabase)
-      .filterNot { it.contains("sqlite") || it.contains("fts") || it.startsWith("emoji_search_") } // If we delete these we'll corrupt the DB
-      .sorted()
-      .forEach { table ->
-        SignalDatabase.rawDatabase.execSQL("DELETE FROM $table")
-        SqlUtil.resetAutoIncrementValue(SignalDatabase.rawDatabase, table)
-      }
-
-    AppDependencies.recipientCache.clear()
-    AppDependencies.recipientCache.clearSelf()
-    RecipientId.clearCache()
+    // All the main database stuff is reset as a normal part of importing
 
     KeyValueDatabase.getInstance(AppDependencies.application).clear()
     SignalStore.resetCache()

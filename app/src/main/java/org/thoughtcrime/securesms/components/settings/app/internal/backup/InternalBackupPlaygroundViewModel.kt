@@ -536,6 +536,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     AppDependencies.jobManager.cancelAllInQueue("ArchiveAttachmentJobs_0")
     AppDependencies.jobManager.cancelAllInQueue("ArchiveAttachmentJobs_1")
     AppDependencies.jobManager.cancelAllInQueue("ArchiveThumbnailUploadJob")
+    AppDependencies.jobManager.cancelAllInQueue("BackupRestoreJob")
   }
 
   fun fetchRemoteBackupAndWritePlaintext(outputStream: OutputStream?) {

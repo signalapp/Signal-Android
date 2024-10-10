@@ -55,16 +55,12 @@ class NameCollisionTables(
 
     private val PROFILE_CHANGE_TIMEOUT = 1.days
 
-    fun createTables(db: SQLiteDatabase) {
-      db.execSQL(NameCollisionTable.CREATE_TABLE)
-      db.execSQL(NameCollisionMembershipTable.CREATE_TABLE)
-    }
+    val CREATE_TABLE = arrayOf(
+      NameCollisionTable.CREATE_TABLE,
+      NameCollisionMembershipTable.CREATE_TABLE
+    )
 
-    fun createIndexes(db: SQLiteDatabase) {
-      NameCollisionMembershipTable.CREATE_INDEXES.forEach {
-        db.execSQL(it)
-      }
-    }
+    val CREATE_INDEXES = NameCollisionMembershipTable.CREATE_INDEXES
   }
 
   /**

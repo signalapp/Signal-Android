@@ -5,8 +5,6 @@
 
 package org.thoughtcrime.securesms.backup.v2.database
 
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.deleteAll
 import org.signal.core.util.select
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.backup.v2.exporters.DistributionListArchiveExporter
@@ -38,11 +36,4 @@ fun DistributionListTables.getMembersForBackup(id: DistributionListId): List<Rec
     DistributionListPrivacyMode.ONLY_WITH -> rawMembers
     DistributionListPrivacyMode.ALL_EXCEPT -> rawMembers
   }
-}
-
-fun DistributionListTables.clearAllDataForBackupRestore() {
-  writableDatabase.deleteAll(DistributionListTables.ListTable.TABLE_NAME)
-  writableDatabase.deleteAll(DistributionListTables.MembershipTable.TABLE_NAME)
-  SqlUtil.resetAutoIncrementValue(writableDatabase, DistributionListTables.ListTable.TABLE_NAME)
-  SqlUtil.resetAutoIncrementValue(writableDatabase, DistributionListTables.MembershipTable.TABLE_NAME)
 }

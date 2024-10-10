@@ -11,9 +11,15 @@ import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.concurrent.LimitedWorker
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.forceForeignKeyConstraintsEnabled
 import org.signal.core.util.fullWalCheckpoint
+import org.signal.core.util.getAllIndexDefinitions
+import org.signal.core.util.getAllTableDefinitions
+import org.signal.core.util.getAllTriggerDefinitions
+import org.signal.core.util.getForeignKeyViolations
 import org.signal.core.util.logging.Log
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.withinTransaction
@@ -27,8 +33,6 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackup
-import org.thoughtcrime.securesms.backup.v2.database.clearAllDataForBackupRestore
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.AdHocCallArchiveProcessor
@@ -49,6 +53,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.KeyValueDatabase
+import org.thoughtcrime.securesms.database.SearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -375,11 +380,11 @@ object BackupRepository {
     }
 
     return frameReader.use { reader ->
-      import(backupKey, reader, selfData)
+      import(backupKey, reader, selfData, cancellationSignal = { false })
     }
   }
 
-  fun import(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData, plaintext: Boolean = false): ImportResult {
+  fun import(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData, plaintext: Boolean = false, cancellationSignal: () -> Boolean = { false }): ImportResult {
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
 
     val frameReader = if (plaintext) {
@@ -394,79 +399,139 @@ object BackupRepository {
     }
 
     return frameReader.use { reader ->
-      import(backupKey, reader, selfData)
+      import(backupKey, reader, selfData, cancellationSignal)
     }
   }
 
   private fun import(
     backupKey: BackupKey,
     frameReader: BackupImportReader,
-    selfData: SelfData
+    selfData: SelfData,
+    cancellationSignal: () -> Boolean
   ): ImportResult {
+    val stopwatch = Stopwatch("import")
     val eventTimer = EventTimer()
 
     val header = frameReader.getHeader()
     if (header == null) {
-      Log.e(TAG, "Backup is missing header!")
+      Log.e(TAG, "[import] Backup is missing header!")
       return ImportResult.Failure
     } else if (header.version > VERSION) {
-      Log.e(TAG, "Backup version is newer than we understand: ${header.version}")
+      Log.e(TAG, "[import] Backup version is newer than we understand: ${header.version}")
       return ImportResult.Failure
     }
 
-    SignalDatabase.rawDatabase.withinTransaction {
-      SignalDatabase.recipients.clearAllDataForBackupRestore()
-      SignalDatabase.distributionLists.clearAllDataForBackupRestore()
-      SignalDatabase.threads.clearAllDataForBackupRestore()
-      SignalDatabase.messages.clearAllDataForBackupRestore()
-      SignalDatabase.attachments.clearAllDataForBackupRestore()
-      SignalDatabase.stickers.clearAllDataForBackupRestore()
-      SignalDatabase.reactions.clearAllDataForBackupRestore()
-      SignalDatabase.inAppPayments.clearAllDataForBackupRestore()
-      SignalDatabase.chatColors.clearAllDataForBackupRestore()
-      SignalDatabase.calls.clearAllDataForBackup()
-      SignalDatabase.callLinks.clearAllDataForBackup()
+    try {
+      // Removing all the data from the various tables is *very* expensive (i.e. can take *several* minutes) if we don't do some pre-work.
+      // SQLite optimizes deletes if there's no foreign keys, triggers, or WHERE clause, so that's the environment we're gonna create.
+
+      Log.d(TAG, "[import] Disabling foreign keys...")
+      SignalDatabase.rawDatabase.forceForeignKeyConstraintsEnabled(false)
+
+      Log.d(TAG, "[import] Acquiring transaction...")
+      SignalDatabase.rawDatabase.beginTransaction()
+
+      Log.d(TAG, "[import] Inside transaction.")
+      stopwatch.split("get-transaction")
+
+      Log.d(TAG, "[import] --- Dropping all indices ---")
+      val indexMetadata = SignalDatabase.rawDatabase.getAllIndexDefinitions()
+      for (index in indexMetadata) {
+        Log.d(TAG, "[import] Dropping index ${index.name}...")
+        SignalDatabase.rawDatabase.execSQL("DROP INDEX IF EXISTS ${index.name}")
+      }
+      stopwatch.split("drop-indices")
+
+      if (cancellationSignal()) {
+        return ImportResult.Failure
+      }
+
+      Log.d(TAG, "[import] --- Dropping all triggers ---")
+      val triggerMetadata = SignalDatabase.rawDatabase.getAllTriggerDefinitions()
+      for (trigger in triggerMetadata) {
+        Log.d(TAG, "[import] Dropping trigger ${trigger.name}...")
+        SignalDatabase.rawDatabase.execSQL("DROP TRIGGER IF EXISTS ${trigger.name}")
+      }
+      stopwatch.split("drop-triggers")
+
+      if (cancellationSignal()) {
+        return ImportResult.Failure
+      }
+
+      Log.d(TAG, "[import] --- Recreating all tables ---")
+      val tableMetadata = SignalDatabase.rawDatabase.getAllTableDefinitions().filter { !it.name.startsWith(SearchTable.FTS_TABLE_NAME + "_") }
+      for (table in tableMetadata) {
+        Log.d(TAG, "[import] Dropping table ${table.name}...")
+        SignalDatabase.rawDatabase.execSQL("DROP TABLE IF EXISTS ${table.name}")
+
+        Log.d(TAG, "[import] Creating table ${table.name}...")
+        SignalDatabase.rawDatabase.execSQL(table.statement)
+      }
+
+      RecipientId.clearCache()
+      AppDependencies.recipientCache.clear()
+      AppDependencies.recipientCache.clearSelf()
+
+      stopwatch.split("drop-data")
+
+      if (cancellationSignal()) {
+        return ImportResult.Failure
+      }
 
       // Add back self after clearing data
       val selfId: RecipientId = SignalDatabase.recipients.getAndPossiblyMerge(selfData.aci, selfData.pni, selfData.e164, pniVerified = true, changeSelf = true)
       SignalDatabase.recipients.setProfileKey(selfId, selfData.profileKey)
       SignalDatabase.recipients.setProfileSharing(selfId, true)
 
-      eventTimer.emit("setup")
       val importState = ImportState(backupKey)
       val chatItemInserter: ChatItemArchiveImporter = ChatItemArchiveProcessor.beginImport(importState)
 
+      Log.d(TAG, "[import] Beginning to read frames.")
       val totalLength = frameReader.getStreamLength()
+      var frameCount = 0
       for (frame in frameReader) {
         when {
           frame.account != null -> {
             AccountDataArchiveProcessor.import(frame.account, selfId, importState)
             eventTimer.emit("account")
+            frameCount++
           }
 
           frame.recipient != null -> {
             RecipientArchiveProcessor.import(frame.recipient, importState)
             eventTimer.emit("recipient")
+            frameCount++
           }
 
           frame.chat != null -> {
             ChatArchiveProcessor.import(frame.chat, importState)
             eventTimer.emit("chat")
+            frameCount++
           }
 
           frame.adHocCall != null -> {
             AdHocCallArchiveProcessor.import(frame.adHocCall, importState)
             eventTimer.emit("call")
+            frameCount++
           }
 
           frame.stickerPack != null -> {
             StickerArchiveProcessor.import(frame.stickerPack)
             eventTimer.emit("sticker-pack")
+            frameCount++
           }
 
           frame.chatItem != null -> {
             chatItemInserter.import(frame.chatItem)
             eventTimer.emit("chatItem")
+            frameCount++
+
+            if (frameCount % 1000 == 0) {
+              if (cancellationSignal()) {
+                return ImportResult.Failure
+              }
+              Log.d(TAG, "Imported $frameCount frames so far.")
+            }
             // TODO if there's stuff in the stream after chatItems, we need to flush the inserter before going to the next phase
           }
 
@@ -479,15 +544,49 @@ object BackupRepository {
         eventTimer.emit("chatItem")
       }
 
+      stopwatch.split("frames")
+
+      Log.d(TAG, "[import] Rebuilding FTS index...")
+      SignalDatabase.messageSearch.rebuildIndex()
+
+      Log.d(TAG, "[import] --- Recreating indices ---")
+      for (index in indexMetadata) {
+        Log.d(TAG, "[import] Creating index ${index.name}...")
+        SignalDatabase.rawDatabase.execSQL(index.statement)
+      }
+      stopwatch.split("recreate-indices")
+
+      Log.d(TAG, "[import] --- Recreating triggers ---")
+      for (trigger in triggerMetadata) {
+        Log.d(TAG, "[import] Creating trigger ${trigger.name}...")
+        SignalDatabase.rawDatabase.execSQL(trigger.statement)
+      }
+      stopwatch.split("recreate-triggers")
+
+      Log.d(TAG, "[import] Updating threads...")
       importState.chatIdToLocalThreadId.values.forEach {
         SignalDatabase.threads.update(it, unarchive = false, allowDeletion = false)
       }
+      stopwatch.split("thread-updates")
+
+      val foreignKeyViolations = SignalDatabase.rawDatabase.getForeignKeyViolations()
+      if (foreignKeyViolations.isNotEmpty()) {
+        throw IllegalStateException("Foreign key check failed! Violations: $foreignKeyViolations")
+      }
+      stopwatch.split("fk-check")
+
+      SignalDatabase.rawDatabase.setTransactionSuccessful()
+    } finally {
+      if (SignalDatabase.rawDatabase.inTransaction()) {
+        SignalDatabase.rawDatabase.endTransaction()
+      }
+
+      Log.d(TAG, "[import] Re-enabling foreign keys...")
+      SignalDatabase.rawDatabase.forceForeignKeyConstraintsEnabled(true)
     }
 
     AppDependencies.recipientCache.clear()
     AppDependencies.recipientCache.warmUp()
-
-    Log.d(TAG, "import() ${eventTimer.stop().summary}")
 
     val groupJobs = SignalDatabase.groups.getGroups().use { groups ->
       groups
@@ -502,6 +601,10 @@ object BackupRepository {
         .toList()
     }
     AppDependencies.jobManager.addAll(groupJobs)
+    stopwatch.split("group-jobs")
+
+    Log.d(TAG, "[import] Finished! ${eventTimer.stop().summary}")
+    stopwatch.stop(TAG)
 
     return ImportResult.Success(backupTime = header.backupTimeMs)
   }
@@ -1091,6 +1194,10 @@ class ImportState(val backupKey: BackupKey) {
   val chatIdToLocalRecipientId: MutableMap<Long, RecipientId> = hashMapOf()
   val chatIdToBackupRecipientId: MutableMap<Long, Long> = hashMapOf()
   val remoteToLocalColorId: MutableMap<Long, Long> = hashMapOf()
+
+  fun requireLocalRecipientId(remoteId: Long): RecipientId {
+    return remoteToLocalRecipientId[remoteId] ?: throw IllegalArgumentException("There is no local recipientId for remote recipientId $remoteId!")
+  }
 }
 
 class BackupMetadata(

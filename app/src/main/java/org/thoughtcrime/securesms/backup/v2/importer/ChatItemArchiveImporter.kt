@@ -875,7 +875,7 @@ class ChatItemArchiveImporter(
 
   private fun ContentValues.addQuote(quote: Quote) {
     this.put(MessageTable.QUOTE_ID, quote.targetSentTimestamp ?: MessageTable.QUOTE_TARGET_MISSING_ID)
-    this.put(MessageTable.QUOTE_AUTHOR, importState.remoteToLocalRecipientId[quote.authorId]!!.serialize())
+    this.put(MessageTable.QUOTE_AUTHOR, importState.requireLocalRecipientId(quote.authorId).serialize())
     this.put(MessageTable.QUOTE_BODY, quote.text?.body)
     this.put(MessageTable.QUOTE_TYPE, quote.type.toLocalQuoteType())
     this.put(MessageTable.QUOTE_BODY_RANGES, quote.text?.bodyRanges?.toLocalBodyRanges()?.encode())

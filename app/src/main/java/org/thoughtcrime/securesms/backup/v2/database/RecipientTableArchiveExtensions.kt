@@ -7,8 +7,6 @@ package org.thoughtcrime.securesms.backup.v2.database
 
 import android.content.ContentValues
 import org.signal.core.util.Base64
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.deleteAll
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.select
@@ -20,7 +18,6 @@ import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -121,15 +118,6 @@ fun RecipientTable.restoreSelfFromBackup(accountData: AccountData, selfId: Recip
     .values(values)
     .where("${RecipientTable.ID} = ?", selfId)
     .run()
-}
-
-fun RecipientTable.clearAllDataForBackupRestore() {
-  writableDatabase.deleteAll(RecipientTable.TABLE_NAME)
-  SqlUtil.resetAutoIncrementValue(writableDatabase, RecipientTable.TABLE_NAME)
-
-  RecipientId.clearCache()
-  AppDependencies.recipientCache.clear()
-  AppDependencies.recipientCache.clearSelf()
 }
 
 fun RecipientTable.restoreReleaseNotes(): RecipientId {

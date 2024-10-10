@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.backup.v2.database
 
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.select
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
@@ -77,9 +76,4 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
 
 fun MessageTable.createChatItemInserter(importState: ImportState): ChatItemArchiveImporter {
   return ChatItemArchiveImporter(writableDatabase, importState, 500)
-}
-
-fun MessageTable.clearAllDataForBackupRestore() {
-  writableDatabase.delete(MessageTable.TABLE_NAME, null, null)
-  SqlUtil.resetAutoIncrementValue(writableDatabase, MessageTable.TABLE_NAME)
 }

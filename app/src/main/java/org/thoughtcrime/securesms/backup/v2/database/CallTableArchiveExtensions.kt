@@ -5,8 +5,6 @@
 
 package org.thoughtcrime.securesms.backup.v2.database
 
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.deleteAll
 import org.signal.core.util.select
 import org.thoughtcrime.securesms.database.CallTable
 
@@ -18,9 +16,4 @@ fun CallTable.getAdhocCallsForBackup(): AdHocCallArchiveExporter {
       .where("${CallTable.TYPE} = ?", CallTable.Type.serialize(CallTable.Type.AD_HOC_CALL))
       .run()
   )
-}
-
-fun CallTable.clearAllDataForBackup() {
-  writableDatabase.deleteAll(CallTable.TABLE_NAME)
-  SqlUtil.resetAutoIncrementValue(writableDatabase, CallTable.TABLE_NAME)
 }

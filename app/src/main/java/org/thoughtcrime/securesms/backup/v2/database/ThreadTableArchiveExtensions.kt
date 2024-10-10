@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.backup.v2.database
 
-import org.signal.core.util.SqlUtil
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatArchiveExporter
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -34,10 +33,4 @@ fun ThreadTable.getThreadsForBackup(db: SignalDatabase): ChatArchiveExporter {
   val cursor = readableDatabase.query(query)
 
   return ChatArchiveExporter(cursor, db)
-}
-
-fun ThreadTable.clearAllDataForBackupRestore() {
-  writableDatabase.delete(ThreadTable.TABLE_NAME, null, null)
-  SqlUtil.resetAutoIncrementValue(writableDatabase, ThreadTable.TABLE_NAME)
-  clearCache()
 }
