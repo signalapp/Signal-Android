@@ -10,6 +10,7 @@ import okio.ByteString.Companion.toByteString
 import org.json.JSONArray
 import org.json.JSONException
 import org.signal.core.util.Base64
+import org.signal.core.util.EventTimer
 import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfEmpty
@@ -87,7 +88,6 @@ import org.thoughtcrime.securesms.backup.v2.proto.BodyRange as BackupBodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
 
 private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
-private const val COLUMN_BASE_TYPE = "base_type"
 
 /**
  * An iterator for chat items with a clever performance twist: rather than do the extra queries one at a time (for reactions,
@@ -102,6 +102,8 @@ class ChatItemArchiveExporter(
   private val batchSize: Int,
   private val mediaArchiveEnabled: Boolean
 ) : Iterator<ChatItem?>, Closeable {
+
+  private val eventTimer = EventTimer()
 
   /**
    * A queue of already-parsed ChatItems. Processing in batches means that we read ahead in the cursor and put
@@ -120,7 +122,7 @@ class ChatItemArchiveExporter(
       return buffer.remove()
     }
 
-    val records: LinkedHashMap<Long, BackupMessageRecord> = linkedMapOf()
+    val records: LinkedHashMap<Long, BackupMessageRecord> = LinkedHashMap(batchSize)
 
     for (i in 0 until batchSize) {
       if (cursor.moveToNext()) {
@@ -130,14 +132,12 @@ class ChatItemArchiveExporter(
         break
       }
     }
+    eventTimer.emit("messages")
 
-    val reactionsById: Map<Long, List<ReactionRecord>> = db.reactionTable.getReactionsForMessages(records.keys).map { entry -> entry.key to entry.value.sortedBy { it.dateReceived } }.toMap()
-    val mentionsById: Map<Long, List<Mention>> = db.mentionTable.getMentionsForMessages(records.keys)
-    val attachmentsById: Map<Long, List<DatabaseAttachment>> = db.attachmentTable.getAttachmentsForMessages(records.keys)
-    val groupReceiptsById: Map<Long, List<GroupReceiptTable.GroupReceiptInfo>> = db.groupReceiptTable.getGroupReceiptInfoForMessages(records.keys)
+    val extraData = fetchExtraMessageData(db, records.keys)
 
     for ((id, record) in records) {
-      val builder = record.toBasicChatItemBuilder(groupReceiptsById[id])
+      val builder = record.toBasicChatItemBuilder(extraData.groupReceiptsById[id])
 
       when {
         record.remoteDeleted -> {
@@ -243,31 +243,31 @@ class ChatItemArchiveExporter(
         }
 
         !record.sharedContacts.isNullOrEmpty() -> {
-          builder.contactMessage = record.toRemoteContactMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = reactionsById[id], attachments = attachmentsById[id])
+          builder.contactMessage = record.toRemoteContactMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = extraData.reactionsById[id], attachments = extraData.attachmentsById[id])
         }
 
         record.viewOnce -> {
-          builder.viewOnceMessage = record.toRemoteViewOnceMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = reactionsById[id], attachments = attachmentsById[id])
+          builder.viewOnceMessage = record.toRemoteViewOnceMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = extraData.reactionsById[id], attachments = extraData.attachmentsById[id])
         }
 
         else -> {
-          if (record.body == null && !attachmentsById.containsKey(record.id)) {
+          if (record.body == null && !extraData.attachmentsById.containsKey(record.id)) {
             Log.w(TAG, "Record with ID ${record.id} missing a body and doesn't have attachments. Skipping.")
             continue
           }
 
-          val attachments = attachmentsById[record.id]
+          val attachments = extraData.attachmentsById[record.id]
           val sticker = attachments?.firstOrNull { dbAttachment -> dbAttachment.isSticker }
 
           if (sticker?.stickerLocator != null) {
-            builder.stickerMessage = sticker.toRemoteStickerMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactions = reactionsById[id])
+            builder.stickerMessage = sticker.toRemoteStickerMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactions = extraData.reactionsById[id])
           } else {
             builder.standardMessage = record.toRemoteStandardMessage(
               db = db,
               mediaArchiveEnabled = mediaArchiveEnabled,
-              reactionRecords = reactionsById[id],
-              mentions = mentionsById[id],
-              attachments = attachmentsById[record.id]
+              reactionRecords = extraData.reactionsById[id],
+              mentions = extraData.mentionsById[id],
+              attachments = extraData.attachmentsById[record.id]
             )
           }
         }
@@ -283,7 +283,7 @@ class ChatItemArchiveExporter(
         var previousEdits = revisionMap[record.latestRevisionId]
         if (previousEdits == null) {
           previousEdits = ArrayList()
-          revisionMap[record.latestRevisionId] = previousEdits
+          revisionMap[record.latestRevisionId!!] = previousEdits
         }
         previousEdits += builder.build()
       }
@@ -298,6 +298,52 @@ class ChatItemArchiveExporter(
 
   override fun close() {
     cursor.close()
+    Log.w(TAG, "[ChatItemArchiveExporter] ${eventTimer.stop().summary}")
+  }
+
+  private fun fetchExtraMessageData(db: SignalDatabase, messageIds: Set<Long>): ExtraMessageData {
+    // TODO [backup] This seems to be a wash
+//    val executor = SignalExecutors.BOUNDED
+//
+//    val mentionsFuture = executor.submitTyped {
+//      db.mentionTable.getMentionsForMessages(messageIds)
+//    }
+//
+//    val reactionsFuture = executor.submitTyped {
+//      db.reactionTable.getReactionsForMessages(messageIds)
+//    }
+//
+//    val attachmentsFuture = executor.submitTyped {
+//      db.attachmentTable.getAttachmentsForMessages(messageIds)
+//    }
+//
+//    val groupReceiptsFuture = executor.submitTyped {
+//      db.groupReceiptTable.getGroupReceiptInfoForMessages(messageIds)
+//    }
+//
+//    val mentionsResult = mentionsFuture.get()
+//    val reactionsResult = reactionsFuture.get()
+//    val attachmentsResult = attachmentsFuture.get()
+//    val groupReceiptsResult = groupReceiptsFuture.get()
+
+    val mentionsResult = db.mentionTable.getMentionsForMessages(messageIds)
+    eventTimer.emit("mentions")
+
+    val reactionsResult = db.reactionTable.getReactionsForMessages(messageIds)
+    eventTimer.emit("reactions")
+
+    val attachmentsResult = db.attachmentTable.getAttachmentsForMessages(messageIds)
+    eventTimer.emit("attachments")
+
+    val groupReceiptsResult = db.groupReceiptTable.getGroupReceiptInfoForMessages(messageIds)
+    eventTimer.emit("receipts")
+
+    return ExtraMessageData(
+      mentionsById = mentionsResult,
+      reactionsById = reactionsResult,
+      attachmentsById = attachmentsResult,
+      groupReceiptsById = groupReceiptsResult
+    )
   }
 }
 
@@ -334,11 +380,8 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(groupReceipts: List<Group
 }
 
 private fun BackupMessageRecord.toRemoteProfileChangeUpdate(): ChatUpdateMessage? {
-  val profileChangeDetails = if (this.messageExtras != null) {
-    this.messageExtras.profileChangeDetails
-  } else {
-    Base64.decodeOrNull(this.body)?.let { ProfileChangeDetails.ADAPTER.decode(it) }
-  }
+  val profileChangeDetails = this.messageExtras?.profileChangeDetails
+    ?: Base64.decodeOrNull(this.body)?.let { ProfileChangeDetails.ADAPTER.decode(it) }
 
   return if (profileChangeDetails?.profileNameChange != null) {
     ChatUpdateMessage(profileChange = ProfileChangeChatUpdate(previousName = profileChangeDetails.profileNameChange.previous, newName = profileChangeDetails.profileNameChange.newValue))
@@ -387,9 +430,9 @@ private fun BackupMessageRecord.toRemoteGroupUpdate(): ChatUpdateMessage? {
     )
   }
 
-  if (this.body != null) {
+  body?.let { body ->
     return try {
-      val decoded: ByteArray = Base64.decode(this.body)
+      val decoded: ByteArray = Base64.decode(body)
       val context = DecryptedGroupV2Context.ADAPTER.decode(decoded)
       ChatUpdateMessage(
         groupChange = GroupsV2UpdateMessageConverter.translateDecryptedChange(selfIds = SignalStore.account.getServiceIds(), context)
@@ -651,14 +694,13 @@ private fun Contact.PostalAddress.Type.toRemote(): ContactAttachment.PostalAddre
 }
 
 private fun BackupMessageRecord.toRemoteStandardMessage(db: SignalDatabase, mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, mentions: List<Mention>?, attachments: List<DatabaseAttachment>?): StandardMessage {
-  val text = if (body == null) {
-    null
-  } else {
+  val text = body?.let {
     Text(
-      body = this.body,
+      body = it,
       bodyRanges = (this.bodyRanges?.toRemoteBodyRanges() ?: emptyList()) + (mentions?.toRemoteBodyRanges(db) ?: emptyList())
     )
   }
+
   val linkPreviews = this.toRemoteLinkPreviews(attachments)
   val linkPreviewAttachments = linkPreviews.mapNotNull { it.thumbnail.orElse(null) }.toSet()
   val quotedAttachments = attachments?.filter { it.quote } ?: emptyList()
@@ -1062,6 +1104,10 @@ private fun String.e164ToLong(): Long? {
   return fixed.toLongOrNull()
 }
 
+// private fun <T> ExecutorService.submitTyped(callable: Callable<T>): Future<T> {
+//  return this.submit(callable)
+// }
+
 private fun Cursor.toBackupMessageRecord(): BackupMessageRecord {
   return BackupMessageRecord(
     id = this.requireLong(MessageTable.ID),
@@ -1095,7 +1141,7 @@ private fun Cursor.toBackupMessageRecord(): BackupMessageRecord {
     receiptTimestamp = this.requireLong(MessageTable.RECEIPT_TIMESTAMP),
     networkFailureRecipientIds = this.requireString(MessageTable.NETWORK_FAILURES).parseNetworkFailures(),
     identityMismatchRecipientIds = this.requireString(MessageTable.MISMATCHED_IDENTITIES).parseIdentityMismatches(),
-    baseType = this.requireLong(COLUMN_BASE_TYPE),
+    baseType = this.requireLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK,
     messageExtras = this.requireBlob(MessageTable.MESSAGE_EXTRAS).parseMessageExtras(),
     viewOnce = this.requireBoolean(MessageTable.VIEW_ONCE)
   )
@@ -1136,4 +1182,11 @@ private class BackupMessageRecord(
   val baseType: Long,
   val messageExtras: MessageExtras?,
   val viewOnce: Boolean
+)
+
+data class ExtraMessageData(
+  val mentionsById: Map<Long, List<Mention>>,
+  val reactionsById: Map<Long, List<ReactionRecord>>,
+  val attachmentsById: Map<Long, List<DatabaseAttachment>>,
+  val groupReceiptsById: Map<Long, List<GroupReceiptTable.GroupReceiptInfo>>
 )

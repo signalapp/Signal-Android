@@ -214,8 +214,6 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
   fun wipeAllDataAndRestoreFromRemote() {
     SignalExecutors.BOUNDED_IO.execute {
-      SignalDatabase.threads.deleteAllConversations()
-      AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
       restoreFromRemote()
     }
   }

@@ -598,7 +598,12 @@ class AttachmentTable(
         val iv = cursor.requireBlob(REMOTE_IV) ?: Util.getSecretBytes(16)
         val digest = run {
           val fileInfo = getDataFileInfo(attachmentId)!!
-          calculateDigest(fileInfo, key, iv)
+          try {
+            calculateDigest(fileInfo, key, iv)
+          } catch (e: FileNotFoundException) {
+            Log.w(TAG, "[createKeyIvDigestForAttachmentsThatNeedArchiveUpload][$attachmentId] Could not find file ${fileInfo.file}. Delete all later?")
+            return@forEach
+          }
         }
 
         writableDatabase.update(TABLE_NAME)
