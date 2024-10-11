@@ -7269,7 +7269,7 @@
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Omitir</string>
     <!-- Primary action button to manage subscription in Google Play -->
-    <string name="BackupAlertBottomSheet__manage_subscription">Manage subscription</string>
+    <string name="BackupAlertBottomSheet__manage_subscription">Xestionar subscrición</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
     <!-- Primary action button text prompting user to download their media -->
@@ -7277,7 +7277,7 @@
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">Non descargar contido</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
-    <string name="BackupAlertBottomSheet__not_now">Not now</string>
+    <string name="BackupAlertBottomSheet__not_now">Agora non</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Eliminaranse os arquivos</string>
     <!-- Dialog message for last chance to download backup -->

@@ -408,7 +408,7 @@
     <string name="ConversationItem_copied_text">URL copiada: %1$s</string>
     <string name="ConversationItem_from_s">de %1$s</string>
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
-    <string name="ConversationItem_to_s">a %1$s</string>
+    <string name="ConversationItem_to_s">para %1$s</string>
     <string name="ConversationItem_read_more">  Leer más</string>
     <string name="ConversationItem_download_more">  Descargar más</string>
     <string name="ConversationItem_pending">  Pendiente</string>
@@ -442,7 +442,7 @@
     <string name="ConversationActivity_compose_message">Escribir mensaje</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">No se ha podido adjuntar el archivo.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">La persona que intentas contactar no puede recibir SMS en su teléfono o no cuenta con una dirección de correo electrónico válida.</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Parece que la persona que intentas contactar no puede recibir SMS en su teléfono o no cuenta con una dirección de correo electrónico válida.</string>
     <string name="ConversationActivity_message_is_empty_exclamation">El mensaje está vacío.</string>
     <string name="ConversationActivity_group_members">Participantes del grupo</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
@@ -1516,7 +1516,7 @@
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Pasémonos a Signal: %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="InviteActivity_no_app_to_share_to">Parece que no hay ninguna aplicación para compartir este archivo.</string>
+    <string name="InviteActivity_no_app_to_share_to">Parece que no tienes ninguna aplicación para compartir la invitación.</string>
 
     <!-- LearnMoreTextView -->
     <string name="LearnMoreTextView_learn_more">Más información</string>
@@ -1644,9 +1644,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Videollamada perdida</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
-    <string name="MessageRecord_missed_voice_call_notification_profile">Llamada perdida mientras el perfil de notificación estaba activado</string>
+    <string name="MessageRecord_missed_voice_call_notification_profile">Llamada perdida mientras el perfil de notificación estaba activo</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
-    <string name="MessageRecord_missed_video_call_notification_profile">Videollamada perdida mientras el perfil de notificación estaba activado</string>
+    <string name="MessageRecord_missed_video_call_notification_profile">Videollamada perdida mientras el perfil de notificación estaba activo</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s ha actualizado el grupo.</string>
@@ -1997,8 +1997,8 @@
     <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR no válido.</string>
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Tienes demasiados dispositivos vinculados. Elimina alguno.</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Este código QR no es válido.</string>
-    <string name="DeviceProvisioningActivity_link_a_signal_device">¿Vincular un dispositivo Signal?</string>
-    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que estás intentando vincular un dispositivo Signal usando una aplicación de escáner desconocida. Para tu seguridad, escanea el código otra vez desde Signal.</string>
+    <string name="DeviceProvisioningActivity_link_a_signal_device">¿Vincular un dispositivo a tu cuenta de Signal?</string>
+    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que estás intentando vincular un dispositivo a tu cuenta de Signal usando una aplicación de escáner desconocida. Para tu seguridad, escanea el código otra vez desde Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal necesita acceso a la cámara para escanear el código QR. Ve al menú Ajustes de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">No se puede escanear un código QR sin acceso a la cámara.</string>
@@ -2030,7 +2030,7 @@
 
     <!-- PinRestoreEntryFragment -->
     <string name="PinRestoreEntryFragment_incorrect_pin">PIN incorrecto</string>
-    <string name="PinRestoreEntryFragment_skip_pin_entry">¿No introducir PIN?</string>
+    <string name="PinRestoreEntryFragment_skip_pin_entry">¿Omitir PIN?</string>
     <string name="PinRestoreEntryFragment_need_help">¿Necesitas ayuda?</string>
     <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Tu PIN es un código numérico o alfanumérico de %1$d o más dígitos que has creado.\n\nSi olvidas tu PIN, puedes crear uno nuevo. Podrás registrarte y usar tu cuenta, pero se perderán algunos ajustes ya guardados, como tu información de perfil.</string>
     <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Si olvidas tu PIN, puedes crear uno nuevo. Podrás registrarte y usar tu cuenta, pero se perderán algunos ajustes ya guardados, como tu información de perfil.</string>
@@ -2726,7 +2726,7 @@
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">El código QR escaneado no tiene un formato correcto de código de verificación de número de seguridad. Intenta escanearlo de nuevo.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Compartir número de seguridad por…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Nuestro número de seguridad de Signal:</string>
-    <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no hay ninguna aplicación para compartir este archivo.</string>
+    <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no tienes ninguna aplicación para compartir la invitación.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No se ha encontrado ningún número de seguridad en el portapapeles para completar la verificación</string>
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal necesita acceso a la cámara para escanear el código QR. Ve al menú Ajustes de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Cámara &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">No se puede escanear un código QR sin acceso a la cámara</string>
@@ -3507,7 +3507,7 @@
     <string name="preferences__change_passphrase">Cambiar frase de contraseña</string>
     <string name="preferences__change_your_passphrase">Cambia tu frase de contraseña</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Activar bloqueo de pantalla con frase de contraseña</string>
+    <string name="preferences__enable_passphrase">Activa bloqueo de pantalla con frase de contraseña</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea la pantalla y las notificaciones con una frase de contraseña</string>
     <string name="preferences__screen_security">Seguridad de la pantalla</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquea automáticamente Signal tras el intervalo de inactividad que especifiques</string>
@@ -3914,12 +3914,12 @@
     <string name="CreatePaymentFragment__0">0</string>
     <string name="CreatePaymentFragment__lt">&lt;</string>
     <string name="CreatePaymentFragment__backspace">Atrás</string>
-    <string name="CreatePaymentFragment__add_note">Añadir notas</string>
+    <string name="CreatePaymentFragment__add_note">Añadir nota</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">La conversión es solo una estimación y puede no ser exacta.</string>
   <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
-    <string name="EditNoteFragment_note">Notas</string>
+    <string name="EditNoteFragment_note">Nota</string>
     <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
     <string name="EditNoteFragment__content_description_save_note">Guardar nota</string>
 
@@ -5066,7 +5066,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Duración predeterminada para chats nuevos</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Elige una duración predeterminada de los mensajes temporales para todos los chats nuevos que inicies.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Requiere el bloqueo de pantalla de Android o la huella dactilar para transferir fondos</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Activa el bloqueo de pantalla de Android o la huella dactilar para transferir fondos</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">No se puede habilitar el bloqueo de pagos</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
@@ -5456,7 +5456,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">¿Vincular dispositivo?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">Parece que estás intentando vincular un dispositivo Signal. Toca \"Continuar\" y vuelve a escanear el código para vincularlo.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">Parece que estás intentando vincular un dispositivo a tu cuenta de Signal. Toca \"Continuar\" y vuelve a escanear el código para vincularlo.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Continuar</string>
 
@@ -5618,7 +5618,7 @@
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
     <string name="InAppPaymentErrors__error_processing_payment">No se ha podido procesar el pago</string>
     <!-- Displayed as a message in a dialog or notification when a payment setup error happens. -->
-    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">No se ha podido procesar tu pago y no hemos hecho el cargo. Inténtalo de nuevo.</string>
+    <string name="InAppPaymentErrors__your_payment_couldnt_be_processed">No se ha podido procesar tu pago y no se ha aplicado ningún cargo. Inténtalo de nuevo.</string>
     <!-- Displayed as a message in a dialog when we timeout waiting for a payment to be processed and token to be redeemed -->
     <string name="InAppPaymentErrors__your_payment_is_still">Aún se está procesando tu pago. Puede llevar unos minutos dependiendo de tu conexión.</string>
     <!-- Displayed as a message in a dialog or notification when stripe decline code issuer not available for backup payment. -->
@@ -6213,7 +6213,7 @@
     <!-- Choose groups bottom sheet title -->
     <string name="ChooseGroupStoryBottomSheet__choose_groups">Elegir grupos</string>
     <!-- Displayed when copying group story reply text to clipboard -->
-    <string name="StoryGroupReplyFragment__copied_to_clipboard">Se ha copiado al portapapeles</string>
+    <string name="StoryGroupReplyFragment__copied_to_clipboard">Copiado al portapapeles</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
     <string name="StoryViewerPageFragment__see_more">Ver más</string>
     <!-- Displayed in toast after sending a direct reply -->
@@ -6250,7 +6250,7 @@
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
     <string name="ExpandModel__view_more">Ver más</string>
-    <string name="StoriesLinkPopup__visit_link">Ir al enlace</string>
+    <string name="StoriesLinkPopup__visit_link">Abrir enlace</string>
 
     <!-- Gift price and duration, formatted as: {price} dot {n} day duration -->
     <plurals name="GiftRowItem_s_dot_d_day_duration">
@@ -6279,7 +6279,7 @@
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">Añadir un mensaje</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__verifying_recipient">Verificando destinatario…</string>
+    <string name="GiftFlowConfirmationFragment__verifying_recipient">Verificando persona…</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s ha hecho una donación por ti</string>
     <!-- Title for sheet shown when opening a sent gift -->
@@ -6301,7 +6301,7 @@
     <!-- Expired gift sheet top description text -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Tu insignia ha caducado y ya no es visible para otras personas en tu perfil.</string>
     <!-- Expired gift sheet bottom description text -->
-    <string name="ExpiredGiftSheetConfiguration__to_continue">Para seguir apoyando una tecnología que está desarrollada para ti, considera activar una suscripción mensual.</string>
+    <string name="ExpiredGiftSheetConfiguration__to_continue">Para seguir apoyando una tecnología diseñada para ti, considera optar por una suscripción mensual.</string>
     <!-- Expired gift sheet make a monthly donation button -->
     <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Haz una donación mensual</string>
     <!-- Expired gift sheet not now button -->
@@ -6450,7 +6450,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Las historias desaparecerán automáticamente después de 24 horas. Elige quién puede ver tus historias o crea historias nuevas para compartir con personas o grupos específicos.</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Las historias desaparecerán automáticamente después de 24 horas. Elige quién puede ver tus historias o crea historias nuevas para compartir con personas o grupos específicos.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">Desactivar historias</string>
     <!-- Preference summary to turn off stories -->
@@ -6480,7 +6480,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">Quién puede ver esta historia</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Las personas que están en el grupo \"%1$s\" pueden ver y responder a esta historia. Puedes añadir o eliminar personas en los ajustes del grupo."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Las personas que están en el grupo \"%1$s\" pueden ver y responder a esta historia. Puedes añadir o eliminar participantes en los ajustes del grupo."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">Eliminar historia de grupo</string>
 
@@ -6523,9 +6523,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Tienes una donación pendiente</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en completarse. Espera hasta que se complete este pago antes de actualizar tu suscripción.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en procesarse. Espera hasta que se complete este pago antes de actualizar tu suscripción.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en completarse. Espera hasta que se complete este pago antes de realizar otra donación.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en procesarse. Espera hasta que se complete este pago antes de realizar otra donación.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Tu donación aún se está procesando. Puede llevar unos minutos dependiendo de tu conexión. Espera hasta que se complete este pago antes de actualizar tu suscripción.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -6635,7 +6635,7 @@
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">IBAN no válido</string>
     <!-- Error label for name field when name is not at least two characters long -->
-    <string name="BankTransferDetailsFragment__minimum_2_characters">Mínimo 2 caracteres</string>
+    <string name="BankTransferDetailsFragment__minimum_2_characters">Debe contener un mínimo de 2 caracteres</string>
     <!-- Error label for email field when email is not valid -->
     <string name="BankTransferDetailsFragment__invalid_email_address">Dirección de correo electrónico no válida</string>
 
@@ -6657,7 +6657,7 @@
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Confirma tu donación con %1$s</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
-    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Si quieres configurar tu donación recurrente, toca \"Continuar\" para confirmar un cargo de 0,01 € con tu banco. Esto se reembolsará automáticamente y permitirá que tu donación de %1$s/mes se cargue a tu cuenta.</string>
+    <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Si quieres configurar tu donación recurrente, toca \"Continuar\" para confirmar un cargo a tu banco de 0,01 €. Este monto se reembolsará automáticamente y permitirá que tu donación mensual de %1$s se cargue a tu cuenta.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
     <string name="IdealTransferDetailsFragment__continue">Continuar</string>
 
@@ -6822,7 +6822,7 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Perdida</string>
     <!-- Displayed for missed calls declined by notification profile -->
-    <string name="CallLogAdapter__missed_notification_profile">Perdida mientras el perfil de notificación estaba activado</string>
+    <string name="CallLogAdapter__missed_notification_profile">Perdida mientras el perfil de notificación estaba activo</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Unirse</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -6931,7 +6931,7 @@
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Llamada grupal perdida</string>
     <!-- Missed group call while notification profile on in call info -->
-    <string name="CallPreference__missed_group_call_notification_profile">Llamada grupal perdida mientras el perfil de notificación estaba activado</string>
+    <string name="CallPreference__missed_group_call_notification_profile">Llamada grupal perdida mientras el perfil de notificación estaba activo</string>
     <!-- Incoming group call in call info -->
     <string name="CallPreference__incoming_group_call">Llamada grupal entrante</string>
     <!-- Outgoing group call in call info -->
@@ -7179,7 +7179,7 @@
     <!-- Dialog body for not found username -->
     <string name="FindByActivity__s_is_not_a_signal_user">%1$s no usa Signal. Asegúrate de introducir el alias correcto e inténtalo de nuevo.</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s no usa Signal. ¿Quieres invitar a este número a usar Signal?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s no usa Signal. ¿Quieres enviar una invitación a este número?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Invitar</string>
     <!-- Button label for a button that will launch a camera to scan a username QR code -->
@@ -7213,7 +7213,7 @@
     <!-- Content description for last name clear button -->
     <string name="NicknameActivity__clear_last_name">Borrar apellido</string>
     <!-- Field label for note -->
-    <string name="NicknameActivity__note">Notas</string>
+    <string name="NicknameActivity__note">Nota</string>
     <!-- Button label to save -->
     <string name="NicknameActivity__save">Guardar</string>
     <!-- Dialog title for note and name deletion -->
@@ -7223,15 +7223,15 @@
 
     <!-- ViewNoteBottomSheetDialogFragment -->
     <!-- Sheet title -->
-    <string name="ViewNoteSheet__note">Notas</string>
+    <string name="ViewNoteSheet__note">Nota</string>
     <!-- Content description for opening the note editor -->
-    <string name="ViewNoteSheet__edit_note">Editar notas</string>
+    <string name="ViewNoteSheet__edit_note">Editar nota</string>
 
     <!-- BackupProgressService -->
     <!-- Notification title shown while backup restore job is running -->
     <string name="BackupProgressService_title">Recuperando copia de seguridad…</string>
     <!-- Notification title shown while downloading backup restore data -->
-    <string name="BackupProgressService_title_downloading">Descargando copia de seguridad…</string>
+    <string name="BackupProgressService_title_downloading">Descargando datos de copia de seguridad…</string>
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
@@ -7246,22 +7246,22 @@
     <!-- Sheet title when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Tus archivos multimedia se eliminarán hoy</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Se ha cancelado tu plan de copia de seguridad de archivos multimedia en Signal porque no se ha podido procesar tu pago. Esta es tu última oportunidad de descargar los archivos de tu copia de seguridad antes de que se elimine.</string>
+    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Se ha cancelado tu plan de copia de seguridad de archivos multimedia en Signal porque no se ha podido procesar tu pago. Esta es tu última oportunidad de descargar los archivos de tu copia de seguridad antes de que se eliminen.</string>
     <!-- Sheet title when user does not have enough space to download their backup -->
     <string name="BackupAlertBottomSheet__cant_complete_download">No se puede completar la descarga</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Tu dispositivo no tiene suficiente espacio libre. Libera %1$s de espacio para descargar los archivos multimedia de tu copia de seguridad.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
     <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">Si eliges \"Omitir\", los archivos multimedia de tu copia de seguridad se eliminarán en %1$d día.</item>
-        <item quantity="other">Si eliges \"Omitir\", los archivos multimedia de tu copia de seguridad se eliminarán en %1$d días.</item>
+        <item quantity="one">Si eliges \"Omitir\", los archivos multimedia de tu copia de seguridad se eliminarán en %1$d día.</item>
+        <item quantity="other">Si eliges \"Omitir\", los archivos multimedia de tu copia de seguridad se eliminarán en %1$d días.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Your backups subscription failed to renew</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Check to make sure your payment method is up to date. Tap Manage subscription and under Payment methods tap Update.</string>
     <!-- Sheet title for generic backup error -->
-    <string name="BackupAlertBottomSheet__couldnt_complete_backup">No se ha podido completar la copia de seguridad</string>
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Copia de seguridad incompleta</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
     <string name="BackupAlertBottomSheet__your_device_hasnt">Hace %1$d días que no se completa una copia de seguridad de tu dispositivo. Asegúrate de que tu dispositivo esté conectado a una red Wi-Fi y toca \"Iniciar copia\". </string>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
@@ -7269,7 +7269,7 @@
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Omitir</string>
     <!-- Primary action button to manage subscription in Google Play -->
-    <string name="BackupAlertBottomSheet__manage_subscription">Manage subscription</string>
+    <string name="BackupAlertBottomSheet__manage_subscription">Gestionar suscripción</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
     <!-- Primary action button text prompting user to download their media -->
@@ -7277,11 +7277,11 @@
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">No descargar archivos</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
-    <string name="BackupAlertBottomSheet__not_now">Not now</string>
+    <string name="BackupAlertBottomSheet__not_now">Ahora no</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Se eliminarán los archivos multimedia</string>
     <!-- Dialog message for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Los archivos multimedia almacenados en la copia de seguridad se eliminarán hoy de forma permanente. Esta es tu última oportunidad para descargarlos.</string>
+    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Los archivos multimedia guardados en la copia de seguridad se eliminarán hoy de forma permanente. Esta es tu última oportunidad de descargarlos.</string>
     <!-- Dialog action to download now -->
     <string name="BackupAlertBottomSheet__download">Descargar</string>
     <!-- Dialog action to not download now -->
@@ -7341,7 +7341,7 @@
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
     <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Los mensajes anteriores a la fecha seleccionada se eliminarán de forma permanente.</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Los mensajes que excedan la longitud seleccionada se eliminarán de forma permanente.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Los mensajes que excedan la cantidad seleccionada se eliminarán de forma permanente.</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_title">Aplicar límites a los dispositivos vinculados</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
@@ -7349,7 +7349,7 @@
     <!-- Setting section title header for storage optimization -->
     <string name="ManageStorageSettingsFragment__on_device_storage">Almacenamiento en el dispositivo</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimiza el almacenamiento en el dispositivo</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizar almacenamiento en el dispositivo</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Los archivos multimedia no utilizados se inhabilitarán, pero podrás descargarlos desde tu copia de seguridad en cualquier momento.</string>
 
@@ -7357,7 +7357,7 @@
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Actualiza tu plan para habilitar esta función</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel pago de copias de seguridad de Signal. Actualiza tu plan de copias de seguridad para empezar a usar esta función.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de las copias de seguridad de Signal. Actualiza tu plan de copias de seguridad para empezar a usar esta función.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
 
@@ -7375,7 +7375,7 @@
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Ahora, la eliminación de mensajes se sincroniza en todos tus dispositivos</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Cuando elimines mensajes o chats, se eliminarán de tu teléfono y de todos los dispositivos vinculados.</string>
+    <string name="DeleteSyncEducation_message">Cuando eliminas mensajes o chats, se eliminan de tu teléfono y de todos los dispositivos vinculados.</string>
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">Aceptar</string>
 
@@ -7407,11 +7407,11 @@
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Desbloquear para ver clave de copia de seguridad</string>
     <!-- Row label for cancelling and deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Desactivar y eliminar copias de seguridad</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Desactivar y eliminar copia de seguridad</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Copia de seguridad eliminada y desactivada.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
-    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Se ha cambiado el tipo de copia de seguridad y se ha cancelado la suscripción</string>
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Se ha cambiado el tipo de copia de seguridad y se ha cancelado tu suscripción</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
     <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Suscripción cancelada</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
@@ -7445,7 +7445,7 @@
     <!-- Title text in row detailing last backup -->
     <string name="RemoteBackupsSettingsFragment__last_backup">Última copia de seguridad</string>
     <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
-    <string name="RemoteBackupsSettingsFragment__s_at_s">%1$s, %2$s</string>
+    <string name="RemoteBackupsSettingsFragment__s_at_s">%2$s del %1$s</string>
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">Nunca</string>
     <!-- Button label to perform a backup immediately -->
@@ -7559,7 +7559,7 @@
     <!-- Dialog title -->
     <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Confirmar cancelación</string>
     <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">No se te volverá a cobrar. Las copias de seguridad se desactivarán al final de tu periodo de facturación. Después de esa fecha, tendrás 30 días para descargar los archivos multimedia de los que estás haciendo una copia de seguridad.</string>
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">No se te volverá a cobrar. Las copias de seguridad se desactivarán al final de tu periodo de facturación. Después de esa fecha, tendrás 30 días para descargar los archivos multimedia guardados en la copia de seguridad.</string>
     <!-- Action button label to cancel subscription and download now -->
     <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Confirmar y descargar ahora</string>
     <!-- Action button label to cancel subscription and download later -->

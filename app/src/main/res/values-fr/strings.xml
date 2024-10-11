@@ -384,33 +384,33 @@
 
     <!-- ContactShareEditActivity -->
     <!-- ContactShareEditActivity toolbar title -->
-    <string name="ContactShareEditActivity__send_contact">Envoyer le contact</string>
+    <string name="ContactShareEditActivity__send_contact">Partager le contact</string>
     <string name="ContactShareEditActivity_type_home">Domicile</string>
     <string name="ContactShareEditActivity_type_mobile">Mobile</string>
-    <string name="ContactShareEditActivity_type_work">Travail</string>
+    <string name="ContactShareEditActivity_type_work">Bureau</string>
     <string name="ContactShareEditActivity_type_missing">Autre</string>
     <string name="ContactShareEditActivity_invalid_contact">Le contact sélectionné est incorrect</string>
     <!-- Content descrption for name edit button on contact share edit activity -->
-    <string name="ContactShareEditActivity__edit_name">Modifier le nom</string>
+    <string name="ContactShareEditActivity__edit_name">Renommer</string>
     <!-- Content description for user avatar in edit activity -->
-    <string name="ContactShareEditActivity__avatar">Avatar</string>
+    <string name="ContactShareEditActivity__avatar">Photo de profil</string>
 
     <!-- ConversationItem -->
-    <string name="ConversationItem_error_not_sent_tap_for_details">N’a pas été envoyé, toucher pour obtenir des détails</string>
-    <string name="ConversationItem_error_partially_not_delivered">Envoyé partiellement, toucher pour obtenir des détails</string>
-    <string name="ConversationItem_error_network_not_delivered">Échec d’envoi</string>
+    <string name="ConversationItem_error_not_sent_tap_for_details">Non envoyé. Appuyer pour afficher des infos.</string>
+    <string name="ConversationItem_error_partially_not_delivered">Envoi partiel. Appuyer pour afficher des infos.</string>
+    <string name="ConversationItem_error_network_not_delivered">Non envoyé.</string>
     <string name="ConversationItem_group_action_left">%1$s a quitté le groupe.</string>
-    <string name="ConversationItem_send_paused">L’envoi a été mis en pause</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Se replier sur un texto non chiffré ?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Se replier sur un message multimédia non chiffré ?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> chiffré, car le destinataire n’est plus un utilisateur de Signal.\n\nEnvoyer un message non sécurisé ?</string>
-    <string name="ConversationItem_unable_to_open_media">Impossible de trouver une appli pour ouvrir ce média.</string>
-    <string name="ConversationItem_copied_text">Copié %1$s</string>
+    <string name="ConversationItem_send_paused">Envoi mis en pause</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Envoyer un SMS non chiffré  ?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Envoyer un MMS non chiffré ?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> chiffré, car le destinataire n\'est plus sur Signal.\n\nEnvoyer un message non sécurisé ?</string>
+    <string name="ConversationItem_unable_to_open_media">Impossible d\'ouvrir ce média : appli compatible introuvable.</string>
+    <string name="ConversationItem_copied_text">Copié : %1$s</string>
     <string name="ConversationItem_from_s">de %1$s</string>
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">à %1$s</string>
     <string name="ConversationItem_read_more">  Lire la suite</string>
-    <string name="ConversationItem_download_more">  Télécharger plus</string>
+    <string name="ConversationItem_download_more"> Télécharger plus</string>
     <string name="ConversationItem_pending">  En attente</string>
     <string name="ConversationItem_this_message_was_deleted">Ce message a été supprimé.</string>
     <string name="ConversationItem_you_deleted_this_message">Vous avez supprimé ce message.</string>
@@ -436,14 +436,14 @@
     <string name="ConversationItem__join_call">Rejoindre l’appel</string>
 
     <!-- ConversationActivity -->
-    <string name="ConversationActivity_add_attachment">Ajouter un fichier joint</string>
+    <string name="ConversationActivity_add_attachment">Ajouter une pièce jointe</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Envoyer les modifications</string>
     <string name="ConversationActivity_compose_message">Rédiger un message</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Oups ! Une erreur s’est produite lors de l’ajout de la pièce jointe.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Le destinataire n’est pas une adresse texto ou courriel valide.</string>
-    <string name="ConversationActivity_message_is_empty_exclamation">Le message est vide.</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinataire incorrect : saisissez un numéro ou une adresse e-mail valides.</string>
+    <string name="ConversationActivity_message_is_empty_exclamation">Voulez-vous vraiment envoyer un message vide ? ;)</string>
     <string name="ConversationActivity_group_members">Membres du groupe</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
@@ -456,25 +456,25 @@
         <item quantity="other">%1$d modifications seulement peuvent être appliquées à ce message.</item>
     </plurals>
 
-    <string name="ConversationActivity_invalid_recipient">Le destinataire est invalide</string>
-    <string name="ConversationActivity_added_to_home_screen">A été ajoutée à l’écran d’accueil</string>
-    <string name="ConversationActivity_calls_not_supported">Les appels ne sont pas pris en charge</string>
-    <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Cet appareil ne semble pas prendre en charge les actions de numérotation.</string>
-    <string name="ConversationActivity_transport_insecure_sms">Texto non sécurisé</string>
+    <string name="ConversationActivity_invalid_recipient">Destinataire incorrect.</string>
+    <string name="ConversationActivity_added_to_home_screen">Ajouté à l\'écran d\'accueil</string>
+    <string name="ConversationActivity_calls_not_supported">Appels non pris en charge</string>
+    <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Il semblerait que cet appareil ne vous permette pas de passer des appels.</string>
+    <string name="ConversationActivity_transport_insecure_sms">SMS non sécurisé</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_sms_with_sim">Texto non sécurisé (%1$s)</string>
-    <string name="ConversationActivity_transport_insecure_mms">Message multimédia non sécurisé</string>
+    <string name="ConversationActivity_transport_insecure_sms_with_sim">SMS non sécurisé (%1$s)</string>
+    <string name="ConversationActivity_transport_insecure_mms">MMS non sécurisé</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
     <string name="ConversationActivity_transport_signal">Message Signal</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">Envoyer un message</string>
     <string name="ConversationActivity_lets_switch_to_signal">Et si on passait à Signal ? %1$s</string>
-    <string name="ConversationActivity_specify_recipient">Veuillez choisir un contact</string>
-    <string name="ConversationActivity_attachment_exceeds_size_limits">Le fichier joint dépasse la limite de taille pour le type de message que vous envoyez.</string>
+    <string name="ConversationActivity_specify_recipient">Sélectionnez un contact</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">La pièce jointe est trop volumineuse pour ce type de message.</string>
     <string name="ConversationActivity_unable_to_record_audio">Enregistrement audio impossible.</string>
-    <string name="ConversationActivity_you_cant_send_messages_to_this_group">Vous ne pouvez pas envoyer de messages à ce groupe, car vous n’en faites plus partie.</string>
+    <string name="ConversationActivity_you_cant_send_messages_to_this_group">Vous ne pouvez pas envoyer de messages à ce groupe, car vous n\'en faites plus partie.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Seuls les %1$s peuvent envoyer des messages.</string>
-    <string name="ConversationActivity_admins">administrateurs</string>
+    <string name="ConversationActivity_admins">admins</string>
     <string name="ConversationActivity_message_an_admin">Envoyer un message à un administrateur</string>
     <string name="ConversationActivity_cant_start_group_call">Impossible de démarrer l’appel de groupe</string>
     <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Seuls les administrateurs de ce groupe peuvent démarrer un appel.</string>
@@ -778,7 +778,7 @@
     <string name="CreateProfileActivity_problem_setting_profile">Problème de définition du profil</string>
     <string name="CreateProfileActivity_set_up_your_profile">Configurez votre profil</string>
     <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Votre profil et les modifications qui y sont apportées seront visibles par vos interlocuteurs, vos contacts et vos groupes.</string>
-    <string name="CreateProfileActivity_set_avatar_description">Définir un avatar</string>
+    <string name="CreateProfileActivity_set_avatar_description">Choisir une photo de profil</string>
 
     <!-- ProfileCreateFragment -->
     <!-- Displayed at the top of the screen and explains how profiles can be viewed. -->
@@ -1290,7 +1290,7 @@
     <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Échec de la mise à jour du groupe. Veuillez réessayer plus tard.</string>
     <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Échec de la mise à jour du groupe en raison d’une erreur réseau. Veuillez réessayer plus tard.</string>
 
-    <string name="ManageGroupActivity_edit_name_and_picture">Modifier le nom et l’image</string>
+    <string name="ManageGroupActivity_edit_name_and_picture">Changer d\'image et renommer</string>
     <string name="ManageGroupActivity_legacy_group">Groupe hérité</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">Ce groupe est un groupe hérité. Des fonctionnalités telles que l’administration des groupes ne sont proposées que pour les nouveaux groupes.</string>
@@ -3091,7 +3091,7 @@
     <string name="conversation_item__secure_message_description">Message sécurisé</string>
 
     <!-- conversation_item_sent -->
-    <string name="conversation_item_sent__send_failed_indicator_description">Échec d’envoi</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">Non envoyé.</string>
     <string name="conversation_item_sent__pending_approval_description">En attente d’approbation</string>
     <string name="conversation_item_sent__delivered_description">Remis</string>
     <string name="conversation_item_sent__message_read">Message lu</string>
@@ -3936,7 +3936,7 @@
     <string name="ConfirmPayment__payment_complete">Le paiement est finalisé</string>
     <string name="ConfirmPayment__payment_failed">Échec de paiement</string>
     <string name="ConfirmPayment__payment_will_continue_processing">Le traitement du paiement va se poursuivre</string>
-    <string name="ConfirmPaymentFragment__invalid_recipient">Le destinataire est invalide</string>
+    <string name="ConfirmPaymentFragment__invalid_recipient">Destinataire incorrect.</string>
     <!-- Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
     <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Impossible d\'afficher le blocage du paiement</string>
     <!-- Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
@@ -5958,7 +5958,7 @@
     <!-- Label when multiple stories are pending sending -->
     <string name="StoriesLandingItem__sending_d">Envoi de %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
-    <string name="StoriesLandingItem__send_failed">Échec d’envoi</string>
+    <string name="StoriesLandingItem__send_failed">Non envoyé.</string>
     <!-- Label when a story fails to send due to identity mismatch -->
     <string name="StoriesLandingItem__partially_sent">Partiellement envoyé</string>
     <!-- Status label when a story fails to send indicating user action to retry -->
@@ -6015,7 +6015,7 @@
     <!-- Displayed when viewing a post that has failed to send to some users -->
     <string name="StoryViewerPageFragment__partially_sent">Partiellement envoyé. Touchez pour plus de détails</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Échec de l’envoi. Appuyez pour réessayer</string>
+    <string name="StoryViewerPageFragment__send_failed">Impossible de partager la story. Appuyez pour réessayer.</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Répondre au groupe</string>
     <!-- Displayed when a story has no views -->
@@ -7269,7 +7269,7 @@
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Ignorer</string>
     <!-- Primary action button to manage subscription in Google Play -->
-    <string name="BackupAlertBottomSheet__manage_subscription">Manage subscription</string>
+    <string name="BackupAlertBottomSheet__manage_subscription">Gérer l’abonnement</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
     <!-- Primary action button text prompting user to download their media -->
@@ -7277,7 +7277,7 @@
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">Ne pas télécharger</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
-    <string name="BackupAlertBottomSheet__not_now">Not now</string>
+    <string name="BackupAlertBottomSheet__not_now">Plus tard</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Vos médias vont être supprimés</string>
     <!-- Dialog message for last chance to download backup -->
