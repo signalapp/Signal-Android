@@ -40,4 +40,8 @@ object ChatFoldersRepository {
   fun updatePositions(folders: List<ChatFolderRecord>) {
     SignalDatabase.chatFolders.updatePositions(folders)
   }
+
+  fun getFolder(id: Long): ChatFolderRecord {
+    return SignalDatabase.chatFolders.getChatFolder(id)
+  }
 }

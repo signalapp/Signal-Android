@@ -1666,6 +1666,44 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     viewModel.select(chatFolder);
   }
 
+  @Override
+  public void onEdit(@NonNull ChatFolderRecord chatFolder) {
+    startActivity(AppSettingsActivity.createChatFolder(requireContext(), chatFolder.getId()));
+  }
+
+  @Override
+  public void onAdd() {
+    startActivity(AppSettingsActivity.createChatFolder(requireContext(), -1));
+  }
+
+  @Override
+  public void onMuteAll(@NonNull ChatFolderRecord chatFolder) {
+    MuteDialog.show(requireContext(), until -> viewModel.onMuteChatFolder(chatFolder, until));
+  }
+
+  @Override
+  public void onReadAll(@NonNull ChatFolderRecord chatFolder) {
+    if (chatFolder.getFolderType() == ChatFolderRecord.FolderType.ALL) {
+      handleMarkAllRead();
+    } else {
+      viewModel.markChatFolderRead(chatFolder);
+    }
+  }
+
+  @Override
+  public void onDelete(@NonNull ChatFolderRecord chatFolder) {
+    new MaterialAlertDialogBuilder(requireActivity())
+        .setMessage(getString(R.string.CreateFoldersFragment__delete_this_chat_folder))
+        .setPositiveButton(R.string.delete, (dialog, which) -> viewModel.deleteChatFolder(chatFolder))
+        .setNegativeButton(android.R.string.cancel, null)
+        .show();
+  }
+
+  @Override
+  public void onReorder() {
+    startActivity(AppSettingsActivity.chatFolders(requireContext()));
+  }
+
   private class ArchiveListenerCallback extends ItemTouchHelper.SimpleCallback {
 
     private static final long SWIPE_ANIMATION_DURATION = 175;

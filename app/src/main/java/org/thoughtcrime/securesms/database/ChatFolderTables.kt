@@ -9,6 +9,7 @@ import org.signal.core.util.groupBy
 import org.signal.core.util.insertInto
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSingleInt
+import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
@@ -118,6 +119,37 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   }
 
   /**
+   * Returns a single chat folder that corresponds to that id
+   */
+  fun getChatFolder(id: Long): ChatFolderRecord {
+    val includedChats: Map<Long, List<Long>> = getIncludedChats(id)
+    val excludedChats: Map<Long, List<Long>> = getExcludedChats(id)
+
+    val folder = readableDatabase
+      .select()
+      .from(ChatFolderTable.TABLE_NAME)
+      .where("${ChatFolderTable.ID} = ?", id)
+      .run()
+      .readToSingleObject { cursor ->
+        ChatFolderRecord(
+          id = id,
+          name = cursor.requireString(ChatFolderTable.NAME) ?: "",
+          position = cursor.requireInt(ChatFolderTable.POSITION),
+          showUnread = cursor.requireBoolean(ChatFolderTable.SHOW_UNREAD),
+          showMutedChats = cursor.requireBoolean(ChatFolderTable.SHOW_MUTED),
+          showIndividualChats = cursor.requireBoolean(ChatFolderTable.SHOW_INDIVIDUAL),
+          showGroupChats = cursor.requireBoolean(ChatFolderTable.SHOW_GROUPS),
+          isMuted = cursor.requireBoolean(ChatFolderTable.IS_MUTED),
+          folderType = ChatFolderRecord.FolderType.deserialize(cursor.requireInt(ChatFolderTable.FOLDER_TYPE)),
+          includedChats = includedChats[id] ?: emptyList(),
+          excludedChats = excludedChats[id] ?: emptyList()
+        )
+      }
+
+    return folder ?: ChatFolderRecord()
+  }
+
+  /**
    * Maps the chat folder ids to its corresponding chat folder
    */
   fun getChatFolders(includeUnreads: Boolean = false): List<ChatFolderRecord> {
@@ -158,13 +190,20 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   }
 
   /**
-   * Maps chat folder ids to all of its corresponding included chats
+   * Maps a chat folder id to all of its corresponding included chats.
+   * If an id is not specified, all chat folder ids will be mapped.
    */
-  private fun getIncludedChats(): Map<Long, List<Long>> {
+  private fun getIncludedChats(id: Long? = null): Map<Long, List<Long>> {
+    val whereQuery = if (id != null) {
+      "${ChatFolderMembershipTable.MEMBERSHIP_TYPE} = ${MembershipType.INCLUDED.value} AND ${ChatFolderMembershipTable.CHAT_FOLDER_ID} = $id"
+    } else {
+      "${ChatFolderMembershipTable.MEMBERSHIP_TYPE} = ${MembershipType.INCLUDED.value}"
+    }
+
     return readableDatabase
       .select()
       .from(ChatFolderMembershipTable.TABLE_NAME)
-      .where("${ChatFolderMembershipTable.MEMBERSHIP_TYPE} = ${MembershipType.INCLUDED.value}")
+      .where(whereQuery)
       .run()
       .groupBy { cursor ->
         cursor.requireLong(ChatFolderMembershipTable.CHAT_FOLDER_ID) to cursor.requireLong(ChatFolderMembershipTable.THREAD_ID)
@@ -172,13 +211,20 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   }
 
   /**
-   * Maps the chat folder ids to all of its corresponding excluded chats
+   * Maps a chat folder id to all of its corresponding excluded chats.
+   * If an id is not specified, all chat folder ids will be mapped.
    */
-  private fun getExcludedChats(): Map<Long, List<Long>> {
+  private fun getExcludedChats(id: Long? = null): Map<Long, List<Long>> {
+    val whereQuery = if (id != null) {
+      "${ChatFolderMembershipTable.MEMBERSHIP_TYPE} = ${MembershipType.EXCLUDED.value} AND ${ChatFolderMembershipTable.CHAT_FOLDER_ID} = $id"
+    } else {
+      "${ChatFolderMembershipTable.MEMBERSHIP_TYPE} = ${MembershipType.EXCLUDED.value}"
+    }
+
     return readableDatabase
       .select()
       .from(ChatFolderMembershipTable.TABLE_NAME)
-      .where("${ChatFolderMembershipTable.MEMBERSHIP_TYPE} = ${MembershipType.EXCLUDED.value}")
+      .where(whereQuery)
       .run()
       .groupBy { cursor ->
         cursor.requireLong(ChatFolderMembershipTable.CHAT_FOLDER_ID) to cursor.requireLong(ChatFolderMembershipTable.THREAD_ID)

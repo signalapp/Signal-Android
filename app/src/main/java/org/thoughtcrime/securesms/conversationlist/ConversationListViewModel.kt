@@ -31,7 +31,10 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
 import org.thoughtcrime.securesms.megaphone.Megaphones
+import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import java.util.concurrent.TimeUnit
@@ -256,6 +259,41 @@ class ConversationListViewModel(
           model.copy(isSelected = chatFolder.id == model.chatFolder.id)
         }
       )
+    }
+  }
+
+  fun onMuteChatFolder(chatFolder: ChatFolderRecord, until: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      val ids = SignalDatabase.threads.getRecipientIdsByChatFolder(chatFolder)
+      val recipientIds: List<RecipientId> = ids.filter { id ->
+        Recipient.resolved(id).muteUntil != until
+      }
+      if (recipientIds.isNotEmpty()) {
+        SignalDatabase.recipients.setMuted(recipientIds, until)
+      }
+    }
+  }
+
+  fun deleteChatFolder(chatFolder: ChatFolderRecord) {
+    viewModelScope.launch(Dispatchers.IO) {
+      SignalDatabase.chatFolders.deleteChatFolder(chatFolder)
+      val updatedFolders = folders.filter { folder -> folder.chatFolder.id != chatFolder.id }
+
+      store.update {
+        it.copy(
+          currentFolder = updatedFolders.first().chatFolder,
+          chatFolders = updatedFolders
+        )
+      }
+    }
+  }
+
+  fun markChatFolderRead(chatFolder: ChatFolderRecord) {
+    viewModelScope.launch(Dispatchers.IO) {
+      val ids = SignalDatabase.threads.getThreadIdsByChatFolder(chatFolder)
+      val messageIds = SignalDatabase.threads.setRead(ids, false)
+      AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
+      MarkReadReceiver.process(messageIds)
     }
   }
 

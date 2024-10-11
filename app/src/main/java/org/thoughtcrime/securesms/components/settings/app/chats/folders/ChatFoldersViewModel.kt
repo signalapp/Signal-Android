@@ -28,7 +28,12 @@ class ChatFoldersViewModel : ViewModel() {
       val suggestedFolders = getSuggestedFolders(context, folders)
 
       internalState.update {
-        it.copy(folders = folders, suggestedFolders = suggestedFolders)
+        it.copy(
+          folders = folders,
+          suggestedFolders = suggestedFolders,
+          currentFolder = ChatFolderRecord(),
+          originalFolder = ChatFolderRecord()
+        )
       }
     }
   }
@@ -308,6 +313,15 @@ class ChatFoldersViewModel : ViewModel() {
       originalFolder != currentFolder ||
         originalFolder.includedRecipients != currentFolder.includedRecipients ||
         originalFolder.excludedRecipients != currentFolder.excludedRecipients
+    }
+  }
+
+  fun setCurrentFolderId(folderId: Long) {
+    if (folderId != -1L) {
+      viewModelScope.launch(Dispatchers.IO) {
+        val folder = ChatFoldersRepository.getFolder(folderId)
+        setCurrentFolder(folder)
+      }
     }
   }
 }

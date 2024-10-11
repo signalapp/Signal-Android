@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderContextMenu
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -36,6 +37,20 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
       itemView.setOnClickListener {
         callbacks.onChatFolderClicked(model.chatFolder)
       }
+      itemView.setOnLongClickListener { view ->
+        ChatFolderContextMenu.show(
+          context = itemView.context,
+          anchorView = view,
+          folderType = model.chatFolder.folderType,
+          onEdit = { callbacks.onEdit(model.chatFolder) },
+          onAdd = { callbacks.onAdd() },
+          onMuteAll = { callbacks.onMuteAll(model.chatFolder) },
+          onReadAll = { callbacks.onReadAll(model.chatFolder) },
+          onDelete = { callbacks.onDelete(model.chatFolder) },
+          onReorder = { callbacks.onReorder() }
+        )
+        true
+      }
       if (model.isSelected) {
         itemView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorSurfaceVariant))
       } else {
@@ -54,5 +69,11 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
 
   interface Callbacks {
     fun onChatFolderClicked(chatFolder: ChatFolderRecord)
+    fun onEdit(chatFolder: ChatFolderRecord)
+    fun onAdd()
+    fun onMuteAll(chatFolder: ChatFolderRecord)
+    fun onReadAll(chatFolder: ChatFolderRecord)
+    fun onDelete(chatFolder: ChatFolderRecord)
+    fun onReorder()
   }
 }

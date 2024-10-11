@@ -27,6 +27,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -87,6 +88,12 @@ class CreateFoldersFragment : ComposeFragment() {
     val focusRequester = remember { FocusRequester() }
     val isNewFolder = state.originalFolder.id == -1L
 
+    LaunchedEffect(Unit) {
+      if (state.originalFolder == state.currentFolder) {
+        viewModel.setCurrentFolderId(arguments?.getLong(KEY_FOLDER_ID) ?: -1)
+      }
+    }
+
     Scaffolds.Settings(
       title = if (isNewFolder) stringResource(id = R.string.CreateFoldersFragment__create_a_folder) else stringResource(id = R.string.CreateFoldersFragment__edit_folder),
       onNavigationClick = {
@@ -142,6 +149,10 @@ class CreateFoldersFragment : ComposeFragment() {
         }
       )
     }
+  }
+
+  companion object {
+    private val KEY_FOLDER_ID = "folder_id"
   }
 }
 

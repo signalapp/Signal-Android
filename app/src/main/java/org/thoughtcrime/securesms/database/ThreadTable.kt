@@ -1041,6 +1041,47 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
   }
 
+  fun getThreadIdsByChatFolder(chatFolder: ChatFolderRecord): List<Long> {
+    val folderQuery = chatFolder.toQuery()
+    val query =
+      """
+      SELECT ${TABLE_NAME}.$ID
+      FROM $TABLE_NAME
+        LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
+      WHERE 
+        $ACTIVE = 1
+        $folderQuery
+      """
+    return readableDatabase.rawQuery(query, null).readToList { cursor -> cursor.requireLong(ID) }
+  }
+
+  fun getRecipientIdsByChatFolder(chatFolder: ChatFolderRecord): List<RecipientId> {
+    return if (chatFolder.folderType == ChatFolderRecord.FolderType.ALL) {
+      readableDatabase
+        .select(RECIPIENT_ID)
+        .from(TABLE_NAME)
+        .where("$ACTIVE = 1")
+        .run()
+        .readToList { cursor ->
+          RecipientId.from(cursor.requireLong(RECIPIENT_ID))
+        }
+    } else {
+      val folderQuery = chatFolder.toQuery()
+      val query =
+        """
+        SELECT $RECIPIENT_ID
+        FROM $TABLE_NAME
+          LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
+        WHERE 
+          $ACTIVE = 1
+          $folderQuery
+        """
+      readableDatabase.rawQuery(query, null).readToList { cursor ->
+        RecipientId.from(cursor.requireLong(RECIPIENT_ID))
+      }
+    }
+  }
+
   /**
    * @return Pinned recipients, in order from top to bottom.
    */
