@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.CallLinkUpdateSendJob
 import org.thoughtcrime.securesms.jobs.CallSyncEventJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -589,15 +590,15 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     AppDependencies.databaseObserver.notifyCallUpdateObservers()
   }
 
-  fun insertOrUpdateAdHocCallFromObserveEvent(
+  fun insertOrUpdateAdHocCallFromRemoteObserveEvent(
     callRecipient: Recipient,
     timestamp: Long,
     callId: Long
   ) {
-    handleCallLinkUpdate(callRecipient, timestamp, CallId(callId), Direction.INCOMING)
+    handleCallLinkUpdate(callRecipient, timestamp, CallId(callId), Direction.INCOMING, skipSyncOnInsert = true)
   }
 
-  fun insertAdHocCallFromObserveEvent(
+  fun insertAdHocCallFromLocalObserveEvent(
     callRecipient: Recipient,
     timestamp: Long,
     eraId: String
@@ -693,7 +694,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     timestamp: Long,
     callId: CallId?,
     direction: Direction = Direction.OUTGOING,
-    skipTimestampUpdate: Boolean = false
+    skipTimestampUpdate: Boolean = false,
+    skipSyncOnInsert: Boolean = false
   ): Boolean {
     check(callLinkRecipient.isCallLink)
 
@@ -733,6 +735,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
         Log.d(TAG, "Inserted new call event for call link. Call Id: $callId")
         AppDependencies.databaseObserver.notifyCallUpdateObservers()
+
+        if (!skipSyncOnInsert) {
+          AppDependencies.jobManager.add(CallLinkUpdateSendJob(callLinkRecipient.requireCallLinkRoomId()))
+        }
 
         true
       } else false
