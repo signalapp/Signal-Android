@@ -1972,6 +1972,7 @@
         <item quantity="one">+%1$d invited</item>
         <item quantity="other">+%1$d invited</item>
     </plurals>
+    <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="one">%d additional group</item>
         <item quantity="other">%d additional groups</item>
@@ -1999,6 +2000,7 @@
     <string name="DeviceProvisioningActivity_content_progress_no_device">No device found.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Network error.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Invalid QR code.</string>
+    <!-- Toast message shown when a user has too many linked devices and needs to remove one before linking another -->
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, you have too many devices linked already, try removing some</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, this is not a valid device link QR code.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Link a Signal device?</string>
@@ -2021,11 +2023,13 @@
     <string name="PassphrasePromptActivity_ok_button_content_description">Submit passphrase</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Invalid passphrase!</string>
     <string name="PassphrasePromptActivity_unlock_signal">Unlock Signal</string>
+    <!-- This is the subject line for the email that is sent to support -->
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Lock Screen</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">Map</string>
 
+    <!-- Content description of the pin image -->
     <string name="PlacePickerActivity_drop_pin">Drop pin</string>
     <string name="PlacePickerActivity_accept_address">Accept address</string>
 
@@ -2531,6 +2535,7 @@
     <string name="SharedContactView_message">Signal Message</string>
 
     <!-- SignalBottomActionBar -->
+    <!-- Text to describe a button that will show more options -->
     <string name="SignalBottomActionBar_more">More</string>
 
     <!-- SignalPinReminders -->
@@ -2562,6 +2567,7 @@
     <string name="StickerManagementAdapter_no_stickers_installed">No stickers installed</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Stickers from incoming messages will appear here</string>
     <string name="StickerManagementAdapter_untitled">Untitled</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagementAdapter_unknown">Unknown</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2783,6 +2789,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">Media no longer available.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
+    <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Error finding message.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Can\'t find an app able to share this media.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Close</string>
@@ -2854,6 +2861,7 @@
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Messages</string>
     <string name="NotificationChannel_calls">Calls</string>
+    <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Failures</string>
     <string name="NotificationChannel_backups">Backups</string>
     <string name="NotificationChannel_locked_status">Lock status</string>
@@ -2863,6 +2871,7 @@
     <string name="NotificationChannel_missing_display_name">Unknown</string>
     <string name="NotificationChannel_voice_notes">Voice Notes</string>
     <string name="NotificationChannel_contact_joined_signal">Contact joined Signal</string>
+    <!-- Toast shown when there is no application available to open the settings -->
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No activity available to open notification channel settings.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
     <string name="NotificationChannel_background_connection">Background connection</string>
@@ -3647,10 +3656,12 @@
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
     <string name="preferences_storage__delete_all_now">Delete all now</string>
+    <!-- Option for keeping messages forever when managing storage -->
     <string name="preferences_storage__forever">Forever</string>
     <string name="preferences_storage__one_year">1 year</string>
     <string name="preferences_storage__six_months">6 months</string>
     <string name="preferences_storage__thirty_days">30 days</string>
+    <!-- Option for setting no limit of the length of chat messages -->
     <string name="preferences_storage__none">None</string>
     <plurals name="preferences_storage__s_messages_plural">
         <item quantity="one">%1$s message</item>
@@ -3675,6 +3686,7 @@
     <string name="preferences_notifications__show">Show</string>
     <string name="preferences_notifications__ringtone">Ringtone</string>
     <string name="preferences_chats__message_text_size">Message font size</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Priority</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
     <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
@@ -3903,6 +3915,7 @@
     <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scan the address QR code of the payee</string>
 
     <!-- CreatePaymentFragment -->
+    <!-- Button text to request the payment from a user -->
     <string name="CreatePaymentFragment__request">Request</string>
     <string name="CreatePaymentFragment__pay">Pay</string>
     <string name="CreatePaymentFragment__available_balance_s">Available balance: %1$s</string>
@@ -4034,6 +4047,7 @@
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">You can only pin up to %1$d chats</string>
 
     <!-- conversation_list_item_view -->
+    <!-- Content description for contact avatar photo -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
     <string name="conversation_list_item_view__archived">Archived</string>
 
@@ -4274,6 +4288,7 @@
     <string name="preferences_chats__chat_backups">Chat backups</string>
     <string name="preferences_chats__transfer_account">Transfer account</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfer account to a new Android device</string>
+    <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
     <string name="RegistrationActivity_restore">Restore</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Cannot import backups from newer versions of Signal</string>
@@ -4481,6 +4496,7 @@
 
     <!-- DeviceTransferSetupFragment -->
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Unable to open Wi-Fi Settings. Please turn on Wi-Fi manually.</string>
+    <!-- Message on button that will prompt for location permissions in order to complete a device transfer -->
     <string name="DeviceTransferSetup__grant_location_permission">Grant location permission</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Turn on location services</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Turn on Wi-Fi</string>
@@ -4734,6 +4750,7 @@
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Share</string>
+    <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Send</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
@@ -5234,6 +5251,7 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
+    <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
