@@ -47,6 +47,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
 {
   private View                        coordinator;
   private RecyclerView                list;
+  private RecyclerView                foldersList;
   private Stub<View>                  emptyState;
   private PulsingFloatingActionButton fab;
   private PulsingFloatingActionButton cameraFab;
@@ -73,12 +74,14 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
     emptyState  = new Stub<>(view.findViewById(R.id.empty_state));
     fab         = view.findViewById(R.id.fab);
     cameraFab   = view.findViewById(R.id.camera_fab);
+    foldersList = view.findViewById(R.id.chat_folder_list);
 
     toolbar.get().setNavigationOnClickListener(v -> NavHostFragment.findNavController(this).popBackStack());
     toolbar.get().setTitle(R.string.AndroidManifest_archived_conversations);
 
     fab.hide();
     cameraFab.hide();
+    foldersList.setVisibility(View.GONE);
   }
 
   @Override

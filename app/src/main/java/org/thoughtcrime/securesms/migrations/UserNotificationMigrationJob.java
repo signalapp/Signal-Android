@@ -77,7 +77,7 @@ public class UserNotificationMigrationJob extends MigrationJob {
 
     ThreadTable threadTable = SignalDatabase.threads();
 
-    int threadCount = threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF) +
+    int threadCount = threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF, null) +
                       threadTable.getArchivedConversationListCount(ConversationFilter.OFF);
 
     if (threadCount >= 3) {

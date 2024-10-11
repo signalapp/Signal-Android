@@ -21,6 +21,7 @@ class ContactSearchRepository {
         val isSelectable = when (it) {
           is ContactSearchKey.RecipientSearchKey -> canSelectRecipient(it.recipientId)
           is ContactSearchKey.UnknownRecipientKey -> it.sectionKey == ContactSearchConfiguration.SectionKey.PHONE_NUMBER
+          is ContactSearchKey.ChatTypeSearchKey -> true
           else -> false
         }
         ContactSearchSelectionResult(it, isSelectable)

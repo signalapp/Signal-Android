@@ -5,6 +5,7 @@ import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
@@ -57,6 +58,7 @@ open class ContactSearchAdapter(
     registerKnownRecipientItems(this, fixedContacts, displayOptions, onClickCallbacks::onKnownRecipientClicked, longClickCallbacks::onKnownRecipientLongClick, callButtonClickCallbacks)
     registerHeaders(this)
     registerExpands(this, onClickCallbacks::onExpandClicked)
+    registerChatTypeItems(this, onClickCallbacks::onChatTypeClicked)
     registerFactory(UnknownRecipientModel::class.java, LayoutFactory({ UnknownRecipientViewHolder(it, onClickCallbacks::onUnknownRecipientClicked, displayOptions.displayCheckBox) }, R.layout.contact_search_unknown_item))
   }
 
@@ -117,6 +119,13 @@ open class ContactSearchAdapter(
       )
     }
 
+    fun registerChatTypeItems(mappingAdapter: MappingAdapter, chatTypeRowListener: OnClickedCallback<ContactSearchData.ChatTypeRow>) {
+      mappingAdapter.registerFactory(
+        ChatTypeModel::class.java,
+        LayoutFactory({ ChatTypeViewHolder(it, chatTypeRowListener) }, R.layout.contact_search_chat_type_item)
+      )
+    }
+
     fun toMappingModelList(contactSearchData: List<ContactSearchData?>, selection: Set<ContactSearchKey>, arbitraryRepository: ArbitraryRepository?): MappingModelList {
       return MappingModelList(
         contactSearchData.filterNotNull().map {
@@ -132,6 +141,7 @@ open class ContactSearchAdapter(
             is ContactSearchData.Empty -> EmptyModel(it)
             is ContactSearchData.GroupWithMembers -> GroupWithMembersModel(it)
             is ContactSearchData.UnknownRecipient -> UnknownRecipientModel(it)
+            is ContactSearchData.ChatTypeRow -> ChatTypeModel(it, selection.contains(it.contactSearchKey))
           }
         }
       )
@@ -675,6 +685,7 @@ open class ContactSearchAdapter(
           ContactSearchConfiguration.SectionKey.MESSAGES -> R.string.ContactsCursorLoader__messages
           ContactSearchConfiguration.SectionKey.GROUPS_WITH_MEMBERS -> R.string.ContactsCursorLoader_group_members
           ContactSearchConfiguration.SectionKey.CONTACTS_WITHOUT_THREADS -> R.string.ContactsCursorLoader_contacts
+          ContactSearchConfiguration.SectionKey.CHAT_TYPES -> R.string.ContactsCursorLoader__chat_types
           else -> error("This section does not support HEADER")
         }
       )
@@ -709,6 +720,42 @@ open class ContactSearchAdapter(
   private class ExpandViewHolder(itemView: View, private val expandListener: (ContactSearchData.Expand) -> Unit) : MappingViewHolder<ExpandModel>(itemView) {
     override fun bind(model: ExpandModel) {
       itemView.setOnClickListener { expandListener.invoke(model.expand) }
+    }
+  }
+
+  /**
+   * Mapping Model for chat types.
+   */
+  class ChatTypeModel(val data: ContactSearchData.ChatTypeRow, val isSelected: Boolean) : MappingModel<ChatTypeModel> {
+    override fun areItemsTheSame(newItem: ChatTypeModel): Boolean = data == newItem.data
+    override fun areContentsTheSame(newItem: ChatTypeModel): Boolean = data == newItem.data && isSelected == newItem.isSelected
+  }
+
+  /**
+   * View Holder for chat types
+   */
+  private class ChatTypeViewHolder(
+    itemView: View,
+    val onClick: OnClickedCallback<ContactSearchData.ChatTypeRow>
+  ) : MappingViewHolder<ChatTypeModel>(itemView) {
+
+    val image: ImageView = itemView.findViewById(R.id.image)
+    val name: TextView = itemView.findViewById(R.id.name)
+    val checkbox: CheckBox = itemView.findViewById(R.id.check_box)
+
+    override fun bind(model: ChatTypeModel) {
+      itemView.setOnClickListener { onClick.onClicked(itemView, model.data, model.isSelected) }
+
+      image.setImageResource(model.data.imageResId)
+
+      if (model.data.chatType == ChatType.INDIVIDUAL) {
+        name.text = context.getString(R.string.ChatFoldersFragment__one_on_one_chats)
+      }
+      if (model.data.chatType == ChatType.GROUPS) {
+        name.text = context.getString(R.string.ChatFoldersFragment__groups)
+      }
+
+      checkbox.isChecked = model.isSelected
     }
   }
 
@@ -764,6 +811,7 @@ open class ContactSearchAdapter(
     fun onUnknownRecipientClicked(view: View, unknownRecipient: ContactSearchData.UnknownRecipient, isSelected: Boolean) {
       throw NotImplementedError()
     }
+    fun onChatTypeClicked(view: View, chatTypeRow: ContactSearchData.ChatTypeRow, isSelected: Boolean)
   }
 
   interface CallButtonClickCallbacks {

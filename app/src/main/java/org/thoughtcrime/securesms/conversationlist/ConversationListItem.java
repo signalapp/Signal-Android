@@ -134,6 +134,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
   private View                uncheckedView;
   private View                checkedView;
   private View                unreadMentions;
+  private View                pinnedView;
   private int                 thumbSize;
   private GlideLiveDataTarget thumbTarget;
 
@@ -170,6 +171,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     this.uncheckedView           = findViewById(R.id.conversation_list_item_unchecked);
     this.checkedView             = findViewById(R.id.conversation_list_item_checked);
     this.unreadMentions          = findViewById(R.id.conversation_list_item_unread_mentions_indicator);
+    this.pinnedView              = findViewById(R.id.conversation_list_item_pinned);
     this.thumbSize               = (int) DimensionUnit.SP.toPixels(16f);
     this.thumbTarget             = new GlideLiveDataTarget(thumbSize, thumbSize);
     this.searchStyleFactory      = () -> new CharacterStyle[] { new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface)), SpanUtil.getBoldSpan() };
@@ -277,6 +279,12 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       this.archivedView.setVisibility(View.VISIBLE);
     } else {
       this.archivedView.setVisibility(View.GONE);
+    }
+
+    if (thread.isPinned()) {
+      this.pinnedView.setVisibility(View.VISIBLE);
+    } else {
+      this.pinnedView.setVisibility(View.GONE);
     }
 
     setStatusIcons(thread);

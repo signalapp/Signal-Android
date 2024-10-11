@@ -76,5 +76,14 @@ sealed class ContactSearchKey {
    */
   data class Message(val messageId: Long) : ContactSearchKey()
 
+  /**
+   * Search key for a ChatType
+   */
+  data class ChatTypeSearchKey(val chatType: ChatType) : ContactSearchKey() {
+    override fun requireSelectedContact(): SelectedContact {
+      return SelectedContact.forChatType(chatType)
+    }
+  }
+
   object Empty : ContactSearchKey()
 }

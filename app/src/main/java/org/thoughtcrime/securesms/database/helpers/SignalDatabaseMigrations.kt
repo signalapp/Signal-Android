@@ -109,6 +109,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V247_ClearUploadTim
 import org.thoughtcrime.securesms.database.helpers.migration.V250_ClearUploadTimestampV2
 import org.thoughtcrime.securesms.database.helpers.migration.V251_ArchiveTransferStateIndex
 import org.thoughtcrime.securesms.database.helpers.migration.V252_AttachmentOffloadRestoredAtColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V253_CreateChatFolderTables
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -220,10 +221,11 @@ object SignalDatabaseMigrations {
     // 248 and 249 were originally in 7.18.0, but are now skipped because we needed to hotfix 7.17.6 after 7.18.0 was already released.
     250 to V250_ClearUploadTimestampV2,
     251 to V251_ArchiveTransferStateIndex,
-    252 to V252_AttachmentOffloadRestoredAtColumn
+    252 to V252_AttachmentOffloadRestoredAtColumn,
+    253 to V253_CreateChatFolderTables
   )
 
-  const val DATABASE_VERSION = 252
+  const val DATABASE_VERSION = 253
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

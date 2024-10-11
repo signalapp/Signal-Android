@@ -193,6 +193,18 @@ class ContactSearchConfiguration private constructor(
       override val includeHeader: Boolean = false
       override val expandConfig: ExpandConfig? = null
     }
+
+    /**
+     * Chat types that are displayed when creating a chat folder.
+     *
+     * Key: [ContactSearchKey.ChatType]
+     * Data: [ContactSearchData.ChatTypeRow]
+     * Model: [ContactSearchAdapter.ChatTypeModel]
+     */
+    data class ChatTypes(
+      override val includeHeader: Boolean = true,
+      override val expandConfig: ExpandConfig? = null
+    ) : Section(SectionKey.CHAT_TYPES)
   }
 
   /**
@@ -233,6 +245,11 @@ class ContactSearchConfiguration private constructor(
      * Section Key for [Section.ContactsWithoutThreads]
      */
     CONTACTS_WITHOUT_THREADS,
+
+    /**
+     * Chat types (ie unreads, 1:1, groups) that are used to customize folders
+     */
+    CHAT_TYPES,
 
     /**
      * Arbitrary row (think new group button, username row, etc)

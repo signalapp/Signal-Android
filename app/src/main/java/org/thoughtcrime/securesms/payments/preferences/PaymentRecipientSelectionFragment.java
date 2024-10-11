@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ContactFilterView;
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode;
+import org.thoughtcrime.securesms.contacts.paged.ChatType;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.payments.CanNotSendPaymentDialog;
@@ -71,7 +72,7 @@ public class PaymentRecipientSelectionFragment extends LoggingFragment implement
   }
 
   @Override
-  public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, @Nullable String number, @NonNull Consumer<Boolean> callback) {
+  public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, @Nullable String number, @NonNull Optional<ChatType> chatType, @NonNull Consumer<Boolean> callback) {
     if (recipientId.isPresent()) {
       SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
                      () -> Recipient.resolved(recipientId.get()),
@@ -82,7 +83,7 @@ public class PaymentRecipientSelectionFragment extends LoggingFragment implement
   }
 
   @Override
-  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, @Nullable String number) {}
+  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, @Nullable String number, @NonNull Optional<ChatType> chatType) {}
 
   @Override
   public void onSelectionChanged() {

@@ -245,4 +245,6 @@
     <dimen name="CallScreenParticipantItem__margin_end">4dp</dimen>
     <dimen name="CallScreenParticipantItem__margin_bottom">0dp</dimen>
 
+    <dimen name="chat_folder_row_height">64dp</dimen>
+
 </resources>

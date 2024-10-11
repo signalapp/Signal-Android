@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.contacts.HeaderAction
+import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.groups.SelectionLimits
@@ -117,7 +118,7 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     }
   }
 
-  override fun onBeforeContactSelected(isFromUnknownSearchKey: Boolean, recipientId: Optional<RecipientId>, number: String?, callback: Consumer<Boolean>) {
+  override fun onBeforeContactSelected(isFromUnknownSearchKey: Boolean, recipientId: Optional<RecipientId>, number: String?, chatType: Optional<ChatType>, callback: Consumer<Boolean>) {
     viewModel.addRecipient(recipientId.get())
 
     if (searchField.text.isNotBlank()) {
@@ -127,7 +128,7 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     callback.accept(true)
   }
 
-  override fun onContactDeselected(recipientId: Optional<RecipientId>, number: String?) {
+  override fun onContactDeselected(recipientId: Optional<RecipientId>, number: String?, chatType: Optional<ChatType>) {
     viewModel.removeRecipient(recipientId.get())
   }
 

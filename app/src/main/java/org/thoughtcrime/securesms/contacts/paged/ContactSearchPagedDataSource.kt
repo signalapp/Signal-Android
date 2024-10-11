@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.contacts.paged
 import android.database.Cursor
 import org.signal.core.util.requireLong
 import org.signal.paging.PagedDataSource
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.ContactRepository
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchCollection
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
@@ -142,6 +143,7 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.PhoneNumber -> if (isPossiblyPhoneNumber(query)) 1 else 0
       is ContactSearchConfiguration.Section.Username -> if (isPossiblyUsername(query)) 1 else 0
       is ContactSearchConfiguration.Section.Empty -> 1
+      is ContactSearchConfiguration.Section.ChatTypes -> getChatTypesData(section).size
     }
   }
 
@@ -181,6 +183,7 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.PhoneNumber -> getPossiblePhoneNumber(section, query)
       is ContactSearchConfiguration.Section.Username -> getPossibleUsername(section, query)
       is ContactSearchConfiguration.Section.Empty -> listOf(ContactSearchData.Empty(query))
+      is ContactSearchConfiguration.Section.ChatTypes -> getChatTypesData(section)
     }
   }
 
@@ -346,6 +349,22 @@ class ContactSearchPagedDataSource(
         }
       )
     }
+  }
+
+  // TODO [michelle]: Replace hardcoding chat types after building db
+  private fun getChatTypesData(section: ContactSearchConfiguration.Section.ChatTypes): List<ContactSearchData> {
+    val data = mutableListOf<ContactSearchData>()
+
+    if (section.includeHeader) {
+      data.add(ContactSearchData.Header(section.sectionKey, section.headerAction))
+    }
+    data.addAll(
+      listOf(
+        ContactSearchData.ChatTypeRow(R.drawable.symbol_person_light_24, ChatType.INDIVIDUAL),
+        ContactSearchData.ChatTypeRow(R.drawable.symbol_group_light_20, ChatType.GROUPS)
+      )
+    )
+    return data
   }
 
   private fun getContactsWithoutThreadsContactData(section: ContactSearchConfiguration.Section.ContactsWithoutThreads, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {

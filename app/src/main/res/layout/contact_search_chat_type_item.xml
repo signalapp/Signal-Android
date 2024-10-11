@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:viewBindingIgnore="true"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/conversation_item_background"
+    android:focusable="true"
+    android:minHeight="@dimen/contact_selection_item_height"
+    android:paddingStart="@dimen/dsl_settings_gutter"
+    android:paddingEnd="@dimen/dsl_settings_gutter">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/color_indicator_circle"
+        android:backgroundTint="@color/signal_colorSurfaceVariant"
+        app:tint="@color/signal_colorOnSurface"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:drawablePadding="4dp"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.Signal.Body1"
+        android:textColor="@color/signal_text_primary"
+        app:layout_constraintEnd_toStartOf="@id/check_box"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Unreads" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/check_box"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="?contactCheckboxBackground"
+        android:button="@null"
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

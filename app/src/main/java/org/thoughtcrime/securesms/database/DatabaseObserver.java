@@ -47,6 +47,7 @@ public class DatabaseObserver {
   private static final String KEY_CALL_UPDATES      = "CallUpdates";
   private static final String KEY_CALL_LINK_UPDATES = "CallLinkUpdates";
   private static final String KEY_IN_APP_PAYMENTS   = "InAppPayments";
+  private static final String KEY_CHAT_FOLDER       = "ChatFolder";
 
   private final Executor    executor;
 
@@ -69,6 +70,7 @@ public class DatabaseObserver {
   private final Set<Observer>                      callUpdateObservers;
   private final Map<CallLinkRoomId, Set<Observer>> callLinkObservers;
   private final Set<InAppPaymentObserver>          inAppPaymentObservers;
+  private final Set<Observer>                      chatFolderObservers;
 
   public DatabaseObserver() {
     this.executor                     = new SerialExecutor(SignalExecutors.BOUNDED);
@@ -91,6 +93,7 @@ public class DatabaseObserver {
     this.callUpdateObservers          = new HashSet<>();
     this.callLinkObservers            = new HashMap<>();
     this.inAppPaymentObservers        = new HashSet<>();
+    this.chatFolderObservers          = new HashSet<>();
   }
 
   public void registerConversationListObserver(@NonNull Observer listener) {
@@ -206,6 +209,10 @@ public class DatabaseObserver {
     executor.execute(() -> inAppPaymentObservers.add(observer));
   }
 
+  public void registerChatFolderObserver(@NonNull Observer observer) {
+    executor.execute(() -> chatFolderObservers.add(observer));
+  }
+
   public void unregisterObserver(@NonNull Observer listener) {
     executor.execute(() -> {
       conversationListObservers.remove(listener);
@@ -223,6 +230,7 @@ public class DatabaseObserver {
       unregisterMapped(conversationDeleteObservers, listener);
       callUpdateObservers.remove(listener);
       unregisterMapped(callLinkObservers, listener);
+      chatFolderObservers.remove(listener);
     });
   }
 
@@ -385,6 +393,10 @@ public class DatabaseObserver {
     runPostSuccessfulTransaction(KEY_IN_APP_PAYMENTS, () -> {
       inAppPaymentObservers.forEach(item -> item.onInAppPaymentChanged(inAppPayment));
     });
+  }
+
+  public void notifyChatFolderObservers() {
+    runPostSuccessfulTransaction(KEY_CHAT_FOLDER, () -> notifySet(chatFolderObservers));
   }
 
   private void runPostSuccessfulTransaction(@NonNull String dedupeKey, @NonNull Runnable runnable) {

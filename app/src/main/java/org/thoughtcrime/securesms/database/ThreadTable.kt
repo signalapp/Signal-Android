@@ -18,6 +18,7 @@ import org.signal.core.util.exists
 import org.signal.core.util.logging.Log
 import org.signal.core.util.or
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
@@ -30,6 +31,7 @@ import org.signal.core.util.updateAll
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.attachments
@@ -630,6 +632,39 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   /**
+   * Returns the number of unread messages across all threads within a chat folder
+   * Threads that are forced-unread count as 1.
+   */
+  fun getUnreadCountByChatFolder(folder: ChatFolderRecord): Int {
+    val chatFolderQuery = folder.toQuery()
+
+    val allCountQuery =
+      """
+      SELECT SUM($UNREAD_COUNT)
+      FROM $TABLE_NAME
+        LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
+      WHERE 
+        $ARCHIVED = 0
+        $chatFolderQuery
+      """
+    val allCount = readableDatabase.rawQuery(allCountQuery, null).readToSingleInt(0)
+
+    val forcedUnreadCountQuery =
+      """
+      SELECT COUNT(*)
+      FROM $TABLE_NAME
+        LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
+      WHERE 
+        $ARCHIVED = 0 AND
+        $READ = ${ThreadTable.ReadStatus.FORCED_UNREAD.serialize()}  
+        $chatFolderQuery
+      """
+    val forcedUnreadCount = readableDatabase.rawQuery(forcedUnreadCountQuery, null).readToSingleInt(0)
+
+    return allCount + forcedUnreadCount
+  }
+
+  /**
    * Returns the number of unread messages in a given thread.
    */
   fun getUnreadMessageCount(threadId: Long): Long {
@@ -915,12 +950,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return readableDatabase.rawQuery(query, arrayOf("1"))
   }
 
-  fun getUnarchivedConversationList(conversationFilter: ConversationFilter, pinned: Boolean, offset: Long, limit: Long): Cursor {
+  fun getUnarchivedConversationList(conversationFilter: ConversationFilter, pinned: Boolean, offset: Long, limit: Long, chatFolder: ChatFolderRecord): Cursor {
+    val folderQuery = chatFolder.toQuery()
     val filterQuery = conversationFilter.toQuery()
     val where = if (pinned) {
-      "$ARCHIVED = 0 AND $PINNED != 0 $filterQuery"
+      "$ARCHIVED = 0 AND $PINNED != 0 $filterQuery $folderQuery"
     } else {
-      "$ARCHIVED = 0 AND $PINNED = 0 AND $MEANINGFUL_MESSAGES != 0 $filterQuery"
+      "$ARCHIVED = 0 AND $PINNED = 0 AND $MEANINGFUL_MESSAGES != 0 $filterQuery $folderQuery"
     }
 
     val query = if (pinned) {
@@ -948,36 +984,61 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
   }
 
-  fun getPinnedConversationListCount(conversationFilter: ConversationFilter): Int {
+  fun getPinnedConversationListCount(conversationFilter: ConversationFilter, chatFolder: ChatFolderRecord? = null): Int {
     val filterQuery = conversationFilter.toQuery()
-    return readableDatabase
-      .select("COUNT(*)")
-      .from(TABLE_NAME)
-      .where("$ACTIVE = 1 AND $ARCHIVED = 0 AND $PINNED != 0 $filterQuery")
-      .run()
-      .use { cursor ->
-        if (cursor.moveToFirst()) {
-          cursor.getInt(0)
-        } else {
-          0
-        }
-      }
+
+    return if (chatFolder == null || chatFolder.folderType == ChatFolderRecord.FolderType.ALL) {
+      readableDatabase
+        .select("COUNT(*)")
+        .from(TABLE_NAME)
+        .where("$ACTIVE = 1 AND $ARCHIVED = 0 AND $PINNED != 0 $filterQuery")
+        .run()
+        .readToSingleInt(0)
+    } else {
+      val folderQuery = chatFolder.toQuery()
+      val query =
+        """
+        SELECT COUNT(*)
+        FROM $TABLE_NAME
+          LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
+        WHERE 
+          $ACTIVE = 1 AND 
+          $ARCHIVED = 0 AND 
+          $PINNED != 0
+          $filterQuery 
+          $folderQuery
+        """
+      readableDatabase.rawQuery(query, null).readToSingleInt(0)
+    }
   }
 
-  fun getUnarchivedConversationListCount(conversationFilter: ConversationFilter): Int {
+  fun getUnarchivedConversationListCount(conversationFilter: ConversationFilter, chatFolder: ChatFolderRecord? = null): Int {
     val filterQuery = conversationFilter.toQuery()
-    return readableDatabase
-      .select("COUNT(*)")
-      .from(TABLE_NAME)
-      .where("$ACTIVE = 1 AND $ARCHIVED = 0 AND ($MEANINGFUL_MESSAGES != 0 OR $PINNED != 0) $filterQuery")
-      .run()
-      .use { cursor ->
-        if (cursor.moveToFirst()) {
-          cursor.getInt(0)
-        } else {
-          0
-        }
-      }
+
+    return if (chatFolder == null || chatFolder.folderType == ChatFolderRecord.FolderType.ALL) {
+      readableDatabase
+        .select("COUNT(*)")
+        .from(TABLE_NAME)
+        .where("$ACTIVE = 1 AND $ARCHIVED = 0 AND ($MEANINGFUL_MESSAGES != 0 OR $PINNED != 0) $filterQuery")
+        .run()
+        .readToSingleInt(0)
+    } else {
+      val folderQuery = chatFolder.toQuery()
+
+      val query =
+        """
+        SELECT COUNT(*)
+        FROM $TABLE_NAME
+          LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
+        WHERE 
+          $ACTIVE = 1 AND 
+          $ARCHIVED = 0 AND 
+          ($MEANINGFUL_MESSAGES != 0 OR $PINNED != 0)
+          $filterQuery
+          $folderQuery
+        """
+      readableDatabase.rawQuery(query, null).readToSingleInt(0)
+    }
   }
 
   /**
@@ -1977,6 +2038,42 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   fun readerFor(cursor: Cursor): Reader {
     return Reader(cursor)
+  }
+
+  private fun ChatFolderRecord.toQuery(): String {
+    if (this.id == -1L || this.folderType == ChatFolderRecord.FolderType.ALL) {
+      return ""
+    }
+
+    val includedChatsQuery: MutableList<String> = mutableListOf()
+    includedChatsQuery.add("${TABLE_NAME}.$ID IN (${this.includedChats.joinToString(",")})")
+
+    if (this.showIndividualChats) {
+      includedChatsQuery.add("${RecipientTable.TABLE_NAME}.${RecipientTable.TYPE} = ${RecipientTable.RecipientType.INDIVIDUAL.id}")
+    }
+
+    if (this.showGroupChats) {
+      includedChatsQuery.add("${RecipientTable.TABLE_NAME}.${RecipientTable.TYPE} = ${RecipientTable.RecipientType.GV2.id}")
+    }
+
+    val includedQuery = includedChatsQuery.joinToString(" OR ") { "($it)" }
+
+    val fullQuery: MutableList<String> = mutableListOf()
+    fullQuery.add(includedQuery)
+
+    if (this.excludedChats.isNotEmpty()) {
+      fullQuery.add("${TABLE_NAME}.$ID NOT IN (${this.excludedChats.joinToString(",")})")
+    }
+
+    if (this.showUnread) {
+      fullQuery.add("$UNREAD_COUNT > 0 OR $READ == ${ReadStatus.FORCED_UNREAD.serialize()}")
+    }
+
+    if (!this.showMutedChats) {
+      fullQuery.add("${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL} = 0")
+    }
+
+    return "AND ${fullQuery.joinToString(" AND ") { "($it)" }}"
   }
 
   private fun ConversationFilter.toQuery(): String {

@@ -1483,6 +1483,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     for (id in ids) {
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
     }
+    AppDependencies.databaseObserver.notifyConversationListListeners()
 
     StorageSyncHelper.scheduleSyncForDataChange()
   }

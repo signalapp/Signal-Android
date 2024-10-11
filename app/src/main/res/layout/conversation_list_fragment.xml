@@ -32,11 +32,21 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="voice_note_player,banner_compose_view" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_folder_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="52dp"
+        android:clipToPadding="false"
+        android:paddingStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/banner_barrier" />
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/banner_barrier">
+        app:layout_constraintTop_toBottomOf="@id/chat_folder_list">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/recycler_coordinator_app_bar"

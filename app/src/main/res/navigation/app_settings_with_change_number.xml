@@ -358,6 +358,20 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_chatsSettingsFragment_to_chatFoldersFragment"
+            app:destination="@id/chatFoldersFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_chatsSettingsFragment_to_remoteBackupsSettingsFragment"
+            app:destination="@id/remoteBackupsSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <fragment
@@ -371,6 +385,41 @@
         android:name="org.thoughtcrime.securesms.reactions.edit.EditReactionsFragment"
         android:label="edit_reactions_fragment"
         tools:layout="@layout/edit_reactions_fragment" />
+
+    <fragment
+        android:id="@+id/chatFoldersFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersFragment"
+        android:label="chat_folders_fragment">
+        <action
+            android:id="@+id/action_chatFoldersFragment_to_createFoldersFragment"
+            app:destination="@id/createFoldersFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createFoldersFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.folders.CreateFoldersFragment"
+        android:label="create_folders_fragment">
+        <action
+            android:id="@+id/action_createFoldersFragment_to_chooseChatsFragment"
+            app:destination="@id/chooseChatsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+            <argument
+                android:name="include_chats"
+                app:argType="boolean" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/chooseChatsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.folders.ChooseChatsFragment"
+        android:label="choose_chats_fragment" />
 
     <!-- endregion -->
 

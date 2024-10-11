@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components.settings.app.chats
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -60,6 +59,19 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
       )
 
       dividerPref()
+
+      if (RemoteConfig.internalUser) {
+        sectionHeaderPref(R.string.ChatsSettingsFragment__chat_folders)
+
+        clickPref(
+          title = DSLSettingsText.from(R.string.ChatsSettingsFragment__add_chat_folder),
+          onClick = {
+            Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_chatFoldersFragment)
+          }
+        )
+
+        dividerPref()
+      }
 
       sectionHeaderPref(R.string.ChatsSettingsFragment__keyboard)
 
