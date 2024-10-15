@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import org.signal.core.util.bytes
 import org.signal.core.util.throttleLatest
-import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatus
+import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusBanner
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.database.DatabaseObserver
@@ -71,7 +71,7 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
 
   @Composable
   override fun DisplayBanner(model: BackupStatusData, contentPadding: PaddingValues) {
-    BackupStatus(
+    BackupStatusBanner(
       data = model,
       onSkipClick = listener::onSkip,
       onDismissClick = listener::onDismissComplete

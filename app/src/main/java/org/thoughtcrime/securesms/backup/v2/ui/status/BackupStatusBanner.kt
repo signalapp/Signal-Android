@@ -55,7 +55,7 @@ private const val NONE = -1
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun BackupStatus(
+fun BackupStatusBanner(
   data: BackupStatusData,
   onSkipClick: () -> Unit = {},
   onDismissClick: () -> Unit = {},
@@ -150,13 +150,13 @@ fun BackupStatus(
 fun BackupStatusBannerPreview() {
   Previews.Preview {
     Column {
-      BackupStatus(
+      BackupStatusBanner(
         data = BackupStatusData.RestoringMedia(5755000.bytes, 1253.mebiBytes)
       )
 
       HorizontalDivider()
 
-      BackupStatus(
+      BackupStatusBanner(
         data = BackupStatusData.RestoringMedia(
           bytesDownloaded = 55000.bytes,
           bytesTotal = 1253.mebiBytes,
@@ -166,7 +166,7 @@ fun BackupStatusBannerPreview() {
 
       HorizontalDivider()
 
-      BackupStatus(
+      BackupStatusBanner(
         data = BackupStatusData.RestoringMedia(
           bytesDownloaded = 55000.bytes,
           bytesTotal = 1253.mebiBytes,
@@ -176,7 +176,7 @@ fun BackupStatusBannerPreview() {
 
       HorizontalDivider()
 
-      BackupStatus(
+      BackupStatusBanner(
         data = BackupStatusData.RestoringMedia(
           bytesDownloaded = 55000.bytes,
           bytesTotal = 1253.mebiBytes,
@@ -186,13 +186,13 @@ fun BackupStatusBannerPreview() {
 
       HorizontalDivider()
 
-      BackupStatus(
+      BackupStatusBanner(
         data = BackupStatusData.NotEnoughFreeSpace(40900.kibiBytes)
       )
 
       HorizontalDivider()
 
-      BackupStatus(
+      BackupStatusBanner(
         data = BackupStatusData.CouldNotCompleteBackup
       )
     }
@@ -241,7 +241,7 @@ sealed interface BackupStatusData {
   class NotEnoughFreeSpace(
     requiredSpace: ByteSize
   ) : BackupStatusData {
-    private val requiredSpace = requiredSpace.toUnitString(maxPlaces = 2)
+    val requiredSpace = requiredSpace.toUnitString(maxPlaces = 2)
 
     override val iconRes: Int = R.drawable.symbol_backup_error_24
 
