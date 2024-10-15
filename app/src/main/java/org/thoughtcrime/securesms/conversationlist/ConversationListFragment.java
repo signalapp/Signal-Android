@@ -203,7 +203,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                                       ConversationListAdapter.OnConversationClickListener,
                                                                       MegaphoneActionController,
                                                                       ClearFilterViewHolder.OnClearFilterClickListener,
-                                                                      ChatFolderAdapter.Callbacks
+                                                                      ChatFolderAdapter.Callbacks,
+                                                                      ConversationListAdapter.EmptyFolderViewHolder.OnFolderSettingsClickListener
 {
   public static final short MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME = 32562;
   public static final short SMS_ROLE_REQUEST_CODE                     = 32563;
@@ -916,7 +917,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
 
   private void initializeListAdapters() {
-    defaultAdapter          = new ConversationListAdapter(getViewLifecycleOwner(), Glide.with(this), this, this);
+    defaultAdapter          = new ConversationListAdapter(getViewLifecycleOwner(), Glide.with(this), this, this, this);
 
     setAdapter(defaultAdapter);
 
@@ -1701,6 +1702,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onReorder() {
+    startActivity(AppSettingsActivity.chatFolders(requireContext()));
+  }
+
+  @Override
+  public void onFolderSettingsClick() {
     startActivity(AppSettingsActivity.chatFolders(requireContext()));
   }
 

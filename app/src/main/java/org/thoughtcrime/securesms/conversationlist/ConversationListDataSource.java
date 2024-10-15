@@ -110,12 +110,14 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
     SignalTrace.endSection();
 
     if (conversations.isEmpty() && start == 0 && length == 1) {
-      if (conversationFilter == ConversationFilter.OFF) {
-        return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.EMPTY, 0, false)));
-      } else {
+      if (conversationFilter != ConversationFilter.OFF) {
         return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.CONVERSATION_FILTER_EMPTY,
                                                                                                       0,
                                                                                                       showConversationFooterTip)));
+      } else if (chatFolder.getFolderType() != ChatFolderRecord.FolderType.ALL) {
+        return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.CHAT_FOLDER_EMPTY, 0, false)));
+      } else {
+        return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.EMPTY, 0, false)));
       }
     } else {
       return conversations;

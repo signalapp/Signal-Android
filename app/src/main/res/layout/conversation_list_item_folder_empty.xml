@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/conversation_list_fragment__no_chats_to_display"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        android:textColor="@color/signal_colorOnSurfaceVariant" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/folder_settings"
+        style="@style/Signal.Widget.Button.Small.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/conversation_list_fragment__folder_settings"
+        android:textColor="@color/signal_colorOnSurfaceVariant" />
+
+</LinearLayout>

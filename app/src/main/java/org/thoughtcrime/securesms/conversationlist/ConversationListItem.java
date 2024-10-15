@@ -171,7 +171,6 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     this.uncheckedView           = findViewById(R.id.conversation_list_item_unchecked);
     this.checkedView             = findViewById(R.id.conversation_list_item_checked);
     this.unreadMentions          = findViewById(R.id.conversation_list_item_unread_mentions_indicator);
-    this.pinnedView              = findViewById(R.id.conversation_list_item_pinned);
     this.thumbSize               = (int) DimensionUnit.SP.toPixels(16f);
     this.thumbTarget             = new GlideLiveDataTarget(thumbSize, thumbSize);
     this.searchStyleFactory      = () -> new CharacterStyle[] { new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface)), SpanUtil.getBoldSpan() };
@@ -215,7 +214,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                    @NonNull Set<Long> typingThreads,
                    @NonNull ConversationSet selectedConversations)
   {
-    bindThread(lifecycleOwner, thread, glideRequests, locale, typingThreads, selectedConversations, null, false);
+    bindThread(lifecycleOwner, thread, glideRequests, locale, typingThreads, selectedConversations, null, false, true);
   }
 
   public void bindThread(@NonNull LifecycleOwner lifecycleOwner,
@@ -225,7 +224,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                          @NonNull Set<Long> typingThreads,
                          @NonNull ConversationSet selectedConversations,
                          @Nullable String highlightSubstring,
-                         boolean appendSystemContactIcon)
+                         boolean appendSystemContactIcon,
+                         boolean showPinned)
   {
     this.threadId           = thread.getThreadId();
     this.requestManager     = requestManager;
@@ -250,9 +250,9 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     if (highlightSubstring != null) {
       String name = recipient.get().isSelf() ? getContext().getString(R.string.note_to_self) : recipient.get().getDisplayName(getContext());
 
-      this.fromView.setText(recipient.get(), SearchUtil.getHighlightedSpan(locale, searchStyleFactory, name, highlightSubstring, SearchUtil.MATCH_ALL), suffix);
+      this.fromView.setText(recipient.get(), SearchUtil.getHighlightedSpan(locale, searchStyleFactory, name, highlightSubstring, SearchUtil.MATCH_ALL), suffix, true, false, showPinned && thread.isPinned());
     } else {
-      this.fromView.setText(recipient.get(), suffix);
+      this.fromView.setText(recipient.get(), recipient.get().getDisplayName(getContext()), suffix, true, false, showPinned && thread.isPinned());
     }
 
     this.typingThreads = typingThreads;
@@ -279,12 +279,6 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       this.archivedView.setVisibility(View.VISIBLE);
     } else {
       this.archivedView.setVisibility(View.GONE);
-    }
-
-    if (thread.isPinned()) {
-      this.pinnedView.setVisibility(View.VISIBLE);
-    } else {
-      this.pinnedView.setVisibility(View.GONE);
     }
 
     setStatusIcons(thread);
@@ -570,9 +564,9 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       } else {
         name = recipient.getDisplayName(getContext());
       }
-      fromView.setText(recipient, SearchUtil.getHighlightedSpan(locale, searchStyleFactory, new SpannableString(name), highlightSubstring, SearchUtil.MATCH_ALL), null, thread != null);
+      fromView.setText(recipient, SearchUtil.getHighlightedSpan(locale, searchStyleFactory, new SpannableString(name), highlightSubstring, SearchUtil.MATCH_ALL), null, thread != null, false, thread != null && thread.isPinned());
     } else {
-      fromView.setText(recipient);
+      fromView.setText(recipient, recipient.getDisplayName(getContext()), null, true, false, thread != null && thread.isPinned());
     }
     contactPhotoImage.setAvatar(requestManager, recipient, !batchMode, false);
     setBadgeFromRecipient(recipient);
