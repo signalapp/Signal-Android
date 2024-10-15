@@ -684,7 +684,8 @@ public class PushServiceSocket {
   }
 
   public void sendProvisioningMessage(String destination, byte[] body) throws IOException {
-    makeServiceRequest(String.format(PROVISIONING_MESSAGE_PATH, destination), "PUT",
+    //noinspection CharsetObjectCanBeUsed
+    makeServiceRequest(String.format(PROVISIONING_MESSAGE_PATH, URLEncoder.encode(destination, StandardCharsets.UTF_8.name())), "PUT",
                        JsonUtil.toJson(new ProvisioningMessage(Base64.encodeWithPadding(body))));
   }
 
