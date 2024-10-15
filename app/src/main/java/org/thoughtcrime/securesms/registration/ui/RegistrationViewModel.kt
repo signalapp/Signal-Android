@@ -679,7 +679,7 @@ class RegistrationViewModel : ViewModel() {
    */
   private suspend fun registerAccountInternal(context: Context, sessionId: String?, registrationData: RegistrationData, pin: String?, masterKey: MasterKey): Pair<RegisterAccountResult, Boolean> {
     Log.v(TAG, "registerAccountInternal()")
-    val registrationResult: RegisterAccountResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, pin = pin) { masterKey }
+    val registrationResult: RegisterAccountResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, pin = pin)
 
     // Check if reg lock is enabled
     if (registrationResult !is RegisterAccountResult.RegistrationLocked) {
