@@ -89,11 +89,11 @@ import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserExce
 import org.whispersystems.signalservice.internal.push.SyncMessage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -410,9 +410,9 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
         CallLinkAuthCredentialPresentation callLinkAuthCredentialPresentation = AppDependencies.getGroupsV2Authorization()
                                                                                                .getCallLinkAuthorizationForToday(
-                                                                                                           genericServerPublicParams,
-                                                                                                           CallLinkSecretParams.deriveFromRootKey(callLinkRootKey.getKeyBytes())
-                                                                                                       );
+                                                                                                   genericServerPublicParams,
+                                                                                                   CallLinkSecretParams.deriveFromRootKey(callLinkRootKey.getKeyBytes())
+                                                                                               );
 
         callManager.peekCallLinkCall(SignalStore.internal().groupCallingServer(), callLinkAuthCredentialPresentation.serialize(), callLinkRootKey, peekInfo -> {
           PeekInfo info = peekInfo.getValue();
@@ -1023,31 +1023,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       try {
         TurnServerInfo turnServerInfo = AppDependencies.getSignalServiceAccountManager().getTurnServerInfo();
 
-        List<PeerConnection.IceServer> iceServers = new LinkedList<>();
-        for (String url : ListUtil.emptyIfNull(turnServerInfo.getUrlsWithIps())) {
-          if (url.startsWith("turn")) {
-            iceServers.add(PeerConnection.IceServer.builder(url)
-                                                   .setUsername(turnServerInfo.getUsername())
-                                                   .setPassword(turnServerInfo.getPassword())
-                                                   .setHostname(turnServerInfo.getHostname())
-                                                   .createIceServer());
-          } else {
-            iceServers.add(PeerConnection.IceServer.builder(url)
-                                                   .setHostname(turnServerInfo.getHostname())
-                                                   .createIceServer());
-          }
-        }
-        for (String url : ListUtil.emptyIfNull(turnServerInfo.getUrls())) {
-          if (url.startsWith("turn")) {
-            iceServers.add(PeerConnection.IceServer.builder(url)
-                                                   .setUsername(turnServerInfo.getUsername())
-                                                   .setPassword(turnServerInfo.getPassword())
-                                                   .createIceServer());
-          } else {
-            iceServers.add(PeerConnection.IceServer.builder(url).createIceServer());
-          }
+        List<TurnServerInfo> turnServerInfos = new ArrayList<>();
+        if (turnServerInfo != null) {
+          turnServerInfos.add(turnServerInfo);
+          turnServerInfos.addAll(turnServerInfo.getIceServers());
         }
 
+        List<PeerConnection.IceServer> iceServers = mapToIceServers(turnServerInfos);
         process((s, p) -> {
           RemotePeer activePeer = s.getCallInfoState().getActivePeer();
           if (activePeer != null && activePeer.getCallId().equals(remotePeer.getCallId())) {
@@ -1062,6 +1044,39 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         process((s, p) -> p.handleSetupFailure(s, remotePeer.getCallId()));
       }
     });
+  }
+
+  private static List<PeerConnection.IceServer> mapToIceServers(@NonNull List<TurnServerInfo> turnServerInfos) {
+    List<PeerConnection.IceServer> iceServers = new ArrayList<>();
+
+    for (TurnServerInfo turnServerInfo: turnServerInfos) {
+      if (turnServerInfo.getUrls() != null) {
+        iceServers.addAll(
+            turnServerInfo.getUrlsWithIps()
+                          .stream()
+                          .map(url ->
+                                   PeerConnection.IceServer.builder(url)
+                                                           .setUsername(turnServerInfo.getUsername())
+                                                           .setPassword(turnServerInfo.getPassword())
+                                                           .setHostname(turnServerInfo.getHostname())
+                                                           .createIceServer()
+                          ).toList());
+      }
+      if (turnServerInfo.getUrlsWithIps() != null) {
+        iceServers.addAll(
+            turnServerInfo.getUrls()
+                          .stream()
+                          .map(url ->
+                                   PeerConnection.IceServer.builder(url)
+                                                           .setUsername(turnServerInfo.getUsername())
+                                                           .setPassword(turnServerInfo.getPassword())
+                                                           .createIceServer()
+                          ).toList()
+        );
+      }
+    }
+
+    return iceServers;
   }
 
   public void sendGroupCallUpdateMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId, final @Nullable CallId callId, boolean isIncoming, boolean isJoinEvent) {
