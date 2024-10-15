@@ -14,12 +14,12 @@ data class ChatFolderRecord(
   val includedRecipients: Set<Recipient> = emptySet(),
   val excludedRecipients: Set<Recipient> = emptySet(),
   val showUnread: Boolean = false,
-  val showMutedChats: Boolean = false,
+  val showMutedChats: Boolean = true,
   val showIndividualChats: Boolean = false,
   val showGroupChats: Boolean = false,
   val isMuted: Boolean = false,
   val folderType: FolderType = FolderType.CUSTOM,
-  val unreadCount: Int = 0 // TODO [michelle]: unread count
+  val unreadCount: Int = 0
 ) {
   enum class FolderType(val value: Int) {
     /** Folder containing all chats */
