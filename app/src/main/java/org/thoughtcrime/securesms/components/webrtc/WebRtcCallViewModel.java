@@ -116,6 +116,10 @@ public class WebRtcCallViewModel extends ViewModel {
     return liveRecipient.getValue();
   }
 
+  public Flowable<Recipient> getRecipientFlowable() {
+    return recipientId.switchMap(id -> Recipient.observable(id).toFlowable(BackpressureStrategy.LATEST)).observeOn(AndroidSchedulers.mainThread());
+  }
+
   public void setRecipient(@NonNull Recipient recipient) {
     recipientId.onNext(recipient.getId());
     liveRecipient.setValue(recipient.live());

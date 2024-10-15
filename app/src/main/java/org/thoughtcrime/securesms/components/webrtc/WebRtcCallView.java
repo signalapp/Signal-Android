@@ -622,14 +622,15 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   public void setRecipient(@NonNull Recipient recipient) {
+    collapsedToolbar.setTitle(recipient.getDisplayName(getContext()));
+    recipientName.setText(recipient.getDisplayName(getContext()));
+
     if (recipient.getId() == recipientId) {
       return;
     }
 
     recipientId = recipient.getId();
     largeHeaderAvatar.setRecipient(recipient, false);
-    collapsedToolbar.setTitle(recipient.getDisplayName(getContext()));
-    recipientName.setText(recipient.getDisplayName(getContext()));
   }
 
   public void setStatus(@Nullable String status) {
