@@ -9,6 +9,7 @@ import androidx.annotation.VisibleForTesting
 import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -55,8 +56,18 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
   }
 
   override suspend fun doRun(): Result {
+    if (!SignalStore.account.isRegistered) {
+      Log.i(TAG, "User is not registered. Exiting.")
+      return Result.success()
+    }
+
     if (!RemoteConfig.messageBackups) {
       Log.i(TAG, "Message backups are not enabled. Exiting.")
+      return Result.success()
+    }
+
+    if (!SignalStore.backup.backupsInitialized) {
+      Log.i(TAG, "Backups are not initialized on this device. Exiting.")
       return Result.success()
     }
 
@@ -65,53 +76,48 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
+    BackupRepository.getBackupTier().runIfSuccessful {
+      Log.i(TAG, "Successfully retrieved backup tier $it. Applying.")
+      SignalStore.backup.backupTier = it
+    }
+
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()
     val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged && purchase.isWithinTheLastMonth()
 
     val subscriberId = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
     if (subscriberId == null && hasActivePurchase) {
       Log.w(TAG, "User has active Google Play Billing purchase but no subscriber id! User should cancel backup and resubscribe.")
-      updateLocalState(null)
       // TODO [message-backups] Set UI flag hint here to launch sheet (designs pending)
       return Result.success()
     }
 
     val tier = SignalStore.backup.backupTier
     if (subscriberId == null && tier == MessageBackupTier.PAID) {
-      Log.w(TAG, "User has no subscriber id but PAID backup tier. Reverting to no backup tier and informing the user.")
-      updateLocalState(null)
+      Log.w(TAG, "User has no subscriber id but PAID backup tier. User will need to cancel and resubscribe.")
       // TODO [message-backups] Set UI flag hint here to launch sheet (designs pending)
       return Result.success()
     }
 
     val activeSubscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()
     if (activeSubscription?.isActive == true && tier != MessageBackupTier.PAID) {
-      Log.w(TAG, "User has an active subscription but no backup tier. Setting to PAID and enabling backups.")
-      updateLocalState(MessageBackupTier.PAID)
+      Log.w(TAG, "User has an active subscription but no backup tier.")
+      // TODO [message-backups] Set UI flag hint here to launch error sheet?
       return Result.success()
     }
 
     if (activeSubscription?.isActive != true && tier == MessageBackupTier.PAID) {
-      Log.w(TAG, "User subscription is inactive or does not exist. Clearing backup tier.")
+      Log.w(TAG, "User subscription is inactive or does not exist. User will need to cancel and resubscribe.")
       // TODO [message-backups] Set UI hint?
-      updateLocalState(null)
       return Result.success()
     }
 
     if (activeSubscription?.isActive != true && hasActivePurchase) {
-      Log.w(TAG, "User subscription is inactive but user has a recent purchase. Clearing backup tier.")
+      Log.w(TAG, "User subscription is inactive but user has a recent purchase. User will need to cancel and resubscribe.")
       // TODO [message-backups] Set UI hint?
-      updateLocalState(null)
       return Result.success()
     }
 
     return Result.success()
-  }
-
-  private fun updateLocalState(backupTier: MessageBackupTier?) {
-    synchronized(InAppPaymentSubscriberRecord.Type.BACKUP) {
-      SignalStore.backup.backupTier = backupTier
-    }
   }
 
   override fun serialize(): ByteArray? = null

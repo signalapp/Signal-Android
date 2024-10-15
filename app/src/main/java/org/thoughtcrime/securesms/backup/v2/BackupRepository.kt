@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.toMillis
 import org.whispersystems.signalservice.api.NetworkResult
@@ -73,6 +74,7 @@ import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
@@ -113,9 +115,24 @@ object BackupRepository {
   }
 
   @WorkerThread
-  fun turnOffAndDeleteBackup() {
-    RecurringInAppPaymentRepository.cancelActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
-    SignalStore.backup.disableBackups()
+  fun turnOffAndDeleteBackup(): Boolean {
+    return try {
+      Log.d(TAG, "Attempting to disable backups.")
+      getBackupTier().runIfSuccessful { tier ->
+        if (tier == MessageBackupTier.PAID) {
+          Log.d(TAG, "User is currently on a paid tier. Canceling.")
+          RecurringInAppPaymentRepository.cancelActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
+          Log.d(TAG, "Successfully canceled paid tier.")
+        }
+      }
+
+      Log.d(TAG, "Disabling backups.")
+      SignalStore.backup.disableBackups()
+      true
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to turn off backups.", e)
+      false
+    }
   }
 
   private fun createSignalDatabaseSnapshot(baseName: String): SignalDatabase {
@@ -515,6 +532,25 @@ object BackupRepository {
       }
   }
 
+  /**
+   * If backups are initialized, this method will query the server for the current backup level.
+   * If backups are not initialized, this method will return either the stored tier or a 404 result.
+   */
+  fun getBackupTier(): NetworkResult<MessageBackupTier> {
+    return if (SignalStore.backup.backupsInitialized) {
+      getBackupTier(Recipient.self().requireAci())
+    } else if (SignalStore.backup.backupTier != null) {
+      NetworkResult.Success(SignalStore.backup.backupTier!!)
+    } else {
+      NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(404))
+    }
+  }
+
+  /**
+   * Grabs the backup tier for the given ACI. Note that this will set the user's backup
+   * tier to FREE if they are not on PAID, so avoid this method if you don't intend that
+   * to be the case.
+   */
   private fun getBackupTier(aci: ACI): NetworkResult<MessageBackupTier> {
     val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
 
