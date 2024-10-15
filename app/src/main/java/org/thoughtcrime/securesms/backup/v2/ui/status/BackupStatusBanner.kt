@@ -147,7 +147,7 @@ fun BackupStatus(
 
 @SignalPreview
 @Composable
-fun BackupStatusPreview() {
+fun BackupStatusBannerPreview() {
   Previews.Preview {
     Column {
       BackupStatus(
