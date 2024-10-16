@@ -200,11 +200,6 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public Single<ServiceResponse<BackupV2AuthCheckResponse>> checkBackupAuthCredentials(@Nonnull String e164, @Nonnull List<String> usernamePasswords) {
-
-    return pushServiceSocket.checkSvr2AuthCredentials(new BackupAuthCheckRequest(e164, usernamePasswords), DefaultResponseMapper.getDefault(BackupV2AuthCheckResponse.class));
-  }
-
   /**
    * Request a push challenge. A number will be pushed to the GCM (FCM) id. This can then be used
    * during SMS/call requests to bypass the CAPTCHA.
@@ -215,109 +210,6 @@ public class SignalServiceAccountManager {
    */
   public void requestRegistrationPushChallenge(String sessionId, String gcmRegistrationId) throws IOException {
     pushServiceSocket.requestPushChallenge(sessionId, gcmRegistrationId);
-  }
-
-  public ServiceResponse<RegistrationSessionMetadataResponse> createRegistrationSession(@Nullable String fcmToken, @Nullable String mcc, @Nullable String mnc) {
-    try {
-      final RegistrationSessionMetadataResponse response = pushServiceSocket.createVerificationSession(fcmToken, mcc, mnc);
-      return ServiceResponse.forResult(response, 200, null);
-    } catch (IOException e) {
-      return ServiceResponse.forUnknownError(e);
-    }
-  }
-
-  public ServiceResponse<RegistrationSessionMetadataResponse> getRegistrationSession(String sessionId) {
-    try {
-      final RegistrationSessionMetadataResponse response = pushServiceSocket.getSessionStatus(sessionId);
-      return ServiceResponse.forResult(response, 200, null);
-    } catch (IOException e) {
-      return ServiceResponse.forUnknownError(e);
-    }
-  }
-
-  public ServiceResponse<RegistrationSessionMetadataResponse> submitPushChallengeToken(String sessionId, String pushChallengeToken) {
-    try {
-      final RegistrationSessionMetadataResponse response = pushServiceSocket.patchVerificationSession(sessionId, null, null, null, null, pushChallengeToken);
-      return ServiceResponse.forResult(response, 200, null);
-    } catch (IOException e) {
-      return ServiceResponse.forUnknownError(e);
-    }
-  }
-
-  public ServiceResponse<RegistrationSessionMetadataResponse> submitCaptchaToken(String sessionId, @Nullable String captchaToken) {
-    try {
-      final RegistrationSessionMetadataResponse response = pushServiceSocket.patchVerificationSession(sessionId, null, null, null, captchaToken, null);
-      return ServiceResponse.forResult(response, 200, null);
-    } catch (IOException e) {
-      return ServiceResponse.forUnknownError(e);
-    }
-  }
-
-  /**
-   * Request an SMS verification code.  On success, the server will send
-   * an SMS verification code to this Signal user.
-   *
-   * @param androidSmsRetrieverSupported
-   */
-  public ServiceResponse<RegistrationSessionMetadataResponse> requestSmsVerificationCode(String sessionId, Locale locale, boolean androidSmsRetrieverSupported) {
-    try {
-      final RegistrationSessionMetadataResponse response = pushServiceSocket.requestVerificationCode(sessionId, locale, androidSmsRetrieverSupported, PushServiceSocket.VerificationCodeTransport.SMS);
-      return ServiceResponse.forResult(response, 200, null);
-    } catch (IOException e) {
-      return ServiceResponse.forUnknownError(e);
-    }
-  }
-
-  /**
-   * Request a Voice verification code.  On success, the server will
-   * make a voice call to this Signal user.
-   *
-   * @param locale
-   */
-  public ServiceResponse<RegistrationSessionMetadataResponse> requestVoiceVerificationCode(String sessionId, Locale locale, boolean androidSmsRetrieverSupported) {
-    try {
-      final RegistrationSessionMetadataResponse response = pushServiceSocket.requestVerificationCode(sessionId, locale, androidSmsRetrieverSupported, PushServiceSocket.VerificationCodeTransport.VOICE);
-      return ServiceResponse.forResult(response, 200, null);
-    } catch (IOException e) {
-      return ServiceResponse.forUnknownError(e);
-    }
-  }
-
-  /**
-   * Verify a Signal Service account with a received SMS or voice verification code.
-   *
-   * @param verificationCode The verification code received via SMS or Voice
-   *                         (see {@link #requestSmsVerificationCode} and
-   *                         {@link #requestVoiceVerificationCode}).
-   * @param sessionId        The ID of the current registration session.
-   * @return The UUID of the user that was registered.
-   * @throws IOException for various HTTP and networking errors
-   */
-  public ServiceResponse<RegistrationSessionMetadataResponse> verifyAccount(@Nonnull String verificationCode, @Nonnull String sessionId) {
-    try {
-      RegistrationSessionMetadataResponse response = pushServiceSocket.submitVerificationCode(sessionId, verificationCode);
-      return ServiceResponse.forResult(response, 200, null);
-    } catch (IOException e) {
-      return ServiceResponse.forUnknownError(e);
-    }
-  }
-
-  public @Nonnull ServiceResponse<VerifyAccountResponse> registerAccount(@Nullable String sessionId, @Nullable String recoveryPassword, AccountAttributes attributes, PreKeyCollection aciPreKeys, PreKeyCollection pniPreKeys, String fcmToken, boolean skipDeviceTransfer) {
-    try {
-      VerifyAccountResponse response = pushServiceSocket.submitRegistrationRequest(sessionId, recoveryPassword, attributes, aciPreKeys, pniPreKeys, fcmToken, skipDeviceTransfer);
-      return ServiceResponse.forResult(response, 200, null);
-    } catch (IOException e) {
-      return ServiceResponse.forUnknownError(e);
-    }
-  }
-
-  public @Nonnull ServiceResponse<VerifyAccountResponse> changeNumber(@Nonnull ChangePhoneNumberRequest changePhoneNumberRequest) {
-    try {
-      VerifyAccountResponse response = this.pushServiceSocket.changeNumber(changePhoneNumberRequest);
-      return ServiceResponse.forResult(response, 200, null);
-    } catch (IOException e) {
-      return ServiceResponse.forUnknownError(e);
-    }
   }
 
   /**
@@ -670,15 +562,6 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket.sendProvisioningMessage(deviceIdentifier, ciphertext);
   }
 
-  public ServiceResponse<VerifyAccountResponse> distributePniKeys(PniKeyDistributionRequest request) {
-    try {
-      VerifyAccountResponse response = this.pushServiceSocket.distributePniKeys(request);
-      return ServiceResponse.forResult(response, 200, null);
-    } catch (IOException e) {
-      return ServiceResponse.forUnknownError(e);
-    }
-  }
-
   public List<DeviceInfo> getDevices() throws IOException {
     return this.pushServiceSocket.getDevices();
   }
@@ -843,19 +726,6 @@ public class SignalServiceAccountManager {
 
   public void cancelInFlightRequests() {
     this.pushServiceSocket.cancelInFlightRequests();
-  }
-
-  private String createDirectoryServerToken(String e164number, boolean urlSafe) {
-    try {
-      MessageDigest digest  = MessageDigest.getInstance("SHA1");
-      byte[]        token   = Util.trim(digest.digest(e164number.getBytes()), 10);
-      String        encoded = Base64.encodeWithoutPadding(token);
-
-      if (urlSafe) return encoded.replace('+', '-').replace('/', '_');
-      else         return encoded;
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
   }
 
   public GroupsV2Api getGroupsV2Api() {
