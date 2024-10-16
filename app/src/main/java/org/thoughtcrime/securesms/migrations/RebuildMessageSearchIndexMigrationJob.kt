@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 /**
  * Rebuilds the full-text search index for the messages table.
  */
+@Deprecated("Do not use! Perform the index rebuild synchronously instead.")
 internal class RebuildMessageSearchIndexMigrationJob(
   parameters: Parameters = Parameters.Builder().build()
 ) : MigrationJob(parameters) {

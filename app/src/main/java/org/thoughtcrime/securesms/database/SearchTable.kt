@@ -160,39 +160,25 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   /**
    * Re-adds every message to the index. It's fine to insert the same message twice; the table will naturally de-dupe.
    *
-   * In order to prevent the database from locking up with super large inserts, this will perform the re-index in batches of the size you specify.
-   * It is not guaranteed that every batch will be the same size, but rather that the batches will be _no larger_ than the specified size.
-   *
    * Warning: This is a potentially extremely-costly operation! It can take 10+ seconds on large installs and/or slow devices.
    * Be smart about where you call this.
    *
    * @return True if the rebuild was successful, otherwise false.
    */
-  fun rebuildIndex(batchSize: Long = 10_000L): Boolean {
+  fun rebuildIndex(): Boolean {
     try {
-      val maxId: Long = SignalDatabase.messages.getNextId()
-
-      Log.i(TAG, "Re-indexing. Operating on ID's 1-$maxId in steps of $batchSize.")
-
-      for (i in 1..maxId step batchSize) {
-        Log.i(TAG, "Reindexing ID's [$i, ${i + batchSize})")
-
-        writableDatabase.withinTransaction { db ->
-          db.execSQL(
-            """
-            INSERT INTO $FTS_TABLE_NAME ($ID, $BODY, $THREAD_ID)
-                SELECT
-                  ${MessageTable.ID},
-                  ${MessageTable.BODY},
-                  ${MessageTable.THREAD_ID}
-                FROM
-                  ${MessageTable.TABLE_NAME}
-                WHERE
-                  ${MessageTable.ID} >= $i AND
-                  ${MessageTable.ID} < ${i + batchSize}
-            """
-          )
-        }
+      writableDatabase.withinTransaction { db ->
+        db.execSQL(
+          """
+          INSERT INTO $FTS_TABLE_NAME ($ID, $BODY, $THREAD_ID)
+              SELECT
+                ${MessageTable.ID},
+                ${MessageTable.BODY},
+                ${MessageTable.THREAD_ID}
+              FROM
+                ${MessageTable.TABLE_NAME}
+          """
+        )
       }
     } catch (e: SQLiteException) {
       Log.w(TAG, "Failed to rebuild index!", e)
