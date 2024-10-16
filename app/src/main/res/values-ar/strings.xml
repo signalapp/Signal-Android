@@ -380,6 +380,8 @@
     <string name="ContactsCursorLoader__chats">الدردشات</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">الرسائل</string>
+    <!-- Header for conversation search section labeled "Chat types" -->
+    <string name="ContactsCursorLoader__chat_types">Chat types</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">رسالة %1$s</string>
@@ -896,7 +898,7 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__you_are_all_set">You\'re all set. Start your backup now.</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">أنت جاهز الآن. ابدأ النسخ الاحتياطي لديك الآن.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">قد يستغرق هذا وقتًا طويلًا حسب حجم النسخة الاحتياطية الخاصة بك. يُمكنك استخدام هاتفك بشكل اعتيادي أثناء إجراء عملية النسخ الاحتياطي.</string>
     <!-- Action button to dismiss sheet and back up later -->
@@ -2213,6 +2215,7 @@
         <item quantity="many">+%1$d مدعوون</item>
         <item quantity="other">+%1$d مدعوون</item>
     </plurals>
+    <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="zero">%1$d مجموعة إضافية</item>
         <item quantity="one">%1$d مجموعة إضافية</item>
@@ -2243,6 +2246,7 @@
     <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على أي جهاز.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">كود الـ QR غير صالح.</string>
+    <!-- Toast message shown when a user has too many linked devices and needs to remove one before linking another -->
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرًا، لديك عدة أجهزة مرتبطة. يُرجى إزالة بعضها.</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرًا، الرابط غير صحيح.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">هل ترغبُ بربط جهاز يستخدم سيجنال؟</string>
@@ -2269,11 +2273,13 @@
     <string name="PassphrasePromptActivity_ok_button_content_description">أدخِل العبارة السرية</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
     <string name="PassphrasePromptActivity_unlock_signal">فتح قفل سيجنال</string>
+    <!-- This is the subject line for the email that is sent to support -->
     <string name="PassphrasePromptActivity_signal_android_lock_screen">سيجنال أندرويد - قفل الشاشة</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">الخريطة</string>
 
+    <!-- Content description of the pin image -->
     <string name="PlacePickerActivity_drop_pin">ضع علامة</string>
     <string name="PlacePickerActivity_accept_address">اقبل العنوان</string>
 
@@ -2374,13 +2380,13 @@
 
     <!-- CallScreenTopBar -->
     <!-- Content description for navigation icon -->
-    <string name="CallScreenTopBar__go_back">العودة للوراء</string>
+    <string name="CallScreenTopBar__go_back">عودة للوراء</string>
     <!-- Content description for info icon -->
     <string name="CallScreenTopBar__call_information">معلومات عن المكالمة</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
-    <string name="CallScreenPreJoinOverlay__your_camera_is_off">الكاميرا غير مشغلة</string>
+    <string name="CallScreenPreJoinOverlay__your_camera_is_off">الكاميرا في حالة عدم تشغيل</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">يُرجى النقر هنا لتشغيل مكالمة الفيديو لديك.</string>
@@ -2577,7 +2583,7 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">إنهاء المُكالمة</string>
     <!-- Content description for toggling group ring state -->
-    <string name="WebRtcCallView__toggle_group_ringing">تفعيل الرنين الجماعي</string>
+    <string name="WebRtcCallView__toggle_group_ringing">تفعيل الرنين للمجموعة</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">حدث خطأ في واجهة المستخدم. يُرجى الإبلاغ عن هذا الخطأ للمطوِّرين.</string>
@@ -2599,7 +2605,7 @@
     <!-- A dialog prompt to confirm you want to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_your_hand">هل تريد خفض يدك؟</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
-    <string name="CallOverflowPopupWindow__lower_hand">اخفض</string>
+    <string name="CallOverflowPopupWindow__lower_hand">خفض اليد</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">إلغاء</string>
     <!-- A button to take you to a list of participants with raised hands -->
@@ -2610,8 +2616,8 @@
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s رفع يده</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
     <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
-        <item quantity="zero">%1$s +%2$d رفعتم أيديكم</item>
-        <item quantity="one">%1$s +%2$d رفع يده</item>
+        <item quantity="zero">%1$s +%2$d رفعوا أيديهم</item>
+        <item quantity="one">%1$s +%2$d رفعتَ يدك</item>
         <item quantity="two">%1$s +%2$d رفعتُما أيديكُما</item>
         <item quantity="few">%1$s +%2$d رفعتم أيديكم</item>
         <item quantity="many">%1$s +%2$d رفعتم أيديكم</item>
@@ -2838,7 +2844,7 @@
 
     <!-- ReviewBannerView -->
     <!-- ReviewBannerView text when a name conflict has been found -->
-    <string name="ReviewBannerView__name_conflict_found">تم العثور على تضارب أسماء</string>
+    <string name="ReviewBannerView__name_conflict_found">هناك اختلاف في الأسماء</string>
     <!-- Button label to view name conflicts -->
     <string name="ReviewBannerView__view">إظهار</string>
 
@@ -2865,6 +2871,7 @@
     <string name="SharedContactView_message">‫رسالة سيجنال</string>
 
     <!-- SignalBottomActionBar -->
+    <!-- Text to describe a button that will show more options -->
     <string name="SignalBottomActionBar_more">المزيد</string>
 
     <!-- SignalPinReminders -->
@@ -2896,6 +2903,7 @@
     <string name="StickerManagementAdapter_no_stickers_installed">لا يوجد ملصقات مُثبَّتة</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">ستظهر هنا الملصقات القادمة من الرسائل الواردة</string>
     <string name="StickerManagementAdapter_untitled">بدون عنوان</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagementAdapter_unknown">غير معروف</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2915,98 +2923,98 @@
     <!-- Error that is show in a toast when we fail to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_failed_to_save">فشل الحفظ</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
-    <string name="SubmitDebugLogActivity_save_complete">تمّ الحفظ</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">المس على الخط لحذفه</string>
+    <string name="SubmitDebugLogActivity_save_complete">اكتمل الحفظ</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">انقر على الخط لحذفه</string>
     <string name="SubmitDebugLogActivity_submit">إرسال</string>
-    <string name="SubmitDebugLogActivity_failed_to_submit_logs">فشل إرسال السجل</string>
-    <string name="SubmitDebugLogActivity_success">تم بنجاح !</string>
-    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">يُرجى نسخ هذا العنوان وإضافته إلى بلاغك أو إلى بريد الدعم :\n\n<b>%1$s</b></string>
-    <string name="SubmitDebugLogActivity_share">شارك</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">سيتم نشر هذا السّجل علناً حتى يتمكن المساهمون في التطبيق من الاطلاع عليه. يمكنك فحصه أو تعديله قبل رفعه.</string>
+    <string name="SubmitDebugLogActivity_failed_to_submit_logs">فشل في الإبلاغ عن مشكلة</string>
+    <string name="SubmitDebugLogActivity_success">تمَّ بنجاح!</string>
+    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">يُرجى نسخ هذا العنوان وإضافته إلى بلاغك عن مشكلة أو إلى بريد الدعم :\n\n<b>%1$s</b></string>
+    <string name="SubmitDebugLogActivity_share">مشاركة</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">سيتمُّ نشر هذا السّجل علنًا على الانترنت حتى يتمكن المساهمون من الاطِّلاع عليه. يمكنك فحصه أو تعديله قبل تحميله.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
-    <string name="SupportEmailUtil_filter">المُرشِّح :</string>
-    <string name="SupportEmailUtil_device_info">معلومات الجهاز :</string>
-    <string name="SupportEmailUtil_android_version">إصدار اﻷندرويد</string>
+    <string name="SupportEmailUtil_filter">الفلتر:</string>
+    <string name="SupportEmailUtil_device_info">معلومات الجهاز:</string>
+    <string name="SupportEmailUtil_android_version">إصدار اﻷندرويد:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
-    <string name="SupportEmailUtil_registration_lock">قفل التسجيل :</string>
+    <string name="SupportEmailUtil_registration_lock">قفل التسجيل:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
-    <string name="ThreadRecord_group_updated">تم تحديث المجموعة</string>
-    <string name="ThreadRecord_left_the_group">غادر المجموعة</string>
-    <string name="ThreadRecord_secure_session_reset">إعادة ضبط جلسة آمنة.</string>
+    <string name="ThreadRecord_group_updated">تمَّ تحديث المجموعة</string>
+    <string name="ThreadRecord_left_the_group">غادَرَ المجموعة</string>
+    <string name="ThreadRecord_secure_session_reset">تمَّت إعادة ضبط جلسة آمنة.</string>
     <string name="ThreadRecord_draft">مسودة:</string>
     <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
-    <string name="ThreadRecord_sticker">ملصق</string>
-    <string name="ThreadRecord_view_once_photo">صورة لمشاهدة لمرة واحدة</string>
-    <string name="ThreadRecord_view_once_video">فيديو لمشاهدة لمرة واحدة</string>
-    <string name="ThreadRecord_view_once_media">وسيط لمشاهدة لمرة واحدة</string>
+    <string name="ThreadRecord_sticker">مُلصَق</string>
+    <string name="ThreadRecord_view_once_photo">صورة للمشاهدة لمرة واحدة</string>
+    <string name="ThreadRecord_view_once_video">فيديو للمشاهدة لمرة واحدة</string>
+    <string name="ThreadRecord_view_once_media">وسيط للمشاهدة لمرة واحدة</string>
     <string name="ThreadRecord_this_message_was_deleted">حُذفَت هذه الرسالة.</string>
-    <string name="ThreadRecord_you_deleted_this_message">لقد حذفت هذه الرسالة.</string>
+    <string name="ThreadRecord_you_deleted_this_message">حذفتَ هذه الرسالة.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">أرسلت طلبًا لتفعيل عمليات الدفع</string>
+    <string name="ThreadRecord_you_sent_request">أرسلتَ طلبًا لتفعيل عمليات الدفع.</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">يُريدك %1$s أن تُفعّل عمليات الدفع</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">يُريدك %1$s أن تُفعِّل عمليات الدفع</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">لقد فعّلت عمليات الدفع</string>
+    <string name="ThreadRecord_you_activated_payments">فعّلتَ عمليات الدفع</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
     <string name="ThreadRecord_can_accept_payments">يُمكن لـ %1$s قبول عمليات الدفع الآن</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s متواجد على سيجنال!</string>
-    <string name="ThreadRecord_disappearing_messages_disabled">الرسائل المختفية غير مفعّلة</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">ميزة إخفاء الرسائل غير مُفعَّلة</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %1$s</string>
-    <string name="ThreadRecord_safety_number_changed">هناك تغيير في رقم الأمان</string>
-    <string name="ThreadRecord_your_safety_number_with_s_has_changed">لقد تغيّر رقم الأمان بينك وبـين %1$s.</string>
-    <string name="ThreadRecord_you_marked_verified">لقد قمت بالإشارة بالتحقّق</string>
-    <string name="ThreadRecord_you_marked_unverified">لقد قمت بإلغاء التحقق</string>
-    <string name="ThreadRecord_message_could_not_be_processed">لم يمكن معالجة الرسالة</string>
-    <string name="ThreadRecord_delivery_issue">مشكل في التوصيل</string>
-    <string name="ThreadRecord_message_request">طلب التراسل</string>
+    <string name="ThreadRecord_safety_number_changed">تمَّ تغيير رقم الأمان</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">تغيَّر رقم الأمان بينك وبـين %1$s.</string>
+    <string name="ThreadRecord_you_marked_verified">قمتَ بتأكيد التحقُّق.</string>
+    <string name="ThreadRecord_you_marked_unverified">قمتَ بتأكيد إلغاء التحقُّق.</string>
+    <string name="ThreadRecord_message_could_not_be_processed">لَمْ تكتمِل معالجة الرسالة</string>
+    <string name="ThreadRecord_delivery_issue">مشكلة في التوصيل</string>
+    <string name="ThreadRecord_message_request">طلب مراسلة</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">لقد أخفيت هذا الشخص، راسله مُجددًا لإضافته إلى قائمتك.</string>
+    <string name="ThreadRecord_hidden_recipient">قمتَ بإخفاء جهة الاتصال هذه، راسلهم مُجددًا لإضافتهم إلى قائمتك.</string>
     <string name="ThreadRecord_photo">صورة</string>
     <string name="ThreadRecord_gif">صورة متحركة</string>
     <string name="ThreadRecord_voice_message">رسالة صوتية</string>
     <string name="ThreadRecord_file">ملف</string>
     <string name="ThreadRecord_video">فيديو</string>
-    <string name="ThreadRecord_chat_session_refreshed">تم إنعاش جلسة الدردشة</string>
+    <string name="ThreadRecord_chat_session_refreshed">تمَّ تحديث جلسة الدردشة</string>
     <!-- Displayed in the notification when the user is sent a gift -->
-    <string name="ThreadRecord__s_donated_for_you">تبرّع %1$s لك</string>
+    <string name="ThreadRecord__s_donated_for_you">تبرَّع %1$s لك</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_donated_for_s">تبرّعت لـ %1$s</string>
+    <string name="ThreadRecord__you_donated_for_s">تبرّعتَ لـ %1$s</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_badge">لقد استردَدت شارة</string>
+    <string name="ThreadRecord__you_redeemed_a_badge">استردَدت شارة</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">تفاعل %1$s مع قِصتك</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">تفاعَل %1$s مع قِصتك</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">تفاعل %1$s مع قِصتهم</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">تفاعَل %1$s مع قِصتهم</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">عمليات الدفع</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">رسالة مُجدولة</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">تم دمج سِجل رسائلك</string>
+    <string name="ThreadRecord_message_history_has_been_merged">تمَّ دمج سِجل رسائلك</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">يعود الرقم %1$s إلى %2$s</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">تحديث سيجنال</string>
-    <string name="ApkUpdateNotifications_prompt_install_body">إصدار جديد من سيجنال متوفر. انقر للتحديث.</string>
-    <string name="ApkUpdateNotifications_failed_general_title">تعذّر على سيجنال التحديث</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">إصدار جديد من سيجنال متوفِّر. انقر للتحديث.</string>
+    <string name="ApkUpdateNotifications_failed_general_title">تعذَّر على سيجنال التحديث</string>
     <string name="ApkUpdateNotifications_failed_general_body">سنحاول من جديد لاحقًا.</string>
-    <string name="ApkUpdateNotifications_auto_update_success_title">تم تحديث سيجنال بنجاح</string>
-    <string name="ApkUpdateNotifications_auto_update_success_body">تم تحديثك تلقائيًا إلى الإصدار %1$s.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">تمَّ تحديث سيجنال بنجاح</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">تمَّ تحديث التطبيق لديك تلقائيًا إلى الإصدار %1$s.</string>
     <string name="ApkUpdateNotifications_manual_update_success_body">قمتَ بالتحديث إلى النسخة %1$s.</string>
 
     <!-- UntrustedSendDialog -->
-    <string name="UntrustedSendDialog_send_message">هل تود إرسال الرسالة ؟</string>
-    <string name="UntrustedSendDialog_send">أرسل</string>
+    <string name="UntrustedSendDialog_send_message">هل ترغبُ بإرسال الرسالة؟</string>
+    <string name="UntrustedSendDialog_send">إرسال</string>
 
     <!-- UnverifiedSendDialog -->
-    <string name="UnverifiedSendDialog_send_message">هل تود إرسال الرسالة ؟</string>
-    <string name="UnverifiedSendDialog_send">أرسل</string>
+    <string name="UnverifiedSendDialog_send_message">هل ترغبُ بإرسال الرسالة؟</string>
+    <string name="UnverifiedSendDialog_send">إرسال</string>
 
     <!-- UsernameEditFragment -->
     <!-- Placeholder text for custom discriminator -->
@@ -3014,49 +3022,49 @@
     <!-- Toolbar title when entering from registration -->
     <string name="UsernameEditFragment__add_a_username">إضافة اسم مُستخدم</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">يُرجى اختيار اسم المُستخدم</string>
+    <string name="UsernameEditFragment__choose_your_username">اختر اسم مُستخدم خاص بك</string>
     <string name="UsernameEditFragment_username">اسم المُستخدم</string>
     <string name="UsernameEditFragment_delete">حذف</string>
-    <string name="UsernameEditFragment_successfully_removed_username">تم حذف اسم المُستخدم بنجاح.</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">حدث خطأ فى الشبكة</string>
+    <string name="UsernameEditFragment_successfully_removed_username">تمَّ حذف اسم المُستخدم بنجاح.</string>
+    <string name="UsernameEditFragment_encountered_a_network_error">حدث خطأ في الشبكة.</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">قمتَ بمحاولات كثيرة. يُرجى المحاولة لاحقاً</string>
-    <string name="UsernameEditFragment_this_username_is_taken">اسم المُستخدم هذا غير متوفّر.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">أسماء المُستخدمين يجب أن تحتوي فقط على الحروف الأبجدية، 0-9، أو \"_\".</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">قمتَ بمحاولاتٍ كثيرة. يُرجى المحاولة لاحقًا.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">اسم المُستخدم هذا غير متوفِّر.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">أسماء المُستخدمين يجب أن تحتوي فقط على الحروف الأبجدية، أو الأرقام 0-9، أو \"_\".</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">اسم المُستخدم لا يمكن أن يبدأ برقم.</string>
-    <string name="UsernameEditFragment_username_is_invalid">اسم المُستخدم غير صالح</string>
+    <string name="UsernameEditFragment_username_is_invalid">اسم المُستخدم غير صالح.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المُستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">يتم دائمًا إقران أسماء المستخدمين بمجموعة من الأرقام.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">يتم دائمًا إقران أسماء المُستخدمين بمجموعة من الأرقام.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ماذا يعني هذا الرقم؟</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">تُساعد هذه الأرقام في الحفاظ على خصوصية اسم المُستخدم الخاص بك حتى تتجنب الرسائل غير مرغوب فيها. شارك اسم المُستخدم الخاص بك مع الأشخاص والمجموعات الذين ترغب في الدردشة معهم. إذا قمت بتغيير أسماء المُستخدمين، سَتحصل على مجموعة جديدة من الأرقام.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">تُساعد هذه الأرقام في الحفاظ على خصوصية اسم المُستخدم الخاص بك حتى تتجنَّب الرسائل غير المرغوب فيها. شارِك اسم المُستخدم الخاص بك مع الأشخاص والمجموعات الذين ترغب في الدردشة معهم. إذا قمتَ بتغيير أسماء المُستخدمين، سَتحصل على مجموعة جديدة من الأرقام.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">تخطّي</string>
     <!-- Content description for done button -->
     <string name="UsernameEditFragment__done">تمّ</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">اسم المُستخدم هذا ليس موجودًا، جرّب رقمًا آخر.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">اسم المُستخدم هذا ليس موجودًا. جرِّب رقمًا آخر.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">اسم مُستخدم غير صحيح، أدخل رمزيْن %1$d على الأقل.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">اسم مُستخدم غير صحيح. أدخِل %1$d رمز (رموز) كحد أدنى.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">اسم مُستخدم غير صحيح، أدخل %1$d رمزًا كحد أقصى.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">اسم مُستخدم غير صحيح. أدخِل %1$d رمز (رموز) كحد أقصى.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">لا يُمكن لهذا الرقم أن يكون 00. أدخل رقمًا بين 1 –9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">لا يُمكن لهذا الرقم أن يكون 00. أدخِل رقمًا بين 1 –9</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">الأرقام التي تحتوي على أكثر من رقمين لا يُمكن أن تبدأ بـ 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">الأرقام التي تحتوي على أكثر من رقمين لا يُمكن أن تبدأ بـ 0.</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">سيُؤدي استرداد اسم المُستخدم الخاص بك إلى إعادة تعيين رمز ورابط الاستجابة السريعة الخاصين بك. هل أنت مُتأكد؟</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">سيُؤدي استرداد اسم المُستخدم الخاص بك إلى إعادة تعيين رابط وكود الـ QR الخاصين بك. هل أنت مُتأكِّد؟</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">سيُؤدي تغيير اسم المُستخدم الخاص بك إلى إعادة تعيين رمز الاستجابة السريع والرابط الحاليين الخاصين بك. هل أنت متأكد؟</string>
+    <string name="UsernameEditFragment_change_confirmation_message">سيُؤدي تغيير اسم المُستخدم الخاص بك إلى إعادة تعيين الرابط وكود الـ QR الحاليين الخاصين بك. هل أنت متأكِّد؟</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
     <string name="UsernameEditFragment_continue">مواصلة</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="zero">%1$d جهة اتصال تستخدم سيجنال!‏</item>
         <item quantity="one">‏‏%1$d جهة اتصال تستخدم سيجنال!‏</item>
-        <item quantity="two">%1$d جهات اتصال تستخدم سيجنال!</item>
-        <item quantity="few">%1$d جهات اتصال تستخدم سيجنال!</item>
+        <item quantity="two">%1$d جهتي اتصال تستخدم سيجنال!</item>
+        <item quantity="few">%1$d جهات اتصالٍ تستخدم سيجنال!</item>
         <item quantity="many">%1$d جهة اتصال تستخدم سيجنال!</item>
         <item quantity="other">%1$d جهة اتصال تستخدم سيجنال!</item>
     </plurals>
@@ -3066,23 +3074,23 @@
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">نسخ أو مشاركة رابط اسم المُستخدم</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">جهة الاتصال هذه تستخدم نسخة أحدث من تطبيق سيجنال وصيغة رمز الاستجابة السريع أو QR فيها لا تتوافق مع نسختك. يرجى تحديث النسخة للمقارنة.</string>
-    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">إن رمز الاستجابة السّريع الذي تمّ مسحه ليس برمز تحقق لرقم سلامة مُصاغ بشكل صحيح. يُرجى محاولة المسح من جديد.</string>
-    <string name="VerifyIdentityActivity_share_safety_number_via">شارك رقم الأمان بواسطة…</string>
+    <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">جهة الاتصال هذه تستخدم نسخة أحدث من تطبيق سيجنال وكود الـ QR فيها لا يتوافق مع نسختك. يُرجى تحديث النسخة للمقارنة.</string>
+    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">كود الـ QR الذي تمَّ مسحه ليس برمز تحقُّق لرقم أمان تمَّت صياغته بشكلٍ صحيح. يُرجى محاولة المسح من جديد.</string>
+    <string name="VerifyIdentityActivity_share_safety_number_via">شارِك رقم الأمان من خلال…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">رقم الأمان الخاص بنا في سيجنال:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
-    <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">لم يُعثر على رقم سلامة يمكن مقارنته في الحافظة</string>
-    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">يحتاج سيجنال إلى إذن الكاميرا من أجل مسح رمز الاستجابة السريع QR ولكن تم إيقاف الإذن على نحو دائم، الرجاء زيارة إعدادات التطبيق واختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
-    <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">لا يمكن مسح رمز الإستجابة السريعة QR بدون إذن استخدام الكاميرا</string>
-    <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">يجب عليك أولا تبادل الرسائل لإظهار رقم أمان %1$s.</string>
+    <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">لم يُعثَر في الحافظة على رقم أمان يمكن مقارنته.</string>
+    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">يحتاج سيجنال إلى إذن الكاميرا من أجل مسح كود الـ QR، ولكن تمَّ إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق واختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
+    <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">لا يمكن مسح كود الـ QR بدون إذن استخدام الكاميرا.</string>
+    <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">يجب عليك أولًا تبادل الرسائل لإظهار رقم الأمان الخاص بـ %1$s.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">سَيتم إنشاء رقم أمان مع هذا الشخص بعد تبادل الرسائل معه.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">سيتم إنشاء رقم أمان مع هذا الشخص بعد تبادل الرسائل معه.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">موافق</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">معرفة المزيد</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">اعرف المزيد</string>
     <!-- Confirmation button on scan result dialogs -->
-    <string name="VerifyDisplayFragment__scan_result_dialog_ok">موافق</string>
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">حسنًا</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -3091,44 +3099,45 @@
   <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
-    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">عُميَّت الرسالة لجلسة غير موجودة</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">تمَّ تشفير الرسالة لجلسة غير موجودة.</string>
 
     <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">رسالة متعددة الوسائط مُعمَّاة بطريقة سيئة</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">عُميَّت الرسالة متعدّدة الوسائط لجلسة غير موجودة…</string>
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">رسالة مُتعدِّدة الوسائط مشفَّرة بطريقة غير صحيحة</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">تمَّ تشفير الرسالة مُتعدِّدة الوسائط لجلسة غير موجودة…</string>
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">كتم الإشعارات</string>
 
     <!-- KeyCachingService -->
-    <string name="KeyCachingService_signal_passphrase_cached">المس للفتح.</string>
-    <string name="KeyCachingService_passphrase_cached">سيجنال غير مقفل</string>
+    <string name="KeyCachingService_signal_passphrase_cached">انقرللفتح.</string>
+    <string name="KeyCachingService_passphrase_cached">سيجنال غير مُقفَل</string>
     <string name="KeyCachingService_lock">اقفِل سيجنال</string>
 
     <!-- MediaPreviewActivity -->
     <string name="MediaPreviewActivity_you">أنت</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">صنف الوسائط غير مدعوم</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">نوع الوسائط غير مدعوم</string>
     <string name="MediaPreviewActivity_draft">مسوَّدة</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">يحتاج سيجنال إلى إذن سعة التخزين من أجل استخدام الذاكرة الخارجية ولكن تم إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق، واختيار\"الصلاحيات\"، ثم تفعيل \"سعة التخزين\".</string>
-    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">لا يمكن الحفظ إلى الذاكرة الخارجية بدون أذونات</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">أَتريد حذف الرسالة؟</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">هذا الإجراء سَيحذف الرسالة بشكل دائم.</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">يحتاج سيجنال إلى إذن الوصول إلى مساحة التخزين من أجل استخدام الذاكرة الخارجية، ولكن تمَّ إيقاف الإذن بشكلٍ دائم. يُرجى زيارة إعدادات التطبيق، وتحديد \"الصلاحيات\"، ثم تفعيل \"مساحة التخزين\".</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">لا يمكن الحفظ إلى الذاكرة الخارجية بدون أذونات.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">أترغبُ بحذف الرسالة؟</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">هذا الإجراء سَيحذف الرسالة بشكلٍ دائم.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s إلى %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">أنت إلى %1$s</string>
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">%1$s إليك</string>
-    <string name="MediaPreviewActivity_media_no_longer_available">هذه الوسيط لم يعد متاحا.</string>
+    <string name="MediaPreviewActivity_media_no_longer_available">ملف الوسائط لم يعد مُتاحًا.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">تعذّر تشغيل الوسائط.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">تعذَّر تشغيل الوسائط.</string>
+    <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">خطأ في البحث عن الرسالة.</string>
-    <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">لم يعثر على تطبيق قادر على فتح هذا الملف.</string>
+    <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">لم يعثر على تطبيق قادر على مشاركة هذا الملف.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">إغلاق</string>
-    <string name="MediaPreviewFragment_edit_media_error">خطأ في الوسائط</string>
+    <string name="MediaPreviewFragment_edit_media_error">خطأ في ملف الوسائط</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
-    <string name="MediaPreviewFragment_media_delete_error">خطأ في حذف الرسالة، قد تكون الرسالة لا زالت متواجدة</string>
+    <string name="MediaPreviewFragment_media_delete_error">خطأ في حذف الرسالة. قد تكون الرسالة لا زالت موجودة.</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">قراءة المزيد</string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">اقرأ المزيد</string>
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
@@ -3139,8 +3148,8 @@
         <item quantity="one">%1$d رسالة</item>
         <item quantity="two">%1$d رسالتين</item>
         <item quantity="few">%1$d رسائل</item>
-        <item quantity="many">%1$d رسالة</item>
-        <item quantity="other">%1$d رسالة</item>
+        <item quantity="many">%1$d رسالةً</item>
+        <item quantity="other">%1$d رسالةٍ</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
@@ -3148,42 +3157,42 @@
         <item quantity="one">%1$d دردشة</item>
         <item quantity="two">%1$d دردشتين</item>
         <item quantity="few">%1$d دردشات</item>
-        <item quantity="many">%1$d دردشة</item>
-        <item quantity="other">%1$d دردشة</item>
+        <item quantity="many">%1$d دردشةً</item>
+        <item quantity="other">%1$d دردشةٍ</item>
     </plurals>
     <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
-    <string name="MessageNotifier_locked_message">رسالة مقفلة</string>
-    <string name="MessageNotifier_message_delivery_failed">فشل توصيل الرسالة.</string>
+    <string name="MessageNotifier_locked_message">رسالة مُقفَلة</string>
+    <string name="MessageNotifier_message_delivery_failed">فشل في إرسال الرسالة.</string>
     <!-- Shown in a notification when a story the user tries to send fails to be sent -->
-    <string name="MessageNotifier_story_delivery_failed">تعذّر إرسال القصة</string>
+    <string name="MessageNotifier_story_delivery_failed">تعذَّر إرسال القصة</string>
     <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
-    <string name="MessageNotifier_group_story_title">أنت إلى %1$s</string>
-    <string name="MessageNotifier_failed_to_deliver_message">فشل توصيل الرسالة.</string>
-    <string name="MessageNotifier_error_delivering_message">خطأ بالارسال</string>
-    <string name="MessageNotifier_message_delivery_paused">إن توصيل الرسالة متوقف مؤقتا.</string>
-    <string name="MessageNotifier_verify_to_continue_messaging_on_signal">يُرجى التأكد قبل مواصلة التراسل في سيجنال.</string>
-    <string name="MessageNotifier_mark_all_as_read">وسم جميع الرسائل بأنها مقروءة</string>
-    <string name="MessageNotifier_mark_read">عُدَّها مقروءة</string>
-    <string name="MessageNotifier_turn_off_these_notifications">تعطيل هذه الإشعارات</string>
-    <string name="MessageNotifier_view_once_photo">صورة للعرض مرة واحدة</string>
-    <string name="MessageNotifier_view_once_video">مقطع فيديو للعرض مرة واحدة</string>
-    <string name="MessageNotifier_reply">رَدّ</string>
+    <string name="MessageNotifier_group_story_title">منك إلى %1$s</string>
+    <string name="MessageNotifier_failed_to_deliver_message">فشل في إرسال الرسالة.</string>
+    <string name="MessageNotifier_error_delivering_message">خطأ في إرسال الرسالة.</string>
+    <string name="MessageNotifier_message_delivery_paused">إرسال الرسالة توقَّفَ مؤقَّتًا.</string>
+    <string name="MessageNotifier_verify_to_continue_messaging_on_signal">قُم بالتوثيق لمواصلة التراسل على سيجنال.</string>
+    <string name="MessageNotifier_mark_all_as_read">تحديد جميع الرسائل كمقروءة</string>
+    <string name="MessageNotifier_mark_read">تحديد كمقروءة</string>
+    <string name="MessageNotifier_turn_off_these_notifications">إيقاف هذه الإشعارات</string>
+    <string name="MessageNotifier_view_once_photo">صورة للعرض لمرة واحدة</string>
+    <string name="MessageNotifier_view_once_video">مقطع فيديو للعرض لمرة واحدة</string>
+    <string name="MessageNotifier_reply">الرد</string>
     <string name="MessageNotifier_signal_message">‫رسالة سيجنال</string>
-    <string name="MessageNotifier_contact_message">%1$s%2$s</string>
+    <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">جهة اتصال</string>
     <string name="MessageNotifier_reacted_s_to_s">تفاعل %1$s مع: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">تفاعل %1$s مع فيديوهاتك.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">تفاعل %1$s مع مقطع الفيديو الخاص بك.</string>
     <string name="MessageNotifier_reacted_s_to_your_image">تفاعل %1$s مع صورتك.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">تفاعل %1$s مع صورتك الـ GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">تفاعل %1$s مع ملفك الخاص.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">تفاعل %1$s مع تسجيلك الصوتي.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">تفاعل %1$s مع وسائطك التي تُعرَض مرة واحدة.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">تفاعل %1$s مع صورة GIF الخاصة بك.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">تفاعل %1$s مع الملف الخاص بك.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">تفاعل %1$s مع الملف الصوتي الخاص بك.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">تفاعل %1$s مع ملف الوسائط لديك الذي يُعرَض لمرة واحدة.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
     <string name="MessageNotifier_reacted_s_to_your_payment">تفاعل %1$s مع عملية الدفع الخاصة بك.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">تم تفاعل %1$s مع ملصقك الخاص.</string>
-    <string name="MessageNotifier_this_message_was_deleted">تم حذف هذه الرسالة.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">تفاعل %1$s مع الملصق الخاص بك.</string>
+    <string name="MessageNotifier_this_message_was_deleted">تمَّ حذف هذه الرسالة.</string>
 
-    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">تعطيل إشعارات انضمام شخص إلى سيجنال؟ تمكنك تفعيلها مجددا في سيجنال &gt; الإعدادات &gt; الإشعارات.</string>
+    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">هل ترغبُ بإيقاف إشعارات انضمام شخص إلى سيجنال؟ يمكنك تفعيل الميزة مُجدَّدًا في سيجنال &gt; الإعدادات &gt; الإشعارات.</string>
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
@@ -3191,27 +3200,29 @@
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">لتلقي إشعارات بالرسائل الجديدة:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. انقر على \"إعدادات\" أسفله</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. انقر على \"الإعدادات\" في الأسفل</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s تفعيل الإشعارات</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s قُم بتفعيل الإشعارات</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">الإعدادات</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">الرسائل</string>
     <string name="NotificationChannel_calls">المُكالمات</string>
+    <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">الأخطاء</string>
-    <string name="NotificationChannel_backups">النُسخ الإحتياطية</string>
+    <string name="NotificationChannel_backups">النُسخ الاحتياطية</string>
     <string name="NotificationChannel_locked_status">حالة القفل</string>
     <string name="NotificationChannel_app_updates">تحديثات التطبيق</string>
     <string name="NotificationChannel_other">أخرى</string>
-    <string name="NotificationChannel_group_chats">المُحادثات</string>
-    <string name="NotificationChannel_missing_display_name">مجهول</string>
+    <string name="NotificationChannel_group_chats">الدردشات</string>
+    <string name="NotificationChannel_missing_display_name">غير معروف</string>
     <string name="NotificationChannel_voice_notes">الملاحظات الصوتية</string>
     <string name="NotificationChannel_contact_joined_signal">انضمّت جهة الاتصال إلى سيجنال</string>
+    <!-- Toast shown when there is no application available to open the settings -->
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">لا وجود لأي نشاط متاح لفتح إعدادات قناة الإشعارات.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
-    <string name="NotificationChannel_background_connection">اتصال الخلفية</string>
+    <string name="NotificationChannel_background_connection">اتصال في الواجهة الخلفية</string>
     <!-- Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing. -->
     <string name="NotificationChannel_call_status">حالة المكالمة</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
@@ -3223,7 +3234,7 @@
 
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل سيجنال!</string>
-    <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
+    <string name="QuickResponseService_problem_sending_message">مشكلة في إرسال الرسائل!</string>
 
     <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
     <string name="SaveAttachmentTask_saved">تم حفظ الوسائط</string>
@@ -3244,7 +3255,7 @@
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">سيجنال</string>
     <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
-    <string name="SingleRecipientNotificationBuilder_message_request">طلب التراسُل</string>
+    <string name="SingleRecipientNotificationBuilder_message_request">طلب مراسلة</string>
     <string name="SingleRecipientNotificationBuilder_you">أنت</string>
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • قصة</string>
@@ -3270,7 +3281,7 @@
     <string name="NewWaysToConnectDialogFragment__set_up_your_username">إعداد اسم المستخدم</string>
 
     <!-- ThumbnailView -->
-    <string name="ThumbnailView_Play_video_description">شغّل الفيديو</string>
+    <string name="ThumbnailView_Play_video_description">شغِّل الفيديو</string>
     <string name="ThumbnailView_Has_a_caption_description">فيه تعليق</string>
 
     <!-- TransferControlView -->
@@ -3279,8 +3290,8 @@
         <item quantity="one">%1$d عنصر</item>
         <item quantity="two">%1$d عنصرين</item>
         <item quantity="few">%1$d عناصر</item>
-        <item quantity="many">%1$d عنصر</item>
-        <item quantity="other">%1$d عنصر</item>
+        <item quantity="many">%1$d عنصرًا</item>
+        <item quantity="other">%1$d عنصرٍ</item>
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">جارٍ المعالجة…</string>
@@ -3297,7 +3308,7 @@
     <string name="UnauthorizedReminder_reregister_action">أعد تسجيل الجهاز</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
-    <string name="LoggedOutNotification_you_have_been_logged_out">لقد تم تسجيل خروجك من تطبيق سيجنال على هذا الجهاز.</string>
+    <string name="LoggedOutNotification_you_have_been_logged_out">تمَّ تسجيل خروجك من تطبيق سيجنال على هذا الجهاز.</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -3305,36 +3316,36 @@
     <!-- Banner button to update now -->
 
     <!-- WebRtcCallActivity -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">للإجابة على المكالمة، يجب عليك منح ترخيص الوصول إلى ميكروفونك.</string>
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">للإجابة على المكالمة، اسمح لسيجنال بالوصول إلى الميكروفون على جهازك.</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">للرّد على مكالمة الفيديو، يُرجى منح Signal ترخيص الوصول إلى الميكروفون و الكاميرا على هاتفك.</string>
-    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">يحتاج سيجنال إلى أذونات الميكروفون والكاميرا من أجل استقبال أو تلقّي المكالمات، ولكن الإذن لم يُمنح بشكل دائم. الرجاء زيارة إعدادات التطبيق، واختيار \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\".</string>
-    <string name="WebRtcCallActivity__answered_on_a_linked_device">أجاب عبر جهاز مرتبط.</string>
-    <string name="WebRtcCallActivity__declined_on_a_linked_device">رُفض عبر جهاز مرتبط.</string>
-    <string name="WebRtcCallActivity__busy_on_a_linked_device">مشغول في جهاز مرتبط.</string>
+    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">يحتاج سيجنال إلى أذونات الوصول إلى الميكروفون والكاميرا من أجل استقبال أو إجراء المكالمات، ولكن الإذن تمَّ رفضه بشكلٍ دائم. يُرجى زيارة \"إعدادات التطبيق\"، واختيار \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\".</string>
+    <string name="WebRtcCallActivity__answered_on_a_linked_device">تمَّت الإجابة عبر جهاز مُرتبِط.</string>
+    <string name="WebRtcCallActivity__declined_on_a_linked_device">تمَّ الرفض عبر جهاز مُرتبِط.</string>
+    <string name="WebRtcCallActivity__busy_on_a_linked_device">مشغول على جهاز مُرتبِط.</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
     <string name="WebRtcCallActivity__flip_camera_tooltip">لقد نُقل زر تغيير الكاميرا إلى هنا، انقر على الفيديو الخاص بك لتُجرّبه.</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">انضم شخص لهذه المكالمة برقم أمان مختلف.</string>
 
     <!-- WebRtcCallScreen -->
-    <string name="WebRtcCallScreen_swipe_up_to_change_views">يُرجى السحب لتغيير نمط العرض</string>
+    <string name="WebRtcCallScreen_swipe_up_to_change_views">يُرجى السحب للأعلى لتغيير نمط العرض</string>
 
     <!-- WebRtcCallScreen V2 -->
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__decline">رفض</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallScreen__answer">أجب</string>
+    <string name="WebRtcCallScreen__answer">إجابة</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">أجب بدون فيديو</string>
 
     <!-- WebRtcAudioOutputToggle -->
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
-    <string name="WebRtcAudioOutputToggle__audio_output">مخرج الصوت</string>
+    <string name="WebRtcAudioOutputToggle__audio_output">مخرَج الصوت</string>
     <!-- Audio output option referring to the earpiece built into the phone -->
-    <string name="WebRtcAudioOutputToggle__phone_earpiece">سماعة أذن الهاتف</string>
+    <string name="WebRtcAudioOutputToggle__phone_earpiece">سماعة الأذن للهاتف</string>
     <!-- Audio output option referring to the louder speaker built into the phone -->
-    <string name="WebRtcAudioOutputToggle__speaker">مكبر الصوت</string>
+    <string name="WebRtcAudioOutputToggle__speaker">مُكبِّر الصوت</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
@@ -3367,23 +3378,23 @@
     <string name="contact_selection_activity__more">المزيد</string>
 
     <!-- contact_filter_toolbar -->
-    <string name="contact_filter_toolbar__clear_entered_text_description">امسح النص الذي ادخلته</string>
+    <string name="contact_filter_toolbar__clear_entered_text_description">امسح النص الذي أدخلته</string>
     <string name="contact_filter_toolbar__show_keyboard_description">إظهار لوحة المفاتيح</string>
     <string name="contact_filter_toolbar__show_dial_pad_description">إظهار لوحة الاتصال</string>
 
     <!-- contact_selection_group_activity -->
     <string name="contact_selection_group_activity__no_contacts">لا توجد جهات اتصال.</string>
-    <string name="contact_selection_group_activity__finding_contacts">تحميل جهات الاتصال…</string>
+    <string name="contact_selection_group_activity__finding_contacts">جارٍ تحميل جهات الاتصال…</string>
 
     <!-- single_contact_selection_activity -->
     <string name="SingleContactSelectionActivity_contact_photo">صورة جهة الاتصال</string>
 
     <!-- ContactSelectionListFragment-->
-    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">يحتاج سيجنال إلى أذن الوصول إلى جهات الاتصال من أجل عرضها لك، ولكن تم إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق، اختيار \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
-    <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطأ في جلب جهات الاتصال، يُرجى التحقق مِن اتصالك بالشبكة</string>
+    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">يحتاج سيجنال إلى أذن الوصول إلى جهات الاتصال من أجل عرضها لك، ولكن تمَّ إيقاف الإذن بشكلٍ دائم. يُرجى زيارة إعدادات التطبيق، واختيار \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
+    <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطأ في استرجاع جهات الاتصال. يُرجى التحقُّق مِن اتصالك بالشبكة.</string>
     <string name="ContactSelectionListFragment_username_not_found">لم يتم العثور على اسم المُستخدم</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ليس مُستخدم لِسيجنال. يرجى التحقّق من اسم المُستخدم والمحاولة ثانية."</string>
-    <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ليست بحاجة إلى إضافة نفسك للمجموعة</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ليس مُستخدم لِسيجنال. يُرجى التحقُّق من اسم المُستخدم والمحاولة مُجدَّدًا."</string>
+    <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">لستَ بحاجة إلى إضافة نفسك إلى المجموعة</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">وصلت المجموعة إلى الحد الأقصى.</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">أقصى حد للأعضاء في مجموعات سيجنال هو %1$d عضوا.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">تم وصول الأعضاء إلى الحد المُوصى به</string>
@@ -4045,10 +4056,12 @@
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">ستُحذف جميع محفوظات الرسائل نهائيًا من كل الأجهزة. لا يُمكن التراجع عن هذا الإجراء.</string>
     <string name="preferences_storage__delete_all_now">حذف الكل الآن</string>
+    <!-- Option for keeping messages forever when managing storage -->
     <string name="preferences_storage__forever">للأبد</string>
     <string name="preferences_storage__one_year">عام واحد</string>
     <string name="preferences_storage__six_months">6 أشهر</string>
     <string name="preferences_storage__thirty_days">30 يوما</string>
+    <!-- Option for setting no limit of the length of chat messages -->
     <string name="preferences_storage__none">لا شيء</string>
     <plurals name="preferences_storage__s_messages_plural">
         <item quantity="zero">%1$s رسائل</item>
@@ -4077,6 +4090,7 @@
     <string name="preferences_notifications__show">اظهار</string>
     <string name="preferences_notifications__ringtone">الرّنة</string>
     <string name="preferences_chats__message_text_size">حجم الخط في الرسائل</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">الأولوية</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
     <string name="preferences_notifications__troubleshoot">استكشاف أخطاء الإشعارات</string>
@@ -4305,6 +4319,7 @@
     <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">قراءة عنوان المرسل إليه من الرمز المربع</string>
 
     <!-- CreatePaymentFragment -->
+    <!-- Button text to request the payment from a user -->
     <string name="CreatePaymentFragment__request">الطلب</string>
     <string name="CreatePaymentFragment__pay">دَفع</string>
     <string name="CreatePaymentFragment__available_balance_s">الرصيد المتوفر : %1$s</string>
@@ -4440,6 +4455,7 @@
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">يمكنك تثبيت ما يصل إلى %1$d دردشات فقط</string>
 
     <!-- conversation_list_item_view -->
+    <!-- Content description for contact avatar photo -->
     <string name="conversation_list_item_view__contact_photo_image">صورة جهة الاتصال</string>
     <string name="conversation_list_item_view__archived">الأرشيف</string>
 
@@ -4448,6 +4464,10 @@
     <string name="conversation_list_fragment__fab_content_description">دردشة جديدة</string>
     <string name="conversation_list_fragment__open_camera_description">فتح الكاميرا</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">لا دردشات حتى الآن.\nابدأ عن طريق محادثة صديق.</string>
+    <!-- Message shown when there are no chats in the chat folder to display -->
+    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <!-- Button text that will open up chat folder settings -->
+    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4712,6 +4732,7 @@
     <string name="preferences_chats__chat_backups">النسخ الاحتياطية للدردشات</string>
     <string name="preferences_chats__transfer_account">نقل الحساب</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">نقل الحساب نحو جهاز أندرويد جديد</string>
+    <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">ادخل العبارة السرية الخاصة بالنسخ الاحتياطية</string>
     <string name="RegistrationActivity_restore">استعادة</string>
     <string name="RegistrationActivity_backup_failure_downgrade">لا يمكن استيراد نسخ احتياطية من إصدارات أحدث من سيجنال</string>
@@ -4919,6 +4940,7 @@
 
     <!-- DeviceTransferSetupFragment -->
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">تعذر فتح إعدادات Wi-Fi. يُرجى تشغيل Wi-Fi يدويا.</string>
+    <!-- Message on button that will prompt for location permissions in order to complete a device transfer -->
     <string name="DeviceTransferSetup__grant_location_permission">منح إذن الوصول للموقع</string>
     <string name="DeviceTransferSetup__turn_on_location_services">تشغيل خدمات الموقع</string>
     <string name="DeviceTransferSetup__turn_on_wifi">شغِّل Wi-Fi</string>
@@ -5200,6 +5222,7 @@
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">مشاركة</string>
+    <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">أرسلْ</string>
     <string name="ShareActivity__comma_s">، %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
@@ -5507,6 +5530,131 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">لوحة المفاتيح</string>
     <string name="ChatsSettingsFragment__send_with_enter">أرسل بالضغط على إدخال</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <!-- Option within settings to add a new chat folder -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+
+    <!-- ChatFoldersFragment -->
+    <!-- Description of what chat folders are -->
+    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <!-- Header for section showing current chat folders -->
+    <string name="ChatFoldersFragment__folders">Folders</string>
+    <!-- Text next to button that allows users to create a new chat folder -->
+    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Name of a chat folder that represents the folder containing all chats -->
+    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <!-- Header for section showing suggested chat folders for users to have -->
+    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <!-- Name of a chat folder that contains all chats that currently have unread messages -->
+    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <!-- Description of the suggested unread chat folder -->
+    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
+    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <!-- Description of the suggested 1:1 chat folder -->
+    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <!-- Name of a chat folder that contains all groups chats -->
+    <string name="ChatFoldersFragment__groups">Groups</string>
+    <!-- Description of the suggested group chat folder -->
+    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <!-- Button text to add a suggested folder to a user\'s chat folders -->
+    <string name="ChatFoldersFragment__add">Add</string>
+    <!-- Toast shown when a folder gets added where %s is the name of the folder -->
+    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <!-- Option in context menu to edit the folder -->
+    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Option in context menu to delete the folder -->
+    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Option in context menu to add a new folder -->
+    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <!-- Option in context menu to mute all chats in the folder -->
+    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <!-- Option in context menu to reorder the positions of the folder -->
+    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <!-- Option in context menu to mark all of the chats in a folder as read -->
+    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <!-- Text describing the number of chat types in a folder -->
+    <plurals name="ChatFoldersFragment__d_chat_types">
+        <item quantity="zero">%1$d chat types</item>
+        <item quantity="one">%1$d chat type</item>
+        <item quantity="two">%1$d chat types</item>
+        <item quantity="few">%1$d chat types</item>
+        <item quantity="many">%1$d chat types</item>
+        <item quantity="other">%1$d chat types</item>
+    </plurals>
+    <!-- Text describing the number of chat in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats">
+        <item quantity="zero">%1$d chats</item>
+        <item quantity="one">%1$d chat</item>
+        <item quantity="two">%1$d chats</item>
+        <item quantity="few">%1$d chats</item>
+        <item quantity="many">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <!-- Text describing the number of chats that are excluded in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats_excluded">
+        <item quantity="zero">%1$d chats excluded</item>
+        <item quantity="one">%1$d chat excluded</item>
+        <item quantity="two">%1$d chats excluded</item>
+        <item quantity="few">%1$d chats excluded</item>
+        <item quantity="many">%1$d chats excluded</item>
+        <item quantity="other">%1$d chats excluded</item>
+    </plurals>
+
+    <!-- CreateFoldersFragment -->
+    <!-- Title of the screen when creating a folder, displayed in the toolbar -->
+    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Hint text shown in text field to enter a name for the folder -->
+    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <!-- Section title representing what chats are included in the folder -->
+    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <!-- Text next to button that allows users to add chats to the folder    -->
+    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <!-- Description explaining the purpose of the included chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <!-- Section title representing what chats are excluded from the folder -->
+    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <!-- Text next to button that allows users to exclude chats from the folder   -->
+    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <!-- Description explaining the purpose of the excluded chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <!-- Toggle switch for folder to show unread chats -->
+    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <!-- Explanation of unread toggle option -->
+    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <!-- Toggle switch to display muted chats in chat folders -->
+    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <!-- Button text to create a folder -->
+    <string name="CreateFoldersFragment__create">Create</string>
+    <!-- Alert dialog title to create a chat folder -->
+    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
+    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <!-- Section title shown when editing an existing folder   -->
+    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Button text to save the changes to a folder after it has been edited -->
+    <string name="CreateFoldersFragment__save">Save</string>
+    <!-- Alert dialog title to save changes made to the current folder -->
+    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <!-- Alert dialog description when saving a folder that has had changes made to it -->
+    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <string name="CreateFoldersFragment__discard">Discard</string>
+    <!-- Text that when pressed will delete the current folder -->
+    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Alert dialog title to delete the current folder -->
+    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+
+    <!-- ChooseChatsFragment -->
+    <!-- Section title representing chat types that can be added to the folder  -->
+    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <!-- Done button label to save selected chats to folder -->
+    <string name="ChooseChatsFragment__done">Done</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">الرسائل</string>
@@ -5595,6 +5743,7 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">جودة الوسائط</string>
+    <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">جودة الوسائط المرسلة</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">إن إرسال وسائط بجودة عالية سوف يستخدم كما أكبر من البيانات.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -7859,15 +8008,15 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Your backups subscription expired</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">انتهت صلاحية اشتراك النسخ الاحتياطي الخاص بحسابك.</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
-        <item quantity="zero">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
-        <item quantity="one">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d day, the media in your backup will be deleted.</item>
-        <item quantity="two">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
-        <item quantity="few">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
-        <item quantity="many">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
-        <item quantity="other">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="zero">انتهت صلاحية اشتراك النسخ الاحتياطي الخاص بحسابك لأنه تعذّر تجديده بواسطة طريقة الدفع الحالية الخاصة بك. سَيتمُّ حذف الوسائط الموجودة في النسخة الاحتياطية الخاصة بك بعد %1$d أيام.</item>
+        <item quantity="one">انتهت صلاحية اشتراك النسخ الاحتياطي الخاص بك لأنه تعذَّر تجديده بواسطة طريقة الدفع الحالية الخاصة بك. سَيتمُّ حذف الوسائط الموجودة في النسخة الاحتياطية الخاصة بك بعد %1$d يوم.</item>
+        <item quantity="two">انتهت صلاحية اشتراك النسخ الاحتياطي الخاص بك لأنه تعذّر تجديده بواسطة طريقة الدفع الحالية الخاصة بك. سَيتمُّ حذف الوسائط الموجودة في النسخة الاحتياطية الخاصة بك بعد %1$d يومين.</item>
+        <item quantity="few">انتهت صلاحية اشتراك النسخ الاحتياطي الخاص بك لأنه تعذّر تجديده بواسطة طريقة الدفع الحالية الخاصة بك. سَيتمُّ حذف الوسائط الموجودة في النسخة الاحتياطية الخاصة بك بعد %1$d أيام.</item>
+        <item quantity="many">انتهت صلاحية اشتراك النسخ الاحتياطي الخاص بك لأنه تعذّر تجديده بواسطة طريقة الدفع الحالية الخاصة بك. سَيتمُّ حذف الوسائط الموجودة في النسخة الاحتياطية الخاصة بك بعد %1$d يومًا.</item>
+        <item quantity="other">انتهت صلاحية اشتراك النسخ الاحتياطي الخاص بك لأنه تعذّر تجديده بواسطة طريقة الدفع الحالية الخاصة بك. سَيتمُّ حذف الوسائط الموجودة في النسخة الاحتياطية الخاصة بك بعد %1$d يومٍ.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">يُمكنك دفع ثمن النسخ الاحتياطية مرة أخرى في أي وقت لمواصلة نسخ جميع وسائطك الاحتياطية. </string>
@@ -7889,9 +8038,9 @@
         <item quantity="other">إذا اخترت \"تخطي\" فسيتم حذف الوسائط في النسخ الاحتياطي الخاص بك في %1$d يوم.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Your backups subscription failed to renew</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">تعذَّر تجديد اشتراك النسخ الاحتياطي الخاص بحسابك.</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Check to make sure your payment method is up to date. Tap Manage subscription and under Payment methods tap Update.</string>
+    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">تأكَّد من أن طريقة الدفع الخاصة بك مُحدَّثة. انقر على \"إدارة الاشتراك\"، ثم انقر على \"تحديث\" ضمن تبويب \"طرق الدفع\".</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">تعذّر إكمال النسخ الاحتياطي</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7903,7 +8052,7 @@
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">إدارة الاشتراك</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
-    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">اشترِك مقابل %1$s/شهريًا</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_media_now">تنزيل الوسائط الآن</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
@@ -7938,6 +8087,17 @@
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s من %2$s</string>
 
+    <!-- BackupStatusRow -->
+    <!-- Content description for x icon at the end of the linear progress indicator -->
+    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
+    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <!-- Text row label to skip download -->
+    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <!-- Text displayed when a backup could not be completed -->
+    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7991,22 +8151,22 @@
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">لا يمكن استخدام ميزة تحسين التخزين إلا مع المستوى المدفوع لنسخ سيجنال الاحتياطية. يُرجى ترقية خطة نسخك الاحتياطية لتفعيل هذه الميزة.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">اشترِك مقابل %1$s/شهريًا</string>
 
     <!-- UpgradeToStartMediaBackupSheet -->
     <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
-    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">This media is no longer available</string>
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">لم يعد ملف الوسائط هذا متوفِّرًا.</string>
     <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
     <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
-        <item quantity="zero">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
-        <item quantity="one">Your current Signal backup plan includes your most recent %1$d day of media. To start backing up all your media, upgrade now.</item>
-        <item quantity="two">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
-        <item quantity="few">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
-        <item quantity="many">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
-        <item quantity="other">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
+        <item quantity="zero">يتضمن الاشتراك الحالي للنسخ الاحتياطي في حسابك على سيجنال الوسائط الخاصة بالأيام %1$d الماضية.</item>
+        <item quantity="one">يتضمن الاشتراك الحالي للنسخ الاحتياطي في حسابك على سيجنال الوسائط الخاصة باليوم %1$d الماضي.</item>
+        <item quantity="two">يتضمن الاشتراك الحالي للنسخ الاحتياطي في حسابك على سيجنال الوسائط الخاصة باليومين %1$d الماضيين.</item>
+        <item quantity="few">يتضمن الاشتراك الحالي للنسخ الاحتياطي في حسابك على سيجنال الوسائط الخاصة بالأيام %1$d الماضية.</item>
+        <item quantity="many">يتضمن الاشتراك الحالي للنسخ الاحتياطي في حسابك على سيجنال الوسائط الخاصة %1$d الماضية.</item>
+        <item quantity="other">يتضمن الاشتراك الحالي للنسخ الاحتياطي في حسابك على سيجنال الوسائط الخاصة %1$d الماضية.</item>
     </plurals>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
-    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">اشترِك مقابل %1$s/شهريًا</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">عملية الحذف تتم في تزامن عبر جميع أجهزتك الآن</string>
@@ -8049,11 +8209,13 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">تم تغيير نوع النُسخ الاحتياطية وإلغاء الاشتراك</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">لقد أُلغي الاشتراك</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">انتهى التنزيل</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">سيتم إنشاء نسخة احتياطية خلال الليل.</string>
+    <!-- Text displayed in card when subscription is inactive -->
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">خطة النسخ الاحتياطي</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -8062,8 +8224,12 @@
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/شهريًا</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">خطة النسخ الاحتياطي الخاصة بك مجانية</string>
-    <!-- Displays the date the subscription will renew -->
+    <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">التجديد في %1$s</string>
+    <!-- Displays the date the subscription will expire. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <!-- Displays the date the subscription expired. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">انسخ سجل رسائلك كي لا تفقد بياناتك أبدًا عندما تستخدم هاتفًا جديدًا أو تعيد تثبيت سيجنال.</string>
     <!-- Section header for other ways to back up -->
@@ -8108,6 +8274,10 @@
     <string name="RemoteBackupsSettingsFragment__manually_back_up">نسخ احتياطي يدوي</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">يُرجى إدخال الرقم التعريفي الشخصي أو كلمة المرور أو نمط تعطيل كلمة المرور لجهازك.</string>
+    <!-- Button label to re-enable backups (launches into checkout flow) -->
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <!-- Notice displayed when backups have been disabled and deleted -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->

@@ -368,6 +368,8 @@
     <string name="ContactsCursorLoader__chats">Chats</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Beskeder</string>
+    <!-- Header for conversation search section labeled "Chat types" -->
+    <string name="ContactsCursorLoader__chat_types">Chat types</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Besked %1$s</string>
@@ -816,7 +818,7 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__you_are_all_set">You\'re all set. Start your backup now.</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">Det var det. Start din sikkerhedskopiering nu.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Afhængigt af størrelsen på din sikkerhedskopi kan dette tage lang tid. Du kan bruge din telefon, som du plejer, mens sikkerhedskopieringen oprettes.</string>
     <!-- Action button to dismiss sheet and back up later -->
@@ -1969,6 +1971,7 @@
         <item quantity="one">+%1$d inviteret</item>
         <item quantity="other">+%1$d inviterede</item>
     </plurals>
+    <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="one">%1$d yderligere gruppe</item>
         <item quantity="other">%1$d yderligere grupper</item>
@@ -1995,6 +1998,7 @@
     <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhed fundet</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Netværksfejl.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
+    <!-- Toast message shown when a user has too many linked devices and needs to remove one before linking another -->
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Beklager. Du har allerede for mange enheder tilsluttet, prøv at fjerne én</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Beklager, QR-koden kan ikke bruges til at forbinde enheder.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Tilknyt en Signal-enhed?</string>
@@ -2017,11 +2021,13 @@
     <string name="PassphrasePromptActivity_ok_button_content_description">Tilføj adgangssætning</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldig adgangssætning!</string>
     <string name="PassphrasePromptActivity_unlock_signal">Lås Signal op</string>
+    <!-- This is the subject line for the email that is sent to support -->
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Låseskærm</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">Kort</string>
 
+    <!-- Content description of the pin image -->
     <string name="PlacePickerActivity_drop_pin">Placér markør</string>
     <string name="PlacePickerActivity_accept_address">Godkend adresse</string>
 
@@ -2525,6 +2531,7 @@
     <string name="SharedContactView_message">Signal-besked</string>
 
     <!-- SignalBottomActionBar -->
+    <!-- Text to describe a button that will show more options -->
     <string name="SignalBottomActionBar_more">Mere</string>
 
     <!-- SignalPinReminders -->
@@ -2556,6 +2563,7 @@
     <string name="StickerManagementAdapter_no_stickers_installed">Ingen klistermærker installeret</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Klistermærker fra modtagede beskeder vises her</string>
     <string name="StickerManagementAdapter_untitled">Ingen titel</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagementAdapter_unknown">Ukendt</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2777,6 +2785,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">Mediefil er ikke længere tilgængelig.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Medier kunne ikke afspilles.</string>
+    <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Kunne ikke finde besked.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Kan ikke finde en app, som kan dele denne mediefil.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Luk</string>
@@ -2848,6 +2857,7 @@
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Beskeder</string>
     <string name="NotificationChannel_calls">Opkald</string>
+    <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Registrerede fejl</string>
     <string name="NotificationChannel_backups">Sikkerhedskopier</string>
     <string name="NotificationChannel_locked_status">Låsestatus</string>
@@ -2857,6 +2867,7 @@
     <string name="NotificationChannel_missing_display_name">Ukendt</string>
     <string name="NotificationChannel_voice_notes">Stemmenoter</string>
     <string name="NotificationChannel_contact_joined_signal">Kontakt bruger nu Signal</string>
+    <!-- Toast shown when there is no application available to open the settings -->
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tilgængelig for at åbne indstillinger for notifikationsskanal.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
     <string name="NotificationChannel_background_connection">Forbindelse i baggrunden</string>
@@ -3641,10 +3652,12 @@
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Al beskedhistorik fjernes permanent fra alle forbundne enheder. Denne handling kan ikke fortrydes.</string>
     <string name="preferences_storage__delete_all_now">Slet alt nu</string>
+    <!-- Option for keeping messages forever when managing storage -->
     <string name="preferences_storage__forever">For evigt</string>
     <string name="preferences_storage__one_year">1 år</string>
     <string name="preferences_storage__six_months">6 måneder</string>
     <string name="preferences_storage__thirty_days">30 dage</string>
+    <!-- Option for setting no limit of the length of chat messages -->
     <string name="preferences_storage__none">Ingen</string>
     <plurals name="preferences_storage__s_messages_plural">
         <item quantity="one">%1$s besked</item>
@@ -3669,6 +3682,7 @@
     <string name="preferences_notifications__show">Vis</string>
     <string name="preferences_notifications__ringtone">Ringetone</string>
     <string name="preferences_chats__message_text_size">Skriftstørrelse på beskeder</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Prioritet</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
     <string name="preferences_notifications__troubleshoot">Fejlfinding af notifikationer</string>
@@ -3897,6 +3911,7 @@
     <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scan betalingsmodtagerens QR-kode for adresse</string>
 
     <!-- CreatePaymentFragment -->
+    <!-- Button text to request the payment from a user -->
     <string name="CreatePaymentFragment__request">Anmodning</string>
     <string name="CreatePaymentFragment__pay">Betal</string>
     <string name="CreatePaymentFragment__available_balance_s">Disponibel saldo: %1$s</string>
@@ -4028,6 +4043,7 @@
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan kun fastgøre op til %1$d chats</string>
 
     <!-- conversation_list_item_view -->
+    <!-- Content description for contact avatar photo -->
     <string name="conversation_list_item_view__contact_photo_image">Kontaktbillede</string>
     <string name="conversation_list_item_view__archived">Arkiveret</string>
 
@@ -4036,6 +4052,10 @@
     <string name="conversation_list_fragment__fab_content_description">Ny chat</string>
     <string name="conversation_list_fragment__open_camera_description">Åbn kamera</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Der er ingen chats endnu.\nKom i gang ved at sende en besked til en ven.</string>
+    <!-- Message shown when there are no chats in the chat folder to display -->
+    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <!-- Button text that will open up chat folder settings -->
+    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4268,6 +4288,7 @@
     <string name="preferences_chats__chat_backups">Sikkerhedskopier af chats</string>
     <string name="preferences_chats__transfer_account">Overfør konto</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Overfør konto til en ny Android-enhed</string>
+    <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Indtast adgangssætning til sikkerhedskopi</string>
     <string name="RegistrationActivity_restore">Gendan</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Kan ikke importere backups fra nyere Signal-versioner</string>
@@ -4475,6 +4496,7 @@
 
     <!-- DeviceTransferSetupFragment -->
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi-indstillinger kan ikke åbnes. Slå Wi-Fi til manuelt.</string>
+    <!-- Message on button that will prompt for location permissions in order to complete a device transfer -->
     <string name="DeviceTransferSetup__grant_location_permission">Tildel placeringstilladelser</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Slå placeringstjenester til</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Aktiver Wi-Fi</string>
@@ -4728,6 +4750,7 @@
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Del</string>
+    <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Send</string>
     <string name="ShareActivity__comma_s">. %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
@@ -5031,6 +5054,119 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
     <string name="ChatsSettingsFragment__send_with_enter">Send med enter</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <!-- Option within settings to add a new chat folder -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+
+    <!-- ChatFoldersFragment -->
+    <!-- Description of what chat folders are -->
+    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <!-- Header for section showing current chat folders -->
+    <string name="ChatFoldersFragment__folders">Folders</string>
+    <!-- Text next to button that allows users to create a new chat folder -->
+    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Name of a chat folder that represents the folder containing all chats -->
+    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <!-- Header for section showing suggested chat folders for users to have -->
+    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <!-- Name of a chat folder that contains all chats that currently have unread messages -->
+    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <!-- Description of the suggested unread chat folder -->
+    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
+    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <!-- Description of the suggested 1:1 chat folder -->
+    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <!-- Name of a chat folder that contains all groups chats -->
+    <string name="ChatFoldersFragment__groups">Groups</string>
+    <!-- Description of the suggested group chat folder -->
+    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <!-- Button text to add a suggested folder to a user\'s chat folders -->
+    <string name="ChatFoldersFragment__add">Add</string>
+    <!-- Toast shown when a folder gets added where %s is the name of the folder -->
+    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <!-- Option in context menu to edit the folder -->
+    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Option in context menu to delete the folder -->
+    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Option in context menu to add a new folder -->
+    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <!-- Option in context menu to mute all chats in the folder -->
+    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <!-- Option in context menu to reorder the positions of the folder -->
+    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <!-- Option in context menu to mark all of the chats in a folder as read -->
+    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <!-- Text describing the number of chat types in a folder -->
+    <plurals name="ChatFoldersFragment__d_chat_types">
+        <item quantity="one">%1$d chat type</item>
+        <item quantity="other">%1$d chat types</item>
+    </plurals>
+    <!-- Text describing the number of chat in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats">
+        <item quantity="one">%1$d chat</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <!-- Text describing the number of chats that are excluded in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats_excluded">
+        <item quantity="one">%1$d chat excluded</item>
+        <item quantity="other">%1$d chats excluded</item>
+    </plurals>
+
+    <!-- CreateFoldersFragment -->
+    <!-- Title of the screen when creating a folder, displayed in the toolbar -->
+    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Hint text shown in text field to enter a name for the folder -->
+    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <!-- Section title representing what chats are included in the folder -->
+    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <!-- Text next to button that allows users to add chats to the folder    -->
+    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <!-- Description explaining the purpose of the included chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <!-- Section title representing what chats are excluded from the folder -->
+    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <!-- Text next to button that allows users to exclude chats from the folder   -->
+    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <!-- Description explaining the purpose of the excluded chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <!-- Toggle switch for folder to show unread chats -->
+    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <!-- Explanation of unread toggle option -->
+    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <!-- Toggle switch to display muted chats in chat folders -->
+    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <!-- Button text to create a folder -->
+    <string name="CreateFoldersFragment__create">Create</string>
+    <!-- Alert dialog title to create a chat folder -->
+    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
+    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <!-- Section title shown when editing an existing folder   -->
+    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Button text to save the changes to a folder after it has been edited -->
+    <string name="CreateFoldersFragment__save">Save</string>
+    <!-- Alert dialog title to save changes made to the current folder -->
+    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <!-- Alert dialog description when saving a folder that has had changes made to it -->
+    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <string name="CreateFoldersFragment__discard">Discard</string>
+    <!-- Text that when pressed will delete the current folder -->
+    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Alert dialog title to delete the current folder -->
+    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+
+    <!-- ChooseChatsFragment -->
+    <!-- Section title representing chat types that can be added to the folder  -->
+    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <!-- Done button label to save selected chats to folder -->
+    <string name="ChooseChatsFragment__done">Done</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Beskeder</string>
@@ -5115,6 +5251,7 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Mediekvalitet</string>
+    <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Kvalitet af sendte mediefiler</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Afsendelse af mediefiler i høj kvalitet bruger mere data.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -7235,11 +7372,11 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Your backups subscription expired</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Dit sikkerhedskopieringsabonnement er udløbet</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
-        <item quantity="one">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d day, the media in your backup will be deleted.</item>
-        <item quantity="other">Your backup plan has expired because it couldn\'t be renewed with your current payment method. After %1$d days, the media in your backup will be deleted.</item>
+        <item quantity="one">Dit abonnement for sikkerhedskopiering kunne ikke fornyes med din nuværende betalingsmetode. Om %1$d dag slettes alle medier, der er gemt i din sikkerhedskopi.</item>
+        <item quantity="other">Dit abonnement for sikkerhedskopiering kunne ikke fornyes med din nuværende betalingsmetode. Om %1$d dage slettes alle medier, der er gemt i din sikkerhedskopi.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Du kan til enhver tid begynde at betale for sikkerhedskopier igen for at fortsætte med at sikkerhedskopiere alle dine medier. </string>
@@ -7257,9 +7394,9 @@
         <item quantity="other">Hvis du vælger \"Spring over\", slettes medierne i sikkerhedskopien inden for %1$d dage.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Your backups subscription failed to renew</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Dit sikkerhedskopieringsabonnement kunne ikke fornyes</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Check to make sure your payment method is up to date. Tap Manage subscription and under Payment methods tap Update.</string>
+    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Sørg for, at din betalingsmetode er opdateret. Tryk på Administrer abonnement, og tryk på Opdater under Betalingsmetoder.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Kunne ikke gennemføre sikkerhedskopieringen</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7271,7 +7408,7 @@
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">Administrer abonnement</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
-    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Abonner for %1$s/måned</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_media_now">Download medier nu</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
@@ -7306,6 +7443,17 @@
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s af %2$s</string>
 
+    <!-- BackupStatusRow -->
+    <!-- Content description for x icon at the end of the linear progress indicator -->
+    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
+    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <!-- Text row label to skip download -->
+    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <!-- Text displayed when a backup could not be completed -->
+    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7359,18 +7507,18 @@
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Lageroptimering kan kun bruges, hvis du betaler for Signal-sikkerhedskopier. Opgrader dit abonnement på sikkerhedskopiering for at begynde at bruge denne funktion.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Abonner for %1$s/måned</string>
 
     <!-- UpgradeToStartMediaBackupSheet -->
     <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
-    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">This media is no longer available</string>
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">Denne mediefil er ikke længere tilgængelig</string>
     <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
     <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
-        <item quantity="one">Your current Signal backup plan includes your most recent %1$d day of media. To start backing up all your media, upgrade now.</item>
-        <item quantity="other">Your current Signal backup plan includes your most recent %1$d days of media. To start backing up all your media, upgrade now.</item>
+        <item quantity="one">Dit nuværende abonnement på Signal-sikkerhedskopiering omfatter medier fra den sidste %1$d dag. Opgrader nu for at begynde at sikkerhedskopiere alle dine medier.</item>
+        <item quantity="other">Dit nuværende abonnement på Signal-sikkerhedskopiering omfatter medier fra de sidste %1$d dage. Opgrader nu for at begynde at sikkerhedskopiere alle dine medier.</item>
     </plurals>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
-    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Abonner for %1$s/måned</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Sletning synkroniseres nu på tværs af alle dine enheder</string>
@@ -7413,11 +7561,13 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Sikkerhedskopieringstype ændret og abonnement annulleret</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Abonnement annulleret</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Download fuldført</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Sikkerhedskopien oprettes i nat.</string>
+    <!-- Text displayed in card when subscription is inactive -->
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">Sikkerhedskopieringsabonnement</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7426,8 +7576,12 @@
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/måned</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Dit sikkerhedskopieringsabonnement er gratis</string>
-    <!-- Displays the date the subscription will renew -->
+    <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">Fornyes %1$s</string>
+    <!-- Displays the date the subscription will expire. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <!-- Displays the date the subscription expired. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Sikkerhedskopier din beskedhistorik, så du aldrig mister data, når du får en ny telefon eller geninstallerer Signal.</string>
     <!-- Section header for other ways to back up -->
@@ -7472,6 +7626,10 @@
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Lav manuel sikkerhedskopi</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Angiv din enheds pinkode, adgangskode eller dit mønster.</string>
+    <!-- Button label to re-enable backups (launches into checkout flow) -->
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <!-- Notice displayed when backups have been disabled and deleted -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
