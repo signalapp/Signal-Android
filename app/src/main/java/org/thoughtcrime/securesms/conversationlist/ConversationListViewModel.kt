@@ -297,6 +297,18 @@ class ConversationListViewModel(
     }
   }
 
+  fun removeChatFromFolder(threadId: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      SignalDatabase.chatFolders.removeFromFolder(currentFolder.id, threadId)
+    }
+  }
+
+  fun addToFolder(folderId: Long, threadId: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      SignalDatabase.chatFolders.addToFolder(folderId, threadId)
+    }
+  }
+
   private data class ConversationListState(
     val chatFolders: List<ChatFolderMappingModel> = emptyList(),
     val currentFolder: ChatFolderRecord = ChatFolderRecord(),

@@ -135,7 +135,7 @@ fun FoldersScreen(
           val elevation = if (isDragging) 1.dp else 0.dp
           val isAllChats = folder.folderType == ChatFolderRecord.FolderType.ALL
           FolderRow(
-            icon = R.drawable.ic_chat_folder_24,
+            icon = R.drawable.symbol_folder_24,
             title = if (isAllChats) stringResource(R.string.ChatFoldersFragment__all_chats) else folder.name,
             subtitle = getFolderDescription(folder),
             onClick = if (!isAllChats) {

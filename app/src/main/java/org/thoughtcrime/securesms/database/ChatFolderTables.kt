@@ -99,12 +99,12 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
         $CHAT_FOLDER_ID INTEGER NOT NULL REFERENCES ${ChatFolderTable.TABLE_NAME} (${ChatFolderTable.ID}) ON DELETE CASCADE,
         $THREAD_ID INTEGER NOT NULL REFERENCES ${ThreadTable.TABLE_NAME} (${ThreadTable.ID}) ON DELETE CASCADE,
-        $MEMBERSHIP_TYPE INTEGER DEFAULT 1
+        $MEMBERSHIP_TYPE INTEGER DEFAULT 1,
+        UNIQUE(${CHAT_FOLDER_ID}, ${THREAD_ID}) ON CONFLICT REPLACE
       )
     """
 
     val CREATE_INDEXES = arrayOf(
-      "CREATE INDEX chat_folder_membership_chat_folder_id_index ON $TABLE_NAME ($CHAT_FOLDER_ID)",
       "CREATE INDEX chat_folder_membership_thread_id_index ON $TABLE_NAME ($THREAD_ID)",
       "CREATE INDEX chat_folder_membership_membership_type_index ON $TABLE_NAME ($MEMBERSHIP_TYPE)"
     )
@@ -343,6 +343,40 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
           .where("${ChatFolderTable.ID} = ?", folder.id)
           .run(SQLiteDatabase.CONFLICT_IGNORE)
       }
+      AppDependencies.databaseObserver.notifyChatFolderObservers()
+    }
+  }
+
+  /**
+   * Removes a thread from a chat folder
+   */
+  fun removeFromFolder(folderId: Long, threadId: Long) {
+    writableDatabase.withinTransaction { db ->
+      db.insertInto(ChatFolderMembershipTable.TABLE_NAME)
+        .values(
+          ChatFolderMembershipTable.CHAT_FOLDER_ID to folderId,
+          ChatFolderMembershipTable.THREAD_ID to threadId,
+          ChatFolderMembershipTable.MEMBERSHIP_TYPE to MembershipType.EXCLUDED.value
+        )
+        .run(SQLiteDatabase.CONFLICT_REPLACE)
+
+      AppDependencies.databaseObserver.notifyChatFolderObservers()
+    }
+  }
+
+  /**
+   * Adds a thread to a chat folder
+   */
+  fun addToFolder(folderId: Long, threadId: Long) {
+    writableDatabase.withinTransaction { db ->
+      db.insertInto(ChatFolderMembershipTable.TABLE_NAME)
+        .values(
+          ChatFolderMembershipTable.CHAT_FOLDER_ID to folderId,
+          ChatFolderMembershipTable.THREAD_ID to threadId,
+          ChatFolderMembershipTable.MEMBERSHIP_TYPE to MembershipType.INCLUDED.value
+        )
+        .run(SQLiteDatabase.CONFLICT_REPLACE)
+
       AppDependencies.databaseObserver.notifyChatFolderObservers()
     }
   }
