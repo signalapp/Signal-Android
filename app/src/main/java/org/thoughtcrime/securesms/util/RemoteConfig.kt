@@ -846,17 +846,6 @@ object RemoteConfig {
     sticky = true
   )
 
-  /**
-   * Whether or not ad-hoc calling is enabled
-   */
-  @JvmStatic
-  @get:JvmName("adHocCalling")
-  val adHocCalling: Boolean by remoteBoolean(
-    key = "android.calling.ad.hoc.3",
-    defaultValue = false,
-    hotSwappable = false
-  )
-
   /** Maximum number of attachments allowed to be sent/received.  */
   val maxAttachmentCount: Int by remoteInt(
     key = "android.attachments.maxCount",

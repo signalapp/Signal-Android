@@ -412,10 +412,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private void initializePendingParticipantFragmentListener() {
-    if (!RemoteConfig.adHocCalling()) {
-      return;
-    }
-
     getSupportFragmentManager().setFragmentResultListener(
         PendingParticipantsBottomSheet.REQUEST_KEY,
         this,
