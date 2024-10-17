@@ -101,7 +101,7 @@ class SignalCallLinkManager(
         )
       } catch (e: Exception) {
         Log.e(TAG, "Failed to create call link credential.", e)
-        emitter.onError(e)
+        emitter.onSuccess(CreateCallLinkResult.Failure(-1))
         return@create
       }
 
