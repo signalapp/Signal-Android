@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalTrace;
 
 import java.util.ArrayList;
@@ -173,6 +174,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
     private int totalCount;
     private int pinnedCount;
     private int archivedCount;
+    private int unpinnedCount;
 
     UnarchivedConversationListDataSource(@NonNull ChatFolderRecord chatFolder, @NonNull ConversationFilter conversationFilter, boolean showConversationFooterTip) {
       super(chatFolder, conversationFilter, showConversationFooterTip);
@@ -184,10 +186,19 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
       pinnedCount   = threadTable.getPinnedConversationListCount(conversationFilter, chatFolder);
       archivedCount = threadTable.getArchivedConversationListCount(conversationFilter);
+      unpinnedCount = unarchivedCount - pinnedCount;
       totalCount    = unarchivedCount;
 
       if (chatFolder.getFolderType() == ChatFolderRecord.FolderType.ALL && archivedCount != 0) {
         totalCount++;
+      }
+
+      if (!RemoteConfig.getShowChatFolders() && pinnedCount != 0) {
+        if (unpinnedCount != 0) {
+          totalCount += 2;
+        } else {
+          totalCount += 1;
+        }
       }
 
       return totalCount;
@@ -198,11 +209,25 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
       List<Cursor> cursors       = new ArrayList<>(5);
       long         originalLimit = limit;
 
+      if (!RemoteConfig.getShowChatFolders() && offset == 0 && hasPinnedHeader()) {
+        MatrixCursor pinnedHeaderCursor = new MatrixCursor(ConversationReader.HEADER_COLUMN);
+        pinnedHeaderCursor.addRow(ConversationReader.PINNED_HEADER);
+        cursors.add(pinnedHeaderCursor);
+        limit--;
+      }
+
       Cursor pinnedCursor = threadTable.getUnarchivedConversationList(conversationFilter, true, offset, limit, chatFolder);
       cursors.add(pinnedCursor);
       limit -= pinnedCursor.getCount();
 
-      long   unpinnedOffset = Math.max(0, offset - pinnedCount);
+      if (!RemoteConfig.getShowChatFolders() && offset == 0 && hasUnpinnedHeader()) {
+        MatrixCursor unpinnedHeaderCursor = new MatrixCursor(ConversationReader.HEADER_COLUMN);
+        unpinnedHeaderCursor.addRow(ConversationReader.UNPINNED_HEADER);
+        cursors.add(unpinnedHeaderCursor);
+        limit--;
+      }
+
+      long   unpinnedOffset = Math.max(0, offset - pinnedCount - getHeaderOffset());
       Cursor unpinnedCursor = threadTable.getUnarchivedConversationList(conversationFilter, false, unpinnedOffset, limit, chatFolder);
       cursors.add(unpinnedCursor);
 
@@ -221,6 +246,25 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
       }
 
       return new MergeCursor(cursors.toArray(new Cursor[]{}));
+    }
+
+    @VisibleForTesting
+    int getHeaderOffset() {
+      if (RemoteConfig.getShowChatFolders()) {
+        return 0;
+      } else {
+        return (hasPinnedHeader() ? 1 : 0) + (hasUnpinnedHeader() ? 1 : 0);
+      }
+    }
+
+    @VisibleForTesting
+    boolean hasPinnedHeader() {
+      return pinnedCount != 0;
+    }
+
+    @VisibleForTesting
+    boolean hasUnpinnedHeader() {
+      return hasPinnedHeader() && unpinnedCount != 0;
     }
 
     @VisibleForTesting

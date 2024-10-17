@@ -300,7 +300,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     fab.setVisibility(View.VISIBLE);
     cameraFab.setVisibility(View.VISIBLE);
-    chatFolderList.setVisibility(RemoteConfig.internalUser() ? View.VISIBLE : View.GONE);
+    chatFolderList.setVisibility(RemoteConfig.getShowChatFolders() ? View.VISIBLE : View.GONE);
 
     contactSearchMediator = new ContactSearchMediator(this,
                                                       Collections.emptySet(),

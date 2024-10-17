@@ -60,7 +60,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       dividerPref()
 
-      if (RemoteConfig.internalUser) {
+      if (RemoteConfig.showChatFolders) {
         sectionHeaderPref(R.string.ChatsSettingsFragment__chat_folders)
 
         clickPref(

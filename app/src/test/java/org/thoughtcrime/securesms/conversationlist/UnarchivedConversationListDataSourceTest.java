@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -46,6 +47,9 @@ public class UnarchivedConversationListDataSourceTest {
   @Mock
   private MockedStatic<SignalDatabase> signalDatabaseMockedStatic;
 
+  @Mock
+  private MockedStatic<RemoteConfig> remoteConfigMockedStatic;
+
   private ConversationListDataSource.UnarchivedConversationListDataSource testSubject;
 
   private ChatFolderRecord allChatsFolder;
@@ -58,6 +62,7 @@ public class UnarchivedConversationListDataSourceTest {
 
     when(SignalDatabase.threads()).thenReturn(threadTable);
     when(AppDependencies.getDatabaseObserver()).thenReturn(mock(DatabaseObserver.class));
+    when(RemoteConfig.getShowChatFolders()).thenReturn(true);
 
     allChatsFolder = setupAllChatsFolder();
     testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(allChatsFolder, ConversationFilter.OFF, false);

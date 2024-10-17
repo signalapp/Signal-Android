@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -77,9 +78,9 @@ public class FromTextView extends SimpleEmojiTextView {
 
     setText(builder);
 
-    if      (recipient.isBlocked()) setCompoundDrawablesRelativeWithIntrinsicBounds(getBlocked(), null, null, null);
-    else if (isPinned)              setCompoundDrawablesRelativeWithIntrinsicBounds(getPinned(), null, null, null);
-    else                            setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+    if      (recipient.isBlocked())                          setCompoundDrawablesRelativeWithIntrinsicBounds(getBlocked(), null, null, null);
+    else if (RemoteConfig.getShowChatFolders() && isPinned)  setCompoundDrawablesRelativeWithIntrinsicBounds(getPinned(), null, null, null);
+    else                                                     setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
   }
 
   private Drawable getBlocked() {
