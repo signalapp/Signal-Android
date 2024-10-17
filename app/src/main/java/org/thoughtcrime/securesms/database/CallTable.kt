@@ -112,12 +112,15 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   }
 
   fun markAllCallEventsRead(timestamp: Long = Long.MAX_VALUE) {
-    writableDatabase.update(TABLE_NAME)
+    val updateCount = writableDatabase
+      .update(TABLE_NAME)
       .values(READ to ReadState.serialize(ReadState.READ))
-      .where("$TIMESTAMP <= ?", timestamp)
+      .where("$TIMESTAMP <= ? AND $READ != ?", timestamp, ReadState.serialize(ReadState.READ))
       .run()
 
-    notifyConversationListListeners()
+    if (updateCount > 0) {
+      notifyConversationListListeners()
+    }
   }
 
   fun markAllCallEventsWithPeerBeforeTimestampRead(peer: RecipientId, timestamp: Long): Call? {
