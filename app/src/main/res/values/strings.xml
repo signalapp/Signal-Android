@@ -5084,7 +5084,7 @@
     <!-- Header for section showing suggested chat folders for users to have -->
     <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <string name="ChatFoldersFragment__unread">Unread</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->

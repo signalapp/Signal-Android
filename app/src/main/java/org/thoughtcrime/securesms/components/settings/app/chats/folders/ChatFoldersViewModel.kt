@@ -79,7 +79,7 @@ class ChatFoldersViewModel : ViewModel() {
     if (showUnreadSuggestion) {
       suggestions.add(
         ChatFolderRecord(
-          name = context.getString(R.string.ChatFoldersFragment__unreads),
+          name = context.getString(R.string.ChatFoldersFragment__unread),
           showUnread = true,
           showIndividualChats = true,
           showGroupChats = true,

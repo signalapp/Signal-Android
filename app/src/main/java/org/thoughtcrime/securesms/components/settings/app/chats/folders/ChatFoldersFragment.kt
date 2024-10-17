@@ -162,7 +162,7 @@ fun FoldersScreen(
     state.suggestedFolders.forEach { chatFolder ->
       when (chatFolder.folderType) {
         ChatFolderRecord.FolderType.UNREAD -> {
-          val title: String = stringResource(R.string.ChatFoldersFragment__unreads)
+          val title: String = stringResource(R.string.ChatFoldersFragment__unread)
           FolderRow(
             icon = R.drawable.symbol_chat_badge_24,
             title = title,
