@@ -35,6 +35,7 @@ public class DirectoryRefreshJob extends BaseJob {
   {
     this(new Job.Parameters.Builder()
                            .setQueue(StorageSyncJob.QUEUE_KEY)
+                           .setMaxInstancesForQueue(3)
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(10)
                            .build(),
