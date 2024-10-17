@@ -206,7 +206,6 @@ class DonateToSignalViewModel(
         endOfPeriod = null,
         inAppPaymentData = InAppPaymentData(
           badge = snapshot.badge?.let { Badges.toDatabaseBadge(it) },
-          label = snapshot.badge?.description ?: "",
           amount = amount.toFiatValue(),
           level = snapshot.level.toLong(),
           recipientId = Recipient.self().id.serialize(),

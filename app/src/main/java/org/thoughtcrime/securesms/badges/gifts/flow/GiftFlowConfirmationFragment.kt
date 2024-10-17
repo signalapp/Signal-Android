@@ -115,7 +115,7 @@ class GiftFlowConfirmationFragment :
 
     val continueButton = requireView().findViewById<MaterialButton>(R.id.continue_button)
     continueButton.setOnClickListener {
-      lifecycleDisposable += viewModel.insertInAppPayment(requireContext()).subscribe { inAppPayment ->
+      lifecycleDisposable += viewModel.insertInAppPayment().subscribe { inAppPayment ->
         findNavController().safeNavigate(
           GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToGatewaySelectorBottomSheet(
             inAppPayment

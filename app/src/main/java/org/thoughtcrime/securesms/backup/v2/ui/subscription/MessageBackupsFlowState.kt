@@ -12,7 +12,6 @@ import org.whispersystems.signalservice.api.backup.BackupKey
 
 data class MessageBackupsFlowState(
   val hasBackupSubscriberAvailable: Boolean = false,
-  val selectedMessageBackupTierLabel: String? = null,
   val selectedMessageBackupTier: MessageBackupTier? = SignalStore.backup.backupTier,
   val currentMessageBackupTier: MessageBackupTier? = SignalStore.backup.backupTier,
   val availableBackupTypes: List<MessageBackupsType> = emptyList(),

@@ -221,23 +221,23 @@ class InAppPaymentKeepAliveJob private constructor(
         return null
       }
 
-      val (badge, label) = if (oldInAppPayment == null) {
+      val badge = if (oldInAppPayment == null) {
         info(type, "Old payment not found in database. Loading badge / label information from donations configuration.")
         val configuration = AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault())
         if (configuration.result.isPresent) {
           val subscriptionConfig = configuration.result.get().levels[subscription.level]
           if (subscriptionConfig == null) {
             info(type, "Failed to load subscription configuration for level ${subscription.level} for type $type")
-            null to ""
+            null
           } else {
-            Badges.toDatabaseBadge(Badges.fromServiceBadge(subscriptionConfig.badge)) to subscriptionConfig.name
+            Badges.toDatabaseBadge(Badges.fromServiceBadge(subscriptionConfig.badge))
           }
         } else {
           warn(TAG, "Failed to load configuration while processing $type")
-          null to ""
+          null
         }
       } else {
-        oldInAppPayment.data.badge to oldInAppPayment.data.label
+        oldInAppPayment.data.badge
       }
 
       info(type, "End of period has changed. Requesting receipt refresh. (old: $oldEndOfPeriod, new: $endOfCurrentPeriod)")
@@ -260,7 +260,6 @@ class InAppPaymentKeepAliveJob private constructor(
           error = null,
           level = subscription.level.toLong(),
           cancellation = null,
-          label = label,
           recipientId = null,
           additionalMessage = null,
           redemption = InAppPaymentData.RedemptionState(

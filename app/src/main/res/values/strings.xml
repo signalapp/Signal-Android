@@ -5766,6 +5766,10 @@
     <string name="InAppPaymentInProgressFragment__processing_donation">Processing donation…</string>
     <string name="InAppPaymentInProgressFragment__processing_payment">Processing payment…</string>
 
+    <!--InAppDonations -->
+    <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
+    <string name="InAppDonations__recurring_d">Recurring %1$d</string>
+
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
     <string name="InAppPaymentErrors__error_processing_payment">Error processing payment</string>

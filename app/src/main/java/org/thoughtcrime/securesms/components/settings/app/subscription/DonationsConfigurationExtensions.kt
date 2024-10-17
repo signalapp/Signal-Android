@@ -24,7 +24,7 @@ private const val SEPA_DEBIT = "SEPA_DEBIT"
  * PAYPAL - PayPal
  *
  * @param level                    The subscription level to get amounts for
- * @param paymentMethodAvailability Predicate object which checks whether different payment methods are availble.
+ * @param paymentMethodAvailability Predicate object which checks whether different payment methods are available.
  */
 fun SubscriptionsConfiguration.getSubscriptionAmounts(
   level: Int,

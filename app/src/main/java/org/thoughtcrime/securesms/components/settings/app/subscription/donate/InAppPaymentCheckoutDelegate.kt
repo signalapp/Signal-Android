@@ -160,7 +160,7 @@ class InAppPaymentCheckoutDelegate(
     viewModel.provideGatewayRequestForGooglePay(inAppPayment)
     inAppPaymentComponent.stripeRepository.requestTokenFromGooglePay(
       price = inAppPayment.data.amount!!.toFiatMoney(),
-      label = inAppPayment.data.label,
+      label = InAppDonations.resolveLabel(fragment.requireContext(), inAppPayment.type, inAppPayment.data.level),
       requestCode = InAppPaymentsRepository.getGooglePayRequestCode(inAppPayment.type)
     )
   }

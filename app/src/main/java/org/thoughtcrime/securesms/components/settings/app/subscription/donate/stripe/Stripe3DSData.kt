@@ -52,7 +52,6 @@ data class Stripe3DSData(
           InAppPaymentType.RECURRING_BACKUP -> ExternalLaunchTransactionState.GatewayRequest.InAppPaymentType.RECURRING_BACKUPS
         },
         badge = inAppPayment.data.badge,
-        label = inAppPayment.data.label,
         price = inAppPayment.data.amount!!.amount,
         currencyCode = inAppPayment.data.amount.currencyCode,
         level = inAppPayment.data.level,
@@ -92,7 +91,6 @@ data class Stripe3DSData(
           data = InAppPaymentData(
             paymentMethodType = PaymentSourceType.fromCode(proto.paymentSourceType).toPaymentMethodType(),
             badge = proto.gatewayRequest.badge,
-            label = proto.gatewayRequest.label,
             amount = FiatValue(amount = proto.gatewayRequest.price, currencyCode = proto.gatewayRequest.currencyCode),
             level = proto.gatewayRequest.level,
             recipientId = null,

@@ -76,15 +76,9 @@ public class SubscriptionsConfiguration {
   }
 
   public static class LevelConfiguration {
-    @JsonProperty("name")
-    private String name;
 
     @JsonProperty("badge")
     private SignalServiceProfile.Badge badge;
-
-    public String getName() {
-      return name;
-    }
 
     public SignalServiceProfile.Badge getBadge() {
       return badge;

@@ -80,7 +80,6 @@ object RecurringInAppPaymentRepository {
           Subscription(
             id = level.toString(),
             level = level,
-            name = levelConfig.name,
             badge = Badges.fromServiceBadge(levelConfig.badge),
             prices = config.getSubscriptionAmounts(level)
           )

@@ -27,7 +27,6 @@ import java.util.Locale
  */
 data class Subscription(
   val id: String,
-  val name: String,
   val badge: Badge,
   val prices: Set<FiatMoney>,
   val level: Int

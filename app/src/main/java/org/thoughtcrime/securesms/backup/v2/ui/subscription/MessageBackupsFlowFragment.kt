@@ -20,7 +20,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.rx3.asFlowable
 import org.signal.core.util.getSerializableCompat
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -81,17 +80,6 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       )
     }
 
-    LaunchedEffect(
-      state.selectedMessageBackupTier,
-      state.selectedMessageBackupTierLabel,
-      state.availableBackupTypes
-    ) {
-      if (state.selectedMessageBackupTierLabel == null && state.selectedMessageBackupTier != null && state.availableBackupTypes.isNotEmpty()) {
-        val type = state.availableBackupTypes.firstOrNull { it.tier == state.selectedMessageBackupTier } ?: return@LaunchedEffect
-        viewModel.onMessageBackupTierUpdated(type.tier, getTypeLabel(type))
-      }
-    }
-
     Nav.Host(
       navController = navController,
       startDestination = state.startScreen.name
@@ -133,7 +121,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           onMessageBackupsTierSelected = { tier ->
             val type = state.availableBackupTypes.first { it.tier == tier }
 
-            viewModel.onMessageBackupTierUpdated(tier, getTypeLabel(type))
+            viewModel.onMessageBackupTierUpdated(tier)
           },
           onNavigationClick = viewModel::goToPreviousStage,
           onReadMoreClicked = {},
@@ -161,13 +149,6 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         requireActivity().setResult(Activity.RESULT_OK)
         requireActivity().finishAfterTransition()
       }
-    }
-  }
-
-  private fun getTypeLabel(type: MessageBackupsType): String {
-    return when (type) {
-      is MessageBackupsType.Free -> requireContext().resources.getQuantityString(R.plurals.MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media, type.mediaRetentionDays, type.mediaRetentionDays)
-      is MessageBackupsType.Paid -> requireContext().getString(R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media)
     }
   }
 
